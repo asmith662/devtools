@@ -23,6 +23,123 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelToolDefinition
 
 
+def observed_definition() -> ModelToolDefinition:
+    """Flat native strings; the host resolves path, version and API evidence."""
+    return normalize_tool_descriptor(
+        ToolDescriptor(
+            "replace_source",
+            "Propose an exact replacement using edit_ref from an actual source read "
+            "or host feedback. No path/version hashes needed. old_text is an exact "
+            "unique snippet inside that observation; empty means its whole region "
+            "(or authorized absent file). new_text is literal Python source, never "
+            "JSON syntax. Return multiple replace_source calls in ONE response for "
+            "coordinated regions/files: the host admits and applies the entire batch "
+            "atomically, then validates. No writes occur on refusal.",
+            json.dumps(
+                {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        "reference": {"type": "string", "pattern": "^R[1-9][0-9]*$"},
+                        "old_text": {"type": "string", "maxLength": 4096},
+                        "new_text": {"type": "string", "maxLength": 4096},
+                    },
+                    "required": ["reference", "old_text", "new_text"],
+                }
+            ),
+        )
+    )
+
+
+def admit_observed(  # noqa: C901 -- resolve references before the existing atomic admission
+    root: Path,
+    sources: dict[str, str],
+    calls: tuple[ModelToolCall, ...],
+    tools: ContextTools,
+) -> tuple[dict[str, str], dict[str, str], list[dict[str, Any]], dict[str, Any]]:
+    """Resolve observed references, then reuse the sole atomic admission engine."""
+    if not 1 <= len(calls) <= 8:
+        raise PatchProposalError("One to eight coordinated calls required")
+    tools.check_current()
+    rows = []
+    refs = []
+    for call in calls:
+        try:
+            value = json.loads(
+                call.arguments_json, object_pairs_hook=_object_without_duplicate_keys
+            )
+        except (ValueError, TypeError) as error:
+            raise PatchProposalError("Malformed observed replacement") from error
+        if (
+            call.name != "replace_source"
+            or not isinstance(value, dict)
+            or set(value) != {"reference", "old_text", "new_text"}
+        ):
+            raise PatchProposalError("Malformed observed replacement contract")
+        if not all(isinstance(v, str) for v in value.values()):
+            raise PatchProposalError("Replacement arguments must be strings")
+        observation = tools.edit_references.get(value["reference"])
+        if observation is None:
+            raise PatchProposalError(
+                "Unknown source observation reference; read source first"
+            )
+        path, version = observation["path"], observation["version"]
+        old = value["old_text"] or observation["text"]
+        if observation.get("status") != "ABSENT":
+            resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
+            if version != str(resource.content_identity):
+                raise PatchProposalError(
+                    "Stale source observation reference; read CURRENT source"
+                )
+            first, last = observation["span"]
+            if (
+                observation["text"] != sources[path][first:last]
+                or not old
+                or old.replace("\r\n", "\n")
+                not in observation["text"].replace("\r\n", "\n")
+            ):
+                raise PatchProposalError(
+                    "Old text is outside referenced observed source"
+                )
+        elif value["old_text"]:
+            raise PatchProposalError("Absent source requires empty old_text")
+        rows.append(
+            {
+                "path": path,
+                "version": version,
+                "old_text": old,
+                "new_text": value["new_text"],
+            }
+        )
+        refs.append(
+            {
+                "reference": value["reference"],
+                "observation": observation,
+                "call_id": call.provider_call_id,
+            }
+        )
+    composed = ModelToolCall(
+        "propose_edits",
+        json.dumps(
+            {
+                "plan": "Host resolved native observed replacements",
+                "api_evidence": list(tools.api_observations),
+                "edits": rows,
+            }
+        ),
+        calls[0].provider_call_id,
+    )
+    patches, updated, metadata, plan = admit_transaction(root, sources, composed, tools)
+    for item, ref in zip(metadata, refs, strict=True):
+        item.update(
+            proposal_call_id=ref["call_id"],
+            observation_reference=ref["reference"],
+            observation=ref["observation"],
+        )
+    plan["resolved_observations"] = refs
+    return patches, updated, metadata, plan
+
+
 def transaction_definition(
     paths: tuple[str, ...], *, api_required: bool = True
 ) -> ModelToolDefinition:

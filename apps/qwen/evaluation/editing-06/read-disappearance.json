@@ -1,0 +1,47 @@
+{
+  "name": "read-disappearance",
+  "objective": "Repair filesystem read error normalization when an observed file disappears during inspection/stat or byte loading, or becomes a directory before byte loading. Preserve documented FilesystemNotFoundError/NotAFileError boundaries, actual underlying cause and useful path. Preserve normal decoding, explicit/inferred formats, size limits, permission errors and stable missing/directory behavior. Only reading.py may be edited; do not change tests or acceptance.",
+  "source": "src/devtools/resources/filesystem/reading.py",
+  "tests": [
+    "tests/resources/filesystem/test_reading.py"
+  ],
+  "baseline_revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "d7262de84450424c6846644a4c89b4e2d4cd63b40141f3064b9947075ea93309"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "1b2a861787a3ca983e076d0d4754bdeaf714b668518e5c911c071f2411a4e707"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "read-disappearance",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "read-disappearance",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.filesystem import read,FilesystemNotFoundError,NotAFileError,TextFile\nwith TemporaryDirectory() as directory:\n    raw=Path(directory)/'gone.txt';raw.write_text('content',encoding='utf-8');p=resolve_path(raw)\n    assert isinstance(read(p),TextFile)\n    for method in ['read_bytes','stat']:\n        original=FileNotFoundError('disappeared after initial observation')\n        if method=='read_bytes':context=patch.object(type(raw),method,side_effect=original)\n        else:\n            real=type(raw).stat;calls=[0]\n            def changing(self,*a,**kw):\n                if self==raw:\n                    calls[0]+=1\n                    if calls[0]>=3:raise original\n                return real(self,*a,**kw)\n            context=patch.object(type(raw),method,changing)\n        with context:\n            try:read(p)\n            except FilesystemNotFoundError as e:assert e.__cause__ is original and str(p) in str(e)\n            except FileNotFoundError as error:raise AssertionError('Unnormalized disappearance') from error\n            else:raise AssertionError('Disappearance not domain normalized')\n    original=IsADirectoryError('became a directory')\n    with patch.object(type(raw),'read_bytes',side_effect=original):\n        try:read(p)\n        except NotAFileError as e:assert e.__cause__ is original\n        except IsADirectoryError as error:raise AssertionError('Unnormalized directory race') from error\n        else:raise AssertionError('Directory race not normalized')\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": []
+}

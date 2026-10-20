@@ -211,6 +211,22 @@ class ContextTools:
         self.observations: list[dict[str, Any]] = []
         self.api_observations: dict[str, dict[str, Any]] = {}
         self.absent_observations: dict[str, str] = {}
+        self.edit_references: dict[str, dict[str, Any]] = {}
+
+    def reference(self, observation: dict[str, Any]) -> dict[str, Any]:
+        """Name an actual source observation locally; never replace its RI identity."""
+        if (
+            observation.get("path") not in self.task.sources
+            or "text" not in observation
+        ):
+            return observation
+        record = {k: v for k, v in observation.items() if k != "edit_ref"}
+        for key, saved in self.edit_references.items():
+            if saved == record:
+                return {**observation, "edit_ref": key}
+        key = f"R{len(self.edit_references) + 1}"
+        self.edit_references[key] = record
+        return {**observation, "edit_ref": key}
 
     @property
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
@@ -465,7 +481,7 @@ class ContextTools:
         }
         if len(json.dumps(result, ensure_ascii=False).encode()) > 12000:
             raise ValueError("Context response byte budget exceeded")
-        return result
+        return self.reference(result)
 
     def _metadata(self, unit: RepositorySourceUnit) -> dict[str, Any]:
         return {

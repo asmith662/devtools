@@ -12,7 +12,6 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
-import sys
 import time
 from dataclasses import asdict, replace
 from typing import TYPE_CHECKING, Any
@@ -36,10 +35,14 @@ from apps.qwen.development_task import (
     _save,
     _structured_edit_definition,
     _structured_edit_patch_from_calls,
-    _timed_command,
     apply_source_patches,
 )
-from apps.qwen.edits import admit_transaction, transaction_definition
+from apps.qwen.edits import (
+    admit_observed,
+    admit_transaction,
+    observed_definition,
+    transaction_definition,
+)
 from apps.qwen.patch_proposal_worker import PatchProposalError, _read_text
 from apps.qwen.tasks import MARKDOWN, CodingTask
 from devtools.context import (
@@ -265,13 +268,8 @@ async def validate_workspace(
     tests = await run_check(root, folder, task, "tests")
     result = {"oracle": oracle, "tests": tests}
     if task.quality_checks:
-        for name, arguments in (
-            ("ruff", ("check",)),
-            ("format", ("format", "--diff")),
-        ):
-            result[name] = await _timed_command(
-                root, sys.executable, "-m", "ruff", *arguments, *task.sources
-            )
+        for name in ("ruff", "format"):
+            result[name] = await run_check(root, folder, task, name)
     if task.command_tools:
         result["typing"] = await run_check(root, folder, task, "typing")
     return {**result, "accepted": all(not check["failed"] for check in result.values())}
@@ -294,7 +292,7 @@ async def preflight_coding_task(
     _prepare_workspace(root, folder, task)
     await _authenticate_inputs(root, root, task)
     validation = await validate_workspace(root, folder, task=task)
-    typing = await _timed_command(root, sys.executable, "-m", "mypy", *task.sources)
+    typing = await run_check(root, folder, task, "typing")
     await _authenticate_inputs(root, root, task)
     accepted = (
         validation["oracle"]["failed"]
@@ -425,6 +423,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     admit_edit: Callable[[str, str], None] | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    observed_edits: bool = False,
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
 ) -> None:
@@ -467,6 +466,22 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             " Use git_inspect for scoped status/diff/history and run_check for "
             "fixed tests, oracle, Ruff, formatting or typing when useful. "
             "These are host-owned bounded operations, not shell access."
+        )
+    if observed_edits:
+        if not coordinated_edits or tools is None:
+            raise ValueError("Observed edits require native coordinated mode")
+        active_prompt = active_prompt.replace(
+            "Use propose_edits for one coherent atomic implementation across ",
+            "Use one or more flat replace_source calls in the SAME response for ",
+        ).replace(
+            "then cite their observation IDs", "the host verifies their observations"
+        )
+        active_prompt += (
+            " Editing uses edit_ref returned by source reads and validation. "
+            "The host resolves path/version/API evidence. old_text may be a small "
+            "exact snippet; empty old_text replaces the whole referenced region. "
+            "For multi-region edits emit multiple replace_source calls together; "
+            "never encode a nested edits array or put JSON syntax in Python text."
         )
     history = [
         PromptMessage(
@@ -528,7 +543,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             ),
             tools=(
                 (
-                    transaction_definition(
+                    observed_definition()
+                    if observed_edits
+                    else transaction_definition(
                         task.sources, api_required=bool(task.api_targets)
                     )
                     if coordinated_edits
@@ -773,7 +790,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 continue
             if any(
                 c.name
-                not in ({"propose_edits"} if coordinated_edits else {"propose_edit"})
+                not in (
+                    {"replace_source"}
+                    if observed_edits
+                    else {"propose_edits"}
+                    if coordinated_edits
+                    else {"propose_edit"}
+                )
                 for c in response.tool_calls
             ):
                 raise PatchProposalError("Do not mix Context calls with edit proposals")
@@ -783,8 +806,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         stage["proposal_attempted"] = True
         transaction = bool(
             coordinated_edits
-            and len(response.tool_calls) == 1
-            and response.tool_calls[0].name == "propose_edits"
+            and (
+                observed_edits
+                or (
+                    len(response.tool_calls) == 1
+                    and response.tool_calls[0].name == "propose_edits"
+                )
+            )
         )
         sources = {
             path: _read_text(resolve_path(workspace / path)).content
@@ -800,9 +828,15 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         "Transactions require native observed Context"
                     )
                 call = response.tool_calls[0]
-                patches, updates, edits, plan = admit_transaction(
-                    workspace, sources, call, tools
-                )
+                if observed_edits:
+                    patches, updates, edits, plan = admit_observed(
+                        workspace, sources, response.tool_calls, tools
+                    )
+                    _save(turn / "resolved-proposal.json", plan)
+                else:
+                    patches, updates, edits, plan = admit_transaction(
+                        workspace, sources, call, tools
+                    )
             else:
                 call, patch, updated = _structured_edit_patch_from_calls(
                     workspace,
@@ -877,10 +911,20 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 },
             }
             call = response.tool_calls[0]
-            history.append(
-                PromptMessage(
-                    "tool", json.dumps(result), tool_call_id=call.provider_call_id
+            if observed_edits:
+                result["instruction"] = (
+                    "No source was changed. Use a current edit_ref from a read or "
+                    "host feedback, and literal Python replacement text. No hashes, "
+                    "arrays or JSON closing syntax belong in old_text/new_text. "
+                    "The entire batch was rejected. Preserve all task requirements."
                 )
+            history.extend(
+                PromptMessage(
+                    "tool",
+                    json.dumps(result),
+                    tool_call_id=native_call.provider_call_id,
+                )
+                for native_call in response.tool_calls
             )
             stage.update(
                 disposition="PROPOSAL_REFUSED",
@@ -890,7 +934,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             )
             _save(
                 turn / "tools.json",
-                [{"call": asdict(call), "status": "REFUSED", "result": result}],
+                [
+                    {"call": asdict(c), "status": "REFUSED", "result": result}
+                    for c in response.tool_calls
+                ],
             )
             _save(turn / "stage.json", stage, overwrite=True)
             if proposals >= 3:
@@ -962,6 +1009,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             disposition=("ACCEPTED" if validation["accepted"] else "TESTS_FAILED"),
         )
         if tools is not None:
+            if observed_edits:
+                tools.observations = [tools.reference(o) for o in tools.observations]
             result = {
                 "status": stage["disposition"],
                 "source_after": stage["source_after"],
@@ -1004,6 +1053,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                             "text",
                             "derived_from",
                             "observation_call_id",
+                            "edit_ref",
                         }
                     }
                     for o in tools.observations
@@ -1028,16 +1078,39 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     for o in result["source_observations"]
                     if o.get("observation_call_id") != call.provider_call_id
                 ]
-            history.append(
-                PromptMessage(
-                    "tool",
-                    json.dumps(result, ensure_ascii=False),
-                    tool_call_id=call.provider_call_id,
+            for index, native_call in enumerate(response.tool_calls):
+                payload = (
+                    result
+                    if index == 0
+                    else {
+                        "status": result["status"],
+                        "batch_result_call_id": call.provider_call_id,
+                        "instruction": "See the first correlated Tool result for "
+                        "full validation and current observations.",
+                    }
                 )
-            )
+                history.append(
+                    PromptMessage(
+                        "tool",
+                        json.dumps(payload, ensure_ascii=False),
+                        tool_call_id=native_call.provider_call_id,
+                    )
+                )
             _save(
                 turn / "tools.json",
-                [{"call": asdict(call), "status": "RETURNED", "result": result}],
+                [
+                    {
+                        "call": asdict(c),
+                        "status": "RETURNED",
+                        "result": result
+                        if i == 0
+                        else {
+                            "status": result["status"],
+                            "batch_result_call_id": call.provider_call_id,
+                        },
+                    }
+                    for i, c in enumerate(response.tool_calls)
+                ],
             )
         _save(turn / "stage.json", stage, overwrite=True)
         print(
@@ -1092,6 +1165,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     admit_edit: Callable[[str, str], None] | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    observed_edits: bool = False,
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
 ) -> dict[str, Any]:
@@ -1111,6 +1185,8 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     }
     if (
         type(coordinated_edits) is not bool
+        or type(observed_edits) is not bool
+        or (observed_edits and not coordinated_edits)
         or (coordinated_edits and task.context_mode != "on-demand")
         or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
     ):
@@ -1150,7 +1226,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         "coordination_usage": "UNKNOWN",
         "provenance": provenance,
         "execution_location": "selected-canonical-checkout; no source-tree copy",
-        "edit_protocol": "observed-transaction-v1"
+        "edit_protocol": "observed-flat-batch-v1"
+        if observed_edits
+        else "observed-transaction-v1"
         if coordinated_edits
         else "single-edit-legacy",
     }
@@ -1207,6 +1285,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 admit_edit=admit_edit,
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
+                observed_edits=observed_edits,
                 reasoning_effort=reasoning_effort,
                 request_settings=request_settings,
             )

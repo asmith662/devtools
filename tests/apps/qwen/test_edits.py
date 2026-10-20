@@ -301,10 +301,11 @@ class Engineering:
 
     source = InteractionSource("scripted-atomic-engineering")
 
-    def __init__(self, *, exhausted: bool = False) -> None:
+    def __init__(self, *, exhausted: bool = False, flat: bool = False) -> None:
         """Freeze one scripted validation/repair outcome."""
         self.requests: list[ModelRequest] = []
         self.exhausted = exhausted
+        self.flat = flat
 
     async def send(self, request: ModelRequest) -> ModelResponse:
         """Return correlated native calls driven by actual host observations."""
@@ -358,7 +359,7 @@ class Engineering:
                 if "text" in o
             ]
             if number > 3:
-                feedback = values[-1]
+                feedback = next(v for v in reversed(values) if "validation" in v)
                 assert feedback["validation"]["repair_contract"]["failed_checks"]
                 assert (
                     len(feedback["validation"]["repair_contract"]["source_versions"])
@@ -401,14 +402,41 @@ class Engineering:
                     f"edit-{number}",
                 ),
             )
+        if self.flat and number > 2:
+            calls = tuple(
+                ModelToolCall(
+                    "replace_source",
+                    json.dumps(
+                        {
+                            "reference": next(
+                                o["edit_ref"]
+                                for o in reversed(observations)
+                                if o["path"] == row["path"]
+                                and o["version"] == row["version"]
+                                and row["old_text"] in o["text"]
+                            ),
+                            "old_text": row["old_text"],
+                            "new_text": row["new_text"],
+                        }
+                    ),
+                    f"flat-{number}-{i}",
+                )
+                for i, row in enumerate(rows)
+            )
         return ModelResponse(
             "Observed-source implementation proposal.", source, tool_calls=calls
         )
 
 
 @pytest.mark.parametrize("outcome", ["repair", "exhausted", "interrupted"])
+@pytest.mark.parametrize("flat", [False, True])
 def test_native_atomic_engineering_repair_restoration_and_interruption(
-    bundle: ContextTools, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, outcome: str
+    bundle: ContextTools,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    outcome: str,
+    *,
+    flat: bool,
 ) -> None:
     root = bundle.root
     maintained = Path(__file__).resolve().parents[3] / "src/devtools"
@@ -450,9 +478,9 @@ def test_native_atomic_engineering_repair_restoration_and_interruption(
 
         monkeypatch.setattr(coding_loop, "apply_source_patches", interrupt)
     folder = tmp_path / "engineering"
-    model = Engineering(exhausted=outcome == "exhausted")
+    model = Engineering(exhausted=outcome == "exhausted", flat=flat)
     operation = coding_loop.run_coding_task(
-        root, folder, model, task=task, coordinated_edits=True
+        root, folder, model, task=task, coordinated_edits=True, observed_edits=flat
     )
     if outcome == "interrupted":
         with pytest.raises(asyncio.CancelledError):

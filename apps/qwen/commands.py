@@ -76,12 +76,16 @@ async def run_check(
     """Share fixed check construction for inspection and final acceptance."""
     if check not in CHECKS:
         raise ValueError("Unsupported coding check")
+    paths = (
+        *task.existing_sources,
+        *(p for p in task.new_paths if (root / p).exists()),
+    )
     arguments = {
         "tests": ("-I", "-B", str(folder / "tests-runner.py")),
         "oracle": ("-I", "-B", str(folder / "oracle-runner.py")),
-        "ruff": ("-m", "ruff", "check", *task.sources),
-        "format": ("-m", "ruff", "format", "--diff", *task.sources),
-        "typing": ("-m", "mypy", "--strict", *task.sources),
+        "ruff": ("-m", "ruff", "check", *paths),
+        "format": ("-m", "ruff", "format", "--diff", *paths),
+        "typing": ("-m", "mypy", "--strict", *paths),
     }[check]
     return await _timed_command(root, sys.executable, *arguments)
 

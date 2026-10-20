@@ -1,0 +1,84 @@
+{
+  "name": "lazy-conversion-api",
+  "objective": "Add a public generically typed lazy iter_converted(values, converter) API in core.conversion.iteration and export it from devtools.core.conversion. Current convert_all eagerly consumes input; callers need an iterator alternative for large or unbounded streams. Neither input nor converter may run until iteration; process each item once in order, stopping at first failure. Reuse convert/ConversionError semantics: zero-based failed item index, complete cause chain, existing ConversionError retained as cause, and untouched BaseException control flow. Empty iterables work. Existing convert and convert_all behavior must remain unchanged. Authorized new file is only iteration.py. Do not change tests.",
+  "source": "src/devtools/core/conversion/conversion.py",
+  "tests": [
+    "tests/core/conversion/test_conversion.py",
+    "tests/resources/filesystem/test_json_conversion.py"
+  ],
+  "baseline_revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/conversion/conversion.py",
+      "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262"
+    ],
+    [
+      "src/devtools/core/conversion/__init__.py",
+      "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd"
+    ],
+    [
+      "tests/core/conversion/test_conversion.py",
+      "6dc2fb84495e89f0c54c0b986fad23d96100754b1cd12b22acadc44112d494a2"
+    ],
+    [
+      "tests/resources/filesystem/test_json_conversion.py",
+      "c1d83f33bea41814a15b918645b2fd26e3cd180c947201b77b89394e7279313d"
+    ],
+    [
+      "src/devtools/core/conversion/errors.py",
+      "596f2eb831ea41d318c5476c15cb87bdbecbdfc25f044162c966b3854a04ce28"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/conversion/conversion.py",
+      "lazy-conversion-api",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/conversion/__init__.py",
+      "lazy-conversion-api",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/core/conversion/test_conversion.py",
+      "lazy-conversion-api",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_json_conversion.py",
+      "lazy-conversion-api",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/conversion/errors.py",
+      "lazy-conversion-api",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "try:\n    from devtools.core.conversion import iter_converted,convert_all,ConversionError\nexcept ImportError as error:\n    raise AssertionError(\"Missing public lazy conversion API\") from error\nfrom devtools.core.conversion.iteration import iter_converted as implementation\nassert iter_converted is implementation\nseen=[]\ndef values():\n    for i in range(4):seen.append(('source',i));yield i\ndef converter(x):seen.append(('convert',x));return x*2\nit=iter_converted(values(),converter)\nassert not seen and iter(it) is it\nassert next(it)==0 and seen==[('source',0),('convert',0)]\nassert list(it)==[2,4,6] and list(iter_converted([],int))==[]\nassert convert_all(['1','2'],int)==(1,2)\ntry:list(iter_converted(['1','bad','3'],int))\nexcept ConversionError as e:assert e.index==1 and e.source_type is str and isinstance(e.__cause__,ConversionError) and isinstance(e.__cause__.__cause__,ValueError)\nelse:raise AssertionError('No normalized indexed failure')\noriginal=ConversionError(dict)\ndef failure(x):raise original\ntry:next(iter_converted([1],failure))\nexcept ConversionError as e:assert e.index==0 and e.__cause__ is original and e is not original\nelse:raise AssertionError('Existing error lost')\nstop=KeyboardInterrupt()\ndef cancel(x):raise stop\ntry:next(iter_converted([1],cancel))\nexcept KeyboardInterrupt as e:assert e is stop\nelse:raise AssertionError('Control flow swallowed')\ndef infinite():\n    i=0\n    while True:yield i;i+=1\nassert next(iter_converted(infinite(),str))=='0'\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/conversion/errors.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [
+    "src/devtools/core/conversion/__init__.py"
+  ],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": [
+    "src/devtools/core/conversion/iteration.py"
+  ]
+}

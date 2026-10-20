@@ -119,6 +119,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     branch: str | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    observed_edits: bool = False,
     reasoning_effort: str | None = None,
     sampling_profile: str = "baseline",
 ) -> dict[str, Any]:
@@ -140,6 +141,8 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     )
     if (
         type(coordinated_edits) is not bool
+        or type(observed_edits) is not bool
+        or (observed_edits and not coordinated_edits)
         or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
         or (coordinated_edits and task.context_mode != "on-demand")
     ):
@@ -200,6 +203,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                 admit_edit=owner.expect,
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
+                observed_edits=observed_edits,
                 reasoning_effort=reasoning_effort,
                 request_settings=selected_settings,
             )
@@ -288,6 +292,11 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
             "host-allowlisted API inspection."
         ),
     )
+    parser.add_argument(
+        "--observed-edits",
+        action="store_true",
+        help="Flat observed-reference native edit batches; implies coordinated edits.",
+    )
     parser.add_argument("--reasoning-effort", choices=("low", "medium", "xhigh"))
     parser.add_argument(
         "--sampling-profile",
@@ -372,6 +381,8 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
         options["thinking_enabled"] = True
     if args.coordinated_edits:
         options["coordinated_edits"] = True
+    if args.observed_edits:
+        options.update(coordinated_edits=True, observed_edits=True)
     if args.reasoning_effort:
         options["reasoning_effort"] = args.reasoning_effort
     if args.sampling_profile != "baseline":
