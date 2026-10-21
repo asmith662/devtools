@@ -1,5 +1,14 @@
 # Roadmap
 
+[Fresh engineering14](../apps/qwen/evaluation/engineering-14/README.md) is accepted
+and feature-published at `73e5ee07ee49`: Qwen authored immutable successful-code
+configuration and result interpretation, then repaired an actual pre-deduplication
+validation failure. Existing executor/Tool paths pass real child fixtures; no
+harness changes or supervised semantic substitute were needed. Parent reliability
+and protected adoption stay open. Next complete the previously exposed Commands
+output-limit integer/bool validation obligation under a requalified exception
+contract; it will be development continuation, not fresh confirmation.
+
 [Environment development 13](../apps/qwen/evaluation/environment-13/README.md)
 completes the qualified per-command environment contract as Qwen-authored source,
 independently reviewed/validated and feature-published at `b81891ceeafa`.

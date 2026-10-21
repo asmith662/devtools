@@ -1,5 +1,13 @@
 # Architecture
 
+The existing Commands value/result boundary now supports explicit per-command
+successful exit codes. Command owns the immutable specification; CommandResult
+interprets the raw exit status. The executor, handle/events and CommandTool retain
+their original transport/cleanup responsibilities. This adds no authorization,
+policy-engine, execution or Tool ownership. See the
+[public contract](../src/devtools/resources/commands/docs/command.md) and
+[Qwen engineering evidence](../apps/qwen/evaluation/engineering-14/README.md).
+
 The existing Commands resource now owns immutable per-command environment
 configuration and launch-time parent overlays through its Command/executor APIs;
 see [the supported contract](../src/devtools/resources/commands/docs/command.md).

@@ -49,6 +49,15 @@ If creation raises `FileNotFoundError`, it becomes `CommandNotFoundError` with
 the original error retained as its cause. No started event or result is
 produced, and the event stream closes.
 
+## Explicit successful statuses
+
+The executor and live handle retain raw process status and result identity.
+`CommandResult` applies the originating Command's `success_exit_codes` to its
+`succeeded`/`failed` views; CommandTool/ToolRunner forward the same result.
+`CommandExited.exit_code` remains the actual status, including a selected nonzero
+or excluded zero. This interpretation does not change execution exceptions,
+timeouts, cancellation or cleanup. See [command values](command.md).
+
 ## Timeout
 
 `Duration.total_seconds` configures an asyncio timeout around post-creation

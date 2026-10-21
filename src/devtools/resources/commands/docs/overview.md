@@ -70,7 +70,10 @@ CommandError
 └── CommandTimeoutError
 ```
 
-A nonzero process exit is a normal `CommandResult`, not an exception.
+A nonzero process exit is a normal `CommandResult`, not an exception. Successful
+status interpretation defaults to zero, with explicit immutable per-command
+`success_exit_codes` available for developer-tool conventions such as diff-found.
+Raw process status, events and other execution facts remain unchanged.
 
 ## Limitations and future evolution
 

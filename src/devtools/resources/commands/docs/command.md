@@ -13,6 +13,7 @@ Command(
     timeout: Duration | None = None,
     stdin: bytes | None = None,
     environment: Mapping[str, str] | None = None,
+    success_exit_codes: frozenset[int] = frozenset({0}),
 )
 ```
 
@@ -39,6 +40,8 @@ with_stdin(bytes)     replace immutable binary input
 without_stdin()       restore inherited stdin
 with_environment(...) replace environment overrides
 without_environment() restore inherited environment
+with_success_exit_codes(...) replace successful statuses
+without_success_exit_codes() restore zero-only success
 ```
 
 `stdin=None` preserves inherited input. Immutable `bytes`, including `b""`,
@@ -58,6 +61,17 @@ overrides replace only their keys, retaining other parent values. Empty strings
 and Unicode values are supported. The executor never mutates os.environ; concurrent
 commands receive independent overlays. The original immutable Mapping is a command
 value, not a captured full parent-environment snapshot.
+
+`success_exit_codes` is an immutable frozenset of int values, excluding bool.
+Defaults remain zero-only. Constructor inputs of another collection type or
+invalid members raise TypeError. `with_success_exit_codes(*codes)` validates every
+argument before deduplication; int subclasses except bool are accepted. An empty
+set accepts no status, and the reset method restores `{0}`. Code selection
+participates in structural equality/hash and survives every other fluent change.
+
+For developer tools whose nonzero statuses carry ordinary data, callers can use
+`Command("git", arguments).with_success_exit_codes(0, 1)`. This only interprets the
+result; it grants no execution authority and changes no shell/error/cleanup rules.
 
 ## `CommandOutputPolicy`
 
@@ -94,6 +108,8 @@ the retained leading prefix allowed by the policy; they are not necessarily the
 complete process output. Truncation flags report omitted retained bytes, and
 `events_dropped` reports bounded-queue loss.
 
-Exit code zero means `succeeded`; every nonzero exit code means `failed` but is
-still a completed result. Timeout, cancellation, process-creation failure, and
-other execution exceptions produce no `CommandResult`.
+`succeeded` is exact membership of the raw exit code in that result's
+`command.success_exit_codes`; `failed` is its complement. Defaults preserve
+zero-only success. A selected nonzero or excluded zero is still a completed
+result; status, output and events are never normalized. Timeout, cancellation,
+process-creation failure and other execution exceptions produce no `CommandResult`.

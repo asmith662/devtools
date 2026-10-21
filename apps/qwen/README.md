@@ -1,5 +1,12 @@
 # Bounded local coding worker
 
+[Engineering 14](evaluation/engineering-14/README.md) demonstrates fresh useful
+development with the unchanged worker: a complete command/result capability,
+real-child/Tool validation and one corrected behavioral defect, 10 requests and
+two admitted transactions. Exact Qwen source and independent permanent tests
+are feature-published at `73e5ee07ee49`. No worker/Context/edit/serving change
+or implementation intervention was required; general reliability remains open.
+
 [Environment development 13](evaluation/environment-13/README.md) completes the
 original exposed Commands environment contract through the unchanged worker:
 14 calls, five admitted proposals, no refusals, full independent behavior/quality

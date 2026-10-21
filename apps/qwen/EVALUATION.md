@@ -1,5 +1,14 @@
 # Native Context worker acceptance and evaluation
 
+[Fresh engineering 14](evaluation/engineering-14/README.md) delivers per-command
+successful exit-code interpretation across specification/result/Tool behavior.
+Qwen completed 10 native requests, two admitted proposals and one genuine
+behavioral repair: validation now precedes boolean/integer deduplication. All
+earlier passing requirements and 88 regressions survive. Independent acceptance,
+28 permanent regressions and the protected gate pass exact Qwen source published
+at `73e5ee07ee49`. The worker/serving profile remain unchanged. This is one fresh
+development case, not general reliability, causal optimization or a paid comparison.
+
 [Environment diagnostic/development 13](evaluation/environment-13/README.md):
 Devtools **1/1 accepted**, 14 requests, 252,211 input/5,604 output tokens, 448.36s,
 five admitted proposals and zero refusals. It corrected missing constructor/fluent

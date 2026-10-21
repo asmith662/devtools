@@ -322,3 +322,17 @@ confirmation, parent completion, proposal promotion or protected adoption.
 Environment overrides is no longer missing on this feature branch. Remaining
 pressure is reliable fresh cross-component completion and requirement-preserving
 behavioral repair, with production adoption separately authorized.
+
+## Fresh engineering 14: successful exit codes
+
+New discovery `d9416198-66c7-40b9-b566-e2a8806a81b5` remains PENDING_REVIEW; no canonical
+promotion or parent completion occurred. The trusted local assignment separately
+authorized Qwen development of this reusable developer-command capability.
+Qwen located specification/result/Tool owners and delivered the full public
+behavior in 10 requests/two atomic proposals, correcting a genuine boolean-
+deduplication validation defect without losing passing requirements. Exact source
+and 28 independent regressions are feature-published at `73e5ee07ee49` through
+existing closeout; 116 focused tests, static checks and protected validation pass.
+See [measured evidence](../../../apps/qwen/evaluation/engineering-14/README.md).
+The worker/profile are unchanged. One fresh accepted repair is useful progress,
+not general proficiency or protected-main adoption.
