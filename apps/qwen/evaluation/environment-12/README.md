@@ -38,3 +38,34 @@ The coding continuation will be frozen separately at at most 24 requests,
 1,800 worker seconds, six atomic proposals, 32 read/check actions, sixteen
 components and unchanged region/aggregate/patch byte bounds. No failed result
 permits an expanded budget or another attempt.
+
+## Recorded interruption and same-budget supervised continuation
+
+The first segment ended `CONTEXT_BUDGET_FAILED` after ten real requests and five
+proposals. It preserved source and delivered behavioral/quality failures, but
+did not finish mapping snapshotting or actual child environment delivery. The
+next request measured 29,797 compacted input tokens, leaving 923 safe output.
+The original result remains immutable and unsuccessful.
+
+This trace showed current observations retained both exact contained ranges and
+larger reacquired ranges. Projection can now reference a strictly larger current
+observation only when path, version, coordinates and every covered character
+agree. Every original handle/span remains; malformed, conflicting or different
+path/version spans are not substituted. Text-free stale/duplicate observation
+envelopes retain their identity/reference fields and whole-message provenance.
+No new source is generated or source admission changed. Fifty-two focused
+regressions pass. Tokenizer-only replay leaves 5,580 safe output tokens for the
+blocked environment request and 4,793 for stdin's old blocked request, with exact
+latest validation and native call/result correlations retained. This is not live
+acceptance or evidence of semantic repair.
+
+One explicitly recorded supervised continuation reconstructs the ten archived
+responses through the existing worker, without inference, and authenticates the
+exact partial candidate before any new request. There is no separate retry
+budget: the original ceilings remain 24 genuine requests, six proposals and
+1,800 total worker seconds. Only fourteen new requests, **one** new proposal,
+25 read/check actions and 1,385 worker seconds remain. Prefix calls/usage are
+marked archived, and reported separately. This spends unused original allowance
+without restarting implementation from baseline. No further recovery or retry
+follows this continuation. Original and recovery results remain distinct, and
+any recovery acceptance cannot be counted as uninterrupted autonomous success.

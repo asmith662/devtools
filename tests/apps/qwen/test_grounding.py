@@ -356,6 +356,79 @@ def test_only_superseded_refusals_and_attested_applied_components_project() -> N
     assert results["old"]["diagnostic"] == "preserve latest diagnostic"
 
 
+def test_contained_source_compaction_preserves_exact_union_and_handles() -> None:
+    """Reacquired larger regions need not duplicate their exact contained text."""
+    text = "alpha λ\nsecond region\n"
+    small = {
+        "path": "src/devtools/a.py",
+        "version": "v2",
+        "span": [6, 8],
+        "text": text[6:8],
+        "edit_ref": "R1",
+        "repository": "redundant",
+    }
+    whole = {
+        "path": small["path"],
+        "version": "v2",
+        "span": [0, len(text)],
+        "text": text,
+        "edit_ref": "R2",
+    }
+    history = [
+        PromptMessage("user", "objective"),
+        *exchange("small", small),
+        *exchange("whole", {"source_observations": [whole]}),
+    ]
+    before = json.dumps([asdict(m) for m in history])
+    messages, omitted = select_messages(history, compact=True, maximum_bytes=20000)
+    assert omitted == 0
+    Prompt("", "messages", messages)
+    result = {
+        m.tool_call_id: json.loads(m.content) for m in messages if m.role == "tool"
+    }
+    assert "text" not in result["small"]
+    assert result["small"]["edit_ref"] == "R1"
+    assert result["small"]["span"] == [6, 8]
+    assert result["small"]["retained_tool_call_id"] == "whole"
+    assert result["small"]["covering_span"] == whole["span"]
+    assert result["whole"]["source_observations"][0] == whole
+    assert json.dumps([asdict(m) for m in history]) == before
+
+
+@pytest.mark.parametrize("difference", ["path", "text", "span", "version"])
+def test_containment_never_substitutes_unverified_source(difference: str) -> None:
+    small = {
+        "path": "src/devtools/a.py",
+        "version": "v1",
+        "span": [0, 3],
+        "text": "abc",
+        "edit_ref": "R1",
+    }
+    whole = {
+        "path": small["path"],
+        "version": "v1",
+        "span": [0, 6],
+        "text": "abcdef",
+        "edit_ref": "R2",
+    }
+    if difference == "path":
+        whole["path"] = "src/devtools/b.py"
+    elif difference == "text":
+        whole["text"] = "UVWXYZ"
+    elif difference == "span":
+        whole["span"] = [0, 7]  # invalid attestation length
+    else:
+        whole["version"] = "old"
+    history = [
+        PromptMessage("user", "objective"),
+        *exchange("whole", whole),
+        *exchange("small", small),
+    ]
+    messages, _ = select_messages(history, compact=True, maximum_bytes=20000)
+    result = next(json.loads(m.content) for m in messages if m.tool_call_id == "small")
+    assert result["text"] == "abc"
+
+
 def test_grounding_union_drift_and_actionable_bounds(tools: ContextTools) -> None:
     hit = dispatch(tools, "lookup_symbol", name="helper")["matches"][0]
     args = {"path": hit["path"], "version": hit["version"]}

@@ -166,6 +166,27 @@ def _completed_calls(
     return projected
 
 
+def _observation_reference(value: dict[str, Any]) -> dict[str, Any]:
+    """Retain exact region/handle provenance after its text is already projected."""
+    return {
+        k: v
+        for k, v in value.items()
+        if k
+        in {
+            "path",
+            "version",
+            "span",
+            "edit_ref",
+            "status",
+            "observation_id",
+            "observation_call_id",
+            "source_omitted",
+            "retained_tool_call_id",
+            "covering_span",
+        }
+    }
+
+
 def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API projection
     history: list[PromptMessage],
     *,
@@ -187,6 +208,24 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
         for observed in [value, *value.get("source_observations", [])]:
             if observed.get("path") and observed.get("version"):
                 latest[observed["path"]] = observed["version"]
+    regions = []
+    if compact:
+        for message in history:
+            value = _result(message)
+            for observed in [value, *value.get("source_observations", [])]:
+                span = observed.get("span")
+                if (
+                    isinstance(observed.get("text"), str)
+                    and observed.get("path")
+                    and observed.get("version") == latest.get(observed["path"])
+                    and isinstance(span, list)
+                    and len(span) == 2  # noqa: PLR2004 -- half-open coordinate pair
+                    and all(type(n) is int for n in span)
+                    and 0 <= span[0] <= span[1]
+                    and span[1] - span[0] == len(observed["text"])
+                ):
+                    regions.append((observed, message.tool_call_id))
+        regions.sort(key=lambda r: len(r[0]["text"]), reverse=True)
     seen: dict[tuple[str, str, str], str | None] = {}
     seen_apis: dict[str, str | None] = {}
     envelopes: dict[str, str | None] = {}
@@ -204,9 +243,36 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
     def project_source(value: dict[str, Any], call_id: str | None) -> dict[str, Any]:
         if isinstance(value.get("text"), str) and value.get("path"):
             key = (value["path"], value.get("version", ""), value["text"])
+            span = value.get("span")
+            covering = next(
+                (
+                    (region, identity)
+                    for region, identity in regions
+                    if isinstance(span, list)
+                    and len(span) == 2  # noqa: PLR2004 -- half-open coordinate pair
+                    and all(type(n) is int for n in span)
+                    and region["path"] == value["path"]
+                    and region["version"] == value.get("version")
+                    and region["span"][0] <= span[0] <= span[1] <= region["span"][1]
+                    and len(region["text"]) > len(value["text"])
+                    and region["text"][
+                        span[0] - region["span"][0] : span[1] - region["span"][0]
+                    ]
+                    == value["text"]
+                ),
+                None,
+            )
             if value.get("version") != latest.get(value["path"]):
                 del value["text"]
                 value["source_omitted"] = "STALE_VERSION; reread current source"
+            elif covering:
+                region, identity = covering
+                del value["text"]
+                value["source_omitted"] = (
+                    "CONTAINED; exact text retained in covering current observation"
+                )
+                value["retained_tool_call_id"] = identity
+                value["covering_span"] = region["span"]
             elif key in seen:
                 del value["text"]
                 value["source_omitted"] = "DUPLICATE; retained earlier observation"
@@ -300,6 +366,11 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 project_source(observation, message.tool_call_id)
                 for observation in value["source_observations"]
             ]
+            if compact:
+                value["source_observations"] = [
+                    _observation_reference(o) if "text" not in o else o
+                    for o in value["source_observations"]
+                ]
         # Admission receipts also embed the pre-edit observation for each
         # component. These are source observations, not current source simply
         # because they sit inside an edit receipt. Apply the same version and
@@ -310,20 +381,7 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                     edit["observation"], message.tool_call_id
                 )
                 if compact and "text" not in edit["observation"]:
-                    edit["observation"] = {
-                        k: v
-                        for k, v in edit["observation"].items()
-                        if k
-                        in {
-                            "path",
-                            "version",
-                            "span",
-                            "edit_ref",
-                            "status",
-                            "source_omitted",
-                            "retained_tool_call_id",
-                        }
-                    }
+                    edit["observation"] = _observation_reference(edit["observation"])
         if value != original:
             value["host_projection"] = original.get("host_projection") or {
                 "original_tool_call_id": message.tool_call_id,
