@@ -17,6 +17,8 @@ from devtools.resources.filesystem.resolution import (
 )
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from devtools.core.paths import ResolvedPath
     from devtools.resources.filesystem.models import File, FileFormat
 
@@ -70,7 +72,7 @@ def read(
     )
 
     try:
-        content = source.read_bytes()
+        content = _read_bounded(source, max_bytes=max_bytes)
     except PermissionError as error:
         msg = f"Permission denied while reading file: {path}."
         raise FilesystemPermissionError(msg) from error
@@ -88,6 +90,46 @@ def read(
         path,
         content,
     )
+
+
+def _read_bounded(
+    source: Path,
+    *,
+    max_bytes: int | None,
+) -> bytes:
+    """Read up to ``max_bytes + 1`` bytes from ``source``.
+
+    The extra byte is only consumed when needed to detect an oversized
+    file; when the file fits within ``max_bytes`` the returned buffer is
+    exactly the complete file content. When the file is larger, the buffer
+    is truncated to ``max_bytes + 1`` bytes and the caller is expected to
+    reject it before decoding.
+
+    :param source: Existing regular file to read.
+    :param max_bytes: Maximum permitted byte count, or ``None`` for
+        no limit.
+    :returns: Complete content when within the limit, otherwise the first
+        ``max_bytes + 1`` bytes.
+    """
+    if max_bytes is None:
+        with source.open("rb") as handle:
+            chunks: list[bytes] = []
+            while True:
+                chunk = handle.read(1024 * 1024)
+                if not chunk:
+                    break
+                chunks.append(chunk)
+            return b"".join(chunks)
+
+    limit = max_bytes + 1
+    with source.open("rb") as handle:
+        buffer = bytearray()
+        while len(buffer) < limit:
+            chunk = handle.read(min(1024 * 1024, limit - len(buffer)))
+            if not chunk:
+                break
+            buffer.extend(chunk)
+    return bytes(buffer)
 
 
 def _validate_read_size(
