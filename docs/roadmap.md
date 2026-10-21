@@ -1,5 +1,15 @@
 # Roadmap
 
+[Shared change-check16](../apps/qwen/evaluation/change-check-16/README.md) **was not delivered**.
+The one Qwen attempt made 15 requests and 20 read actions with no edit, then failed
+Context admission: 28,489 input tokens left 2,231 safe output below the 4,096 minimum.
+The exact frozen contract and failure remain evidence. Codex only enabled explicit
+maintained application task paths/local imports so Qwen could target the existing
+owner; this is not a check_changes implementation. No retry, semantic substitute
+or speculative worker optimization occurred. The next obligation remains this
+same composed Tool; prior accepted Commands features remain published.
+Earlier entries below retain their historical status.
+
 [Output policy development15](../apps/qwen/evaluation/output-policy-15/README.md) completes
 the previously exposed integer/bool validation defect with the unchanged worker.
 The independently reconciled contract uses TypeError for wrong types and

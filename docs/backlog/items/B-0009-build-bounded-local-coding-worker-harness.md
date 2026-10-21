@@ -348,3 +348,14 @@ no repair was needed, no worker changed, and old Cohort02 evidence is unchanged.
 Parent reliability/protected adoption remain open. The next practical shared-tool
 increment is a scoped Git/test/Ruff/format/mypy check bundle reusing current
 Commands/ToolRunner/validation owners; it is not implemented here.
+
+## Shared change-check16 attempt
+
+check_changes remains unimplemented. The frozen useful application-level Tool
+composition received 15 Qwen investigation requests but no edit before Context
+admission failed; see [evidence](../../../apps/qwen/evaluation/change-check-16/README.md).
+Source was restored. The Codex-authored explicit application task/import
+prerequisite is distinct from feature delivery. No accepted candidate, closeout,
+parent completion or protected adoption is claimed. Next finish this same Tool
+after a bounded decision about measured search-history overhead/investigation
+stop behavior; do not replace it with another framework.

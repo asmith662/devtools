@@ -1,5 +1,15 @@
 # Bounded local coding worker
 
+[Shared change-check16](evaluation/change-check-16/README.md) **was not delivered**.
+The one Qwen attempt made 15 requests and 20 read actions with no edit, then failed
+Context admission: 28,489 input tokens left 2,231 safe output below the 4,096 minimum.
+The exact frozen contract and failure remain evidence. Codex only enabled explicit
+maintained application task paths/local imports so Qwen could target the existing
+owner; this is not a check_changes implementation. No retry, semantic substitute
+or speculative worker optimization occurred. The next obligation remains this
+same composed Tool; prior accepted Commands features remain published.
+Earlier entries below retain their historical status.
+
 [Output policy development15](evaluation/output-policy-15/README.md) completes
 the previously exposed integer/bool validation defect with the unchanged worker.
 The independently reconciled contract uses TypeError for wrong types and
@@ -442,3 +452,13 @@ discarding history. No second transcript or authority store was introduced.
 
 [Evaluation and authority status](EVALUATION.md) separates scripted acceptance,
 live read-only conformance and still-unmeasured live coding efficacy.
+
+## Explicit maintained application task scope
+
+CodingTask may bind exact Python paths in src/devtools/ or apps/, with tests/
+remaining read-only acceptance. Canonical addresses, pinned revisions/hashes,
+explicit read/edit/new slots, existing byte/budget bounds and Checkout ownership
+remain mandatory. Model output cannot expand those lists. Application validation
+runners add the canonical checkout root and verify the actual imported module
+path; integration uses the same local import rule. Framework source must not
+import apps. Historical task definitions/receipts and grants remain unchanged.
