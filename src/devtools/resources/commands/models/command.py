@@ -94,6 +94,31 @@ def _validate_stdin(stdin: object) -> None:
         raise TypeError(msg)
 
 
+def _validate_success_exit_codes(exit_codes: object) -> None:
+    """Validate the success exit-code policy.
+
+    :param exit_codes: Candidate success exit-code set.
+    :raises TypeError: If the value is not a frozenset, or a member is not an
+        int (bool is rejected explicitly).
+    """
+    if not isinstance(exit_codes, frozenset):
+        msg = (
+            "Command success_exit_codes must be a frozenset, "
+            f"got {type(exit_codes).__name__}."
+        )
+        raise TypeError(msg)
+    for code in exit_codes:
+        if isinstance(code, bool):
+            msg = "Command success exit codes cannot be booleans."
+            raise TypeError(msg)
+        if not isinstance(code, int):
+            msg = (
+                "Command success exit codes must be integers, "
+                f"got {type(code).__name__}."
+            )
+            raise TypeError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class Command:
     """Describe an immutable command execution specification.
@@ -124,6 +149,7 @@ class Command:
     timeout: Duration | None = None
     stdin: bytes | None = None
     environment: Mapping[str, str] | None = None
+    success_exit_codes: frozenset[int] = frozenset({0})
 
     def __post_init__(self) -> None:
         """Validate command invariants."""
@@ -148,6 +174,7 @@ class Command:
         _validate_arguments(self.arguments)
         _validate_stdin(self.stdin)
         _validate_environment(self.environment)
+        _validate_success_exit_codes(self.success_exit_codes)
         if not self.executable.strip():
             msg = "Command executable cannot be empty."
             raise ValueError(msg)
@@ -167,6 +194,7 @@ class Command:
                 self.timeout,
                 self.stdin,
                 env_hash,
+                hash(self.success_exit_codes),
             ),
         )
 
@@ -319,4 +347,41 @@ class Command:
         return replace(
             self,
             environment=None,
+        )
+
+    def with_success_exit_codes(self, *exit_codes: int) -> Command:
+        """Replace the success exit-code policy with the supplied codes.
+
+        The supplied codes replace any previously configured codes and are
+        deduplicated. Every supplied value is validated, so a boolean such as
+        ``True`` is rejected even when it equals an earlier integer. An empty
+        call yields an empty policy that accepts no exit code.
+
+        :param exit_codes: Exit codes to treat as successful.
+        :returns: New command with the replacement success exit-code policy.
+        :raises TypeError: If any supplied code is not an int (bool rejected).
+        """
+        for code in exit_codes:
+            if isinstance(code, bool):
+                msg = "Command success exit codes cannot be booleans."
+                raise TypeError(msg)
+            if not isinstance(code, int):
+                msg = (
+                    "Command success exit codes must be integers, "
+                    f"got {type(code).__name__}."
+                )
+                raise TypeError(msg)
+        return replace(
+            self,
+            success_exit_codes=frozenset(exit_codes),
+        )
+
+    def without_success_exit_codes(self) -> Command:
+        """Restore the zero-only success exit-code policy.
+
+        :returns: New command whose success exit codes are exactly ``{0}``.
+        """
+        return replace(
+            self,
+            success_exit_codes=frozenset({0}),
         )

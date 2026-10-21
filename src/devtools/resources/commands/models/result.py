@@ -40,17 +40,19 @@ class CommandResult:
 
     @property
     def succeeded(self) -> bool:
-        """Return whether the command exited successfully.
+        """Return whether the exit code is in the command's success policy.
 
-        :returns: ``True`` when the exit code is zero.
+        :returns: ``True`` when the raw exit code is a member of
+            :attr:`Command.success_exit_codes`.
         """
-        return self.exit_code == 0
+        return self.exit_code in self.command.success_exit_codes
 
     @property
     def failed(self) -> bool:
-        """Return whether the command exited unsuccessfully.
+        """Return whether the exit code is outside the success policy.
 
-        :returns: ``True`` when the exit code is nonzero.
+        :returns: ``True`` when the raw exit code is not a member of
+            :attr:`Command.success_exit_codes`.
         """
         return not self.succeeded
 
