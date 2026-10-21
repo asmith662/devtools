@@ -233,3 +233,28 @@ review despite explicitly authorized local feature publication. Neither was
 automatically promoted or approved. BSD, Identity and decoded-output candidates
 have separate passing focused closeouts but still require permanent regressions
 and their own exact-tree protected publication. This item remains open.
+
+
+## Long-task continuation and candidate closeouts 09
+
+The existing worker now compacts actual native inputs before tokenizer-based
+capacity refusal, preserves editable spans/handles and recent feedback, and
+archives exact unprojected Prompts without a new Memory owner. Read-only source
+omission requires remaining reacquisition budgets. Engineering 08 pending inputs
+now fit safely; their original failed outcomes remain unchanged.
+
+The new bounded-read task's initial oracle used the wrong BinaryFile attribute.
+Its failure is preserved as evaluator-invalid, with a real remaining short-read
+defect in its first candidate. A separately frozen corrected development
+continuation passed independent behavior and repaired Ruff, then published exact
+Qwen source and independent permanent regressions in `61637ff8`. It is not fresh
+confirmation and does not demonstrate behavioral repair. BSD, Identity and
+decoded-output candidates completed their own protected, reviewed publications
+in `86046e5a93c5`, `da0ac97a23ef` and `9b667e597f9d` respectively. The old pending-queue note
+above describes checkpoint 08, not their current publication state.
+
+See [the measured record](../../../apps/qwen/evaluation/continuation-09/README.md).
+The discovery `038c927f-a59b-4010-89e8-becceabe991d` remains pending canonical
+review; local publication does not promote it or close this broader item.
+Fresh qualified long-task confirmation, behavioral repair and production target
+adoption remain outstanding. This item remains open.

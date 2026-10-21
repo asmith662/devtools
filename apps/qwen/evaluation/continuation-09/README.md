@@ -34,13 +34,28 @@ as well as redundant metadata and must not all be labeled waste.
 
 Binary can retain all source with 6,004 safe output tokens. The full 8,192 output
 plus 2,048 safety allowance requires input at most 22,528: the 22,168 projection
-meets it while retaining all five editable observations R1–R5 and the refusal.
+meets it while retaining all five editable observations R1â€“R5 and the refusal.
 Four older read-only excerpts are explicitly marked for reacquisition: text
 codec, BinaryFile model, generic reader and the first JSON codec range. Their
 paths, versions, spans and original-message provenance remain available; source
 is not replaced with an invented summary. This replay proves request fit, not
 autonomous repair or correctness of either original proposal. Source-search's
 wrong observation references and undefined helper remain separate code defects.
+
+The original binary pending turn was its last permitted model call. Under that
+unchanged budget, the final safety guard retains **all** source and admits a
+6,004-token output alternative after metadata compaction. The 22,168/full-8K
+representation is usable only when future model calls and read actions permit
+reacquisition. It does not silently extend the historical task or prove that
+missing dependency text is unnecessary. All five editable sources remain exact
+in either representation.
+
+Replacing the historical flat Tool description with the actual maintained
+sixteen-component description adds 35 tokens: all-source input is 24,751
+(5,969 safe output), or 22,203 with the four explicitly reacquirable excerpts
+omitted (8,192 output still fits). Both genuine run freezes were checked against
+their actual request Tool schema. These are tokenizer/capacity observations,
+never authority to redispatch the already completed binary task.
 
 Repeated repository/snapshot/revision envelopes and identical refusal bodies
 refer to their original Tool call IDs. Native assistant/call/result groups stay
@@ -110,9 +125,17 @@ two failed, two skipped, with 100% production coverage. After their correction,
 archived. An earlier oversized pytest parameter ID was independently corrected;
 no Qwen implementation bytes changed during closeout.
 
-BSD, UUID Identity and decoded-output candidates are proceeding through separate
-serial exact-source closeouts. Final commits, checks and source identities will
-be recorded here and in results.json after completion. Protected-main promotion
+The older accepted candidates completed separate serial closeouts with their
+original Qwen bytes and newly independent permanent regressions:
+
+| Candidate | Feature commit | Protected gate |
+|---|---|---|
+| bsd | `86046e5a93c5db94a19ed39c2d5c1eae11aa6069` | 2194 passed, 2 skipped in 527.20s (0:08:47); 100% coverage |
+| identity | `da0ac97a23ef1f313101667c69b0ce7430cc08e8` | 2208 passed, 2 skipped in 543.53s (0:09:03); 100% coverage |
+| decoded-output | `9b667e597f9da160be8a9e08e1e2d24023d6f102` | 2212 passed, 2 skipped in 533.01s (0:08:53); 100% coverage |
+
+Their immutable result hashes, source hashes, reviews, prior receipt archives and
+validation-log identities are recorded in [results.json](results.json). Protected-main promotion
 remains separately authorized. No parent backlog obligation is automatically
 closed, and the discovery remains pending canonical review.
 

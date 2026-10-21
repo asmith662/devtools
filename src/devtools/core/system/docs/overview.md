@@ -20,12 +20,13 @@ from devtools.core.system import OperatingSystem, get_operating_system
 OperatingSystem.WINDOWS  # "windows"
 OperatingSystem.LINUX  # "linux"
 OperatingSystem.MACOS  # "macos"
+OperatingSystem.BSD  # "bsd"
 OperatingSystem.OTHER  # "other"
 ```
 
 Its string representation is its value, so
 `str(OperatingSystem.WINDOWS) == "windows"`. The `is_windows`, `is_linux`,
-and `is_macos` properties identify their matching family. All three are
+`is_macos`, and `is_bsd` properties identify their matching family. All four are
 `False` for `OperatingSystem.OTHER`.
 
 ## Detection
@@ -38,6 +39,7 @@ exactly:
 | `Windows`           | `OperatingSystem.WINDOWS` |
 | `Linux`             | `OperatingSystem.LINUX`   |
 | `Darwin`            | `OperatingSystem.MACOS`   |
+| `FreeBSD`, `OpenBSD`, `NetBSD`, `DragonFly` | `OperatingSystem.BSD` |
 | anything else       | `OperatingSystem.OTHER`   |
 
 Matching is exact and case-sensitive; for example, `"windows"` resolves to

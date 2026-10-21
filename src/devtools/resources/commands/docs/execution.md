@@ -56,3 +56,14 @@ cancel the shared command execution for all awaiters.
 
 Only the immediate child is managed. Descendants and process groups are not
 terminated.
+
+
+## Explicit decoded output views
+
+`CommandResult.stdout_text(*, encoding="utf-8", errors="strict")` and
+`stderr_text(...)` return native `bytes.decode` views of the retained channels.
+They leave the original bytes, truncation flags, command, duration, exit code and
+event-drop metadata unchanged. Alternate codecs/error policies follow Python's
+native contract, including `UnicodeDecodeError` and `LookupError`; arguments are
+keyword-only. These Qwen-authored methods and independent permanent regressions
+are feature-published in `9b667e597f9d`; protected-main adoption remains separate.

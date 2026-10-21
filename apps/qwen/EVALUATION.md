@@ -1,5 +1,31 @@
 # Native Context worker acceptance and evaluation
 
+The [long-task continuation checkpoint](evaluation/continuation-09/README.md)
+implements exact-token compaction, retained editable source/feedback, bounded
+read-only reacquisition and full native Prompt archival. Archived Engineering 08
+binary continuation fits 22,168 input tokens with all five edit handles and 8K
+output/2K safety; retaining all source permits 6,004 safe output tokens. This is
+offline request-fit evidence, not a relabeled historical model success.
+
+A new bounded-read development task exposed a Codex-authored oracle attribute
+mistake. Its twelve-call failure remains evaluator-invalid, although the worker
+actually delivered refusal feedback beyond the old ten-request ceiling. A
+separately frozen oracle-corrected continuation accepted after six calls and one
+Qwen Ruff repair: eleven independent behavioral cases, existing regressions and
+quality checks passed. It is not fresh confirmation; no behavioral repair or
+general-reliability claim follows. Combined usage is eighteen calls, 239,642
+input/8,587 output tokens and 535.52 worker seconds; no paid comparison ran.
+
+The exact Qwen bounded reader and permanent independent regressions are now
+feature-published at `61637ff8`. The older BSD, UUID Identity and decoded-output
+candidates also completed separate reviewed protected closeouts: BSD `86046e5a93c5`,
+Identity `da0ac97a23ef`, decoded output `9b667e597f9d`. Source identities, original
+receipts, validation failures and publication evidence are retained in the new
+record. Protected-main adoption and broader backlog completion remain separate.
+Qwen remains primary; the next empirical task must qualify all oracle branches
+and assess fresh substantial multi-module work and behavioral repair.
+
+
 ## Engineering assignments 08: graduation not established
 
 Two genuine local runs used 17 requests, 238,990 input / 4,120 output tokens and

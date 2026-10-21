@@ -1,5 +1,17 @@
 # Roadmap
 
+[Long engineering continuation 09](../apps/qwen/evaluation/continuation-09/README.md)
+keeps critical source/feedback within measured 32K capacity and publishes the
+Qwen-authored bounded reader plus the three older reviewed candidates. The
+original new task had an invalid oracle; its corrected development continuation
+passed behavior and repaired Ruff but is not fresh confirmation. Request-fit
+replay does not establish autonomous task success. Next: qualify positive and
+negative oracle branches, then evaluate a distinct substantial long task with
+behavioral feedback under the existing budgets. Qwen remains the primary
+workstream; broader reliability, protected-main adoption and Codex parity remain
+open. No transition to Learned Intelligence, trading or swarming follows.
+
+
 [Engineering assignments 08](../apps/qwen/evaluation/engineering-08/README.md)
 did not establish graduation: both live runs stopped before behavioral validation.
 The source-search case was diagnostic reuse, incorrectly labeled fresh during

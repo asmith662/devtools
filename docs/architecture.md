@@ -1,5 +1,19 @@
 # Architecture
 
+The maintained Qwen application measures the actual installed tokenizer/template
+before refusing capacity, compacts repeated Tool envelopes/outcomes with explicit
+provenance and retains current editable observations and latest feedback. Older
+read-only excerpts can be omitted only with explicit reacquisition instructions
+and remaining read/call budgets. Exact unprojected native Prompts are archived
+outside active input using the existing Prompt contract; this is not Memory or
+a second Conversation representation. Cumulative task ceilings (24 requests,
+1,800 seconds) remain distinct from the unchanged 32K request Context. The
+[continuation evidence](../apps/qwen/evaluation/continuation-09/README.md) separates
+archived request-fit replay, an evaluator-invalid fresh attempt, an accepted
+oracle-corrected development continuation and actual feature publication. No
+historical outcome, protected authority or parent-backlog completion is inferred.
+
+
 The maintained Qwen application can withhold the editable subset from diagnosis
 prompts while the host retains exact scope. Read-only Git observations use the
 admitted read corpus. Existing atomic admission supports up to sixteen anchored
