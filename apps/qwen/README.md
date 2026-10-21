@@ -1,5 +1,13 @@
 # Bounded local coding worker
 
+Pre-edit source embedded in component receipts now uses the same stale-version
+and duplicate-text projection as reads and refreshed observations. Complete raw
+receipts remain archived; current source, handles, feedback and native correlation
+are preserved. [Qualified engineering 10](evaluation/qualified-10/README.md)
+records why this correction was needed and two genuine unsuccessful tasks.
+It demonstrates live feedback continuation, not successful behavioral repair or
+general substantial-task acceptance.
+
 Exact tokenizer measurement precedes capacity refusal. The worker first removes
 redundant attestation envelopes and repeated refusal bodies with explicit links
 to original archived Tool call IDs/hashes. When necessary, older read-only source

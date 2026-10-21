@@ -258,3 +258,17 @@ The discovery `038c927f-a59b-4010-89e8-becceabe991d` remains pending canonical
 review; local publication does not promote it or close this broader item.
 Fresh qualified long-task confirmation, behavioral repair and production target
 adoption remain outstanding. This item remains open.
+
+## Qualified substantial engineering 10
+
+Two distinct documented managed-command obligations were independently qualified
+before inference: immutable environment overrides and binary stdin. Both failed
+live engineering (0/2 accepted). The first uncovered pre-edit receipt observations
+bypassing stale-source projection; the maintained correction reuses the existing
+rules and has focused regressions. The distinct stdin task received real behavior
+feedback within 32K capacity but exhausted atomic attempts through wrong region
+handles. Neither capability is installed; no behavioral repair success or parent
+completion is claimed. The two discoveries remain pending intake proposals,
+without canonical promotion or implementation grants. See the
+[qualified record](../../../apps/qwen/evaluation/qualified-10/README.md) for frozen
+contracts, actual usage, exact evidence identities and remaining obligations.

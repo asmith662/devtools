@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+Qualified engineering 10 (2026-10-21): two fresh documented command obligations
+received positive/negative oracle qualification before live Qwen execution.
+Environment overrides failed capacity after incomplete repair; binary stdin,
+after a focused nested-observation projection correction, received behavioral
+feedback but failed atomic region-handle admission. Seventeen requests, 396.47
+worker seconds, 0/2 accepted. Both original sources were restored. No new command
+feature, successful behavioral repair or protected integration is claimed. The
+maintained correction applies existing stale/duplicate rules to pre-edit source
+inside component receipts; focused tests preserve current observations and raw
+history. Frozen tasks and measured outcomes live in
+`apps/qwen/evaluation/qualified-10/`; historical evidence remains unchanged.
+
 ## 2026-10-20 — Recoverable Qwen source investigation
 
 Reused Context materialization for a sole disclosed direct reader with truthful

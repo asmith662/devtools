@@ -1,5 +1,13 @@
 # Architecture
 
+The Qwen application's existing continuation projection also covers pre-edit
+source nested inside atomic component receipts. Such text obeys the same stale
+and duplicate rules as direct observations; exact originals remain evidence.
+This is a correction within current Context/application ownership, not a new
+Memory contract. [Qualified engineering 10](../apps/qwen/evaluation/qualified-10/README.md)
+records a real capacity failure and a distinct live feedback continuation that
+still failed edit admission. Substantial-task reliability remains unestablished.
+
 The maintained Qwen application measures the actual installed tokenizer/template
 before refusing capacity, compacts repeated Tool envelopes/outcomes with explicit
 provenance and retains current editable observations and latest feedback. Older

@@ -40,5 +40,69 @@ reacquiring one older read-only test excerpt yields 25,741, leaving 4,979 output
 tokens after the existing 2,048 safety allowance. This makes continuation
 admissible; it does not establish that Qwen would repair the incomplete code.
 
-A distinct prospective stdin task may assess this correction under a separately
-qualified, frozen 16-request/1,200-second bound. It is not an environment retry.
+## Distinct fresh stdin outcome
+
+The separately frozen stdin obligation ended `PROPOSAL_ADMISSION_FAILED` after
+nine requests. Both tasks used 19 authenticated read resources, including
+plausible alternatives and dependencies; the initial manifests' prose count of
+21+ was inaccurate. The actual resource hashes and scope never changed.
+
+Stdin preflight exercised immutable values, validation, exact empty/binary/large
+input, concurrent bidirectional pipe pressure, early exit, timeout and isolated
+children through an independent host-only adapter. It caught a Windows text
+newline assumption **before** freeze/inference; the printed digest is compared
+with `splitlines`, while all binary payloads/prefixes remain exact. The unchanged
+executor fails the negative fixture, and baseline fails the explicit missing
+capability assertion. All 46 original command tests and baseline quality pass.
+
+Qwen inspected the model, executor, handle, package/model exports, result and
+tests. Its first batch used R3 for text in R1: atomic refusal changed no source.
+It corrected those handles and admitted four model edits. Original regressions,
+Ruff, formatting and typing passed, but actual child input delivery failed.
+Request nine received that behavioral feedback at 21,660 input tokens after
+metadata/source projection (24,399 before compaction), with the full 8,192 output
+allowance and no omitted exchanges or read-only source. The execution proposal
+then used R5 for an anchor outside its observed `[8192, 9512)` span. Its `old_text`
+also included serialized Tool envelope/`host_projection` metadata: zero exact
+source matches. The literal Python prefix begins at character 8030; that prefix
+location is diagnostic only and was never used for approximate admission.
+Raw provider arguments equal the normalized arguments, so the harness did not
+introduce this corruption. All three components were refused atomically; the
+frozen three-proposal budget was spent. This is a literal-source/handle/planning
+failure under the operational edit budget, not
+a Context failure or accepted behavioral repair. No task was retried.
+
+## Measured disposition
+
+| Task | Requests | Input / output tokens | Worker seconds | Result |
+|---|---:|---:|---:|---|
+| Environment overrides | 8 | 102,741 / 3,093 | 189.05 | Context budget failed; incomplete code |
+| Binary stdin | 9 | 103,819 / 3,348 | 207.42 | Proposal admission failed; incomplete code |
+
+Total: **0/2 fully accepted**, 17 requests, 206,560 input and 6,441 output
+tokens, 396.47 worker seconds (5.35 validation seconds). No paid model comparison
+or supervisor-authored semantic repair occurred. Source/branch restoration passed
+for both. Partial candidate bytes, proposal diffs, every native request/response,
+Tool result, refusal, feedback and capacity record remain under
+`.local/qwen-coding-worker/qualified-10/`; `results.json` binds their hashes.
+Host-only reference adapters and draft tests are qualification evidence, not
+Qwen implementation. New proposals `2c443f76-ad59-43c4-bb4c-c956ae7f5c28`
+and `796ac652-dbd7-488b-98bb-444f695bfa92` remain pending review.
+
+The narrow projection correction is maintained, with deterministic regression
+coverage. Neither new command capability is installed or eligible for WorkCycle
+closeout. Previously published candidates were not reprocessed. No protected
+promotion or backlog completion occurred. The changed tasks do not provide a
+controlled acceptance comparison; continuation delivery alone does not establish
+engineering reliability. Next: address exact region-handle selection and complete
+cross-module planning before spending an edit attempt, then measure a separately
+qualified fresh task. Do not loosen admission or relabel these failures.
+
+## Verification
+
+The focused projection/environment regression selection passes 28 tests. Changed
+Python files pass Ruff and formatting; strict project mypy passes 494 files,
+layout and Git whitespace checks pass. Final protected results are recorded
+after the one canonical development-gate invocation completes. Main remains
+outside this publication scope. Python 3.14.3 is the validated runtime; no new
+Python 3.12 compatibility claim is made.

@@ -1,5 +1,15 @@
 # Native Context worker acceptance and evaluation
 
+[Qualified engineering 10](evaluation/qualified-10/README.md) preflighted positive
+and negative oracle paths before inference, then attempted two distinct documented
+command obligations: **0/2 accepted**. Environment overrides stopped at Context
+capacity after an incomplete repair. A narrow stale-source projection correction
+was tested; the fresh stdin task received behavioral feedback within capacity
+but exhausted edit attempts through incorrect region handles. Seventeen real
+requests used 206,560 input/6,441 output tokens and 396.47 worker seconds.
+Neither partial candidate is installed. No successful behavioral repair, causal
+acceptance improvement or Codex parity is claimed; all historical outcomes remain.
+
 The [long-task continuation checkpoint](evaluation/continuation-09/README.md)
 implements exact-token compaction, retained editable source/feedback, bounded
 read-only reacquisition and full native Prompt archival. Archived Engineering 08
