@@ -385,3 +385,17 @@ Next assess implementation-oriented essential-source guidance for this same
 bundle before considering the subsequent Git discovery/report freshness increment.
 No automatic recovery, new framework or protected-main adoption is authorized by
 this diagnostic outcome.
+
+## Source-supplied19 implementation treatment
+
+Authentic owner/helper Context was supplied before inference through existing
+ToolRunner/Context observations, with a three-response implementation-start guard.
+Qwen proposed implementation on response two, but all four transactions were
+refused atomically for oversized/no-op text. Six requests ended in
+PROPOSAL_ADMISSION_FAILED, not Context exhaustion. Source remains unchanged;
+see [evidence](../../../apps/qwen/evaluation/source-supplied-19/README.md).
+This is progress to proposals only, not a delivered check bundle, behavioral
+repair, or general reliability result. The original18oracle and16/17/18failures
+are preserved. Deliver this fixed operation directly with separate Codex source
+attribution before composing the full check_changes contract; no semantic
+substitute was installed in this Qwen evaluation. The parent stays open.

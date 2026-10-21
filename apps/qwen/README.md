@@ -1,5 +1,14 @@
 # Bounded local coding worker
 
+[Source-supplied19](evaluation/source-supplied-19/README.md) began implementation
+on response two but **did not deliver** the bundle. Authentic initial Context
+fit at 9,151 input tokens; six requests produced four atomically refused proposals
+(oversized regions, then a no-op), with no source mutation or Context failure.
+The presentation elicited proposals, not accepted software. Stop repeating minor
+Qwen variants of this contract: deliver the bundle in a separately attributed
+Codex implementation increment, then compose full check_changes. Existing exact
+admission stays unchanged. Earlier entries below retain their historical status.
+
 [Fixed check-bundle18](evaluation/check-bundle-18/README.md) is **not delivered**.
 The smaller `run_check(check="all")` assignment used nine requests and all 16
 successful read actions, but made zero edits. Pending request ten compacted to

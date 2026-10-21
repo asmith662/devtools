@@ -1,5 +1,15 @@
 # Native Context worker acceptance and evaluation
 
+[Source-supplied19](evaluation/source-supplied-19/README.md) changed presentation
+using genuine host ToolRunner/Context observations, not forged assistant calls.
+Qwen proposed code on response two, satisfying the implementation-start rule.
+All four proposals were refused: repeated regions above 4,096 bytes, then identical
+old/new text. No candidate reached behavioral or quality validation. Six requests,
+105,440 input/8,644 output tokens and 447.818 worker seconds ended in
+PROPOSAL_ADMISSION_FAILED with source restored. Context remained sufficient and
+the unchanged18oracle still fails. This supports proposal initiation only, not
+source-supplied implementation reliability or full check_changes delivery.
+
 [Fixed check-bundle18](evaluation/check-bundle-18/README.md) is **not delivered**.
 Its separate smaller contract retained the original full check_changes oracle
 unchanged. All five real check fixtures and independent negative cases qualified;

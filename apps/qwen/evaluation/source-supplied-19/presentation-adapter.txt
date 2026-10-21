@@ -1,0 +1,100 @@
+"""One evaluation-only presentation treatment over the unchanged local runner."""
+import asyncio,hashlib,json,sys
+from dataclasses import asdict
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from apps.qwen import coding_loop
+from apps.qwen.context_tools import ContextTools
+from devtools.context import RepositoryResourceAddress
+from devtools.models.interaction import PromptMessage
+from devtools.tools import ToolRunner
+from scripts.backlog.work import task_from_dict
+from scripts.qwen.coding_worker import run_local_task
+from devtools.models.interaction.providers import llama_cpp
+from devtools.core.time import Timestamp
+
+ROOT=Path.cwd();DEST=ROOT/'apps/qwen/evaluation/source-supplied-19';OUT=ROOT/'.local/qwen-coding-worker/source-supplied-19'
+MARKER='HOST-AUTHENTICATED INITIAL IMPLEMENTATION SOURCE (not model Tool responses)'
+def save(p,v):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(v,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+
+async def disclose(tools,folder):
+    records=[];observed=[]
+    async def invoke(op,args):
+        v=await ToolRunner().execute(tools,(op,args));records.append({'origin':'trusted-host-initial-disclosure','operation':op,'arguments':args,'result':v});return v
+    async def read(path,start,end):
+        version=str(tools.snapshot.resource_at(RepositoryResourceAddress(path)).content_identity)
+        while start<end:
+            v=await invoke('read_source',dict(path=path,version=version,start=start,end=min(end,start+4096)))
+            assert v.get('text') and v['span'][0]==start
+            observed.append(tools.reference(v));start=v['continuation_start']
+    async def symbol(name):
+        v=await invoke('lookup_symbol',{'name':name});assert len(v['matches'])==1,(name,v)
+        m=v['matches'][0];await read(m['path'],*m['span'])
+    await read('apps/qwen/commands.py',0,len(tools.snapshot.resource_at(RepositoryResourceAddress('apps/qwen/commands.py')).content))
+    for name in ['CodingTask','_save','_hash','_command','_timed_command','ToolRunner','normalize_tool_descriptor']:
+        await symbol(name)
+    path='src/devtools/resources/commands/errors.py'
+    await read(path,0,len(tools.snapshot.resource_at(RepositoryResourceAddress(path)).content))
+    parts=[MARKER,'These are actual host-requested Context/ToolRunner observations before inference. No assistant call or Tool response is fabricated. Baseline source only: after edits, use current validation observations or reacquire changed source. Paths/versions/spans attest original source; only the permitted owner is editable. Essential owner/helper/interface disclosure is complete. Implement now; all does not yet exist, so do not search for its definition. Additional reads only for a specific unresolved implementation dependency. At most three non-edit responses before the supervisor stops this attempt.']
+    for i,o in enumerate(observed):
+        meta={k:o[k] for k in ['path','version','span','source_length','edit_ref'] if k in o}
+        parts.extend([f'HOST OBSERVATION {i+1}: '+json.dumps(meta,sort_keys=True),'EXACT SOURCE (metadata is not code):\n```python\n'+o['text']+('' if o['text'].endswith('\n') else '\n')+'```'])
+    text='\n\n'.join(parts)
+    save(folder/'host-disclosure.json',{'at':str(Timestamp.now()),'origin':'host, not model','records':records,'observations':observed,'source_bytes':sum(len(o['text'].encode()) for o in observed),'context_bytes':len(text.encode()),'message_sha256':hashlib.sha256(text.encode()).hexdigest()})
+    return PromptMessage('user',text)
+
+async def execute(task,folder,probe=False):
+    original_turns=coding_loop._turns;original_select=coding_loop.select_messages;original_ctor=coding_loop.ContextTools
+    state={'responses':0,'edit_started':False,'initial_disclosure':None,'stop_rule':'at most3responses without proposal; no dependency exception unless supervisor records concrete necessary missing dependency; never automatic recovery'}
+    original_post=llama_cpp._post_chat_completion
+    async def capture(endpoint,payload):
+        response=await original_post(endpoint,payload)
+        save(folder/f'provider-response-{state["responses"]+1:02d}.json',response)
+        return response
+    async def supplied_turns(workspace,report_folder,interaction,report,**kwargs):
+        tools=original_ctor(workspace,task,direct_reads=False)
+        message=await disclose(tools,report_folder);state['initial_disclosure']=hashlib.sha256(message.content.encode()).hexdigest()
+        tools.direct_reads=True
+        def selected(history,**options):
+            if not any(m.content.startswith(MARKER) for m in history):history.insert(1,message)
+            return original_select(history,**options)
+        coding_loop.ContextTools=lambda *a,**kw:tools
+        coding_loop.select_messages=selected
+        original_send=interaction.send
+        async def bounded_send(request):
+            if not state['responses']:
+                size=await interaction.count_input_tokens(request)
+                save(report_folder/'initial-capacity.json',{'input_tokens':size,'requested_output_tokens':request.settings.maximum_output_tokens,'safety_tokens':2048,'safe_generation_capacity':32768-size-2048,'initial_source_attested':True,'native_messages':[m.role for m in request.prompt.messages],'probe':probe})
+                assert size+8192+2048<=32768,'Initial source cannot fit with full implementation allowance'
+                if probe:raise ValueError('PRE_INFERENCE_CAPACITY_PROBE_NO_MODEL_REQUEST')
+            if not state['edit_started'] and state['responses']>=3:
+                decision=report_folder/'dependency-supervisor-decision.json'
+                if state['responses']==3:
+                    print('SUPERVISOR CHECKPOINT: three responses without proposal; up to30seconds for one genuine targeted-dependency exception.',flush=True)
+                    for _ in range(120):
+                        if decision.exists():break
+                        await asyncio.sleep(.25)
+                approved=json.loads(decision.read_text(encoding='utf-8')) if decision.exists() else {}
+                if state['responses']==3 and approved.get('allow_one') is True and approved.get('specific_missing_dependency') and approved.get('evidence'):
+                    state['dependency_exception']=approved
+                else:
+                    save(report_folder/'implementation-start-stop.json',{**state,'at':str(Timestamp.now()),'classification':'IMPLEMENTATION_NOT_STARTED','reason':'Three genuine responses without proposal after full initial disclosure; no approved necessary dependency exception. No further model request is made.'})
+                    raise ValueError('IMPLEMENTATION_NOT_STARTED: three responses after authenticated owner/helper disclosure')
+            response=await original_send(request);state['responses']+=1
+            if any(c.name in {'replace_source','propose_edits','propose_edit'} for c in response.tool_calls):state['edit_started']=True
+            save(report_folder/'implementation-start.json',{**state,'last_response_content':response.content,'last_tool_calls':[asdict(c) for c in response.tool_calls]})
+            return response
+        interaction.send=bounded_send
+        try:await original_turns(workspace,report_folder,interaction,report,**kwargs)
+        finally:coding_loop.ContextTools=original_ctor;coding_loop.select_messages=original_select
+    coding_loop._turns=supplied_turns;llama_cpp._post_chat_completion=capture
+    try:return await run_local_task(ROOT,folder,task=task,coordinated_edits=True,observed_edits=True)
+    finally:coding_loop._turns=original_turns;llama_cpp._post_chat_completion=original_post
+
+async def main():
+    task=task_from_dict(json.loads((DEST/'task.json').read_text(encoding='utf-8')))
+    probe=sys.argv[1].startswith('probe');folder=OUT/(sys.argv[1] if probe else 'devtools-all-checks')
+    assert not folder.exists(),'Never repeat an existing/ambiguous attempt'
+    r=await execute(task,folder,probe=probe)
+    print(r['disposition'],r.get('error'),r['elapsed_seconds'],r['usage_totals'],flush=True)
+asyncio.run(main())

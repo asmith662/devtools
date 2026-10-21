@@ -1,5 +1,15 @@
 # Roadmap
 
+[Source-supplied19](../apps/qwen/evaluation/source-supplied-19/README.md) elicited
+implementation on response two, but every transaction failed exact admission
+(oversized text, then no-op). No bundle was delivered. The immediate delivery
+recommendation is a separately attributed Codex implementation of the unchanged
+fixed all-checks contract, not another minor Qwen variant or automatic substitute
+in this evaluation. Assess Qwen's known-limit adherence and precise admission
+feedback separately; keep strict limits and avoid new Context infrastructure.
+After bundle acceptance, finish original check_changes Git/new-file discovery,
+exact reporting and is_current freshness. No protected adoption is implied.
+
 [Fixed check-bundle18](../apps/qwen/evaluation/check-bundle-18/README.md) remains
 **not delivered**. The smaller existing-run_check extension also stopped before
 editing: nine requests, 16 successful read actions and then Context refusal.
