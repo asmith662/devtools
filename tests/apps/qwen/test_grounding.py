@@ -142,6 +142,63 @@ def test_capacity_projection_keeps_edit_sources_and_correlated_refusal() -> None
     assert json.dumps([asdict(m) for m in history]) == original
 
 
+@pytest.mark.parametrize("compact", [False, True])
+def test_edit_receipts_project_embedded_source_observations(*, compact: bool) -> None:
+    """Pre-edit source nested in receipts obeys the same version rules as reads."""
+    path = "src/devtools/example.py"
+    old = {"path": path, "version": "v1", "text": "obsolete" * 1000}
+    current = {
+        "path": path,
+        "version": "v2",
+        "span": [0, 7],
+        "text": "current",
+        "edit_ref": "R2",
+    }
+    dependency = {
+        "path": "src/devtools/dependency.py",
+        "version": "d1",
+        "span": [0, 10],
+        "text": "dependency",
+        "edit_ref": "R3",
+    }
+    history = [PromptMessage("user", "preserve objective and invariants")]
+    history += exchange("old-read", old)
+    history += exchange(
+        "edit",
+        {
+            "path": path,
+            "version": "v2",
+            "validation": {"oracle": "NameError: missing helper"},
+            "source_observations": [current],
+            "edits": [
+                None,
+                {},
+                {"observation": "not a source record"},
+                {"observation": old, "old_text_sha256": "original-digest"},
+                {"observation": current},
+                {"observation": dependency},
+            ],
+        },
+    )
+    # Register the second file's authoritative current version too.
+    history += exchange("dependency", dependency)
+    original = json.dumps([asdict(m) for m in history])
+    selected, omitted = select_messages(history, maximum_bytes=16000, compact=compact)
+    assert omitted == 0
+    Prompt("", "messages", selected)
+    result = next(json.loads(m.content) for m in selected if m.tool_call_id == "edit")
+    assert result["source_observations"][0] == current
+    assert result["validation"]["oracle"] == "NameError: missing helper"
+    assert result["edits"][3]["observation"]["source_omitted"].startswith("STALE")
+    assert result["edits"][3]["old_text_sha256"] == "original-digest"
+    duplicate = result["edits"][4]["observation"]
+    assert duplicate["source_omitted"].startswith("DUPLICATE")
+    assert duplicate["retained_tool_call_id"] == "edit"
+    assert result["edits"][5]["observation"] == dependency
+    assert "obsolete" not in json.dumps([asdict(m) for m in selected])
+    assert json.dumps([asdict(m) for m in history]) == original
+
+
 def test_grounding_union_drift_and_actionable_bounds(tools: ContextTools) -> None:
     hit = dispatch(tools, "lookup_symbol", name="helper")["matches"][0]
     args = {"path": hit["path"], "version": hit["version"]}

@@ -149,6 +149,15 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 project_source(observation, message.tool_call_id)
                 for observation in value["source_observations"]
             ]
+        # Admission receipts also embed the pre-edit observation for each
+        # component. These are source observations, not current source simply
+        # because they sit inside an edit receipt. Apply the same version and
+        # duplicate rules as the top-level reads and refreshed working set.
+        for edit in value.get("edits", []):
+            if isinstance(edit, dict) and isinstance(edit.get("observation"), dict):
+                edit["observation"] = project_source(
+                    edit["observation"], message.tool_call_id
+                )
         if value != original:
             value["host_projection"] = original.get("host_projection") or {
                 "original_tool_call_id": message.tool_call_id,
