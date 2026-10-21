@@ -40,6 +40,17 @@ def _validate_arguments(arguments: object) -> None:
             raise TypeError(msg)
 
 
+def _validate_stdin(stdin: object) -> None:
+    """Validate that standard input is immutable bytes or None.
+
+    :param stdin: Candidate standard input value.
+    :raises TypeError: If the value is neither ``bytes`` nor ``None``.
+    """
+    if stdin is not None and not isinstance(stdin, bytes):
+        msg = f"Command stdin must be bytes or None, got {type(stdin).__name__}."
+        raise TypeError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class Command:
     """Describe an immutable command execution specification.
@@ -68,6 +79,7 @@ class Command:
     arguments: tuple[str, ...] = ()
     working_directory: ResolvedPath | None = None
     timeout: Duration | None = None
+    stdin: bytes | None = None
 
     def __post_init__(self) -> None:
         """Validate command invariants."""
@@ -76,12 +88,13 @@ class Command:
     def _validate(self) -> None:
         """Validate the command specification.
 
-        :raises TypeError: If the executable is not a string, or the
-            arguments are not a tuple whose members are all strings.
+        :raises TypeError: If the executable is not a string, the arguments
+            are not a tuple of strings, or stdin is not bytes or None.
         :raises ValueError: If the executable is empty or whitespace-only.
         """
         _validate_executable(self.executable)
         _validate_arguments(self.arguments)
+        _validate_stdin(self.stdin)
         if not self.executable.strip():
             msg = "Command executable cannot be empty."
             raise ValueError(msg)
@@ -184,4 +197,26 @@ class Command:
         return replace(
             self,
             timeout=None,
+        )
+
+    def with_stdin(self, stdin: bytes) -> Command:
+        """Set the standard input payload delivered to the child.
+
+        :param stdin: Immutable byte payload for standard input.
+        :returns: New command with the supplied standard input.
+        :raises TypeError: If the payload is not ``bytes``.
+        """
+        return replace(
+            self,
+            stdin=stdin,
+        )
+
+    def without_stdin(self) -> Command:
+        """Remove the configured standard input payload.
+
+        :returns: New command with inherited standard input.
+        """
+        return replace(
+            self,
+            stdin=None,
         )

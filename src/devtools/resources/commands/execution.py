@@ -199,6 +199,7 @@ class CommandExecutor:
                     if command.working_directory is not None
                     else None
                 ),
+                stdin=asyncio.subprocess.PIPE if command.stdin is not None else None,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
             )
@@ -225,13 +226,22 @@ class CommandExecutor:
             execution,
             self._output_policy,
         )
+        stdin_operation = self._feed_stdin(process, command.stdin)
         timeout = command.timeout
 
         if timeout is None:
-            return await operation
+            (output, _stdin) = await asyncio.gather(
+                operation,
+                stdin_operation,
+            )
+            return output
 
         async with asyncio.timeout(timeout.total_seconds):
-            return await operation
+            (output, _stdin) = await asyncio.gather(
+                operation,
+                stdin_operation,
+            )
+            return output
 
     async def _stream_process(
         self,
@@ -277,6 +287,32 @@ class CommandExecutor:
         await process.wait()
 
         return stdout, stderr, stdout_truncated, stderr_truncated
+
+    @staticmethod
+    async def _feed_stdin(
+        process: asyncio.subprocess.Process,
+        stdin: bytes | None,
+    ) -> None:
+        """Feed configured standard input while output streams drain.
+
+        The payload (possibly empty) is written in full, then the pipe is
+        closed to deliver EOF. A child that closes standard input early
+        yields an ordinary completion, not an unhandled pipe error.
+
+        :param process: Running subprocess whose stdin may be a pipe.
+        :param stdin: Immutable payload to deliver, or ``None`` to inherit.
+        """
+        stream = process.stdin
+
+        if stream is None or stdin is None:
+            return
+
+        try:
+            stream.write(stdin)
+            await stream.drain()
+            stream.close()
+        except (BrokenPipeError, ConnectionResetError):
+            pass
 
     async def _read_stream(
         self,
