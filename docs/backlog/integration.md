@@ -214,6 +214,14 @@ does not establish a real integration grant or a newly completed Qwen task.
 
 ## Canonical-checkout phase boundary
 
+Trusted local `closeout_local` supports explicit `implementation_author="Codex"`
+for directly authored local candidates. Its receipt must also identify
+`implementation_by: Codex`; source/file attribution and review identities bind
+that value. The legacy default remains Qwen for existing worker receipts, and
+an author mismatch refuses. This changes provenance only: exact candidate,
+validation, Codex review, feature-only publication and protected-destination
+restrictions remain unchanged. It does not fabricate a model execution receipt.
+
 New plans use `operating_model: single-checkout-v1` and exact canonical `checkout`;
 new integration policies use `checkout` instead of historical `worktree_root`.
 The existing record hashes distinguish these contracts. Historical records remain

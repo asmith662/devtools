@@ -47,6 +47,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     additions: list[dict[str, str]] | None = None,
     protected_validation: bool = False,
     expected_remote: str | None = None,
+    implementation_author: str = "Qwen",
 ) -> dict[str, Any]:
     """Authenticate, install, validate, review and optionally publish one candidate.
 
@@ -55,6 +56,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     Interrupted commit/push is reconciled by exact commit/ref, not repeated.
     """
     root, cycle = integration.cycle.root, integration.cycle
+    if implementation_author not in {"Qwen", "Codex"}:
+        raise ValueError("Local implementation author must be Qwen or Codex")
     if any(type(value) is not bool for value in (commit, push, protected_validation)):
         raise TypeError("Closeout effects require explicit boolean flags")
     evidence = resolve_path(evidence).value
@@ -72,6 +75,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         not result.get("accepted")
         or result.get("task_definition_sha256") != task.definition_sha256
         or result.get("oracle_sha256") != task.oracle_sha256
+        or result.get("implementation_by", "Qwen") != implementation_author
     ):
         raise PermissionError("Accepted exact task/oracle candidate required")
     candidates = result.get("candidates", [])
@@ -106,7 +110,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
             {
                 "path": p,
                 "text": t,
-                "author": "Qwen",
+                "author": implementation_author,
                 "reference": result_sha,
                 "sha256": hashlib.sha256(t.encode()).hexdigest(),
             }
@@ -135,6 +139,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         if (
             previous.get("result_sha256") != result_sha
             or previous.get("branch") != branch
+            or previous.get("implementation_by", "Qwen") != implementation_author
         ):
             raise PermissionError("Existing closeout binding changed")
         if previous.get("disposition") == "COMMIT_INTENT" and not previous.get(
@@ -208,7 +213,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         if commit
         else "NONE",
         "protected_promotion": "PROHIBITED",
-        "implementation_by": "Qwen",
+        "implementation_by": implementation_author,
         "supervision_by": "Codex",
         "commit": None,
         "files": [{k: v for k, v in f.items() if k != "text"} for f in files],

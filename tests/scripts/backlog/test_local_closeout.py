@@ -44,9 +44,11 @@ def evidence(f: dict[str, Any]) -> Path:
     return folder
 
 
+@pytest.mark.parametrize("author", ["Qwen", "Codex"])
 def test_local_candidate_validation_review_commit_push_and_idempotence(
     fixture: dict[str, Any],
     monkeypatch: pytest.MonkeyPatch,
+    author: str,
 ) -> None:
     """Use actual scoped validation, feature commit and a bare fixture remote."""
 
@@ -60,6 +62,11 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
         root = f["root"]
         task = f["task"]
         candidate = evidence(f)
+        if author == "Codex":
+            receipt = candidate / "result.json"
+            value = json.loads(receipt.read_text())
+            value["implementation_by"] = author
+            receipt.write_text(json.dumps(value))
         await git(root, "switch", "feat/fixture")
         head = await git(root, "rev-parse", "HEAD")
         remote = root.parent / "local-origin.git"
@@ -81,8 +88,11 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             expected_head=head,
             protected_validation=True,
             additions=[addition],
+            implementation_author=author,
         )
         assert record["disposition"] == "SUPERVISORY_REVIEW"
+        assert record["implementation_by"] == author
+        assert record["files"][0]["author"] == author
         assert await git(root, "diff") == ""
         assert not (root / addition["path"]).exists()
         with pytest.raises(PermissionError, match="Codex review"):
@@ -93,6 +103,7 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
                 expected_head=head,
                 commit=True,
                 additions=[addition],
+                implementation_author=author,
             )
         review = {
             "subject": record["review_subject"],
@@ -110,6 +121,7 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             push=True,
             additions=[addition],
             expected_remote=head,
+            implementation_author=author,
         )
         assert record["disposition"] == "FEATURE_PUBLISHED"
         # Model a lost response after the local commit; reconcile, never recommit.
@@ -124,6 +136,7 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             commit=True,
             push=True,
             additions=[addition],
+            implementation_author=author,
         )
         assert again["commit"] == record["commit"]
         assert (root / addition["path"]).is_file()
@@ -158,5 +171,26 @@ def test_local_closeout_refuses_before_mutation(
                 expected_head=f["task"].baseline_revision,
             )
         assert await git(f["root"], "diff") == ""
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("author", ["unknown", "Codex"])
+def test_local_closeout_requires_explicit_matching_implementation_attribution(
+    fixture: dict[str, Any], author: str
+) -> None:
+    """The trusted caller cannot silently relabel a Qwen receipt as Codex work."""
+
+    async def run() -> None:
+        folder = evidence(fixture)
+        with pytest.raises((ValueError, PermissionError)):
+            await fixture["cycle"].integration.closeout_local(
+                fixture["task"],
+                folder,
+                branch="feat/fixture",
+                expected_head=fixture["task"].baseline_revision,
+                implementation_author=author,
+            )
+        assert await git(fixture["root"], "diff") == ""
 
     asyncio.run(run())
