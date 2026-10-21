@@ -22,4 +22,7 @@ def get_operating_system() -> OperatingSystem:
     if system == "Darwin":
         return OperatingSystem.MACOS
 
+    if system in ("FreeBSD", "OpenBSD", "NetBSD", "DragonFly"):
+        return OperatingSystem.BSD
+
     return OperatingSystem.OTHER
