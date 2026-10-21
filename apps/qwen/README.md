@@ -1,5 +1,16 @@
 # Bounded local coding worker
 
+[Environment development 13](evaluation/environment-13/README.md) completes the
+original exposed Commands environment contract through the unchanged worker:
+14 calls, five admitted proposals, no refusals, full independent behavior/quality
+acceptance. Exact Qwen source plus independent regressions is reviewed and
+feature-published at `b81891ceeafa`. The existing 32K profile and editing/Context
+contracts are unchanged. Pi's bounded diagnostic timed out with incomplete code
+and adapter/output limitations; no general harness ranking follows. Prior failed
+receipts remain immutable; earlier checkpoint descriptions below retain their
+historical scope. Protected-main adoption and general engineering reliability
+remain open.
+
 Host tasks may opt into `path_edits=True`: flat `replace_source(path, old_text,
 new_text)` resolves nonempty exact old text against the union of current disclosed
 source spans for an authorized path. The existing transaction engine still

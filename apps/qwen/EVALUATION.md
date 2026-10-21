@@ -1,5 +1,22 @@
 # Native Context worker acceptance and evaluation
 
+[Environment diagnostic/development 13](evaluation/environment-13/README.md):
+Devtools **1/1 accepted**, 14 requests, 252,211 input/5,604 output tokens, 448.36s,
+five admitted proposals and zero refusals. It corrected missing constructor/fluent
+behavior and quality failures; real child delivery passed when first implemented.
+There is no demonstrated wrong-child-algorithm repair. The exact candidate and 15
+independent permanent regressions are feature-published at `b81891ceeafa` through
+existing WorkCycle closeout. Pi produced 13 complete provider responses and one
+prepared request without complete usage, then timed out; its observed partial
+model fails construction and no child fixture pass exists. Tool/write/output and
+terminal-capture limitations prevent a clean reasoning-only comparison. Same
+exposed task/oracle/baseline/model, different prospectively recorded budgets.
+No worker or serving changes, retries, paid comparison or fresh-confirmation
+claim. Earlier checkpoints below remain historical, including their then-current
+unfinished-work descriptions. The new record corrects earlier prose that said
+Environment 12's final executor lacked forwarding: its constructor prevented the
+child checks, but `env=env` is present in the immutable executor source.
+
 [Environment development continuation 12](evaluation/environment-12/README.md)
 retained the original qualified oracle and attempted the unfinished command task.
 It remains **0/1 accepted**: the first segment failed at Context capacity after ten

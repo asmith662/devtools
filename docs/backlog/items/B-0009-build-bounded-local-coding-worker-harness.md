@@ -305,3 +305,20 @@ comparison; the original 32K service/profile is restored and retained. See
 contract, failed receipts, actual Context recovery, measured resource limits and
 protected validation of the worker corrections. No proposal approval, promotion
 or implementation grant is inferred from local evaluation/publication.
+
+## Environment development 13
+
+The previously exposed qualified contract now passes through the unchanged native
+worker: 14 requests, five atomic proposals, no refusals; exact Qwen source and 15
+independent regressions are reviewed and feature-published at `b81891ceeafa`.
+The full original model/child oracle, 78 focused tests and protected validation
+pass. See [the measured record](../../../apps/qwen/evaluation/environment-13/README.md).
+Missing constructor/fluent behavior and quality failures were corrected using
+actual feedback; an incorrect already-implemented child-overlay repair was not
+exercised. Pi's single bounded diagnostic did not finish and has explicit
+adapter/output/timeout limitations. No worker/serving redesign or Codex semantic
+substitution occurred. This is development on an exposed task, not fresh
+confirmation, parent completion, proposal promotion or protected adoption.
+Environment overrides is no longer missing on this feature branch. Remaining
+pressure is reliable fresh cross-component completion and requirement-preserving
+behavioral repair, with production adoption separately authorized.

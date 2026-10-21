@@ -1,5 +1,20 @@
 # Roadmap
 
+[Environment development 13](../apps/qwen/evaluation/environment-13/README.md)
+completes the qualified per-command environment contract as Qwen-authored source,
+independently reviewed/validated and feature-published at `b81891ceeafa`.
+The unchanged 32K/native worker completed 14 requests and five atomic proposals,
+including oracle-reported missing API behavior and quality corrections. Actual
+child inheritance/overrides and existing stdin compatibility pass. No Codex
+semantic substitute or live recovery session was needed. The bounded Pi
+diagnostic did not complete and has concrete write/output/timeout confounds.
+Qwen remains primary: next assess fresh qualified cross-component completion and
+requirement-preserving behavioral repair; no new infrastructure or serving sweep
+is justified by this success. Protected adoption and general proficiency remain
+open. Earlier checkpoints below describe their recorded historical state.
+The new evidence record corrects the prior claim of absent Environment 12 executor
+forwarding; its constructor failure left child behavior unverified.
+
 [Environment continuation 12](../apps/qwen/evaluation/environment-12/README.md)
 still failed the original qualified contract. The initial Context refusal was
 recovered within original cumulative limits after exact transaction/contained-

@@ -1,5 +1,14 @@
 # Architecture
 
+The existing Commands resource now owns immutable per-command environment
+configuration and launch-time parent overlays through its Command/executor APIs;
+see [the supported contract](../src/devtools/resources/commands/docs/command.md).
+The exact Qwen implementation and independent regressions passed existing
+WorkCycle local closeout, documented in
+[environment13](../apps/qwen/evaluation/environment-13/README.md).
+No new planner, execution, Context, authority or persistence owner was introduced.
+Ordinary feature publication remains distinct from protected destination adoption.
+
 The existing Qwen continuation owner now projects completed applied arguments
 and superseded refusal arguments to explicitly labelled archival references,
 preserving native names/IDs and host receipts. Exact current observations may

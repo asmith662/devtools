@@ -30,8 +30,14 @@ native cwd, and stdout/stderr pipes. Explicit binary stdin is piped while both
 output streams drain, then closed to deliver EOF. Empty bytes also create a pipe;
 None preserves inherited stdin. Early input closure/child exit remains an ordinary
 result. Timeout and cancellation cover blocked input and reap the immediate child.
-There is no shell, environment override, or process-group configuration.
-Environment overrides remain an explicit unfinished development obligation.
+Per-command environment overrides are merged with the current parent at launch,
+without mutating os.environ. None/empty overrides use inherited environment;
+nonempty mappings overlay only their keys. Immutable specification validation and
+fluent behavior are described in [Command values](command.md). There is no shell
+or process-group configuration. The exact Qwen implementation and independent
+regressions are reviewed and feature-published; see
+[environment development 13](../../../../../apps/qwen/evaluation/environment-13/README.md).
+Protected-main adoption remains separate.
 
 The exact Qwen-authored stdin implementation was independently qualified after
 correcting missing standard attributes in old test doubles, then reviewed and

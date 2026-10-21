@@ -12,6 +12,7 @@ Command(
     working_directory: ResolvedPath | None = None,
     timeout: Duration | None = None,
     stdin: bytes | None = None,
+    environment: Mapping[str, str] | None = None,
 )
 ```
 
@@ -36,6 +37,8 @@ with_timeout(...)     set Duration timeout
 without_timeout()     clear timeout
 with_stdin(bytes)     replace immutable binary input
 without_stdin()       restore inherited stdin
+with_environment(...) replace environment overrides
+without_environment() restore inherited environment
 ```
 
 `stdin=None` preserves inherited input. Immutable `bytes`, including `b""`,
@@ -43,6 +46,18 @@ select a child pipe and exact payload followed by EOF. Other types raise
 `TypeError` at construction and fluent replacement. Input participates in value
 equality/hash and is preserved by every other fluent method. Payload storage is
 in-memory; there is no separate input-size policy.
+
+`environment` accepts a string-to-string Mapping or None. Construction and fluent
+replacement snapshot the mapping and expose a read-only view. Equivalent override
+mappings have order-independent equality/hash; all fluent operations preserve the
+other command dimensions. Non-mappings/non-string entries raise TypeError; empty
+names, equals signs in names, and NUL in names or values raise ValueError.
+
+None and an empty mapping inherit the current parent at process launch. Nonempty
+overrides replace only their keys, retaining other parent values. Empty strings
+and Unicode values are supported. The executor never mutates os.environ; concurrent
+commands receive independent overlays. The original immutable Mapping is a command
+value, not a captured full parent-environment snapshot.
 
 ## `CommandOutputPolicy`
 
