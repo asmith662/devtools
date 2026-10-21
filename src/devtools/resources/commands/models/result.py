@@ -53,3 +53,45 @@ class CommandResult:
         :returns: ``True`` when the exit code is nonzero.
         """
         return not self.succeeded
+
+    def stdout_text(
+        self,
+        *,
+        encoding: str = "utf-8",
+        errors: str = "strict",
+    ) -> str:
+        """Return the captured standard output decoded as text.
+
+        This is an explicit decoded view over the retained :attr:`stdout`
+        bytes. The retained bytes are not modified and the truncation flags
+        are unchanged. Decoding uses the native codec contract: invalid
+        bytes raise :class:`UnicodeDecodeError` under ``errors="strict"``,
+        while replacement or ignore policies apply, and unknown encodings
+        raise :class:`LookupError`.
+
+        :param encoding: Codec name used to decode the retained bytes.
+        :param errors: Error handling scheme passed to the codec.
+        :returns: The decoded standard output text.
+        """
+        return self.stdout.decode(encoding=encoding, errors=errors)
+
+    def stderr_text(
+        self,
+        *,
+        encoding: str = "utf-8",
+        errors: str = "strict",
+    ) -> str:
+        """Return the captured standard error decoded as text.
+
+        This is an explicit decoded view over the retained :attr:`stderr`
+        bytes. The retained bytes are not modified and the truncation flags
+        are unchanged. Decoding uses the native codec contract: invalid
+        bytes raise :class:`UnicodeDecodeError` under ``errors="strict"``,
+        while replacement or ignore policies apply, and unknown encodings
+        raise :class:`LookupError`.
+
+        :param encoding: Codec name used to decode the retained bytes.
+        :param errors: Error handling scheme passed to the codec.
+        :returns: The decoded standard error text.
+        """
+        return self.stderr.decode(encoding=encoding, errors=errors)
