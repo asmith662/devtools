@@ -1,5 +1,16 @@
 # Native Context worker acceptance and evaluation
 
+[Output policy development15](evaluation/output-policy-15/README.md) completes
+the previously exposed integer/bool validation defect with the unchanged worker.
+The independently reconciled contract uses TypeError for wrong types and
+ValueError for invalid integer bounds. Qwen's first transaction passes: 6 requests,
+one admitted proposal, no repair/refusal; exact source plus 60 independent regressions
+are feature-published at `c93e5bf0f508`. 176 focused cases and the protected gate
+pass. This is development continuation, not fresh confirmation or repair evidence.
+Next evaluate a practical shared change-check bundle over existing Git/validation
+operations; no new harness optimization is justified by this result.
+Earlier entries below retain their historical then-current status.
+
 [Fresh engineering 14](evaluation/engineering-14/README.md) delivers per-command
 successful exit-code interpretation across specification/result/Tool behavior.
 Qwen completed 10 native requests, two admitted proposals and one genuine

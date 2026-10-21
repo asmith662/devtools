@@ -1,5 +1,16 @@
 # Roadmap
 
+[Output policy development15](../apps/qwen/evaluation/output-policy-15/README.md) completes
+the previously exposed integer/bool validation defect with the unchanged worker.
+The independently reconciled contract uses TypeError for wrong types and
+ValueError for invalid integer bounds. Qwen's first transaction passes: 6 requests,
+one admitted proposal, no repair/refusal; exact source plus 60 independent regressions
+are feature-published at `c93e5bf0f508`. 176 focused cases and the protected gate
+pass. This is development continuation, not fresh confirmation or repair evidence.
+Next evaluate a practical shared change-check bundle over existing Git/validation
+operations; no new harness optimization is justified by this result.
+Earlier entries below retain their historical then-current status.
+
 [Fresh engineering14](../apps/qwen/evaluation/engineering-14/README.md) is accepted
 and feature-published at `73e5ee07ee49`: Qwen authored immutable successful-code
 configuration and result interpretation, then repaired an actual pre-deduplication

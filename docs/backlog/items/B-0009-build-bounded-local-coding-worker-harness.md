@@ -336,3 +336,15 @@ existing closeout; 116 focused tests, static checks and protected validation pas
 See [measured evidence](../../../apps/qwen/evaluation/engineering-14/README.md).
 The worker/profile are unchanged. One fresh accepted repair is useful progress,
 not general proficiency or protected-main adoption.
+
+## Output policy development15
+
+The exposed output-limit validation obligation is feature-published at
+`c93e5bf0f508` with exact Qwen source, 60 independent regressions and protected
+validation. See [measured evidence](../../../apps/qwen/evaluation/output-policy-15/README.md).
+TypeError for noninteger/bool inputs and ValueError for invalid integer bounds
+were independently reconciled before inference. One proposal/six requests passed;
+no repair was needed, no worker changed, and old Cohort02 evidence is unchanged.
+Parent reliability/protected adoption remain open. The next practical shared-tool
+increment is a scoped Git/test/Ruff/format/mypy check bundle reusing current
+Commands/ToolRunner/validation owners; it is not implemented here.

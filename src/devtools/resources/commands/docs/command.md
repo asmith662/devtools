@@ -88,6 +88,12 @@ nonempty output remains streamable but no bytes are retained in the final
 result, and the matching truncation flag is true. Negative byte limits are
 invalid. Pending-event capacity must be positive.
 
+All three limits require `int` values, including integer subclasses but excluding
+`bool`. Booleans and nonintegers raise `TypeError` before any bound comparison;
+values are never coerced. Invalid integer bounds retain `ValueError`. There is no
+arbitrary upper limit. Construction and `dataclasses.replace` enforce the same
+checks, preserving frozen/slotted equality and hash behavior.
+
 ## `CommandResult`
 
 ```python
