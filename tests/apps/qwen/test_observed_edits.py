@@ -4,20 +4,35 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 from dataclasses import replace
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from apps.qwen import coding_loop
 from apps.qwen.context_tools import ContextRequestError, ContextTools
+from apps.qwen.continuation import present_sources
 from apps.qwen.edits import admit_observed, observed_definition, transaction_definition
 from apps.qwen.patch_proposal_worker import PatchProposalError
-from devtools.models.interaction import ModelToolCall
+from apps.qwen.tasks import MARKDOWN
+from devtools.models.interaction import (
+    ModelResponse,
+    ModelToolCall,
+    Prompt,
+    PromptMessage,
+)
+from tests.apps.qwen.test_coding_loop import GOOD, OLD, Scripted
 from tests.apps.qwen.test_context_tools import dispatch, tools  # noqa: F401
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
     from typing import Any
+
+    from apps.qwen.tasks import CodingTask
+    from devtools.models.interaction import ModelRequest
 
 
 def native(ref: str, old: str, new: str, identity: str = "edit") -> ModelToolCall:
@@ -25,6 +40,280 @@ def native(ref: str, old: str, new: str, identity: str = "edit") -> ModelToolCal
         "replace_source",
         json.dumps({"reference": ref, "old_text": old, "new_text": new}),
         identity,
+    )
+
+
+def by_path(path: str, old: str, new: str, identity: str = "edit") -> ModelToolCall:
+    return ModelToolCall(
+        "replace_source",
+        json.dumps({"path": path, "old_text": old, "new_text": new}),
+        identity,
+    )
+
+
+@pytest.mark.parametrize("succeed", [True, False])
+def test_native_six_proposals_are_bounded_and_correlated(
+    *,
+    succeed: bool,
+    captured_inputs: Callable[[CodingTask], Path],
+    tmp_path: Path,
+) -> None:
+    """Five refusals can be repaired at six, while a seventh never dispatches."""
+    task = replace(
+        MARKDOWN,
+        context_mode="on-demand",
+        maximum_calls=8,
+        maximum_proposals=6,
+        path_edits=True,
+    )
+    root = captured_inputs(task)
+    source = (root / task.source).read_text()
+    first_edit = 2
+    final_request = task.maximum_proposals + 1
+
+    class Sixth(Scripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            number = len(self.requests)
+            if number == 1:
+                schema = json.loads(request.tools[0].input_schema_json)
+                assert "path" in schema["required"]
+                native_call = ModelToolCall(
+                    "inspect_source",
+                    json.dumps(
+                        {"path": task.source, "start": max(0, source.index(OLD) - 50)},
+                    ),
+                    "read",
+                )
+            else:
+                if number == first_edit:
+                    assert "EXACT SOURCE BLOCK" in request.prompt.messages[-1].content
+                    assert OLD in request.prompt.messages[-1].content
+                if number == final_request:
+                    feedback = json.loads(request.prompt.messages[-1].content)
+                    assert feedback["host_limits"]["proposals_remaining"] == 1
+                    assert "path" in feedback["instruction"]
+                native_call = by_path(
+                    task.source,
+                    OLD if number == final_request and succeed else "NOT_SOURCE",
+                    GOOD,
+                )
+            return ModelResponse("scripted", self.source, tool_calls=(native_call,))
+
+    model = Sixth([])
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "six",
+            model,
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+        ),
+    )
+    assert result["accepted"] is succeed
+    assert result["limits"]["proposals"] == task.maximum_proposals
+    assert result["proposals_attempted"] == task.maximum_proposals
+    expected_requests = 7
+    assert len(model.requests) == expected_requests
+    assert result["original_unchanged"]
+
+
+@pytest.mark.parametrize("value", [0, 7, True, 1.5])
+def test_native_proposal_limits_refuse_invalid_configuration(value: object) -> None:
+    """Model-facing budgets are authenticated host integers, never soft hints."""
+    with pytest.raises(ValueError, match="bounded native"):
+        replace(
+            MARKDOWN,
+            context_mode="on-demand",
+            maximum_proposals=cast("int", value),
+        )
+    with pytest.raises(ValueError, match="bounded native"):
+        replace(MARKDOWN, maximum_proposals=6)
+    assert MARKDOWN.maximum_proposals == 3  # noqa: PLR2004 -- durable legacy default
+
+
+def test_path_anchor_resolves_observed_union_without_redirecting_legacy(
+    tools: ContextTools,
+) -> None:
+    path = tools.task.source
+    tools = ContextTools(tools.root, replace(tools.task, path_edits=True))
+    source = tools.snapshot.resources[0].content
+    version = str(tools.snapshot.resources[0].content_identity)
+    split = source.index("return 1") + 3
+    first = dispatch(
+        tools,
+        "read_source",
+        path=path,
+        version=version,
+        start=0,
+        end=split,
+    )
+    dispatch(
+        tools,
+        "read_source",
+        path=path,
+        version=version,
+        start=split,
+        end=len(source),
+    )
+    with pytest.raises(PatchProposalError, match="outside referenced"):
+        admit_observed(
+            tools.root,
+            {path: source},
+            (native(first["edit_ref"], "return 1", "return 2"),),
+            tools,
+        )
+    _, updates, edits, plan = admit_observed(
+        tools.root,
+        {path: source},
+        (by_path(path, "return 1", "return 2"),),
+        tools,
+    )
+    assert "return 2" in updates[path]
+    assert edits[0]["anchor_mode"] == "path-observed-union"
+    expected_regions = 2
+    assert len(edits[0]["observation_references"]) == expected_regions
+    assert (
+        len(plan["resolved_observations"][0]["supporting_observations"])
+        == expected_regions
+    )
+    assert (tools.root / path).read_text() == source
+
+
+@pytest.mark.parametrize(
+    "failure",
+    ["unobserved", "contaminated", "empty", "ambiguous", "unauthorized", "oversize"],
+)
+def test_path_anchor_refusals_are_atomic(tools: ContextTools, failure: str) -> None:
+    path = tools.task.source
+    before = (tools.root / path).read_text()
+    if failure == "ambiguous":
+        before += "\ndef another():\n    return 1\n"
+        (tools.root / path).write_bytes(before.encode())
+    tools = ContextTools(tools.root, replace(tools.task, path_edits=True))
+    if failure != "unobserved":
+        read(tools)
+    target = tools.task.tests[0] if failure == "unauthorized" else path
+    old = {"contaminated": 'return 1\\",\\"host_projection\\":{}', "empty": ""}.get(
+        failure,
+        "return 1",
+    )
+    replacement = "x" * 4097 if failure == "oversize" else "return 2"
+    with pytest.raises(PatchProposalError):
+        admit_observed(
+            tools.root,
+            {path: before},
+            (
+                by_path(path, "class Demo:", "class DemoNew:", "valid-component"),
+                by_path(target, old, replacement),
+            ),
+            tools,
+        )
+    assert (tools.root / path).read_text() == before
+
+
+def test_path_anchor_drift_and_current_observation_attestation(
+    tools: ContextTools,
+) -> None:
+    path = tools.task.source
+    tools = ContextTools(tools.root, replace(tools.task, path_edits=True))
+    read(tools)
+    before = (tools.root / path).read_text()
+    changed = before.replace("return 1", "return 2")
+    (tools.root / path).write_bytes(changed.encode())
+    with pytest.raises(ValueError, match="SOURCE_DRIFT"):
+        admit_observed(
+            tools.root,
+            {path: changed},
+            (by_path(path, "return 2", "return 3"),),
+            tools,
+        )
+    tools.accept_source(changed)
+    with pytest.raises(PatchProposalError, match="not observed"):
+        admit_observed(
+            tools.root,
+            {path: changed},
+            (by_path(path, "return 2", "return 3"),),
+            tools,
+        )
+    read(tools)
+    tools.observations[0]["text"] = "#" + tools.observations[0]["text"][1:]
+    with pytest.raises(PatchProposalError, match="attestation mismatch"):
+        admit_observed(
+            tools.root,
+            {path: changed},
+            (by_path(path, "return 2", "return 3"),),
+            tools,
+        )
+    assert (tools.root / path).read_text() == changed
+
+
+@pytest.mark.parametrize("newline", ["\n", "\r\n"])
+def test_path_anchor_creation_and_atomic_overlap(
+    tools: ContextTools,
+    newline: str,
+) -> None:
+    path = tools.task.source
+    before = 'value = "caf\u00e9\U0001f98a"' + newline
+    (tools.root / path).write_bytes(before.encode())
+    new = "src/devtools/created.py"
+    tools = ContextTools(
+        tools.root,
+        replace(tools.task, path_edits=True, new_paths=(new,)),
+    )
+    read(tools)
+    sources = {path: before, new: ""}
+    calls = (
+        by_path(path, 'value = "caf\u00e9\U0001f98a"\n', 'value = "\u96ea"\n'),
+        by_path(new, "", '"""Created source."""\n', "create"),
+    )
+    with pytest.raises(PatchProposalError, match="absence"):
+        admit_observed(tools.root, sources, calls, tools)
+    dispatch(tools, "inspect_new_source", path=new)
+    _, updates, edits, _ = admit_observed(tools.root, sources, calls, tools)
+    assert updates[path] == 'value = "\u96ea"' + newline
+    assert edits[1]["created"]
+    with pytest.raises(PatchProposalError, match="Overlapping"):
+        admit_observed(tools.root, sources, (calls[0], calls[0]), tools)
+    assert not (tools.root / new).exists()
+    assert (tools.root / path).read_bytes() == before.encode()
+
+
+def test_path_schema_and_source_blocks_preserve_exact_text_and_native_identity() -> (
+    None
+):
+    schema = json.loads(observed_definition(path_based=True).input_schema_json)
+    assert set(schema["required"]) == {"path", "old_text", "new_text"}
+    assert "reference" not in schema["properties"]
+    source = 'value = "\u96ea"\n# ``` must not terminate the host fence\n'
+    result = {
+        "path": "src/devtools/demo.py",
+        "version": "v1",
+        "span": [0, len(source)],
+        "text": source,
+        "host_projection": {"original_tool_call_id": "read"},
+    }
+    original = PromptMessage("tool", json.dumps(result), tool_call_id="read")
+    assistant = PromptMessage(
+        "assistant",
+        "",
+        (ModelToolCall("inspect_source", "{}", "read"),),
+    )
+    selected = present_sources((assistant, original))
+    Prompt("", "messages", selected)
+    assert selected[0] is assistant
+    assert selected[1].tool_call_id == original.tool_call_id
+    metadata, code = selected[1].content.split("\n\n", 1)
+    assert "host_projection" in metadata
+    assert "host_projection" not in code
+    assert "````python\n" + source + "````" in code
+    assert original.content == json.dumps(result)
+    assert (
+        present_sources((PromptMessage("tool", "invalid JSON", tool_call_id="x"),))[
+            0
+        ].content
+        == "invalid JSON"
     )
 
 

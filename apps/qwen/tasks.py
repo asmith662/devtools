@@ -49,6 +49,8 @@ class CodingTask:
     tool_actions: int = 8
     new_paths: tuple[str, ...] = ()
     disclose_edit_paths: bool = True
+    path_edits: bool = False
+    maximum_proposals: int = 3
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
@@ -59,6 +61,7 @@ class CodingTask:
                 self.command_tools,
                 self.mechanical_format,
                 self.disclose_edit_paths,
+                self.path_edits,
             )
         ):
             raise ValueError("quality_checks must be a host-selected boolean")
@@ -90,6 +93,14 @@ class CodingTask:
             raise ValueError("Tool actions must be host-bounded to at most 32")
         if self.context_mode not in {"prepared", "on-demand"}:
             raise ValueError("Unknown Context acquisition mode")
+        if (
+            type(self.maximum_proposals) is not int
+            or not 1
+            <= self.maximum_proposals
+            <= (6 if self.context_mode == "on-demand" else 3)
+            or (self.path_edits and self.context_mode != "on-demand")
+        ):
+            raise ValueError("Task requires bounded native edit proposals")
         if (
             not isinstance(self.read_paths, tuple)
             or len(paths) + len(self.new_paths) > 32
@@ -167,11 +178,14 @@ class CodingTask:
             "command_tools",
             "mechanical_format",
             "new_paths",
+            "path_edits",
         ):
             if not value[field]:
                 del value[field]
         if self.tool_actions == 8:
             del value["tool_actions"]
+        if self.maximum_proposals == 3:
+            del value["maximum_proposals"]
         if self.disclose_edit_paths:
             del value["disclose_edit_paths"]
         if not self.quality_checks:
@@ -202,7 +216,8 @@ class CodingTask:
                 "The host applies and tests it; you have no write, shell or Git "
                 "authority. Do not claim tests ran. Read results identify exact "
                 "source version hashes. After failure revise current source using the "
-                "correlated Tool result. At most 3 edit proposals, 8 Context "
+                f"correlated Tool result. At most {self.maximum_proposals} edit "
+                f"proposals, {self.tool_actions} Context "
                 f"actions and {self.maximum_calls} total model calls are permitted."
             )
         return (

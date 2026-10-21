@@ -39,6 +39,68 @@ def _compact(value: Any) -> Any:
     return value
 
 
+def present_sources(messages: tuple[PromptMessage, ...]) -> tuple[PromptMessage, ...]:
+    """Separate exact code from JSON envelopes in the opt-in path-edit view.
+
+    Selection still operates on the original structured observations. This is
+    only the final model-facing rendering; host attestations and raw history
+    never come back from parsing the rendered code blocks.
+    """
+    presented = []
+    for message in messages:
+        blocks: list[str] = []
+
+        def render(value: Any, blocks: list[str]) -> Any:
+            if isinstance(value, list):
+                return [render(v, blocks) for v in value]
+            if not isinstance(value, dict):
+                return value
+            metadata = {k: render(v, blocks) for k, v in value.items()}
+            if isinstance(value.get("text"), str) and value.get("path"):
+                text = metadata.pop("text")
+                number = len(blocks) + 1
+                fence = "```"
+                while fence in text:
+                    fence += "`"
+                blocks.append(
+                    f"EXACT SOURCE BLOCK {number}: {value['path']} "
+                    f"span={value.get('span')} version={value.get('version')} "
+                    f"characters={len(text)}\n"
+                    f"{fence}python\n{text}"
+                    + ("" if text.endswith("\n") else "\n")
+                    + fence
+                )
+                metadata.update(
+                    source_block=number,
+                    text_sha256=hashlib.sha256(text.encode()).hexdigest(),
+                )
+            return metadata
+
+        original = _result(message)
+        metadata = render(original, blocks)
+        if blocks:
+            metadata["host_presentation"] = {
+                "format": "source-blocks-v1",
+                "tool_call_id": message.tool_call_id,
+                "projected_message_sha256": hashlib.sha256(
+                    message.content.encode()
+                ).hexdigest(),
+            }
+            message = replace(
+                message,
+                content=(
+                    "HOST OBSERVATION METADATA (not replacement source):\n"
+                    + json.dumps(metadata, ensure_ascii=False, separators=(",", ":"))
+                    + "\n\n"
+                    + "\n\n".join(blocks)
+                    + "\nEND SOURCE BLOCKS. Only literal code inside a block is "
+                    "source text; headers, fences and metadata are not source."
+                ),
+            )
+        presented.append(message)
+    return tuple(presented)
+
+
 def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API projection
     history: list[PromptMessage],
     *,

@@ -1,5 +1,24 @@
 # Bounded local coding worker
 
+Host tasks may opt into `path_edits=True`: flat `replace_source(path, old_text,
+new_text)` resolves nonempty exact old text against the union of current disclosed
+source spans for an authorized path. The existing transaction engine still
+requires a unique source occurrence and enforces version, scope, overlap and byte
+limits atomically. Empty old text is admitted only for observed authorized absence.
+Legacy reference calls retain their original strict region semantics; they are
+never redirected to a different observation. Default task hashes and three-edit
+budgets remain compatible. Native tasks may prospectively select
+`maximum_proposals` up to six (default three), without expanding calls/time/actions.
+
+In path mode, source is rendered in separate exact code blocks with path, span,
+version, character length and text hash; metadata is explicitly outside the code.
+Projection/token accounting uses that actual rendered Prompt. Original structured
+Tool observations, native call/result IDs and unprojected Prompts remain archived.
+This is a presentation/admission option within existing owners, not another
+reader, patch engine or memory store. The
+[stdin development continuation](evaluation/stdin-11/README.md) retains the original
+qualified contract and does not relabel Engineering 10 or claim fresh confirmation.
+
 Pre-edit source embedded in component receipts now uses the same stale-version
 and duplicate-text projection as reads and refreshed observations. Complete raw
 receipts remain archived; current source, handles, feedback and native correlation

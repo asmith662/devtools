@@ -1,5 +1,14 @@
 # Architecture
 
+The existing Qwen application's opt-in path-based observed-edit mode delegates
+current observation resolution to the host. Exact disclosed source unions feed
+the unchanged transaction/application engine; historical reference contracts
+remain strict. Source-block presentation is derived from selected native Tool
+observations and measured using the actual server template, while raw provenance
+remains archived. Host CodingTask bounds may prospectively allow six native
+proposals; defaults and historical definition hashes remain compatible. This
+introduces no new Context, source-writing or execution authority owner.
+
 The Qwen application's existing continuation projection also covers pre-edit
 source nested inside atomic component receipts. Such text obeys the same stale
 and duplicate rules as direct observations; exact originals remain evidence.

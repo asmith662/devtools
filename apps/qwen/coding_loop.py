@@ -29,7 +29,7 @@ from apps.qwen.context_tools import (
     ContextTools,
     context_tool_definitions,
 )
-from apps.qwen.continuation import ACTIVE_BYTES, select_messages
+from apps.qwen.continuation import ACTIVE_BYTES, present_sources, select_messages
 from apps.qwen.development_task import (
     _command,
     _hash,
@@ -459,13 +459,19 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "imports/helpers/functions; all exact old_text anchors refer to the "
             "same pre-edit source versions you observed. Briefly state the "
             "behavior/compatibility plan and preserved invariants, not a long "
-            "planning transcript. Verify required installed API contracts with "
+            "planning transcript. Identify the required public behavior, actual "
+            "components inspected, dependent edits and remaining obligations. "
+            "An API declaration alone does not complete an execution feature. "
+            "Submit logically connected changes together; after failure locate "
+            "the disproved behavior and preserve passing requirements. "
+            "Verify required installed API contracts with "
             "inspect_api, then cite their observation IDs; do not invent API "
             "keywords. Required API observations: "
             + json.dumps(task.api_targets)
             + ". No direct writes, shell or Git mutation authority. Host-owned "
             "behavior/regression/typing/quality checks decide acceptance. "
-            "Preserve passed requirements while repairing. Maximum 3 proposals, "
+            "Preserve passed requirements while repairing. Maximum "
+            f"{task.maximum_proposals} proposals, "
             f"{task.tool_actions} combined read/check/API actions, "
             + str(maximum_calls)
             + " model calls."
@@ -486,9 +492,17 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "then cite their observation IDs", "the host verifies their observations"
         )
         active_prompt += (
-            " Editing uses edit_ref returned by source reads and validation. "
+            " Editing uses repository-relative path, exact observed old_text "
+            "and replacement new_text. The HOST resolves current observed spans; "
+            "do not supply reference IDs. Existing old_text must be nonempty "
+            "literal code, never metadata, headers or fences. Source text is "
+            "displayed in distinct EXACT SOURCE BLOCKS; metadata is not code. "
+            if task.path_edits
+            else " Editing uses edit_ref returned by source reads and validation. "
             "The host resolves path/version/API evidence. old_text may be a small "
             "exact snippet; empty old_text replaces the whole referenced region. "
+        )
+        active_prompt += (
             "For multi-region edits emit multiple replace_source calls together; "
             "never encode a nested edits array or put JSON syntax in Python text."
             " Prefer inspect_source(path, start=0) for known files. It returns "
@@ -509,7 +523,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 + ". Read spans are half-open character offsets. Search/lookup "
                 "return versions required for reading. At most "
                 f"{task.tool_actions} Context/check actions "
-                "and 3 edit proposals; all requests share the total model-call "
+                f"and {task.maximum_proposals} edit proposals; all requests share "
+                "the total model-call "
                 "bound. Do not call Tools unnecessarily."
             ),
         )
@@ -549,6 +564,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             messages, omitted = select_messages(
                 history, source_path=task.source, maximum_bytes=active_bytes
             )
+            if task.path_edits:
+                messages = present_sources(messages)
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
@@ -570,7 +587,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             ),
             tools=(
                 (
-                    observed_definition()
+                    observed_definition(path_based=task.path_edits)
                     if observed_edits
                     else transaction_definition(
                         task.sources, api_required=bool(task.api_targets)
@@ -628,6 +645,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         compact=True,
                         reacquire=reacquire,
                     )
+                    if task.path_edits:
+                        messages = present_sources(messages)
                     request = replace(
                         request, prompt=Prompt("", role="messages", messages=messages)
                     )
@@ -768,7 +787,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                             "context_actions_remaining": task.tool_actions
                             - context_actions,
                             "model_calls_remaining": maximum_calls - number,
-                            "proposals_remaining": 3 - proposals,
+                            "proposals_remaining": task.maximum_proposals - proposals,
                         },
                     }
                     for call in response.tool_calls:
@@ -839,7 +858,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         "context_actions_remaining": task.tool_actions
                         - context_actions,
                         "model_calls_remaining": maximum_calls - number,
-                        "proposals_remaining": 3 - proposals,
+                        "proposals_remaining": task.maximum_proposals - proposals,
                     }
                     history.append(
                         PromptMessage(
@@ -892,7 +911,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 for c in response.tool_calls
             ):
                 raise PatchProposalError("Do not mix Context calls with edit proposals")
-            if proposals >= 3:
+            if proposals >= task.maximum_proposals:
                 raise PatchProposalError("Edit proposal budget exhausted")
             proposals += 1
         stage["proposal_attempted"] = True
@@ -997,7 +1016,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "if needed; do not invent helpers or approximate a match."
                 ),
                 "host_limits": {
-                    "proposals_remaining": 3 - proposals,
+                    "proposals_remaining": task.maximum_proposals - proposals,
                     "context_actions_remaining": task.tool_actions - context_actions,
                     "model_calls_remaining": maximum_calls - number,
                 },
@@ -1005,7 +1024,14 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             call = response.tool_calls[0]
             if observed_edits:
                 result["instruction"] = (
-                    "No source was changed. Use a current edit_ref from a read or "
+                    "No source was changed. Supply the authorized repository path "
+                    "and nonempty literal old_text from a CURRENT source block; "
+                    "the host resolves observed spans, not reference IDs. "
+                    "Reinspect missing source. Headers, metadata and fences are "
+                    "not Python source. The entire batch was rejected; preserve "
+                    "all task requirements."
+                    if task.path_edits
+                    else "No source was changed. Use a current edit_ref from a read or "
                     "host feedback, and literal Python replacement text. No hashes, "
                     "arrays or JSON closing syntax belong in old_text/new_text. "
                     "The entire batch was rejected. Preserve all task requirements."
@@ -1032,7 +1058,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 ],
             )
             _save(turn / "stage.json", stage, overwrite=True)
-            if proposals >= 3:
+            if proposals >= task.maximum_proposals:
                 report["disposition"] = "PROPOSAL_ADMISSION_FAILED"
                 return
             continue
@@ -1154,7 +1180,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 "edits": edits,
                 "sources_after": stage["sources_after"],
                 "host_limits": {
-                    "proposals_remaining": 3 - proposals,
+                    "proposals_remaining": task.maximum_proposals - proposals,
                     "context_actions_remaining": task.tool_actions - context_actions,
                     "model_calls_remaining": maximum_calls - number,
                 },
@@ -1213,7 +1239,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         if validation["accepted"]:
             report.update(accepted=True, disposition="ACCEPTED")
             return
-        if tools is not None and proposals >= 3:
+        if tools is not None and proposals >= task.maximum_proposals:
             report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
             return
         # One latest state, not an ever-growing transcript; full assistant output
@@ -1241,7 +1267,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         }
     report["disposition"] = (
         "REPAIR_BUDGET_EXHAUSTED"
-        if tools is None or proposals >= 3
+        if tools is None or proposals >= task.maximum_proposals
         else "MODEL_CALL_BUDGET_EXHAUSTED"
     )
 
@@ -1279,6 +1305,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         type(coordinated_edits) is not bool
         or type(observed_edits) is not bool
         or (observed_edits and not coordinated_edits)
+        or (task.path_edits and not observed_edits)
         or (coordinated_edits and task.context_mode != "on-demand")
         or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
     ):
@@ -1305,7 +1332,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             "context_actions": task.tool_actions
             if task.context_mode == "on-demand"
             else 0,
-            "proposals": min(maximum_calls, 3),
+            "proposals": min(maximum_calls, task.maximum_proposals),
             "active_messages_bytes": ACTIVE_BYTES
             if task.context_mode == "on-demand"
             else 60000,
@@ -1318,7 +1345,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         "coordination_usage": "UNKNOWN",
         "provenance": provenance,
         "execution_location": "selected-canonical-checkout; no source-tree copy",
-        "edit_protocol": "observed-flat-batch-v1"
+        "edit_protocol": "observed-path-batch-v1"
+        if observed_edits and task.path_edits
+        else "observed-flat-batch-v1"
         if observed_edits
         else "observed-transaction-v1"
         if coordinated_edits
@@ -1345,7 +1374,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                     **report,
                     "task": task.objective if coordinated_edits else task.prompt,
                     "tool": asdict(
-                        observed_definition()
+                        observed_definition(path_based=task.path_edits)
                         if observed_edits
                         else transaction_definition(
                             task.sources, api_required=bool(task.api_targets)

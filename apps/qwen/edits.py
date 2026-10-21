@@ -25,15 +25,25 @@ if TYPE_CHECKING:
 MAX_TRANSACTION_EDITS = 16
 
 
-def observed_definition() -> ModelToolDefinition:
+def observed_definition(*, path_based: bool = False) -> ModelToolDefinition:
     """Flat native strings; the host resolves path, version and API evidence."""
+    anchor = "path" if path_based else "reference"
+    location = (
+        "Propose an exact replacement by repository-relative path. The host "
+        "resolves old_text against the union of CURRENT source spans actually "
+        "disclosed for that authorized path. old_text must be nonempty literal "
+        "source with one exact match; no observation IDs or hashes are needed. "
+        "Empty old_text is allowed ONLY after observing an authorized absent file. "
+        if path_based
+        else "Propose an exact replacement using edit_ref from an actual source read "
+        "or host feedback. No path/version hashes needed. old_text is an exact "
+        "unique snippet inside that observation; empty means its whole region "
+        "(or authorized absent file). "
+    )
     return normalize_tool_descriptor(
         ToolDescriptor(
             "replace_source",
-            "Propose an exact replacement using edit_ref from an actual source read "
-            "or host feedback. No path/version hashes needed. old_text is an exact "
-            "unique snippet inside that observation; empty means its whole region "
-            "(or authorized absent file). new_text is literal Python source, never "
+            location + "new_text is literal Python source, never "
             "JSON syntax. Return multiple replace_source calls in ONE response for "
             "up to 16 coordinated regions/files: the host admits the entire batch "
             "atomically, then validates. Each old/new region is at most 4096 "
@@ -44,18 +54,69 @@ def observed_definition() -> ModelToolDefinition:
                     "type": "object",
                     "additionalProperties": False,
                     "properties": {
-                        "reference": {"type": "string", "pattern": "^R[1-9][0-9]*$"},
+                        anchor: (
+                            {"type": "string", "minLength": 1, "maxLength": 512}
+                            if path_based
+                            else {"type": "string", "pattern": "^R[1-9][0-9]*$"}
+                        ),
                         "old_text": {"type": "string", "maxLength": 4096},
                         "new_text": {"type": "string", "maxLength": 4096},
                     },
-                    "required": ["reference", "old_text", "new_text"],
+                    "required": [anchor, "old_text", "new_text"],
                 }
             ),
         )
     )
 
 
-def admit_observed(  # noqa: C901 -- resolve references before the existing atomic admission
+def _path_row(
+    tools: ContextTools, sources: dict[str, str], value: dict[str, str]
+) -> dict[str, str]:
+    """Bind an explicit path request to the current host-owned source version."""
+    path = value["path"]
+    if path not in tools.task.sources or path not in sources:
+        raise PatchProposalError("Unauthorized observed replacement path")
+    if path in tools.task.new_paths and not (tools.root / path).exists():
+        version = tools.absent_observations.get(path, "")
+    else:
+        if not value["old_text"]:
+            raise PatchProposalError("Existing source requires nonempty old_text")
+        version = str(
+            tools.snapshot.resource_at(RepositoryResourceAddress(path)).content_identity
+        )
+    return {**value, "version": version}
+
+
+def _path_observations(
+    tools: ContextTools, sources: dict[str, str], item: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Attest the exact admitted interval using disclosed current source spans."""
+    path = item["path"]
+    if item.get("created"):
+        return [
+            {**o, "edit_ref": key}
+            for key, o in tools.edit_references.items()
+            if o["path"] == path
+            and o.get("status") == "ABSENT"
+            and o["version"] == tools.absent_observations.get(path)
+        ][:1]
+    observations = []
+    cursor = item["start"]
+    for o in sorted(tools.observations, key=lambda o: o["span"][0]):
+        if o["path"] != path or o["version"] != item["version"]:
+            continue
+        first, last = o["span"]
+        if first <= cursor < last and cursor < item["end"]:
+            if o["text"] != sources[path][first:last]:
+                raise PatchProposalError("Observed source attestation mismatch")
+            observations.append(tools.reference(o))
+            cursor = last
+    if cursor < item["end"]:
+        raise PatchProposalError("Exact anchor was not fully observed")
+    return observations
+
+
+def admit_observed(  # noqa: C901, PLR0912 -- explicit legacy/path contract admission
     root: Path,
     sources: dict[str, str],
     calls: tuple[ModelToolCall, ...],
@@ -77,11 +138,19 @@ def admit_observed(  # noqa: C901 -- resolve references before the existing atom
         if (
             call.name != "replace_source"
             or not isinstance(value, dict)
-            or set(value) != {"reference", "old_text", "new_text"}
+            or set(value)
+            not in (
+                {"reference", "old_text", "new_text"},
+                *(({"path", "old_text", "new_text"},) if tools.task.path_edits else ()),
+            )
         ):
             raise PatchProposalError("Malformed observed replacement contract")
         if not all(isinstance(v, str) for v in value.values()):
             raise PatchProposalError("Replacement arguments must be strings")
+        if "path" in value:
+            rows.append(_path_row(tools, sources, value))
+            refs.append({"path": value["path"], "call_id": call.provider_call_id})
+            continue
         observation = tools.edit_references.get(value["reference"])
         if observation is None:
             raise PatchProposalError(
@@ -139,6 +208,19 @@ def admit_observed(  # noqa: C901 -- resolve references before the existing atom
     )
     patches, updated, metadata, plan = admit_transaction(root, sources, composed, tools)
     for item, ref in zip(metadata, refs, strict=True):
+        if "path" in ref:
+            observations = _path_observations(tools, sources, item)
+            if not observations:
+                raise PatchProposalError("Source or exact absence was not observed")
+            ref.update(
+                reference=observations[0]["edit_ref"],
+                observation=observations[0],
+                supporting_observations=observations,
+            )
+            item.update(
+                anchor_mode="path-observed-union",
+                observation_references=[o["edit_ref"] for o in observations],
+            )
         item.update(
             proposal_call_id=ref["call_id"],
             observation_reference=ref["reference"],
