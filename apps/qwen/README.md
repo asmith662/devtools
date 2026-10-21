@@ -1,5 +1,15 @@
 # Bounded local coding worker
 
+[Fixed check-bundle18](evaluation/check-bundle-18/README.md) is **not delivered**.
+The smaller `run_check(check="all")` assignment used nine requests and all 16
+successful read actions, but made zero edits. Pending request ten compacted to
+27,561 input tokens, leaving 3,159 safe output tokens below the 4,096 minimum.
+No worker or source implementation changed and no retry followed. The immediate
+obligation remains this fixed bundle; full `check_changes` and its original
+contract remain unfinished. Before another attempt, use an implementation-oriented
+assignment with authenticated essential owner/helper source, rather than another
+localization exercise or generic Context optimization. Entries below are history.
+
 [Change-check17](evaluation/change-check-17/README.md) remains **not delivered**.
 Narrower approved-owner scope avoided the prior closeout detour, but Qwen made
 11 requests/20 read actions and zero edits before Context refusal. The action

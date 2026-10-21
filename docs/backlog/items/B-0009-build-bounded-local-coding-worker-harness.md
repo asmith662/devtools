@@ -371,3 +371,17 @@ No source, projection or serving change, accepted closeout or protected adoption
 is claimed. Next assess an independently useful fixed all-checks bundle within
 existing run_check under its own prospective acceptance; it is not full
 check_changes and does not resolve this parent reliability obligation.
+
+## Fixed check-bundle18 attempt
+
+The smaller independent `run_check(check="all")` contract also remains missing.
+Qwen inspected the complete owner and actual helpers, then continued investigation
+instead of editing: nine requests, 16 successful read actions, zero proposals and
+Context refusal before request ten. See [evidence](../../../apps/qwen/evaluation/check-bundle-18/README.md).
+No maintained source, worker, serving or projection change was made. Original
+full 16/17 contracts/results, forensic evidence and source are preserved. The
+parent stays open; the smaller bundle must not be counted as full check_changes.
+Next assess implementation-oriented essential-source guidance for this same
+bundle before considering the subsequent Git discovery/report freshness increment.
+No automatic recovery, new framework or protected-main adoption is authorized by
+this diagnostic outcome.

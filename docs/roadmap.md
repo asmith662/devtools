@@ -1,5 +1,16 @@
 # Roadmap
 
+[Fixed check-bundle18](../apps/qwen/evaluation/check-bundle-18/README.md) remains
+**not delivered**. The smaller existing-run_check extension also stopped before
+editing: nine requests, 16 successful read actions and then Context refusal.
+No bundle, source change or feature closeout exists. Keep this as the immediate
+implementation obligation; do not resume the larger check_changes assignment or
+unrelated work. An implementation-focused assignment using existing authenticated
+owner/helper disclosure is the next concrete guidance treatment to assess, without
+new retrieval/planning infrastructure or an automatic retry. After bundle
+acceptance, compose authorized Git/new-file discovery and is_current freshness
+under the unchanged full contract. Earlier entries below remain historical.
+
 [Change-check17](../apps/qwen/evaluation/change-check-17/README.md) remains **not delivered**.
 Narrower approved-owner scope avoided the prior closeout detour, but Qwen made
 11 requests/20 read actions and zero edits before Context refusal. The action

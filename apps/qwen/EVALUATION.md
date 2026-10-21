@@ -1,5 +1,15 @@
 # Native Context worker acceptance and evaluation
 
+[Fixed check-bundle18](evaluation/check-bundle-18/README.md) is **not delivered**.
+Its separate smaller contract retained the original full check_changes oracle
+unchanged. All five real check fixtures and independent negative cases qualified;
+36 legacy regressions and scoped static checks passed. The live attempt used nine
+requests, 16 successful read actions, 132,857 input/718 output tokens and 98.749
+worker seconds, with zero proposals or repairs before Context refusal. There is
+no new bundle ToolRunner demonstration or implementation acceptance. Reduced
+runtime versus 17 is not improved engineering effectiveness. No recovery or
+speculative worker change followed. Entries below retain their historical status.
+
 [Change-check17](evaluation/change-check-17/README.md) remains **not delivered**.
 Narrower approved-owner scope avoided the prior closeout detour, but Qwen made
 11 requests/20 read actions and zero edits before Context refusal. The action
