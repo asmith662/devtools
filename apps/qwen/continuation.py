@@ -101,6 +101,71 @@ def present_sources(messages: tuple[PromptMessage, ...]) -> tuple[PromptMessage,
     return tuple(presented)
 
 
+def _completed_calls(
+    history: list[PromptMessage], selected: list[PromptMessage]
+) -> list[PromptMessage]:
+    """Project applied and superseded refused arguments, never unknown calls.
+
+    Only host receipts attesting this call's applied component can replace its
+    redundant old/new payload. Native names/IDs/results, exact current source,
+    applied edit hashes and the latest validation remain. This is explicitly
+    projected history, not a purported original invocation or a new example.
+    """
+    results = {m.tool_call_id: _result(m) for m in history if m.role == "tool"}
+    positions = {m.tool_call_id: i for i, m in enumerate(history) if m.role == "tool"}
+    latest_applied = max(
+        (
+            positions[k]
+            for k, v in results.items()
+            if v.get("source_after") and v.get("edits") and v.get("source_observations")
+        ),
+        default=-1,
+    )
+    projected = []
+    for message in selected:
+        calls = []
+        for call in message.tool_calls:
+            outcome = results.get(call.provider_call_id, {})
+            result_id = outcome.get("batch_result_call_id", call.provider_call_id)
+            receipt = results.get(result_id, {})
+            applied = (
+                call.provider_call_id is not None
+                and call.name in {"replace_source", "propose_edits", "propose_edit"}
+                and isinstance(receipt.get("source_after"), str)
+                and receipt.get("source_observations")
+                and any(
+                    isinstance(edit, dict)
+                    and edit.get("proposal_call_id") == call.provider_call_id
+                    for edit in receipt.get("edits", [])
+                )
+            )
+            refused = (
+                call.provider_call_id is not None
+                and call.name in {"replace_source", "propose_edits", "propose_edit"}
+                and outcome.get("status") == "REFUSED"
+                and positions.get(call.provider_call_id, len(history)) < latest_applied
+            )
+            if applied or refused:
+                call = replace(
+                    call,
+                    arguments_json=json.dumps(
+                        {
+                            "host_projection": "COMPLETED_APPLIED_ARGUMENTS_OMITTED"
+                            if applied
+                            else "SUPERSEDED_REFUSED_ARGUMENTS_OMITTED",
+                            "original_arguments_sha256": hashlib.sha256(
+                                call.arguments_json.encode()
+                            ).hexdigest(),
+                            "result_tool_call_id": result_id,
+                        },
+                        separators=(",", ":"),
+                    ),
+                )
+            calls.append(call)
+        projected.append(replace(message, tool_calls=tuple(calls)))
+    return projected
+
+
 def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API projection
     history: list[PromptMessage],
     *,
@@ -244,6 +309,21 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 edit["observation"] = project_source(
                     edit["observation"], message.tool_call_id
                 )
+                if compact and "text" not in edit["observation"]:
+                    edit["observation"] = {
+                        k: v
+                        for k, v in edit["observation"].items()
+                        if k
+                        in {
+                            "path",
+                            "version",
+                            "span",
+                            "edit_ref",
+                            "status",
+                            "source_omitted",
+                            "retained_tool_call_id",
+                        }
+                    }
         if value != original:
             value["host_projection"] = original.get("host_projection") or {
                 "original_tool_call_id": message.tool_call_id,
@@ -261,6 +341,7 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
             )
         selected.append(message)
     if compact:
+        selected = _completed_calls(history, selected)
         selected.insert(
             1,
             PromptMessage(
@@ -268,6 +349,10 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 "HOST CAPACITY PROJECTION: Tool envelopes/duplicate outcomes "
                 "are referenced by original call ID; source coordinates are "
                 "half-open Unicode characters. Full originals remain archived. "
+                "Applied/superseded refused edit arguments may be projected "
+                "to their original hash and host receipt; these historical "
+                "projection objects are NOT valid new Tool arguments. Use "
+                "current observed source, not archived replacement payloads. "
                 "Exact text, versions and edit_ref handles are authoritative; "
                 "omitted source must be reacquired before relying on its "
                 "contents. Latest remaining action/call/proposal budgets: "

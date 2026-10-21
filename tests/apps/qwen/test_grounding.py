@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 from dataclasses import asdict, replace
 from typing import TYPE_CHECKING
@@ -235,6 +236,124 @@ def test_only_superseded_validation_diagnostics_are_compacted() -> None:
     assert "old trace" not in json.dumps(results)
     assert results["older"]["host_projection"]["original_tool_call_id"] == "older"
     assert json.dumps([asdict(m) for m in history]) == original
+
+
+@pytest.mark.parametrize("compact", [False, True])
+def test_completed_transaction_arguments_project_without_losing_current_state(
+    *, compact: bool
+) -> None:
+    """Applied payload is archival; exact current source/feedback stay native."""
+    calls = tuple(
+        ModelToolCall(
+            "replace_source",
+            json.dumps({"path": p, "old_text": "old" * 1000, "new_text": "new" * 1000}),
+            identity,
+        )
+        for p, identity in [("src/devtools/a.py", "a"), ("src/devtools/b.py", "b")]
+    )
+    observations = [
+        {"path": p, "version": "v2", "text": "current " + p, "edit_ref": ref}
+        for p, ref in [("src/devtools/a.py", "R2"), ("src/devtools/b.py", "R3")]
+    ]
+    receipt = {
+        "status": "TESTS_FAILED",
+        "source_after": "v2",
+        "sources_after": {o["path"]: "v2" for o in observations},
+        "source_observations": observations,
+        "validation": {"oracle": {"status": "FAIL", "stderr": "current behavior"}},
+        "edits": [
+            {
+                "proposal_call_id": c.provider_call_id,
+                "old_text_sha256": "old digest",
+                "new_text_sha256": "new digest",
+                "observation": {
+                    "path": observations[i]["path"],
+                    "version": "v1",
+                    "span": [0, 3000],
+                    "text": "old" * 1000,
+                    "repository": "redundant" * 1000,
+                },
+            }
+            for i, c in enumerate(calls)
+        ],
+    }
+    history = [
+        PromptMessage("user", "frozen objective and invariants"),
+        PromptMessage("assistant", "compatibility plan", calls),
+        PromptMessage("tool", json.dumps(receipt), tool_call_id="a"),
+        PromptMessage(
+            "tool", json.dumps({"batch_result_call_id": "a"}), tool_call_id="b"
+        ),
+    ]
+    original = json.dumps([asdict(m) for m in history])
+    selected, omitted = select_messages(history, maximum_bytes=131072, compact=compact)
+    assert omitted == 0
+    Prompt("", "messages", selected)
+    assistant = next(m for m in selected if m.role == "assistant")
+    assert assistant.content == "compatibility plan"
+    for old, new in zip(calls, assistant.tool_calls, strict=True):
+        assert (new.name, new.provider_call_id) == (old.name, old.provider_call_id)
+        if compact:
+            projected = json.loads(new.arguments_json)
+            assert projected["host_projection"] == "COMPLETED_APPLIED_ARGUMENTS_OMITTED"
+            assert (
+                projected["original_arguments_sha256"]
+                == hashlib.sha256(old.arguments_json.encode()).hexdigest()
+            )
+            assert projected["result_tool_call_id"] == "a"
+        else:
+            assert new == old
+    current = next(json.loads(m.content) for m in selected if m.tool_call_id == "a")
+    assert current["source_observations"] == observations
+    assert current["sources_after"] == receipt["sources_after"]
+    assert current["validation"] == receipt["validation"]
+    assert current["edits"][0]["new_text_sha256"] == "new digest"
+    if compact:
+        assert "repository" not in current["edits"][0]["observation"]
+    assert json.dumps([asdict(m) for m in history]) == original
+
+
+def test_only_superseded_refusals_and_attested_applied_components_project() -> None:
+    """Unknown/pending calls and latest refusal retain their original arguments."""
+    calls = [
+        ModelToolCall("replace_source", "{}", identity)
+        for identity in ("old", "applied", "unknown", "pending", "latest")
+    ]
+    receipt = {
+        "source_after": "v2",
+        "source_observations": [
+            {"path": "src/devtools/a.py", "version": "v2", "text": "exact"}
+        ],
+        "edits": [{"proposal_call_id": "applied"}],
+    }
+    history = [PromptMessage("user", "frozen objective")]
+    for native in calls:
+        history.append(PromptMessage("assistant", "", (native,)))
+        if native.provider_call_id == "pending":
+            continue
+        result = (
+            receipt
+            if native.provider_call_id == "applied"
+            else {"status": "REFUSED", "diagnostic": "preserve latest diagnostic"}
+            if native.provider_call_id in {"old", "latest"}
+            else {"source_after": "v2"}
+        )
+        history.append(
+            PromptMessage(
+                "tool", json.dumps(result), tool_call_id=native.provider_call_id
+            )
+        )
+    selected, _ = select_messages(history, maximum_bytes=131072, compact=True)
+    projected = {c.provider_call_id: c for m in selected for c in m.tool_calls}
+    assert "SUPERSEDED_REFUSED_ARGUMENTS_OMITTED" in projected["old"].arguments_json
+    assert "COMPLETED_APPLIED_ARGUMENTS_OMITTED" in projected["applied"].arguments_json
+    for identity in ("unknown", "pending", "latest"):
+        assert projected[identity].arguments_json == "{}"
+    results = {
+        m.tool_call_id: json.loads(m.content) for m in selected if m.role == "tool"
+    }
+    assert results["latest"]["same_result_as_tool_call_id"] == "old"
+    assert results["old"]["diagnostic"] == "preserve latest diagnostic"
 
 
 def test_grounding_union_drift_and_actionable_bounds(tools: ContextTools) -> None:
