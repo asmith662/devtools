@@ -18,11 +18,13 @@ from apps.qwen.edits import admit_observed, observed_definition, transaction_def
 from apps.qwen.patch_proposal_worker import PatchProposalError
 from apps.qwen.tasks import MARKDOWN
 from devtools.models.interaction import (
+    InteractionSource,
     ModelResponse,
     ModelToolCall,
     Prompt,
     PromptMessage,
 )
+from devtools.models.interaction.providers import LlamaCppInteraction
 from tests.apps.qwen.test_coding_loop import GOOD, OLD, Scripted
 from tests.apps.qwen.test_context_tools import dispatch, tools  # noqa: F401
 
@@ -131,6 +133,75 @@ def test_native_proposal_limits_refuse_invalid_configuration(value: object) -> N
     with pytest.raises(ValueError, match="bounded native"):
         replace(MARKDOWN, maximum_proposals=6)
     assert MARKDOWN.maximum_proposals == 3  # noqa: PLR2004 -- durable legacy default
+
+
+def test_measured_repair_can_use_remaining_capacity_below_four_k(
+    captured_inputs: Callable[[CodingTask], Path],
+    tmp_path: Path,
+) -> None:
+    """A 3,840-token repair fits with all current source and real failure feedback."""
+    task = replace(
+        MARKDOWN,
+        context_mode="on-demand",
+        maximum_calls=4,
+        output_tokens=8192,
+        path_edits=True,
+    )
+    root = captured_inputs(task)
+    source = (root / task.source).read_text()
+    bad = OLD.removesuffix(":") + " and True:"
+    repair_request = 3
+    first_edit = 2
+
+    class CapacityRepair(LlamaCppInteraction):
+        calls = 0
+
+        async def count_input_tokens(self, _request: ModelRequest) -> int:
+            return 1000 if self.calls < first_edit else 26880
+
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.calls += 1
+            if self.calls == 1:
+                native_call = ModelToolCall(
+                    "inspect_source",
+                    json.dumps(
+                        {"path": task.source, "start": max(0, source.index(OLD) - 50)},
+                    ),
+                    "read",
+                )
+            elif self.calls == first_edit:
+                native_call = by_path(task.source, OLD, bad)
+            else:
+                assert self.calls == repair_request
+                expected_output = 3840
+                assert request.settings.maximum_output_tokens == expected_output
+                assert "TESTS_FAILED" in request.prompt.messages[-1].content
+                assert "validation" in request.prompt.messages[-1].content
+                native_call = by_path(task.source, bad, GOOD)
+            return ModelResponse(
+                "scripted capacity repair",
+                self.source,
+                tool_calls=(native_call,),
+            )
+
+    model = CapacityRepair(
+        endpoint="http://unused.invalid",
+        model="fixture",
+        source=InteractionSource("scripted"),
+    )
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "capacity",
+            model,
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+        ),
+    )
+    assert result["accepted"]
+    assert result["original_unchanged"]
+    assert model.calls == repair_request
 
 
 def test_path_anchor_resolves_observed_union_without_redirecting_legacy(

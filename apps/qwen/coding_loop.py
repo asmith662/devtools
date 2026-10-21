@@ -671,9 +671,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 _save(turn / "request.json", asdict(request), overwrite=True)
             available_output = 32768 - measured_tokens - 2048
             # The task specifies a ceiling, not an obligation to reserve unused
-            # generation capacity. Preserve normal 4K editing capacity and all
-            # source observations; do not reduce a thinking request's allowance.
-            if observed_edits and not thinking_enabled and available_output >= 4096:
+            # generation capacity. Initial implementation retains the normal
+            # 4K floor; bounded repair may use >=2K rather than refusing usable
+            # capacity with all source and latest feedback still present.
+            # Thinking requests retain their full requested allowance.
+            minimum_output = 2048 if proposals else 4096
+            if (
+                observed_edits
+                and not thinking_enabled
+                and available_output >= minimum_output
+            ):
                 effective_output = min(desired_output, available_output)
                 request = replace(
                     request,
@@ -689,6 +696,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "input_tokens": measured_tokens,
                     "output_tokens": effective_output,
                     "task_output_ceiling": task.output_tokens,
+                    "minimum_continuation_output_tokens": minimum_output,
                     "safety_tokens": 2048,
                     "context_tokens": 32768,
                     "phase": "PRE_DISPATCH_CAPACITY",

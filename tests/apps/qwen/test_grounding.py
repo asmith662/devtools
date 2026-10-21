@@ -199,6 +199,44 @@ def test_edit_receipts_project_embedded_source_observations(*, compact: bool) ->
     assert json.dumps([asdict(m) for m in history]) == original
 
 
+def test_only_superseded_validation_diagnostics_are_compacted() -> None:
+    """Historical status/provenance survives while latest failure/source stays exact."""
+    history = [PromptMessage("user", "preserve frozen behavior")]
+    history += exchange(
+        "older",
+        {
+            "validation": {
+                "tests": {"status": "PASS"},
+                "oracle": {"status": "FAIL", "stderr": "old trace" * 1000},
+                "state": {"frozen_requirements": "preserve frozen behavior"},
+            }
+        },
+    )
+    latest = {
+        "validation": {"oracle": {"status": "FAIL", "stderr": "CURRENT failure"}},
+        "path": "src/devtools/demo.py",
+        "version": "v2",
+        "text": "exact current source",
+        "edit_ref": "R2",
+    }
+    history += exchange("latest", latest)
+    original = json.dumps([asdict(m) for m in history])
+    selected, _ = select_messages(history, maximum_bytes=20000, compact=True)
+    results = {
+        m.tool_call_id: json.loads(m.content) for m in selected if m.role == "tool"
+    }
+    assert results["older"]["validation"]["historical_checks"] == {
+        "tests": "PASS",
+        "oracle": "FAIL",
+    }
+    assert results["older"]["validation"]["latest_validation_tool_call_id"] == "latest"
+    assert results["latest"]["validation"] == latest["validation"]
+    assert results["latest"]["text"] == latest["text"]
+    assert "old trace" not in json.dumps(results)
+    assert results["older"]["host_projection"]["original_tool_call_id"] == "older"
+    assert json.dumps([asdict(m) for m in history]) == original
+
+
 def test_grounding_union_drift_and_actionable_bounds(tools: ContextTools) -> None:
     hit = dispatch(tools, "lookup_symbol", name="helper")["matches"][0]
     args = {"path": hit["path"], "version": hit["version"]}

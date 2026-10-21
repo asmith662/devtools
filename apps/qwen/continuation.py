@@ -127,6 +127,14 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
     envelopes: dict[str, str | None] = {}
     outcomes: dict[str, str | None] = {}
     read_only_omitted = 0
+    latest_validation = next(
+        (
+            message.tool_call_id
+            for message in reversed(history)
+            if isinstance(_result(message).get("validation"), dict)
+        ),
+        None,
+    )
 
     def project_source(value: dict[str, Any], call_id: str | None) -> dict[str, Any]:
         if isinstance(value.get("text"), str) and value.get("path"):
@@ -172,6 +180,22 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 "host_limits",
             ):
                 value.pop(k, None)
+            if (
+                isinstance(value.get("validation"), dict)
+                and message.tool_call_id != latest_validation
+            ):
+                value["validation"] = {
+                    "historical_checks": {
+                        name: diagnostic["status"]
+                        for name, diagnostic in value["validation"].items()
+                        if isinstance(diagnostic, dict) and "status" in diagnostic
+                    },
+                    "diagnostics_omitted": (
+                        "SUPERSEDED; original diagnostics remain archived. "
+                        "Use the latest source-bound validation feedback."
+                    ),
+                    "latest_validation_tool_call_id": latest_validation,
+                }
             if value.get("status") == "REFUSED":
                 key = json.dumps(
                     {k: v for k, v in value.items() if k != "host_projection"},
