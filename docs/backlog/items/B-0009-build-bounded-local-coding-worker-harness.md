@@ -286,3 +286,22 @@ uninterrupted autonomous success. Path-resolved current observed anchoring,
 separated source presentation and bounded repair-capacity handling are tested.
 Environment overrides remains incomplete and is the next Commands priority.
 No proposal promotion, parent completion or protected adoption is inferred.
+
+## Environment development continuation 12
+
+The original qualified environment contract was requalified against maintained
+stdin before inference. The first segment failed Context after ten requests;
+exact completed-transaction and contained-observation projection enabled one
+source-authenticated supervised continuation inside the original 24-call,
+six-proposal, 1,800-second ceilings. The new edit was admitted but regressed the
+slotted frozen constructor; the final result exhausted repairs and failed the
+oracle, regressions, formatting, Ruff and typing. No partial implementation was
+installed. This is not successful behavioral repair, fresh confirmation or parent
+completion. Environment overrides remains the immediate Commands obligation.
+
+The bounded 48K native probes were feasible, but provided no coding-quality
+comparison; the original 32K service/profile is restored and retained. See
+[the record](../../../apps/qwen/evaluation/environment-12/README.md) for original
+contract, failed receipts, actual Context recovery, measured resource limits and
+protected validation of the worker corrections. No proposal approval, promotion
+or implementation grant is inferred from local evaluation/publication.

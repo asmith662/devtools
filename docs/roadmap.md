@@ -1,5 +1,21 @@
 # Roadmap
 
+[Environment continuation 12](../apps/qwen/evaluation/environment-12/README.md)
+still failed the original qualified contract. The initial Context refusal was
+recovered within original cumulative limits after exact transaction/contained-
+source projection corrections, but Qwen's final proposal broke frozen/slotted
+construction and did not implement child environment delivery. The failed source
+remains evidence-only; maintained stdin is unchanged. The last result is
+`REPAIR_BUDGET_EXHAUSTED`, with no further retry in this assignment.
+
+Immediate priority remains the same environment-overrides capability: source-
+grounded compatibility with the actual slotted immutable value, complete public
+model/fluent/hash behavior and real executor delivery. Existing admission/refusal
+and behavioral diagnostics must guide repair; do not substitute another task or
+Codex-authored source. The 48K feasibility probe does not establish better coding
+quality; 32K with corrected projection remains selected. Qwen reliability and
+protected-main adoption remain open.
+
 [Stdin continuation 11](../apps/qwen/evaluation/stdin-11/README.md) completed
 reviewed ordinary-feature publication of the exact Qwen implementation at
 `2490cb7b988d` after independent fixture qualification. Live results

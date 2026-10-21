@@ -1,5 +1,20 @@
 # Architecture
 
+The existing Qwen continuation owner now projects completed applied arguments
+and superseded refusal arguments to explicitly labelled archival references,
+preserving native names/IDs and host receipts. Exact current observations may
+reference a larger retained span only when path, version, coordinates and every
+character agree. Handles and source identities remain; stale/duplicate envelope
+projection never invents source or changes admission. Unique current source and
+latest validation remain exact, and complete raw history stays archived.
+
+The [environment continuation](../apps/qwen/evaluation/environment-12/README.md)
+records request-fit replay and a genuine supervised feedback continuation. Its
+eventual coding failure remains a failure. This is application-local deterministic
+Context projection, not Memory, a new executor, source matching policy or general
+long-session correctness guarantee. The default verified 32K serving profile is
+unchanged after a bounded temporary 48K feasibility check.
+
 The existing Qwen application's opt-in path-based observed-edit mode delegates
 current observation resolution to the host. Exact disclosed source unions feed
 the unchanged transaction/application engine; historical reference contracts

@@ -1,0 +1,742 @@
+{
+  "at": "2026-10-21T15:16:46.803816+00:00",
+  "starting_head": "b6bb81bce2e76108550d018de9dd722de6a5bbad",
+  "worker_pre_live": "c851be49939efeaf07e9505ce1a6ce0317c7cf60",
+  "post_trace_worker": "34fb5061918339402480264880f666751e7546f9",
+  "classification": "Original qualified environment development continuation plus one exact-prefix supervised continuation inside original cumulative ceilings; not fresh or uninterrupted autonomous success",
+  "original_contract": {
+    "task": {
+      "path": "apps/qwen/evaluation/environment-12/task.json",
+      "sha256": "e8e9457ca5232a4ce7c055b05229dc86124d15e8b46f836740d93ac84144988e"
+    },
+    "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+    "preflight": {
+      "path": ".local/qwen-coding-worker/environment-12/preflight.json",
+      "sha256": "a7b608a84f068bef46ef4e1048291011b87a95850854501faeace89eb768b745"
+    },
+    "historical_result": {
+      "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/result.json",
+      "sha256": "398df2c76b442ed2b5b2f69bbd421658c1dcb7d1437690f604573efe2ff16000"
+    },
+    "unchanged_objective_and_oracle": true,
+    "tests": "Original command tests plus already-published stdin regressions; 63 pass at maintained baseline"
+  },
+  "projection": {
+    "pre_live": {
+      "path": ".local/qwen-coding-worker/environment-12/context-replay.json",
+      "sha256": "8e35381a56891b1748ad3e131e2d6bfc947c475024760a16c9b4c0361d504949"
+    },
+    "post_run_replays": [
+      {
+        "case": "stdin",
+        "archived_input": 29634,
+        "post_run_input": 25927,
+        "safe_output": 4793,
+        "minimum_4096_fits": true,
+        "full_8192_fits": false,
+        "omitted_exchanges": 0,
+        "latest_validation_exact": true,
+        "native_ids_names_correlations_unchanged": true,
+        "original_history_unchanged": true,
+        "source_request_sha256": "1874ffe260028c5404172a552712f5c0371e6c0d0769fa7cdf3bce88ff4eb906",
+        "classification": "Post-run deterministic request-fit regression only; no inference/retry/relabeling"
+      },
+      {
+        "case": "environment",
+        "archived_input": 29797,
+        "post_run_input": 25140,
+        "safe_output": 5580,
+        "minimum_4096_fits": true,
+        "full_8192_fits": false,
+        "omitted_exchanges": 0,
+        "latest_validation_exact": true,
+        "native_ids_names_correlations_unchanged": true,
+        "original_history_unchanged": true,
+        "source_request_sha256": "d4ec9e3f1bc4c4849daa27b45525944ef3ceafc22ea18c289c0ce134e4108e89",
+        "classification": "Post-run deterministic request-fit regression only; no inference/retry/relabeling"
+      }
+    ],
+    "live_recovery_request": {
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 25149,
+      "measurements": [
+        {
+          "input_tokens": 39309,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 25149,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 25149,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 5571,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    "scope": "Host-derived completed arguments / stale or duplicate envelopes / exactly contained current source projection only; original receipts/native IDs/task/handles/current versions/latest feedback stay authoritative; edit admission unchanged",
+    "non_claim": "Tokenizer replay is not autonomous success. Genuine recovery demonstrates the blocked feedback reached the model with usable capacity, but the model failed its last proposal."
+  },
+  "serving": {
+    "choice": {
+      "path": "apps/qwen/evaluation/environment-12/serving-choice.json",
+      "sha256": "ebfe713f4741ffc3d43d68a92f3cb0f0f2bb4fb6ffd08560383a942e33a62b5d"
+    },
+    "probe_calls": 4,
+    "probe_usage": {
+      "input_tokens": 55988,
+      "output_tokens": 104
+    },
+    "short_and_long_native_valid": true,
+    "baseline_restored": true,
+    "selected_context": 32768,
+    "mode": "Same GGUF,q4K/V,flash-on,all-GPU requested,one slot,thinking off; only temporary Context differs",
+    "limitations": "No >32K-input inference or coding accuracy comparison at48K. Exact offload/kernel/KV-buffer facts NOT_CAPTURED because Docker log stderr was omitted by probe; config/GPU allocation/native responses/latency are recorded. RAM snapshots differ in warm/cold state and are not a causal Context-memory delta.",
+    "raw_probes": [
+      {
+        "path": ".local/qwen-coding-worker/environment-12/serving-check/result.json",
+        "sha256": "0336b25edb15e88a21e1b6d7345b55b889e8d1f3223cd3e01fcd5779f3e3f42e"
+      },
+      {
+        "path": ".local/qwen-coding-worker/environment-12/serving-48k/result.json",
+        "sha256": "cd2a249b772a42dafce52b47ae885e290cf5f746c68b3e279ae3eebe8f7ecfd9"
+      }
+    ],
+    "setup_failures": [
+      {
+        "path": ".local/qwen-coding-worker/environment-12/serving/result.json",
+        "sha256": "28109d85efa1bc2a6d120b7c9b819b1fbae5e3fa7d77b69cbbf90a6154b06a46"
+      }
+    ],
+    "revert": "Preserved persistent32K container restarted and ready; temporary48K model removed; one resident instance at a time",
+    "point_sample_after_long_probe": {
+      "32k_gpu_mib": 14006,
+      "48k_gpu_mib": 14366,
+      "peak": "UNKNOWN"
+    }
+  },
+  "live": {
+    "primary": {
+      "path": ".local/qwen-coding-worker/environment-12/qwen-environment/result.json",
+      "sha256": "c693644cacc44f9d06126d9673f81de78e7bc30d6e6a5c6ccc9359e776e513c2"
+    },
+    "primary_disposition": "CONTEXT_BUDGET_FAILED",
+    "recovery": {
+      "path": ".local/qwen-coding-worker/environment-12/qwen-environment-recovery/result.json",
+      "sha256": "2c30e4c0c0ccbc2ee680e429c9b8b8a51e5ad9856abdf2d2e474067ec0096609"
+    },
+    "recovery_disposition": "REPAIR_BUDGET_EXHAUSTED",
+    "genuine_calls": 11,
+    "archived_prefix_calls_not_inferred": 10,
+    "usage": {
+      "prompt_tokens": 182750,
+      "completion_tokens": 8543,
+      "total_tokens": 191293
+    },
+    "worker_seconds": 506.87456000002567,
+    "primary_seconds": 414.6428301000269,
+    "recovery_seconds": 92.23172989999875,
+    "atomic_proposals": 6,
+    "admitted_proposals": 4,
+    "refused_proposals": 2,
+    "source_read_actions": 7,
+    "source_bytes": 26280,
+    "context_response_bytes": 37962,
+    "turns": [
+      {
+        "number": 1,
+        "usage": {
+          "completion_tokens": 107,
+          "prompt_tokens": 2353,
+          "total_tokens": 2460,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 2353,
+          "measurements": [
+            {
+              "input_tokens": 2353,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 4096,
+          "output_tokens": 8192,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "CONTEXT_RETURNED",
+        "tool_calls": [
+          {
+            "name": "inspect_source",
+            "id": "fAZQi2D7ZP3cDEzraX8W9p9i3T0zdBaA",
+            "argument_bytes": 70
+          },
+          {
+            "name": "inspect_source",
+            "id": "rGmgi43RTd1Q9d28dks7Hn29WuEXhV4x",
+            "argument_bytes": 65
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 2,
+        "usage": {
+          "completion_tokens": 96,
+          "prompt_tokens": 5771,
+          "total_tokens": 5867,
+          "prompt_tokens_details": {
+            "cached_tokens": 2459
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "investigation",
+          "input_tokens": 5771,
+          "measurements": [
+            {
+              "input_tokens": 5771,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 4096,
+          "output_tokens": 4096,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "CONTEXT_RETURNED",
+        "tool_calls": [
+          {
+            "name": "inspect_source",
+            "id": "bwZLmsRxrEMEtrKYK2gfiyMGkai7wiOh",
+            "argument_bytes": 73
+          },
+          {
+            "name": "inspect_source",
+            "id": "zDzlRAu5BXw6cCG0ak6O0iVFnnY5ybcI",
+            "argument_bytes": 68
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 3,
+        "usage": {
+          "completion_tokens": 3106,
+          "prompt_tokens": 8861,
+          "total_tokens": 11967,
+          "prompt_tokens_details": {
+            "cached_tokens": 5866
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "investigation",
+          "input_tokens": 8861,
+          "measurements": [
+            {
+              "input_tokens": 8861,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 4096,
+          "output_tokens": 4096,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "PROPOSAL_REFUSED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "oytKZIh3sRIXd3f8yg1JYgryofkXDcsz",
+            "argument_bytes": 514
+          },
+          {
+            "name": "replace_source",
+            "id": "wv9ZbS6Xl8fb6lrb3SHPYbxTImQ958Pt",
+            "argument_bytes": 1978
+          },
+          {
+            "name": "replace_source",
+            "id": "6JNdRnzyZStLgFp9n43s2tr6C6uCenG3",
+            "argument_bytes": 4030
+          },
+          {
+            "name": "replace_source",
+            "id": "UQwRLcMhU8nL6kASkwUigY7XSpcsYA3q",
+            "argument_bytes": 1680
+          },
+          {
+            "name": "replace_source",
+            "id": "KsaqREbUvkmwxoeCZtOtaWikkaGoRd3V",
+            "argument_bytes": 1681
+          },
+          {
+            "name": "replace_source",
+            "id": "7Hmg5H03UhHT4ElzZ3zIqIirmFHHQ87W",
+            "argument_bytes": 318
+          },
+          {
+            "name": "replace_source",
+            "id": "rS0qz2PphBkzr1jpUFg1T4uowjXdW9PB",
+            "argument_bytes": 2596
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 4,
+        "usage": {
+          "completion_tokens": 102,
+          "prompt_tokens": 12875,
+          "total_tokens": 12977,
+          "prompt_tokens_details": {
+            "cached_tokens": 11966
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 12875,
+          "measurements": [
+            {
+              "input_tokens": 12875,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 8192,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "CONTEXT_RETURNED",
+        "tool_calls": [
+          {
+            "name": "inspect_source",
+            "id": "UH853VvdOPTawhixlF1CY64fjJeoR4NE",
+            "argument_bytes": 70
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 5,
+        "usage": {
+          "completion_tokens": 205,
+          "prompt_tokens": 13541,
+          "total_tokens": 13746,
+          "prompt_tokens_details": {
+            "cached_tokens": 12976
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "investigation",
+          "input_tokens": 13541,
+          "measurements": [
+            {
+              "input_tokens": 13541,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 4096,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "TESTS_FAILED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "fiNNYy6hz8lhfPnXMdpyawMSzYOTrPwT",
+            "argument_bytes": 277
+          },
+          {
+            "name": "replace_source",
+            "id": "WkTwwEfGBLJt2F5rg4T8qMWHsVod05Vl",
+            "argument_bytes": 250
+          }
+        ],
+        "behavior_and_quality": {
+          "format": "PASS",
+          "oracle": "FAIL",
+          "ruff": "FAIL",
+          "tests": "PASS",
+          "typing": "PASS"
+        }
+      },
+      {
+        "number": 6,
+        "usage": {
+          "completion_tokens": 2766,
+          "prompt_tokens": 19164,
+          "total_tokens": 21930,
+          "prompt_tokens_details": {
+            "cached_tokens": 2349
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 19164,
+          "measurements": [
+            {
+              "input_tokens": 19164,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 8192,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "PROPOSAL_REFUSED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "lq65mzRvOTo8uSEz5vft9RzdEzSB0OU3",
+            "argument_bytes": 1981
+          },
+          {
+            "name": "replace_source",
+            "id": "ceLU7d3yQGbzsca6AzkF7GFgnQeoHPbm",
+            "argument_bytes": 4142
+          },
+          {
+            "name": "replace_source",
+            "id": "bMxidV8FWflShAL2pulOeM54SQ7tgjqO",
+            "argument_bytes": 1680
+          },
+          {
+            "name": "replace_source",
+            "id": "vdtpfDzLPhiuaBWfaqtk1v7s3ldZreqY",
+            "argument_bytes": 1831
+          },
+          {
+            "name": "replace_source",
+            "id": "k19IDURGgmtmFFzc9ErKu38qDcZMzdZa",
+            "argument_bytes": 2589
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 7,
+        "usage": {
+          "completion_tokens": 78,
+          "prompt_tokens": 19724,
+          "total_tokens": 19802,
+          "prompt_tokens_details": {
+            "cached_tokens": 1837
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 19724,
+          "measurements": [
+            {
+              "input_tokens": 22582,
+              "projection": "source-preserving"
+            },
+            {
+              "input_tokens": 19724,
+              "projection": "compact",
+              "reacquire_read_only": 0
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 8192,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "CONTEXT_RETURNED",
+        "tool_calls": [
+          {
+            "name": "inspect_source",
+            "id": "HTFxqwdK7yt5LIPEMIRpvwr5T3Xi8R9m",
+            "argument_bytes": 70
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 8,
+        "usage": {
+          "completion_tokens": 48,
+          "prompt_tokens": 24357,
+          "total_tokens": 24405,
+          "prompt_tokens_details": {
+            "cached_tokens": 21929
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "investigation",
+          "input_tokens": 24357,
+          "measurements": [
+            {
+              "input_tokens": 24357,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 4096,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "CONTEXT_RETURNED",
+        "tool_calls": [
+          {
+            "name": "inspect_source",
+            "id": "U2QAL6SLJzVrsVqdTAbWPLLFydLTf3g9",
+            "argument_bytes": 73
+          }
+        ],
+        "behavior_and_quality": {}
+      },
+      {
+        "number": 9,
+        "usage": {
+          "completion_tokens": 668,
+          "prompt_tokens": 25807,
+          "total_tokens": 26475,
+          "prompt_tokens_details": {
+            "cached_tokens": 24404
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "investigation",
+          "input_tokens": 25807,
+          "measurements": [
+            {
+              "input_tokens": 25807,
+              "projection": "source-preserving"
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 4096,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "TESTS_FAILED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "TgsIhSpWyJkgDutGPPAAHM6fuVcU2SU9",
+            "argument_bytes": 2741
+          }
+        ],
+        "behavior_and_quality": {
+          "format": "FAIL",
+          "oracle": "FAIL",
+          "ruff": "FAIL",
+          "tests": "PASS",
+          "typing": "PASS"
+        }
+      },
+      {
+        "number": 10,
+        "usage": {
+          "completion_tokens": 188,
+          "prompt_tokens": 25148,
+          "total_tokens": 25336,
+          "prompt_tokens_details": {
+            "cached_tokens": 1837
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 25148,
+          "measurements": [
+            {
+              "input_tokens": 32351,
+              "projection": "source-preserving"
+            },
+            {
+              "input_tokens": 25148,
+              "projection": "compact",
+              "reacquire_read_only": 0
+            },
+            {
+              "input_tokens": 25148,
+              "projection": "compact",
+              "reacquire_read_only": 1
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 5572,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "TESTS_FAILED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "tbs9VKclYB8CSRb46yiey5U81fJLz3zc",
+            "argument_bytes": 490
+          }
+        ],
+        "behavior_and_quality": {
+          "format": "FAIL",
+          "oracle": "FAIL",
+          "ruff": "FAIL",
+          "tests": "PASS",
+          "typing": "PASS"
+        }
+      },
+      {
+        "number": 11,
+        "usage": {
+          "completion_tokens": 1179,
+          "prompt_tokens": 25149,
+          "total_tokens": 26328,
+          "prompt_tokens_details": {
+            "cached_tokens": 2346
+          }
+        },
+        "capacity": {
+          "context_tokens": 32768,
+          "generation_phase": "implementation-or-repair",
+          "input_tokens": 25149,
+          "measurements": [
+            {
+              "input_tokens": 39309,
+              "projection": "source-preserving"
+            },
+            {
+              "input_tokens": 25149,
+              "projection": "compact",
+              "reacquire_read_only": 0
+            },
+            {
+              "input_tokens": 25149,
+              "projection": "compact",
+              "reacquire_read_only": 1
+            }
+          ],
+          "minimum_continuation_output_tokens": 2048,
+          "output_tokens": 5571,
+          "phase": "PRE_DISPATCH_CAPACITY",
+          "safety_tokens": 2048,
+          "task_output_ceiling": 8192
+        },
+        "disposition": "TESTS_FAILED",
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "id": "98cUnbnG9TWm0IbFbGfwnnqkFzinMfXj",
+            "argument_bytes": 1537
+          },
+          {
+            "name": "replace_source",
+            "id": "KGHA73JEpmUZIpumsxqeQIe1fpNNz4rs",
+            "argument_bytes": 2658
+          },
+          {
+            "name": "replace_source",
+            "id": "428zRDNmKgw6J9XhMPpPQjjOKWKJh45z",
+            "argument_bytes": 1230
+          }
+        ],
+        "behavior_and_quality": {
+          "format": "FAIL",
+          "oracle": "FAIL",
+          "ruff": "FAIL",
+          "tests": "FAIL",
+          "typing": "FAIL"
+        }
+      }
+    ],
+    "budget_compliance": true,
+    "no_further_model_calls": true,
+    "native_tool_calls": 26
+  },
+  "outcome": {
+    "accepted": false,
+    "environment_feature_installed": false,
+    "behavioral_repair_succeeded": false,
+    "quality_repair_succeeded": false,
+    "primary_harness_failure": "First new run blocked after39259 ->29797 compacted input, only923 safe output",
+    "admission": "Two full transactions refused because exact old_text did not match one source region. Earlier commentary byte-limit attribution was corrected; raw component counts are retained in anchor-diagnosis.json. No partial application.",
+    "model_failure_after_capacity_recovery": "New genuine edit introduced duplicate __post_init__, attempted self.__dict__ on frozen slots=True Command, regressed construction; model still omitted immutable view/hash/helpers/child env delivery. Oracle fails AttributeError,46 old/current regressions fail and17pass; Ruff redefinition, format and mypy fail.",
+    "full_behavior_scope": "Child process environment checks never reached by final oracle because constructor fails; delivery absence separately evident from exact executor diff (only unused os import). Do not claim successful child repair.",
+    "source_restored": true,
+    "candidate_evidence": [
+      {
+        "path": ".local/qwen-coding-worker/environment-12/qwen-environment-recovery/final-source.py",
+        "sha256": "ef0b56b6f547eeffcf2c9f3a3acc55f09152efd1875b68d277d249df50d12369"
+      },
+      {
+        "path": ".local/qwen-coding-worker/environment-12/qwen-environment-recovery/final-sources/src/devtools/resources/commands/execution.py",
+        "sha256": "05ddcc3fcd79c26b2f4854c0de32243f1c473bc5205bbc894968e73e299d0593"
+      }
+    ],
+    "publication": "Ineligible under existing accepted-candidate contract (accepted=False); candidate closeout/publication not invoked",
+    "next": "Environment overrides remains the immediate Commands task. Use the preserved partial evidence only as an explicitly qualified repair task; prioritize understanding frozen/slotted dataclass invariants and completing full public-model -> child-process contract. No new unrelated task, retrieval framework or serving sweep.",
+    "atomic_anchor_detail": "The first batch included an import anchor requiring changes proposed by an earlier component; all atomic anchors refer to one pre-transaction version. Exact counts and raw provider arguments are preserved. Refusal leaves the full transaction unapplied."
+  },
+  "verification": {
+    "focused": "52 passed in11.88s after post-trace correction",
+    "initial_focused": "47 passed in11.89s",
+    "mypy_changed": "2 source files pass strict",
+    "static": "Changed source/test Ruff and formatting pass",
+    "one_checkout": true,
+    "no_worktrees_folder": true,
+    "forensic_files_preserved": 13,
+    "owner_released": true,
+    "main": "862bda2d3d1d812893f84ab69691fc068ecce268",
+    "protected": {
+      "passed": true,
+      "exit_code": 0,
+      "elapsed_seconds": 566.9046840999508,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "tail": "ls\\tools\\errors.py                                                  1      0      0      0   100%\r\nsrc\\devtools\\tools\\execution.py                                               6      0      0      0   100%\r\nsrc\\devtools\\tools\\filesystem.py                                             92      0     16      0   100%\r\nsrc\\devtools\\tools\\protocols.py                                               9      0      0      0   100%\r\n---------------------------------------------------------------------------------------------------------------------\r\nTOTAL                                                                     11661      0   2890      0   100%\r\nRequired test coverage of 100% reached. Total coverage: 100.00%\r\n================= 2258 passed, 2 skipped in 565.24s (0:09:25) =================\r\n",
+      "evidence": {
+        "path": ".local/qwen-coding-worker/environment-12/protected-validation.json",
+        "sha256": "4aa7123e0830fb118995ac1d3661ebd6462ab9e5a301ea68fbd9ebe6cc5bc371"
+      }
+    },
+    "strict_mypy_full_project": "Success,495files",
+    "protected_gate_runs": 1,
+    "maintained_stdin_source_unchanged": {
+      "command": "17fd1e049ecb5e15858d542d415f48dc8e9e8acaa14894663fdd4033abf21e80",
+      "execution": "82c9d005e1c446a3309e291e6324bd55ba5b52b6f29dd182de7b095f03c70049"
+    },
+    "gate_evidence_sha256": "4aa7123e0830fb118995ac1d3661ebd6462ab9e5a301ea68fbd9ebe6cc5bc371"
+  },
+  "economics": {
+    "wall_start": "2026-10-21T14:20:14+00:00",
+    "record_at": "2026-10-21T15:16:46.881529+00:00",
+    "active_coordination_time": "UNKNOWN; gaps include permission/execution waits",
+    "codex_tokens_and_cost": "UNKNOWN",
+    "paid_baseline_calls": 0,
+    "energy_and_peak_gpu": "UNKNOWN; serving point snapshots recorded"
+  },
+  "remaining_limits": "No overall reliability, fresh confirmation, general Context completion or Codex parity claim. Recovery permits the blocked request but remaining proposal budget/model semantics prevented acceptance."
+}

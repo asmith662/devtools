@@ -35,6 +35,18 @@ redundant attestation envelopes and repeated refusal bodies with explicit links
 to original archived Tool call IDs/hashes. When necessary, older read-only source
 excerpts are explicitly marked for reacquisition; current editable observation
 text, versions, handles and recent refusal/validation feedback remain intact.
+In compact mode, completed applied arguments and older refused arguments
+superseded by an applied transaction are explicit archival projections, retaining
+original hashes and correlated host receipts. These projection objects are not
+examples of new Tool arguments. Pending/unknown/latest refused arguments stay
+exact. Current contained excerpts may reference a strictly larger same-path,
+same-version observation only after exact coordinate/character verification.
+Original handles survive; no source is invented or approximate matching admitted.
+Text-free stale/duplicate observation envelopes retain their identity/reference
+fields, backed by the archived whole-message hash. Full raw evidence is unchanged.
+See [environment development evidence](evaluation/environment-12/README.md) for
+the live recovery and failed coding disposition. No unlimited-session guarantee.
+
 Native assistant/call/result associations remain complete. No LLM summary or
 new Memory store is involved. Investigation continuations reserve at most 4K
 output; initial implementation and edit/repair continuations target the frozen

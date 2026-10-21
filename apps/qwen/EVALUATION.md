@@ -1,5 +1,25 @@
 # Native Context worker acceptance and evaluation
 
+[Environment development continuation 12](evaluation/environment-12/README.md)
+retained the original qualified oracle and attempted the unfinished command task.
+It remains **0/1 accepted**: the first segment failed at Context capacity after ten
+calls. A source-authenticated replay continuation, within the same cumulative
+ceilings, delivered feedback with 5,571 safe output tokens. Its one new Qwen call
+was admitted but introduced a duplicate initializer and unsupported `__dict__`
+access on a slotted frozen command. The final oracle, regressions and quality
+checks failed; the six-proposal budget ended. No partial feature was installed.
+
+Completed transaction projection and exact contained-source consolidation now
+retain current source/handles/latest feedback with less redundant history. This
+has deterministic replay and one genuine feedback-continuation observation, not
+successful behavioral repair or general long-task acceptance. Coding consumed
+eleven genuine calls, 182,750 input / 8,543 output tokens and 506.87 worker seconds.
+Ten archived responses are excluded from inference usage. Four separate read-only
+serving probes used 55,988 input / 104 output tokens. The 48K service was feasible
+on those probes; the verified 32K profile was restored and retained. Environment
+overrides remains the next Commands implementation objective. No paid comparison,
+protected publication, fresh-confirmation or Codex-parity claim follows.
+
 [Stdin development continuation 11](evaluation/stdin-11/README.md) adds exact
 path-resolved observed editing and separated source/metadata presentation. Nine
 genuine calls (109,547 input / 4,773 output tokens, 312.57 worker seconds) produced
