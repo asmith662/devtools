@@ -1,5 +1,15 @@
 # Bounded local coding worker
 
+[Change-check17](evaluation/change-check-17/README.md) remains **not delivered**.
+Narrower approved-owner scope avoided the prior closeout detour, but Qwen made
+11 requests/20 read actions and zero edits before Context refusal. The action
+allowance was exhausted, so source could not be omitted for future reacquisition;
+31,675 input tokens plus safety exceeded capacity. The original oracle is unchanged.
+No maintained code, projection or serving configuration changed. Next assess a
+smaller useful fixed-check bundle in existing run_check, not generic Context work
+or a claim that partial functionality completes check_changes. Older entries below
+retain their historical status.
+
 [Shared change-check16](evaluation/change-check-16/README.md) **was not delivered**.
 The one Qwen attempt made 15 requests and 20 read actions with no edit, then failed
 Context admission: 28,489 input tokens left 2,231 safe output below the 4,096 minimum.

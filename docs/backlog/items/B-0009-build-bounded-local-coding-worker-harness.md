@@ -359,3 +359,15 @@ prerequisite is distinct from feature delivery. No accepted candidate, closeout,
 parent completion or protected adoption is claimed. Next finish this same Tool
 after a bounded decision about measured search-history overhead/investigation
 stop behavior; do not replace it with another framework.
+
+## Change-check17 development continuation
+
+The approved shared Tool remains missing. Narrowed owner/dependency scope and
+explicit implementation checkpoints removed closeout investigation but did not
+elicit any edit:11requests/20actions, then Context refusal with no reacquisition
+allowance. The original16oracle and all prior evidence remain unchanged. See
+[measured continuation](../../../apps/qwen/evaluation/change-check-17/README.md).
+No source, projection or serving change, accepted closeout or protected adoption
+is claimed. Next assess an independently useful fixed all-checks bundle within
+existing run_check under its own prospective acceptance; it is not full
+check_changes and does not resolve this parent reliability obligation.
