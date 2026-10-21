@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
@@ -452,3 +453,123 @@ def test_task_defaults_preserve_historical_hashes_and_reasoning_limits(
             ValueError, match=r"operation|New|Task|Tool|resource|boolean"
         ):
             replace(legacy, **changes)
+
+
+@pytest.mark.parametrize("maximum_calls", [2, 3])
+def test_capacity_refuses_to_omit_source_when_reacquisition_is_impossible(
+    tools: ContextTools, tmp_path: Path, maximum_calls: int
+) -> None:
+    class UnavailableRead(LlamaCppInteraction):
+        calls = 0
+
+        async def count_input_tokens(self, request: ModelRequest) -> int:
+            if len(request.prompt.messages) == 1:
+                return 2000
+            omitted_source = any(
+                json.loads(m.content).get("source_omitted", "").startswith("CAPACITY")
+                for m in request.prompt.messages
+                if m.role == "tool"
+            )
+            return 1000 if omitted_source else 32768
+
+        async def send(self, _request: ModelRequest) -> ModelResponse:
+            self.calls += 1
+            assert self.calls == 1, "Unrecoverable source must not be omitted to fit"
+            return ModelResponse(
+                "",
+                InteractionSource("read-budget-fixture"),
+                tool_calls=(
+                    ModelToolCall(
+                        "inspect_source",
+                        json.dumps({"path": tools.task.tests[0], "start": 0}),
+                        "budget-read",
+                    ),
+                ),
+            )
+
+    model = UnavailableRead(
+        endpoint="http://127.0.0.1:8080",
+        model="fixture",
+        source=InteractionSource("read-budget-fixture"),
+    )
+    folder = tmp_path / "unavailable-reacquisition"
+    folder.mkdir()
+    report: dict[str, Any] = {"turns": []}
+    with pytest.raises(ValueError, match="actual 32K"):
+        asyncio.run(
+            coding_loop._turns(  # noqa: SLF001 -- exact capacity admission
+                tools.root,
+                folder,
+                model,
+                report,
+                maximum_calls=maximum_calls,
+                task=replace(tools.task, tool_actions=1 if maximum_calls == 3 else 8),
+                coordinated_edits=True,
+                observed_edits=True,
+            )
+        )
+    assert model.calls == 1
+    assert len(report["turns"]) == 1
+
+
+def test_raw_prompt_archive_matches_compacted_message_provenance(
+    tools: ContextTools, tmp_path: Path
+) -> None:
+    requests: list[ModelRequest] = []
+
+    class ArchivedPrompt(LlamaCppInteraction):
+        async def count_input_tokens(self, request: ModelRequest) -> int:
+            if len(request.prompt.messages) == 1:
+                return 2000
+            return (
+                2000
+                if "HOST CAPACITY PROJECTION" in request.prompt.messages[1].content
+                else 28000
+            )
+
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            requests.append(request)
+            if len(requests) == 1:
+                return ModelResponse(
+                    "",
+                    InteractionSource("archive-fixture"),
+                    tool_calls=(
+                        ModelToolCall(
+                            "inspect_source",
+                            json.dumps({"path": tools.task.source, "start": 0}),
+                            "archived-read",
+                        ),
+                    ),
+                )
+            return ModelResponse(
+                "Finished inspection", InteractionSource("archive-fixture")
+            )
+
+    model = ArchivedPrompt(
+        endpoint="http://127.0.0.1:8080",
+        model="fixture",
+        source=InteractionSource("archive-fixture"),
+    )
+    folder = tmp_path / "native-archive"
+    folder.mkdir()
+    asyncio.run(
+        coding_loop._turns(  # noqa: SLF001 -- same real pre-dispatch boundary
+            tools.root,
+            folder,
+            model,
+            {"turns": []},
+            maximum_calls=2,
+            task=tools.task,
+            coordinated_edits=True,
+            observed_edits=True,
+        )
+    )
+    raw = json.loads((folder / "turn-02/unprojected-prompt.json").read_text())
+    original = next(m for m in raw["messages"] if m["role"] == "tool")
+    projected = next(m for m in requests[-1].prompt.messages if m.role == "tool")
+    assert original["tool_call_id"] == projected.tool_call_id
+    assert json.loads(original["content"])["text"]
+    assert (
+        json.loads(projected.content)["host_projection"]["original_message_sha256"]
+        == hashlib.sha256(original["content"].encode()).hexdigest()
+    )

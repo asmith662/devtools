@@ -13,6 +13,11 @@ On-demand task ceilings are 24 model requests and 1,800 cumulative seconds,
 independent of the unchanged 32K per-request server capacity. Defaults and
 historical receipts are unchanged. Actual `freeze.tool` now records the flat
 observed schema when selected; historical `request.tools` remain authoritative.
+An older excerpt is omitted only while both read actions and subsequent model
+calls remain available. Exhaustion preserves source and refuses capacity instead.
+Each new native turn archives `unprojected-prompt.json` using the same `Prompt`
+contract as `request.prompt`, including exact original Tool-content strings.
+It is evidence outside the active input, not a second conversation representation.
 
 The coding environment also supports task-opted-in `git_inspect` (scoped status,
 diff and history) and `run_check` (fixed regression/oracle/Ruff/format/strict mypy)
@@ -47,8 +52,9 @@ Wrong-region edit refusals name the exact observation handle/path/span; the
 host never substitutes another anchor or partially applies the transaction.
 
 Native tasks may explicitly reserve up to 12,288 output tokens and 600 seconds
-per call for reasoning evaluation; defaults remain 4,096/300 and the 900-second
-task ceiling remains. `--thinking enabled --reasoning-effort medium` selects the
+per call for reasoning evaluation; defaults remain 4,096/300 and 900 task seconds,
+with an explicit on-demand task ceiling of 1,800 seconds.
+`--thinking enabled --reasoning-effort medium` selects the
 actual supported template control. The 32K input/output allocation is respected
 by the existing working-set budget. Returned assistant reasoning can be retained
 in native continuation; unavailable internal reasoning is never invented.
@@ -168,23 +174,25 @@ opaque `ConversationRef` remains unsupported by this stateless adapter.
 The installed Qwen template advertises native Tools and call/result support;
 no template, service or 32K profile change was made.
 
-On-demand limits are **up to 10 total model requests**, three proposals, eight
-read actions, 4,096 requested output tokens/call, 300 seconds/call and 900 seconds
-overall. Task/grant limits may be smaller. Investigation consumes reserved model
-calls; it is not an extra allowance. Future policies may permit ten calls, but
-existing grants retain their actual limits. After eight reads only the proposal
-is disclosed. Invalid calls, output-limit responses and ambiguous outcomes
-terminate without automatic retry. A version mismatch on an admitted, unchanged
+On-demand host ceilings are **24 total model requests**, three proposals and 32
+read/check actions. Defaults remain three calls, eight actions, 4,096 output
+tokens/call, 300 seconds/call and 900 seconds overall; the exact task may explicitly
+reserve longer bounded work. Existing grants retain their actual limits.
+Investigation consumes the same call/action budgets. After the action budget
+only proposal Tools remain. Malformed native JSON, output-limit responses and
+ambiguous provider outcomes terminate without automatic retry.
+A version mismatch on an admitted, unchanged
 read is returned as a correlated REFUSED Tool result, consuming the same action
 budget. Qwen may obtain the actual version and make a new request; the host never
-accepts CURRENT or silently retries. Drift, unauthorized paths and malformed
-requests remain terminal. Tool descriptions explain the search/lookup prerequisite.
+accepts CURRENT or silently retries. Drift and unauthorized paths remain terminal;
+safe Context request shape/unit/range errors return correlated correction feedback.
 
 ### Source-grounded working set
 
 The application projects its archived native exchanges into a bounded active
-working set. Every distinct current observed source region (including tails,
-dependencies and tests), the objective and latest validation are retained.
+working set. Current editable source observations (including tails), the objective
+and latest validation/refusal are retained. Older read-only excerpts may be
+explicitly omitted for reacquisition only when the remaining budgets permit it.
 Repeated identical text is referenced by its original Tool call; stale text is
 explicitly marked and removed after a host-admitted edit. Redundant parent
 metadata is projected away with the original Tool-message SHA-256 and call ID.
@@ -194,12 +202,12 @@ This is task-local Context selection, not a Memory repository or inferred summar
 Complete assistant/call/result groups remain correlated. Lower-value complete
 exchanges may be omitted explicitly; if current source and validation cannot
 fit, selection refuses instead of silently dropping code. A prefix has no
-priority over a later symbol. The active cap is 36,000 serialized message bytes.
-The planning estimate uses 1.5 UTF-8 bytes/token, 4,096 output tokens, 2,048 for
-Tool schemas and 2,048 safety tokens under the unchanged 32,768-token profile.
-This is a conservative engineering estimate for the measured English/Python
-workload, **not a tokenizer or provider-enforced token guarantee**. Actual input
-usage/occupancy remains recorded. Cohort 01 full CSV histories were about 35.5K
+priority over a later symbol. Scripted/non-tokenized interactions retain the
+36,000-byte conservative fallback. Real llama.cpp requests measure actual
+messages, Tool schemas and generation prefix through the installed template and
+tokenizer; token-guided compaction precedes refusal under the unchanged 32,768
+Context and 2,048 safety tokens. `capacity.json` records each measurement and
+effective generation allowance. Cohort 01 full CSV histories were about 35.5K
 bytes: the old 24K eviction, rather than the model window, discarded source.
 
 Reads disclose at most 4,096 UTF-8 source bytes, exact half-open Unicode character

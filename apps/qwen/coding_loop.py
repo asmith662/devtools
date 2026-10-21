@@ -533,6 +533,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             model_prompt = Prompt(prompt, role="user")
         else:
             tools.check_current()
+            # Same native Prompt contract as request.prompt, archived before
+            # projection. This preserves exact Tool content strings/digests;
+            # the full archive is never sent merely to simulate memory.
+            _save(
+                turn / "unprojected-prompt.json",
+                asdict(Prompt("", role="messages", messages=tuple(history))),
+            )
             active_bytes = active_limit
             if measured_capacity:
                 active_bytes = max(
@@ -607,7 +614,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 else task.output_tokens
             )
             if tools is not None and measured_tokens + desired_output + 2048 > 32768:
-                for reacquire in range(1 + sum(m.role == "tool" for m in history)):
+                reacquirable = (
+                    context_actions < task.tool_actions and number < maximum_calls
+                )
+                older_reads = (
+                    sum(m.role == "tool" for m in history) if reacquirable else 0
+                )
+                for reacquire in range(1 + older_reads):
                     messages, omitted = select_messages(
                         history,
                         source_path=task.source,

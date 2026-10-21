@@ -12,11 +12,15 @@ was added. The [engineering record](../../../../../apps/qwen/evaluation/engineer
 distinguishes Qwen source, host-only formatting and independent regressions from
 the unsuccessful live task. Protected-main adoption remains separate.
 
-## Strict bounded and streaming reads
+## Completed bounded stream reads
 
-Streaming or chunk-bounded reads could enforce a hard memory bound where
-current stat/read/post-check behavior is insufficient. Format-specific
-streaming should be added only where consumers require it.
+Qwen's bounded reader is feature-published in `61637ff8`, with independent
+stream-consumption and Repository-observation regressions. Finite reads stop at
+the limit plus one sentinel byte even after growth; legal short reads accumulate.
+The [continuation record](../../../../../apps/qwen/evaluation/continuation-09/README.md)
+distinguishes the original invalid oracle from the accepted corrected development
+continuation. Format-specific streaming remains conditional on concrete consumers;
+this does not promise an exact total-process memory cap or protected-main adoption.
 
 ## Source-format-preserving writes
 
