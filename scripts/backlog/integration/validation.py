@@ -30,7 +30,12 @@ async def validate_tree(
     prelude = (
         "import sys\nfrom pathlib import Path\n"
         f"sys.path.insert(0, {str(checkout / 'src')!r})\n"
-        f"import {module} as module\n"
+        + (
+            f"sys.path.insert(0, {str(checkout)!r})\n"
+            if plan["source"].startswith("apps/")
+            else ""
+        )
+        + f"import {module} as module\n"
         "assert Path(module.__file__).resolve() == "
         f"Path({str(checkout / plan['source'])!r})\n"
     )

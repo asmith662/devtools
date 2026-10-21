@@ -374,7 +374,12 @@ def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) ->
     prelude = (
         "import sys\nfrom pathlib import Path\n"
         f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
-        f"import {module_name} as module\n"
+        + (
+            f"sys.path.insert(0, {str(workspace)!r})\n"
+            if task.source.startswith("apps/")
+            else ""
+        )
+        + f"import {module_name} as module\n"
         "assert Path(module.__file__).resolve() == "
         f"Path({str(workspace / task.source)!r})\n"
     )

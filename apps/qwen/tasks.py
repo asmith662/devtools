@@ -69,7 +69,8 @@ class CodingTask:
             not isinstance(self.additional_edit_paths, tuple)
             or len(self.additional_edit_paths) > 3
             or any(
-                not p.startswith("src/devtools/") for p in self.additional_edit_paths
+                not p.startswith(("src/devtools/", "apps/"))
+                for p in self.additional_edit_paths
             )
             or not isinstance(self.api_targets, tuple)
             or len(set(self.api_targets)) != len(self.api_targets)
@@ -85,7 +86,9 @@ class CodingTask:
             raise ValueError("New source paths must be distinct and bounded")
         for path in self.new_paths:
             RepositoryResourceAddress(path)
-            if not path.startswith("src/devtools/") or not path.endswith(".py"):
+            if not path.startswith(("src/devtools/", "apps/")) or not path.endswith(
+                ".py",
+            ):
                 raise ValueError(
                     "New source requires an explicit Python implementation path",
                 )
@@ -118,10 +121,14 @@ class CodingTask:
                 raise ValueError("Task requires exact SHA-256 input identities")
         for path in paths:
             address = RepositoryResourceAddress(path)
-            if not path.endswith(".py") or address.parts[0] not in {"src", "tests"}:
+            if not path.endswith(".py") or address.parts[0] not in {
+                "src",
+                "apps",
+                "tests",
+            }:
                 raise ValueError("Task requires repository Python source/test paths")
         if (
-            not self.source.startswith("src/devtools/")
+            not self.source.startswith(("src/devtools/", "apps/"))
             or not self.tests
             or any(not p.startswith("tests/") for p in self.tests)
             or len(set(paths)) != len(paths)
