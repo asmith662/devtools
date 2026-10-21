@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 from dataclasses import replace
 from functools import partial
 from typing import TYPE_CHECKING
@@ -192,6 +193,11 @@ class CommandExecutor:
         :raises CommandNotFoundError: If the executable cannot be found.
         """
         try:
+            env = (
+                {**os.environ, **dict(command.environment)}
+                if command.environment
+                else None
+            )
             return await asyncio.create_subprocess_exec(
                 *command.argv,
                 cwd=(
@@ -199,6 +205,7 @@ class CommandExecutor:
                     if command.working_directory is not None
                     else None
                 ),
+                env=env,
                 stdin=asyncio.subprocess.PIPE if command.stdin is not None else None,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,

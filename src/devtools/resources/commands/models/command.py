@@ -3,12 +3,55 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, replace
+from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from devtools.core.paths import ResolvedPath
     from devtools.core.time import Duration
+
+
+def _validate_environment(environment: object) -> None:
+    """Validate that the environment is an optional mapping of str to str.
+
+    :param environment: Candidate environment value.
+    :raises TypeError: If the environment is neither a mapping nor None, or
+        if any key or value is not a string.
+    :raises ValueError: If a name is empty, contains '=' or NUL, or a value
+        contains NUL.
+    """
+    if environment is None:
+        return
+    if not isinstance(environment, Mapping):
+        msg = (
+            "Command environment must be a mapping or None, "
+            f"got {type(environment).__name__}."
+        )
+        raise TypeError(msg)
+    for key, value in environment.items():
+        if not isinstance(key, str):
+            msg = f"Command environment keys must be strings, got {type(key).__name__}."
+            raise TypeError(msg)
+        if not isinstance(value, str):
+            msg = (
+                "Command environment values must be strings, "
+                f"got {type(value).__name__}."
+            )
+            raise TypeError(msg)
+        if not key:
+            msg = "Command environment names cannot be empty."
+            raise ValueError(msg)
+        if "=" in key:
+            msg = "Command environment names cannot contain '='."
+            raise ValueError(msg)
+        if "\0" in key:
+            msg = "Command environment names cannot contain NUL."
+            raise ValueError(msg)
+        if "\0" in value:
+            msg = "Command environment values cannot contain NUL."
+            raise ValueError(msg)
 
 
 def _validate_executable(executable: object) -> None:
@@ -80,24 +123,52 @@ class Command:
     working_directory: ResolvedPath | None = None
     timeout: Duration | None = None
     stdin: bytes | None = None
+    environment: Mapping[str, str] | None = None
 
     def __post_init__(self) -> None:
         """Validate command invariants."""
         self._validate()
+        if self.environment is not None:
+            object.__setattr__(
+                self,
+                "environment",
+                MappingProxyType(dict(self.environment)),
+            )
 
     def _validate(self) -> None:
         """Validate the command specification.
 
         :raises TypeError: If the executable is not a string, the arguments
-            are not a tuple of strings, or stdin is not bytes or None.
-        :raises ValueError: If the executable is empty or whitespace-only.
+            are not a tuple of strings, stdin is not bytes or None, or the
+            environment is not a mapping of str to str.
+        :raises ValueError: If the executable is empty or whitespace-only,
+            or an environment name is empty or contains '=' or NUL.
         """
         _validate_executable(self.executable)
         _validate_arguments(self.arguments)
         _validate_stdin(self.stdin)
+        _validate_environment(self.environment)
         if not self.executable.strip():
             msg = "Command executable cannot be empty."
             raise ValueError(msg)
+
+    def __hash__(self) -> int:
+        """Return an order-independent hash of the command specification."""
+        env_hash = (
+            hash(frozenset(self.environment.items()))
+            if self.environment is not None
+            else 0
+        )
+        return hash(
+            (
+                self.executable,
+                self.arguments,
+                self.working_directory,
+                self.timeout,
+                self.stdin,
+                env_hash,
+            ),
+        )
 
     @property
     def argv(self) -> tuple[str, ...]:
@@ -219,4 +290,33 @@ class Command:
         return replace(
             self,
             stdin=None,
+        )
+
+    def with_environment(self, environment: Mapping[str, str]) -> Command:
+        """Replace the per-command environment overrides.
+
+        The supplied mapping overlays the parent environment for this command
+        only.  The caller's mapping is snapshotted defensively and the returned
+        command exposes a read-only view.
+
+        :param environment: Environment variable overrides.
+        :returns: New command with the supplied environment overrides.
+        :raises TypeError: If the value is not a mapping, or a key or value is
+            not a string.
+        :raises ValueError: If a name is empty, contains '=' or NUL, or a
+            value contains NUL.
+        """
+        return replace(
+            self,
+            environment=environment,
+        )
+
+    def without_environment(self) -> Command:
+        """Remove per-command environment overrides.
+
+        :returns: New command that inherits the parent environment.
+        """
+        return replace(
+            self,
+            environment=None,
         )
