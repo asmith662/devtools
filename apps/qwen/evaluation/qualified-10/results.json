@@ -2698,5 +2698,139 @@
     "energy": "UNKNOWN",
     "gpu_observation": "2026-10-20 21:21:35 EDT: 14006/16376 MiB, 0% utilization, 41.91W; one post-generation sample, not peak or energy."
   },
-  "supervision": "Codex selected/qualified both tasks and corrected observed host projection defect. No model-visible implementation guidance, semantic edits, oracle changes or unbudgeted retries during either run. Codex host-only reference adapters/draft tests are independent qualification artifacts, not Qwen work. No accepted candidate closeout is eligible."
+  "supervision": "Codex selected/qualified both tasks and corrected observed host projection defect. No model-visible implementation guidance, semantic edits, oracle changes or unbudgeted retries during either run. Codex host-only reference adapters/draft tests are independent qualification artifacts, not Qwen work. No accepted candidate closeout is eligible.",
+  "verification": {
+    "protected": {
+      "passed": true,
+      "summary": [
+        "src\\devtools\\tools\\protocols.py                                               9      0      0      0   100%",
+        "---------------------------------------------------------------------------------------------------------------------",
+        "TOTAL                                                                     11637      0   2886      0   100%",
+        "Required test coverage of 100% reached. Total coverage: 100.00%",
+        "================= 2214 passed, 2 skipped in 484.28s (0:08:04) ================="
+      ],
+      "elapsed_seconds": 485.79531610000413,
+      "started_at": "2026-10-21T01:35:25.059353+00:00",
+      "finished_at": "2026-10-21T01:43:30.854668+00:00",
+      "evidence": ".local/qwen-coding-worker/qualified-10/protected-validation.json",
+      "sha256": "6a9effaf5e8dc0cf0192647e1a380d87cbd4a17c7ad46f91db590a8003376dce"
+    },
+    "focused": "28 tests passed: tests/apps/qwen/test_grounding.py and test_environment.py",
+    "ruff": "Changed application and regression files passed",
+    "format": "Changed application and regression files passed",
+    "mypy": "Success: no issues found in 494 source files",
+    "layout": "Passed",
+    "whitespace": "Passed",
+    "integrity": {
+      "command-environment-overrides": {
+        "task_sha256": "6612354925a09cc73329aab9e81e84180d7720b6398e325a132f053c02840289",
+        "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+        "baseline": "a28b38b718e2a9e98be175f723ed5a982951b035",
+        "resource_count": 19,
+        "passed": true
+      },
+      "command-binary-stdin": {
+        "task_sha256": "0fb904f7b0c33d20cd934bf1fd35e2f9bd6fbcd8535da37c01852bc4057af6ec",
+        "oracle_sha256": "b9bc291b2df229be2320046e57346f3852b3e9a2e8972e6710a4a148e87545b4",
+        "baseline": "b493f43a615a274dab0c0e292a36583ab768eb7a",
+        "resource_count": 19,
+        "passed": true
+      },
+      "forensic_files_unchanged": 13,
+      "historic_maintained_evaluations_unchanged": true,
+      "worktrees": "worktree C:/Users/recoveryadmin/Workspace/tools/devtools\nHEAD ba7199abe2a15da46c8fa5584335ed952362c8ed\nbranch refs/heads/feat/qwen-context-worker",
+      "owner_released": true,
+      "source_modifications": "",
+      "coordinator": "C:/Users/recoveryadmin/Workspace/tools/devtools",
+      "main": "862bda2d3d1d812893f84ab69691fc068ecce268",
+      "last_refusal": {
+        "reference": "R5",
+        "observed_span": [
+          8192,
+          9512
+        ],
+        "exact_source_matches": 0,
+        "diagnostic_prefix_offset": 8030,
+        "provider_arguments_equal_normalized_arguments": true,
+        "serialized_tool_metadata_in_old_text": true,
+        "interpretation": "Provider itself generated source mixed with serialized Tool-result metadata; harness normalization did not introduce it. Exact source admission correctly refused, with no partial installation."
+      },
+      "recorded_at": "2026-10-21T01:37:11.749222+00:00"
+    },
+    "note": "One final protected invocation; no scientific-controller or paid-model comparison. Python 3.14.3 validated; no new Python 3.12 compatibility claim."
+  },
+  "replay": {
+    "old": {
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 30092,
+      "measurements": [
+        {
+          "input_tokens": 33959,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 31113,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 30092,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 30092,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        }
+      ],
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    "new": [
+      {
+        "compact": false,
+        "reacquire_read_only": 0,
+        "input_tokens": 29612,
+        "exchanges_omitted": 0
+      },
+      {
+        "compact": true,
+        "reacquire_read_only": 0,
+        "input_tokens": 26762,
+        "exchanges_omitted": 0
+      },
+      {
+        "compact": true,
+        "reacquire_read_only": 1,
+        "input_tokens": 25741,
+        "exchanges_omitted": 0
+      }
+    ]
+  },
+  "qualification_artifacts": [
+    {
+      "path": ".local/qualify10.py",
+      "sha256": "5a3060725485c5849260e8138d66910f21f069a6c70b166106b067184b0a5ec1"
+    },
+    {
+      "path": ".local/qualify10b.py",
+      "sha256": "cafe0bf42d2f496039b05843a6a3a823ae79c202ada27780f31ba8327875178c"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/preflight.json",
+      "sha256": "f7fe24164c1ff1dd2f3acb7dc3b4cf10d71d00cb080eb3fb192c9ffafac73b7e"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/stdin-preflight.json",
+      "sha256": "42678ac996730446b4ad49af3a4290fb58b27012496290b20426d1ba88a3aa49"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/novelty.json",
+      "sha256": "d43283d969a62a90bc068ffec4633fa31551250d9ae491403a1fba8e0adbb7fc"
+    }
+  ]
 }

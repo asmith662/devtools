@@ -102,7 +102,8 @@ qualified fresh task. Do not loosen admission or relabel these failures.
 
 The focused projection/environment regression selection passes 28 tests. Changed
 Python files pass Ruff and formatting; strict project mypy passes 494 files,
-layout and Git whitespace checks pass. Final protected results are recorded
-after the one canonical development-gate invocation completes. Main remains
+layout and Git whitespace checks pass. The final protected gate passed once:
+2,214 passed, two skipped, 100% production branch coverage. Gate elapsed 485.80
+seconds. Main remains
 outside this publication scope. Python 3.14.3 is the validated runtime; no new
 Python 3.12 compatibility claim is made.
