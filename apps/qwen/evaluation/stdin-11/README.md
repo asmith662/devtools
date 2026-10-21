@@ -59,3 +59,78 @@ calls, three new atomic proposals, 24 new read/check actions and 1,538 worker se
 There is no restart searching for another solution and no additional total budget.
 Any recovered result is supervised development recovery, not uninterrupted live
 autonomy or a relabeled original success. No general resume or memory system is added.
+
+## Actual result and independently reviewed publication
+
+| Stage | Actual outcome |
+| --- | --- |
+| Initial continuation | Eight genuine calls; `CONTEXT_BUDGET_FAILED` before request nine |
+| Single supervised recovery | Eight archived responses reconstructed without inference, then one new genuine call; `CONTEXT_BUDGET_FAILED` before request ten |
+| Behavioral repair | The new call repaired the gather return shape in both execution paths. The unchanged independent stdin oracle and source Ruff/format/mypy passed |
+| Original regressions | Seven failed because minimal `Process` doubles lacked the standard `stdin=None` attribute; no live acceptance claimed |
+| Independent qualification | Only that standard attribute was added to seven doubles; AST comparison verified unchanged assertions and operations, and baseline tests still pass. Exact Qwen source then passed the unchanged oracle and regressions |
+| Feature closeout | WorkCycle authenticated, validated and Codex-reviewed the exact candidate, then published `2490cb7b988d341d93c6c203edb51222aeb4f283` |
+
+The implementation provides immutable optional binary stdin, fluent/value/hash
+preservation, exact empty/binary/large delivery and EOF, concurrent feeding and
+output draining, ordinary early exit, and the existing timeout/cancellation child
+cleanup. Source authored by Qwen is unchanged: command model
+`17fd1e049ecb5e15858d542d415f48dc8e9e8acaa14894663fdd4033abf21e80`, executor
+`82c9d005e1c446a3309e291e6324bd55ba5b52b6f29dd182de7b095f03c70049`.
+Codex authored the independent regressions, test-double qualification, worker
+corrections and review; the host applied source and Git effects. No semantic or
+mechanical formatting change to the Qwen implementation was substituted.
+
+Seventeen permanent independent cases cover values, invalid types, transformations,
+empty/binary/large input, simultaneous pipe pressure, early exit, blocked-input
+timeout, isolated concurrent executions, inherited stdin versus empty EOF, actual
+cancellation/reaping and optional-payload transport. All 63 command tests pass.
+The protected gate passed **2,250 tests, two skips, 100% production branch coverage**
+in 584.95 test seconds; its complete validation pipeline took 589.36 seconds.
+Ruff, formatting, strict typing and whitespace checks pass. The exact-tree gate
+was reused for publication instead of repeated. Protected main remains unchanged.
+
+The first offline assessment is also preserved: an oversized parameter-generated
+`PYTEST_CURRENT_TEST` exceeded Windows' 32,767-character environment-variable limit,
+and subsequent cleanup encountered a newline-only Git status discrepancy. Explicit
+short parameter IDs fixed test setup before permanent publication; authenticated
+Checkout cleanup restored the known baseline. These were qualification/cleanup
+failures, not model calls or source corrections. All failed receipts remain intact.
+
+## Measurements and remaining limitation
+
+Nine genuine calls used **109,547 input / 4,773 output tokens** and **312.57 worker
+seconds**, including host reconstruction/validation time. Eight replay responses
+are excluded from model usage. There were five source reads, three Git inspections,
+13 edit calls across four atomic proposals: three admitted, one aggregate-byte
+refusal, zero wrong-reference or contaminated-source refusals. Initial reads
+disclosed 25,838 response bytes, including 15,359 source-text bytes. No complete
+native exchange was omitted. These action counts describe genuine model requests;
+the eight archived read/check actions were executed again for prefix reconstruction,
+without inference. Offline qualification also rechecks observations deterministically.
+No paid comparison or service/profile change ran;
+Codex coordination tokens, energy and peak device consumption are UNKNOWN.
+
+Compaction reduced the blocked replay from 28,159 to 26,880 input tokens while
+retaining current source and latest feedback. The actual new request used 26,905
+input tokens with a 3,815 output allowance and generated 188 tokens. The next
+continuation still measured 29,634 compacted input tokens, leaving only 1,086
+safe output tokens, below the 2K repair floor. No further recovery was attempted.
+Capacity remains a demonstrated harness limitation; these results do not justify
+a larger server Context or claim general autonomous reliability.
+
+This demonstrates a real behavioral repair under **supervised replay recovery**
+and recovered implementation publication. It does not demonstrate uninterrupted
+live task acceptance, fresh confirmation, a causal acceptance improvement or
+Codex parity. Engineering 10 and both live continuation receipts remain failures.
+
+Full identities, raw evidence references and validation logs are indexed in
+[results.json](results.json). Raw run evidence remains under
+`.local/qwen-coding-worker/stdin-11/`; independent qualification and closeout are
+under `.local/closeout-candidates/stdin11-qualified/`. Existing dashboard receipt
+contracts are unchanged; no second transcript was introduced.
+
+**Next Commands priority:** finish environment overrides, which remains explicitly
+unimplemented. Address the measured repeated proposal/feedback serialization
+before its bounded development continuation. Do not start another unrelated task
+or treat the pending intake proposal as promoted or the parent backlog as closed.

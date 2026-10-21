@@ -1,13 +1,24 @@
 # Roadmap
 
+[Stdin continuation 11](../apps/qwen/evaluation/stdin-11/README.md) completed
+reviewed ordinary-feature publication of the exact Qwen implementation at
+`2490cb7b988d` after independent fixture qualification. Live results
+remain failed at Context capacity, despite an actual model behavioral repair.
+Path-resolved exact observed edits remove wrong-reference bookkeeping and source
+blocks distinguish code from metadata. Environment overrides remains the next
+Commands implementation priority. Reduce the demonstrated repeated-history cost
+before that continuation; do not treat offline qualification as live autonomy.
+Protected-main adoption, fresh long-task confirmation and general reliability
+remain open. The older checkpoint descriptions below remain historical.
+
 [Qualified engineering 10](../apps/qwen/evaluation/qualified-10/README.md) qualified
 positive/negative fixtures before both fresh command tasks. Neither was accepted.
 Nested pre-edit source now follows existing stale-source projection rules; live
 stdin behavioral feedback reached Qwen within capacity, but incorrect region
 handles and incomplete cross-module implementation exhausted edit attempts.
-Next: measured region-handle selection and complete implementation planning,
+At checkpoint 10 the next work was region-handle selection and implementation planning,
 followed by a separately qualified fresh obligation. No accepted new candidate
-exists to close out. Qwen remains primary; this is not general engineering success.
+existed at that checkpoint. Qwen remains primary; this is not general engineering success.
 
 [Long engineering continuation 09](../apps/qwen/evaluation/continuation-09/README.md)
 keeps critical source/feedback within measured 32K capacity and publishes the

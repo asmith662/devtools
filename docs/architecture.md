@@ -9,6 +9,15 @@ remains archived. Host CodingTask bounds may prospectively allow six native
 proposals; defaults and historical definition hashes remain compatible. This
 introduces no new Context, source-writing or execution authority owner.
 
+Superseded validation diagnostics may be projected to prior check statuses with
+original-message provenance; current source and the latest exact diagnostics stay
+available. An already-started repair can use at least 2K safe generation tokens
+where initial implementation requires 4K. Actual server tokenizer/template input,
+32K Context and 2K safety remain enforced. This recovered one stdin behavioral
+repair but did not prevent the next capacity refusal; no durability or general
+long-task completion guarantee is inferred. See
+[the development continuation](../apps/qwen/evaluation/stdin-11/README.md).
+
 The Qwen application's existing continuation projection also covers pre-edit
 source nested inside atomic component receipts. Such text obeys the same stale
 and duplicate rules as direct observations; exact originals remain evidence.

@@ -1,5 +1,19 @@
 # Native Context worker acceptance and evaluation
 
+[Stdin development continuation 11](evaluation/stdin-11/README.md) adds exact
+path-resolved observed editing and separated source/metadata presentation. Nine
+genuine calls (109,547 input / 4,773 output tokens, 312.57 worker seconds) produced
+a genuine behavioral/typing repair, but both live result receipts remain
+`CONTEXT_BUDGET_FAILED`. One recovery replayed the original eight responses
+without inference before a single new Qwen request; it is not fresh confirmation.
+Seven old Process doubles lacked the standard `stdin=None` attribute. Adding
+only that attribute, preserving every assertion, independently qualified the
+exact Qwen candidate against the unchanged oracle. WorkCycle reviewed and
+feature-published it at `2490cb7b988d` with 17 permanent independent
+regressions and the protected gate. This is recovered implementation publication,
+not uninterrupted autonomous task acceptance. Environment overrides and long-task
+capacity remain unfinished; no Codex parity or broad reliability claim follows.
+
 [Qualified engineering 10](evaluation/qualified-10/README.md) preflighted positive
 and negative oracle paths before inference, then attempted two distinct documented
 command obligations: **0/2 accepted**. Environment overrides stopped at Context

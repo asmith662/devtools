@@ -11,6 +11,7 @@ Command(
     arguments: tuple[str, ...] = (),
     working_directory: ResolvedPath | None = None,
     timeout: Duration | None = None,
+    stdin: bytes | None = None,
 )
 ```
 
@@ -33,7 +34,15 @@ cwd(...)              set ResolvedPath working directory
 without_cwd()         clear working directory
 with_timeout(...)     set Duration timeout
 without_timeout()     clear timeout
+with_stdin(bytes)     replace immutable binary input
+without_stdin()       restore inherited stdin
 ```
+
+`stdin=None` preserves inherited input. Immutable `bytes`, including `b""`,
+select a child pipe and exact payload followed by EOF. Other types raise
+`TypeError` at construction and fluent replacement. Input participates in value
+equality/hash and is preserved by every other fluent method. Payload storage is
+in-memory; there is no separate input-size policy.
 
 ## `CommandOutputPolicy`
 

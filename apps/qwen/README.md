@@ -9,6 +9,9 @@ Legacy reference calls retain their original strict region semantics; they are
 never redirected to a different observation. Default task hashes and three-edit
 budgets remain compatible. Native tasks may prospectively select
 `maximum_proposals` up to six (default three), without expanding calls/time/actions.
+Use `--observed-edits` with a host task definition selecting `path_edits`, or
+`run_local_task(..., coordinated_edits=True, observed_edits=True)`. Historical
+definitions continue to use the reference contract by default.
 
 In path mode, source is rendered in separate exact code blocks with path, span,
 version, character length and text hash; metadata is explicitly outside the code.
@@ -35,7 +38,10 @@ text, versions, handles and recent refusal/validation feedback remain intact.
 Native assistant/call/result associations remain complete. No LLM summary or
 new Memory store is involved. Investigation continuations reserve at most 4K
 output; initial implementation and edit/repair continuations target the frozen
-ceiling, with a 4K minimum fallback and the unchanged 2K safety allowance.
+ceiling. Initial implementation retains a 4K fallback; already-started bounded
+repair may use at least 2K measured remaining output with the unchanged 2K safety
+allowance. Superseded diagnostic bodies compact to prior check statuses and
+archival provenance; the latest exact failures and current source stay available.
 On-demand task ceilings are 24 model requests and 1,800 cumulative seconds,
 independent of the unchanged 32K per-request server capacity. Defaults and
 historical receipts are unchanged. Actual `freeze.tool` now records the flat

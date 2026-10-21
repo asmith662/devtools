@@ -26,8 +26,18 @@ manager.
 ## Process creation
 
 Execution uses `asyncio.create_subprocess_exec()` with direct argv, optional
-native cwd, and stdout/stderr pipes. There is no shell, stdin, environment
-override, or process-group configuration.
+native cwd, and stdout/stderr pipes. Explicit binary stdin is piped while both
+output streams drain, then closed to deliver EOF. Empty bytes also create a pipe;
+None preserves inherited stdin. Early input closure/child exit remains an ordinary
+result. Timeout and cancellation cover blocked input and reap the immediate child.
+There is no shell, environment override, or process-group configuration.
+Environment overrides remain an explicit unfinished development obligation.
+
+The exact Qwen-authored stdin implementation was independently qualified after
+correcting missing standard attributes in old test doubles, then reviewed and
+feature-published through WorkCycle. The live continuation still failed at
+Context capacity; see [stdin development evidence](../../../../../apps/qwen/evaluation/stdin-11/README.md).
+This does not claim protected-main adoption or uninterrupted autonomous success.
 
 If creation raises `FileNotFoundError`, it becomes `CommandNotFoundError` with
 the original error retained as its cause. No started event or result is

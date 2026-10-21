@@ -272,3 +272,17 @@ completion is claimed. The two discoveries remain pending intake proposals,
 without canonical promotion or implementation grants. See the
 [qualified record](../../../apps/qwen/evaluation/qualified-10/README.md) for frozen
 contracts, actual usage, exact evidence identities and remaining obligations.
+
+## Stdin development continuation 11
+
+The exact Qwen subprocess-stdin implementation is independently reviewed and
+ordinary-feature published; see [the record](../../../apps/qwen/evaluation/stdin-11/README.md)
+for commit/source identities and full validation. This required a separately
+recorded offline qualification after only adding standard stdin=None attributes
+to seven existing Process doubles. All prior assertions, oracle and live failed
+receipts remain unchanged. One real model repair corrected behavior and typing;
+both live runs still terminated at Context capacity. This is not fresh or
+uninterrupted autonomous success. Path-resolved current observed anchoring,
+separated source presentation and bounded repair-capacity handling are tested.
+Environment overrides remains incomplete and is the next Commands priority.
+No proposal promotion, parent completion or protected adoption is inferred.
