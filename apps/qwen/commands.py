@@ -10,6 +10,7 @@ import hashlib
 import json
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 from typing import TYPE_CHECKING, Any
 
 from apps.qwen.development_task import _hash, _runner_sources, _save, _timed_command
@@ -26,7 +27,7 @@ if TYPE_CHECKING:
     from apps.qwen.tasks import CodingTask
     from devtools.models.interaction import ModelToolCall, ModelToolDefinition
 
-COMMAND_TOOL_NAMES = ("git_inspect", "run_check")
+COMMAND_TOOL_NAMES = ("git_inspect", "run_check", "check_changes", "is_current")
 CHECKS = ("tests", "oracle", "ruff", "format", "typing")
 
 
@@ -34,7 +35,7 @@ def command_definitions(task: CodingTask) -> tuple[ModelToolDefinition, ...]:
     """Expose fixed argv choices; model text never becomes executable code."""
     if not task.command_tools:
         return ()
-    specs = (
+    specs: tuple[tuple[str, str, dict[str, Any]], ...] = (
         (
             "git_inspect",
             (
@@ -57,6 +58,22 @@ def command_definitions(task: CodingTask) -> tuple[ModelToolDefinition, ...]:
                 "Full logs are archived. No arbitrary argv or writes."
             ),
             {"check": {"type": "string", "enum": [*CHECKS, "all"]}},
+        ),
+        (
+            "check_changes",
+            (
+                "Discover authorized candidate changes and run all fixed checks. "
+                "Returns scoped source/Git/plan evidence, never publication authority."
+            ),
+            {},
+        ),
+        (
+            "is_current",
+            (
+                "Reauthenticate a saved check_changes report without rerunning checks. "
+                "Freshness is separate from correctness or review approval."
+            ),
+            {"report": {"type": "object"}},
         ),
     )
     return tuple(
@@ -173,6 +190,16 @@ def _bundle_state(
         "repository_root": str(root),
         "runner_directory": str(folder),
         "python": sys.executable,
+        "python_version": sys.version,
+        "implementation": {
+            name: _hash(resolve_path(__file__).value.parent / name)
+            for name in (
+                "commands.py",
+                "change_checks.py",
+                "development_task.py",
+                "tasks.py",
+            )
+        },
         "inputs": inputs,
         "runners": runners,
         "expected_runners": expected_runners,
@@ -196,6 +223,8 @@ class CodingCommands:
         self.root, self.folder, self.task = root, folder, task
         self.count = 0
         _, self._bound_plan, _ = _bundle_state(root, folder, task)
+        self._change_git: dict[str, Any] | None = None
+        self._changes_lock = asyncio.Lock()
 
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Refuse unknown operations, paths and keys before execution."""
@@ -207,7 +236,10 @@ class CodingCommands:
             raise ValueError("Coding operation is not task-authorized")
         props = json.loads(descriptor.input_schema_json)["properties"]
         if set(values) != set(props) or any(
-            values[k] not in p["enum"] for k, p in props.items()
+            values[k] not in p["enum"]
+            if "enum" in p
+            else not isinstance(values[k], dict)
+            for k, p in props.items()
         ):
             raise ValueError("Unsupported coding operation arguments")
 
@@ -220,6 +252,19 @@ class CodingCommands:
     async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
         """Archive full check output and return a bounded, version-bound view."""
         name, values = arguments
+        if name == "check_changes":
+            from apps.qwen.change_checks import (  # noqa: PLC0415 -- same owner; avoid import cycle
+                check_changes,
+            )
+
+            async with self._changes_lock:
+                return await check_changes(self)
+        if name == "is_current":
+            from apps.qwen.change_checks import (  # noqa: PLC0415 -- same owner
+                current_report,
+            )
+
+            return await current_report(self, values["report"])
         if name == "run_check" and values["check"] == "all":
             return await self._check_bundle()
         versions = {
@@ -350,7 +395,7 @@ class CodingCommands:
                     raise
                 cancellation.add_note("Incomplete cancellation evidence: " + str(error))
 
-        def authenticate() -> None:
+        async def authenticate() -> None:
             nonlocal source_unchanged, plan_unchanged
             current, current_plan, issues = _bundle_state(
                 self.root, self.folder, self.task
@@ -358,6 +403,16 @@ class CodingCommands:
             source_unchanged = source_unchanged and current == sources
             plan_unchanged = plan_unchanged and current_plan == plan
             errors.extend(issue for issue in issues if issue not in errors)
+            if self._change_git is not None:
+                from apps.qwen.change_checks import (  # noqa: PLC0415 -- same owner
+                    git_state,
+                )
+
+                try:
+                    if await git_state(self, current_plan) != self._change_git:
+                        errors.append("Git/index state changed during validation")
+                except (CommandError, OSError, ValueError) as error:
+                    errors.append("Git observation unavailable: " + str(error))
             report.update(
                 source_after_sha256=current,
                 plan_after_sha256=_plan_identity(current_plan),
@@ -368,7 +423,7 @@ class CodingCommands:
         journal()  # A crash leaves NOT_RUN, never invented successful outcomes.
         try:
             for name in CHECKS:
-                authenticate()
+                await authenticate()
                 if errors or not source_unchanged or not plan_unchanged:
                     break
                 row = checks[name]
@@ -403,7 +458,7 @@ class CodingCommands:
                     )
                 finally:
                     row["elapsed_seconds"] = time.perf_counter() - check_started
-                    authenticate()
+                    await authenticate()
                     journal()
             statuses = {row["status"] for row in checks.values()}
             report["status"] = (
@@ -417,7 +472,7 @@ class CodingCommands:
                 else "PASS"
             )
         finally:
-            authenticate()
+            await authenticate()
             if errors or not source_unchanged or not plan_unchanged:
                 report["status"] = "BLOCKED"
             journal()
@@ -432,6 +487,18 @@ class CodingCommands:
                 "truncated": len(row["stdout"]) > 3000 or len(row["stderr"]) > 3000,
             }
         return view
+
+    def is_current(self, report: dict[str, Any]) -> bool:
+        """Preserve the original synchronous host API; native dispatch is async."""
+        from apps.qwen.change_checks import current_report  # noqa: PLC0415
+
+        # This bridge runs the same bounded managed observations, never a second
+        # command executor. It also works inside an existing caller event loop.
+        with ThreadPoolExecutor(max_workers=1) as bridge:
+            result = bridge.submit(
+                lambda: asyncio.run(current_report(self, report))
+            ).result()
+        return bool(result["current"])
 
 
 def call_data(arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
