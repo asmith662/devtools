@@ -51,6 +51,7 @@ class CodingTask:
     disclose_edit_paths: bool = True
     path_edits: bool = False
     maximum_proposals: int = 3
+    map_navigation: bool = False
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
@@ -62,6 +63,7 @@ class CodingTask:
                 self.mechanical_format,
                 self.disclose_edit_paths,
                 self.path_edits,
+                self.map_navigation,
             )
         ):
             raise ValueError("quality_checks must be a host-selected boolean")
@@ -186,6 +188,7 @@ class CodingTask:
             "mechanical_format",
             "new_paths",
             "path_edits",
+            "map_navigation",
         ):
             if not value[field]:
                 del value[field]

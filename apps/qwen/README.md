@@ -208,8 +208,9 @@ the live recovery and failed coding disposition. No unlimited-session guarantee.
 Native assistant/call/result associations remain complete. No LLM summary or
 new Memory store is involved. Investigation continuations reserve at most 4K
 output; initial implementation and edit/repair continuations target the frozen
-ceiling. Initial implementation retains a 4K fallback; already-started bounded
-repair may use at least 2K measured remaining output with the unchanged 2K safety
+ceiling. Initial implementation retains a 4K fallback; short investigation and
+already-started bounded repair may use at least 2K measured remaining output
+with the unchanged 2K safety
 allowance. Superseded diagnostic bodies compact to prior check statuses and
 archival provenance; the latest exact failures and current source stay available.
 On-demand task ceilings are 24 model requests and 1,800 cumulative seconds,
@@ -462,6 +463,36 @@ actual baseline branch rather than substituting old bytes under a current HEAD. 
 are historical and cannot be reused at this new coordinator path.
 
 ## Native Context investigation
+
+### Opt-in repository-map navigation
+
+Host-selected `CodingTask.map_navigation=True` adds the native
+`repository_map(query, start)` Tool and `expand_source(unit, to="source")` mode.
+Defaults and historical task-definition hashes remain unchanged. Orientation
+uses the current task's admitted SourceSearchIndex declarations and existing
+static reference analysis to construct the canonical typed core/map. Existing
+map importance/BM25/RRF ranking supplies six-symbol pages. This is bounded scoped
+orientation, not whole-repository coverage or a new automatic planner.
+
+Each returned handle selects a server-held `choose_repository_map_disclosure`
+option and native symbol. Its metadata is not a source observation. Exact
+expansion uses `choose_repository_map_source_disclosure` against that same
+snapshot/index, materializes the RI declaration range, and passes that exact
+span through ordinary source observation/reference ownership. Declarations over
+4,096 UTF-8 bytes are refused without partial exact-source claims; ordinary
+bounded inspection remains available. Unicode, original line endings, decorators
+outside the RI range and final-newline absence follow the Planning contract.
+
+Every dispatch reauthenticates task source. An admitted edit discards the map
+frame; old handles fail closed and fresh orientation can create a current frame.
+Foreign/unknown handles cannot select source. No extra read/edit scope, source
+store, parser, ranker, execution or publication authority is introduced.
+Preparation time, orientation bytes, selected paths/native declarations, source
+spans and disclosure identities remain in correlated raw Tool evidence. Existing
+lookup/parent expansion and path inspection remain available and unchanged.
+
+The integration is Codex-authored. Deterministic navigation tests use scripted
+assistants and must not be counted as Qwen Tool-use or coding evidence.
 
 `CodingTask.context_mode="on-demand"` selects investigation in the **same**
 `run_coding_task` loop. Default `"prepared"` retains caller-selected disclosures.

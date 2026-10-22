@@ -46,13 +46,18 @@ from devtools.tools import ToolDescriptor, ToolRunner
 if TYPE_CHECKING:
     from pathlib import Path
 
+    from apps.qwen.navigation import RepositoryMapNavigation
     from apps.qwen.tasks import CodingTask
+    from devtools.context.python.references.declarations.model import (
+        PythonDeclarationReferenceAnalysis,
+    )
     from devtools.context.repository.snapshot import RepositorySnapshot
     from devtools.context.retrieval.source import RepositorySourceUnit, SourceSearchMode
     from devtools.models.interaction import ModelToolCall, ModelToolDefinition
 
 
 CONTEXT_TOOL_NAMES = (
+    "repository_map",
     "inspect_source",
     "search_source",
     "lookup_symbol",
@@ -86,6 +91,13 @@ def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
             "search_source": (
                 "Search the admitted corpus; returns versioned source units."
             ),
+            "repository_map": (
+                "Orient within the authorized corpus using canonical RI map ranking. "
+                "Query names/paths; start=0 initially, then continuation_start. "
+                "Metadata is not observed source. Select a returned map handle with "
+                "expand_source(unit=handle, to='source') for exact editable source. "
+                "Request fresh orientation after edits invalidate old handles."
+            ),
             "lookup_symbol": (
                 "Exact qualified Python source-view name lookup; retains all matches."
             ),
@@ -97,7 +109,9 @@ def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
             "expand_source": (
                 "Expand a known unit to its parent symbol, class or file; "
                 "returns metadata for optional reading. Use the exact unit ID "
-                "from search_source/lookup_symbol; a file path is not a unit ID."
+                "from search_source/lookup_symbol; a file path is not a unit ID. "
+                "When enabled, to='source' accepts ONLY a current repository_map "
+                "handle and returns exact declaration source (<=4096 UTF-8 bytes)."
             ),
             "source_relationships": (
                 "Inspect bounded static outgoing Python references/calls in a "
@@ -156,9 +170,32 @@ def context_tool_definitions(
     new_paths: tuple[str, ...] = (),
     *,
     direct_reads: bool = False,
+    map_navigation: bool = False,
 ) -> tuple[ModelToolDefinition, ...]:
     """Use the existing Tool disclosure composition for this fixed Tool surface."""
     descriptors: tuple[ToolDescriptor, ...] = _DEFINITIONS
+    if map_navigation:
+        descriptors = (
+            *tuple(
+                _schema(
+                    "expand_source",
+                    {
+                        "unit": _TEXT,
+                        "to": {
+                            "type": "string",
+                            "enum": ["file", "class", "symbol", "source"],
+                        },
+                    },
+                )
+                if d.name == "expand_source"
+                else d
+                for d in descriptors
+            ),
+            _schema(
+                "repository_map",
+                {"query": _TEXT, "start": {"type": "integer", "minimum": 0}},
+            ),
+        )
     if direct_reads:
         descriptors = (
             *(d for d in descriptors if d.name != "read_source"),
@@ -242,6 +279,7 @@ class ContextTools:
         self.api_observations: dict[str, dict[str, Any]] = {}
         self.absent_observations: dict[str, str] = {}
         self.edit_references: dict[str, dict[str, Any]] = {}
+        self.navigation: RepositoryMapNavigation | None = None
 
     def reference(self, observation: dict[str, Any]) -> dict[str, Any]:
         """Name an actual source observation locally; never replace its RI identity."""
@@ -262,7 +300,10 @@ class ContextTools:
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
         """Disclose the existing ToolDescriptor projection, never executable writes."""
         return context_tool_definitions(
-            self.task.api_targets, self.task.new_paths, direct_reads=self.direct_reads
+            self.task.api_targets,
+            self.task.new_paths,
+            direct_reads=self.direct_reads,
+            map_navigation=self.task.map_navigation,
         )
 
     def _observe(self) -> RepositorySnapshot:
@@ -281,6 +322,7 @@ class ContextTools:
         )
 
     def _index(self) -> None:
+        self.navigation = None
         corpus = realize_repository_text_corpus(
             definition=define_repository_text_corpus(
                 discovery=self.discovery,
@@ -660,6 +702,8 @@ class ContextTools:
                 ),
             }
         if name == "expand_source":
+            if values["to"] == "source":
+                return self._navigation().expand(values["unit"])
             units = {str(u.id): u for view in self.index.views for u in view.units}
             if values["unit"] not in units:
                 raise ContextRequestError(
@@ -682,6 +726,8 @@ class ContextTools:
                         "SOURCE_PARENT_NOT_FOUND", str(error)
                     ) from error
             return {**self._metadata(unit), "truncated": False}
+        if name == "repository_map":
+            return self._navigation().orient(values["query"], values["start"])
         # ResourceAddress performs canonical-path admission before lookup.
         address = RepositoryResourceAddress(values["path"])
         resource = self.snapshot.resource_at(address)
@@ -787,7 +833,22 @@ class ContextTools:
                 offset = found + 1
         return matches
 
-    def _relationships(self, address: RepositoryResourceAddress) -> dict[str, Any]:
+    def _navigation(self) -> RepositoryMapNavigation:
+        """Lazily prepare the existing map only for a host-enabled request."""
+        from apps.qwen.navigation import RepositoryMapNavigation  # noqa: PLC0415
+
+        if not self.task.map_navigation:
+            raise ContextRequestError(
+                "SOURCE_OPERATION_UNAVAILABLE", "Map navigation is not enabled"
+            )
+        if self.navigation is None:
+            self.navigation = RepositoryMapNavigation(self)
+        return self.navigation
+
+    def _reference_analysis(
+        self, address: RepositoryResourceAddress
+    ) -> PythonDeclarationReferenceAnalysis | None:
+        """Share canonical scoped static analysis with relationship/map views."""
         interpretations = tuple(
             i
             for root in ("src", ".")
@@ -802,7 +863,7 @@ class ContextTools:
             ).interpretations
         )
         try:
-            analysis = derive_python_declaration_references(
+            return derive_python_declaration_references(
                 self.snapshot,
                 resource_address=address,
                 module_universe=define_python_module_interpretation_universe(
@@ -814,6 +875,12 @@ class ContextTools:
                 ),
             )
         except SyntaxError:
+            return None
+
+    def _relationships(self, address: RepositoryResourceAddress) -> dict[str, Any]:
+        """Bound existing native reference facts without claiming runtime coverage."""
+        analysis = self._reference_analysis(address)
+        if analysis is None:
             return {
                 "status": "UNPARSEABLE_PYTHON",
                 "references": [],

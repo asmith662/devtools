@@ -646,10 +646,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             available_output = 32768 - measured_tokens - 2048
             # The task specifies a ceiling, not an obligation to reserve unused
             # generation capacity. Initial implementation retains the normal
-            # 4K floor; bounded repair may use >=2K rather than refusing usable
+            # 4K floor; short investigation and bounded repair may use >=2K
             # capacity with all source and latest feedback still present.
             # Thinking requests retain their full requested allowance.
-            minimum_output = 2048 if proposals else 4096
+            minimum_output = 2048 if proposals or investigating else 4096
             if (
                 observed_edits
                 and not thinking_enabled
@@ -1428,6 +1428,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                             task.api_targets,
                             task.new_paths,
                             direct_reads=observed_edits,
+                            map_navigation=task.map_navigation,
                         )
                         + command_definitions(task)
                     ]
