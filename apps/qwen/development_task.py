@@ -146,6 +146,8 @@ async def _command(root: Path, *args: str) -> dict[str, Any]:
         "stdout": result.stdout.decode(errors="replace"),
         "stderr": result.stderr.decode(errors="replace"),
         "failed": result.failed,
+        "stdout_truncated": result.stdout_truncated,
+        "stderr_truncated": result.stderr_truncated,
     }
 
 
