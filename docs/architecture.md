@@ -106,6 +106,15 @@ or publication authority. Local closeout can truthfully attribute explicitly
 host-selected Codex implementations while retaining the Qwen default for existing
 receipts. See [the application contract](../apps/qwen/README.md#fixed-all-check-bundle).
 
+The same CodingCommands owner now exposes `check_changes` and `is_current` through
+ToolRunner. The former composes the delivered all-checks Tool with task-authorized
+tracked/new-file discovery and exact source/Git/index/plan evidence. The latter
+authenticates saved evidence and reobserves freshness without rerunning checks.
+This introduces no source/version authority or executor. Review eligibility is
+separate from approval; WorkCycle retains installation, final reauthentication,
+independent review, protected validation, publication and destination promotion.
+See [the bounded contract](../apps/qwen/README.md#source-bound-change-checks).
+
 The local Qwen application composes scoped Git/check Commands as native Tools, atomic observed edits, explicit absence-bound new files and optional AST-equivalent host formatting. Local accepted candidates enter WorkCycle.integration.closeout_local for shared validation, exact-source Codex review and explicitly requested ordinary-feature publication. Protected promotion and canonical backlog completion retain separate governed authority. Model text never supplies arbitrary argv or publication authority.
 
 

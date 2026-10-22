@@ -411,3 +411,16 @@ The unchanged18oracle, permanent regressions and protected validation pass; see
 This increment is Codex-authored, with no Qwen inference or relabeled historical
 outcome. The parent remains open. Full check_changes discovery/freshness and
 protected-main adoption are unresolved; compose this bundle in the next increment.
+
+## Direct Codex full shared change-check delivery
+
+`check_changes` / `is_current` are feature-published at `4d401c828b5fef4e2d4db949c2f80549ea445fe0` with explicit
+Codex implementation and regression authorship. They compose the delivered bundle,
+authenticate scoped Git/source/index/plan evidence and reject stale or incomplete
+validation through the existing shared ToolRunner. The unchanged16oracle and
+protected development gate pass; see [delivery](../../../apps/qwen/evaluation/change-check-codex/README.md).
+
+No Qwen call, new success claim, governance expansion or protected-main adoption
+occurred. All earlier failures remain immutable. The parent remains open: next
+use this Tool in actual Qwen engineering and reauthenticate before independent
+review; selective destination-authorized production integration is still required.

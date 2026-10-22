@@ -1,5 +1,19 @@
 # Native Context worker acceptance and evaluation
 
+## Direct Codex shared change-check delivery
+
+The full approved application Tool is published at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`.
+The unchanged Engineering16 oracle, native ToolRunner operational demonstration,
+98 focused cases and the protected gate pass: **2442 passed, 2 skipped in 668.18s (0:11:08)**, 100% production coverage.
+[Delivery record](evaluation/change-check-codex/README.md) and
+[measurements](evaluation/change-check-codex/results.json) bind exact source,
+plan/Git freshness, independent checks, review and publication. This is all
+Codex-authored, with zero Qwen/Pi/model requests or serving changes. It does not
+improve or relabel any historical Qwen result. The next milestone is actual use
+on a new bounded engineering assignment, followed by fresh independent review.
+Protected-main adoption remains a separate selective integration decision.
+Earlier entries below retain their historical status.
+
 ## Direct Codex bundle delivery — not a Qwen evaluation
 
 The fixed `run_check(check="all")` component is feature-published at `f26b36238e7f412ed736ca1d8cda6acdb4592b7d`,

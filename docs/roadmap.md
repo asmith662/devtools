@@ -1,13 +1,17 @@
 # Roadmap
 
-The fixed all-checks component is now delivered as **Codex-authored** source on
-`feat/qwen-context-worker` at `f26b36238e7f412ed736ca1d8cda6acdb4592b7d`. Native ToolRunner acceptance,
-the unchanged18oracle, permanent regressions and protected validation pass.
-This is not a new Qwen success; all four failed Qwen outcomes remain preserved.
-The next bounded increment is full `check_changes` in the existing application
-owner: reuse this bundle, add authorized Git/new-file discovery, exact source/Git/
-plan report identity and `is_current` freshness. Do not reimplement checks or grant
-the Tool review/publication authority. Protected-main adoption remains separate.
+The shared nonpublishing `check_changes` / `is_current` Tools are delivered as
+**Codex-authored** application source at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`. They reuse the published
+all-checks bundle and add authorized tracked/new change discovery, source/Git/index/
+plan evidence and independently rechecked freshness. The original16oracle, real
+ToolRunner demonstrations, permanent regressions and protected validation pass;
+see [delivery](../apps/qwen/evaluation/change-check-codex/README.md).
+
+Next: put the shared operation to work on a fresh bounded Qwen engineering task,
+use its actionable checks during repair, and recheck freshness before Codex review.
+Keep WorkCycle's independent closeout and publication authority. This delivery is
+not new evidence of Qwen reliability. Protected-main adoption requires selective,
+destination-authorized review; do not merge the accumulated feature ancestry.
 Older roadmap entries below retain historical status.
 
 [Source-supplied19](../apps/qwen/evaluation/source-supplied-19/README.md) elicited

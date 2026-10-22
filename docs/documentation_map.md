@@ -26,6 +26,10 @@ owns prospective direct-script preflight and the preparation-only source-groundi
 failure disposition. PLAN_VALID precedes approval only after real worker imports
 pass; corrected execution requires binding-only Stage A and a new exact run ID.
 
+[Shared source-bound validation](../apps/qwen/README.md#source-bound-change-checks)
+owns the application check_changes/is_current Tool contract, declared candidate
+scope and evidence freshness. WorkCycle continues to own review/publication.
+
 ## Authority and ownership
 
 - [Governed development integration](backlog/integration.md) owns the existing

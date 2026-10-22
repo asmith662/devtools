@@ -1,12 +1,10 @@
 # Bounded local coding worker
 
-**Delivered directly by Codex:** `run_check(check="all")` is feature-published at
-`f26b36238e7f412ed736ca1d8cda6acdb4592b7d`. It composes the existing five checks through ToolRunner,
-binds source/plan identities, preserves independent failures and full evidence,
-and blocks drift or incomplete validation. See [the contract](#fixed-all-check-bundle).
-The unchanged Check-Bundle18 oracle and permanent regressions pass, with protected
-validation. This is Codex-authored software, not a successful Qwen evaluation.
-Full `check_changes` remains the next increment; older entries below are history.
+**Delivered directly by Codex:** shared `check_changes` and `is_current` are
+feature-published at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`, composing the previously delivered `run_check(all)`.
+See [the shared Tool contract](#source-bound-change-checks) and
+[delivery evidence](evaluation/change-check-codex/README.md). This is Codex-authored
+software, not a new Qwen success. All historical outcomes below remain unchanged.
 
 [Source-supplied19](evaluation/source-supplied-19/README.md) began implementation
 on response two but **did not deliver** the bundle. Authentic initial Context
@@ -196,8 +194,65 @@ change discovery, generalized test selection, historical freshness query or
 review-readiness certification. It cannot detect unobserved mutation/restoration
 inside a check. Reports apply to their recorded state, not arbitrary future edits.
 WorkCycle alone retains independent review, protected validation and explicitly
-authorized publication. Full `check_changes` will reuse this bundle rather than
-reimplementing the checks.
+authorized publication. The delivered `check_changes` reuses this bundle; it does
+not reimplement checks.
+
+## Source-bound change checks
+
+```python
+report = await ToolRunner().execute(commands, ("check_changes", {}))
+freshness = await ToolRunner().execute(commands, ("is_current", {"report": report}))
+```
+
+The same operations are exposed through native `ModelToolCall` dispatch when
+`task.command_tools` authorizes CodingCommands. Empty change-check arguments cannot
+supply alternate scope, tests, commands or effects. The host prepares the canonical
+CodingTask and runners and retains existing Checkout mutation ownership.
+
+`changed` distinguishes staged/unstaged status, authorized new-file presence and
+content hashes. `source_sha256` includes absent new slots as null. Scoped literal
+Git observations retain HEAD/branch, exact index entries and NUL-delimited status.
+HEAD must match the task baseline. Unsupported deletion, unmerged index entries,
+changed test/read/configuration resources, other tracked changes and unapproved
+new source/test files block readiness. Unrelated untracked artifacts are excluded;
+this never certifies whole-repository cleanliness.
+
+`candidate_sha256`, `checked_candidate_sha256`, `after_candidate_sha256`,
+`task_definition_sha256` and `plan_sha256` bind the observed/checking/postcheck state.
+Full before/after data is in the journal. The plan includes frozen tests/read inputs,
+applicable configuration, actual and canonical generated runners, interpreter
+identity and fixed implementation hashes. Changes to check-execution code require
+a freshly loaded host-bound Tool/session; the old bound plan fails closed.
+The bundle authenticates source/plan
+and scoped Git state at check boundaries; any observed drift blocks the result.
+
+One nested ToolRunner `run_check(all)` is the only check-execution path. Full
+pre-review validation requires all five checks. Independent PASS/FAIL and blocked
+outcomes retain timings, bounded diagnostics and underlying evidence references.
+The outer projection marks unexecuted integrity-stopped checks BLOCKED and records
+`bundle_status=NOT_RUN`; the unchanged raw bundle is also archived. No changes
+returns NO_CHANGES/false readiness with explicitly nonexecuted checks. Missing or
+incomplete plans, unavailable commands and incomplete logs cannot pass. Cancellation
+propagates while preserving already completed outcomes and interruption evidence.
+
+`change-check-NN.json` retains full original bundle outputs and observed states.
+The bounded returned report carries its `receipt_sha256` and the full bundle
+receipt/hash. `is_current` confines evidence lookup to that host directory,
+authenticates the complete report payload and underlying log, and reobserves
+source/new absence, HEAD/index, task, runner and input/configuration identities.
+It never reads arbitrary paths from a caller report and never reruns the checks.
+The historical synchronous `commands.is_current(report)` remains a boolean helper
+using the same managed observations through a single compatibility thread; native
+and ToolRunner freshness operations are async and return structured results.
+
+Freshness and correctness are separate: a complete FAIL can remain current, but
+`ready_for_review` remains false. PASS readiness requires a complete unchanged
+five-check plan, not style checks alone. It only means eligible for independent
+review under the frozen plan; it proves neither complete obligation coverage nor
+publication authority. Changed source or index needs renewed checks. Incomplete
+evidence cannot establish current validation. Existing Checkout serialization and
+WorkCycle final source reauthentication remain required; unobserved external
+change-and-restore between observation boundaries cannot be detected.
 
 Explicit `new_paths` admit existing-parent Python implementation files only.
 `inspect_new_source` verifies actual absence and returns its task-bound version;
