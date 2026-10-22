@@ -94,7 +94,7 @@ def _validation_feedback(
     *,
     task: CodingTask | None = None,
     source_version: str | None = None,
-    source_versions: dict[str, str] | None = None,
+    source_versions: dict[str, str | None] | None = None,
 ) -> dict[str, Any]:
     """Project bounded diagnostics; complete original command logs stay in evidence."""
     projected: dict[str, Any] = {}
@@ -167,6 +167,8 @@ def _validation_feedback(
                 "All required checks must pass together on the same source version. "
                 "Preserve already-passing behavior and regressions "
                 "while repairing failures. "
+                "A null source version denotes an authorized still-absent new slot, "
+                "not empty source or an editable source observation. "
                 "A lint recommendation is not permission to change a frozen public API "
                 "or exception contract. Seek a compatible implementation; do not trade "
                 "behavioral correctness for style or typing. If requirements conflict, "
@@ -1138,6 +1140,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             disposition=("ACCEPTED" if validation["accepted"] else "TESTS_FAILED"),
         )
         if tools is not None:
+            tools.check_current()
             if observed_edits:
                 tools.observations = [tools.reference(o) for o in tools.observations]
             result = {
@@ -1162,10 +1165,15 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         else stage["source_after"]
                     ),
                     source_versions={
-                        p: str(
-                            tools.snapshot.resource_at(
-                                RepositoryResourceAddress(p)
-                            ).content_identity
+                        p: (
+                            None
+                            if p in task.new_paths
+                            and RepositoryResourceAddress(p) not in tools.addresses
+                            else str(
+                                tools.snapshot.resource_at(
+                                    RepositoryResourceAddress(p)
+                                ).content_identity
+                            )
                         )
                         for p in task.sources
                     },

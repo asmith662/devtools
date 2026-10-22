@@ -33,7 +33,7 @@ def test_native_accepted_candidate_can_be_checked_before_restoration(
     _, ns = _contract()
     root = tmp_path.resolve()
     task, folder = asyncio.run(ns["fixture"](root))
-    task = replace(task, maximum_calls=4, maximum_proposals=1, new_paths=())
+    task = replace(task, maximum_calls=4, maximum_proposals=1)
     _prepare_workspace(root, folder, task)
 
     class Implementation(Scripted):
@@ -96,6 +96,10 @@ def test_native_accepted_candidate_can_be_checked_before_restoration(
         assert report["disposition"] == "MODEL_COMPLETED_WITHOUT_CHANGE_CHECK"
         return
     assert report["accepted"], report
+    feedback = json.loads((folder / "turn-02/tools.json").read_text())[0]["result"]
+    versions = feedback["validation"]["repair_contract"]["source_versions"]
+    assert versions[task.new_paths[0]] is None
+    assert versions[task.source]
     assert len(model.requests) == (3 if required else 2)
     if required:
         checked = report["change_check"]

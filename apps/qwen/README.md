@@ -285,6 +285,10 @@ WorkCycle final source reauthentication remain required; unobserved external
 change-and-restore between observation boundaries cannot be detected.
 
 Explicit `new_paths` admit existing-parent Python implementation files only.
+Repair feedback uses a null source version for an authorized slot that remains
+absent; this is not an empty source observation. Created files have their actual
+snapshot versions. The worker reauthenticates current Context before feedback,
+so required-resource loss and unexpected new-path occupation remain failures.
 `inspect_new_source` verifies actual absence and returns its task-bound version;
 an atomic proposal uses that version and empty old text. Unknown files, aliases,
 collisions and unobserved absence refuse. Existing resources keep exact source
