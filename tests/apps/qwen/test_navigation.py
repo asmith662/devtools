@@ -145,6 +145,23 @@ def test_large_symbol_is_refused_without_disclosing_or_truncating(
     assert not tools.observations
 
 
+@pytest.mark.parametrize("name", ["Demo", "Demo.method"])
+def test_class_and_direct_async_method_remain_native_selections(
+    tools: ContextTools,
+    name: str,
+) -> None:
+    tools = enabled(tools)
+    page = dispatch(tools, "repository_map", query=name, start=0)
+    selected = next(row for row in page["symbols"] if row["name"] == name)
+    source = dispatch(tools, "expand_source", unit=selected["handle"], to="source")
+    assert source["declaration"] == selected["declaration"]
+    assert source["source_range"] == selected["source_range"]
+    assert "async def method" in source["text"]
+    assert "def caller" not in source["text"]
+    assert source["bytes"] <= 4096
+    assert not source["truncated"]
+
+
 def test_bounded_pages_and_unauthorized_files(tools: ContextTools) -> None:
     text = "\n".join(f"def repeated_{i}(): return {i}" for i in range(20))
     (tools.root / tools.task.source).write_bytes(text.encode())
