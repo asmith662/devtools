@@ -1,5 +1,24 @@
 # Bounded local coding worker
 
+## Role integration25: Qwen source, host-blocked native completion
+
+Qwen authored the complete dependency-group Localization correction, passing
+behavior/quality on its first proposal. Fourteen requests used 261,714 input/
+2,303 output tokens in 302.035 worker seconds. Native check_changes was genuinely
+called but correctly blocked by host-owned untracked apps evaluation artifacts.
+The original nonaccepted receipt is unchanged. Separate supervised ToolRunner
+checks pass on identical Qwen bytes; host freshness is current while installed,
+stale after restoration. Existing WorkCycle publishes those bytes at `5ebe8eb674f836581fc8162859c9b5f2b3242d49`
+with independent regressions and protected validation. No Codex semantic patch
+or fallback is credited to Qwen. No behavioral repair occurred.
+
+One Codex projection correction shares identical search-hit provenance, restoring
+Engineering 24's blocked request from 31,867 to 28,400 tokens with 2,320 safe output.
+Raw source/feedback/native correlations remain;32K serving is unchanged. This is
+measured continuation capacity, not proof of general repair reliability.
+See [exact task, source, admission and validation evidence](evaluation/role-groups-25/README.md).
+
+
 ## Static dependency groups24: Codex delivery after Context-blocked Qwen attempt
 
 The bounded raw-string RI capability is feature-published at `7e1b10033c8793440994ef6069c9c0482dea74f8` with Codex
@@ -680,3 +699,26 @@ remain mandatory. Model output cannot expand those lists. Application validation
 runners add the canonical checkout root and verify the actual imported module
 path; integration uses the same local import rule. Framework source must not
 import apps. Historical task definitions/receipts and grants remain unchanged.
+
+
+### Public task semantics and preparation artifacts
+
+Host task objectives must state essential normative facts (such as top-level
+TOML ownership and permitted roles), rather than expect retrieval of unavailable
+external specifications or private oracles. Independent diagnostics should name
+expected versus observed behavior without revealing a reference implementation.
+
+Keep frozen local task/oracle/evaluation preparation in ignored `.local/` until
+post-run publication. Untracked artifacts under `apps/`, `src/` or `tests/` can
+correctly block check_changes as outside the authorized edit scope. Qualification
+must verify initial Git scope as well as native Tool registration. Do not weaken
+the guard or claim a blocked native report is a pass. A later supervisor-only
+check is separately attributed; WorkCycle must reauthenticate final source.
+
+Capacity projection factors search-match repository/snapshot/revision fields
+only when all exactly match the result envelope. Omitted fields inherit that
+envelope or its existing correlated reference; explicit mismatches remain.
+Paths, units, versions, spans, ranking, exact source and latest diagnostics stay
+intact. Raw native results are archived and projected history grants no new
+observation or edit authority. Current source and reports remain bound to their
+exact task/Checkout state, not arbitrary future branch commits.

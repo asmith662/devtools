@@ -340,4 +340,4 @@ See [PyPA Dependency Groups](https://packaging.python.org/en/latest/specificatio
 [measured implementation/qualification](../../../../../../apps/qwen/evaluation/dependency-groups-24/README.md).
 This is Codex-authored feature software after one failed genuine Qwen attempt,
 not evidence of successful local-model implementation or behavioral repair.
-Broader B-0002 semantics and Localization role-policy adoption remain separate.
+Broader B-0002 semantics remain separate. The existing Localization role consumer now interprets supported dependency-group settings as project configuration only; see its [role contract](../../../localization/roles/docs/overview.md). This is consumer interpretation, not additional RI truth or installation evidence.

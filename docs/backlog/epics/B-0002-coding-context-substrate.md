@@ -1272,3 +1272,20 @@ protected-main adoption. The next bounded consumer task should distinguish
 dependency-group project metadata from the existing generic tool-role fallback.
 
 See [qualification, results and provenance](../../../apps/qwen/evaluation/dependency-groups-24/README.md).
+
+
+## Dependency-group role consumer integration25
+
+The existing Localization consumer now uses project-configuration/project-
+declaration support for supported top-level dependency groups, retaining qualified
+unsupported native inputs and avoiding roles inferred from group names. Exact
+Qwen source is feature-published at `5ebe8eb674f836581fc8162859c9b5f2b3242d49` after separate supervised acceptance,
+independent regressions and protected validation. The original native run remains
+nonaccepted: model-invoked check_changes correctly blocked untracked host
+evaluation artifacts. No semantic repair or uninterrupted-autonomy success is
+claimed. One bounded Codex search-envelope projection correction restores real
+continuation capacity; no generic Context or planning mechanism is introduced.
+
+This delivers the consumer slice, not parent completion, backlog approval,
+retrieval policy or protected-main promotion. Existing broader statuses remain.
+See [qualification and measured outcomes](../../../apps/qwen/evaluation/role-groups-25/README.md).

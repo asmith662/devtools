@@ -772,3 +772,5 @@ runtime receipt, implementation/static-scope and run identity. PLAN_VALID remain
 distinct from execution authorization; no replacement scientific run is entered.
 
 The [static dependency-group RI delivery](../apps/qwen/evaluation/dependency-groups-24/README.md) records bounded raw-string recognition, unsupported evidence and deliberate coverage/derivation versions. The production settings owner remains authoritative; Codex fallback publication is distinct from the failed genuine Qwen attempt.
+
+[Dependency-group role integration and measured continuation capacity](../apps/qwen/evaluation/role-groups-25/README.md) separates exact Qwen implementation, blocked native validation, supervised publication and deterministic tokenizer replay. Existing Localization roles and application projection retain their owners.
