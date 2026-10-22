@@ -1,5 +1,19 @@
 # Native Context worker acceptance and evaluation
 
+## Component-specific edit diagnostics: Codex delivery, no inference
+
+The existing exact-edit boundary now returns additive structured component/path,
+reason, observed-scope match, version/absence and UTF-8 size diagnostics. Historical
+refusal classifications, strict limits and atomic rejection remain unchanged.
+Engineering19 and New-module22 provider arguments were reauthenticated without
+changing their original outcomes. A scripted native assistant receives component2
+feedback, corrects its proposal, passes real checks and invokes check_changes;
+host freshness is valid while installed and stale after Checkout restoration.
+This proves deterministic harness behavior, not improved Qwen reasoning or repair.
+See [implementation and qualification](evaluation/edit-diagnostics-codex/README.md).
+The Commands integration was independently merged upstream through PR #1 at
+`5d979920d0728775ed529457c88f5b68b440c64f`; this assignment did not promote main.
+
 ## New module22: partial implementation failed; Codex fallback delivered
 
 The absent-new-file feedback defect is corrected and deterministically verified.

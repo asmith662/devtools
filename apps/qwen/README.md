@@ -540,6 +540,23 @@ text must still match exactly. Multiple calls in one assistant response form
 one atomic transaction through the existing admission/application path.
 No approximate matching, suffix repair or partial mutation is permitted.
 
+Atomic refusals retain the existing `PatchProposalError` and public Tool error
+classification. Additive `details` identify the original **one-based** component,
+authorized path, native proposal call ID and stable reason code. Region and
+aggregate measurements are UTF-8 bytes (including adapted newline measurements
+when relevant); overlap diagnostics name both original component indices. A
+combined source/patch bound can instead identify all contributing components.
+`observed_match_count` counts overlapping occurrences only in the union of current
+disclosed spans for that path. It is not a whole-file or cross-owner search result.
+Unobserved source identities and unauthorized path information are not disclosed.
+Path/reference resolution precedes transaction admission; the first blocking
+failure in that existing order is reported. Raw requests remain unchanged and
+every retained native call receives its correlated all-or-nothing refusal.
+Host-integrity failures (including unexpected new-slot occupation) remain terminal;
+no failure is converted into permission to repair or apply an approximate edit.
+See the [Codex diagnostics delivery](evaluation/edit-diagnostics-codex/README.md)
+for the deterministic native repair proof and its limits.
+
 `inspect_source(path, start)` resolves the current authorized source version
 and returns at most 4,096 UTF-8 bytes, source length, continuation coordinates
 and an observation handle. It reuses Context disclosure and grants no edit

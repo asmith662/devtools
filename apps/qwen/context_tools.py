@@ -751,6 +751,10 @@ class ContextTools:
 
     def observed(self, old_text: str, *, path: str | None = None) -> bool:
         """Require exact logical text in a union of current observed source spans."""
+        return self.observed_matches(old_text, path=path) > 0
+
+    def observed_matches(self, old_text: str, *, path: str | None = None) -> int:
+        """Count overlapping matches only within current disclosed source unions."""
         version = str(
             self.snapshot.resource_at(
                 RepositoryResourceAddress(path or self.task.source)
@@ -772,9 +776,16 @@ class ContextTools:
             else:
                 merged.append((start, text))
         needle = old_text.replace("\r\n", "\n")
-        return bool(needle) and any(
-            needle in text.replace("\r\n", "\n") for _, text in merged
-        )
+        if not needle:
+            return 0
+        matches = 0
+        for _, text in merged:
+            logical = text.replace("\r\n", "\n")
+            offset = 0
+            while (found := logical.find(needle, offset)) >= 0:
+                matches += 1
+                offset = found + 1
+        return matches
 
     def _relationships(self, address: RepositoryResourceAddress) -> dict[str, Any]:
         interpretations = tuple(

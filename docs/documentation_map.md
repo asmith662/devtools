@@ -20,6 +20,9 @@ evidence and remaining source-grounding/quality limitations.
 owns the existing worker's versioned multi-region/multi-file local proposal
 boundary, fixed installed-API observations, atomic Git application and legacy
 compatibility. It does not expand governed assignment or integration authority.
+The [atomic refusal diagnostics](../apps/qwen/evaluation/edit-diagnostics-codex/README.md)
+describe component indices, observed-scope match counts and unchanged admission
+limits; deterministic regression results are not new Qwen inference outcomes.
 
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding

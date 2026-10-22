@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: COM812, EM101, TRY003, PLR2004 -- explicit bounded application contract
+# ruff: noqa: COM812, EM101, TRY003, TRY301, PLR2004 -- annotate authoritative refusals in place
 """Atomic proposal admission composed from the existing exact-edit primitive."""
 
 from __future__ import annotations
@@ -23,6 +23,61 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelToolDefinition
 
 MAX_TRANSACTION_EDITS = 16
+
+
+def _describe_component(  # noqa: C901 -- bounded safe diagnostic fields only
+    error: PatchProposalError,
+    index: int,
+    row: object,
+    tools: ContextTools,
+    call_id: str | None,
+) -> None:
+    """Enrich the existing refusal with safe facts; never admit or repair text."""
+    error.details.setdefault("code", "EDIT_ADMISSION_REFUSED")
+    error.details.update(component_index=index, index_base=1)
+    if call_id is None or len(call_id) <= 128:
+        error.details["proposal_call_id"] = call_id
+    else:
+        error.details.pop("proposal_call_id", None)
+        error.details["proposal_call_id_sha256"] = hashlib.sha256(
+            call_id.encode()
+        ).hexdigest()
+    if error.details["code"] == "NO_OP":
+        error.details["no_op"] = True
+    if not isinstance(row, dict):
+        return
+    path = row.get("path")
+    if not isinstance(path, str) or path not in tools.task.sources:
+        return
+    error.details["path"] = path
+    for name in ("old_text", "new_text"):
+        if isinstance(row.get(name), str):
+            error.details[name.removesuffix("_text") + "_bytes"] = len(
+                row[name].encode()
+            )
+    error.details["region_limit_bytes"] = 4096
+    if path in tools.task.new_paths and not (tools.root / path).exists():
+        absence = tools.absent_observations.get(path)
+        error.details["absence_observed"] = bool(absence)
+        if absence:
+            error.details["observed_absence_version"] = absence
+        return
+    # Only current observations disclose identities/counts. Never search another
+    # owner or expose counts from hidden source when an exact anchor is refused.
+    resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
+    observed = [
+        o
+        for o in tools.observations
+        if o["path"] == path and o["version"] == str(resource.content_identity)
+    ]
+    if isinstance(row.get("old_text"), str):
+        error.details["observed_match_count"] = tools.observed_matches(
+            row["old_text"], path=path
+        )
+        error.details["match_scope"] = "current_disclosed_regions"
+    error.details["source_observed"] = bool(observed)
+    if observed:
+        error.details["observed_source_version"] = observed[0]["version"]
 
 
 def observed_definition(*, path_based: bool = False) -> ModelToolDefinition:
@@ -75,12 +130,18 @@ def _path_row(
     """Bind an explicit path request to the current host-owned source version."""
     path = value["path"]
     if path not in tools.task.sources or path not in sources:
-        raise PatchProposalError("Unauthorized observed replacement path")
+        raise PatchProposalError(
+            "Unauthorized observed replacement path",
+            details={"code": "UNAUTHORIZED_PATH"},
+        )
     if path in tools.task.new_paths and not (tools.root / path).exists():
         version = tools.absent_observations.get(path, "")
     else:
         if not value["old_text"]:
-            raise PatchProposalError("Existing source requires nonempty old_text")
+            raise PatchProposalError(
+                "Existing source requires nonempty old_text",
+                details={"code": "EMPTY_TEXT"},
+            )
         version = str(
             tools.snapshot.resource_at(RepositoryResourceAddress(path)).content_identity
         )
@@ -108,15 +169,21 @@ def _path_observations(
         first, last = o["span"]
         if first <= cursor < last and cursor < item["end"]:
             if o["text"] != sources[path][first:last]:
-                raise PatchProposalError("Observed source attestation mismatch")
+                raise PatchProposalError(
+                    "Observed source attestation mismatch",
+                    details={"code": "OBSERVATION_ATTESTATION_MISMATCH"},
+                )
             observations.append(tools.reference(o))
             cursor = last
     if cursor < item["end"]:
-        raise PatchProposalError("Exact anchor was not fully observed")
+        raise PatchProposalError(
+            "Exact anchor was not fully observed",
+            details={"code": "OBSERVATION_MISSING"},
+        )
     return observations
 
 
-def admit_observed(  # noqa: C901, PLR0912 -- explicit legacy/path contract admission
+def admit_observed(  # noqa: C901, PLR0912, PLR0915 -- preserve admission order and annotate refusals
     root: Path,
     sources: dict[str, str],
     calls: tuple[ModelToolCall, ...],
@@ -124,77 +191,111 @@ def admit_observed(  # noqa: C901, PLR0912 -- explicit legacy/path contract admi
 ) -> tuple[dict[str, str], dict[str, str], list[dict[str, Any]], dict[str, Any]]:
     """Resolve observed references, then reuse the sole atomic admission engine."""
     if not 1 <= len(calls) <= MAX_TRANSACTION_EDITS:
-        raise PatchProposalError("One to sixteen coordinated calls required")
+        raise PatchProposalError(
+            "One to sixteen coordinated calls required",
+            details={"code": "COMPONENT_LIMIT", "components": len(calls), "limit": 16},
+        )
     tools.check_current()
     rows = []
     refs = []
-    for call in calls:
+    for index, call in enumerate(calls, 1):
+        value: Any = None
+        diagnostic_row: Any = None
         try:
-            value = json.loads(
-                call.arguments_json, object_pairs_hook=_object_without_duplicate_keys
-            )
-        except (ValueError, TypeError) as error:
-            raise PatchProposalError("Malformed observed replacement") from error
-        if (
-            call.name != "replace_source"
-            or not isinstance(value, dict)
-            or set(value)
-            not in (
-                {"reference", "old_text", "new_text"},
-                *(({"path", "old_text", "new_text"},) if tools.task.path_edits else ()),
-            )
-        ):
-            raise PatchProposalError("Malformed observed replacement contract")
-        if not all(isinstance(v, str) for v in value.values()):
-            raise PatchProposalError("Replacement arguments must be strings")
-        if "path" in value:
-            rows.append(_path_row(tools, sources, value))
-            refs.append({"path": value["path"], "call_id": call.provider_call_id})
-            continue
-        observation = tools.edit_references.get(value["reference"])
-        if observation is None:
-            raise PatchProposalError(
-                "Unknown source observation reference; read source first"
-            )
-        path, version = observation["path"], observation["version"]
-        old = value["old_text"] or observation["text"]
-        if observation.get("status") != "ABSENT":
-            resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
-            if version != str(resource.content_identity):
-                raise PatchProposalError(
-                    "Stale source observation reference; read CURRENT source"
+            try:
+                value = json.loads(
+                    call.arguments_json,
+                    object_pairs_hook=_object_without_duplicate_keys,
                 )
-            first, last = observation["span"]
+                diagnostic_row = value
+            except (ValueError, TypeError) as error:
+                raise PatchProposalError("Malformed observed replacement") from error
             if (
-                observation["text"] != sources[path][first:last]
-                or not old
-                or old.replace("\r\n", "\n")
-                not in observation["text"].replace("\r\n", "\n")
-            ):
-                message = (
-                    "Old text is outside referenced observed source: "
-                    f"{value['reference']} ({path}, span [{first}, {last})). "
-                    "Use the observation covering this exact anchor or inspect "
-                    "that source region again; no component was applied."
+                call.name != "replace_source"
+                or not isinstance(value, dict)
+                or set(value)
+                not in (
+                    {"reference", "old_text", "new_text"},
+                    *(
+                        ({"path", "old_text", "new_text"},)
+                        if tools.task.path_edits
+                        else ()
+                    ),
                 )
-                raise PatchProposalError(message)
-        elif value["old_text"]:
-            raise PatchProposalError("Absent source requires empty old_text")
-        rows.append(
-            {
-                "path": path,
-                "version": version,
-                "old_text": old,
-                "new_text": value["new_text"],
-            }
-        )
-        refs.append(
-            {
-                "reference": value["reference"],
-                "observation": observation,
-                "call_id": call.provider_call_id,
-            }
-        )
+            ):
+                raise PatchProposalError("Malformed observed replacement contract")
+            if not all(isinstance(v, str) for v in value.values()):
+                raise PatchProposalError("Replacement arguments must be strings")
+            if "path" in value:
+                rows.append(_path_row(tools, sources, value))
+                refs.append({"path": value["path"], "call_id": call.provider_call_id})
+                continue
+            observation = tools.edit_references.get(value["reference"])
+            if observation is None:
+                raise PatchProposalError(
+                    "Unknown source observation reference; read source first",
+                    details={"code": "OBSERVATION_MISSING"},
+                )
+            path, version = observation["path"], observation["version"]
+            diagnostic_row = {**value, "path": path}
+            old = value["old_text"] or observation["text"]
+            if observation.get("status") != "ABSENT":
+                resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
+                if version != str(resource.content_identity):
+                    raise PatchProposalError(
+                        "Stale source observation reference; read CURRENT source",
+                        details={
+                            "code": "STALE_OBSERVATION",
+                            "observation_reference": value["reference"],
+                            "observed_version": version,
+                        },
+                    )
+                first, last = observation["span"]
+                if (
+                    observation["text"] != sources[path][first:last]
+                    or not old
+                    or old.replace("\r\n", "\n")
+                    not in observation["text"].replace("\r\n", "\n")
+                ):
+                    message = (
+                        "Old text is outside referenced observed source: "
+                        f"{value['reference']} ({path}, span [{first}, {last})). "
+                        "Use the observation covering this exact anchor or inspect "
+                        "that source region again; no component was applied."
+                    )
+                    raise PatchProposalError(
+                        message,
+                        details={
+                            "code": "OBSERVATION_SPAN_MISMATCH",
+                            "observation_reference": value["reference"],
+                            "observed_span": [first, last],
+                        },
+                    )
+            elif value["old_text"]:
+                raise PatchProposalError(
+                    "Absent source requires empty old_text",
+                    details={"code": "ABSENCE_ANCHOR_NOT_EMPTY"},
+                )
+            rows.append(
+                {
+                    "path": path,
+                    "version": version,
+                    "old_text": old,
+                    "new_text": value["new_text"],
+                }
+            )
+            refs.append(
+                {
+                    "reference": value["reference"],
+                    "observation": observation,
+                    "call_id": call.provider_call_id,
+                }
+            )
+        except PatchProposalError as error:
+            _describe_component(
+                error, index, diagnostic_row, tools, call.provider_call_id
+            )
+            raise
     composed = ModelToolCall(
         "propose_edits",
         json.dumps(
@@ -206,12 +307,35 @@ def admit_observed(  # noqa: C901, PLR0912 -- explicit legacy/path contract admi
         ),
         calls[0].provider_call_id,
     )
-    patches, updated, metadata, plan = admit_transaction(root, sources, composed, tools)
-    for item, ref in zip(metadata, refs, strict=True):
+    try:
+        patches, updated, metadata, plan = admit_transaction(
+            root, sources, composed, tools
+        )
+    except PatchProposalError as error:
+        failed_index = error.details.get("component_index")
+        if isinstance(failed_index, int) and 1 <= failed_index <= len(calls):
+            _describe_component(
+                error,
+                failed_index,
+                rows[failed_index - 1],
+                tools,
+                calls[failed_index - 1].provider_call_id,
+            )
+        raise
+    for index, (item, ref) in enumerate(zip(metadata, refs, strict=True), 1):
         if "path" in ref:
-            observations = _path_observations(tools, sources, item)
-            if not observations:
-                raise PatchProposalError("Source or exact absence was not observed")
+            try:
+                observations = _path_observations(tools, sources, item)
+                if not observations:
+                    raise PatchProposalError(
+                        "Source or exact absence was not observed",
+                        details={"code": "OBSERVATION_MISSING"},
+                    )
+            except PatchProposalError as error:
+                _describe_component(
+                    error, index, rows[index - 1], tools, ref["call_id"]
+                )
+                raise
             ref.update(
                 reference=observations[0]["edit_ref"],
                 observation=observations[0],
@@ -322,110 +446,178 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
         raise PatchProposalError("Required API contracts not inspected")
     rows = values["edits"]
     if not isinstance(rows, list) or not 1 <= len(rows) <= MAX_TRANSACTION_EDITS:
-        raise PatchProposalError("Transaction requires one to sixteen edits")
+        raise PatchProposalError(
+            "Transaction requires one to sixteen edits",
+            details={"code": "COMPONENT_LIMIT", "limit": 16},
+        )
     tools.check_current()
     intervals: dict[str, list[dict[str, Any]]] = {}
     metadata = []
     total = 0
-    for row in rows:
-        if not isinstance(row, dict) or set(row) != {
-            "path",
-            "version",
-            "old_text",
-            "new_text",
-        }:
-            raise PatchProposalError("Malformed transaction component")
-        path = row["path"]
-        if (
-            not isinstance(path, str)
-            or path not in sources
-            or path not in tools.task.sources
-        ):
-            raise PatchProposalError("Unauthorized transaction path")
-        if path in tools.task.new_paths and not (root / path).exists():
+    for index, row in enumerate(rows, 1):
+        try:
+            if not isinstance(row, dict) or set(row) != {
+                "path",
+                "version",
+                "old_text",
+                "new_text",
+            }:
+                raise PatchProposalError(
+                    "Malformed transaction component",
+                    details={"code": "INVALID_COMPONENT"},
+                )
+            path = row["path"]
             if (
-                row["version"] != tools.absent_observations.get(path)
-                or not row["version"]
-                or row["old_text"] != ""
-                or not isinstance(row["new_text"], str)
-                or not 1 <= len(row["new_text"].encode()) <= 4096
-                or path in intervals
+                not isinstance(path, str)
+                or path not in sources
+                or path not in tools.task.sources
             ):
                 raise PatchProposalError(
-                    "New source requires observed exact absence and bounded content"
+                    "Unauthorized transaction path",
+                    details={"code": "UNAUTHORIZED_PATH"},
                 )
-            total += len(row["new_text"].encode())
+            if path in tools.task.new_paths and not (root / path).exists():
+                if (
+                    row["version"] != tools.absent_observations.get(path)
+                    or not row["version"]
+                    or row["old_text"] != ""
+                    or not isinstance(row["new_text"], str)
+                    or not 1 <= len(row["new_text"].encode()) <= 4096
+                    or path in intervals
+                ):
+                    raise PatchProposalError(
+                        "New source requires observed exact absence "
+                        "and bounded content",
+                        details={
+                            "code": (
+                                "ABSENCE_NOT_OBSERVED"
+                                if not tools.absent_observations.get(path)
+                                else "ABSENCE_VERSION_MISMATCH"
+                                if row["version"] != tools.absent_observations[path]
+                                else "ABSENCE_ANCHOR_NOT_EMPTY"
+                                if row["old_text"] != ""
+                                else "INVALID_TEXT_TYPE"
+                                if not isinstance(row["new_text"], str)
+                                else "EMPTY_TEXT"
+                                if not row["new_text"]
+                                else "REGION_BYTE_LIMIT"
+                                if len(row["new_text"].encode()) > 4096
+                                else "OVERLAPPING_COMPONENTS"
+                            ),
+                            **(
+                                {
+                                    "overlapping_components": [
+                                        intervals[path][0]["component_index"],
+                                        index,
+                                    ]
+                                }
+                                if path in intervals
+                                else {}
+                            ),
+                        },
+                    )
+                total += len(row["new_text"].encode())
+                if total > 8192:
+                    raise PatchProposalError(
+                        "Transaction exceeds existing aggregate edit bytes",
+                        details={
+                            "code": "AGGREGATE_BYTE_LIMIT",
+                            "aggregate_bytes_through_component": total,
+                            "aggregate_limit_bytes": 8192,
+                        },
+                    )
+                item = {
+                    "component_index": index,
+                    "path": path,
+                    "version": row["version"],
+                    "start": 0,
+                    "end": 0,
+                    "new_length": len(row["new_text"]),
+                    "new_text": row["new_text"],
+                    "old_text": "",
+                }
+                intervals[path] = [item]
+                metadata.append(
+                    {k: v for k, v in item.items() if k not in {"old_text", "new_text"}}
+                    | {
+                        "created": True,
+                        "old_text_sha256": hashlib.sha256(b"").hexdigest(),
+                        "new_text_sha256": hashlib.sha256(
+                            row["new_text"].encode()
+                        ).hexdigest(),
+                        "proposal_call_id": call.provider_call_id,
+                    }
+                )
+                continue
+            resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
+            if row["version"] != str(resource.content_identity):
+                raise PatchProposalError(
+                    "Stale transaction source version",
+                    details={"code": "STALE_SOURCE_VERSION"},
+                )
+            # Reuse all exact/unique/newline/size/path checks from the existing edit.
+            legacy = ModelToolCall(
+                "propose_edit",
+                json.dumps({k: row[k] for k in ("path", "old_text", "new_text")}),
+                call.provider_call_id,
+            )
+            _structured_edit_patch(
+                root, sources[path], legacy, source_path=path, allow_empty_new=True
+            )
+            if not tools.observed(row["old_text"], path=path):
+                raise PatchProposalError(
+                    "Edit source was not observed at current version",
+                    details={"code": "OBSERVATION_MISSING"},
+                )
+            newline = "\r\n" if "\r\n" in sources[path] else "\n"
+            old = row["old_text"].replace("\r\n", "\n").replace("\n", newline)
+            new = row["new_text"].replace("\r\n", "\n").replace("\n", newline)
+            start = sources[path].index(old)
+            end = start + len(old)
+            total += len(old.encode()) + len(new.encode())
             if total > 8192:
                 raise PatchProposalError(
-                    "Transaction exceeds existing aggregate edit bytes"
+                    "Transaction exceeds existing aggregate edit bytes",
+                    details={
+                        "code": "AGGREGATE_BYTE_LIMIT",
+                        "aggregate_bytes_through_component": total,
+                        "aggregate_limit_bytes": 8192,
+                    },
                 )
+            for previous in intervals.get(path, []):
+                if start < previous["end"] and previous["start"] < end:
+                    raise PatchProposalError(
+                        "Overlapping transaction anchors",
+                        details={
+                            "code": "OVERLAPPING_COMPONENTS",
+                            "overlapping_components": [
+                                previous["component_index"],
+                                index,
+                            ],
+                        },
+                    )
             item = {
+                "component_index": index,
                 "path": path,
                 "version": row["version"],
-                "start": 0,
-                "end": 0,
-                "new_length": len(row["new_text"]),
-                "new_text": row["new_text"],
-                "old_text": "",
+                "start": start,
+                "end": end,
+                "new_length": len(new),
+                "old_text": old,
+                "new_text": new,
             }
-            intervals[path] = [item]
+            intervals.setdefault(path, []).append(item)
             metadata.append(
                 {k: v for k, v in item.items() if k not in {"old_text", "new_text"}}
                 | {
-                    "created": True,
-                    "old_text_sha256": hashlib.sha256(b"").hexdigest(),
-                    "new_text_sha256": hashlib.sha256(
-                        row["new_text"].encode()
-                    ).hexdigest(),
+                    "old_text_sha256": hashlib.sha256(old.encode()).hexdigest(),
+                    "new_text_sha256": hashlib.sha256(new.encode()).hexdigest(),
                     "proposal_call_id": call.provider_call_id,
                 }
             )
-            continue
-        resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
-        if row["version"] != str(resource.content_identity):
-            raise PatchProposalError("Stale transaction source version")
-        # Reuse all exact/unique/newline/size/path checks from the existing edit.
-        legacy = ModelToolCall(
-            "propose_edit",
-            json.dumps({k: row[k] for k in ("path", "old_text", "new_text")}),
-            call.provider_call_id,
-        )
-        _structured_edit_patch(
-            root, sources[path], legacy, source_path=path, allow_empty_new=True
-        )
-        if not tools.observed(row["old_text"], path=path):
-            raise PatchProposalError("Edit source was not observed at current version")
-        newline = "\r\n" if "\r\n" in sources[path] else "\n"
-        old = row["old_text"].replace("\r\n", "\n").replace("\n", newline)
-        new = row["new_text"].replace("\r\n", "\n").replace("\n", newline)
-        start = sources[path].index(old)
-        end = start + len(old)
-        total += len(old.encode()) + len(new.encode())
-        if total > 8192:
-            raise PatchProposalError(
-                "Transaction exceeds existing aggregate edit bytes"
-            )
-        for previous in intervals.get(path, []):
-            if start < previous["end"] and previous["start"] < end:
-                raise PatchProposalError("Overlapping transaction anchors")
-        item = {
-            "path": path,
-            "version": row["version"],
-            "start": start,
-            "end": end,
-            "new_length": len(new),
-            "old_text": old,
-            "new_text": new,
-        }
-        intervals.setdefault(path, []).append(item)
-        metadata.append(
-            {k: v for k, v in item.items() if k not in {"old_text", "new_text"}}
-            | {
-                "old_text_sha256": hashlib.sha256(old.encode()).hexdigest(),
-                "new_text_sha256": hashlib.sha256(new.encode()).hexdigest(),
-                "proposal_call_id": call.provider_call_id,
-            }
-        )
+        except PatchProposalError as error:
+            _describe_component(error, index, row, tools, call.provider_call_id)
+            raise
     updated = {}
     patches = {}
     for path, changes in intervals.items():
@@ -435,15 +627,39 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
                 content[: item["start"]] + item["new_text"] + content[item["end"] :]
             )
         if len(content.encode()) > 32768:
-            raise PatchProposalError("Combined source exceeds existing source bytes")
+            raise PatchProposalError(
+                "Combined source exceeds existing source bytes",
+                details={
+                    "code": "SOURCE_BYTE_LIMIT",
+                    "path": path,
+                    "component_indices": [c["component_index"] for c in changes],
+                    "source_bytes": len(content.encode()),
+                    "source_limit_bytes": 32768,
+                },
+            )
         updated[path] = content
-        patches[path] = _source_patch(
-            root,
-            sources[path],
-            content,
-            source_path=path,
-            new_file=not (root / path).exists(),
-        )
+        try:
+            patches[path] = _source_patch(
+                root,
+                sources[path],
+                content,
+                source_path=path,
+                new_file=not (root / path).exists(),
+            )
+        except PatchProposalError as error:
+            error.details.update(
+                path=path,
+                component_indices=[c["component_index"] for c in changes],
+            )
+            raise
     if sum(len(p.encode()) for p in patches.values()) > 16384:
-        raise PatchProposalError("Combined patch exceeds existing patch bytes")
+        raise PatchProposalError(
+            "Combined patch exceeds existing patch bytes",
+            details={
+                "code": "PATCH_BYTE_LIMIT",
+                "component_indices": list(range(1, len(rows) + 1)),
+                "patch_bytes": sum(len(p.encode()) for p in patches.values()),
+                "patch_limit_bytes": 16384,
+            },
+        )
     return patches, updated, metadata, values

@@ -1034,6 +1034,14 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "model_calls_remaining": maximum_calls - number,
                 },
             }
+            if error.details:
+                result["details"] = error.details
+                result["diagnostic"] += (
+                    f" [{error.details['code']}; component "
+                    f"{error.details.get('component_index', 'transaction')}; "
+                    f"{error.details.get('path', 'authorized scope')}]. "
+                    "See structured details; the entire transaction was refused."
+                )
             call = response.tool_calls[0]
             if observed_edits:
                 result["instruction"] = (
