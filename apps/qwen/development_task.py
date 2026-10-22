@@ -469,7 +469,8 @@ def _source_patch(
 ) -> str:
     """Generate the shared exact-source unified diff; Git owns application."""
     patch = "".join(
-        difflib.unified_diff(
+        line if line.endswith("\n") else line + "\n\\ No newline at end of file\n"
+        for line in difflib.unified_diff(
             source.splitlines(keepends=True),
             updated.splitlines(keepends=True),
             fromfile="/dev/null" if new_file else f"a/{source_path}",

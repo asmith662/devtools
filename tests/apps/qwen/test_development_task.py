@@ -40,6 +40,45 @@ def _patch() -> str:
     return f"--- a/{task.SOURCE}\n+++ b/{task.SOURCE}\n@@ -1 +1 @@\n-old\n+new\n"
 
 
+@pytest.mark.parametrize(
+    ("before", "after"),
+    [
+        (None, '"""New module."""'),
+        (None, '"""New module."""\n'),
+        ("old", "new"),
+        ("old\n", "new"),
+        ("old", "new\n"),
+        ("prefix\nold", "prefix\nnew"),
+        ("prefix\r\nold", "prefix\r\nnew"),
+        ("caf\u00e9", "\u65b0\u6a21\u5757"),
+    ],
+)
+def test_generated_patch_preserves_exact_final_newline(
+    tmp_path: Path,
+    before: str | None,
+    after: str,
+) -> None:
+    """Engineering 26: Git must install admitted bytes, including absent EOF LF."""
+    root = _workspace(tmp_path)
+    target = root / task.SOURCE
+    if before is None:
+        target.unlink()
+    else:
+        target.write_bytes(before.encode())
+    folder = root / "patch-evidence"
+    folder.mkdir()
+    patch = task._source_patch(
+        root,
+        before or "",
+        after,
+        source_path=task.SOURCE,
+        new_file=before is None,
+    )
+    asyncio.run(task.apply_source_patches(root, folder, {task.SOURCE: patch}))
+    assert target.read_bytes() == after.encode()
+    assert (folder / "proposal.patch").is_file()
+
+
 def test_native_call_materializes_and_executes_existing_tool(tmp_path: Path) -> None:
     """A real native argument object reaches ToolRunner and the filesystem Tool."""
     root = _workspace(tmp_path)
