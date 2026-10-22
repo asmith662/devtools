@@ -1,0 +1,72 @@
+import inspect
+import sys
+from pathlib import Path
+from tempfile import TemporaryDirectory
+sys.path.insert(0, str(Path.cwd()))
+from dataclasses import replace
+from devtools.context.repository.resource import RepositoryResourceAddress as Address
+from devtools.context.retrieval.source import search_repository_source
+from devtools.context.planning import SourceSearchDisclosureOption
+from tests.context.retrieval.source.test_search import _index
+
+assert 'resource_addresses' in inspect.signature(search_repository_source).parameters, 'Missing caller-scoped source search'
+with TemporaryDirectory(prefix='devtools-scoped-source28-') as tmp:
+    root = Path(tmp)
+    texts = {
+        'selected.py': 'def selected():\n    return "needle selected"\n',
+        'other.py': 'def needle():\n    return "needle needle needle needle"\n',
+        'last.py': 'class Last:\n    async def run(self):\n        return "needle last"\n',
+        'empty.py': '',
+    }
+    index = _index(root, texts)
+    selected = (Address('selected.py'),)
+    for mode in ('file', 'symbol', 'window', 'mixed'):
+        before = search_repository_source(index, query='needle', mode=mode, maximum_results=1)
+        result = search_repository_source(index, query='needle', mode=mode, maximum_results=1, resource_addresses=selected)
+        assert result.index is index
+        assert result.resource_addresses == selected
+        assert len(result.hits) == 1, (mode, result.hits)
+        assert all(h.unit.resource.address in selected for h in result.hits)
+        for hit in result.hits:
+            assert all(e.unit.resource.address in selected for e in hit.evidence)
+        assert all(match.document_statistics.analysis.document.resource.address in selected for native in result.native_results for match in native.matches)
+        for native in result.native_results:
+            original = search_repository_source(index, query='needle', mode=mode, maximum_results=100)
+            original_matches = {m.document_statistics.analysis.document.id: m for n in original.native_results for m in n.matches}
+            for match in native.matches:
+                assert match == original_matches[match.document_statistics.analysis.document.id], 'Scoped search must retain original corpus BM25 evidence'
+        item = SourceSearchDisclosureOption('Inspect selected', result.hits[0].unit).materialize(snapshot=index.snapshot)
+        assert 'selected.py' in item.text and 'needle selected' in item.text
+        explicit_none = search_repository_source(index, query='needle', mode=mode, maximum_results=1, resource_addresses=None)
+        assert before == explicit_none
+        assert before.resource_addresses is None
+        empty = search_repository_source(index, query='needle', mode=mode, resource_addresses=())
+        assert empty.resource_addresses == () and not empty.hits
+        assert not any(n.matches for n in empty.native_results)
+        miss = search_repository_source(index, query='needle', mode=mode, resource_addresses=(Address('empty.py'),))
+        assert not miss.hits
+        assert not any(n.matches for n in miss.native_results)
+    pair = (Address('last.py'), Address('selected.py'))
+    result = search_repository_source(index, query='needle', mode='mixed', maximum_results=100, resource_addresses=pair)
+    assert {h.unit.resource.address for h in result.hits} == set(pair)
+    assert result.resource_addresses == pair
+    assert result == search_repository_source(index, query='needle', mode='mixed', maximum_results=100, resource_addresses=pair)
+    # Retained-source observation, never ambient path acquisition.
+    (root / 'selected.py').write_text('CHANGED ON DISK', encoding='utf-8')
+    assert search_repository_source(index, query='needle', resource_addresses=selected).hits[0].unit.text == texts['selected.py']
+    for bad in ((Address('outside.py'),), (selected[0], selected[0]), ('selected.py',)):
+        try:
+            search_repository_source(index, query='no-match', resource_addresses=bad)
+        except (TypeError, ValueError):
+            pass
+        else:
+            raise AssertionError(('Invalid scoped source request accepted', bad))
+    # A resource present in a snapshot is insufficient when absent from the admitted index.
+    smaller = replace(index, views=tuple(replace(v, units=tuple(u for u in v.units if u.resource.address != Address('last.py'))) for v in index.views))
+    try:
+        search_repository_source(smaller, query='needle', resource_addresses=(Address('last.py'),))
+    except (TypeError, ValueError):
+        pass
+    else:
+        raise AssertionError('Unindexed source selection admitted')
+print('QUALIFIED_SCOPED_SOURCE_PASS: all modes, evidence, limits, mixed support, invalid scope and retained identity')

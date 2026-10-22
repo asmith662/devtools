@@ -1323,3 +1323,15 @@ This does not complete the parent, automatic planning, retrieval policy, worker
 map adoption or selective main integration. Next is a bounded opt-in existing
 ContextTool adapter with ordinary observed-source/version admission and stale-map
 invalidation, not a new graph engine or source identity mechanism.
+
+## Native map navigation28
+
+The existing CodingCommands/ContextTools application now has opt-in map orientation
+and exact selected-source expansion through canonical Planning and ordinary
+observed editing. Stale-frame rejection/refresh is qualified. Caller-scoped source
+search is separately delivered under the unchanged new task contract. Both are
+Codex-authored ata951957c75ba187b8ac8bb29ad2520750ebb3783. The sole Qwen attempt recovered an oversized
+component but failed behavior/typing and Context admission after19 requests;
+it used neither map nor check_changes. No native-autonomy or ranking-effectiveness
+claim. Parent status, architectural promotion triggers and selective main adoption
+remain unchanged. [Evidence](../../../apps/qwen/evaluation/native-map-28/README.md).

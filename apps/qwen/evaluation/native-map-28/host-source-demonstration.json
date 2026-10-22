@@ -1,0 +1,61 @@
+{
+  "operation": "expand_source",
+  "repository": "51c4f3ac-b162-4d8c-a3eb-4fbcf1eeef74",
+  "snapshot": "e41c8ef8cc0058ff4a3d89b86fa4b559ae23b7cb4677b1b7e57ea5aefe35e45e",
+  "revision": "ecfe329e006307e0b2845aef21b3860feb7aa826",
+  "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+  "uncertainty": "exact retained source; no runtime interpretation",
+  "path": "src/devtools/context/retrieval/source/search.py",
+  "version": "3d98d416eca8645397a196ad4b6703d351e3ba09a14c6dda7e4948c3e5676472",
+  "source_length": 7540,
+  "valid_range": [
+    0,
+    7540
+  ],
+  "coordinate_convention": "half-open Unicode character offsets",
+  "continuation_start": 1847,
+  "parent": {
+    "path": "src/devtools/context/retrieval/source/search.py",
+    "version": "3d98d416eca8645397a196ad4b6703d351e3ba09a14c6dda7e4948c3e5676472",
+    "repository": "51c4f3ac-b162-4d8c-a3eb-4fbcf1eeef74",
+    "revision": "ecfe329e006307e0b2845aef21b3860feb7aa826",
+    "snapshot": "e41c8ef8cc0058ff4a3d89b86fa4b559ae23b7cb4677b1b7e57ea5aefe35e45e",
+    "unit": "1a2ca286a080d71fdb3af030deb9b1673dc54d028ce032ee3b9d2c460b6fcc68",
+    "kind": "file",
+    "qualified_name": null,
+    "span": [
+      0,
+      7540
+    ],
+    "lines": [
+      1,
+      209
+    ],
+    "semantic_declaration": null
+  },
+  "representation": "map-selected-exact-source-v1",
+  "text": "class SourceSearchResult:\n    \"\"\"Retain the bound index and native results; mixed scores are k=60 RRF only.\"\"\"\n\n    index: SourceSearchIndex\n    query: str\n    mode: SourceSearchMode\n    hits: tuple[SourceSearchHit, ...]\n    native_results: tuple[RepositoryTextLexicalBm25RetrievalResult, ...]\n    resource_addresses: tuple[RepositoryResourceAddress, ...] | None = None",
+  "requested_span": [
+    1478,
+    1847
+  ],
+  "span": [
+    1478,
+    1847
+  ],
+  "truncated": false,
+  "bytes": 369,
+  "disclosure": "200e0dc841409a30b2ba21166fea3f6e6f52ac9e35cc3b6db564f0bb1d6afedf",
+  "map_disclosure": "ee9fd3345d9eef568a27af7d795d47ed4fd45b4c5681eb40fcb4975a425d48b3",
+  "map_handle": "map:ee9fd3345d9eef568a27af7d795d47ed4fd45b4c5681eb40fcb4975a425d48b3:d38e789e4c6ffcbbcd02baa229c474f0eb048046ebb8ea7c2e842f62006fc919",
+  "declaration": "d38e789e4c6ffcbbcd02baa229c474f0eb048046ebb8ea7c2e842f62006fc919",
+  "source_range": {
+    "start_line": 50,
+    "start_column_utf8": 0,
+    "end_line": 58,
+    "end_column_utf8": 75
+  },
+  "selected_unit": "8155fa42ee74ab1b347e62178ce77f4e1749cf69bfab0ff3b54db96b2ab3037b",
+  "observation_call_id": "host-demo-source",
+  "edit_ref": "R1"
+}

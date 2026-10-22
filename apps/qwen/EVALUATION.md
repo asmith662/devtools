@@ -623,3 +623,15 @@ oversized-range refusal was saved but no later model request received it because
 the subsequent empty-version error terminated the task. The simpler direct
 reader removes that identity-copying burden without weakening exact source
 attestation; exact lookup remains an alternative for known qualified names.
+
+## Native map navigation28
+
+Codex delivered opt-in canonical map orientation and exact selected-source native
+Tools plus caller-scoped source search. Deterministic native stale-frame refresh,
+observed edits, checks/currentness and EOF integrity pass. One genuine Qwen run
+made19 requests/5 proposals (4 admitted), recovered a component-size refusal,
+but failed scope behavior/typing and exhausted repair Context. It never used map
+navigation or check_changes despite actual schema availability. No native autonomy
+success or comparative retrieval claim. Separate Codex source is reviewed and
+published ata951957c75ba187b8ac8bb29ad2520750ebb3783. Historical outcomes remain unchanged. See
+[contract, original receipts and exact-tree gate](evaluation/native-map-28/README.md).

@@ -1641,3 +1641,14 @@ checkpoint is fresh multi-region, requirement-preserving repair evaluation with
 preflighted behavioral/quality compatibility; no Codex parity claim or workstream
 transition follows from this small sample. Exact evidence is in the maintained
 cohort 02 record. Source integration of accepted local candidates remains separate.
+
+### Native map navigation28
+
+Caller-selected map orientation can now reach exact observed source inside the
+existing native coding worker, with scope/version checks and explicit stale-frame
+refresh. Caller-scoped source search retains existing lexical provenance. These
+Codex deliveries do not establish Qwen adoption: the single new run chose path
+inspection and failed behavior/repair Context. Next is a separately qualified,
+distinct relationship-heavy RI task using existing tools, not another graph or
+Context framework or a retry of the exposed search task. Original experimental
+sequencing, backlog statuses and protected-main authority remain unchanged.

@@ -449,3 +449,15 @@ See [delivery and immutable parent references](../../../apps/qwen/evaluation/con
 Authorized still-absent new slots now produce explicit null feedback versions, while created paths retain actual source versions. Deterministic canonical creation/check/freshness/restoration and refusal cases pass. One genuine Qwen task used 13 calls and six proposals, installed partial source and failed public integration; check_changes/is_current were available but not invoked. No Context failure occurred. Source was restored; Codex delivered the useful capability separately. Next diagnose component-specific refusal feedback and assess complete integration on a distinct task; no generic framework is implied.
 
 [Exact evidence and attribution](../../../apps/qwen/evaluation/new-module-22/README.md). Feature commit `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. No parent closure, proposal approval or protected promotion.
+
+## Native map navigation28
+
+The maintained application now offers opt-in canonical map orientation and exact
+represented-symbol source through its existing ContextTools/ToolRunner owner.
+Scripted stale-frame refresh, observed editing and check/currentness completion
+pass. One genuine Qwen task made19 requests and5 proposals, recovered a size
+refusal, but failed source-selection behavior/typing and repair Context admission.
+It used no map or check_changes despite real schema availability. Separate Codex
+source is published at `a951957c75ba187b8ac8bb29ad2520750ebb3783`; this is not native
+autonomy acceptance. Existing statuses and promotion triggers remain unchanged.
+See [full evidence and ownership](../../../apps/qwen/evaluation/native-map-28/README.md).

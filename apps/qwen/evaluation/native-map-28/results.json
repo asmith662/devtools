@@ -1,0 +1,1766 @@
+{
+  "task_sha256": "687f21695bded313f9372e1ad4c0e9fdc59ead20d462b0703be8e5a3766ed1f1",
+  "oracle_sha256": "8bd8f0e90250d5a25821ca049e5dbd61ab00fd3daa7ce6e2b443612377871910",
+  "native_disposition": "CONTEXT_BUDGET_FAILED",
+  "accepted": false,
+  "source_restored": true,
+  "model_calls": 19,
+  "proposals": {
+    "proposals_attempted": 5,
+    "proposals_admitted": 4,
+    "proposal_refusals": 1
+  },
+  "actions": {
+    "context_actions_attempted": 19,
+    "context_actions_accepted": 19
+  },
+  "usage": {
+    "cache_write_tokens": null,
+    "cached_input_tokens": null,
+    "input_tokens": 336931,
+    "output_tokens": 5509,
+    "reasoning_tokens": null
+  },
+  "worker_seconds": 461.86630559992045,
+  "model_seconds": 445.5156737997895,
+  "automatic_validation_seconds": 5.564049200271256,
+  "context_preparation_seconds": 0.2535083999391645,
+  "operations": {
+    "inspect_source": 14,
+    "lookup_symbol": 1,
+    "search_source": 1,
+    "git_inspect": 2,
+    "run_check": 1
+  },
+  "source_disclosures": [
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "version": "7fa86b3a8bb0ebae4312d4d8e694d6da39e399e30f45fedc35c663661ccfa725",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/__init__.py",
+      "version": "b09e58fd699574e18635398cb9bcf9c7f0127b7dc6196f3a475d140112d6fbcd",
+      "span": [
+        0,
+        743
+      ],
+      "bytes": 743,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "version": "7fa86b3a8bb0ebae4312d4d8e694d6da39e399e30f45fedc35c663661ccfa725",
+      "span": [
+        4096,
+        5898
+      ],
+      "bytes": 1802,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/index.py",
+      "version": "c202c63e37c0bd4a4cd9d2f198d838b2030b5c4e2845faa55dcc2d8366589620",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/index.py",
+      "version": "c202c63e37c0bd4a4cd9d2f198d838b2030b5c4e2845faa55dcc2d8366589620",
+      "span": [
+        4096,
+        5171
+      ],
+      "bytes": 1075,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/representation.py",
+      "version": "afe2e839491a5285614577aa834461f609a8daef5beb82977a1e986fb7a090b2",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "version": "cd203ab0f32bafc65ee8c3a6d091ce1a91de453a7aa0d57b6d5ae15aa21200b1",
+      "span": [
+        0,
+        4092
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "version": "cd203ab0f32bafc65ee8c3a6d091ce1a91de453a7aa0d57b6d5ae15aa21200b1",
+      "span": [
+        4092,
+        8175
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "version": "cd203ab0f32bafc65ee8c3a6d091ce1a91de453a7aa0d57b6d5ae15aa21200b1",
+      "span": [
+        8175,
+        12271
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "version": "cd203ab0f32bafc65ee8c3a6d091ce1a91de453a7aa0d57b6d5ae15aa21200b1",
+      "span": [
+        12271,
+        16366
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/planning/source.py",
+      "version": "65f4cb429d95ae4118ed1d85211df6adc15608a3087c580094c7eea17833e745",
+      "span": [
+        0,
+        3563
+      ],
+      "bytes": 3563,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "version": "51081464a00d8fd35d70fcddd0c48c77f6d56bbda2f12953e98dd679f1618f0b",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "version": "51081464a00d8fd35d70fcddd0c48c77f6d56bbda2f12953e98dd679f1618f0b",
+      "span": [
+        4096,
+        5896
+      ],
+      "bytes": 1800,
+      "representation": "exact-character-range"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "version": "d11b9e5eb97897633c6684cd81583834d3dbf07634a018b62d88c645cfc41c5b",
+      "span": [
+        1400,
+        5496
+      ],
+      "bytes": 4096,
+      "representation": "exact-character-range"
+    }
+  ],
+  "distinct_path_version_spans": 14,
+  "disclosed_source_bytes": 45847,
+  "distinct_span_characters_per_version": 45829,
+  "map_preparation_live_seconds": 0,
+  "native_map_invocations": 0,
+  "native_map_expansions": 0,
+  "native_check_changes": 0,
+  "host_current_native": false,
+  "first_edit_turn": 12,
+  "first_capacity": {
+    "turn": "turn-01",
+    "context_tokens": 32768,
+    "generation_phase": "implementation-or-repair",
+    "input_tokens": 2831,
+    "measurements": [
+      {
+        "input_tokens": 2831,
+        "projection": "source-preserving"
+      }
+    ],
+    "minimum_continuation_output_tokens": 4096,
+    "output_tokens": 8192,
+    "phase": "PRE_DISPATCH_CAPACITY",
+    "safety_tokens": 2048,
+    "task_output_ceiling": 8192
+  },
+  "blocked_capacity": {
+    "turn": "turn-20",
+    "context_tokens": 32768,
+    "generation_phase": "implementation-or-repair",
+    "input_tokens": 29232,
+    "measurements": [
+      {
+        "input_tokens": 55395,
+        "projection": "source-preserving"
+      },
+      {
+        "input_tokens": 38378,
+        "projection": "compact",
+        "reacquire_read_only": 0
+      },
+      {
+        "input_tokens": 37918,
+        "projection": "compact",
+        "reacquire_read_only": 1
+      },
+      {
+        "input_tokens": 36739,
+        "projection": "compact",
+        "reacquire_read_only": 2
+      },
+      {
+        "input_tokens": 36241,
+        "projection": "compact",
+        "reacquire_read_only": 3
+      },
+      {
+        "input_tokens": 35084,
+        "projection": "compact",
+        "reacquire_read_only": 4
+      },
+      {
+        "input_tokens": 33890,
+        "projection": "compact",
+        "reacquire_read_only": 5
+      },
+      {
+        "input_tokens": 32641,
+        "projection": "compact",
+        "reacquire_read_only": 6
+      },
+      {
+        "input_tokens": 31427,
+        "projection": "compact",
+        "reacquire_read_only": 7
+      },
+      {
+        "input_tokens": 30209,
+        "projection": "compact",
+        "reacquire_read_only": 8
+      },
+      {
+        "input_tokens": 29232,
+        "projection": "compact",
+        "reacquire_read_only": 9
+      },
+      {
+        "input_tokens": 29232,
+        "projection": "compact",
+        "reacquire_read_only": 10
+      }
+    ],
+    "minimum_continuation_output_tokens": 2048,
+    "output_tokens": 8192,
+    "phase": "PRE_DISPATCH_CAPACITY",
+    "safety_tokens": 2048,
+    "task_output_ceiling": 8192
+  },
+  "dispatched_capacities": [
+    {
+      "turn": "turn-01",
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 2831,
+      "measurements": [
+        {
+          "input_tokens": 2831,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 4096,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-02",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 5566,
+      "measurements": [
+        {
+          "input_tokens": 5566,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-03",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 8550,
+      "measurements": [
+        {
+          "input_tokens": 8550,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-04",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 11284,
+      "measurements": [
+        {
+          "input_tokens": 11284,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-05",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 13399,
+      "measurements": [
+        {
+          "input_tokens": 13399,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-06",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 15189,
+      "measurements": [
+        {
+          "input_tokens": 15189,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-07",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 16946,
+      "measurements": [
+        {
+          "input_tokens": 16946,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-08",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 18709,
+      "measurements": [
+        {
+          "input_tokens": 18709,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-09",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 19096,
+      "measurements": [
+        {
+          "input_tokens": 19096,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-10",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 20602,
+      "measurements": [
+        {
+          "input_tokens": 20602,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-11",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 21161,
+      "measurements": [
+        {
+          "input_tokens": 21161,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-12",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 21431,
+      "measurements": [
+        {
+          "input_tokens": 21431,
+          "projection": "source-preserving"
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-13",
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 21775,
+      "measurements": [
+        {
+          "input_tokens": 25748,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 23414,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 22954,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 21775,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-14",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 23562,
+      "measurements": [
+        {
+          "input_tokens": 27508,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 23562,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-15",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 24118,
+      "measurements": [
+        {
+          "input_tokens": 28935,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 24118,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-16",
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 21478,
+      "measurements": [
+        {
+          "input_tokens": 33171,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 25966,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 25506,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 24327,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        },
+        {
+          "input_tokens": 23829,
+          "projection": "compact",
+          "reacquire_read_only": 3
+        },
+        {
+          "input_tokens": 22672,
+          "projection": "compact",
+          "reacquire_read_only": 4
+        },
+        {
+          "input_tokens": 21478,
+          "projection": "compact",
+          "reacquire_read_only": 5
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-17",
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 26235,
+      "measurements": [
+        {
+          "input_tokens": 35172,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 27874,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 27414,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 26235,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 4096,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-18",
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 21863,
+      "measurements": [
+        {
+          "input_tokens": 37290,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 30032,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 29572,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 28393,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        },
+        {
+          "input_tokens": 27895,
+          "projection": "compact",
+          "reacquire_read_only": 3
+        },
+        {
+          "input_tokens": 26738,
+          "projection": "compact",
+          "reacquire_read_only": 4
+        },
+        {
+          "input_tokens": 25544,
+          "projection": "compact",
+          "reacquire_read_only": 5
+        },
+        {
+          "input_tokens": 24295,
+          "projection": "compact",
+          "reacquire_read_only": 6
+        },
+        {
+          "input_tokens": 23081,
+          "projection": "compact",
+          "reacquire_read_only": 7
+        },
+        {
+          "input_tokens": 21863,
+          "projection": "compact",
+          "reacquire_read_only": 8
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    {
+      "turn": "turn-19",
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 23136,
+      "measurements": [
+        {
+          "input_tokens": 44915,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 32282,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 31822,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 30643,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        },
+        {
+          "input_tokens": 30145,
+          "projection": "compact",
+          "reacquire_read_only": 3
+        },
+        {
+          "input_tokens": 28988,
+          "projection": "compact",
+          "reacquire_read_only": 4
+        },
+        {
+          "input_tokens": 27794,
+          "projection": "compact",
+          "reacquire_read_only": 5
+        },
+        {
+          "input_tokens": 26545,
+          "projection": "compact",
+          "reacquire_read_only": 6
+        },
+        {
+          "input_tokens": 25331,
+          "projection": "compact",
+          "reacquire_read_only": 7
+        },
+        {
+          "input_tokens": 24113,
+          "projection": "compact",
+          "reacquire_read_only": 8
+        },
+        {
+          "input_tokens": 23136,
+          "projection": "compact",
+          "reacquire_read_only": 9
+        },
+        {
+          "input_tokens": 23136,
+          "projection": "compact",
+          "reacquire_read_only": 10
+        }
+      ],
+      "minimum_continuation_output_tokens": 2048,
+      "output_tokens": 7584,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    }
+  ],
+  "archived27_output_lengths": {
+    "calls": 14,
+    "total": 1142,
+    "maximum": 182,
+    "median": 86.5
+  },
+  "historical27_capacity_policy": {
+    "input_tokens": 28478,
+    "safety": 2048,
+    "available_output": 2242,
+    "old_floor": 4096,
+    "new_investigation_floor": 2048,
+    "old_deficit": 1854,
+    "new_margin": 194,
+    "verification": "Permanent actual-loop deterministic regression uses archived exact measurement; no new tokenizer replay or inference claimed. Initial implementation keeps4096 floor; ceiling4096 investigation/8192 task unchanged."
+  },
+  "blocked_deficit_over_minimum": 560,
+  "atomic_diagnostic": {
+    "code": "REGION_BYTE_LIMIT",
+    "component_index": 1,
+    "index_base": 1,
+    "match_scope": "current_disclosed_regions",
+    "new_bytes": 4893,
+    "observed_match_count": 1,
+    "observed_source_version": "d11b9e5eb97897633c6684cd81583834d3dbf07634a018b62d88c645cfc41c5b",
+    "old_bytes": 2363,
+    "path": "src/devtools/context/retrieval/source/search.py",
+    "proposal_call_id": "lBakXuyD3ilIDaz0D2D8MRjUkpE2cQRk",
+    "region_limit_bytes": 4096,
+    "source_observed": true
+  },
+  "admission_repair": "Turn17 region C1 refused; turn18 split into two valid smaller components; entire refused transaction unchanged.",
+  "behavioral_repair_success": false,
+  "behavioral_failure": "Turn19 retained full lexical views when any selected unit appeared; excluded resources still entered hits. Wrong helper return type generated six strict typing errors; formatting/Ruff also failed.",
+  "model_tracking_error": "Two early admitted import-only edits were mistaken for implementation changes; exact provider and applied receipts agree, no partial host application.",
+  "supervisor_semantic_changes_during_native_run": 0,
+  "coordination_usage": "UNKNOWN",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX4090 Laptop",
+    "used_mib": 14006,
+    "total_mib": 16376,
+    "utilization_sample_percent": 97,
+    "profile_changed": false,
+    "energy_cost": "not measured"
+  },
+  "costs": "No new paid baseline or external inference. Codex supervision tokens/cost and total active supervision time unavailable.",
+  "raw_receipts": {
+    "turn-01\\capacity.json": {
+      "sha256": "b466edea72fd36f21bc75676d01247141274b5e55641abf050441a455fb5992b",
+      "bytes": 372
+    },
+    "turn-01\\request.json": {
+      "sha256": "0ebe8140a66a8f5ad4356abd099141369695da6d44815eb5d9d61e2a94a07bbb",
+      "bytes": 12592
+    },
+    "turn-01\\response.json": {
+      "sha256": "2480f80a8014f846ae78b0b6ad28045bb97dd475f58a7a9d7143847b7a76fe4e",
+      "bytes": 785
+    },
+    "turn-01\\stage.json": {
+      "sha256": "d5cf76d06cfe2b4a8387ee55f07f84b2475c57715d826d3ed5a2e4b52515e578",
+      "bytes": 11727
+    },
+    "turn-01\\tools.json": {
+      "sha256": "a19d5cd8cae9e91fe5ce771a0c0aeae731030c69df80c7d01b13104c1a280b01",
+      "bytes": 9684
+    },
+    "turn-01\\unprojected-prompt.json": {
+      "sha256": "76f5b62b61acc4e851f756dd8c1a80288bc8266022c4e8ea2b677ab9c83feb44",
+      "bytes": 6327
+    },
+    "turn-02\\capacity.json": {
+      "sha256": "5ce393401fde08a99d87349b4b031bce1dfe8b79617a4cf9a88b7d9a6b316502",
+      "bytes": 361
+    },
+    "turn-02\\request.json": {
+      "sha256": "4a87999381947abf53db33f4731eb4f3e0ab020c84949648bde556681b0aa0b7",
+      "bytes": 22285
+    },
+    "turn-02\\response.json": {
+      "sha256": "fda787c7894362cb16c91c313cbc9a0d36bcc633afdce9a1080cda2edf1d6556",
+      "bytes": 785
+    },
+    "turn-02\\stage.json": {
+      "sha256": "43ff8f43d0796b5f42f7536cebe48ee27263beaa11e92c4d98ee2c959d1ac846",
+      "bytes": 12803
+    },
+    "turn-02\\tools.json": {
+      "sha256": "92f89a129703485bea3e7c1e1f94d56a84c5ca74362fa65e89808053f2a17ccf",
+      "bytes": 10761
+    },
+    "turn-02\\unprojected-prompt.json": {
+      "sha256": "25b288fddec22bfa5c34fb7a35fbbad6f97344a22a24620c4c9b821aefe885e5",
+      "bytes": 16092
+    },
+    "turn-03\\capacity.json": {
+      "sha256": "8d72b550d21396f9437f13c3eb01db45973c887b27b27a142992c0177b161386",
+      "bytes": 361
+    },
+    "turn-03\\request.json": {
+      "sha256": "a18c9bcff15134d4c5c2398c291eeddeaca44fff02bc9fe9a501f55102634187",
+      "bytes": 33056
+    },
+    "turn-03\\response.json": {
+      "sha256": "8d802c2e9a80a1c801f55a1914f7fdd59029b4dc40bee2728a4f5228111d9ef7",
+      "bytes": 793
+    },
+    "turn-03\\stage.json": {
+      "sha256": "b11f4bd94484a65d29ce4d1fbfa4dcddcae2b3f27e4737e816ec54ae3dc73de8",
+      "bytes": 12104
+    },
+    "turn-03\\tools.json": {
+      "sha256": "a4a4b46657689710f43f55bca811ed10b562a7ba1d3c31cd7f5da7f558a2a597",
+      "bytes": 10058
+    },
+    "turn-03\\unprojected-prompt.json": {
+      "sha256": "2836fb8242cd748166f430931884316cf56e1252ad3f1b41fb4212020279af47",
+      "bytes": 26930
+    },
+    "turn-04\\capacity.json": {
+      "sha256": "35d52989435d10a4ebd8c5b0492109e878c632b8cd2c1e5cb7cb3ffcea1706c5",
+      "bytes": 363
+    },
+    "turn-04\\request.json": {
+      "sha256": "ca036260aa1b32f171316d38215f59f2c693a5ec427a20890a7ec400a7522d5b",
+      "bytes": 43130
+    },
+    "turn-04\\response.json": {
+      "sha256": "e4e50018a5b929af84567f9f836cced28039b68874ebd50871a42ddaf7919bb6",
+      "bytes": 748
+    },
+    "turn-04\\stage.json": {
+      "sha256": "cad7a5aca44dc7d78ac9a2ced34d099c1576e6f5ec75b92d2f22f47d193726e7",
+      "bytes": 9586
+    },
+    "turn-04\\tools.json": {
+      "sha256": "eff654e2295ab41c26859703df7c0bbb71f9656ec1da0b990ca346290e77fe72",
+      "bytes": 7838
+    },
+    "turn-04\\unprojected-prompt.json": {
+      "sha256": "0a680121ced321b08caf5ba7db361fcd0793d51228b5d17eae258f1f8e40caed",
+      "bytes": 37134
+    },
+    "turn-05\\capacity.json": {
+      "sha256": "98e1394235c0fa7754bf8aa76bde807c38afb65d19ac2fc6ffbbba155dfc09d8",
+      "bytes": 363
+    },
+    "turn-05\\request.json": {
+      "sha256": "17292796a3d8020c77ef0a69e3b6afa7e00264270a24f4e8a09a8223b8e28a9d",
+      "bytes": 51155
+    },
+    "turn-05\\response.json": {
+      "sha256": "75d0f34e7ba9f36c0a43f65ea7a126f483f94838566ebf5b3a1f2f9a0b507982",
+      "bytes": 578
+    },
+    "turn-05\\stage.json": {
+      "sha256": "9305eda7f259559a9b98090b2805cff8cee3ea1afdc30545c43f447b5cf1651b",
+      "bytes": 8246
+    },
+    "turn-05\\tools.json": {
+      "sha256": "45a055a7488f4bc3c53f815896010da6880633b92dd6cce20bee8c02c034fd39",
+      "bytes": 6675
+    },
+    "turn-05\\unprojected-prompt.json": {
+      "sha256": "9eeca07f91e1073a5390d36c66a0966f042ff6b11761f71d09a897d575a4b814",
+      "bytes": 45200
+    },
+    "turn-06\\capacity.json": {
+      "sha256": "f204a88a1940cec09c947a35d7aeef5c0544e04c44fb3566ef964ff9a0b3d315",
+      "bytes": 363
+    },
+    "turn-06\\request.json": {
+      "sha256": "1efbe58c434071dde1c2689b9c89286d45a6d99995ce9c07aa8dbea8f16dff37",
+      "bytes": 57922
+    },
+    "turn-06\\response.json": {
+      "sha256": "deac7cd115a7e3f95a6dc1b0519289167647196d03a0d2794c86b3e2914b0f0a",
+      "bytes": 578
+    },
+    "turn-06\\stage.json": {
+      "sha256": "bf43cbd75dac173ce70e9e1c3a1297fb20128a7a98b59e12fd7351c979ca8f16",
+      "bytes": 8171
+    },
+    "turn-06\\tools.json": {
+      "sha256": "07fa4c37f27ddeedfe56db0605f0d8b2aac0c4a65003d15e4397d2bfc8a1157c",
+      "bytes": 6598
+    },
+    "turn-06\\unprojected-prompt.json": {
+      "sha256": "778a5b8f8f4124c61cbda2736435b263deefba43ed2679d06766d1df7e97a5c5",
+      "bytes": 52153
+    },
+    "turn-07\\capacity.json": {
+      "sha256": "4d786cba70b87c6d3560d417c03e0e5902503c8af14f537244feb6a223e66ad6",
+      "bytes": 363
+    },
+    "turn-07\\request.json": {
+      "sha256": "85f1c0eb079779bf73cbeb098fe355a4a026cde2f5f5c1045904b728ee010e90",
+      "bytes": 64613
+    },
+    "turn-07\\response.json": {
+      "sha256": "1db764cf382ba040e444d9512ae293e24541e610b5806ca088c136249c5c8296",
+      "bytes": 579
+    },
+    "turn-07\\stage.json": {
+      "sha256": "98a75525346c046d092658c4c865d6cc1f4e10c3e71fec30c272b16f4faac106",
+      "bytes": 8185
+    },
+    "turn-07\\tools.json": {
+      "sha256": "0e048c13e100ea46567403d47166b89f657a23d543c41443b89f33250b806f23",
+      "bytes": 6612
+    },
+    "turn-07\\unprojected-prompt.json": {
+      "sha256": "9f54fe4e292bc237f226423f9a7879cc6c72a857cbbb74618715a06c1284565b",
+      "bytes": 58993
+    },
+    "turn-08\\capacity.json": {
+      "sha256": "7b87e74bce6341971397adceb4f6231d757f64b462c3a20ef7288ec1faf4a89f",
+      "bytes": 363
+    },
+    "turn-08\\request.json": {
+      "sha256": "bdf15fe9006281fa5d1ab670cd71f1e627ecf233e89ab9383445b01ff2d64a7a",
+      "bytes": 71319
+    },
+    "turn-08\\response.json": {
+      "sha256": "8babf7688dde7b0c943b505f341df1afb9bda8a021d8efb15df92c38fc2e084a",
+      "bytes": 555
+    },
+    "turn-08\\stage.json": {
+      "sha256": "e9b715898877377a1286a68b33c53b3f02b5e42d0f84a76a4d968916a3dfd8ad",
+      "bytes": 2349
+    },
+    "turn-08\\tools.json": {
+      "sha256": "4e555805365dc65d4b82f2d5fe322542c91e308f7970fdc8600278b446de7fc2",
+      "bytes": 1070
+    },
+    "turn-08\\unprojected-prompt.json": {
+      "sha256": "eacc03d42dc62199f3074d133ee7b47548d2d1ff365101f7fa9ad39865356bae",
+      "bytes": 65868
+    },
+    "turn-09\\capacity.json": {
+      "sha256": "b3ba655dc2cdf2e44165e6082233e315396e7f8201f1e35fceb1bf2563c1025f",
+      "bytes": 363
+    },
+    "turn-09\\request.json": {
+      "sha256": "1b537459f3b404ee31ea005dc192423fd1e762dd98fcad2d9f2bbdb7676db72c",
+      "bytes": 72655
+    },
+    "turn-09\\response.json": {
+      "sha256": "d403692e30e3b0401638954142f3ee4a6d9508e6745219116de4411b26140323",
+      "bytes": 569
+    },
+    "turn-09\\stage.json": {
+      "sha256": "618e87a8596487f45787dd6197e66a0737237d29e3ef1e82f034b8de318d0b28",
+      "bytes": 7593
+    },
+    "turn-09\\tools.json": {
+      "sha256": "b57aeb8ff207d9d0c09967f246160c5f946e29fff42fc2150c46d6c5d7034b04",
+      "bytes": 6030
+    },
+    "turn-09\\unprojected-prompt.json": {
+      "sha256": "2b6a28c427ed04e3075a84b46c1652712c2b816a9fd5d17c2ab21591d6a25879",
+      "bytes": 67059
+    },
+    "turn-10\\capacity.json": {
+      "sha256": "f590b4a22b698faa01e63405341d1bc4877201388b41ec6d133e97b868585f22",
+      "bytes": 363
+    },
+    "turn-10\\request.json": {
+      "sha256": "c4ebeaa316b973699e7d801188466b5c0dcc0325130df25f77eda337aa1ccdf3",
+      "bytes": 78773
+    },
+    "turn-10\\response.json": {
+      "sha256": "faa2da2827307f13dd92662875ec5ced0252d724551bdc9cf187cddd9f2850af",
+      "bytes": 803
+    },
+    "turn-10\\stage.json": {
+      "sha256": "446adac37b811a9f672352394f53bf3c214745825b6e4103473162f5e5aeaf8c",
+      "bytes": 3565
+    },
+    "turn-10\\tools.json": {
+      "sha256": "9ae2610d588b82ffc9aad581e9ffe964be61dcc8cfc27ae676fb103ba5678f53",
+      "bytes": 2257
+    },
+    "turn-10\\unprojected-prompt.json": {
+      "sha256": "dee3b61ab34c938d1e2a823367cd77dbdba259c2db49f272862b1d7a3e9ac63d",
+      "bytes": 73317
+    },
+    "turn-11\\capacity.json": {
+      "sha256": "3b4c4b267cf9ff2bf5579b04f25c14cc148a4c23b41ce1c194106ce91d54a3c1",
+      "bytes": 363
+    },
+    "turn-11\\request.json": {
+      "sha256": "189896ef82b51aabb4b9dd2c1da596f2cbcded5b2ed95d8d0b89d151acf1aa8c",
+      "bytes": 81117
+    },
+    "turn-11\\response.json": {
+      "sha256": "66963da3a09a3d6fd94b57dc92614ebe4b3f39a76841cc6a0c9cf7aa826d6eda",
+      "bytes": 519
+    },
+    "turn-11\\stage.json": {
+      "sha256": "f0d6bac82ab49614565fe388cd796bcbf23bbf20108d87a7221fbdb277b2d816",
+      "bytes": 2296
+    },
+    "turn-11\\tools.json": {
+      "sha256": "548adc8af7020c8d755976a25f182dbf135a3453b94efc4be35f85f40c83175b",
+      "bytes": 1092
+    },
+    "turn-11\\unprojected-prompt.json": {
+      "sha256": "f6960b3fecc146e932eb879510052f18801a378fef1aafb0e1105ae7db847661",
+      "bytes": 75597
+    },
+    "turn-12\\capacity.json": {
+      "sha256": "2a189eca5937d3a8865a132e519c2e6cdd197c9439797c962b633fa1590b895c",
+      "bytes": 363
+    },
+    "turn-12\\proposal.patch": {
+      "sha256": "92adbe5a1e6b3e9616daf68019cee09f9ff93af8cf627cd20c9a9369e2fe458d",
+      "bytes": 513
+    },
+    "turn-12\\request.json": {
+      "sha256": "fea1fcaf91d57f5f156d49285ee3bb68ccec2c9d30cecefa24438a8f4554871f",
+      "bytes": 82344
+    },
+    "turn-12\\resolved-proposal.json": {
+      "sha256": "aecc2255202221f3637bed038a520095c85b18b308d5da5437f2dff21ecdf6e9",
+      "bytes": 13400
+    },
+    "turn-12\\response.json": {
+      "sha256": "9445cedd2c8f4c07ec42b885241b3120c4c37ddcd2123e488fac4750a2c31bcb",
+      "bytes": 3006
+    },
+    "turn-12\\stage.json": {
+      "sha256": "e996c94a7fb6a525f43cbc1cfddacaa9977d129e0ad2fe696805e7970b210505",
+      "bytes": 26046
+    },
+    "turn-12\\tools.json": {
+      "sha256": "d5abbc28737a0ae37e1f7e0312bef21779dd08ecade7520d9c0479ec4e927122",
+      "bytes": 26412
+    },
+    "turn-12\\unprojected-prompt.json": {
+      "sha256": "8203e1d2263573524c8717c75f3b1157b653197e0a686d909d5e446a35a62d09",
+      "bytes": 76784
+    },
+    "turn-13\\capacity.json": {
+      "sha256": "e60060c335277795b66927abbc2d1ffb3c78bcd3837008a5283f5903c5e3ec68",
+      "bytes": 686
+    },
+    "turn-13\\request.json": {
+      "sha256": "31abc892f6d6c40d876f1a904d60644a3347347d904f4eb003c5c97ecb8dc08f",
+      "bytes": 85609
+    },
+    "turn-13\\response.json": {
+      "sha256": "e58e11a37a2fd939d76951942bee8b5431a8736722599fa779b8453d51cff039",
+      "bytes": 577
+    },
+    "turn-13\\stage.json": {
+      "sha256": "f453bd14fa06ba2d5434d0d67e5723fca023177141cb4b2d0f20c6ae2eaff2b1",
+      "bytes": 8213
+    },
+    "turn-13\\tools.json": {
+      "sha256": "2a3ff53779f02b74bfa6c6e9a69f5576a5e8a10e8b6c7c6e58dc2fdd7234c68a",
+      "bytes": 6638
+    },
+    "turn-13\\unprojected-prompt.json": {
+      "sha256": "ad8c4785c95534f0bd6014cc0f4492a4009472d658b596a7eec413e532d8e0cf",
+      "bytes": 103801
+    },
+    "turn-14\\capacity.json": {
+      "sha256": "d9fa00eca216a728d9e3c00677b811f9eb5367761990ab3a083fb087487bf412",
+      "bytes": 467
+    },
+    "turn-14\\request.json": {
+      "sha256": "182b2d7d5a8e62bfd73921b378a316fb46907b0ee9878b994c512070837f2937",
+      "bytes": 93095
+    },
+    "turn-14\\response.json": {
+      "sha256": "fc648081bfddb5e26279eaf02dbe5ee8532a5b3080ed4f3b01c18c6ef35e4471",
+      "bytes": 1237
+    },
+    "turn-14\\stage.json": {
+      "sha256": "4a2afb82b515bd0770e8c127f6119880dc9242a73e39c89d3aa477d16c519f6b",
+      "bytes": 5751
+    },
+    "turn-14\\tools.json": {
+      "sha256": "3a4ba8f00b2048486fd372ac7006a765dfbf793531b5addd3f47ada83492d305",
+      "bytes": 4172
+    },
+    "turn-14\\unprojected-prompt.json": {
+      "sha256": "a76ac3b3e34fe8194a5a1e74d5958e7d8fff78e0d7a6ac8c2c66dec3349d484a",
+      "bytes": 110674
+    },
+    "turn-15\\capacity.json": {
+      "sha256": "07c102adba078880f041a7efaae007e5560a576809a6c3a28b4591e6f2f075d5",
+      "bytes": 467
+    },
+    "turn-15\\proposal.patch": {
+      "sha256": "84abbc326fa89f5bbf5645ea1805dbdd76e270f0e769dbf75e246e542d92e1a8",
+      "bytes": 662
+    },
+    "turn-15\\request.json": {
+      "sha256": "5586b72e2d4c1bf8d390f6dc3a0248141ba53f54baf596e317af352cfd5c73ad",
+      "bytes": 95156
+    },
+    "turn-15\\resolved-proposal.json": {
+      "sha256": "9e962ca3602614c4ea89b0e8ff99140d1e5c8c49fbdd2e7dae761a27387fe769",
+      "bytes": 10137
+    },
+    "turn-15\\response.json": {
+      "sha256": "0f383e6f7c46ba9f8e28cf9b9feaf6263131e2bdae676642dee19b46cfca84f7",
+      "bytes": 2221
+    },
+    "turn-15\\stage.json": {
+      "sha256": "a1d289a4a35ae43ccfe4e7fa32de743dc7ccc5cea422432ea4796c04e4a161ad",
+      "bytes": 16419
+    },
+    "turn-15\\tools.json": {
+      "sha256": "d5148db81f77a2c310d84f3374b342c6db9943487441c3f787251ce12214bef2",
+      "bytes": 28233
+    },
+    "turn-15\\unprojected-prompt.json": {
+      "sha256": "db9a67f0561dcd08378cae0ddf649cd6b1c64ff32669e673cdfca323bcc71c2d",
+      "bytes": 115517
+    },
+    "turn-16\\capacity.json": {
+      "sha256": "b33806b2f75be1dbc0fd7e0f44b7c84d764fff3d29c5bc265622a6f15c0be305",
+      "bytes": 998
+    },
+    "turn-16\\request.json": {
+      "sha256": "ad5c7eeee90e1328113f50fbdfa341c430b9b8800858e26d09326fef1a7717d3",
+      "bytes": 80902
+    },
+    "turn-16\\response.json": {
+      "sha256": "5c90f2e5ce85bf231fc74aa9f5a064732c8e23b9d1bd6d4b0b1be4d982cd4157",
+      "bytes": 1680
+    },
+    "turn-16\\stage.json": {
+      "sha256": "7c0ceb6471367bbe11b02dfddaac2e4727489c334a3339ee5511c8083b4323ed",
+      "bytes": 8200
+    },
+    "turn-16\\tools.json": {
+      "sha256": "a4c1d6d4afc42d351c083579bd0e68ece4326f584f2954c324a921d260925632",
+      "bytes": 6623
+    },
+    "turn-16\\unprojected-prompt.json": {
+      "sha256": "9d0602ada5d6766fc22e2abe4a7fa88180791b7ea643e88ea70c6dd39ac6d3af",
+      "bytes": 142926
+    },
+    "turn-17\\capacity.json": {
+      "sha256": "94b7b229bae603c3503e0d44e14e9b55497fd7342d202d94beb4ded7c8dcd97b",
+      "bytes": 675
+    },
+    "turn-17\\request.json": {
+      "sha256": "f6147f8a4ec65905f47ecd65a28a0f3e7b97f05dc07785b17ba7af0f72b34ac0",
+      "bytes": 100064
+    },
+    "turn-17\\response.json": {
+      "sha256": "c6d4a3981359417dee4f9152b55f0c90a800ef6552b906c75e9abf9c790df7b7",
+      "bytes": 8706
+    },
+    "turn-17\\stage.json": {
+      "sha256": "98cd89a1a188302af9095f88f0e7ebf626616cc92fb13351309f7f937fe1685b",
+      "bytes": 1097
+    },
+    "turn-17\\tools.json": {
+      "sha256": "a4148c9afc92f193b1506aa5ac6f7424045c959d689cc2b9b72a3373e8e456ae",
+      "bytes": 9526
+    },
+    "turn-17\\unprojected-prompt.json": {
+      "sha256": "62453caa37591676c7e0f3eb30de19dc2b867cffe50aaef99cfc3983a6d9de78",
+      "bytes": 150853
+    },
+    "turn-18\\capacity.json": {
+      "sha256": "e9219333febe8128a8bf6b2b381e34e3b05889224f7903b74369730786412098",
+      "bytes": 1310
+    },
+    "turn-18\\proposal.patch": {
+      "sha256": "e9c0fe0886894c273ce128eba93ef52f33e6f3c4ecb9c934379b755825d67f27",
+      "bytes": 686
+    },
+    "turn-18\\request.json": {
+      "sha256": "1c65a9a98833cd3f67e134beffaf77d6ef8ec47ff70848e07e6d87a4c8f20070",
+      "bytes": 83480
+    },
+    "turn-18\\resolved-proposal.json": {
+      "sha256": "b673c5c5e318ba3aaa0565747a1b4b3fd3af3215694e1922a588f28eb1189267",
+      "bytes": 17508
+    },
+    "turn-18\\response.json": {
+      "sha256": "a2bd492bb5d7d9f475b288a1103e5adef9fc804cbbd3e62179fea365c8be55e9",
+      "bytes": 1567
+    },
+    "turn-18\\stage.json": {
+      "sha256": "f712835a21d91745fd622616cbb0a5e4df52472f2b4200c3c76b002f3100275c",
+      "bytes": 32229
+    },
+    "turn-18\\tools.json": {
+      "sha256": "a7c5f97bb97e1718d4019342fb4d5a6580523830dc191d4d387a7811dc73c8d2",
+      "bytes": 45139
+    },
+    "turn-18\\unprojected-prompt.json": {
+      "sha256": "c15c7b0ffae08737569504fe21b72ae1656fbcbc019b4bc163ebd9dc5839ec0c",
+      "bytes": 160745
+    },
+    "turn-19\\capacity.json": {
+      "sha256": "8a5e8e472c5b19230e0829eb468a92c7b9a44a082725e5d839dbdcb25fe77e59",
+      "bytes": 1519
+    },
+    "turn-19\\proposal.patch": {
+      "sha256": "01b002944480534e52b2bd15353511e78a11555e226adf5ef3d0f76807aab344",
+      "bytes": 2585
+    },
+    "turn-19\\request.json": {
+      "sha256": "d54bfc74492eec52131c128bbdab3733c9e990865bbb752c1e1a234b9d6f4309",
+      "bytes": 78777
+    },
+    "turn-19\\resolved-proposal.json": {
+      "sha256": "1b33eec1b0e3899423171d57c1102b269f2f1b796137f84dd7110505b7c44d30",
+      "bytes": 17017
+    },
+    "turn-19\\response.json": {
+      "sha256": "8a5480e1c2ba7289749af22446ae8dc0fdb57610a1b2bd7027dafc721000b66b",
+      "bytes": 6136
+    },
+    "turn-19\\stage.json": {
+      "sha256": "2023c88281c84c6ead64e47840b80a8c092357d551b54a19f16b1cfbcc406f89",
+      "bytes": 26663
+    },
+    "turn-19\\tools.json": {
+      "sha256": "980201520570030acb26a137286da7a1afefdb3fd429578108cb8f0eaec1bc59",
+      "bytes": 51937
+    },
+    "turn-19\\unprojected-prompt.json": {
+      "sha256": "d445e42b5f7e947ece20804ef8a2040f273265902c623f6c0bf42585b42807c9",
+      "bytes": 204200
+    },
+    "turn-20\\capacity.json": {
+      "sha256": "fc92d06d72429c2812fbc7002b3729487c3fb781761164211245119c39fa4828",
+      "bytes": 1519
+    },
+    "turn-20\\request.json": {
+      "sha256": "d4b5475deb4f43202be3ff1030e7047ea9eff84764c4e8b385061c2f516cca56",
+      "bytes": 94729
+    },
+    "turn-20\\unprojected-prompt.json": {
+      "sha256": "d9f15f1ff096b5219e7953f43808efdbfac9a4d468ea0ecef367003a21c1a18d",
+      "bytes": 252920
+    }
+  },
+  "original_result_sha256": "82cb01b05683edd0d52873fc5b148b39e1b60efc097f847bb3088e7b832372a8",
+  "native_tool_surface": {
+    "repository_map": {
+      "description": "Orient within the authorized corpus using canonical RI map ranking. Query names/paths; start=0 initially, then continuation_start. Metadata is not observed source. Select a returned map handle with expand_source(unit=handle, to='source') for exact editable source. Request fresh orientation after edits invalidate old handles.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":512,\"minLength\":1,\"type\":\"string\"},\"start\":{\"minimum\":0,\"type\":\"integer\"}},\"required\":[\"query\",\"start\"],\"type\":\"object\"}",
+      "name": "repository_map"
+    },
+    "expand_source": {
+      "description": "Expand a known unit to its parent symbol, class or file; returns metadata for optional reading. Use the exact unit ID from search_source/lookup_symbol; a file path is not a unit ID. When enabled, to='source' accepts ONLY a current repository_map handle and returns exact declaration source (<=4096 UTF-8 bytes).",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"to\":{\"enum\":[\"file\",\"class\",\"symbol\",\"source\"],\"type\":\"string\"},\"unit\":{\"maxLength\":512,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"unit\",\"to\"],\"type\":\"object\"}",
+      "name": "expand_source"
+    },
+    "check_changes": {
+      "description": "Discover authorized candidate changes and run all fixed checks. Returns scoped source/Git/plan evidence, never publication authority.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{},\"required\":[],\"type\":\"object\"}",
+      "name": "check_changes"
+    },
+    "is_current": {
+      "description": "Reauthenticate a saved check_changes report without rerunning checks. Freshness is separate from correctness or review approval.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"report\":{\"type\":\"object\"}},\"required\":[\"report\"],\"type\":\"object\"}",
+      "name": "is_current"
+    }
+  },
+  "refused_transaction_source_unchanged": true,
+  "largest_native_output_tokens": 1753,
+  "publication": {
+    "commit": "a951957c75ba187b8ac8bb29ad2520750ebb3783",
+    "review_subject": "e6411fc19bf3664dbab912e4450646818b7acc5cf51dbc2f90ab9620c0e45307",
+    "files": [
+      {
+        "path": "src/devtools/context/retrieval/source/search.py",
+        "author": "Codex",
+        "reference": "ffba82d01db71b50bb372271ba98f8cbfa53d3086d0a6fa65aa92b5fd844b2fd",
+        "sha256": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6"
+      },
+      {
+        "path": "tests/context/retrieval/source/test_scope.py",
+        "author": "Codex",
+        "reference": "Independent permanent caller-scoped source-search regressions; frozen private oracle unchanged. Separate Codex fallback, not repaired Qwen code.",
+        "sha256": "a8cc2bcdefdcaa5217b3b100902fdf5f8399ee3ea9437a5946a67279ef3bc20d"
+      }
+    ],
+    "protected_validation": {
+      "started_at": "2026-10-22T20:55:03.639015+00:00",
+      "profile": "pre-publication-protected",
+      "checks": [
+        {
+          "name": "oracle",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected\\oracle.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.348739,
+          "stdout": "QUALIFIED_SCOPED_SOURCE_PASS: all modes, evidence, limits, mixed support, invalid scope and retained identity\r\n",
+          "stderr": "",
+          "stdout_sha256": "4a65cb372cd6df8d730f1dc31a5e62f058b1c8c40467b0d7e8f8567632ae94cd",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "tests",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected\\tests.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.833709,
+          "stdout": ".............................                                            [100%]\r\n29 passed in 0.24s\r\n",
+          "stderr": "",
+          "stdout_sha256": "ece081f06d0fa5524f29e4cb10ab0b0a18fb1040a44d2e0a8641557dad69b0da",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "ruff",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "src/devtools/context/retrieval/source/search.py",
+            "tests/context/retrieval/source/test_scope.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.091071,
+          "stdout": "All checks passed!\n",
+          "stderr": "",
+          "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "format",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "src/devtools/context/retrieval/source/search.py",
+            "tests/context/retrieval/source/test_scope.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.078934,
+          "stdout": "2 files already formatted\n",
+          "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+          "stdout_sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+          "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "mypy",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "mypy",
+            "--strict",
+            "src/devtools/context/retrieval/source/search.py",
+            "tests/context/retrieval/source/test_scope.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.246397,
+          "stdout": "Success: no issues found in 2 source files\r\n",
+          "stderr": "",
+          "stdout_sha256": "0c37c4158c91ef55c724ba017bf6465f26018199badb08e3ff13f98acdf056c2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "protected",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected\\protected.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 780.904855,
+          "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\r\nconfigfile: pyproject.toml\r\nplugins: anyio-4.15.1, cov-7.1.0\r\ncollected 2665 items\r\n\r\ntests\\agents\\conversation\\history\\test_history.py ..........             [  0%]\r\ntests\\agents\\conversation\\message\\test_message.py ...............        [  0%]\r\ntests\\agents\\conversation\\test_live.py s                                 [  0%]\r\ntests\\agents\\conversation\\test_session.py .....................          [  1%]\r\ntests\\agents\\conversation\\test_session_id.py ...                         [  1%]\r\ntests\\agents\\integrations\\codex\\test_agent.py ...............            [  2%]\r\ntests\\agents\\integrations\\codex\\test_live.py s                           [  2%]\r\ntests\\agents\\integrations\\codex\\test_parsing.py ...............          [  3%]\r\ntests\\agents\\integrations\\codex\\test_usage.py ..............             [  3%]\r\ntests\\apps\\operator_dashboard\\test_native_history.py .                   [  3%]\r\ntests\\apps\\operator_dashboard\\test_projection.py ...                     [  3%]\r\ntests\\apps\\operator_dashboard\\test_server.py .....                       [  3%]\r\ntests\\apps\\qwen\\test_application_scope.py ......                         [  4%]\r\ntests\\apps\\qwen\\test_change_checks.py .................................. [  5%]\r\n.......                                                                  [  5%]\r\ntests\\apps\\qwen\\test_check_bundle.py ...............................     [  6%]\r\ntests\\apps\\qwen\\test_coding_loop.py ...................                  [  7%]\r\ntests\\apps\\qwen\\test_context_tools.py .................................. [  8%]\r\n.....                                                                    [  9%]\r\ntests\\apps\\qwen\\test_development_task.py ............................... [ 10%]\r\n..............................................                           [ 11%]\r\ntests\\apps\\qwen\\test_edit_diagnostics.py ..........................      [ 12%]\r\ntests\\apps\\qwen\\test_edits.py ........................                   [ 13%]\r\ntests\\apps\\qwen\\test_environment.py ....................                 [ 14%]\r\ntests\\apps\\qwen\\test_grounding.py .......................                [ 15%]\r\ntests\\apps\\qwen\\test_live_change_checks.py .....                         [ 15%]\r\ntests\\apps\\qwen\\test_navigation.py ............                          [ 16%]\r\ntests\\apps\\qwen\\test_new_file_feedback.py ..                             [ 16%]\r\ntests\\apps\\qwen\\test_observed_edits.py ................................. [ 17%]\r\n..                                                                       [ 17%]\r\ntests\\apps\\qwen\\test_repair_feedback.py ............                     [ 17%]\r\ntests\\apps\\qwen\\test_task_selection.py ..................                [ 18%]\r\ntests\\context\\localization\\association\\test_hypothesis.py .............. [ 19%]\r\n............                                                             [ 19%]\r\ntests\\context\\localization\\generation\\test_branching.py ................ [ 20%]\r\n...........                                                              [ 20%]\r\ntests\\context\\localization\\generation\\test_generation.py .........       [ 20%]\r\ntests\\context\\localization\\generation\\test_imports.py .................. [ 21%]\r\n............................                                             [ 22%]\r\ntests\\context\\localization\\generation\\test_references.py ............... [ 23%]\r\n.............................                                            [ 24%]\r\ntests\\context\\localization\\grounding\\test_grounding.py ...............   [ 24%]\r\ntests\\context\\localization\\resolution\\test_resolution.py .........       [ 25%]\r\ntests\\context\\localization\\roles\\test_configuration.py ..........        [ 25%]\r\ntests\\context\\localization\\roles\\test_dependency_groups.py ............. [ 26%]\r\n....                                                                     [ 26%]\r\ntests\\context\\localization\\roles\\test_evidence.py ...                    [ 26%]\r\ntests\\context\\localization\\roles\\test_inputs.py ......                   [ 26%]\r\ntests\\context\\localization\\routing\\test_routing.py .........             [ 26%]\r\ntests\\context\\localization\\test_kernel.py .............................. [ 27%]\r\n                                                                         [ 27%]\r\ntests\\context\\localization\\test_lexical.py ...........                   [ 28%]\r\ntests\\context\\planning\\test_map_source.py .......................        [ 29%]\r\ntests\\context\\planning\\test_plan.py .......                              [ 29%]\r\ntests\\context\\planning\\test_repository_map.py ..................         [ 30%]\r\ntests\\context\\python\\classes\\test_bases.py ...........                   [ 30%]\r\ntests\\context\\python\\classes\\test_declarations.py ......                 [ 30%]\r\ntests\\context\\python\\function\\test_candidates.py ......                  [ 31%]\r\ntests\\context\\python\\function\\test_containment.py ....                   [ 31%]\r\ntests\\context\\python\\function\\test_cross_resource_pipeline.py ...        [ 31%]\r\ntests\\context\\python\\function\\test_declaration_aggregation.py .....      [ 31%]\r\ntests\\context\\python\\function\\test_declarations.py ...........           [ 31%]\r\ntests\\context\\python\\function\\test_disclosure.py ...                     [ 32%]\r\ntests\\context\\python\\function\\test_materialization.py .................. [ 32%]\r\n................................................                         [ 34%]\r\ntests\\context\\python\\function\\test_qualified_reference.py ...........    [ 34%]\r\ntests\\context\\python\\function\\test_rendering.py ...                      [ 35%]\r\ntests\\context\\python\\function\\test_request_assembly.py ...               [ 35%]\r\ntests\\context\\python\\function\\test_resource_selection.py ....            [ 35%]\r\ntests\\context\\python\\function\\test_retrieval.py ....                     [ 35%]\r\ntests\\context\\python\\imports\\test_declarations.py ...                    [ 35%]\r\ntests\\context\\python\\imports\\test_members.py ........................... [ 36%]\r\n.....                                                                    [ 36%]\r\ntests\\context\\python\\imports\\test_relations.py .....                     [ 36%]\r\ntests\\context\\python\\imports\\test_resolution.py ......                   [ 37%]\r\ntests\\context\\python\\modules\\test_interpretation.py ......               [ 37%]\r\ntests\\context\\python\\modules\\test_membership.py .......                  [ 37%]\r\ntests\\context\\python\\modules\\test_selection.py .................         [ 38%]\r\ntests\\context\\python\\project_configuration\\test_configuration.py ....... [ 38%]\r\n..........................................                               [ 40%]\r\ntests\\context\\python\\project_configuration\\test_dependency_groups.py ... [ 40%]\r\n......................                                                   [ 41%]\r\ntests\\context\\python\\project_configuration\\test_obstructions.py ........ [ 41%]\r\n................................................                         [ 43%]\r\ntests\\context\\python\\project_configuration\\test_settings.py ............ [ 43%]\r\n.........                                                                [ 43%]\r\ntests\\context\\python\\references\\declarations\\test_analysis.py .......... [ 44%]\r\n..............................                                           [ 45%]\r\ntests\\context\\python\\references\\declarations\\test_bindings.py ....       [ 45%]\r\ntests\\context\\python\\test_mirrored_paths.py .....                        [ 45%]\r\ntests\\context\\python\\test_source_candidacy.py ....                       [ 45%]\r\ntests\\context\\repository\\test_changes.py .......                         [ 46%]\r\ntests\\context\\repository\\test_corpus.py .............                    [ 46%]\r\ntests\\context\\repository\\test_discovery.py ................              [ 47%]\r\ntests\\context\\repository\\test_document.py .......                        [ 47%]\r\ntests\\context\\repository\\test_intrinsic_paths.py ..                      [ 47%]\r\ntests\\context\\repository\\test_observation.py ........................... [ 48%]\r\n...                                                                      [ 48%]\r\ntests\\context\\retrieval\\graph\\test_ranking.py ............               [ 49%]\r\ntests\\context\\retrieval\\graph\\test_typed.py .....                        [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_analysis.py ......                  [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_bm25.py ...........                 [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_evaluation.py .......               [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_filename.py ....                    [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_index.py .......                    [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_statistics.py ....                  [ 50%]\r\ntests\\context\\retrieval\\repository_map\\test_ranking.py ......            [ 51%]\r\ntests\\context\\retrieval\\source\\test_scope.py ................            [ 51%]\r\ntests\\context\\retrieval\\source\\test_search.py .............              [ 52%]\r\ntests\\context\\retrieval\\test_composition.py ......                       [ 52%]\r\ntests\\context\\retrieval\\test_structural.py .....                         [ 52%]\r\ntests\\core\\conversion\\test_conversion.py ........                        [ 52%]\r\ntests\\core\\identity\\test_models.py ....                                  [ 53%]\r\ntests\\core\\identity\\test_uuid_invariant.py ..............                [ 53%]\r\ntests\\core\\paths\\test_errors.py .                                        [ 53%]\r\ntests\\core\\paths\\test_resolution.py .................                    [ 54%]\r\ntests\\core\\paths\\test_resolved_path.py ......                            [ 54%]\r\ntests\\core\\regex\\test_models.py ...                                      [ 54%]\r\ntests\\core\\regex\\test_search.py ....                                     [ 54%]\r\ntests\\core\\regex\\test_splitting.py ..........                            [ 55%]\r\ntests\\core\\system\\test_bsd.py ..........                                 [ 55%]\r\ntests\\core\\system\\test_detection.py .....                                [ 55%]\r\ntests\\core\\system\\test_models.py .....                                   [ 55%]\r\ntests\\core\\time\\test_models.py .........                                 [ 56%]\r\ntests\\core\\time\\test_parsing.py ...................                      [ 56%]\r\ntests\\core\\time\\test_timing.py ...                                       [ 56%]\r\ntests\\evaluation\\test_coverage.py .....                                  [ 57%]\r\ntests\\execution\\test_interaction_attempt.py ............................ [ 58%]\r\n..                                                                       [ 58%]\r\ntests\\execution\\test_runtime.py ..................                       [ 58%]\r\ntests\\models\\benchmarks\\test_models.py .............                     [ 59%]\r\ntests\\models\\benchmarks\\test_runner.py ................................. [ 60%]\r\n                                                                         [ 60%]\r\ntests\\models\\benchmarks\\test_storage.py .........................        [ 61%]\r\ntests\\models\\interaction\\providers\\test_llama_cpp.py ................... [ 62%]\r\n........................................................................ [ 65%]\r\n................................                                         [ 66%]\r\ntests\\models\\interaction\\test_models.py ................................ [ 67%]\r\n.......................                                                  [ 68%]\r\ntests\\models\\interaction\\test_prompt.py ........................         [ 69%]\r\ntests\\models\\interaction\\test_protocols.py ..                            [ 69%]\r\ntests\\models\\interaction\\test_tools.py ................                  [ 69%]\r\ntests\\models\\serving\\test_huggingface.py ............................    [ 70%]\r\ntests\\models\\serving\\test_llama_cpp.py ................                  [ 71%]\r\ntests\\models\\serving\\test_vllm.py ...................................... [ 72%]\r\n...................                                                      [ 73%]\r\ntests\\observability\\evidence\\test_inspection.py ...                      [ 73%]\r\ntests\\observability\\evidence\\test_invocation.py ........                 [ 74%]\r\ntests\\observability\\evidence\\test_model_interaction.py ................. [ 74%]\r\n........                                                                 [ 75%]\r\ntests\\observability\\evidence\\test_protocols.py .                         [ 75%]\r\ntests\\observability\\evidence\\test_terminal.py .                          [ 75%]\r\ntests\\observability\\usage\\test_sources.py ......                         [ 75%]\r\ntests\\observability\\usage\\test_usage.py .........                        [ 75%]\r\ntests\\persistence\\test_json.py ......................                    [ 76%]\r\ntests\\persistence\\test_sqlite.py ...........                             [ 76%]\r\ntests\\resources\\commands\\test_decoded_output.py ....                     [ 77%]\r\ntests\\resources\\commands\\test_environment.py ...............             [ 77%]\r\ntests\\resources\\commands\\test_errors.py .                                [ 77%]\r\ntests\\resources\\commands\\test_events.py .                                [ 77%]\r\ntests\\resources\\commands\\test_execution.py ...........                   [ 78%]\r\ntests\\resources\\commands\\test_handle.py .........                        [ 78%]\r\ntests\\resources\\commands\\test_models.py ....................             [ 79%]\r\ntests\\resources\\commands\\test_output_policy.py ......................... [ 80%]\r\n...................................                                      [ 81%]\r\ntests\\resources\\commands\\test_stdin.py .................                 [ 82%]\r\ntests\\resources\\commands\\test_success_exit_codes.py .................... [ 82%]\r\n........                                                                 [ 83%]\r\ntests\\resources\\filesystem\\codecs\\test_csv.py ...............            [ 83%]\r\ntests\\resources\\filesystem\\codecs\\test_json.py ......................... [ 84%]\r\n.......                                                                  [ 84%]\r\ntests\\resources\\filesystem\\codecs\\test_markdown.py ......                [ 85%]\r\ntests\\resources\\filesystem\\codecs\\test_text.py ........                  [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_dialect.py .....              [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_file.py .......               [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_row.py ...                    [ 86%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_file.py ...............  [ 86%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_heading.py .........     [ 86%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_section.py ....          [ 87%]\r\ntests\\resources\\filesystem\\test_binary_io.py ......                      [ 87%]\r\ntests\\resources\\filesystem\\test_bounded_read.py .........                [ 87%]\r\ntests\\resources\\filesystem\\test_json_conversion.py .........             [ 87%]\r\ntests\\resources\\filesystem\\test_json_models.py ...........               [ 88%]\r\ntests\\resources\\filesystem\\test_models.py ....                           [ 88%]\r\ntests\\resources\\filesystem\\test_reading.py .................             [ 89%]\r\ntests\\resources\\filesystem\\test_resolution.py .......                    [ 89%]\r\ntests\\resources\\filesystem\\test_writing.py ................              [ 90%]\r\ntests\\scripts\\backlog\\test_checkout.py ............                      [ 90%]\r\ntests\\scripts\\backlog\\test_delegation.py ........................        [ 91%]\r\ntests\\scripts\\backlog\\test_intake.py ..................................  [ 92%]\r\ntests\\scripts\\backlog\\test_integration.py .............................. [ 93%]\r\n..                                                                       [ 93%]\r\ntests\\scripts\\backlog\\test_integration_validation.py ...                 [ 93%]\r\ntests\\scripts\\backlog\\test_local_closeout.py ........                    [ 94%]\r\ntests\\scripts\\backlog\\test_work.py ...................                   [ 94%]\r\ntests\\scripts\\qwen\\test_coding_worker.py ................                [ 95%]\r\ntests\\scripts\\qwen\\test_llama_cpp_profile.py .                           [ 95%]\r\ntests\\scripts\\qwen\\test_llama_cpp_service.py ..........................  [ 96%]\r\ntests\\scripts\\qwen\\test_patch_proposal_worker_acceptance.py ",
+          "stderr": "",
+          "stdout_sha256": "969d0a9ce5da3ddffdb8ca317739840a4d80f273600ce6c87e5b1e123e81b0af",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\closeout-validation-2026-10-22T20-55-02.123195+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": true,
+          "truncated": false
+        }
+      ],
+      "passed": true,
+      "active_check": null,
+      "finished_at": "2026-10-22T21:08:06.153153+00:00",
+      "elapsed_seconds": 782.514141
+    },
+    "remote_after": null,
+    "implementation_by": "Codex"
+  },
+  "protected_summary": {
+    "passed": true,
+    "elapsed_seconds": 780.904855,
+    "coverage": [
+      "TOTAL                                                                     11903      0   2978      0   100%"
+    ],
+    "pytest": [
+      "================= 2663 passed, 2 skipped in 779.33s (0:12:59) ================="
+    ],
+    "log_sha256": "969d0a9ce5da3ddffdb8ca317739840a4d80f273600ce6c87e5b1e123e81b0af"
+  },
+  "protected_installed_source_hashes": {
+    "apps/qwen/context_tools.py": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+    "apps/qwen/navigation.py": "06a54b95722cf59ebf9538eff6e0ba5ede3b17de6168d7162c5031b6b76ae95a",
+    "apps/qwen/coding_loop.py": "cc49a9b3915fac2eccd0861e9d029d2803583b5ab7d1d234f3158c1b07d7786e",
+    "apps/qwen/tasks.py": "79199e28c205516f8ae9c8bcbb5f735410075f06b1686ff71ba0e13400b754b8",
+    "tests/apps/qwen/test_navigation.py": "5c0fc1a7c04ca3ac044f3c559515ab357fe912b51f15138ddc4d13e620a1ecba",
+    "src/devtools/context/retrieval/source/search.py": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6",
+    "tests/context/retrieval/source/test_scope.py": "a8cc2bcdefdcaa5217b3b100902fdf5f8399ee3ea9437a5946a67279ef3bc20d"
+  },
+  "readiness": {
+    "ready": true,
+    "forensics": {
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json": "03a7414cd8f2b2545e5b14af544be5223120cc62",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json": "4a993b0bd8f31173b5918806d761c4b6c7237dfd",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json": "1adbf9114dc821343c0f13f571ea97bd17fcd0c0",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json": "8b08c96992c3fbd7c75b1a39bef3def0b8bf6d14",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json": "5b125a29ac9b7a94418985ef683bb060f0ae51a6",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json": "6d23bceaf5aaeec0dfd80ecce88403a230149ef5",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json": "a91468108a5c9ea9bcaf88876046cf885b73de51",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json": "f55f087e9d1f43ef8433f1157e4f368624892993",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json": "05011ee8cc328b498e120ae208a7e6b4acb5a4ac",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json": "ec59a6a5a4bf989b0e99618e6ade87f84bd360b2",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json": "e73281d2ebad694434ca90518a6dc1e207ce3b66",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json": "28eb7c617bbc624348bdaae641347203fc345324",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json": "87213902cb04e1667b94d6f7fceb243abd367463"
+    },
+    "task_sha256": "687f21695bded313f9372e1ad4c0e9fdc59ead20d462b0703be8e5a3766ed1f1",
+    "oracle_sha256": "8bd8f0e90250d5a25821ca049e5dbd61ab00fd3daa7ce6e2b443612377871910",
+    "model_calls": 0,
+    "new_paths": "None required; exact new-file/no-EOF infrastructure separately qualified.",
+    "checks": {
+      "format": "PASS",
+      "oracle": "FAIL",
+      "ruff": "PASS",
+      "tests": "PASS",
+      "typing": "PASS"
+    },
+    "native_surface": [
+      "search_source",
+      "lookup_symbol",
+      "expand_source",
+      "source_relationships",
+      "repository_map",
+      "inspect_source"
+    ],
+    "map_preparation_seconds": 0.7183599000563845,
+    "orientation_bytes": 5753,
+    "source_bytes": 2084,
+    "source_edit_reference": "R1",
+    "installed_current": true,
+    "restored_current": false
+  },
+  "scripted_native_refresh": {
+    "scripted": true,
+    "qwen_calls": 0,
+    "accepted": true,
+    "steps": 9,
+    "stale_map_refused": true,
+    "refreshed_map_expanded": true,
+    "call_result_correlation": true,
+    "check_changes": "PASS",
+    "installed_current": true,
+    "restored_current": false,
+    "report_sha256": "6016ce7f5cb56e98f590c37ae7c47975710a377d9f1499a97ffe55b6ec773aa2"
+  },
+  "host_shared_checks": {
+    "check_changes": {
+      "operation": "check_changes",
+      "status": "PASS",
+      "ready_for_review": true,
+      "changed": {
+        "src/devtools/context/retrieval/source/search.py": {
+          "index_status": " ",
+          "worktree_status": "M",
+          "sha256": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6",
+          "present": true,
+          "new_slot": false
+        }
+      },
+      "source_sha256": {
+        "src/devtools/context/retrieval/source/search.py": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6"
+      },
+      "plan_sha256": "ddbb564600400d9aa17c44f2f367e8ab91cc4ea2f08286c71765a9ba4c6d35a6",
+      "task_definition_sha256": "687f21695bded313f9372e1ad4c0e9fdc59ead20d462b0703be8e5a3766ed1f1",
+      "candidate_sha256": "f312946460fec843e6b426c5717c1a4f7f22d880b2364e7fa6e5ace97e0bcb44",
+      "checked_candidate_sha256": "f312946460fec843e6b426c5717c1a4f7f22d880b2364e7fa6e5ace97e0bcb44",
+      "after_candidate_sha256": "f312946460fec843e6b426c5717c1a4f7f22d880b2364e7fa6e5ace97e0bcb44",
+      "checks": {
+        "format": {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--diff",
+            "src/devtools/context/retrieval/source/search.py"
+          ],
+          "elapsed_seconds": 0.08868300006724894,
+          "evidence": "coding-command-02.json",
+          "exit_code": 0,
+          "failed": false,
+          "started_at": "2026-10-22T20:51:43.231649+00:00",
+          "status": "PASS",
+          "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n1 file already formatted\n",
+          "stderr_truncated": false,
+          "stdout": "",
+          "stdout_truncated": false,
+          "truncated": false
+        },
+        "oracle": {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\shared-validation\\oracle-runner.py"
+          ],
+          "elapsed_seconds": 0.3631846000207588,
+          "evidence": "coding-command-02.json",
+          "exit_code": 0,
+          "failed": false,
+          "started_at": "2026-10-22T20:51:42.016327+00:00",
+          "status": "PASS",
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": "QUALIFIED_SCOPED_SOURCE_PASS: all modes, evidence, limits, mixed support, invalid scope and retained identity\r\n",
+          "stdout_truncated": false,
+          "truncated": false
+        },
+        "ruff": {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "src/devtools/context/retrieval/source/search.py"
+          ],
+          "elapsed_seconds": 0.07724669994786382,
+          "evidence": "coding-command-02.json",
+          "exit_code": 0,
+          "failed": false,
+          "started_at": "2026-10-22T20:51:42.744470+00:00",
+          "status": "PASS",
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": "All checks passed!\n",
+          "stdout_truncated": false,
+          "truncated": false
+        },
+        "tests": {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\native-map-28\\codex-delivery\\shared-validation\\tests-runner.py"
+          ],
+          "elapsed_seconds": 0.7478734001051635,
+          "evidence": "coding-command-02.json",
+          "exit_code": 0,
+          "failed": false,
+          "started_at": "2026-10-22T20:51:40.828870+00:00",
+          "status": "PASS",
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": ".............                                                            [100%]\r\n13 passed in 0.18s\r\n",
+          "stdout_truncated": false,
+          "truncated": false
+        },
+        "typing": {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "mypy",
+            "--strict",
+            "src/devtools/context/retrieval/source/search.py"
+          ],
+          "elapsed_seconds": 0.24757770006544888,
+          "evidence": "coding-command-02.json",
+          "exit_code": 0,
+          "failed": false,
+          "started_at": "2026-10-22T20:51:43.679744+00:00",
+          "status": "PASS",
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": "Success: no issues found in 1 source file\r\n",
+          "stdout_truncated": false,
+          "truncated": false
+        }
+      },
+      "diagnostics": [],
+      "evidence": "change-check-01.json",
+      "complete": true,
+      "current": true,
+      "scope": {
+        "editable": [
+          "src/devtools/context/retrieval/source/search.py"
+        ],
+        "inputs": [
+          "tests/context/retrieval/source/test_search.py",
+          "src/devtools/context/retrieval/source/index.py",
+          "src/devtools/context/retrieval/source/representation.py",
+          "src/devtools/context/retrieval/source/__init__.py",
+          "src/devtools/context/planning/source.py",
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "src/devtools/context/retrieval/fusion.py"
+        ],
+        "configuration": [
+          ".mypy.ini",
+          ".ruff.toml",
+          "conftest.py",
+          "mypy.ini",
+          "pyproject.toml",
+          "pytest.ini",
+          "ruff.toml",
+          "setup.cfg",
+          "src/.ruff.toml",
+          "src/devtools/.ruff.toml",
+          "src/devtools/context/.ruff.toml",
+          "src/devtools/context/pyproject.toml",
+          "src/devtools/context/retrieval/.ruff.toml",
+          "src/devtools/context/retrieval/pyproject.toml",
+          "src/devtools/context/retrieval/ruff.toml",
+          "src/devtools/context/retrieval/source/.ruff.toml",
+          "src/devtools/context/retrieval/source/pyproject.toml",
+          "src/devtools/context/retrieval/source/ruff.toml",
+          "src/devtools/context/ruff.toml",
+          "src/devtools/pyproject.toml",
+          "src/devtools/ruff.toml",
+          "src/pyproject.toml",
+          "src/ruff.toml",
+          "tests/conftest.py",
+          "tests/context/conftest.py",
+          "tests/context/retrieval/conftest.py",
+          "tests/context/retrieval/source/conftest.py"
+        ],
+        "unrelated_untracked": "excluded; no whole-repository cleanliness claim"
+      },
+      "authority": "review eligibility only; WorkCycle retains independent review/publication",
+      "elapsed_seconds": 3.8934781999560073,
+      "bundle_evidence": "coding-command-02.json",
+      "bundle_sha256": "bbe5e8c3e047ef4fc0952e23787b7aad19efe81b2b663f8c091b944118861f1a",
+      "receipt_sha256": "4afdd061ab6cd695e75aa1472aa001c92179176d6b4526c04b35688a046fcece"
+    },
+    "installed_current": {
+      "operation": "is_current",
+      "current": true,
+      "status": "PASS",
+      "ready_for_review": true,
+      "diagnostics": [],
+      "authority": "freshness only; no independent review or publication authority"
+    },
+    "restored_current": {
+      "operation": "is_current",
+      "current": false,
+      "status": "PASS",
+      "ready_for_review": false,
+      "diagnostics": [
+        "Validation evidence is incomplete or no longer current"
+      ],
+      "authority": "freshness only; no independent review or publication authority"
+    }
+  }
+}

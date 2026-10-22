@@ -1,0 +1,113 @@
+{
+  "name": "map-assisted-scoped-source-28",
+  "objective": "Implement caller-scoped selectable source search in the existing Retrieval source-search owner. This useful B-0002 increment lets a caller use map orientation to identify relevant resource addresses, then search only that explicitly selected admitted set without unrelated resources consuming result limits. Existing SourceSearchIndex, lexical BM25, mixed evidence consolidation and Context SourceSearchDisclosureOption remain authoritative. No new retriever, index, tokenizer, ranker, acquisition, authorization or publication mechanism.\n\nPublic contract: extend the existing search_repository_source with keyword-only resource_addresses: tuple[RepositoryResourceAddress,...] | None = None. None retains exactly the existing all-index behavior. An explicitly empty tuple selects nothing. A nonempty tuple selects exactly those already indexed parent resources. Reject duplicate addresses, non-RepositoryResourceAddress entries and addresses without an admitted file source unit, even if a selected address exists elsewhere in the snapshot or the query has no matches. Do not access the filesystem or expand the admitted index. Existing invalid mode/result-limit checks remain.\n\nApply the caller scope consistently in file, symbol, window and mixed modes. A selected relevant result must not disappear merely because excluded matches previously occupied maximum_results. The limit applies to eligible final hits; ordinary mixed consolidation and evidence rules still apply. Keep native BM25 corpus statistics and match evidence from the existing complete admitted index; do not rebuild/reweight a smaller corpus. Scoped native results retain eligible match order and feed the existing mixed-ranking semantics. Do not return excluded resources in hits, hit.evidence or native_results.matches. Preserve canonical unit objects/identities, resource/content/snapshot provenance and exact source disclosure compatibility. SourceSearchResult must retain resource_addresses as the exact requested tuple (or None), distinct from claims of full-index coverage. Caller tuple order is recorded but must not invent a new score/ranking policy. Existing default callers remain compatible.\n\nThis is an implementation assignment within the established source-search owner. Use the opt-in repository_map Tool for bounded orientation, and expand_source(unit=<returned map handle>, to=\"source\") to acquire exact source. Map metadata is not editable source; large declarations can be inspected using ordinary bounded inspect_source. Inspect necessary dependencies, preserve existing invariants, then implement using exact pre-transaction anchors. Do not search for a future scoped API that does not yet exist or hidden oracle code. After an admitted candidate, use native check_changes with that candidate installed. Repair actual validation feedback within the frozen bounds and renew checks after changes. A passing, current report is required for completion; WorkCycle retains independent review/publication. No fixed eight-response no-edit cutoff.",
+  "source": "src/devtools/context/retrieval/source/search.py",
+  "tests": [
+    "tests/context/retrieval/source/test_search.py"
+  ],
+  "read_paths": [
+    "src/devtools/context/retrieval/source/index.py",
+    "src/devtools/context/retrieval/source/representation.py",
+    "src/devtools/context/retrieval/source/__init__.py",
+    "src/devtools/context/planning/source.py",
+    "src/devtools/context/retrieval/lexical/bm25.py",
+    "src/devtools/context/retrieval/fusion.py"
+  ],
+  "baseline_revision": "ecfe329e006307e0b2845aef21b3860feb7aa826",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "1d41198f1ec453fd55c16532937c5a15d6bf76ecb1a927821ca416f753d7daa7"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "ad7361341589f5d2d40701c331f2669d64844d720777dd7a5a9bb8419f9d6473"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "0254329347e844ec141c34f4b87e11df0e88619ca2b11d6a2c1c4e64a4facbb1"
+    ],
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "96dea804f6adaac562146ba32b597fca5bcea5674fc3f0ebfe0cf07a2b2bb33d"
+    ],
+    [
+      "src/devtools/context/retrieval/source/__init__.py",
+      "49841ed1e1d2ba3f63eb2ee56921a7fce4afe0245cba623ab65317ab59cc7341"
+    ],
+    [
+      "src/devtools/context/planning/source.py",
+      "26071bc42f223b71122306c6a033c716a62cb2d779183480964c80ebe99f995a"
+    ],
+    [
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "6a546966288ea1503c0e97ea95a079e3e3e550e2ee36dd062015a94f9ee1e9d8"
+    ],
+    [
+      "src/devtools/context/retrieval/fusion.py",
+      "1ade8c2a29fba995642b71cff4e02004ac7c0976209942932c838be555ff063a"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/source/__init__.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/source.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/fusion.py",
+      "source search caller resource scope evidence",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import inspect\nimport sys\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nsys.path.insert(0, str(Path.cwd()))\nfrom dataclasses import replace\nfrom devtools.context.repository.resource import RepositoryResourceAddress as Address\nfrom devtools.context.retrieval.source import search_repository_source\nfrom devtools.context.planning import SourceSearchDisclosureOption\nfrom tests.context.retrieval.source.test_search import _index\n\nassert 'resource_addresses' in inspect.signature(search_repository_source).parameters, 'Missing caller-scoped source search'\nwith TemporaryDirectory(prefix='devtools-scoped-source28-') as tmp:\n    root = Path(tmp)\n    texts = {\n        'selected.py': 'def selected():\\n    return \"needle selected\"\\n',\n        'other.py': 'def needle():\\n    return \"needle needle needle needle\"\\n',\n        'last.py': 'class Last:\\n    async def run(self):\\n        return \"needle last\"\\n',\n        'empty.py': '',\n    }\n    index = _index(root, texts)\n    selected = (Address('selected.py'),)\n    for mode in ('file', 'symbol', 'window', 'mixed'):\n        before = search_repository_source(index, query='needle', mode=mode, maximum_results=1)\n        result = search_repository_source(index, query='needle', mode=mode, maximum_results=1, resource_addresses=selected)\n        assert result.index is index\n        assert result.resource_addresses == selected\n        assert len(result.hits) == 1, (mode, result.hits)\n        assert all(h.unit.resource.address in selected for h in result.hits)\n        for hit in result.hits:\n            assert all(e.unit.resource.address in selected for e in hit.evidence)\n        assert all(match.document_statistics.analysis.document.resource.address in selected for native in result.native_results for match in native.matches)\n        for native in result.native_results:\n            original = search_repository_source(index, query='needle', mode=mode, maximum_results=100)\n            original_matches = {m.document_statistics.analysis.document.id: m for n in original.native_results for m in n.matches}\n            for match in native.matches:\n                assert match == original_matches[match.document_statistics.analysis.document.id], 'Scoped search must retain original corpus BM25 evidence'\n        item = SourceSearchDisclosureOption('Inspect selected', result.hits[0].unit).materialize(snapshot=index.snapshot)\n        assert 'selected.py' in item.text and 'needle selected' in item.text\n        explicit_none = search_repository_source(index, query='needle', mode=mode, maximum_results=1, resource_addresses=None)\n        assert before == explicit_none\n        assert before.resource_addresses is None\n        empty = search_repository_source(index, query='needle', mode=mode, resource_addresses=())\n        assert empty.resource_addresses == () and not empty.hits\n        assert not any(n.matches for n in empty.native_results)\n        miss = search_repository_source(index, query='needle', mode=mode, resource_addresses=(Address('empty.py'),))\n        assert not miss.hits\n        assert not any(n.matches for n in miss.native_results)\n    pair = (Address('last.py'), Address('selected.py'))\n    result = search_repository_source(index, query='needle', mode='mixed', maximum_results=100, resource_addresses=pair)\n    assert {h.unit.resource.address for h in result.hits} == set(pair)\n    assert result.resource_addresses == pair\n    assert result == search_repository_source(index, query='needle', mode='mixed', maximum_results=100, resource_addresses=pair)\n    # Retained-source observation, never ambient path acquisition.\n    (root / 'selected.py').write_text('CHANGED ON DISK', encoding='utf-8')\n    assert search_repository_source(index, query='needle', resource_addresses=selected).hits[0].unit.text == texts['selected.py']\n    for bad in ((Address('outside.py'),), (selected[0], selected[0]), ('selected.py',)):\n        try:\n            search_repository_source(index, query='no-match', resource_addresses=bad)\n        except (TypeError, ValueError):\n            pass\n        else:\n            raise AssertionError(('Invalid scoped source request accepted', bad))\n    # A resource present in a snapshot is insufficient when absent from the admitted index.\n    smaller = replace(index, views=tuple(replace(v, units=tuple(u for u in v.units if u.resource.address != Address('last.py'))) for v in index.views))\n    try:\n        search_repository_source(smaller, query='needle', resource_addresses=(Address('last.py'),))\n    except (TypeError, ValueError):\n        pass\n    else:\n        raise AssertionError('Unindexed source selection admitted')\nprint('QUALIFIED_SCOPED_SOURCE_PASS: all modes, evidence, limits, mixed support, invalid scope and retained identity')\n",
+  "maximum_calls": 24,
+  "wall_seconds": 1800,
+  "output_tokens": 8192,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "quality_checks": true,
+  "command_tools": true,
+  "path_edits": true,
+  "map_navigation": true,
+  "tool_actions": 32,
+  "maximum_proposals": 6
+}

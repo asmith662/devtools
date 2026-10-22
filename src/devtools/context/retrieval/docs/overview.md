@@ -290,3 +290,20 @@ distinguishes symbol declarations from ordinary file/text results. These pattern
 support explicit units and source lineage. Devtools already owns the required
 AST coordinates, RI subjects, lexical scoring and disclosure contracts; adding
 those libraries would not remove that integration work and is unnecessary here.
+
+### Caller-selected source resources
+
+`search_repository_source(index, query=..., mode=..., resource_addresses=...)`
+accepts an explicit tuple of unique admitted RepositoryResourceAddress values.
+None preserves existing full-index behavior; () selects nothing. Selected
+resources constrain hits, supporting evidence and native match lists before
+final result limits/consolidation. Corpus statistics and BM25 match evidence
+remain those of the original admitted index; no smaller index is rebuilt.
+SourceSearchResult records the exact requested tuple, separately from index
+coverage. Invalid types, duplicates or resources without admitted file source
+units are refused. No filesystem acquisition, new authorization or runtime
+inference occurs. Retained exact-source disclosure still uses the same units.
+
+The maintained coding application's opt-in repository-map Tool uses existing
+map/Planning/source machinery; see [its native contract](../../../../../apps/qwen/README.md#opt-in-repository-map-navigation).
+Deterministic Tool integration does not prove actual model adoption.

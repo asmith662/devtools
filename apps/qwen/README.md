@@ -379,7 +379,8 @@ not authority to edit every visible resource.
 
 For observed, thinking-off requests with an output ceiling above 4,096, measured
 32K capacity may reduce the requested generation allowance to available space,
-provided at least 4,096 tokens remain after the unchanged 2,048-token safety
+provided at least 4,096 tokens remain for an initial implementation, or 2,048
+for a measured investigation/started repair, after the unchanged 2,048-token safety
 margin. Evidence records the task ceiling and effective request limit. Source
 observations are retained; reasoning-mode allowances are not reduced. A full
 input or insufficient remaining generation capacity still refuses dispatch.
@@ -466,7 +467,8 @@ are historical and cannot be reused at this new coordinator path.
 
 ### Opt-in repository-map navigation
 
-Host-selected `CodingTask.map_navigation=True` adds the native
+For existing on-demand tasks, host-selected `CodingTask.map_navigation=True`
+adds the native
 `repository_map(query, start)` Tool and `expand_source(unit, to="source")` mode.
 Defaults and historical task-definition hashes remain unchanged. Orientation
 uses the current task's admitted SourceSearchIndex declarations and existing

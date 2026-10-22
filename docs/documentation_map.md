@@ -24,6 +24,12 @@ The [atomic refusal diagnostics](../apps/qwen/evaluation/edit-diagnostics-codex/
 describe component indices, observed-scope match counts and unchanged admission
 limits; deterministic regression results are not new Qwen inference outcomes.
 
+[Opt-in native map navigation](../apps/qwen/README.md#opt-in-repository-map-navigation)
+owns task-scoped orientation, represented-symbol expansion and current source
+observation boundaries. [Engineering28](../apps/qwen/evaluation/native-map-28/README.md)
+separates deterministic native integration, the failed original Qwen attempt and
+the independently published Codex source-search fallback.
+
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding
 failure disposition. PLAN_VALID precedes approval only after real worker imports

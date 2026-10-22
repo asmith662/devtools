@@ -1651,3 +1651,15 @@ reuses source identities/UTF-8 conversion and exact-source materialization,
 preserving both native map and source evidence. No parser, ranking, acquisition,
 Context policy or worker adoption is added. See the
 [progressive Planning contract](../src/devtools/context/planning/docs/overview.md#exact-source-from-represented-map-symbols).
+
+### Native map navigation28
+
+The coding application now optionally composes the existing canonical map ranking,
+map metadata/source Planning and ordinary source observation boundaries through
+ContextTools. Map metadata grants no edit authority; exact source requires current
+task scope, retained snapshot/index, represented native symbol and current host
+observations. Admitted changes discard the map frame; refresh is explicit. No
+graph/index/parser/execution authority is added. WorkCycle retains publication.
+Caller-scoped source search also filters explicitly selected admitted resources
+with original corpus/evidence and exact retained identity. This is caller selection,
+not a new ranking policy. See [native contract and measured adoption limits](../apps/qwen/evaluation/native-map-28/README.md).
