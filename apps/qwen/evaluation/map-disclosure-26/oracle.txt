@@ -1,0 +1,97 @@
+import sys
+import tempfile
+from pathlib import Path
+from dataclasses import replace, FrozenInstanceError
+sys.path.insert(0, str(Path.cwd()))
+import devtools.context.planning as planning
+from devtools.context.repository.identity import RepositoryId
+from devtools.context.repository.snapshot import RepositorySnapshotId
+from devtools.context.retrieval.repository_map import build_repository_map_view
+from devtools.models.interaction import ModelRequest, Prompt
+from tests.context.retrieval.graph.test_typed import _inputs, _view
+
+choose = getattr(planning, 'choose_repository_map_disclosure', None)
+assert callable(choose), 'missing caller-directed repository-map disclosure factory'
+
+def rejects(action, description):
+    try:
+        action()
+    except ValueError:
+        return
+    raise AssertionError(description)
+
+with tempfile.TemporaryDirectory() as temporary:
+    inputs = _inputs(Path(temporary))
+    snapshot = inputs[0]
+    view = build_repository_map_view(snapshot, core=_view(*inputs[:6]))
+    by_name = {symbol.qualified_name: symbol for symbol in view.symbols}
+    symbols = tuple(by_name[name] for name in ('Child.call', 'Base', 'helper'))
+    purpose = 'Orient to selected implementation owners'
+    selected = choose(purpose=purpose, snapshot=snapshot, view=view, symbols=symbols)
+    assert selected.purpose == purpose
+    assert selected.repository_id == snapshot.repository_id
+    assert selected.snapshot_id == snapshot.id
+    assert selected.identity == choose(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols).identity
+    assert selected.identity != choose(purpose=purpose+'!',snapshot=snapshot,view=view,symbols=symbols).identity
+    assert selected.identity != choose(purpose=purpose,snapshot=snapshot,view=view,symbols=tuple(reversed(symbols))).identity
+    assert selected.identity != choose(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols[:1]).identity
+    plan = planning.plan_disclosures(purpose=purpose,snapshot=snapshot,disclosures=(selected,))
+    realized = planning.materialize_disclosure_plan(plan=plan,snapshot=snapshot)
+    item = realized.items[0]
+    assert item.native_provenance == symbols, 'lost original selected map/RI evidence'
+    addresses = tuple(dict.fromkeys(symbol.node.resource_address for symbol in symbols))
+    assert item.resource_addresses == addresses
+    assert item.content_identities == tuple(snapshot.resource_at(address).content_identity for address in addresses)
+    assert str(snapshot.id) in item.text
+    assert all(str(identity) in item.text for identity in item.content_identities)
+    positions=[]
+    for symbol in symbols:
+        positions.append(item.text.index(symbol.qualified_name))
+        assert symbol.node.resource_address.value in item.text
+        assert symbol.node.kind.value in item.text
+        assert symbol.declaration.subject.identity in item.text
+        span=symbol.declaration.support.source_range
+        assert all(str(value) in item.text for value in (span.start_line,span.end_line,span.start_column_utf8,span.end_column_utf8))
+    assert positions == sorted(positions), 'selected symbol order changed'
+    assert 'caller' not in item.text and 'Base.run' not in item.text, 'unselected symbols disclosed'
+    assert 'def helper(' not in item.text and 'class Base:' not in item.text and 'Base.run()' not in item.text, 'source bodies/signatures disclosed'
+    assert item.representation not in ('whole-observed-resource-v1','exact-source-search-unit-v1')
+    rendered=planning.render_context_disclosure(realized)
+    original=ModelRequest(prompt=Prompt('Keep this engineering objective','user'))
+    assembled=planning.assemble_context_disclosure_model_request(task_request=original,context=rendered)
+    assert original.prompt.content == 'Keep this engineering objective'
+    assert item.text in assembled.prompt.content and original.prompt.content in assembled.prompt.content
+    whole=planning.choose_whole_resource_disclosure(purpose=purpose,snapshot=snapshot,resource_address=addresses[0])
+    mixed=planning.plan_disclosures(purpose=purpose,snapshot=snapshot,disclosures=(selected,whole))
+    assert len(planning.materialize_disclosure_plan(plan=mixed,snapshot=snapshot).items)==2
+    for changes, label in [
+        ({'purpose':' '},'blank purpose'), ({'symbols':()},'empty selection'),
+        ({'symbols':(symbols[0],symbols[0])},'duplicate selection'),
+        ({'symbols':(replace(symbols[0],qualified_name='invented'),)},'inconsistent symbol metadata'),
+        ({'snapshot':replace(snapshot,id=RepositorySnapshotId('f'*64))},'foreign snapshot'),
+        ({'snapshot':replace(snapshot,repository_id=RepositoryId.parse('00000000-0000-4000-8000-000000000026'))},'foreign repository'),
+    ]:
+        arguments=dict(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols)
+        arguments.update(changes)
+        rejects(lambda:choose(**arguments),label+' accepted')
+    for changed in (
+        replace(snapshot,id=RepositorySnapshotId('e'*64)),
+        replace(snapshot,repository_id=RepositoryId.parse('00000000-0000-4000-8000-000000000026')),
+        replace(snapshot,resources=tuple(resource for resource in snapshot.resources if resource.address != addresses[0])),
+    ):
+        rejects(lambda:selected.materialize(changed),'stale/missing source accepted at materialization')
+    resource=snapshot.resource_at(addresses[0])
+    from devtools.context.repository.resource import ContentIdentity
+    changed=replace(snapshot,resources=tuple(replace(item,content_identity=ContentIdentity('a'*64)) if item.address==resource.address else item for item in snapshot.resources))
+    rejects(lambda:selected.materialize(changed),'changed retained content identity accepted')
+    # Later disk changes cannot rewrite retained source evidence or map disclosure.
+    path=Path(temporary)/addresses[0].value
+    path.write_text('unrelated later source',encoding='utf-8')
+    assert selected.materialize(snapshot)==item
+    try:
+        selected.purpose='mutated'
+    except (FrozenInstanceError,AttributeError):
+        pass
+    else:
+        raise AssertionError('mutable disclosure option')
+print('PASS: explicit compact map selection, exact identities/native provenance, mixed plans/model assembly, source-state rejection and retained-source behavior')

@@ -1,5 +1,21 @@
 # Bounded local coding worker
 
+## Map disclosure26: useful Codex delivery, native EOF application failure
+
+One clean, qualified Qwen session attempted compact repository-map Context.
+15 requests used280,669 input/3,690 output tokens in346.564 worker seconds.
+Response14's9,578-byte component was specifically refused; response15 reduced
+it to an admitted1,148-byte new-file header. The host diff boundary added an
+unproposed final LF, correctly tripping exact-byte verification and requiring
+stopped-owner recovery. Original nonacceptance is unchanged. No native
+check_changes, behavioral acceptance/repair or Context exhaustion occurred.
+The concrete EOF generator defect now has a narrow standard-marker correction
+and real Git regressions; there was no model retry. Codex separately delivered
+the frozen map-disclosure feature with independent tests, real host shared-check
+PASS/current-installed/stale-restored evidence and protected WorkCycle closeout.
+No Qwen source is credited for the delivered implementation. See
+[qualification, provenance and final validation](evaluation/map-disclosure-26/README.md).
+
 ## Role integration25: Qwen source, host-blocked native completion
 
 Qwen authored the complete dependency-group Localization correction, passing
@@ -722,3 +738,7 @@ Paths, units, versions, spans, ranking, exact source and latest diagnostics stay
 intact. Raw native results are archived and projected history grants no new
 observation or edit authority. Current source and reports remain bound to their
 exact task/Checkout state, not arbitrary future branch commits.
+
+Generated exact-source patches preserve an absent final line terminator using
+Git's standard no-final-newline marker. The patch store does not thereby grant
+normalization authority; proposed and installed bytes must still match exactly.

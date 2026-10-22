@@ -1634,3 +1634,11 @@ Typed PPR improves full-prompt complete depth while hurting early recall.
 These are local development observations, not a universal ranking/Selection
 policy. Case 0002 remains strictly diagnostic. New configuration RI facts are
 not projected into any ranking channel without a separate Retrieval decision.
+
+
+Caller-selected map metadata now has a concrete representation in the existing
+Context Planning owner: choose_repository_map_disclosure adapts selected native
+map symbols to existing disclosure plans/materialization/rendering. It preserves
+source and declaration identities and refuses incompatible state; no body,
+signature, automatic selection or sufficiency policy is added. Retrieval and RI
+ownership are unchanged. See the [planning contract](../src/devtools/context/planning/docs/overview.md#caller-selected-repository-map-metadata).

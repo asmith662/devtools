@@ -83,3 +83,23 @@ bounded structural generation and explicit resolution recording are implemented.
 Current `plan_disclosures`
 remains caller-directed; it does not resolve obligations, transfer obligation
 provenance, or establish representation coverage/capacity.
+
+## Caller-selected repository-map metadata
+
+`choose_repository_map_disclosure(purpose=..., snapshot=..., view=...,
+symbols=chosen_symbols)` records an explicit ordered selection from an existing
+canonical RepositoryMapView. The resulting RepositoryMapDisclosureOption uses
+the same plan/materialize/render/assemble APIs and can coexist with whole-source
+and qualified-reference options. It emits paths, kinds, lexical names, subjects,
+exact declaration coordinates, snapshot/content identities and original selected
+native symbols as provenance. It does not emit bodies, signatures, ranks or
+unselected symbols; metadata is orientation, not sufficiency or exact source.
+
+Blank/empty/duplicate/inconsistent choices and incompatible retained source fail
+closed. Factory and materialization reuse canonical map validation; realization
+also rechecks retained resource values. Selected resources are deduplicated in
+first-selected order with aligned content identities. Choice identity binds
+purpose, snapshot/repository and ordered declaration evidence. No automatic
+selection, budget, tree renderer or source expansion policy is introduced.
+Tests: tests/context/planning/test_repository_map.py. Delivery and native failure
+remain separately attributed in apps/qwen/evaluation/map-disclosure-26/README.md.

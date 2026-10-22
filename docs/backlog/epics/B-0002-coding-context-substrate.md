@@ -1289,3 +1289,20 @@ continuation capacity; no generic Context or planning mechanism is introduced.
 This delivers the consumer slice, not parent completion, backlog approval,
 retrieval policy or protected-main promotion. Existing broader statuses remain.
 See [qualification and measured outcomes](../../../apps/qwen/evaluation/role-groups-25/README.md).
+
+
+## Caller-directed map disclosure26
+
+The existing Context Planning owner now consumes explicit native repository-map
+symbol selections as compact metadata disclosures, preserving source/subject
+evidence and existing plans. This bounded representation gap is delivered as
+Codex software; it does not complete B-0002, automatic planning, incremental
+maintenance or map/tree/source expansion policy. One genuine Qwen attempt
+recovered from a size refusal but stopped on a concrete host EOF patch defect;
+its nonaccepted outcome is immutable. The standard-marker correction and real
+Git regressions preserve strict admission. Shared-check PASS/currentness and
+publication for the separate fallback are supervisor evidence, not native Tool
+use. See [qualification and results](../../../apps/qwen/evaluation/map-disclosure-26/README.md).
+Next bounded Context work is exact-source expansion of a caller-selected map
+entry using existing representations. Parent statuses and promotion triggers
+are unchanged; selective protected-main adoption remains separate.

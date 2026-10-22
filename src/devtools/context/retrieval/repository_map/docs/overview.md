@@ -135,10 +135,12 @@ It does not supply a signature-only span or an automatic DisclosurePlan.
 Rendering a class tree, selecting signatures/bodies, ordering, deduplicating,
 budgeting and source materialization remain Context responsibilities. Existing
 function Context paths do not automatically generalize to class/method maps.
-No new renderer is necessary to compare these retrieval rankings, so this
-increment adds no Context rendering subsystem. A future small caller-directed
-knowledge projection can consume these identities without strengthening RI
-scope or treating ranks as sufficiency.
+The Retrieval package does not render model Context. The existing Context
+Planning package now provides caller-selected metadata disclosure through
+`choose_repository_map_disclosure`. It consumes these identities without
+strengthening RI scope or treating ranks as sufficiency. It does not add
+tree/signature rendering, source-body disclosure or automatic selection.
+See [Context Planning](../../../planning/docs/overview.md).
 
 ## Evidence and limitations
 
