@@ -37,7 +37,7 @@ def analyze_python_project_configuration(
     """
     resource = snapshot.resource_at(address)
     derivation = digest(
-        "python-project-config-tomllib-declarations-v3",
+        "python-project-config-tomllib-declarations-v4",
         str(snapshot.repository_id),
         str(snapshot.id),
         address.value,
