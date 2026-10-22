@@ -781,3 +781,10 @@ owns the compact map representation in existing Context Planning. The separate
 [native26 report](../apps/qwen/evaluation/map-disclosure-26/README.md) records a
 failed native attempt, a concrete host EOF correction and Codex feature delivery;
 it is not evidence of uninterrupted Qwen acceptance.
+
+
+[Progressive map-to-source Context](../src/devtools/context/planning/docs/overview.md#exact-source-from-represented-map-symbols)
+owns explicit source expansion from represented native map symbols. The
+[27 delivery/evaluation](../apps/qwen/evaluation/map-source-27/README.md) separates
+Codex capability and real composition from the failed zero-edit Qwen attempt.
+Native worker map acquisition remains a separate integration obligation.

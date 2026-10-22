@@ -1,5 +1,19 @@
 # Native Context worker acceptance and evaluation
 
+## Map-to-source27: Codex capability, native investigation exhausted Context
+
+Caller-selected map orientation can now expand a represented symbol to its exact
+RI declaration range through existing Planning/source machinery. This is Codex
+software. The one Qwen attempt made14 requests,256,729 input/1,142 output tokens
+in194.803 worker seconds,25 investigation dispatches and no edits. Request15
+was host-refused at28,478 input tokens:2242 safe generation tokens versus the
+4096 investigation minimum. Baseline restoration succeeded, without host Git
+contamination. No native check_changes, behavioral repair or live EOF application
+occurred; deterministic EOF regressions pass separately. No worker/Context/serving
+change or task retry was made. Separate host checks/currentness, real progressive
+Context composition and WorkCycle publication qualify the delivered source.
+See [contract, demonstration and immutable outcome](evaluation/map-source-27/README.md).
+
 ## Map disclosure26: useful Codex delivery, native EOF application failure
 
 One clean, qualified Qwen session attempted compact repository-map Context.

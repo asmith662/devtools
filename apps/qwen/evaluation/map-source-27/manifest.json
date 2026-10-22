@@ -1,0 +1,29 @@
+{
+  "baseline": "14daf9cbfae16c023650601441067c6a1567cc08",
+  "task_sha256": "1b225286fff53e1fb380829efec6020a3fa3e0b9e3feabcd26a1f01f677c0616",
+  "oracle_sha256": "0e4decc8e180a146703ed3600619e2a88aa5237dd720b7fae3cd5d7c10bb9e01",
+  "model": "Qwen3.8-27B IQ4_XS;32K;q4 K/V;thinking off",
+  "bounds": {
+    "maximum_calls": 24,
+    "wall_seconds": 1800,
+    "maximum_proposals": 6,
+    "tool_actions": 32,
+    "output_tokens": 8192
+  },
+  "sources": [
+    "src/devtools/context/planning/repository_map.py",
+    "src/devtools/context/planning/source.py",
+    "src/devtools/context/planning/__init__.py",
+    "src/devtools/context/retrieval/source/representation.py"
+  ],
+  "new_paths": [],
+  "source_bytes": {
+    "src/devtools/context/planning/repository_map.py": 5998,
+    "src/devtools/context/planning/source.py": 3563,
+    "src/devtools/context/planning/__init__.py": 1397,
+    "src/devtools/context/retrieval/source/representation.py": 10829
+  },
+  "public_contract": "Existing orientation + one represented map symbol + same-state admitted source index -> exact RI-range source. No automatic acquisition/indexing.",
+  "novelty": "New progressive source adapter; not a replay of map-metadata26.",
+  "stop_rule": "No fixed eight-response cutoff; frozen resource bounds and genuine progress; no retry or extension. All prospective artifacts remain ignored until Checkout releases."
+}

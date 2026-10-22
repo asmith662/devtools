@@ -161,3 +161,13 @@ Equal BM25/map RRF worsens complete depth in both arms. No parameters or default
 fusion policy change. New configuration facts need an explicit future projection;
 ranked winning symbols do not prescribe sufficient Context representations.
 Confirmation stays outside the retrieval/evaluation consumer.
+
+
+## Explicit source expansion
+
+Context Planning now supplies choose_repository_map_source_disclosure, consuming
+an existing selected-map disclosure, one represented symbol and a same-snapshot
+admitted SourceSearchIndex. It uses the native RI range with existing exact-source
+machinery; it does not select ranks or alter this package's map semantics.
+The exact declaration range can differ from decorator-expanded search symbols.
+See [progressive Context](../../../planning/docs/overview.md#exact-source-from-represented-map-symbols).

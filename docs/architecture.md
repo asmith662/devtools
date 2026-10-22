@@ -1642,3 +1642,12 @@ map symbols to existing disclosure plans/materialization/rendering. It preserves
 source and declaration identities and refuses incompatible state; no body,
 signature, automatic selection or sufficiency policy is added. Retrieval and RI
 ownership are unchanged. See the [planning contract](../src/devtools/context/planning/docs/overview.md#caller-selected-repository-map-metadata).
+
+
+The existing Planning owner also supports explicit map-to-source expansion:
+choose_repository_map_source_disclosure binds a represented map symbol to its
+exact native RI range within a caller-supplied admitted SourceSearchIndex. It
+reuses source identities/UTF-8 conversion and exact-source materialization,
+preserving both native map and source evidence. No parser, ranking, acquisition,
+Context policy or worker adoption is added. See the
+[progressive Planning contract](../src/devtools/context/planning/docs/overview.md#exact-source-from-represented-map-symbols).

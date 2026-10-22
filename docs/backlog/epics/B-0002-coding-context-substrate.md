@@ -1306,3 +1306,20 @@ use. See [qualification and results](../../../apps/qwen/evaluation/map-disclosur
 Next bounded Context work is exact-source expansion of a caller-selected map
 entry using existing representations. Parent statuses and promotion triggers
 are unchanged; selective protected-main adoption remains separate.
+
+
+## Explicit map-to-source expansion27
+
+The bounded follow-on to metadata26 is delivered in existing Context Planning:
+one represented native map symbol expands to exact RI-range source within an
+explicit same-state source index. It preserves UTF-8 coordinates, retained-source
+identities and native map/source evidence through existing plans/materialization.
+Real progressive composition and independent regressions qualify this Codex
+implementation. One Qwen run remained in investigation through14 requests and
+host Context refusal; no edits or native validation occurred. Its result stays
+failed, no task retry or generic harness increment was made, and no independent
+Qwen engineering success is claimed. See [scope and evidence](../../../apps/qwen/evaluation/map-source-27/README.md).
+This does not complete the parent, automatic planning, retrieval policy, worker
+map adoption or selective main integration. Next is a bounded opt-in existing
+ContextTool adapter with ordinary observed-source/version admission and stale-map
+invalidation, not a new graph engine or source identity mechanism.

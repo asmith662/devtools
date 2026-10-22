@@ -1,0 +1,104 @@
+import ast
+import sys
+import tempfile
+from dataclasses import replace
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+import devtools.context.planning as planning
+from devtools.context.python.function.declarations import derive_python_function_declarations
+from devtools.context.python.classes.declarations import derive_python_class_method_declarations
+from devtools.context.repository.identity import Repository,RepositoryId
+from devtools.context.repository.snapshot import RepositorySnapshotId
+from devtools.context.repository.discovery import discover_repository_resource_addresses
+from devtools.context.repository.corpus import define_repository_text_corpus,realize_repository_text_corpus
+from devtools.context.repository.resource import ContentIdentity
+from devtools.context.retrieval.graph import build_python_graph_view,PythonGraphProjection
+from devtools.context.retrieval.repository_map import build_repository_map_view
+from devtools.context.retrieval.source import build_source_search_index,RepositorySourceUnit
+from devtools.core.paths import resolve_path
+from devtools.models.interaction import ModelRequest,Prompt
+from tests.context.retrieval.source.test_search import _index
+
+choose=getattr(planning,'choose_repository_map_source_disclosure',None)
+assert callable(choose),'missing map-to-exact-source disclosure adapter'
+
+def rejects(action,reason):
+    try:action()
+    except ValueError:return
+    raise AssertionError(reason)
+
+FILES={
+    'alpha.py':'# caf\u00e9 preface\n@decorate("outside decorator")\nasync def caf\u00e9(\n    value: str,\n):\n    def nested():\n        return "nested content"\n    return value, nested\n\ndef repeat(): return "first"\ndef repeat(): return "second"\nclass Cl\u00e4ss:\n    @memo\n    async def m\u00e9thod(self,\n                        value):\n        return "s\u00e9lected m\u00e9thod", value\n    def sibling(self): return "unrelated sibling"\n',
+    'beta.py':'def repeat():\r\n    return "other resource"\r\n\r\nclass Other:\r\n    def run(self):\r\n        return "other method"',
+    'untouched.py':'def hidden(): return "outside selected source scope"\n',
+}
+with tempfile.TemporaryDirectory() as temporary:
+    root=Path(temporary)
+    index=_index(root,FILES)
+    snapshot=index.snapshot
+    functions=[];classes=[];methods=[]
+    for resource in snapshot.resources:
+        functions.extend(derive_python_function_declarations(snapshot,resource_address=resource.address).declarations)
+        aggregate=derive_python_class_method_declarations(snapshot,resource_address=resource.address)
+        classes.extend(aggregate.classes);methods.extend(aggregate.methods)
+    view=build_repository_map_view(snapshot,core=build_python_graph_view(snapshot,projection=PythonGraphProjection.TYPED_CORE,functions=tuple(functions),classes=tuple(classes),methods=tuple(methods)))
+    symbols=tuple(symbol for symbol in view.symbols if symbol.node.resource_address.value!='untouched.py')
+    orientation=planning.choose_repository_map_disclosure(purpose='Orient and inspect selected code',snapshot=snapshot,view=view,symbols=symbols)
+    options=[]
+    for symbol in symbols:
+        option=choose(purpose=orientation.purpose,snapshot=snapshot,map_disclosure=orientation,symbol=symbol,source_index=index)
+        assert option.symbol==symbol,'map support lost'
+        unit=option.unit
+        assert isinstance(unit,RepositorySourceUnit)
+        assert unit.declaration==symbol.declaration and unit.occurrence==symbol.declaration.support
+        assert unit.qualified_name==symbol.qualified_name and unit.kind=='symbol'
+        assert unit.repository_id==snapshot.repository_id and unit.snapshot_id==snapshot.id
+        assert unit.resource==snapshot.resource_at(symbol.node.resource_address)
+        original=FILES[symbol.node.resource_address.value]
+        span=symbol.declaration.support.source_range
+        node=next(node for node in ast.walk(ast.parse(original)) if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef)) and (node.lineno,node.col_offset,node.end_lineno,node.end_col_offset)==(span.start_line,span.start_column_utf8,span.end_line,span.end_column_utf8))
+        expected=ast.get_source_segment(original,node)
+        assert unit.text==expected,('not the exact RI declaration range',symbol.qualified_name,repr(unit.text),repr(expected))
+        assert unit.text==unit.resource.content[unit.start:unit.end]
+        assert '@decorate' not in unit.text and '@memo' not in unit.text.splitlines()[0],'expanded to decorators outside RI range'
+        item=option.materialize(snapshot)
+        assert item.native_provenance==(symbol,unit),'map and exact-source evidence must both survive materialization'
+        assert item.resource_addresses==(symbol.node.resource_address,)
+        assert item.content_identities==(unit.resource.content_identity,)
+        assert unit.text in item.text and str(unit.resource.content_identity) in item.text
+        assert item.representation!=orientation.representation
+        same=choose(purpose=orientation.purpose,snapshot=snapshot,map_disclosure=orientation,symbol=symbol,source_index=index)
+        assert same.identity==option.identity
+        changed_purpose=choose(purpose='Inspect for another question',snapshot=snapshot,map_disclosure=orientation,symbol=symbol,source_index=index)
+        assert changed_purpose.identity!=option.identity
+        options.append(option)
+    assert len({option.identity for option in options})==len(options),'duplicate names conflated native occurrences'
+    selected=next(option for option in options if option.symbol.qualified_name=='Cl\u00e4ss.m\u00e9thod')
+    assert 'unrelated sibling' not in selected.unit.text and 'hidden' not in selected.unit.text
+    plan=planning.plan_disclosures(purpose=orientation.purpose,snapshot=snapshot,disclosures=(orientation,selected))
+    realized=planning.materialize_disclosure_plan(plan=plan,snapshot=snapshot)
+    rendered=planning.render_context_disclosure(realized)
+    request=ModelRequest(Prompt('Preserve the original engineering objective','system'))
+    assembled=planning.assemble_context_disclosure_model_request(task_request=request,context=rendered)
+    assert selected.unit.text in assembled.prompt.content
+    assert assembled.prompt.content.index(realized.items[0].text)<assembled.prompt.content.index(realized.items[1].text)
+    assert request.prompt.content=='Preserve the original engineering objective' and assembled.prompt.role=='system'
+    assert 'outside selected source scope' not in assembled.prompt.content
+    reverse=planning.plan_disclosures(purpose=orientation.purpose,snapshot=snapshot,disclosures=(selected,orientation))
+    assert reverse.identity!=plan.identity
+    hidden=next(symbol for symbol in view.symbols if symbol.node.resource_address.value=='untouched.py')
+    common=dict(purpose=orientation.purpose,snapshot=snapshot,map_disclosure=orientation,symbol=selected.symbol,source_index=index)
+    for values,reason in [({'purpose':' '},'blank purpose accepted'),({'symbol':hidden},'unrepresented symbol accepted'),({'symbol':replace(selected.symbol,qualified_name='forged')},'forged selected metadata accepted'),({'map_disclosure':replace(orientation,view=replace(view,symbols=()))},'inconsistent map accepted'),({'source_index':replace(index,snapshot=replace(snapshot,id=RepositorySnapshotId('e'*64)))},'foreign source index accepted')]:
+        args={**common,**values};rejects(lambda:choose(**args),reason)
+    discovery=discover_repository_resource_addresses(repository=Repository(snapshot.repository_id),root=resolve_path(root),maximum_resource_count=30,maximum_traversal_entry_count=60)
+    corpus=realize_repository_text_corpus(definition=define_repository_text_corpus(discovery=discovery,selected_addresses=(hidden.node.resource_address,)),snapshot=snapshot)
+    restricted=build_source_search_index(snapshot,corpus=corpus)
+    rejects(lambda:choose(**{**common,'source_index':restricted}),'source outside admitted index silently acquired or substituted')
+    address=selected.symbol.node.resource_address
+    for changed in (replace(snapshot,id=RepositorySnapshotId('f'*64)),replace(snapshot,repository_id=RepositoryId.parse('00000000-0000-4000-8000-000000000027')),replace(snapshot,resources=tuple(resource for resource in snapshot.resources if resource.address!=address)),replace(snapshot,resources=tuple(replace(resource,content_identity=ContentIdentity('a'*64)) if resource.address==address else resource for resource in snapshot.resources))):
+        rejects(lambda:choose(**{**common,'snapshot':changed}),'incompatible factory state accepted')
+        rejects(lambda:selected.materialize(changed),'stale source option materialized')
+    before=selected.materialize(snapshot)
+    (root/address.value).write_bytes(b'changed later physical source')
+    assert selected.materialize(snapshot)==before,'reread physical source instead of retained evidence'
+print('PASS: map-to-source; true RI ranges, Unicode/CRLF/no-final-LF, native provenance, explicit admission scope, mixed progressive plans and stale rejection')

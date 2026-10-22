@@ -103,3 +103,34 @@ purpose, snapshot/repository and ordered declaration evidence. No automatic
 selection, budget, tree renderer or source expansion policy is introduced.
 Tests: tests/context/planning/test_repository_map.py. Delivery and native failure
 remain separately attributed in apps/qwen/evaluation/map-disclosure-26/README.md.
+
+## Exact source from represented map symbols
+
+`choose_repository_map_source_disclosure(purpose=..., snapshot=...,
+map_disclosure=..., symbol=..., source_index=...)` expands one symbol explicitly
+represented by an existing RepositoryMapDisclosureOption. The caller supplies
+an existing SourceSearchIndex for the same retained snapshot and an admitted
+resource corpus; there is no implicit indexing, search or acquisition.
+
+The returned immutable RepositoryMapSourceDisclosureOption retains the selected
+symbol and exact RepositorySourceUnit. It authenticates canonical map membership,
+represented selection and admitted source frame; existing UTF-8 offset and unit
+identity helpers construct the exact RI declaration span. Materialization
+reauthenticates the coupling and delegates text presentation to the existing
+SourceSearchDisclosureOption, retaining (symbol,unit) as native provenance.
+Source purpose may differ from orientation purpose; mixed plans still require
+matching purposes as before. No existing representation identities change.
+
+RI spans use one-based physical lines and zero-based UTF-8 columns, exclusive
+end. They include declaration headers/bodies and nested content, but exclude
+preceding decorators outside the RI span even if a source-search symbol expands
+to them. Unicode, CRLF/LF and no final newline remain exact. No silent whole-file
+fallback/truncation occurs. State/scope/metadata mismatch fails; later disk changes
+do not rewrite retained evidence. Metadata and source remain distinct options.
+Both compose with existing plans, materialization, rendering and request assembly.
+This is caller-directed orientation-to-source, not automatic worker adoption,
+selection, capacity policy or sufficiency. Tests: tests/context/planning/test_map_source.py.
+
+The original RI coordinates remain authoritative in `unit.occurrence.source_range`.
+Generic source-search rendered line labels retain that component's documented
+logical `splitlines` convention; the adapter does not redefine those labels.
