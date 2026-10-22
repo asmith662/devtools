@@ -309,6 +309,8 @@ async def _collect_events(execution: CommandExecution) -> list[object]:
 class _TimedOutProcess:
     """Minimal process fake that times out while streaming standard output."""
 
+    stdin: None = None
+
     def __init__(self) -> None:
         """Initialize the process and stream state."""
         self.killed = False
@@ -345,6 +347,8 @@ class _TimeoutStream:
 class _BlockingProcess:
     """Minimal process fake that remains active until cancellation cleanup."""
 
+    stdin: None = None
+
     def __init__(self, *, returncode: int | None = None) -> None:
         """Initialize process state and a blocking stdout stream."""
         self.killed = False
@@ -379,6 +383,8 @@ class _BlockingStream:
 
 class _FailingStreamProcess:
     """Minimal process fake whose stdout read fails unexpectedly."""
+
+    stdin: None = None
 
     def __init__(self) -> None:
         """Initialize a running process with one failing stream."""
