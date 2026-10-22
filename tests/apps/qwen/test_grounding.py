@@ -38,6 +38,93 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelRequest
 
 
+@pytest.mark.parametrize("compact", [False, True])
+def test_search_locators_share_only_identical_complete_envelopes(
+    *, compact: bool
+) -> None:
+    envelope = {"repository": "repo", "snapshot": "snap", "revision": "head"}
+    locator = {
+        **envelope,
+        "path": "src/devtools/owner.py",
+        "version": "version",
+        "unit": "unit",
+        "span": [0, 4],
+        "rank": 1,
+    }
+    observations = {
+        "path": locator["path"],
+        "version": "version",
+        "span": [0, 4],
+        "text": "code",
+        "edit_ref": "R1",
+        **envelope,
+    }
+    history = [PromptMessage("user", "preserve requirements")]
+    history += exchange("read", observations)
+    history += exchange(
+        "search",
+        {
+            "operation": "search_source",
+            **envelope,
+            "matches": [locator, {**locator, "snapshot": "foreign"}, "unknown"],
+        },
+    )
+    original = json.dumps([asdict(m) for m in history])
+    selected, _ = select_messages(history, maximum_bytes=20000, compact=compact)
+    Prompt("", "messages", selected)
+    results = {
+        m.tool_call_id: json.loads(m.content) for m in selected if m.role == "tool"
+    }
+    assert results["read"]["text"] == "code"
+    assert results["read"]["edit_ref"] == "R1"
+    assert results["search"]["matches"][1] == {**locator, "snapshot": "foreign"}
+    assert results["search"]["matches"][2] == "unknown"
+    if compact:
+        assert results["search"]["source_envelope_tool_call_id"] == "read"
+        assert results["search"]["matches"][0] == {
+            k: v for k, v in locator.items() if k not in envelope
+        }
+        assert "inherit" in results["search"]["match_provenance"]
+        assert results["search"]["host_projection"]["original_tool_call_id"] == "search"
+    else:
+        assert results["search"]["matches"][0] == locator
+    assert json.dumps([asdict(m) for m in history]) == original
+
+
+@pytest.mark.parametrize(
+    ("operation", "matches", "envelope"),
+    [
+        (
+            "search_source",
+            [],
+            {"repository": "repo", "snapshot": "snap", "revision": "head"},
+        ),
+        ("search_source", [], {"repository": "repo"}),
+        (
+            "search_source",
+            "unknown",
+            {"repository": "repo", "snapshot": "snap", "revision": "head"},
+        ),
+        (
+            "lookup_symbol",
+            [],
+            {"repository": "repo", "snapshot": "snap", "revision": "head"},
+        ),
+    ],
+)
+def test_nonmatching_search_shapes_do_not_claim_inherited_provenance(
+    operation: str, matches: object, envelope: dict[str, str]
+) -> None:
+    history = [PromptMessage("user", "objective")]
+    history += exchange(
+        "search", {"operation": operation, "matches": matches, **envelope}
+    )
+    selected, _ = select_messages(history, maximum_bytes=20000, compact=True)
+    result = json.loads(selected[-1].content)
+    assert "match_provenance" not in result
+    assert result["matches"] == matches
+
+
 def exchange(identity: str, value: Mapping[str, object]) -> list[PromptMessage]:
     return [
         PromptMessage("assistant", "", (ModelToolCall("read_source", "{}", identity),)),

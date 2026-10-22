@@ -294,6 +294,27 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 for k in ("repository", "snapshot", "revision")
                 if k in value
             }
+            if (
+                value.get("operation") == "search_source"
+                and all(
+                    isinstance(value.get(k), str)
+                    for k in ("repository", "snapshot", "revision")
+                )
+                and isinstance(value.get("matches"), list)
+            ):
+                inherited = False
+                for match in value["matches"]:
+                    if isinstance(match, dict) and all(
+                        match.get(k) == v for k, v in envelope.items()
+                    ):
+                        for match_field in envelope:
+                            del match[match_field]
+                        inherited = True
+                if inherited:
+                    value["match_provenance"] = (
+                        "Omitted match repository/snapshot/revision inherit this "
+                        "result envelope; explicit fields remain exact."
+                    )
             if envelope:
                 key = json.dumps(envelope, sort_keys=True)
                 if key in envelopes:
