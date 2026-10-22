@@ -746,7 +746,10 @@ runtime import resolution nor generic dependency semantics.
 selectors: project README, Hatch wheel packages, pytest testpaths, Coverage
 source, mypy files and mypy search paths. Declaration analysis uses `tomllib`
 and semantic key/item anchors with the exact configuration resource, not
-fabricated character spans.
+fabricated character spans. Missing keys and present non-table ancestors are
+distinct: obstructed selectors retain full semantic-key unsupported evidence and
+derive no targets. The existing named-setting traversal owns that distinction
+for both declaration consumers.
 Declaration analysis also retains bounded build/project metadata, named script
 and entry-point strings, pytest naming/recursion settings and recognized
 tool-table presence. These are static declarations, not effective configuration,

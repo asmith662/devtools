@@ -1,9 +1,13 @@
 # Bounded local coding worker
 
-[Shared engineering20](evaluation/shared-engineering-20/README.md) stopped before
-implementation: eight genuine Qwen responses, ten successful investigation actions
-and zero edits at the frozen early boundary. The qualified RI obstruction task
-remains open; Qwen did not use check_changes. A narrow Codex prerequisite now lets
+[Configuration obstructions21](evaluation/configuration-obstructions-21/README.md)
+feature-publishes the RI correction with explicit Codex authorship and the unchanged
+original oracle. No Qwen continuation ran: existing replay could not authenticate
+the required prefix without extension. Engineering20 remains eight genuine Qwen
+responses, ten successful investigations and zero edits; the supervisor stopped
+before request9 with Context available. This was not a behavioral failure, and
+Engineering14's first edit on response9 disproves a general eight-response cutoff.
+Qwen did not use check_changes. A narrow Codex prerequisite now lets
 an opt-in worker continue after accepted edits until model-invoked checks and
 host freshness, but its live Qwen use remains unproven. Older outcomes stay intact.
 

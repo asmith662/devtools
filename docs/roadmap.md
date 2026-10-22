@@ -1,14 +1,18 @@
 # Roadmap
 
-[Shared engineering20](../apps/qwen/evaluation/shared-engineering-20/README.md)
-did not deliver the selected RI configuration-obstruction capability. Qwen reached
-the frozen investigation stop after eight genuine requests, with zero edits or
-live change-check use. Context fit and all ten read/search actions succeeded.
-No automatic retry or Codex semantic substitute was installed. Next deliver the
-same useful RI correction as a separately attributed Codex increment under the
-qualified contract; any future Qwen guidance evaluation needs a distinct task.
-A narrow opt-in completion/presentation prerequisite is Codex-authored and tested,
-not a new Qwen success. Parent reliability and protected-main adoption remain open.
+[Configuration obstructions21](../apps/qwen/evaluation/configuration-obstructions-21/README.md)
+delivers the B-0002 selector correction as Codex-authored source at `32c3890ff5546a335bd8397d582cc1809d7dd46e`.
+The original qualified oracle passes; permanent tests and the exact-final-source
+protected gate pass. The conditional Qwen continuation was skipped because the
+existing adapters do not authenticate the required prefix on this advanced baseline.
+
+Engineering20 remains a supervisor-limited eight-response investigation, with
+zero edits and no Context failure. An eight-response no-edit rule is unsupported
+by Engineering14's successful response9 implementation start. Use evidence-based
+frozen supervision instead. The separate absent-new-file feedback defect remains
+the next bounded worker correction before a qualified new-module live Tool task.
+The Commands contract group is ready for a separate destination-based integration
+review; parent reliability and protected-main adoption remain open.
 Older sequencing statements below retain their recorded historical status.
 
 

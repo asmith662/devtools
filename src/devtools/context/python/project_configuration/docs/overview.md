@@ -88,7 +88,12 @@ the exact configuration occurrence/content, repository, snapshot and versioned
 derivation identity. Duplicate array items have distinct occurrence/fact
 identities. Anchors are semantic provenance within that exact retained resource.
 Unsupported tables (including README file/text tables), non-string items and
-scalar array-selector values are assessed without target derivation.
+scalar array-selector values are assessed without target derivation. A present
+non-table proper ancestor is distinct from a missing key: every obstructed
+selector retains its full semantic key with `non-table-parent`, no ordinal or
+literal value, and resolves as unsupported without target facts. Valid sibling
+branches remain independent. Selector and named-setting traversal share the
+existing package lookup; declaration derivation version v3 binds these semantics.
 
 Dynamic README produces unsupported selector assessments. Project scripts, GUI
 scripts and entry points now have named static setting declarations in

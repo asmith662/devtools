@@ -1239,3 +1239,9 @@ No accepted implementation, promotion or parent completion is claimed. The froze
 contract is retained for separately attributable Codex delivery; no new parser,
 configuration authority or retrieval framework is required. This pressure remains
 open and does not change the epic status or historical results.
+
+## Configuration obstruction slice delivered (Codex21)
+
+The previously recorded Engineering20 pressure is corrected by the existing declaration/resolution owners: non-table ancestors are qualified unsupported evidence rather than absent selectors. Original oracle unchanged; 126 permanent scenarios and exact-source protected validation pass. One old regression assertion encoded the bug and was explicitly corrected. This resolves this bounded slice, not the epic, retrieval integration or broader repository semantics.
+
+See [delivery and immutable parent references](../../../apps/qwen/evaluation/configuration-obstructions-21/README.md). Feature commit: `32c3890ff5546a335bd8397d582cc1809d7dd46e`. No backlog approval, parent closure or protected-main promotion is inferred.

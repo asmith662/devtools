@@ -437,3 +437,9 @@ restoration. It does not establish improved model performance. See
 [record and separate fallback](../../../apps/qwen/evaluation/shared-engineering-20/README.md).
 The parent remains open. No retry, serving experiment, new governance or protected
 adoption followed; the RI obligation remains unfinished.
+
+## Premature stop correction and separately authored delivery
+
+Engineering20 remains eight requests, zero edits, no Context exhaustion, no behavioral failure demonstrated and no native check_changes use. Its supervisor stopped before request9. Engineering14 first edited on response9 and succeeded, so a fixed eight-response cutoff is unsupported. Conditional replay was not available with required authentication using existing adapters; Codex delivered the RI feature. No new Qwen outcome is claimed. The absent-new-file feedback defect is outstanding and was not causal here. The parent remains open.
+
+See [delivery and immutable parent references](../../../apps/qwen/evaluation/configuration-obstructions-21/README.md). Feature commit: `32c3890ff5546a335bd8397d582cc1809d7dd46e`. No backlog approval, parent closure or protected-main promotion is inferred.

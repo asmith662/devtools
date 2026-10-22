@@ -1,5 +1,21 @@
 # Native Context worker acceptance and evaluation
 
+## Configuration obstructions21: Codex delivery; premature stop corrected
+
+The RI feature is published at `32c3890ff5546a335bd8397d582cc1809d7dd46e`, with the unchanged original oracle,
+126 regressions and exact-source protected validation. This is direct Codex
+software, not Qwen implementation or repair success. Conditional prefix replay
+was skipped because the existing adapters lack required provider captures and
+cross-baseline request/observation authentication. No new inference occurred.
+
+The original Engineering20 stop before request9 was premature as a general policy:
+Engineering14 first edited on response9 and succeeded. Preserve the original eight
+requests, zero edits, no Context failure and no live check_changes. Future frozen
+stops must consider productive dependency discovery, remaining capacity/budget and
+observed successful trajectories rather than apply a fixed eight-response rule.
+The absent-new-file feedback defect remains separate and noncausal. See
+[delivery and review](evaluation/configuration-obstructions-21/README.md).
+
 ## Shared engineering20: implementation not started
 
 Qwen attempted a new qualified B-0002 project-configuration RI obstruction fix.
