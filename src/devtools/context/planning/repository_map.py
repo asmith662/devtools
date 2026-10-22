@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING, ClassVar
 
 from devtools.context.planning.materialization import (
@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from devtools.context.retrieval.repository_map.view import (
         RepositoryMapSymbol,
         RepositoryMapView,
+    )
+    from devtools.context.retrieval.source import (
+        RepositorySourceUnit,
+        SourceSearchIndex,
     )
 
 
@@ -145,4 +149,150 @@ def choose_repository_map_disclosure(
         view=view,
         symbols=symbols,
         resources=_selected_resources(snapshot, view, symbols),
+    )
+
+
+def _map_source_unit(
+    snapshot: RepositorySnapshot,
+    map_disclosure: RepositoryMapDisclosureOption,
+    symbol: RepositoryMapSymbol,
+    source_index: SourceSearchIndex,
+) -> RepositorySourceUnit:
+    """Compose native map admission, admitted source scope and exact RI bounds."""
+    from io import StringIO  # noqa: PLC0415 -- bounded source adaptation
+
+    from devtools.context.python.function.materialization import (  # noqa: PLC0415
+        _absolute_byte_offset,
+    )
+    from devtools.context.retrieval.source.representation import (  # noqa: PLC0415
+        _unit,
+    )
+
+    map_disclosure.materialize(snapshot)
+    if symbol not in map_disclosure.symbols or source_index.snapshot != snapshot:
+        msg = "Map source selection or source index belongs to another frame."
+        raise ValueError(msg)
+    files = tuple(
+        unit
+        for view in source_index.views
+        if view.kind == "file"
+        for unit in view.units
+        if unit.resource.address == symbol.node.resource_address
+    )
+    if len(files) != 1:
+        msg = "Selected source needs one admitted whole-resource source unit."
+        raise ValueError(msg)
+    file = files[0]
+    if (
+        file.resource != snapshot.resource_at(symbol.node.resource_address)
+        or file.repository_id != snapshot.repository_id
+        or file.snapshot_id != snapshot.id
+        or file.kind != "file"
+        or file.start != 0
+        or file.end != len(file.resource.content)
+    ):
+        msg = "Admitted source unit differs from the retained resource frame."
+        raise ValueError(msg)
+    span = symbol.declaration.support.source_range
+    lines = tuple(line.encode("utf-8") for line in StringIO(file.text, newline=""))
+    encoded = file.text.encode("utf-8")
+    start = _absolute_byte_offset(
+        lines,
+        line_number=span.start_line,
+        column=span.start_column_utf8,
+    )
+    end = _absolute_byte_offset(
+        lines,
+        line_number=span.end_line,
+        column=span.end_column_utf8,
+    )
+    return _unit(
+        file,
+        "symbol",
+        len(encoded[:start].decode("utf-8")),
+        len(encoded[:end].decode("utf-8")),
+        qualified_name=symbol.qualified_name,
+        symbol_kind=symbol.node.kind.value,
+        occurrence=symbol.declaration.support,
+        declaration=symbol.declaration,
+    )
+
+
+@dataclass(frozen=True, slots=True)
+class RepositoryMapSourceDisclosureOption:
+    """Retain an explicit map-to-source choice through existing materialization."""
+
+    purpose: str
+    map_disclosure: RepositoryMapDisclosureOption
+    symbol: RepositoryMapSymbol
+    source_index: SourceSearchIndex
+    unit: RepositorySourceUnit
+
+    representation: ClassVar[str] = "map-selected-exact-source-v1"
+
+    @property
+    def repository_id(self) -> RepositoryId:
+        """Retain the map's nominal repository frame."""
+        return self.map_disclosure.repository_id
+
+    @property
+    def snapshot_id(self) -> RepositorySnapshotId:
+        """Retain the map's exact observed state."""
+        return self.map_disclosure.snapshot_id
+
+    @property
+    def identity(self) -> str:
+        """Bind purpose, original map choice and exact native source selection."""
+        return _digest(
+            self.representation,
+            self.purpose,
+            self.map_disclosure.identity,
+            self.symbol.declaration.identity,
+            str(self.unit.id),
+        )
+
+    def materialize(self, snapshot: RepositorySnapshot) -> MaterializedDisclosureItem:
+        """Reauthenticate map/source coupling, then reuse exact-source rendering."""
+        from devtools.context.planning.source import (  # noqa: PLC0415
+            SourceSearchDisclosureOption,
+        )
+
+        expected = _map_source_unit(
+            snapshot,
+            self.map_disclosure,
+            self.symbol,
+            self.source_index,
+        )
+        if expected != self.unit:
+            msg = "Map source unit differs from its original declaration range."
+            raise DisclosureMaterializationError(msg)
+        item = SourceSearchDisclosureOption(self.purpose, self.unit).materialize(
+            snapshot,
+        )
+        return replace(
+            item,
+            option_identity=self.identity,
+            representation=self.representation,
+            native_provenance=(self.symbol, self.unit),
+        )
+
+
+def choose_repository_map_source_disclosure(
+    *,
+    purpose: str,
+    snapshot: RepositorySnapshot,
+    map_disclosure: RepositoryMapDisclosureOption,
+    symbol: RepositoryMapSymbol,
+    source_index: SourceSearchIndex,
+) -> RepositoryMapSourceDisclosureOption:
+    """Expand one represented native symbol within an admitted source index."""
+    if not purpose.strip():
+        msg = "Map source disclosure purpose must not be blank."
+        raise ValueError(msg)
+    return RepositoryMapSourceDisclosureOption(
+        purpose=purpose,
+        map_disclosure=map_disclosure,
+        symbol=symbol,
+        source_index=source_index,
+        unit=_map_source_unit(snapshot, map_disclosure, symbol, source_index),
     )

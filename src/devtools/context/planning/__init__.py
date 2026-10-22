@@ -19,7 +19,9 @@ from devtools.context.planning.rendering import (
 )
 from devtools.context.planning.repository_map import (
     RepositoryMapDisclosureOption,
+    RepositoryMapSourceDisclosureOption,
     choose_repository_map_disclosure,
+    choose_repository_map_source_disclosure,
 )
 from devtools.context.planning.resource import (
     WholeResourceDisclosureOption,
@@ -35,10 +37,12 @@ __all__ = [
     "PlannedDisclosure",
     "RenderedContextDisclosure",
     "RepositoryMapDisclosureOption",
+    "RepositoryMapSourceDisclosureOption",
     "SourceSearchDisclosureOption",
     "WholeResourceDisclosureOption",
     "assemble_context_disclosure_model_request",
     "choose_repository_map_disclosure",
+    "choose_repository_map_source_disclosure",
     "choose_whole_resource_disclosure",
     "materialize_disclosure_plan",
     "plan_disclosures",
