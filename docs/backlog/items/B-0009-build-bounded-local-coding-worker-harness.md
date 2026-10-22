@@ -424,3 +424,16 @@ No Qwen call, new success claim, governance expansion or protected-main adoption
 occurred. All earlier failures remain immutable. The parent remains open: next
 use this Tool in actual Qwen engineering and reauthenticate before independent
 review; selective destination-authorized production integration is still required.
+
+## Shared engineering20: available Tools, no implementation
+
+The new qualified configuration-obstruction task reached the prospective supervisor
+stop with eight genuine Qwen requests, ten successful read/search actions and zero
+edits. No live check_changes/is_current use, behavioral repair or candidate closeout
+occurred. Context still fit; this is not a Context or edit-admission failure.
+A narrow Codex prerequisite adds opt-in post-edit check completion and pristine
+report presentation, tested deterministically with host freshness before source
+restoration. It does not establish improved model performance. See
+[record and separate fallback](../../../apps/qwen/evaluation/shared-engineering-20/README.md).
+The parent remains open. No retry, serving experiment, new governance or protected
+adoption followed; the RI obligation remains unfinished.

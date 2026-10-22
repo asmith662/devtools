@@ -1,0 +1,194 @@
+{
+  "at": "2026-10-22T12:43:59.284058+00:00",
+  "classification": "IMPLEMENTATION_NOT_STARTED_EARLY_STOP",
+  "worker_original_disposition": "MODEL_REQUEST_FAILED",
+  "genuine_requests": 8,
+  "pending_undispatched_request": 9,
+  "usage": {
+    "input_tokens": 92453,
+    "output_tokens": 560,
+    "model_seconds": 54.27833660016768,
+    "worker_seconds": 58.67857180000283,
+    "worker_baseline_validation_seconds": 1.4591267999494448,
+    "host_run_seconds": 62.75523050001357
+  },
+  "tool_actions": 10,
+  "tool_refusals": 0,
+  "source_bytes": 26641,
+  "source_regions": [
+    {
+      "path": "src/devtools/context/python/project_configuration/declarations.py",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/resolution.py",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/declarations.py",
+      "span": [
+        4096,
+        4441
+      ],
+      "bytes": 345
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/resolution.py",
+      "span": [
+        4096,
+        8192
+      ],
+      "bytes": 4096
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/models.py",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_configuration.py",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/settings.py",
+      "span": [
+        3744,
+        5464
+      ],
+      "bytes": 1720
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/settings.py",
+      "span": [
+        0,
+        4096
+      ],
+      "bytes": 4096
+    }
+  ],
+  "proposals": 0,
+  "native_change_check_invocations": 0,
+  "native_freshness_invocations": 0,
+  "accepted": false,
+  "behavioral_or_quality_repair": "NOT_EXERCISED",
+  "supervisory_candidate_review": "NOT_APPLICABLE: no model source proposal",
+  "source_restored": true,
+  "capability_implemented": false,
+  "diagnosis": "Repository investigation did not transition to implementation before the frozen supervisor boundary. Correct owner read first; model declared understanding on turn4, then searched and inspected more source. Zero edit/Tool refusals. Context fit; host did not dispatch request9. This does not establish inability to solve the task given further turns. No retry or budget increase.",
+  "oracle_preparation_correction": {
+    "zero_inference_receipt": "live/result.json",
+    "active_qualified_task": "task-v2.json",
+    "active_oracle_sha256": "b79e12adfe12ad2f77b8a0e428a58a38c17c5ac4a8661e9e28b2aa53d0113f86",
+    "meaning": "isolated host fixture import/line-ending binding corrected before first inference; public assertions and ceilings unchanged"
+  },
+  "actual_profile": "unchanged verified local Qwen3.8-27B IQ4_XS, 32768, q4 K/V, thinking off",
+  "coordination_usage": "unavailable",
+  "last_dispatched_capacity": {
+    "context_tokens": 32768,
+    "generation_phase": "investigation",
+    "input_tokens": 19461,
+    "measurements": [
+      {
+        "input_tokens": 19461,
+        "projection": "source-preserving"
+      }
+    ],
+    "minimum_continuation_output_tokens": 4096,
+    "output_tokens": 4096,
+    "phase": "PRE_DISPATCH_CAPACITY",
+    "safety_tokens": 2048,
+    "task_output_ceiling": 8192
+  },
+  "pending_capacity": {
+    "context_tokens": 32768,
+    "generation_phase": "investigation",
+    "input_tokens": 21318,
+    "measurements": [
+      {
+        "input_tokens": 21318,
+        "projection": "source-preserving"
+      }
+    ],
+    "minimum_continuation_output_tokens": 4096,
+    "output_tokens": 4096,
+    "phase": "PRE_DISPATCH_CAPACITY",
+    "safety_tokens": 2048,
+    "task_output_ceiling": 8192
+  },
+  "starting_head": "ad440649b4ca0cdfac1ba9d7e948f7e2f674a458",
+  "live_worker_baseline": "b7d363ae6f5c3c251b33346abf6927747355a90f",
+  "validated_codex_worker_commit": "2db8130a1667a789897371f6a3607b52a989093b",
+  "qwen_feature_publication": null,
+  "codex_semantic_RI_fallback_installed": false,
+  "task_sha256": "8b8376e04231d2acd46fb4b68b0a1bac70ff2020846cd2fe4a97e77be1725d55",
+  "oracle_sha256": "b79e12adfe12ad2f77b8a0e428a58a38c17c5ac4a8661e9e28b2aa53d0113f86",
+  "task_resources": 16,
+  "tool_surface_advertised_in_all_actual_requests": true,
+  "focused_worker_regressions": {
+    "passed": 24,
+    "elapsed_seconds": 29.03
+  },
+  "baseline_RI_regressions": 70,
+  "maintained_strict_mypy_files": 503,
+  "protected": {
+    "canonical_command": "uv run python scripts/validate_development.py (same interpreter/script through managed CommandExecutor)",
+    "elapsed_seconds": 689.6084373000776,
+    "exit_code": 0,
+    "finished_at": "2026-10-22T12:51:04.799294+00:00",
+    "head": "b7d363ae6f5c3c251b33346abf6927747355a90f",
+    "output_complete": true,
+    "passed": true,
+    "scope": "Codex worker prerequisite only; RI candidate not implemented; not Qwen acceptance",
+    "source_after": {
+      "apps/qwen/coding_loop.py": "0b23abcea6735e1d466de448727d03bd0d23c407d61a9a0ad4576d038ec530ce",
+      "scripts/qwen/coding_worker.py": "365536edf5cf35b924765755e64c0b70077c88efb5bb0891d4d1aec7a04f19de",
+      "tests/apps/qwen/test_live_change_checks.py": "a73f2695e59d201da92511a646743034415fc4b051b6b92c388d192aadb96015"
+    },
+    "source_before": {
+      "apps/qwen/coding_loop.py": "0b23abcea6735e1d466de448727d03bd0d23c407d61a9a0ad4576d038ec530ce",
+      "scripts/qwen/coding_worker.py": "365536edf5cf35b924765755e64c0b70077c88efb5bb0891d4d1aec7a04f19de",
+      "tests/apps/qwen/test_live_change_checks.py": "a73f2695e59d201da92511a646743034415fc4b051b6b92c388d192aadb96015"
+    },
+    "started_at": "2026-10-22T12:39:35.190877+00:00",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "02d79938c80e624e04a8cffdb775db2a4ac37ae43d92e22fcc1aca07a20c7cb8",
+    "unchanged": true,
+    "summary": "2447 passed, 2 skipped in 687.70s (0:11:27)",
+    "coverage": "TOTAL                                                                     11735      0   2928      0   100%"
+  },
+  "first_preparation_failure": {
+    "requests": 0,
+    "receipt": ".local/qwen-coding-worker/engineering-20/live/result.json",
+    "classification": "isolated host oracle fixture import error, corrected before inference; old evidence preserved"
+  },
+  "raw_evidence": ".local/qwen-coding-worker/engineering-20/",
+  "no_second_Qwen_inference_session": true,
+  "main_promotion": false,
+  "pre_inference_definition_history": {
+    "original_task_sha256": "3e79c1bdeacdcd6ceb20b296ed521b0d30cd4e9e319e7465f5a23f805751e5d0",
+    "original_oracle_sha256": "99c44974399124459d26117912d4d919adb44cf662de8420559231ee3189e26f",
+    "active_task_sha256": "8b8376e04231d2acd46fb4b68b0a1bac70ff2020846cd2fe4a97e77be1725d55",
+    "active_oracle_sha256": "b79e12adfe12ad2f77b8a0e428a58a38c17c5ac4a8661e9e28b2aa53d0113f86",
+    "public_assertions_unchanged": true,
+    "changed_fields": [
+      "oracle trusted fixture import setup",
+      "baseline_hashes authenticated checkout line-ending variants"
+    ],
+    "model_requests_before_correction": 0
+  }
+}

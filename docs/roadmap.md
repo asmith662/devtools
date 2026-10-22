@@ -1,5 +1,17 @@
 # Roadmap
 
+[Shared engineering20](../apps/qwen/evaluation/shared-engineering-20/README.md)
+did not deliver the selected RI configuration-obstruction capability. Qwen reached
+the frozen investigation stop after eight genuine requests, with zero edits or
+live change-check use. Context fit and all ten read/search actions succeeded.
+No automatic retry or Codex semantic substitute was installed. Next deliver the
+same useful RI correction as a separately attributed Codex increment under the
+qualified contract; any future Qwen guidance evaluation needs a distinct task.
+A narrow opt-in completion/presentation prerequisite is Codex-authored and tested,
+not a new Qwen success. Parent reliability and protected-main adoption remain open.
+Older sequencing statements below retain their recorded historical status.
+
+
 The shared nonpublishing `check_changes` / `is_current` Tools are delivered as
 **Codex-authored** application source at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`. They reuse the published
 all-checks bundle and add authorized tracked/new change discovery, source/Git/index/

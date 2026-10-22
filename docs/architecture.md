@@ -114,6 +114,13 @@ This introduces no source/version authority or executor. Review eligibility is
 separate from approval; WorkCycle retains installation, final reauthentication,
 independent review, protected validation, publication and destination promotion.
 See [the bounded contract](../apps/qwen/README.md#source-bound-change-checks).
+The same worker has an opt-in shared-check completion boundary: after edit
+validation it waits for model-invoked check_changes and host freshness through
+ToolRunner before restoring temporary source. Default completion remains unchanged.
+Reports are not mutated for conversation-budget presentation. This creates no new
+executor, Task schema or publication authority. Deterministic validation is
+separate from the currently unproven live Qwen use of this completion path.
+
 
 The local Qwen application composes scoped Git/check Commands as native Tools, atomic observed edits, explicit absence-bound new files and optional AST-equivalent host formatting. Local accepted candidates enter WorkCycle.integration.closeout_local for shared validation, exact-source Codex review and explicitly requested ordinary-feature publication. Protected promotion and canonical backlog completion retain separate governed authority. Model text never supplies arbitrary argv or publication authority.
 

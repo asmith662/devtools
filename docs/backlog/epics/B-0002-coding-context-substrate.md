@@ -1226,3 +1226,16 @@ Current sequencing instead prioritizes mandatory R1 and unconditional R2;
 prospective semantic-resolution effectiveness follows the coordinated roadmap.
 No numeric confidence, learned ranking, candidate elimination, autonomous
 acquisition, frontier requests or Context Planning integration is promoted here.
+
+## Observed project-configuration obstruction pressure (Engineering20)
+
+Current selector traversal can report missing selectors when a present parent is
+not a table. Independent public-API/TOML qualification reproduced false absence;
+the requested bounded correction must preserve explicit unsupported evidence,
+valid siblings, genuine absence and source-bound resolution provenance.
+[Engineering20](../../../apps/qwen/evaluation/shared-engineering-20/README.md)
+attempted it with Qwen but stopped at eight genuine responses without editing.
+No accepted implementation, promotion or parent completion is claimed. The frozen
+contract is retained for separately attributable Codex delivery; no new parser,
+configuration authority or retrieval framework is required. This pressure remains
+open and does not change the epic status or historical results.

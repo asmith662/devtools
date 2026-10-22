@@ -1,5 +1,12 @@
 # Bounded local coding worker
 
+[Shared engineering20](evaluation/shared-engineering-20/README.md) stopped before
+implementation: eight genuine Qwen responses, ten successful investigation actions
+and zero edits at the frozen early boundary. The qualified RI obstruction task
+remains open; Qwen did not use check_changes. A narrow Codex prerequisite now lets
+an opt-in worker continue after accepted edits until model-invoked checks and
+host freshness, but its live Qwen use remains unproven. Older outcomes stay intact.
+
 **Delivered directly by Codex:** shared `check_changes` and `is_current` are
 feature-published at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`, composing the previously delivered `run_check(all)`.
 See [the shared Tool contract](#source-bound-change-checks) and
@@ -196,6 +203,25 @@ inside a check. Reports apply to their recorded state, not arbitrary future edit
 WorkCycle alone retains independent review, protected validation and explicitly
 authorized publication. The delivered `check_changes` reuses this bundle; it does
 not reimplement checks.
+
+## Native completion with shared checks
+
+Trusted callers may pass `check_changes_before_completion=True` to the existing
+run_local_task, or use `--observed-edits --check-changes-before-completion` on the
+coding_worker CLI. This requires task command_tools and quality_checks. It does
+not change Task identities/defaults, grant authority or add another runner.
+
+The legacy default still terminates after independently passing edit validation.
+The opt-in mode continues in the same bounded native conversation until Qwen
+invokes check_changes on an installed edited candidate. At the end of that Tool
+batch, the host calls is_current through ToolRunner and accepts only current,
+complete passing evidence. A later failed Tool in that batch prevents acceptance.
+Plain model completion without the check remains unsuccessful. Budget limits and
+atomic admission remain unchanged. Evidence records model Tool calls separately
+from host freshness verification; pristine report payloads receive no host_limits
+presentation mutation. Once source is restored, do not claim that report remains
+current. WorkCycle must install/revalidate/review the exact candidate independently.
+This pathway passes deterministic worker tests; Engineering20 never reached it.
 
 ## Source-bound change checks
 

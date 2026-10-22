@@ -1,5 +1,23 @@
 # Native Context worker acceptance and evaluation
 
+## Shared engineering20: implementation not started
+
+Qwen attempted a new qualified B-0002 project-configuration RI obstruction fix.
+It made eight genuine requests / ten successful Tool actions, disclosed 26,641
+source bytes, and proposed no edit before the prospectively frozen early stop.
+92,453 input / 560 output tokens; 58.679 worker seconds. The ninth pending request
+still fit Context but was not dispatched. All actual requests exposed the new
+Tools; Qwen did not invoke check_changes or is_current. No coding acceptance,
+repair, candidate review or feature publication is claimed.
+
+A zero-inference isolated fixture-import preparation error was corrected and
+requalified before the first model request; public expectations/budgets unchanged.
+The narrow Codex native-completion prerequisite is tested separately. This is not
+an improvement in Qwen engineering effectiveness. [Record](evaluation/shared-engineering-20/README.md)
+and [metrics](evaluation/shared-engineering-20/results.json) retain the exact
+contract, raw-evidence references, limitations and separate Codex fallback.
+Earlier entries below retain their historical status.
+
 ## Direct Codex shared change-check delivery
 
 The full approved application Tool is published at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`.
