@@ -272,14 +272,16 @@ def test_empty_arrays_absent_keys_and_non_table_nodes(tmp_path: Path) -> None:
         not in result.declarations.absent_selectors
     )
     assert len(result.declarations.absent_selectors) == 5
-    assert (
-        len(
-            _resolve(
-                _snapshot(tmp_path, {"pyproject.toml": "tool=42"}),
-            ).declarations.absent_selectors,
-        )
-        == 6
+    obstructed = _resolve(
+        _snapshot(tmp_path, {"pyproject.toml": "tool=42"}),
     )
+    assert obstructed.declarations.absent_selectors == (
+        PythonConfigurationSelector.README,
+    )
+    assert len(obstructed.assessments) == 5
+    assert all(item.status == _S.UNSUPPORTED for item in obstructed.assessments)
+    assert all(item.reason == "non-table-parent" for item in obstructed.assessments)
+    assert not obstructed.facts
 
 
 @pytest.mark.parametrize(
