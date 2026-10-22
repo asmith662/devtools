@@ -26,12 +26,37 @@ manager.
 ## Process creation
 
 Execution uses `asyncio.create_subprocess_exec()` with direct argv, optional
-native cwd, and stdout/stderr pipes. There is no shell, stdin, environment
-override, or process-group configuration.
+native cwd, and stdout/stderr pipes. Explicit binary stdin is piped while both
+output streams drain, then closed to deliver EOF. Empty bytes also create a pipe;
+None preserves inherited stdin. Early input closure/child exit remains an ordinary
+result. Timeout and cancellation cover blocked input and reap the immediate child.
+Per-command environment overrides are merged with the current parent at launch,
+without mutating os.environ. None/empty overrides use inherited environment;
+nonempty mappings overlay only their keys. Immutable specification validation and
+fluent behavior are described in [Command values](command.md). There is no shell
+or process-group configuration. The exact Qwen implementation and independent
+regressions are reviewed and feature-published; see
+[environment development 13](https://github.com/asmith662/devtools/blob/9437ed1539fd4ad2a9b471ea20fc3de775f74765/apps/qwen/evaluation/environment-13/README.md).
+Protected-main adoption remains separate.
+
+The exact Qwen-authored stdin implementation was independently qualified after
+correcting missing standard attributes in old test doubles, then reviewed and
+feature-published through WorkCycle. The live continuation still failed at
+Context capacity; see [stdin development evidence](https://github.com/asmith662/devtools/blob/9437ed1539fd4ad2a9b471ea20fc3de775f74765/apps/qwen/evaluation/stdin-11/README.md).
+This does not claim protected-main adoption or uninterrupted autonomous success.
 
 If creation raises `FileNotFoundError`, it becomes `CommandNotFoundError` with
 the original error retained as its cause. No started event or result is
 produced, and the event stream closes.
+
+## Explicit successful statuses
+
+The executor and live handle retain raw process status and result identity.
+`CommandResult` applies the originating Command's `success_exit_codes` to its
+`succeeded`/`failed` views; CommandTool/ToolRunner forward the same result.
+`CommandExited.exit_code` remains the actual status, including a selected nonzero
+or excluded zero. This interpretation does not change execution exceptions,
+timeouts, cancellation or cleanup. See [command values](command.md).
 
 ## Timeout
 
@@ -56,3 +81,14 @@ cancel the shared command execution for all awaiters.
 
 Only the immediate child is managed. Descendants and process groups are not
 terminated.
+
+
+## Explicit decoded output views
+
+`CommandResult.stdout_text(*, encoding="utf-8", errors="strict")` and
+`stderr_text(...)` return native `bytes.decode` views of the retained channels.
+They leave the original bytes, truncation flags, command, duration, exit code and
+event-drop metadata unchanged. Alternate codecs/error policies follow Python's
+native contract, including `UnicodeDecodeError` and `LookupError`; arguments are
+keyword-only. These Qwen-authored methods and independent permanent regressions
+are feature-published in `9b667e597f9d`; protected-main adoption remains separate.

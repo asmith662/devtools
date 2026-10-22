@@ -4,6 +4,21 @@
 from dataclasses import dataclass
 
 
+def _validate_integer(value: object, prefix: str) -> None:
+    """Validate that a value is a real integer, rejecting bool.
+
+    :param value: Candidate limit value.
+    :param prefix: Message prefix identifying the field.
+    :raises TypeError: If the value is not an ``int`` (bool is rejected).
+    """
+    if isinstance(value, bool):
+        msg = f"{prefix}, not bool."
+        raise TypeError(msg)
+    if not isinstance(value, int):
+        msg = f"{prefix}, got {type(value).__name__}."
+        raise TypeError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class CommandOutputPolicy:
     """Bound memory retained for one command execution.
@@ -23,7 +38,26 @@ class CommandOutputPolicy:
     max_pending_events: int = 1_024
 
     def __post_init__(self) -> None:
-        """Validate output-retention invariants."""
+        """Validate output-retention invariants.
+
+        :raises TypeError: If a limit is not an integer (bool is rejected
+            explicitly).
+        :raises ValueError: If a byte limit is negative or the pending event
+            limit is not positive.
+        """
+        _validate_integer(
+            self.max_stdout_bytes,
+            "Maximum stdout bytes must be an integer",
+        )
+        _validate_integer(
+            self.max_stderr_bytes,
+            "Maximum stderr bytes must be an integer",
+        )
+        _validate_integer(
+            self.max_pending_events,
+            "Maximum pending events must be an integer",
+        )
+
         if self.max_stdout_bytes < 0:
             msg = "Maximum stdout bytes cannot be negative."
             raise ValueError(msg)

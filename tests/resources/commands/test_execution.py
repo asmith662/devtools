@@ -322,6 +322,8 @@ class _NoopTimeout:
 class _TimedOutProcess:
     """Minimal subprocess fake that times out once before cleanup completes."""
 
+    stdin: None = None
+
     def __init__(self) -> None:
         """Initialize the fake process state."""
         self.killed = False
@@ -342,6 +344,8 @@ class _TimedOutProcess:
 class _NoExitCodeProcess:
     """Minimal completed-process fake with an invalid absent exit code."""
 
+    stdin: None = None
+
     def __init__(self) -> None:
         """Initialize completed empty output streams without an exit code."""
         self.returncode: None = None
@@ -355,6 +359,8 @@ class _NoExitCodeProcess:
 class _MissingPipesProcess:
     """Minimal process fake whose output-pipe invariant is invalid."""
 
+    stdin: None = None
+
     returncode = 0
     stderr = None
     stdout = None
@@ -365,6 +371,8 @@ class _MissingPipesProcess:
 
 class _OutputProcess:
     """Minimal completed process producing output beyond configured bounds."""
+
+    stdin: None = None
 
     def __init__(self) -> None:
         """Initialize deterministic output streams and completion state."""

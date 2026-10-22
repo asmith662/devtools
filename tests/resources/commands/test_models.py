@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
@@ -145,3 +145,35 @@ def test_command_output_policy_exposes_default_bounds() -> None:
     assert policy.max_stdout_bytes > 0
     assert policy.max_stderr_bytes > 0
     assert policy.max_pending_events > 0
+
+
+@pytest.mark.parametrize("arguments", [None, [], ["a"], "ab", (1,), ("ok", None)])
+def test_command_rejects_mutable_or_nonstring_arguments(arguments: object) -> None:
+    """Frozen command specifications reject malformed runtime argv values."""
+    with pytest.raises(TypeError):
+        Command("echo", arguments=cast("tuple[str, ...]", arguments))
+
+
+@pytest.mark.parametrize("value", [None, 1, False])
+def test_command_rejects_nonstring_executable_and_fluent_values(value: object) -> None:
+    """Immutable fluent operations preserve the constructor's public contract."""
+    with pytest.raises(TypeError):
+        Command(cast("str", value))
+    command = Command("echo")
+    with pytest.raises(TypeError):
+        command.with_executable(cast("str", value))
+    with pytest.raises(TypeError):
+        command.args(cast("str", value))
+    with pytest.raises(TypeError):
+        command.with_args(cast("str", value))
+    assert command.argv == ("echo",)
+
+
+def test_command_preserves_literal_empty_unicode_and_shell_looking_arguments() -> None:
+    """Argument validation never shell-splits, strips or rewrites literal values."""
+    values = ("", "café🦊", " a b ", "; literal")
+    command = Command("echo", arguments=values)
+    assert command.argv == ("echo", *values)
+    assert command.args("x").arguments == (*values, "x")
+    assert command.arguments == values
+    assert command.with_args().arguments == ()

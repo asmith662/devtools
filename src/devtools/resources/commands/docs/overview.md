@@ -70,15 +70,19 @@ CommandError
 └── CommandTimeoutError
 ```
 
-A nonzero process exit is a normal `CommandResult`, not an exception.
+A nonzero process exit is a normal `CommandResult`, not an exception. Successful
+status interpretation defaults to zero, with explicit immutable per-command
+`success_exit_codes` available for developer-tool conventions such as diff-found.
+Raw process status, events and other execution facts remain unchanged.
 
 ## Limitations and future evolution
 
 Execution manages only the immediate child process. Output/event observation is
-bounded and best effort. Shell mode, stdin, environment overrides, process
-groups, pipelines, retries, and text decoding are absent.
+bounded and best effort. Binary stdin, immutable per-command environment overrides
+and explicit result decoding views are supported; see [Command values](command.md)
+and [execution](execution.md). Shell mode, process groups, pipelines and retries
+are absent.
 
 Potential future work is limited to demonstrated needs: descendant cleanup,
-stdin, environment overrides, text decoding, and alternative bounded-output
-strategies such as disk spooling. Retry and shell/pipeline policy belong at a
-higher layer.
+alternative bounded-output strategies such as disk spooling. Retry and
+shell/pipeline policy belong at a higher layer.
