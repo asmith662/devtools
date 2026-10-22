@@ -1,5 +1,15 @@
 # Roadmap
 
+The fixed all-checks component is now delivered as **Codex-authored** source on
+`feat/qwen-context-worker` at `f26b36238e7f412ed736ca1d8cda6acdb4592b7d`. Native ToolRunner acceptance,
+the unchanged18oracle, permanent regressions and protected validation pass.
+This is not a new Qwen success; all four failed Qwen outcomes remain preserved.
+The next bounded increment is full `check_changes` in the existing application
+owner: reuse this bundle, add authorized Git/new-file discovery, exact source/Git/
+plan report identity and `is_current` freshness. Do not reimplement checks or grant
+the Tool review/publication authority. Protected-main adoption remains separate.
+Older roadmap entries below retain historical status.
+
 [Source-supplied19](../apps/qwen/evaluation/source-supplied-19/README.md) elicited
 implementation on response two, but every transaction failed exact admission
 (oversized text, then no-op). No bundle was delivered. The immediate delivery

@@ -1,5 +1,13 @@
 # Bounded local coding worker
 
+**Delivered directly by Codex:** `run_check(check="all")` is feature-published at
+`f26b36238e7f412ed736ca1d8cda6acdb4592b7d`. It composes the existing five checks through ToolRunner,
+binds source/plan identities, preserves independent failures and full evidence,
+and blocks drift or incomplete validation. See [the contract](#fixed-all-check-bundle).
+The unchanged Check-Bundle18 oracle and permanent regressions pass, with protected
+validation. This is Codex-authored software, not a successful Qwen evaluation.
+Full `check_changes` remains the next increment; older entries below are history.
+
 [Source-supplied19](evaluation/source-supplied-19/README.md) began implementation
 on response two but **did not deliver** the bundle. Authentic initial Context
 fit at 9,151 input tokens; six requests produced four atomically refused proposals
@@ -139,6 +147,57 @@ accepted. Full check logs are archived; model results are bounded and source-bou
 `command_tools`, `tool_actions` (default eight, host ceiling 32) and
 `mechanical_format` enter the task digest. Formatting is opt-in, AST-equivalent,
 and journaled before writing; behavior/typing failures use the same repair loop.
+
+## Fixed all-check bundle
+
+Use the existing `CodingCommands` instance bound to an absolute canonical root,
+host evidence directory and host-owned CodingTask with prepared validation runners:
+
+```python
+report = await ToolRunner().execute(commands, ("run_check", {"check": "all"}))
+```
+
+Native `ModelToolCall("run_check", '{"check":"all"}', call_id)` dispatches through
+the same ToolRunner. The five individual selectors remain unchanged. The `all`
+selection is also available to direct trusted callers of module-level `run_check`.
+Native command availability still requires `task.command_tools`; a read result
+or a passing report grants no authority.
+
+Tests and independent oracle are required. Ruff/format follow `quality_checks`;
+strict mypy follows `command_tools`. Each of the five entries has its own status,
+elapsed seconds, bounded stdout/stderr (3,000 characters each), truncation flag
+and full evidence reference. Ordinary nonzero checks are FAIL and do not prevent
+independent checks. Missing/mismatched plans, unavailable commands, timeouts,
+incomplete managed output or observed identity drift make the bundle BLOCKED.
+Unstarted checks remain NOT_RUN; disabled checks are NOT_APPLICABLE. PASS requires
+all applicable checks to pass together on unchanged observed inputs.
+
+`source_sha256`/`source_after_sha256` include authorized absent new slots as null.
+`task_definition_sha256`, `plan_sha256`/`plan_after_sha256` and cumulative
+`source_unchanged`/`plan_unchanged` bind the report to source, immutable read/test
+inputs, fixed runners, interpreter/root and standard applicable configuration.
+The existing runner rendering is shared by preparation and admission; even a
+nonempty substituted runner is refused. Nested Ruff configuration and pytest
+conftest files along declared paths are included. Identity is sampled around
+each check and at completion; observed drift stays invalid even if later restored.
+The caller's existing Checkout owner supplies mutation serialization.
+
+One `coding-command-NN.json` journal retains full captured outputs and plan
+identities under existing managed output/time limits. Rows correlate by check
+name and reference that journal. Progress is saved before execution, so failure
+cannot turn unexecuted checks into passes. Cancellation records INTERRUPTED and
+propagates; an evidence-write failure is attached to cancellation rather than
+masking it. The operation does not edit source, format it in place or mutate Git.
+Check programs may create normal caches/fixtures; observed source mutation blocks
+the report and is not automatically rolled back by this read/validation Tool.
+
+This checks only the host-declared resources and fixed plan. It performs no Git
+change discovery, generalized test selection, historical freshness query or
+review-readiness certification. It cannot detect unobserved mutation/restoration
+inside a check. Reports apply to their recorded state, not arbitrary future edits.
+WorkCycle alone retains independent review, protected validation and explicitly
+authorized publication. Full `check_changes` will reuse this bundle rather than
+reimplementing the checks.
 
 Explicit `new_paths` admit existing-parent Python implementation files only.
 `inspect_new_source` verifies actual absence and returns its task-bound version;

@@ -1,5 +1,35 @@
 # Native Context worker acceptance and evaluation
 
+## Direct Codex bundle delivery — not a Qwen evaluation
+
+The fixed `run_check(check="all")` component is feature-published at `f26b36238e7f412ed736ca1d8cda6acdb4592b7d`,
+with source SHA256 `5bc104ad3ae2d2242284a147bca5275d322d1bd0d38e2d450edb2ee89166c272`.
+All semantic code and permanent regressions in this increment are Codex-authored.
+No Qwen/model inference, Pi comparison or serving change ran. Engineering16,
+Change-check17 and Check-Bundle18 produced no implementation; Source-supplied19
+proposed code but all four transactions were refused. Their outcomes stay unchanged.
+
+The unchanged independent oracle SHA256
+`2f23ecf07e9b425e37d7f5f80e7984e7db50e9283dc3606fedfefcb66e579a56`
+passes through actual native/shared ToolRunner dispatch in a fresh interpreter,
+using real pytest, oracle, Ruff, formatting and strict mypy fixtures. Permanent
+regressions cover independent failures, optional checks, new slots, missing and
+substituted runners, unavailable/timeout errors, input/config/source drift,
+cancellation, incomplete logs and receipt preservation. Scoped quality checks pass.
+Final protected result: **================= 2401 passed, 2 skipped in 660.18s (0:11:00) =================**, with the production coverage gate retained.
+
+WorkCycle review subject `54f75d0389304da7a24c064bfb7d7b797d7d0eb97aad59315b65b47079336332` binds exact source/tests, baseline,
+validation and truthful Codex attribution. Receipt/full logs are under
+`.local/qwen-coding-worker/check-bundle-codex/reviewed-v2/`. An earlier protected run
+passed before review corrections; its evidence is preserved and was not reused
+for the changed tree. Final validation was rerun after runner/config admission and
+commit-attribution corrections. This is feature publication, not protected-main
+adoption, full check_changes completion or improved Qwen performance.
+
+Next: compose the delivered bundle with authorized Git/new-file discovery,
+source/Git/plan report identity and `is_current` under the original full contract.
+Earlier evaluation entries below retain their historical status.
+
 [Source-supplied19](evaluation/source-supplied-19/README.md) changed presentation
 using genuine host ToolRunner/Context observations, not forged assistant calls.
 Qwen proposed code on response two, satisfying the implementation-start rule.

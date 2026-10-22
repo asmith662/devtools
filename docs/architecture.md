@@ -97,6 +97,15 @@ Checkout owns mutation/restoration, and WorkCycle integration owns reviewed
 closeout. Handles are provenance references, not new RI identities or authority.
 No second editing engine or transcript representation is introduced.
 
+The application's fixed `run_check(check="all")` composition reuses the existing
+single-check execution and ToolRunner boundary, with exact declared-source and
+validation-input hashes, independent outcomes and durable bounded/full evidence.
+The fixed runner rendering is shared with preparation; no second validator or
+executor exists. It has no Git discovery, historical freshness, review-readiness
+or publication authority. Local closeout can truthfully attribute explicitly
+host-selected Codex implementations while retaining the Qwen default for existing
+receipts. See [the application contract](../apps/qwen/README.md#fixed-all-check-bundle).
+
 The local Qwen application composes scoped Git/check Commands as native Tools, atomic observed edits, explicit absence-bound new files and optional AST-equivalent host formatting. Local accepted candidates enter WorkCycle.integration.closeout_local for shared validation, exact-source Codex review and explicitly requested ordinary-feature publication. Protected promotion and canonical backlog completion retain separate governed authority. Model text never supplies arbitrary argv or publication authority.
 
 

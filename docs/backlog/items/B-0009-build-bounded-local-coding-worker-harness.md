@@ -399,3 +399,15 @@ repair, or general reliability result. The original18oracle and16/17/18failures
 are preserved. Deliver this fixed operation directly with separate Codex source
 attribution before composing the full check_changes contract; no semantic
 substitute was installed in this Qwen evaluation. The parent stays open.
+
+## Direct Codex fixed-bundle delivery
+
+`run_check(check="all")` is implemented and feature-published at `f26b36238e7f412ed736ca1d8cda6acdb4592b7d`.
+The existing CodingCommands/managed Commands/ToolRunner owners provide independent
+check outcomes, source/plan-bound evidence, fail-closed admission and cancellation.
+The unchanged18oracle, permanent regressions and protected validation pass; see
+[the contract](../../../apps/qwen/README.md#fixed-all-check-bundle) and
+[delivery evidence](../../../apps/qwen/EVALUATION.md#direct-codex-bundle-delivery--not-a-qwen-evaluation).
+This increment is Codex-authored, with no Qwen inference or relabeled historical
+outcome. The parent remains open. Full check_changes discovery/freshness and
+protected-main adoption are unresolved; compose this bundle in the next increment.
