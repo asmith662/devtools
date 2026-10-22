@@ -147,7 +147,7 @@ class RepositoryRoleEvidenceView:
     evidence: tuple[ResourceRoleEvidence, ...]
     limitations: tuple[RepositoryRoleLimitation, ...]
 
-    SEMANTICS: ClassVar[str] = "positive-python-repository-role-support-v1"
+    SEMANTICS: ClassVar[str] = "positive-python-repository-role-support-v2"
 
     def for_resource(
         self,

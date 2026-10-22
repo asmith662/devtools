@@ -149,6 +149,8 @@ def _declaration_roles(
 ) -> tuple[tuple[RepositoryRoleKind, ...], RoleSupportKind]:
     if key[0] == "project":
         return (_R.PROJECT_CONFIGURATION,), _K.PROJECT_DECLARATION
+    if key[0] == "dependency-groups":
+        return (_R.PROJECT_CONFIGURATION,), _K.PROJECT_DECLARATION
     if key[0] == "build-system":
         return (_R.PROJECT_CONFIGURATION, _R.BUILD_CONFIGURATION), _K.BUILD_DECLARATION
     if key[: len(_PYTEST)] == _PYTEST:
