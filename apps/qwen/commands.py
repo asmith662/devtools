@@ -5,13 +5,17 @@
 from __future__ import annotations
 
 import ast
+import asyncio
+import hashlib
 import json
 import sys
+import time
 from typing import TYPE_CHECKING, Any
 
-from apps.qwen.development_task import _hash, _save, _timed_command
+from apps.qwen.development_task import _hash, _runner_sources, _save, _timed_command
 from apps.qwen.model_tool_composition import normalize_tool_descriptor
 from devtools.core.paths import resolve_path
+from devtools.resources.commands import CommandError
 from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolDescriptor, ToolRunner
 
@@ -49,9 +53,10 @@ def command_definitions(task: CodingTask) -> tuple[ModelToolDefinition, ...]:
             "run_check",
             (
                 "Run a host-owned test/oracle/lint/format/type check on source. "
+                "Use all for independent checks bound to current source/plan. "
                 "Full logs are archived. No arbitrary argv or writes."
             ),
-            {"check": {"type": "string", "enum": list(CHECKS)}},
+            {"check": {"type": "string", "enum": [*CHECKS, "all"]}},
         ),
     )
     return tuple(
@@ -77,6 +82,8 @@ async def run_check(
     root: Path, folder: Path, task: CodingTask, check: str
 ) -> dict[str, Any]:
     """Share fixed check construction for inspection and final acceptance."""
+    if check == "all":
+        return await CodingCommands(root, folder, task)._check_bundle()  # noqa: SLF001 -- same module-level selector
     if check not in CHECKS:
         raise ValueError("Unsupported coding check")
     paths = (
@@ -93,6 +100,91 @@ async def run_check(
     return await _timed_command(root, sys.executable, *arguments)
 
 
+def _input_identity(base: Path, path: str) -> str | None:
+    """Hash only a regular, directly addressed input within its host scope."""
+    raw = base / path
+    resolved = resolve_path(path, base_directory=base).value
+    if raw != resolved or not resolved.is_relative_to(base):
+        raise ValueError("Input aliases or escapes the authorized scope: " + path)
+    if raw.exists() and not raw.is_file():
+        raise ValueError("Input is not a regular file: " + path)
+    return _hash(raw) if raw.exists() else None
+
+
+def _bundle_state(
+    root: Path, folder: Path, task: CodingTask
+) -> tuple[dict[str, str | None], dict[str, Any], list[str]]:
+    """Observe current source separately from the fixed host validation inputs."""
+    errors: list[str] = []
+
+    def observe(base: Path, path: str) -> str | None:
+        try:
+            return _input_identity(base, path)
+        except (OSError, ValueError) as error:
+            errors.append(str(error))
+            return None
+
+    sources = {p: observe(root, p) for p in task.sources}
+    inputs = {p: observe(root, p) for p in (*task.tests, *task.read_paths)}
+    expected = dict(task.baseline_hashes)
+    for path, identity in inputs.items():
+        if identity != expected.get(path):
+            errors.append("Frozen validation input differs: " + path)
+    errors.extend(
+        "Required source/test/read input unavailable: " + path
+        for path in (*task.existing_sources, *task.tests, *task.read_paths)
+        if sources.get(path, inputs.get(path)) is None
+    )
+    runners = {
+        p: observe(folder, p)
+        for p in ("tests-runner.py", "oracle-runner.py", "pytest.ini")
+    }
+    configuration_paths = {
+        "pyproject.toml",
+        "pytest.ini",
+        "setup.cfg",
+        "mypy.ini",
+        ".mypy.ini",
+        "ruff.toml",
+        ".ruff.toml",
+    }
+    for path in (*task.sources, *task.tests):
+        directory = (root / path).parent
+        while directory.is_relative_to(root):
+            relative = directory.relative_to(root)
+            if ".." in relative.parts:
+                break
+            names = (
+                ("conftest.py",)
+                if path in task.tests
+                else ("pyproject.toml", "ruff.toml", ".ruff.toml")
+            )
+            configuration_paths.update((relative / name).as_posix() for name in names)
+            if directory == root:
+                break
+            directory = directory.parent
+    configuration = {p: observe(root, p) for p in sorted(configuration_paths)}
+    expected_runners = {
+        p: hashlib.sha256(text.encode()).hexdigest()
+        for p, text in _runner_sources(root, folder, task).items()
+    }
+    plan = {
+        "task_definition_sha256": task.definition_sha256,
+        "repository_root": str(root),
+        "runner_directory": str(folder),
+        "python": sys.executable,
+        "inputs": inputs,
+        "runners": runners,
+        "expected_runners": expected_runners,
+        "configuration": configuration,
+    }
+    return sources, plan, errors
+
+
+def _plan_identity(plan: dict[str, Any]) -> str:
+    return hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest()
+
+
 class CodingCommands:
     """Fixed task-local ToolRunner adapter; no generic command dispatcher."""
 
@@ -103,6 +195,7 @@ class CodingCommands:
         """Bind operation scope and original host-written validation runners."""
         self.root, self.folder, self.task = root, folder, task
         self.count = 0
+        _, self._bound_plan, _ = _bundle_state(root, folder, task)
 
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Refuse unknown operations, paths and keys before execution."""
@@ -127,6 +220,8 @@ class CodingCommands:
     async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
         """Archive full check output and return a bounded, version-bound view."""
         name, values = arguments
+        if name == "run_check" and values["check"] == "all":
+            return await self._check_bundle()
         versions = {
             p: _hash(self.root / p) if (self.root / p).exists() else None
             for p in self.task.sources
@@ -164,6 +259,179 @@ class CodingCommands:
             "evidence": str(target.relative_to(self.folder)),
             "authority": "observation only; does not confer acceptance or publication",
         }
+
+    async def _check_bundle(self) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- five fixed checks, one evidence journal
+        """Compose existing selectors; never certify review or publish source."""
+        self.count += 1
+        target = self.folder / f"coding-command-{self.count:02d}.json"
+        # Preserve existing immutable receipts even across fresh Tool instances.
+        while target.exists():
+            self.count += 1
+            target = self.folder / f"coding-command-{self.count:02d}.json"
+        evidence = target.relative_to(self.folder).as_posix()
+        sources, plan, errors = _bundle_state(self.root, self.folder, self.task)
+        source_unchanged = True
+        plan_unchanged = plan == self._bound_plan
+        checks: dict[str, Any] = {}
+        for name in CHECKS:
+            applicable = (
+                self.task.quality_checks
+                if name in {"ruff", "format"}
+                else self.task.command_tools
+                if name == "typing"
+                else True
+            )
+            checks[name] = {
+                "status": "NOT_RUN" if applicable else "NOT_APPLICABLE",
+                "elapsed_seconds": 0.0,
+                "stdout": "",
+                "stderr": "",
+                "truncated": False,
+                "evidence": evidence,
+            }
+        for name, available in (
+            (
+                "tests",
+                bool(self.task.tests) and bool(plan["runners"]["tests-runner.py"]),
+            ),
+            (
+                "oracle",
+                bool(self.task.oracle.strip())
+                and bool(plan["runners"]["oracle-runner.py"]),
+            ),
+        ):
+            if (
+                not available
+                or plan["runners"][name + "-runner.py"]
+                != plan["expected_runners"][name + "-runner.py"]
+                or (
+                    name == "tests"
+                    and plan["runners"]["pytest.ini"]
+                    != plan["expected_runners"]["pytest.ini"]
+                )
+            ):
+                checks[name].update(
+                    status="BLOCKED",
+                    stderr="Required host check plan/runner unavailable",
+                )
+        report: dict[str, Any] = {
+            "operation": "run_check",
+            "arguments": {"check": "all"},
+            "task_definition_sha256": plan["task_definition_sha256"],
+            "source_sha256": sources,
+            "source_after_sha256": sources,
+            "plan_sha256": _plan_identity(plan),
+            "plan_after_sha256": _plan_identity(plan),
+            "source_unchanged": source_unchanged,
+            "plan_unchanged": plan_unchanged,
+            "plan": plan,
+            "checks": checks,
+            "status": "BLOCKED",
+            "diagnostics": errors,
+            "evidence": evidence,
+            "authority": "observation only; does not confer acceptance or publication",
+        }
+        started = time.perf_counter()
+        cancellation: asyncio.CancelledError | None = None
+
+        def journal() -> None:
+            report["elapsed_seconds"] = time.perf_counter() - started
+            try:
+                _save(
+                    target,
+                    {
+                        "call": call_data(("run_check", {"check": "all"})),
+                        "result": report,
+                    },
+                    overwrite=target.exists(),
+                )
+            except OSError as error:
+                if cancellation is None:
+                    raise
+                cancellation.add_note("Incomplete cancellation evidence: " + str(error))
+
+        def authenticate() -> None:
+            nonlocal source_unchanged, plan_unchanged
+            current, current_plan, issues = _bundle_state(
+                self.root, self.folder, self.task
+            )
+            source_unchanged = source_unchanged and current == sources
+            plan_unchanged = plan_unchanged and current_plan == plan
+            errors.extend(issue for issue in issues if issue not in errors)
+            report.update(
+                source_after_sha256=current,
+                plan_after_sha256=_plan_identity(current_plan),
+                source_unchanged=source_unchanged,
+                plan_unchanged=plan_unchanged,
+            )
+
+        journal()  # A crash leaves NOT_RUN, never invented successful outcomes.
+        try:
+            for name in CHECKS:
+                authenticate()
+                if errors or not source_unchanged or not plan_unchanged:
+                    break
+                row = checks[name]
+                if row["status"] != "NOT_RUN":
+                    continue
+                row.update(
+                    status="NOT_RUN",
+                    stderr="Check started; completion not yet recorded",
+                )
+                journal()
+                check_started = time.perf_counter()
+                try:
+                    result = await run_check(self.root, self.folder, self.task, name)
+                    row.update(result, status="FAIL" if result["failed"] else "PASS")
+                    if result.get("stdout_truncated") or result.get("stderr_truncated"):
+                        row.update(
+                            status="BLOCKED",
+                            diagnostic=(
+                                "Output retention limit exceeded; incomplete evidence"
+                            ),
+                        )
+                except asyncio.CancelledError as error:
+                    cancellation = error
+                    row.update(
+                        status="INTERRUPTED",
+                        stderr="Host cancellation; check incomplete",
+                    )
+                    raise
+                except (CommandError, OSError, ValueError) as error:
+                    row.update(
+                        status="BLOCKED", stderr=f"{type(error).__name__}: {error}"
+                    )
+                finally:
+                    row["elapsed_seconds"] = time.perf_counter() - check_started
+                    authenticate()
+                    journal()
+            statuses = {row["status"] for row in checks.values()}
+            report["status"] = (
+                "BLOCKED"
+                if errors
+                or not source_unchanged
+                or not plan_unchanged
+                or statuses & {"BLOCKED", "NOT_RUN", "INTERRUPTED"}
+                else "FAIL"
+                if "FAIL" in statuses
+                else "PASS"
+            )
+        finally:
+            authenticate()
+            if errors or not source_unchanged or not plan_unchanged:
+                report["status"] = "BLOCKED"
+            journal()
+        # Raw command outputs remain in the journal; only this view is bounded.
+        view = {**report, "diagnostics": [e[:1000] for e in errors[:8]], "checks": {}}
+        view.pop("plan")
+        for name, row in checks.items():
+            view["checks"][name] = {
+                **row,
+                "stdout": row["stdout"][:3000],
+                "stderr": row["stderr"][:3000],
+                "truncated": len(row["stdout"]) > 3000 or len(row["stderr"]) > 3000,
+            }
+        return view
 
 
 def call_data(arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
