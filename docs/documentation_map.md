@@ -770,3 +770,5 @@ The [host-disclosure prospective plan review](../experiments/source_grounding/pl
 owns the separate unapproved v2 plan for 0022/0023/0024 and its exact Stage A,
 runtime receipt, implementation/static-scope and run identity. PLAN_VALID remains
 distinct from execution authorization; no replacement scientific run is entered.
+
+The [static dependency-group RI delivery](../apps/qwen/evaluation/dependency-groups-24/README.md) records bounded raw-string recognition, unsupported evidence and deliberate coverage/derivation versions. The production settings owner remains authoritative; Codex fallback publication is distinct from the failed genuine Qwen attempt.

@@ -1251,3 +1251,24 @@ See [delivery and immutable parent references](../../../apps/qwen/evaluation/con
 A bounded SnapshotDelta prerequisite is delivered in context.repository.changes: immutable exact retained-resource partitions with original snapshot dependencies, no acquisition/mutation/rename or maintenance claim. Qwen created a partial module but failed complete integration; Codex delivered it under the unchanged qualified contract. Broader snapshot policy, incremental maintenance and applicability remain open.
 
 [Exact evidence and attribution](../../../apps/qwen/evaluation/new-module-22/README.md). Feature commit `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. No parent closure, proposal approval or protected promotion.
+
+
+## Static dependency-group slice delivered (Codex24)
+
+Top-level pyproject dependency-group declarations now retain ordered raw strings,
+original keys, empty presence/absence distinctions and qualified unsupported
+whole-group evidence. Includes are not resolved; normalized collisions remain
+unsupported; no installer, requirement parser or installed-package claim is added.
+Existing settings/declaration/coverage owners and exact-source resolution remain
+authoritative. Derivation/coverage versions deliberately advance.
+
+One genuine Qwen attempt failed behavior and reached a measured Context limit
+after ten requests; it did not use check_changes. Codex wrote and published the
+separate implementation at `7e1b10033c8793440994ef6069c9c0482dea74f8`, under the unchanged qualified oracle,
+151 focused RI cases and exact-source protected validation. Historical Qwen
+results, grants and experiments are unchanged. This delivers only the bounded
+syntax slice, not B-0002/B-0009 completion, role-policy/retrieval integration or
+protected-main adoption. The next bounded consumer task should distinguish
+dependency-group project metadata from the existing generic tool-role fallback.
+
+See [qualification, results and provenance](../../../apps/qwen/evaluation/dependency-groups-24/README.md).

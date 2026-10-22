@@ -1,5 +1,21 @@
 # Native Context worker acceptance and evaluation
 
+## Static dependency groups24: Codex delivery after Context-blocked Qwen attempt
+
+The bounded raw-string RI capability is feature-published at `7e1b10033c8793440994ef6069c9c0482dea74f8` with Codex
+authorship. One genuine Qwen attempt made ten requests, 173,464 input/3,117 output
+tokens and one admitted four-component transaction in 244.057 worker seconds.
+It used the wrong TOML parent, failed behavior and quality, then searched for
+oracle expectations. Request 11 was blocked at 31,867 prompt tokens after
+compaction; no behavioral repair, native check_changes or host freshness success
+is claimed. No edits were refused, so new component diagnostics were not tested
+by inference. The worker/serving profile is unchanged. Codex separately delivered
+the frozen contract after authenticated restoration, with 151 focused RI cases,
+100% scoped branch coverage and exact-source protected WorkCycle validation.
+See [full evidence](evaluation/dependency-groups-24/README.md). B-0002/B-0009
+remain at their existing broader status; protected-main adoption is separate.
+
+
 ## Component-specific edit diagnostics: Codex delivery, no inference
 
 The existing exact-edit boundary now returns additive structured component/path,
