@@ -52,6 +52,7 @@ from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 
 if TYPE_CHECKING:
+    from apps.qwen.tasks import CodingTask
     from devtools.core.paths import ResolvedPath
     from devtools.models.interaction import ModelInteraction
 
@@ -158,6 +159,57 @@ async def _timed_command(root: Path, *args: str) -> dict[str, Any]:
     result = await _command(root, *args)
     result.update(started_at=started_at, elapsed_seconds=time.perf_counter() - started)
     return result
+
+
+def _runner_sources(root: Path, folder: Path, task: CodingTask) -> dict[str, str]:
+    """Render the existing fixed host runners; no configurable execution plan."""
+    workspace = root
+    module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
+    prelude = (
+        "import sys\nfrom pathlib import Path\n"
+        f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
+        + (
+            f"sys.path.insert(0, {str(workspace)!r})\n"
+            if task.source.startswith("apps/")
+            else ""
+        )
+        + f"import {module_name} as module\n"
+        "assert Path(module.__file__).resolve() == "
+        f"Path({str(workspace / task.source)!r})\n"
+    )
+    oracle_text = prelude + task.oracle
+    test_arguments = [
+        *(str(workspace / test) for test in task.tests),
+        "-c",
+        str(folder / "pytest.ini"),
+        f"--confcutdir={workspace}",
+        "--no-cov",
+        "-q",
+    ]
+    tests_text = (
+        prelude
+        + "import json\nimport pytest\n"
+        # Capture primary facts before pytest's traceback formatting. Some
+        # tests deliberately forbid ast.parse, which formatters also use.
+        + "class PrimaryFailures:\n"
+        + "    @pytest.hookimpl(hookwrapper=True, tryfirst=True)\n"
+        + "    def pytest_runtest_makereport(self, item, call):\n"
+        + "        if call.excinfo is not None:\n"
+        + "            facts = dict(nodeid=item.nodeid, phase=call.when, "
+        + "exception=call.excinfo.type.__name__, "
+        + "message=str(call.excinfo.value)[:1000], "
+        + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
+        + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
+        + "file=sys.stderr, flush=True)\n"
+        + "        yield\n"
+        + f"arguments = {test_arguments!r}\n"
+        + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n"
+    )
+    return {
+        "oracle-runner.py": oracle_text,
+        "tests-runner.py": tests_text,
+        "pytest.ini": "[pytest]\n",
+    }
 
 
 def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:

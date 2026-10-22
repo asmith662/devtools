@@ -124,6 +124,10 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             implementation_author=author,
         )
         assert record["disposition"] == "FEATURE_PUBLISHED"
+        message = await git(root, "log", "-1", "--format=%B")
+        assert f"Integrate reviewed {author} task:" in message
+        assert f"Implementation-by: {author}\n" in message
+        assert f"{author}-Result: " in message
         # Model a lost response after the local commit; reconcile, never recommit.
         interrupted = dict(record, commit=None, disposition="COMMIT_INTENT")
         (candidate / "closeout.json").write_text(json.dumps(interrupted))

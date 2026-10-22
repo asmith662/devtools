@@ -328,11 +328,14 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
             root,
             "commit",
             "-m",
-            "Integrate reviewed Qwen task: " + task.name,
+            "Integrate reviewed " + implementation_author + " task: " + task.name,
             "-m",
-            "Qwen-Result: "
+            implementation_author
+            + "-Result: "
             + result_sha
-            + "\nReviewed-by: Codex\nImplementation-by: Qwen\nLocal-Closeout: "
+            + "\nReviewed-by: Codex\nImplementation-by: "
+            + implementation_author
+            + "\nLocal-Closeout: "
             + record["review_subject"],
         )
         record["commit"] = await git(root, "rev-parse", "HEAD")

@@ -33,6 +33,7 @@ from apps.qwen.continuation import ACTIVE_BYTES, present_sources, select_message
 from apps.qwen.development_task import (
     _command,
     _hash,
+    _runner_sources,
     _save,
     _structured_edit_definition,
     _structured_edit_patch_from_calls,
@@ -370,51 +371,8 @@ def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) ->
     workspace = root
     # Fixed pytest options and exact local imports. Repository conftest code is
     # part of the pinned host-owned validation environment, not model authority.
-    module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
-    prelude = (
-        "import sys\nfrom pathlib import Path\n"
-        f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
-        + (
-            f"sys.path.insert(0, {str(workspace)!r})\n"
-            if task.source.startswith("apps/")
-            else ""
-        )
-        + f"import {module_name} as module\n"
-        "assert Path(module.__file__).resolve() == "
-        f"Path({str(workspace / task.source)!r})\n"
-    )
-    write(TextFile(resolve_path(folder / "oracle-runner.py"), prelude + task.oracle))
-    test_arguments = [
-        *(str(workspace / test) for test in task.tests),
-        "-c",
-        str(folder / "pytest.ini"),
-        f"--confcutdir={workspace}",
-        "--no-cov",
-        "-q",
-    ]
-    write(
-        TextFile(
-            resolve_path(folder / "tests-runner.py"),
-            prelude
-            + "import json\nimport pytest\n"
-            # Capture primary facts before pytest's traceback formatting. Some
-            # tests deliberately forbid ast.parse, which formatters also use.
-            + "class PrimaryFailures:\n"
-            + "    @pytest.hookimpl(hookwrapper=True, tryfirst=True)\n"
-            + "    def pytest_runtest_makereport(self, item, call):\n"
-            + "        if call.excinfo is not None:\n"
-            + "            facts = dict(nodeid=item.nodeid, phase=call.when, "
-            + "exception=call.excinfo.type.__name__, "
-            + "message=str(call.excinfo.value)[:1000], "
-            + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
-            + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
-            + "file=sys.stderr, flush=True)\n"
-            + "        yield\n"
-            + f"arguments = {test_arguments!r}\n"
-            + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n",
-        )
-    )
-    write(TextFile(resolve_path(folder / "pytest.ini"), "[pytest]\n"))
+    for path, text in _runner_sources(root, folder, task).items():
+        write(TextFile(resolve_path(folder / path), text))
     return workspace
 
 
