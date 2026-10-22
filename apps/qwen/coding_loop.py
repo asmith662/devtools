@@ -79,6 +79,7 @@ from devtools.models.interaction.providers import (
     LlamaCppRequestSettings,
 )
 from devtools.resources.filesystem import TextFile, write
+from devtools.tools import ToolRunner
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -390,6 +391,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     observed_edits: bool = False,
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
+    check_changes_before_completion: bool = False,
 ) -> None:
     measured_capacity = isinstance(interaction, LlamaCppInteraction)
     active_limit = (
@@ -472,6 +474,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "current source, edit_ref and continuation_start without asking you "
             "to copy version hashes. Search and structural tools remain useful "
             "for locating symbols; use actual unit IDs for expansion."
+        )
+    if check_changes_before_completion:
+        active_prompt += (
+            " After implementing, invoke check_changes on the installed candidate. "
+            "Passing edit validation is not terminal in this run; use the shared "
+            "Tool for final checks. The host reauthenticates is_current before "
+            "restoring source. Do not repeat a large report merely to finish."
         )
     history = [
         PromptMessage(
@@ -825,12 +834,34 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         )
                     event["result"] = result
                     event["elapsed_seconds"] = time.perf_counter() - acquisition_started
-                    result["host_limits"] = {
+                    limits = {
                         "context_actions_remaining": task.tool_actions
                         - context_actions,
                         "model_calls_remaining": maximum_calls - number,
                         "proposals_remaining": task.maximum_proposals - proposals,
                     }
+                    if call.name in {"check_changes", "is_current"}:
+                        # A report is an authenticated payload. Do not change it
+                        # merely to present conversation-budget metadata.
+                        event["host_limits"] = limits
+                    else:
+                        result["host_limits"] = limits
+                    if (
+                        check_changes_before_completion
+                        and proposals
+                        and call.name == "check_changes"
+                        and result.get("ready_for_review")
+                    ):
+                        freshness = await ToolRunner().execute(
+                            commands, ("is_current", {"report": result})
+                        )
+                        report["change_check"] = result
+                        report["change_check_freshness"] = {
+                            **freshness,
+                            "invoked_by": "host verification, not model invocation",
+                        }
+                        if freshness["current"] and freshness["ready_for_review"]:
+                            report.update(accepted=True, disposition="ACCEPTED")
                     history.append(
                         PromptMessage(
                             "tool",
@@ -869,6 +900,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     ],
                 )
                 _save(turn / "stage.json", stage, overwrite=True)
+                if report.get("accepted"):
+                    return
                 continue
             if any(
                 c.name
@@ -1207,10 +1240,14 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             f"elapsed {stage['elapsed_seconds']:.2f}s",
             flush=True,
         )
-        if validation["accepted"]:
+        if validation["accepted"] and not check_changes_before_completion:
             report.update(accepted=True, disposition="ACCEPTED")
             return
-        if tools is not None and proposals >= task.maximum_proposals:
+        if (
+            tools is not None
+            and proposals >= task.maximum_proposals
+            and not validation["accepted"]
+        ):
             report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
             return
         # One latest state, not an ever-growing transcript; full assistant output
@@ -1257,6 +1294,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     observed_edits: bool = False,
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
+    check_changes_before_completion: bool = False,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -1266,6 +1304,13 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     """
     if type(thinking_enabled) is not bool:
         raise ValueError("thinking_enabled must be an explicit host boolean")
+    if type(check_changes_before_completion) is not bool or (
+        check_changes_before_completion
+        and (not task.command_tools or not task.quality_checks or not observed_edits)
+    ):
+        raise ValueError(
+            "Change-check completion requires native observed edits and all checks"
+        )
     maximum_calls = task.maximum_calls if maximum_calls is None else maximum_calls
     if not 1 <= maximum_calls <= task.maximum_calls:
         raise ValueError("Model call bound exceeds the authenticated task limit")
@@ -1293,6 +1338,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         "schema": "qwen-coding-loop-v2",
         "started_at": str(Timestamp.now()),
         "accepted": False,
+        "check_changes_before_completion": check_changes_before_completion,
         "disposition": "PREPARING",
         "turns": [],
         "limits": {
@@ -1384,6 +1430,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 observed_edits=observed_edits,
                 reasoning_effort=reasoning_effort,
                 request_settings=request_settings,
+                check_changes_before_completion=check_changes_before_completion,
             )
     except asyncio.CancelledError:
         report.update(

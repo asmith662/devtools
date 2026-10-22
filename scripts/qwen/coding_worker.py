@@ -122,6 +122,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     observed_edits: bool = False,
     reasoning_effort: str | None = None,
     sampling_profile: str = "baseline",
+    check_changes_before_completion: bool = False,
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -206,6 +207,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                 observed_edits=observed_edits,
                 reasoning_effort=reasoning_effort,
                 request_settings=selected_settings,
+                check_changes_before_completion=check_changes_before_completion,
             )
         finally:
             for path, text in originals.items():
@@ -215,7 +217,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                     write(TextFile(resolve_path(root / path), text))
 
 
-async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout entrypoint
+async def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- closed local run/closeout entrypoint
     """Invoke one constrained local task without production approval rituals."""
     parser = argparse.ArgumentParser(description=__doc__)
     selection = parser.add_mutually_exclusive_group()
@@ -299,6 +301,11 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
     )
     parser.add_argument("--reasoning-effort", choices=("low", "medium", "xhigh"))
     parser.add_argument(
+        "--check-changes-before-completion",
+        action="store_true",
+        help="Continue after accepted edits until the model checks the candidate.",
+    )
+    parser.add_argument(
         "--sampling-profile",
         choices=("baseline", "qwen-instruct", "qwen-thinking"),
         default="baseline",
@@ -377,6 +384,8 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
             0 if result["disposition"] == "PREFLIGHT_CHECKS_PASS_REVIEW_REQUIRED" else 1
         )
     options: dict[str, Any] = {}
+    if args.check_changes_before_completion:
+        options["check_changes_before_completion"] = True
     if args.thinking == "enabled":
         options["thinking_enabled"] = True
     if args.coordinated_edits:
