@@ -3,8 +3,8 @@
 
 """Bounded configured coding worker: retrieved Context, proposal, tests and repair.
 
-This consumer is deliberately task-local. It exposes no commands or mutations to
-the model and does not implement provider conversation or general Agent state.
+This consumer is task-local. It exposes fixed scoped command observations and
+host-admitted edit proposals, not arbitrary shell or general Agent state.
 """
 
 from __future__ import annotations
@@ -739,8 +739,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 )
             )
             if not response.tool_calls:
-                stage["disposition"] = "MODEL_COMPLETED_WITHOUT_EDIT"
-                report["disposition"] = "MODEL_COMPLETED_WITHOUT_EDIT"
+                disposition = (
+                    "MODEL_COMPLETED_WITHOUT_CHANGE_CHECK"
+                    if check_changes_before_completion and proposals
+                    else "MODEL_COMPLETED_WITHOUT_EDIT"
+                )
+                stage["disposition"] = disposition
+                report["disposition"] = disposition
                 _save(turn / "stage.json", stage, overwrite=True)
                 return
             ids = [c.provider_call_id for c in response.tool_calls]
@@ -753,6 +758,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 stage["phase"] = "CONTEXT_TOOL_EXECUTION"
                 stage["context_actions_requested"] = len(response.tool_calls)
                 stage["context_tools"] = []
+                checked_this_turn = False
                 _save(turn / "stage.json", stage, overwrite=True)
                 if 0 < task.tool_actions - context_actions < len(response.tool_calls):
                     result: dict[str, Any] = {
@@ -850,18 +856,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         check_changes_before_completion
                         and proposals
                         and call.name == "check_changes"
-                        and result.get("ready_for_review")
                     ):
-                        freshness = await ToolRunner().execute(
-                            commands, ("is_current", {"report": result})
-                        )
                         report["change_check"] = result
-                        report["change_check_freshness"] = {
-                            **freshness,
-                            "invoked_by": "host verification, not model invocation",
-                        }
-                        if freshness["current"] and freshness["ready_for_review"]:
-                            report.update(accepted=True, disposition="ACCEPTED")
+                        checked_this_turn = True
                     history.append(
                         PromptMessage(
                             "tool",
@@ -870,6 +867,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         )
                     )
                     _save(turn / "tools.json", stage["context_tools"], overwrite=True)
+                if checked_this_turn and report["change_check"].get("ready_for_review"):
+                    freshness = await ToolRunner().execute(
+                        commands, ("is_current", {"report": report["change_check"]})
+                    )
+                    report["change_check_freshness"] = {
+                        **freshness,
+                        "invoked_by": "host verification, not model invocation",
+                    }
+                    if freshness["current"] and freshness["ready_for_review"]:
+                        report.update(accepted=True, disposition="ACCEPTED")
                 stage.update(
                     disposition="CONTEXT_RETURNED",
                     finished_at=str(Timestamp.now()),

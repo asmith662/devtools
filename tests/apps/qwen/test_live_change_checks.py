@@ -23,9 +23,12 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
-@pytest.mark.parametrize("required", [False, True])
+@pytest.mark.parametrize(
+    ("required", "ending"),
+    [(False, "check"), (True, "check"), (True, "poison"), (True, "without-check")],
+)
 def test_native_accepted_candidate_can_be_checked_before_restoration(
-    tmp_path: Path, *, required: bool
+    tmp_path: Path, *, required: bool, ending: str
 ) -> None:
     _, ns = _contract()
     root = tmp_path.resolve()
@@ -54,28 +57,44 @@ def test_native_accepted_candidate_can_be_checked_before_restoration(
             else:
                 assert number == 3
                 assert "VALUE: int = 2" in (root / task.source).read_text()
+                if ending == "without-check":
+                    return ModelResponse("Finished", self.source)
                 name, args = "check_changes", {}
+            calls: tuple[ModelToolCall, ...] = (
+                ModelToolCall(name, json.dumps(args), f"native-{number}"),
+            )
+            if number == 3 and ending == "poison":
+                calls += (ModelToolCall("run_check", '{"check":"shell"}', "invalid"),)
             return ModelResponse(
                 "scripted",
                 self.source,
-                tool_calls=(ModelToolCall(name, json.dumps(args), f"native-{number}"),),
+                tool_calls=calls,
             )
 
     model = Implementation([])
     report: dict[str, Any] = {"turns": [], "accepted": False}
-    asyncio.run(
-        coding_loop._turns(
-            root,
-            folder,
-            model,
-            report,
-            maximum_calls=4,
-            task=task,
-            coordinated_edits=True,
-            observed_edits=True,
-            check_changes_before_completion=required,
-        )
+    operation = coding_loop._turns(
+        root,
+        folder,
+        model,
+        report,
+        maximum_calls=4,
+        task=task,
+        coordinated_edits=True,
+        observed_edits=True,
+        check_changes_before_completion=required,
     )
+    if ending == "poison":
+        with pytest.raises(ValueError, match="Unsupported"):
+            asyncio.run(operation)
+        assert not report["accepted"]
+        assert "change_check_freshness" not in report
+        return
+    asyncio.run(operation)
+    if ending == "without-check":
+        assert not report["accepted"]
+        assert report["disposition"] == "MODEL_COMPLETED_WITHOUT_CHANGE_CHECK"
+        return
     assert report["accepted"], report
     assert len(model.requests) == (3 if required else 2)
     if required:
