@@ -406,6 +406,14 @@ content-derived, but digest construction, policy-to-state-identity treatment,
 and observation mechanisms remain open. ContentIdentity is address-independent
 and reusable; ResourceOccurrences remain snapshot-local.
 
+Within the existing explicit-required-text observation contract,
+`context.repository.changes.compare_repository_snapshots` now produces immutable
+`RepositorySnapshotDelta` results retaining both snapshots and sorted exact-address
+added/removed/modified/unchanged partitions. Complete occurrence equality is used;
+repository mismatch and duplicate addresses refuse. This bounded relationship
+performs no acquisition, mutation, rename inference, applicability or maintenance.
+See the [package contract](../src/devtools/context/repository/docs/changes.md).
+
 SnapshotDelta is a difference relationship between states, and
 IncrementalMaintenance is the process of efficiently establishing applicable
 knowledge. Neither defines repository state or identity. Immutable logical

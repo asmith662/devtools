@@ -1,0 +1,24 @@
+{
+  "frozen_at": "2026-10-22T14:03:07.183747+00:00",
+  "task_sha256": "0ee51c4604c795d96e75b927273dfa6f38a572a65e7d8469edbb4775f9b2c7ab",
+  "oracle_sha256": "e60d40dfa5faf6143703cc8d103db8107a0abdd42475abd341b14d0aa17a9e93",
+  "baseline": "b0c5fb0297500c86c61228903d474c8b63d47df1",
+  "prior_matching_tasks": [],
+  "qualification": "Private reference and actual observed snapshots pass all positive/negative oracle cases; no reference code/source disclosed to Qwen. Existing source API signatures inspected; supported Python runtime used. Metadata/duplicate input cases are explicit synthetic typed-boundary cases, not new real observation claims.",
+  "taxonomy": "Bounded SnapshotDelta difference relationship, not repository state/identity or mutation history. Only existing explicit-required text snapshot semantics supported; broader policy remains open.",
+  "ownership": "Framework context.repository changes leaf module; dependencies only existing RepositorySnapshot/resource/identity. Public repository/context exports integrate it. Potential callers: incremental RI and engineering consumers; no maintenance, retrieval or applicability engine is promoted.",
+  "limits": {
+    "genuine_calls": 24,
+    "worker_seconds": 1800,
+    "proposals": 6,
+    "components_per_transaction": 16,
+    "read_check_actions": 32,
+    "region_bytes": 4096,
+    "aggregate_bytes": 8192,
+    "patch_bytes": 16384
+  },
+  "supervision": "No eight-response cutoff. At requests 12 and 18 inspect trace for concrete progress versus repeated already-observed searches, remaining capacity and frozen budget. No automatic recovery or post-outcome extension.",
+  "profile": "Qwen3.8-27B IQ4_XS, 32768 context, q4 K/V, thinking off; unchanged",
+  "private_reference_exposed": false,
+  "new_model_calls": 0
+}

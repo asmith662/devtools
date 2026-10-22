@@ -1245,3 +1245,9 @@ open and does not change the epic status or historical results.
 The previously recorded Engineering20 pressure is corrected by the existing declaration/resolution owners: non-table ancestors are qualified unsupported evidence rather than absent selectors. Original oracle unchanged; 126 permanent scenarios and exact-source protected validation pass. One old regression assertion encoded the bug and was explicitly corrected. This resolves this bounded slice, not the epic, retrieval integration or broader repository semantics.
 
 See [delivery and immutable parent references](../../../apps/qwen/evaluation/configuration-obstructions-21/README.md). Feature commit: `32c3890ff5546a335bd8397d582cc1809d7dd46e`. No backlog approval, parent closure or protected-main promotion is inferred.
+
+## New module22: delivered software, failed local-model attempt
+
+A bounded SnapshotDelta prerequisite is delivered in context.repository.changes: immutable exact retained-resource partitions with original snapshot dependencies, no acquisition/mutation/rename or maintenance claim. Qwen created a partial module but failed complete integration; Codex delivered it under the unchanged qualified contract. Broader snapshot policy, incremental maintenance and applicability remain open.
+
+[Exact evidence and attribution](../../../apps/qwen/evaluation/new-module-22/README.md). Feature commit `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. No parent closure, proposal approval or protected promotion.

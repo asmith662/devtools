@@ -295,6 +295,10 @@ scope and evidence freshness. WorkCycle continues to own review/publication.
   this capability and mirrored-path facts. Shared exact module-name lookup
   belongs to the [modules package](../src/devtools/context/python/modules/docs/overview.md).
 
+The [retained snapshot comparison contract](../src/devtools/context/repository/docs/changes.md)
+owns the bounded existing-snapshot resource delta API and its absence/provenance
+limits. It adds no observation, state authority, mutation or maintenance owner.
+
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an
 explicit root using metadata only, caller-supplied maximum counts for examined

@@ -1,5 +1,19 @@
 # Native Context worker acceptance and evaluation
 
+## New module22: partial implementation failed; Codex fallback delivered
+
+The absent-new-file feedback defect is corrected and deterministically verified.
+One new B-0002 retained-snapshot comparison task ran unchanged local Qwen: 13 calls,
+212,304 input / 6,432 output tokens, 455.694 worker seconds, six proposals (two
+admitted, four refused). The new module was created, but public integration stayed
+missing and Ruff retained one failure. Result REPAIR_BUDGET_EXHAUSTED; source
+restored. Native arguments were faithfully preserved; no Context failure occurred.
+Qwen never invoked the available shared validation Tools. No behavioral repair or
+accepted Qwen feature is claimed. Codex delivered the same useful contract at
+`3c624129ee2d6324ed161a2e9e3b2733622e7b08` with the unchanged oracle, permanent regressions and protected gate.
+See [full task, diagnosis and provenance](evaluation/new-module-22/README.md).
+
+
 ## Configuration obstructions21: Codex delivery; premature stop corrected
 
 The RI feature is published at `32c3890ff5546a335bd8397d582cc1809d7dd46e`, with the unchanged original oracle,

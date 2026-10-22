@@ -1,5 +1,19 @@
 # Roadmap
 
+[New module22](../apps/qwen/evaluation/new-module-22/README.md) corrects the concrete
+absent-new-file feedback defect. Its real Qwen engineering attempt created a module
+but failed public integration after six proposals, with no Context failure or native
+shared-check invocation. Codex independently delivered the useful retained-snapshot
+comparison at `3c624129ee2d6324ed161a2e9e3b2733622e7b08` using the unchanged qualified oracle and final protected gate.
+
+Next bounded Qwen reliability action: make existing atomic refusals identify the
+failing component/path, then evaluate a distinct engineering task for complete
+integration and real shared-check use. This is supported by repeated wrong-owner
+anchors, not a mandate for another editor, Context framework or longer budget.
+The reviewed Commands group is ready for a separate destination-authorized
+integration assignment; protected main, B-0002 and B-0009 remain open. Earlier
+sequencing below records prior checkpoints and does not supersede this update.
+
 [Configuration obstructions21](../apps/qwen/evaluation/configuration-obstructions-21/README.md)
 delivers the B-0002 selector correction as Codex-authored source at `32c3890ff5546a335bd8397d582cc1809d7dd46e`.
 The original qualified oracle passes; permanent tests and the exact-final-source

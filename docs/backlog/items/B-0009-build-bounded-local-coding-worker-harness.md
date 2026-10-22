@@ -443,3 +443,9 @@ adoption followed; the RI obligation remains unfinished.
 Engineering20 remains eight requests, zero edits, no Context exhaustion, no behavioral failure demonstrated and no native check_changes use. Its supervisor stopped before request9. Engineering14 first edited on response9 and succeeded, so a fixed eight-response cutoff is unsupported. Conditional replay was not available with required authentication using existing adapters; Codex delivered the RI feature. No new Qwen outcome is claimed. The absent-new-file feedback defect is outstanding and was not causal here. The parent remains open.
 
 See [delivery and immutable parent references](../../../apps/qwen/evaluation/configuration-obstructions-21/README.md). Feature commit: `32c3890ff5546a335bd8397d582cc1809d7dd46e`. No backlog approval, parent closure or protected-main promotion is inferred.
+
+## New module22: delivered software, failed local-model attempt
+
+Authorized still-absent new slots now produce explicit null feedback versions, while created paths retain actual source versions. Deterministic canonical creation/check/freshness/restoration and refusal cases pass. One genuine Qwen task used 13 calls and six proposals, installed partial source and failed public integration; check_changes/is_current were available but not invoked. No Context failure occurred. Source was restored; Codex delivered the useful capability separately. Next diagnose component-specific refusal feedback and assess complete integration on a distinct task; no generic framework is implied.
+
+[Exact evidence and attribution](../../../apps/qwen/evaluation/new-module-22/README.md). Feature commit `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. No parent closure, proposal approval or protected promotion.

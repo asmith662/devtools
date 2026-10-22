@@ -1,5 +1,13 @@
 # Bounded local coding worker
 
+[New module22](evaluation/new-module-22/README.md) fixes authorized absent-slot
+feedback and demonstrates real module creation, but the Qwen attempt failed public
+integration after six proposals. The available check_changes/is_current Tools were
+not invoked by Qwen. Its exact partial source remains evidence-only; Codex delivered
+the snapshot-comparison capability separately at `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. Deterministic native
+creation/feedback/ToolRunner/restoration passes; this is not model success.
+
+
 [Configuration obstructions21](evaluation/configuration-obstructions-21/README.md)
 feature-publishes the RI correction with explicit Codex authorship and the unchanged
 original oracle. No Qwen continuation ran: existing replay could not authenticate
