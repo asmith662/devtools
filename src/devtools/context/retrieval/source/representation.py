@@ -81,30 +81,17 @@ class RepositorySourceUnit(RepositoryTextDocument):
 
     @property
     def start_line(self) -> int:
-        """Return the one-based logical line under text splitlines semantics."""
+        """Return the one-based physical line without splitting Unicode separators."""
         prefix = self.resource.content[: self.start]
-        return len(prefix.splitlines()) + int(
-            not prefix
-            or prefix.endswith(
-                (
-                    "\n",
-                    "\r",
-                    "\v",
-                    "\f",
-                    "\x1c",
-                    "\x1d",
-                    "\x1e",
-                    "\x85",
-                    "\u2028",
-                    "\u2029",
-                ),
-            ),
+        return len(tuple(StringIO(prefix, newline=""))) + int(
+            not prefix or prefix.endswith(("\n", "\r")),
         )
 
     @property
     def end_line(self) -> int:
         """Return the inclusive last source line (one for an empty file)."""
-        return max(1, len(self.resource.content[: self.end].splitlines()))
+        prefix = self.resource.content[: self.end]
+        return max(1, len(tuple(StringIO(prefix, newline=""))))
 
 
 class SourceDocumentCollection(RepositoryTextDocumentCollection):
@@ -135,7 +122,7 @@ def window_units(
     overlap: int,
 ) -> tuple[RepositorySourceUnit, ...]:
     """Cover original lines with bounded overlap and no contained tail window."""
-    lines = file.text.splitlines(keepends=True)
+    lines = tuple(StringIO(file.text, newline=""))
     starts = [0]
     for line in lines:
         starts.append(starts[-1] + len(line))
@@ -176,7 +163,7 @@ def symbol_units(
         declaration.support.source_range: declaration for declaration in declarations
     }
     encoded_lines = tuple(
-        line.encode("utf-8") for line in file.text.splitlines(keepends=True)
+        line.encode("utf-8") for line in StringIO(file.text, newline="")
     )
     # AST expression positions can omit the opening @(... line. Token positions
     # recover that prefix without changing the original source representation.

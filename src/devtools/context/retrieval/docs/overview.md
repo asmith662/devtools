@@ -189,11 +189,19 @@ not a byte/token budget: one long line can still be large.
 uses its existing identity wrapper; it does not create another document system
 or RepositorySubject. Its parent is the original observed resource. Every unit
 retains repository/snapshot identity, parent content identity, representation
-kind, half-open decoded-character offsets `[start, end)`, logical line numbers,
+kind, half-open decoded-character offsets `[start, end)`, physical line numbers,
 exact original `text`, and symbol/parent metadata where applicable. Python
 occurrences additionally retain canonical one-based line/UTF-8 byte-column
 ranges. UTF-8 columns and character offsets are distinct. LF, CRLF and bare-CR
-source bytes are preserved. The snapshot is the existing bounded text
+source bytes are preserved. Only LF, CRLF and CR delimit physical lines; VT,
+FF, FS, GS, RS, NEL, LS and PS remain source characters. The source index uses
+the same untranslated universal-newline convention as exact function source
+materialization. Window boundaries and displayed line numbers follow that
+convention for non-Python resources too. This corrects affected slices, not
+identity rules: correctly indexed units keep their existing identities, while
+previously incorrect offsets produce the identities of the corrected slices.
+No native declaration, source-observation or edit authority is broadened.
+The snapshot is the existing bounded text
 observation; the API does not claim an authenticated Git revision or a
 repository-wide simultaneous filesystem observation.
 
