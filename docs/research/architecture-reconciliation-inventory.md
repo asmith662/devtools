@@ -222,3 +222,15 @@ deepens actual owner/correlation/failure-path findings against `3b2b3de8` source
 unchanged from the initial production inventory. No main/feature source adoption,
 prior experimental result or cleanup disposition changes. The full architecture
 audit remains unfinished; DeepSeek/Aider and deeper real-trajectory joins follow.
+
+## Four-project follow-up (2026-10-23)
+
+The [DeepSeek Harness/Aider audit](agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+now completes the selected external mechanism comparisons. It distinguishes
+in-memory commit, backend durability, live instrumentation and immutable Evidence,
+and compares Aider's host edit/map mechanics with existing source-bound owners.
+The [five-flow local audit plan](development-lifecycle-audit-plan.md) selects
+actual original receipts and correlation fields. Source/test trees, adoption
+matrix and historical experiments are unchanged; no new production integration
+or cleanup is inferred. Complete those local joins and exact destination/custody
+checks before declaring reconciliation complete.

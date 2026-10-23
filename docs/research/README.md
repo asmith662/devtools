@@ -24,7 +24,11 @@ authenticates the transfer/members and maps all18 exact original candidates.
 The [mechanism comparison](agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
 adds pinned Qwen Code/Pydantic AI implementation/test findings and a Devtools
 correlation/loss map. No production code, experimental outcome or architectural
-boundary changes. Next external research is DeepSeek Harness/Aider, not launched.
+boundary changes. The [DeepSeek Harness/Aider follow-up](agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+now adds pinned implementation/test findings on event durability, lifecycle,
+Tool dispatch, graph/map Context, editing and privacy. Next is the
+[five-flow Devtools lifecycle audit](development-lifecycle-audit-plan.md), not a
+new runtime or upstream installation. This checkpoint does not launch that audit.
 
 <a id="current-retrieval-research-checkpoint"></a>
 
@@ -71,7 +75,8 @@ by default. Structural breadth is closed for now; its operators remain available
 | Research document | Subject | Status | Principal findings | Related ADRs | Implemented evidence | Deferred / rejected for now | Superseded/refined by | Revisit triggers |
 |---|---|---|---|---|---|---|---|---|
 | [Architecture reconciliation inventory](architecture-reconciliation-inventory.md) | Source/main adoption, observability, abstractions and backlog | Initial source-backed audit | Separate maintained code, destination blobs, consumers and experiment outcomes | 0001-0005 retained | Pinned Git/source/test/custody evidence | Automatic fixes, backlog promotion, generic Trace/Agent systems | Existing charter and current source | Complete lifecycle/harness/custody review; recover starter input |
-| [Agent harness mechanism review](agent-harness-mechanism-review.md) | Qwen Code/Pydantic AI, then DeepSeek Harness/Aider | Bounded pinned implementation/test comparison completed; no upstream execution | Correlation, exploration, compaction, validation/deferred arguments and interruption have distinct semantics | None added | 47 pinned files including21 tests; local source/join map | Runtime replacement, copied framework, new model experiment | Existing taxonomy/ADRs and finite phase charter | DeepSeek/Aider source/tests; deeper local lifecycle joins |
+| [Agent harness mechanism review](agent-harness-mechanism-review.md) | Qwen Code, Pydantic AI, DeepSeek Harness and Aider | Four pinned source/test mechanism comparisons; no upstream execution | Durability barriers, instrumentation, source authority and editing mechanics have distinct semantics | None added | 132 authenticated file cursors including49 tests; selected findings, not exhaustive audits | Runtime replacement, copied framework, new model experiment | Existing taxonomy/ADRs and finite phase charter | Five real local lifecycle flows; adoption/custody reconciliation |
+| [Development lifecycle audit plan](development-lifecycle-audit-plan.md) | Existing Qwen/Codex/Checkout/source-navigation receipts | Source selection, not completed lifecycle audit | Direct joins must be distinguished from inference and absent evidence | None added | 21 existing input fingerprints; five real flows | Replay, inference, instrumentation implementation, cleanup | B-0023/B-0011/B-0028/B-0034 and finite charter | Reauthenticate originals and report join/loss timelines |
 | [Recovered reconciliation inputs](reconciliation-input-reconciliation.md) | Exact original charter/notes/18 seeds and independent review | Transfer/members verified; all18 routed | Original provenance retained; one new pending investigation, no automatic approval | None added | [Verification/crosswalk](reconciliation-inputs-20261023.json) | Drafts as governance,18 duplicate stories, cleanup or inference | Current source-backed comparison qualifies original assumptions | Further audit evidence or authorized backlog disposition |
 | [Architecture adversarial review](architecture-adversarial-review.md) | Adversarial architecture challenge | Partially reconciled | Preserve evidence boundaries; resist premature abstractions | 0002-0004 | Lexical evaluation | Universal graph/store; model knowledge promotion | ADRs; Inc. 16/20 | Bounded evidence requiring reusable semantics |
 | [Framework domain boundaries](framework-domain-boundaries.md) | Framework ownership | Reconciled | Narrow orthogonal domains | 0001, 0004 | Runtime/Tool/Context separation | Workflow infrastructure | Taxonomy | Cross-domain consumer pressure |

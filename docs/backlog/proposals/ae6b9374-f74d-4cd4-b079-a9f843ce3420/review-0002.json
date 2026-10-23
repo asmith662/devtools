@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ae6b9374-f74d-4cd4-b079-a9f843ce3420",
+  "proposal_sha256": "3428c7f359044885ecd18993f82c99edea9913e378ab444af959f92e5c424c47",
+  "previous": "91b2a55eabf76dd6d855bd3c8a97c30b120f46215a059681659a5242199271b2",
+  "at": "2026-10-23T14:46:45.331751+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23",
+  "rationale": "DeepSeek Session log, derived model surface and persistence are distinct from policy-controlled Memory. In-memory append precedes observer routing; explicit writer barriers govern durability; interrupted calls have synthetic unknown/not-started outcomes. These are lifecycle research references under B-0028/B-0034, not evidence to relabel task-local receipts as Memory or add a memory/session store.",
+  "duplicates": [
+    {
+      "reference": "14f19339-9213-443d-ac8c-b1018ae1f5bc",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing qualified proposal owns the pressure; preserve its payload, parent and state. Source/test research only: no new B-number, approval, grant, inference or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "520a96db956baae37a9785b15dc4c436e3b81e2178c6d9c3e930f8ee6e2592fb"
+}

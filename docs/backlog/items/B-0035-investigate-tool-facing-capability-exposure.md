@@ -47,3 +47,18 @@ Typed conversion, approved argument overrides and retries must not alter current
 exact source/path/byte/version authority or charge fewer task attempts silently.
 Study a transparent definition helper only after measuring real duplication and
 compatibility; no replacement ToolRunner/registry/authorization layer is selected.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek's defineTool derives schemas and input validation, whereas raw registry
+Tools still own argument validation; policy guards, visibility and approval are
+separate. Devtools ToolRunner already validates then executes. ContextTools and
+CodingCommands provide two concrete definition/dispatch consumers to measure
+before proposing a helper; their domain semantics must remain authoritative.
+Dynamic in-process plugin loading is a trust boundary, not a requirement for
+model-neutral Tools. Existing pending module/edit ergonomics reviews carry the
+question; no new registry, decorator or authorization layer is selected.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

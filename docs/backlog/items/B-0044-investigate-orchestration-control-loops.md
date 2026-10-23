@@ -33,3 +33,17 @@ end strategies/sequential barriers; this is not the narrow Runtime contract.
 Selected tests establish intended policies, not efficacy on Devtools tasks.
 No new phase controller, graph runtime or automatic retry is selected. Current
 application orchestration and WorkCycle authority remain separate.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek's default AgentLoop is distinct from its Agent interface and scoped
+services; it owns turn/step admission, bounded Tool scheduling and teardown.
+Aider's reflection, host edit mechanics and optional architect/editor composition
+are application policies with different authority. Neither justifies broadening
+Devtools narrow Runtime. Audit actual native-worker and WorkCycle trajectories
+before shared hooks or future maintenance-agent lifecycle abstractions; no
+generic phase controller, DI container or runtime adoption is authorized.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

@@ -39,3 +39,16 @@ Qualify the actual recovery/consumer and schema/authority boundaries first. The
 separate pending custody proposal is operational review, not authorization for
 a generic Evidence store or cache deletion. Existing deferred disposition and
 promotion trigger are retained.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek Session.append commits frozen in-memory events before contained
+observers; writer buffering and explicit durability barriers remain separate.
+Original event history survives model-surface replacement, but persisted history
+does not authenticate effects or publication. The selected real local flow receipts
+provide concrete Evidence consumers and missing joins to audit, not authority to
+implement a Session/Event/Trace layer or change durable schemas.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

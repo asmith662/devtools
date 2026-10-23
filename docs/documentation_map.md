@@ -5,8 +5,12 @@ owns the current research/audit/handoff phase. Its
 [initial adoption and observability inventory](research/architecture-reconciliation-inventory.md),
 [upstream harness source cursors](research/agent-harness-mechanism-review.md)
 and [artifact custody observations](development/artifact-custody-inventory.md)
-are dated evidence, not new architecture/backlog authorities. The starter ZIP
-and its 18 stories were unavailable and remain an explicit input gap.
+are dated evidence, not new architecture/backlog authorities. The original
+missing-input finding is historical; the
+[verified transfer and exact18 crosswalk](research/reconciliation-input-reconciliation.md)
+close that intake gap. The [four-project source/test comparison](research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow lifecycle audit plan](research/development-lifecycle-audit-plan.md)
+define the current evidence checkpoint and next bounded research, not new execution authority.
 
 The [canonical reconciliation record](development/reconciliation.md) owns the
 2026-10-19 branch/evidence disposition. [Experiment closeout](../experiments/README.md)

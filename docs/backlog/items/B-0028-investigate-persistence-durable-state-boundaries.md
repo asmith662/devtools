@@ -37,3 +37,17 @@ Devtools already has raw receipts, source hashes, Checkout recovery and WorkCycl
 Git reconciliation. Qualify the missing recovery consumer/owning domain before
 any checkpoint store. The existing Memory proposal receives advisory evidence;
 no backend, schema or lifecycle ownership changes.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+The pinned DeepSeek handle interface separates accepted append from crash-survival
+flush. JSONL live routing buffers, retains failed batches and rejects explicit
+drains; close can release ownership while reporting failure. SessionStore.flush
+reports listener participation, not a per-writer durability certificate. Memory-
+only creation and persistence-required resume are different supported paths.
+These are backend/lifecycle research inputs; Devtools snapshot persistence and
+Checkout are not missing implementations of that upstream Session interface.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

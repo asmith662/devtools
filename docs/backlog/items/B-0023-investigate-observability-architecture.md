@@ -86,3 +86,18 @@ Devtools still lacks automatic task→model occurrence→Tool→review joins in 
 native application path. Capture/observer failures, dropped Command events and
 unknown usage remain separate. Original candidates03/04 are related, not new
 Trace/EventBus implementation grants. Deferred status/trigger remain.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek separates Session log commits, live Agent notifications and capability
+policy hooks; its OTel backend exports feedback-authorized Session records, not
+automatically a joined development span tree. Aider prefers reported usage but
+falls back to estimates and does not supply Devtools publication authority.
+Existing Model/terminal Evidence, InvocationMeasurement, Command events and
+application receipts are distinct local owners. The five-flow audit below must
+qualify direct joins, missing failures, dropped events and capture/export policy
+before choosing instrumentation. No new logger, event bus or exporter is selected.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

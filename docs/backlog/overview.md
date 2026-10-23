@@ -158,3 +158,12 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0048](items/B-0048-restore-python-3-12-json-file-model-compatibility.md) | Restore Python 3.12 JSON file-model compatibility | BACKLOG | resources |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.
+
+## Four-project research evidence (2026-10-23)
+
+The [DeepSeek Harness/Aider follow-up](../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+adds source/test evidence to B-0011/B-0018/B-0023/B-0028/B-0034/B-0035/B-0044
+and ADVISORY reviews to the existing edit, module, CodeGraph and Memory proposals.
+No proposal was created or approved and no B-number/status/parent changed. The
+[next five-flow local lifecycle audit](../research/development-lifecycle-audit-plan.md)
+selects existing receipts; it authorizes no implementation or replay.

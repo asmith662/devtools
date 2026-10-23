@@ -299,3 +299,22 @@ Next inspect DeepSeek Harness and Aider source and tests; then deepen actual loc
 successful/failed lifecycle joins, production adoption and custody/recovery before
 the comprehensive successor-session handoff. That later research is not launched
 by this checkpoint.
+
+## Four-project research checkpoint and local audit selection (2026-10-23)
+
+The [DeepSeek Harness/Aider source-and-test follow-up](../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+completes the selected external mechanism comparisons at pinned revisions.
+Session append is not automatically durable; Tool schemas/visibility are not
+authorization; Aider's host matching/partial application differs from exact atomic
+admission. Existing Evidence, usage, ToolRunner, Context and WorkCycle owners are
+the comparison targets. No framework adoption, implementation, inference,
+upstream execution or production behavior change follows.
+
+The next [five-flow observability/lifecycle audit](../research/development-lifecycle-audit-plan.md)
+has original receipt paths and fingerprints for Qwen success, rejected/incomplete
+edits, Codex closeout, real source recovery and genuine source navigation.
+Those inputs are selected, not yet exhaustively joined. Reauthenticate them and
+report missing causal edges rather than inventing spans or replaying work.
+Then finish bounded destination-adoption and artifact-custody reconciliation
+before the comprehensive successor-session handoff. Historical receipts,
+original18 crosswalk, backlog dispositions and protected-main authority remain.

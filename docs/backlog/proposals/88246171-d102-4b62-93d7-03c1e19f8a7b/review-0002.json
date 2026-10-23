@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+  "proposal_sha256": "cfbc43262fdbc59153d7cc5ab3d10095bedcd1da12df0fb1031c12c83d9c4df2",
+  "previous": "b2fadb4e1e5e0e8578f970bfd4c9e581ad96a374e9775fc8187e425ac99a5034",
+  "at": "2026-10-23T14:46:44.625193+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23",
+  "rationale": "Pinned Aider EditBlockCoder.apply_edits redirects a failed nonempty anchor to the first matching in-chat file; real writes preserve successful earlier blocks before later failure. Its dry-run resolves paths before prepare_to_edit permission handling, so this is not a permission-bypass claim. Exact/indent/blank/ellipsis matching and newline normalization reduce model bookkeeping but differ from Devtools exact unique observed/current atomic admission. No same-model efficacy evidence or format adoption follows; keep source authority, limits, bytes and all-or-nothing semantics.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing qualified proposal owns the pressure; preserve its payload, parent and state. Source/test research only: no new B-number, approval, grant, inference or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f7ad61f53a26895a94488935c657b5a702af5d35b604fbcd0a523b170bb1ac61"
+}
