@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "name": "U2 missing completion downstream",
+      "observed": "TypeError",
+      "detail": "unsupported operand type(s) for -: 'NoneType' and 'NoneType'",
+      "qualification": "Synthetic absent member; no original treatment or gold rerun. Original saved analysis has complete selected witnesses."
+    },
+    {
+      "name": "Graph3 subset verifier accepts changed graph contribution flag",
+      "observed": "ACCEPTED",
+      "original": true,
+      "changed": false,
+      "outcome_unchanged": "GRAPH_HARMFUL",
+      "qualification": "Does not bypass original analysis.expected (fresh calculation) plus exact-byte publication verification and Git-bound input seals. Demonstrates verifier subset, not historical corruption."
+    },
+    {
+      "name": "Graph3 subset verifier accepts arbitrary report answers",
+      "observed": "ACCEPTED",
+      "qualification": "Published original expected/verify reconstructs report and would reject altered bytes. Do not reuse subset validator as whole-report authenticity."
+    },
+    {
+      "name": "Graph3 packet swapped_resource",
+      "observed": "REJECTED",
+      "detail": "Native content/document identity differs"
+    },
+    {
+      "name": "Graph3 packet duplicate_resource",
+      "observed": "REJECTED",
+      "detail": "Unique canonical resource collection differs"
+    },
+    {
+      "name": "Graph3 packet reordered_population",
+      "observed": "REJECTED",
+      "detail": "Unique canonical resource collection differs"
+    },
+    {
+      "name": "Graph3 packet content",
+      "observed": "REJECTED",
+      "detail": "Native content/document identity differs"
+    },
+    {
+      "name": "Graph3 packet foreign_frame",
+      "observed": "REJECTED",
+      "detail": "Resource allowlist/frame differs"
+    }
+  ],
+  "passed": 8,
+  "source_sha256": "7e6a0aeef434c037f2f5769bd404d9dc505dc3dc825fbecccc16547f52d74bd3",
+  "source": "import ast,copy,gzip,hashlib,json,math,sys\nfrom collections import Counter\nfrom pathlib import Path\nfrom types import SimpleNamespace\nfrom typing import Any\nR=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/ri-dogfood-20261023'\ndef require(value,message):\n if not value:raise ValueError(message)\ndef read(path):\n raw=(R/path).read_bytes();return json.loads(gzip.decompress(raw) if path.endswith('.gz') else raw)\ndef pure(path,names,extra=None):\n tree=ast.parse((R/path).read_text(encoding='utf-8-sig'));nodes=[n for n in tree.body if isinstance(n,(ast.FunctionDef,ast.ClassDef)) and n.name in names]\n assert {n.name for n in nodes}==set(names)\n ns=dict(Any=Any,Counter=Counter,math=math,require=require,hashlib=hashlib,json=json,re=__import__('re'))\n ns.update(extra or {});exec(compile(ast.Module(body=nodes,type_ignores=[]),path,'exec'),ns);return ns\nout=[]\n# No scientific builder/controller, native serializer or materializer is imported.\np='experiments/codex_dogfood/case_0012/stage_d/analysis.py'\nn=pure(p,['completion','delta','comparisons'])\nw=n['completion']({'resources':['missing'],'required_unit_ids':['u']},['other']);assert w['completion_depth'] is None\narms={a:dict(lanes={'o':dict(completion_depth=None,metrics=None)},task=None) for a in 'ABC'}\ntry:n['comparisons'](arms)\nexcept TypeError as e:out.append(dict(name='U2 missing completion downstream',observed=type(e).__name__,detail=str(e),qualification='Synthetic absent member; no original treatment or gold rerun. Original saved analysis has complete selected witnesses.'))\nelse:raise AssertionError('Expected missing-completion failure')\n# Distinct from a scientific outcome re-evaluation: challenge only the independent\n# verifier with inert copied input/output. References fixture is independently\n# projected from saved pair-flow identities; no native graph instantiated.\nbase='experiments/codex_dogfood/case_0016/'\nroot=base+'stage_b/attempts/case-0016-stage-b-2/'\nresult=read(base+'stage_d/analysis.json')\ndata=dict(gold=read(base+'adjudication/reviewed/reviewed_gold.json'),resources=read(base+'resources.json.gz'),arms={a:read(root+'arm_'+a.lower()+'.json.gz') for a in 'ABC'},flows=read(root+'pair_flows.json.gz'),design=read(base+'protocol.json'))\ndata['references']={identity:dict(target=p['target']) for p in data['flows']['Q1'] for identity in p['reference_identities']}\ngate_path='experiments/task_conditioned_graph/gates.py'\ngate=pure(gate_path,['meaningful_depth','meaningful_rank','bounded','DecisionInputs','decide'],dict(dataclass=__import__('dataclasses').dataclass))\nvalidator=pure(base+'stage_d/validation.py',['validate'],dict(m=SimpleNamespace(require=require),gates=SimpleNamespace(**gate)))['validate']\nassert validator(data,result)['status']=='PASS'\nchanged=copy.deepcopy(result);changed['gate_inputs']['graph_contributed_gain']=not changed['gate_inputs']['graph_contributed_gain']\nassert validator(data,changed)['status']=='PASS'\nout.append(dict(name='Graph3 subset verifier accepts changed graph contribution flag',observed='ACCEPTED',original=result['gate_inputs']['graph_contributed_gain'],changed=changed['gate_inputs']['graph_contributed_gain'],outcome_unchanged=changed['outcome'],qualification='Does not bypass original analysis.expected (fresh calculation) plus exact-byte publication verification and Git-bound input seals. Demonstrates verifier subset, not historical corruption.'))\nchanged=copy.deepcopy(result);changed['primary_answers']={'forged explanation':'no evidence'}\nassert validator(data,changed)['status']=='PASS'\nout.append(dict(name='Graph3 subset verifier accepts arbitrary report answers',observed='ACCEPTED',qualification='Published original expected/verify reconstructs report and would reject altered bytes. Do not reuse subset validator as whole-report authenticity.'))\nfor mutate in ['swapped_resource','duplicate_resource','reordered_population','content','foreign_frame']:\n payload=read(base+'stage_c/packet/resources.json.gz');v=pure(base+'stage_c/validate_packet.py',['sha','canonical','semantic','tripwire','validate_payload'],dict(FORBIDDEN=set(),TASK_ID=payload['task_identity'],REPOSITORY=payload['resources'][0]['repository_id'],SNAPSHOT=payload['resources'][0]['snapshot_id'],CORPUS=payload['resources'][0]['corpus_id'],PAYLOAD=set(payload),RESOURCE=set(payload['resources'][0]),OBLIGATION=set(payload['obligations'][0])))\n v['validate_payload'](payload)\n if mutate=='swapped_resource':payload['resources'][0]['address'],payload['resources'][1]['address']=payload['resources'][1]['address'],payload['resources'][0]['address']\n elif mutate=='duplicate_resource':payload['resources'][1]=payload['resources'][0]\n elif mutate=='reordered_population':payload['resources'][0],payload['resources'][1]=payload['resources'][1],payload['resources'][0]\n elif mutate=='content':payload['resources'][0]['content']+='changed'\n else:payload['resources'][0]['snapshot_id']='foreign'\n try:v['validate_payload'](payload)\n except ValueError as e:out.append(dict(name='Graph3 packet '+mutate,observed='REJECTED',detail=str(e)))\n else:raise AssertionError(mutate)\nassert all(x['arms']['A']['depth'] is not None and x['arms']['C']['depth'] is not None for x in result['selected_witnesses'].values())\nu2=read('experiments/codex_dogfood/case_0012/stage_d/analysis.json');assert all(x['completion_depth'] is not None for a in u2['arms'].values() for x in a['lanes'].values())\n(O/'probes.json').write_text(json.dumps(dict(results=out,passed=len(out),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),source=Path(__file__).read_text(),no_scientific_execution=True),indent=2)+'\\n',encoding='utf-8')\nprint(json.dumps(out,indent=2))\n",
+  "no_scientific_execution": true
+}

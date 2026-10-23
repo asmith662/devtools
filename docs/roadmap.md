@@ -1,8 +1,10 @@
 # Roadmap
 
-Current deep-review checkpoint: [RI Increments25–30 and34–36](research/ri-increments-25-36-audit.md).
+Current deep-review checkpoint: [RI dogfood lifecycle/integrity](research/ri-dogfood-lifecycle-audit.md).
 The following reconciliation inventory is historical, not comprehensive code
-review completion. Continue the exact94-path dogfood cohort before leaving RI;
+review completion. The94-path cohort is now reviewed; continue the exact101-path
+Cases0011/0014/0015 cohort before leaving RI. The354 remaining experimental
+paths,84 current-fixture gaps and177 older versions remain explicit;
 no retrieval policy or protected-main promotion is authorized by audit findings.
 
 ## Completed finite reconciliation investigation (2026-10-23)

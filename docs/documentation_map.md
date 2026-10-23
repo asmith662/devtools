@@ -1,10 +1,10 @@
 # Documentation Map
 
-Current audit checkpoint: [RI Increments25–30 and34–36](research/ri-increments-25-36-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#increment-implementation-and-consumer-review-overlay).
+Current audit checkpoint: [RI dogfood Cases0012,0013 and0016](research/ri-dogfood-lifecycle-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#dogfood-lifecycle-and-scientific-integrity-overlay).
 The explicitly authorized source-index repair is separately committed and
-protected-tested. Historical RI review is still incomplete; execution/ToolRunner/
-Checkout/WorkCycle is the next substantial domain. The final successor-session
+protected-tested. Historical RI review is still incomplete; the exact101-path
+Cases0011/0014/0015 cohort remains next before changing domains. The final successor-session
 dossier remains postponed; earlier checkpoint directions below are historical.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)

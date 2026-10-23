@@ -249,3 +249,19 @@ are in [Intake receipts](../research/code-audit/ri-increments-intake.json).
 No proposal is approved or assigned a B-number. The existing B-0002/R1 promotion
 boundary remains sufficient for experimental lexical mechanisms; no development
 winner becomes a default native strategy through this audit.
+
+### Dogfood lifecycle audit intake
+
+The [94-path dogfood audit](../research/ri-dogfood-lifecycle-audit.md) records
+one new pending BUG,
+[edfb9e28](proposals/edfb9e28-34fb-497f-8ff1-d3a4c7320eb0/proposal.json):
+whole-pipeline missing witness support in an explicitly versioned future U2
+analysis adapter. The original closed-case implementation and outcomes remain
+frozen; all original selected witnesses were complete. Eight existing records
+receive ADVISORY evidence on input/report closure, exact-hint and Localization
+consumers, measured reuse, controller/fixture responsibilities and implemented
+source-span reconciliation. Original source associations agree in all three
+cases; subset-validator limits are not proof of corrupted publication.
+[Exact receipts](../research/code-audit/ri-dogfood-intake.json) preserve pending
+states, hash chains and operator recommendations. No approval, B-number,
+implementation grant, parent closure or scientific rerun is authorized.

@@ -1,9 +1,9 @@
 # Research Evidence
 
-Current deep audit: [RI policies and scientific-binding integrity](ri-policies-and-scientific-integrity-audit.md).
-The versioned read-only verifier authenticates96 original bindings without
-rejudging science; the ledger records94/606 experimental paths and9/93 current
-fixture paths at full review depth. RI work remains active; the successor
+Current deep audit: [RI dogfood lifecycle and scientific integrity](ri-dogfood-lifecycle-audit.md).
+All94 selected paths/87 blobs are reviewed; the cumulative ledger records252/606
+experimental paths and the separate9/93 current fixture paths at full review
+depth. The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor
 dossier and next architectural domain remain postponed.
 
 The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
@@ -188,3 +188,10 @@ It preserves bounded positive, adverse and oracle-only findings, authenticates51
 original Increment25 bindings, records a new pending task-normalization bug and
 extends existing integrity/consumer proposals. The next cohort is exactly94
 dogfood paths; RI, its84 current fixture gaps and177 older versions remain open.
+
+The [dogfood lifecycle audit](ri-dogfood-lifecycle-audit.md) now completes that
+exact94-path cohort: U2 failed capture/reconciliation, U3 fixed authored routing,
+and Graph3 capture recovery/adverse ranking. Original evidence is authenticated
+without historical replay. One new pending missing-witness analysis bug and
+eight advisory updates retain canonical Intake. Next is the exact101-path
+Cases0011/0014/0015 cohort;354 experimental paths remain, not RI completion.

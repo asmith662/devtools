@@ -132,3 +132,24 @@ judgments, reports and previous ledgers are unchanged.
 No new actual model-use evidence or controlled benefit follows from this overlay.
 All64 path dispositions are substantive review claims with per-file dependencies,
 not claims that every human judgment or omitted historical version was audited.
+
+## Dogfood lifecycle and scientific-integrity overlay
+
+The [Cases0012/0013/0016 report](../ri-dogfood-lifecycle-audit.md) starts at
+`7652d125e2743140a7d90b4da08ef8e893095d86`. Original failed captures, recovered
+captures, authored primary/independent reviews and final reports are unchanged.
+
+| File | Depth and limits |
+| --- | --- |
+| [ri-dogfood-summary.json](ri-dogfood-summary.json) |94 paths/87 blobs:84 substantive paths/79 blobs,10 namespace paths/eight blobs,19 full test bodies;15 named lifecycle boundaries are not independent trials. Cumulative252/606,354 remaining. |
+| [ri-dogfood-experiments.jsonl](ri-dogfood-experiments.jsonl) | Same606 paths with94 newly full-body dispositions, exact functions, original/recovery roles, test semantics, scientific outcomes and consumer/backlog crosswalk. |
+| [ri-dogfood-tests-and-dependencies.json](ri-dogfood-tests-and-dependencies.json) |19 complete cohort test/fixture bodies and targeted dependency/current consumer identities. No inherited84 current-test or177 older-version credit. |
+| [ri-dogfood-artifact-identities.json](ri-dogfood-artifact-identities.json) |3052 retained artifact identities,3026 manifest checks, ten Git seal anchors,744 original Git member checks; two current prose mismatches resolved against original Git bytes; original qualified pair joins agree. No native pickle or report reconstruction. |
+| [ri-dogfood-probes.json](ri-dogfood-probes.json) | Complete independent source/eight outcomes: U2 downstream null crash, Graph3 subset-verifier flag/prose limitations, five genuine packet identity refusals. No historical verdict corruption demonstrated. |
+| [ri-dogfood-intake.json](ri-dogfood-intake.json) | One new pending versioned-analysis bug; eight append-only ADVISORY records, no approvals or B-number changes. |
+| [ri-dogfood-next-cohort.json](ri-dogfood-next-cohort.json) | Exact101 remaining Case0011/0014/0015 paths and blobs; no review credit or scientific execution. |
+| [ri-dogfood-checkpoint.json](ri-dogfood-checkpoint.json) | Changed documentation/Intake hashes, identity/test/layout/link/preservation validation. Containing Git commit supplies manifest identity. |
+
+94 path dispositions are not87 algorithms. Duplicate immutable bodies retain
+chronology without duplicate algorithm credit. All original conclusions remain
+bounded, and the separate older Graph3 algorithm deltas remain delta-only.

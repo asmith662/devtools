@@ -1,6 +1,10 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [increment implementation and consumer review](ri-increments-25-36-audit.md).
+Latest depth overlay: [dogfood lifecycle, adjudication and consumer review](ri-dogfood-lifecycle-audit.md).
+The exact94 selected paths/87 blobs are reviewed;252/606 experimental paths
+now have applicable mechanism/export review,354 remain. Current-fixture and
+older-version obligations remain separate. See the exact101-path next cohort
+in the new overlay; this does not complete historical RI review.
 The original census below remains dated evidence; RI is not fully audited.
 
 Follow-up: the [physical-line correction and deeper implementation/fixture review](ri-deep-audit-followup.md)
