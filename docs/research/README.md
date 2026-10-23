@@ -181,3 +181,10 @@ now records the separate fix commit,100% protected coverage,48 deeper experiment
 path reviews,26 historical tip deltas, remaining fixture/body gaps and three new
 pending Intake obligations. Original checkpoint/evidence is preserved. This is
 not completion of historical RI review or the repository-wide audit.
+
+The [increment implementation/integrity audit](ri-increments-25-36-audit.md)
+completes the selected64 increment paths and reads50 associated test paths.
+It preserves bounded positive, adverse and oracle-only findings, authenticates51
+original Increment25 bindings, records a new pending task-normalization bug and
+extends existing integrity/consumer proposals. The next cohort is exactly94
+dogfood paths; RI, its84 current fixture gaps and177 older versions remain open.

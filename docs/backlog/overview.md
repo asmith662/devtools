@@ -236,3 +236,16 @@ explicit caller-authored task locators to existing native grounding/source
 acquisition. It stops at authenticated source acquisition; full semantic
 witness/readiness decisions remain the separate15bae0a6 obligation. No new
 parser, Context compiler, automatic selector or edit authority is proposed.
+
+### Increment implementation audit intake
+
+The [64-path increment audit](../research/ri-increments-25-36-audit.md) records
+one new pending BUG, [dabfa1f7](proposals/dabfa1f7-b4ae-4ed0-82c9-179f47e31630/proposal.json):
+preserve complete words in future versioned task-card normalization. Original
+cards/judgments remain frozen. Seven existing records receive ADVISORY evidence
+on binding guards, historical coordinate copies, source-span reconciliation,
+Localization use, fixture scope and measured reuse/cohesion. Exact identities
+are in [Intake receipts](../research/code-audit/ri-increments-intake.json).
+No proposal is approved or assigned a B-number. The existing B-0002/R1 promotion
+boundary remains sufficient for experimental lexical mechanisms; no development
+winner becomes a default native strategy through this audit.

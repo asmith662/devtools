@@ -111,3 +111,24 @@ commit: `0cc372503e8efbd899b3e0f724c903d8ebd040a2`. Original science is unchange
 
 RI remains active. No new native model receipt or empirical-effectiveness claim
 follows from synthetic tests. Keep preceding ledger versions as dated evidence.
+
+## Increment implementation and consumer review overlay
+
+The [64-path increment report](../ri-increments-25-36-audit.md) starts at
+`c6bd9ae30390d7804ed44303cb2f73a1d2907e67`. Frozen experimental implementations,
+judgments, reports and previous ledgers are unchanged.
+
+| File | Depth and limits |
+| --- | --- |
+| [ri-increments-summary.json](ri-increments-summary.json) |64 selected paths:53 substantive modules/11 markers,64 distinct blobs;17 named review topics, not independent trials; cumulative158/606,448 remaining. |
+| [ri-increments-experiments.jsonl](ri-increments-experiments.jsonl) | Same606 paths; exact64 newly reviewed bodies, functions, controls, tests, scientific limits and consumer/disposition crosswalk. |
+| [ri-increments-tests-and-dependencies.json](ri-increments-tests-and-dependencies.json) |50 fully read external test paths (40 substantive/10 markers), four complete dependency bodies and bounded current consumer cursors; no historical controller/test replay. |
+| [ri-increments-artifact-identities.json](ri-increments-artifact-identities.json) |97 physical JSON/gzip/document identities with13 retained result summaries; read-only accounting, not rejudgment. |
+| [ri-increments-probes.json](ri-increments-probes.json) | Complete independent probe source/outcomes: prefix truncation, resealed25 swap,51 original bindings, eight coordinate failures, absent dense/ties/foreign inputs. Original Git-byte identity proof included. |
+| [ri-increments-intake.json](ri-increments-intake.json) | One new pending task-authoring bug; seven ADVISORY updates; no approvals or B-numbers. |
+| [ri-increments-next-cohort.json](ri-increments-next-cohort.json) | Exactly94 dogfood0012/0013/0016 paths with unchanged blobs/depth;84 current fixtures and177 older versions remain separate. |
+| [ri-increments-checkpoint.json](ri-increments-checkpoint.json) | Changed-file hashes, deterministic/preservation/link/layout/Intake checks; containing commit supplies its own identity. |
+
+No new actual model-use evidence or controlled benefit follows from this overlay.
+All64 path dispositions are substantive review claims with per-file dependencies,
+not claims that every human judgment or omitted historical version was audited.

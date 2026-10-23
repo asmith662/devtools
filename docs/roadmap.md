@@ -1,5 +1,10 @@
 # Roadmap
 
+Current deep-review checkpoint: [RI Increments25–30 and34–36](research/ri-increments-25-36-audit.md).
+The following reconciliation inventory is historical, not comprehensive code
+review completion. Continue the exact94-path dogfood cohort before leaving RI;
+no retrieval policy or protected-main promotion is authorized by audit findings.
+
 ## Completed finite reconciliation investigation (2026-10-23)
 
 The [production/experiment/architecture report](research/production-adoption-and-architecture-reconciliation.md)

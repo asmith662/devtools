@@ -2,7 +2,7 @@
 
 ## Disposition and authority
 
-Current continuation: [RI scientific bindings and retrieval policies](ri-policies-and-scientific-integrity-audit.md).
+Current continuation: [RI Increments25–30 and34–36](ri-increments-25-36-audit.md).
 The maintainer requires the remaining RI mechanisms/fixtures before changing
 audit domains; this does not prepare the postponed successor-session dossier.
 

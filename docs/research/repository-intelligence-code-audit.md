@@ -1,6 +1,6 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [scientific bindings and retrieval-policy review](ri-policies-and-scientific-integrity-audit.md).
+Latest depth overlay: [increment implementation and consumer review](ri-increments-25-36-audit.md).
 The original census below remains dated evidence; RI is not fully audited.
 
 Follow-up: the [physical-line correction and deeper implementation/fixture review](ri-deep-audit-followup.md)

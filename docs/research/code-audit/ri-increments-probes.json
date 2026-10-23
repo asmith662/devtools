@@ -1,0 +1,210 @@
+{
+  "source": "import ast, copy, hashlib, json, sys\nfrom pathlib import Path\nR=Path.cwd(); sys.path.insert(0,str(R)); O=R/'.local/ri-increments-20261023'\nfrom experiments.increment_25.task_population import _normalized_task_wording\nfrom experiments.increment_25.confirmation_judgments import freeze_confirmation_judgments,evaluate_confirmation,_digest\nfrom experiments.increment_28.import_use import _span\nfrom experiments.increment_36.mechanics import _ranked_case\nfrom experiments.purpose_relative_admission.validation_execution import artifact_envelope\nout={}\nout['normalization']={s:_normalized_task_wording(s,'') for s in ['added evidence','additional evidence','Fix observation','supported sources','enablement behavior']}\nassert out['normalization']['added evidence']=='ed evidence'\nfreeze=json.loads((R/'experiments/increment_25/task_population_freeze.json').read_text(encoding='utf-8'))\nout['retained_truncated_cards']=[{k:r[k] for k in ('case_id','source_commit_sha','parent_snapshot_sha','original_subject','information_need_purpose','lexical_query')} for r in freeze['payload']['task_cards'] if r['original_subject']=='added evidence']\nassert len(out['retained_truncated_cards'])==1\nb={'schema':'independent-audit-fixture','execution_identity':'audit-only','cases':[{'case_id':'audit','task':{'purpose':'inspect alpha'},'resources':[{'address':'alpha.py','content':'alpha'},{'address':'beta.py','content':'beta'}]}]}\nd={'audit':{'alpha.py':{'judgment':'useful','rationale':'independent synthetic positive'},'beta.py':{'judgment':'not-useful','rationale':'independent synthetic negative'}}}\nc={'cases':[{'case_id':'audit','capacity':{'m':1,'lexical_exhausted':False},'structural_additions':[{'address':'alpha.py','positive_lexical_rank':None}],'matched_lexical_additions':['beta.py'],'resolution_diagnostics':{}}]}\nf,m=freeze_confirmation_judgments(blinded=b,decisions=d)\nbefore=evaluate_confirmation(candidates=c,blinded=b,frozen=f,mapping=m)\nswapped=copy.deepcopy(m);rows=swapped['payload']['cases'][0]['mappings'];rows[0]['address'],rows[1]['address']=rows[1]['address'],rows[0]['address']\nswapped=artifact_envelope(schema=swapped['schema'],payload=swapped['payload'])\nafter=evaluate_confirmation(candidates=c,blinded=b,frozen=f,mapping=swapped)\nout['increment25_resealed_swap']={'accepted':True,'frozen_judgment_identity_unchanged':f['content_identity'],'before':before['payload']['cases'][0]['judgments_by_arm'],'after':after['payload']['cases'][0]['judgments_by_arm']}\nassert out['increment25_resealed_swap']['before']!=out['increment25_resealed_swap']['after']\nroot=R/'experiments/increment_25';original=json.loads((root/'confirmation_judgment_input.json').read_bytes());mapping=json.loads((root/'confirmation_neutral_mapping.json').read_bytes())\nidentity=_digest(original);checked=0;mismatches=[]\nfor bc,mc in zip(original['cases'],mapping['payload']['cases'],strict=True):\n assert bc['case_id']==mc['case_id']\n assert [r['address'] for r in bc['resources']]==[r['address'] for r in mc['mappings']]\n for r in mc['mappings']:\n  expected='resource-'+hashlib.sha256(f\"{identity}|{bc['case_id']}|{r['address']}\".encode()).hexdigest()[:16]\n  if r['neutral_id']!=expected:mismatches.append({'case':bc['case_id'],'address':r['address'],'recorded':r['neutral_id'],'expected':expected})\n  checked+=1\nout['original25_pair_consistency']={'pairs':checked,'computed_package_identity':identity,'declared_package_identity':mapping['payload']['blinded_package_identity'],'mismatches':mismatches,'qualification':'current retained files against current producer rule; original-version compatibility needs Git-object authentication, not new adjudication'}\nassert checked==51\nassert identity==mapping['payload']['blinded_package_identity'] and not mismatches\nout['experimental_span']=[]\nfor sep in ['\\v','\\f','\\x1c','\\x1d','\\x1e','\\x85','\\u2028','\\u2029']:\n text='s=\"a'+sep+'b\"\\nfrom pkg import f\\nx=f()\\n'; node=ast.parse(text).body[-1].value.func\n start,end,span=_span(text,node)\n out['experimental_span'].append({'separator':f'U+{ord(sep):04X}','actual':text[start:end],'expected':ast.get_source_segment(text,node),'span':span})\nassert all(x['actual']!=x['expected'] for x in out['experimental_span'])\nbasis={'case_id':'audit','parent_snapshot_sha':'p','information_need':{'purpose':'audit','lexical_query':'q'}}\nlex={'case_id':'audit','parent_snapshot_sha':'p','query_text':'q','corpus_id':'c','corpus_resource_count':7,'rankings':{'rrf':[{'address':f'{i}.py','rank':i} for i in range(1,6)]}}\none=_ranked_case(lexical=lex,basis=basis,dense=None)\nassert one['selected_top_five']==[f'{i}.py' for i in range(1,6)]\ndense={'case_id':'audit','parent_snapshot_sha':'p','information_need':basis['information_need'],'corpus':{'corpus_id':'c','resource_count':7},'semantic_candidates':[{'address':'dense.py'}]}\ntwo=_ranked_case(lexical=lex,basis=basis,dense=dense)\nassert two['ranking'][0]['address']=='1.py' and two['ranking'][1]['address']=='dense.py'\nout['ranked_only_fusion']={'absent_dense_order':one['selected_top_five'],'tie_order':[r['address'] for r in two['ranking'][:2]],'score':two['ranking'][0]['score']}\ntry:\n bad=copy.deepcopy(dense);bad['corpus']['corpus_id']='foreign';_ranked_case(lexical=lex,basis=basis,dense=bad)\nexcept ValueError as e:out['foreign_dense_rejected']=str(e)\nelse:raise AssertionError('foreign dense accepted')\nout['checks_passed']=6\n(O/'probes.json').write_text(json.dumps(out,indent=2,ensure_ascii=True)+'\\n',encoding='utf-8')\nprint(json.dumps(out,indent=2,ensure_ascii=True))\n",
+  "source_sha256": "b278878e7949874a6df4813ec0b66cec5f9fba44510cb62237528d4fecdbda90",
+  "outcomes": {
+    "normalization": {
+      "added evidence": "ed evidence",
+      "additional evidence": "itional evidence",
+      "Fix observation": "observation",
+      "supported sources": "ed sources",
+      "enablement behavior": "ment behavior"
+    },
+    "retained_truncated_cards": [
+      {
+        "case_id": "i25-c0fabcb195e2",
+        "source_commit_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+        "original_subject": "added evidence",
+        "information_need_purpose": "Address the historical maintenance task: ed evidence",
+        "lexical_query": "ed evidence"
+      }
+    ],
+    "increment25_resealed_swap": {
+      "accepted": true,
+      "frozen_judgment_identity_unchanged": "1d58260df428cb8f48133d0255ea52c8d880ff85a629a30434588b29c8f46579",
+      "before": {
+        "structural": {
+          "useful": 1,
+          "not-useful": 0,
+          "unjudged": 0
+        },
+        "matched_lexical": {
+          "useful": 0,
+          "not-useful": 1,
+          "unjudged": 0
+        }
+      },
+      "after": {
+        "structural": {
+          "useful": 0,
+          "not-useful": 1,
+          "unjudged": 0
+        },
+        "matched_lexical": {
+          "useful": 1,
+          "not-useful": 0,
+          "unjudged": 0
+        }
+      }
+    },
+    "original25_pair_consistency": {
+      "pairs": 51,
+      "computed_package_identity": "2cd51156fde62e325b389c34e7db1f1e45020faffaff5f7d91b66a283c2ce25c",
+      "declared_package_identity": "2cd51156fde62e325b389c34e7db1f1e45020faffaff5f7d91b66a283c2ce25c",
+      "mismatches": [],
+      "qualification": "current retained files against current producer rule; original-version compatibility needs Git-object authentication, not new adjudication"
+    },
+    "experimental_span": [
+      {
+        "separator": "U+000B",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+000C",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+001C",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+001D",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+001E",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+0085",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+2028",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "separator": "U+2029",
+        "actual": "o",
+        "expected": "f",
+        "span": [
+          3,
+          2,
+          3,
+          3
+        ]
+      }
+    ],
+    "ranked_only_fusion": {
+      "absent_dense_order": [
+        "1.py",
+        "2.py",
+        "3.py",
+        "4.py",
+        "5.py"
+      ],
+      "tie_order": [
+        "1.py",
+        "dense.py"
+      ],
+      "score": 0.01639344262295082
+    },
+    "foreign_dense_rejected": "Dense case identity/corpus differs from lexical basis.",
+    "checks_passed": 6
+  },
+  "original_git_authentication": {
+    "origin": "3994f26d60b1da2b68ffb00c8ff401c58b1bb432",
+    "artifacts": {
+      "experiments/increment_25/confirmation_judgment_input.json": {
+        "origin_blob": "d15a3a4d4bbf3cf44887d449c1031466af73d379",
+        "current_blob": "d15a3a4d4bbf3cf44887d449c1031466af73d379",
+        "origin_sha256": "dcddc418004c7db5bbe37fa0f3d66830a78a9546018156d34944fc56d3279c74",
+        "same_git_bytes": true
+      },
+      "experiments/increment_25/confirmation_neutral_mapping.json": {
+        "origin_blob": "91c0c871e308477f0e68d16b65ebb6db200c7b7f",
+        "current_blob": "91c0c871e308477f0e68d16b65ebb6db200c7b7f",
+        "origin_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd",
+        "same_git_bytes": true
+      },
+      "experiments/increment_25/confirmation_frozen_judgments.json": {
+        "origin_blob": "c11ce26353c06cdb5192136a3e49972ad2348cb5",
+        "current_blob": "c11ce26353c06cdb5192136a3e49972ad2348cb5",
+        "origin_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "same_git_bytes": true
+      },
+      "experiments/increment_25/confirmation_candidate_evidence.json": {
+        "origin_blob": "5ff33a1579c3b5e5999c5a9bdb245adfec723b72",
+        "current_blob": "5ff33a1579c3b5e5999c5a9bdb245adfec723b72",
+        "origin_sha256": "424138004af05dec82fb4ccf212ca237170ebbc31853508247423b79b28f79ad",
+        "same_git_bytes": true
+      },
+      "experiments/increment_25/confirmation_judgments.py": {
+        "origin_blob": "8d8ec893816c2f4c57f9798a1140a300a17a3915",
+        "current_blob": "8d8ec893816c2f4c57f9798a1140a300a17a3915",
+        "origin_sha256": "e8693aeb09077880419d2531b1fab1b1442be91311123f16d122d5ea630cb05f",
+        "same_git_bytes": true
+      }
+    },
+    "serialization_matches": [
+      {
+        "indent": null,
+        "ensure_ascii": false,
+        "compact": true,
+        "newline": false
+      }
+    ],
+    "declared_seed_pairs_agree": 51
+  },
+  "original_git_authentication_source": "import asyncio,hashlib,json,sys\nfrom pathlib import Path\nR=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/ri-increments-20261023'\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy\nasync def git(*args):\n r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8<<20)).execute(Command('git').args(*args).cwd(resolve_path(R)));assert not r.failed and not r.stdout_truncated;return r.stdout\nasync def main():\n tip=(await git('rev-parse','3994f26d')).decode().strip();out={'origin':tip,'artifacts':{},'serialization_matches':[]}\n for name in ['confirmation_judgment_input.json','confirmation_neutral_mapping.json','confirmation_frozen_judgments.json','confirmation_candidate_evidence.json','confirmation_judgments.py']:\n  p='experiments/increment_25/'+name;old=await git('show',tip+':'+p);now=await git('show','HEAD:'+p)\n  out['artifacts'][p]={'origin_blob':(await git('rev-parse',tip+':'+p)).decode().strip(),'current_blob':(await git('rev-parse','HEAD:'+p)).decode().strip(),'origin_sha256':hashlib.sha256(old).hexdigest(),'same_git_bytes':old==now}\n b=json.loads(await git('show',tip+':experiments/increment_25/confirmation_judgment_input.json'));m=json.loads(await git('show',tip+':experiments/increment_25/confirmation_neutral_mapping.json'))\n declared=m['payload']['blinded_package_identity'];pairs=[(c['case_id'],r) for c in m['payload']['cases'] for r in c['mappings']]\n out['declared_seed_pairs_agree']=sum(r['neutral_id']=='resource-'+hashlib.sha256(f\"{declared}|{case}|{r['address']}\".encode()).hexdigest()[:16] for case,r in pairs)\n for indent in [None,2]:\n  for ensure in [True,False]:\n   for compact in [True,False]:\n    text=json.dumps(b,sort_keys=True,indent=indent,ensure_ascii=ensure,**({'separators':(',',':')} if compact else {}))\n    for end in ['', '\\n']:\n     digest=hashlib.sha256((text+end).encode()).hexdigest()\n     if digest==declared:out['serialization_matches'].append({'indent':indent,'ensure_ascii':ensure,'compact':compact,'newline':bool(end)})\n print(json.dumps(out,indent=2));(O/'binding-history.json').write_text(json.dumps(out,indent=2)+'\\n',encoding='utf-8')\nasyncio.run(main())\n",
+  "qualification": "Independent small synthetic helper challenges and read-only original binding checks; no scientific controller, adjudication or report reconstruction"
+}

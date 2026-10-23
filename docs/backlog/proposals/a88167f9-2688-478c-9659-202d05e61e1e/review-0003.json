@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "559be39555bd10233f0d97e7ec4dfee6d41eaaeb01b124403123d6a600e5b06f",
+  "at": "2026-10-23T20:41:28.723747+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-increments-25-36-audit.md",
+  "rationale": "All50 associated increment test files fully inspected, including inline helpers. Increment28 localization._occurrence synthetic char_span/text lengths intentionally test location accounting; Increment27 structural relation SimpleNamespace fixtures test projection only and are complemented by actual observed module-resolution tests. They must not be counted as source/identity/Unicode qualification. Frozen tests lack the Unicode physical-line challenge and the bijective mapping-swap challenge now independently reproduced. Preserve focused tests; future guard/correction needs real AST/retained-source and independently authored negative binding fixtures, not report equality alone.",
+  "duplicates": [],
+  "duplicate_disposition": "Preserve identity, pending disposition and prior review chain; no approval, B-number, grant or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "c8c0c676a3ffcf8d73bd9060d94817b3d4ecf4f3b81e491f8fd79f8cdab9c360"
+}
