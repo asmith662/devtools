@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ae6b9374-f74d-4cd4-b079-a9f843ce3420",
+  "proposal_sha256": "3428c7f359044885ecd18993f82c99edea9913e378ab444af959f92e5c424c47",
+  "previous": "520a96db956baae37a9785b15dc4c436e3b81e2178c6d9c3e930f8ee6e2592fb",
+  "at": "2026-10-23T15:18:31.259970+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/development-lifecycle-observability-audit.md",
+  "rationale": "Executed local audit confirms persistence owns Conversation history/opaque continuation, whereas native task source observations, check journals and Checkout owner seals live separately. Optional Evidence/usage records do not make this working state durable Memory. Reuse original receipts without replay; no new session store, Memory API or exactly-once claim follows. B-0028/B-0034 retain working-state/uncertain-effect questions.",
+  "duplicates": [
+    {
+      "reference": "14f19339-9213-443d-ac8c-b1018ae1f5bc",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing proposal/canonical investigations retain ownership. Preserve payload, parent, status and chain. No new proposal, B-number, approval, grant or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "c8185e11290fdedda88188abbaaec1997ba2e55fa0f0f227d38f44351d870665"
+}

@@ -183,3 +183,11 @@ No source review proves that a different serving profile or harness would improv
 this model's coding. No inference, model change or matched comparison was run.
 Future configuration work needs an independently qualified scope and authority;
 the established phased request/Evidence/Tool contract remains unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Provider send normalizes before calling optional completion observer. Transport/normalization failure and a completed response followed by observer failure can both raise but have different model/usage facts. Existing successful-completion Evidence alone cannot represent the full realization population; no dedicated post-success provider-observer-failure assertion was found in inspected tests. Qualify that boundary with explicit unknown usage and no blind retry.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

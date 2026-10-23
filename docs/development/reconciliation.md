@@ -318,3 +318,22 @@ report missing causal edges rather than inventing spans or replaying work.
 Then finish bounded destination-adoption and artifact-custody reconciliation
 before the comprehensive successor-session handoff. Historical receipts,
 original18 crosswalk, backlog dispositions and protected-main authority remain.
+
+## Executed lifecycle/observability audit (2026-10-23)
+
+The [five-flow report](../research/development-lifecycle-observability-audit.md)
+authenticates all21 selected inputs plus original stage/provider/Tool/check/
+publication evidence. It separates direct byte/call/review links from inferred
+clock order and missing occurrence joins. The planned turn06 expansion actually
+refused; two recorded physical-file hashes differ from Git blobs solely by CRLF.
+Both distinctions are documented without altering historical receipts.
+
+Reuse current Evidence, usage and application receipts with better consumers/
+joins first; generic tracing/OTel interfaces remain alternatives requiring design,
+not adopted architecture. Advisory backlog evidence records incomplete model/
+observer population, freshness/publication/recovery observation, exact-tree
+input closure and capture-policy questions. No source, tests, runtime authority,
+scientific outcome or proposal disposition changes. Next reconcile selective
+destination adoption, actual feature/experiment ownership and exact-path custody,
+then prepare the comprehensive successor-session handoff. Do not begin that next
+phase automatically.

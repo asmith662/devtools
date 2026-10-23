@@ -51,3 +51,11 @@ Checkout are not missing implementations of that upstream Session interface.
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Conversation JSON/SQLite state, source observations, check journals, native checkpoints and Checkout owner seals have separate owners. Completed protected evidence can be reused by closeout subject/passed condition; full plan/config/toolchain closure is not separately named by that subject. Qualify changed-input negative cases before stronger exact-tree reuse claims. No invalid historical gate or bypass is established by this source audit.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

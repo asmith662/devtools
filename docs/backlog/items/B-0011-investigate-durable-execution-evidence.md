@@ -52,3 +52,11 @@ implement a Session/Event/Trace layer or change durable schemas.
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+All21 selected inputs and297 historical files are fingerprinted; both closeout result/review subjects and protected log hashes are checked. Strong byte links coexist with mutable checkpoint files and missing occurrence links. Two27 physical CRLF hashes differ from LF Git blobs. Investigate explicit representation, capture and input-closure contracts rather than treating file checksums or a PASS as durable authority.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

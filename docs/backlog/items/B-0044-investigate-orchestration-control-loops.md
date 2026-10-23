@@ -47,3 +47,11 @@ generic phase controller, DI container or runtime adoption is authorized.
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+The real native coding loop calls ModelInteraction directly, not narrow Runtime. WorkCycle owns separate review/publication and Checkout source restoration. A future observation adapter may serve both consumers without importing orchestration into Runtime. Common occurrence/outcome metadata requires domain/capture/failure semantics before a tracing interface, lifecycle controller or generic Agent is considered.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

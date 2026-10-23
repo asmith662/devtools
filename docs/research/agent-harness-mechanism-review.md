@@ -598,3 +598,15 @@ intake hash chains, prior proposal states, original18 input/crosswalk preservati
 Only documentation/intake evidence changed. No production protected gate or
 upstream tests ran, because no production source/tests changed. The evidence
 metadata records the validation scope; it is not a new scientific result.
+
+## Executed local lifecycle comparison follow-up
+
+The [five-flow Devtools audit](development-lifecycle-observability-audit.md) now
+tests the earlier join/loss map against original receipts. It authenticates all21
+selected inputs, distinguishes absent observers from missing framework types,
+and compares reuse of current records, a narrow tracing seam and operational
+OTel spans. Existing source authority and publication remain separate. The
+prospective turn06 expansion was refused; no source was disclosed by that call.
+No external harness result, historical model outcome or accepted ADR changes.
+Next is local destination adoption/ownership/custody reconciliation, not another
+external install or tracing implementation.

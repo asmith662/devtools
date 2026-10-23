@@ -8,10 +8,12 @@ preparation under the [phase charter](development/reconciliation.md#finite-archi
 The [recovered original18 intake](research/reconciliation-input-reconciliation.md)
 and [pinned Qwen Code/Pydantic AI source/test comparison](research/agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
 are complete as bounded research. The [DeepSeek Harness/Aider source/test follow-up](research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
-completes the four selected external comparisons. Next use the
-[five-flow lifecycle/observability audit plan](research/development-lifecycle-audit-plan.md),
-then deepen destination adoption and custody reconciliation. No next-stage
-execution or infrastructure implementation is launched by this checkpoint.
+completes the four selected external comparisons. The
+[five-flow lifecycle/observability plan](research/development-lifecycle-audit-plan.md)
+is now [executed as a source/evidence audit](research/development-lifecycle-observability-audit.md).
+Next deepen selective protected-main adoption, actual experiment/feature ownership
+and custody reconciliation before the comprehensive successor handoff. No
+next-stage execution or infrastructure implementation is launched here.
 Do not launch another Qwen feature/benchmark or automatically implement findings.
 Earlier engineering "next" paragraphs below retain their checkpoint meaning;
 the Commands integration is already on remote main. Scientific sequencing,

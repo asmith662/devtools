@@ -2,6 +2,12 @@
 
 ## Disposition
 
+The [executed audit](development-lifecycle-observability-audit.md) now records
+authenticated timelines and gaps. This original prospective selection is retained
+as lineage. In particular, turn06 below was a genuine **refused** expansion call;
+the selected receipt does not contain successful source disclosure. See the
+[audit correction](development-lifecycle-observability-audit.md#timeline-5--map-source27-turn06-genuine-but-refused-expansion).
+
 Source selection and bounded audit plan, 2026-10-23, against feature
 `177098f4edd3dd7ea1b6bd889e1a1b1d5074a5fd`. This is the next research assignment,
 not an implemented observer, new execution authority or completed causal audit.

@@ -45,3 +45,11 @@ No upstream privacy efficacy or full plugin supply-chain claim was measured.
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Model Evidence defaults to payload omission, but selected native run-specific wrappers retain raw requests, arguments and provider responses in ignored custody. These paths do not have one propagated capture manifest. Qualify per-artifact capture/retention, credentials exclusion, redaction and export policy before any adapter or OTel consumer. The public audit copies metadata, not raw sensitive payloads; no leak or deployed privacy failure is asserted.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

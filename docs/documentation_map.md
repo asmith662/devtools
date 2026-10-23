@@ -12,6 +12,13 @@ close that intake gap. The [four-project source/test comparison](research/agent-
 and [five-flow lifecycle audit plan](research/development-lifecycle-audit-plan.md)
 define the current evidence checkpoint and next bounded research, not new execution authority.
 
+The [executed lifecycle/observability audit](research/development-lifecycle-observability-audit.md)
+and [authenticated evidence metadata](research/development-lifecycle-observability-evidence-20261023.json)
+now supply the five timelines, direct/derived/weak joins, incomplete outcomes and
+architecture alternatives. They correct a prospective navigation assumption
+without rewriting original receipts. Destination adoption, ownership/custody and
+the final successor handoff remain the next bounded phase.
+
 The [canonical reconciliation record](development/reconciliation.md) owns the
 2026-10-19 branch/evidence disposition. [Experiment closeout](../experiments/README.md)
 owns the collection inventory and restoration contract. The maintained standalone

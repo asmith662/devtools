@@ -101,3 +101,11 @@ before choosing instrumentation. No new logger, event bus or exporter is selecte
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+The five-flow audit authenticates request/response/call/check/review links but finds absent native Model/Runtime inspector composition, weak host freshness input/time links and no separate post-push ref/time in closeout. Recommend existing-record consumers/adapters first; a shared tracing interface or OTel spans remains a design alternative. Distinguish immutable records, lossy live events, correlation and durable/export consumers.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

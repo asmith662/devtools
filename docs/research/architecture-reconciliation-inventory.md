@@ -234,3 +234,15 @@ actual original receipts and correlation fields. Source/test trees, adoption
 matrix and historical experiments are unchanged; no new production integration
 or cleanup is inferred. Complete those local joins and exact destination/custody
 checks before declaring reconciliation complete.
+
+## Executed lifecycle follow-up (2026-10-23)
+
+The [five-flow observability audit](development-lifecycle-observability-audit.md)
+now examines actual original requests, provider/Tool IDs, source/candidate/check
+identities, review subjects, commits and recovery seals. Existing typed Evidence
+and usage are not universally installed consumers; native application receipts
+provide separate strong links. Historical navigation refusal and Git-versus-
+physical newline identity are explicitly qualified. This adds no production
+adoption or cleanup result to the matrix above. The next bounded phase is actual
+destination capability dependencies, feature/experiment ownership and custody
+eligibility before successor handoff.

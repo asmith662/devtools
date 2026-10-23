@@ -47,3 +47,11 @@ is created by this evidence.
 See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
 and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Recovery26 preserves original CLEANUP_RECONCILIATION_REQUIRED, exact one-LF byte mismatch and later sealed return to baseline. Process-stop confirmation is asserted without a linked process-state/time record. Commit-intent tests reconcile an already-created commit; historical publication receipts lack a separate post-push ref/time. No event absence proves no effect, and no restoration proves arbitrary external rollback. Preserve current explicit default-No recovery.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

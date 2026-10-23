@@ -167,3 +167,11 @@ and ADVISORY reviews to the existing edit, module, CodeGraph and Memory proposal
 No proposal was created or approved and no B-number/status/parent changed. The
 [next five-flow local lifecycle audit](../research/development-lifecycle-audit-plan.md)
 selects existing receipts; it authorizes no implementation or replay.
+
+## Executed lifecycle audit evidence (2026-10-23)
+
+The [five-flow source/evidence audit](../research/development-lifecycle-observability-audit.md)
+adds advisory evidence to B-0011/B-0018/B-0023/B-0027/B-0028/B-0034/B-0035/B-0044/B-0046
+and four existing proposals. No new proposal/B-number, status, parent, grant or
+approval changed. Existing records own correlation, durable Evidence, privacy,
+working-state and uncertain-effect pressure; no implementation follows automatically.
