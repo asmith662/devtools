@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "5fa23957-703a-4de9-9619-316f8f7740ed",
+  "created_at": "2026-10-23T22:32:23.374436+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Contract Graph3 metric validation separately from full report authentication",
+    "parent": "B-0002",
+    "summary": "Priority2 experiment-analysis assurance. Case0016 stage_d.validation.validate(data,result) independently checks many metric fields but accepts a flipped gate_inputs.graph_contributed_gain and arbitrary primary_answers while returning PASS with checks that claim checkpoint ancestry, capture replay and deterministic artifact replay. Independent inert-input probes reproduce both acceptances. The original analysis.expected builds its own output, and verify compares exact bytes after authentication, so no corrupted original verdict is demonstrated. Existing proposal2e70de9a owns neutral-ID/address pair binding; its advisory mention is not sufficient actionable scope for this distinct report-validation responsibility.",
+    "resources": [
+      "experiments/codex_dogfood/case_0016/stage_d/validation.py",
+      "experiments/codex_dogfood/case_0016/stage_d/analysis.py",
+      "experiments/codex_dogfood/case_0016/stage_d/reporting.py",
+      "experiments/codex_dogfood/case_0016/stage_d/test_analysis.py"
+    ],
+    "evidence": [
+      "docs/research/ri-u1-r17-r2-audit.md",
+      "docs/research/code-audit/ri-u1-r17-r2-probes.json"
+    ],
+    "benefit": "Acceptance: preserve frozen implementations/results. For an authorized future read-only analysis consumer provide a separately versioned full-report verifier or explicitly narrow metric-only contract, with supported schema and externally anchored complete input closure. Independently challenge graph-contributed-gain in both directions, contract/ranking/reach flags, all derived answers/prose, missing/duplicate fields, altered input population and unsupported versions. A full verifier must recompute every claimed derived field without calling a treatment/model/adjudicator or loading untrusted pickle, and reject mutations even when the final harmful outcome is unchanged. A subset verifier must report only checks it actually performs and require an authenticated-input owner; do not permit it to certify publication or semantic truth. Test actual report-only caller path and unchanged original compatibility. Suitable for a bounded maintenance agent only after version and consumer approval.",
+    "uncertainty": "Historical expected/verify callers are safe against these isolated mutations under their exact input preconditions; no active production bypass or historical scientific invalidation is claimed. No generic evaluator, source authority or controller is authorized.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-u1-r17-r2-audit.md"
+    }
+  },
+  "payload_sha256": "b5a1e7e79ed710b17e2b1d896dd7c9194a2b789e64fbfc350c87bdb09a449bec"
+}

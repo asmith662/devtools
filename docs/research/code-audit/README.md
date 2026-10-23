@@ -153,3 +153,27 @@ captures, authored primary/independent reviews and final reports are unchanged.
 94 path dispositions are not87 algorithms. Duplicate immutable bodies retain
 chronology without duplicate algorithm credit. All original conclusions remain
 bounded, and the separate older Graph3 algorithm deltas remain delta-only.
+
+## U1 R1.7 and R2 source and consumer overlay
+
+The [Cases0011/0014/0015 report](../ri-u1-r17-r2-audit.md) starts at
+`555b23b13e729fcf1464b581040f8a22223cb983`. Frozen case/source/report bytes and
+all preceding audit ledgers remain unchanged. This is research metadata, not a
+new source registry, semantic reviewer or execution authority.
+
+| File | Depth and limitations |
+| --- | --- |
+| [ri-u1-r17-r2-summary.json](ri-u1-r17-r2-summary.json) |101 paths/96 blobs;91 substantive paths/87 blobs,10 namespace paths/nine blobs,24 full test bodies; three primary research mechanisms, not101 algorithms. Cumulative353/606,253 remain. |
+| [ri-u1-r17-r2-experiments.jsonl](ri-u1-r17-r2-experiments.jsonl) | Same606 paths; exact101 new dispositions,741 function cursors, source/test/control/recovery/consumer and main-blob relationships; all other prior records unchanged. |
+| [ri-u1-r17-r2-tests-and-dependencies.json](ri-u1-r17-r2-tests-and-dependencies.json) |24 complete cohort test/fixture bodies and separately qualified external scoring/consumer dependencies; no inherited current-fixture/older-version credit. |
+| [ri-u1-r17-r2-artifact-identities.json](ri-u1-r17-r2-artifact-identities.json) |268 original byte identities,245 manifest checks,nine Git seal anchors,676 original Git-member checks and1561 frozen-archive resource occurrences; U1 CRLF archive and C.5 supersession explicit;4779/3090/3090 original pair joins agree. No scientific replay or pickle load. |
+| [ri-u1-r17-r2-probes.json](ri-u1-r17-r2-probes.json) |Complete source/fourteen bounded outcomes: U2 null failure, Graph3 assurance limits, five packet refusals, gate/empty-field and numeric examples. No historical verdict corruption claimed. |
+| [ri-u1-r17-r2-intake.json](ri-u1-r17-r2-intake.json) |One distinct pending Graph3 report-assurance bug and ten ADVISORY updates. No approvals, grants or status changes. |
+| [ri-u1-r17-r2-next-cohort.json](ri-u1-r17-r2-next-cohort.json) |Exact42 remaining paths:Case0009/0010, retrieval diagnostics and BM25 sensitivity. Separate84 current fixtures and177 older versions retained. |
+| [ri-u1-r17-r2-checkpoint.json](ri-u1-r17-r2-checkpoint.json) |Changed documentation/Intake hashes, synthetic tests, links, source/blob/forensic/input and Intake validation; containing commit supplies final identity. |
+
+U1 authoring coverage, R1.7 score discrimination and true BM25F are distinct
+research questions. Current native source use does not demonstrate autonomous
+obligation decomposition or effectiveness of either intentionally unpromoted
+scorer. All101 old experimental blobs also present on main remain experimental
+archives, not production adoption.

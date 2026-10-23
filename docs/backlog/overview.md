@@ -265,3 +265,20 @@ cases; subset-validator limits are not proof of corrupted publication.
 [Exact receipts](../research/code-audit/ri-dogfood-intake.json) preserve pending
 states, hash chains and operator recommendations. No approval, B-number,
 implementation grant, parent closure or scientific rerun is authorized.
+
+### U1, R1.7 and R2 audit intake
+
+The [101-path audit](../research/ri-u1-r17-r2-audit.md) adds distinct pending BUG
+[5fa23957](proposals/5fa23957-703a-4de9-9619-316f8f7740ed/proposal.json):
+Graph3 metric-subset validation must not claim whole-report/input authentication.
+Original expected-output/byte verification still protects the retained publication;
+the synthetic accepted mutations do not demonstrate historical corruption.
+This responsibility is separate from canonical neutral-ID/address binding.
+
+Ten append-only ADVISORY records qualify existing trusted obligation/need and
+exact-hint consumers, versioned U2 incomplete-witness handling, binding-verifier
+adoption, Increment25 authoring, measured reuse, fixture/cohesion boundaries and
+already implemented source-span reconciliation. U1's unrequested obligations
+must not be confused with R1.7/R2 scoring harm. Those adverse scoring policies
+remain intentionally unpromoted. [Exact receipts](../research/code-audit/ri-u1-r17-r2-intake.json)
+preserve states and hash chains; no approval, B-number, grant or closure follows.

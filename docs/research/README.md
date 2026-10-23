@@ -1,9 +1,10 @@
 # Research Evidence
 
-Current deep audit: [RI dogfood lifecycle and scientific integrity](ri-dogfood-lifecycle-audit.md).
-All94 selected paths/87 blobs are reviewed; the cumulative ledger records252/606
+Current deep audit: [U1 InformationNeeds, R1.7 and R2](ri-u1-r17-r2-audit.md).
+All101 selected paths/96 blobs are reviewed; the cumulative ledger records353/606
 experimental paths and the separate9/93 current fixture paths at full review
-depth. The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor
+depth. The next42-path cohort follows lexical diagnostics and BM25 sensitivity.
+The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor
 dossier and next architectural domain remain postponed.
 
 The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)

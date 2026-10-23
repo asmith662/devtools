@@ -2,11 +2,11 @@
 
 ## Disposition and authority
 
-Current continuation: [RI dogfood lifecycle and integrity](ri-dogfood-lifecycle-audit.md).
-All94 selected paths/87 blobs now have applicable full-body review;252/606
-experimental paths are reviewed,354 remain. Separate84 current-fixture paths
-and177 older versions retain their previous depth. Next is the exact101-path
-Cases0011/0014/0015 cohort, not a change of architectural domain.
+Current continuation: [U1 InformationNeeds, R1.7 and R2](ri-u1-r17-r2-audit.md).
+All101 selected paths/96 blobs now have applicable full-body review;353/606
+experimental paths are reviewed,253 remain. Separate84 current-fixture paths
+and177 older versions retain their previous depth. Next is the exact42-path
+Cases0009/0010, retrieval-diagnostics and BM25-sensitivity cohort.
 The maintainer requires the remaining RI mechanisms/fixtures before changing
 audit domains; this does not prepare the postponed successor-session dossier.
 

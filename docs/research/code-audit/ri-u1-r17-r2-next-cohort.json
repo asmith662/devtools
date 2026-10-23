@@ -1,0 +1,857 @@
+{
+  "purpose": "Next coherent RI cohort: Cases0009/0010 lexical diagnostics and BM25 sensitivity, complete original controllers, fixtures, capture/review and report input closure. Existing partial dependency inspections do not confer full review. Do not replay science.",
+  "paths": [
+    {
+      "path": "experiments/bm25_sensitivity/__init__.py",
+      "blob": "525a8091658eca58c204908237ad27fc61976fb7",
+      "sha256": "103eb9776bba7b99986ffa2f3001768dbc9dab55c66280b073dc11878d396b59",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "EXPORT_SURFACE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/cases.py",
+      "blob": "6e4cf6cb8e1722a534298133262da9630ec33fa8",
+      "sha256": "813569edc00ebd4930e64b3e136aa6c94710964c9b62e59b1b43f45d7a0d92ea",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "DATA_SELECTION_OR_ELIGIBILITY"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/metrics.py",
+      "blob": "f47b3468745b672d1398e48c5818d26f7d5bd3c4",
+      "sha256": "4808baff0cc0e2394cf113f19a3f96378a061405f3bc0e1382d92fb02013e6f3",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/protocol.py",
+      "blob": "3918356a81fcd35b2be39f6156e44ee90c11e8fa",
+      "sha256": "f44ffa58872319a17f3be61e78c63e477d8d0343d276efd7cd0a8be10fc5d7f6",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/scoring.py",
+      "blob": "62da7d552a1c6132f2badbbd69e4dc9807bec9bc",
+      "sha256": "dbc92ffa21bb3b6d9d26d4193b67176594ee6868dcf08a5c9e6deae6e8ff3311",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "ALGORITHM_OR_TREATMENT"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/storage.py",
+      "blob": "a91c1f2edfb2cf6507ea8aa5b5e2146a4cef9428",
+      "sha256": "fbb593c7269ff8c3918b8778076bdd047bcf0c49c5dcd1a089014f0e98c0f920",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/study.py",
+      "blob": "c387a4d5dae2be50d0e3217770bb611c988d42ed",
+      "sha256": "ffc8239bd59d6203bce4b6c2e7cfbb69ce010d0583956152d7dcbc0dd027d056",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/bm25_sensitivity/summary.py",
+      "blob": "8012f75a6408997e3b51a78d19d28a944c467c67",
+      "sha256": "dfd6dc454d36bc5cc7350d365fcd105698aa7ad254a173386259b2e1676ae6a5",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/__init__.py",
+      "blob": "ed20e1fe7d827d1891997c0856afe362e194d351",
+      "sha256": "41dee59b1eb7140acf2219d9f1f9e5ee787d166a4fa3038be25c11553f4d81e7",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "EXPORT_SURFACE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/__init__.py",
+      "blob": "46248045e9cd88050e1dfdebbb172a0b7621fdbc",
+      "sha256": "cd8d90d5c0f9aa23d4e127ff26256ce7a467406b7be41d18d56abdbab226edf7",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "EXPORT_SURFACE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/build_judgments.py",
+      "blob": "86575ed2d682b691570f71f44499039b6b5d67cc",
+      "sha256": "eaaf536b51d01d3dbb806604f731abb30a4a64afb9025911dd9c3f3b69aa651c",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/build_packet.py",
+      "blob": "ff7d88d528bd00504e64a57600e38edb7854bb75",
+      "sha256": "6c6b33bc6f5dc1cee437f1317f3b8a7e6c81f401bdfaffa45f0137d18a6c9272",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/stage_c.py",
+      "blob": "29d9e3b75c214b6a9f425ff07e1ecb44e2326e2d",
+      "sha256": "cdc6edea6a17d6776e6ab31b6d19cba1e92964823a6cf078bf8c7b0e34747d09",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/test_packet_recovery.py",
+      "blob": "6e224d13d08893e3ae3bced6ba0246f2c7fd659a",
+      "sha256": "e31bb8fa40f2c1fac5439903db4ee7b6d16d01c280e4dcd30f61d6d34c6d78cc",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "INDEPENDENT_TEST_OR_TEST_HELPER"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/test_stage_c.py",
+      "blob": "024a6cd6f92bef6bc86a621ba557fafbcb6bd624",
+      "sha256": "422e8b77b30b8ce99a7f8bf31b4ff3c192231dedc0aee2fb9f83ad79e1e77be8",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "INDEPENDENT_TEST_OR_TEST_HELPER"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/analyze.py",
+      "blob": "6f05bd39bdb844fe19962a950ead0ef62dd69969",
+      "sha256": "65577383ac89a05a8eac28a3f5a97df0dcd4db6624bba6fa36cef4302977b1be",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/artifacts.py",
+      "blob": "664b333e91ec22e0ddabee03d91e79c507ba2a62",
+      "sha256": "19ff18a47e0448aa7307d5b9c77ad69c7b8358afec41f960d571a6be317e7517",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/diagnostic.py",
+      "blob": "2e3c4c48b7596f80d9d9b24ee3673fd4cbf2bb40",
+      "sha256": "08139df365139f9ef65bf73d9ac33be29659a1a249dc4eba633422c171f58ca3",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "METRIC_OR_REPORTING"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/execute.py",
+      "blob": "d4e1bbb553618da2b8f7d14810dc0570d6baec1f",
+      "sha256": "9f4ab2d5005083c435537ac000b0e1c4b9f156094a0367a01adf5d8bdda358fe",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/freeze.py",
+      "blob": "9b6d9e9449361db34a5e64ce51ba35aeded32a96",
+      "sha256": "68abcb2bfa50d05f8d922c4d38ae88d018c2e560fbb330c375ae31ae484280b2",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/packet.py",
+      "blob": "d70b2e76d45c941c44834925bb1ea85452895c4d",
+      "sha256": "2c6c8b9a1c71ef5b8d594d8a451591ea0b6508e229c8907c992c8fad1c30611c",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/protocol.py",
+      "blob": "853fbec2e42c4961b6e318863df7a4bb43fe87b5",
+      "sha256": "9b678ed9eda95c60919d05e52585793737edde6fd411301055e2a5a6eb1766c8",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/test_analysis.py",
+      "blob": "e6dd4b7792e7a8874a3ab77711e7c54addcbe715",
+      "sha256": "81bcd677e896531c7d1e8655c0a2e49eff0e8f5d5a0e87d0da5edcc528226e8f",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "INDEPENDENT_TEST_OR_TEST_HELPER"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/__init__.py",
+      "blob": "c3bdc92115f16c856ff44463f3afdaf97f8ec504",
+      "sha256": "c6a709a0640532e73be316458397cc209e8089ad427ea35c87dd03cc44444773",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "EXPORT_SURFACE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/adjudication/build_judgments.py",
+      "blob": "3d734eb4a38f2052e175ca3b20f033481a5eff96",
+      "sha256": "ddbf550575aa99c174079246062deb1ac9ef65cc3009855c3726dce793ea5dfb",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/adjudication/stage_c.py",
+      "blob": "5433aca8f7be260f9e6c8f67dcac43444eac3b6a",
+      "sha256": "a8e74685242bcde4548da4ae0a669c2bf1855948982e864219530c05cc27edd9",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/adjudication/test_stage_c.py",
+      "blob": "2e7c65976b5f48f3e27c88bcc14272e62f2e7e40",
+      "sha256": "8d4c41e3baf0565ccbe468f755fce97f5a89eb0653a01daf7269774c2092062c",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "INDEPENDENT_TEST_OR_TEST_HELPER"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/analyze.py",
+      "blob": "0b073063dfb505f89756db134cc6fca3b6f1d7db",
+      "sha256": "c2a24a26d82697adcdbe79bd92ba743ffd6cb881c9198802b6a25a7fc985fb01",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/execute.py",
+      "blob": "331abeb6af6bc246837187bbcebb9ec01e6c81cb",
+      "sha256": "633324c534ef6ca1d9aa7d37ef96663fefa7105af9fa6bb24e015e84b4f5c14c",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/freeze.py",
+      "blob": "71daec17971bdb7bbbc1b81d3000ce4d4f72be35",
+      "sha256": "2b357a6c09041dd42f7e0d506b53e45d5455f681b13eb707d67bf229351e0d40",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/packet.py",
+      "blob": "1aebdc8233a1eac5f22b43b2be13d9021af8415e",
+      "sha256": "3b78ec878a2d658334b59b26d5cb69d7bc6864fa4df705c40435cf4ac58ab9fe",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/protocol.py",
+      "blob": "d98ffba5c969d40f7d553eeee34cb9f551431aaf",
+      "sha256": "44d1d2094e4a0c0df78676d4c2301015f9bf6e7c7fe686bc8988f26f1367629a",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "PROTOCOL_OR_ORACLE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/reporting.py",
+      "blob": "8f3ebc521f8e88c38651148a7a974314003a1a54",
+      "sha256": "50afa16b147ba24a118469acca31e0a04ca14b1f5ad03fcda595d313123fadc4",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "METRIC_OR_REPORTING"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/__init__.py",
+      "blob": "a839dc966584f11ee5cba2e8e9677eb20170321d",
+      "sha256": "f9f5b7082023c48ccf6d732cad08f35bace851c2ae819a57f5b3522cecbc6793",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "EXPORT_SURFACE"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/adapters.py",
+      "blob": "a8e630d5970d2dcf99186d034578855526c2fb3c",
+      "sha256": "f9f01169f16cf604423693cfcdc942c3471fdc422f60a2ca69c52652dabaefbd",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/attribution.py",
+      "blob": "355432ac3f3306be24e2f4cd4a159f6942952241",
+      "sha256": "9e6507060266bb13a984621fc3669317122f42e3dd30bf47cb04e7b12e224744",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/comparison.py",
+      "blob": "9df4311da2375b6679ab9fdaf837c0cf873239e4",
+      "sha256": "e7dd7748282bb6ec75cd17b2a91af090d73bffd82048b37dfdf38cc0f5f5851e",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/dogfood.py",
+      "blob": "93e9753df8a095a37dbded33ecefd9c8bf4dbf20",
+      "sha256": "3c3957b7c5b1015d52c59ffa47368e709cae281f83a6c2d50e35bc03e2b8a528",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/mechanics.py",
+      "blob": "f97cdf2689ac1395127cc5a09454bb7491e57a19",
+      "sha256": "41bc8a40648f2315488fe5ab1e86d815121c0475a5f8349662063d83ce719e33",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "ALGORITHM_OR_TREATMENT"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/models.py",
+      "blob": "c84a6df9de8a24e6bedbc0dd39ebbc9aa69a1f18",
+      "sha256": "eaca2d0b90e7d8cea1564158a8177534cb94fd35187f640fbf0f7c3dba354dc3",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/serialization.py",
+      "blob": "dae5549a7722e55c20c1342ec4fabba863c3fba5",
+      "sha256": "86ff2cd1fc660a5f45bc6876e48d26da3aafd7d14be970ef6cc8152541cfbae0",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    },
+    {
+      "path": "experiments/retrieval_diagnostics/supports.py",
+      "blob": "ed4c38afe3567b218ee33be26d474cc0aa28e0dc",
+      "sha256": "4246a6b1e3f5ad9c16296ed81b5295089c129fcf72135ce91e40b505c4c42b54",
+      "depth": "INDEXED_PRIOR_SELECTED_REVIEW_ONLY_WHERE_REPORT_NAMES_FUNCTION",
+      "roles": [
+        "SUPPORT_IMPLEMENTATION_ROLE_REQUIRES_REVIEW"
+      ],
+      "remaining": "Inspect complete substantive body, controls, dependent fixtures and failure paths; see prior selected algorithm review"
+    }
+  ],
+  "distinct_blobs": 42,
+  "counts": {
+    "experiments/bm25_sensitivity": 8,
+    "experiments/codex_dogfood/case_0009": 15,
+    "experiments/codex_dogfood/case_0010": 10,
+    "experiments/retrieval_diagnostics": 9
+  },
+  "remaining_current_tests": [
+    {
+      "path": "tests/context/__init__.py",
+      "blob": "c8e24d5e5c039fad310e94fb178db36c146891b9",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/__init__.py",
+      "blob": "e098bea6bdbab6213622c1a5ef89aeb9e949272f",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/association/__init__.py",
+      "blob": "fb51f162cf5c89d36331cf74278d1f405223d953",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/association/test_hypothesis.py",
+      "blob": "2217625aeaf8eb36d319ce2038ca3492b45d06e6",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/generation/__init__.py",
+      "blob": "f692f4a3d69a3d0f80c278d263140e0034c8ce64",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/generation/test_branching.py",
+      "blob": "31645064038f67e2f0c92ad235c7567ec9414aa1",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/generation/test_generation.py",
+      "blob": "63abcd4f10f7190464546cead6b4e3971a6dfd88",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/generation/test_imports.py",
+      "blob": "2bbed8e437d6bbee4a0911c9f787c36f28546e03",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/generation/test_references.py",
+      "blob": "859cb46778ca53290b61b637ce6e0ce75168ca93",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/grounding/__init__.py",
+      "blob": "0033c9fe69d390a4fb8c40ee24bf04ed2d83ce74",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/resolution/__init__.py",
+      "blob": "4ab470ab4fb2302c06a576496f2e27e674aa5940",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/resolution/test_resolution.py",
+      "blob": "8aaa4092ceb679f3fd6288813b9bea260cf494f7",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/roles/__init__.py",
+      "blob": "d73ba153de296f09b4e1c71f8d6a8a5d5d7a4fb4",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/roles/helpers.py",
+      "blob": "c80475e3bd960547de68806861cc47b348e25ffa",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/roles/test_configuration.py",
+      "blob": "38ff83661f25d1f7998828837124d042cd982dd9",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/roles/test_dependency_groups.py",
+      "blob": "4fbfca690978c9bd3d5c55e356afdbb78a856167",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/roles/test_evidence.py",
+      "blob": "cd518c53d8d315c6f188ce47b6a5aaf191d6058e",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/localization/routing/__init__.py",
+      "blob": "5bd63f5f82b989d9a7842cd4a19ed0d285675608",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/routing/test_routing.py",
+      "blob": "efb7c8abd52306ccf4b7aad525cc298fa39a7a85",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/test_kernel.py",
+      "blob": "025fa8e9bd5027f466abf6b1ce41a964a202844a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/localization/test_lexical.py",
+      "blob": "7c39f54b59efb6a77769eb398ddd7438bf9de194",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/planning/__init__.py",
+      "blob": "c4964d44e35d0d96feab4a2976e0eb50161ff3c4",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/planning/test_map_source.py",
+      "blob": "3081d31e3c1a6cf44c3851e004ee00a059252683",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/planning/test_plan.py",
+      "blob": "7571cebaf5b88d15b9f35548bc50c2d29c523d51",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/planning/test_repository_map.py",
+      "blob": "b77f731a4e2f377bdebad1d6b7790b7a76326034",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/python/__init__.py",
+      "blob": "114c0cc008ea9ecfe5d3518aece8ef0df95fe2c4",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/classes/__init__.py",
+      "blob": "4b4a4ec123c51aeb6d927d0b119403f18257b8d6",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/classes/test_bases.py",
+      "blob": "ed75f2beb5b688f36db6ca94b7e10982487aca13",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/classes/test_declarations.py",
+      "blob": "8ff44413a5cea2f77a8c223794aff7abf93eeca8",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/__init__.py",
+      "blob": "f430228714aa57d87592b53140823f5ab7e42dea",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_candidates.py",
+      "blob": "93ef31fd9fa318bf52298aab15f09c599eba0f36",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_containment.py",
+      "blob": "9dc4bf00ad1eaf75fcc7f12db89895f27367fc49",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_cross_resource_pipeline.py",
+      "blob": "afdb8f132f19e636dbbd114d4ca2f27c6017265f",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_declaration_aggregation.py",
+      "blob": "bf1cc4a1e01c74895e875181028e24ca595ace85",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_declarations.py",
+      "blob": "ffbbe0e028b11d56102948d74ceb02e34d5164d9",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_disclosure.py",
+      "blob": "d52390241c536177b1cfd5e506848d658dfd0698",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_materialization.py",
+      "blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/python/function/test_qualified_reference.py",
+      "blob": "013b09a8d9c817df3c1661a0abde14ae5eba7cd2",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_rendering.py",
+      "blob": "1dd8ada35f61a0825c109a369622ae1250121887",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_request_assembly.py",
+      "blob": "8de09b61832a86878405b4fb5155a00e54524520",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_resource_selection.py",
+      "blob": "25175835dd33ec7ea657b95e17b0a148a39ef61a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/function/test_retrieval.py",
+      "blob": "060aed661d329080979d38c00914bbc0d855d297",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/imports/__init__.py",
+      "blob": "ec7837351a944124955f15e98e8f1f1f8c4b6451",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/imports/test_declarations.py",
+      "blob": "f8fb7883408857a249cd3c794265cee33a64c225",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/imports/test_members.py",
+      "blob": "c445f1a78076983dbf7bc2dbaa88f9341a1e080d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/imports/test_relations.py",
+      "blob": "662f474adfe2d0d05192866e09d543afda3d244b",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/imports/test_resolution.py",
+      "blob": "ea51fc6c32a2b998d88e7ad7504085f1266cae24",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/modules/__init__.py",
+      "blob": "cf9021f360218f220cea224d0023884fb16f1eaf",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/modules/test_interpretation.py",
+      "blob": "cd7da2871e2ccb944ed8b974c13a0667b533f72b",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/modules/test_membership.py",
+      "blob": "e9194c3b0fe1b8fcd19a728ca3a2083424ee0409",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "blob": "fce0aa130d0c60724a489e8d57b73924a9dd2d6c",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/project_configuration/__init__.py",
+      "blob": "c729661764b8f61935670b48e70ef81dafa12151",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_configuration.py",
+      "blob": "45005371153c6cc5894abbe327593f88bbb488a7",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_dependency_groups.py",
+      "blob": "5ae1cb3d6626b4e78558f7007b7a3fc7e37f874a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_obstructions.py",
+      "blob": "109fa9c3f33b9a42a118cfa4e650d0a6e638e56b",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_settings.py",
+      "blob": "c3e25e8a0e3307a8080d1ff0d2d57a8fb690aecb",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/references/__init__.py",
+      "blob": "70788996e1c93b40c4dc6b8b968c7ebea5646aec",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/references/declarations/__init__.py",
+      "blob": "27cc56f0ab7f5eb1dffd7d9e65b71d6c31ba8541",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_bindings.py",
+      "blob": "4a6b9579bc6e8f5abe83a5d4a470045490be198d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/test_mirrored_paths.py",
+      "blob": "68609be259d68b0e3d659c03510be40fbfb43593",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/python/test_source_candidacy.py",
+      "blob": "5451f6ddf756a0412a7f6cc1cbf27bec50010e09",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/repository/__init__.py",
+      "blob": "7d35031427348f25943b8697f80e974b31ec89c4",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_changes.py",
+      "blob": "8846b47b034599984bda3e6ad8fb9aa10e5d8d3b",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_corpus.py",
+      "blob": "a4a6258af5d1fbc6017d9456839852e01c221f28",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_discovery.py",
+      "blob": "54454dc95ee8cabaef8be8e91ffa275e47e256a8",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_document.py",
+      "blob": "03c061a2a02dec407d9de9b502380af6ce740e52",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_intrinsic_paths.py",
+      "blob": "84873e4b36fad17d06e0d650cc62450c122e42cb",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/repository/test_observation.py",
+      "blob": "6325623a2f291f557aec919ac6eeece5fe127b30",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/retrieval/__init__.py",
+      "blob": "d7effaff6905546e89178ecb7614d967f701aeed",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/__init__.py",
+      "blob": "ee1f8ff919e31fde8b8fc9f8699e97b10767e1e5",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_analysis.py",
+      "blob": "139e2795946acc90b76d22ea13b79f29bb2aba2e",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_bm25.py",
+      "blob": "9642c59c2fb60f2e5889878706cf8b9c37320713",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_evaluation.py",
+      "blob": "aa3fa4bf016bafad526f7a39fda02ed939f1f36d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_filename.py",
+      "blob": "2a3559d0940a1727d972a095f2a45583205a0dbb",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_index.py",
+      "blob": "5710e325f06b62dc19b3448291b4e81134cacaf6",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_statistics.py",
+      "blob": "da49fe20cb3f15fd6f49c30337b1ea953b941c19",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/source/__init__.py",
+      "blob": "058ebf48acfcc8fa55b17f97b6d7467f0b73a726",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "blob": "d464088b849482094634ba4c963d8ef05fb8fcee",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN"
+    },
+    {
+      "path": "tests/context/retrieval/test_composition.py",
+      "blob": "2e00fe7999b0e77047f79aeb1c9570848a3a9710",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/context/retrieval/test_structural.py",
+      "blob": "b1ffc259807e05e5d395941b41512d787484c78a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/evaluation/__init__.py",
+      "blob": "c2c6bd247ea5c678f80d4a184cc0de29219b8b1a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    },
+    {
+      "path": "tests/evaluation/test_coverage.py",
+      "blob": "6c714a12efc36f5d1d7b0d5d7218fe8c062924d4",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW"
+    }
+  ],
+  "older_versions": "ri-followup-history.jsonl retains exact177 NOT_REVIEWED versions; no subtraction for experimental deltas",
+  "remaining_experimental_paths": 253,
+  "other_remaining_paths": 211
+}

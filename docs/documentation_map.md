@@ -1,10 +1,10 @@
 # Documentation Map
 
-Current audit checkpoint: [RI dogfood Cases0012,0013 and0016](research/ri-dogfood-lifecycle-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#dogfood-lifecycle-and-scientific-integrity-overlay).
+Current audit checkpoint: [U1 InformationNeeds, R1.7 and R2](research/ri-u1-r17-r2-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#u1-r17-and-r2-source-and-consumer-overlay).
 The explicitly authorized source-index repair is separately committed and
-protected-tested. Historical RI review is still incomplete; the exact101-path
-Cases0011/0014/0015 cohort remains next before changing domains. The final successor-session
+protected-tested. Historical RI review is still incomplete:353/606 paths reviewed,
+253 remain. The exact42-path lexical-diagnostics cohort is next. The final successor-session
 dossier remains postponed; earlier checkpoint directions below are historical.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)

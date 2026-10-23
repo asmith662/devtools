@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "edfb9e28-34fb-497f-8ff1-d3a4c7320eb0",
+  "proposal_sha256": "dbbb25f3a56195c3d7f6a99667d2bfbd0acfc9c3d20e149fb148118647f96b6b",
+  "previous": null,
+  "at": "2026-10-23T22:32:24.139843+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-u1-r17-r2-audit.md",
+  "rationale": "U2 missing-member helper still returns None, downstream comparisons crashes; independently rechecked, original selected completions complete. R1.7 evaluate_arm preserves None with no prefix/metrics and R2 witness_metrics distinguishes empty task-backed witness depth0 from absent member None; these are compatible examples, not permission to transplant frozen code. U1 covered_subset metrics are case-specific and assume complete B evidence; do not reuse as a general consumer without missing/null qualification. Future versioned whole pipeline tests must exercise no alternatives, partial support, both incomplete and task-only facts through reports/gates. No original scientific implementation or outcome changed.",
+  "duplicates": [],
+  "duplicate_disposition": "Preserve original payload, state and append-only history; no approval, B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "62c9f4af3fd67bd68152bf708f9c51011fdbb82cd42f9af1c4abc8ad67c3edb2"
+}

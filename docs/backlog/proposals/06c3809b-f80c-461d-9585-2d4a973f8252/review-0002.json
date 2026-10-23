@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "06c3809b-f80c-461d-9585-2d4a973f8252",
+  "proposal_sha256": "f34c5f1229b7f04a8a70f7734b7d1e0f360d73262669b8976c244c756d664057",
+  "previous": "dbf18ce3277d138262448b4dd85ad138d8f0c7f86248fa665aee7fc2b189bd25",
+  "at": "2026-10-23T22:32:23.686510+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-u1-r17-r2-audit.md",
+  "rationale": "U1 explicitly detected three task literal class hints but marked NOT_ROUTED_IN_U1, so its authoring defect is not a test of failed exact grounding. Current native lookup/search/expand can retrieve source but has no trusted authored InformationNeed-to-grounding caller. Existing pending exact-acquisition scope is sufficient; qualify source path/locator/task-span/provenance/ambiguity/fallback and current source observation, then real native action and checks. U2/U3 fixed authored grammar remains bounded; do not infer general intent recognition or transfer C.5 gold units into source selection.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve original payload, state and append-only history; no approval, B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "e41a51259bf2247fd0604dbe62841533f1c930c282bd7178d7f820e69e494b4f"
+}
