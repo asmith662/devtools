@@ -65,3 +65,27 @@ no arbitrary UTF-8 coordinates or model output is manufactured.
 The remaining work column in the reports takes precedence over an optimistic
 interpretation of an index count. Future audits append version-specific evidence
 and conclusions; they must not rewrite frozen historical scientific records.
+
+## Physical-line repair and deeper RI review overlay
+
+The [RI follow-up](../ri-deep-audit-followup.md) starts at published checkpoint
+`38957ae45d8f5c3e6b8061b749b9291f38cee19c`. The original census, checkpoint,
+27-fixture adverse reproduction and historical reports above are unchanged.
+Source correction `a0a6c22403f7df2679aa574226e420521a8accf5` and this new overlay
+are deliberately separate commits.
+
+| File | New depth and limits |
+| --- | --- |
+| [ri-followup-summary.json](ri-followup-summary.json) | Explicit counts and incomplete RI-domain disposition |
+| [ri-followup-experiments.jsonl](ri-followup-experiments.jsonl) | Same606 indexed paths;48 full substantive mechanism/export reviews; unread roles remain provisional and prior selected review is not expanded |
+| [ri-followup-fixtures.jsonl](ri-followup-fixtures.jsonl) |93 current RI test paths:3 full modules,29 outer-helper reviews,61 assertion-index only; unread test cursors remain explicit |
+| [ri-followup-history.jsonl](ri-followup-history.jsonl) |203 older exact path/blob versions:26 tip-delta reviews,177 unreviewed; current implementation review does not inherit |
+| [ri-followup-agent-use.json](ri-followup-agent-use.json) |31 additional original native Tool receipts from20/22/24; source/edit arguments bounded by hash; no causal benefit inference |
+| [ri-followup-probes.json](ri-followup-probes.json) |Three independently authored primitive/fixture challenges; no scientific treatment/adjudication replay |
+| [ri-followup-archive.json](ri-followup-archive.json) |All22 original root-report members checked against existing manifest without extraction; not judgment-cell review |
+| [ri-followup-validation.json](ri-followup-validation.json) |Exact changed source/test hashes, final protected-gate log references and input-manifest digest |
+| [ri-followup-checkpoint.json](ri-followup-checkpoint.json) |Changed-document physical hashes, Intake receipts and preservation/integrity validation; containing commit supplies manifest identity |
+
+This overlay is research metadata, not new execution, source identity or backlog
+authority. Complete remaining paths and blobs are enumerated rather than hidden
+behind a collection-level completion claim.

@@ -202,3 +202,21 @@ Existing CodeGraph and module/cohesion proposals receive advisory evidence and
 bounded acceptance detail. No original payload/status, parent, B-number, grant
 or frozen scientific result changes. The [coverage program](../research/comprehensive-code-audit.md)
 postpones the final successor-session dossier and schedules subsequent domains.
+
+### RI follow-up dispositions
+
+The [implementation/fixture follow-up](../research/ri-deep-audit-followup.md)
+records the explicitly assigned source-index repair at
+`a0a6c22403f7df2679aa574226e420521a8accf5`; both existing bug proposal IDs and
+pending states remain. Four integration/reuse records above receive additional
+ADVISORY acceptance qualifications, not approvals.
+
+Three distinct source-backed records are newly PENDING_REVIEW:
+
+- [2e70de9a](proposals/2e70de9a-d09c-409d-a7a2-0f32f67c4768/proposal.json): authenticate canonical neutral-ID/address binding in historical unblinding adapters. Synthetic counterexample; no claim original science was corrupted.
+- [a88167f9](proposals/a88167f9-2688-478c-9659-202d05e61e1e/proposal.json): disambiguate synthetic RI fixture identities and qualify real observed-input integration.
+- [befd10cd](proposals/befd10cd-f382-4f40-aade-5c4119db4c44/proposal.json): correct address-only lost-resource reporting through a qualified derived view if still consumed; retain frozen reports.
+
+No B-number assignment, parent closure, dispatch, grant or historical judgment
+change follows. Exact remaining historical source/test review is in the audit
+overlay; a passing protected gate does not close that review.

@@ -1,5 +1,10 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
+Follow-up: the [physical-line correction and deeper implementation/fixture review](ri-deep-audit-followup.md)
+records a separately validated source-fix commit, expanded historical review and
+exact remaining gaps. The first checkpoint's adverse reproduction and counts
+below remain historical evidence; they are not the current bug disposition.
+
 ## Disposition
 
 Deep current-source review at feature

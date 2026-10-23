@@ -169,3 +169,9 @@ from exposure, preserve adverse scientific policies, and leave omitted historica
 versions/test fixtures/controllers explicitly unreviewed. Four substantive
 pending consumer/reuse proposals and advisory evidence use canonical Intake.
 No production fix, inference, cleanup or protected promotion follows from audit.
+
+The explicitly authorized [RI follow-up and source-index repair](ri-deep-audit-followup.md)
+now records the separate fix commit,100% protected coverage,48 deeper experimental
+path reviews,26 historical tip deltas, remaining fixture/body gaps and three new
+pending Intake obligations. Original checkpoint/evidence is preserved. This is
+not completion of historical RI review or the repository-wide audit.

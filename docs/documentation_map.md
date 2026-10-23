@@ -1,5 +1,12 @@
 # Documentation Map
 
+Current audit checkpoint: [RI historical implementation/fixture follow-up](research/ri-deep-audit-followup.md)
+and its [version-specific overlay](research/code-audit/README.md#physical-line-repair-and-deeper-ri-review-overlay).
+The explicitly authorized source-index repair is separately committed and
+protected-tested. Historical RI review is still incomplete; execution/ToolRunner/
+Checkout/WorkCycle is the next substantial domain. The final successor-session
+dossier remains postponed; earlier checkpoint directions below are historical.
+
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
 and [dated source/custody manifest](research/production-adoption-and-architecture-evidence-20261023.json)
 extend the initial inventory with all 35 collections, 48 capability slices and

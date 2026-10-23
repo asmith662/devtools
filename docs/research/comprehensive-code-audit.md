@@ -131,3 +131,18 @@ hashes, verification counts and canonical Intake receipts. It is the overlay on
 the frozen baseline census: new audit documents are not falsely presented as
 files that already existed at the starting commit. It excludes its own hash;
 the containing Git commit supplies that identity.
+
+## RI follow-up checkpoint
+
+The [deeper RI implementation/fixture review](ri-deep-audit-followup.md) repairs
+the confirmed source-index defect under explicit maintainer assignment, with a
+separate source commit and exact-final-tree protected gate. It adds48 substantive
+experimental path reviews,26 historical tip-delta reviews and an explicit
+93-path fixture-depth overlay. Three newly qualified deficiencies enter pending
+Intake; four existing integration/reuse proposals receive stronger acceptance.
+The inherited census and first checkpoint manifest are preserved.
+
+RI historical review remains incomplete:177 older exact versions,558 experimental
+paths without full follow-up depth and unread test bodies remain enumerated in
+the overlay. The next major domain remains execution/ToolRunner/Checkout/WorkCycle;
+carry those RI obligations forward. No final successor-session dossier is due.
