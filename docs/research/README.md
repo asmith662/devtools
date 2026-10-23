@@ -1,9 +1,11 @@
 # Research Evidence
 
-Current deep audit: [U1 InformationNeeds, R1.7 and R2](ri-u1-r17-r2-audit.md).
-All101 selected paths/96 blobs are reviewed; the cumulative ledger records353/606
+Current deep audit: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
+All42 selected paths/blobs are reviewed; the cumulative ledger records395/606
 experimental paths and the separate9/93 current fixture paths at full review
-depth. The next42-path cohort follows lexical diagnostics and BM25 sensitivity.
+depth. The next78-path cohort follows native Localization composition and evidence verification.
+The [obligation-coverage decision preparation](task-obligation-coverage-decision.md)
+recommends trusted reviewed clauses with bounded revision, pending maintainer decision.
 The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor
 dossier and next architectural domain remain postponed.
 

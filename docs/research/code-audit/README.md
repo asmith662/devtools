@@ -177,3 +177,27 @@ research questions. Current native source use does not demonstrate autonomous
 obligation decomposition or effectiveness of either intentionally unpromoted
 scorer. All101 old experimental blobs also present on main remain experimental
 archives, not production adoption.
+
+## Lexical diagnostics and sensitivity overlay
+
+The [42-path report](../ri-lexical-sensitivity-audit.md) starts at
+`45d666cd168a6add2e59bbdf2e1b10e1fb82ada6`. The accompanying
+[obligation-coverage decision preparation](../task-obligation-coverage-decision.md)
+is a recommendation awaiting maintainer decision, not an accepted ADR.
+
+| Artifact | Scope and review depth |
+| --- | --- |
+| [ri-lexical-summary.json](ri-lexical-summary.json) |42 paths/42 blobs;37 substantive paths,five namespace surfaces,four cohort test modules; three primary mechanisms,207 function cursors. Cumulative395/606,211 remain. |
+| [ri-lexical-experiments.jsonl](ri-lexical-experiments.jsonl) |Same606 paths, exact42 new applicable full-body dispositions; other prior depths unchanged. Current/main historical blob equivalence is not production adoption. |
+| [ri-lexical-tests-and-dependencies.json](ri-lexical-tests-and-dependencies.json) |Four cohort tests and eighteen fully read external test/helper paths; current consumer dependencies have precise full/partial ranges. No automatic current-fixture/older-version credit. |
+| [ri-lexical-artifact-identities.json](ri-lexical-artifact-identities.json) |131 artifact identities,107 manifest checks,ten original Git anchors,530 member checks,1062 corpus occurrences and4779/5310 original pair joins. Missing Case0009 instruction custody explicitly qualified. No science replay or pickle load. |
+| [ri-lexical-probes.json](ri-lexical-probes.json) |Ten independent bounded outcomes with full source: bounded nonprefix defect, real identifier arithmetic and scoped readiness despite omitted fixture clause. |
+| [ri-lexical-intake.json](ri-lexical-intake.json) |One new pending bounded-prefix diagnostic bug and five append-only ADVISORY records. No approvals, grants or closures. |
+| [ri-lexical-next-cohort.json](ri-lexical-next-cohort.json) |Exact78 remaining paths: Cases0004–0008, shared capture/package and verification. Separate84 current fixtures and177 older versions preserved. |
+| [ri-lexical-checkpoint.json](ri-lexical-checkpoint.json) |Changed documentation/Intake hashes and final link/layout/identity/Intake validation. Containing commit supplies publication identity. |
+
+R1's separate-view mixed result and prospective sensitivity's NO SAFE REPLACEMENT
+remain bounded original conclusions. Native canonical BM25 is consumed; these
+experimental policies and gold-conditioned diagnostics are not adopted rankers.
+The whole-task/obligation authorship seam requires the explicit maintainer
+decision above; scoped readiness is never proof of exhaustive task decomposition.

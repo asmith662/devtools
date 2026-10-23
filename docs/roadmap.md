@@ -1,11 +1,17 @@
 # Roadmap
 
-Current deep-review checkpoint: [U1 InformationNeeds, R1.7 and R2](research/ri-u1-r17-r2-audit.md).
+Current deep-review checkpoint: [R1 identifier retrieval, diagnostics and BM25 sensitivity](research/ri-lexical-sensitivity-audit.md).
 The following reconciliation inventory is historical, not comprehensive code
-review completion. The101-path cohort is now reviewed; continue the exact42-path
-Cases0009/0010 lexical-diagnostics cohort before leaving RI. The253 remaining experimental
+review completion. The42-path cohort is now reviewed; continue the exact78-path
+Cases0004–0008 and shared verification cohort before leaving RI. The211 remaining experimental
 paths,84 current-fixture gaps and177 older versions remain explicit;
 no retrieval policy or protected-main promotion is authorized by audit findings.
+
+The [obligation-completeness decision preparation](research/task-obligation-coverage-decision.md)
+recommends a trusted task-clause contract plus explicit reviewed revisions over
+existing Localization and native ContextTools. Maintainer approval is required
+before implementing that slice; current readiness remains relative to supplied
+obligations, never proof of exhaustive decomposition.
 
 ## Completed finite reconciliation investigation (2026-10-23)
 

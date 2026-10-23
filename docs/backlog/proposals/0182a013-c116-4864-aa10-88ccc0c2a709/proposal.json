@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "0182a013-c116-4864-aa10-88ccc0c2a709",
+  "created_at": "2026-10-23T23:10:10.284291+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Verify bounded lexical captures are actual ranked prefixes before diagnosing omissions",
+    "parent": "B-0002",
+    "summary": "Priority2 experiment-analysis integrity. experiments/retrieval_diagnostics/mechanics.py Mechanics validates scores, row-local order, rank coverage and complete positive membership only when complete_positive_universe=True. With False, an independently authored two-document actual native capture can be replaced by only its lower-scoring second row relabeled rank1; initialization accepts and calls the omitted higher-scoring row RESULT_BOUND_OMISSION. Thus captured rank and bound explanation are not authenticated against the omitted positive population. Existing native bounded consumers/tests imply top-K semantics, not arbitrary positive samples. Historical Case0009/0010 and sensitivity use complete captures, so no original verdict corruption is demonstrated.",
+    "resources": [
+      "experiments/retrieval_diagnostics/mechanics.py",
+      "experiments/retrieval_diagnostics/adapters.py",
+      "experiments/retrieval_diagnostics/models.py",
+      "tests/experiments/retrieval_diagnostics/test_mechanics.py"
+    ],
+    "evidence": [
+      "docs/research/ri-lexical-sensitivity-audit.md",
+      "docs/research/code-audit/ri-lexical-probes.json"
+    ],
+    "benefit": "Acceptance: preserve frozen science. In a separately versioned future analysis adapter/verifier, distinguish a true bounded ranked prefix from an arbitrary partial sample. Validate omitted higher scores and stable equal-score corpus ordering from authenticated source/field statistics before certifying ranks or RESULT_BOUND_OMISSION, or explicitly report unverified prefix/unknown exclusion cause. Independently reject lower-ranked row relabeled1, a skipped middle row, wrong tied prefix, duplicate/missing ranks, inconsistent field/source and unsupported versions; accept genuine bounded prefixes, zero matches and complete unchanged captures. Test the actual from_rows/native adapter to diagnostic output; no gold or treatment rerun needed. Keep source authority and statistical provenance unchanged. Bounded maintenance-agent work after version/consumer approval.",
+    "uncertainty": "Original complete captures and published outcomes are unaffected by this counterexample. No production source-search ranker defect, agent effectiveness loss or publication bypass is inferred. Future verifier must state whether it recomputes rank-prefix mechanics or only authenticates external capture provenance; do not silently strengthen sealed implementations.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-lexical-sensitivity-audit.md"
+    }
+  },
+  "payload_sha256": "163707f78a38081bb2e2086bd2382ab4ee6a84006198dce28c923069c13f0c4e"
+}

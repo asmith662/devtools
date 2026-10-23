@@ -2,11 +2,13 @@
 
 ## Disposition and authority
 
-Current continuation: [U1 InformationNeeds, R1.7 and R2](ri-u1-r17-r2-audit.md).
-All101 selected paths/96 blobs now have applicable full-body review;353/606
-experimental paths are reviewed,253 remain. Separate84 current-fixture paths
-and177 older versions retain their previous depth. Next is the exact42-path
-Cases0009/0010, retrieval-diagnostics and BM25-sensitivity cohort.
+Current continuation: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
+All42 selected paths/blobs now have applicable full-body review;395/606
+experimental paths are reviewed,211 remain. Separate84 current-fixture paths
+and177 older versions retain their previous depth. Next is the exact78-path
+Cases0004–0008, shared capture and evidence-verification cohort.
+The [task-obligation coverage recommendation](task-obligation-coverage-decision.md)
+is decision preparation, not an accepted architecture change.
 The maintainer requires the remaining RI mechanisms/fixtures before changing
 audit domains; this does not prepare the postponed successor-session dossier.
 

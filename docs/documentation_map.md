@@ -1,10 +1,13 @@
 # Documentation Map
 
-Current audit checkpoint: [U1 InformationNeeds, R1.7 and R2](research/ri-u1-r17-r2-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#u1-r17-and-r2-source-and-consumer-overlay).
+Current audit checkpoint: [R1 identifier retrieval, diagnostics and BM25 sensitivity](research/ri-lexical-sensitivity-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#lexical-diagnostics-and-sensitivity-overlay).
+The [task-obligation coverage decision preparation](research/task-obligation-coverage-decision.md)
+recommends a trusted reviewed native-consumer slice; it awaits maintainer decision
+and is not an accepted ADR or implementation grant.
 The explicitly authorized source-index repair is separately committed and
-protected-tested. Historical RI review is still incomplete:353/606 paths reviewed,
-253 remain. The exact42-path lexical-diagnostics cohort is next. The final successor-session
+protected-tested. Historical RI review is still incomplete:395/606 paths reviewed,
+211 remain. The exact78-path Localization composition/verification cohort is next. The final successor-session
 dossier remains postponed; earlier checkpoint directions below are historical.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)

@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "108093db3bd49a241907d7d7eadaeb383e6ab989ae3a1bb5c201345c0b0eae56",
+  "at": "2026-10-23T23:10:11.131961+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-lexical-sensitivity-audit.md",
+  "rationale": "Confirmed real repeated work: R1 canonical/identifier rebuild filename fields per query; R1.5 fields reconstruct canonical or expanded corpus statistics, and Mechanics tokenizes every field per lane before caching projected terms; R1.6 reconfigured shares already validated source/postings for parameter-only clones. Case0010 shares content/filename indexes across44queries and separates diagnostics from query cost. These are bounded experimental consumers with different evidence shapes; lower R1 serialized B bytes/peak compare richer A metadata and cannot prove expansion saves memory. Current SourceSearch and Localization lanes remain two maintained measurement consumers. Acceptance must profile cold/warm preparation, per-query fields and refresh separately with identical source/analysis/runtime identities before proposing reuse; no speculative cache or copying object.__new__ clone into source.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing bounded scope expanded with exact evidence; preserve pending/approved status and original payload/reviews. No B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4ffd6a04043620ddae62838348d3b1b8b5769c61c4456d08de2924cc0e005c2a"
+}

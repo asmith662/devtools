@@ -282,3 +282,27 @@ already implemented source-span reconciliation. U1's unrequested obligations
 must not be confused with R1.7/R2 scoring harm. Those adverse scoring policies
 remain intentionally unpromoted. [Exact receipts](../research/code-audit/ri-u1-r17-r2-intake.json)
 preserve states and hash chains; no approval, B-number, grant or closure follows.
+
+### R1 diagnostics, sensitivity and obligation-coverage intake
+
+The [42-path audit](../research/ri-lexical-sensitivity-audit.md) adds pending BUG
+[0182a013](proposals/0182a013-c116-4864-aa10-88ccc0c2a709/proposal.json): bounded
+captures must authenticate the actual ranking prefix before diagnosing omitted
+higher-ranked resources. A two-document independent probe demonstrates the
+weakness; complete original captures do not demonstrate historical verdict impact.
+The frozen owner is unchanged and a future versioned verifier is required.
+
+Five append-only ADVISORY records materially qualify existing Localization
+consumer15bae0a6, custody0385a359, fixturea88167f9, measured-reuseaedea41e and
+cohesion39c6663a proposals. The [decision preparation](../research/task-obligation-coverage-decision.md)
+recommends a trusted reviewed task-clause/obligation contract plus explicit
+revisions, pending maintainer decision. Readiness remains scoped to supplied
+obligations. The Case0009 instruction custody gap must be resolved with original
+hash-matching bytes or retained unsupported replay, never reconstructed text.
+
+[Exact Intake receipts](../research/code-audit/ri-lexical-intake.json) distinguish
+the new proposal from advisory scope updates. R1's mixed separate-view result
+and the unsafe sensitivity replacements remain intentional non-adoption; known
+Graph3/U2/binding/normalization bugs keep their separate pending scopes. Previously
+delivered physical-line repairs await operator reconciliation, not rediscovery.
+No approval, B-number, implementation grant, dispatch or automatic closure follows.

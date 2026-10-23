@@ -1,0 +1,80 @@
+{
+  "source": "import ast,copy,hashlib,json,math,sys\nfrom dataclasses import replace\nfrom pathlib import Path\nsys.stdout.reconfigure(encoding='utf-8');R=Path.cwd();O=Path(__file__).parent;sys.path.insert(0,str(R))\nfrom experiments.retrieval_diagnostics.mechanics import Mechanics\nfrom tests.experiments.retrieval_diagnostics.helpers import capture\nfrom experiments.identifier_sparse.analysis import query_terms,iter_terms\nfrom experiments.bm25_sensitivity.metrics import completion\nfrom devtools.context.localization import LocalizationTaskInterpretation,LocalizationTaskIdentity,TaskProvenance,LocalizationObligation,LocalizationObligationIdentity,RequirementStatus,SatisfactionCriterion,WitnessSet,LocalizationAssessment,Disposition,SupportedWitness,LocalizationEvidenceReference,assess_localization_readiness\nfrom devtools.context.repository.identity import RepositoryId\nfrom devtools.context.repository.snapshot import RepositorySnapshotId\nout=[]\ndef add(name,**details):out.append(dict(name=name,**details))\n# Only tiny independently authored fixtures, no frozen outcomes or controllers.\nc=capture((('a.py','plain plain'),('b.py','plain other other other')),query='plain',limit=100)\nassert c.rows[0].score>c.rows[1].score\nbad=replace(c,rows=(replace(c.rows[1],rank=1),),complete_positive_universe=False)\ne=Mechanics(bad); omitted=e.explain(c.rows[0].resource)\nassert omitted['status']=='RESULT_BOUND_OMISSION' and omitted['score']>bad.rows[0].score\nadd('bounded_capture_accepts_nonprefix',accepted=True,returned=bad.rows[0].resource.address.value,claimed_rank=1,omitted_better=c.rows[0].resource.address.value,omitted_status=omitted['status'],higher_omitted_score=omitted['score'],returned_score=bad.rows[0].score)\ntry:Mechanics(replace(bad,complete_positive_universe=True))\nexcept ValueError as exc:add('complete_capture_rejects_same_omission',error=str(exc))\nelse:raise AssertionError('Full capture accepted missing positive')\nassert Mechanics(replace(c,rows=c.rows[:1],complete_positive_universe=False)).rows.keys()=={c.rows[0].resource.address.value}\nadd('genuine_bounded_prefix_supported',accepted=True)\nfor text,expected in [('HTTPClient2Parser',('httpclient2parser','http','client','2','parser')),('candidate_candidate',('candidate_candidate','candidate')),('___',('___',)),('\u00c9clairHTTP2',('\u00e9clairhttp2','\u00e9clair','http','2'))]:\n assert query_terms(text)==expected;add('independent_identifier_'+text,expected=expected)\nassert tuple(iter_terms('candidate_candidate candidate'))==('candidate_candidate','candidate','candidate')\nadd('source_occurrences_preserved_query_duplicates_removed',source=list(iter_terms('candidate_candidate candidate')),query=list(query_terms('candidate candidate')))\nassert completion((('a',('one','two')),('b',('three','four'))),{'one':1,'four':2}) is None\nadd('incompatible_witnesses_not_combined',completion=None)\n# Present limitation, not proposed architecture implementation: supplied frame can be READY.\nfixture_objective='Preserve owner checks. Add a boundary regression using native fixtures.'\ntaskid=LocalizationTaskIdentity('audit-two-clause-task');repo=RepositoryId.new();snap=RepositorySnapshotId('a'*64);target='caller-reviewed-existing-contract'\nob=LocalizationObligation(LocalizationObligationIdentity(taskid,'preserve-owner'), 'Preserve owner checks',(),TaskProvenance('audit-task-v1'),RequirementStatus.MANDATORY,SatisfactionCriterion('owner','Existing owner checks retained'),(WitnessSet((target,)),))\ntask=LocalizationTaskInterpretation(taskid,TaskProvenance('audit-task-v1'),(),(ob,))\nassessment=LocalizationAssessment(ob.identity,repo,snap,Disposition.RESOLVED,supported_witnesses=(SupportedWitness(target,(LocalizationEvidenceReference('audit-caller-review',repo,snap),)),))\nready=assess_localization_readiness(task=task,repository_id=repo,snapshot_id=snap,assessments=(assessment,))\nassert ready.is_ready\nadd('readiness_does_not_discover_omitted_second_task_clause',fixture_objective=fixture_objective,supplied_obligations=1,fixture_task_clauses=2,readiness=ready.readiness.value,interpretation='Expected scoped contract, not a readiness bug; no claim of exhaustive task understanding')\nsrc=(O/'probes.py').read_text(encoding='utf-8');result=dict(source=src,source_sha256=hashlib.sha256(src.encode()).hexdigest(),passed=len(out),results=out)\n(O/'probes.json').write_text(json.dumps(result,ensure_ascii=True,indent=2)+'\\n');print(json.dumps(dict(passed=len(out),results=out),indent=2))\n",
+  "source_sha256": "4062384ceeff24fc9eba7c3d59f9ba42fd6a471d39fc28b3934083a5d77d2ee3",
+  "passed": 10,
+  "results": [
+    {
+      "name": "bounded_capture_accepts_nonprefix",
+      "accepted": true,
+      "returned": "b.py",
+      "claimed_rank": 1,
+      "omitted_better": "a.py",
+      "omitted_status": "RESULT_BOUND_OMISSION",
+      "higher_omitted_score": 0.2766258103080691,
+      "returned_score": 0.16044296997868007
+    },
+    {
+      "name": "complete_capture_rejects_same_omission",
+      "error": "Complete positive universe differs."
+    },
+    {
+      "name": "genuine_bounded_prefix_supported",
+      "accepted": true
+    },
+    {
+      "name": "independent_identifier_HTTPClient2Parser",
+      "expected": [
+        "httpclient2parser",
+        "http",
+        "client",
+        "2",
+        "parser"
+      ]
+    },
+    {
+      "name": "independent_identifier_candidate_candidate",
+      "expected": [
+        "candidate_candidate",
+        "candidate"
+      ]
+    },
+    {
+      "name": "independent_identifier____",
+      "expected": [
+        "___"
+      ]
+    },
+    {
+      "name": "independent_identifier_\u00c9clairHTTP2",
+      "expected": [
+        "\u00e9clairhttp2",
+        "\u00e9clair",
+        "http",
+        "2"
+      ]
+    },
+    {
+      "name": "source_occurrences_preserved_query_duplicates_removed",
+      "source": [
+        "candidate_candidate",
+        "candidate",
+        "candidate"
+      ],
+      "query": [
+        "candidate"
+      ]
+    },
+    {
+      "name": "incompatible_witnesses_not_combined",
+      "completion": null
+    },
+    {
+      "name": "readiness_does_not_discover_omitted_second_task_clause",
+      "fixture_objective": "Preserve owner checks. Add a boundary regression using native fixtures.",
+      "supplied_obligations": 1,
+      "fixture_task_clauses": 2,
+      "readiness": "ready",
+      "interpretation": "Expected scoped contract, not a readiness bug; no claim of exhaustive task understanding"
+    }
+  ]
+}

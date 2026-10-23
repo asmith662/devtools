@@ -1,11 +1,16 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [U1 InformationNeeds, R1.7 and R2](ri-u1-r17-r2-audit.md).
-The exact101 selected paths/96 blobs are reviewed;353/606 experimental paths
-now have applicable mechanism/export review,253 remain. Current-fixture and
-older-version obligations remain separate. See the exact42-path next cohort
+Latest depth overlay: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
+The exact42 selected paths/blobs are reviewed;395/606 experimental paths
+now have applicable mechanism/export review,211 remain. Current-fixture and
+older-version obligations remain separate. See the exact78-path next cohort
 in the new overlay; this does not complete historical RI review.
 The original census below remains dated evidence; RI is not fully audited.
+
+The [task-obligation coverage decision preparation](task-obligation-coverage-decision.md)
+turns the U1 omissions into concrete trusted/reviewed consumer options. Scoped
+readiness cannot certify exhaustive task decomposition; no architecture slice
+is implemented or approved by this research checkpoint.
 
 Follow-up: the [physical-line correction and deeper implementation/fixture review](ri-deep-audit-followup.md)
 records a separately validated source-fix commit, expanded historical review and
