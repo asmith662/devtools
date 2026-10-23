@@ -1335,3 +1335,20 @@ component but failed behavior/typing and Context admission after19 requests;
 it used neither map nor check_changes. No native-autonomy or ranking-effectiveness
 claim. Parent status, architectural promotion triggers and selective main adoption
 remain unchanged. [Evidence](../../../apps/qwen/evaluation/native-map-28/README.md).
+
+## Deep code/consumer audit evidence (2026-10-23)
+
+The [RI/Retrieval/Localization/Context audit](../../research/repository-intelligence-code-audit.md)
+reviews all118 current implementation modules, not only feature-only slices,
+and distinguishes real native search/source use from uninvoked optional map
+Tools and absent Localization/Delta operational consumers. One existing
+physical-line source-search BUG is reproduced in24 adverse cases despite912
+passing focused regressions. Existing pending416658bd/5aa7a431 now contain fresh
+evidence; they are not silently merged.
+
+New pending15bae0a6 (native explicit Localization consumer), cea1b3e7 (qualified
+direct-base navigation), aedea41e (exact-frame reuse qualification) and related
+B-0008 pending1d0ed8bb (SnapshotDelta refresh) have concrete scope, acceptance,
+risks and sequencing in canonical Intake. Scientific ranking policies retain
+their original adverse/mixed/no-promotion conclusions. Epic status, architecture,
+parent obligations and promotion authority remain unchanged.

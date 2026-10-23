@@ -1690,3 +1690,15 @@ inspection and failed behavior/repair Context. Next is a separately qualified,
 distinct relationship-heavy RI task using existing tools, not another graph or
 Context framework or a retry of the exposed search task. Original experimental
 sequencing, backlog statuses and protected-main authority remain unchanged.
+
+## Comprehensive review sequencing (2026-10-23)
+
+The maintainer has postponed the final successor-session dossier and requires
+[deep cross-branch code review](research/comprehensive-code-audit.md).
+The [first RI/Context review](research/repository-intelligence-code-audit.md)
+reproduces an existing physical-line defect, records real native search/source
+use and missing higher-level consumers, and preserves correctly unpromoted
+experimental policies. Next review execution/Tool/Checkout/WorkCycle and exact
+validation input closure while completing the explicit RI history/fixture/
+controller omissions. The version-specific ledger covers later domains too.
+Pending proposals are intake, not implementation or inference authorization.

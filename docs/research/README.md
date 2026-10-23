@@ -4,8 +4,9 @@ The [completed production/experiment/cohesion reconciliation](production-adoptio
 now inventories all 35 collections, 48 capability slices, exact destination
 dependencies, actual consumer gaps and custody holds. Its
 [machine evidence](production-adoption-and-architecture-evidence-20261023.json) records source/test/packet identities.
-The next checkpoint is **comprehensive successor-session handoff**, not further
-open-ended research, implementation, inference or automatic protected adoption.
+The maintainer has now required a **comprehensive cross-branch code audit**;
+the final successor-session handoff is postponed. See the current audit links
+below. No implementation, inference or automatic protected adoption is authorized.
 Earlier "next" paragraphs below retain their checkpoint meaning.
 
 This directory preserves durable architectural investigations, alternatives,
@@ -154,3 +155,17 @@ production and evaluation sequence.
 6. Preserve deferred and rejected-for-now findings rather than deleting them.
 7. Update the disposition when later ADRs, implementation, experiments, or
    research materially change its status.
+
+## Comprehensive code audit now takes precedence (2026-10-23)
+
+The maintainer has postponed the final successor-session dossier. The previous
+reconciliation is a useful inventory, not a complete code review. The
+[comprehensive audit program](comprehensive-code-audit.md),
+[first deep RI/Context report](repository-intelligence-code-audit.md) and
+[version-specific coverage ledger](code-audit/README.md) now define the current
+research checkpoint. They inventory all reachable branches/history, inspect all
+118 current RI/Evaluation implementation modules, distinguish actual native use
+from exposure, preserve adverse scientific policies, and leave omitted historical
+versions/test fixtures/controllers explicitly unreviewed. Four substantive
+pending consumer/reuse proposals and advisory evidence use canonical Intake.
+No production fix, inference, cleanup or protected promotion follows from audit.

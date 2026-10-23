@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ae03cda7-955e-40c6-a131-9e2ba209c9a6",
+  "proposal_sha256": "2eaa6ff7460b998ecbe69949db133a5174b532a13c0082ac2b95ee41f86aad7c",
+  "previous": "69eecf7351f052f2c570a29823ff07634a57e681968af861c8f52fea39ad266c",
+  "at": "2026-10-23T17:29:31.709053+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/repository-intelligence-code-audit.md",
+  "rationale": "Concrete integration review: native opt-in repository_map and map-source expansion already exist; preserve their exact-source/metadata separation. Original native28 provider/tool receipts contain zero repository_map and zero map-source calls despite real availability; source search is used elsewhere. The four new bounded consumer/reuse proposals do not adopt an external CodeGraph engine. Any future selection-policy story must distinguish host deterministic use, genuine model selection, observed follow-up action and controlled effectiveness. Acceptance must include real current source/Tool correlations and no ranking benefit claim from static imports or scripted calls.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing pending payload/status/parent preserved. New evidence and explicit acceptance only; original failures and grants unchanged.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "7c60ad551dcdc329ef9f75b5dad975e5e804ad1f42de6a0903b0dff8df75a1c5"
+}

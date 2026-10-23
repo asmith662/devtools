@@ -185,3 +185,20 @@ is captured PENDING_REVIEW under B-0047. It asserts no historical bypass and
 changes no profile/status, B-number, parent, approval or execution authority.
 The next checkpoint is comprehensive successor-session handoff, not automatic
 implementation, cleanup or protected-main adoption.
+
+## Deep RI/Context code-audit intake (2026-10-23)
+
+The [source/consumer/case report](../research/repository-intelligence-code-audit.md)
+adds four concrete PENDING_REVIEW records, without B-number assignment or approval:
+
+- [15bae0a6](proposals/15bae0a6-b95d-417c-98fa-d75a8aff29d4/proposal.json): connect trusted explicit Localization obligations/witness decisions to native Context.
+- [1d0ed8bb](proposals/1d0ed8bb-e38e-44ea-8af3-530c2516981a/proposal.json): consume existing SnapshotDelta at authorized native refresh.
+- [cea1b3e7](proposals/cea1b3e7-bfa6-492a-b850-343a0c543878/proposal.json): expose qualified direct-base evidence through existing native navigation.
+- [aedea41e](proposals/aedea41e-804b-4fe0-ad53-8758e074885d/proposal.json): qualify exact-frame analysis/lexical reuse across current real consumers.
+
+Fresh physical-line reproduction evidence is appended to the two original
+pending source-span bug proposals416658bd/5aa7a431; operator dedup remains open.
+Existing CodeGraph and module/cohesion proposals receive advisory evidence and
+bounded acceptance detail. No original payload/status, parent, B-number, grant
+or frozen scientific result changes. The [coverage program](../research/comprehensive-code-audit.md)
+postpones the final successor-session dossier and schedules subsequent domains.

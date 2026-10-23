@@ -461,3 +461,15 @@ It used no map or check_changes despite real schema availability. Separate Codex
 source is published at `a951957c75ba187b8ac8bb29ad2520750ebb3783`; this is not native
 autonomy acceptance. Existing statuses and promotion triggers remain unchanged.
 See [full evidence and ownership](../../../apps/qwen/evaluation/native-map-28/README.md).
+
+## Deep audit agent-use evidence (2026-10-23)
+
+The [RI consumer audit](../../research/repository-intelligence-code-audit.md)
+reauthenticates six original native receipt series: source search/read is genuine
+RI consumption, but original28 has no map call and original27 turn06 expansion
+was REFUSED, not disclosed source. Role25 check_changes remained BLOCKED by host
+artifacts. Higher-level Localization and Delta currently lack maintained native
+consumers. Four new bounded pending integration/reuse proposals are linked by the
+report. Existing source-span pending proposals receive24-case reproduction
+evidence. No old outcome, model result, parent status or publication authority
+is changed; no new inference is authorized by research.

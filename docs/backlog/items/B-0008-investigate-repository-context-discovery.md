@@ -52,3 +52,14 @@ search, retrieval, Context selection, budgeting, or Context compilation.
 - semantic_decision: RESOLVED
 - promotion_trigger: historical only; superseded by ADR-0002 semantic decision
 - validation_level: INTEGRATION
+
+## Deep audit operational-consumer evidence (2026-10-23)
+
+The [RI audit](../../research/repository-intelligence-code-audit.md) confirms that
+current ContextTools safely rebuilds admitted snapshots/indexes on accepted
+edits; exported SnapshotDelta has no maintained non-test operational caller.
+Pending1d0ed8bb-e38e-44ea-8af3-530c2516981a qualifies that real refresh consumer
+without inventing filesystem deletion or persistent-cache authority. Related
+pendingaedea41e-804b-4fe0-ad53-8758e074885d qualifies repeated parsing/index work
+across actual consumers while preserving forged/stale input rejection. Existing
+status, dependencies and promotion trigger are unchanged; capture is not dispatch.

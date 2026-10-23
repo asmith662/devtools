@@ -1,0 +1,94 @@
+{
+  "repository": {
+    "implementation_review": "Full substantive bodies of nine repository modules disclosed and inspected. Address rejects absolute/traversal/backslashes; discovery separates recursive skip-link traversal from explicit-address component checks and fails whole result on bounds/I-O. Observation resolves containment, uses filesystem Text read, length-framed decoded-text identity, sorted required resources. Corpus preserves explicit discovery membership, rejects duplicates/missing/stale repository and realizes empty selection without a snapshot. Snapshot lookup is linear; values are trusted typed records, not unforgeable attestations. Delta compares full occurrence equality, same repository and distinct addresses, and means collection exclusion rather than filesystem deletion or rename.",
+    "quality": [
+      "Repeated identical length-framed SHA-256 mechanics in observation/corpus/document; semantic tags/inputs differ and must stay stable.",
+      "Repeated resource_at in derivations/containment yields a potential O(selected*resources) scan; prove actual workload before an index API or performance claim.",
+      "No non-test operational Delta consumer identified so far; consumer trace pending."
+    ]
+  },
+  "modules": {
+    "implementation_review": "Full imports/modules/source-candidacy code inspected. Import declarations only direct module-body statements, one declaration per alias with UTF-8 AST spans. Explicit roots interpret addresses, not import execution; exclusions and ambiguous same dotted names remain. Universe identity sorts interpretation identities and rejects duplicate/mixed repository. Relative import lookup requires unique source interpretation and respects package boundary. Imported member resolves at most one facade and direct top-level function, preserves unsupported star/nested/competing bindings, validates retained snapshot content. Module lookup is linear; direct binding lookup intentionally differs from source-declaration selection: decorated/rebound definitions may be source-selected while binding is unresolved/unsupported. Membership groups exact dotted parent, observed package and ambiguity, excludes self and stale/duplicate inputs.",
+    "quality": [
+      "lookup_python_module_declaration performs function analysis, class analysis and its own AST parse; resolve_python_imported_member reparses facade and target. These real repeated consumers support bounded parse/index-reuse investigation with unchanged provenance and parser versions.",
+      "Module source selection and binding resolution must NOT be consolidated into one semantics; tests must preserve decoration/rebinding differences.",
+      "Facade resolver supports functions only; class/method/general reexport resolution intentionally unsupported, no feature-completeness claim."
+    ]
+  },
+  "declarations": {
+    "implementation_review": "Full class/method/direct-base/function-declaration/containment/mirrored-path code inspected. Function/module declarations use grammar3.12 with parser/runtime/version identities, direct module-body sync/async only. Class analysis records module-body classes, direct methods, raw exact base expressions, excluded nested syntax and qualified coverage. Containment validates resource/derivation/ordinal/coverage consistency. Direct bases only static name/attribute routes: unique prior local class, direct imported member or qualified module; shadowing, stars, decorators and computed expressions preserve unsupported/ambiguous results; no MRO, descriptors, runtime import or instance dispatch. Mirrors explicitly hardcode src/devtools to tests/test_... convention and exclude initializers; no execution/coverage inference.",
+    "quality": [
+      "Separate function/class analyses and module/binding lookups repeatedly parse one retained resource; shared computation needs exact grammar/runtime/dependency identities, not a new parser.",
+      "Binding scans in bases, module declarations and references overlap but differ in before-definition ordering and scope conservatism; do not mechanically deduplicate.",
+      "Mirror rule is repository-specific despite framework location; document consumer bounds before configurable conventions, not an unsound test-owner inference.",
+      "Source ranges describe AST declarations (decorators are not silently included); bodies/nested contents lie within ranges. Consumer slicing must honor byte columns and exact newline semantics."
+    ]
+  },
+  "references": {
+    "implementation_review": "All seven reference modules inspected. Older imported-function record model remains alongside generalized declaration references. Current derivation parses source plus import/function/class analyses, assesses Name and outermost Attribute loads deterministically, preserves unsupported/shadowed/ambiguous cases and direct-call syntax flag. _scope_bindings handles args, assignments, exception/match binders and deliberately skips nested scopes; lambdas/comprehensions/default-like contexts are unsupported. Resolution supports same-module, direct imported member, one facade function, qualified module member and class-qualified direct undecorated method; self/cls and arbitrary receivers are unsupported. Direct-call is source syntax, not runtime call proof. _method_target reparses class and conservatively rejects competing body binders/decorators.",
+    "quality": [
+      "Per-candidate _shadowed recomputes scope bindings; per-reference imported lookup may reparse target/facade repeatedly. Cache only under exact snapshot/parser scope, verify behavior first.",
+      "Legacy function-reference representation has maintained higher-level compatibility users to trace; no deletion based on lack of root export.",
+      "Dynamic runtime monkeypatch/instance dispatch is outside bounded static semantics; absence of a qualified relation is not negative evidence."
+    ]
+  },
+  "configuration": {
+    "implementation_review": "All five project-configuration modules inspected. tomllib reads retained text; malformed input records parse_error without fabricated declarations. Six path selectors distinguish _MISSING and present _NON_TABLE ancestry; dynamic readme remains unsupported and not absent. Resolution rederives exact declarations to reject forged/stale input, requires explicit tool cwd/pytest roots and observed resources/modules, preserves ambiguous competing path/module targets. Settings retain project/build/pytest/entry points and top-level dependency-groups; raw ordered strings including duplicates/empty arrays, original group keys; normalized name collisions, includes/mixed/nested values get whole-group unsupported rather than partial success. Deliberate derivation v4/coverage v3. No requirement parser, installer or runtime compatibility inference.",
+    "quality": [
+      "Settings and six path declarations serve different contracts; shared lookup sentinel is narrowly reused rather than duplicated traversal.",
+      "Resolution hashes source content and rederives input; repeated validation is an intentional integrity cost. Optimize only with unchanged forged-input rejection.",
+      "Dependency groups live in settings, not selector target-facts; downstream consumers must inspect correct contract and retain unsupported/empty evidence."
+    ]
+  },
+  "lexical": {
+    "implementation_review": "All lexical, composition, structural and fusion substantive bodies inspected. Unicode word spans/casefold, character offsets; no code-subtoken analyzer. Query distinct terms preserve first occurrence; BM25 k1/b finite ranges; postings/statistics tied to original document objects, IDF log(1+(N-df+.5)/(df+.5)), TF saturation; canonical content plus independent filename-stem field weight.25, not BM25F. Whole corpus statistics/postings and positive scoring retained; stable source-order ties. Evaluation checks query/K/relevant address membership and binary designated metrics, not sufficiency. Direct structural projection only caller seeds/positive supplied import/reference/membership facts, both directions, no rank. Composition validates lexical snapshot and preserves neutral address order/separate supports. Equal-channel RRF k60 graph/map preserves ranks and stable lexical/path tie order, requires shared snapshot/purpose and original lexical association (graph) or query (map).",
+    "quality": [
+      "Canonical BM25 rebuilds filename index on every query; per-query maps are rebuilt too. Actual worker/obligation multi-query consumers need profiling/reuse, not a changed ranking policy.",
+      "Content/filename records repeat mechanics but offsets/normalization source and weights differ; use existing scoring helpers rather than merge representations blindly.",
+      "Tuple/object identity guards are intentional in-memory index membership, not durable serialization APIs.",
+      "Structural loop is seeds times supplied facts plus repeated snapshot lookup; candidate-volume effects must not be hidden by ranking or effectiveness claims."
+    ]
+  },
+  "source": {
+    "implementation_review": "Complete source-index, representation and search bodies inspected: eagerly builds file/symbol/window populations and per-view lexical indexes; recursive syntax symbols include decorators/nested declarations while only supported native declarations get semantic identity. Mixed consolidation uses symbol supports and one best vote per view, avoids file-fallback duplicate votes. Scope filters scored full-index populations before final limit, preserving global IDF, not recomputing subcorpus statistics. Parent expansion authenticates admitted membership and smallest enclosing class.",
+    "quality": [
+      "Reproduced BUG: representation.py uses str.splitlines for physical AST source coordinates, despite eight Unicode separators being valid within Python strings. 24 adverse LF/CRLF/CR fixtures fail exact extraction; three ordinary controls pass. Existing function materializer uses StringIO physical lines correctly. Existing pending proposals416658bd and5aa7a431 cover the bug; no fix in audit.",
+      "Index builds all populations eagerly for tiny authorized corpus; repeated per-search filename indexing remains. No measured benefit from strategy automation is established."
+    ]
+  },
+  "graph": {
+    "implementation_review": "All typed/resource graph projection, transition, PPR and map code inspected. Native facts/endpoints/snapshot validated; typed edge-family mass normalized before fact counts. Resource-forward, typed-core and typed-navigation semantics distinct; no absent-edge negatives. PPR seeded by reciprocal lexical ranks; dangling mass returns to seed; bounded convergence explicitly reported. Resource projection max node score, not size sum. Map uses typed-core, removes forward containment and changes reference/base source endpoint to resource while retaining provenance. Query-independent importance shares stationary_distribution; lexical symbol metadata and RRF use canonical scoring and k60.",
+    "quality": [
+      "ContextTools native map constructs functions/classes/methods/references only: existing bases/package/mirror producers are not passed into navigation. source_relationships exposes outgoing references only. This is a concrete bounded integration omission, not evidence graph facts are absent from framework.",
+      "Potential repeated source-target scans and symbol-metadata lexical construction. Measure existing performance workloads before caching or ranking changes."
+    ]
+  },
+  "planning": {
+    "implementation_review": "All Planning and specialized function Context bodies inspected. Explicit nonempty same-purpose/snapshot choices; order-sensitive plan and preceding-plan lineage do not grant authority. Materialization revalidates native provenance. Map orientation canonical-symbol membership is distinct from map-source exact admitted whole-file/native-range slicing. Physical StringIO/UTF-8 slicing handles real declaration bounds, excludes preceding decorators outside native range and never silently expands siblings/file. Specialized exact-name and qualified imported-reference pipelines retain their distinct native fact contracts. Rendered source reaches ModelRequest through explicit caller assembly.",
+    "quality": [
+      "Three near-identical text-request assembly implementations in planning/rendering.py, python/function/request_assembly.py and qualified_reference.py preserve role/settings/conversation and reject structured messages. Small composition helper is plausible; provenance rendering semantics must remain domain-owned.",
+      "Planning imports private source/graph helpers and uses deferred imports at package cycles; public export/dependency simplification needs exact API and identity tests, not a mechanical package split."
+    ]
+  },
+  "roles": {
+    "implementation_review": "All role and routing bodies inspected. Inputs rederive module/membership/mirror/config/target facts and reject forged/stale frames. Roles are multi-label positive support, not sufficiency. Dependency groups provide project configuration only; names pytest/lint/docs do not infer test/tool/docs roles, unsupported evidence is retained. Two-tier routing retains every candidate/native rank and original within-tier order; empty preferences leave native order. No candidate elimination or semantic acceptance.",
+    "quality": [
+      "Qualified settings inputs may be rederived more than once across declaration and target validation. Integrity is necessary; bounded exact-frame reuse may avoid repeated computation only after negative cases remain intact.",
+      "No current native worker role-routing or role-evidence Tool consumer; scientific cases use host-authored task treatments."
+    ]
+  },
+  "grounding": {
+    "implementation_review": "All grounding, association and generation bodies inspected. Exact caller locators; explicit-root module ambiguity, unsupported/missing native facts retained. Support validation regrounds/rederives native occurrences. Candidate complements/competing hypotheses are explicit and order deterministic, not relevance rank. Fixed and one-branch recipes only; no Cartesian planner. Result/work overflow abstains without arbitrary admitted prefix. Reference/import projection only authorized native analyses; tests preserve incomplete frontier and valid siblings. Candidates do not register accepted alternatives or imply readiness.",
+    "quality": [
+      "Repeated AST rederivation and support replay across grounding, references and generation is a real multiple-consumer opportunity for an exact-frame computation boundary, not permission to trust caller-forged caches.",
+      "Caller-shaped witnesses and role/lexical supports never prove prose criteria. Missing agent-facing decision/assessment integration is distinct from adding more factories."
+    ]
+  },
+  "readiness": {
+    "implementation_review": "All task, identity, obligation, assessment, lexical acquisition, explicit resolution, readiness and Evaluation coverage bodies inspected. Caller task/obligation identities and criteria remain interpretation. Full-task query verbatim plus explicit obligation queries, no automatic decomposition. Readiness requires exact assessment identity coverage and current evidence frame; no obligations blocks; helpful OPEN does not block mandatory readiness, but missing/foreign assessments invalidate. Conditional applicability requires evidence; accepted deferred discovery permits CONDITIONAL only. Resolution retains explicit supported/contradicted/unresolved/abstained decisions; complementary hypothesis needs all members. Promotion produces existing witnesses but does not alter task accepted alternatives, assessments, readiness or WorkCycle.",
+    "quality": [
+      "No maintained apps/scripts consumer of assess_localization_readiness or acquire_localization_lexical_evidence found; experiments and tests compose the kernel. Neither InformationNeed research nor native coding completion implements that full semantic acquisition loop.",
+      "Coverage identity comparison reports missing/duplicate/unexpected without equating unjudged to negative; full production gate coverage is not semantic evidence completeness."
+    ]
+  }
+}

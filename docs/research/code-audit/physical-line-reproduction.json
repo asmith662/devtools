@@ -1,0 +1,302 @@
+{
+  "scope": "Deterministic current maintained API exercise, not historical oracle/replay or Qwen evidence",
+  "rows": [
+    {
+      "case": "control-lf",
+      "input_sha256": "8e5c3f228debde8df29a179e631ae1c3792f768261e2152a047c01d9cb8faab7",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "def target():\n    return 1",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": true,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "control-crlf",
+      "input_sha256": "e53c79255d2dd12e713f441d42eba43c7b726c212d60f455f981a302956e9158",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "def target():\r\n    return 1",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": true,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "control-cr",
+      "input_sha256": "3b1899cfd27e679cb4f331193be944c0a5b754a319c8cb70bb303d14d933054b",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "def target():\r    return 1",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": true,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "vt-lf",
+      "input_sha256": "98197140d4dd3217cf1e86e1ab47acf1144712c67e3968f323c8f5d5737e744f",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "vt-crlf",
+      "input_sha256": "0e61e0074219529395be501ab195d3f46cfeee8320c63e2c36cd6255c67421c9",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "vt-cr",
+      "input_sha256": "1f8610603e38b0be568c6ea02d3152114b5c46b8499bc577f2ebe64cc280fd64",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ff-lf",
+      "input_sha256": "19f6699fa6ab2dffd1aa896ca817596e9665da170a0078ad98777345057cdc7b",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ff-crlf",
+      "input_sha256": "a1c4b4f60e4a4b465bd40f49081da25e5456753cc6f37e072f76df9c5473bf84",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ff-cr",
+      "input_sha256": "4fa14a362e19c58e387502a2ff80597a06d5dce11bc04090c5e2ce3c32368d27",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "fs-lf",
+      "input_sha256": "6c831f3e88cbd6d6d872a1f932125294bca1798e4b38bcf77846ff14a78c9c24",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "fs-crlf",
+      "input_sha256": "e5a348043f4121f59d534b07ed23f888606db46ee9af6c566fedfc2a7e7d8cdf",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "fs-cr",
+      "input_sha256": "5595094bdef0282b63c8788875969f065820272d1f930facf5ca65569631b313",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "gs-lf",
+      "input_sha256": "9dfd3cf75450eac4e8e2a75182351234aa9afd5f34e86cd607731d45dad900aa",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "gs-crlf",
+      "input_sha256": "c91f967e107ec55c368fde0bc2084b301d5a8774709c25f3e6a29706d75c38ca",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "gs-cr",
+      "input_sha256": "5e2b06a47772cd66c2acaa7d1bb9172994ffbdd21511d7d37b9f9e8021b5b5e9",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "rs-lf",
+      "input_sha256": "339ba8b6d215660ff661e9b62a01467ab68954423f5aa94264f7ff68df0e5fa0",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "rs-crlf",
+      "input_sha256": "376472ce081f79b92332324ea62ea4eb08dfde5aaed16f319e66302358a8eb82",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "rs-cr",
+      "input_sha256": "d6bcd77b4909ddcb8df0ba794fb4a445df6e78ebc033032c3d85b4cf3201e0b2",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "nel-lf",
+      "input_sha256": "65352e68fd6b2707f350aff31a095cce0d3378e36dd7b7d156eabd406cd04597",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "nel-crlf",
+      "input_sha256": "8c47b3c3ec1a674f86f511b12beca109a4c72fec6c0b3a7caeddf1abff293701",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "nel-cr",
+      "input_sha256": "cec2779b82bbe9d38834bdb48af57677b5d5c22b7a817efe63695da1654d3f07",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ls-lf",
+      "input_sha256": "d231e1ad72ef498fe106c5efb47ce0c5fb64214f3d2703c141c7adb5a25a1db9",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ls-crlf",
+      "input_sha256": "cb81d9d9b9a9f0bac4426dc0ca3fd8396bee82d466972b69fef70be33c613413",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ls-cr",
+      "input_sha256": "e9479ebb5e1a1becd9b94e0f9a719109484d16a8d0efe4c13bb31b3484f352f8",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ps-lf",
+      "input_sha256": "1f73f5dab3079e87acd08c0077e68e5aed703cd54901aae92634ad066b89d93d",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\ndef target()",
+      "expected": "def target():\n    return 1",
+      "exact_materializer": "def target():\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ps-crlf",
+      "input_sha256": "837e871361854cfd36b1bb43aae0e661bcab68a780f6193bd7edf31cc780168d",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\r\ndef target()",
+      "expected": "def target():\r\n    return 1",
+      "exact_materializer": "def target():\r\n    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    },
+    {
+      "case": "ps-cr",
+      "input_sha256": "e0aa8cbeda08a63b2c6d89447272fd6cf30a97450462ceb247e07e90aab12c45",
+      "python_parse": "PASS",
+      "index_build": "PASS",
+      "symbol_text": "b\"\rdef target()",
+      "expected": "def target():\r    return 1",
+      "exact_materializer": "def target():\r    return 1",
+      "correct": false,
+      "range": "PythonSourceRange(start_line=2, start_column_utf8=0, end_line=3, end_column_utf8=12)"
+    }
+  ]
+}

@@ -355,3 +355,13 @@ existing proposal advisories preserve the backlog's current authority. No
 implementation, approval, source/test change, inference, service mutation or
 protected-main operation follows. The next planned checkpoint is the comprehensive
 ChatGPT successor-session handoff, not another open-ended research program.
+
+## Maintainer-directed comprehensive review (2026-10-23)
+
+The prior production/experiment inventory did not establish full implementation,
+case-level or real-consumer review. The maintainer explicitly postponed the final
+successor-session dossier. Continue with the [comprehensive code audit](../research/comprehensive-code-audit.md)
+and [first RI domain report](../research/repository-intelligence-code-audit.md).
+All original reconciliation/source/evidence records remain historical. No
+Checkout recovery, branch mutation, source-tree copy, cache removal or inference
+is part of this checkpoint. Existing13 forensic files remain in original custody.

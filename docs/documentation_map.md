@@ -835,3 +835,13 @@ the pinned Qwen Code/Pydantic AI comparison and local correlation map;
 [source/test identities](research/agent-harness-mechanism-evidence-20261023.json)
 support it without copying external source trees. This extends the existing
 research index, not a new documentation authority.
+
+## Comprehensive code-audit navigation (2026-10-23)
+
+The [audit program](research/comprehensive-code-audit.md) supersedes the earlier
+reconciliation's next-step recommendation to prepare the final successor dossier.
+The [RI/Retrieval/Localization/Context report](research/repository-intelligence-code-audit.md)
+and [cross-branch review ledger](research/code-audit/README.md) distinguish
+inventory, exact-version source inspection, tests, consumer tracing, original
+agent use and remaining depth. These are dated research evidence, not competing
+architecture/source/backlog authorities. Other domain audits remain scheduled.

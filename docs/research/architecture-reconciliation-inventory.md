@@ -285,3 +285,14 @@ The bounded [protected-validation reuse investigation](../backlog/proposals/d586
 is PENDING_REVIEW under B-0047; it claims no historical validation bypass.
 The next checkpoint is comprehensive successor-session handoff. No new research
 program, inference, implementation, cleanup or protected adoption starts here.
+
+## Deeper code-review checkpoint (2026-10-23)
+
+This initial inventory is not a complete implementation review. The maintainer's
+[comprehensive audit](comprehensive-code-audit.md) now records all reachable ref
+trees and intermediate/deleted path/blob versions. The [RI domain report](repository-intelligence-code-audit.md)
+inspects current substantive algorithms and real native consumers; its
+[ledger](code-audit/README.md) explicitly leaves unreviewed historical versions,
+fixtures and experiment controllers visible. Production adoption, test coverage,
+API exposure and model use remain separate claims. The final successor-session
+dossier is postponed.

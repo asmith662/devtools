@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+  "created_at": "2026-10-23T17:29:31.021438+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Expose qualified direct-base RI through existing native source navigation",
+    "parent": "B-0002",
+    "summary": "Priority2 INTEGRATION. Existing Python direct-base analysis and typed graph BASES_ON support are maintained and tested. Native RepositoryMapNavigation supplies functions/classes/methods/references only, and source_relationships exposes references only, so the worker cannot obtain the existing qualified inheritance evidence through its navigation interface. Extend that existing bounded surface to consume the current direct-base owner rather than create another graph or Python resolver.",
+    "resources": [
+      "src/devtools/context/python/classes/bases.py",
+      "src/devtools/context/retrieval/graph/view.py",
+      "apps/qwen/navigation.py",
+      "apps/qwen/context_tools.py"
+    ],
+    "benefit": "Acceptance: explicit-root class relationships traverse qualified same-module/imported/module-qualified supported bases in admitted scope and preserve native derivation/occurrence/snapshot identities; unsupported computed/decorated/shadowed/ambiguous cases remain qualified and never become runtime MRO claims. Bound output and preparation; reject stale/foreign handles; refresh after edit; metadata grants no editable observation. Demonstrate actual ToolRunner response, exact-source follow-up and admissible current-source edit. Record any genuine model selection separately; no effectiveness claim from availability. Do not implicitly add membership/mirror policies or automatic ranking.",
+    "uncertainty": "Native map currently intentionally uses a subset. This is an enhancement, not a false claim the graph builder lacks base support. Existing CodeGraph proposal remains a broader external exploration, not this concrete missing in-repo adapter. A small supervised maintenance task is feasible after byte/scope preflight.",
+    "dependencies": [
+      "B-0009",
+      "B-0035"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/repository-intelligence-code-audit.md; source baseline95efbf711c3644fb32d269d85927000cd8f4aaa9;2026-10-23"
+    },
+    "evidence": [
+      "docs/research/repository-intelligence-code-audit.md",
+      "docs/research/code-audit/ri-modules.jsonl",
+      "docs/research/code-audit/agent-use.json"
+    ]
+  },
+  "payload_sha256": "6c3c0838a0df4e2e37e5dc65aaacb7f42ea59ba70fc51f384decfa9716f6a0b6"
+}
