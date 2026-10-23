@@ -175,3 +175,13 @@ adds advisory evidence to B-0011/B-0018/B-0023/B-0027/B-0028/B-0034/B-0035/B-004
 and four existing proposals. No new proposal/B-number, status, parent, grant or
 approval changed. Existing records own correlation, durable Evidence, privacy,
 working-state and uncertain-effect pressure; no implementation follows automatically.
+
+## Completed production reconciliation checkpoint (2026-10-23)
+
+The [production/experiment/cohesion/custody report](../research/production-adoption-and-architecture-reconciliation.md)
+adds advisory evidence to B-0006/B-0011/B-0023/B-0028/B-0035/B-0047 and four existing
+pending proposals. One distinct [protected-validation reuse/input-closure investigation](proposals/d58697fd-bb03-4e98-bdac-fa29444fc6ff/proposal.json)
+is captured PENDING_REVIEW under B-0047. It asserts no historical bypass and
+changes no profile/status, B-number, parent, approval or execution authority.
+The next checkpoint is comprehensive successor-session handoff, not automatic
+implementation, cleanup or protected-main adoption.

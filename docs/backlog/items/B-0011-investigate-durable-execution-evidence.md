@@ -60,3 +60,12 @@ All21 selected inputs and297 historical files are fingerprinted; both closeout r
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Production reconciliation evidence (2026-10-23)
+
+Use the completed source/experiment adoption and fresh archive-member custody map alongside the five-flow audit. Original historical records remain authoritative; closeout revision is not candidate identity, current qwen documentation differs from its frozen archive version, and same-SSD packet checks are not off-volume protection. The pending reuse investigation d58697fd-bb03-4e98-bdac-fa29444fc6ff qualifies protected input closure without asserting invalid historical evidence.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

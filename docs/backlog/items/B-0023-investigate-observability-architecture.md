@@ -109,3 +109,12 @@ The five-flow audit authenticates request/response/call/check/review links but f
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Production reconciliation evidence (2026-10-23)
+
+Adoption audit confirms optional model/terminal inspectors are not composed into the native worker; usage CLI/controller consumers and application receipts do exist. Prioritize existing-record joins/consumers, failed realization accounting, report identity/time and separately observed remote ref after push. Immutable Evidence, live lossy events, usage and durability remain distinct; no OpenTelemetry/EventBus dependency or tracing base selected.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

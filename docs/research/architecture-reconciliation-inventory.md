@@ -246,3 +246,42 @@ physical newline identity are explicitly qualified. This adds no production
 adoption or cleanup result to the matrix above. The next bounded phase is actual
 destination capability dependencies, feature/experiment ownership and custody
 eligibility before successor handoff.
+
+## Final production reconciliation checkpoint (2026-10-23)
+
+The [complete production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
+extends this initial presence/delta inventory at feature
+`8d70ba9fc4f0d9bb45c1f8528e212ecf9c601e6b` against authenticated remote main
+`5d979920d0728775ed529457c88f5b68b440c64f`. The earlier missing-input and
+"next research" paragraphs above retain their historical checkpoint meaning.
+Original18 intake, four-project source/test research and five-flow lifecycle
+audit are now complete bounded evidence, not pending external research.
+
+The [companion source/custody manifest](production-adoption-and-architecture-evidence-20261023.json)
+covers all 250 framework Python files in 48 overlapping semantic slices and
+513 selected source/test file identities.218 framework blobs match main;
+28 differ and four are new. Commands' nine source files match main. Preserve
+main-only `tests/resources/commands/test_composition.py` and
+`docs/development/commands-integration.md` in future main-derived integrations.
+
+All 35 collections retain24 CLOSED/nine INCOMPLETE/two BLOCKED statuses; the new
+report records each outcome, maintained relationship or explicit UNKNOWN link,
+consumer/main state and remaining obligation. CLOSED is not positive science.
+Case 0015 R2 and Case 0016 GRAPH-3 are COMPLETE/HARMFUL under their frozen rules;
+do not revive older future-tense roadmap statements. Later Qwen evaluations are
+application receipts, not new top-level collections.
+
+Eight bounded integration groups separate G1-G5 destination-review candidates
+from G6's missing consumer and G7/G8 authority/reliability/privacy blockers.
+Static dependency closure is an upper bound including public initializers and
+deferred imports, never a copy list. No destination validation was executed.
+SnapshotDelta, optional Evidence inspector composition and a complete native
+Localization witness consumer remain unintegrated. Internal primitive consumers
+are explicitly distinguished from an autonomous agent adopting the whole API.
+
+The report qualifies actual large-module responsibilities, two-consumer Tool
+definition/receipt ergonomics and exact-path custody rather than refactoring.
+The bounded [protected-validation reuse investigation](../backlog/proposals/d58697fd-bb03-4e98-bdac-fa29444fc6ff/proposal.json)
+is PENDING_REVIEW under B-0047; it claims no historical validation bypass.
+The next checkpoint is comprehensive successor-session handoff. No new research
+program, inference, implementation, cleanup or protected adoption starts here.

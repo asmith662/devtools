@@ -59,3 +59,12 @@ Conversation JSON/SQLite state, source observations, check journals, native chec
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Production reconciliation evidence (2026-10-23)
+
+Protected-gate reuse/input-closure now has a distinct bounded pending investigation d58697fd-bb03-4e98-bdac-fa29444fc6ff under B-0047, related to this durable-state boundary. Conversation persistence, native working-state/source checks, Checkout recovery and publication evidence retain separate ownership. No generic store, exactly-once guarantee or historical validation bypass inferred.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

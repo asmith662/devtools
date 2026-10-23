@@ -153,3 +153,113 @@ The pending [custody investigation](../backlog/proposals/0385a359-399f-40bb-aed4
 retains these questions without implementing a cleanup framework or granting
 deletion. No external local repository, personal model sessions or separate Learned
 Intelligence storage was traversed.
+
+## Final production reconciliation checkpoint (2026-10-23)
+
+The [completed production reconciliation](../research/production-adoption-and-architecture-reconciliation.md)
+and its [machine evidence](../research/production-adoption-and-architecture-evidence-20261023.json)
+now add bounded streaming member verification and measured residual/cache sizes.
+No extraction, restore execution, source copy, ACL change or deletion occurred.
+All sizes below are observed bytes, not promised disk reclamation. Active
+python/node processes were observed but their roles were not authenticated;
+therefore no cache was declared idle and no generated cache was removed.
+
+### Reauthenticated recovery packets
+
+- All 24 CLOSED experiment packet hashes and every member match original
+  manifests. These are same-SSD packets, not off-volume recovery.
+- `checkout-evidence.zip`: 4, 744, 403 bytes; SHA-256
+  `5debf60d98465c920f77ea4b6ae13a4855699f912ebcef1ad1ea15aed8f4ea5e`;
+  all 1638 members match `preservation-manifest.json`. Seven ordinary residuals
+  below also match their original manifest and packet bytes.
+- `legacy-target-evidence.zip`: 1, 437, 098 bytes; SHA-256
+  `9870af7eb5d811be230968e44df0ffc4c62fb067441c03343ca0f100ca564454`;
+  all 16 members match `legacy-target-manifest.json` and surviving target files.
+  Its private usage ledger is hash-verified, not copied into public documentation.
+- `scientific-execution.bundle` retains the earlier recovery identity
+  `a21eb21acfa34bc135d54f187ee2352208a7fc0879a805ac90239ab23319d060`
+  and 1, 579, 402, 674-byte package record. Fresh full bundle hash/unbundle/restore
+  was not performed. Keep package/verification/restore records and historical refs.
+- Original13 forensic files remain at the same source-grounding paths and are
+  rechecked against their recorded Git fingerprints before publication.
+
+### Exact residual and generated-path dry run
+
+This is metadata/custody inspection, not a deletion plan executed. Manifest
+member equality establishes no currently unique bytes among the verified
+residual payloads, but not dispensability: receipts/grants retain original paths,
+same-volume recovery is limited and process/evidence dependencies need review.
+No whole-preservation deletion is authorized from duplicate bytes alone.
+
+| Exact path | Measured bytes / files | Uniqueness, custody and disposition |
+|---|---|---|
+| `.local/preserved-checkouts/experiment-execution-pipeline-prepare` | 6, 578, 669 / 418 | 418 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/legacy-deployment-target` | 13, 903, 310 / 16 | 16 current members equal separate legacy manifest/packet; HOLD for custody/dependency review |
+| `.local/preserved-checkouts/multi-resolution-search` | 457, 819 / 12 | 12 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/operator-dashboard` | 11, 294 / 3 | 3 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/qwen-context-worker` | 2, 197, 774 / 198 | 198 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/qwen-real-task` | 467, 301 / 91 | 91 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/scientific-execution` | 15, 912, 261 / 181 | 181 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-checkouts/source-grounding-successor` | 2, 307, 405 / 141 | 141 current members match general manifest/packet; HOLD for path/custody dependency review |
+| `.local/preserved-root` | 183, 715 / 14 | Lower bound; denied/unknown contents HOLD, no ACL or ownership change |
+| `.local/reconciliation/permission-blocked-dashboard-cache` | 0 / 0 | Lower bound; denied/unknown contents HOLD, no ACL or ownership change |
+| `.local/validation/single-checkout-app-debug` | 47, 002 / 22 | Readable metadata does not establish regenerability/uniqueness; HOLD until owner/source/evidence dependencies qualified |
+| `.local/pytest-native-continuation-1` | 0 / 0 | Lower bound; denied/unknown contents HOLD, no ACL or ownership change |
+| `.mypy_cache` | 125, 530, 341 / 18 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.ruff_cache` | 390, 018 / 1005 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.pytest_cache` | 1, 588, 047 / 5 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `apps/operator_dashboard/web/node_modules` | 154, 223, 129 / 10947 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `apps/operator_dashboard/web/dist` | 1, 021, 989 / 4 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.local/cache/operator_dashboard/web/node_modules` | 154, 223, 129 / 10947 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.local/tencent-public/node_modules` | 201, 564, 681 / 18739 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.local/tencent-public/dist` | 2, 887, 798 / 7 | Generated cache/build candidate; lock/config evidence retained, active-use ownership unqualified; future exact-path review, NO REMOVAL |
+| `.local/worktrees` | not measured | Absent at inspection; no cleanup performed |
+| `.git/worktrees` | not measured | Absent at inspection; no cleanup performed |
+| `.local/deployments/source-grounding-successor/target` | not measured | Absent at inspection; no cleanup performed |
+
+The seven ordinary residuals' current hashes agree with the original general
+manifest; the eighth uses its separately authenticated legacy packet. None has
+become a new source checkout. `.local/worktrees`, `.git/worktrees` and the old
+`.local/deployments/source-grounding-successor/target` remain absent.
+
+Denied regions remain exact HOLD paths:
+
+- `.local/preserved-root/devtools/case 0003-unit1/`
+- `.local/preserved-root/devtools/case 0003-unit2/`
+- `.local/preserved-root/devtools/case 0003-unit3/`
+- `.local/preserved-root/devtools/case 0003-unit4/`
+- `.local/preserved-root/devtools/case 0003-neighbors1/`
+- `.local/preserved-root/devtools/case 0003-final/`
+- `.local/reconciliation/permission-blocked-dashboard-cache/.pytest_cache/`
+- `.local/pytest-native-continuation-1/`
+
+`single-checkout-app-debug` is now readable (47, 002 observed bytes); this does
+not itself qualify it for cleanup. Nested independently authored Git fixtures
+listed earlier remain KEEP/HOLD, not Devtools duplicate checkouts.
+
+### Collection payload and archive distinctions
+
+The current-file rehash bound was64MiB per collection: 1073 original entries
+EXACT, 5697 NOT_REHASHED within the bound, 22 expected compacted root-report
+absences, one CURRENT_BYTES_DIFFER. `experiments/qwen/docs/overview.md` now has
+later maintained-application documentation appended after the original 7131-byte
+snapshot (current 24787 bytes); the original archived member still authenticates.
+This is an evolved current document versus frozen evidence, not authority to
+rewrite either. Full current-tree freshness of every large dogfood/controller
+payload is not claimed. Every collection manifest/summary is fingerprinted and
+all CLOSED archive members verify independently of these bounded current checks.
+
+Archived research transfer/starter packages, Qwen raw request/response/proposal
+and validation receipts, live/failed Checkout state, Git fixtures, scientific
+packets, denied regions and unknown assets remain HOLD/KEEP. Exact custody
+dependencies include original frozen manifest paths, the five-flow audit's
+297 files/21 selected inputs, WorkCycle/recovery seals and forensic hashes.
+Successful code publication never makes failed original receipts disposable.
+
+The earlier safe future cleanup procedure remains applicable: qualify an exact
+allowlist, canonical ownership/active processes, original evidence links, archive
+recoverability and any off-volume requirement; then a separately authorized
+Windows literal-path deletion with verified resolved targets. Never recurse over
+`.local/` or preservation directories, alter ACLs, follow junction escapes,
+delete model caches or remove an unknown lease. **Actual removals: zero paths,
+zero bytes.** The existing custody proposal remains PENDING_REVIEW.

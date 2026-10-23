@@ -46,3 +46,12 @@ Original transfer inputs are authenticated and all18 candidates mapped in the
 This resolves the prior missing-input obligation, not B-0006 or the finite audit.
 Exact original drafts remain attributed research; current source findings and
 canonical authority are not overwritten. Existing status and parent remain.
+
+## Production reconciliation evidence (2026-10-23)
+
+The completed production reconciliation enumerates48 source-backed capability slices, all35 experimental collections and eight selective destination review groups.32 framework Python blobs differ/new relative to main; Commands source already matches main and destination-only tests/docs must be preserved. Canonical architecture/backlog authority remains separate from dated inventories; comprehensive successor handoff is the next checkpoint.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

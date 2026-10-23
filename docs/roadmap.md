@@ -1,5 +1,24 @@
 # Roadmap
 
+## Completed finite reconciliation investigation (2026-10-23)
+
+The [production/experiment/architecture report](research/production-adoption-and-architecture-reconciliation.md)
+completes the planned repository-wide investigation. All 35 collections retain
+their original dispositions, 48 semantic slices cover current framework source,
+and destination review packets distinguish ready library candidates from
+unconsumed or authority/reliability-blocked integrations. The
+[custody extension](development/artifact-custody-inventory.md) records member
+verification and exact HOLD paths; no removal occurred.
+
+**Next checkpoint: comprehensive ChatGPT successor-session handoff.** Do not
+automatically implement the new pending reuse investigation, refactor modules,
+run Qwen, begin new science or merge feature ancestry. Later authorized work
+should first qualify protected-validation input closure and selective bounded
+destination adoption, then coupled worker/admin integration. R1/R2/GRAPH-3
+scientific verdicts remain complete as recorded later in this roadmap; the
+completed performance baseline's maintainer review/priority bottleneck remains
+separate from this research checkpoint. No scientific priority is reset here.
+
 ## Immediate finite reconciliation phase (2026-10-23)
 
 The current assignment is research, source/destination inventory, architecture

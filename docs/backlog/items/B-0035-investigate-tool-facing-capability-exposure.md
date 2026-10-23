@@ -70,3 +70,12 @@ ToolRunner validates then executes once with unchanged exceptions/cancellation. 
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Production reconciliation evidence (2026-10-23)
+
+Actual two-owner opportunity: ContextTools and CodingCommands repeat schema/descriptor/domain argument/presentation mechanics over the same ToolRunner; normalize_tool_descriptor is already reused. Qualify a typed helper by two real consumers and unchanged validation/call-ID/cancellation/authorization semantics before decorators or shared interfaces. Existing execution and source authorities must remain single owners.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

@@ -1,5 +1,13 @@
 # Research Evidence
 
+The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
+now inventories all 35 collections, 48 capability slices, exact destination
+dependencies, actual consumer gaps and custody holds. Its
+[machine evidence](production-adoption-and-architecture-evidence-20261023.json) records source/test/packet identities.
+The next checkpoint is **comprehensive successor-session handoff**, not further
+open-ended research, implementation, inference or automatic protected adoption.
+Earlier "next" paragraphs below retain their checkpoint meaning.
+
 This directory preserves durable architectural investigations, alternatives,
 criticisms, recommendations, and unresolved questions. Research is evidence and
 historical reasoning; it does not automatically define current architecture,

@@ -1,5 +1,13 @@
 # Documentation Map
 
+The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
+and [dated source/custody manifest](research/production-adoption-and-architecture-evidence-20261023.json)
+extend the initial inventory with all 35 collections, 48 capability slices and
+eight selective main-adoption groups. They preserve existing authority and
+historical judgments; no runtime registry, approval or merge follows. The next
+checkpoint is comprehensive successor-session handoff. Earlier next-phase
+statements below are retained as historical checkpoint navigation.
+
 The [finite reconciliation charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)
 owns the current research/audit/handoff phase. Its
 [initial adoption and observability inventory](research/architecture-reconciliation-inventory.md),
