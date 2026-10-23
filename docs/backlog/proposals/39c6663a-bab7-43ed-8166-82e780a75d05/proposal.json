@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "created_at": "2026-10-23T12:08:23.510160+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Review coding application module sizes against governed edit and closeout limits",
+    "summary": "At the authenticated feature revision, context_tools.py is39019 raw bytes, coding_loop.py71938 and development_task.py60528. Existing source admission and WorkCycle local closeout cap an individual candidate at32768 UTF-8 bytes. Qualify responsibility/cohesion and edit feasibility so the worker can maintain its own substantial owners through the same bounded workflow. This is an investigation, not approval to split packages, increase limits or introduce a new editor.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex source-backed reconciliation audit at 3c09641dd17b13b83c2fe84e3f1cf4920ca7186f; documentation/intake-only assignment, 2026-10-23"
+    },
+    "parent": "B-0003",
+    "resources": [
+      "apps/qwen/context_tools.py",
+      "apps/qwen/coding_loop.py",
+      "apps/qwen/development_task.py",
+      "scripts/backlog/integration/local.py"
+    ],
+    "evidence": [
+      "git:3c09641dd17b13b83c2fe84e3f1cf4920ca7186f:apps/qwen/context_tools.py",
+      "git:3c09641dd17b13b83c2fe84e3f1cf4920ca7186f:apps/qwen/coding_loop.py",
+      "git:3c09641dd17b13b83c2fe84e3f1cf4920ca7186f:apps/qwen/development_task.py",
+      "git:3c09641dd17b13b83c2fe84e3f1cf4920ca7186f:scripts/backlog/integration/local.py"
+    ],
+    "benefit": "Make native engineering task scopes feasible without weakening exact source integrity or broadening authority; separate genuine application responsibilities from file-size pressure.",
+    "uncertainty": "Raw and normalized text sizes, complete dependency boundaries, external/durable compatibility and appropriate responsibility splits need qualification. Do not assume a new reusable abstraction is justified. Existing region/aggregate/patch limits remain authoritative.",
+    "dependencies": [
+      "B-0009",
+      "B-0035",
+      "B-0006"
+    ]
+  },
+  "payload_sha256": "8dd595f8893363af8d26382b8862ae4aefb715e221bfffb8a3360ccc82768b84"
+}

@@ -56,3 +56,20 @@ boundaries are not interchangeable.
 - operational_dependencies: consumer needing causal or operational evidence beyond terminal result
 - promotion_trigger: multiple consumers need equivalent observations at shared boundaries
 - validation_level: NONE
+
+## Source-backed reconciliation observations (2026-10-23)
+
+The [initial gap map](../../research/architecture-reconciliation-inventory.md#initial-observability-gap-map)
+inspected inspectors, invocation/usage records, narrow Runtime, ToolRunner,
+Command events and application/WorkCycle receipts. Existing implementations
+already cover substantial Evidence and usage responsibilities. ToolRunner itself
+does not provide invocation observation; best-effort Command events are not a
+durable causal trace. No shared OTel/exporter implementation was found in the
+scanned maintained owners, and pyproject declares no OTel dependency.
+
+Failure accounting, capture/privacy, temporal/correlation boundaries and actual
+shared consumers require investigation before a new type, exporter or event bus.
+The next external review starts with pinned Qwen Code/Pydantic AI sources, then
+DeepSeek Harness/Aider. Status/dependencies/promotion trigger remain unchanged;
+these observations neither authorize tracing implementation nor conflate
+Evidence, Trace and Telemetry.

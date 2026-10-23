@@ -1,5 +1,13 @@
 # Documentation Map
 
+The [finite reconciliation charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)
+owns the current research/audit/handoff phase. Its
+[initial adoption and observability inventory](research/architecture-reconciliation-inventory.md),
+[upstream harness source cursors](research/agent-harness-mechanism-review.md)
+and [artifact custody observations](development/artifact-custody-inventory.md)
+are dated evidence, not new architecture/backlog authorities. The starter ZIP
+and its 18 stories were unavailable and remain an explicit input gap.
+
 The [canonical reconciliation record](development/reconciliation.md) owns the
 2026-10-19 branch/evidence disposition. [Experiment closeout](../experiments/README.md)
 owns the collection inventory and restoration contract. The maintained standalone

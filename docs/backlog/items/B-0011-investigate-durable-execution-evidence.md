@@ -25,3 +25,17 @@ of Evidence.
 - operational_dependencies: durable recovery or audit consumer
 - promotion_trigger: recovery, resume, or external audit requires durable evidence
 - validation_level: NONE
+
+## Custody and consumer evidence (2026-10-23)
+
+The [initial custody inventory](../../development/artifact-custody-inventory.md)
+records existing durable app/experiment receipts, usage storage, archives and
+permission-limited preservation regions. Their existence does not mean the
+process-local terminal Evidence inspector has a framework durable-store adapter;
+conversely, that missing adapter does not mean all execution evidence is volatile.
+
+Recoverability and exact original receipt identities are concrete audit concerns.
+Qualify the actual recovery/consumer and schema/authority boundaries first. The
+separate pending custody proposal is operational review, not authorization for
+a generic Evidence store or cache deletion. Existing deferred disposition and
+promotion trigger are retained.

@@ -17,6 +17,12 @@ complete.
 
 ## Proposal intake
 
+The [initial reconciliation crosswalk](../research/architecture-reconciliation-inventory.md#backlog-crosswalk)
+maps audit discoveries onto existing records and pending proposals. It does not
+replace this canonical index, assign B-numbers or change dispositions. The
+unavailable starter 18-story list has not been reconstructed. Two new captures
+remain pending; Commands delivery notes on existing proposals are advisory only.
+
 [Governed proposal intake](metadata.md#governed-proposal-intake-repository-administration)
 captures discoveries without changing active work. Pending proposals and advisory
 review history live under `proposals/`; only a host-authorized backlog decision

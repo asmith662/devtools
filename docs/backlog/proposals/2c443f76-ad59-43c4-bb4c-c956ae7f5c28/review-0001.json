@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "2c443f76-ad59-43c4-bb4c-c956ae7f5c28",
+  "proposal_sha256": "60e5007d39c956c5eda63fffd7b81aee36f4079087999c4ab75005816766c58b",
+  "previous": null,
+  "at": "2026-10-23T12:08:24.014935+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/architecture-reconciliation-inventory.md#backlog-crosswalk",
+  "rationale": "The actual protected-main tree5d979920d0728775ed529457c88f5b68b440c64f includes the merged Commands integration. All nine Commands Python source blobs match the authenticated feature tree. Public Command/executor/value behavior and permanent regressions for this capability exist. This is delivery evidence for later operator disposition, not canonical proposal approval or proof that every original acceptance detail was revalidated in this documentation audit.",
+  "duplicates": [
+    {
+      "reference": "796ac652-dbd7-488b-98bb-444f695bfa92",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Reuse this existing proposal; no replacement B-number or duplicate implementation story. Other proposals share Commands resource references but distinct capability contracts. Keep current state and original parent/history.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "52f9e329a91b4cc14ed23ff434ccd58ae983a839fc66a4762069eca1af9b5f27"
+}

@@ -11,7 +11,24 @@ tests demonstrate realized behavior. Experiments and evaluations provide bounded
 empirical evidence. Deferred and rejected-for-now findings remain discoverable
 because later evidence may justify reconsideration.
 
-## Current retrieval research checkpoint
+## Current reconciliation phase
+
+The [finite reconciliation charter](../development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)
+starts a documentation/research checkpoint, not another Qwen implementation.
+See the [initial source/adoption inventory](architecture-reconciliation-inventory.md),
+[upstream mechanism review starting point](agent-harness-mechanism-review.md)
+and [artifact custody inventory](../development/artifact-custody-inventory.md).
+The expected starter ZIP was unavailable: its manifest, contents and 18-story
+deduplication are not claimed. No production code, experimental outcome or
+architectural boundary is changed by this initial research.
+
+<a id="current-retrieval-research-checkpoint"></a>
+
+## Earlier retrieval research checkpoint
+
+The following checkpoint preserves its earlier R1/R2 sequencing. Later outcomes
+and current ordering belong to the linked roadmap and retrieval foundation;
+the retained historical "next" recommendation is not a new execution decision.
 
 [Experimental R1 method](../../experiments/identifier_sparse/README.md) and
 [prospective Case 0009](../../experiments/codex_dogfood/case_0009/README.md) now
@@ -49,6 +66,8 @@ by default. Structural breadth is closed for now; its operators remain available
 
 | Research document | Subject | Status | Principal findings | Related ADRs | Implemented evidence | Deferred / rejected for now | Superseded/refined by | Revisit triggers |
 |---|---|---|---|---|---|---|---|---|
+| [Architecture reconciliation inventory](architecture-reconciliation-inventory.md) | Source/main adoption, observability, abstractions and backlog | Initial source-backed audit | Separate maintained code, destination blobs, consumers and experiment outcomes | 0001-0005 retained | Pinned Git/source/test/custody evidence | Automatic fixes, backlog promotion, generic Trace/Agent systems | Existing charter and current source | Complete lifecycle/harness/custody review; recover starter input |
+| [Agent harness mechanism review](agent-harness-mechanism-review.md) | Qwen Code/Pydantic AI, then DeepSeek Harness/Aider | Initial primary-source cursors; comparison pending | Pin sources and inspect mechanisms before adopting abstractions | None added | Individual upstream source references and hashes | Runtime replacement, copied framework, new model experiment | Existing taxonomy/ADRs and finite phase charter | Bounded source/test mechanism comparison |
 | [Architecture adversarial review](architecture-adversarial-review.md) | Adversarial architecture challenge | Partially reconciled | Preserve evidence boundaries; resist premature abstractions | 0002-0004 | Lexical evaluation | Universal graph/store; model knowledge promotion | ADRs; Inc. 16/20 | Bounded evidence requiring reusable semantics |
 | [Framework domain boundaries](framework-domain-boundaries.md) | Framework ownership | Reconciled | Narrow orthogonal domains | 0001, 0004 | Runtime/Tool/Context separation | Workflow infrastructure | Taxonomy | Cross-domain consumer pressure |
 | [Purpose-relative repository Context](purpose-relative-repository-context.md) | Retrieval, decision, disclosure | Reconciled | Truth, surfacing, relevance, ranking, disclosure differ | 0003, 0004 | Lexical and import experiments | Universal Candidate/Selector/score | Increments 20-22 | Stable need-specific value requiring reuse beyond local policy/Context planning |

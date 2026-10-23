@@ -1,5 +1,16 @@
 # Roadmap
 
+## Immediate finite reconciliation phase (2026-10-23)
+
+The current assignment is research, source/destination inventory, architecture
+and lifecycle reconciliation, artifact-custody planning and successor-session
+preparation under the [phase charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23).
+Next compare actual Qwen Code/Pydantic AI mechanisms, then DeepSeek Harness/Aider.
+Do not launch another Qwen feature/benchmark or automatically implement findings.
+Earlier engineering "next" paragraphs below retain their checkpoint meaning;
+the Commands integration is already on remote main. Scientific sequencing,
+accepted semantics, backlog dispositions and protected promotion remain separate.
+
 [New module22](../apps/qwen/evaluation/new-module-22/README.md) corrects the concrete
 absent-new-file feedback defect. Its real Qwen engineering attempt created a module
 but failed public integration after six proposals, with no Context failure or native

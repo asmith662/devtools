@@ -177,3 +177,96 @@ source/document formatting differences and frozen-experiment static findings
 remain outside this bounded implementation. Framework adoption still requires
 reviewed integration authority; the remaining dashboard dependency blocker must
 not be imported simply by merging all feature ancestry into main.
+
+## Finite architecture and research reconciliation (2026-10-23)
+
+This section is a Codex-authored operational charter from the user's explicit
+2026-10-22 reconciliation request. It is not an imported starter document or a
+new architectural decision. Earlier consolidation/engineering reports above
+remain historical evidence with their original outcomes and authority limits.
+
+### Governing direction and limits
+
+Devtools enters a finite research, architecture/execution-lifecycle audit,
+repository-hygiene planning and successor-session preparation phase. Immediate
+work is not another Qwen feature or benchmark. Research mature open-source
+harness mechanisms ourselves, incrementally, and compare them with actual
+Devtools ownership before recommending changes.
+
+Inventory delivered software and experiments, distinguish feature publication
+from protected-main adoption, identify missing foundations and possible overlap,
+review observability/trace/event pressure, and investigate developer ergonomics.
+Classify generated/temporary/obsolete storage without deleting original evidence.
+Capture qualified discoveries in the existing backlog instead of automatically
+fixing them. Prepare a comprehensive fresh-ChatGPT-session handoff only when this
+research and reconciliation are sufficiently complete.
+
+Use one physical canonical checkout. No new clone, worktree, backup/source tree,
+agent framework, execution owner, model experiment, service lifecycle change or
+protected-main promotion is authorized by this phase. Learned Intelligence's
+separate repository and scientific catalogs remain distinct. Existing taxonomy,
+package ownership, ADRs and publication controls are unchanged.
+
+### Starter-package custody
+
+Expected input: `devtools-reconciliation-starter-2026-10-22.zip` containing
+`01-reconciliation-charter.md`, `02-oss-harness-mechanism-review-initial.md`,
+`03-audit-backlog-seeds.md` and `MANIFEST.json`.
+
+The exact package/member files were not found in accessible canonical paths and
+no attachment location was provided. Excluded caches and permission-denied
+regions limit the scan. Status: **NOT_VERIFIED_NO_INPUT**; no starter hash,
+imported content or deduplication of its 18 stories is claimed. Do not substitute
+other local ZIPs or invent missing document bodies.
+
+If supplied later, inspect the manifest/schema and member paths, reject traversal
+or unexpected executable content, verify each original member's SHA-256 before
+use, and preserve substantive source bodies/provenance. Map them into the
+existing documentation/research/backlog owners and record original-to-canonical
+addresses. Do not create a second authoritative backlog or research index.
+
+### Initial checkpoint and next bounded work
+
+The authenticated feature baseline is
+`3c09641dd17b13b83c2fe84e3f1cf4920ca7186f`; protected remote main is
+`5d979920d0728775ed529457c88f5b68b440c64f`. Local main remains
+`862bda2d3d1d812893f84ab69691fc068ecce268`; its lag is not an unfinished Commands
+integration. Commands source is already adopted; many later worker/Context/RI
+increments remain feature-only or differ at the destination.
+
+This initial checkpoint supplies:
+
+1. [Source-backed adoption/observability inventory and backlog crosswalk](../research/architecture-reconciliation-inventory.md).
+2. [Primary-source harness review cursors](../research/agent-harness-mechanism-review.md)
+   and an ordered follow-up worksheet.
+3. [Artifact custody inventory](artifact-custody-inventory.md), exact metadata
+   limitations and a safe future cleanup procedure; no removals performed.
+4. Existing pending proposal captures/advisories, unchanged canonical IDs and
+   dispositions, plus refreshed navigation through the documentation map and
+   research README. This is not completion of the entire architecture audit.
+
+Next perform one source-and-test mechanism comparison of Qwen Code and Pydantic
+AI at recorded upstream revisions, then DeepSeek Harness and Aider. Follow with
+the complete local lifecycle/dependency/adoption and custody review. Record
+facts, external observations, hypotheses and candidate decisions separately;
+implementation requires its own selected, authorized increment.
+
+### Exit conditions for the finite phase
+
+- All meaningful capabilities have source, experiment, destination, consumer,
+  test/evidence and remaining-integration classifications, including unknowns.
+- Upstream mechanism findings and local observability/lifecycle gaps have exact
+  source/test references and explicit semantic/authority differences.
+- Original starter stories are deduplicated if the package becomes available,
+  otherwise the missing-input limitation remains an explicit handoff obligation.
+- Backlog candidates preserve parent/ID/disposition; no speculative abstraction,
+  generic tracing system or unreviewed feature is promoted merely by discovery.
+- Artifact custody/recovery and exact cleanup candidates are reviewable; any
+  destructive cleanup has separate authority and safeguards.
+- Current navigation/status claims are reconciled without rewriting historical
+  experiments, and a comprehensive fresh-session handoff identifies actual Git
+  state, decisions, evidence, unresolved obligations and the next bounded task.
+
+Documentation/index/layout/intake integrity checks are appropriate to this
+checkpoint. Production source/tests are unchanged; no new full protected gate
+or inference is required merely to publish documentation and advisory intake.
