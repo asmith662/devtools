@@ -1,5 +1,10 @@
 # RI implementation and fixture audit follow-up
 
+Later checkpoint: [scientific integrity and retrieval policies](ri-policies-and-scientific-integrity-audit.md).
+It supersedes this dated report's next-domain recommendation: continue the
+remaining RI cohort first. Original scientific outcomes and this checkpoint's
+coverage/validation claims remain historical.
+
 ## Result and limits
 
 Starting feature checkpoint: `38957ae45d8f5c3e6b8061b749b9291f38cee19c`.

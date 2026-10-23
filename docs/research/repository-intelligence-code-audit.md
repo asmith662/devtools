@@ -1,5 +1,8 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
+Latest depth overlay: [scientific bindings and retrieval-policy review](ri-policies-and-scientific-integrity-audit.md).
+The original census below remains dated evidence; RI is not fully audited.
+
 Follow-up: the [physical-line correction and deeper implementation/fixture review](ri-deep-audit-followup.md)
 records a separately validated source-fix commit, expanded historical review and
 exact remaining gaps. The first checkpoint's adverse reproduction and counts

@@ -2,6 +2,10 @@
 
 ## Disposition and authority
 
+Current continuation: [RI scientific bindings and retrieval policies](ri-policies-and-scientific-integrity-audit.md).
+The maintainer requires the remaining RI mechanisms/fixtures before changing
+audit domains; this does not prepare the postponed successor-session dossier.
+
 This begins the maintainer-directed deep code review. It supersedes the earlier
 reconciliation's recommendation to prepare the final successor-session dossier.
 That dossier is **postponed**. The previous inventories remain useful dated

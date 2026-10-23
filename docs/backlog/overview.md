@@ -220,3 +220,19 @@ Three distinct source-backed records are newly PENDING_REVIEW:
 No B-number assignment, parent closure, dispatch, grant or historical judgment
 change follows. Exact remaining historical source/test review is in the audit
 overlay; a passing protected gate does not close that review.
+
+### Scientific-integrity and retrieval-policy follow-up
+
+The [policy/integrity audit](../research/ri-policies-and-scientific-integrity-audit.md)
+records the separate versioned unblinding verifier and96 authenticated original
+bindings; no historical corruption is demonstrated. Existing integrity proposal
+2e70de9a and the two repaired source-span proposals retain pending states with
+operator reconciliation recommendations. Nine existing records receive ADVISORY
+scope/evidence additions; exact review hashes are in the report's Intake ledger.
+
+One distinct new proposal is pending, without B-number or implementation grant:
+[06c3809b](proposals/06c3809b-f80c-461d-9585-2d4a973f8252/proposal.json),
+explicit caller-authored task locators to existing native grounding/source
+acquisition. It stops at authenticated source acquisition; full semantic
+witness/readiness decisions remain the separate15bae0a6 obligation. No new
+parser, Context compiler, automatic selector or edit authority is proposed.

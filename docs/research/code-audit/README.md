@@ -89,3 +89,25 @@ are deliberately separate commits.
 This overlay is research metadata, not new execution, source identity or backlog
 authority. Complete remaining paths and blobs are enumerated rather than hidden
 behind a collection-level completion claim.
+
+## Scientific bindings and retrieval-policy review overlay
+
+The [policy/integrity report](../ri-policies-and-scientific-integrity-audit.md)
+starts at `bb2663ff2a04dd684349d112324c134782977328`. Separate read-only verifier
+commit: `0cc372503e8efbd899b3e0f724c903d8ebd040a2`. Original science is unchanged.
+
+| File | Depth and limits |
+| --- | --- |
+| [ri-integrity-summary.json](ri-integrity-summary.json) | Same606 experimental paths:94 full,512 remaining;93 fixture paths:9 full,28 outer-only,56 assertion-only. Includes namespace paths, not independent algorithms. |
+| [ri-integrity-experiments.jsonl](ri-integrity-experiments.jsonl) | Exact path/blob overlay with46 newly inspected full bodies and dependency limits. |
+| [ri-integrity-fixtures.jsonl](ri-integrity-fixtures.jsonl) | Six newly reviewed current paths including two namespace files; full grounding/graph/map bodies and consumed helpers. |
+| [ri-integrity-reviewed-additions.json](ri-integrity-reviewed-additions.json) | Read tests/helpers outside original606, new repair hashes and partial dependency cursors. |
+| [ri-integrity-history.json](ri-integrity-history.json) | Four additional Graph3 experimental deltas; not subtraction from177 older current-RI versions. |
+| [ri-integrity-original-bindings.json](ri-integrity-original-bindings.json) | Four manifest-authenticated original members:96 canonical bindings agree; no historical corruption established. |
+| [ri-integrity-report-references.json](ri-integrity-report-references.json) | Two original report members and retained input links; Increment24 filename references do not supply Increment23's complete input-digest closure. |
+| [ri-integrity-intake.json](ri-integrity-intake.json) | One pending exact-acquisition proposal, ten ADVISORY additions across nine existing records; no approvals. |
+| [ri-integrity-next-cohort.json](ri-integrity-next-cohort.json) | Exact158 experimental paths in next RI cohort and84 current fixture paths lacking full review. |
+| [ri-integrity-checkpoint.json](ri-integrity-checkpoint.json) | Changed-path hashes, validation/preservation checks; containing commit binds itself. |
+
+RI remains active. No new native model receipt or empirical-effectiveness claim
+follows from synthetic tests. Keep preceding ledger versions as dated evidence.

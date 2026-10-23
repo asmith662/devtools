@@ -1,7 +1,7 @@
 # Documentation Map
 
-Current audit checkpoint: [RI historical implementation/fixture follow-up](research/ri-deep-audit-followup.md)
-and its [version-specific overlay](research/code-audit/README.md#physical-line-repair-and-deeper-ri-review-overlay).
+Current audit checkpoint: [RI policy and scientific-binding review](research/ri-policies-and-scientific-integrity-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#scientific-bindings-and-retrieval-policy-review-overlay).
 The explicitly authorized source-index repair is separately committed and
 protected-tested. Historical RI review is still incomplete; execution/ToolRunner/
 Checkout/WorkCycle is the next substantial domain. The final successor-session

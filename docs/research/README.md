@@ -1,5 +1,11 @@
 # Research Evidence
 
+Current deep audit: [RI policies and scientific-binding integrity](ri-policies-and-scientific-integrity-audit.md).
+The versioned read-only verifier authenticates96 original bindings without
+rejudging science; the ledger records94/606 experimental paths and9/93 current
+fixture paths at full review depth. RI work remains active; the successor
+dossier and next architectural domain remain postponed.
+
 The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
 now inventories all 35 collections, 48 capability slices, exact destination
 dependencies, actual consumer gaps and custody holds. Its
