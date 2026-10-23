@@ -210,3 +210,15 @@ documentation/intake paths. Git whitespace validation passed.
   improvements; prepare the comprehensive fresh-session handoff only after those
   findings are sufficiently reconciled. This initial checkpoint is not that final
   architecture audit or a new Qwen benchmark.
+
+## Subsequent original-input and mechanism checkpoint (2026-10-23)
+
+The missing-input/crosswalk and next-research statements above describe this
+initial audit at `3c09641d`, not current unavailability. The [verified transfer and
+exact18 reconciliation](reconciliation-input-reconciliation.md) now preserve the
+original assistant drafts and independent review with their full provenance.
+The [Qwen Code/Pydantic AI source-and-test comparison](agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+deepens actual owner/correlation/failure-path findings against `3b2b3de8` source,
+unchanged from the initial production inventory. No main/feature source adoption,
+prior experimental result or cleanup disposition changes. The full architecture
+audit remains unfinished; DeepSeek/Aider and deeper real-trajectory joins follow.

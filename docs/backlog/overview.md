@@ -20,8 +20,13 @@ complete.
 The [initial reconciliation crosswalk](../research/architecture-reconciliation-inventory.md#backlog-crosswalk)
 maps audit discoveries onto existing records and pending proposals. It does not
 replace this canonical index, assign B-numbers or change dispositions. The
-unavailable starter 18-story list has not been reconstructed. Two new captures
-remain pending; Commands delivery notes on existing proposals are advisory only.
+original18 list was unavailable at that checkpoint. The [recovered exact-seed
+crosswalk](../research/reconciliation-input-reconciliation.md#original-candidate-crosswalk)
+now maps all18 to actual canonical records and one new pending edit-ergonomics
+investigation. Four existing pending proposals gained advisory research evidence.
+Prior IDs/parents/states and canonical B-number rows are unchanged; the queue has
+17 proposals (16 pending,1 approved). The pinned harness comparison does not
+authorize implementation, model experiments or automatic approval.
 
 [Governed proposal intake](metadata.md#governed-proposal-intake-repository-administration)
 captures discoveries without changing active work. Pending proposals and advisory

@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ae6b9374-f74d-4cd4-b079-a9f843ce3420",
+  "proposal_sha256": "3428c7f359044885ecd18993f82c99edea9913e378ab444af959f92e5c424c47",
+  "previous": null,
+  "at": "2026-10-23T13:31:44.406408+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md",
+  "rationale": "CANDIDATE-11 overlaps policy-controlled working/long-term state, but verified task-local source/edit/check state is not interchangeable with Memory. Pydantic interrupted-history and Qwen transcript recovery mechanisms provide research evidence only; no backend or checkpoint authority is adopted.",
+  "duplicates": [
+    {
+      "reference": "14f19339-9213-443d-ac8c-b1018ae1f5bc",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Reuse the exact existing parent/proposal and preserve original payload, status and chain. Related canonical investigations are mapped in the original18 crosswalk; lexical duplicate matches do not authorize merging, approval or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "91b2a55eabf76dd6d855bd3c8a97c30b120f46215a059681659a5242199271b2"
+}

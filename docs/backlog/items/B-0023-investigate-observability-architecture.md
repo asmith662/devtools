@@ -73,3 +73,16 @@ The next external review starts with pinned Qwen Code/Pydantic AI sources, then
 DeepSeek Harness/Aider. Status/dependencies/promotion trigger remain unchanged;
 these observations neither authorize tracing implementation nor conflate
 Evidence, Trace and Telemetry.
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+The [pinned harness comparison and local join/loss map](../../research/agent-harness-mechanism-review.md#devtools-end-to-end-correlation-map)
+inspect model IDs, Runtime attempts, provider Tool IDs, app receipts, source/
+validation hashes and WorkCycle review/commit refs. Upstream Qwen uses lifecycle
+spans and explicit execution origins; Pydantic instrumentation includes validation
+failure spans, run/conversation/call correlation and privacy paths. These show a
+concrete comparison target, not durable authority or complete accounting.
+Devtools still lacks automatic task→model occurrence→Tool→review joins in the
+native application path. Capture/observer failures, dropped Command events and
+unknown usage remain separate. Original candidates03/04 are related, not new
+Trace/EventBus implementation grants. Deferred status/trigger remain.

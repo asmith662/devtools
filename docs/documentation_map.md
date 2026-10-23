@@ -802,3 +802,17 @@ owns explicit source expansion from represented native map symbols. The
 [27 delivery/evaluation](../apps/qwen/evaluation/map-source-27/README.md) separates
 Codex capability and real composition from the failed zero-edit Qwen attempt.
 Native worker map acquisition remains a separate integration obligation.
+
+## Recovered research inputs and source/test comparison
+
+The [original-input reconciliation](research/reconciliation-input-reconciliation.md)
+owns transfer verification, attributed original document custody and the exact18
+candidate-to-canonical crosswalk; [machine metadata](research/reconciliation-inputs-20261023.json)
+retains original descriptions/hashes/dispositions. Original bodies under
+`research/reconciliation-inputs/20261023/` are immutable research inputs, not new
+governance or live status. Existing backlog/ADRs and the finite charter retain
+authority. [Harness mechanisms](research/agent-harness-mechanism-review.md) owns
+the pinned Qwen Code/Pydantic AI comparison and local correlation map;
+[source/test identities](research/agent-harness-mechanism-evidence-20261023.json)
+support it without copying external source trees. This extends the existing
+research index, not a new documentation authority.

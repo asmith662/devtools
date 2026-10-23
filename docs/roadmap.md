@@ -5,7 +5,11 @@
 The current assignment is research, source/destination inventory, architecture
 and lifecycle reconciliation, artifact-custody planning and successor-session
 preparation under the [phase charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23).
-Next compare actual Qwen Code/Pydantic AI mechanisms, then DeepSeek Harness/Aider.
+The [recovered original18 intake](research/reconciliation-input-reconciliation.md)
+and [pinned Qwen Code/Pydantic AI source/test comparison](research/agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+are complete as bounded research. Next inspect DeepSeek Harness/Aider source and
+tests, followed by deeper local lifecycle/observability, adoption and custody
+reconciliation. No next-stage execution is launched by this checkpoint.
 Do not launch another Qwen feature/benchmark or automatically implement findings.
 Earlier engineering "next" paragraphs below retain their checkpoint meaning;
 the Commands integration is already on remote main. Scientific sequencing,

@@ -38,3 +38,11 @@ This is an initial documentation checkpoint, not closure of B-0006 or approval
 of any architectural change. The starter ZIP/18-story crosswalk remains unavailable;
 complete lifecycle/harness/custody comparison and successor-session handoff follow
 the [finite phase charter](../../development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23).
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+Original transfer inputs are authenticated and all18 candidates mapped in the
+[canonical crosswalk](../../research/reconciliation-input-reconciliation.md).
+This resolves the prior missing-input obligation, not B-0006 or the finite audit.
+Exact original drafts remain attributed research; current source findings and
+canonical authority are not overwritten. Existing status and parent remain.

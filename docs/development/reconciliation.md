@@ -270,3 +270,32 @@ implementation requires its own selected, authorized increment.
 Documentation/index/layout/intake integrity checks are appropriate to this
 checkpoint. Production source/tests are unchanged; no new full protected gate
 or inference is required merely to publish documentation and advisory intake.
+
+## Recovered inputs and second research checkpoint (2026-10-23)
+
+The original unavailable-input statement above is historical. The supplied transfer
+ZIP and all five declared payloads are now locally authenticated; the three
+original document hashes also match the original manifest. The original starter
+ZIP container hash is supplied provenance, not locally recomputed. See the
+[exact intake/candidate reconciliation](../research/reconciliation-input-reconciliation.md)
+for custody, original byte-preserved documents and all18 canonical dispositions.
+
+The original charter's long-horizon OpenMind/Continuum motivation and model-neutral
+goals remain research direction, not a new domain or accepted Agent architecture.
+Preserve its top-down, horizontal and bottom-up audit views, plus one successful
+and one failed real trajectory; these deepen the existing finite-phase method.
+Report-only maintenance/research roles remain hypotheses under B-0043/B-0044.
+No input draft grants parallel execution, new inference or destructive cleanup.
+Existing taxonomy/ADRs/backlog/index owners remain authoritative.
+
+The [pinned Qwen Code/Pydantic AI implementation-and-test comparison](../research/agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+now covers correlation, continuation, exploration/loops, Context eviction,
+validation/retry/permission, interruption, usage and instrumentation against actual
+Devtools owners. Tests were inspected, not executed upstream. It corrects the
+starter's ExternalToolset validation and mostly-empty observability assumptions.
+No architecture/runtime adoption, source refactor or model experiment follows.
+
+Next inspect DeepSeek Harness and Aider source and tests; then deepen actual local
+successful/failed lifecycle joins, production adoption and custody/recovery before
+the comprehensive successor-session handoff. That later research is not launched
+by this checkpoint.

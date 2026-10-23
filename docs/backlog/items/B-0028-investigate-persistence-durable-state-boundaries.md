@@ -26,3 +26,14 @@ workflow consumer identifies its owning domain.
 - operational_dependencies: real recovery or durable-state consumer
 - promotion_trigger: process loss requires recovery of domain-owned state
 - validation_level: NONE
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+Original candidate11 and [interrupted-history research](../../research/agent-harness-mechanism-review.md#pydantic-ai-execution-order-cancellation-and-state)
+distinguish task-local verified state from Conversation and Memory. Pydantic core
+retains completed returns on cancellation; durable workflow integration is a
+separate backend. Qwen transcript reconstruction is not exactly-once effects.
+Devtools already has raw receipts, source hashes, Checkout recovery and WorkCycle
+Git reconciliation. Qualify the missing recovery consumer/owning domain before
+any checkpoint store. The existing Memory proposal receives advisory evidence;
+no backend, schema or lifecycle ownership changes.

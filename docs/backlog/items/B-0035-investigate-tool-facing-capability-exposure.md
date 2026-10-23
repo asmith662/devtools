@@ -36,3 +36,14 @@ pressure; it does not make a Tool automatically model-visible.
 - operational_dependencies: stable model-facing Tool consumer
 - promotion_trigger: exposure semantics are stable independently of local experiment code
 - validation_level: NONE
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+Original candidates07/15 and [pinned Tool research](../../research/agent-harness-mechanism-review.md#pydantic-ai-typed-tools-retries-and-permission-handoff)
+provide concrete schema/decorator/validation-before-execution examples.
+FunctionToolset derives a runtime validator, but ExternalToolset at the inspected
+revision uses any_schema; its advertised schema is not host semantic admission.
+Typed conversion, approved argument overrides and retries must not alter current
+exact source/path/byte/version authority or charge fewer task attempts silently.
+Study a transparent definition helper only after measuring real duplication and
+compatibility; no replacement ToolRunner/registry/authorization layer is selected.

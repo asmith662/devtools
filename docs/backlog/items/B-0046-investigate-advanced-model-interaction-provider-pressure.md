@@ -172,3 +172,14 @@ provider-response retention remain deferred pressure.
 - operational_dependencies: model/provider path needing unavailable semantics
 - promotion_trigger: a stable consumer needs meaning not expressible by current ModelInteraction
 - validation_level: INTEGRATION
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+Original candidate05 asks for official model/template/thinking/quantization
+qualification. [Pinned upstream findings](../../research/agent-harness-mechanism-review.md)
+show streaming thought/result/retry separation and source-dependent usage, while
+current Devtools already has explicit reasoning/thinking/native Tool semantics.
+No source review proves that a different serving profile or harness would improve
+this model's coding. No inference, model change or matched comparison was run.
+Future configuration work needs an independently qualified scope and authority;
+the established phased request/Evidence/Tool contract remains unchanged.

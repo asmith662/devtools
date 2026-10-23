@@ -23,3 +23,12 @@ semantic repair and is not reconciliation of an uncertain external effect.
 - operational_dependencies: real safely repeatable operation
 - promotion_trigger: a reusable execution boundary needs a retry decision
 - validation_level: NONE
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+The [Pydantic timeout/retry comparison](../../research/agent-harness-mechanism-review.md#pydantic-ai-execution-order-cancellation-and-state)
+distinguishes typed validation repair from ordinary failed results and cancellation.
+An upstream synchronous Tool timeout abandons a still-running thread and can
+request a retry. This is evidence to qualify repeatability before retrying effects,
+not a reusable automatic retry policy for Devtools. Current task ceilings still
+charge refused proposals/actions. B-0033/B-0034 remain separate owners.

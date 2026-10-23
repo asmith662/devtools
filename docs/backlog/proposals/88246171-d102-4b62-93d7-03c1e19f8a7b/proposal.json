@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+  "created_at": "2026-10-23T13:31:43.846019+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Qualify model-facing edit ergonomics while preserving exact atomic admission",
+    "summary": "Original CANDIDATE-08 requests comparison of model-facing edit formats without weakening source authority. Existing Engineering19 and22 receipts document oversized/wrong-owner proposals; Engineering26 exposed a separately corrected EOF patch-generation defect. Current component diagnostics and host-resolved anchors address real friction, but no matched evidence establishes that another edit format improves coding. Qualify syntax, semantic reasoning and host failures separately before proposing a controlled interface comparison.",
+    "discovery": {
+      "kind": "research",
+      "reference": "Recovered 2026-10-22 original CANDIDATE-08; transfer SHA25660762f4dc70d23e9907a0b1eddfbe5ab4405f37f44e07047695f337920ecf386; pinned Qwen Code source/test research2026-10-23"
+    },
+    "parent": "B-0003",
+    "resources": [
+      "apps/qwen/edits.py",
+      "apps/qwen/context_tools.py",
+      "apps/qwen/coding_loop.py",
+      "apps/qwen/evaluation/source-supplied-19/README.md",
+      "apps/qwen/evaluation/new-module-22/README.md",
+      "apps/qwen/evaluation/native-map-28/README.md"
+    ],
+    "evidence": [
+      "docs/research/reconciliation-input-reconciliation.md#original-candidate-crosswalk",
+      "docs/research/agent-harness-mechanism-review.md#editing-and-authority-comparison",
+      "apps/qwen/evaluation/edit-diagnostics-codex/README.md"
+    ],
+    "benefit": "Determine whether a simpler presentation reduces source-admission repair burden without creating another validator or confusing model-authored changes with host repair.",
+    "uncertainty": "Alternative-format effectiveness is unmeasured. No new inference, adapter, patch splitting, byte-limit increase, automatic correction, weakened exact observation, or Aider adoption is authorized. Preserve current public and historical contracts; source admission stays authoritative.",
+    "dependencies": [
+      "B-0033",
+      "B-0035",
+      "39c6663a-bab7-43ed-8166-82e780a75d05"
+    ]
+  },
+  "payload_sha256": "dd2f7f82251660b55d2a660a0b4c71fa3743587df4a32ffa67a0fcd99f4553d2"
+}

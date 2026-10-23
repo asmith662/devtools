@@ -1,0 +1,642 @@
+{
+  "archive_verification": {
+    "zip_sha256": "60762f4dc70d23e9907a0b1eddfbe5ab4405f37f44e07047695f337920ecf386",
+    "zip_bytes": 28267,
+    "verified_members": [
+      {
+        "path": "incoming/starter/02-oss-harness-mechanism-review-initial.md",
+        "bytes": 16693,
+        "sha256": "6f78e8bc81d80b034eef6ed30e7403886ea4df2e1a5c281f6a235806ad79ae55",
+        "provenance": "Original assistant-authored starter package member; exact bytes retained"
+      },
+      {
+        "path": "incoming/starter/01-reconciliation-charter.md",
+        "bytes": 21433,
+        "sha256": "dd3835adc1e0a027eed2f76e604b15fdeb71ea32ba8e17f2051aaa54e7b45102",
+        "provenance": "Original assistant-authored starter package member; exact bytes retained"
+      },
+      {
+        "path": "incoming/starter/MANIFEST.json",
+        "bytes": 696,
+        "sha256": "eca7aaedf56b8eb2fe90870760b7176337c84ed4b796b23f1dc43c171859a2d8",
+        "provenance": "Original assistant-authored starter package member; exact bytes retained"
+      },
+      {
+        "path": "incoming/starter/03-audit-backlog-seeds.md",
+        "bytes": 10159,
+        "sha256": "1d5142d0e0e25e0f472d2108922b963ee9d02ee48bfb92b106c6a013db4e5ab2",
+        "provenance": "Original assistant-authored starter package member; exact bytes retained"
+      },
+      {
+        "path": "incoming/review/devtools-reconciliation-independent-review-2026-10-23.md",
+        "bytes": 14314,
+        "sha256": "c0755691d63bf5da0c47273134698e4e01f99e2a72f0d168b3ec0631c4ef7007",
+        "provenance": "Independent ChatGPT read-only research/reconciliation review"
+      }
+    ],
+    "transfer_manifest_sha256": "1af915626a0de619f2f2609ff96cf34302facbbf1e3bde9e8fa579a6db0a931a",
+    "original_manifest": {
+      "generated_date": "2026-10-22",
+      "scope": "assistant-authored provisional research and reconciliation documents; not committed into local Devtools checkout",
+      "files": [
+        {
+          "filename": "01-reconciliation-charter.md",
+          "bytes": 21433,
+          "sha256": "dd3835adc1e0a027eed2f76e604b15fdeb71ea32ba8e17f2051aaa54e7b45102"
+        },
+        {
+          "filename": "02-oss-harness-mechanism-review-initial.md",
+          "bytes": 16693,
+          "sha256": "6f78e8bc81d80b034eef6ed30e7403886ea4df2e1a5c281f6a235806ad79ae55"
+        },
+        {
+          "filename": "03-audit-backlog-seeds.md",
+          "bytes": 10159,
+          "sha256": "1d5142d0e0e25e0f472d2108922b963ee9d02ee48bfb92b106c6a013db4e5ab2"
+        }
+      ]
+    },
+    "original_zip_available": false,
+    "unsafe_paths": false,
+    "unexpected_members": false,
+    "original_manifest_members_verified": 3,
+    "zip_custody_path": ".local/harness-research-20261023/devtools-reconciliation-research-transfer-2026-10-23.zip",
+    "original_zip_hash_status": "Reported by supplied transfer/review only; original ZIP container was not locally supplied/recomputed"
+  },
+  "original_candidate_count": 18,
+  "candidates": [
+    {
+      "id": "CANDIDATE-01",
+      "original_type": "INTEGRATION_PROMOTION",
+      "original_description": "Reconcile successful feature-branch capabilities with protected main and actual application consumers",
+      "original_evidence": "Commands PR #1 merged main; many Context/RI/validation/worker increments feature-published only",
+      "original_acceptance": "Build exact Git lineage and capability matrix; identify complete dependencies, destination behavior/tests and safe bounded integration groups; never bulk merge Qwen/experiment ancestry",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0006",
+          "path": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "B-0001",
+          "path": "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+          "status": "ACTIVE"
+        }
+      ],
+      "rationale": "Commands subset superseded by verified main integration; remaining feature capability adoption needs destination-specific dependencies and tests. The initial matrix is not completion of all promotion work.",
+      "evidence": [
+        "docs/research/architecture-reconciliation-inventory.md",
+        "docs/backlog/integration.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-02",
+      "original_type": "MAINTENANCE_REFACTOR",
+      "original_description": "Inventory repeated domain semantics and utility implementations across apps, tools, Context, agents and runtime",
+      "original_evidence": "Project grew rapidly across vertical slices",
+      "original_acceptance": "Show actual overlapping code paths and tests; identify one canonical owner, migration/caller compatibility and measurable deletion/ergonomics benefit; avoid speculative base classes",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+          "path": "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/proposal.json",
+          "parent": "B-0003",
+          "payload_sha256": "8dd595f8893363af8d26382b8862ae4aefb715e221bfffb8a3360ccc82768b84",
+          "status": "PENDING_REVIEW"
+        },
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0044",
+          "path": "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Large-module facts are qualified; duplicated domain semantics are still a hypothesis. Use existing module-size investigation and owner audit, not automatic utility extraction.",
+      "evidence": [
+        "apps/qwen/context_tools.py",
+        "apps/qwen/coding_loop.py",
+        "apps/qwen/development_task.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-03",
+      "original_type": "OBSERVABILITY",
+      "original_description": "Establish a reusable, model-neutral observability/event/tracing contract if the present module is fragmented",
+      "original_evidence": "User reports mostly-empty observability package; existing evidence and usage, per-run logs and scientific receipts are fragmented",
+      "original_acceptance": "Inventory `observability`, `evidence`, `usage`, model-serving, ToolRunner, WorkCycle, experiments; map correlation/events/spans/OTel/retention/redaction; define smallest coherent production contract and first consumers before implementation",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0023",
+          "path": "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0011",
+          "path": "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Starter report of mostly-empty observability is contradicted by existing Evidence/usage source. Amend research premise, preserve deferred canonical boundaries.",
+      "evidence": [
+        "src/devtools/observability/evidence/model_interaction.py",
+        "src/devtools/observability/usage/models.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-04",
+      "original_type": "OBSERVABILITY",
+      "original_description": "Unified end-to-end agent trace and cost/time visibility",
+      "original_evidence": "19–28 Qwen experiments repeatedly lacked paid Codex coordination cost, active supervision time, full GPU/RAM/energy",
+      "original_acceptance": "Specify trace scope across task, model request, Tool, source edit, validation, review, publication; what is locally measureable versus unavailable; sensitive data capture control and queryable timeline; tests/OTel compatibility",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0023",
+          "path": "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0024",
+          "path": "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0018",
+          "path": "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Concrete cross-layer join/loss map adds evidence; paid supervisor time/hardware energy/account-wide costs remain unknown. No global Trace design selected.",
+      "evidence": [
+        "docs/research/agent-harness-mechanism-review.md#devtools-end-to-end-correlation-map",
+        "src/devtools/observability/evidence/invocation.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-05",
+      "original_type": "RESEARCH_DECISION",
+      "original_description": "Verify Qwen thinking, template/tool protocol, quantization, KV cache and context against official recommendations",
+      "original_evidence": "Current Qwen3.8-27B UD-IQ4_XS 32K q4 KV thinking-off, mixed quality and Context failures",
+      "original_acceptance": "Source-level model/llama.cpp configuration audit, full raw Tool round-trip, same-model controlled thinking baseline and hardware feasibility; no new RI task during reconnaissance",
+      "disposition": "INSUFFICIENT_REQUIRES_INVESTIGATION",
+      "canonical": [
+        {
+          "id": "B-0046",
+          "path": "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+          "status": "BACKLOG"
+        },
+        {
+          "id": "B-0016",
+          "path": "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+          "status": "BACKLOG"
+        }
+      ],
+      "rationale": "Serving/protocol/thinking controls exist, but official recommendation audit and matched model configuration experiments are not performed here. Historical failures do not isolate quantization/model reasoning cause. No new inference authority.",
+      "evidence": [
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "scripts/qwen/llama_cpp_service.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-06",
+      "original_type": "FEATURE_ENHANCEMENT",
+      "original_description": "Make specialized coding harnesses usable through common governed boundaries",
+      "original_evidence": "Qwen Code core/ACP/SDK; Pydantic ExternalToolset; existing Devtools ModelToolDefinition + ToolRunner",
+      "original_acceptance": "Compare actual source and approval/edit authorities; propose agent-runtime interface only for demonstrably missing seam; show no competing Checkout/WorkCycle; controlled same-model harness comparison",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0043",
+          "path": "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0044",
+          "path": "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Existing external Codex Agent and native Tool seams remain. Pinned origins/deferred calls identify integration questions, not an accepted generic Agent runtime. B-0029 is SUPERSEDED lineage.",
+      "evidence": [
+        "src/devtools/agents/integrations/codex/agent.py",
+        "src/devtools/models/interaction/tools.py",
+        "src/devtools/tools/protocols.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-07",
+      "original_type": "DEVELOPER_EXPERIENCE",
+      "original_description": "Simplify Tool declaration / argument validation / model-facing errors with typed reusable APIs or decorators",
+      "original_evidence": "Pydantic AI FunctionToolset/ModelRetry/ToolFailed and current custom Tool schemas",
+      "original_acceptance": "Audit current serialization/validation duplications; measure syntax versus semantic errors from native receipts; design transparent decorator/typed wrapper only if decreases boilerplate without changing authority",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0036",
+          "path": "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Schema preparation/validation-before-execution already partly exists; typed ergonomic comparison now grounded. ExternalToolset any_schema is not application schema validation.",
+      "evidence": [
+        "src/devtools/tools/execution.py",
+        "apps/qwen/context_tools.py",
+        "apps/qwen/commands.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-08",
+      "original_type": "ENHANCEMENT",
+      "original_description": "Evaluate simpler model-facing editing without sacrificing exact-source integrity",
+      "original_evidence": "Engineering19/22/26/28 Qwen edit refusals and one real-Git EOF host bug; Aider editblock",
+      "original_acceptance": "Compare same model/tasks using established `replace_source` and alternative `apply_patch`/search-replace façade; host translates only when semantically exact; retain atomic validation, bytes, version, scope, restoration; do not replace eagerly",
+      "disposition": "DISTINCT_PENDING_PROPOSAL",
+      "canonical": [
+        {
+          "id": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+          "path": "docs/backlog/proposals/88246171-d102-4b62-93d7-03c1e19f8a7b/proposal.json",
+          "parent": "B-0003",
+          "payload_sha256": "dd2f7f82251660b55d2a660a0b4c71fa3743587df4a32ffa67a0fcd99f4553d2",
+          "status": "PENDING_REVIEW"
+        },
+        {
+          "id": "B-0033",
+          "path": "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "New pending investigation distinguishes size/anchor/model/host failures and preserves exact authority. No adapter, patch rewrite or comparative run authorized.",
+      "evidence": [
+        "apps/qwen/edits.py",
+        "apps/qwen/evaluation/source-supplied-19/README.md",
+        "apps/qwen/evaluation/new-module-22/README.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-09",
+      "original_type": "ENHANCEMENT",
+      "original_description": "Make existing graph/map-assisted Context useful rather than merely callable",
+      "original_evidence": "Engineering28 native `repository_map` available but never invoked; Aider includes compact repo map with change requests",
+      "original_acceptance": "Verify model-facing descriptions, orientation size, Tool overlap, retrieval quality; measure task owner discovery/repeated reads, not forced Tool use; avoid another graph engine",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0002",
+          "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "status": "BACKLOG"
+        },
+        {
+          "id": "ae03cda7-955e-40c6-a131-9e2ba209c9a6",
+          "path": "docs/backlog/proposals/ae03cda7-955e-40c6-a131-9e2ba209c9a6/proposal.json",
+          "parent": null,
+          "payload_sha256": "dd4279690416530db1f91628d167ee230e5a97e1ab319fa9614a7f19d5c16fde",
+          "status": "PENDING_REVIEW"
+        }
+      ],
+      "rationale": "Map/Planning/native opt-in navigation are implemented; model availability without invocation is not useful-adoption evidence. Existing CodeGraph proposal retains usability/effectiveness question.",
+      "evidence": [
+        "apps/qwen/navigation.py",
+        "apps/qwen/evaluation/native-map-28/results.json"
+      ]
+    },
+    {
+      "id": "CANDIDATE-10",
+      "original_type": "MAINTENANCE_REFACTOR",
+      "original_description": "Reconcile code/context acquisition duplication and projection costs",
+      "original_evidence": "RI, lexical/BM25, graph map, source index, Planning, ContextTools navigation, many repeated source reads",
+      "original_acceptance": "Build call graph/ownership; distinguish ranked candidates, native provenance, source authority, disclosure; identify duplication and missing multi-granularity consumers; propose canonical reusable operators only when semantics align",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0002",
+          "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "status": "BACKLOG"
+        },
+        {
+          "id": "B-0008",
+          "path": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "status": "SUPERSEDED"
+        },
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "ADR-0002/3/4/5 and source distinguish RI, retrieval, Localization, disclosure and source authority. No canonical duplication is proven merely by multiple representations.",
+      "evidence": [
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "apps/qwen/context_tools.py",
+        "apps/qwen/continuation.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-11",
+      "original_type": "FEATURE_ENHANCEMENT",
+      "original_description": "Durable task-local working state and verified progress/checkpoints",
+      "original_evidence": "Qwen misremembered applied edits; 32K Context refills after read/edit/validation; historic memory roadmap",
+      "original_acceptance": "Specify exact source/version/edit ledger versus summarizable plan/facts; atomic checkpoints, freshness and restoration; avoid duplicating model traces, repository store or long-term memory",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0028",
+          "path": "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0011",
+          "path": "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "ae6b9374-f74d-4cd4-b079-a9f843ce3420",
+          "path": "docs/backlog/proposals/ae6b9374-f74d-4cd4-b079-a9f843ce3420/proposal.json",
+          "parent": null,
+          "payload_sha256": "80da7961cb287dd75d22379d27412613c32bbe9752e8eebc73477ff0faadd8e8",
+          "status": "PENDING_REVIEW"
+        }
+      ],
+      "rationale": "Working state/freshness is narrower than long-term Memory. Existing proposal receives advisory separation of task state, transcript and source authority; durable recovery needs domain-owned contract.",
+      "evidence": [
+        "apps/qwen/continuation.py",
+        "apps/qwen/change_checks.py",
+        "src/devtools/persistence/_snapshot.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-12",
+      "original_type": "MAINTENANCE_REFACTOR",
+      "original_description": "Unify or explicitly separate experiment orchestration, coding task lifecycle, Checkout and WorkCycle",
+      "original_evidence": "Repeated run preparation, frozen oracles, source authentication, review and publication",
+      "original_acceptance": "Inspect established pipeline owners and backlog/control interfaces; find duplicated state transitions, absent error path and unnecessary revalidation; preserve approvals and immutability",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0044",
+          "path": "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0031",
+          "path": "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0032",
+          "path": "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0034",
+          "path": "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Existing source-specific Checkout/WorkCycle and deterministic experiment controllers are distinct. Shared run mechanics/failed transition audit pending; do not unify by name.",
+      "evidence": [
+        "scripts/backlog/checkout.py",
+        "scripts/backlog/integration/local.py",
+        "docs/backlog/integration.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-13",
+      "original_type": "CUSTODY_CLEANUP",
+      "original_description": "Classify, document and delete verified disposable temporary artifacts and reconcile historical duplicate checkout paths",
+      "original_evidence": "Existing `.local` evidence, previous `.local/worktrees` concern, generated test/execution scratch",
+      "original_acceptance": "Inventory ignored/untracked/branch assets, ownership and sole original evidence; no active processes; reviewed exact-path deletion with hashes/custody and approval; never delete whole `.local` or frozen receipts blindly",
+      "disposition": "ALREADY_CAPTURED",
+      "canonical": [
+        {
+          "id": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+          "path": "docs/backlog/proposals/0385a359-399f-40bb-aed4-caf5239c9fc8/proposal.json",
+          "parent": null,
+          "payload_sha256": "e37d733eecafd160842fab7788105b142faee2122e12ae98903b09a6478c8f43",
+          "status": "PENDING_REVIEW"
+        }
+      ],
+      "rationale": "Existing pending proposal already covers exact-path custody/recovery qualification. ADVISORY update relates exact seed. No deletion/ACL change.",
+      "evidence": [
+        "docs/development/artifact-custody-inventory.md",
+        "docs/development/reconciliation.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-14",
+      "original_type": "DOCUMENTATION_INDEX",
+      "original_description": "Make architecture, production APIs, experiments and backlog navigable from one canonical index",
+      "original_evidence": "Many report/README/hand-off snapshots; accepted ADRs and archived experiments span directions",
+      "original_acceptance": "Find authoritative indices; cross-link known owners and statuses; remove/confine misleading duplicate status docs; provide developer-facing package capability map and examples",
+      "disposition": "ALREADY_CAPTURED",
+      "canonical": [
+        {
+          "id": "B-0006",
+          "path": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "B-0001",
+          "path": "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+          "status": "ACTIVE"
+        }
+      ],
+      "rationale": "Canonical doc map, research README, roadmap and existing active documentation reconciliation own this. Imported draft is not another authority/index. Detailed audit remains unfinished.",
+      "evidence": [
+        "docs/documentation_map.md",
+        "docs/research/README.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-15",
+      "original_type": "DEVELOPER_EXPERIENCE",
+      "original_description": "Audit package layout, public facades, import cycles, naming, typed factories and justified syntactic sugar",
+      "original_evidence": "Context planning/retrieval circular-import accommodations, specialized apps and repeated Test fixtures",
+      "original_acceptance": "Inspect imports/API/entrypoints, classify intentional layering vs accidental nesting; propose clearer modules/base/decorators where contracts demonstrably stabilize; protect compatibility",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+          "path": "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/proposal.json",
+          "parent": "B-0003",
+          "payload_sha256": "8dd595f8893363af8d26382b8862ae4aefb715e221bfffb8a3360ccc82768b84",
+          "status": "PENDING_REVIEW"
+        },
+        {
+          "id": "B-0035",
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0019",
+          "path": "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Module-size investigation captures concrete pressure; import cycles/naming/factory duplication need measured examples before reusable abstraction. No package redesign authorized.",
+      "evidence": [
+        "apps/qwen/context_tools.py",
+        "apps/qwen/coding_loop.py",
+        "src/devtools/tools/disclosure.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-16",
+      "original_type": "FEATURE_ENHANCEMENT",
+      "original_description": "Define specialized code-quality/maintenance/research agent roles under existing governance",
+      "original_evidence": "User wants proactive duplication, unused capability, documentation and infrastructure stewardship",
+      "original_acceptance": "Specify non-mutating detection/reporting roles first, proposal evidence, false-positive control, human-approved fixes, reproducibility and scope; do not create self-modifying general agent prematurely",
+      "disposition": "INSUFFICIENT_REQUIRES_INVESTIGATION",
+      "canonical": [
+        {
+          "id": "B-0043",
+          "path": "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0044",
+          "path": "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0006",
+          "path": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+          "status": "ACTIVE"
+        }
+      ],
+      "rationale": "B-0043 already records ResearchAgent/ExperimentManager and worker profiles. Separate report-only maintenance roles lack evaluated detection contracts/consumers; retain as role-specialization hypothesis rather than a generic Agent class or another broad ticket.",
+      "evidence": [
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/research/architecture-reconciliation-inventory.md"
+      ]
+    },
+    {
+      "id": "CANDIDATE-17",
+      "original_type": "BUG_OR_MAINTENANCE",
+      "original_description": "Assess completeness of cancellation, exception and recovery paths across source/Tool/command/model operations",
+      "original_evidence": "Proven host blockers in Engineering25/26 and source identity strictness; Windows subprocess risks",
+      "original_acceptance": "Audit transition/error matrix with actual logs, owner recovery, temporary effects, subprocess cleanup and repeated validation; distinguish actual bug from intentionally strict guard",
+      "disposition": "RELATED_NEEDS_EVIDENCE",
+      "canonical": [
+        {
+          "id": "B-0032",
+          "path": "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0033",
+          "path": "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0034",
+          "path": "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0041",
+          "path": "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+          "status": "DEFERRED"
+        },
+        {
+          "id": "B-0011",
+          "path": "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+          "status": "DEFERRED"
+        }
+      ],
+      "rationale": "Cancellation, semantic repair and uncertain effects have separate canonical children of superseded B-0014. New source/test observations support transition audit, not an asserted global cancellation defect.",
+      "evidence": [
+        "src/devtools/execution/runtime.py",
+        "src/devtools/resources/commands/execution.py",
+        "scripts/backlog/checkout.py",
+        "tests/apps/qwen/test_change_checks.py"
+      ]
+    },
+    {
+      "id": "CANDIDATE-18",
+      "original_type": "DOCUMENTATION_RESEARCH",
+      "original_description": "Keep sibling Learned Intelligence research/catalog independent of Devtools's experiment status",
+      "original_evidence": "Prior records mention B-0001–0053 and `src/learned_intelligence`; separate repo from `devtools`",
+      "original_acceptance": "Mark cross-project references, imports and intended integration boundaries; do not count sibling source as Devtools production or clear its `.tmp`/scientific evidence during Devtools cleanup",
+      "disposition": "ALREADY_CAPTURED",
+      "canonical": [
+        {
+          "id": "B-0006",
+          "path": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+          "status": "ACTIVE"
+        }
+      ],
+      "rationale": "Existing charter explicitly separates Learned Intelligence repository/catalogs. Policy requirement is captured; no sibling source inspected, moved or counted. No cross-project ticket invented.",
+      "evidence": [
+        "docs/development/reconciliation.md",
+        "docs/research/architecture-reconciliation-inventory.md"
+      ]
+    }
+  ],
+  "source_baseline": "3b2b3de845fbc0d8b510449bed9f492a54e39734",
+  "author": "Codex documentation research; original source bodies preserved separately",
+  "source_changes": false,
+  "documentation_validation": {
+    "files": [
+      "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+      "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+      "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+      "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+      "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+      "docs/backlog/overview.md",
+      "docs/backlog/proposals/0385a359-399f-40bb-aed4-caf5239c9fc8/review-0002.json",
+      "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/review-0002.json",
+      "docs/backlog/proposals/88246171-d102-4b62-93d7-03c1e19f8a7b/proposal.json",
+      "docs/backlog/proposals/88246171-d102-4b62-93d7-03c1e19f8a7b/review-0001.json",
+      "docs/backlog/proposals/ae03cda7-955e-40c6-a131-9e2ba209c9a6/review-0001.json",
+      "docs/backlog/proposals/ae6b9374-f74d-4cd4-b079-a9f843ce3420/review-0001.json",
+      "docs/development/reconciliation.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-harness-mechanism-evidence-20261023.json",
+      "docs/research/agent-harness-mechanism-review.md",
+      "docs/research/architecture-reconciliation-inventory.md",
+      "docs/research/reconciliation-input-reconciliation.md",
+      "docs/research/reconciliation-inputs-20261023.json",
+      "docs/research/reconciliation-inputs/20261023/.gitattributes",
+      "docs/research/reconciliation-inputs/20261023/TRANSFER-MANIFEST.json",
+      "docs/research/reconciliation-inputs/20261023/incoming/review/devtools-reconciliation-independent-review-2026-10-23.md",
+      "docs/research/reconciliation-inputs/20261023/incoming/starter/01-reconciliation-charter.md",
+      "docs/research/reconciliation-inputs/20261023/incoming/starter/02-oss-harness-mechanism-review-initial.md",
+      "docs/research/reconciliation-inputs/20261023/incoming/starter/03-audit-backlog-seeds.md",
+      "docs/research/reconciliation-inputs/20261023/incoming/starter/MANIFEST.json",
+      "docs/roadmap.md"
+    ],
+    "new_local_links": 63,
+    "upstream_pinned_links": 53,
+    "json_documents": 10,
+    "layout": "PASS scripts/validate_layout.py",
+    "tests": "36 passed in1.67s; existing layout/intake tests --no-cov",
+    "forensics_unchanged": 13,
+    "protected_gate": "Not run: documentation only"
+  }
+}
