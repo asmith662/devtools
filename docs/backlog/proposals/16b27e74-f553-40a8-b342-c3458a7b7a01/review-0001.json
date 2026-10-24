@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+  "proposal_sha256": "2031a42490d144c88a602480526788d374fa89856eca3dbb2013cc448c522db7",
+  "previous": null,
+  "at": "2026-10-24T22:07:20.749750+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/ri-module-binding-repair.md",
+  "rationale": "DELIVERED_MAIN / ACCEPTANCE SATISFIED for bounded P1 scope. PR#5 normally merged productionab994225872840bddcf66149256aaa7d46f7f9da into main9ffc559fa5a6175d4d25f025ddb310553200fe53, treed2edc5b9a437e192982f6c368d3ba7503c75b16c; PR4 audit evidence merged at48a01216dde95ad2b7034844f3954fdc404f232e. Before repair28 real-source regression failures; final43 new cases,531 focused passes and protected2808 passed/2 skipped with100% production branch coverage on exact committed source/test tree. Four source owners use one name-only extraction/compound traversal helper; module/function/class scope and base source-order boundaries retained, no runtime lifetime simulation. Permanent tests cover all four non-Name forms, functions/classes, local/member/module References, local/imported bases, before/after order, handler use/exit, unrelated/nested namespaces, syntax selection and actual ContextTools read/relationship dispatch. Prior source integrity/foreign/stale guards remain passing. No implementation or main-adoption task remains for this defect. No delivered/closed proposal enum exists in Intake; this ADVISORY records concrete completed scope without unnecessary B-number, approval or parent closure. Optional Localization/direct-base exposure and unsupported broader Python semantics are separate; do not reschedule completed correction.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Implementation and production integration complete; preserve original UUID and histories. Administrative pending-review state is not remaining coding work; no new proposal or B-number.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "924bd93d53c3de87127385e53d886ff6ddd3449dcda9873306a0f6aececd7afe"
+}

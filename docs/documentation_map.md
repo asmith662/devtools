@@ -1,5 +1,7 @@
 # Documentation Map
 
+Current delivered correction: [Python module-binding integrity](development/ri-module-binding-repair.md) and [exact main/validation evidence](research/code-audit/ri-binding-repair-20261024.json). The earlier audit pending bug is now repaired; original scientific/audit records retain their dated meaning.
+
 Current audit navigation: [integrated RI assurance and architectural cohesion](research/ri-assurance-and-cohesion-audit.md), [exact path/blob evidence](research/code-audit/ri-assurance-cohesion.json), and [next configuration/role cohort](research/code-audit/ri-assurance-next-cohort.json). Original fixtures57/93, older versions7 full/170 unreviewed/26 tip-only; both RI repairs delivered on main. This supersedes older count/candidate-only notices below without rewriting historical reports. The comprehensive audit remains active; A+C is unapproved.
 
 Current production status: [whole-feature promotion completed through PR #2](research/feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24), main merge `f1adf2c9`; [authenticated promotion evidence](research/code-audit/main-promotion-20261024.json). Earlier candidate-only notices below are dated checkpoints, now superseded for the integrated scope.
