@@ -1,5 +1,7 @@
 # Documentation Map
 
+Current production status: [whole-feature promotion completed through PR #2](research/feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24), main merge `f1adf2c9`; [authenticated promotion evidence](research/code-audit/main-promotion-20261024.json). Earlier candidate-only notices below are dated checkpoints, now superseded for the integrated scope.
+
 Current integration checkpoint: [whole-feature destination candidate](research/feature-branch-integration-20261024.md), with [exact ref/blob/validation evidence](research/code-audit/branch-integration-20261024.json). This supersedes earlier selective-only preparation as the current integration direction; protected main is unchanged and scientific/architecture authorities remain separate.
 
 Previous audit checkpoint: [RI experimental source completion and proposed main repair adoption](research/ri-experimental-completion-and-main-adoption.md).

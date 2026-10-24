@@ -1,5 +1,53 @@
 # Feature-branch integration checkpoint — 2026-10-24
 
+## Protected-main adoption completed — 2026-10-24
+
+[GitHub PR #2](https://github.com/asmith662/devtools/pull/2) normally merged
+candidate `74a5dc9aea6875cb3b264683a12f2c3dbc5fe344` into main as
+`f1adf2c9e5d2aeeee14223a74bb0a33bc0d5063a`. Its exact parents are pinned main
+`5d979920d0728775ed529457c88f5b68b440c64f` and the candidate. The resulting tree
+`b3118008e9a6df5f577fb2862a780a8f03413ac7` exactly equals the final validated
+candidate; all source/test/application/script/configuration identities agree.
+The following preparation-stage sections retain their dated meaning; their
+pending-adoption language is superseded by this completed promotion record.
+
+The complete protected gate **also ran on candidate HEAD `74a5dc9a`**, not only on
+production commit `0345da87`: 2,765 passed, two live tests skipped, 100% production
+branch coverage. The independently checked final log digest is
+`3a91c969f8d70eb46ceb169e50e98cb90649aae8f9e8cf27aacbe3702fecdc04`.
+The 17 intervening paths are documentation/administrative only; their JSON,
+links, Intake chains, governance scope and whitespace were validated. Fresh
+accepted-main regressions: 543 Commands/RI/source/Planning tests and seven
+frontend tests pass; frontend formatting passes. The identical tree allows reuse
+of the full gate under the existing policy; no stale feature gate was substituted.
+
+Authenticated GitHub account `asmith662` had push/merge permission. Merge commits
+were enabled and automatic branch deletion disabled. GitHub reported main's
+protected flag `false`, classic-protection 404 "Branch not protected", no effective
+rules/rulesets and no required checks or reviews. No settings were changed,
+no approval/status was fabricated and no admin bypass was used. "Protected main"
+remains the repository's local governance designation; server-side protection
+was not asserted where none existed. The maintainer explicitly authorized this
+exact ordinary PR promotion in the current assignment.
+
+Remote main was independently read through Git after GitHub confirmed acceptance.
+Local main fast-forwarded safely from `862bda2d` to the accepted merge, without reset
+or discarded work. Both RI repairs and main-only Commands source/tests were
+reauthenticated. All 13 original forensics and all scientific/feature refs remain.
+No model inference, scientific replay or unapproved obligation implementation ran.
+
+The [promotion evidence](code-audit/main-promotion-20261024.json) records source
+identities, API observations, test/log digests, preservation and seven append-only
+backlog advisories. These identify delivered main adoption without automatically
+closing or approving proposals. No new pending proposal is created here.
+
+This documentation closeout uses the normal PR process and the existing
+administrative branch. After acceptance, resume the selected RI fixture/historical
+version review. The remaining 47 original fixtures, 177 older versions, Localization
+consumption and the unapproved A+C decision remain open. After RI reconciliation,
+continue the other framework/application domains. The successor-session dossier
+remains postponed; no next audit cohort is launched by this closeout.
+
 ## Decision and production status
 
 Prepare and promote the **whole maintained Qwen feature state by a normal merge**,

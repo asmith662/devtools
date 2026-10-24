@@ -1,5 +1,7 @@
 # Research Evidence
 
+Production promotion completed: [normal GitHub PR #2 / accepted main](feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24). The exact validated source is adopted; remaining RI fixture/version and native-consumer work remains open.
+
 Current integration checkpoint: [whole-feature destination candidate](feature-branch-integration-20261024.md). Source, Commands compatibility, bounded dependency/format repairs and fresh protected validation are recorded; protected-main promotion remains the immediate separate decision.
 
 Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](ri-experimental-completion-and-main-adoption.md).
