@@ -1,5 +1,7 @@
 # Roadmap
 
+Current priority after verified promotion: [PR #2 has integrated the completed feature state](research/feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24). Complete documentation closeout, then resume the selected twelve RI fixture modules/seven historical versions and remaining RI obligations. Later audit domains and backlog reconciliation precede the postponed successor-session handoff. Earlier promotion-preparation directions below are historical.
+
 Current maintainer-directed priority: [promote the validated whole-feature integration candidate](research/feature-branch-integration-20261024.md) after the separate protected-main decision. The earlier successor-handoff and selective-only sequencing below are dated history, not current instructions. RI remains active:606/606 experimental source paths,46/93 original fixtures reviewed,47 current fixtures and177 older versions remain; the next RI cohort is queued, not launched.
 
 Earlier deep-review checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md).

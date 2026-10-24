@@ -1,5 +1,7 @@
 # Code audit evidence ledger
 
+Promotion overlay: [main-promotion-20261024.json](main-promotion-20261024.json) authenticates actual GitHub PR #2 acceptance, identical validated tree, post-main tests and preserved evidence. Earlier pending promotion fields remain historical; this does not add semantic audit credit.
+
 Current integration overlay: [branch/ref, exact destination blobs, dependency closure, fixture and validation evidence](branch-integration-20261024.json), explained in the [whole-feature integration report](../feature-branch-integration-20261024.md). It does not replace the census or grant semantic review credit to tested/imported files.
 
 This is dated research metadata for the [comprehensive audit](../comprehensive-code-audit.md)

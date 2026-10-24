@@ -369,3 +369,7 @@ is part of this checkpoint. Existing13 forensic files remain in original custody
 ## Maintainer-directed branch integration (2026-10-24)
 
 The [actual whole-feature integration candidate](../research/feature-branch-integration-20261024.md) replaces selective-only deferral as the current direction. Earlier second-checkout blockers were repaired by the already maintained single-checkout WorkCycle, and the dashboard dependency findings now have a bounded repair. Frozen scientific branches retain separate decisions. Protected-main promotion remains separately authorized; no historical grant is revived.
+
+## Verified production promotion (2026-10-24)
+
+[GitHub PR #2](https://github.com/asmith662/devtools/pull/2) integrated the whole-feature candidate as main `f1adf2c9e5d2aeeee14223a74bb0a33bc0d5063a`, with the exact validated tree and preserved main-only Commands. Local main safely fast-forwarded; post-promotion543 source/RI/Commands tests and seven frontend tests pass. The [promotion overlay](../research/code-audit/main-promotion-20261024.json) supersedes earlier pending-adoption notices for this scope. Historical scientific branches, grants and forensics are preserved; the separate pipeline and B-0048 work remain open. Resume the comprehensive audit after documentation closeout; no successor dossier is prepared.
