@@ -714,3 +714,92 @@ def test_decorated_imported_and_module_members_remain_unsupported(
     assert _outcome(analysis, "Target") is Outcome.TARGET_NOT_DECLARATION
     assert _outcome(analysis, "m.Target") is Outcome.TARGET_NOT_DECLARATION
     assert not analysis.references
+
+
+@pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case f:\n        pass\n",
+        "match [0]:\n    case [*f]:\n        pass\n",
+        "match {}:\n    case {**f}:\n        pass\n",
+        "try:\n    pass\nexcept ValueError as f:\n    pass\n",
+    ],
+)
+def test_facade_fallback_cannot_restore_competing_binding(
+    tmp_path: Path,
+    binding: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/target.py": "def f():\n    pass\n",
+            "src/facade.py": "from target import f\n" + binding,
+            "src/use.py": "from facade import f\nf()\n",
+        },
+    )
+    facade = next(
+        item
+        for item in _universe(snapshot).interpretations
+        if item.resource.address.value == "src/facade.py"
+    )
+    direct = lookup_python_module_declaration(
+        snapshot,
+        module=facade,
+        declared_name="f",
+    )
+    assert direct.outcome is PythonModuleDeclarationLookupOutcome.AMBIGUOUS
+    analysis = _analysis(snapshot, "src/use.py")
+    assert _outcome(analysis, "f") is Outcome.AMBIGUOUS_BINDING
+    assert analysis.references == ()
+
+
+def test_authoritative_ambiguity_does_not_invoke_facade_fallback(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/target.py": "def f():\n    pass\n",
+            "src/facade.py": "from target import f\nf = 0\n",
+            "src/use.py": "from facade import f\nf()\n",
+        },
+    )
+
+    def forbidden(*_args: object, **_kwargs: object) -> None:
+        pytest.fail("Authoritative ambiguity must not invoke a fallback")
+
+    monkeypatch.setattr(
+        "devtools.context.python.references.declarations.resolution.resolve_python_imported_member",
+        forbidden,
+    )
+    assert _outcome(_analysis(snapshot, "src/use.py"), "f") is Outcome.AMBIGUOUS_BINDING
+
+
+def test_facade_reference_controls_preserve_target_and_source_order(
+    tmp_path: Path,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/target.py": "async def f():\n    pass\nclass C:\n    pass\n",
+            "src/facade.py": "from target import f as public\n",
+            "src/use.py": "public()\nfrom facade import public\npublic()\n",
+            "src/direct.py": "from target import C\nC()\n",
+        },
+    )
+    analysis = _analysis(snapshot, "src/use.py")
+    first, second = [a for a in analysis.assessments if a.source_text == "public"]
+    assert first.outcome is Outcome.UNRESOLVED_BINDING
+    assert second.outcome is Outcome.RESOLVED
+    assert second.reference is not None
+    assert second.reference.route is Route.ONE_FACADE
+    assert second.reference.target_resource.address.value == "src/target.py"
+    assert second.reference.target_resource.content == (
+        "async def f():\n    pass\nclass C:\n    pass\n"
+    )
+    assert second.reference.target_declaration.declared_name == "f"
+    assert second.reference.occurrence.snapshot_id == snapshot.id
+    direct = _fact(_analysis(snapshot, "src/direct.py"), "C")
+    assert direct.route is Route.IMPORTED_MEMBER
+    assert isinstance(direct.target_declaration, PythonClassDeclarationKnowledge)

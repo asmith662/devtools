@@ -42,6 +42,71 @@ def dispatch(
     return asyncio.run(tools.dispatch(call(operation, **arguments)))
 
 
+@pytest.mark.parametrize(
+    ("suffix", "resolved"),
+    [
+        ("", True),
+        ("f = 0\n", False),
+        ("match 0:\n    case f:\n        pass\n", False),
+        ("match [0]:\n    case [*f]:\n        pass\n", False),
+        ("match {}:\n    case {**f}:\n        pass\n", False),
+        ("try:\n    pass\nexcept ValueError as f:\n    pass\n", False),
+    ],
+)
+def test_real_facade_relationships_do_not_upgrade_competing_names(
+    tmp_path: Path,
+    suffix: str,
+    *,
+    resolved: bool,
+) -> None:
+    """Exercise admitted observation, native derivation and actual ToolRunner."""
+    target = "src/devtools/target.py"
+    facade = "src/devtools/facade.py"
+    use = "tests/test_use.py"
+    contents = {
+        target: "def f():\n    pass\n",
+        facade: "from devtools.target import f\n" + suffix,
+        use: "from devtools.facade import f\nf()\n",
+    }
+    for name, text in contents.items():
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="")
+    task = CodingTask(
+        "facade-regression",
+        "Inspect the imported function relationship",
+        target,
+        (use,),
+        "0" * 40,
+        tuple((p, hashlib.sha256(t.encode()).hexdigest()) for p, t in contents.items()),
+        tuple((p, "f", "file", "none") for p in contents),
+        "assert False",
+        context_mode="on-demand",
+        read_paths=(facade,),
+    )
+    tools = ContextTools(tmp_path, task)
+    resource = next(r for r in tools.snapshot.resources if r.address.value == use)
+    result = dispatch(
+        tools, "source_relationships", path=use, version=str(resource.content_identity)
+    )
+    assert result["path"] == use
+    assert result["snapshot"] == str(tools.snapshot.id)
+    assert result["assessed"] == 1
+    assert result["resolved"] == int(resolved)
+    if resolved:
+        reference = result["references"][0]
+        expected = next(
+            r for r in tools.snapshot.resources if r.address.value == target
+        )
+        assert expected.content == "def f():\n    pass\n"
+        assert reference["target_path"] == target
+        assert reference["target_version"] == str(expected.content_identity)
+        assert reference["route"] == "one-facade-imported-member"
+        assert reference["direct_call"]
+    else:
+        assert result["references"] == []
+
+
 @pytest.fixture
 def tools(tmp_path: Path) -> ContextTools:
     """Tiny independently authored source, not a Devtools source-tree copy."""

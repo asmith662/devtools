@@ -35,6 +35,14 @@ uses function and class declaration analyses and rejects competing bindings,
 unsupported declarations, wildcard imports, and dynamic namespaces. Directness
 is relative to the observed module, not a context-free property of a symbol.
 
+The one-facade route is attempted only for an unresolved direct member or a
+non-declaration binding such as one eligible import. An authoritative ambiguous
+direct lookup is preserved and cannot be upgraded by the fallback. The facade
+resolver separately validates competing module-scope names, namespace uncertainty
+and the final function binding; lack of a direct declaration is not permission
+to ignore competing evidence. These are static evidence checks, not Tool or edit
+authorization and not runtime import evaluation.
+
 `direct_call=True` means only that the resolved Name or Attribute expression
 occupies `ast.Call.func`. It neither proves runtime invocation nor class
 construction, descriptor behavior, or dispatch. An imported class in `C()` is

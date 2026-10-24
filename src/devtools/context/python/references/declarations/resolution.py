@@ -164,7 +164,15 @@ def _resolve(  # noqa: C901, PLR0911, PLR0912, PLR0913, PLR0917
         direct_member_resolution=member,
     )
     if member.outcome is not PythonModuleDeclarationLookupOutcome.RESOLVED:
-        if binding.kind == "imported-member" and len(parts) == 1:
+        if (
+            member.outcome
+            in {
+                PythonModuleDeclarationLookupOutcome.UNRESOLVED,
+                PythonModuleDeclarationLookupOutcome.NOT_DECLARATION,
+            }
+            and binding.kind == "imported-member"
+            and len(parts) == 1
+        ):
             facade = resolve_python_imported_member(
                 snapshot,
                 imports,

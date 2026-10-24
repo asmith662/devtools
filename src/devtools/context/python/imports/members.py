@@ -9,11 +9,6 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, ClassVar, cast
 
-from devtools.context.python.function.declarations import (
-    PythonFunctionDeclarationAnalysis,
-    PythonFunctionDeclarationKnowledge,
-    derive_python_function_declarations,
-)
 from devtools.context.python.imports.declarations import (
     PythonImportDeclarationAnalysis,
     PythonImportDeclarationKnowledge,
@@ -24,10 +19,19 @@ from devtools.context.python.imports.resolution import (
     PythonImportResolutionOutcome,
     resolve_python_import_declaration,
 )
+from devtools.context.python.modules.bindings import iter_non_name_bindings
+from devtools.context.python.modules.declarations import (
+    PythonModuleDeclarationLookupOutcome,
+    lookup_python_module_declaration,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
+    from devtools.context.python.function.declarations import (
+        PythonFunctionDeclarationAnalysis,
+        PythonFunctionDeclarationKnowledge,
+    )
     from devtools.context.python.modules.interpretation import (
         PythonModuleInterpretation,
         PythonModuleInterpretationUniverse,
@@ -63,12 +67,13 @@ class PythonImportedMemberUnsupportedReason(Enum):
 
 
 class PythonFacadeCompetingBindingKind(Enum):
-    """Identify only the direct binding forms checked by this slice."""
+    """Identify the bounded module-scope binding forms checked by this slice."""
 
     IMPORT = "import"
     FUNCTION = "function"
     CLASS = "class"
     ASSIGNMENT = "assignment"
+    PATTERN_OR_HANDLER = "pattern-or-handler"
 
 
 @dataclass(frozen=True, slots=True)
@@ -166,23 +171,17 @@ def resolve_python_imported_member(  # noqa: PLR0911
         module_universe=module_universe,
         source_interpretations=source_interpretations,
     )
-    if source_declaration.imported_name is None:
+    unsupported_source = {
+        None: PythonImportedMemberUnsupportedReason.SOURCE_NOT_IMPORTED_MEMBER,
+        "*": PythonImportedMemberUnsupportedReason.SOURCE_STAR_IMPORT,
+    }.get(source_declaration.imported_name)
+    if unsupported_source is not None:
         return _result(
             source_analysis,
             source_declaration,
             module_universe,
             PythonImportedMemberResolutionOutcome.UNSUPPORTED,
-            unsupported_reason=(
-                PythonImportedMemberUnsupportedReason.SOURCE_NOT_IMPORTED_MEMBER
-            ),
-        )
-    if source_declaration.imported_name == "*":
-        return _result(
-            source_analysis,
-            source_declaration,
-            module_universe,
-            PythonImportedMemberResolutionOutcome.UNSUPPORTED,
-            unsupported_reason=PythonImportedMemberUnsupportedReason.SOURCE_STAR_IMPORT,
+            unsupported_reason=unsupported_source,
         )
 
     source_resolution = resolve_python_import_declaration(
@@ -211,7 +210,7 @@ def resolve_python_imported_member(  # noqa: PLR0911
         snapshot,
         resource_address=facade.resource.address,
     )
-    requested_name = source_declaration.imported_name
+    requested_name = cast("str", source_declaration.imported_name)
     facade_bindings = tuple(
         declaration
         for declaration in facade_analysis.declarations
@@ -286,6 +285,28 @@ def resolve_python_imported_member(  # noqa: PLR0911
             facade_bindings=facade_bindings,
         )
 
+    # A single import must also survive canonical namespace uncertainty checks.
+    # NOT_DECLARATION is expected for that import; ambiguity is not absence.
+    facade_lookup = lookup_python_module_declaration(
+        snapshot,
+        module=facade,
+        declared_name=requested_name,
+    )
+    if (
+        facade_lookup.outcome
+        is not PythonModuleDeclarationLookupOutcome.NOT_DECLARATION
+    ):
+        return _result(
+            source_analysis,
+            source_declaration,
+            module_universe,
+            PythonImportedMemberResolutionOutcome.AMBIGUOUS,
+            source_module_resolution=source_resolution,
+            facade=facade,
+            facade_analysis=facade_analysis,
+            facade_bindings=facade_bindings,
+        )
+
     facade_binding = facade_bindings[0]
     facade_resolution = resolve_python_import_declaration(
         facade_analysis,
@@ -313,10 +334,12 @@ def resolve_python_imported_member(  # noqa: PLR0911
         )
 
     target = facade_resolution.matches[0]
-    target_analysis = derive_python_function_declarations(
+    target_lookup = lookup_python_module_declaration(
         snapshot,
-        resource_address=target.resource.address,
+        module=target,
+        declared_name=cast("str", facade_binding.imported_name),
     )
+    target_analysis = target_lookup.function_analysis
     target_declarations = tuple(
         declaration
         for declaration in target_analysis.declarations
@@ -326,7 +349,7 @@ def resolve_python_imported_member(  # noqa: PLR0911
         PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE
         if not target_declarations
         else PythonImportedMemberResolutionOutcome.RESOLVED
-        if len(target_declarations) == 1
+        if target_lookup.outcome is PythonModuleDeclarationLookupOutcome.RESOLVED
         else PythonImportedMemberResolutionOutcome.AMBIGUOUS
     )
     return _result(
@@ -376,6 +399,14 @@ def _inspect_facade_bindings(
                         support=support,
                     ),
                 )
+        if requested_name in iter_non_name_bindings(node):
+            competing.append(
+                PythonFacadeCompetingBinding(
+                    name=requested_name,
+                    kind=PythonFacadeCompetingBindingKind.PATTERN_OR_HANDLER,
+                    support=support,
+                ),
+            )
         nested_import = nested_import or _contains_nested_import(node, requested_name)
     return _FacadeSyntax(
         star_import=star_import,
