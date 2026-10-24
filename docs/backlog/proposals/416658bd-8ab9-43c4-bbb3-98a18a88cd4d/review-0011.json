@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+  "previous": "3510cf2013829e6b7ff97c350e50241342545672c99920ff8f195566a1836308",
+  "at": "2026-10-24T19:13:15.911204+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+  "rationale": "Delivered-main physical-line implementation a0a6c224 remains present at integrated baseline. Old materialization7d0357/a6375e used splitlines; current StringIO physical LF/CRLF/CR and endpoint UTF-8 validation supersede them. Source-search indexing repair and exact-name correspondence repair retain distinct owners. Operator reconcile delivered scope with duplicate5aa7a431; historical SourceSpans and frozen variants are not repaired by this main merge.",
+  "duplicates": [
+    {
+      "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve existing identity and append-only history; no approval, B-number, grant, dispatch or automatic closure. Distinct new production binding proposal 16b27e74-f553-40a8-b342-c3458a7b7a01.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "0f1aa7e73ed932819264dcc9f21c9e55f5b0ae18a735f4b6df149d170d35d13b"
+}

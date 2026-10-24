@@ -1,5 +1,9 @@
 # Code audit evidence ledger
 
+Latest integrated-main overlay: [RI assurance/cohesion report](../ri-assurance-and-cohesion-audit.md), [exact twelve-fixture/seven-body records and counts](ri-assurance-cohesion.json), [independent native binding probes](ri-assurance-probes.json), [history grouping fingerprints](ri-assurance-history-groups.json), [canonical Intake advisories](ri-assurance-intake.json), and [next ten-fixture/eight-version cohort](ri-assurance-next-cohort.json). Existing `ri-completion-fixtures.jsonl` and `ri-followup-history.jsonl` carry the updated exact-version depths. Original fixtures57/93; older7 full,170 unreviewed,26 tip-delta-only. No automatic fingerprint-equivalence credit, new science or protected-main mutation. Both old source repairs are delivered on main; candidate-only notices below are historical.
+
+[Checkpoint validation](ri-assurance-checkpoint.json) records the unchanged executable inputs,121 selected/179 repair-regression passes, exact source identities, Intake chains, links, layout, whitespace and thirteen forensic checks. It is documentation validation, not a newly executed protected production gate.
+
 Promotion overlay: [main-promotion-20261024.json](main-promotion-20261024.json) authenticates actual GitHub PR #2 acceptance, identical validated tree, post-main tests and preserved evidence. Earlier pending promotion fields remain historical; this does not add semantic audit credit.
 
 Current integration overlay: [branch/ref, exact destination blobs, dependency closure, fixture and validation evidence](branch-integration-20261024.json), explained in the [whole-feature integration report](../feature-branch-integration-20261024.md). It does not replace the census or grant semantic review credit to tested/imported files.

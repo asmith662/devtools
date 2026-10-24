@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+  "proposal_sha256": "acc0abeaf0696620ab8fe7bbd1d3f2924ec2beda396a5a9be4be55b6a0d8c5ea",
+  "previous": "31b5ca30d67b19e1eb187087357f75ba3af7880cd61b664bbf17f04078d114b2",
+  "at": "2026-10-24T19:13:15.217393+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+  "rationale": "Full historical direct-base8927 versus current owner review: current target resolution correctly reuses modules.lookup and retains direct_member_resolution in identity; old ad hoc target-binding derivation is superseded. Native source_relationships/map currently expose References, not direct-base assessments. Existing integration acceptance remains sufficient, but consume corrected non-Name rebinding guards before presenting a positive base as qualified truth. No new graph engine or claimed model adoption.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve existing identity and append-only history; no approval, B-number, grant, dispatch or automatic closure. Distinct new production binding proposal 16b27e74-f553-40a8-b342-c3458a7b7a01.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4386f752e13415c40ccb6835828cdef70013bc1b06bfb2aae5b4a9dc5ca51bf9"
+}

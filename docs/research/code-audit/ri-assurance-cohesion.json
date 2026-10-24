@@ -1,0 +1,1258 @@
+{
+  "at": "2026-10-24T20:47:34.505565+00:00",
+  "baseline": "5f53f5ac34b1a8a91e3119aa5faba329b8dedfa4",
+  "branch": "audit/ri-assurance-cohesion-20261024",
+  "manifest": {
+    "path": "docs/research/code-audit/ri-completion-next-cohort.json",
+    "blob": "cb906333ce49f0be4c46c72abe4090f2bc9da449",
+    "sha256": "1f251073849c8e7f1fbc83e466f16406a2268d4e1642afd7abb4f06dd1b50473"
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "tests/context/python/imports/test_declarations.py",
+      "selected_blob": "f8fb7883408857a249cd3c794265cee33a64c225",
+      "selected_sha256": "d3aa133e6b4d7f44e79462ca16942d080ba1893077fb2565bc9cd45c68229e1c",
+      "recorded_sha256": "8e5874949a3cc5c0cdadb62ca0c054946b78598bc5d0fd888e37a3f29fdb9a2e",
+      "recorded_sha_domain": "RECORDED_SHA_MATCHES_CRLF_CHECKOUT_OF_PINNED_GIT_BLOB; original physical bytes not independently available",
+      "current_blob": "697926d710b5df756d6fa096f121b5a7c4a8833c",
+      "current_sha256": "4e12c35d319b019de657ef7d9d4c788f14c6a070893e5dc701f0a92529615203",
+      "exact_equal": false,
+      "ast_equal": false,
+      "current_lines": 99,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 20,
+          "end": 29
+        },
+        {
+          "name": "test_import_forms_aliases_relative_levels_and_order",
+          "line": 32,
+          "end": 53
+        },
+        {
+          "name": "test_zero_nested_parse_failure_and_occurrence",
+          "line": 56,
+          "end": 71
+        },
+        {
+          "name": "test_explicit_address_and_multi_resource_requirement",
+          "line": 74,
+          "end": 99
+        }
+      ],
+      "assurance": "Direct module-body import aliases, relative levels, shared occurrence; nested imports excluded; parse error and explicit multi-resource selection.",
+      "fixture_semantics": "Real temporary files, retained observations, AST and twelve literal ordered alias expectations. Old object return annotation/ignores replaced by actual RepositorySnapshot in integrated version.",
+      "limits": "No imported-member truth, runtime importability, exhaustive nested imports, source freshness or model-use inference.",
+      "production_owner": "src/devtools/context/python/imports/declarations.py",
+      "disposition": "a88167f9-2688-478c-9659-202d05e61e1e",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": false,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/python/imports/test_relations.py",
+      "selected_blob": "662f474adfe2d0d05192866e09d543afda3d244b",
+      "selected_sha256": "95bf5cb015279f46cf32a7967e9173432b4930587796033e70799832ad0efeb8",
+      "recorded_sha256": "95bf5cb015279f46cf32a7967e9173432b4930587796033e70799832ad0efeb8",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "662f474adfe2d0d05192866e09d543afda3d244b",
+      "current_sha256": "95bf5cb015279f46cf32a7967e9173432b4930587796033e70799832ad0efeb8",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 528,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_relations_are_declaration_grounded_and_require_one_source",
+          "line": 27,
+          "end": 118
+        },
+        {
+          "name": "test_nested_relative_self_and_non_resolved_outcomes",
+          "line": 121,
+          "end": 228
+        },
+        {
+          "name": "test_ambiguous_unsupported_and_multiple_root_relations_are_zero",
+          "line": 231,
+          "end": 328
+        },
+        {
+          "name": "test_relation_identity_tracks_declaration_source_resolution_and_target",
+          "line": 331,
+          "end": 456
+        },
+        {
+          "name": "test_relation_identity_excludes_unrelated_observed_state",
+          "line": 459,
+          "end": 528
+        }
+      ],
+      "assurance": "Directed module-import facts, repeated syntax, relative/self/nested modules; ambiguous/missing source, foreign resolution, roots and target-universe/content dependencies.",
+      "fixture_semantics": "Real observations and canonical declarations/resolver; some target text intentionally not parseable because module path interpretation does not parse targets.",
+      "limits": "Low-level relation constructor consumes producer-owned resolutions; Localization replay rejects inconsistent resolutions before support. No standalone untrusted-value authentication or task relevance.",
+      "production_owner": "src/devtools/context/python/imports/relations.py",
+      "disposition": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "selected_blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "selected_sha256": "712064d502b9439599d59e6e3d624cf3b3c0b7d46050523c240e6f002d95c998",
+      "recorded_sha256": "7bfd2f099e6442d48063675820db074a56fd0e5b8b5245a251b4c7c2adcf5ce9",
+      "recorded_sha_domain": "RECORDED_SHA_MATCHES_CRLF_CHECKOUT_OF_PINNED_GIT_BLOB; original physical bytes not independently available",
+      "current_blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "current_sha256": "712064d502b9439599d59e6e3d624cf3b3c0b7d46050523c240e6f002d95c998",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 602,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 57,
+          "end": 69
+        },
+        {
+          "name": "_universe",
+          "line": 72,
+          "end": 81
+        },
+        {
+          "name": "_analysis",
+          "line": 84,
+          "end": 97
+        },
+        {
+          "name": "_fact",
+          "line": 100,
+          "end": 110
+        },
+        {
+          "name": "_outcome",
+          "line": 113,
+          "end": 121
+        },
+        {
+          "name": "test_module_qualified_function_and_class_references",
+          "line": 124,
+          "end": 166
+        },
+        {
+          "name": "test_direct_imported_classes_aliases_and_names",
+          "line": 169,
+          "end": 188
+        },
+        {
+          "name": "test_one_facade_function_preserves_existing_positive_route",
+          "line": 191,
+          "end": 209
+        },
+        {
+          "name": "test_same_module_functions_classes_and_class_qualified_methods",
+          "line": 212,
+          "end": 244
+        },
+        {
+          "name": "test_imported_and_module_qualified_class_methods",
+          "line": 247,
+          "end": 267
+        },
+        {
+          "name": "test_decorated_and_rebound_methods_do_not_claim_declaration_binding",
+          "line": 270,
+          "end": 287
+        },
+        {
+          "name": "test_shadowing_rebinding_ambiguity_and_unsupported",
+          "line": 290,
+          "end": 317
+        },
+        {
+          "name": "test_wrong_snapshot_and_retained_content",
+          "line": 320,
+          "end": 350
+        },
+        {
+          "name": "test_direct_module_lookup_bounded_outcomes",
+          "line": 393,
+          "end": 416
+        },
+        {
+          "name": "test_direct_module_lookup_rejects_stale_and_invalid_input",
+          "line": 419,
+          "end": 430
+        },
+        {
+          "name": "test_reference_scope_and_binding_assessments",
+          "line": 433,
+          "end": 457
+        },
+        {
+          "name": "test_unresolved_reference_routes",
+          "line": 507,
+          "end": 517
+        },
+        {
+          "name": "test_method_binding_outcomes",
+          "line": 520,
+          "end": 534
+        },
+        {
+          "name": "test_missing_retained_source_segment_is_rejected",
+          "line": 537,
+          "end": 550
+        },
+        {
+          "name": "test_incomplete_internal_binding_support_never_establishes_reference",
+          "line": 553,
+          "end": 579
+        },
+        {
+          "name": "test_decorated_imported_and_module_members_remain_unsupported",
+          "line": 586,
+          "end": 602
+        }
+      ],
+      "assurance": "Qualified direct Name/Attribute References and syntactic Calls; local/import/facade/class-method routes, unsupported/shadowed/dynamic/nested/decorated states, retained-only and foreign-frame rejection.",
+      "fixture_semantics": "Real source/universe plus isolated internal _Binding tests and get_source_segment=None monkeypatch; actual literal target/resource/route/error assertions. Rebuilds _universe twice in helper.",
+      "limits": "Missing module MatchAs/MatchStar/MatchMapping.rest/ExceptHandler alias negatives permit demonstrated false positives; function-local scope helper already recognizes them. No runtime call graph or autonomous use proof.",
+      "production_owner": "src/devtools/context/python/references/declarations/analysis.py",
+      "disposition": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/python/modules/test_membership.py",
+      "selected_blob": "e9194c3b0fe1b8fcd19a728ca3a2083424ee0409",
+      "selected_sha256": "9609261b102c4ea92133685a1299c0b2fb06680f1acf903b931b622a98e2aec7",
+      "recorded_sha256": "5cc6bd38d1edfe139bb489c57b3c659bd40af09897aea6c35ecd6659ae492e5a",
+      "recorded_sha_domain": "RECORDED_SHA_MATCHES_CRLF_CHECKOUT_OF_PINNED_GIT_BLOB; original physical bytes not independently available",
+      "current_blob": "e9194c3b0fe1b8fcd19a728ca3a2083424ee0409",
+      "current_sha256": "9609261b102c4ea92133685a1299c0b2fb06680f1acf903b931b622a98e2aec7",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 279,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 25,
+          "end": 37
+        },
+        {
+          "name": "_interpret",
+          "line": 40,
+          "end": 48
+        },
+        {
+          "name": "test_immediate_membership_and_both_directional_queries",
+          "line": 51,
+          "end": 99
+        },
+        {
+          "name": "test_missing_non_package_and_excluded_are_distinct",
+          "line": 102,
+          "end": 131
+        },
+        {
+          "name": "test_explicit_root_is_necessary_for_parent_match",
+          "line": 134,
+          "end": 155
+        },
+        {
+          "name": "test_ordinary_name_collision_does_not_replace_unique_package",
+          "line": 158,
+          "end": 179
+        },
+        {
+          "name": "test_ambiguous_package_candidates_establish_no_membership",
+          "line": 182,
+          "end": 211
+        },
+        {
+          "name": "test_snapshot_or_root_mismatch_is_rejected",
+          "line": 214,
+          "end": 228
+        },
+        {
+          "name": "test_constructed_interpretations_and_exclusions_cannot_redirect_membership",
+          "line": 231,
+          "end": 279
+        }
+      ],
+      "assurance": "Immediate package membership, no parent/missing/nonpackage/ambiguous cases, roots, exact resource/frame uniqueness and no self containment.",
+      "fixture_semantics": "Real retained module interpretations; replace(dotted_name) deliberately creates ambiguous frame, not real ambiguity derivation. Identity tests distinguish selected root/resource changes.",
+      "limits": "Package naming fact does not imply imports, test ownership or relevance. No agent action shown.",
+      "production_owner": "src/devtools/context/python/modules/membership.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "selected_blob": "fce0aa130d0c60724a489e8d57b73924a9dd2d6c",
+      "selected_sha256": "d1ac7eb3e614c4d266e6cb274dc02ec7d34f9f2cc5380b2a038028f9c5515ad9",
+      "recorded_sha256": "a78ea35f3ab229c21191bf1894bec6723bef045e5e6f05c5b065962762b39706",
+      "recorded_sha_domain": "RECORDED_SHA_MATCHES_CRLF_CHECKOUT_OF_PINNED_GIT_BLOB; original physical bytes not independently available",
+      "current_blob": "fce0aa130d0c60724a489e8d57b73924a9dd2d6c",
+      "current_sha256": "d1ac7eb3e614c4d266e6cb274dc02ec7d34f9f2cc5380b2a038028f9c5515ad9",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 173,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_frame",
+          "line": 39,
+          "end": 57
+        },
+        {
+          "name": "test_plain_and_decorated_native_identity",
+          "line": 69,
+          "end": 106
+        },
+        {
+          "name": "test_exact_kind_scope_and_repeated_declarations",
+          "line": 124,
+          "end": 137
+        },
+        {
+          "name": "test_selection_rejects_invalid_and_foreign_inputs",
+          "line": 140,
+          "end": 173
+        }
+      ],
+      "assurance": "Exact source declaration syntax selection independent of namespace binding; function/class kinds, decorator syntax, duplicate names, deterministic ordinal identity and invalid/foreign scopes.",
+      "fixture_semantics": "Nominal frame builds content/snapshot identities by hand but native declarations use actual AST. Appropriate isolated source syntax test, not real observation integrity proof.",
+      "limits": "Pair real observed source/dependency integration before claiming authenticity. Do not remove decorated source declarations when repairing unique-binding lookup.",
+      "production_owner": "src/devtools/context/python/modules/selection.py",
+      "disposition": "a88167f9-2688-478c-9659-202d05e61e1e",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/python/test_mirrored_paths.py",
+      "selected_blob": "68609be259d68b0e3d659c03510be40fbfb43593",
+      "selected_sha256": "1545a8838a0b599c9af2de663661d01ccdd0703d87799de0fd33b6c0391cdc44",
+      "recorded_sha256": "1545a8838a0b599c9af2de663661d01ccdd0703d87799de0fd33b6c0391cdc44",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "68609be259d68b0e3d659c03510be40fbfb43593",
+      "current_sha256": "1545a8838a0b599c9af2de663661d01ccdd0703d87799de0fd33b6c0391cdc44",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 174,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 24,
+          "end": 36
+        },
+        {
+          "name": "test_exact_nested_pairs_roles_and_observed_support",
+          "line": 39,
+          "end": 77
+        },
+        {
+          "name": "test_unmatched_near_matches_and_initializer_exclusions",
+          "line": 80,
+          "end": 109
+        },
+        {
+          "name": "test_snapshot_identity_and_content_are_derivation_dependencies",
+          "line": 112,
+          "end": 140
+        },
+        {
+          "name": "test_input_order_and_unrelated_observed_resources_affect_derivation",
+          "line": 143,
+          "end": 164
+        },
+        {
+          "name": "test_duplicate_address_is_rejected",
+          "line": 167,
+          "end": 174
+        }
+      ],
+      "assurance": "Exact src/devtools to tests mirrored naming, near-name/extension/init exclusions, canonical order, source/test snapshots, duplicate refusal and retained-after-delete behavior.",
+      "fixture_semantics": "Real observed files with independently listed correspondence and support resource expectations; reordered input and unrelated resource derivation changes explicit.",
+      "limits": "Correspondence is not executed coverage, ownership or task sufficiency. Historical bounded benefit unchanged.",
+      "production_owner": "src/devtools/context/python/mirrored_paths.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/retrieval/test_composition.py",
+      "selected_blob": "2e00fe7999b0e77047f79aeb1c9570848a3a9710",
+      "selected_sha256": "ccc79773425a326362263fe37591a4d3528881a3288601a89163102e3f7d7653",
+      "recorded_sha256": "ccc79773425a326362263fe37591a4d3528881a3288601a89163102e3f7d7653",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "cc513bc654f8127f5d473446133677774e89bbb8",
+      "current_sha256": "1b049fb802160228dfa73ec318f8d288a32fc42329d548457b69135b214bce7d",
+      "exact_equal": false,
+      "ast_equal": true,
+      "current_lines": 353,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_lexical",
+          "line": 49,
+          "end": 78
+        },
+        {
+          "name": "_inputs",
+          "line": 81,
+          "end": 102
+        },
+        {
+          "name": "_compose",
+          "line": 105,
+          "end": 117
+        },
+        {
+          "name": "test_inventory_correlates_native_evidence_without_ranking_or_parsing",
+          "line": 120,
+          "end": 153
+        },
+        {
+          "name": "test_duplicate_presentations_do_not_erase_independent_supports",
+          "line": 156,
+          "end": 185
+        },
+        {
+          "name": "test_rejects_stale_lexical_corpus_even_when_match_is_unchanged",
+          "line": 188,
+          "end": 212
+        },
+        {
+          "name": "test_rejects_structural_snapshot_and_purpose_mismatch",
+          "line": 215,
+          "end": 239
+        },
+        {
+          "name": "test_rejects_lexical_corpus_and_index_inconsistency",
+          "line": 242,
+          "end": 332
+        },
+        {
+          "name": "test_rejects_lexical_resource_missing_from_snapshot",
+          "line": 335,
+          "end": 353
+        },
+        {
+          "name": "forbid_parse",
+          "line": 127,
+          "end": 129
+        },
+        {
+          "name": "with_collection",
+          "line": 248,
+          "end": 263
+        }
+      ],
+      "assurance": "Correlate native lexical/structural supports under one snapshot/purpose, preserve repeated independent supports, reject stale corpus even when matching hit unchanged.",
+      "fixture_semantics": "Real _facts native observation/import/reference/package helper plus real lexical corpus. ast.parse monkeypatch after derivation protects no reparse in composition; conflicts and foreign statistics tested.",
+      "limits": "Neutral resource inventory, no fused ranking or model consumption; duplicate identical matches dedup by owner policy. Native fact producer correctness remains upstream.",
+      "production_owner": "src/devtools/context/retrieval/composition.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/repository/test_corpus.py",
+      "selected_blob": "a4a6258af5d1fbc6017d9456839852e01c221f28",
+      "selected_sha256": "96e8ae738773c8062c358ceece3536ce8a1613910c01b4feee9c4b37cf9cfe64",
+      "recorded_sha256": "96e8ae738773c8062c358ceece3536ce8a1613910c01b4feee9c4b37cf9cfe64",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "68dbee9ea1d6941067c7db284fc2c234a606ffe1",
+      "current_sha256": "db130f5e553ed5a6cbcceb6bca42e9be42b926022def73154d340bae57bc8914",
+      "exact_equal": false,
+      "ast_equal": true,
+      "current_lines": 500,
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_discovery",
+          "line": 25,
+          "end": 45
+        },
+        {
+          "name": "_empty_discovery",
+          "line": 48,
+          "end": 56
+        },
+        {
+          "name": "_repository",
+          "line": 59,
+          "end": 60
+        },
+        {
+          "name": "_observe",
+          "line": 63,
+          "end": 74
+        },
+        {
+          "name": "test_membership_is_discovery_grounded_heterogeneous_and_canonical",
+          "line": 77,
+          "end": 100
+        },
+        {
+          "name": "test_equivalent_selection_is_caller_order_independent",
+          "line": 103,
+          "end": 121
+        },
+        {
+          "name": "test_empty_membership_retains_nonempty_discovery",
+          "line": 124,
+          "end": 130
+        },
+        {
+          "name": "test_empty_discovery_can_define_an_empty_membership",
+          "line": 133,
+          "end": 142
+        },
+        {
+          "name": "test_duplicate_or_undiscovered_selection_fails",
+          "line": 145,
+          "end": 158
+        },
+        {
+          "name": "test_definition_construction_performs_no_acquisition_or_analysis",
+          "line": 161,
+          "end": 186
+        },
+        {
+          "name": "test_realization_retains_exact_selected_observed_occurrences_in_definition_order",
+          "line": 189,
+          "end": 235
+        },
+        {
+          "name": "test_unselected_observed_state_does_not_become_a_member_or_identity_input",
+          "line": 238,
+          "end": 281
+        },
+        {
+          "name": "test_selected_content_membership_and_repository_change_corpus_identity",
+          "line": 284,
+          "end": 356
+        },
+        {
+          "name": "test_realization_rejects_missing_mismatched_or_duplicate_observed_state",
+          "line": 359,
+          "end": 408
+        },
+        {
+          "name": "test_empty_definition_realizes_without_observed_state_or_work",
+          "line": 411,
+          "end": 444
+        },
+        {
+          "name": "test_nonempty_realization_performs_no_acquisition_or_analysis",
+          "line": 447,
+          "end": 494
+        },
+        {
+          "name": "test_corpus_identity_rejects_noncanonical_value",
+          "line": 497,
+          "end": 500
+        },
+        {
+          "name": "fail",
+          "line": 166,
+          "end": 168
+        },
+        {
+          "name": "fail",
+          "line": 420,
+          "end": 422
+        },
+        {
+          "name": "fail",
+          "line": 477,
+          "end": 479
+        }
+      ],
+      "assurance": "Explicit discovered subset, stable selected order, realization dependencies, empty corpus, missing/duplicate/foreign snapshot resources and unrelated-state independence.",
+      "fixture_semantics": "Real filesystem observation in realization tests; nominal hash/snapshot objects in no-work tests intentionally isolate projection; literal selected text and identity deltas.",
+      "limits": "Corpus projection is not external source authenticity or freshness by arbitrary caller IDs. Empty definition correctly has no snapshot dependency.",
+      "production_owner": "src/devtools/context/repository/corpus.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/repository/test_document.py",
+      "selected_blob": "03c061a2a02dec407d9de9b502380af6ce740e52",
+      "selected_sha256": "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261",
+      "recorded_sha256": "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "03c061a2a02dec407d9de9b502380af6ce740e52",
+      "current_sha256": "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 278,
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 30,
+          "end": 31
+        },
+        {
+          "name": "_corpus",
+          "line": 34,
+          "end": 68
+        },
+        {
+          "name": "test_represents_heterogeneous_corpus_members_as_exact_whole_resources",
+          "line": 71,
+          "end": 122
+        },
+        {
+          "name": "test_equivalent_representation_is_deterministic",
+          "line": 125,
+          "end": 138
+        },
+        {
+          "name": "test_selected_content_and_address_change_document_identity",
+          "line": 141,
+          "end": 170
+        },
+        {
+          "name": "test_other_member_changes_collection_but_not_an_unchanged_document",
+          "line": 173,
+          "end": 206
+        },
+        {
+          "name": "test_empty_corpus_represents_without_side_effects",
+          "line": 209,
+          "end": 245
+        },
+        {
+          "name": "test_document_representation_exposes_no_lexical_or_ranking_state",
+          "line": 248,
+          "end": 272
+        },
+        {
+          "name": "test_document_identity_rejects_noncanonical_value",
+          "line": 275,
+          "end": 278
+        },
+        {
+          "name": "fail",
+          "line": 227,
+          "end": 229
+        }
+      ],
+      "assurance": "Whole-resource exact text, Unicode/CRLF, deterministic address/doc order and resource retention; member/repo/content sensitive identities with unrelated-corpus independence.",
+      "fixture_semantics": "Real source observation for exact-text expectations; explicit discovery membership. Monkeypatch guards no acquisition/parser/retrieval after projection.",
+      "limits": "Representation identity deliberately independent of unrelated snapshot changes; document is not Context choice or edit permission.",
+      "production_owner": "src/devtools/context/repository/document.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_index.py",
+      "selected_blob": "5710e325f06b62dc19b3448291b4e81134cacaf6",
+      "selected_sha256": "9cad5dd5ee3633440feac0b8d7fd4835ea809d7e2fda0ca5cb5b445bc83e3a44",
+      "recorded_sha256": "9cad5dd5ee3633440feac0b8d7fd4835ea809d7e2fda0ca5cb5b445bc83e3a44",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "6236264e78957c26c9c3a5083d4a6f479982ea49",
+      "current_sha256": "e828764ec72bf579c4dafee79dc21d75e1f303ce75a259afff06d1c1b1beb0cc",
+      "exact_equal": false,
+      "ast_equal": true,
+      "current_lines": 194,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_analyzed_collection",
+          "line": 27,
+          "end": 41
+        },
+        {
+          "name": "_statistics",
+          "line": 44,
+          "end": 48
+        },
+        {
+          "name": "_index",
+          "line": 51,
+          "end": 57
+        },
+        {
+          "name": "test_equivalent_analyses_produce_equal_statistics_and_index",
+          "line": 60,
+          "end": 66
+        },
+        {
+          "name": "test_postings_retain_document_and_observation_evidence",
+          "line": 69,
+          "end": 95
+        },
+        {
+          "name": "test_index_changes_with_statistics_without_mutating_analysis",
+          "line": 98,
+          "end": 117
+        },
+        {
+          "name": "test_empty_index_has_no_postings",
+          "line": 120,
+          "end": 128
+        },
+        {
+          "name": "test_statistics_and_index_do_not_retokenize_or_acquire_resources",
+          "line": 131,
+          "end": 160
+        },
+        {
+          "name": "test_statistics_and_index_expose_no_query_scoring_or_retrieval_state",
+          "line": 163,
+          "end": 180
+        },
+        {
+          "name": "test_paths_are_not_indexed_unless_present_in_document_content",
+          "line": 183,
+          "end": 194
+        },
+        {
+          "name": "fail",
+          "line": 137,
+          "end": 139
+        }
+      ],
+      "assurance": "Inverted index vocabulary/postings/TF/document evidence in deterministic encounter order; empty/rebuild/unchanged-analysis and path-not-content contracts.",
+      "fixture_semantics": "Synthetic lexical _helpers suitable for literal independent vocabulary/frequency/posting oracles; monkeypatch prohibits retokenization/acquisition after analysis.",
+      "limits": "Existing concatenation helper collision not production identity collision; no real source-integrity or malformed producer evidence proof.",
+      "production_owner": "src/devtools/context/retrieval/lexical/index.py",
+      "disposition": "a88167f9-2688-478c-9659-202d05e61e1e",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_statistics.py",
+      "selected_blob": "da49fe20cb3f15fd6f49c30337b1ea953b941c19",
+      "selected_sha256": "994f9ddf931529882fbc6359ebd514aa8da54ef97d4f70c47126d25e09c2b658",
+      "recorded_sha256": "994f9ddf931529882fbc6359ebd514aa8da54ef97d4f70c47126d25e09c2b658",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "da49fe20cb3f15fd6f49c30337b1ea953b941c19",
+      "current_sha256": "994f9ddf931529882fbc6359ebd514aa8da54ef97d4f70c47126d25e09c2b658",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 123,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_analyzed_collection",
+          "line": 17,
+          "end": 31
+        },
+        {
+          "name": "test_statistics_establish_document_counts_lengths_and_average",
+          "line": 34,
+          "end": 47
+        },
+        {
+          "name": "test_statistics_preserve_term_frequency_and_distinct_document_frequency",
+          "line": 50,
+          "end": 72
+        },
+        {
+          "name": "test_empty_statistics_have_explicit_zero_semantics",
+          "line": 75,
+          "end": 101
+        },
+        {
+          "name": "test_statistics_change_with_collection_and_preserve_unchanged_analysis",
+          "line": 104,
+          "end": 123
+        }
+      ],
+      "assurance": "Document length, mean2, TF counts and distinct-document DF, empty/all-empty and exact retained analysis dependencies.",
+      "fixture_semantics": "Synthetic arithmetic with literal lengths(3,2,0,3), literal term counts and address order, not just self-equality.",
+      "limits": "Does not certify caller-constructed forged analyses, parse provenance or semantic relevance. Different representation policy would need separate fixtures.",
+      "production_owner": "src/devtools/context/retrieval/lexical/statistics.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_evaluation.py",
+      "selected_blob": "aa3fa4bf016bafad526f7a39fda02ed939f1f36d",
+      "selected_sha256": "60fdc0a1a97c3bed0c6433d877097e134ef9327da425e8ad8ae77b65fa90c8b5",
+      "recorded_sha256": "60fdc0a1a97c3bed0c6433d877097e134ef9327da425e8ad8ae77b65fa90c8b5",
+      "recorded_sha_domain": "EXACT_GIT_BLOB_BYTES",
+      "current_blob": "aa3fa4bf016bafad526f7a39fda02ed939f1f36d",
+      "current_sha256": "60fdc0a1a97c3bed0c6433d877097e134ef9327da425e8ad8ae77b65fa90c8b5",
+      "exact_equal": true,
+      "ast_equal": true,
+      "current_lines": 357,
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_controlled_index",
+          "line": 38,
+          "end": 67
+        },
+        {
+          "name": "_address",
+          "line": 70,
+          "end": 72
+        },
+        {
+          "name": "_retrieve",
+          "line": 75,
+          "end": 86
+        },
+        {
+          "name": "_case",
+          "line": 89,
+          "end": 101
+        },
+        {
+          "name": "test_evaluation_retains_native_relevance_rank_and_missed_resource_evidence",
+          "line": 104,
+          "end": 135
+        },
+        {
+          "name": "test_evaluation_metrics_handle_no_results_short_lists_and_multiple_relevant",
+          "line": 138,
+          "end": 164
+        },
+        {
+          "name": "test_aggregate_metrics_preserve_case_results_and_compute_mrr",
+          "line": 167,
+          "end": 199
+        },
+        {
+          "name": "test_evaluation_rejects_invalid_cases_and_insufficient_result_evidence",
+          "line": 202,
+          "end": 227
+        },
+        {
+          "name": "test_summary_rejects_mixed_cutoffs_and_case_query_mismatch",
+          "line": 230,
+          "end": 252
+        },
+        {
+          "name": "test_controlled_heterogeneous_cases_measure_strengths_and_known_gaps",
+          "line": 255,
+          "end": 315
+        },
+        {
+          "name": "test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work",
+          "line": 318,
+          "end": 357
+        },
+        {
+          "name": "fail",
+          "line": 326,
+          "end": 328
+        }
+      ],
+      "assurance": "Binary designated relevance at K, hit/recall/reciprocal rank, misses, empty rankings, same-cutoff aggregates, invalid cases and query/population bounds.",
+      "fixture_semantics": "Explicit heterogeneous twelve-document fixture, literal rank/0/0.5/1 outcomes and designated misses; one repeat equality plus monkeypatch is deterministic no-upstream test, not sole correctness oracle.",
+      "limits": "Fixture-designated gold only evaluates retained outputs; not runtime selector, task coverage, unknown-label policy or controlled real coding effectiveness. Malformed producer result authentication not exercised.",
+      "production_owner": "src/devtools/context/retrieval/lexical/evaluation.py",
+      "disposition": "VERIFIED_NO_ACTION",
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+      "new_path_credit": true,
+      "agent_use": "No autonomous use established by this test; see report consumer crosswalk"
+    }
+  ],
+  "historical": [
+    {
+      "path": "src/devtools/context/python/classes/bases.py",
+      "blob": "8927e55d1126c2ec0af6925ab8bc827e514e735e",
+      "commits": [
+        182,
+        229
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "edfbb0b163cd31df302f97df4c4387d916ed66ba16f5f64e01f9f236a472a20a",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 477,
+      "functions": [
+        "derive_python_direct_bases",
+        "_assess",
+        "_attribute_parts",
+        "_bindings",
+        "_digest",
+        "identity",
+        "direct_bases_of",
+        "direct_subclasses_of"
+      ],
+      "finding": "Whole bounded direct-base owner: local/module/member routes, qualified absent/ambiguous/unsupported states, source/target identities; _bindings and all errors read. Old per-address target class cache plus ad hoc target AST/import binding rederivation replaced by modules.lookup and retained direct_member_resolution. Same local non-Name guard gap remains today; no useful alternate graph system lost.",
+      "current_counterpart": "src/devtools/context/python/classes/bases.py",
+      "current_blob": "474df036a8677c66c25c6c1c8bebf5d7f44acd5f",
+      "backlog": [
+        "16b27e74-f553-40a8-b342-c3458a7b7a01",
+        "cea1b3e7-bfa6-492a-b850-343a0c543878",
+        "aedea41e-804b-4fe0-ad53-8758e074885d"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "src/devtools/context/python_function_materialization.py",
+      "blob": "7d0357aca237718a88959d494734099ea9a14230",
+      "commits": [
+        175,
+        250
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_KNOWN_LIMITATION",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "a076baffd55878e1f37eb650dfb4bdd20b669916a4b8681010c27d48b5c9ef75",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 162,
+      "functions": [
+        "materialize_python_function_disclosure_source",
+        "_extract_source_segment",
+        "_absolute_byte_offset",
+        "_semantic_digest",
+        "identity"
+      ],
+      "finding": "Single-resource snapshot.resource owner; checks snapshot/address/range/decodable slice only. splitlines includes nonphysical Unicode separators; checks slice decoding, not both endpoint boundaries independently. No selected-match/dependency correspondence. Main StringIO/endpoint validation and merged exact-name repair supersede it. No historical code executed.",
+      "current_counterpart": "src/devtools/context/python/function/materialization.py",
+      "current_blob": "a6bb755deb8df4fc9f19e1381d332f38734a81f0",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+        "416658bd-8ab9-43c4-bbb3-98a18a88cd4d"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "src/devtools/context/python_function_materialization.py",
+      "blob": "a6375e143fa10850e307d6efc2e4ac955d461ac4",
+      "commits": [
+        250,
+        355
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_KNOWN_LIMITATION",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "8cf4db8c29bd1a9ec6948a04b2a2d20a5bf7795ad5dda28dfa43bcbfdfae0ce0",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 164,
+      "functions": [
+        "materialize_python_function_disclosure_source",
+        "_extract_source_segment",
+        "_absolute_byte_offset",
+        "_semantic_digest",
+        "identity"
+      ],
+      "finding": "Multi-resource snapshot.resource_at replaces single resource property and translates missing address. Identity/extraction otherwise keeps old geometry-only correspondence and splitlines defects. Multi-resource support adopted; validators strengthened on main.",
+      "current_counterpart": "src/devtools/context/python/function/materialization.py",
+      "current_blob": "a6bb755deb8df4fc9f19e1381d332f38734a81f0",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+        "416658bd-8ab9-43c4-bbb3-98a18a88cd4d"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "tests/context/python/function/test_materialization.py",
+      "blob": "78eae937fb4a7b2c9087a74ae18792cb05e5c3a6",
+      "commits": [
+        184,
+        355
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_FIXTURE",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "c729cfe97a984f3e1f91a6e0f15c63f8831a7d2ccb2b1feca2101faafe87815c",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 306,
+      "functions": [
+        "_snapshot",
+        "_disclosure",
+        "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+        "test_materializes_single_line_using_utf8_byte_columns",
+        "test_rejects_mismatched_snapshot_and_resource_state",
+        "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+        "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+        "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+        "test_multi_resource_range_is_applied_only_to_its_addressed_resource",
+        "forbidden",
+        "forbidden_read"
+      ],
+      "finding": "All306 lines read; same tests as b651 with current package-path monkeypatch targets, not blanket inherited review. Namespace relocation changes actual patched call sites; old function geometry limitation persists. Valid tests retained in current larger repaired suite; no obsolete public API restoration.",
+      "current_counterpart": "tests/context/python/function/test_materialization.py",
+      "current_blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "905d79805a1c31c9109cfa202e551467575c1f32",
+      "commits": [
+        175,
+        225
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_FIXTURE",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "2eab05e7b41aa789a9d3ffe9c5d8c0fc9290b9b0e211fa0e8eee78cc390841c6",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 239,
+      "functions": [
+        "_snapshot",
+        "_disclosure",
+        "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+        "test_materializes_single_line_using_utf8_byte_columns",
+        "test_rejects_mismatched_snapshot_and_resource_state",
+        "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+        "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+        "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+        "forbidden"
+      ],
+      "finding": "Full _snapshot/_disclosure and seven tests/parameterized errors: real single-resource observation, literal duplicate sync/async CRLF/Unicode source, byte columns, changed snapshot/address, zero selection and no upstream work. replace(snapshot,resource=...) belongs to obsolete single-resource schema. Does not test valid equal-geometry foreign source.",
+      "current_counterpart": "tests/context/python/function/test_materialization.py",
+      "current_blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "b6512dc0dcb19c6427d1a0e0e04e333253127886",
+      "commits": [
+        250,
+        355
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_FIXTURE",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "0652d13eeff779418d22f81d463335988bba31a179ff891987f6dc6c92d6fbea",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 304,
+      "functions": [
+        "_snapshot",
+        "_disclosure",
+        "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+        "test_materializes_single_line_using_utf8_byte_columns",
+        "test_rejects_mismatched_snapshot_and_resource_state",
+        "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+        "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+        "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+        "test_multi_resource_range_is_applied_only_to_its_addressed_resource",
+        "forbidden",
+        "forbidden_read"
+      ],
+      "finding": "All304 lines including new real two-resource redirect test read. b.py VALUE=1 cannot fit selected a.py line3 range, so refusal proves absent/bad geometry only. Source no-reacquisition monkeypatch and literal source checks remain useful. Missing equal-geometry/content substitution permanently repaired by merged regressions.",
+      "current_counterpart": "tests/context/python/function/test_materialization.py",
+      "current_blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "c40a4804a80fe8703ba7b43274f4e61d17b2d7ed",
+      "commits": [
+        225,
+        250
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "SUPERSEDED_FIXTURE",
+      "remaining": "No historical execution or retrospective independent judgment revalidation; current semantic consumer gaps remain separate.",
+      "git_byte_sha256": "f17186a7de74d59e4d3b9414a5a5fffe29d9c647d699fd206f554e3bbd3f20f2",
+      "recorded_sha_domain": "GIT_BLOB_ONLY_IN_ORIGINAL_MANIFEST; SHA256 measured now",
+      "lines": 239,
+      "functions": [
+        "_snapshot",
+        "_disclosure",
+        "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+        "test_materializes_single_line_using_utf8_byte_columns",
+        "test_rejects_mismatched_snapshot_and_resource_state",
+        "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+        "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+        "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+        "forbidden"
+      ],
+      "finding": "All239 lines read separately from905d. Changed fixture uses replace(snapshot,resources=(...)), meaningful multi-resource schema dependency despite same assertions. Same negative geometric limits; no independent equal-span redirect oracle.",
+      "current_counterpart": "tests/context/python/function/test_materialization.py",
+      "current_blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "backlog": [
+        "954a7136-e132-4e96-80cb-8b38a6b72c4c"
+      ],
+      "review_reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    }
+  ],
+  "counts": {
+    "experimental_reviewed": 606,
+    "experimental_total": 606,
+    "original_current_fixtures_full": 57,
+    "original_current_fixtures_total": 93,
+    "original_current_fixtures_remaining": 36,
+    "augmented_current_fixture_paths": 94,
+    "augmented_full": 58,
+    "historical_total": 203,
+    "historical_full": 7,
+    "historical_not_reviewed": 170,
+    "historical_tip_delta_only": 26
+  },
+  "grouping_counts": {
+    "distinct_git_blobs": 202,
+    "full_ast_groups": 201,
+    "without_top_level_import_groups": 197,
+    "namespace_only_records": 73
+  },
+  "grouping_limits": "These are static triage counts, not equivalence proof. No credit transferred to other196 records; all seven selected bodies independently read.",
+  "validation": {
+    "selected_tests": "121 passed; uv run pytest --no-cov -q with twelve selected current paths",
+    "delivered_repair_regressions": "179 passed; uv run pytest --no-cov -q tests/context/python/function/test_materialization.py tests/context/python/function/test_materialization_integrity.py tests/context/retrieval/source/test_search.py tests/context/retrieval/source/test_physical_lines.py",
+    "failed_invocation": "An initial additional-regression command named nonexistent test_source_integrity.py; no tests ran. Correct maintained test_materialization_integrity.py selection passed179; no test failure suppressed.",
+    "independent_probes": "12 authored native-source fixture variants; eight demonstrate false-positive binding, two clean positives, two ordinary-assignment negatives",
+    "production_tree_changed": false,
+    "protected_gate": "Not rerun: documentation/Intake-only checkpoint, source/test/apps/scripts/config unchanged. Previous integrated gate is historical evidence only."
+  },
+  "backlog": {
+    "new_pending": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+    "advisory_ids": [
+      "a88167f9-2688-478c-9659-202d05e61e1e",
+      "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+      "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+      "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "2e70de9a-d09c-409d-a7a2-0f32f67c4768"
+    ]
+  },
+  "report": "docs/research/ri-assurance-and-cohesion-audit.md"
+}
