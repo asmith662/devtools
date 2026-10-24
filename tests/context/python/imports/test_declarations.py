@@ -13,10 +13,11 @@ from devtools.context.python.imports import (
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import observe_repository_resources
 from devtools.context.repository.resource import RepositoryResourceAddress
+from devtools.context.repository.snapshot import RepositorySnapshot
 from devtools.core.paths import ResolvedPath
 
 
-def _snapshot(tmp_path: Path, text: str) -> object:
+def _snapshot(tmp_path: Path, text: str) -> RepositorySnapshot:
     (tmp_path / "module.py").write_text(text, encoding="utf-8", newline="")
     return observe_repository_resources(
         repository=Repository(
@@ -30,7 +31,7 @@ def _snapshot(tmp_path: Path, text: str) -> object:
 
 def test_import_forms_aliases_relative_levels_and_order(tmp_path: Path) -> None:
     text = "import foo\nimport foo.bar\nimport foo as alias\nimport one, two as local_two\nfrom source import item\nfrom source.pkg import member as local_member\nfrom source import a, b as local_b\nfrom . import relative\nfrom .pkg import entry\nfrom ..up import member\n"
-    result = derive_python_import_declarations(_snapshot(tmp_path, text))  # type: ignore[arg-type]
+    result = derive_python_import_declarations(_snapshot(tmp_path, text))
     assert [
         (item.module, item.level, item.imported_name, item.local_alias)
         for item in result.declarations
@@ -58,14 +59,14 @@ def test_zero_nested_parse_failure_and_occurrence(tmp_path: Path) -> None:
             tmp_path,
             "if True:\n    import ignored\ndef f():\n    import ignored_again\n",
         ),
-    )  # type: ignore[arg-type]
+    )
     assert result.declarations == ()
     assert result.coverage.declaration_count == 0
     with pytest.raises(PythonImportParseError):
-        derive_python_import_declarations(_snapshot(tmp_path, "import ("))  # type: ignore[arg-type]
+        derive_python_import_declarations(_snapshot(tmp_path, "import ("))
     grounded = derive_python_import_declarations(
         _snapshot(tmp_path, "import foo, bar\n"),
-    )  # type: ignore[arg-type]
+    )
     assert grounded.declarations[0].support == grounded.declarations[1].support
     assert grounded.declarations[0].support.resource_address.value == "module.py"
 
