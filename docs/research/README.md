@@ -1,14 +1,14 @@
 # Research Evidence
 
-Current audit checkpoint: [source grounding, evidence boundaries and maintained tests](ri-source-grounding-audit.md).
-All64 selected paths/55 distinct blobs now have applicable full-body review.
-Historical review is574/606, leaving32; current fixtures are30/93, leaving63.
-The separate177 older current-RI versions retain their recorded review depth.
-Two distinct pending bugs and eight advisory updates preserve approval boundaries.
-The next exact32-path experimental cohort and subsequent fixture/version schedule
-are recorded in the version-specific ledger; no next cohort is launched here.
-The task-obligation A+C recommendation remains unapproved. RI review and the
-repository-wide program remain incomplete; the successor dossier stays postponed.
+Current audit checkpoint: [exact-name selected-source integrity repair](ri-exact-name-source-repair.md).
+The bounded maintained repair is independently regression-tested and passes the
+new protected gate:2,763 passed/two skipped,100% production branch coverage.
+Historical review remains574/606, leaving32. Five additional existing fixture
+bodies bring the original universe to35/93; the new regression makes36/94 total,
+with58 existing fixture paths and177 older current-RI versions still outstanding.
+No historical cohort, model inference or protected-main integration is launched.
+Proposal954a7136 retains its normal review authority; task-obligation A+C remains
+unapproved. RI and repository-wide review remain incomplete; no successor dossier.
 
 The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
 now inventories all 35 collections, 48 capability slices, exact destination
@@ -16,7 +16,8 @@ dependencies, actual consumer gaps and custody holds. Its
 [machine evidence](production-adoption-and-architecture-evidence-20261023.json) records source/test/packet identities.
 The maintainer has now required a **comprehensive cross-branch code audit**;
 the final successor-session handoff is postponed. See the current audit links
-below. No implementation, inference or automatic protected adoption is authorized.
+below. Earlier audit-only boundaries remain historical; the current assignment
+explicitly authorizes the bounded exact-name repair, not inference or main adoption.
 Earlier "next" paragraphs below retain their checkpoint meaning.
 
 This directory preserves durable architectural investigations, alternatives,

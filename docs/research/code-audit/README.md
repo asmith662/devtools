@@ -285,3 +285,21 @@ completion and adopted22/23 are quarantined branches, not scientific acceptance.
 The known source-index fix and supported binding-verifier subset remain delivered
 implementation evidence awaiting normal operator reconciliation of remaining
 proposal scope. No frozen scientific source/results are rewritten.
+
+
+## Exact-name maintained-source repair overlay
+
+The [repair report](../ri-exact-name-source-repair.md) starts at af7e9e23 and
+records the separate production fix, genuine pre-fix failures and new protected
+100% branch gate. Historical ledgers and the frozen next32 manifest are unchanged.
+
+| Artifact | Scope and assurance |
+| --- | --- |
+| [ri-exact-source-fixtures.jsonl](ri-exact-source-fixtures.jsonl) | Same93 prior rows, exactly five new full existing-body reviews; one separately identified new regression row. Original35/93, augmented36/94,58 remaining. |
+| [ri-exact-source-evidence.json](ri-exact-source-evidence.json) | Exact production/test blobs, main comparison,13 forensic hashes, pre-fix17 failures and legitimate pass, new19 cases, six exact-runtime synthetic passes and qualified static results. |
+| [ri-exact-source-validation-inputs.json](ri-exact-source-validation-inputs.json) |663 Python/config inputs fixed during the new protected gate. Explicitly not a universal dependency-closure/reuse contract. |
+| [ri-exact-source-intake.json](ri-exact-source-intake.json) | Two append-only advisories, zero new proposals/approvals; delivered954a7136 scope and existing fixture work remain subject to normal operator reconciliation. |
+| [ri-exact-source-checkpoint.json](ri-exact-source-checkpoint.json) | Changed artifact hashes, links/layout/JSON/source/Intake/preservation/whitespace checks; containing commit identifies publication. |
+
+574/606 historical paths remain reviewed,32 unreviewed;177 older current-RI
+versions remain. No model/inference/next-cohort credit or full RI completion claim.

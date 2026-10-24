@@ -1,0 +1,256 @@
+{
+  "at": "2026-10-24T13:51:40.571215+00:00",
+  "baseline": "af7e9e23b8abbac3412ffb6cf78f72dcd4a41353",
+  "source_fix_commit": "7541a1a3348f960e536c8c87474764550b669196",
+  "protected_main": "5d979920d0728775ed529457c88f5b68b440c64f",
+  "source_versions": [
+    {
+      "path": "src/devtools/context/repository/resource.py",
+      "blob": "6485796073d6ed095648b3a54f40c512fbc41545",
+      "git_sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555",
+      "physical_sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555"
+    },
+    {
+      "path": "src/devtools/context/repository/observation.py",
+      "blob": "31bd21af30edf53639df663c237f0b48720fd1e6",
+      "git_sha256": "e9f3f2a8d5b3a00a1bbfacd68eee4a96e66288155ed16b06e58d1db7eb28ab4b",
+      "physical_sha256": "e9f3f2a8d5b3a00a1bbfacd68eee4a96e66288155ed16b06e58d1db7eb28ab4b"
+    },
+    {
+      "path": "src/devtools/context/python/function/materialization.py",
+      "blob": "a6bb755deb8df4fc9f19e1381d332f38734a81f0",
+      "git_sha256": "6a5aa41c8f1a81b7d43e3bed86c52b199c1307963226b8ee5fa527da89f67f2b",
+      "physical_sha256": "0477b37a6d9187b2aa0daf6af2613110413bb2ae5ddaaccedaa67a101d41eb8e"
+    },
+    {
+      "path": "src/devtools/context/python/function/docs/overview.md",
+      "blob": "9a1cc2869ea4fa7deb550b6ce0bea50ab977d406",
+      "git_sha256": "5b62120009250d979d643a745c451475422cbbbe4514c88df624d433ab1ac885",
+      "physical_sha256": "b34ad289dc135547423abacdf4aed2a163122c0ec9ccda7055a3c9a5b42ecff1"
+    },
+    {
+      "path": "tests/context/python/function/test_materialization_integrity.py",
+      "blob": "af70394720c7eeceb0f7ee880f90dc1f1a058ecc",
+      "git_sha256": "efe6fb62f84099f2ecf4e434b20072acf3a91162f0d08e353db4fd65156a3249",
+      "physical_sha256": "efe6fb62f84099f2ecf4e434b20072acf3a91162f0d08e353db4fd65156a3249"
+    }
+  ],
+  "baseline_and_main_versions": [
+    {
+      "path": "src/devtools/context/python/function/materialization.py",
+      "baseline_blob": "a6cf91d35ba232808eaef9af1e2bb091b50be391",
+      "main_blob": "a6cf91d35ba232808eaef9af1e2bb091b50be391",
+      "baseline_sha256": "7a98b9c482560fb45e05fa827f0c4c50605ed05dba032e5e045aea034a11d36e",
+      "main_sha256": "7a98b9c482560fb45e05fa827f0c4c50605ed05dba032e5e045aea034a11d36e",
+      "current_sha256": "0477b37a6d9187b2aa0daf6af2613110413bb2ae5ddaaccedaa67a101d41eb8e",
+      "same_on_protected_main": true,
+      "functions": [
+        "materialize_python_function_disclosure_source",
+        "_extract_source_segment",
+        "_absolute_byte_offset",
+        "_semantic_digest",
+        "identity"
+      ]
+    },
+    {
+      "path": "src/devtools/context/repository/observation.py",
+      "baseline_blob": "1a89161ce67bec3d713a4ae40294a73fde42930a",
+      "main_blob": "1a89161ce67bec3d713a4ae40294a73fde42930a",
+      "baseline_sha256": "d2e4d911f1f8363e5ec2a1a582f291c9d8a2fe8f95864fc2d58962e0ee53fc0b",
+      "main_sha256": "d2e4d911f1f8363e5ec2a1a582f291c9d8a2fe8f95864fc2d58962e0ee53fc0b",
+      "current_sha256": "e9f3f2a8d5b3a00a1bbfacd68eee4a96e66288155ed16b06e58d1db7eb28ab4b",
+      "same_on_protected_main": true,
+      "functions": [
+        "observe_repository_resource",
+        "observe_repository_resources",
+        "_observe_resource",
+        "_semantic_digest"
+      ]
+    },
+    {
+      "path": "src/devtools/context/repository/resource.py",
+      "baseline_blob": "9b8f1d77d740e8dcf6b2153c26ed1f2bf9c4880e",
+      "main_blob": "9b8f1d77d740e8dcf6b2153c26ed1f2bf9c4880e",
+      "baseline_sha256": "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89",
+      "main_sha256": "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89",
+      "current_sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555",
+      "same_on_protected_main": true,
+      "functions": [
+        "_validate_sha256",
+        "__post_init__",
+        "parts",
+        "__str__",
+        "__post_init__",
+        "from_text",
+        "__str__"
+      ]
+    },
+    {
+      "path": "tests/context/python/function/test_disclosure.py",
+      "baseline_blob": "d52390241c536177b1cfd5e506848d658dfd0698",
+      "main_blob": "d52390241c536177b1cfd5e506848d658dfd0698",
+      "baseline_sha256": "c6207c6b33cd50796e5451cfb0a794bd62baa3006670b8fc1477a3a2804dda52",
+      "main_sha256": "c6207c6b33cd50796e5451cfb0a794bd62baa3006670b8fc1477a3a2804dda52",
+      "current_sha256": "c6207c6b33cd50796e5451cfb0a794bd62baa3006670b8fc1477a3a2804dda52",
+      "same_on_protected_main": true,
+      "functions": [
+        "_analysis",
+        "_retrieve",
+        "test_disclosure_selects_and_projects_all_matches_without_strengthening",
+        "test_successful_retrieval_zero_becomes_successful_zero_item_disclosure",
+        "test_disclosure_does_not_acquire_parse_or_derive",
+        "forbidden"
+      ]
+    },
+    {
+      "path": "tests/context/python/function/test_resource_selection.py",
+      "baseline_blob": "25175835dd33ec7ea657b95e17b0a148a39ef61a",
+      "main_blob": "25175835dd33ec7ea657b95e17b0a148a39ef61a",
+      "baseline_sha256": "086d9a9d23ecae66a7cdc48230142b5bc75b79c0bcf780684a1f232d9c1c5d37",
+      "main_sha256": "086d9a9d23ecae66a7cdc48230142b5bc75b79c0bcf780684a1f232d9c1c5d37",
+      "current_sha256": "086d9a9d23ecae66a7cdc48230142b5bc75b79c0bcf780684a1f232d9c1c5d37",
+      "same_on_protected_main": true,
+      "functions": [
+        "_observe",
+        "test_selects_matching_resources_without_altering_context_pipeline",
+        "test_first_match_order_and_all_support_survive_resource_deduplication",
+        "test_zero_retrieval_produces_successful_zero_resource_selection",
+        "test_selection_invokes_no_upstream_or_downstream_operation",
+        "forbidden_read",
+        "forbidden"
+      ]
+    },
+    {
+      "path": "tests/context/python/function/test_retrieval.py",
+      "baseline_blob": "060aed661d329080979d38c00914bbc0d855d297",
+      "main_blob": "060aed661d329080979d38c00914bbc0d855d297",
+      "baseline_sha256": "3d6fabb843f298c37da92b9b3abd5a6c6d873747a265ca8386e163c03eb34322",
+      "main_sha256": "3d6fabb843f298c37da92b9b3abd5a6c6d873747a265ca8386e163c03eb34322",
+      "current_sha256": "3d6fabb843f298c37da92b9b3abd5a6c6d873747a265ca8386e163c03eb34322",
+      "same_on_protected_main": true,
+      "functions": [
+        "_declarations",
+        "test_exact_name_retrieval_preserves_knowledge_evidence_and_order",
+        "test_nonmatching_names_are_excluded_and_input_order_is_preserved",
+        "test_successful_zero_is_distinct_from_invalid_empty_query",
+        "test_retrieval_does_not_read_or_parse_source",
+        "forbidden"
+      ]
+    },
+    {
+      "path": "tests/context/python/function/test_candidates.py",
+      "baseline_blob": "93ef31fd9fa318bf52298aab15f09c599eba0f36",
+      "main_blob": "93ef31fd9fa318bf52298aab15f09c599eba0f36",
+      "baseline_sha256": "3270671609a41f20e7967150caf2c373c4d692237216cf179baebe2b6a498628",
+      "main_sha256": "3270671609a41f20e7967150caf2c373c4d692237216cf179baebe2b6a498628",
+      "current_sha256": "3270671609a41f20e7967150caf2c373c4d692237216cf179baebe2b6a498628",
+      "same_on_protected_main": true,
+      "functions": [
+        "_observe",
+        "test_name_token_candidates_feed_verified_context_pipeline",
+        "test_duplicate_name_tokens_select_each_resource_once_in_eligible_order",
+        "test_candidate_zero_is_successful_and_bounded_to_eligible_resources",
+        "test_invalid_eligible_resources_fail_before_tokenization",
+        "test_tokenization_failure_is_distinct_from_candidate_zero",
+        "test_candidate_selection_invokes_no_other_pipeline_operation",
+        "forbidden_read",
+        "forbidden_tokenization",
+        "forbidden"
+      ]
+    },
+    {
+      "path": "tests/context/python/function/test_rendering.py",
+      "baseline_blob": "1dd8ada35f61a0825c109a369622ae1250121887",
+      "main_blob": "1dd8ada35f61a0825c109a369622ae1250121887",
+      "baseline_sha256": "af233fd05318c07d1eb5e04a83f9a84ef9c43b1c0a6c52c9e4f8f3605fa36ee1",
+      "main_sha256": "af233fd05318c07d1eb5e04a83f9a84ef9c43b1c0a6c52c9e4f8f3605fa36ee1",
+      "current_sha256": "af233fd05318c07d1eb5e04a83f9a84ef9c43b1c0a6c52c9e4f8f3605fa36ee1",
+      "same_on_protected_main": true,
+      "functions": [
+        "_materialized_context",
+        "test_renders_ordered_duplicate_sync_and_async_context_exactly",
+        "test_zero_context_renders_bounded_success_without_absence_claim",
+        "test_rendering_consumes_only_materialized_context",
+        "forbidden"
+      ]
+    }
+  ],
+  "forensics": {
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json": "03a7414cd8f2b2545e5b14af544be5223120cc62",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json": "ec59a6a5a4bf989b0e99618e6ade87f84bd360b2",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json": "28eb7c617bbc624348bdaae641347203fc345324",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json": "e73281d2ebad694434ca90518a6dc1e207ce3b66",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json": "f55f087e9d1f43ef8433f1157e4f368624892993",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json": "87213902cb04e1667b94d6f7fceb243abd367463",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json": "5b125a29ac9b7a94418985ef683bb060f0ae51a6",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json": "1adbf9114dc821343c0f13f571ea97bd17fcd0c0",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json": "6d23bceaf5aaeec0dfd80ecce88403a230149ef5",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json": "a91468108a5c9ea9bcaf88876046cf885b73de51",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json": "4a993b0bd8f31173b5918806d761c4b6c7237dfd",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json": "8b08c96992c3fbd7c75b1a39bef3def0b8bf6d14",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json": "05011ee8cc328b498e120ae208a7e6b4acb5a4ac"
+  },
+  "unchanged_manifests": {
+    "docs/research/code-audit/ri-grounding-next-cohort.json": "f4ef022185618d27ee0b765bbee78f25558b99dcff3fd59c2f63f7f9f79bb674",
+    "experiments/source_grounding/manifest.json": "c9edab5c97b0f5edca201c6c2d7dc31b657ce46d9715fc0fcdc010e37af495c1"
+  },
+  "pre_fix": {
+    "tests": "17 failed,1 passed before production edits; final19 includes one subsequently added native-name corruption case",
+    "independent_original_source_probe": {
+      "baseline_source_sha256": "7a98b9c482560fb45e05fa827f0c4c50605ed05dba032e5e045aea034a11d36e",
+      "timing": "Supplemental read-only original-code probe after repair; actual17 failing tests recorded before production edit",
+      "selected_resource": "a.py",
+      "returned_text": "def decoy_(): return \"B\"",
+      "unchanged_disclosure_identity": true,
+      "stale_claimed_content_identity": "16be8af5d28e92a23299073b764403b380e26dfa40aef2d596ec584752c01e6f",
+      "stale_returned_text": "def decoy_(): return \"B\"",
+      "identity_compatibility_cases": 4
+    }
+  },
+  "logs": {
+    "custody": ".local/ri-exact-fix-20261024/; raw terminal outputs remain local, these hashes preserve the observed result identities",
+    "sha256": {
+      "prefix.txt": "65c716342090ccfafeb1be3921e0b559db8a3c24c26e9ba8fb498b2a3fb33395",
+      "baseline-probe.json": "4c3f9c791a76d30456a4645b69cfe8de4ad59d166240fa45ee2654549a0d4ca3",
+      "focused.txt": "e5e7f8d8a84bc4b34f6ff59d2139de0444555c8c88ec24e2b329b2857344bb6f",
+      "protected.txt": "7717c92c1dc8ca11feb05f739d1b1253c337808f3110907a997c3bece8f247b6",
+      "runtime3140.txt": "4359bc6009cac7dedf5053baaf5b6cdadca712af18dad7cebf15c5fd1f2c35fa",
+      "supported-ruff.txt": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af",
+      "scoped-ruff.txt": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af",
+      "scoped-format.txt": "3c9105041166a0913568f3c6adb0b9b4ad6945c34f455feecf166807eb8af6b8",
+      "supported-format.txt": "110f0dd7a29371b1959468fac5841dbd2f029c2a4da4f73b1fb30f18bcfff563",
+      "ruff.txt": "68055f5bc0a3d0de318685b7e95462819709900890ff0b3effce23945b655c85",
+      "format.txt": "07d097d99dddd31a44da0dada93e34bc119a43e0a98bf9e10961d4f921cb7bcd",
+      "mypy.txt": "5158db1d8447a80405da29ea457e22f132722ad047991a63865a0a7d140fa2ca"
+    }
+  },
+  "validation": {
+    "protected": "2763 passed,2 skipped in860.62s;11931 statements/2988 branches,zero misses/partial branches,100%",
+    "focused": "374 passed before final added knowledge_name case; final protected gate includes all19 new cases",
+    "strict_mypy": "518 source files;PASS",
+    "supported_ruff": "src tests apps scripts excluding tests/experiments:PASS",
+    "changed_python_format": "4 changed Python files:PASS",
+    "broad_static": "Repository-wide Ruff includes frozen generated science and reports24631 errors; broad formatter crashes (annotation beyond buffer), supported-tree formatter reports28 unchanged files. No unrelated reformat, exclusions or policy changes.",
+    "runtime": "Existing installed3.14.0 plus existing site-packages;6 deterministic synthetic tests passed,1 cache warning; no install/certificate change/scientific execution"
+  },
+  "review": {
+    "original_current_universe": 93,
+    "original_current_reviewed": 35,
+    "original_current_remaining": 58,
+    "new_regression_modules": 1,
+    "current_total_with_new": 94,
+    "current_reviewed_with_new": 36,
+    "newly_full_existing": [
+      "tests/context/python/function/test_candidates.py",
+      "tests/context/python/function/test_disclosure.py",
+      "tests/context/python/function/test_rendering.py",
+      "tests/context/python/function/test_resource_selection.py",
+      "tests/context/python/function/test_retrieval.py"
+    ],
+    "experimental_reviewed": 574,
+    "experimental_total": 606,
+    "experimental_remaining": 32,
+    "older_current_versions_remaining": 177
+  },
+  "authority": "Corrective source implementation explicitly authorized by this assignment. Evidence is not edit or WorkCycle authority; proposal dispositions remain pending operator reconciliation."
+}

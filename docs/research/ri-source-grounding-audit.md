@@ -1,5 +1,11 @@
 # RI source-grounding and maintained-test audit
 
+Continuation: [the exact-name source-association repair](ri-exact-name-source-repair.md)
+delivers the separately authorized maintained fix with a new full protected gate,
+five additional existing fixture reviews and all six previously incompatible
+synthetic tests passing under the already installed exact3.14.0 runtime. The
+dated results below remain unchanged; no original science was rerun.
+
 ## Scope and disposition — 2026-10-24
 
 Baseline: `feat/qwen-context-worker` at
