@@ -1,0 +1,565 @@
+--- a/src/devtools/context/python/function/docs/overview.md
++++ b/src/devtools/context/python/function/docs/overview.md
+@@ -99,0 +100,30 @@
++## Exact-name selection integrity
++
++`materialize_python_function_disclosure_source` rechecks the all-match selection
++and ordered declaration projection against the supplied exact-name retrieval.
++Each projected occurrence, name, kind and proposition must correspond to that
++selected match. Its query and native subject must agree with the selected frame.
++After checking range geometry, materialization verifies the actual retained
++text's content identity and the native subject's repository/snapshot/resource
++dependency before returning any source. A fitting range in another file, a
++copied snapshot ID or a caller-supplied hash cannot replace these checks.
++
++`ContentIdentity.from_text` owns the existing observation hash calculation for
++exact decoded UTF-8 text. Repository observation and source materialization use
++the same method; framing and resulting identities are unchanged. This performs
++no normalization, source parsing, filesystem read or new observation.
++
++Directly constructed inconsistent disclosures now fail explicitly. Genuine
++factory-generated disclosure and materialization identities, all-match order,
++duplicate names and bounded zero-match success are unchanged. A zero selection
++requires no source lookup and may still be realized with an unrelated snapshot.
++Invalid-range and missing-resource diagnostics remain specific. Direct
++module-body sync/async functions are this API's declaration scope; nested bodies
++are retained within their selected declaration. Methods/nested-symbol navigation
++remain owned by their existing separate RI/source-search/Planning interfaces.
++
++These checks authenticate correspondence to supplied native knowledge and retained
++source. They do not certify semantic relevance, original-task completeness,
++current filesystem state or permission to edit; a wholly fabricated consistent
++host frame still requires its normal observation/authorization trust boundary.
++
+--- a/src/devtools/context/python/function/materialization.py
++++ b/src/devtools/context/python/function/materialization.py
+@@ -9,0 +10,6 @@
++
++from devtools.context.python.function.declarations import PythonModuleResourceDependency
++from devtools.context.python.function.disclosure import (
++    disclose_python_function_exact_name_retrieval,
++)
++from devtools.context.repository.resource import ContentIdentity
+@@ -17 +22,0 @@
+-    from devtools.context.repository.resource import ContentIdentity
+@@ -74 +79,7 @@
+-    """Resolve selected source occurrences against explicit observed state."""
++    """Authenticate selection and exact retained source without reacquisition."""
++    expected = disclose_python_function_exact_name_retrieval(disclosure.retrieval)
++    if disclosure.selected_matches != expected.selected_matches or len(
++        disclosure.items,
++    ) != len(expected.items):
++        msg = "Function disclosure selection differs from its retrieval."
++        raise PythonFunctionSourceMaterializationError(msg)
+@@ -76 +87,5 @@
+-    for disclosure_item in disclosure.items:
++    for disclosure_item, expected_item in zip(
++        disclosure.items,
++        expected.items,
++        strict=True,
++    ):
+@@ -86,0 +102,24 @@
++        # Keep malformed-coordinate refusals specific, but never return text
++        # merely because a projected range happens to fit another resource.
++        source_text = _extract_source_segment(resource.content, occurrence.source_range)
++        knowledge = expected_item.selected_match.knowledge
++        if (
++            disclosure_item != expected_item
++            or expected_item.selected_match.query != disclosure.retrieval.query
++            or knowledge.declared_name != disclosure.retrieval.query.declared_name
++            or knowledge.subject.snapshot_id != snapshot.id
++        ):
++            msg = "Function disclosure projection differs from its selected knowledge."
++            raise PythonFunctionSourceMaterializationError(msg)
++        if resource.content_identity != ContentIdentity.from_text(resource.content):
++            msg = "Retained source content differs from its content identity."
++            raise PythonFunctionSourceMaterializationError(msg)
++        dependency = PythonModuleResourceDependency(
++            snapshot_id=snapshot.id,
++            repository_id=snapshot.repository_id,
++            resource=resource,
++        )
++        if dependency.identity != knowledge.subject.resource_dependency_identity:
++            msg = "Selected function resource differs from its source dependency."
++            raise PythonFunctionSourceMaterializationError(msg)
++
+@@ -92,4 +131 @@
+-                source_text=_extract_source_segment(
+-                    resource.content,
+-                    occurrence.source_range,
+-                ),
++                source_text=source_text,
+--- a/src/devtools/context/repository/observation.py
++++ b/src/devtools/context/repository/observation.py
+@@ -32 +31,0 @@
+-_CONTENT_IDENTITY_SEMANTICS = "decoded-utf8-text-sha256-v1"
+@@ -149,3 +148 @@
+-    content_identity = ContentIdentity(
+-        _semantic_digest(_CONTENT_IDENTITY_SEMANTICS, file.content),
+-    )
++    content_identity = ContentIdentity.from_text(file.content)
+--- a/src/devtools/context/repository/resource.py
++++ b/src/devtools/context/repository/resource.py
+@@ -5,0 +6 @@
++import hashlib
+@@ -58,0 +60,10 @@
++    @classmethod
++    def from_text(cls, content: str) -> ContentIdentity:
++        """Identify exact decoded UTF-8 text using the observation contract."""
++        digest = hashlib.sha256()
++        for value in ("decoded-utf8-text-sha256-v1", content):
++            encoded = value.encode("utf-8")
++            digest.update(len(encoded).to_bytes(8, byteorder="big"))
++            digest.update(encoded)
++        return cls(digest.hexdigest())
++
+--- a/src/devtools/context/retrieval/docs/overview.md
++++ b/src/devtools/context/retrieval/docs/overview.md
+@@ -182 +182 @@
+-kind, half-open decoded-character offsets `[start, end)`, logical line numbers,
++kind, half-open decoded-character offsets `[start, end)`, physical line numbers,
+@@ -186 +186,9 @@
+-source bytes are preserved. The snapshot is the existing bounded text
++source bytes are preserved. Only LF, CRLF and CR delimit physical lines; VT,
++FF, FS, GS, RS, NEL, LS and PS remain source characters. The source index uses
++the same untranslated universal-newline convention as exact function source
++materialization. Window boundaries and displayed line numbers follow that
++convention for non-Python resources too. This corrects affected slices, not
++identity rules: correctly indexed units keep their existing identities, while
++previously incorrect offsets produce the identities of the corrected slices.
++No native declaration, source-observation or edit authority is broadened.
++The snapshot is the existing bounded text
+--- a/src/devtools/context/retrieval/source/representation.py
++++ b/src/devtools/context/retrieval/source/representation.py
+@@ -84 +84 @@
+-        """Return the one-based logical line under text splitlines semantics."""
++        """Return the one-based physical line without splitting Unicode separators."""
+@@ -86,16 +86,2 @@
+-        return len(prefix.splitlines()) + int(
+-            not prefix
+-            or prefix.endswith(
+-                (
+-                    "\n",
+-                    "\r",
+-                    "\v",
+-                    "\f",
+-                    "\x1c",
+-                    "\x1d",
+-                    "\x1e",
+-                    "\x85",
+-                    "\u2028",
+-                    "\u2029",
+-                ),
+-            ),
++        return len(tuple(StringIO(prefix, newline=""))) + int(
++            not prefix or prefix.endswith(("\n", "\r")),
+@@ -107 +93,2 @@
+-        return max(1, len(self.resource.content[: self.end].splitlines()))
++        prefix = self.resource.content[: self.end]
++        return max(1, len(tuple(StringIO(prefix, newline=""))))
+@@ -138 +125 @@
+-    lines = file.text.splitlines(keepends=True)
++    lines = tuple(StringIO(file.text, newline=""))
+@@ -179 +166 @@
+-        line.encode("utf-8") for line in file.text.splitlines(keepends=True)
++        line.encode("utf-8") for line in StringIO(file.text, newline="")
+--- /dev/null
++++ b/tests/context/python/function/test_materialization_integrity.py
+@@ -0,0 +1,269 @@
++# Copyright (c) 2026
++"""Independent real-observation regressions for selected function source binding."""
++
++from __future__ import annotations
++
++from dataclasses import replace
++from typing import TYPE_CHECKING
++
++import pytest
++
++from devtools.context import (
++    PythonFunctionExactNameQuery,
++    PythonFunctionSourceMaterializationError,
++    Repository,
++    RepositoryId,
++    RepositoryResourceAddress,
++    analyze_python_function_declaration_resources,
++    assemble_python_function_context_model_request,
++    disclose_python_function_exact_name_retrieval,
++    discover_repository_resource_addresses,
++    materialize_python_function_disclosure_source,
++    observe_repository_resources,
++    render_materialized_python_function_context,
++    retrieve_python_functions_by_exact_name,
++)
++from devtools.core.paths import resolve_path
++from devtools.models.interaction import ModelRequest, Prompt
++
++if TYPE_CHECKING:
++    from pathlib import Path
++
++    from devtools.context import (
++        PythonFunctionExactNameContextDisclosure,
++        RepositorySnapshot,
++    )
++
++
++def _frame(
++    tmp_path: Path,
++) -> tuple[RepositorySnapshot, PythonFunctionExactNameContextDisclosure]:
++    """Discover and parse three real retained files with compatible geometry."""
++    files = {
++        "a.py": 'def wanted(): return "A"',
++        "b.py": 'def decoy_(): return "B"',
++        "c.py": 'async def wanted(): return "C"',
++    }
++    for name, text in files.items():
++        (tmp_path / name).write_bytes(text.encode())
++    repository = Repository(RepositoryId.parse("00000000-0000-4000-8000-000000000041"))
++    discovery = discover_repository_resource_addresses(
++        repository=repository,
++        root=resolve_path(tmp_path),
++        maximum_resource_count=10,
++        maximum_traversal_entry_count=20,
++    )
++    snapshot = observe_repository_resources(
++        repository=repository,
++        root=resolve_path(tmp_path),
++        addresses=discovery.addresses,
++        maximum_resource_bytes=4096,
++    )
++    aggregate = analyze_python_function_declaration_resources(
++        snapshot,
++        resource_addresses=tuple(
++            RepositoryResourceAddress(n) for n in ("c.py", "a.py", "b.py")
++        ),
++    )
++    retrieval = retrieve_python_functions_by_exact_name(
++        declarations=aggregate.declarations,
++        query=PythonFunctionExactNameQuery("wanted"),
++    )
++    return snapshot, disclose_python_function_exact_name_retrieval(retrieval)
++
++
++def test_valid_geometry_redirect_refuses_unchanged_selection(tmp_path: Path) -> None:
++    """A valid range in another resource cannot retain the original selection."""
++    snapshot, disclosure = _frame(tmp_path)
++    item = disclosure.items[1]
++    assert item.selected_match.knowledge.support.resource_address.value == "a.py"
++    assert len(snapshot.resource_at(RepositoryResourceAddress("a.py")).content) == len(
++        snapshot.resource_at(RepositoryResourceAddress("b.py")).content,
++    )
++    redirected = replace(
++        item,
++        source_occurrence=replace(
++            item.source_occurrence,
++            resource_address=RepositoryResourceAddress("b.py"),
++        ),
++    )
++    altered = replace(disclosure, items=(disclosure.items[0], redirected))
++    assert altered.identity == disclosure.identity
++    with pytest.raises(PythonFunctionSourceMaterializationError, match="projection"):
++        materialize_python_function_disclosure_source(
++            disclosure=altered,
++            snapshot=snapshot,
++        )
++
++
++@pytest.mark.parametrize("change_identity", [False, True])
++def test_changed_content_under_same_snapshot_refuses(
++    tmp_path: Path,
++    *,
++    change_identity: bool,
++) -> None:
++    """Both an unchanged claimed hash and a new hash must honor dependency evidence."""
++    snapshot, disclosure = _frame(tmp_path)
++    resource = snapshot.resource_at(RepositoryResourceAddress("a.py"))
++    other = snapshot.resource_at(RepositoryResourceAddress("b.py"))
++    replacement = replace(resource, content=other.content)
++    if change_identity:
++        replacement = replace(replacement, content_identity=other.content_identity)
++    stale = replace(
++        snapshot,
++        resources=tuple(
++            replacement if r == resource else r for r in snapshot.resources
++        ),
++    )
++    assert stale.id == snapshot.id
++    with pytest.raises(
++        PythonFunctionSourceMaterializationError,
++        match=r"content|dependency",
++    ):
++        materialize_python_function_disclosure_source(
++            disclosure=disclosure,
++            snapshot=stale,
++        )
++
++
++@pytest.mark.parametrize(
++    "mutation",
++    [
++        "missing",
++        "duplicate",
++        "reorder",
++        "selected",
++        "match",
++        "name",
++        "kind",
++        "proposition",
++        "query",
++        "knowledge_name",
++        "subject",
++        "dependency",
++        "native_redirect",
++        "range",
++        "repository",
++    ],
++)
++def test_inconsistent_native_and_projected_selection_refuses(  # noqa: C901, PLR0912 -- explicit independent corruption cases
++    tmp_path: Path,
++    mutation: str,
++) -> None:
++    """Refuse named selection/projection/native corruption, not arbitrary errors."""
++    snapshot, disclosure = _frame(tmp_path)
++    item = disclosure.items[1]
++    knowledge = item.selected_match.knowledge
++    if mutation == "missing":
++        disclosure = replace(disclosure, items=())
++    elif mutation == "duplicate":
++        disclosure = replace(disclosure, items=(item, item))
++    elif mutation == "reorder":
++        disclosure = replace(disclosure, items=tuple(reversed(disclosure.items)))
++    elif mutation == "selected":
++        disclosure = replace(disclosure, selected_matches=())
++    elif mutation == "repository":
++        snapshot = replace(
++            snapshot,
++            repository_id=RepositoryId.parse("00000000-0000-4000-8000-000000000042"),
++        )
++    else:
++        if mutation == "match":
++            item = replace(item, selected_match=disclosure.selected_matches[0])
++        elif mutation == "name":
++            item = replace(item, declared_name="decoy_")
++        elif mutation == "kind":
++            item = replace(item, declaration_kind=disclosure.items[0].declaration_kind)
++        elif mutation == "proposition":
++            item = replace(item, proposition="invented")
++        elif mutation == "range":
++            item = replace(
++                item,
++                source_occurrence=replace(
++                    item.source_occurrence,
++                    source_range=replace(
++                        item.source_occurrence.source_range,
++                        start_column_utf8=1,
++                    ),
++                ),
++            )
++        else:
++            if mutation == "query":
++                match = replace(
++                    item.selected_match,
++                    query=PythonFunctionExactNameQuery("foreign"),
++                )
++            else:
++                if mutation == "knowledge_name":
++                    knowledge = replace(knowledge, declared_name="decoy_")
++                elif mutation == "subject":
++                    knowledge = replace(
++                        knowledge,
++                        subject=replace(
++                            knowledge.subject,
++                            snapshot_id=replace(snapshot.id, value="f" * 64),
++                        ),
++                    )
++                elif mutation == "dependency":
++                    knowledge = replace(
++                        knowledge,
++                        subject=replace(
++                            knowledge.subject,
++                            resource_dependency_identity="foreign",
++                        ),
++                    )
++                else:
++                    knowledge = replace(
++                        knowledge,
++                        support=replace(
++                            knowledge.support,
++                            resource_address=RepositoryResourceAddress("b.py"),
++                        ),
++                    )
++                match = replace(item.selected_match, knowledge=knowledge)
++            retrieval = replace(
++                disclosure.retrieval,
++                matches=(disclosure.retrieval.matches[0], match),
++            )
++            disclosure = disclose_python_function_exact_name_retrieval(retrieval)
++            item = disclosure.items[1]
++        disclosure = replace(disclosure, items=(disclosure.items[0], item))
++    with pytest.raises(PythonFunctionSourceMaterializationError):
++        materialize_python_function_disclosure_source(
++            disclosure=disclosure,
++            snapshot=snapshot,
++        )
++
++
++def test_real_selection_identity_and_order_reach_request(tmp_path: Path) -> None:
++    """Retained ordered source and identity survive physical changes and assembly."""
++    snapshot, disclosure = _frame(tmp_path)
++    identity = disclosure.identity
++    (tmp_path / "a.py").write_bytes(b"later filesystem state")
++    result = materialize_python_function_disclosure_source(
++        disclosure=disclosure,
++        snapshot=snapshot,
++    )
++    assert result.disclosure.identity == identity
++    assert [i.source_text for i in result.items] == [
++        'async def wanted(): return "C"',
++        'def wanted(): return "A"',
++    ]
++    for actual, selected in zip(result.items, disclosure.selected_matches, strict=True):
++        assert actual.disclosure_item.selected_match == selected
++        assert actual.disclosure_item.source_occurrence == selected.knowledge.support
++        assert actual.source_snapshot_id == snapshot.id
++        assert (
++            actual.source_content_identity
++            == snapshot.resource_at(
++                selected.knowledge.support.resource_address,
++            ).content_identity
++        )
++    request = assemble_python_function_context_model_request(
++        task_request=ModelRequest(Prompt("Inspect wanted", "user")),
++        context=render_materialized_python_function_context(result),
++    )
++    assert "def decoy_()" not in request.prompt.content
++    assert request.prompt.content.index(
++        "async def wanted()",
++    ) < request.prompt.content.index('def wanted(): return "A"')
+--- /dev/null
++++ b/tests/context/retrieval/source/test_physical_lines.py
+@@ -0,0 +1,125 @@
++# Copyright (c) 2026
++# ruff: noqa: COM812, PLR2004 -- independently specified physical source boundaries
++"""Physical-line regression fixtures use real retained source and native parsing."""
++
++from __future__ import annotations
++
++import ast
++from typing import TYPE_CHECKING
++
++import pytest
++
++from devtools.context.planning import (
++    SourceSearchDisclosureOption,
++    materialize_disclosure_plan,
++    plan_disclosures,
++)
++from tests.context.retrieval.source.test_search import _index
++
++if TYPE_CHECKING:
++    from pathlib import Path
++
++
++SEPARATORS = ("\v", "\f", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029")
++
++
++@pytest.mark.parametrize("separator", [" ", *SEPARATORS])
++@pytest.mark.parametrize("newline", ["\n", "\r\n", "\r"])
++def test_valid_string_separators_do_not_shift_native_source(
++    tmp_path: Path, separator: str, newline: str
++) -> None:
++    """The original 27-case reproduction has literal, AST-independent expectations."""
++    expected = f"def target():{newline}    return 1"
++    prefix = f'value = "a{separator}b"{newline}'
++    content = prefix + expected
++    index = _index(tmp_path, {"source.py": content})
++    unit = next(u for u in index.views[1].units if u.qualified_name == "target")
++    assert unit.text == expected
++    assert unit.start == len(prefix)
++    assert unit.end == len(content)
++    assert (unit.start_line, unit.end_line) == (2, 3)
++    assert unit.resource.content == content
++    assert unit.declaration is not None
++    assert unit.occurrence is not None
++    assert unit.occurrence.source_range == unit.declaration.support.source_range
++    assert unit.text == ast.get_source_segment(content, ast.parse(content).body[1])
++    disclosure = materialize_disclosure_plan(
++        plan=plan_disclosures(
++            purpose="Inspect target",
++            snapshot=index.snapshot,
++            disclosures=(SourceSearchDisclosureOption("Inspect target", unit),),
++        ),
++        snapshot=index.snapshot,
++    )
++    assert expected in disclosure.items[0].text
++    assert disclosure.items[0].native_provenance is unit
++
++
++@pytest.mark.parametrize("separator", SEPARATORS)
++@pytest.mark.parametrize("newline", ["\n", "\r\n", "\r"])
++@pytest.mark.parametrize("final_newline", [False, True])
++def test_non_python_windows_follow_physical_lines_without_normalization(
++    tmp_path: Path, separator: str, newline: str, *, final_newline: bool
++) -> None:
++    """Unicode separators stay inside independently authored physical lines."""
++    physical = [f"line{i} é{separator}尾" + newline for i in range(7)]
++    if not final_newline:
++        physical[-1] = physical[-1].removesuffix(newline)
++    content = "".join(physical)
++    index = _index(tmp_path, {"notes.txt": content})
++    first, second = index.views[2].units
++    assert first.text == "".join(physical[:5])
++    assert second.text == "".join(physical[3:])
++    assert (first.start_line, first.end_line) == (1, 5)
++    assert (second.start_line, second.end_line) == (4, 7)
++    assert second.start == len("".join(physical[:3]))
++    assert second.end == len(content)
++    assert first.resource.content == second.resource.content == content
++
++
++@pytest.mark.parametrize("newline", ["\n", "\r\n", "\r"])
++@pytest.mark.parametrize("final_newline", [False, True])
++def test_decorated_nested_async_unicode_ranges_remain_exact(
++    tmp_path: Path, newline: str, *, final_newline: bool
++) -> None:
++    """Decorators, indentation and native UTF-8 endpoints survive physical slicing."""
++    content = (
++        'value = "pré\u2028fix"\n'
++        "@decorate\nclass Café:\n"
++        "    @(decorate)\n    async def méthode(self):\n"
++        '        def nested(): return "尾"\n'
++        "        return nested\n"
++        'def sibling(): return "unselected"'
++    ).replace("\n", newline)
++    if final_newline:
++        content += newline
++    index = _index(tmp_path, {"source.py": content, "empty.py": ""})
++    symbols = {u.qualified_name: u for u in index.views[1].units if u.kind == "symbol"}
++    method = symbols["Café.méthode"]
++    expected = newline.join(
++        (
++            "@(decorate)",
++            "    async def méthode(self):",
++            '        def nested(): return "尾"',
++            "        return nested",
++        )
++    )
++    assert method.text == expected
++    assert (method.start_line, method.end_line) == (4, 7)
++    assert method.declaration is not None
++    assert method.declaration.support.source_range.start_line == 5
++    nested = symbols["Café.méthode.nested"]
++    assert nested.text == 'def nested(): return "尾"'
++    assert nested.occurrence is not None
++    assert nested.occurrence.source_range.end_column_utf8 == len(
++        '        def nested(): return "尾"'.encode()
++    )
++    assert nested.declaration is None
++    assert nested.parent_symbol_id == method.id
++    assert index.expand(method, to="class") == symbols["Café"]
++    assert index.expand(nested, to="file").text == content
++    empty = next(
++        u for u in index.views[0].units if u.resource.address.value == "empty.py"
++    )
++    assert empty.text == ""
++    assert empty.start_line == empty.end_line == 1

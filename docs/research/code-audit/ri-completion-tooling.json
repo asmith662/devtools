@@ -1,0 +1,40 @@
+{
+  "baseline": "fbd3ecfe5d857cfb2b80749edff2d8afddb00cd7",
+  "ruff_version": "0.16.2",
+  "installed_executable": ".venv/Scripts/ruff.exe",
+  "lock_sha256": "a25448669c13213461a7aadf937cb85304b03d1398f5b092db63df435bdb19c3",
+  "isolated_path": "experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py",
+  "command": "uv run ruff format --check experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py",
+  "panic": "ruff_annotate_snippets source_map.rs:185; annotation0..36669 beyond buffer36667",
+  "quiet_also_panics": true,
+  "scope": "Frozen historical generated/review builder; not supported production source. docs scope and source_grounding scope complete with ordinary formatting differences. No formatting/install/configuration changes made.",
+  "official_policy": "docs/development/validation.md lists broad ruff check . and ruff format --check; pyproject Ruff has no explicit retained-experiment exclusion. Protected pytest and strict mypy have their separately documented experiment boundaries. Do not treat that as a Ruff exclusion.",
+  "previous_results": "Earlier repair: broad lint24631 findings; supported format28 differences; supported Ruff and changed-file format pass. They are prior observed results, not rerun/green here.",
+  "logs": {
+    "format-docs.txt": {
+      "path": ".local/ri-completion-20261024/format-docs.txt",
+      "sha256": "86dcd7cc766cf2844a1e79ea1bbc832d102e29cf17df0a5bac372d02f12a71d2"
+    },
+    "format-grounding.txt": {
+      "path": ".local/ri-completion-20261024/format-grounding.txt",
+      "sha256": "a5ac5ef4144255fb1f10154708a004d01602af274d729cbddc25f454a386ab01"
+    },
+    "format-other-experiments.txt": {
+      "path": ".local/ri-completion-20261024/format-other-experiments.txt",
+      "sha256": "d98d4005fe6ed39307bffcb7e727a0059b7a13e8ed84748fd0dcf62609a58192"
+    },
+    "format-case16.txt": {
+      "path": ".local/ri-completion-20261024/format-case16.txt",
+      "sha256": "e0718809ad240ade3f568f9c396b394b605bae6eb2ed72074cf72a032f43322b"
+    },
+    "format-panic-file.txt": {
+      "path": ".local/ri-completion-20261024/format-panic-file.txt",
+      "sha256": "a5aa147f0ee5cd9f74e0677cfa92a9bb778f105d1dbe7d46123f78d429e7d9ad"
+    },
+    "format-panic-quiet.txt": {
+      "path": ".local/ri-completion-20261024/format-panic-quiet.txt",
+      "sha256": "4e2232a7a615436f5e7ad8216eca1373ae73663f73ef0e392f2bd9ff866aee28"
+    }
+  },
+  "pending_proposal": "7cfa03bd-b1ee-4c95-9536-59772360fd40"
+}

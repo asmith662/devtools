@@ -1,5 +1,10 @@
 # Exact-name function source-disclosure integrity repair
 
+Adoption preparation: [the subsequent RI completion checkpoint](ri-experimental-completion-and-main-adoption.md)
+pins a combined eight-path destination-specific repair patch and its proposed
+main tree. It is not installed or destination-validated; this report's successful
+feature gate remains evidence only for its exact original source/test inputs.
+
 ## Outcome and authenticated scope
 
 The maintained exact-name function materializer now refuses a different resource's

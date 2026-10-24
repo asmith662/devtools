@@ -303,3 +303,31 @@ records the separate production fix, genuine pre-fix failures and new protected
 
 574/606 historical paths remain reviewed,32 unreviewed;177 older current-RI
 versions remain. No model/inference/next-cohort credit or full RI completion claim.
+
+
+## Historical experimental source completion and proposed main adoption
+
+The [completion report](../ri-experimental-completion-and-main-adoption.md) starts
+at fbd3ecfe and reviews the final32 paths/32 blobs:25 substantive paths (three
+full cohort tests) and seven namespace surfaces. This completes the defined
+606-path applicable experimental source universe, not all RI, every adjudication,
+historical runtime or agent integration. Earlier dated ledgers remain unchanged.
+
+| Artifact | Scope and assurance |
+| --- | --- |
+| [ri-completion-experiments.jsonl](ri-completion-experiments.jsonl) |Same606 rows; only32 newly reviewed exact versions change. Per-function/controller/test roles, outcomes, counterparts and qualified gaps.|
+| [ri-completion-fixtures.jsonl](ri-completion-fixtures.jsonl) |Same94 rows; ten substantive current modules newly full. Original45/93; augmented46/94;48 remain. Nominal versus real-source fixtures distinguished.|
+| [ri-completion-summary.json](ri-completion-summary.json) |Exact roles/counts and separate review universes;177 NOT_REVIEWED older versions and26 tip-only records unchanged.|
+| [ri-completion-artifact-identities.json](ri-completion-artifact-identities.json) |70 retained identities,40 physical digest references, three early Codex trace histories and12 Increment31 canonical/neutral pairs. No scientific replay or pickle load.|
+| [ri-completion-probes.json](ri-completion-probes.json) |Full independent source/results for Case3 unbound trace, stale timeout output and test-helper empty-scope widening. Actual retained history distinguished from synthetic exploitability.|
+| [ri-completion-tooling.json](ri-completion-tooling.json) |Locked Ruff0.16.2 crash isolated to frozen Case0016 builder, quiet mode included; official broad versus supported check boundaries and observed failures remain explicit.|
+| [ri-completion-main-adoption.json](ri-completion-main-adoption.json) |Proposed exactly8 paths, pinned destination/source,141 conservative AST dependencies, protected main Commands identities and in-memory tree561c765f. Not installed or destination-validated.|
+| [ri-completion-main-adoption.patch](ri-completion-main-adoption.patch) |Reviewable destination-specific diff; no unrelated Qwen/search documentation or feature ancestry.|
+| [ri-completion-intake.json](ri-completion-intake.json) |Three new pending proposals and seven append-only advisories; all prior states/histories preserved.|
+| [ri-completion-next-cohort.json](ri-completion-next-cohort.json) |Twelve current identity/composition/index tests and seven exact older materialization/base versions selected, not started; all48 current remainders retained.|
+| [ri-completion-checkpoint.json](ri-completion-checkpoint.json) |104 maintained/43 synthetic passes, exact identity/patch/Intake/link/layout/whitespace and preservation checks. No new protected production gate for documentation-only changes.|
+
+Actual native source-search/read/edit use remains separate from missing
+Localization/obligation/witness consumers and unmeasured graph/map benefit.
+Both delivered production fixes still need separately authorized selective-main
+installation, destination validation and independent publication review.

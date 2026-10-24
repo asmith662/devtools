@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+  "created_at": "2026-10-24T14:34:05.072406+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Reconcile official static-check scopes and isolate Ruff diagnostic renderer panic",
+    "parent": "B-0003",
+    "summary": "Independently reproduced developer tooling failure with installed pinned Ruff0.16.2: ruff format --check experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py panics in ruff_annotate_snippets source_map.rs:185, annotation0..36669 beyond buffer36667. --quiet also panics. The file is a frozen historical builder, not supported production source. Official development docs show broad Ruff commands with no retained-tree Ruff exclusion, while strict mypy and protected pytest have explicit experiment exclusions; prior broad lint24631 findings and28 supported format discrepancies are not green checks.",
+    "resources": [
+      "pyproject.toml",
+      "uv.lock",
+      "docs/development/validation.md",
+      "experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py"
+    ],
+    "evidence": [
+      "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "docs/research/code-audit/ri-completion-tooling.json"
+    ],
+    "benefit": "Decide and document supported source versus immutable artifact static-check ownership. Preserve frozen bytes and production branch gate. Isolate a minimal non-sensitive diagnostic reproducer if appropriate; qualify a locked tool upgrade or scoped invocation in an explicitly approved follow-up, with wrong-scope/error-code regressions. Acceptance: supported checks cover all supported owners and return accurate statuses; retained verification remains explicit; known builder does not cause an unexplained overall gate panic;28 existing supported formatting differences receive reviewed disposition without mass-formatting scientific artifacts. No external issue submission/install/lock change authorized by research.",
+    "uncertainty": "External tool diagnostic crash, not a demonstrated RI algorithm defect. Supported-only checks previously complete; broad scope failure remains real. Needs maintainer scope decision before configuration/dependency changes. No duplicate existing narrowly matching tooling proposal found; B-0047 covers pytest isolation, not formatter/lint policy.",
+    "dependencies": [
+      "B-0047"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+    }
+  },
+  "payload_sha256": "2dd5dbf2b73f65b22f566dc6e83ff0a4ae0bd0eca756a00a88d0fbcacccc33df"
+}

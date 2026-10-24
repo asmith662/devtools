@@ -1,14 +1,15 @@
 # Documentation Map
 
-Current audit checkpoint: [exact-name selected-source integrity repair](research/ri-exact-name-source-repair.md).
-The bounded maintained repair is independently regression-tested and passes the
-new protected gate:2,763 passed/two skipped,100% production branch coverage.
-Historical review remains574/606, leaving32. Five additional existing fixture
-bodies bring the original universe to35/93; the new regression makes36/94 total,
-with58 existing fixture paths and177 older current-RI versions still outstanding.
-No historical cohort, model inference or protected-main integration is launched.
-Proposal954a7136 retains its normal review authority; task-obligation A+C remains
-unapproved. RI and repository-wide review remain incomplete; no successor dossier.
+Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](research/ri-experimental-completion-and-main-adoption.md).
+All32 final selected paths have applicable full-body review:606/606 historical
+experimental paths now have version-specific dispositions, not independent
+revalidation of every judgment or completion of Repository Intelligence.
+Ten new maintained fixture reviews bring the original universe to45/93; including
+the separately added regression it is46/94, with48 current fixtures remaining.
+177 older NOT_REVIEWED versions and26 tip-delta-only versions retain their depth.
+The exact eight-path main-adoption patch is proposed only; main remains unchanged.
+Three new pending proposals and seven advisories preserve existing authorities.
+Task-obligation A+C remains unapproved; no new domain or successor dossier begins.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
 and [dated source/custody manifest](research/production-adoption-and-architecture-evidence-20261023.json)
