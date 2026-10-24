@@ -1,0 +1,1786 @@
+{
+  "at": "2026-10-20T17:11:17.150492+00:00",
+  "runs": [
+    {
+      "run": "devtools-split",
+      "accepted": true,
+      "elapsed_seconds": 63.093794199987315,
+      "started_at": "2026-10-20T16:56:11.943357+00:00",
+      "finished_at": "2026-10-20T16:57:15.037135+00:00",
+      "result_sha256": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+      "task_sha256": "80853507b64c01dc1c417b1cae440b6ee96529468666f2f062c9eb435d7f7737",
+      "oracle_sha256": "ec70f9b2c185e114b9126c0788db3427af47901425f72b4963ccc9bc2e0b1a73",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/regex/__init__.py",
+          "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/regex/splitting.py",
+          "path": "src/devtools/core/regex/splitting.py",
+          "sha256": "5c2950d6f479ba51c65555ddf92c4e5858e8002e12017a7b06a16da86e2e6f3f"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "input_tokens": 20316,
+      "output_tokens": 1048,
+      "repair_cycles": 0,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 5,
+      "context_actions_accepted": 5,
+      "source_text_bytes_disclosed": 6076,
+      "context_bytes_disclosed": 12336,
+      "peak_input_tokens": 6070,
+      "omitted_exchanges": 0,
+      "model_seconds": 60.19046589999925,
+      "tools": [
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "git_inspect",
+        "inspect_source"
+      ],
+      "tool_errors": [],
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1834,
+            "output_tokens": 92,
+            "reasoning_tokens": null,
+            "total_tokens": 1926
+          },
+          "model_seconds": 14.769126099999994,
+          "input_tokens_measured": 1834
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3027,
+            "output_tokens": 44,
+            "reasoning_tokens": null,
+            "total_tokens": 3071
+          },
+          "model_seconds": 3.341292900033295,
+          "input_tokens_measured": 3027
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4513,
+            "output_tokens": 72,
+            "reasoning_tokens": null,
+            "total_tokens": 4585
+          },
+          "model_seconds": 4.601116299978457,
+          "input_tokens_measured": 4513
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4872,
+            "output_tokens": 56,
+            "reasoning_tokens": null,
+            "total_tokens": 4928
+          },
+          "model_seconds": 2.8942377000348642,
+          "input_tokens_measured": 4872
+        },
+        {
+          "number": 5,
+          "disposition": "ACCEPTED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6070,
+            "output_tokens": 784,
+            "reasoning_tokens": null,
+            "total_tokens": 6854
+          },
+          "model_seconds": 34.58469289995264,
+          "input_tokens_measured": 6070
+        }
+      ],
+      "native_edit_calls": 2
+    },
+    {
+      "run": "pi-split",
+      "accepted": true,
+      "elapsed_seconds": 92.91518979996908,
+      "started_at": "2026-10-20T16:59:54.840240+00:00",
+      "finished_at": "2026-10-20T17:01:27.755415+00:00",
+      "result_sha256": "27a661ee993eac169f5380d120c05dd3b6f1eb31643e0f0a98943bcdd352b91a",
+      "task_sha256": "80853507b64c01dc1c417b1cae440b6ee96529468666f2f062c9eb435d7f7737",
+      "oracle_sha256": "ec70f9b2c185e114b9126c0788db3427af47901425f72b4963ccc9bc2e0b1a73",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/core/regex/__init__.py",
+          "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f"
+        },
+        {
+          "evidence": "candidate-1.py",
+          "path": "src/devtools/core/regex/splitting.py",
+          "sha256": "06b0f3a7c159f9b35c87ccb9ba8059e31c4f914626bd42bd739d820a48e95bfd"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 10,
+      "tool_actions": 16,
+      "input_tokens": 49904,
+      "output_tokens": 995,
+      "tools": [
+        "list_scope",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "write",
+        "edit",
+        "validate",
+        "edit",
+        "validate"
+      ],
+      "tool_errors": [
+        {
+          "tool": "read",
+          "content": "[{'type': 'text', 'text': \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\src\\\\devtools\\\\core\\\\regex\\\\splitting.py'\"}]"
+        }
+      ],
+      "model_final_stop": "error",
+      "model_final_error": "Model call budget exhausted",
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      },
+      "validation_feedback": [
+        {
+          "oracle": 0,
+          "tests": 0,
+          "ruff": 1,
+          "format": 1,
+          "typing": 0
+        },
+        {
+          "oracle": 0,
+          "tests": 0,
+          "ruff": 0,
+          "format": 0,
+          "typing": 0
+        }
+      ]
+    },
+    {
+      "run": "devtools-bsd",
+      "accepted": true,
+      "elapsed_seconds": 38.85882620001212,
+      "started_at": "2026-10-20T17:02:32.865228+00:00",
+      "finished_at": "2026-10-20T17:03:11.724038+00:00",
+      "result_sha256": "b60d2d74c48f60d8090d89ca7db64d706184526860a601334971387966d952e1",
+      "task_sha256": "2f99e150f78b8d886643ece21ae79d7705c344b48988908b74c5f4c90f45cc91",
+      "oracle_sha256": "ad83bf5cad21bffacc1775b1038e65a85313e9fc97f17ad0431acd2eaa0ec5ab",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/system/detection.py",
+          "sha256": "ad62e72f0d04c2da3a44b1081bacc2460f96cf66847a3a8cc545c53c9ab34abe"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/system/models.py",
+          "path": "src/devtools/core/system/models.py",
+          "sha256": "f2c967d2ba34b941cecd56ceb983ee1b47b43829ca5765e07eab534466523145"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 3,
+      "input_tokens": 10524,
+      "output_tokens": 584,
+      "repair_cycles": 0,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 5,
+      "context_actions_accepted": 5,
+      "source_text_bytes_disclosed": 3595,
+      "context_bytes_disclosed": 11086,
+      "peak_input_tokens": 5518,
+      "omitted_exchanges": 0,
+      "model_seconds": 36.05925149982795,
+      "tools": [
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "inspect_source"
+      ],
+      "tool_errors": [],
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1776,
+            "output_tokens": 87,
+            "reasoning_tokens": null,
+            "total_tokens": 1863
+          },
+          "model_seconds": 11.333448299905285,
+          "input_tokens_measured": 1776
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3230,
+            "output_tokens": 129,
+            "reasoning_tokens": null,
+            "total_tokens": 3359
+          },
+          "model_seconds": 6.857528999913484,
+          "input_tokens_measured": 3230
+        },
+        {
+          "number": 3,
+          "disposition": "ACCEPTED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5518,
+            "output_tokens": 368,
+            "reasoning_tokens": null,
+            "total_tokens": 5886
+          },
+          "model_seconds": 17.868274200009182,
+          "input_tokens_measured": 5518
+        }
+      ],
+      "native_edit_calls": 3
+    },
+    {
+      "run": "pi-bsd",
+      "accepted": true,
+      "elapsed_seconds": 40.88602850004099,
+      "started_at": "2026-10-20T17:04:04.203319+00:00",
+      "finished_at": "2026-10-20T17:04:45.089334+00:00",
+      "result_sha256": "2168fff4fb4ff578698063f7e141ec9a282f6f9a935f32696d4a7f46aa702cd4",
+      "task_sha256": "2f99e150f78b8d886643ece21ae79d7705c344b48988908b74c5f4c90f45cc91",
+      "oracle_sha256": "ad83bf5cad21bffacc1775b1038e65a85313e9fc97f17ad0431acd2eaa0ec5ab",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/core/system/detection.py",
+          "sha256": "1569a9fa749ed4d040b77ce75cd30ca8c72c51788e210a1d427afd11667472de"
+        },
+        {
+          "evidence": "candidate-1.py",
+          "path": "src/devtools/core/system/models.py",
+          "sha256": "958cd614da55f2bea22d62d80f880f90655ec0abd8e5b4c206475aade095843e"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "tool_actions": 8,
+      "input_tokens": 13423,
+      "output_tokens": 703,
+      "tools": [
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "edit",
+        "edit",
+        "validate"
+      ],
+      "tool_errors": [],
+      "model_final_stop": "stop",
+      "model_final_error": null,
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      },
+      "validation_feedback": [
+        {
+          "oracle": 0,
+          "tests": 0,
+          "ruff": 0,
+          "format": 0,
+          "typing": 0
+        }
+      ]
+    },
+    {
+      "run": "devtools-identity",
+      "accepted": true,
+      "elapsed_seconds": 67.71213520003948,
+      "started_at": "2026-10-20T17:08:16.317326+00:00",
+      "finished_at": "2026-10-20T17:09:24.029445+00:00",
+      "result_sha256": "69c277388ed0d8ee4d79c9cbe70bd0dc37e43246724affbf336906542183e64e",
+      "task_sha256": "19c465d3c77ef83ffe34405944f8f6ecbb0207850328ec1cfe73857c56af054e",
+      "oracle_sha256": "0f0fb9cc523e69af3b3cb823c0c3343dace7282b733fc238d3d9c3bb7ba06064",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/identity/models.py",
+          "sha256": "9d295923bde23d6d2653f9c3ff4f0cb4abb0569a6aa5ad3a4eebcb4a1c29e78c"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "input_tokens": 36539,
+      "output_tokens": 938,
+      "repair_cycles": 2,
+      "proposals_attempted": 3,
+      "proposals_admitted": 3,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 3,
+      "context_actions_accepted": 3,
+      "source_text_bytes_disclosed": 4378,
+      "context_bytes_disclosed": 9021,
+      "peak_input_tokens": 12103,
+      "omitted_exchanges": 0,
+      "model_seconds": 63.16013750003185,
+      "tools": [
+        "inspect_source",
+        "inspect_source",
+        "inspect_source"
+      ],
+      "tool_errors": [],
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1721,
+            "output_tokens": 87,
+            "reasoning_tokens": null,
+            "total_tokens": 1808
+          },
+          "model_seconds": 7.699510300066322,
+          "input_tokens_measured": 1721
+        },
+        {
+          "number": 2,
+          "disposition": "TESTS_FAILED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3779,
+            "output_tokens": 530,
+            "reasoning_tokens": null,
+            "total_tokens": 4309
+          },
+          "model_seconds": 24.0879914999241,
+          "input_tokens_measured": 3779
+        },
+        {
+          "number": 3,
+          "disposition": "TESTS_FAILED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7796,
+            "output_tokens": 141,
+            "reasoning_tokens": null,
+            "total_tokens": 7937
+          },
+          "model_seconds": 12.773330399999395,
+          "input_tokens_measured": 7796
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11140,
+            "output_tokens": 82,
+            "reasoning_tokens": null,
+            "total_tokens": 11222
+          },
+          "model_seconds": 12.976176300086081,
+          "input_tokens_measured": 11140
+        },
+        {
+          "number": 5,
+          "disposition": "ACCEPTED",
+          "termination": "tool_call",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 12103,
+            "output_tokens": 98,
+            "reasoning_tokens": null,
+            "total_tokens": 12201
+          },
+          "model_seconds": 5.623128999955952,
+          "input_tokens_measured": 12103
+        }
+      ],
+      "native_edit_calls": 3
+    },
+    {
+      "run": "pi-identity",
+      "accepted": true,
+      "elapsed_seconds": 43.71032039995771,
+      "started_at": "2026-10-20T17:09:53.399511+00:00",
+      "finished_at": "2026-10-20T17:10:37.109817+00:00",
+      "result_sha256": "9a8288e1828b55d6e083aac0d863867bb9b6a91336939f3440781bad613a5399",
+      "task_sha256": "19c465d3c77ef83ffe34405944f8f6ecbb0207850328ec1cfe73857c56af054e",
+      "oracle_sha256": "0f0fb9cc523e69af3b3cb823c0c3343dace7282b733fc238d3d9c3bb7ba06064",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/core/identity/models.py",
+          "sha256": "aa68513f59a5bf1fd9db9a458c3746a38654f848d28e6ac4d4ca49e423c08c67"
+        }
+      ],
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "tool_actions": 7,
+      "input_tokens": 16443,
+      "output_tokens": 800,
+      "tools": [
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "edit",
+        "validate"
+      ],
+      "tool_errors": [],
+      "model_final_stop": "stop",
+      "model_final_error": null,
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      },
+      "validation_feedback": [
+        {
+          "oracle": 0,
+          "tests": 0,
+          "ruff": 0,
+          "format": 0,
+          "typing": 0
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "runs": 6,
+    "model_calls": 33,
+    "worker_seconds": 347.1762943000067,
+    "input_tokens": 147149,
+    "output_tokens": 5068
+  },
+  "independent_audit": [
+    {
+      "run": "devtools-split",
+      "transactions": [
+        {
+          "turn": 5,
+          "files": [
+            "src/devtools/core/regex/splitting.py",
+            "src/devtools/core/regex/__init__.py"
+          ],
+          "edits": 2,
+          "created": [
+            "src/devtools/core/regex/splitting.py"
+          ],
+          "patch_sha256": "2b5e7d9345b7a44f826b237bc20de90c59ccfb05436851a5061a5836eb01bf8b",
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 0,
+            "tests": 0,
+            "typing": 0
+          }
+        }
+      ],
+      "wire_arguments_unchanged": true,
+      "native_roles_valid": true,
+      "exact_observed_source_and_candidate_reconstruction": true
+    },
+    {
+      "run": "devtools-bsd",
+      "transactions": [
+        {
+          "turn": 3,
+          "files": [
+            "src/devtools/core/system/models.py",
+            "src/devtools/core/system/detection.py"
+          ],
+          "edits": 3,
+          "created": [],
+          "patch_sha256": "9c556cc06fe6cf526c429afff2bb7d338412bb7cfdfcff18a17d657efe6d7f0c",
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 0,
+            "tests": 0,
+            "typing": 0
+          }
+        }
+      ],
+      "wire_arguments_unchanged": true,
+      "native_roles_valid": true,
+      "exact_observed_source_and_candidate_reconstruction": true
+    },
+    {
+      "run": "devtools-identity",
+      "transactions": [
+        {
+          "turn": 2,
+          "files": [
+            "src/devtools/core/identity/models.py"
+          ],
+          "edits": 1,
+          "created": [],
+          "patch_sha256": "93032ca5dd3aa119ac4f0940fa18846fb16ff1004dbd913339ceb083b088240f",
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 1,
+            "tests": 0,
+            "typing": 0
+          }
+        },
+        {
+          "turn": 3,
+          "files": [
+            "src/devtools/core/identity/models.py"
+          ],
+          "edits": 1,
+          "created": [],
+          "patch_sha256": "6142a7bf8260d1d6d67c2d1cee60a2d4b9d3832faa7b1305e555d3101193b7ae",
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 1,
+            "tests": 0,
+            "typing": 0
+          }
+        },
+        {
+          "turn": 5,
+          "files": [
+            "src/devtools/core/identity/models.py"
+          ],
+          "edits": 1,
+          "created": [],
+          "patch_sha256": "22e274b8f899ec054a8e2128358d62cd15e25675a9b2a4c5a7623e1e2b49483a",
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 0,
+            "tests": 0,
+            "typing": 0
+          }
+        }
+      ],
+      "wire_arguments_unchanged": true,
+      "native_roles_valid": true,
+      "exact_observed_source_and_candidate_reconstruction": true
+    }
+  ],
+  "editing06_files_verified_unchanged": 314,
+  "evidence_manifest": [
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/final-source.py",
+      "sha256": "ad62e72f0d04c2da3a44b1081bacc2460f96cf66847a3a8cc545c53c9ab34abe",
+      "bytes": 646
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/final-sources/src/devtools/core/system/models.py",
+      "sha256": "f2c967d2ba34b941cecd56ceb983ee1b47b43829ca5765e07eab534466523145",
+      "bytes": 859
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/freeze.json",
+      "sha256": "c4867bec21b999baa5b9cab4e0eacb999339d5c8e4d5100b7fdd05c0decc051e",
+      "bytes": 16923
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/oracle-runner.py",
+      "sha256": "23c1aac797e2d80512cc39dde5ae10781730a1ff265172978710ed88c64b686c",
+      "bytes": 1417
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/provider-response-01.json",
+      "sha256": "9f853141d7b19eef512caadaef47795b6ab579d7c3257dc500a8af6f6e036c4e",
+      "bytes": 1489
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/provider-response-02.json",
+      "sha256": "40adaf66196bc813e8b2419fdab798ade5a1a33e915b9dba4709214784f6d0d2",
+      "bytes": 1782
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/provider-response-03.json",
+      "sha256": "9863c107b3621ed4aafeb097cad09dc12e26469d98ea5102ed5b7537c8a76e85",
+      "bytes": 2779
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/result.json",
+      "sha256": "b60d2d74c48f60d8090d89ca7db64d706184526860a601334971387966d952e1",
+      "bytes": 58039
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/tests-runner.py",
+      "sha256": "d00ed42f05cff91f3b89ea3b50c27aea02b13814a93dc4f1775a55810a4965bd",
+      "bytes": 1294
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-01/capacity.json",
+      "sha256": "cee804b8115135746dec4b43e3cb968f46103dda3c278f2e2db11c27a14e6dfc",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-01/request.json",
+      "sha256": "e2554a601b5e725ecf5bd908815dadabc6ef9e445dc9a085497675afe99c69e4",
+      "bytes": 7232
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-01/response.json",
+      "sha256": "837b414e1556b2a23a11484f4162e8dcbc3b7dcb074e53fe9001dc257fb7a406",
+      "bytes": 760
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-01/stage.json",
+      "sha256": "35e346b2e24366d234acb6e0a369fd54e4dc85fd4060f1f38882e16a8293d5aa",
+      "bytes": 7780
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-01/tools.json",
+      "sha256": "5b71b1f21010b7e01da65fb6b9acdcc27dcbae40594b2217c7bd08679833d238",
+      "bytes": 5765
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-02/capacity.json",
+      "sha256": "ec29b34f0581a2058417cd57cb9699acecb67ea346b7158275b87cf5d6f83013",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-02/request.json",
+      "sha256": "b25105ff9e80cb56518253f813429ab7c26bf9b1cd2bd056921edafde5e2d028",
+      "bytes": 11981
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-02/response.json",
+      "sha256": "8c8e0aa2c970500ce6fb1fe8179a0d115c6749613f8046e9f3704804d30357e0",
+      "bytes": 954
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-02/stage.json",
+      "sha256": "04fe4d470de61ee58146a84d4ba37b47e41e64ac42e39cf2488e1a0f0dd565f4",
+      "bytes": 11534
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-02/tools.json",
+      "sha256": "6f9f85f72c53c71c931b6fafc1d4c3a5fe58f869369fd69c30b8483f26fc9d4c",
+      "bytes": 9063
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/capacity.json",
+      "sha256": "fe5c24dde18598fd94223ffa48bea81ece1e5545e01c120f6541efb3e03c529a",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/proposal.patch",
+      "sha256": "9c556cc06fe6cf526c429afff2bb7d338412bb7cfdfcff18a17d657efe6d7f0c",
+      "bytes": 847
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/request.json",
+      "sha256": "bd29e227cfce0619e99c9fc9f48f90f1e4fee068872dc1b545e800e318189cb0",
+      "bytes": 19424
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/resolved-proposal.json",
+      "sha256": "abe36975797a1cab9e83da4b7d7a57f746545d7d8993c169734706cb2501d712",
+      "bytes": 9405
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/response.json",
+      "sha256": "1874e9fb999adaa9b0ef137ae608e8d5e7286f850123f88af908ff8226870098",
+      "bytes": 1947
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/stage.json",
+      "sha256": "4a2b5886e67f911bdd271b474fe6f4ae3a740f0b1f014b4c96fe7738d7b9a344",
+      "bytes": 22213
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-bsd/turn-03/tools.json",
+      "sha256": "b72db451efe7470b2fb60f25612d0f95ab73a1d855034590edc8e6d77d077a5a",
+      "bytes": 22546
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/final-source.py",
+      "sha256": "9d295923bde23d6d2653f9c3ff4f0cb4abb0569a6aa5ad3a4eebcb4a1c29e78c",
+      "bytes": 1722
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/freeze.json",
+      "sha256": "1960e3bee1d08ba86e5408fc60a527c5a061c000fd41c04ceef3f46e9ea71b55",
+      "bytes": 15647
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/oracle-runner.py",
+      "sha256": "d9cce7cbcd1c59d1fe15f39b3e083757693f3a48893c96600dd5a15db087c736",
+      "bytes": 1400
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/provider-response-01.json",
+      "sha256": "02b268fd71feb81399d2590896b98baf9a737246a015ce4a227f93c45ef1a06f",
+      "bytes": 1489
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/provider-response-02.json",
+      "sha256": "ed2b5281ab9e31a79ef6d3c4824c316b67d4fd4bb02e3932a6fe4f76a08bc45e",
+      "bytes": 3468
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/provider-response-03.json",
+      "sha256": "beacc99dde16ec735c60ceb0b7a6bd668b88b13039ef92ab06ec4fe0a6cc297c",
+      "bytes": 1623
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/provider-response-04.json",
+      "sha256": "b9a66ed182e47f018c835c7422cb7628f5226396d548142154e954020b87904a",
+      "bytes": 1329
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/provider-response-05.json",
+      "sha256": "7ccf4a4e04198388e79a526b6f141e03248f47fcbd1dce968709472649d016b8",
+      "bytes": 1446
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/result.json",
+      "sha256": "69c277388ed0d8ee4d79c9cbe70bd0dc37e43246724affbf336906542183e64e",
+      "bytes": 64302
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/tests-runner.py",
+      "sha256": "abcc14ff071d97d86644917974418c40192a5037b6f1f47be26eb69fea9297ef",
+      "bytes": 1203
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-01/capacity.json",
+      "sha256": "5708da367e7d99b7ae713e597eaf40f2189611d772446cbc6c268e8e3e86a26c",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-01/request.json",
+      "sha256": "2f241c18047bd8af360f71e47a2223021071f9556a21a68a45da56829270035c",
+      "bytes": 7018
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-01/response.json",
+      "sha256": "9e8ca1e2f1e5df53699e6c5b407f130673be2f5d335b960c303d5e395c314148",
+      "bytes": 759
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-01/stage.json",
+      "sha256": "48bc55f7956d6d784f9bdcdf8d4ddad2910465cb0ce4518a3340750a07000e14",
+      "bytes": 9607
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-01/tools.json",
+      "sha256": "8116f86c65de8314b28bd123f22713a80c8373fb68025670571c5bb870dd3782",
+      "bytes": 7590
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/capacity.json",
+      "sha256": "beced57205b6ccf829541b7e550883ae8eec34b6cf786de70f48266a85816a20",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/proposal.patch",
+      "sha256": "93032ca5dd3aa119ac4f0940fa18846fb16ff1004dbd913339ceb083b088240f",
+      "bytes": 1278
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/request.json",
+      "sha256": "b9972edb08d3425037b108cbdfd1063581839f7a565c41109532518c037c6106",
+      "bytes": 13700
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/resolved-proposal.json",
+      "sha256": "772823731b0f608926649dc542ae90723a741ead3f05d874150cb012e8e15cc1",
+      "bytes": 5195
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/response.json",
+      "sha256": "7af7ea76a9749d4a9bedda3ee08318b8fb68b4eefa145508520308665ca6d4e2",
+      "bytes": 2825
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/stage.json",
+      "sha256": "4338f8c6eddcf14e6c1a8af91f25df2ab4ddc97d598c244a802afe3bb8f49874",
+      "bytes": 12879
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-02/tools.json",
+      "sha256": "eca37aca9344487edf61853aa1f35b2a2b13675badf528907e6b33c9462a76ac",
+      "bytes": 15948
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/capacity.json",
+      "sha256": "56f9033cc1ec7b3efbd59020e8c012fd335645ff72c482ba29797239afa7cdd7",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/proposal.patch",
+      "sha256": "6142a7bf8260d1d6d67c2d1cee60a2d4b9d3832faa7b1305e555d3101193b7ae",
+      "bytes": 478
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/request.json",
+      "sha256": "4ae122bb68821cecd4a9c89951c1dd7310696c6b36f0b4263393b4c241d5201d",
+      "bytes": 27184
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/resolved-proposal.json",
+      "sha256": "1e83a5f371d09df569f56582e1b242d2f3a2371f53e69f1095c31b8fa8b2a3b3",
+      "bytes": 2341
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/response.json",
+      "sha256": "e76357a94c8ee8c6417f49a318991bc390761e08094d965814f9d0b75b29ec1e",
+      "bytes": 983
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/stage.json",
+      "sha256": "3429a56f321cc1f55c945ccd4ddfd770eb939ed2a386f2172eec7fd72a16a673",
+      "bytes": 9483
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-03/tools.json",
+      "sha256": "9d65a9251600b252137a630a2238ab303bec0443ee271c950290d16fd53be051",
+      "bytes": 13107
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-04/capacity.json",
+      "sha256": "310d4198ac4e4b5f91b761b9ef7e97a9c2b4e0f1063fe3948aa37aa9cdd923da",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-04/request.json",
+      "sha256": "65e53fc2e432745a086fcd33d8dd03a0332d5e26fd147eccda889147fb620214",
+      "bytes": 37455
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-04/response.json",
+      "sha256": "47daea8b61dbdb6fc5dd357f376c712216d2c4e3cfaa2a6f85d6bd6b796793ad",
+      "bytes": 690
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-04/stage.json",
+      "sha256": "58e7c015d5114d33239f4cb6fdbe56c5b5eab06e16d9539a1e5faddc36c2d751",
+      "bytes": 5254
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-04/tools.json",
+      "sha256": "02b17e05b641de41bc36a5827dc0875786e38a38b536b6f71d582965f5f01f27",
+      "bytes": 3689
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/capacity.json",
+      "sha256": "4d7e6761a4bb8b1e77555ac557ed3e9652e97b6b97d7060792c6ebe8d2783ee4",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/proposal.patch",
+      "sha256": "22e274b8f899ec054a8e2128358d62cd15e25675a9b2a4c5a7623e1e2b49483a",
+      "bytes": 494
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/request.json",
+      "sha256": "ceee6b5fb10973b6ed5658b9055ed1bb351944e7334d6a44c75c0bba161396c6",
+      "bytes": 40869
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/resolved-proposal.json",
+      "sha256": "bd8c2c66fb0502b382ea780dfe5606b08fc60726b839c0394ebdadd9cd2dbec4",
+      "bytes": 3931
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/response.json",
+      "sha256": "6911c761fdfd775776aa0caac318029a6f991799ea707c192c25d0c3edbe9b21",
+      "bytes": 806
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/stage.json",
+      "sha256": "8876a77d3534c34ee545304212e1451f0fb9f5c8b45747aa9bda258e84ce07bd",
+      "bytes": 11880
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-identity/turn-05/tools.json",
+      "sha256": "f56eb23af308a7c56621f69c6ce53e0086580c1db5378ac5a53e31241ae2824d",
+      "bytes": 16512
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/coding-command-01.json",
+      "sha256": "e668143970afde0c6f407f1e3a57a0f14b3dbe27f03e7c3f4ba4f1d121e4b29f",
+      "bytes": 761
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/final-source.py",
+      "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f",
+      "bytes": 512
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/final-sources/src/devtools/core/regex/splitting.py",
+      "sha256": "5c2950d6f479ba51c65555ddf92c4e5858e8002e12017a7b06a16da86e2e6f3f",
+      "bytes": 1302
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/freeze.json",
+      "sha256": "c4f484d845ae23a41d1f803ac1241535fddae0d8028644d4a1ad0309794858b2",
+      "bytes": 17904
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/oracle-runner.py",
+      "sha256": "f86a83da870db40cd3d857a743e87c2165562cfd35f81b385cabd0d16bff695b",
+      "bytes": 1595
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/provider-response-01.json",
+      "sha256": "f80cfa22f06e4213105a3d6aa0d5ea9db808b640ecf7610b1fb9aaf8c999f3d5",
+      "bytes": 1489
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/provider-response-02.json",
+      "sha256": "ce20852fa537cb525d204d75d73d6936ad9c28ae5d3730b7edc4e569f14fca6e",
+      "bytes": 1202
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/provider-response-03.json",
+      "sha256": "caf4937faae4bd06c2ac5d0076ac6fe771508e4df797d842ac66023c1ceb4612",
+      "bytes": 1352
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/provider-response-04.json",
+      "sha256": "b52d9c674da62c2726b07156e2c2ffa0fd5bafaa37afc738b594a4cda9fc831f",
+      "bytes": 1262
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/provider-response-05.json",
+      "sha256": "a3827b4e389afa5d47aea71cdfc14b6e2287d879bf7adfd06d0d2995628a360f",
+      "bytes": 4497
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/result.json",
+      "sha256": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+      "bytes": 50955
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/tests-runner.py",
+      "sha256": "ab6a7ec0de460ade69bfbf2282e9ca5827677964418837496d2265532cce25bc",
+      "bytes": 1287
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-01/capacity.json",
+      "sha256": "092e12bb1b27740293b027c4351fa294105c51b2298d1706dbf9efb00a7e6286",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-01/request.json",
+      "sha256": "51cc1d918da1cb5e962ada0f00806fc9e69b86101070e7fc074d176d2da8e617",
+      "bytes": 7488
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-01/response.json",
+      "sha256": "17918f3903b2107b391c6883fc866ce9b5b47266152b790e486c599d555bf41e",
+      "bytes": 760
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-01/stage.json",
+      "sha256": "853f0ac85228f66d5a2c06fd61cb2b6ca9fd57bafbec9797dd78983f54991304",
+      "bytes": 5863
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-01/tools.json",
+      "sha256": "69e428277434440cd452673e354fab7df746bc2646ce5739f25d4e5b51cae965",
+      "bytes": 4008
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-02/capacity.json",
+      "sha256": "e97d00f7d47a0c67d3f71060ca9e8c2f075e2e845ab866cf9901bd5f4366c1ba",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-02/request.json",
+      "sha256": "3e4eb53d10d140e9dbb9d3dee81331ea99496045d268e764fec3974524e10093",
+      "bytes": 11146
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-02/response.json",
+      "sha256": "2ce52fb14c80d53830e3faef13ec5e6c7c43f1067caa092c19d1dda0ba63910e",
+      "bytes": 561
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-02/stage.json",
+      "sha256": "54ea6f462c5127b63eaeb36691b0d0894c3110591b92b6cc844453db1caf774d",
+      "bytes": 7381
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-02/tools.json",
+      "sha256": "2406abab72e697c9208b8033f25e6ab24ba08d686e86cd000754b77a03ffcba1",
+      "bytes": 5826
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-03/capacity.json",
+      "sha256": "c4ba1ac0032c8f934beb57e4a0f3245db869981834ea3f11903f673145d15e0a",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-03/request.json",
+      "sha256": "1e0c6c8c34a89a7a9e6729735aba3620728a9c97c84820d4550e607948d6fed6",
+      "bytes": 16689
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-03/response.json",
+      "sha256": "bc7c703a49210b5400c2cf1dafa791e70a686fa169b6e2558ca2b9b56a2cd098",
+      "bytes": 711
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-03/stage.json",
+      "sha256": "081f2d085f604f757a4f8c1f236b1fe941e726d4000fae8613a4e0af6fbb188d",
+      "bytes": 2441
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-03/tools.json",
+      "sha256": "d0ff252c4122223a67997cfb35b40d9112b0297e502e4a9c17fa442e31f409d6",
+      "bytes": 1239
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-04/capacity.json",
+      "sha256": "a61a8f17650d893b7eb946d90d49a2ca6c9cc0141370aa85dc9acd719e657b5f",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-04/request.json",
+      "sha256": "2c00b652454ff7f3115cfc26cdc3f650ea921f9487d3993aeaed5a5052e32910",
+      "bytes": 18186
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-04/response.json",
+      "sha256": "8edb893d50edbee05dcc97e53c86e954c907c5183444860c6bef106b830b73a1",
+      "bytes": 626
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-04/stage.json",
+      "sha256": "110ccf606c98ce33d799f3f78893b2094ffe104c5ed1ae5749ccdf344c887c1d",
+      "bytes": 6064
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-04/tools.json",
+      "sha256": "9ba20f6fe999029fcc3e98f5dd0eea02b925431eaadc1755fc1aa8ffeb34accf",
+      "bytes": 4513
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/capacity.json",
+      "sha256": "ebb81d5604a40df95080659e36f12d670cc60c44f49d13432af9d8a145b8e71e",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/proposal.patch",
+      "sha256": "2b5e7d9345b7a44f826b237bc20de90c59ccfb05436851a5061a5836eb01bf8b",
+      "bytes": 1753
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/request.json",
+      "sha256": "45b49601060992030ac1e4dfa88e975550c4f482d3d8d8b12cdff6750a85115a",
+      "bytes": 22504
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/resolved-proposal.json",
+      "sha256": "3b5294e66355d2e2e1f20db079ec9c00116f1292223053ef9b113d4c96ecac34",
+      "bytes": 6046
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/response.json",
+      "sha256": "f218e6e1f77e795e114b23afdc29ad3676f6de02b5028ec93b8d1bc9a18bac0a",
+      "bytes": 3760
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/stage.json",
+      "sha256": "8a19873ce4b007cf98f88c443a44ccd5dea6e63b956669cf56cb884911b19bf8",
+      "bytes": 12638
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/devtools-split/turn-05/tools.json",
+      "sha256": "99c777eae694d8307deeeb32a0a5dd6a9c9b2ee2865b9840d1010bb0ea523e1e",
+      "bytes": 16532
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/candidate-0.py",
+      "sha256": "1569a9fa749ed4d040b77ce75cd30ca8c72c51788e210a1d427afd11667472de",
+      "bytes": 646
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/candidate-1.py",
+      "sha256": "958cd614da55f2bea22d62d80f880f90655ec0abd8e5b4c206475aade095843e",
+      "bytes": 861
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/candidate.diff",
+      "sha256": "416ac290dd9e9aa54d24f5becc1d4e5172acb670cdbddbd2949be2c28e5eeacd",
+      "bytes": 1233
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/config.json",
+      "sha256": "002eae7f3bcf2eb75c54d4547320a187080afa4fc1afc3e140306498aa7c88f0",
+      "bytes": 4712
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/oracle-runner.py",
+      "sha256": "23c1aac797e2d80512cc39dde5ae10781730a1ff265172978710ed88c64b686c",
+      "bytes": 1417
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-provider-1.txt",
+      "sha256": "eb41faa46000496770dbb2a74605c12bf797dfa5d3789e865b15532cea063571",
+      "bytes": 7888
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-provider-2.txt",
+      "sha256": "f29a65035df09552cd08506d32f19a92b544b5ac0525138d5cac12d4347973b5",
+      "bytes": 10863
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-provider-3.txt",
+      "sha256": "9351f3d2ad2db1bc81efffd6f3e128af59a312845f768b2e47654ecb5acd2561",
+      "bytes": 87418
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-provider-4.txt",
+      "sha256": "d4ce24e4bbdefd9b3bdde4ca5971c00bd0cca87de2cddfd774adb8b16d96909e",
+      "bytes": 1738
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-provider-5.txt",
+      "sha256": "69bd7bad23cefcd59e3a47a246e47463a159bca6b61184b61a86a2c201f271b2",
+      "bytes": 44320
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-request-1.json",
+      "sha256": "2cc545b591d677d3d13b15948a38720b289282927b379afba03c44e767bfe292",
+      "bytes": 7829
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-request-2.json",
+      "sha256": "0f7a0f328e8e978e40eca8a1ae97e90f40cb50d5a02d7169395c722d06423141",
+      "bytes": 9983
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-request-3.json",
+      "sha256": "5818eb5db168e40a4925116df156e68c1a53d5d8994a93e1e02b630e25faaabf",
+      "bytes": 13657
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-request-4.json",
+      "sha256": "fa5a23bb205573f852259c38ad5abfcea8f7b88fcc8c4c91764c09680b164c49",
+      "bytes": 15748
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-request-5.json",
+      "sha256": "d63aad7b80e25757d9710c6111f018d06530dfe2dc3a05db695a570df22c778a",
+      "bytes": 18759
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pi-transcript.json",
+      "sha256": "10413a45375b467bc71aa3b8798548ea942d2838529b443f02e370272166ac45",
+      "bytes": 69526
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/result.json",
+      "sha256": "2168fff4fb4ff578698063f7e141ec9a282f6f9a935f32696d4a7f46aa702cd4",
+      "bytes": 8342
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-bsd/tests-runner.py",
+      "sha256": "b95daf54ff04a5cff641299197c69f383f0039b7d2243ccb2c56a54f5e03de15",
+      "bytes": 1288
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/candidate-0.py",
+      "sha256": "aa68513f59a5bf1fd9db9a458c3746a38654f848d28e6ac4d4ca49e423c08c67",
+      "bytes": 1428
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/candidate.diff",
+      "sha256": "4657c6d145391d255d37adbe2f7e92b781e923a335961b20130bdad2ab8f9787",
+      "bytes": 806
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/config.json",
+      "sha256": "18ed029eb26ff6123b0ddfe49ec3f39c3dac88653fe65a5e21fe7cce7c9addcd",
+      "bytes": 3879
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/oracle-runner.py",
+      "sha256": "d9cce7cbcd1c59d1fe15f39b3e083757693f3a48893c96600dd5a15db087c736",
+      "bytes": 1400
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-provider-1.txt",
+      "sha256": "eccb3532584ceaa39e7ca437a929fc467d2d1ca122bb20c76b7d34b078efec3e",
+      "bytes": 7892
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-provider-2.txt",
+      "sha256": "dc56c45e72a89583527e2722b0d19a9e24440796b89a706c99407524e535e669",
+      "bytes": 12004
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-provider-3.txt",
+      "sha256": "05ad89c0ed8fd84d761d0169860658c91d4a3f124616982620eab70536b68edc",
+      "bytes": 117212
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-provider-4.txt",
+      "sha256": "e15e115fb012b90129ca025809ba286645b336d8cbb8db0da5e435128ead9489",
+      "bytes": 1739
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-provider-5.txt",
+      "sha256": "edf9985d297ba243e57bcb4d22193d6e7c2029a3968f2ce2e6b2d8b216922540",
+      "bytes": 49558
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-request-1.json",
+      "sha256": "48807948a479a7622e890e59b5dd5028c4c972d46de138c2a2ad57c12bed5def",
+      "bytes": 7659
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-request-2.json",
+      "sha256": "4ffb74ef397efba662def317085e85fb9f5c51a27affc671338fe7ddf69a3444",
+      "bytes": 11649
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-request-3.json",
+      "sha256": "3c99285f899e2407e885bde5edac7854fb63bf2a8ae7ab82a0bbe81a188f1fb2",
+      "bytes": 16778
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-request-4.json",
+      "sha256": "5518680ff3d0618098c01e42a5e5e1aa5f5732999055471c1b3c24e32ab55d28",
+      "bytes": 19008
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-request-5.json",
+      "sha256": "72d8970bec7f35d22719b356ed87bf71a7759321643516b00df2aa99c3a421f8",
+      "bytes": 21906
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pi-transcript.json",
+      "sha256": "b9a53c357554cd4378664b11d5866ca414c7c8215bdda7bd3fcf495cd9cb28ce",
+      "bytes": 79762
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/result.json",
+      "sha256": "9a8288e1828b55d6e083aac0d863867bb9b6a91336939f3440781bad613a5399",
+      "bytes": 7186
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-identity/tests-runner.py",
+      "sha256": "0ef91183ef694dcf6c4eb43399066eada909d0d823382589e4e25d6aea1e6030",
+      "bytes": 1197
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/candidate-0.py",
+      "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f",
+      "bytes": 512
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/candidate-1.py",
+      "sha256": "06b0f3a7c159f9b35c87ccb9ba8059e31c4f914626bd42bd739d820a48e95bfd",
+      "bytes": 855
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/candidate.diff",
+      "sha256": "240597cb5f7dbd51077271a50fc960ecb77de8b96bdf7eff20821c541a938168",
+      "bytes": 526
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/config.json",
+      "sha256": "ca50191abadeaeee67acebc9101703d46b928aa534c731ca99a0d883e2698d13",
+      "bytes": 5520
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/oracle-runner.py",
+      "sha256": "f86a83da870db40cd3d857a743e87c2165562cfd35f81b385cabd0d16bff695b",
+      "bytes": 1595
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-1.txt",
+      "sha256": "8036822e7f7dd50a26f6e0dd653c88198b5aa98a6c980d9c81674043f1880d8e",
+      "bytes": 1738
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-10.txt",
+      "sha256": "df65ae7d2670bb039f7588b4baf4ec3273ddb96fbd645c3fe8cfca98f67bf935",
+      "bytes": 1739
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-2.txt",
+      "sha256": "1552aa2b949e7af0770e31c8dc1e4f83ecb796407a7e46b462e416ad7422701f",
+      "bytes": 16398
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-3.txt",
+      "sha256": "1b049d065ee0aabf36b2ea4a56a768b58ae219b2c869939475b9d83bd899bb22",
+      "bytes": 7599
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-4.txt",
+      "sha256": "12673809dbad092346ba8cf13f5e68338c1b5fb6cd6a4d58244838cce6eb4350",
+      "bytes": 8474
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-5.txt",
+      "sha256": "938bf220db0b5eab001092d83a9c244f08278233120c3fde3dc73c10aa79e8ae",
+      "bytes": 7883
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-6.txt",
+      "sha256": "1d3fbb01b7d30abca68e7caba8169b16ccb1ef77ad08fb451b59a968b0ac7abc",
+      "bytes": 61764
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-7.txt",
+      "sha256": "def96ce47db73d65029c08e903a88f004457ba4e556e5383725387b79eafa5cf",
+      "bytes": 73755
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-8.txt",
+      "sha256": "aeed4a2ba603d976a6ca4396e745ce4b28eb574fb9901cd69330434b9ad703bd",
+      "bytes": 1736
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-provider-9.txt",
+      "sha256": "4a0979c0bfe92f149ff0724e7278dc7b27d6defa916c6f99612cf2a113d39976",
+      "bytes": 22546
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-1.json",
+      "sha256": "4610df3c6d11ffd591b6b642da08332c7015d27259602053ec79f930684d3326",
+      "bytes": 8083
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-10.json",
+      "sha256": "d0b8e322c30855b3cecd84a342863676e43101e6dac7908d9befe6840477ad50",
+      "bytes": 35516
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-2.json",
+      "sha256": "670b78813fbb2458c864af4406d2e5522f5ea0f9f40f4dd32dfe03b935230e98",
+      "bytes": 9006
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-3.json",
+      "sha256": "90cbd47905eae46c6fbe340bc99eb777508c29ddd08131b9af8179d580c6fe73",
+      "bytes": 17075
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-4.json",
+      "sha256": "eac4d8d390a883a5937014daf5c2be72ba388803f15deccbd1ed8fb28f021ee3",
+      "bytes": 21974
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-5.json",
+      "sha256": "d54642f7129719614dc6a56d00b2fbf48912c0083dbde73c99c4401c0220ff7c",
+      "bytes": 25462
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-6.json",
+      "sha256": "95a3bcaefd910e70646ba266b7592ea08efe7052749cecf8f1e98ea4ed6c4ce4",
+      "bytes": 27616
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-7.json",
+      "sha256": "881f72ca59f7e69603817dd073ac06af71847a5539396a5f49716426a85d1ff4",
+      "bytes": 29106
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-8.json",
+      "sha256": "a18aef19103dd763bcd3b5d809d95bb3ed62203e33fa9cc1a10a2244bac8c161",
+      "bytes": 30629
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-request-9.json",
+      "sha256": "51e77de87e9f2a0fa650ccc9a1d67a546c97c623770e00dadc612e881d3de4a2",
+      "bytes": 34758
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pi-transcript.json",
+      "sha256": "e8cc078d243ad8a2a7872e28c02b6a1545602ea296258f7e37cd6efdb5236d45",
+      "bytes": 146684
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/result.json",
+      "sha256": "27a661ee993eac169f5380d120c05dd3b6f1eb31643e0f0a98943bcdd352b91a",
+      "bytes": 9152
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/pi-split/tests-runner.py",
+      "sha256": "5c560de8527683116451eb04712d2dde4e0692cfe162cb1d1c2686d5c3c9bbbe",
+      "bytes": 1281
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-bsd/oracle-runner.py",
+      "sha256": "23c1aac797e2d80512cc39dde5ae10781730a1ff265172978710ed88c64b686c",
+      "bytes": 1417
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-bsd/preflight.json",
+      "sha256": "927c5ad7f447b1afbdbb3802e5e6784c0ccadb999ca0807b6a1cfe6e138702f6",
+      "bytes": 4241
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-bsd/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-bsd/tests-runner.py",
+      "sha256": "2cbc0c0262276538af2d418aaa3efdc49eef033070ba895933e2ed0216afed2f",
+      "bytes": 1295
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-identity/oracle-runner.py",
+      "sha256": "d9cce7cbcd1c59d1fe15f39b3e083757693f3a48893c96600dd5a15db087c736",
+      "bytes": 1400
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-identity/preflight.json",
+      "sha256": "c8bbe0b441513537e1eeb10b490db85e6e488d09fa0ef528b812e3d59034fe7b",
+      "bytes": 4165
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-identity/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-identity/tests-runner.py",
+      "sha256": "d096c4796ea5bd90740e4275d52cd06d60bb8fdee11e228fc3b0e5155852bb2f",
+      "bytes": 1204
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-split/oracle-runner.py",
+      "sha256": "f86a83da870db40cd3d857a743e87c2165562cfd35f81b385cabd0d16bff695b",
+      "bytes": 1595
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-split/preflight.json",
+      "sha256": "c50e36cc4fc6873e95a98336a6dde6ff7781d44a3239ed0454d26a6278a44149",
+      "bytes": 4073
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-split/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/investigation-07/preflight-split/tests-runner.py",
+      "sha256": "a380ce63f5c1a390d31306c5c7b3df6209e83d5cf0d1fd20551af46a3f6ca2b0",
+      "bytes": 1288
+    }
+  ],
+  "coordination_usage": "UNKNOWN",
+  "paid_model_fallback_calls": 0,
+  "energy_and_incremental_cost": "UNKNOWN",
+  "comparison_limit": "Two development pairs and one prospectively frozen confirmation pair; bounded admitted corpus, small tasks, no claim of general reliability or Codex parity. No worker/serving tuning between conditions. Source-control CRLF materialization is documented in confirmation-selection.json.",
+  "integration": {
+    "receipt": ".local/qwen-coding-worker/investigation-07/devtools-split/closeout.json",
+    "receipt_sha256": "41fda4312898eae4497134bbb056c272f6431cb323cad3ff022216f7924057f7",
+    "disposition": "FEATURE_PUBLISHED",
+    "commit": "373b350b934700a4f7422329e8b995a250d8bf9f",
+    "review_subject": "7c5205a40af2696b23fdc44fcb06c66e49d91b63697e3d85694fdaf461e6a4b7",
+    "review": {
+      "subject": "7c5205a40af2696b23fdc44fcb06c66e49d91b63697e3d85694fdaf461e6a4b7",
+      "reviewer": "Codex",
+      "disposition": "ACCEPT_RECOMMENDED",
+      "rationale": "Independently inspected exact Qwen-created splitting.py and package exports, authenticated both candidate hashes and the atomic observed transaction. The implementation delegates to existing compile_regex, preserves compiled-pattern policy, returns immutable split pieces including None captures and exposes the intended public API without unrelated source changes. Frozen oracle and original regressions pass; ten independent Codex regression cases bring focused tests to seventeen. Ruff, formatting, strict typing and the 2154-pass/2-skip protected gate with 100 percent production branch coverage pass. Test-only import sorting is independently attributed; no Qwen implementation bytes changed. Publish only the existing ordinary feature; no protected promotion or unrelated candidate integration."
+    },
+    "files": [
+      {
+        "path": "src/devtools/core/regex/__init__.py",
+        "author": "Qwen",
+        "reference": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+        "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f"
+      },
+      {
+        "path": "src/devtools/core/regex/splitting.py",
+        "author": "Qwen",
+        "reference": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+        "sha256": "5c2950d6f479ba51c65555ddf92c4e5858e8002e12017a7b06a16da86e2e6f3f"
+      },
+      {
+        "path": "tests/core/regex/test_splitting.py",
+        "author": "Codex",
+        "reference": "Independent permanent regressions for the frozen investigation-07 splitting API",
+        "sha256": "37a3ae711b1a839d9f899754ae63f9e3cbd352bf30d263015382251811ba7344"
+      }
+    ],
+    "validation": {
+      "oracle": 0,
+      "tests": 0,
+      "ruff": 0,
+      "format": 0,
+      "typing": 0
+    },
+    "protected_summary": "2154 passed, 2 skipped in 503.31s",
+    "production_branch_coverage": "100%",
+    "protected_elapsed_seconds": 505.97299,
+    "checks": [
+      {
+        "name": "oracle",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\oracle.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.069372,
+        "stdout_sha256": "bcff110356e2ca56172b700a445f3a21dc4036b6f7644d45eeebfc09dad651b0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "tests",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\tests.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.49574,
+        "stdout_sha256": "1d2247607883784212739783613c9828d0daf9605ecfd014b2753243f86735f4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "ruff",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.095301,
+        "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "format",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--check",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.089321,
+        "stdout_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+        "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "mypy",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy",
+          "--strict",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.265641,
+        "stdout_sha256": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "protected",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\protected.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 504.947148,
+        "stdout_sha256": "5ecacf88456c28ecc17cc3a26dd8b3cba3d094f54d329680dfdbdee50e6fcd03",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": true,
+        "truncated": false
+      }
+    ],
+    "publication": "Only origin/feat/qwen-context-worker; protected main untouched",
+    "independent_regressions": "Ten Codex-authored permanent cases, seventeen focused regex cases total; Qwen source unchanged",
+    "pre_gate_correction": "First installation precheck stopped at independent-test import ordering before the protected suite ran. Only test imports were corrected; one full protected suite ran."
+  },
+  "previous_output_closeout": {
+    "candidate_sha256": "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2",
+    "receipt": ".local\\qwen-coding-worker\\editing-06\\devtools-output\\closeout.json",
+    "receipt_sha256": "09785dd2ab746667277d3de87f362d417f06f1640da8a30bdb14330d35efa0de",
+    "disposition": "SUPERVISORY_REVIEW",
+    "focused_validation": true,
+    "publication_eligible": false,
+    "remaining": "Own permanent regressions, exact-current-tree protected validation and reviewed publication; no combining unrelated candidates into this scope.",
+    "advisory_review": ".local\\qwen-coding-worker\\editing-06\\devtools-output\\supervisory-review.json",
+    "advisory_review_sha256": "6ee0be8cee256e9b70cbc2f20c3776221df30009d3fb4f4c1f8329ecf7385eca"
+  },
+  "timing_coverage": "Devtools elapsed_seconds measures run_coding_task and excludes outer Checkout/readiness setup. Pi adapter elapsed_seconds includes baseline/Checkout/SDK setup and final validation. Their recorded worker seconds are descriptive; uniform CLI end-to-end time and setup overhead were not instrumented."
+}

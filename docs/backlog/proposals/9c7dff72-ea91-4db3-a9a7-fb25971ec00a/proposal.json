@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "9c7dff72-ea91-4db3-a9a7-fb25971ec00a",
+  "created_at": "2026-10-24T02:19:25.667276+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Keep required-resource reach partitions within the required population",
+    "parent": "B-0002",
+    "summary": "Priority2 retained-report correctness. build_analysis category_sets uses obligation_union minus global_reached for obligation_lane_only, but global_reached is already restricted to required resources while obligation_union includes every positive candidate. Tiny required.py plus unnecessary.py fixture misclassifies unnecessary.py as required-only. The retained original analysis.json/md actually reports413 obligation-only plus17 both for a17-resource required universe. This is an observed report-field defect, separate from authentic source/judgment binding and from valid global/own depth calculations.",
+    "resources": [
+      "experiments/codex_dogfood/case_0004/analyze.py"
+    ],
+    "evidence": [
+      "docs/research/ri-acquisition-structural-verification-audit.md",
+      "docs/research/code-audit/ri-acquisition-probes.json"
+    ],
+    "benefit": "Preserve original analysis bytes and scientific judgments. Add a versioned read-only analysis verifier/corrected projection or explicitly versioned erratum that intersects every category with the authenticated required population. Verify categories disjoint, their union equals required exactly, every address/content pair belongs to the frozen frame, and counts equal rows. Independent tests for required/non-required overlap, no positive matches, global-only/own-only/both/neither, duplicate and foreign identities. Report original413 field as qualified, not silently repaired; independently authenticate original inputs and show unaffected original17/17 reach and completion-depth claims separately. No scientific rerun or gold relabeling.",
+    "uncertainty": "Original source and retained report confirm this specific arithmetic population error. Do not invalidate the whole case, infer task satisfaction, or alter frozen gates/results. Existing diagnostic prefix and Graph3 report-assurance bugs are different owners/contracts.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-acquisition-structural-verification-audit.md"
+    }
+  },
+  "payload_sha256": "a97ab962159b82499d25962fd0411925187d053301818152c40912792bd453ee"
+}

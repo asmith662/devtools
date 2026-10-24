@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+  "created_at": "2026-10-23T17:29:30.847631+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Consume RepositorySnapshotDelta in authorized native Context refresh",
+    "parent": "B-0008",
+    "summary": "Priority2 INTEGRATION. compare_repository_snapshots is exported/tested but has no current non-test operational caller. ContextTools already observes and rebuilds all admitted state on accepted edits. Use the existing delta at that real refresh boundary to explain exact added/removed/modified/unchanged admitted occurrences and decide qualified invalidation/refresh without a second repository identity or cache authority.",
+    "resources": [
+      "src/devtools/context/repository/changes.py",
+      "apps/qwen/context_tools.py",
+      "apps/qwen/navigation.py",
+      "tests/context/repository/test_changes.py"
+    ],
+    "benefit": "Acceptance: real authorized existing-file edit and new-file admission yield correct occurrence partitions; unchanged metadata/content distinctions, missing required source, out-of-scope drift and forged frames remain rejected. Old map handles and check reports become stale, valid refreshed source observations support exact atomic edits, restoration preserves original bytes. Show one actual maintained refresh consumer and model-visible scoped explanation; removal means snapshot exclusion, not permission to delete. No claimed speedup without a measured baseline; full rebuild is permitted where dependency-scoped reuse is not established.",
+    "uncertainty": "Current full rebuild is safe; this is missing operational consumption/diagnostics, not a proven invalidation bug or an incremental scheduler grant. Architectural review needed before dependency-specific persistent caching. Suitable bounded maintenance-agent task after source/frame oracle qualification.",
+    "dependencies": [
+      "B-0002",
+      "B-0009"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/repository-intelligence-code-audit.md; source baseline95efbf711c3644fb32d269d85927000cd8f4aaa9;2026-10-23"
+    },
+    "evidence": [
+      "docs/research/repository-intelligence-code-audit.md",
+      "docs/research/code-audit/ri-modules.jsonl",
+      "docs/research/code-audit/agent-use.json"
+    ]
+  },
+  "payload_sha256": "59092bfdbff738b97d6c3eecd5435fdb6c92200afb31b0376078499f6d021f44"
+}

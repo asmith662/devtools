@@ -1,0 +1,22 @@
+{
+  "source_baseline": "44c98aeb341bf9d9e306d57a07fe8fa6db5c3305",
+  "maximum_runs": 10,
+  "maximum_model_calls": 100,
+  "maximum_worker_seconds": 9000,
+  "maximum_output_tokens": 12288,
+  "normal_output_tokens": 4096,
+  "model": "qwen38-local",
+  "development_tasks": [
+    "portable-dot-components",
+    "strict-json-overflow"
+  ],
+  "comparisons": [
+    "unchanged Devtools versus pinned Pi 1.3.0, both tasks",
+    "q4_0 versus q8_0 KV on strict-json-overflow",
+    "thinking off versus medium with 12288 output allowance on strict-json-overflow",
+    "final coding tools/closeout on both tasks"
+  ],
+  "held_out_claim": false,
+  "contract_review": "Behavior, exception compatibility, strict mypy, Ruff/format reviewed. Portable path components remain mechanical, not Python identifiers. JSON arbitrary integers remain exact. Original test/oracle meaning cannot be changed after inference. No solutions in prompts.",
+  "baseline_reproduction": "preflight required before first model call"
+}

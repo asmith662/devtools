@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+  "previous": null,
+  "at": "2026-10-23T17:29:31.389392+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/repository-intelligence-code-audit.md",
+  "rationale": "Priority1 BUG reauthenticated: source/representation.py passes str.splitlines(keepends=True) into physical AST-coordinate conversion. Valid Python strings containing VT/FF/FS/GS/RS/NEL/LS/PS split spuriously. 24 adverse cases across LF/CRLF/CR fail exact expected symbol extraction; three space controls pass. Real AST positions and existing function materializer agree. Example LS+LF source search text is b\"\\ndef target(), while actual target declaration is def target():\\n    return 1. Existing912 RI/Evaluation tests pass and do not cover this source-index boundary. Acceptance already in original proposal remains: reuse correct physical line treatment, test all separators/newlines/Unicode/multiline/decorators/windows, exact retained identity, new and old API compatibility. No production correction made.",
+  "duplicates": [
+    {
+      "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing pending payload/status/parent preserved. New evidence and explicit acceptance only; original failures and grants unchanged.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "7001716ad9da7fc51890107af1f48ee644af3b3e4522b8617bb3e28475c6b800"
+}

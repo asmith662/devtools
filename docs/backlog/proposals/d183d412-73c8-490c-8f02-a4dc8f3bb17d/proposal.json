@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "d183d412-73c8-490c-8f02-a4dc8f3bb17d",
+  "created_at": "2026-10-24T02:19:25.682121+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Count structural marginal unit gains by obligation-qualified evidence rather than new resource alone",
+    "parent": "B-0002",
+    "summary": "Priority3 versioned-analysis correctness. Nested marginal computes new_required_unit_judgments only when a required unit resource is in delta_resources AND its obligation/resource cell is new. A resource already present for ob-a that becomes correctly supported for ob-b gains a required cell and unit judgment but reports zero unit gain. Exact source function with independent two-obligation fixture reproduces it. All three retained Case0008 marginal unit counts agree with retained surface differences; no original numeric impact demonstrated.",
+    "resources": [
+      "experiments/codex_dogfood/case_0008/analyze.py"
+    ],
+    "evidence": [
+      "docs/research/ri-acquisition-structural-verification-audit.md",
+      "docs/research/code-audit/ri-acquisition-probes.json"
+    ],
+    "benefit": "Leave frozen source/reports unchanged. In a versioned future projection/verifier, derive added obligation/unit judgments from qualified before/after support sets, separately derive globally distinct-unit and unique-resource gains, and label each denominator explicitly. Tests include same resource under a new obligation, same unit already covered elsewhere, duplicate supports, overlapping operators, no changes, missing/unknown units and foreign frame. Authenticate actual retained schemas and pair identities; accept unchanged historical marginals without suggesting a new retrieval result. Keep gold in evaluation only.",
+    "uncertainty": "Synthetic generality defect, not evidence of a wrong original Case0008 verdict or native RI error. Shared metrics helpers need caller/schema compatibility; no generic evaluator or rewriting independent scientific controls.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-acquisition-structural-verification-audit.md"
+    }
+  },
+  "payload_sha256": "7b0dc2de337b943af58e6acd5edd028667be6b124494e2dfcfa760b076d238e8"
+}

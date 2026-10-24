@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "b4a017bb-b1eb-4209-99f7-0b73dcf4bd44",
+  "created_at": "2026-10-24T14:34:05.069781+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Prevent stale phase-output reuse in retrieval performance timeout reporting",
+    "parent": "B-0002",
+    "summary": "P2 experiment-owned measurement correctness. experiments/performance/retrieval/profiler.py:profile reads a pre-existing phases/<phase>.json after CommandTimeoutError without checking current invocation identity or worker entry. Independent fake executor times out before entry with old COMPLETE output present: returned TIME_LIMIT_STOPPED_NOT_REPEATED retains the old summary and a999-second lower bound despite a120-second cap. reporting.render prefers any summary, so stale timing can appear as current stopped-phase data. No original performance result shown corrupted.",
+    "resources": [
+      "experiments/performance/retrieval/profiler.py",
+      "experiments/performance/retrieval/reporting.py",
+      "experiments/performance/retrieval/test_benchmark.py"
+    ],
+    "evidence": [
+      "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "docs/research/code-audit/ri-completion-probes.json"
+    ],
+    "benefit": "Keep frozen original profiler/output immutable. Future maintained/versioned engineering entry must bind phase outputs to an exact fresh invocation or refuse pre-existing output; timeout before authenticated worker entry must report unknown/lower-bound0 without carrying old samples/summary. Permanent independent tests: stale complete/partial/foreign phase, timeout before entry, fresh heartbeat then timeout, normal complete, nonzero worker failure, one invocation/no retry. Preserve120-second bound, no science replay or ambiguous external-effect retry. Real consumers are engineering profile publication and reporting only.",
+    "uncertainty": "Original retained stopped phase has no stale summary and a bound within its cap; current source demonstration does not invalidate that run. A new generic journal, lifecycle controller or framework tracing layer is unnecessary. Suitable report-only maintenance-agent scope.",
+    "dependencies": [
+      "B-0002",
+      "B-0034"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+    }
+  },
+  "payload_sha256": "8a1be01292247253f2168abc9255efc12230e03ca31863b7adf68ad2e5ef06d5"
+}

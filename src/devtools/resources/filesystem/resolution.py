@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from devtools.resources.filesystem.codecs import (
+    BinaryCodec,
     CsvCodec,
     JsonCodec,
     MarkdownCodec,
@@ -26,8 +27,9 @@ _SUFFIX_FORMATS = {
 }
 _CODEC_TYPES: dict[
     FileFormat,
-    type[CsvCodec | JsonCodec | MarkdownCodec | TextCodec],
+    type[BinaryCodec | CsvCodec | JsonCodec | MarkdownCodec | TextCodec],
 ] = {
+    FileFormat.BINARY: BinaryCodec,
     FileFormat.CSV: CsvCodec,
     FileFormat.JSON: JsonCodec,
     FileFormat.MARKDOWN: MarkdownCodec,
@@ -56,7 +58,7 @@ def resolve_file_format(path: ResolvedPath) -> FileFormat:
 
 def resolve_codec(
     file_format: FileFormat,
-) -> CsvCodec | JsonCodec | MarkdownCodec | TextCodec:
+) -> BinaryCodec | CsvCodec | JsonCodec | MarkdownCodec | TextCodec:
     """Resolve the codec for a file format.
 
     :param file_format: File format requiring representation conversion.

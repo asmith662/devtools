@@ -1,0 +1,13 @@
+{
+  "finding": "PREPARATION_NOVELTY_ERROR",
+  "previous_case": "apps/qwen/evaluation/native-cohort-01/source-physical-spans.json",
+  "previous_task_sha256": "b61cc861e93da2d6f898847f18c045506b3a90eaf6d90ceee202aa7513581aad",
+  "shared_source": "src/devtools/context/retrieval/source/representation.py",
+  "shared_source_sha256": "96dea804f6adaac562146ba32b597fca5bcea5674fc3f0ebfe0cf07a2b2bb33d",
+  "current_task": "source-search-physical-lines",
+  "classification": "DIAGNOSTIC_CONTINUATION_NOT_FRESH",
+  "fresh_evaluation_eligible": false,
+  "codex_calibration_eligible": false,
+  "rationale": "Source path, exact implementation bytes and physical-line defect family were already observed in cohort 01. The initial claim of two new tasks was wrong. Original frozen definitions, manifest and actual failed outcomes remain unchanged. Binary I/O alone is fresh. No replacement inference is launched beyond the declared two-run/one-reference budget.",
+  "prevention": "Before freezing a prospective case, inspect historical task/source/oracle identities and label development reuse explicitly. Host preflight checks do not establish novelty or specification satisfiability."
+}

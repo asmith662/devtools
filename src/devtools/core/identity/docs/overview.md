@@ -25,7 +25,10 @@ Identity.parse(text)
 Identity.new()
 ```
 
-These operations are intentionally distinct.
+These operations are intentionally distinct. Direct construction enforces a
+`UUID` value at runtime and raises `TypeError` for other values. Valid UUID objects
+are retained unchanged; ordinary inherited constructors preserve the invariant.
+`parse()` retains its native malformed-text `ValueError` contract.
 
 ## Generation semantics
 

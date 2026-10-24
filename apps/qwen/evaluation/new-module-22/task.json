@@ -1,0 +1,175 @@
+{
+  "name": "retained-snapshot-resource-changes-new-module-22",
+  "objective": "Implement a useful bounded Repository Intelligence prerequisite for B-0002: compare two existing retained RepositorySnapshot values and expose their addressed-resource changes. Existing context.repository owns this, not filesystem scanning, Git, a new snapshot authority or an incremental-maintenance engine. Provide public compare_repository_snapshots(before, after) and immutable RepositorySnapshotDelta through both devtools.context.repository and devtools.context. The returned value retains the exact before and after snapshots and tuple-valued added, removed, modified and unchanged RepositoryResourceAddress collections, each sorted by address.value. Added/removed mean membership difference in the explicitly supplied observed collections, never a filesystem absence, rename, copy, move or full repository claim. Modified means differing complete RepositoryResourceOccurrence values at a common exact address; compare actual retained values, not only snapshot/content IDs. Empty/no-change collections work. Repository identities must agree; duplicate addresses in either input are invalid ValueError cases rather than last-wins ambiguity. Preserve case, Unicode, exact source identities, observations, input immutability and all existing APIs. No acquisition, direct filesystem reads, Git, automatic invalidation, caching, application or execution in the comparison. Keep new implementation in the existing repository package and integrate existing public export owners. Investigate their invariants and actual dependencies, then implement. Additional investigation is useful only for a concrete unresolved implementation dependency. Do not search for a comparison that does not exist yet. Use exact common pre-transaction anchors for every component; new source requires actual authorized absence observation. Semantic source is yours; independent tests/oracle remain host-owned. After implementation invoke check_changes on the installed candidate. Repair actual behavioral or quality failures and invoke renewed check_changes after source changes; host authenticates is_current before restoration. Do not supply an answer by copying metadata or headers into source.",
+  "source": "src/devtools/context/repository/__init__.py",
+  "tests": [
+    "tests/context/repository/test_observation.py",
+    "tests/context/repository/test_corpus.py",
+    "tests/context/repository/test_document.py",
+    "tests/context/repository/test_discovery.py"
+  ],
+  "baseline_revision": "b0c5fb0297500c86c61228903d474c8b63d47df1",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/repository/__init__.py",
+      "e9f3a881cb2765fc41bc698b9d44f8fd36d0676251f99894fa286f7c862bf372"
+    ],
+    [
+      "src/devtools/context/__init__.py",
+      "96e10a51a49468be935bd6f205bde16829a382eb89d90d043b1d0a8d84f94cb5"
+    ],
+    [
+      "tests/context/repository/test_observation.py",
+      "5a9bb0a085509221ddb5563d0097423ccc5f5f7b14da6372d7bf14bc1a422e6a"
+    ],
+    [
+      "tests/context/repository/test_corpus.py",
+      "96e8ae738773c8062c358ceece3536ce8a1613910c01b4feee9c4b37cf9cfe64"
+    ],
+    [
+      "tests/context/repository/test_document.py",
+      "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261"
+    ],
+    [
+      "tests/context/repository/test_discovery.py",
+      "746fa1e5aacfb5fb530d0eff2b25211ec0f04ca5e4320c76e4dcd20fb7438eb4"
+    ],
+    [
+      "src/devtools/context/repository/snapshot.py",
+      "bca32b4c24b7258ff9190e2ae3c64ff57b3a9022e8bb71c3e6f56b0a81859d3f"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89"
+    ],
+    [
+      "src/devtools/context/repository/identity.py",
+      "81f9128f127192b402c7d9f05c196d7678071e38f4847a6a865fddc70b3765c3"
+    ],
+    [
+      "src/devtools/context/repository/observation.py",
+      "d2e4d911f1f8363e5ec2a1a582f291c9d8a2fe8f95864fc2d58962e0ee53fc0b"
+    ],
+    [
+      "src/devtools/context/repository/corpus.py",
+      "6349146f827ce240d0957fcaf59e025726c69f252e0fcd62559d63f1240b6a69"
+    ],
+    [
+      "src/devtools/context/repository/document.py",
+      "5f0c2be4f0c22c685c556b3ab614f0a54247cfdb79cb0ae1116654b834995510"
+    ],
+    [
+      "src/devtools/context/repository/discovery.py",
+      "726edfeced04ed6062b9a7f5eeb5f01b6484b68bae21c671f07631b42a9107b1"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/repository/__init__.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/__init__.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/repository/test_observation.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/repository/test_corpus.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/repository/test_document.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/repository/test_discovery.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/snapshot.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/identity.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/observation.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/corpus.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/document.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/discovery.py",
+      "repository snapshot addressed resource comparison public exports",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "\"\"\"Independent retained-resource delta acceptance; no filesystem delta claim.\"\"\"\nfrom dataclasses import FrozenInstanceError, replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom devtools.core.paths import resolve_path\nfrom devtools.context.repository import Repository, RepositoryId, RepositoryResourceAddress, observe_repository_resources\n\ndef snapshot(files, *, alternate=False):\n    repository=Repository(RepositoryId.parse('00000000-0000-4000-8000-0000000000'+('24' if alternate else '22')))\n    with TemporaryDirectory(prefix='devtools-delta22-') as temp:\n        root=Path(temp).resolve()\n        for name,text in files.items():\n            path=root/name; path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text,encoding='utf-8')\n        return observe_repository_resources(repository=repository,root=resolve_path(root),addresses=tuple(RepositoryResourceAddress(p) for p in files),maximum_resource_bytes=65536)\n\ndef addresses(values): return tuple(a.value for a in values)\n\ndef reject(compare,before,after):\n    try: compare(before,after)\n    except ValueError: return\n    raise AssertionError('Mismatched repositories and duplicate addressed occurrences must be rejected')\n\ndef verify(compare,kind):\n    # Both fixture roots have already been removed. Only retained observations exist.\n    before=snapshot({'old.py':'same copied bytes','keep.py':'same','edit.py':'old','z.py':'Z'})\n    after=snapshot({'new.py':'same copied bytes','keep.py':'same','edit.py':'new','z.py':'Z'})\n    saved=(before,after)\n    delta=compare(before,after)\n    assert isinstance(delta,kind)\n    assert delta.before is before and delta.after is after,'Keep exact snapshot dependencies'\n    assert addresses(delta.added)==('new.py',)\n    assert addresses(delta.removed)==('old.py',)\n    assert addresses(delta.modified)==('edit.py',)\n    assert addresses(delta.unchanged)==('keep.py','z.py')\n    assert before==saved[0] and after==saved[1]\n    reverse=compare(after,before)\n    assert reverse.added==delta.removed and reverse.removed==delta.added\n    assert reverse.modified==delta.modified and reverse.unchanged==delta.unchanged\n    unchanged=compare(before,before)\n    assert not unchanged.added and not unchanged.removed and not unchanged.modified\n    assert addresses(unchanged.unchanged)==('edit.py','keep.py','old.py','z.py')\n    empty=snapshot({})\n    assert not compare(empty,empty).added and not compare(empty,empty).unchanged\n    assert addresses(compare(empty,before).added)==addresses(unchanged.unchanged)\n    assert addresses(compare(before,empty).removed)==addresses(unchanged.unchanged)\n    reordered=compare(replace(before,resources=tuple(reversed(before.resources))),replace(after,resources=tuple(reversed(after.resources))))\n    assert (reordered.added,reordered.removed,reordered.modified,reordered.unchanged)==(delta.added,delta.removed,delta.modified,delta.unchanged)\n    unicode_before=snapshot({'caf\\u00e9.py':'old','Case.py':'same'})\n    unicode_after=snapshot({'caf\\u00e9.py':'new','case.py':'same'})\n    unicode_delta=compare(unicode_before,unicode_after)\n    assert addresses(unicode_delta.modified)==('caf\\u00e9.py',)\n    assert addresses(unicode_delta.added)==('case.py',) and addresses(unicode_delta.removed)==('Case.py',)\n    # Full occurrence equality matters, not a shortcut on snapshot/content IDs.\n    resource=before.resources[0]\n    altered=replace(before,resources=(replace(resource,encoding='different-declared-encoding'),*before.resources[1:]))\n    assert addresses(compare(before,altered).modified)==(resource.address.value,)\n    duplicate_before=replace(before,resources=(*before.resources,before.resources[0]))\n    duplicate_after=replace(after,resources=(*after.resources,after.resources[0]))\n    reject(compare,duplicate_before,after);reject(compare,before,duplicate_after)\n    reject(compare,before,snapshot({'keep.py':'same'},alternate=True))\n    try: delta.added=()\n    except (FrozenInstanceError,AttributeError): pass\n    else: raise AssertionError('Delta must be immutable')\n    return delta\n\ndef run_checks():\n    import devtools.context as public\n    assert hasattr(module,'compare_repository_snapshots'),'Missing public retained snapshot comparison'\n    assert hasattr(module,'RepositorySnapshotDelta'),'Missing immutable bounded result'\n    assert public.compare_repository_snapshots is module.compare_repository_snapshots\n    assert public.RepositorySnapshotDelta is module.RepositorySnapshotDelta\n    verify(module.compare_repository_snapshots,module.RepositorySnapshotDelta)\n    print('PASS: public exports, actual observed/removed fixture roots, add/remove/modify/unchanged, reverse, no change, empty sets, order, Unicode/case, full occurrence changes, invalid repositories/duplicates, immutability')\n\nif __name__=='__main__':run_checks()\n",
+  "maximum_calls": 24,
+  "output_tokens": 8192,
+  "wall_seconds": 1800,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/context/repository/snapshot.py",
+    "src/devtools/context/repository/resource.py",
+    "src/devtools/context/repository/identity.py",
+    "src/devtools/context/repository/observation.py",
+    "src/devtools/context/repository/corpus.py",
+    "src/devtools/context/repository/document.py",
+    "src/devtools/context/repository/discovery.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [
+    "src/devtools/context/__init__.py"
+  ],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [
+    "src/devtools/context/repository/changes.py"
+  ],
+  "disclose_edit_paths": true,
+  "path_edits": true,
+  "maximum_proposals": 6
+}

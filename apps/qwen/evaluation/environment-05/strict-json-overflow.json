@@ -1,0 +1,43 @@
+{
+  "name": "strict-json-overflow",
+  "objective": "Fix strict JSON parsing of finite JSON numeric literals whose conversion to float overflows: JsonCodec.parse and decode must reject non-finite parsed floats at any nesting depth with FileFormatError and a useful chained cause. Preserve arbitrarily large integer precision, finite floats, unicode strings, JSON metadata, immutable root models, existing strict constant rejection and serialization behavior. This is numeric overflow, not duplicate-member policy. Do not change tests or other source modules.",
+  "source": "src/devtools/resources/filesystem/codecs/json.py",
+  "tests": [
+    "tests/resources/filesystem/codecs/test_json.py"
+  ],
+  "baseline_revision": "44c98aeb341bf9d9e306d57a07fe8fa6db5c3305",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_json.py",
+      "626de2fe50988e8b2f19fd9ec6d43c91aa6ec09874889386e46abdecc6f94479"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "strict json overflow",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_json.py",
+      "strict json overflow",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import math\nfrom pathlib import Path\nfrom devtools.resources.filesystem import JsonCodec, FileFormatError\nfrom devtools.core.paths import resolve_path\nc=JsonCodec(); p=resolve_path(Path.cwd()/'number.json')\nfor text in ['1e999','-1e999','[0,1e999]','{\"x\":[{\"n\":-1e999}]}']:\n    for call in (lambda: c.parse(p,text),lambda:c.decode(p,text.encode())):\n        try: call()\n        except FileFormatError as e: assert e.__cause__ is not None and str(e)\n        else: raise AssertionError('Nonfinite parsed number accepted: '+text)\nfor text in ['1e308','-1e308','1e-999','1234567890123456789012345678901234567890','{\"s\":\"1e999\",\"n\":1.5}']:\n    f=c.parse(p,text); assert f.content==text and f.byte_size==len(text.encode())\n    assert c.parse(p,c.serialize(f)).value==f.value\nassert c.parse(p,'1234567890123456789012345678901234567890').value==1234567890123456789012345678901234567890\nprint('QWEN_BEHAVIOR_PASSED')\n\nimport subprocess, sys\nraise SystemExit(subprocess.call([sys.executable,\"-m\",\"mypy\",\"--strict\",'src/devtools/resources/filesystem/codecs/json.py']))\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": []
+}

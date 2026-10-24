@@ -1,0 +1,37 @@
+{
+  "source_fix_commit": "a0a6c22403f7df2679aa574226e420521a8accf5",
+  "gate": {
+    "started_at": "2026-10-23T18:35:56.915251+00:00",
+    "finished_at": "2026-10-23T18:49:27.993890+00:00",
+    "passed": true,
+    "exit_code": 0,
+    "elapsed": "0:13:31.017550",
+    "stdout_sha256": "4783834fbe618d46d4780327248494bf4d0c847ba7eeaf3ef81c9a33ace3e31b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "python_input_count": 659,
+    "python_input_closure_sha256": "c0c588e1cee42a5ed231b36813ff31ca25cc206f3542a59578bd6898af1aa143",
+    "input_hash_manifest": {
+      "path": ".local/ri-followup-20261023/protected.json",
+      "sha256": "871aad7593e9f64883c241967662dfd0a92d3f33c78364ce5c5a7e7fe6e5fe50"
+    },
+    "stdout_path": ".local/ri-followup-20261023/protected-final.stdout.log",
+    "stderr_path": ".local/ri-followup-20261023/protected-final.stderr.log",
+    "pytest": "2744 passed, 2 skipped in809.18s;100% production branch coverage",
+    "focused": "224 passed in6.35s",
+    "quality": "Scoped Ruff/format pass; strict mypy517 files pass; layout/diff pass",
+    "note": "First sandbox attempt failed before pytest due uv cache permissions. Actual protected run used existing authorized uv cache; no production waiver."
+  },
+  "changed_inputs": {
+    "src/devtools/context/retrieval/source/representation.py": "f2a96d7181fb35f91672cd938e051de85b391e34980370ad04707b8127c57af6",
+    "tests/context/retrieval/source/test_physical_lines.py": "662c4c6e067efabc8826d1ea51125ceddf9e0922e4c7b48ec2c87524b30c598d",
+    "src/devtools/context/retrieval/docs/overview.md": "b11df85d218d8fcdad7f893b8d6231e4f3ad91ebb1de3b001a4c136c3c868cbd"
+  },
+  "runner_inputs": {
+    "pyproject.toml": "7be05833bf5f1d6e6a16f9d495779f731e87e551977ce4824b202f45edf16cfd",
+    "uv.lock": "a25448669c13213461a7aadf937cb85304b03d1398f5b092db63df435bdb19c3",
+    "scripts/validate_development.py": "7e5d9441995f7d967b575b3e7899419a10160abac3e29e6da6a695a53ab7e13e"
+  },
+  "authority": "Explicit maintainer assignment; no proposal approval or new grant"
+}

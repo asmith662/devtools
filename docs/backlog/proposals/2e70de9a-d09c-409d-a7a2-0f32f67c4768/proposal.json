@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "2e70de9a-d09c-409d-a7a2-0f32f67c4768",
+  "created_at": "2026-10-23T19:01:26.030398+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Authenticate canonical neutral-ID/address binding in historical unblinding adapters",
+    "parent": "B-0002",
+    "summary": "Priority1 experimental integrity. experiments/purpose_relative_admission/validation_adjudication.py unblind_records checks mapping cardinality, bijection and address membership but not each neutral ID against its canonical capture/address derivation. An independently authored synthetic two-address fixture accepts a bijective address swap and reverses useful/not-useful labels under the same frozen fingerprint. This establishes an adapter input-contract gap, not evidence that original sealed judgments were tampered with. Increment24 purpose_relative_ranking.load_ranking_cases also joins mapping and records positionally.",
+    "resources": [
+      "experiments/purpose_relative_admission/validation_adjudication.py",
+      "experiments/purpose_relative_ranking.py",
+      "tests/experiments/purpose_relative_admission/test_validation_mechanics.py"
+    ],
+    "benefit": "Acceptance: an independently authored bijective address-swap challenge must fail; legitimate canonical mappings pass; duplicate/foreign/missing/order/capture/package/frozen identities remain checked. Inspect both unblinding and positional ranking loader call paths. Provide a versioned validation/derived audit path without rewriting frozen source protocols, captures, judgments or reports; run bounded synthetic regressions, never confirmation adjudication. Demonstrate any claimed historical impact separately against original physical hashes.",
+    "uncertainty": "Outer pinned artifact hashes may already protect particular historical executions. No historical scientific invalidation or authority expansion is inferred. Do not alter historical bytes merely to patch an archived algorithm. Consumer is future reuse/read-only integrity validation of retained experimental records; no production resolver change.",
+    "dependencies": [
+      "B-0027",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-deep-audit-followup.md; independently authored primitive challenges; 2026-10-23"
+    },
+    "evidence": [
+      "docs/research/ri-deep-audit-followup.md",
+      "docs/research/code-audit/ri-followup-probes.json"
+    ]
+  },
+  "payload_sha256": "0bc6eb4af176bba433582c1f9c2676497e3831c9cd21e9b76ec112a32ecdb591"
+}

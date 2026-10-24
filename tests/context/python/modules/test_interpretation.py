@@ -25,7 +25,9 @@ def _snapshot(tmp_path: Path, resources: dict[str, str]) -> RepositorySnapshot:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8")
     return observe_repository_resources(
-        repository=Repository(RepositoryId.parse("00000000-0000-4000-8000-000000000018")),
+        repository=Repository(
+            RepositoryId.parse("00000000-0000-4000-8000-000000000018"),
+        ),
         root=ResolvedPath(tmp_path),
         addresses=tuple(RepositoryResourceAddress(address) for address in resources),
         maximum_resource_bytes=1024 * 1024,

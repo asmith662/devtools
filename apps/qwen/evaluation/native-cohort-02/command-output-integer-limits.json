@@ -1,0 +1,53 @@
+{
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "6f52ca8f42219c12e1650d7bee95d6f1a45f0f78a5ba2ea1c0d20b6f2cdfa384"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "87d1044e5cc9e333922d12f53e074590799a421580dbc6ec22099b388d2cb244"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "1f3161e157b8c6a8338700a5dabf218713a5aaaadc515c95488dbbc050321c42"
+    ]
+  ],
+  "baseline_revision": "5102e5a8d4f4d132a2d999a26b36eb50122341ce",
+  "call_seconds": 300,
+  "context": [
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "command output",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "command output",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "command output",
+      "mixed",
+      "none"
+    ]
+  ],
+  "context_mode": "on-demand",
+  "maximum_calls": 10,
+  "name": "command-output-integer-limits",
+  "objective": "CommandOutputPolicy admits fractional and boolean retention/event limits, causing invalid downstream buffer bounds. Reject non-integer limits with ValueError at construction. Retain nonnegative byte limits, strictly positive pending-event limits, valid defaults and frozen semantics. Do not change command execution or its public APIs.",
+  "oracle": "from devtools.resources.commands import CommandOutputPolicy\nfrom dataclasses import FrozenInstanceError\nfor name in (\"max_stdout_bytes\",\"max_stderr_bytes\",\"max_pending_events\"):\n    for value in (True,False,1.5,\"5\",None):\n        try: CommandOutputPolicy(**{name:value})\n        except ValueError: pass\n        except Exception as error: raise AssertionError((name,value,type(error).__name__)) from error\n        else: raise AssertionError((name,value,\"non-integer admitted\"))\nfor count in (0,1,1024):\n    p=CommandOutputPolicy(max_stdout_bytes=count,max_stderr_bytes=count,max_pending_events=max(1,count))\n    assert p.max_stdout_bytes==count\nfor name,value in ((\"max_stdout_bytes\",-1),(\"max_stderr_bytes\",-1),(\"max_pending_events\",0)):\n    try: CommandOutputPolicy(**{name:value})\n    except ValueError: pass\n    else: raise AssertionError(\"invalid integer bound admitted\")\ntry: CommandOutputPolicy().max_stdout_bytes=5\nexcept FrozenInstanceError: pass\nelse: raise AssertionError(\"mutable policy\")\nprint(\"22 independent policy scenarios passed\")\n",
+  "output_tokens": 4096,
+  "quality_checks": true,
+  "read_paths": [
+    "src/devtools/resources/commands/models/result.py"
+  ],
+  "source": "src/devtools/resources/commands/models/output.py",
+  "tests": [
+    "tests/resources/commands/test_models.py"
+  ],
+  "wall_seconds": 900
+}

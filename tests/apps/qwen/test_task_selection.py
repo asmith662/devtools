@@ -8,7 +8,7 @@ import asyncio
 import json
 from dataclasses import replace
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
@@ -19,6 +19,20 @@ from devtools.models.interaction import InteractionSource, ModelResponse, ModelT
 from tests.apps.qwen.test_coding_loop import GOOD, OLD, Scripted, proposal
 
 ROOT = Path(__file__).resolve().parents[3]
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+    from apps.qwen.tasks import CodingTask
+
+
+@pytest.fixture(autouse=True)
+def captured_task_root(
+    captured_inputs: Callable[[CodingTask], Path], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Bind only the historical task inputs; never mutate maintained source."""
+    monkeypatch.setattr(__name__ + ".ROOT", captured_inputs(SOURCE_SEGMENTS))
+
+
 OLD_SPLIT = "content.splitlines(keepends=True)"
 # Reference-only stand-in: the stdlib's own segment splitter. This is not a
 # proposed maintained implementation and is never part of model Context.
@@ -179,6 +193,48 @@ def test_unknown_task_is_not_model_selected() -> None:
     """Only maintained task names are CLI choices."""
     with pytest.raises(ValueError, match="Unknown coding task"):
         select_task("arbitrary-task")
+
+
+def test_long_native_task_has_separate_cumulative_and_request_bounds() -> None:
+    """Long work allows more calls, never a larger per-request model window."""
+    task = replace(
+        SOURCE_SEGMENTS, context_mode="on-demand", maximum_calls=24, wall_seconds=1800
+    )
+    assert task.maximum_calls == 24  # noqa: PLR2004 -- explicit cumulative ceiling
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, maximum_calls=25)
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, wall_seconds=1801)
+
+
+def test_discovery_hint_is_optional_and_historical_hashes_stay_stable() -> None:
+    """Withholding a filename hint changes neither scope nor old receipts."""
+    legacy = replace(MARKDOWN)
+    hidden = replace(MARKDOWN, disclose_edit_paths=False)
+    assert hidden.sources == legacy.sources
+    assert hidden.definition_sha256 != legacy.definition_sha256
+    assert replace(legacy, disclose_edit_paths=True).definition_sha256 == (
+        legacy.definition_sha256
+    )
+    with pytest.raises(ValueError, match="boolean"):
+        replace(legacy, disclose_edit_paths="false")  # type: ignore[arg-type]
+
+
+def test_five_file_operation_remains_explicitly_bounded() -> None:
+    """A codec plus resolution/writer/exports fits; a sixth file refuses."""
+    paths = tuple(f"src/devtools/extra_{number}.py" for number in range(3))
+    task = replace(
+        MARKDOWN,
+        additional_edit_paths=paths,
+        baseline_hashes=MARKDOWN.baseline_hashes
+        + tuple((path, "0" * 64) for path in paths),
+        context=MARKDOWN.context
+        + tuple((path, "extra", "file", "none") for path in paths),
+        new_paths=("src/devtools/new.py",),
+    )
+    assert task.sources == (MARKDOWN.source, *paths, "src/devtools/new.py")
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, new_paths=(*task.new_paths, "src/devtools/another.py"))
 
 
 def test_nonexistent_baseline_revision_stops_before_model(tmp_path: Path) -> None:

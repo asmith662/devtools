@@ -13,6 +13,7 @@ import pytest
 
 from apps.qwen import coding_loop as worker
 from apps.qwen.development_task import SOURCE, _hash
+from apps.qwen.tasks import MARKDOWN
 from devtools.context import Repository
 from devtools.models.interaction import (
     InteractionSource,
@@ -26,13 +27,16 @@ from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_executi
 ROOT = Path(__file__).resolve().parents[3]
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
+    from apps.qwen.tasks import CodingTask
     from devtools.context.retrieval.source import SourceSearchMode
 
 
-@pytest.fixture(scope="module")
-def baseline_root() -> Path:
-    """Let the configured worker authenticate/materialize its own Git baseline."""
-    return ROOT
+@pytest.fixture
+def baseline_root(captured_inputs: Callable[[CodingTask], Path]) -> Path:
+    """Use only captured task files, not the active maintained checkout."""
+    return captured_inputs(MARKDOWN)
 
 
 def proposal(old: str, new: str, *, path: str = SOURCE) -> ModelResponse:
@@ -131,6 +135,27 @@ def test_real_oracle_accepts_scripted_edit_and_cleans_workspace(
     assert model.requests[0].settings.maximum_output_tokens == 4096
 
 
+def test_cancelled_model_retains_unknown_completion_and_restores_source(
+    tmp_path: Path, baseline_root: Path
+) -> None:
+    """Cancellation restores owned source but is never proof of no model effect."""
+
+    class Interrupted(Scripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            raise asyncio.CancelledError
+
+    original = _hash(baseline_root / SOURCE)
+    folder = tmp_path / "cancelled"
+    with pytest.raises(asyncio.CancelledError):
+        asyncio.run(worker.run_coding_task(baseline_root, folder, Interrupted([])))
+    receipt = json.loads((folder / "result.json").read_text())
+    assert receipt["disposition"] == "CANCELLED_COMPLETION_UNKNOWN_NO_RETRY"
+    assert receipt["model_calls_attempted"] == 1
+    assert receipt["source_restored"]
+    assert _hash(baseline_root / SOURCE) == original
+
+
 def test_failure_feedback_current_source_and_second_repair(
     tmp_path: Path,
     baseline_root: Path,
@@ -201,7 +226,7 @@ def test_exhaustion_and_directory_reuse_refused(
 
 def test_call_bound_refused_before_preparation(tmp_path: Path) -> None:
     """A caller cannot enlarge the admitted repair bound."""
-    with pytest.raises(ValueError, match="between one and three"):
+    with pytest.raises(ValueError, match="authenticated task limit"):
         asyncio.run(
             worker.run_coding_task(
                 ROOT, tmp_path / "run", Scripted([]), maximum_calls=4
@@ -283,11 +308,12 @@ def test_feedback_preserves_primary_failure_and_marks_truncation() -> None:
 
 def test_primary_exception_captured_before_pytest_reporting_failure(
     tmp_path: Path,
+    baseline_root: Path,
 ) -> None:
     """An ast.parse prohibition must not hide the actual code error."""
     folder = tmp_path / "diagnostics"
     folder.mkdir()
-    workspace = worker._prepare_workspace(ROOT, folder)
+    workspace = worker._prepare_workspace(baseline_root, folder)
     test = workspace / "tests/resources/filesystem/models/markdown/test_file.py"
     test.write_text(
         "import ast\n"

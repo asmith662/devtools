@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "bf88bbbe5a8c921c17443cc945a702537c4c2459cc4f21733aef7902e0a4c7d5",
+  "at": "2026-10-24T16:51:30.128405+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/feature-branch-integration-20261024.md",
+  "rationale": "Bounded destination maintenance fully reviews tests/context/python/imports/test_declarations.py: actual retained observation/parser, literal12-import/relative-alias ordering, nested-only zero versus parse error, shared statement support and explicit multi-resource selection. Formatting exposed misplaced ignore comments; helper now returns actual RepositorySnapshot and removes obsolete ignores, with3 tests and strict mypy519 files passing. Final candidate protected gate100%. Original fixture path count46/93 (47/94 augmented),47 remain; no automatic credit from formatting27 other Python bodies. Earlier test_members empty-universe defect is not fixed or closed.",
+  "duplicates": [],
+  "duplicate_disposition": "Preserve existing UUID, payload, parent and state. Evidence only; no approval, grant, B-number, dispatch, closure or protected-main publication.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "127090acfd9fa292c507782f84ab5ca64cb9472cd769ed9c7a751edc4073d111"
+}

@@ -1,0 +1,32 @@
+{
+  "frozen_at": "2026-10-21T01:19:01.083953+00:00",
+  "baseline": "a28b38b718e2a9e98be175f723ed5a982951b035",
+  "task_sha256": "6612354925a09cc73329aab9e81e84180d7720b6398e325a132f053c02840289",
+  "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+  "proposal": "2c443f76-ad59-43c4-bb4c-c956ae7f5c28",
+  "novelty": {
+    "audited_definitions": 26,
+    "record": ".local\\qwen-coding-worker\\qualified-10\\novelty.json",
+    "conclusion": "No earlier task objective implements environment overrides; existing roadmap explicitly lists them as absent. Previous argv immutability and decoded-output work are distinct and already maintained."
+  },
+  "qualification": {
+    "positive": "Host-only independent adapter passes complete model contract and four real concurrent subprocess fixtures; not Qwen work and never exposed.",
+    "negative": "Unmodified executor with valid model adapter fails actual child override assertion; baseline fails missing public capability assertion before unsupported constructor use.",
+    "requirements": "TypeError/ValueError compatibility explicit; no lint exceptions prescribed. Python 3.14 runtime, current default environment and documented Command/CommandExecutor APIs verified.",
+    "preflight": ".local\\qwen-coding-worker\\qualified-10\\preflight.json"
+  },
+  "budget": {
+    "runs": 1,
+    "maximum_model_requests": 24,
+    "maximum_worker_seconds": 1800,
+    "maximum_output_tokens": 8192,
+    "context_and_command_actions": 32,
+    "atomic_transactions": 3,
+    "components_per_transaction": 16,
+    "existing_edit_files": 2,
+    "aggregate_edit_bytes": 8192,
+    "paid_codex_runs": 0
+  },
+  "source_discovery": "Objective does not name implementation paths; 21+ admitted sources/tests include resource/path/time alternatives, not solely edit targets. Read visibility does not grant writes.",
+  "authority": "Trusted local evaluation only; no protected destination promotion."
+}

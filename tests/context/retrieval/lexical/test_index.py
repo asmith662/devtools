@@ -125,10 +125,7 @@ def test_empty_index_has_no_postings() -> None:
         ),
     )
 
-    assert (
-        _index(statistics).term_postings
-        == ()
-    )
+    assert _index(statistics).term_postings == ()
 
 
 def test_statistics_and_index_do_not_retokenize_or_acquire_resources(

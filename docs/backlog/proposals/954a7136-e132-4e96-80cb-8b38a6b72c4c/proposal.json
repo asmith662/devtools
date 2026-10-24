@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+  "created_at": "2026-10-24T05:26:42.885050+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Authenticate exact-name function disclosure projection before materializing retained source",
+    "parent": "B-0002",
+    "summary": "Priority1 supported Context correctness at a public value boundary. materialize_python_function_disclosure_source validates occurrence snapshot and bounds but not its association with selected_match.knowledge.support or the source dependency. Independent real-observation two-file fixture: a.py contains def wanted(): return \"A\" and b.py contains equal-length def decoy_(): return \"B\". Replacing only disclosure.items[0].source_occurrence.resource_address with b.py preserves selected match a.py and disclosure.identity, yet materializes b.py successfully. Existing redirected-resource test rejects only because its alternative resource has too few lines. Deliberately inconsistent same-ID snapshot content also passes. This is not demonstrated native Qwen edit authority bypass: native ContextTools uses SourceSearchDisclosureOption and map Planning instead.",
+    "resources": [
+      "src/devtools/context/python/function/disclosure.py",
+      "src/devtools/context/python/function/materialization.py",
+      "tests/context/python/function/test_materialization.py",
+      "scripts/qwen/python_function_context_acceptance.py"
+    ],
+    "evidence": [
+      "docs/research/ri-source-grounding-audit.md",
+      "docs/research/code-audit/ri-grounding-probes.json"
+    ],
+    "benefit": "Bounded repair in existing function Context owners, no new identity/parser: verify ordered selected/item membership and exact occurrence/projection against native knowledge; verify repository/resource dependency and retained resource/content association before returning a successful materialization. Preserve original raw-range error contracts or explicitly qualify migration, zero-selection behavior, all-match ordering, Unicode/CRLF/CR/no-final-newline extraction and no reacquisition/reparse guarantee. Independently test valid-range redirect, modified projection/name/kind, same-ID changed content, foreign repository, duplicate/dropped items and genuine unchanged retained snapshots after disk edits; compose rendering/model request and verify absence of decoy source. Keep malformed-coordinate unit tests distinct from knowledge-authentication tests. Run focused/static and exact-tree protected 100% branch gate. Suitable focused maintenance implementation; do not rewrite historical experiment source.",
+    "uncertainty": "Requires a compatibility review of directly constructed disclosure values and zero-result semantics. Original factory-generated flows pass188 selected tests. No historical corruption, source-authority breach or model exploit established. This checkpoint records an independently qualified pending repair, not an implemented fix.",
+    "dependencies": [
+      "B-0002"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-source-grounding-audit.md"
+    }
+  },
+  "payload_sha256": "2ad7db10584b8f59e41f16b0f8519be452dab45a1b7c9cfc1ed52b10740860da"
+}

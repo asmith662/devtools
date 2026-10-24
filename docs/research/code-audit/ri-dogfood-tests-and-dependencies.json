@@ -1,0 +1,1387 @@
+{
+  "cohort_tests": [
+    {
+      "path": "experiments/codex_dogfood/case_0012/adjudication/reviewed/test_materialize.py",
+      "blob": "2d5b2f468b0fa7494a4b9ea0d52c3b969a574a21",
+      "sha256": "eb0a4c1037c212f7b3948719e313852d3f3da60b138713f4ef08a2d986f343f3",
+      "main_blob": "2d5b2f468b0fa7494a4b9ea0d52c3b969a574a21",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "join_fixture",
+          "line": 19,
+          "end": 26
+        },
+        {
+          "name": "test_current_resource_join",
+          "line": 29,
+          "end": 34
+        },
+        {
+          "name": "test_resource_join_rejects",
+          "line": 52,
+          "end": 77
+        },
+        {
+          "name": "test_missing_original_resource",
+          "line": 80,
+          "end": 84
+        },
+        {
+          "name": "test_exact_reconstruction",
+          "line": 87,
+          "end": 88
+        },
+        {
+          "name": "test_tamper_rejection",
+          "line": 105,
+          "end": 126
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 129,
+          "end": 135
+        },
+        {
+          "name": "test_support_bound_rejection",
+          "line": 138,
+          "end": 147
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real retained packet/review fixtures; source/identity/schema mutation refusals and byte reconstruction. Rebuilding authored gold is not independent adjudication; not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/attempts/case-0012-stage-b-1/original/experiments/codex_dogfood/case_0012/stage_b/test_capture.py",
+      "blob": "ca7adcf02c5354b5ac0d9e3afdecd5ee6ae3ad9c",
+      "sha256": "ec5861bad446aaeed238e8ae808607414195b4e136cd5a43c24b25d8cbab9980",
+      "main_blob": "ca7adcf02c5354b5ac0d9e3afdecd5ee6ae3ad9c",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_exclusive_entry_return_and_failed_boundary",
+          "line": 40,
+          "end": 65
+        },
+        {
+          "name": "test_claim_without_raw_blocks_second_execution",
+          "line": 68,
+          "end": 71
+        },
+        {
+          "name": "test_recovery_finalizes_without_rerun",
+          "line": 74,
+          "end": 108
+        },
+        {
+          "name": "test_raw_tamper_rejected",
+          "line": 111,
+          "end": 117
+        },
+        {
+          "name": "test_streamed_frozen_identity_and_projection",
+          "line": 120,
+          "end": 135
+        },
+        {
+          "name": "fixture_payload",
+          "line": 138,
+          "end": 166
+        },
+        {
+          "name": "test_blind_whitelist_determinism_leakage_and_overwrite",
+          "line": 169,
+          "end": 185
+        },
+        {
+          "name": "test_native_index_rehydration_on_controlled_frame",
+          "line": 188,
+          "end": 196
+        },
+        {
+          "name": "test_blind_validator_has_no_treatment_imports",
+          "line": 199,
+          "end": 207
+        },
+        {
+          "name": "test_published_capture_if_present",
+          "line": 210,
+          "end": 223
+        },
+        {
+          "name": "operation",
+          "line": 44,
+          "end": 47
+        },
+        {
+          "name": "failure",
+          "line": 59,
+          "end": 60
+        },
+        {
+          "name": "forbidden",
+          "line": 87,
+          "end": 88
+        },
+        {
+          "name": "fail_once",
+          "line": 95,
+          "end": 96
+        },
+        {
+          "name": "forbidden",
+          "line": 214,
+          "end": 215
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real small native RI/routing or graph schedule fixtures and identity/alias tests; mocked schedule faults test journaling only. Tests loading frozen captures were read, not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/test_capture.py",
+      "blob": "745bf5116a32157081572d2e9ce11296d02f95d5",
+      "sha256": "9a075aed078f3cdf19741611df7c5bc67607e5637af900d1ca9684169e3809eb",
+      "main_blob": "745bf5116a32157081572d2e9ce11296d02f95d5",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_exclusive_entry_return_and_failed_boundary",
+          "line": 40,
+          "end": 65
+        },
+        {
+          "name": "test_claim_without_raw_blocks_second_execution",
+          "line": 68,
+          "end": 71
+        },
+        {
+          "name": "test_recovery_finalizes_without_rerun",
+          "line": 74,
+          "end": 109
+        },
+        {
+          "name": "test_raw_tamper_rejected",
+          "line": 112,
+          "end": 124
+        },
+        {
+          "name": "test_streamed_frozen_identity_and_projection",
+          "line": 127,
+          "end": 142
+        },
+        {
+          "name": "test_native_view_journal_roundtrip",
+          "line": 145,
+          "end": 163
+        },
+        {
+          "name": "fixture_payload",
+          "line": 166,
+          "end": 194
+        },
+        {
+          "name": "test_blind_whitelist_determinism_leakage_and_overwrite",
+          "line": 197,
+          "end": 213
+        },
+        {
+          "name": "test_native_index_rehydration_on_controlled_frame",
+          "line": 216,
+          "end": 224
+        },
+        {
+          "name": "test_blind_validator_has_no_treatment_imports",
+          "line": 227,
+          "end": 235
+        },
+        {
+          "name": "test_published_capture_if_present",
+          "line": 238,
+          "end": 251
+        },
+        {
+          "name": "operation",
+          "line": 44,
+          "end": 47
+        },
+        {
+          "name": "failure",
+          "line": 59,
+          "end": 60
+        },
+        {
+          "name": "forbidden",
+          "line": 88,
+          "end": 89
+        },
+        {
+          "name": "fail_once",
+          "line": 96,
+          "end": 97
+        },
+        {
+          "name": "forbidden",
+          "line": 242,
+          "end": 243
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real small native RI/routing or graph schedule fixtures and identity/alias tests; mocked schedule faults test journaling only. Tests loading frozen captures were read, not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/test_recovery.py",
+      "blob": "31d55e7e8ca245c6c0e9a9b7a7656e1671cf8227",
+      "sha256": "a3a7071aa5afbc81784755c3a4771169e8bebb12629d26cbe44b875434d3826d",
+      "main_blob": "31d55e7e8ca245c6c0e9a9b7a7656e1671cf8227",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_append_only_chain_and_alias_roundtrip",
+          "line": 23,
+          "end": 40
+        },
+        {
+          "name": "test_summary_failure_is_recoverable",
+          "line": 43,
+          "end": 68
+        },
+        {
+          "name": "test_windows_locked_summary_keeps_return",
+          "line": 74,
+          "end": 110
+        },
+        {
+          "name": "test_entered_no_return_never_inferred",
+          "line": 113,
+          "end": 130
+        },
+        {
+          "name": "test_chain_tamper_and_distinct_attempts",
+          "line": 133,
+          "end": 145
+        },
+        {
+          "name": "test_failed_attempt_is_audit_only",
+          "line": 148,
+          "end": 154
+        },
+        {
+          "name": "test_actual_retained_native_types_roundtrip_without_production_calls",
+          "line": 157,
+          "end": 189
+        },
+        {
+          "name": "fail",
+          "line": 51,
+          "end": 52
+        },
+        {
+          "name": "native",
+          "line": 56,
+          "end": 58
+        },
+        {
+          "name": "native",
+          "line": 96,
+          "end": 98
+        },
+        {
+          "name": "event",
+          "line": 120,
+          "end": 123
+        },
+        {
+          "name": "retained",
+          "line": 171,
+          "end": 172
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full entered/returned, lost-return, locked/derived-summary, no re-entry and authorized fresh-attempt tests; cancellation is not rollback."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/test_replay.py",
+      "blob": "7f8bc25aa8b515f62f501e7c7fdd2823ca1dccee",
+      "sha256": "e5c76aa5c55e930f9ce22f222c66fc617a7cab6e172ab9d2b6560a4960c1fca9",
+      "main_blob": "7f8bc25aa8b515f62f501e7c7fdd2823ca1dccee",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_exact_frozen_hashes",
+          "line": 17,
+          "end": 31
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Immutable native graph/memo/alias and byte-equivalent statistics reader fixtures, Unicode and nested containers; publication-only reader, not new scientific outcomes."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_d/test_analysis.py",
+      "blob": "d64f1f975f6df1498fe4377180305f94c6f3c8e6",
+      "sha256": "1a8a018b8e5d4122cf4b5e7c2564164b3be84a7f55b42bc516704b4fbf148b79",
+      "main_blob": "d64f1f975f6df1498fe4377180305f94c6f3c8e6",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "captured",
+          "line": 21,
+          "end": 22
+        },
+        {
+          "name": "evaluated",
+          "line": 26,
+          "end": 27
+        },
+        {
+          "name": "test_authenticated_capture",
+          "line": 30,
+          "end": 34
+        },
+        {
+          "name": "test_every_prefix_and_witness",
+          "line": 37,
+          "end": 84
+        },
+        {
+          "name": "test_complete_combinations",
+          "line": 87,
+          "end": 107
+        },
+        {
+          "name": "test_hint_labels_and_bottlenecks",
+          "line": 110,
+          "end": 150
+        },
+        {
+          "name": "test_cost_and_all_frozen_gates",
+          "line": 153,
+          "end": 196
+        },
+        {
+          "name": "test_outcome_precedence",
+          "line": 209,
+          "end": 220
+        },
+        {
+          "name": "test_missing_completion_is_null",
+          "line": 223,
+          "end": 229
+        },
+        {
+          "name": "test_canonical_implementation_digest_scope",
+          "line": 232,
+          "end": 236
+        },
+        {
+          "name": "test_native_fallback_schema",
+          "line": 239,
+          "end": 244
+        },
+        {
+          "name": "test_analysis_tamper",
+          "line": 250,
+          "end": 267
+        },
+        {
+          "name": "test_candidate_tamper",
+          "line": 273,
+          "end": 297
+        },
+        {
+          "name": "test_deterministic_surfaces",
+          "line": 300,
+          "end": 305
+        },
+        {
+          "name": "test_published_exact_replay",
+          "line": 308,
+          "end": 309
+        },
+        {
+          "name": "test_overwrite_preflight",
+          "line": 312,
+          "end": 318
+        },
+        {
+          "name": "test_output_hash_and_tamper",
+          "line": 321,
+          "end": 331
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full witness/order/metric arithmetic, gates, missing helper values, tamper and result-reconstruction fixtures; helper coverage does not imply full missing-completion pipeline coverage."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/test_stage_a.py",
+      "blob": "f03a6da7b963ba0cbee45ea61fd02b64816f57bd",
+      "sha256": "c219139e8063b7930f147c65023a942d52f3a7de730e49b58b279b5e7ee30deb",
+      "main_blob": "f03a6da7b963ba0cbee45ea61fd02b64816f57bd",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "no_execution",
+          "line": 34,
+          "end": 56
+        },
+        {
+          "name": "test_complete_task_matrix_and_task_only_hints",
+          "line": 59,
+          "end": 92
+        },
+        {
+          "name": "test_blind_projection_allowlist",
+          "line": 95,
+          "end": 133
+        },
+        {
+          "name": "frozen_fixture",
+          "line": 137,
+          "end": 155
+        },
+        {
+          "name": "test_deterministic_protocol_input_trace_replay",
+          "line": 158,
+          "end": 187
+        },
+        {
+          "name": "test_tamper_rejection",
+          "line": 193,
+          "end": 197
+        },
+        {
+          "name": "test_resealed_semantic_tamper_rejection",
+          "line": 200,
+          "end": 209
+        },
+        {
+          "name": "test_overwrite_refusal_complete_and_partial",
+          "line": 212,
+          "end": 223
+        },
+        {
+          "name": "test_published_stage_a_no_outcomes_if_present",
+          "line": 226,
+          "end": 231
+        },
+        {
+          "name": "test_bc_route_equivalence_and_contract",
+          "line": 234,
+          "end": 265
+        },
+        {
+          "name": "test_route_family_partition_and_review_decisions",
+          "line": 268,
+          "end": 293
+        },
+        {
+          "name": "test_family_conclusion_scope_without_execution",
+          "line": 296,
+          "end": 316
+        },
+        {
+          "name": "test_amendment_correspondence_and_original_treatment",
+          "line": 319,
+          "end": 350
+        },
+        {
+          "name": "test_amendment_overwrite_refusal",
+          "line": 353,
+          "end": 369
+        },
+        {
+          "name": "forbidden",
+          "line": 35,
+          "end": 36
+        },
+        {
+          "name": "committed",
+          "line": 151,
+          "end": 152
+        },
+        {
+          "name": "mock_git",
+          "line": 356,
+          "end": 363
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full frozen-scope/task/purpose/locator/foreign-frame refusal and source setup; original StageA no-adjudication assertions are phase-specific, not runnable final-case acceptance."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/adjudication/reviewed/test_materialize.py",
+      "blob": "14b8ce83303be940d67d8e4c3f93b1a39b1338af",
+      "sha256": "070746d8ccdc8a764503e45e8c3eb2a81b435a83275de4f3e55bc0841b64dbef",
+      "main_blob": "14b8ce83303be940d67d8e4c3f93b1a39b1338af",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "gold",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_reject_mutation",
+          "line": 42,
+          "end": 78
+        },
+        {
+          "name": "test_replay_and_source_counts",
+          "line": 81,
+          "end": 106
+        },
+        {
+          "name": "test_overwrite_and_hash_rejection",
+          "line": 109,
+          "end": 121
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real retained packet/review fixtures; source/identity/schema mutation refusals and byte reconstruction. Rebuilding authored gold is not independent adjudication; not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/stage_b/test_capture.py",
+      "blob": "169b351ca5aa5a426045ef896cc83dba0b61df99",
+      "sha256": "a822c16e9ff59141364110421312190437c809e8e02db61720f97a20998ce59d",
+      "main_blob": "169b351ca5aa5a426045ef896cc83dba0b61df99",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "captured",
+          "line": 38,
+          "end": 66
+        },
+        {
+          "name": "test_complete_synthetic_schedule_and_deterministic_mechanics",
+          "line": 69,
+          "end": 100
+        },
+        {
+          "name": "test_native_arm_aliases_and_no_cross_arm_reuse",
+          "line": 103,
+          "end": 121
+        },
+        {
+          "name": "test_captured_tamper_rejected",
+          "line": 127,
+          "end": 169
+        },
+        {
+          "name": "test_nonresolved_scope_promotes_nothing",
+          "line": 172,
+          "end": 187
+        },
+        {
+          "name": "test_journal_exclusive_no_duplicate_and_summary_failure",
+          "line": 190,
+          "end": 217
+        },
+        {
+          "name": "test_return_publication_loss_blocks_inference_and_retry",
+          "line": 220,
+          "end": 245
+        },
+        {
+          "name": "test_native_exception_fails_without_return",
+          "line": 248,
+          "end": 257
+        },
+        {
+          "name": "test_producer_records_return_loss_and_refuses_second_attempt",
+          "line": 260,
+          "end": 302
+        },
+        {
+          "name": "test_stage_a_authentication_after_implementation_without_execution",
+          "line": 305,
+          "end": 306
+        },
+        {
+          "name": "test_authentication_rejects_gold_and_authority_tamper_before_execution",
+          "line": 309,
+          "end": 321
+        },
+        {
+          "name": "test_blind_metadata_leakage_rejection",
+          "line": 340,
+          "end": 344
+        },
+        {
+          "name": "test_packet_exact_allowlist_content_and_tamper",
+          "line": 347,
+          "end": 369
+        },
+        {
+          "name": "test_complete_capture_replay_without_native_calls_if_present",
+          "line": 372,
+          "end": 385
+        },
+        {
+          "name": "fail",
+          "line": 196,
+          "end": 197
+        },
+        {
+          "name": "returned",
+          "line": 202,
+          "end": 204
+        },
+        {
+          "name": "event",
+          "line": 227,
+          "end": 230
+        },
+        {
+          "name": "returned",
+          "line": 235,
+          "end": 237
+        },
+        {
+          "name": "error",
+          "line": 251,
+          "end": 252
+        },
+        {
+          "name": "auth",
+          "line": 266,
+          "end": 267
+        },
+        {
+          "name": "git",
+          "line": 269,
+          "end": 272
+        },
+        {
+          "name": "event",
+          "line": 278,
+          "end": 283
+        },
+        {
+          "name": "native_return",
+          "line": 288,
+          "end": 290
+        },
+        {
+          "name": "schedule",
+          "line": 292,
+          "end": 293
+        },
+        {
+          "name": "forbidden",
+          "line": 378,
+          "end": 379
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real small native RI/routing or graph schedule fixtures and identity/alias tests; mocked schedule faults test journaling only. Tests loading frozen captures were read, not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/stage_c/test_packet.py",
+      "blob": "bccd89c4663bb514995ede9350998f5af86587f5",
+      "sha256": "19beae755dc6e4b80a41812bc1ae4f03e97bb019ac5b8f57dd1945633a866c75",
+      "main_blob": "bccd89c4663bb514995ede9350998f5af86587f5",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_physical_packet_tamper",
+          "line": 17,
+          "end": 23
+        },
+        {
+          "name": "test_relative_destination_uses_explicit_repository_base",
+          "line": 26,
+          "end": 34
+        },
+        {
+          "name": "test_reparse_lstat_is_rejected_without_following_target",
+          "line": 37,
+          "end": 51
+        },
+        {
+          "name": "test_deep_metadata_allowlist",
+          "line": 55,
+          "end": 64
+        },
+        {
+          "name": "observed",
+          "line": 44,
+          "end": 47
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full packet/source/task/obligation binding and whitelist mutation fixtures; real resource setup versus opaque schema-only identifiers distinguished."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/stage_d/test_analysis.py",
+      "blob": "6f93932c11ad598867a89c0c93eb56ac9405dc1c",
+      "sha256": "50af07528dd250c06b8e120be2a15d57e9da118583d85ec4f6e7d01b8130cd0a",
+      "main_blob": "6f93932c11ad598867a89c0c93eb56ac9405dc1c",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "data",
+          "line": 24,
+          "end": 25
+        },
+        {
+          "name": "analysis",
+          "line": 29,
+          "end": 30
+        },
+        {
+          "name": "test_all_witnesses_and_selected_prefixes",
+          "line": 33,
+          "end": 102
+        },
+        {
+          "name": "test_hint_classifications_and_nonresolution",
+          "line": 105,
+          "end": 135
+        },
+        {
+          "name": "test_joins_reach_costs_and_frozen_gates",
+          "line": 138,
+          "end": 221
+        },
+        {
+          "name": "test_calculation_tamper_rejection",
+          "line": 242,
+          "end": 246
+        },
+        {
+          "name": "test_stale_content_join",
+          "line": 249,
+          "end": 254
+        },
+        {
+          "name": "test_missing_and_empty_witness",
+          "line": 257,
+          "end": 261
+        },
+        {
+          "name": "test_exact_replay",
+          "line": 264,
+          "end": 266
+        },
+        {
+          "name": "test_resealed_output_tamper",
+          "line": 281,
+          "end": 296
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 299,
+          "end": 306
+        },
+        {
+          "name": "test_compressed_hash_tamper",
+          "line": 309,
+          "end": 311
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full witness/order/metric arithmetic, gates, missing helper values, tamper and result-reconstruction fixtures; helper coverage does not imply full missing-completion pipeline coverage."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/test_stage_a.py",
+      "blob": "0c22ff5dac669b18aff28f4c7820ee08466556c5",
+      "sha256": "adc8f95a44d143949b19e6a281684f9e5f8bfa3a31f6dbd0f467f28948ee43a8",
+      "main_blob": "0c22ff5dac669b18aff28f4c7820ee08466556c5",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "no_execution",
+          "line": 31,
+          "end": 53
+        },
+        {
+          "name": "test_task_matrix_intents_routes_and_complete_query_isolation",
+          "line": 56,
+          "end": 85
+        },
+        {
+          "name": "test_blind_allowlist_excludes_treatment_metadata",
+          "line": 88,
+          "end": 120
+        },
+        {
+          "name": "frozen_fixture",
+          "line": 124,
+          "end": 142
+        },
+        {
+          "name": "test_deterministic_fixture_replay",
+          "line": 145,
+          "end": 154
+        },
+        {
+          "name": "test_tamper_rejected",
+          "line": 160,
+          "end": 164
+        },
+        {
+          "name": "test_resealed_semantic_mutation_rejected",
+          "line": 167,
+          "end": 175
+        },
+        {
+          "name": "test_partial_complete_overwrite_and_execution_rejection",
+          "line": 178,
+          "end": 193
+        },
+        {
+          "name": "test_published_case_replay_if_present",
+          "line": 196,
+          "end": 201
+        },
+        {
+          "name": "forbidden",
+          "line": 32,
+          "end": 34
+        },
+        {
+          "name": "committed",
+          "line": 138,
+          "end": 139
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full frozen-scope/task/purpose/locator/foreign-frame refusal and source setup; original StageA no-adjudication assertions are phase-specific, not runnable final-case acceptance."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/adjudication/reviewed/test_materialize.py",
+      "blob": "5460a8965c9d866f8eba19bd4d5079b9ecabefab",
+      "sha256": "53a0bd24c51a90199a1866abde1472867ccdd5283d20bc1900a41e68da4a1544",
+      "main_blob": "5460a8965c9d866f8eba19bd4d5079b9ecabefab",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "gold",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_projection_tamper",
+          "line": 34,
+          "end": 38
+        },
+        {
+          "name": "test_semantics_and_algebra",
+          "line": 41,
+          "end": 60
+        },
+        {
+          "name": "test_adversarial_primary_replay",
+          "line": 63,
+          "end": 67
+        },
+        {
+          "name": "test_overwrite_and_output_tamper",
+          "line": 70,
+          "end": 81
+        },
+        {
+          "name": "test_physical_primary_tamper",
+          "line": 84,
+          "end": 95
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real retained packet/review fixtures; source/identity/schema mutation refusals and byte reconstruction. Rebuilding authored gold is not independent adjudication; not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/recovery/original_stage_b/test_capture.py",
+      "blob": "78cb1b3f0e9217e9af161edd9b7990d16d98ed94",
+      "sha256": "ba60ba907f30f18e43667131e6fdc5fd8d0500e1544fe8ce716855bd9b80467f",
+      "main_blob": "78cb1b3f0e9217e9af161edd9b7990d16d98ed94",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_journal_failure_no_retry_and_loaded_no_invocation",
+          "line": 65,
+          "end": 83
+        },
+        {
+          "name": "test_return_durable_before_summary_failure_stops",
+          "line": 86,
+          "end": 107
+        },
+        {
+          "name": "test_return_record_publication_failure_never_reruns",
+          "line": 110,
+          "end": 138
+        },
+        {
+          "name": "synthetic_capture",
+          "line": 141,
+          "end": 298
+        },
+        {
+          "name": "test_complete_synthetic_reader_flow_rrf_maps_replay_tamper_overwrite",
+          "line": 301,
+          "end": 326
+        },
+        {
+          "name": "test_real_complete_integrity_reader",
+          "line": 329,
+          "end": 334
+        },
+        {
+          "name": "fail",
+          "line": 69,
+          "end": 71
+        },
+        {
+          "name": "broken",
+          "line": 97,
+          "end": 98
+        },
+        {
+          "name": "refuse",
+          "line": 121,
+          "end": 124
+        },
+        {
+          "name": "invoke",
+          "line": 126,
+          "end": 128
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real small native RI/routing or graph schedule fixtures and identity/alias tests; mocked schedule faults test journaling only. Tests loading frozen captures were read, not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_b/test_capture.py",
+      "blob": "87897c601ca118d93e65c0ce5840cc1c7f758d68",
+      "sha256": "7ce0b4583d078961d1fabef169e62aeacccb01072daa6a8dbc79f125936f3493",
+      "main_blob": "87897c601ca118d93e65c0ce5840cc1c7f758d68",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_journal_failure_no_retry_and_loaded_no_invocation",
+          "line": 70,
+          "end": 88
+        },
+        {
+          "name": "test_return_durable_before_legacy_summary_failure_continues",
+          "line": 91,
+          "end": 112
+        },
+        {
+          "name": "test_return_record_publication_failure_never_reruns",
+          "line": 115,
+          "end": 143
+        },
+        {
+          "name": "synthetic_capture",
+          "line": 146,
+          "end": 303
+        },
+        {
+          "name": "test_complete_synthetic_reader_flow_rrf_maps_replay_tamper_overwrite",
+          "line": 306,
+          "end": 331
+        },
+        {
+          "name": "test_real_complete_integrity_reader",
+          "line": 334,
+          "end": 339
+        },
+        {
+          "name": "fail",
+          "line": 74,
+          "end": 76
+        },
+        {
+          "name": "broken",
+          "line": 102,
+          "end": 103
+        },
+        {
+          "name": "refuse",
+          "line": 126,
+          "end": 129
+        },
+        {
+          "name": "invoke",
+          "line": 131,
+          "end": 133
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full real small native RI/routing or graph schedule fixtures and identity/alias tests; mocked schedule faults test journaling only. Tests loading frozen captures were read, not executed."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_b/test_recovery.py",
+      "blob": "fd2119c3d6f6a632c1b1aeec3b78cfaaf852dad6",
+      "sha256": "69c9123f3664523d4333a579e0b439199a2330997ace7039025ce019aa65da6e",
+      "main_blob": "fd2119c3d6f6a632c1b1aeec3b78cfaaf852dad6",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_no_shared_mutable_per_operation_checkpoint",
+          "line": 28,
+          "end": 46
+        },
+        {
+          "name": "test_derived_progress_permission_failure_after_return_continues",
+          "line": 49,
+          "end": 80
+        },
+        {
+          "name": "test_authoritative_return_failure_blocks_advancement",
+          "line": 83,
+          "end": 105
+        },
+        {
+          "name": "test_native_failure_blocks_advancement",
+          "line": 108,
+          "end": 124
+        },
+        {
+          "name": "test_append_only_progress_and_concurrent_immutable_reader",
+          "line": 127,
+          "end": 161
+        },
+        {
+          "name": "test_attempt_one_replay_immutable_and_scientific_composition_identical",
+          "line": 164,
+          "end": 173
+        },
+        {
+          "name": "forbidden",
+          "line": 32,
+          "end": 33
+        },
+        {
+          "name": "deny",
+          "line": 61,
+          "end": 66
+        },
+        {
+          "name": "one",
+          "line": 70,
+          "end": 72
+        },
+        {
+          "name": "deny",
+          "line": 94,
+          "end": 97
+        },
+        {
+          "name": "fail",
+          "line": 114,
+          "end": 115
+        },
+        {
+          "name": "inspect",
+          "line": 142,
+          "end": 146
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full entered/returned, lost-return, locked/derived-summary, no re-entry and authorized fresh-attempt tests; cancellation is not rollback."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_c/test_packet.py",
+      "blob": "30364d24d621e0602582ba0a86f53ae37ecf3a99",
+      "sha256": "36fbec8fdfbe01c9024d263a8634b84d05845060ab1e49bb05208e49052bff55",
+      "main_blob": "30364d24d621e0602582ba0a86f53ae37ecf3a99",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_deep_metadata_leakage_rejected",
+          "line": 18,
+          "end": 20
+        },
+        {
+          "name": "test_deep_value_leakage_rejected",
+          "line": 26,
+          "end": 28
+        },
+        {
+          "name": "test_natural_text_not_censored_and_allowlist_projection",
+          "line": 31,
+          "end": 59
+        },
+        {
+          "name": "test_packet_build_overwrite_refusal_before_capture_access",
+          "line": 62,
+          "end": 72
+        },
+        {
+          "name": "test_whitelist_extra_directory_rejected",
+          "line": 75,
+          "end": 78
+        },
+        {
+          "name": "forbidden",
+          "line": 65,
+          "end": 66
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full packet/source/task/obligation binding and whitelist mutation fixtures; real resource setup versus opaque schema-only identifiers distinguished."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_d/test_analysis.py",
+      "blob": "ea78d1c215faab148bdd82510b1fa8f78a6d3781",
+      "sha256": "6d0d18768adccbcac8f2577a33e767eea257a394ce6028fc292cf25203ecd9ce",
+      "main_blob": "ea78d1c215faab148bdd82510b1fa8f78a6d3781",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "data",
+          "line": 27,
+          "end": 30
+        },
+        {
+          "name": "result",
+          "line": 34,
+          "end": 35
+        },
+        {
+          "name": "test_independent_support_and_flow_checks",
+          "line": 38,
+          "end": 57
+        },
+        {
+          "name": "test_metric_tamper",
+          "line": 64,
+          "end": 83
+        },
+        {
+          "name": "test_owning_query_and_identity_tamper",
+          "line": 86,
+          "end": 94
+        },
+        {
+          "name": "test_empty_incomplete_and_tie_semantics",
+          "line": 97,
+          "end": 111
+        },
+        {
+          "name": "test_publication_determinism_overwrite_and_tamper",
+          "line": 114,
+          "end": 131
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full witness/order/metric arithmetic, gates, missing helper values, tamper and result-reconstruction fixtures; helper coverage does not imply full missing-completion pipeline coverage."
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/test_freeze.py",
+      "blob": "e920d9034b09a4ddeaa135e36198b9ea4e0ea169",
+      "sha256": "b075c6e7812a1cfd68ee4b68e588ed4b34911a5b40a554b13fdb0d7f906e0664",
+      "main_blob": "e920d9034b09a4ddeaa135e36198b9ea4e0ea169",
+      "same_on_main": true,
+      "reviewed_functions": [
+        {
+          "name": "test_design_and_blind_allowlist",
+          "line": 18,
+          "end": 50
+        },
+        {
+          "name": "test_no_execution_rejects_strays",
+          "line": 64,
+          "end": 67
+        },
+        {
+          "name": "test_overwrite_refusal_precedes_observation",
+          "line": 70,
+          "end": 81
+        },
+        {
+          "name": "test_deterministic_stage_a_replay_tamper_and_no_treatments",
+          "line": 84,
+          "end": 124
+        },
+        {
+          "name": "test_unauthorized_contract_changes_rejected",
+          "line": 131,
+          "end": 144
+        },
+        {
+          "name": "test_numerical_parameters_remain_frozen",
+          "line": 155,
+          "end": 161
+        },
+        {
+          "name": "test_amendment_refuses_non_original_or_second_overwrite",
+          "line": 164,
+          "end": 176
+        },
+        {
+          "name": "test_original_authentication_rejects_seal_tamper",
+          "line": 179,
+          "end": 194
+        },
+        {
+          "name": "test_amendment_atomic_overwrite_preserves_frame_and_refuses_repeat",
+          "line": 197,
+          "end": 234
+        },
+        {
+          "name": "forbid",
+          "line": 75,
+          "end": 77
+        },
+        {
+          "name": "forbid",
+          "line": 87,
+          "end": 89
+        },
+        {
+          "name": "authenticate",
+          "line": 169,
+          "end": 170
+        },
+        {
+          "name": "tamper",
+          "line": 184,
+          "end": 190
+        },
+        {
+          "name": "authenticate",
+          "line": 211,
+          "end": 216
+        },
+        {
+          "name": "expected",
+          "line": 218,
+          "end": 223
+        }
+      ],
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "semantics": "Full actual small source scope, graph/seed/native input, freeze and prospective gate tests; no new treatment evidence."
+    }
+  ],
+  "additional_dependencies": [
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/execute.py",
+      "blob": "d668eb04f3fad775f3ce767711397629e3a84c62",
+      "sha256": "b7aaa9802cdffa80b497995e0cb7c5c0e9fe0d772811cc6a47a905883fa632d4",
+      "main_blob": "d668eb04f3fad775f3ce767711397629e3a84c62",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0012/stage_b/canonical.py",
+      "blob": "0ae89f1a85d41aa10484c427380f7fb93f270bd2",
+      "sha256": "0646a1a5ba42584d8e75022bc4c1a34f79fd38c99222665de1e89c5f1b02b6c7",
+      "main_blob": "0ae89f1a85d41aa10484c427380f7fb93f270bd2",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0013/stage_b/native.py",
+      "blob": "ade39a3b965b11bab293944f1b8fba9cd3186c4c",
+      "sha256": "083a404fc4534754d9495b6b6d57ac1ba6cdca2e7fc2fc135a4772a75cbd46b6",
+      "main_blob": "ade39a3b965b11bab293944f1b8fba9cd3186c4c",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_b/execute.py",
+      "blob": "25b199b87c73ad5b8b9414b0739ee9adb5bc21aa",
+      "sha256": "2a12fa477f0df47e265b8d594ecfab77552761c5362733e909f5cbd0d4a8314b",
+      "main_blob": "25b199b87c73ad5b8b9414b0739ee9adb5bc21aa",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_b/authenticate.py",
+      "blob": "ce3936c6bb25591de164049eff7a980c06014b6b",
+      "sha256": "19351d5f62052bccc9366081ae20ed55e240f827fa4076356685f79be43280a0",
+      "main_blob": "ce3936c6bb25591de164049eff7a980c06014b6b",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "apps/qwen/navigation.py",
+      "blob": "ad51ce5a85e76b7194a926b419428fef011e64fb",
+      "sha256": "06a54b95722cf59ebf9538eff6e0ba5ede3b17de6168d7162c5031b6b76ae95a",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/localization/grounding/resolve.py",
+      "blob": "34cd84a66560c4def144c07117271ded9d65aec5",
+      "sha256": "ebc18bbf1498d861bd09f24b38e482a4abf127a652b46b5eecc22d62828e899f",
+      "main_blob": "34cd84a66560c4def144c07117271ded9d65aec5",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/localization/routing/derive.py",
+      "blob": "4908106d49a4dd955be41b1a620b2e4b79f6d708",
+      "sha256": "42d7b5691c72b76b0a058ad26800a22866a3b4dcf30e29b6858aa10d0531da48",
+      "main_blob": "4908106d49a4dd955be41b1a620b2e4b79f6d708",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/localization/readiness.py",
+      "blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "sha256": "a2ccc02f341b294a8fd1738f8d5ccadf23932ca662ef6f6badb002934db211f9",
+      "main_blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/planning/repository_map.py",
+      "blob": "3ffab68f3b0a280653918b400522cc52d5005ebb",
+      "sha256": "a22f91cc97e1eeb8d29270ed034f8dd34f0d2a7ae42e88f007937402aed48984",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/retrieval/repository_map/ranking.py",
+      "blob": "56dbfffee56923f52bca892b19f343a7c0212b6a",
+      "sha256": "6c3dcb933efcf20904c4f5a2f4145fc448e145dcdbe206f17f6aaa97bcecf93c",
+      "main_blob": "56dbfffee56923f52bca892b19f343a7c0212b6a",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "src/devtools/context/python/references/declarations/analysis.py",
+      "blob": "649820d9c4e0367830b6b884790bb14005cee807",
+      "sha256": "fe8a8cbcf77cd03db68a7c752191c925f756b231748f5677a781865deadcdc9a",
+      "main_blob": "649820d9c4e0367830b6b884790bb14005cee807",
+      "same_on_main": true,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    },
+    {
+      "path": "experiments/purpose_relative_admission/verification_v1.py",
+      "blob": "1b753333d29b473d13b10b777611548bc6388935",
+      "sha256": "13be0d5025e68b8811a7cdd81213a57c938db27de9bb814444d9c59fd36e0ee5",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_DEPENDENCY_OR_CONSUMER_TRACE",
+      "qualification": "Case12 canonical/current execute and13 native already read in prior mechanism review; Case16 execute/authentication recovery source/input closure traced; navigation fullbody read, ContextTools dispatch671-745/reference815-910; other maintained owner links retain prior current-source review, not new full-body credit"
+    }
+  ],
+  "historical_limits": "Four older Graph3 experimental algorithm blobs remain delta-only; original/recovery controllers in this94 are complete bodies. No subtraction from separate177 older current-RI versions."
+}

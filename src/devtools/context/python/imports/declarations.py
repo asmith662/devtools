@@ -108,15 +108,17 @@ def derive_python_import_declarations(
             end_column_utf8=cast("int", node.end_col_offset),
         )
         for alias in node.names:
-            declarations.append(PythonImportDeclarationKnowledge(
-                derivation_identity=derivation_identity,
-                support=support,
-                declaration_ordinal=len(declarations),
-                module=alias.name if isinstance(node, ast.Import) else node.module,
-                level=0 if isinstance(node, ast.Import) else node.level,
-                imported_name=None if isinstance(node, ast.Import) else alias.name,
-                local_alias=alias.asname,
-            ))
+            declarations.append(
+                PythonImportDeclarationKnowledge(
+                    derivation_identity=derivation_identity,
+                    support=support,
+                    declaration_ordinal=len(declarations),
+                    module=alias.name if isinstance(node, ast.Import) else node.module,
+                    level=0 if isinstance(node, ast.Import) else node.level,
+                    imported_name=None if isinstance(node, ast.Import) else alias.name,
+                    local_alias=alias.asname,
+                ),
+            )
     values = tuple(declarations)
     return PythonImportDeclarationAnalysis(
         repository_id=snapshot.repository_id,

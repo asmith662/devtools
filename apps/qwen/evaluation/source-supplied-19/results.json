@@ -1,0 +1,802 @@
+{
+  "disposition": "NOT_DELIVERED",
+  "classification": "Exposed all-checks development with source-supplied implementation treatment; not fresh confirmation",
+  "starting_head": "97dd31a753abb487176053216ea0b4f840c6a5d8",
+  "task_sha256": "cf854f78937823d0b9ffd8fc57c360c9576d9303f280d7cbedaf7cbe42f222dc",
+  "oracle_sha256": "2f23ecf07e9b425e37d7f5f80e7984e7db50e9283dc3606fedfefcb66e579a56",
+  "worker": {
+    "accepted": false,
+    "disposition": "PROPOSAL_ADMISSION_FAILED",
+    "elapsed_seconds": 447.81795930000953,
+    "usage_totals": {
+      "cache_write_tokens": null,
+      "cached_input_tokens": null,
+      "input_tokens": 105440,
+      "output_tokens": 8644,
+      "reasoning_tokens": null
+    },
+    "validation_seconds": 1.4914166000671685,
+    "model_calls_attempted": 6,
+    "context_actions_attempted": 3,
+    "context_actions_accepted": 3,
+    "source_text_bytes_disclosed": 12288,
+    "context_bytes_disclosed": 17238,
+    "proposals_attempted": 4,
+    "proposals_admitted": 0,
+    "proposal_refusals": 4,
+    "repair_cycles": 0,
+    "source_restored": true,
+    "original_unchanged": true,
+    "candidates": [
+      {
+        "evidence": "final-source.py",
+        "path": "apps/qwen/commands.py",
+        "sha256": "4d218da0f3173bb59f09329404ac722001193591404e320bff1b1e94a962f2bc"
+      }
+    ]
+  },
+  "worker_result": {
+    "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/result.json",
+    "sha256": "41ab310f0fc8f37b0d915c909239acdfb66ba95b084a5248216c50a8c5d5bfbc"
+  },
+  "initial_disclosure": {
+    "evidence": {
+      "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/host-disclosure.json",
+      "sha256": "41fe379819bf7b2aa889a59a26e55f68f89cd61067936a945bc73bdb3e824338"
+    },
+    "origin": "host ToolRunner versioned read_source/lookup_symbol, not fabricated model assistant/tool exchanges",
+    "host_operations": 20,
+    "source_observations": 13,
+    "source_bytes": 20363,
+    "context_bytes": 24171,
+    "retained_in_native_history": "One distinct host user message; the same ContextTools observation owner supplies later admission checks. No transaction was admitted.",
+    "source_eligibility": "Complete current commands.py spans; all proposed old_text anchors occur uniquely in exact disclosed current source. No edit applied; admission stopped earlier on byte/unchanged rules."
+  },
+  "initial_capacity": {
+    "input_tokens": 9151,
+    "requested_output_tokens": 8192,
+    "safety_tokens": 2048,
+    "safe_generation_capacity": 21569,
+    "initial_source_attested": true,
+    "native_messages": [
+      "user",
+      "user"
+    ],
+    "probe": false
+  },
+  "implementation_start": {
+    "first_proposal_response": 2,
+    "nonedit_responses_before_first_proposal": 1,
+    "guard": "Not triggered: proposal on response2 before3response threshold. No necessary missing-dependency exception requested or granted.",
+    "evidence": {
+      "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/implementation-start.json",
+      "sha256": "0134daef69a7d41f24312b6e672b79eb48eb7c960667f089c21cc862ce39b3ad"
+    }
+  },
+  "tool_counts": {
+    "inspect_source": 3,
+    "replace_source": 19
+  },
+  "proposals": [
+    {
+      "turn": 2,
+      "components": [
+        {
+          "old_bytes": 106,
+          "new_bytes": 122,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            801,
+            907
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 64,
+          "new_bytes": 74,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            1828,
+            1892
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 57,
+          "new_bytes": 117,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            476,
+            533
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 65,
+          "new_bytes": 6584,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            3116,
+            3181
+          ],
+          "region_limit_exceeded": true
+        },
+        {
+          "old_bytes": 69,
+          "new_bytes": 96,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            183,
+            252
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 80,
+          "new_bytes": 99,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            2596,
+            2676
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 504,
+          "new_bytes": 5223,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            2677,
+            3181
+          ],
+          "region_limit_exceeded": true
+        }
+      ],
+      "aggregate_old_new_bytes": 13260,
+      "aggregate_limit_exceeded": true,
+      "overlapping_components": [
+        [
+          4,
+          7
+        ]
+      ],
+      "disposition": "PROPOSAL_REFUSED"
+    },
+    {
+      "turn": 3,
+      "components": [
+        {
+          "old_bytes": 71,
+          "new_bytes": 113,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            219,
+            290
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 57,
+          "new_bytes": 117,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            476,
+            533
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 52,
+          "new_bytes": 62,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            1840,
+            1892
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 585,
+          "new_bytes": 5871,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            2596,
+            3181
+          ],
+          "region_limit_exceeded": true
+        },
+        {
+          "old_bytes": 134,
+          "new_bytes": 238,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            4948,
+            5082
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 344,
+          "new_bytes": 2424,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            4603,
+            4947
+          ],
+          "region_limit_exceeded": false
+        }
+      ],
+      "aggregate_old_new_bytes": 10068,
+      "aggregate_limit_exceeded": true,
+      "overlapping_components": [],
+      "disposition": "PROPOSAL_REFUSED"
+    },
+    {
+      "turn": 5,
+      "components": [
+        {
+          "old_bytes": 71,
+          "new_bytes": 113,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            219,
+            290
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 57,
+          "new_bytes": 117,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            476,
+            533
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 64,
+          "new_bytes": 74,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            1828,
+            1892
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 94,
+          "new_bytes": 193,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            2596,
+            2690
+          ],
+          "region_limit_exceeded": false
+        },
+        {
+          "old_bytes": 89,
+          "new_bytes": 4864,
+          "unchanged": false,
+          "unique_observed_anchor": true,
+          "span": [
+            3116,
+            3205
+          ],
+          "region_limit_exceeded": true
+        }
+      ],
+      "aggregate_old_new_bytes": 5736,
+      "aggregate_limit_exceeded": false,
+      "overlapping_components": [],
+      "disposition": "PROPOSAL_REFUSED"
+    },
+    {
+      "turn": 6,
+      "components": [
+        {
+          "old_bytes": 106,
+          "new_bytes": 106,
+          "unchanged": true,
+          "unique_observed_anchor": true,
+          "span": [
+            801,
+            907
+          ],
+          "region_limit_exceeded": false
+        }
+      ],
+      "aggregate_old_new_bytes": 212,
+      "aggregate_limit_exceeded": false,
+      "overlapping_components": [],
+      "disposition": "PROPOSAL_REFUSED"
+    }
+  ],
+  "turns": [
+    {
+      "number": 1,
+      "assistant_content": "",
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 5620
+          }
+        },
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/tasks.py",
+            "start": 4899
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 9151,
+        "output_tokens": 90,
+        "reasoning_tokens": null,
+        "total_tokens": 9241
+      },
+      "model_seconds": 15.191682799952105,
+      "disposition": "CONTEXT_RETURNED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 9151,
+        "measurements": [
+          {
+            "input_tokens": 9151,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 8192,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-01.json",
+        "sha256": "72882b7f893ac2b04696ac4244ee06064e7919dc189578ff8abc33c01437ac39"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-01/request.json",
+        "sha256": "19b8cc31f926b083954b5a7208b6d17599e69fec6dd9adb735b629de1b085733"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-01/stage.json",
+        "sha256": "18a7e51c12dde60548f0a1424e55bac814246d88cdcef2e58f1bcdb1a2338636"
+      }
+    },
+    {
+      "number": 2,
+      "assistant_content": "The provided source and helper context are sufficient: `_command` propagates CommandError (timeout/not-found), `_hash`/`_save` behave as described, and `CodingTask.definition_sha256` exists. I will now implement `run_check(\"all\")` as a selection over the existing five checks, with source/plan identity authentication around and after the bundle, NOT_APPLICABLE for omitted optional checks, fail-closed BLOCKED for unavailable/missing inputs, independent continuation on ordinary failures, and a single `evidence` archive per call. Individual selectors and Git inspection remain unchanged.\n\n",
+      "tools": [
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 12672,
+        "output_tokens": 3702,
+        "reasoning_tokens": null,
+        "total_tokens": 16374
+      },
+      "model_seconds": 168.4682618000079,
+      "disposition": "PROPOSAL_REFUSED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 12672,
+        "measurements": [
+          {
+            "input_tokens": 12672,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-02.json",
+        "sha256": "3329fcfeedcd0792955e26b12b423870ca364ca668a2e3c9970b3912a5238a8d"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-02/request.json",
+        "sha256": "8c2685937a9d16724a162b0cd10748b0937f071711b27c29ceaf0fb59992e4f5"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-02/stage.json",
+        "sha256": "e6b3def3fb242b442f6c10100f3230bda2809fb8ce3ce9c108f543593f1d6461"
+      }
+    },
+    {
+      "number": 3,
+      "assistant_content": "",
+      "tools": [
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 17282,
+        "output_tokens": 2897,
+        "reasoning_tokens": null,
+        "total_tokens": 20179
+      },
+      "model_seconds": 138.8419511000393,
+      "disposition": "PROPOSAL_REFUSED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 17282,
+        "measurements": [
+          {
+            "input_tokens": 17282,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 2048,
+        "output_tokens": 8192,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-03.json",
+        "sha256": "9cfb73a8d87d050ad4bf00b67aed56bcbf9779d88cdc2f9657cdc841db81115a"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-03/request.json",
+        "sha256": "2577b3676b53b74044dcf419c775e73da7f09b038207d101bf232375c20dec80"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-03/stage.json",
+        "sha256": "c87c7aec2c8ed1785d8c735f89caab6a333534bab59f4030bd8f05d0e5082330"
+      }
+    },
+    {
+      "number": 4,
+      "assistant_content": "",
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 0
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 20953,
+        "output_tokens": 42,
+        "reasoning_tokens": null,
+        "total_tokens": 20995
+      },
+      "model_seconds": 3.178961499943398,
+      "disposition": "CONTEXT_RETURNED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 20953,
+        "measurements": [
+          {
+            "input_tokens": 20953,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 2048,
+        "output_tokens": 8192,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-04.json",
+        "sha256": "f2286d91cb66c25d3c0f653f1bd708259668c4f9a0ef34739a7559d77c5ccf8e"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-04/request.json",
+        "sha256": "d3a629199fe64a3e72cd4b0ccede10c1125233d513ef22ed84537d009bc949d5"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-04/stage.json",
+        "sha256": "f361444e22cc5993ec5a5514c8064ccc92d2e0903727e734ac48d238237e61fb"
+      }
+    },
+    {
+      "number": 5,
+      "assistant_content": "The reinspection confirms the file is unchanged. My prior batch likely failed because one edit's new_text exceeded the 4096-byte limit. I'll split the bundle into multiple smaller regions, each within the per-region byte limit.\n\n",
+      "tools": [
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        },
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 22723,
+        "output_tokens": 1770,
+        "reasoning_tokens": null,
+        "total_tokens": 24493
+      },
+      "model_seconds": 84.83710890007205,
+      "disposition": "PROPOSAL_REFUSED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 22723,
+        "measurements": [
+          {
+            "input_tokens": 22723,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 2048,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-05.json",
+        "sha256": "ac731fb56d5b4eb3a912da2bf5fd4637e12dfb09d4e6a4268886dfcf80c5e830"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-05/request.json",
+        "sha256": "110afd41b3843bdf3bd5d1270f041ed07fc98c932b797081fa3ea27977f0c33d"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-05/stage.json",
+        "sha256": "f93a4c09308ad1f841d7ca19ddb34f80f8e3e100a579d7da3060771698f3322e"
+      }
+    },
+    {
+      "number": 6,
+      "assistant_content": "All proposals are being rejected due to a transaction issue. Let me try a minimal single-edit proposal to diagnose:\n\n",
+      "tools": [
+        {
+          "name": "replace_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "content": "exact immutable provider-response reference below"
+          }
+        }
+      ],
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 22659,
+        "output_tokens": 143,
+        "reasoning_tokens": null,
+        "total_tokens": 22802
+      },
+      "model_seconds": 33.1582025999669,
+      "disposition": "PROPOSAL_REFUSED",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 22659,
+        "measurements": [
+          {
+            "input_tokens": 25140,
+            "projection": "source-preserving"
+          },
+          {
+            "input_tokens": 25130,
+            "projection": "compact",
+            "reacquire_read_only": 0
+          },
+          {
+            "input_tokens": 23855,
+            "projection": "compact",
+            "reacquire_read_only": 1
+          },
+          {
+            "input_tokens": 22659,
+            "projection": "compact",
+            "reacquire_read_only": 2
+          },
+          {
+            "input_tokens": 22659,
+            "projection": "compact",
+            "reacquire_read_only": 3
+          }
+        ],
+        "minimum_continuation_output_tokens": 2048,
+        "output_tokens": 8061,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "provider_response": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/provider-response-06.json",
+        "sha256": "3a05386ea7d501675762dcb201d47da72a9d841f95efdd9acd0fd4928c95ecc1"
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-06/request.json",
+        "sha256": "5e7fbb5b8bed75423a73c80535513298b21b46455a4521a43418f010ae6eb1a7"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/source-supplied-19/devtools-all-checks/turn-06/stage.json",
+        "sha256": "fc7eb33e00a74e1683df8c0baff2d41424795c11bb3ebd88673fcc82d92729de"
+      }
+    }
+  ],
+  "model_seconds": 443.67616869998164,
+  "independent_outcome": {
+    "new_bundle_ToolRunner_demonstration": "NOT_REACHED",
+    "behavior_quality_validation": "NO CANDIDATE: only baseline tests/static passed; original oracle still fails missing all selector",
+    "behavioral_quality_repair": "NOT_EXERCISED; three responses to admission feedback, not behavioral repair",
+    "maintained_implementation": "NONE",
+    "review_publication_closeout": "NOT_APPLICABLE: no accepted source",
+    "full_check_changes": "unfinished; original oracle unchanged"
+  },
+  "interpretation": "The source-supplied presentation elicited implementation on response2, unlike16/17/18. It is evidence for beginning implementation only, not correct engineering or general effectiveness. All four proposals refused atomically: first three exceeded the 4096-byte region limit, first two also exceeded the 8192-byte aggregate limit; last had identical old/new text. At5 model explicitly recognized4096limit yet submitted4864bytes. No source/version observation failure caused refusal. Repeated oversized/no-op proposals show inability to obey/repair advertised edit constraints in this run; generic refusal does not name actual component sizes. No maintained change made to that feedback during evaluation. Capacity remained usable, including8061output at6; no Context failure. No automatic recovery or Codex source substitution.",
+  "verification": {
+    "historical16_17_18_hashes": "unchanged",
+    "forensic_files_preserved": 13,
+    "source_index_clean": true,
+    "one_checkout": true,
+    "no_active_owner": true,
+    "main": "862bda2d3d1d812893f84ab69691fc068ecce268",
+    "qualification": "Exact18oracle fixtures requalified on Python3.14.3 before inference; baseline missing all selector; source/helper/test bytes identical to18with its36legacy/static pass evidence retained. Fresh runtime baseline10tests+Ruff/format/mypy passed, not bundle acceptance.",
+    "protected_gate": "NOT_RUN: no maintained source/test change; no accepted candidate"
+  },
+  "economics": {
+    "assignment_start": "2026-10-21T21:32:31+00:00",
+    "record_at": "2026-10-21T22:03:53.465638+00:00",
+    "worker_start": "2026-10-21T21:49:57.716681+00:00",
+    "worker_end": "2026-10-21T21:57:25.534622+00:00",
+    "Codex_coordination_usage_cost": "UNKNOWN",
+    "hardware_energy_cost": "NOT_MEASURED; unchanged serving profile",
+    "supervision": "Explicit source/contract preparation, legitimate initial host observations and stop guard; no private oracle in prompt, semantic repair hints, code substitution, additional recovery or budget extension"
+  },
+  "next_action": "Deliver run_check(all) directly with explicitly Codex-authored source in a separate implementation increment against the same frozen18contract/owner, permanent regressions and existing WorkCycle closeout. Do not launch a fifth minor Qwen variant. Separately investigate exact-size constraint following and component-specific admission feedback, without raising limits or another Context framework. Once bundle is accepted, integrate Git/new-file discovery and exact report/is_current freshness under original full check_changes contract. No protected publication authority is inferred."
+}

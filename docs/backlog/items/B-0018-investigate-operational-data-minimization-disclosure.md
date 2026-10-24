@@ -31,3 +31,25 @@ captured. Retention, export, and broader disclosure policy remain deferred.
 - operational_dependencies: sensitive diagnostic or evidence payload
 - promotion_trigger: real harness must retain or export data whose disclosure matters
 - validation_level: NONE
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek's generic telemetry redaction is pass-through without mounted rules;
+the inspected OTel provider instead gates capture to canonical explicit feedback
+prefixes and can disable transport. These are separate privacy/delivery controls,
+not complete content sanitization. Devtools model Evidence has existing category
+capture/omission manifests. The local flow audit must inspect actual capture,
+lost-record and egress boundaries before any exporter or shared trace consumer.
+No upstream privacy efficacy or full plugin supply-chain claim was measured.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Model Evidence defaults to payload omission, but selected native run-specific wrappers retain raw requests, arguments and provider responses in ignored custody. These paths do not have one propagated capture manifest. Qualify per-artifact capture/retention, credentials exclusion, redaction and export policy before any adapter or OTel consumer. The public audit copies metadata, not raw sensitive payloads; no leak or deployed privacy failure is asserted.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

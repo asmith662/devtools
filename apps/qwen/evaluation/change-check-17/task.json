@@ -1,0 +1,160 @@
+{
+  "name": "shared-check-changes-development-17",
+  "objective": "Finish the exposed check_changes development obligation. Ownership is ALREADY DECIDED: extend CodingCommands in apps/qwen/commands.py. Existing run_check/CHECKS and _timed_command perform the fixed checks via managed Commands; _hash and existing Git observations provide identities; _save archives evidence. WorkCycle publication is outside this change: do NOT investigate closeout or worker-loop internals or redesign ownership. Inspect this owner and imported helpers enough to preserve invariants, then IMPLEMENT and validate instead of repeatedly rediscovering architecture. Task fields are available from the existing CodingTask; no task-schema changes are needed.\nTwo internal checkpoints in this one conversation: first implement the source-bound report by composing existing fixed checks; then complete freshness, blockers and native/shared Tool dispatch. Neither partial checkpoint is an accepted feature. Use exact common pre-transaction anchors; split large changes into bounded transactions as needed. Do not audit unrelated code. No private oracle or implementation solution is supplied.\nRequired interface: expose native check_changes with empty object arguments through command_definitions/COMMAND_TOOL_NAMES and the existing CodingCommands.dispatch/ToolRunner boundary. Return JSON-compatible operation='check_changes', status, ready_for_review, changed paths, source_sha256 for all authorized sources (null for absent new slots), per-name checks, and a relative evidence reference. Add is_current(report) on the same Tool to recheck current identities rather than trust historical success. Preserve existing run_check/git_inspect and receipts.\nUse the host task's exact source/test/read resources and authorized new slots. Inspect tracked changes versus HEAD AND authorized untracked/new files. Unrelated preexisting files outside this bounded scope are not a whole-checkout cleanliness claim. Block changed read-only task resources, missing existing source, unsupported deletion, unsafe scope, unavailable Git/plan and source/plan/Git drift. Bind checks to exact before/after existing hashes and Git observations, including task test/read files and host runners; detect later changes with is_current. Never read arbitrary paths from report data, mutate source/Git, infer tests or run arbitrary commands.\nCompose the existing tests, oracle, ruff, format and typing checks with independent outcomes. Complete readiness requires task tests/oracle, quality_checks and command_tools and all five PASS on unchanged identities. Overall PASS/true only then; ordinary nonzero check outcomes FAIL/false; unavailable/invalid state BLOCKED/false. No candidate changes gives NO_CHANGES/false with explicitly unexecuted checks. Per-check statuses are PASS/FAIL/BLOCKED/UNAVAILABLE/NOT_APPLICABLE/INTERRUPTED as applicable; retain independent outcomes after ordinary failures. A missing plan is never passing validation. Archive full returned output via existing coding-command evidence; bound model-visible stdout/stderr to3000characters each with explicit truncation. On cancellation archive nonpassing INTERRUPTED evidence and propagate cancellation. Do not claim rollback or publication. A report is source-bound evidence, not approval or proof of tests outside the selected plan.\nQwen authors all semantic implementation. Host-owned behavior, legacy regressions, Ruff, formatting and strict typing must pass together. Do not edit task/tests/acceptance. Preserve already-passing requirements during repairs. No framework, new validator, executor, Context subsystem, source-version authority or source-copy checkout.",
+  "source": "apps/qwen/commands.py",
+  "tests": [
+    "tests/tools/test_command.py",
+    "tests/tools/test_execution.py"
+  ],
+  "baseline_revision": "3f82cb256e999c96351a692409d5658229133de4",
+  "baseline_hashes": [
+    [
+      "apps/qwen/commands.py",
+      "4d218da0f3173bb59f09329404ac722001193591404e320bff1b1e94a962f2bc"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "e4ffedace5cf4276c01d1b00eff367665a02e26d8e92886a66268b7f71029afa"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "f4fd385497f435a5a62c25a0a3e189b284dc555d216ce2cfe591c2785fc4fb57"
+    ],
+    [
+      "apps/qwen/tasks.py",
+      "9bbd6ed99a859caaa839e6d362bc4761d4f6419f93895723838ac32a0dcbac16"
+    ],
+    [
+      "apps/qwen/development_task.py",
+      "87096fa01faf86839ebd12f92cb30ecbe237ae2879eb702239cf878139aae986"
+    ],
+    [
+      "apps/qwen/model_tool_composition.py",
+      "6775bdbfb9576818b3ef1c5a16dc6dcd77daa2dbfef15c012a399e1a9fb32b74"
+    ],
+    [
+      "src/devtools/tools/protocols.py",
+      "bc4ac64652f06602e8c90e9cc652ff0c07bcc67810782cb521ba514cc253ca8b"
+    ],
+    [
+      "src/devtools/tools/execution.py",
+      "03e4f87b8c5dd9e298e20abc0225fb9d6838b49ed99cca3e6225dca63d34d68c"
+    ],
+    [
+      "src/devtools/tools/disclosure.py",
+      "a16ec4f0fc2906b99f7eb39df41d144e0ede882d42810df2a40e9e09a8038df5"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619"
+    ],
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "9ce530e6f0d1f42792a18b779168cbf47f7360ad1fe221e146e3410909465102"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "c2760a1d0db7bc77fe20cd3ea920890f00a32843dd2d8043d7c8d9b8bb2e193a"
+    ]
+  ],
+  "context": [
+    [
+      "apps/qwen/commands.py",
+      "commands",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "test command",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "test execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/tasks.py",
+      "tasks",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/development_task.py",
+      "development task",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/model_tool_composition.py",
+      "model tool composition",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/protocols.py",
+      "protocols",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/execution.py",
+      "execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/disclosure.py",
+      "disclosure",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "reading",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "writing",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import asyncio, hashlib, json, sys\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nfrom apps.qwen import commands\nfrom apps.qwen.coding_loop import _prepare_workspace\nfrom apps.qwen.development_task import _hash, _timed_command\nfrom apps.qwen.tasks import CodingTask\nfrom devtools.models.interaction import ModelToolCall\nfrom devtools.tools import ToolRunner\n\nGOOD='\"\"\"Authored validation fixture.\"\"\"\\n\\nVALUE: int = 2\\n'\nBASE=GOOD.replace('= 2','= 1')\nSOURCE='src/devtools/demo.py'; NEW='src/devtools/new_module.py'; TEST='tests/test_demo.py'; READ='src/devtools/read_only.py'\nCHECKS=('tests','oracle','ruff','format','typing')\nasync def command(root,*args):\n    r=await _timed_command(root,*args)\n    assert not r['failed'],r\n    return r\nasync def fixture(root):\n    for p,t in {SOURCE:BASE,READ:'VALUE = 0\\n',TEST:'import runpy\\nfrom pathlib import Path\\n\\ndef test_value():\\n    assert runpy.run_path(str(Path(__file__).parents[1]/\"src/devtools/demo.py\"))[\"VALUE\"] == 2\\n','src/devtools/__init__.py':'','.gitignore':'.local/\\n','pyproject.toml':'[tool.ruff.lint]\\nselect=[\"F\"]\\n'}.items():\n        path=root/p;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(t,encoding='utf-8')\n    await command(root,'git','init','-q')\n    await command(root,'git','-c','user.name=Fixture','-c','user.email=fixture@invalid','add','.')\n    await command(root,'git','-c','user.name=Fixture','-c','user.email=fixture@invalid','commit','-qm','Authored baseline')\n    base=(await command(root,'git','rev-parse','HEAD'))['stdout'].strip()\n    paths=(SOURCE,TEST,READ)\n    task=CodingTask(name='qualified-check-changes-fixture',objective='Validate authored bounded candidate',source=SOURCE,tests=(TEST,),baseline_revision=base,baseline_hashes=tuple((p,_hash(root/p)) for p in paths),context=tuple((p,'VALUE','mixed','file') for p in paths),oracle='assert module.VALUE == 2\\n',read_paths=(READ,),context_mode='on-demand',quality_checks=True,command_tools=True,path_edits=True,new_paths=(NEW,))\n    folder=root/'.local/checks';folder.mkdir(parents=True);_prepare_workspace(root,folder,task)\n    return task,folder\nasync def invoke(tool):\n    r=await tool.dispatch(ModelToolCall('check_changes','{}','qualified-native-call'))\n    assert r['operation']=='check_changes'\n    assert set(CHECKS)<=set(r['checks']),r\n    assert type(r['ready_for_review']) is bool\n    assert r['source_sha256'][SOURCE]==_hash(tool.root/SOURCE) or not r['ready_for_review']\n    evidence=tool.folder/r['evidence'];assert evidence.is_file(),'Full authoritative report must be archived'\n    json.loads(evidence.read_text(encoding='utf-8'))\n    for v in r['checks'].values():\n        assert v['status'] in {'PASS','FAIL','BLOCKED','UNAVAILABLE','NOT_APPLICABLE','INTERRUPTED'}\n        assert len(v.get('stdout',''))<=3000 and len(v.get('stderr',''))<=3000\n    return r\ndef fake_result(check,failed=False,text=''):\n    return {'argv':('fixed',check),'exit_code':1 if failed else 0,'failed':failed,'stdout':text,'stderr':'','elapsed_seconds':0.0}\nasync def qualify_fixtures():\n    with TemporaryDirectory(prefix='devtools-check16-') as temp:\n        root=Path(temp).resolve();task,folder=await fixture(root)\n        failure=await commands.run_check(root,folder,task,'tests');assert failure['failed'] and 'assert 1 == 2' in failure['stdout'],failure\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        for check in CHECKS: await assert_check(root,folder,task,check)\n        stable=_hash(root/SOURCE);runner=folder/'tests-runner.py';plan=_hash(runner)\n        (root/SOURCE).write_text(GOOD+'\\n# independently qualified drift\\n',encoding='utf-8')\n        assert _hash(root/SOURCE)!=stable\n        status=await command(root,'git','status','--porcelain','--',SOURCE)\n        assert SOURCE in status['stdout']\n        runner.write_text(runner.read_text(encoding='utf-8')+'\\n# plan drift\\n',encoding='utf-8')\n        assert _hash(runner)!=plan\n        (root/SOURCE).write_text(GOOD,encoding='utf-8');_prepare_workspace(root,folder,task)\n        (root/SOURCE).write_text(GOOD+'\\nimport missing_check16_dependency\\n',encoding='utf-8')\n        lint=await commands.run_check(root,folder,task,'ruff');typing=await commands.run_check(root,folder,task,'typing')\n        assert lint['failed'] and 'F401' in lint['stdout']\n        assert typing['failed'] and 'import-not-found' in typing['stdout']\n        print('QUALIFIED: real pytest intended baseline failure; all five positive checks; real Ruff and typing negative fixtures')\nasync def assert_check(root,folder,task,check):\n    r=await commands.run_check(root,folder,task,check);assert not r['failed'],(check,r)\nasync def run_checks():\n    assert 'check_changes' in commands.COMMAND_TOOL_NAMES,'Missing composed check_changes native operation'\n    with TemporaryDirectory(prefix='devtools-check16-') as temp:\n        root=Path(temp).resolve();task,folder=await fixture(root);tool=commands.CodingCommands(root,folder,task)\n        definition=next(x for x in commands.command_definitions(task) if x.name=='check_changes')\n        schema=json.loads(definition.input_schema_json);assert schema['properties']=={} and schema['additionalProperties'] is False\n        try: tool.validate(('check_changes',{'paths':['../outside.py']}))\n        except (ValueError,TypeError): pass\n        else: raise AssertionError('No arbitrary scope/argv supplied by model')\n        r=await invoke(tool);assert r['status']=='NO_CHANGES' and not r['ready_for_review'],r\n        (root/SOURCE).write_text(GOOD,encoding='utf-8');(root/NEW).write_text('\"\"\"Authorized new fixture.\"\"\"\\n',encoding='utf-8')\n        before={p:(root/p).read_bytes() for p in (SOURCE,TEST,READ,NEW)}\n        r=await ToolRunner().execute(tool,('check_changes',{}))\n        assert r['status']=='PASS' and r['ready_for_review'],r\n        assert {SOURCE,NEW}==set(r['changed']),r['changed']\n        assert all(r['checks'][k]['status']=='PASS' for k in CHECKS),r\n        assert r['source_sha256'][NEW]==_hash(root/NEW)\n        assert tool.is_current(r), 'Freshness must be independently recheckable after response'\n        assert before=={p:(root/p).read_bytes() for p in before},'Checks may not mutate candidate/resources'\n        (root/SOURCE).write_text(GOOD+'\\n# after result\\n',encoding='utf-8');assert not tool.is_current(r),'Old success cannot apply to new source'\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        # Real diagnostics must reach the agent through the same native Tool boundary.\n        (root/SOURCE).write_text(GOOD+'\\nimport missing_check16_dependency\\n',encoding='utf-8')\n        r=await invoke(tool);assert r['status']=='FAIL' and not r['ready_for_review'],r\n        assert r['checks']['ruff']['status']=='FAIL' and 'F401' in r['checks']['ruff'].get('stdout','')\n        assert r['checks']['typing']['status']=='FAIL'\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        # Read-only resources cannot become candidate edits.\n        (root/READ).write_text('VALUE = 9\\n',encoding='utf-8')\n        r=await invoke(tool);assert r['status']=='BLOCKED' and not r['ready_for_review'],r\n        (root/READ).write_text('VALUE = 0\\n',encoding='utf-8')\n        # Long command output remains archived, with bounded model-visible diagnostics.\n        async def long_failure(a,b,c,check):return fake_result(check,check=='ruff','X'*12000 if check=='ruff' else 'ok')\n        with patch.object(commands,'run_check',long_failure):r=await invoke(tool)\n        assert r['status']=='FAIL' and len(r['checks']['ruff'].get('stdout',''))<=3000\n        assert 'X'*12000 in (folder/r['evidence']).read_text(encoding='utf-8'),'Do not lose complete returned output'\n        # A supported unavailable plan must never become a passing test.\n        runner=folder/'tests-runner.py';saved=runner.read_bytes();runner.unlink()\n        r=await invoke(tool);assert not r['ready_for_review'] and r['checks']['tests']['status'] in {'FAIL','BLOCKED','UNAVAILABLE'},r\n        runner.write_bytes(saved)\n        async def mutate(a,b,c,check):\n            if check=='tests': (root/SOURCE).write_text(GOOD+'\\n# during check\\n',encoding='utf-8')\n            return fake_result(check)\n        with patch.object(commands,'run_check',mutate):r=await invoke(tool)\n        assert r['status']=='BLOCKED' and not r['ready_for_review'],r\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        async def change_runner(a,b,c,check):\n            if check=='tests':runner.write_text('# altered plan\\n',encoding='utf-8')\n            return fake_result(check)\n        with patch.object(commands,'run_check',change_runner):r=await invoke(tool)\n        assert r['status']=='BLOCKED' and not r['ready_for_review'],'Validation plan drift must invalidate results'\n        runner.write_bytes(saved)\n        async def unavailable(a,b,c,check):\n            if check=='tests':raise OSError('Qualified unavailable check')\n            return fake_result(check)\n        with patch.object(commands,'run_check',unavailable):r=await invoke(tool)\n        assert r['status']=='BLOCKED' and not r['ready_for_review'],r\n        # Cancellation propagates while preserving an inspectable nonpassing report.\n        async def cancelled(a,b,c,check):raise asyncio.CancelledError('Qualified interruption')\n        with patch.object(commands,'run_check',cancelled):\n            try:await invoke(tool)\n            except asyncio.CancelledError:pass\n            else:raise AssertionError('Do not swallow host cancellation')\n        assert any('INTERRUPTED' in p.read_text(encoding='utf-8') for p in folder.glob('coding-command-*.json')),'Interrupted operation must retain evidence'\n        incomplete=commands.CodingCommands(root,folder,replace(task,quality_checks=False))\n        r=await invoke(incomplete);assert not r['ready_for_review'],'Incomplete quality plan is not full pre-review validation'\n        print('PASS: native ToolRunner composition, real Git/tracked/new changes, five real checks, bounded/full diagnostics, scope refusal, no mutation, source/runner drift, unavailable plans, cancellation and freshness')\nif __name__=='__main__':asyncio.run(run_checks())\n",
+  "maximum_calls": 20,
+  "output_tokens": 8192,
+  "wall_seconds": 1500,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "apps/qwen/tasks.py",
+    "apps/qwen/development_task.py",
+    "apps/qwen/model_tool_composition.py",
+    "src/devtools/tools/protocols.py",
+    "src/devtools/tools/execution.py",
+    "src/devtools/tools/disclosure.py",
+    "src/devtools/core/paths/resolution.py",
+    "src/devtools/resources/filesystem/reading.py",
+    "src/devtools/resources/filesystem/writing.py"
+  ],
+  "quality_checks": true,
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 20,
+  "new_paths": [],
+  "disclose_edit_paths": false,
+  "path_edits": true,
+  "maximum_proposals": 6,
+  "api_targets": []
+}

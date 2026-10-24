@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-20T14:05:02.040119+00:00",
+  "baseline": "05e2600340b91d662f5764478d77bbdf7835fdae",
+  "maximum_runs": 8,
+  "maximum_model_calls": 80,
+  "maximum_worker_seconds": 7200,
+  "model": "qwen38-local",
+  "profile": "unchanged q4_0 KV, 32768 Context, thinking off, baseline sampling",
+  "conditions": [
+    "Devtools observed-flat-batch-v1",
+    "Pi 1.3.0 scoped native read/edit/write"
+  ],
+  "per_run": {
+    "model_calls": 10,
+    "output_tokens_per_call": 4096,
+    "wall_seconds": 900,
+    "call_seconds": 300
+  },
+  "tool_bounds": "Devtools 24 read/check/API calls plus 3 atomic proposals (<=8 flat calls each); Pi 24 total tool actions including edits/validation, <=24 writes. Tool interface is treatment; record differences.",
+  "reserved_runs": "Two conditional repair-only runs if no genuine development repair; no blind retries.",
+  "confirmation_rule": "Freeze chosen code/configuration before either confirmation invocation; do not tune on its result.",
+  "cases": [
+    {
+      "name": "command-immutable-arguments",
+      "partition": "development",
+      "task_sha256": "2976e7eda8f3a1df4fca0ae5193768506b65def59c67e130deaf9e8b56413b27",
+      "oracle_sha256": "c7a3d935b64462fed895f5ec6cf0bf5e2a344a70d420db4e5594a0f465bec0be",
+      "baseline_hashes": {
+        "src/devtools/resources/commands/models/command.py": "e7688ca7b5722fc0c3078deaf263f3d38091333d05e35ba68e8358b8caf2f238",
+        "tests/resources/commands/test_models.py": "87d1044e5cc9e333922d12f53e074590799a421580dbc6ec22099b388d2cb244"
+      },
+      "new_paths": []
+    },
+    {
+      "name": "lazy-conversion-api",
+      "partition": "development",
+      "task_sha256": "b273904ff8ea4d19f3a27c4f13b5ece22e18862a84a499dfaa731d739cdd1099",
+      "oracle_sha256": "d0bd0afdbbc652e1a7d463cacf30f6aaf6d140a1fec02beb9f6e9370179387c2",
+      "baseline_hashes": {
+        "src/devtools/core/conversion/conversion.py": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+        "src/devtools/core/conversion/__init__.py": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd",
+        "tests/core/conversion/test_conversion.py": "6dc2fb84495e89f0c54c0b986fad23d96100754b1cd12b22acadc44112d494a2",
+        "tests/resources/filesystem/test_json_conversion.py": "c1d83f33bea41814a15b918645b2fd26e3cd180c947201b77b89394e7279313d",
+        "src/devtools/core/conversion/errors.py": "596f2eb831ea41d318c5476c15cb87bdbecbdfc25f044162c966b3854a04ce28"
+      },
+      "new_paths": [
+        "src/devtools/core/conversion/iteration.py"
+      ]
+    },
+    {
+      "name": "read-disappearance",
+      "partition": "confirmation",
+      "task_sha256": "9a3d78c31e4e8b2fa79f90368f4b22afec7d61e5e1823d9915c92e94cf2b542f",
+      "oracle_sha256": "c300ff318baeac7f3b4278b2036cac5667e30e7a6e54fa7f7ffb23847f9bd00b",
+      "baseline_hashes": {
+        "src/devtools/resources/filesystem/reading.py": "d7262de84450424c6846644a4c89b4e2d4cd63b40141f3064b9947075ea93309",
+        "tests/resources/filesystem/test_reading.py": "1b2a861787a3ca983e076d0d4754bdeaf714b668518e5c911c071f2411a4e707",
+        "src/devtools/resources/filesystem/errors.py": "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+      },
+      "new_paths": []
+    }
+  ],
+  "preflight_amendment": {
+    "at": "2026-10-20T14:10:13.761443+00:00",
+    "before_first_model_call": true,
+    "rationale": "Normalize intended baseline missing-API/wrong-domain failures into explicit oracle assertions as required by existing preflight. Behavior and acceptance meaning unchanged. Omit explicitly authorized absent new slots only from pre-creation style/type checks; created files remain mandatory for acceptance. Original drafts and refused preflights retained."
+  }
+}

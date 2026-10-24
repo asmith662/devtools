@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -27,6 +28,9 @@ from devtools.resources.filesystem import (
     NotAFileError,
     TextDecodingError,
 )
+
+if TYPE_CHECKING:
+    from typing import BinaryIO
 
 _REPOSITORY_ID = "00000000-0000-4000-8000-000000000001"
 _MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
@@ -331,6 +335,7 @@ def test_nonpositive_resource_bound_fails_before_read(
     maximum_resource_bytes: int,
 ) -> None:
     """Observation requires a positive caller-visible bound before acquisition."""
+
     def forbidden_read(*_args: object, **_kwargs: object) -> None:
         msg = "invalid bound attempted acquisition"
         raise AssertionError(msg)
@@ -390,15 +395,16 @@ def test_unreadable_multi_resource_prevents_a_snapshot(
     denied = tmp_path / "denied.py"
     available.write_text("VALUE = 1\n", encoding="utf-8")
     denied.write_text("VALUE = 2\n", encoding="utf-8")
-    original_read_bytes = Path.read_bytes
+    original_open = Path.open
 
-    def deny_one(path: Path) -> bytes:
+    def deny_one(path: Path, mode: str) -> BinaryIO:
+        assert mode == "rb"
         if path == denied:
             msg = "denied"
             raise PermissionError(msg)
-        return original_read_bytes(path)
+        return original_open(path, "rb")
 
-    monkeypatch.setattr(Path, "read_bytes", deny_one)
+    monkeypatch.setattr(Path, "open", deny_one)
 
     with pytest.raises(FilesystemPermissionError):
         _observe_many(_repository(), tmp_path, "available.py", "denied.py")
@@ -483,11 +489,12 @@ def test_unreadable_and_undecodable_resources_do_not_produce_snapshots(
     source = tmp_path / "module.py"
     source.write_bytes(b"content")
 
-    def deny_read(_path: Path) -> bytes:
+    def deny_read(_path: Path, mode: str) -> BinaryIO:
+        assert mode == "rb"
         msg = "denied"
         raise PermissionError(msg)
 
-    monkeypatch.setattr(Path, "read_bytes", deny_read)
+    monkeypatch.setattr(Path, "open", deny_read)
     with pytest.raises(FilesystemPermissionError):
         _observe(_repository(), tmp_path, "module.py")
 

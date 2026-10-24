@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from io import BytesIO
 from pathlib import Path
 
 import pytest
@@ -188,10 +189,11 @@ def test_read_rechecks_size_after_the_content_is_loaded(
     source.write_bytes(b"{}")
     grown_content = b'{"name":"longer"}'
 
-    def read_grown_content(_path: Path) -> bytes:
-        return grown_content
+    def open_grown_content(_path: Path, mode: str) -> BytesIO:
+        assert mode == "rb"
+        return BytesIO(grown_content)
 
-    monkeypatch.setattr(Path, "read_bytes", read_grown_content)
+    monkeypatch.setattr(Path, "open", open_grown_content)
 
     with pytest.raises(FileTooLargeError, match="exceeds"):
         read(ResolvedPath(source), max_bytes=2)
@@ -215,10 +217,11 @@ def test_read_normalizes_permission_failures(
 
     monkeypatch.undo()
 
-    def deny_read(_path: Path) -> bytes:
+    def deny_read(_path: Path, mode: str) -> BytesIO:
+        assert mode == "rb"
         raise PermissionError
 
-    monkeypatch.setattr(Path, "read_bytes", deny_read)
+    monkeypatch.setattr(Path, "open", deny_read)
 
     with pytest.raises(FilesystemPermissionError, match="reading"):
         read(ResolvedPath(source))

@@ -5,8 +5,11 @@ disk I/O is owned by [`read()` and `write()`](io.md).
 
 ## Current codecs
 
-`TextCodec`, `JsonCodec`, `MarkdownCodec`, and `CsvCodec` support bytes/text
-conversion for their corresponding models. There is no BinaryCodec.
+`BinaryCodec`, `TextCodec`, `JsonCodec`, `MarkdownCodec`, and `CsvCodec` convert
+the corresponding representations and models.
+
+- BinaryCodec wraps exact bytes with `decode(path, content)` and returns retained
+  bytes with `encode(file)`, without text decoding or structural interpretation.
 
 - TextCodec performs `bytes <-> decoded text` without structural parsing.
 - JsonCodec provides `decode`, `parse`, `serialize`, and `encode`.
@@ -14,14 +17,14 @@ conversion for their corresponding models. There is no BinaryCodec.
 - CsvCodec provides `decode`, `parse`, `serialize`, and `encode` for headers,
   rows, and dialects.
 
-Decode failures and unknown encodings normalize to `TextDecodingError`; output
+Text-backed decode failures and unknown encodings normalize to `TextDecodingError`; output
 encoding failures normalize to `TextEncodingError`. Format parsing and
 serialization failures use `FileFormatError` where appropriate.
 
 ## Architecture
 
 Codec resolution is a static internal format-to-codec-class map. No common
-codec base class or Protocol exists because the four concrete codecs remain
+codec base class or Protocol exists because the five concrete codecs remain
 small and their signatures differ meaningfully. There is no registry or plugin
 discovery.
 

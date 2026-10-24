@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+  "proposal_sha256": "7e5bab6df0988c9541cb379908b03971c4bbb154b92de14c9ac70cd8d4be3eab",
+  "previous": "699f3c9d03f027712fb480b736a2446a20f903c4b48a6fe9594849f673c2c893",
+  "at": "2026-10-23T22:32:25.513187+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-u1-r17-r2-audit.md",
+  "rationale": "Duplicate production source-span finding has concrete fixa0a6c224; preserve both append-only histories and recommend authorized implemented/duplicate reconciliation against416658bd. This audit does not reopen production bug, change source authority, rerun protected gate or automatically close either proposal.",
+  "duplicates": [
+    {
+      "reference": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve original payload, state and append-only history; no approval, B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "ebd5b9580bb834eccbe0261b9cc0157f8878fc9b43481b74445049b57e345669"
+}

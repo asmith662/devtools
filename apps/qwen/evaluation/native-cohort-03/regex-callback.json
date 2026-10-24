@@ -1,0 +1,64 @@
+{
+  "baseline_hashes": [
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+    ]
+  ],
+  "baseline_revision": "d8741a52f9342bd180e414832e8f31b52f4c8c9a",
+  "call_seconds": 300,
+  "context": [
+    [
+      "src/devtools/core/regex/search.py",
+      "regex callback",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "regex callback",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "regex callback",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "regex callback",
+      "mixed",
+      "none"
+    ]
+  ],
+  "context_mode": "on-demand",
+  "maximum_calls": 10,
+  "name": "regex-callback",
+  "objective": "PUBLIC BEHAVIOR: Extend replace_regex so a replacement callable receives the framework's immutable RegexMatch (including groups, named groups and character offsets), and its returned string is substituted. Keep string replacements/backreferences, count limits, flags, compiled patterns, no-match behavior and the existing public functions unchanged. Preserve callback exceptions, without wrapping them.\nCOMPATIBILITY: Existing str replacement calls and compiled-pattern flag errors must retain behavior. Do not redefine existing match APIs.\nQUALITY: Existing tests, independent callback/string/exception assertions, strict typing, Ruff and formatting must all pass. Multiple implementations are legitimate; retain the documented callback contract. Investigate related symbols and tests before editing.",
+  "oracle": "from devtools.core.regex import RegexMatch, replace_regex\nimport re\nseen=[]\ndef callback(match):\n    assert isinstance(match, RegexMatch), \"callback must receive framework RegexMatch\"\n    seen.append(match)\n    return match.named_group(\"word\").upper()\nassert replace_regex(\"a \u00e9\", r\"(?P<word>\\w+)\", callback)==\"A \u00c9\"\nassert [m.span for m in seen]==[(0,1),(2,3)]\nassert seen[1].groups==(\"\u00e9\",)\nassert replace_regex(\"a a\", \"a\", lambda m:\"b\", count=1)==\"b a\"\nassert replace_regex(\"A a\", re.compile(\"a\", re.I), lambda m:m.value.lower())==\"a a\"\nassert replace_regex(\"xyz\", \"a\", lambda m:1/0)==\"xyz\"\nassert replace_regex(\"a1\", r\"(a)(1)\", r\"\\2\\1\")==\"1a\"\nassert replace_regex(\"a\", \"a\", \"b\")==\"b\"\ntry: replace_regex(\"a\", re.compile(\"a\"), \"b\", flags=re.I)\nexcept ValueError: pass\nelse: raise AssertionError(\"compiled flags contract lost\")\nsentinel=RuntimeError(\"callback failure\")\ndef fail(match): raise sentinel\ntry: replace_regex(\"a\", \"a\", fail)\nexcept RuntimeError as error: assert error is sentinel\nelse: raise AssertionError(\"callback exception swallowed\")\nprint(\"9 callback and compatibility scenarios passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\", flush=True)\nimport asyncio, sys\nfrom devtools.resources.commands import Command, CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject = next(p for p in Path(module.__file__).parents if (p / \"pyproject.toml\").is_file())\ncommand = Command(sys.executable).args(\"-m\", \"mypy\", str(Path(module.__file__))).cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\nchecked = asyncio.run(CommandExecutor().execute(command))\nprint(checked.stdout.decode(errors=\"replace\"), flush=True)\nassert checked.exit_code == 0, \"Independent typing acceptance failed: \" + checked.stderr.decode(errors=\"replace\")\n",
+  "output_tokens": 4096,
+  "quality_checks": true,
+  "read_paths": [
+    "src/devtools/core/regex/models.py",
+    "src/devtools/core/regex/__init__.py"
+  ],
+  "source": "src/devtools/core/regex/search.py",
+  "tests": [
+    "tests/core/regex/test_search.py"
+  ],
+  "wall_seconds": 900
+}

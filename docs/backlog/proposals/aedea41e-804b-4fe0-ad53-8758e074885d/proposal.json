@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "created_at": "2026-10-23T17:29:31.177298+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Qualify retained Python analysis and lexical-field reuse across real consumers",
+    "parent": "B-0002",
+    "summary": "Priority2 MAINTENANCE investigation. Module declaration lookup parses functions, classes and its own AST; references and per-reference target/facade lookup repeat analysis; Localization validates native facts by replay; ContextTools._reference_analysis reconstructs module interpretations per source; BM25 rebuilds filename evidence per query. Inspect actual multiple-consumer cost before changing computation ownership. Reuse existing performance/retrieval profiler and retained snapshot semantics.",
+    "resources": [
+      "src/devtools/context/python/modules/declarations.py",
+      "src/devtools/context/python/references/declarations.py",
+      "src/devtools/context/localization/roles/inputs.py",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "apps/qwen/context_tools.py",
+      "experiments/performance/retrieval/"
+    ],
+    "benefit": "Acceptance: reproduce parse/index construction counts and elapsed work on at least module/reference resolution and native map preparation or obligation acquisition. Identify minimum exact input closure: retained occurrence/text, grammar/runtime/analyzer version, explicit roots/universe and supported resolution scope. Compare existing behavior and reuse on positive/unsupported/stale/forged/ambiguous cases; preserve identities/order/errors and no external reads. Report whether a local helper, task-scoped memo or no change is justified; no generic source store/cache/graph engine, no speedup from unmeasured asymptotics. Historical performance results remain unchanged.",
+    "uncertainty": "Some rederivation is security/integrity validation; removing it without exact-frame authentication is unsafe. Different grammar/binding policies must remain distinct. Existing B-0008 broad reuse pressure is related; this qualifies concrete repeated current consumers before implementation. Maintenance-agent investigation possible with bounded deterministic workload, not scientific treatment replay.",
+    "dependencies": [
+      "B-0008",
+      "B-0027"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/repository-intelligence-code-audit.md; source baseline95efbf711c3644fb32d269d85927000cd8f4aaa9;2026-10-23"
+    },
+    "evidence": [
+      "docs/research/repository-intelligence-code-audit.md",
+      "docs/research/code-audit/ri-modules.jsonl",
+      "docs/research/code-audit/agent-use.json"
+    ]
+  },
+  "payload_sha256": "7ff4a0183b1059673c88578dfeaf4c91d16eb2851291f7196a8567c5c7db07cd"
+}

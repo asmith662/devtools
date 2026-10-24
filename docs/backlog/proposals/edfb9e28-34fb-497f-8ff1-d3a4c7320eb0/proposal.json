@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "edfb9e28-34fb-497f-8ff1-d3a4c7320eb0",
+  "created_at": "2026-10-23T21:19:35.553716+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Handle missing witness completion throughout versioned U2 analysis",
+    "parent": "B-0002",
+    "summary": "Priority2 analysis-reuse correctness. Immutable Case0012 stage_d.analysis.completion explicitly returns None for a missing witness member, but comparisons calls delta(None,None), raising TypeError; frozen_gates, attribution, required_records and reporting also assume complete reachable support. The existing missing-completion test exercises only the helper. Independent AST-extracted pure-function probe reproduces the downstream TypeError without running original science. All original selected A/B/C completions are present, so no historical verdict corruption is demonstrated. Leave sealed Case0012 code, inputs and outcomes unchanged; correct only an explicitly versioned future analyzer or report-only adapter when a real consumer is authorized.",
+    "resources": [
+      "experiments/codex_dogfood/case_0012/stage_d/analysis.py",
+      "experiments/codex_dogfood/case_0012/stage_d/reporting.py",
+      "experiments/codex_dogfood/case_0012/stage_d/test_analysis.py"
+    ],
+    "evidence": [
+      "docs/research/ri-dogfood-lifecycle-audit.md",
+      "docs/research/code-audit/ri-dogfood-probes.json"
+    ],
+    "benefit": "Acceptance: independently authored tiny inputs cover baseline-incomplete, treatment-incomplete, both-incomplete, unavailable unit support, empty task-backed witnesses, mixed complete/incomplete alternatives and zero denominators through the whole selected metrics/gates/report path. Preserve None/NOT_ASSESSED without invented rank, prefix, zero cost or passing support. Explicitly report a contract-defect or bounded unsupported-version result when required accounting is unassessable. Bind source, task, plan, witness and artifact schemas; preserve exact unchanged-original compatibility in a versioned read-only adapter. No original retrieval, adjudication or reports are rerun or rewritten. A future maintenance agent can implement only after caller/schema scope and scientific authority are approved.",
+    "uncertainty": "No maintained production source bug is claimed. These are closed case-specific artifacts, not a generic supported Evaluation API. Do not dispatch a repair or invent a new evaluator solely from this pending record.",
+    "dependencies": [
+      "B-0002",
+      "2e70de9a-d09c-409d-a7a2-0f32f67c4768"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-dogfood-lifecycle-audit.md"
+    }
+  },
+  "payload_sha256": "bf0e6c76e405ab4f04e0bbfaed05d5f6bafd6216dbc9f5107431c8fc95ad7ddd"
+}

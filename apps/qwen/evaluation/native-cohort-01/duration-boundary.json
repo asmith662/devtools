@@ -1,0 +1,85 @@
+{
+  "name": "duration-boundary",
+  "objective": "Reject negative duration factory inputs even when below stored time resolution. Preserve documented non-negative value invariants, existing positive rounding, zero, arithmetic and public APIs. Investigate the relevant source and tests; propose a bounded correction.",
+  "source": "src/devtools/core/time/models/duration.py",
+  "tests": [
+    "tests/core/time/test_models.py",
+    "tests/core/time/test_parsing.py"
+  ],
+  "baseline_revision": "e02c9044311036883134df955438b1b809db353b",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/time/models/duration.py",
+      "3bee6c195e58a5761a5d39bf7051bcf49c7242974d6ee7acbe54c071d51d6856"
+    ],
+    [
+      "tests/core/time/test_models.py",
+      "6136fd1576165ba34416cc312e1c91740eb83e66a8747297ea0fc3521bbdcca8"
+    ],
+    [
+      "tests/core/time/test_parsing.py",
+      "55bfe249168f0347ed061019bd8799448b4981777430ff87d13d5ebff19ce190"
+    ],
+    [
+      "src/devtools/core/time/models/timestamp.py",
+      "a50c15fad1b5c9209978be7916f2028ad140e56995600a255b37b6267e37408a"
+    ],
+    [
+      "src/devtools/core/time/parsing.py",
+      "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0"
+    ],
+    [
+      "src/devtools/core/time/errors.py",
+      "ba6f629fe1e11c3d7a29d63264427da94f731ddf25228818e9419a59fb83d47e"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/time/models/duration.py",
+      "time models duration.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/time/test_models.py",
+      "core time test_models.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/time/test_parsing.py",
+      "core time test_parsing.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/time/models/timestamp.py",
+      "time models timestamp.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/time/parsing.py",
+      "core time parsing.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/time/errors.py",
+      "core time errors.py",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "\nfrom datetime import timedelta\nfrom devtools.core.time import Duration\ncases = [('nanoseconds', -1), ('nanoseconds', -499), ('seconds', -1e-12),\n         ('milliseconds', -1e-9), ('minutes', -1e-12), ('hours', -1e-14)]\nfailures = []\nfor name, value in cases:\n    try:\n        getattr(Duration, name)(value)\n    except ValueError:\n        continue\n    failures.append((name, value))\nassert not failures, ('negative duration inputs accepted', failures)\nfor name in ('nanoseconds', 'seconds', 'milliseconds', 'minutes', 'hours'):\n    assert getattr(Duration, name)(0).value == timedelta()\nassert Duration.nanoseconds(1500).value == timedelta(microseconds=2)\nassert Duration.seconds(1.5).value == timedelta(seconds=1.5)\nassert Duration.milliseconds(1.5).value == timedelta(milliseconds=1.5)\nassert (Duration.seconds(3) + Duration.seconds(2)).value == timedelta(seconds=5)\nassert (Duration.seconds(3) / 2).value == timedelta(seconds=1.5)\nprint('DURATION_ACCEPTANCE_PASS')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/time/models/timestamp.py",
+    "src/devtools/core/time/parsing.py",
+    "src/devtools/core/time/errors.py"
+  ]
+}

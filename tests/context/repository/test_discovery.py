@@ -47,6 +47,89 @@ def _repository() -> Repository:
     return Repository(RepositoryId.parse(_REPOSITORY_ID))
 
 
+def test_explicit_discovery_never_enumerates_unrequested_directories(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A task corpus can verify exact paths without auditing private evidence."""
+    (tmp_path / "nested").mkdir()
+    (tmp_path / "nested/a.py").write_text("x = 1", encoding="utf-8")
+    (tmp_path / "private").mkdir()
+
+    def forbidden(*_args: object, **_kwargs: object) -> None:
+        msg = "Unexpected recursive enumeration or content read"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr("os.scandir", forbidden)
+    monkeypatch.setattr(Path, "read_bytes", forbidden)
+    address = RepositoryResourceAddress("nested/a.py")
+    result = discover_repository_resource_addresses(
+        repository=_repository(),
+        root=ResolvedPath(tmp_path),
+        maximum_resource_count=1,
+        maximum_traversal_entry_count=2,
+        requested_addresses=(address,),
+    )
+    assert result.addresses == (address,)
+    assert result.requested_addresses == (address,)
+    assert result.semantics == "explicit-address-component-bounded-regular-files-v1"
+    assert result.examined_entry_count == len(address.parts)
+    empty = discover_repository_resource_addresses(
+        repository=_repository(),
+        root=ResolvedPath(tmp_path),
+        maximum_resource_count=1,
+        maximum_traversal_entry_count=1,
+        requested_addresses=(),
+    )
+    assert empty.addresses == ()
+
+
+def test_explicit_discovery_missing_duplicate_link_and_bounds_refuse(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Explicit selection cannot weaken required-path, link or resource bounds."""
+    (tmp_path / "nested").mkdir()
+    (tmp_path / "nested/a.py").write_text("x = 1", encoding="utf-8")
+    (tmp_path / "b.py").write_text("x = 2", encoding="utf-8")
+    (tmp_path / "linked").symlink_to(tmp_path / "nested", target_is_directory=True)
+    for addresses, resources, probes in (
+        (("missing.py",), 2, 9),
+        (("nested",), 2, 9),
+        (("linked/a.py",), 2, 9),
+        (("b.py", "b.py"), 2, 9),
+        (("b.py", "nested/a.py"), 1, 9),
+        (("nested/a.py",), 2, 1),
+    ):
+        with pytest.raises((RepositoryResourceDiscoveryError, ValueError)):
+            discover_repository_resource_addresses(
+                repository=_repository(),
+                root=ResolvedPath(tmp_path),
+                maximum_resource_count=resources,
+                maximum_traversal_entry_count=probes,
+                requested_addresses=tuple(
+                    RepositoryResourceAddress(a) for a in addresses
+                ),
+            )
+    original = Path.is_file
+
+    def denied(path: Path) -> bool:
+        if path.name == "b.py":
+            message = "fixture denied"
+            raise PermissionError(message)
+        return original(path)
+
+    monkeypatch.setattr(Path, "is_file", denied)
+    with pytest.raises(RepositoryResourceDiscoveryError, match="fixture denied"):
+        discover_repository_resource_addresses(
+            repository=_repository(),
+            root=ResolvedPath(tmp_path),
+            maximum_resource_count=1,
+            maximum_traversal_entry_count=1,
+            requested_addresses=(RepositoryResourceAddress("b.py"),),
+        )
+
+
 def test_recursive_discovery_composes_with_explicit_observation(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -73,7 +156,8 @@ def test_recursive_discovery_composes_with_explicit_observation(
     with monkeypatch.context() as discovery_guard:
         discovery_guard.setattr(Path, "read_bytes", forbidden_read)
         discovery_guard.setattr(
-            "devtools.context.repository.observation.read", forbidden_read,
+            "devtools.context.repository.observation.read",
+            forbidden_read,
         )
         discovery = discover_repository_resource_addresses(
             repository=_repository(),
@@ -96,6 +180,7 @@ def test_recursive_discovery_composes_with_explicit_observation(
     assert discovery.DISCOVERY_SEMANTICS == (
         "recursive-entry-bounded-regular-files-skip-links-lexical-address-order-v2"
     )
+    assert discovery.semantics == discovery.DISCOVERY_SEMANTICS
     assert not hasattr(discovery, "snapshot_id")
     assert not hasattr(discovery, "content_identity")
     assert not hasattr(discovery, "resources")
@@ -428,7 +513,8 @@ def test_discovery_invokes_no_observation_or_downstream_pipeline_work(
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
     monkeypatch.setattr(
         "devtools.context.python.function.declarations.derive_python_function_declarations",

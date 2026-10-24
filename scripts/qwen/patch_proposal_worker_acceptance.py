@@ -176,7 +176,8 @@ def _confirm_local_execution(arguments: argparse.Namespace) -> None:
             "local attempt with --authorize-local-execution or run in a terminal."
         )
     limits = (
-        "at most 3 model invocations with test-feedback repair, propose_edit only, "
+        getattr(arguments, "coding_limits", None)
+        or "at most 3 model invocations with test-feedback repair, propose_edit only, "
         "4096 output tokens per call, thinking off, 15-minute total bound"
         if getattr(arguments, "coding_loop", False)
         else "one model invocation, propose_edit only, 4096 output tokens, thinking off, "

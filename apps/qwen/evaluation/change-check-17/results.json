@@ -1,0 +1,772 @@
+{
+  "disposition": "NOT_DELIVERED",
+  "classification": "Exposed Engineering16 development continuation; not fresh confirmation",
+  "starting_head": "3f82cb256e999c96351a692409d5658229133de4",
+  "task_sha256": "b8caa9d4e76e6a4409e73cd23264eccb7c85ce7559fb93f50e91f271b7ee8c10",
+  "oracle_sha256": "e30b61a42763d4e3c4a7ba515b4f9d1532421248c040695d876a55cfa10a5d8d",
+  "preflight": {
+    "path": ".local/qwen-coding-worker/change-check-17/preflight.json",
+    "sha256": "53d0f6cd3a81c5228b9efac6a99e14317f30846531126eda97e181e4d1ebe8f9"
+  },
+  "worker": {
+    "accepted": false,
+    "disposition": "CONTEXT_BUDGET_FAILED",
+    "error": "ValueError: Measured input plus output/safety exceeds actual 32K capacity",
+    "elapsed_seconds": 173.31095890002325,
+    "usage_totals": {
+      "cache_write_tokens": null,
+      "cached_input_tokens": null,
+      "input_tokens": 197740,
+      "output_tokens": 1119,
+      "reasoning_tokens": null
+    },
+    "validation_seconds": 1.486489900154993,
+    "model_calls_attempted": 11,
+    "context_actions_attempted": 20,
+    "context_actions_accepted": 19,
+    "source_text_bytes_disclosed": 29609,
+    "context_bytes_disclosed": 78321,
+    "proposals_attempted": 0,
+    "proposals_admitted": 0,
+    "proposal_refusals": 0,
+    "repair_cycles": 0,
+    "source_restored": true,
+    "original_unchanged": true,
+    "candidates": [
+      {
+        "evidence": "final-source.py",
+        "path": "apps/qwen/commands.py",
+        "sha256": "4d218da0f3173bb59f09329404ac722001193591404e320bff1b1e94a962f2bc"
+      }
+    ]
+  },
+  "tool_counts": {
+    "inspect_source": 10,
+    "search_source": 8,
+    "expand_source": 1,
+    "git_inspect": 1
+  },
+  "model_seconds": 168.1465581000084,
+  "turns": [
+    {
+      "number": 1,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 2596,
+        "output_tokens": 102,
+        "reasoning_tokens": null,
+        "total_tokens": 2698
+      },
+      "model_seconds": 9.795749600045383,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 0
+          }
+        },
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 0
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 2596,
+        "measurements": [
+          {
+            "input_tokens": 2596,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 8192,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-01/request.json",
+        "sha256": "167ee64e00594d1825f05728ab8af55c60972d9c3e8f46d48f03102b955cb4a1"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-01/response.json",
+        "sha256": "fbc48cf2c7397ea8c83f73dbccda393bdda72a2ad2d5ef7168d5bc5a3cc16325"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-01/stage.json",
+        "sha256": "2de8bcd6fd98129a431cc29898b1a9700ec80de621f07149fff1e46ee739d555"
+      }
+    },
+    {
+      "number": 2,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 6162,
+        "output_tokens": 111,
+        "reasoning_tokens": null,
+        "total_tokens": 6273
+      },
+      "model_seconds": 8.273614199948497,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 4096
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "_timed_command",
+            "mode": "symbol"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 6162,
+        "measurements": [
+          {
+            "input_tokens": 6162,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-02/request.json",
+        "sha256": "cf8b6badb5c3793b876338d22049f9becb6f1cd7a2a175677b7d8e0a181c12e0"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-02/response.json",
+        "sha256": "e8d1a50e8ca834f2e2493d31886fbfa243bc2689ab435ecaffa84a20121d08d0"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-02/stage.json",
+        "sha256": "8f6c533a0a03d7e238aec25c0a7d8a6e50ea762a6ff7e8152917ca951bd6d845"
+      }
+    },
+    {
+      "number": 3,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 10988,
+        "output_tokens": 161,
+        "reasoning_tokens": null,
+        "total_tokens": 11149
+      },
+      "model_seconds": 11.996718699927442,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 8192
+          }
+        },
+        {
+          "name": "expand_source",
+          "arguments": {
+            "to": "symbol",
+            "unit": "1f2f3ab1006989c0b63ca745a9f34a6b8727975700dd19a3b8cc48768b0b2343"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 10988,
+        "measurements": [
+          {
+            "input_tokens": 10988,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-03/request.json",
+        "sha256": "cf3f843a4d419edd17fb92341cc7568c06f757c78303a09ebf8d783d79f7865f"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-03/response.json",
+        "sha256": "e004a74eadf9855ff7b16d091644af8e13002a4b303d7e751065e865c45a42a8"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-03/stage.json",
+        "sha256": "b20a2e13db66d305bdcf5903b5e096246e83c588c07b6c1e1afc2dc923f8fe08"
+      }
+    },
+    {
+      "number": 4,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 12154,
+        "output_tokens": 107,
+        "reasoning_tokens": null,
+        "total_tokens": 12261
+      },
+      "model_seconds": 5.902014500112273,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 6000
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "symbol",
+            "query": "def _hash"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 12154,
+        "measurements": [
+          {
+            "input_tokens": 12154,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-04/request.json",
+        "sha256": "65e8f4be4c9a4377af94b0da3919931ad09828fcb6f6e5d2d72bbed5b8caf6d4"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-04/response.json",
+        "sha256": "fa30842b44d13cbdaa3d3dc4d80d0effa906c23f6d3b77ae09b924fe0bd03e5f"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-04/stage.json",
+        "sha256": "55601fe4d1095a5c398af00610ca84f5e3d01b5c35b38592bd607101289b964f"
+      }
+    },
+    {
+      "number": 5,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 16984,
+        "output_tokens": 104,
+        "reasoning_tokens": null,
+        "total_tokens": 17088
+      },
+      "model_seconds": 10.410498299985193,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 5400
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "symbol",
+            "query": "class CodingTask"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 16984,
+        "measurements": [
+          {
+            "input_tokens": 16984,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-05/request.json",
+        "sha256": "0bfb35074b0eda528392caf224241a37a4172387a6efafd99893985fd31c05a8"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-05/response.json",
+        "sha256": "ce3f4c38633c277ff7c9355b227a4a6a888f0517422e9c034c94cdda95aa89cc"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-05/stage.json",
+        "sha256": "ccdb3d8cb9f0fed4281ffada1eec83e86ddc40eeb4a463327bce105411b8af92"
+      }
+    },
+    {
+      "number": 6,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 21759,
+        "output_tokens": 53,
+        "reasoning_tokens": null,
+        "total_tokens": 21812
+      },
+      "model_seconds": 8.128852599998936,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/tasks.py",
+            "start": 0
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 21759,
+        "measurements": [
+          {
+            "input_tokens": 21759,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-06/request.json",
+        "sha256": "f7f00d771cd0c3ef6179f03589ad4f18733337ed1680be6089728d17dda6bcbc"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-06/response.json",
+        "sha256": "17d8cb3ed79ef76f8787b0bd8f67e6ba43af657831e7b60bdff3562711ece49f"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-06/stage.json",
+        "sha256": "47380331fa384cdb203e083c65ae9813fb3006a17079f9f357e745019a77e6f5"
+      }
+    },
+    {
+      "number": 7,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 23548,
+        "output_tokens": 44,
+        "reasoning_tokens": null,
+        "total_tokens": 23592
+      },
+      "model_seconds": 4.511532799922861,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/tasks.py",
+            "start": 4096
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 23548,
+        "measurements": [
+          {
+            "input_tokens": 23548,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-07/request.json",
+        "sha256": "a9988eddacdb04d9cc7de541ad33085f4286b5058b12a921b3f1128626bba9d7"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-07/response.json",
+        "sha256": "38941238594bc7808149c9f0dadc145724b81abd9837328e672ae5bda0964b9a"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-07/stage.json",
+        "sha256": "fc43ff4038a596f7a87c9ea8e08727339adb7c236fa061af7ac97f28404f2ceb"
+      }
+    },
+    {
+      "number": 8,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25307,
+        "output_tokens": 99,
+        "reasoning_tokens": null,
+        "total_tokens": 25406
+      },
+      "model_seconds": 7.145708899945021,
+      "tools": [
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "mixed",
+            "query": "check_changes"
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "symbol",
+            "query": "def select_task"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 25307,
+        "measurements": [
+          {
+            "input_tokens": 25307,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-08/request.json",
+        "sha256": "023cf5d43d0d4a28af9e7a0cc612af1e25013867efaa5f68073efa22b7a11eea"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-08/response.json",
+        "sha256": "3f15bb6075084e8f76d12c8b790d693da80fa7c2bb8dc331ed3a597eb4511c55"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-08/stage.json",
+        "sha256": "b34dd6aa95df5cce9684fbf4d98b7b220365f7ecee4d4448a63fbda19b9af74d"
+      }
+    },
+    {
+      "number": 9,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25899,
+        "output_tokens": 114,
+        "reasoning_tokens": null,
+        "total_tokens": 26013
+      },
+      "model_seconds": 37.44008880003821,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "src/devtools/tools/execution.py",
+            "start": 0
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "symbol",
+            "query": "CodingCommands"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 25899,
+        "measurements": [
+          {
+            "input_tokens": 28662,
+            "projection": "source-preserving"
+          },
+          {
+            "input_tokens": 25899,
+            "projection": "compact",
+            "reacquire_read_only": 0
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-09/request.json",
+        "sha256": "48ad20c2809529ff73046bc840f55dfdf6e021e68b6ec1f848cc17fdbb78b6d3"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-09/response.json",
+        "sha256": "513b51a4d568e0972e5db5d75ff8478a3b0f825bed282445124c21380d03af4f"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-09/stage.json",
+        "sha256": "29ec6aefee16c0307f92537ad9a5d16b8e0f7c11f0a50a78df11d22560ff2e48"
+      }
+    },
+    {
+      "number": 10,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25976,
+        "output_tokens": 108,
+        "reasoning_tokens": null,
+        "total_tokens": 26084
+      },
+      "model_seconds": 32.20806210010778,
+      "tools": [
+        {
+          "name": "git_inspect",
+          "arguments": {
+            "operation": "status",
+            "path": "apps/qwen/commands.py"
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "mixed",
+            "query": "command_definitions CodingCommands command_tools"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 25976,
+        "measurements": [
+          {
+            "input_tokens": 30339,
+            "projection": "source-preserving"
+          },
+          {
+            "input_tokens": 27217,
+            "projection": "compact",
+            "reacquire_read_only": 0
+          },
+          {
+            "input_tokens": 25976,
+            "projection": "compact",
+            "reacquire_read_only": 1
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-10/request.json",
+        "sha256": "acec9460f5caab5340619af80692f6e5311fd0d5c94f8f6069d155636c653fdf"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-10/response.json",
+        "sha256": "b82a3341adabbc45d00e1d1058ed8266f9b3bad15d15ea40dc020a2572abba83"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-10/stage.json",
+        "sha256": "9bb1f31d3c31ccea439f488da99c40a04bf267513abca1a5b66670880be21dbb"
+      }
+    },
+    {
+      "number": 11,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 26367,
+        "output_tokens": 116,
+        "reasoning_tokens": null,
+        "total_tokens": 26483
+      },
+      "model_seconds": 32.33371759997681,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/tasks.py",
+            "start": 11900
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "mode": "window",
+            "query": "command_definitions COMMAND_TOOL_NAMES dispatch"
+          }
+        }
+      ],
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 26367,
+        "measurements": [
+          {
+            "input_tokens": 33560,
+            "projection": "source-preserving"
+          },
+          {
+            "input_tokens": 30143,
+            "projection": "compact",
+            "reacquire_read_only": 0
+          },
+          {
+            "input_tokens": 28902,
+            "projection": "compact",
+            "reacquire_read_only": 1
+          },
+          {
+            "input_tokens": 27654,
+            "projection": "compact",
+            "reacquire_read_only": 2
+          },
+          {
+            "input_tokens": 26367,
+            "projection": "compact",
+            "reacquire_read_only": 3
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-11/request.json",
+        "sha256": "0c2c1d4fee35bad36f8813f638a9a73bb4276f5e73d78e1f1d12052da635025f"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-11/response.json",
+        "sha256": "7a47dfb24bd94ad457dd9a1f346cff56358d0eb220fbe12547a3ad80f504b2a5"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-11/stage.json",
+        "sha256": "f98ba7d632d559cefb6272a186fb1eccd8477f98bddb1654f93434722f3741e3"
+      }
+    }
+  ],
+  "blocked_continuation": {
+    "capacity": {
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 31675,
+      "measurements": [
+        {
+          "input_tokens": 35543,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 31675,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        }
+      ],
+      "minimum_continuation_output_tokens": 4096,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    "request": {
+      "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-12/request.json",
+      "sha256": "be4c83f741092f3cabf344b48e54aa4be3c69a6731bc7ed46334c80f1ef97ecb"
+    },
+    "raw_prompt": {
+      "path": ".local/qwen-coding-worker/change-check-17/devtools-check-changes/turn-12/unprojected-prompt.json",
+      "sha256": "d65edd5d1da90b3cae9b4a227cc19787546a010d829f6371ec737461250d5789"
+    },
+    "safe_generation_after_safety": -955,
+    "deficit_for_minimum_output": 5051,
+    "dispatched": false
+  },
+  "scope_effect": "No WorkCycle/closeout/coding_loop source was admitted or requested. Qwen directly inspected the approved owner, helpers and CodingTask; framing removed the old closeout detour. It still reread/researched already identified owner/task/registration symbols and never edited. This is not a delivered source-bound report, freshness operation, or shared ToolRunner demonstration.",
+  "failure_interaction": "The prospective action ceiling changed32to20 as well as corpus/framing. Qwen consumed all20actions before editing. coding_loop only permits read-only source reacquisition projection while actions remain, so the pending request could not discard correctness-relevant read evidence. Source-preserving35543input compacted31675without reacquisition; with2048safety the input alone exceeds32768by955tokens, before4096minimum output. Both16and17failed without proposals; earlier failure is not evidence of speed or acceptance improvement. No generic Context correction is justified from this alone.",
+  "recoverable_error": "One expand_source(to=symbol) request had no parent symbol. It returned correlated SOURCE_PARENT_NOT_FOUND feedback, consumed one action and did not terminate the run. Later source reads succeeded; no wrong old_text, patch, behavioral or quality repair was attempted.",
+  "delivered": {
+    "check_changes": false,
+    "is_current": false,
+    "Qwen_implementation": false,
+    "maintained_source_changes": false,
+    "accepted_candidate_closeout": "NONE; baseline capture is not new implementation",
+    "projection_changes": false,
+    "serving_changes": false
+  },
+  "verification": {
+    "preflight": "Unchanged independent oracle/positive-negative check fixtures/source-Git-runner drift requalified;36legacy regressions pass",
+    "Ruff_format_strict_typing": "Baseline owner passes frozen checks",
+    "protected_gate": "NOT_RUN: no maintained source/test change; prior Engineering16 protected result remains historical, not a new gate result",
+    "historical16_hashes": "All recorded task/results and archived turn request/response/stage identities unchanged",
+    "forensic_files_preserved": 13,
+    "source_index_clean": true,
+    "one_checkout": true,
+    "no_active_owner": true,
+    "main": "862bda2d3d1d812893f84ab69691fc068ecce268"
+  },
+  "economics": {
+    "assignment_start": "2026-10-21T20:27:54+00:00",
+    "record_at": "2026-10-21T20:40:13.034101+00:00",
+    "worker_start": "2026-10-21T20:32:35.082470+00:00",
+    "worker_end": "2026-10-21T20:35:28.393411+00:00",
+    "Codex_coordination_usage_cost": "UNKNOWN",
+    "model_hardware_energy_cost": "NOT_MEASURED; profile unchanged",
+    "profile": "qwen38-local Qwen3.8-27B IQ4_XS,32K,q4 K/V,thinking off; unchanged",
+    "intervention": "Frozen owner/checkpoint guidance, scope reduction, independent preflight only; no live repair code, semantic substitute, automatic recovery or budget extension"
+  },
+  "next_action": {
+    "recommendation": "Smaller independently useful extension of existing run_check: one fixed all-checks bundle returning independent results/full logs and existing before/after source identities. No Git discovery/freshness cache or ready_for_review claim in that increment. This could reduce five validation Tool calls to one and become the reused check-execution component of later complete check_changes.",
+    "why": "Both full attempts stopped before editing despite approved ownership guidance; no implementation evidence supports another generic Context optimization. Reduce simultaneous implementation obligations and make edit-first guidance explicit after the owner/helper inspection.",
+    "boundary": "Not implemented here. Requires its own prospective contract/budget; it must not weaken or relabel this unchanged full check_changes contract, be called full check_changes success, or introduce another validator/executor."
+  }
+}

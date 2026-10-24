@@ -1,0 +1,475 @@
+{
+  "source_spans": {
+    "source": "import ast,hashlib,json,sys\nfrom pathlib import Path\nR=Path.cwd();O=Path(__file__).parent;sys.path.insert(0,str(R))\nfrom experiments.codex_dogfood.verification.spans import SourceSpans\nfrom devtools.context.python.function.declarations import PythonSourceRange\nfrom devtools.context.python.function.materialization import _extract_source_segment,PythonFunctionSourceMaterializationError\nout=[]\nfor sep in ['\\v','\\f','\\x1c','\\x1d','\\x1e','\\x85','\\u2028','\\u2029']:\n for ending in ['\\n','\\r\\n','\\r']:\n  text='\"a'+sep+'b\"'+ending+'x = 1'+ending\n  name=ast.parse(text).body[1].targets[0];span=PythonSourceRange(name.lineno,name.col_offset,name.end_lineno,name.end_col_offset)\n  expected=_extract_source_segment(text,span);actual=SourceSpans().extract(text,span)\n  assert expected=='x' and actual=='b'\n  out.append(dict(kind='VALID_NATIVE_AST_RANGE_MISMATCH',separator=hex(ord(sep)),newline=repr(ending),text=text,span=[span.start_line,span.start_column_utf8,span.end_line,span.end_column_utf8],expected=expected,actual=actual))\ntext='\u00ce\u00bbx\\n';span=PythonSourceRange(1,1,1,1)\ntry:_extract_source_segment(text,span)\nexcept PythonFunctionSourceMaterializationError as e:message=str(e)\nelse:raise AssertionError('Canonical accepted invalid UTF8 column')\nactual=SourceSpans().extract(text,span);assert actual==''\nout.append(dict(kind='INVALID_UTF8_EMPTY_RANGE_ACCEPTED',text=text,span=[1,1,1,1],expected_error=message,actual=actual))\nfor text in ['', 'last line', '\u00ce\u00bbx\\r\\nabc\\n']:\n for span in [PythonSourceRange(1,0,1,0),PythonSourceRange(1,0,1,2),PythonSourceRange(0,0,1,1)]:\n  def result(f):\n   try:return ('return',f(text,span))\n   except (PythonFunctionSourceMaterializationError,UnicodeDecodeError) as e:return (type(e).__name__,str(e))\n  expected=result(_extract_source_segment);actual=result(SourceSpans().extract);assert actual==expected,(text,span,expected,actual)\nout.append(dict(kind='ORDINARY_BOUNDARY_CONTROLS',passed=9))\nsource=Path(__file__).read_text();value=dict(source=source,source_sha256=hashlib.sha256(source.encode()).hexdigest(),cases=out,confirmed_mismatches=25,controls_passed=9,scope='Independent native AST/UTF8 fixtures only; no archived data, pickle, capture, adjudication or historical verdict replay')\n(O/'probes.json').write_text(json.dumps(value,ensure_ascii=True,indent=2)+'\\n');print(json.dumps({k:v for k,v in value.items() if k not in ['source','cases']},indent=2))\n",
+    "source_sha256": "116e604cf54a973783de73708ef24e7e679bcf8f0aa85efa0735ad8aaf317817",
+    "cases": [
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xb",
+        "newline": "'\\n'",
+        "text": "\"a\u000bb\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xb",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u000bb\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xb",
+        "newline": "'\\r'",
+        "text": "\"a\u000bb\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xc",
+        "newline": "'\\n'",
+        "text": "\"a\fb\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xc",
+        "newline": "'\\r\\n'",
+        "text": "\"a\fb\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0xc",
+        "newline": "'\\r'",
+        "text": "\"a\fb\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1c",
+        "newline": "'\\n'",
+        "text": "\"a\u001cb\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1c",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u001cb\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1c",
+        "newline": "'\\r'",
+        "text": "\"a\u001cb\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1d",
+        "newline": "'\\n'",
+        "text": "\"a\u001db\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1d",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u001db\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1d",
+        "newline": "'\\r'",
+        "text": "\"a\u001db\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1e",
+        "newline": "'\\n'",
+        "text": "\"a\u001eb\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1e",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u001eb\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x1e",
+        "newline": "'\\r'",
+        "text": "\"a\u001eb\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x85",
+        "newline": "'\\n'",
+        "text": "\"a\u0085b\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x85",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u0085b\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x85",
+        "newline": "'\\r'",
+        "text": "\"a\u0085b\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2028",
+        "newline": "'\\n'",
+        "text": "\"a\u2028b\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2028",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u2028b\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2028",
+        "newline": "'\\r'",
+        "text": "\"a\u2028b\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2029",
+        "newline": "'\\n'",
+        "text": "\"a\u2029b\"\nx = 1\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2029",
+        "newline": "'\\r\\n'",
+        "text": "\"a\u2029b\"\r\nx = 1\r\n",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "VALID_NATIVE_AST_RANGE_MISMATCH",
+        "separator": "0x2029",
+        "newline": "'\\r'",
+        "text": "\"a\u2029b\"\rx = 1\r",
+        "span": [
+          2,
+          0,
+          2,
+          1
+        ],
+        "expected": "x",
+        "actual": "b"
+      },
+      {
+        "kind": "INVALID_UTF8_EMPTY_RANGE_ACCEPTED",
+        "text": "\u03bbx\n",
+        "span": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "expected_error": "Source occurrence columns do not fall on UTF-8 character boundaries.",
+        "actual": ""
+      },
+      {
+        "kind": "ORDINARY_BOUNDARY_CONTROLS",
+        "passed": 9
+      }
+    ],
+    "confirmed_mismatches": 25,
+    "controls_passed": 9,
+    "scope": "Independent native AST/UTF8 fixtures only; no archived data, pickle, capture, adjudication or historical verdict replay"
+  },
+  "recovery": {
+    "source": "import copy, hashlib, importlib.util, json, sys\nfrom pathlib import Path\nfrom types import SimpleNamespace\n\nR=Path.cwd(); O=Path(__file__).parent\nsys.path.insert(0,str(R)); sys.path.insert(0,str(R/'experiments/codex_dogfood/case_0008'))\np=R/'experiments/codex_dogfood/case_0008/stage_b.py'\ns=importlib.util.spec_from_file_location('audit_case8_stage_b',p)\nm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\n# Actual controller functions; only I/O/codec adapters use invented in-memory values.\nstate={'execution_id':'invented-audit-only','stage':'NOT_STARTED','operations':{k:{'state':'NOT_STARTED','invocations':0} for k in ['lexical','generation']},'results':{}}\nstore={}; effects=[]\ndef save(v):store['state']=copy.deepcopy(v);return 'invented-no-artifact-digest'\nm.durable_raw=save\nm.START_MARKER=SimpleNamespace(exists=lambda:True)\nm.RAW=SimpleNamespace(exists=lambda:True)\nm.freeze=SimpleNamespace(binary=lambda p: json.dumps({'execution_id':'invented-audit-only'}).encode() if p is m.START_MARKER else b'invented-state')\nm.gzip=SimpleNamespace(decompress=lambda _:b'invented-state')\nm.pickle=SimpleNamespace(loads=lambda _:copy.deepcopy(store['state']))\ndef entered_then_raised():\n effects.append('entered')\n raise ValueError('invented operation raised after entry')\ntry:m.run_operation(state,'lexical',entered_then_raised)\nexcept ValueError:pass\nelse:raise AssertionError('Missing exception')\nbefore=copy.deepcopy(store['state'])\nassert effects==['entered'] and before['operations']['lexical']=={'state':'IN_PROGRESS','invocations':0}\nassert 'lexical' not in before['results']\nm.recover_known_preinvocation_failure('lexical','Nonempty operator explanation is not proof')\nafter=store['state'];assert after['operations']['lexical']['state']=='NOT_STARTED'\nresult=dict(source=Path(__file__).read_text(),owner=str(p.relative_to(R)).replace('\\\\','/'),owner_sha256=hashlib.sha256(p.read_bytes()).hexdigest(),before=before,after=after,effects=effects,confirmed='Entered-and-raised operation can be reclassified as unentered by legacy reset helper',scope='No historical state loaded or written; actual controller functions, invented in-memory effect and I/O only. No replay or retry performed. Original documented AttributeError was separately before entry; no historical impact inferred.')\n(O/'recovery-probe.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps({k:v for k,v in result.items() if k!='source'},indent=2))\n",
+    "owner": "experiments/codex_dogfood/case_0008/stage_b.py",
+    "owner_sha256": "456165c0250af489de833a1f7e0de07bcd0d171ef33ee7cc1bb877a1f0993b32",
+    "before": {
+      "execution_id": "invented-audit-only",
+      "stage": "IN_PROGRESS",
+      "operations": {
+        "lexical": {
+          "state": "IN_PROGRESS",
+          "invocations": 0
+        },
+        "generation": {
+          "state": "NOT_STARTED",
+          "invocations": 0
+        }
+      },
+      "results": {}
+    },
+    "after": {
+      "execution_id": "invented-audit-only",
+      "stage": "GROUNDING_COMPLETE",
+      "operations": {
+        "lexical": {
+          "state": "NOT_STARTED",
+          "invocations": 0,
+          "pre_invocation_failure": "Nonempty operator explanation is not proof"
+        },
+        "generation": {
+          "state": "NOT_STARTED",
+          "invocations": 0
+        }
+      },
+      "results": {}
+    },
+    "effects": [
+      "entered"
+    ],
+    "confirmed": "Entered-and-raised operation can be reclassified as unentered by legacy reset helper",
+    "scope": "No historical state loaded or written; actual controller functions, invented in-memory effect and I/O only. No replay or retry performed. Original documented AttributeError was separately before entry; no historical impact inferred."
+  },
+  "metrics": {
+    "source": "import ast, hashlib, json\nfrom collections import Counter\nfrom pathlib import Path\n\nR=Path.cwd(); O=Path(__file__).parent\np4=R/'experiments/codex_dogfood/case_0004/analyze.py'; p8=R/'experiments/codex_dogfood/case_0008/analyze.py'\nt4=ast.parse(p4.read_text());n=next(n for n in ast.walk(t4) if isinstance(n,ast.Assign) and any(isinstance(x,ast.Name) and x.id=='category_sets' for x in n.targets))\nenv=dict(global_reached={'required.py'},obligation_union={'required.py','unnecessary.py'},required_resources={'required.py'})\nexec(compile(ast.Module(body=[n],type_ignores=[]),str(p4),'exec'),env)\nbad=env['category_sets'];assert bad['obligation_lane_only']=={'unnecessary.py'}\nretained=json.loads((p4.parent/'analysis.json').read_bytes())['required_resource_reach_categories']\nassert {k:v['count'] for k,v in retained.items()}=={'both':17,'global_only':0,'neither':0,'obligation_lanes_only':413}\n# Read the exact original nested function, with synthetic surrounding data only.\nt8=ast.parse(p8.read_text());fn=next(n for n in ast.walk(t8) if isinstance(n,ast.FunctionDef) and n.name=='marginal')\nr=('shared.py','synthetic-content');cell=('ob-b',r)\nenv8=dict(Counter=Counter,surface_cells={'A':{('ob-a',r)},'B':{('ob-a',r),cell}},surface_ops={'A':{r},'B':{r}},labels={cell:'REQUIRED'},complete_by_surface={'A':set(),'B':set()},reachable_by_surface={'A':set(),'B':set()},required_units={('ob-b','unit-b')},units={'unit-b':{'resource':{'address':r[0],'content_identity':r[1]}}},rid=lambda v:(v['address'],v['content_identity']),Any=object)\nexec(compile(ast.Module(body=[fn],type_ignores=[]),str(p8),'exec'),env8)\nresult=env8['marginal']('A','B');assert result['new_required_cells']==1 and result['new_required_unit_judgments']==0\n# Independently inspect retained surface totals, without invoking original analysis.\nv8=json.loads((p8.parent/'analysis.json').read_bytes()); agreements=[]\nfor name,a,b in [('reference_over_owner_mirror','OWNER/MIRROR','OWNER/MIRROR/REFERENCE'),('import_over_owner_mirror','OWNER/MIRROR','OWNER/MIRROR/IMPORT'),('import_over_owner_mirror_reference','OWNER/MIRROR/REFERENCE','ALL FOUR')]:\n recorded=v8['marginals'][name]['new_required_unit_judgments'];gain=v8['surfaces'][b]['required_unit_judgments']-v8['surfaces'][a]['required_unit_judgments'];assert recorded==gain\n agreements.append(dict(marginal=name,recorded=recorded,retained_surface_difference=gain))\nsource=Path(__file__).read_text();out=dict(source=source,source_sha256=hashlib.sha256(source.encode()).hexdigest(),case4=dict(owner_sha256=hashlib.sha256(p4.read_bytes()).hexdigest(),actual={k:sorted(v) for k,v in bad.items()},expected_required_partition={'global_only':[],'obligation_lane_only':[],'both':['required.py'],'neither':[]},retained_counts={k:v['count'] for k,v in retained.items()},historical_impact='Original required-resource category includes413 non-required resources; partition total430 versus17required. Other independently named reach/depth outputs are separate and not invalidated.'),case8=dict(owner_sha256=hashlib.sha256(p8.read_bytes()).hexdigest(),actual=result,expected_new_required_unit_judgments=1,historical_impact='Synthetic cross-obligation existing-resource gain is undercounted. All three retained marginal unit counts agree with retained surface differences; no original numerical impact established.',retained_agreements=agreements),scope='Exact AST statements/functions with independently authored tiny inputs; inert original JSON read only, no treatment, adjudication, report regeneration or pickle load')\n(O/'metrics-probe.json').write_text(json.dumps(out,indent=2)+'\\n');print(json.dumps({k:v for k,v in out.items() if k!='source'},indent=2))\n",
+    "source_sha256": "eeaaaf5892bcd152ae1e865b1d4b05a38dc36a4f4c165d5f2781b6599499da0f",
+    "case4": {
+      "owner_sha256": "c53b0ebf65a10e2436069bb6ab1881eda784478efb4ff3e864707826c9920a9e",
+      "actual": {
+        "global_only": [],
+        "obligation_lane_only": [
+          "unnecessary.py"
+        ],
+        "both": [
+          "required.py"
+        ],
+        "neither": []
+      },
+      "expected_required_partition": {
+        "global_only": [],
+        "obligation_lane_only": [],
+        "both": [
+          "required.py"
+        ],
+        "neither": []
+      },
+      "retained_counts": {
+        "both": 17,
+        "global_only": 0,
+        "neither": 0,
+        "obligation_lanes_only": 413
+      },
+      "historical_impact": "Original required-resource category includes413 non-required resources; partition total430 versus17required. Other independently named reach/depth outputs are separate and not invalidated."
+    },
+    "case8": {
+      "owner_sha256": "e2ea450589745c15f8fe985d1a71783ab758347a85a776d87fd85231c5688bee",
+      "actual": {
+        "new_cells": 1,
+        "new_resources": 0,
+        "new_required_cells": 1,
+        "new_helpful_cells": 0,
+        "new_unnecessary_cells": 0,
+        "new_required_unit_judgments": 0,
+        "new_distinct_required_units": 0,
+        "new_unique_required_resources": 0,
+        "new_never_required_resources": 0,
+        "newly_complete_obligations": [],
+        "newly_resource_reachable_obligations": [],
+        "required_cell_yield": 1.0,
+        "unique_required_resource_yield": null
+      },
+      "expected_new_required_unit_judgments": 1,
+      "historical_impact": "Synthetic cross-obligation existing-resource gain is undercounted. All three retained marginal unit counts agree with retained surface differences; no original numerical impact established.",
+      "retained_agreements": [
+        {
+          "marginal": "reference_over_owner_mirror",
+          "recorded": 0,
+          "retained_surface_difference": 0
+        },
+        {
+          "marginal": "import_over_owner_mirror",
+          "recorded": 1,
+          "retained_surface_difference": 1
+        },
+        {
+          "marginal": "import_over_owner_mirror_reference",
+          "recorded": 1,
+          "retained_surface_difference": 1
+        }
+      ]
+    },
+    "scope": "Exact AST statements/functions with independently authored tiny inputs; inert original JSON read only, no treatment, adjudication, report regeneration or pickle load"
+  },
+  "scope": "Four distinct confirmed code-path defects; Case4 retained field impact authenticated, other original impact qualified. No frozen scientific replay or source correction."
+}

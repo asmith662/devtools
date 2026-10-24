@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "dabfa1f7-b4ae-4ed0-82c9-179f47e31630",
+  "created_at": "2026-10-23T20:41:27.654824+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Preserve complete task words in versioned research task-card normalization",
+    "parent": "B-0002",
+    "summary": "Priority2 scientific-input correctness. Increment25 task_population._normalized_task_wording strips the add/support/enable prefix without a word boundary: added evidence becomes ed evidence, additional evidence becomes itional evidence, supported sources becomes ed sources. Original frozen card i25-c0fabcb195e2 retains the damaged query; later Increment27 judgment rationale explicitly records uncertainty from the truncated purpose. This does not establish counterfactual ranking outcomes or corrupt binding. Frozen code/cards/ranks/judgments must remain unchanged. Correct only future authoring through an explicitly versioned successor or guarded maintained caller after compatibility review; do not silently rerun original science.",
+    "resources": [
+      "experiments/increment_25/task_population.py",
+      "experiments/increment_25/task_population_freeze.json",
+      "experiments/increment_27/lexical_top5_judgments.py",
+      "tests/experiments/increment_25/test_task_population.py"
+    ],
+    "evidence": [
+      "docs/research/ri-increments-25-36-audit.md",
+      "docs/research/code-audit/ri-increments-probes.json"
+    ],
+    "benefit": "Acceptance: independently authored tests cover complete leading verbs, inflected verbs, prefix-sharing ordinary words, case, separators, empty subject/body fallback and bookkeeping removal. Preserve original task evidence and disclose any normalization in the public authored contract. A new schema/version binds corrected purpose/query and provenance; old frozen artifacts remain byte-identical and old judgments are not transferred to changed needs. Demonstrate one future real authoring consumer using the corrected contract, plus altered-need rejection in judgment reuse. Reconcile existing historical limitations through current audit navigation rather than rewriting sealed outcomes. Suitable for a narrowly scoped maintenance agent after version/caller approval.",
+    "uncertainty": "No current production tokenizer or live coding task changed. Semantic quality of historical commit subjects remains independently limited even after prefix repair; no general task-intent parser is authorized.",
+    "dependencies": [
+      "B-0002"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-increments-25-36-audit.md"
+    }
+  },
+  "payload_sha256": "99103ff3793eaf8e37c84c92ec67c361db181721cdb43ef5a7af984a3efb492f"
+}

@@ -3,16 +3,24 @@
 This document records concrete evaluation areas, not committed implementation
 work. See the current [overview](overview.md) and [I/O contract](io.md).
 
-## Binary I/O
+## Completed bounded binary I/O
 
-A BinaryCodec and explicit generic binary read/write policy may be justified.
-This does not imply arbitrary binary format detection.
+`BinaryCodec`, static resolution, public exports, explicit generic binary reads
+and atomic binary writes are maintained on `feat/qwen-context-worker` in
+`f799be1d32c2dffc22a39ff5110a0a4af5714b07`. No arbitrary binary format detection
+was added. The [engineering record](../../../../../apps/qwen/evaluation/engineering-08/README.md)
+distinguishes Qwen source, host-only formatting and independent regressions from
+the unsuccessful live task. Protected-main adoption remains separate.
 
-## Strict bounded and streaming reads
+## Completed bounded stream reads
 
-Streaming or chunk-bounded reads could enforce a hard memory bound where
-current stat/read/post-check behavior is insufficient. Format-specific
-streaming should be added only where consumers require it.
+Qwen's bounded reader is feature-published in `61637ff8`, with independent
+stream-consumption and Repository-observation regressions. Finite reads stop at
+the limit plus one sentinel byte even after growth; legal short reads accumulate.
+The [continuation record](../../../../../apps/qwen/evaluation/continuation-09/README.md)
+distinguishes the original invalid oracle from the accepted corrected development
+continuation. Format-specific streaming remains conditional on concrete consumers;
+this does not promise an exact total-process memory cap or protected-main adoption.
 
 ## Source-format-preserving writes
 

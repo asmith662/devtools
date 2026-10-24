@@ -1,0 +1,64 @@
+{
+  "name": "regex-overlap",
+  "objective": "PUBLIC BEHAVIOR: Add opt-in overlapping=True keyword support to both iter_regex and find_all_regex. Return all successive-start overlapping matches with existing immutable RegexMatch data. Zero-width matches must terminate, including an empty-input terminal match. Default behavior remains nonoverlapping. COMPATIBILITY: Preserve flags, compiled-pattern flag errors, lazy iterator/tuple result types, named/group values and all other operations. QUALITY: Independent overlap/edge/compatibility acceptance, existing tests, strict mypy, Ruff and formatting must pass. Investigate and coordinate related definitions; verify important standard-library API assumptions. No specific implementation is prescribed.",
+  "source": "src/devtools/core/regex/search.py",
+  "tests": [
+    "tests/core/regex/test_search.py"
+  ],
+  "baseline_revision": "39a3fd95900a583d1b8578523dd6acd8b86ba038",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/regex/search.py",
+      "search regex overlap",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "test_search regex overlap",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "models regex overlap",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "__init__ regex overlap",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from devtools.core.regex import find_all_regex,iter_regex,search_regex,replace_regex\nimport re,itertools\ntry: matches=find_all_regex(\"banana\",\"ana\",overlapping=True)\nexcept TypeError as e: raise AssertionError(\"overlapping search not supported\") from e\nassert [m.span for m in matches]==[(1,4),(3,6)]\nassert [m.value for m in matches]==[\"ana\",\"ana\"]\nassert tuple(iter_regex(\"banana\",\"ana\",overlapping=True))==matches\nassert [m.span for m in find_all_regex(\"banana\",\"ana\")]==[(1,4)]\nassert [m.span for m in find_all_regex(\"aaaa\",\"aa\",overlapping=True)]==[(0,2),(1,3),(2,4)]\nzero=tuple(itertools.islice(iter_regex(\"ab\",r\"(?=.)\",overlapping=True),5))\nassert [m.span for m in zero]==[(0,0),(1,1)]\nassert [m.span for m in find_all_regex(\"ab\",r\"$\",overlapping=True)]==[(2,2)]\nassert [m.span for m in find_all_regex(\"\",r\"\",overlapping=True)]==[(0,0)]\nassert find_all_regex(\"abc\",\"z\",overlapping=True)==()\nnamed=find_all_regex(\"AaA\",r\"(?P<x>aa)\",flags=re.I,overlapping=True)\nassert [m.span for m in named]==[(0,2),(1,3)] and named[0].named_group(\"x\")==\"Aa\"\nassert find_all_regex(\"aaa\",re.compile(\"aa\"),overlapping=True)[-1].span==(1,3)\ntry: find_all_regex(\"a\",re.compile(\"a\"),flags=re.I,overlapping=True)\nexcept ValueError: pass\nelse: raise AssertionError(\"compiled pattern flag error lost\")\nassert search_regex(\"abc\",\"b\").span==(1,2)\nassert replace_regex(\"aa\",\"a\",\"b\")==\"bb\"\nprint(\"14 overlapping regex compatibility checks passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\",flush=True)\nimport asyncio,sys\nfrom devtools.resources.commands import Command,CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject=next(p for p in Path(module.__file__).parents if (p/\"pyproject.toml\").is_file())\ncommand=Command(sys.executable).args(\"-m\",\"mypy\",'src/devtools/core/regex/search.py').cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\ncheck=asyncio.run(CommandExecutor().execute(command))\nprint(check.stdout.decode(errors=\"replace\"),flush=True)\nassert check.exit_code==0,\"Independent typing failure: \"+check.stderr.decode(errors=\"replace\")\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/regex/models.py",
+    "src/devtools/core/regex/__init__.py"
+  ],
+  "quality_checks": true
+}

@@ -135,10 +135,12 @@ It does not supply a signature-only span or an automatic DisclosurePlan.
 Rendering a class tree, selecting signatures/bodies, ordering, deduplicating,
 budgeting and source materialization remain Context responsibilities. Existing
 function Context paths do not automatically generalize to class/method maps.
-No new renderer is necessary to compare these retrieval rankings, so this
-increment adds no Context rendering subsystem. A future small caller-directed
-knowledge projection can consume these identities without strengthening RI
-scope or treating ranks as sufficiency.
+The Retrieval package does not render model Context. The existing Context
+Planning package now provides caller-selected metadata disclosure through
+`choose_repository_map_disclosure`. It consumes these identities without
+strengthening RI scope or treating ranks as sufficiency. It does not add
+tree/signature rendering, source-body disclosure or automatic selection.
+See [Context Planning](../../../planning/docs/overview.md).
 
 ## Evidence and limitations
 
@@ -159,3 +161,13 @@ Equal BM25/map RRF worsens complete depth in both arms. No parameters or default
 fusion policy change. New configuration facts need an explicit future projection;
 ranked winning symbols do not prescribe sufficient Context representations.
 Confirmation stays outside the retrieval/evaluation consumer.
+
+
+## Explicit source expansion
+
+Context Planning now supplies choose_repository_map_source_disclosure, consuming
+an existing selected-map disclosure, one represented symbol and a same-snapshot
+admitted SourceSearchIndex. It uses the native RI range with existing exact-source
+machinery; it does not select ranks or alter this package's map semantics.
+The exact declaration range can differ from decorator-expanded search symbols.
+See [progressive Context](../../../planning/docs/overview.md#exact-source-from-represented-map-symbols).

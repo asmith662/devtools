@@ -1,0 +1,41 @@
+{
+  "scope": "Original retained byte/hash and binding verification only; no judgment, ranking, treatment or report evaluation rerun",
+  "archive_sha256": "d3b312473dea114594acdc25e3a8756b0e07fccbf118f4e497f47e49aba6714c",
+  "manifest_sha256": "52c486a130509758d18af805b8e32baa14ee4063e187b2f39236e39d4cf59c17",
+  "inputs": [
+    {
+      "role": "capture",
+      "member": "root-reports/b0002-increment-23-hidden-surface-capture.json",
+      "sha256": "f15a165e589bc48ecfedfda2b32987815c5ecc8273ce7b8fe3da84f7df79560c",
+      "content_identity": "b0ec243125e3408f597f7474288ad632be9e1522ea85878de017b43b33b1598d"
+    },
+    {
+      "role": "package",
+      "member": "root-reports/b0002-increment-23-blinded-adjudication-package.json",
+      "sha256": "3c2e17302f211772e2abd19458d05266ab4548accbada7e74191e181e1cbe85b",
+      "content_identity": "6317cb1cd1de36100c6ecaa37807b994c69f71c23be490c334cdfe1ee8e9c0e9"
+    },
+    {
+      "role": "mapping",
+      "member": "root-reports/b0002-increment-23-neutral-resource-mapping.json",
+      "sha256": "5cd943ca7da954a6b33f13b1ee4349d6aaef5738ee1069daa1fcb51f6d346fe8",
+      "content_identity": "9dc00a58875d3fdb63085b0f2f3feff8e6d341136c23161da71cc7587a636762"
+    },
+    {
+      "role": "frozen",
+      "member": "root-reports/b0002-increment-23-frozen-adjudication.json",
+      "sha256": "4c58ec0645080f3341ef46a9705d2e276a928cc8eb3cf869efadbe01779a5c48",
+      "content_identity": "189033782e641e7826d9334df54b2a2113eef388080bbb8326f91e8915f76e59"
+    }
+  ],
+  "cases": {
+    "content-bm25-term-formula": 17,
+    "baseline-lexical-analysis-definition": 15,
+    "content-bm25-analysis-consumer": 15,
+    "python-function-token-candidate-boundary": 19,
+    "import-declaration-source-evidence-contract": 15,
+    "repository-context-taxonomy-boundary": 15
+  },
+  "pairs": 96,
+  "canonical_binding_pass": true
+}

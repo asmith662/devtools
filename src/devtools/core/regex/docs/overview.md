@@ -18,6 +18,7 @@ from devtools.core.regex import (
     iter_regex,
     replace_regex,
     search_regex,
+    split_regex,
 )
 ```
 
@@ -166,3 +167,14 @@ Callable replacements, line/column metadata, or overlapping-match support
 should be added only if concrete consumers require them. A custom cache, a
 precompiled-regex value object, and split or escape wrappers are not currently
 justified because Python's `re` module already provides suitable mechanisms.
+
+
+## Splitting text
+
+`split_regex(text, pattern, *, maxsplit=0, flags=0)` returns an immutable tuple
+following Python regular-expression split semantics. Capturing groups are
+retained, and unmatched optional captures contribute `None`. Unicode text,
+empty results and split limits retain standard-library behavior. Compiled
+patterns use the existing `compile_regex` policy: supplying additional flags
+raises `ValueError`. Invalid patterns retain their native regex exception.
+The implementation lives in `splitting.py` and is exported by the package.

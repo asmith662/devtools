@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "d4a3d2ed-2eed-45c7-9c5f-f245b9ac1b50",
+  "created_at": "2026-10-24T05:26:42.920515+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Make repeated source-grounding packet preflight preserve distinct operation logs",
+    "parent": "B-0002",
+    "summary": "Priority2 historical active-analysis/controller adapter reliability. discrimination.lifecycle.run(packet_validate) uses root.parent/(case+\"-candidate-cli-preflight\") for every validation. PACKET validation creates exclusive stdout.log; pre-C validation repeats the same destination and raises FileExistsError before C ENTERED or gold invocation. Candidate08 original stderr and terminal pipeline receipt independently establish this impact, not just synthetic exploitability. A new harmless Python-version-like process invoked twice through workers.command at one destination reproduces the collision. No production ToolRunner/WorkCycle caller found.",
+    "resources": [
+      "experiments/source_grounding/discrimination/lifecycle.py",
+      "experiments/orchestration/workers/process.py"
+    ],
+    "evidence": [
+      "docs/research/ri-source-grounding-audit.md",
+      "docs/research/code-audit/ri-grounding-probes.json",
+      "docs/research/code-audit/ri-grounding-artifact-identities.json"
+    ],
+    "benefit": "Preserve original frozen source, grants and all receipts. If future analysis is separately authorized, provide a versioned adapter using distinct operation-occurrence log destinations or authenticated read-only reuse of exact unchanged version evidence. Preserve exclusive creation, original logs, current configuration binding and pre-entry capacity/authority checks. Independent fake-process integration must exercise packet_validate then C-pre-entry validation, retain both receipts, reject mutated replay inputs and avoid automatic retry of scientific effects. Keep terminal pipeline failure dominant over journal-only SAFE_QUEUED projection; verify interrupted/failed outcomes stay non-resumable absent separately authorized reconciliation. No model needed for the regression and no revival of Candidate08 grant.",
+    "uncertainty": "Candidate08 is INCOMPLETE, not a negative scientific result. One concurrent B24 Sol turn completed locally but was quarantined; no Astra, gold import or D publication. Correction cannot retroactively accept that run. Framework process exclusivity is correct; adapter destination ownership is the defect.",
+    "dependencies": [
+      "B-0002",
+      "B-0018"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-source-grounding-audit.md"
+    }
+  },
+  "payload_sha256": "606c504057bbe955775d485f82571dcf5bd3d21ed5ce56d950b8138e58523978"
+}

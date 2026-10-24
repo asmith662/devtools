@@ -1,0 +1,236 @@
+{
+  "name": "bounded-read-consumption-oracle-corrected",
+  "objective": "Complete the filesystem roadmap hard-bounded-read obligation: a finite max_bytes must bound actual byte consumption/allocation even if a regular file grows after its observed stat size. Preserve exact complete content up to the boundary, including streams returning short reads; consume no more than max_bytes+1 bytes to detect oversize. Reject a known oversize file before loading it and reject a growing oversized file without decoding it. Preserve None/unlimited behavior, zero and negative limit semantics, codec dispatch, metadata, resource closure and permission-error normalization. Preserve all unrelated file/model APIs. Do not change tests or acceptance. Ruff, formatting and strict typing are part of acceptance. The legacy read tests that monkeypatch Path.read_bytes directly are historical implementation-specific mocks, not an obligation to keep that mechanism. They are excluded prospectively; all actual stream behavior remains required and independent permanent replacements are needed before publication.",
+  "source": "src/devtools/resources/filesystem/reading.py",
+  "tests": [
+    "tests/resources/filesystem/test_binary_io.py",
+    "tests/resources/filesystem/codecs/test_text.py",
+    "tests/resources/filesystem/test_models.py"
+  ],
+  "baseline_revision": "21002571f5412683de321373e417206b863982bd",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "d7262de84450424c6846644a4c89b4e2d4cd63b40141f3064b9947075ea93309"
+    ],
+    [
+      "tests/resources/filesystem/test_binary_io.py",
+      "bc983820211b3d66c4391d991996e9ba815353b71e2f25443cfe91329ca89795"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "c324f8943e671422e94bab0c77a025f1e8d82333fe824ef84c6b54934117960d"
+    ],
+    [
+      "tests/resources/filesystem/test_models.py",
+      "172e36b02201f88dbc4a14639620fd1c6abd3bd128d804db56e303960bb4997b"
+    ],
+    [
+      "src/devtools/resources/filesystem/__init__.py",
+      "9818bdd1f213d0f50b3951251cc3641a0a164db8431cb15a07ad174eb2a3b6c5"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "c2760a1d0db7bc77fe20cd3ea920890f00a32843dd2d8043d7c8d9b8bb2e193a"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "8aa93b6ae417be679ed6b24db3f2471b104578023b73997e558e38b03f863121"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "adb8e3f020aff2c4b7208f02396fcf4c116ad9afc7a0a90f1b7368e45a933e09"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/binary.py",
+      "6e404da59ae9f84e3c2101abbc69e3ddeb3903cbd89e03fdfc82ee081f0854cf"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/json/base.py",
+      "8430b973bfeb32d41950af5fc11c94e60effc446b19703d0c9143e0c85254fa7"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/binary.py",
+      "22bb64e0397801e6450d2b1fa5853245ea63d2170f6ee3de77e37324647371ef"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "3578f489eb7daa10445c1302708bd5b13e1ae0209b1580204fd0aa3afb05ba4e"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "4760e790613c78fbdb98b49465cb1ec6b9cf24b4346cf992f02dfa091c589ac8"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "1b2a861787a3ca983e076d0d4754bdeaf714b668518e5c911c071f2411a4e707"
+    ],
+    [
+      "tests/resources/filesystem/test_writing.py",
+      "7136283ef9be4b23bc67a5c8c6d8b641659af9e2c0c0b4952afd14b9001b274b"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "reading",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_binary_io.py",
+      "test_binary_io",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "test_text",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_models.py",
+      "test_models",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "writing",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "base",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/binary.py",
+      "binary",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "text",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/json/base.py",
+      "base",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "text",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/binary.py",
+      "binary",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "json",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "test_reading",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/test_writing.py",
+      "test_writing",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom io import BytesIO\nfrom unittest.mock import patch\nfrom devtools.core.paths import ResolvedPath\nfrom devtools.resources.filesystem import read, FileFormat, FileTooLargeError, FilesystemPermissionError, BinaryFile\n\nchecks = 0\nwith TemporaryDirectory() as directory:\n    source = Path(directory) / \"input.data\"\n    source.write_bytes(b\"x\")\n    original_open = Path.open\n    class Observed(BytesIO):\n        def __init__(self, data, short=False):\n            super().__init__(data)\n            self.requests = []\n            self.consumed = 0\n            self.short = short\n        def read(self, size=-1):\n            self.requests.append(size)\n            if self.short and size > 2:\n                size = 2\n            result = super().read(size)\n            self.consumed += len(result)\n            return result\n    def evaluate(data, limit, *, short=False, overflow=False):\n        global checks\n        stream = Observed(data, short)\n        def opening(path, *args, **kwargs):\n            return stream if path == source else original_open(path, *args, **kwargs)\n        result = None\n        with patch.object(Path, \"open\", opening):\n            try:\n                result = read(ResolvedPath(source), file_format=FileFormat.BINARY, max_bytes=limit)\n            except FileTooLargeError:\n                assert overflow, \"a permitted source was incorrectly refused\"\n            else:\n                assert not overflow, \"growing source must be rejected\"\n        assert stream.closed, \"opened streams must close on success and failure\"\n        assert stream.requests, \"runtime adapter must observe actual stream reading\"\n        if limit is not None:\n            assert all(0 <= n <= limit + 1 for n in stream.requests), \"finite reads must never request unbounded content\"\n            assert stream.consumed <= limit + 1, \"finite read allocated beyond the sentinel bound\"\n        if result is not None:\n            assert isinstance(result, BinaryFile)\n            assert result.content == data and result.size_bytes == len(data)\n        checks += 1\n    evaluate(b\"x\" * 100000, 5, overflow=True)\n    evaluate(b\"abcde\", 5)\n    evaluate(b\"abcde\", 5, short=True)\n    evaluate(b\"abcdefghi\", 5, short=True, overflow=True)\n    evaluate(b\"\", 5)\n    evaluate(b\"arbitrary\\x00\\xff\", None)\n    source.write_bytes(b\"\")\n    evaluate(b\"\", 0)\n    evaluate(b\"x\", 0, overflow=True)\n    def deny(path, *args, **kwargs):\n        raise PermissionError(\"read denied\")\n    with patch.object(Path, \"open\", deny):\n        try:\n            read(ResolvedPath(source), file_format=FileFormat.BINARY, max_bytes=5)\n        except FilesystemPermissionError:\n            checks += 1\n        else:\n            raise AssertionError(\"open denial must retain filesystem domain normalization\")\n    source.write_bytes(b\"too large\")\n    with patch.object(Path, \"open\", side_effect=AssertionError(\"must reject known oversize before opening\")):\n        try:\n            read(ResolvedPath(source), file_format=FileFormat.BINARY, max_bytes=1)\n        except FileTooLargeError:\n            checks += 1\n    try:\n        read(ResolvedPath(source), file_format=FileFormat.BINARY, max_bytes=-1)\n    except ValueError:\n        checks += 1\n    else:\n        raise AssertionError(\"negative limits remain invalid\")\nprint(f\"PASS: {checks} independent bounded-read/stream/error/compatibility cases\")\n",
+  "maximum_calls": 12,
+  "output_tokens": 8192,
+  "wall_seconds": 1394,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/filesystem/__init__.py",
+    "src/devtools/resources/filesystem/writing.py",
+    "src/devtools/resources/filesystem/errors.py",
+    "src/devtools/resources/filesystem/resolution.py",
+    "src/devtools/resources/filesystem/models/base.py",
+    "src/devtools/resources/filesystem/models/binary.py",
+    "src/devtools/resources/filesystem/models/text.py",
+    "src/devtools/resources/filesystem/models/json/base.py",
+    "src/devtools/resources/filesystem/codecs/text.py",
+    "src/devtools/resources/filesystem/codecs/binary.py",
+    "src/devtools/resources/filesystem/codecs/json.py",
+    "src/devtools/resources/filesystem/codecs/__init__.py",
+    "src/devtools/core/paths/resolution.py",
+    "tests/resources/filesystem/test_reading.py",
+    "tests/resources/filesystem/test_writing.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [],
+  "disclose_edit_paths": false
+}

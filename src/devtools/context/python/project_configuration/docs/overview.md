@@ -88,7 +88,12 @@ the exact configuration occurrence/content, repository, snapshot and versioned
 derivation identity. Duplicate array items have distinct occurrence/fact
 identities. Anchors are semantic provenance within that exact retained resource.
 Unsupported tables (including README file/text tables), non-string items and
-scalar array-selector values are assessed without target derivation.
+scalar array-selector values are assessed without target derivation. A present
+non-table proper ancestor is distinct from a missing key: every obstructed
+selector retains its full semantic key with `non-table-parent`, no ordinal or
+literal value, and resolves as unsupported without target facts. Valid sibling
+branches remain independent. Selector and named-setting traversal share the
+existing package lookup; declaration derivation version v3 binds these semantics.
 
 Dynamic README produces unsupported selector assessments. Project scripts, GUI
 scripts and entry points now have named static setting declarations in
@@ -157,6 +162,7 @@ setting strings do not become path targets or import declarations.
 | `build-system.requires`, `build-system.backend-path` | String arrays |
 | `project.name`, `version`, `description`, `requires-python` | Strings |
 | `project.dependencies`, `project.dynamic` | String arrays |
+| `dependency-groups.<original-name>` | Ordered raw string arrays; no include resolution or requirement validation |
 | `project.scripts.<name>`, `project.gui-scripts.<name>` | Declared object-reference strings |
 | `project.entry-points.<group>.<name>` | Declared object-reference strings |
 | `tool.pytest.ini_options.python_files`, `python_classes`, `python_functions` | String or string array |
@@ -182,7 +188,8 @@ Declared static metadata also named in `project.dynamic` retains its syntax and
 is marked `dynamic-project-field`. Absent means no static declaration in this
 named scope, never absence of dynamically supplied metadata or registration.
 
-`absent_keys` accounts for these named settings and three entry-point tables.
+`absent_keys` accounts for these named settings, three entry-point tables and
+the dependency-groups table.
 An unsupported non-table ancestor produces an assessment, not a setting-absence
 claim. Missing keys below valid tables support bounded absence. Malformed TOML
 produces `settings=None`, with no positive settings or absence claims.
@@ -194,7 +201,7 @@ coverage. No universal TOML registry or configuration framework is introduced.
 Each setting retains its exact tuple key, declared supported value, reason and
 versioned derivation identity. The containing analysis retains repository,
 snapshot, exact resource/content and parser scope. Quoted keys containing dots
-remain single tuple components. The v2 declaration derivation changes with
+remain single tuple components. The v4 declaration derivation changes with
 repository, snapshot, resource address or retained content. Setting identity
 includes framed key/value shape and reason. Output is sorted by semantic key;
 array order is retained. No source byte offset or line range is fabricated.
@@ -301,3 +308,36 @@ the repository-wide coverage scope for the new capability and never invokes
 default repository-wide test collection. Host comprehensive validation remains
 separate. Ruff and mypy additionally passed over `src`, `tests/context` and
 `tests/evaluation`.
+
+
+## Static dependency groups
+
+The same settings owner recognizes top-level `[dependency-groups]`. Each group
+has an exact semantic key `("dependency-groups", original_name)` and an ordered
+tuple of raw strings, retaining duplicates and empty groups. These are declared
+strings, not PEP 508-validated specifiers or installed/importable dependencies.
+No includes, installation, compatibility or dependency resolution is performed.
+
+An empty declared table has one table-level empty-tuple presence declaration;
+true absence is the table key in absent_keys. A non-table value has a qualified
+`expected-group-table` declaration, never absence. Group values outside the
+string-array subset (including specification-permitted mixed/include-group
+arrays) retain the group key with `unsupported-group-value-form` and no partial
+value. Supported siblings remain available. Retained TOML is the authoritative
+source for unsupported syntax, without fabricated spans or interpreted values.
+
+Names are preserved exactly. PyPA ASCII name grammar is assessed separately
+from requirement strings. Invalid names use `invalid-group-name`; names equal
+after lowercasing and collapsing runs of dot/underscore/hyphen are all qualified
+`normalized-group-name-collision`, never merged or selected arbitrarily. Empty,
+unsupported and absent states remain distinct. Public setting types/exports and
+six-selector resolution are unchanged; complete rederivation still rejects
+forged/stale input. Coverage deliberately advances to dependency-groups v3,
+declaration derivation to v4. Existing historical identities are not rewritten.
+
+See [PyPA Dependency Groups](https://packaging.python.org/en/latest/specifications/dependency-groups/),
+[PEP 735](https://peps.python.org/pep-0735/) and the
+[measured implementation/qualification](../../../../../../apps/qwen/evaluation/dependency-groups-24/README.md).
+This is Codex-authored feature software after one failed genuine Qwen attempt,
+not evidence of successful local-model implementation or behavioral repair.
+Broader B-0002 semantics remain separate. The existing Localization role consumer now interprets supported dependency-group settings as project configuration only; see its [role contract](../../../localization/roles/docs/overview.md). This is consumer interpretation, not additional RI truth or installation evidence.

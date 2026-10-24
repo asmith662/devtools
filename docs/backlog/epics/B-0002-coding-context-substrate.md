@@ -1226,3 +1226,129 @@ Current sequencing instead prioritizes mandatory R1 and unconditional R2;
 prospective semantic-resolution effectiveness follows the coordinated roadmap.
 No numeric confidence, learned ranking, candidate elimination, autonomous
 acquisition, frontier requests or Context Planning integration is promoted here.
+
+## Observed project-configuration obstruction pressure (Engineering20)
+
+Current selector traversal can report missing selectors when a present parent is
+not a table. Independent public-API/TOML qualification reproduced false absence;
+the requested bounded correction must preserve explicit unsupported evidence,
+valid siblings, genuine absence and source-bound resolution provenance.
+[Engineering20](../../../apps/qwen/evaluation/shared-engineering-20/README.md)
+attempted it with Qwen but stopped at eight genuine responses without editing.
+No accepted implementation, promotion or parent completion is claimed. The frozen
+contract is retained for separately attributable Codex delivery; no new parser,
+configuration authority or retrieval framework is required. This pressure remains
+open and does not change the epic status or historical results.
+
+## Configuration obstruction slice delivered (Codex21)
+
+The previously recorded Engineering20 pressure is corrected by the existing declaration/resolution owners: non-table ancestors are qualified unsupported evidence rather than absent selectors. Original oracle unchanged; 126 permanent scenarios and exact-source protected validation pass. One old regression assertion encoded the bug and was explicitly corrected. This resolves this bounded slice, not the epic, retrieval integration or broader repository semantics.
+
+See [delivery and immutable parent references](../../../apps/qwen/evaluation/configuration-obstructions-21/README.md). Feature commit: `32c3890ff5546a335bd8397d582cc1809d7dd46e`. No backlog approval, parent closure or protected-main promotion is inferred.
+
+## New module22: delivered software, failed local-model attempt
+
+A bounded SnapshotDelta prerequisite is delivered in context.repository.changes: immutable exact retained-resource partitions with original snapshot dependencies, no acquisition/mutation/rename or maintenance claim. Qwen created a partial module but failed complete integration; Codex delivered it under the unchanged qualified contract. Broader snapshot policy, incremental maintenance and applicability remain open.
+
+[Exact evidence and attribution](../../../apps/qwen/evaluation/new-module-22/README.md). Feature commit `3c624129ee2d6324ed161a2e9e3b2733622e7b08`. No parent closure, proposal approval or protected promotion.
+
+
+## Static dependency-group slice delivered (Codex24)
+
+Top-level pyproject dependency-group declarations now retain ordered raw strings,
+original keys, empty presence/absence distinctions and qualified unsupported
+whole-group evidence. Includes are not resolved; normalized collisions remain
+unsupported; no installer, requirement parser or installed-package claim is added.
+Existing settings/declaration/coverage owners and exact-source resolution remain
+authoritative. Derivation/coverage versions deliberately advance.
+
+One genuine Qwen attempt failed behavior and reached a measured Context limit
+after ten requests; it did not use check_changes. Codex wrote and published the
+separate implementation at `7e1b10033c8793440994ef6069c9c0482dea74f8`, under the unchanged qualified oracle,
+151 focused RI cases and exact-source protected validation. Historical Qwen
+results, grants and experiments are unchanged. This delivers only the bounded
+syntax slice, not B-0002/B-0009 completion, role-policy/retrieval integration or
+protected-main adoption. The next bounded consumer task should distinguish
+dependency-group project metadata from the existing generic tool-role fallback.
+
+See [qualification, results and provenance](../../../apps/qwen/evaluation/dependency-groups-24/README.md).
+
+
+## Dependency-group role consumer integration25
+
+The existing Localization consumer now uses project-configuration/project-
+declaration support for supported top-level dependency groups, retaining qualified
+unsupported native inputs and avoiding roles inferred from group names. Exact
+Qwen source is feature-published at `5ebe8eb674f836581fc8162859c9b5f2b3242d49` after separate supervised acceptance,
+independent regressions and protected validation. The original native run remains
+nonaccepted: model-invoked check_changes correctly blocked untracked host
+evaluation artifacts. No semantic repair or uninterrupted-autonomy success is
+claimed. One bounded Codex search-envelope projection correction restores real
+continuation capacity; no generic Context or planning mechanism is introduced.
+
+This delivers the consumer slice, not parent completion, backlog approval,
+retrieval policy or protected-main promotion. Existing broader statuses remain.
+See [qualification and measured outcomes](../../../apps/qwen/evaluation/role-groups-25/README.md).
+
+
+## Caller-directed map disclosure26
+
+The existing Context Planning owner now consumes explicit native repository-map
+symbol selections as compact metadata disclosures, preserving source/subject
+evidence and existing plans. This bounded representation gap is delivered as
+Codex software; it does not complete B-0002, automatic planning, incremental
+maintenance or map/tree/source expansion policy. One genuine Qwen attempt
+recovered from a size refusal but stopped on a concrete host EOF patch defect;
+its nonaccepted outcome is immutable. The standard-marker correction and real
+Git regressions preserve strict admission. Shared-check PASS/currentness and
+publication for the separate fallback are supervisor evidence, not native Tool
+use. See [qualification and results](../../../apps/qwen/evaluation/map-disclosure-26/README.md).
+Next bounded Context work is exact-source expansion of a caller-selected map
+entry using existing representations. Parent statuses and promotion triggers
+are unchanged; selective protected-main adoption remains separate.
+
+
+## Explicit map-to-source expansion27
+
+The bounded follow-on to metadata26 is delivered in existing Context Planning:
+one represented native map symbol expands to exact RI-range source within an
+explicit same-state source index. It preserves UTF-8 coordinates, retained-source
+identities and native map/source evidence through existing plans/materialization.
+Real progressive composition and independent regressions qualify this Codex
+implementation. One Qwen run remained in investigation through14 requests and
+host Context refusal; no edits or native validation occurred. Its result stays
+failed, no task retry or generic harness increment was made, and no independent
+Qwen engineering success is claimed. See [scope and evidence](../../../apps/qwen/evaluation/map-source-27/README.md).
+This does not complete the parent, automatic planning, retrieval policy, worker
+map adoption or selective main integration. Next is a bounded opt-in existing
+ContextTool adapter with ordinary observed-source/version admission and stale-map
+invalidation, not a new graph engine or source identity mechanism.
+
+## Native map navigation28
+
+The existing CodingCommands/ContextTools application now has opt-in map orientation
+and exact selected-source expansion through canonical Planning and ordinary
+observed editing. Stale-frame rejection/refresh is qualified. Caller-scoped source
+search is separately delivered under the unchanged new task contract. Both are
+Codex-authored ata951957c75ba187b8ac8bb29ad2520750ebb3783. The sole Qwen attempt recovered an oversized
+component but failed behavior/typing and Context admission after19 requests;
+it used neither map nor check_changes. No native-autonomy or ranking-effectiveness
+claim. Parent status, architectural promotion triggers and selective main adoption
+remain unchanged. [Evidence](../../../apps/qwen/evaluation/native-map-28/README.md).
+
+## Deep code/consumer audit evidence (2026-10-23)
+
+The [RI/Retrieval/Localization/Context audit](../../research/repository-intelligence-code-audit.md)
+reviews all118 current implementation modules, not only feature-only slices,
+and distinguishes real native search/source use from uninvoked optional map
+Tools and absent Localization/Delta operational consumers. One existing
+physical-line source-search BUG is reproduced in24 adverse cases despite912
+passing focused regressions. Existing pending416658bd/5aa7a431 now contain fresh
+evidence; they are not silently merged.
+
+New pending15bae0a6 (native explicit Localization consumer), cea1b3e7 (qualified
+direct-base navigation), aedea41e (exact-frame reuse qualification) and related
+B-0008 pending1d0ed8bb (SnapshotDelta refresh) have concrete scope, acceptance,
+risks and sequencing in canonical Intake. Scientific ranking policies retain
+their original adverse/mixed/no-promotion conclusions. Epic status, architecture,
+parent obligations and promotion authority remain unchanged.

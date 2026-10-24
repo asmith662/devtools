@@ -12,8 +12,9 @@
 | `.txt` | Text |
 
 Unsupported or unimplemented formats raise `FileFormatError`. An explicit
-`file_format` passed to `read()` bypasses suffix inference. Binary has no
-codec-backed suffix support.
+`file_format` passed to `read()` bypasses suffix inference. Binary is explicit
+only: `read(path, file_format=FileFormat.BINARY)` preserves arbitrary bytes under
+the same byte limits. Neither `.bin` nor an unknown suffix implies binary.
 
 ## Reading
 
@@ -22,20 +23,25 @@ read(path, *, file_format=None, max_bytes=16 * 1024 * 1024)
 ```
 
 `read()` requires a `ResolvedPath` to an existing regular file. It checks the
-reported size before a complete `read_bytes()`, checks the loaded size again,
+reported size before reading, checks the retained size again,
 resolves the codec, and returns the rich concrete model. `max_bytes=None`
 disables the limit; negative values raise `ValueError`. Permission failures
 normalize to `FilesystemPermissionError`.
 
-The default is 16 MiB. Its bound is intentionally not race-free:
+The default is 16 MiB. Finite reads consume at most `max_bytes + 1` bytes,
+including when a source grows after stat. Short reads are accumulated until EOF
+or that sentinel bound; an oversized prefix is rejected before codec decoding.
+Streams close on success or failure. Retained buffers and copies are bounded in
+proportion to the limit; this is not an exact total-process memory allocation cap.
 
 ```text
-stat → pre-read check → read_bytes() → post-read check
+stat -> pre-read check -> bounded stream read -> post-read check -> decode
 ```
 
-A growing file is rejected after the second check and no oversized model is
-returned, but its grown contents can be allocated before rejection. Streaming
-bounded reads are not implemented.
+`max_bytes=None` still permits complete unbounded content. Permission failures
+at open/read retain domain normalization. The Qwen-authored bounded reader and
+independent stream/Repository-observation regressions are published on the
+feature branch in `61637ff8`; protected-main adoption remains separate.
 
 ## Writing
 
@@ -43,7 +49,8 @@ bounded reads are not implemented.
 write(file, *, overwrite=True)
 ```
 
-The model's `format`, not the target suffix, selects its codec. Explicit model
+The model's `format`, not the target suffix, selects its codec. `BinaryFile`
+uses `BinaryCodec` and the same overwrite/atomic-replacement policy. Explicit model
 and codec matching prevents JSON, Markdown, and CSV TextFile subclasses from
 being encoded by TextCodec. Missing parent directories are not created.
 `overwrite=False` raises built-in `FileExistsError` when the destination exists.

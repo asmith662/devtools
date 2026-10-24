@@ -1,0 +1,4931 @@
+{
+  "schema": "devtools-code-audit-evidence-v1",
+  "baseline": "95efbf711c3644fb32d269d85927000cd8f4aaa9",
+  "remote_main": "5d979920d0728775ed529457c88f5b68b440c64f",
+  "observed_at": "2026-10-23T17:03:12.248374+00:00",
+  "counts": {
+    "ref_records": 101,
+    "distinct_tips": 40,
+    "reachable_commits": 496,
+    "tip_paths": 7977,
+    "tip_path_blob_versions": 8452,
+    "historical_paths": 8239,
+    "historical_path_blob_versions": 10676,
+    "parent_edge_changes": 11626,
+    "reachable_object_types": {
+      "commit": 496,
+      "tree": 4874,
+      "blob": 10394
+    },
+    "current_python_ast_indexed": 1329,
+    "ri_modules_source_inspected": 118,
+    "ri_function_and_method_definitions": 481,
+    "ri_test_modules": 92
+  },
+  "states": [
+    "NOT_REVIEWED",
+    "SOURCE_INSPECTED",
+    "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+    "CONSUMER_TRACED",
+    "EXPERIMENT_RECONCILED",
+    "AGENT_USE_VERIFIED",
+    "QUALIFIED_GAP",
+    "AUDIT_COMPLETE"
+  ],
+  "rules": [
+    "File inventory, AST parsing, source disclosure and test execution are different evidence levels.",
+    "No historical path/blob version inherits current-version review.",
+    "No subsystem assigned AUDIT_COMPLETE where experiments/fixtures/agent use remain unresolved.",
+    "No runtime, architecture or backlog authority is created by this census."
+  ],
+  "method": {
+    "tree": "git for-each-ref; git ls-remote origin; git ls-tree -rlz <each distinct tip>",
+    "history": "git log --all --root -m --raw -z --format=@%H --no-renames --no-abbrev; git rev-list --objects --all; git cat-file --batch-check",
+    "calls": "Python AST import binding plus conservative package reexport resolution; manually trace application/Tool dispatch separately.",
+    "verification": "Native managed Commands, current immutable Git objects; no source-tree copy, checkout, worktree, clone, inference or scientific replay."
+  },
+  "untracked": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "directory_inventory": {
+    ".": [
+      {
+        "name": ".coverage",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": ".git",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".gitattributes",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": ".gitignore",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": ".idea",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".local",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".mypy_cache",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".pytest_cache",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".ruff_cache",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".uv-cache-audit",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": ".venv",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "AGENTS.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "apps",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "codex-handoff",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "docs",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "experiments",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "pyproject.toml",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "README.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "scripts",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "src",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "tests",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "uv.lock",
+        "directory": false,
+        "link": false
+      }
+    ],
+    "src": [
+      {
+        "name": "devtools",
+        "directory": true,
+        "link": false
+      }
+    ],
+    "apps": [
+      {
+        "name": "__init__.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "__pycache__",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "operator_dashboard",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "qwen",
+        "directory": true,
+        "link": false
+      }
+    ],
+    "scripts": [
+      {
+        "name": "__pycache__",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "backlog",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "model_benchmarks",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "qwen",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "retrieval_bm25_baseline.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "usage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_development.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_layout.py",
+        "directory": false,
+        "link": false
+      }
+    ],
+    "tests": [
+      {
+        "name": "__init__.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "__pycache__",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "agents",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "apps",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "context",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "core",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "evaluation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "execution",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "experiments",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "models",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "observability",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "persistence",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "resources",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "scripts",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "tools",
+        "directory": true,
+        "link": false
+      }
+    ],
+    "experiments": [
+      {
+        "name": "__init__.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "__pycache__",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "address_lexical.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "archive",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "bm25_sensitivity",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "bm25f",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "codex_dogfood",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "development_population",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "exact_hint_routing",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "graph_ranking_baseline",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "identifier_sparse",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "import_relationship",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "import_relationship_cases.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "increment_25",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_26",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_27",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_28",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_29",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_30",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_31",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_32",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_33",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_34",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_35",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "increment_36",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "mechanism_routing",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "orchestration",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "performance",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "purpose_relative_admission",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "purpose_relative_import",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "purpose_relative_ranking.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "query_term_weighting",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "qwen",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "README.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "repository_map_baseline",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "retrieval_diagnostics",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "retrieval_identifier.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "retrieval_judgment_coverage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "source_grounding",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "structural_discrimination",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "structural_expansion.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "task_conditioned_graph",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "typed_graph_baseline",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "worker_story",
+        "directory": true,
+        "link": false
+      }
+    ],
+    "docs": [
+      {
+        "name": "architecture",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "architecture.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "backlog",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "development",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "documentation_map.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "experiments",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "implementation_ledger.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "research",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "roadmap.md",
+        "directory": false,
+        "link": false
+      }
+    ],
+    ".local": [
+      {
+        "name": ".coverage",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": ".gitignore",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "__pycache__",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "a1-spend-gate-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "a1-spend-gate-report.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "a1_spend_gate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "adoption-restoration-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "align_source_grounding_git_bytes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "amend-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "amend_case0015.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "anchors13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "annotate_edit_loops.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "archive_attempt_one.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "archive_capacity_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "archive_state_only_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "archives",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "astra-capacity-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "astra-capacity-02",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "astra-capacity-failure-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "astra-output-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "astra-state-only-probes-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "atomic-edit-diagnostics",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "audit-model05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "audit-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "audit-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "audit_case16_failure.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "audit_historical_edit_calls.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "audit_new_module22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "auth_case0012.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "auth_case0013.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate-host-disclosure-candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate-runtime-evidence.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate_adopted_branches.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate_committed_closures.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate_source_grounding_plan_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authenticate_source_grounding_stage_a.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "authentication.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "author_alignments.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "backlog",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "binary-additions08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "bootstrap.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "bounded-cards-readiness",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "bounded-evidence-card-candidate",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "build-reference06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "build_graph3_amend_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "build_graph3_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "build_result_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "c2-source-initial.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "c2-source-initial.xml",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "c2-static-errors.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "cache",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "candidate-discrimination-design-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "candidate-discrimination-preview",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "candidate-gold-sizing-compact.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "candidate-gold-sizing.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "candidate-gold-sizing.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "candidate-surface-feasibility.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "candidate-surface-feasibility.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "capacity-candidate-paths.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "capacity-method-preflight",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "capacity-stop-report.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "capture-qwen-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "capture-service05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "capture_history.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case0012-packet-challenges",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case0012_import.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case0012_validate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case0013-packet-failed-empty-one",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case0013-packet-failed-empty-two",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case0013-packet-independent-two",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case0015-packet-independent",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case14-packet-build-a",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case14-packet-build-b",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case14-packet-build-c",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case14-packet-build-d",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case14_report_template.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case14_stage_b_facts.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case16_failure_state.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case16_final_state.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case16_pre_repair.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "case_0009_stage_c_invalid_attempt_1",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0011_stage_d_parallel_conflict",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_blind_packet_build_2",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_blind_packet_independent",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_equivalence_correction",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_stage_a_amendment",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_stage_b_failure",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "case_0012_stage_b_recovery_initial",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "check_case0012_git_bytes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0013_identity.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0013_stage_d_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0014_bytes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0014_stage_d_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0015_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0015_final_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case0015_publication_guards.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case14_final.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case14_packet_stage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case14_stage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_case16_derived_permission.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_committed_population.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_direct_final_handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_population_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "check_structural_handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "clarify-grounding-prompt.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout-candidates",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "closeout-input05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout-input08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout-new05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout-phase05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout-tests09",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "closeout11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout17.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout_bundle_codex.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout_change_checks.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout_delivery22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "closeout_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "codex-candidate-inspection08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "codex-reference08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "codex-result.before-locator-v2.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "codex-result.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "cohort-stage-a-authentication.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "command-tests06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "commands-integration-20261022",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "commands-new05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "commands_composition_test.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "committed_plan_validation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "compact_case16_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "completion-report-final.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "completion-report.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "composition10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "composition12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "configure-runs05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "context12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "continuation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "controller-cli-version-probe",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "controller-parallel-final",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "controller-parallel-final-02",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "controller-parallel-final-02-driver.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "controller-parallel-final-driver.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "controller-parallel-final.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "controller_validation_record.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "correct-oracle09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "correct_case0015_doc_encoding.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "create_case0012_workspace.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "dashboard-preservation-before.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "dashboard-smoke",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "dashboard-v2-before.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "dashboard-v2-smoke",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "decode_diagnostic.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "demo_change_checks.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "dependency-groups",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "deployment-receipts",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "deployments",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "diagnose-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "diagnose-grounding.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "diagnose08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "diagnose13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "diagnose_case0015_repr.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "diagnostics05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-blind-packet-publication.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-capture-facts-output.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-capture-facts.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-discrimination-capture.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-discrimination-progress.jsonl",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-final-sealed-verification.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-packet-final-protected.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-packet-validation-output.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-packet-validation.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-sterile-preparation.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "direct-treatment-staged-verification.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-closeout-metadata.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-closeout-metadata.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-controller-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-final-plan-auth.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-final-plan-auth.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-final-report.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-final-sizing.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-focused-current.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-focused-final2.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-focused-publication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-focused-release.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-frozen-preview.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-lint-02.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-lint-03.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-lint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-preview-authenticated.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-preview-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-preview.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-preview.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-protected-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-protected-publication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-protected-validation.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-publication-preview.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-size.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-source-grounding-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-source-grounding-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-source-publication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static-current.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static-final2.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static-publication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static-release.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-static.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-types-publication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "discrimination-types.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "docs12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document_bundle.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document_change_checks.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document_new_module22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "document_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit-grounding.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit-qwen-loop.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit-qwen-proposal-feedback.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-closeout-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-closeout-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-closeout-publish.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-confirmation-ready-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-devtools-command.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-devtools-lazy-recovery.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-devtools-lazy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-devtools-output.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-devtools-read.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-feedback-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-context-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-layout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-final-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-independent-lint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-layout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-lint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-pi-command.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-pi-lazy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-pi-output.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-pi-read.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-preflight.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit06-unit-recovery-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit_controller_observation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "edit_grounding_bindings.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "eligibility08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "engineering-commit-message.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "engineering-stage-inventory.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "engineering-stage-paths.nul",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-checkpoint-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-closeout-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-final-controls.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-newtests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-small.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "env05-verified-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-coverage-export.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-coverage-first.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-final-wide-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-protected-closeout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "environment05-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "evidence18.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "evidence19.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "experiment-controller.writer",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "experiment-failures",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "experiment-runs",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "extension-final-report.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "extension-rules.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "extension_audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "external-discovery-intake",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "final-adoption-compatibility.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-audit05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-authentication.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-context-details.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-controller-collection.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-controller.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-controller.xml",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-docs09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-execution.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-format08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-freeze-audit.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-freeze-audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-host-disclosure-audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-integrity08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-lint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-plan-authentication.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-plan-events.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-plan-report.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-record05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-report-template.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-source-grounding.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-source-grounding.xml",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-stage-a-build.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-stage-a-preview.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-stage-a-replay.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-static.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final-types.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final_source_grounding_audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "final_validation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-freeze17.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-grounding-records.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-host-disclosure-report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-native-cohort-docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-qwen-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize-runtime-report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_bundle_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_case0013_stage_d.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_commands_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_continuation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_layered.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_source_grounding_integrity.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finalize_verifier_diagnostics.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-freeze08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-grounding-edits.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-native04-comments.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-offline11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-repair-static.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish-repair-tests.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "finish_bundle.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-delegated-fixture.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-fixture-selection.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-native04-static.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-repair-test-ignore.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-test-comma05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-test-hit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-test-payload05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix-test-types05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix_case0015_packet_boundary.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix_case0015_stageb.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix_case0015_static.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fix_recovery_tests.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fixtures11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "format_r17_headers.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-cohort-02.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-confirm06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-continuation09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-native03-heldout.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-native04-heldout.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze-output06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze17.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze19.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "freeze_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "fresh-native-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "git-byte-committed.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "git-byte-staged.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-admission-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-checkpoint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-final-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-focused-2.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-new.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-output-live.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-protected-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-regex-live.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "grounding-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "guard-test09.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff-engineering08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "handoff15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "harness-audit-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "harness-research-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "historical-capture-provisional.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "historical-rules.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "historical-staged-validation.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "history-input-digest.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "history-mechanical.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "history-size-distribution.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "history_messages.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "history_sizes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-committed-plan-auth",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-committed-plan-report.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-completion-report.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-final-report-source.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-live-smoke",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-materialized-scope",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-prior-result.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-prospective-candidate.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-replacement-parents",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-repository-private.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-smoke-failure",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-smoke-v2-success",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-smoke-v2.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-smoke.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "host-disclosure-v2-repository-private.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-native04-context.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-native04-loop.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-repair-feedback.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-source-refresh.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "implement-task-preflight.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "import_case0013.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "import_case0014.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "independent-test-lint05.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-codex-usage-shape.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-continuation09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-native-02.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect-offline11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "inspect12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "install-guard-tests09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "integrate_commands.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "integrity10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-adapted-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-devtools-bsd.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-devtools-identity.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-devtools-split.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-final-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-final-layout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-final-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-final-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-full-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-lint.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-output-closeout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-pi-bsd.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-pi-identity.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-pi-split.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-preflight.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-protected-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-publish.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-split-closeout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-summary.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "investigation07-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "json-regressions05.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "legacy_check.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "legacy_diff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "lifecycle-audit-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "live-runtime-smoke.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "make_case16_failure_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "make_case16_recovery_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "make_case16_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "make_case_0016_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "make_performance_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "map-disclosure-26",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "map-source-27",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "materialized_scope_regression.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "measure-composition09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "measure-engineering08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "measure-pending05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "metrics11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "mxc-runtime-probe.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "mypy-engineering08",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "named-write-probe",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "named-write-probe.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native-map-28",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "native03-baseline-json.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-baseline-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-feedback-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-final-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-format.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-heldout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-improved-json.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-improved-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-layout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-mypy.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-newtests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-ruff.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native03-thinking-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-baseline-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-baseline-text.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-budget-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-checkpoint-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-existing-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-final-edits.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-final-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-final-text.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-final-transaction-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-format-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-heldout.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-improved-regex.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-layout-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-mypy-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-mypy-first.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-preflight-coordinated.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-preflight.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-ruff-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-ruff-first.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-ruff-second.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-ruff-third.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-static.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-transaction-tests-2.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native04-transaction-tests.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "native_micro.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "navigation-tests",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "novelty09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "number_benchmark.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "offline-binary08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "offline-stdin11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "oracle-review06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "oracle_bundle.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "peek08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "pending-closeouts08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "performance-smoke",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "pi-check13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "pi-report13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight-amend06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight-coordinated04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight-engineering08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preflight_engineering20_v2.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-closeout05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-closeout07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-closeout08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-closeout09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-engineering08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-native-authority.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-observation-test09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-pi-output06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-qwen-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-read-tests09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-recovery12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-reference07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare-validation12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare18.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare19.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_bundle_codex.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_case0015.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_case0015_auth.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_case0015_validator.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_case16_sterile.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_change_checks.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_delivery22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_engineering_stage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "prepare_structural_parents.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve-host-disclosure-failure.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve-repair-coverage.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve-runtime-failure.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve_capacity_failure.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve_dashboard_ignores.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserve_failed_grounding_run.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "preserved-checkouts",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "preserved-root",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "prior_task_sources.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "probe14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "production-reconciliation-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "progress-contention-probe",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "progress-contention-probe.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "progress10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "progress11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "progress12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "project_state_only_method.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "provider-metadata.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish-closeout09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish-native-02-results.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish17.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish18.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish19.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_bundle_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_case0013_packet.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_case0015_metadata.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_case14_packet.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_change_checks_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_docs22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_engineering_projection.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publish_obstructions21_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publishdocs13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publishdocs14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "publishdocs15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "pytest-native-continuation-1",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "qualify-final09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify10b.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify_full_changes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify_new_module22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qualify_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-coding-worker",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "qwen-cohort-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-complete-context-final.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-diagnosis-final.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-first-task-final.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-native-context-smoke.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-native-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-native-inspect.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-native-integrity.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-native-static.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "qwen-props-inspection.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "readiness-cohort-02.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "rebind_bundle_codex.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "rebuild_source_grounding_stage_a.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reconciliation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "reconciliation-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "record14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "record15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "record16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "record17.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "record_commands_handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "record_plan_validation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "recover11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "recover12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "recover_source_grounding.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-bridge05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-bridge06-api.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-bridge06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-bridge07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-bridge13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference-metadata08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference05.mjs",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference06-api.mjs",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference06.mjs",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference07.mjs",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reference13.mjs",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "refine-grounding.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "refresh_case0015_manifest.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "refresh_case14_draft.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "refresh_continuation_hashes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "repair-observation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replacement_candidate_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-capacity09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-csv-selection.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-environment05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-final12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-native-02-candidates.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay-native03-selection.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "replay11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0012.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0013_stage_b.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0014.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0015.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0015_failure.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case0015_success.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "report_case14_facts.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "repository-sentinel.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reseal_recovery.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "restore-native04-noqas.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "restore_case0014_readme.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "results12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "resume_bundle_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "resume_bundle_finish.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "reuse_phases.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "review-binary08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "review-closeout05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "review_delivery22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "review_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "ri-audit-20261023",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "role-groups-25",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "run-dev06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-native-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-reference05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-reference06-api.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-reference06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-reference07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run-reference13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run_engineering20_v2.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run_full_changes.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "run_new_module22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "runtime-diagnosis.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "runtime-evidence-authentication.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "runtime-final-report-source.md",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal-report08.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal13.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal_history_inputs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seal_layered.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "seed_case0014_auth.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "select-confirmation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "semantic-runtime-hardening-candidate",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "semantic-runtime-live-smoke",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "serving-compare05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "serving12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "source-grounding-engineering",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source-grounding-frame-cache",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source-grounding-host-disclosure-preflight",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source-grounding-launcher-preflight",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source-grounding-preparation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source-grounding-recovery",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "source19.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "source_quality_unpublished_percentages",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "stage-a-host-disclosure-candidate-before-static-fix",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "stage_d_unpublished_whitespace",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "startup-closeout.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "startup-controller-complete.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "startup-disposition.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "startup-final-report.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "startup-recovery",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "startup-recovery-audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "startup-validation-receipt.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-candidate-paths.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-only-a1-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "state-only-method-projection-01",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "state-only-validation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "state-only-validation-adoption-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-only-validation-controller.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-only-validation-protected-final.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-only-validation-protected.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state-only-validation-source.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state11.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "state_only_a1_sizing.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "static-final05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "static-finish.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "status09.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-capture-focused-bounded.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-capture-focused-tests.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-capture-protected.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-committed-verification.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-design-stop.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-discrimination-parents",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "structural-packet-focused.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-packet-protected.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-protected-validation.txt",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "structural-staged-verification.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize-edit06.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize-investigation07.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize-native-02.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize-native-03.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize-native-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "summarize_direct_capture.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "supersede_grounding_bindings.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "surface_timing.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "synthetic-runtime-probe",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "tencent-inspection",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "tencent-package.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "tencent-public",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "tencent-source.zip",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "tencent-tree.json",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_change_checks16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_command_environment10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_environment12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_output_policy15.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_scope_candidate.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_stdin10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "test_success_exit_codes14.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "throughput05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "token-budget05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "u2-validation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "update-grounding-docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "update-grounding-tests.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "update_case0013_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "update_case0015_docs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "update_recovery_readme.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "update_reviewed_seal.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "usage",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "usage-focused.log",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate10.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate12.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_case0012.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_case16_packet.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_direct_packets.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_extension_audit.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_packet_builds.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validate_worker20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "validation",
+        "directory": true,
+        "link": false
+      },
+      {
+        "name": "verify-native-cohort-final.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify-prior-native04.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify-qwen-cohort.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify-runtime-publication.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify16.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_case0013_blobs.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_case0013_git.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_case16_before_repair.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_case16_checkpoint.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_case_0016_stage_d_git.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_change_checks.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_delivery22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_engineering20.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_final_handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_graph3_git.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_performance_git.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_preservation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "verify_source_grounding_recovery_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "wire05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-freeze-validation.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-grounding-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-handoff05.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-native-cohort-final-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-native03-handoff.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write-runtime-disposition.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_case0013_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_case0015_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_case14_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_case14_stage_b_result.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_completion.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_continuation_report.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_handoff22.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_handoff_obstructions21.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_source_quality_completion.py",
+        "directory": false,
+        "link": false
+      },
+      {
+        "name": "write_verifier_result.py",
+        "directory": false,
+        "link": false
+      }
+    ]
+  },
+  "limitations": [
+    "Internal unreachable Git objects/reflogs are not source authority and are outside all-reachable-ref census.",
+    "Historical code versions and non-RI domains are inventoried, not substantively reviewed.",
+    "Recorded remote advertisement may gain later commits; publication must reauthenticate.",
+    "No general effectiveness conclusion from source or scripted tests."
+  ]
+}

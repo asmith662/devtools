@@ -1,0 +1,2024 @@
+{
+  "purpose": "Prioritize maintained native identity/selection/index contracts, then exact older source materialization/direct-base versions. Selected only; not launched.",
+  "current_fixtures": [
+    {
+      "path": "tests/context/python/imports/test_declarations.py",
+      "blob": "f8fb7883408857a249cd3c794265cee33a64c225",
+      "sha256": "8e5874949a3cc5c0cdadb62ca0c054946b78598bc5d0fd888e37a3f29fdb9a2e",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_import_forms_aliases_relative_levels_and_order",
+          "line": 29,
+          "end": 34
+        },
+        {
+          "name": "test_zero_nested_parse_failure_and_occurrence",
+          "line": 37,
+          "end": 45
+        },
+        {
+          "name": "test_explicit_address_and_multi_resource_requirement",
+          "line": 48,
+          "end": 65
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/imports/test_relations.py",
+      "blob": "662f474adfe2d0d05192866e09d543afda3d244b",
+      "sha256": "95bf5cb015279f46cf32a7967e9173432b4930587796033e70799832ad0efeb8",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_relations_are_declaration_grounded_and_require_one_source",
+          "line": 27,
+          "end": 118
+        },
+        {
+          "name": "test_nested_relative_self_and_non_resolved_outcomes",
+          "line": 121,
+          "end": 228
+        },
+        {
+          "name": "test_ambiguous_unsupported_and_multiple_root_relations_are_zero",
+          "line": 231,
+          "end": 328
+        },
+        {
+          "name": "test_relation_identity_tracks_declaration_source_resolution_and_target",
+          "line": 331,
+          "end": 456
+        },
+        {
+          "name": "test_relation_identity_excludes_unrelated_observed_state",
+          "line": 459,
+          "end": 528
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "sha256": "7bfd2f099e6442d48063675820db074a56fd0e5b8b5245a251b4c7c2adcf5ce9",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_module_qualified_function_and_class_references",
+          "line": 124,
+          "end": 166
+        },
+        {
+          "name": "test_direct_imported_classes_aliases_and_names",
+          "line": 169,
+          "end": 188
+        },
+        {
+          "name": "test_one_facade_function_preserves_existing_positive_route",
+          "line": 191,
+          "end": 209
+        },
+        {
+          "name": "test_same_module_functions_classes_and_class_qualified_methods",
+          "line": 212,
+          "end": 244
+        },
+        {
+          "name": "test_imported_and_module_qualified_class_methods",
+          "line": 247,
+          "end": 267
+        },
+        {
+          "name": "test_decorated_and_rebound_methods_do_not_claim_declaration_binding",
+          "line": 270,
+          "end": 287
+        },
+        {
+          "name": "test_shadowing_rebinding_ambiguity_and_unsupported",
+          "line": 290,
+          "end": 317
+        },
+        {
+          "name": "test_wrong_snapshot_and_retained_content",
+          "line": 320,
+          "end": 350
+        },
+        {
+          "name": "test_direct_module_lookup_bounded_outcomes",
+          "line": 393,
+          "end": 416
+        },
+        {
+          "name": "test_direct_module_lookup_rejects_stale_and_invalid_input",
+          "line": 419,
+          "end": 430
+        },
+        {
+          "name": "test_reference_scope_and_binding_assessments",
+          "line": 433,
+          "end": 457
+        },
+        {
+          "name": "test_unresolved_reference_routes",
+          "line": 507,
+          "end": 517
+        },
+        {
+          "name": "test_method_binding_outcomes",
+          "line": 520,
+          "end": 534
+        },
+        {
+          "name": "test_missing_retained_source_segment_is_rejected",
+          "line": 537,
+          "end": 550
+        },
+        {
+          "name": "test_incomplete_internal_binding_support_never_establishes_reference",
+          "line": 553,
+          "end": 579
+        },
+        {
+          "name": "test_decorated_imported_and_module_members_remain_unsupported",
+          "line": 586,
+          "end": 602
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/modules/test_membership.py",
+      "blob": "e9194c3b0fe1b8fcd19a728ca3a2083424ee0409",
+      "sha256": "5cc6bd38d1edfe139bb489c57b3c659bd40af09897aea6c35ecd6659ae492e5a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_immediate_membership_and_both_directional_queries",
+          "line": 51,
+          "end": 99
+        },
+        {
+          "name": "test_missing_non_package_and_excluded_are_distinct",
+          "line": 102,
+          "end": 131
+        },
+        {
+          "name": "test_explicit_root_is_necessary_for_parent_match",
+          "line": 134,
+          "end": 155
+        },
+        {
+          "name": "test_ordinary_name_collision_does_not_replace_unique_package",
+          "line": 158,
+          "end": 179
+        },
+        {
+          "name": "test_ambiguous_package_candidates_establish_no_membership",
+          "line": 182,
+          "end": 211
+        },
+        {
+          "name": "test_snapshot_or_root_mismatch_is_rejected",
+          "line": 214,
+          "end": 228
+        },
+        {
+          "name": "test_constructed_interpretations_and_exclusions_cannot_redirect_membership",
+          "line": 231,
+          "end": 279
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "blob": "fce0aa130d0c60724a489e8d57b73924a9dd2d6c",
+      "sha256": "a78ea35f3ab229c21191bf1894bec6723bef045e5e6f05c5b065962762b39706",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_plain_and_decorated_native_identity",
+          "line": 69,
+          "end": 106
+        },
+        {
+          "name": "test_exact_kind_scope_and_repeated_declarations",
+          "line": 124,
+          "end": 137
+        },
+        {
+          "name": "test_selection_rejects_invalid_and_foreign_inputs",
+          "line": 140,
+          "end": 173
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/test_mirrored_paths.py",
+      "blob": "68609be259d68b0e3d659c03510be40fbfb43593",
+      "sha256": "1545a8838a0b599c9af2de663661d01ccdd0703d87799de0fd33b6c0391cdc44",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_exact_nested_pairs_roles_and_observed_support",
+          "line": 39,
+          "end": 77
+        },
+        {
+          "name": "test_unmatched_near_matches_and_initializer_exclusions",
+          "line": 80,
+          "end": 109
+        },
+        {
+          "name": "test_snapshot_identity_and_content_are_derivation_dependencies",
+          "line": 112,
+          "end": 140
+        },
+        {
+          "name": "test_input_order_and_unrelated_observed_resources_affect_derivation",
+          "line": 143,
+          "end": 164
+        },
+        {
+          "name": "test_duplicate_address_is_rejected",
+          "line": 167,
+          "end": 174
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/test_composition.py",
+      "blob": "2e00fe7999b0e77047f79aeb1c9570848a3a9710",
+      "sha256": "ccc79773425a326362263fe37591a4d3528881a3288601a89163102e3f7d7653",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_inventory_correlates_native_evidence_without_ranking_or_parsing",
+          "line": 120,
+          "end": 153
+        },
+        {
+          "name": "test_duplicate_presentations_do_not_erase_independent_supports",
+          "line": 156,
+          "end": 183
+        },
+        {
+          "name": "test_rejects_stale_lexical_corpus_even_when_match_is_unchanged",
+          "line": 186,
+          "end": 209
+        },
+        {
+          "name": "test_rejects_structural_snapshot_and_purpose_mismatch",
+          "line": 212,
+          "end": 236
+        },
+        {
+          "name": "test_rejects_lexical_corpus_and_index_inconsistency",
+          "line": 239,
+          "end": 329
+        },
+        {
+          "name": "test_rejects_lexical_resource_missing_from_snapshot",
+          "line": 332,
+          "end": 350
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_corpus.py",
+      "blob": "a4a6258af5d1fbc6017d9456839852e01c221f28",
+      "sha256": "96e8ae738773c8062c358ceece3536ce8a1613910c01b4feee9c4b37cf9cfe64",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_discovery",
+          "line": 25,
+          "end": 39
+        },
+        {
+          "name": "_empty_discovery",
+          "line": 42,
+          "end": 50
+        },
+        {
+          "name": "_repository",
+          "line": 53,
+          "end": 54
+        },
+        {
+          "name": "_observe",
+          "line": 57,
+          "end": 68
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_membership_is_discovery_grounded_heterogeneous_and_canonical",
+          "line": 71,
+          "end": 92
+        },
+        {
+          "name": "test_equivalent_selection_is_caller_order_independent",
+          "line": 95,
+          "end": 113
+        },
+        {
+          "name": "test_empty_membership_retains_nonempty_discovery",
+          "line": 116,
+          "end": 122
+        },
+        {
+          "name": "test_empty_discovery_can_define_an_empty_membership",
+          "line": 125,
+          "end": 134
+        },
+        {
+          "name": "test_duplicate_or_undiscovered_selection_fails",
+          "line": 137,
+          "end": 150
+        },
+        {
+          "name": "test_definition_construction_performs_no_acquisition_or_analysis",
+          "line": 153,
+          "end": 177
+        },
+        {
+          "name": "test_realization_retains_exact_selected_observed_occurrences_in_definition_order",
+          "line": 180,
+          "end": 226
+        },
+        {
+          "name": "test_unselected_observed_state_does_not_become_a_member_or_identity_input",
+          "line": 229,
+          "end": 272
+        },
+        {
+          "name": "test_selected_content_membership_and_repository_change_corpus_identity",
+          "line": 275,
+          "end": 347
+        },
+        {
+          "name": "test_realization_rejects_missing_mismatched_or_duplicate_observed_state",
+          "line": 350,
+          "end": 399
+        },
+        {
+          "name": "test_empty_definition_realizes_without_observed_state_or_work",
+          "line": 402,
+          "end": 435
+        },
+        {
+          "name": "test_nonempty_realization_performs_no_acquisition_or_analysis",
+          "line": 438,
+          "end": 485
+        },
+        {
+          "name": "test_corpus_identity_rejects_noncanonical_value",
+          "line": 488,
+          "end": 491
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_document.py",
+      "blob": "03c061a2a02dec407d9de9b502380af6ce740e52",
+      "sha256": "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 30,
+          "end": 31
+        },
+        {
+          "name": "_corpus",
+          "line": 34,
+          "end": 68
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_represents_heterogeneous_corpus_members_as_exact_whole_resources",
+          "line": 71,
+          "end": 122
+        },
+        {
+          "name": "test_equivalent_representation_is_deterministic",
+          "line": 125,
+          "end": 138
+        },
+        {
+          "name": "test_selected_content_and_address_change_document_identity",
+          "line": 141,
+          "end": 170
+        },
+        {
+          "name": "test_other_member_changes_collection_but_not_an_unchanged_document",
+          "line": 173,
+          "end": 206
+        },
+        {
+          "name": "test_empty_corpus_represents_without_side_effects",
+          "line": 209,
+          "end": 245
+        },
+        {
+          "name": "test_document_representation_exposes_no_lexical_or_ranking_state",
+          "line": 248,
+          "end": 272
+        },
+        {
+          "name": "test_document_identity_rejects_noncanonical_value",
+          "line": 275,
+          "end": 278
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_index.py",
+      "blob": "5710e325f06b62dc19b3448291b4e81134cacaf6",
+      "sha256": "9cad5dd5ee3633440feac0b8d7fd4835ea809d7e2fda0ca5cb5b445bc83e3a44",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_equivalent_analyses_produce_equal_statistics_and_index",
+          "line": 60,
+          "end": 66
+        },
+        {
+          "name": "test_postings_retain_document_and_observation_evidence",
+          "line": 69,
+          "end": 95
+        },
+        {
+          "name": "test_index_changes_with_statistics_without_mutating_analysis",
+          "line": 98,
+          "end": 117
+        },
+        {
+          "name": "test_empty_index_has_no_postings",
+          "line": 120,
+          "end": 131
+        },
+        {
+          "name": "test_statistics_and_index_do_not_retokenize_or_acquire_resources",
+          "line": 134,
+          "end": 163
+        },
+        {
+          "name": "test_statistics_and_index_expose_no_query_scoring_or_retrieval_state",
+          "line": 166,
+          "end": 183
+        },
+        {
+          "name": "test_paths_are_not_indexed_unless_present_in_document_content",
+          "line": 186,
+          "end": 197
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_statistics.py",
+      "blob": "da49fe20cb3f15fd6f49c30337b1ea953b941c19",
+      "sha256": "994f9ddf931529882fbc6359ebd514aa8da54ef97d4f70c47126d25e09c2b658",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_statistics_establish_document_counts_lengths_and_average",
+          "line": 34,
+          "end": 47
+        },
+        {
+          "name": "test_statistics_preserve_term_frequency_and_distinct_document_frequency",
+          "line": 50,
+          "end": 72
+        },
+        {
+          "name": "test_empty_statistics_have_explicit_zero_semantics",
+          "line": 75,
+          "end": 101
+        },
+        {
+          "name": "test_statistics_change_with_collection_and_preserve_unchanged_analysis",
+          "line": 104,
+          "end": 123
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_evaluation.py",
+      "blob": "aa3fa4bf016bafad526f7a39fda02ed939f1f36d",
+      "sha256": "60fdc0a1a97c3bed0c6433d877097e134ef9327da425e8ad8ae77b65fa90c8b5",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_evaluation_retains_native_relevance_rank_and_missed_resource_evidence",
+          "line": 104,
+          "end": 135
+        },
+        {
+          "name": "test_evaluation_metrics_handle_no_results_short_lists_and_multiple_relevant",
+          "line": 138,
+          "end": 164
+        },
+        {
+          "name": "test_aggregate_metrics_preserve_case_results_and_compute_mrr",
+          "line": 167,
+          "end": 199
+        },
+        {
+          "name": "test_evaluation_rejects_invalid_cases_and_insufficient_result_evidence",
+          "line": 202,
+          "end": 227
+        },
+        {
+          "name": "test_summary_rejects_mixed_cutoffs_and_case_query_mismatch",
+          "line": 230,
+          "end": 252
+        },
+        {
+          "name": "test_controlled_heterogeneous_cases_measure_strengths_and_known_gaps",
+          "line": 255,
+          "end": 315
+        },
+        {
+          "name": "test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work",
+          "line": 318,
+          "end": 357
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    }
+  ],
+  "historical_versions": [
+    {
+      "path": "src/devtools/context/python/classes/bases.py",
+      "blob": "8927e55d1126c2ec0af6925ab8bc827e514e735e",
+      "commits": [
+        182,
+        229
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "src/devtools/context/python_function_materialization.py",
+      "blob": "7d0357aca237718a88959d494734099ea9a14230",
+      "commits": [
+        175,
+        250
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "src/devtools/context/python_function_materialization.py",
+      "blob": "a6375e143fa10850e307d6efc2e4ac955d461ac4",
+      "commits": [
+        250,
+        355
+      ],
+      "tips": [],
+      "role": "Historical source implementation",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "tests/context/python/function/test_materialization.py",
+      "blob": "78eae937fb4a7b2c9087a74ae18792cb05e5c3a6",
+      "commits": [
+        184,
+        355
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "905d79805a1c31c9109cfa202e551467575c1f32",
+      "commits": [
+        175,
+        225
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "b6512dc0dcb19c6427d1a0e0e04e333253127886",
+      "commits": [
+        250,
+        355
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    },
+    {
+      "path": "tests/context/test_python_function_materialization.py",
+      "blob": "c40a4804a80fe8703ba7b43274f4e61d17b2d7ed",
+      "commits": [
+        225,
+        250
+      ],
+      "tips": [],
+      "role": "Historical test/fixture",
+      "depth": "NOT_REVIEWED",
+      "comparison_blob": null,
+      "disposition": "UNKNOWN_UNTIL_EXACT_BLOB_REVIEW",
+      "remaining": "Full independent older fixture/controller body review not inherited from current implementation"
+    }
+  ],
+  "remaining_current_fixtures": [
+    {
+      "path": "tests/context/__init__.py",
+      "blob": "c8e24d5e5c039fad310e94fb178db36c146891b9",
+      "sha256": "a7a87440d437fdc09ea52569d680dbd866e4d0b75adf66569a259dad29841226",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/__init__.py",
+      "blob": "e098bea6bdbab6213622c1a5ef89aeb9e949272f",
+      "sha256": "3c29f92ca4ce0e1e38fd34d4872867b921effe21aa13a5200cd6f0e78d9b428a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/association/__init__.py",
+      "blob": "fb51f162cf5c89d36331cf74278d1f405223d953",
+      "sha256": "9ad5beba37d5881f578beb027c3a8cac5b0996a2e9a511f0d5a75a2b71e0ae36",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/generation/__init__.py",
+      "blob": "f692f4a3d69a3d0f80c278d263140e0034c8ce64",
+      "sha256": "bb76c4041f324c2ec73392db33bc87db5eedbda0526fccaaeac37684f96d2a47",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/grounding/__init__.py",
+      "blob": "0033c9fe69d390a4fb8c40ee24bf04ed2d83ce74",
+      "sha256": "7799b84f21497c36a7fba20f7597c081bd691373641ee68e24a48990f8f60e60",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/resolution/__init__.py",
+      "blob": "4ab470ab4fb2302c06a576496f2e27e674aa5940",
+      "sha256": "72835aeba7c58c3969c2e5b4d4f53b73be877251ca8ef58cea43098d797618fd",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/roles/__init__.py",
+      "blob": "d73ba153de296f09b4e1c71f8d6a8a5d5d7a4fb4",
+      "sha256": "8315d6b080a98f54244402536ca38afd4563d2b9f8c419cd26307b186a39ded9",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/roles/helpers.py",
+      "blob": "c80475e3bd960547de68806861cc47b348e25ffa",
+      "sha256": "7167883b386c380cc707d3deb3b72a0d78988e90ffeca5828d36918edd2d7b42",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "snapshot",
+          "line": 24,
+          "end": 37
+        },
+        {
+          "name": "configuration_targets",
+          "line": 40,
+          "end": 64
+        }
+      ],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/roles/test_configuration.py",
+      "blob": "38ff83661f25d1f7998828837124d042cd982dd9",
+      "sha256": "4f8b85da72a39e5a3cd7963dad42c8535c38561308ca6ef65bcaf6b3f340dc3e",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_supported_metadata_tables_and_targets_have_distinct_native_bases",
+          "line": 23,
+          "end": 122
+        },
+        {
+          "name": "test_absent_malformed_and_unsupported_declarations_abstain",
+          "line": 129,
+          "end": 147
+        },
+        {
+          "name": "test_pattern_forms_and_missing_target_scope_remain_explicit",
+          "line": 158,
+          "end": 180
+        },
+        {
+          "name": "test_globs_are_bounded_case_sensitive_observations_and_conventions_survive",
+          "line": 183,
+          "end": 221
+        },
+        {
+          "name": "test_nested_configuration_uses_native_tool_root_and_retained_content",
+          "line": 224,
+          "end": 244
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/roles/test_dependency_groups.py",
+      "blob": "4fbfca690978c9bd3d5c55e356afdbb78a856167",
+      "sha256": "21e6972db130455cbe27e53e5b6d722bb706b7e2bb6507a78b3a832146f9ddb2",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_names_do_not_infer_roles_and_native_source_is_preserved",
+          "line": 31,
+          "end": 67
+        },
+        {
+          "name": "test_native_presence_is_distinct_from_absence_without_filename_hints",
+          "line": 78,
+          "end": 104
+        },
+        {
+          "name": "test_unsupported_groups_abstain_but_native_evidence_is_retained",
+          "line": 118,
+          "end": 137
+        },
+        {
+          "name": "test_mixed_siblings_preserve_independent_support_kinds",
+          "line": 140,
+          "end": 190
+        },
+        {
+          "name": "test_changed_or_forged_native_groups_are_rejected",
+          "line": 193,
+          "end": 233
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/roles/test_evidence.py",
+      "blob": "cd518c53d8d315c6f188ce47b6a5aaf191d6058e",
+      "sha256": "dd3cc7e09ade40dc56ab03772fc271695637bce73ea72886e321badc567c215b",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_intrinsic_conventions_are_multi_label_and_not_exclusion",
+          "line": 34,
+          "end": 97
+        },
+        {
+          "name": "test_native_structural_supports_and_duplicate_input_normalization",
+          "line": 100,
+          "end": 180
+        },
+        {
+          "name": "test_empty_and_duplicate_resource_frames",
+          "line": 183,
+          "end": 191
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/localization/routing/__init__.py",
+      "blob": "5bd63f5f82b989d9a7842cd4a19ed0d285675608",
+      "sha256": "f2e7032b35b603bf996a879d0fbfe849a86716ad4f8d268aab9e117ef16fefff",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/planning/__init__.py",
+      "blob": "c4964d44e35d0d96feab4a2976e0eb50161ff3c4",
+      "sha256": "bafefb7d8450124fbecf404ddc15295f1af5ce925adf80cd0bcb987035342301",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/__init__.py",
+      "blob": "114c0cc008ea9ecfe5d3518aece8ef0df95fe2c4",
+      "sha256": "28a42ffcd82c38b844e3062962351adf7b26183079ab85503be2836460eb13ed",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/classes/__init__.py",
+      "blob": "4b4a4ec123c51aeb6d927d0b119403f18257b8d6",
+      "sha256": "073560bc532f504deceba74673a4c226058503fd52c06026514e2adf35c7a861",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/function/__init__.py",
+      "blob": "f430228714aa57d87592b53140823f5ab7e42dea",
+      "sha256": "0f809917e7d89ed6b69faa50ffd79fdc829800da25209536c4c52a1ea017ff3c",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/imports/__init__.py",
+      "blob": "ec7837351a944124955f15e98e8f1f1f8c4b6451",
+      "sha256": "0a4b3466ac65c70fa53f416fa744f035b9659f16561067c90152a51a6a86b387",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/imports/test_declarations.py",
+      "blob": "f8fb7883408857a249cd3c794265cee33a64c225",
+      "sha256": "8e5874949a3cc5c0cdadb62ca0c054946b78598bc5d0fd888e37a3f29fdb9a2e",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_import_forms_aliases_relative_levels_and_order",
+          "line": 29,
+          "end": 34
+        },
+        {
+          "name": "test_zero_nested_parse_failure_and_occurrence",
+          "line": 37,
+          "end": 45
+        },
+        {
+          "name": "test_explicit_address_and_multi_resource_requirement",
+          "line": 48,
+          "end": 65
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/imports/test_relations.py",
+      "blob": "662f474adfe2d0d05192866e09d543afda3d244b",
+      "sha256": "95bf5cb015279f46cf32a7967e9173432b4930587796033e70799832ad0efeb8",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_relations_are_declaration_grounded_and_require_one_source",
+          "line": 27,
+          "end": 118
+        },
+        {
+          "name": "test_nested_relative_self_and_non_resolved_outcomes",
+          "line": 121,
+          "end": 228
+        },
+        {
+          "name": "test_ambiguous_unsupported_and_multiple_root_relations_are_zero",
+          "line": 231,
+          "end": 328
+        },
+        {
+          "name": "test_relation_identity_tracks_declaration_source_resolution_and_target",
+          "line": 331,
+          "end": 456
+        },
+        {
+          "name": "test_relation_identity_excludes_unrelated_observed_state",
+          "line": 459,
+          "end": 528
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/modules/__init__.py",
+      "blob": "cf9021f360218f220cea224d0023884fb16f1eaf",
+      "sha256": "862430c2e64cdf083c0a33322d7ed4d6d515757e6e9c7d5073f777a2903f6398",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/modules/test_membership.py",
+      "blob": "e9194c3b0fe1b8fcd19a728ca3a2083424ee0409",
+      "sha256": "5cc6bd38d1edfe139bb489c57b3c659bd40af09897aea6c35ecd6659ae492e5a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_immediate_membership_and_both_directional_queries",
+          "line": 51,
+          "end": 99
+        },
+        {
+          "name": "test_missing_non_package_and_excluded_are_distinct",
+          "line": 102,
+          "end": 131
+        },
+        {
+          "name": "test_explicit_root_is_necessary_for_parent_match",
+          "line": 134,
+          "end": 155
+        },
+        {
+          "name": "test_ordinary_name_collision_does_not_replace_unique_package",
+          "line": 158,
+          "end": 179
+        },
+        {
+          "name": "test_ambiguous_package_candidates_establish_no_membership",
+          "line": 182,
+          "end": 211
+        },
+        {
+          "name": "test_snapshot_or_root_mismatch_is_rejected",
+          "line": 214,
+          "end": 228
+        },
+        {
+          "name": "test_constructed_interpretations_and_exclusions_cannot_redirect_membership",
+          "line": 231,
+          "end": 279
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "blob": "fce0aa130d0c60724a489e8d57b73924a9dd2d6c",
+      "sha256": "a78ea35f3ab229c21191bf1894bec6723bef045e5e6f05c5b065962762b39706",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_plain_and_decorated_native_identity",
+          "line": 69,
+          "end": 106
+        },
+        {
+          "name": "test_exact_kind_scope_and_repeated_declarations",
+          "line": 124,
+          "end": 137
+        },
+        {
+          "name": "test_selection_rejects_invalid_and_foreign_inputs",
+          "line": 140,
+          "end": 173
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/project_configuration/__init__.py",
+      "blob": "c729661764b8f61935670b48e70ef81dafa12151",
+      "sha256": "507158801af46477b8bc5fdbebea10f730de8350066613c70d5cb354abee3c52",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_configuration.py",
+      "blob": "45005371153c6cc5894abbe327593f88bbb488a7",
+      "sha256": "a1bdbc15f6d2da3ca3ea401173062de177237b2552e8fdfd5a7ef3a93013c4e1",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_actual_project_selectors_retained_content_and_coverage",
+          "line": 84,
+          "end": 127
+        },
+        {
+          "name": "test_separate_nested_config_and_command_frames_and_duplicates",
+          "line": 130,
+          "end": 190
+        },
+        {
+          "name": "test_unsupported_literals",
+          "line": 215,
+          "end": 224
+        },
+        {
+          "name": "test_invalid_toml_never_publishes_declarations_or_facts",
+          "line": 228,
+          "end": 237
+        },
+        {
+          "name": "test_unsupported_selector_forms_and_dynamic_readme",
+          "line": 251,
+          "end": 259
+        },
+        {
+          "name": "test_empty_arrays_absent_keys_and_non_table_nodes",
+          "line": 262,
+          "end": 284
+        },
+        {
+          "name": "test_coverage_competing_routes_roots_and_many_members",
+          "line": 301,
+          "end": 325
+        },
+        {
+          "name": "test_coverage_path_only_and_module_without_path_frame",
+          "line": 328,
+          "end": 345
+        },
+        {
+          "name": "test_reject_foreign_or_stale_dependencies",
+          "line": 364,
+          "end": 420
+        },
+        {
+          "name": "test_default_frame_missing_address_and_dependency_changes",
+          "line": 423,
+          "end": 455
+        },
+        {
+          "name": "test_dynamic_readme_preserves_static_syntax_and_ordinals",
+          "line": 458,
+          "end": 483
+        },
+        {
+          "name": "test_readme_missing_exact_target_never_selects_prefix",
+          "line": 486,
+          "end": 501
+        },
+        {
+          "name": "test_frame_order_does_not_change_derivation_or_fact_order",
+          "line": 504,
+          "end": 522
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_dependency_groups.py",
+      "blob": "5ae1cb3d6626b4e78558f7007b7a3fc7e37f874a",
+      "sha256": "7d3a20f32281135cae6c0f0be796a6e894776fa7de4f264b0246138198b8c5ef",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_ordered_raw_strings_and_empty_groups",
+          "line": 20,
+          "end": 60
+        },
+        {
+          "name": "test_unsupported_groups_retain_whole_group_and_valid_sibling",
+          "line": 77,
+          "end": 94
+        },
+        {
+          "name": "test_invalid_names_are_qualified_without_dropping_original_key",
+          "line": 98,
+          "end": 116
+        },
+        {
+          "name": "test_collisions_are_all_unsupported_and_original_names_preserved",
+          "line": 119,
+          "end": 140
+        },
+        {
+          "name": "test_absence_empty_table_and_unsupported_parent",
+          "line": 152,
+          "end": 173
+        },
+        {
+          "name": "test_malformed_input_cannot_claim_absence",
+          "line": 180,
+          "end": 185
+        },
+        {
+          "name": "test_dependency_settings_are_authenticated_by_resolution",
+          "line": 188,
+          "end": 228
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_obstructions.py",
+      "blob": "109fa9c3f33b9a42a118cfa4e650d0a6e638e56b",
+      "sha256": "b0b0ea3745d6712ad9033baaf46970fbb3bd77a8e3b4e84d6c7edf2334aad4c2",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_each_non_table_parent_retains_full_selector_provenance",
+          "line": 33,
+          "end": 65
+        },
+        {
+          "name": "test_valid_adjacent_branches_still_resolve",
+          "line": 68,
+          "end": 98
+        },
+        {
+          "name": "test_genuine_absence_is_not_an_obstruction",
+          "line": 105,
+          "end": 109
+        },
+        {
+          "name": "test_present_unsupported_leaf_retains_existing_reason",
+          "line": 120,
+          "end": 137
+        },
+        {
+          "name": "test_empty_array_and_dynamic_readme_survive_adjacent_obstruction",
+          "line": 140,
+          "end": 169
+        },
+        {
+          "name": "test_malformed_toml_never_claims_absence_or_obstructions",
+          "line": 173,
+          "end": 182
+        },
+        {
+          "name": "test_obstruction_identity_tracks_exact_retained_configuration",
+          "line": 185,
+          "end": 199
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_settings.py",
+      "blob": "c3e25e8a0e3307a8080d1ff0d2d57a8fb690aecb",
+      "sha256": "ca4facf8c2a67810bc6fde40e42abc1d4649e8f9f5ad3a3df8d0f4252b08ff5d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_supported_build_project_and_tool_declarations",
+          "line": 31,
+          "end": 92
+        },
+        {
+          "name": "test_pytest_patterns_exclusions_and_opaque_arguments",
+          "line": 95,
+          "end": 122
+        },
+        {
+          "name": "test_supported_absence_is_bounded_to_named_keys",
+          "line": 126,
+          "end": 136
+        },
+        {
+          "name": "test_malformed_toml_cannot_claim_setting_absence",
+          "line": 140,
+          "end": 147
+        },
+        {
+          "name": "test_unsupported_shapes_keep_source_and_do_not_claim_absence",
+          "line": 171,
+          "end": 187
+        },
+        {
+          "name": "test_entrypoint_tables_invalid_shapes_reserved_groups_and_empty_tables",
+          "line": 190,
+          "end": 223
+        },
+        {
+          "name": "test_dynamic_values_are_declarations_not_effective_metadata",
+          "line": 226,
+          "end": 242
+        },
+        {
+          "name": "test_identity_binds_snapshot_repository_resource_shape_and_retained_content",
+          "line": 245,
+          "end": 283
+        },
+        {
+          "name": "test_dynamic_entrypoints_are_retained_without_effective_binding_claims",
+          "line": 286,
+          "end": 312
+        },
+        {
+          "name": "test_resolution_rejects_forged_or_duplicate_setting_declarations",
+          "line": 315,
+          "end": 334
+        },
+        {
+          "name": "test_setting_identity_distinguishes_absent_value_and_empty_string",
+          "line": 337,
+          "end": 339
+        },
+        {
+          "name": "test_table_order_does_not_change_setting_order",
+          "line": 342,
+          "end": 350
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/references/__init__.py",
+      "blob": "70788996e1c93b40c4dc6b8b968c7ebea5646aec",
+      "sha256": "fc5a268d1cfccb8df10753b7df112ce6a790da883abbd6ff4807eddb3336bfe3",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/references/declarations/__init__.py",
+      "blob": "27cc56f0ab7f5eb1dffd7d9e65b71d6c31ba8541",
+      "sha256": "504767dc6e56388a9c58fc79d04ac57dd764cbf0be8ff5daeb7f05dc8fd57919",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "sha256": "7bfd2f099e6442d48063675820db074a56fd0e5b8b5245a251b4c7c2adcf5ce9",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_module_qualified_function_and_class_references",
+          "line": 124,
+          "end": 166
+        },
+        {
+          "name": "test_direct_imported_classes_aliases_and_names",
+          "line": 169,
+          "end": 188
+        },
+        {
+          "name": "test_one_facade_function_preserves_existing_positive_route",
+          "line": 191,
+          "end": 209
+        },
+        {
+          "name": "test_same_module_functions_classes_and_class_qualified_methods",
+          "line": 212,
+          "end": 244
+        },
+        {
+          "name": "test_imported_and_module_qualified_class_methods",
+          "line": 247,
+          "end": 267
+        },
+        {
+          "name": "test_decorated_and_rebound_methods_do_not_claim_declaration_binding",
+          "line": 270,
+          "end": 287
+        },
+        {
+          "name": "test_shadowing_rebinding_ambiguity_and_unsupported",
+          "line": 290,
+          "end": 317
+        },
+        {
+          "name": "test_wrong_snapshot_and_retained_content",
+          "line": 320,
+          "end": 350
+        },
+        {
+          "name": "test_direct_module_lookup_bounded_outcomes",
+          "line": 393,
+          "end": 416
+        },
+        {
+          "name": "test_direct_module_lookup_rejects_stale_and_invalid_input",
+          "line": 419,
+          "end": 430
+        },
+        {
+          "name": "test_reference_scope_and_binding_assessments",
+          "line": 433,
+          "end": 457
+        },
+        {
+          "name": "test_unresolved_reference_routes",
+          "line": 507,
+          "end": 517
+        },
+        {
+          "name": "test_method_binding_outcomes",
+          "line": 520,
+          "end": 534
+        },
+        {
+          "name": "test_missing_retained_source_segment_is_rejected",
+          "line": 537,
+          "end": 550
+        },
+        {
+          "name": "test_incomplete_internal_binding_support_never_establishes_reference",
+          "line": 553,
+          "end": 579
+        },
+        {
+          "name": "test_decorated_imported_and_module_members_remain_unsupported",
+          "line": 586,
+          "end": 602
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/test_mirrored_paths.py",
+      "blob": "68609be259d68b0e3d659c03510be40fbfb43593",
+      "sha256": "1545a8838a0b599c9af2de663661d01ccdd0703d87799de0fd33b6c0391cdc44",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_exact_nested_pairs_roles_and_observed_support",
+          "line": 39,
+          "end": 77
+        },
+        {
+          "name": "test_unmatched_near_matches_and_initializer_exclusions",
+          "line": 80,
+          "end": 109
+        },
+        {
+          "name": "test_snapshot_identity_and_content_are_derivation_dependencies",
+          "line": 112,
+          "end": 140
+        },
+        {
+          "name": "test_input_order_and_unrelated_observed_resources_affect_derivation",
+          "line": 143,
+          "end": 164
+        },
+        {
+          "name": "test_duplicate_address_is_rejected",
+          "line": 167,
+          "end": 174
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/python/test_source_candidacy.py",
+      "blob": "5451f6ddf756a0412a7f6cc1cbf27bec50010e09",
+      "sha256": "f1e0813b613b4817e9c310bc263228d804039cbe96d4ab61c56d27ace3fcca5d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_exact_dot_py_candidacy_preserves_discovery_order_and_address_values",
+          "line": 57,
+          "end": 83
+        },
+        {
+          "name": "test_discovery_candidates_compose_through_the_function_context_pipeline",
+          "line": 86,
+          "end": 162
+        },
+        {
+          "name": "test_candidate_zero_is_successful_and_bounded_to_discovered_addresses",
+          "line": 165,
+          "end": 179
+        },
+        {
+          "name": "test_candidate_projection_performs_no_filesystem_or_pipeline_work",
+          "line": 182,
+          "end": 235
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/__init__.py",
+      "blob": "7d35031427348f25943b8697f80e974b31ec89c4",
+      "sha256": "b4e050eb190db5d15f4cb3d22c782941270e9e9c3a2c3d31c3762fd02cc301f5",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_corpus.py",
+      "blob": "a4a6258af5d1fbc6017d9456839852e01c221f28",
+      "sha256": "96e8ae738773c8062c358ceece3536ce8a1613910c01b4feee9c4b37cf9cfe64",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_discovery",
+          "line": 25,
+          "end": 39
+        },
+        {
+          "name": "_empty_discovery",
+          "line": 42,
+          "end": 50
+        },
+        {
+          "name": "_repository",
+          "line": 53,
+          "end": 54
+        },
+        {
+          "name": "_observe",
+          "line": 57,
+          "end": 68
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_membership_is_discovery_grounded_heterogeneous_and_canonical",
+          "line": 71,
+          "end": 92
+        },
+        {
+          "name": "test_equivalent_selection_is_caller_order_independent",
+          "line": 95,
+          "end": 113
+        },
+        {
+          "name": "test_empty_membership_retains_nonempty_discovery",
+          "line": 116,
+          "end": 122
+        },
+        {
+          "name": "test_empty_discovery_can_define_an_empty_membership",
+          "line": 125,
+          "end": 134
+        },
+        {
+          "name": "test_duplicate_or_undiscovered_selection_fails",
+          "line": 137,
+          "end": 150
+        },
+        {
+          "name": "test_definition_construction_performs_no_acquisition_or_analysis",
+          "line": 153,
+          "end": 177
+        },
+        {
+          "name": "test_realization_retains_exact_selected_observed_occurrences_in_definition_order",
+          "line": 180,
+          "end": 226
+        },
+        {
+          "name": "test_unselected_observed_state_does_not_become_a_member_or_identity_input",
+          "line": 229,
+          "end": 272
+        },
+        {
+          "name": "test_selected_content_membership_and_repository_change_corpus_identity",
+          "line": 275,
+          "end": 347
+        },
+        {
+          "name": "test_realization_rejects_missing_mismatched_or_duplicate_observed_state",
+          "line": 350,
+          "end": 399
+        },
+        {
+          "name": "test_empty_definition_realizes_without_observed_state_or_work",
+          "line": 402,
+          "end": 435
+        },
+        {
+          "name": "test_nonempty_realization_performs_no_acquisition_or_analysis",
+          "line": 438,
+          "end": 485
+        },
+        {
+          "name": "test_corpus_identity_rejects_noncanonical_value",
+          "line": 488,
+          "end": 491
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_discovery.py",
+      "blob": "54454dc95ee8cabaef8be8e91ffa275e47e256a8",
+      "sha256": "3b084700ce939ed085eb93f488a38d7b9238bf33fff30b854dcdc36acbb916c5",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 45,
+          "end": 47
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_explicit_discovery_never_enumerates_unrequested_directories",
+          "line": 50,
+          "end": 84
+        },
+        {
+          "name": "test_explicit_discovery_missing_duplicate_link_and_bounds_refuse",
+          "line": 87,
+          "end": 130
+        },
+        {
+          "name": "test_recursive_discovery_composes_with_explicit_observation",
+          "line": 133,
+          "end": 203
+        },
+        {
+          "name": "test_discovery_feeds_the_existing_python_function_pipeline",
+          "line": 206,
+          "end": 277
+        },
+        {
+          "name": "test_discovery_skips_symbolic_links_and_directories",
+          "line": 280,
+          "end": 300
+        },
+        {
+          "name": "test_empty_discovery_is_successful_and_resource_bound_is_strict",
+          "line": 303,
+          "end": 328
+        },
+        {
+          "name": "test_discovery_requires_a_positive_resource_bound",
+          "line": 332,
+          "end": 343
+        },
+        {
+          "name": "test_discovery_requires_a_positive_traversal_bound",
+          "line": 347,
+          "end": 358
+        },
+        {
+          "name": "test_empty_directories_can_exhaust_the_traversal_bound",
+          "line": 361,
+          "end": 380
+        },
+        {
+          "name": "test_invalid_discovery_root_fails_instead_of_returning_empty",
+          "line": 384,
+          "end": 402
+        },
+        {
+          "name": "test_traversal_and_classification_failures_publish_no_partial_result",
+          "line": 405,
+          "end": 457
+        },
+        {
+          "name": "test_resolved_child_escape_is_rejected_before_traversal",
+          "line": 460,
+          "end": 489
+        },
+        {
+          "name": "test_discovery_invokes_no_observation_or_downstream_pipeline_work",
+          "line": 492,
+          "end": 551
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_document.py",
+      "blob": "03c061a2a02dec407d9de9b502380af6ce740e52",
+      "sha256": "58d8f39dbba47981ec4f91cf695ebf06f0e784d22016188a85d03e16b18c7261",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 30,
+          "end": 31
+        },
+        {
+          "name": "_corpus",
+          "line": 34,
+          "end": 68
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_represents_heterogeneous_corpus_members_as_exact_whole_resources",
+          "line": 71,
+          "end": 122
+        },
+        {
+          "name": "test_equivalent_representation_is_deterministic",
+          "line": 125,
+          "end": 138
+        },
+        {
+          "name": "test_selected_content_and_address_change_document_identity",
+          "line": 141,
+          "end": 170
+        },
+        {
+          "name": "test_other_member_changes_collection_but_not_an_unchanged_document",
+          "line": 173,
+          "end": 206
+        },
+        {
+          "name": "test_empty_corpus_represents_without_side_effects",
+          "line": 209,
+          "end": 245
+        },
+        {
+          "name": "test_document_representation_exposes_no_lexical_or_ranking_state",
+          "line": 248,
+          "end": 272
+        },
+        {
+          "name": "test_document_identity_rejects_noncanonical_value",
+          "line": 275,
+          "end": 278
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/repository/test_intrinsic_paths.py",
+      "blob": "84873e4b36fad17d06e0d650cc62450c122e42cb",
+      "sha256": "e12a3638d32a71275300113f2295cbeea217a052b8aa93527edfedee1aa6d8dc",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_canonical_address_answers_resource_path_questions",
+          "line": 10,
+          "end": 22
+        },
+        {
+          "name": "test_root_resource_and_suffix_semantics_are_stdlib_values",
+          "line": 25,
+          "end": 32
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/__init__.py",
+      "blob": "d7effaff6905546e89178ecb7614d967f701aeed",
+      "sha256": "8e86f354cd89bdfbd4f1f3bebf9a0f328adc845417f17e5f53fba1168833cb93",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/__init__.py",
+      "blob": "ee1f8ff919e31fde8b8fc9f8699e97b10767e1e5",
+      "sha256": "60a1264ea5e971125f22950f7a7e3331b984489d343ca25dccc60889b3f0553a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b",
+      "sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_digest",
+          "line": 27,
+          "end": 32
+        },
+        {
+          "name": "_document",
+          "line": 35,
+          "end": 50
+        },
+        {
+          "name": "_collection",
+          "line": 53,
+          "end": 83
+        }
+      ],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_analysis.py",
+      "blob": "139e2795946acc90b76d22ea13b79f29bb2aba2e",
+      "sha256": "f6d6ab7377a55bd4b14d4a81c84b130c4dcb940417456fc23385cd9215dd6f66",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_heterogeneous_documents_use_one_baseline_lexical_mechanism",
+          "line": 18,
+          "end": 45
+        },
+        {
+          "name": "test_observations_preserve_order_repetition_casefolding_and_exact_spans",
+          "line": 48,
+          "end": 99
+        },
+        {
+          "name": "test_document_analysis_is_deterministic_and_independent_of_other_documents",
+          "line": 102,
+          "end": 117
+        },
+        {
+          "name": "test_empty_document_and_empty_collection_are_successful_zero_results",
+          "line": 120,
+          "end": 130
+        },
+        {
+          "name": "test_analysis_performs_no_acquisition_parsing_or_retrieval",
+          "line": 133,
+          "end": 165
+        },
+        {
+          "name": "test_analysis_exposes_no_statistics_or_retrieval_state",
+          "line": 168,
+          "end": 187
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_evaluation.py",
+      "blob": "aa3fa4bf016bafad526f7a39fda02ed939f1f36d",
+      "sha256": "60fdc0a1a97c3bed0c6433d877097e134ef9327da425e8ad8ae77b65fa90c8b5",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_evaluation_retains_native_relevance_rank_and_missed_resource_evidence",
+          "line": 104,
+          "end": 135
+        },
+        {
+          "name": "test_evaluation_metrics_handle_no_results_short_lists_and_multiple_relevant",
+          "line": 138,
+          "end": 164
+        },
+        {
+          "name": "test_aggregate_metrics_preserve_case_results_and_compute_mrr",
+          "line": 167,
+          "end": 199
+        },
+        {
+          "name": "test_evaluation_rejects_invalid_cases_and_insufficient_result_evidence",
+          "line": 202,
+          "end": 227
+        },
+        {
+          "name": "test_summary_rejects_mixed_cutoffs_and_case_query_mismatch",
+          "line": 230,
+          "end": 252
+        },
+        {
+          "name": "test_controlled_heterogeneous_cases_measure_strengths_and_known_gaps",
+          "line": 255,
+          "end": 315
+        },
+        {
+          "name": "test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work",
+          "line": 318,
+          "end": 357
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_index.py",
+      "blob": "5710e325f06b62dc19b3448291b4e81134cacaf6",
+      "sha256": "9cad5dd5ee3633440feac0b8d7fd4835ea809d7e2fda0ca5cb5b445bc83e3a44",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_equivalent_analyses_produce_equal_statistics_and_index",
+          "line": 60,
+          "end": 66
+        },
+        {
+          "name": "test_postings_retain_document_and_observation_evidence",
+          "line": 69,
+          "end": 95
+        },
+        {
+          "name": "test_index_changes_with_statistics_without_mutating_analysis",
+          "line": 98,
+          "end": 117
+        },
+        {
+          "name": "test_empty_index_has_no_postings",
+          "line": 120,
+          "end": 131
+        },
+        {
+          "name": "test_statistics_and_index_do_not_retokenize_or_acquire_resources",
+          "line": 134,
+          "end": 163
+        },
+        {
+          "name": "test_statistics_and_index_expose_no_query_scoring_or_retrieval_state",
+          "line": 166,
+          "end": 183
+        },
+        {
+          "name": "test_paths_are_not_indexed_unless_present_in_document_content",
+          "line": 186,
+          "end": 197
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_statistics.py",
+      "blob": "da49fe20cb3f15fd6f49c30337b1ea953b941c19",
+      "sha256": "994f9ddf931529882fbc6359ebd514aa8da54ef97d4f70c47126d25e09c2b658",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_statistics_establish_document_counts_lengths_and_average",
+          "line": 34,
+          "end": 47
+        },
+        {
+          "name": "test_statistics_preserve_term_frequency_and_distinct_document_frequency",
+          "line": 50,
+          "end": 72
+        },
+        {
+          "name": "test_empty_statistics_have_explicit_zero_semantics",
+          "line": 75,
+          "end": 101
+        },
+        {
+          "name": "test_statistics_change_with_collection_and_preserve_unchanged_analysis",
+          "line": 104,
+          "end": 123
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/source/__init__.py",
+      "blob": "058ebf48acfcc8fa55b17f97b6d7467f0b73a726",
+      "sha256": "af1814662310e960213999b7161e3af218e66f6831b10afe6ac8171ccad6c579",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/context/retrieval/test_composition.py",
+      "blob": "2e00fe7999b0e77047f79aeb1c9570848a3a9710",
+      "sha256": "ccc79773425a326362263fe37591a4d3528881a3288601a89163102e3f7d7653",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_inventory_correlates_native_evidence_without_ranking_or_parsing",
+          "line": 120,
+          "end": 153
+        },
+        {
+          "name": "test_duplicate_presentations_do_not_erase_independent_supports",
+          "line": 156,
+          "end": 183
+        },
+        {
+          "name": "test_rejects_stale_lexical_corpus_even_when_match_is_unchanged",
+          "line": 186,
+          "end": 209
+        },
+        {
+          "name": "test_rejects_structural_snapshot_and_purpose_mismatch",
+          "line": 212,
+          "end": 236
+        },
+        {
+          "name": "test_rejects_lexical_corpus_and_index_inconsistency",
+          "line": 239,
+          "end": 329
+        },
+        {
+          "name": "test_rejects_lexical_resource_missing_from_snapshot",
+          "line": 332,
+          "end": 350
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/evaluation/__init__.py",
+      "blob": "c2c6bd247ea5c678f80d4a184cc0de29219b8b1a",
+      "sha256": "956d1010c77623fd1e751dfeda16faf31682d52cf4aceb5bcbb35bcb4e6b5265",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    },
+    {
+      "path": "tests/evaluation/test_coverage.py",
+      "blob": "6c714a12efc36f5d1d7b0d5d7218fe8c062924d4",
+      "sha256": "db700bd8baf4e1009d2284ffecaa8b4eba09d926af10919081b86c6f50ad6eb0",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_exact_and_empty_coverage",
+          "line": 14,
+          "end": 21
+        },
+        {
+          "name": "test_missing_unexpected_and_simultaneous_diagnostics",
+          "line": 24,
+          "end": 34
+        },
+        {
+          "name": "test_duplicates_are_reported_independently_and_in_first_order",
+          "line": 37,
+          "end": 47
+        },
+        {
+          "name": "test_structured_hashable_and_non_sortable_identities",
+          "line": 69,
+          "end": 83
+        },
+        {
+          "name": "test_unjudged_payload_is_observed_and_unsampled_expected_identity_is_missing",
+          "line": 98,
+          "end": 112
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit."
+    }
+  ],
+  "older_current_versions_not_reviewed": 177,
+  "older_tip_delta_only": 26,
+  "experimental_remaining": 0,
+  "authority": "No source-fix, inference, original scientific execution, main promotion or successor-session work authorized by selection."
+}

@@ -1,0 +1,108 @@
+{
+  "original": 55109,
+  "projected": 31867,
+  "independent_ablations": {
+    "objectives": {
+      "tokens_remaining": 30913,
+      "tokens_removed": 954
+    },
+    "assistant_text": {
+      "tokens_remaining": 31005,
+      "tokens_removed": 862
+    },
+    "assistant_arguments": {
+      "tokens_remaining": 30829,
+      "tokens_removed": 1038
+    },
+    "schemas": {
+      "tokens_remaining": 30367,
+      "tokens_removed": 1500
+    },
+    "search_results": {
+      "tokens_remaining": 22867,
+      "tokens_removed": 9000
+    },
+    "read_receipts": {
+      "tokens_remaining": 28048,
+      "tokens_removed": 3819
+    },
+    "edit_feedback": {
+      "tokens_remaining": 18015,
+      "tokens_removed": 13852
+    }
+  },
+  "receipt_bytes": {
+    "status": 14,
+    "source_after": 66,
+    "path": 63,
+    "version": 66,
+    "validation": 9565,
+    "source_observations": 25562,
+    "edits": 21233,
+    "sources_after": 401,
+    "host_limits": 88,
+    "instruction": 87
+  },
+  "search_hits": [
+    {
+      "id": "t3jIhT0bV3OA3esNOoZ5vUFK6dJOFNgd",
+      "count": 4
+    },
+    {
+      "id": "RE56CnebcQla1k08FfGB7zO5E7we7Gyc",
+      "count": 7
+    },
+    {
+      "id": "LPLaQcnrpGY4vlO6rWS3vlyOLTCIr6Vw",
+      "count": 8
+    },
+    {
+      "id": "tYJqrnJ7V1kDLppnVDVhfb1D8JFCJmpI",
+      "count": 8
+    }
+  ],
+  "candidate_shared_match_envelopes": {
+    "input_tokens": 28396,
+    "matches": 27
+  },
+  "source_preserving_initial": 44852,
+  "revised_actual_projection": {
+    "input_tokens": 28400,
+    "available_generation_tokens": 2320,
+    "safety_tokens": 2048,
+    "minimum_output_tokens": 2048,
+    "admissible": true
+  },
+  "continuity_verified": {
+    "messages": 33,
+    "nonsearch_messages_byte_identical": 29,
+    "native_calls_and_results_preserved": true,
+    "current_source_and_latest_validation_unchanged": true,
+    "historical_source_text_tokens": 0
+  },
+  "ordered_token_attribution_original_projected": {
+    "skeleton": 532,
+    "schemas": 1500,
+    "objectives": 1084,
+    "assistant": 1900,
+    "tool_envelopes": 7973,
+    "search_matches": 8182,
+    "edit_receipts": 1660,
+    "validation": 2295,
+    "active_source": 6741
+  },
+  "ordered_total": 31867,
+  "actual_behavioral_feedback": {
+    "category": "behavior",
+    "status": "FAIL",
+    "behavior_passed": false,
+    "exit_code": 1,
+    "primary_failures": [],
+    "primary_failures_truncated": false,
+    "reporting_failure": false,
+    "stdout": "",
+    "stdout_truncated": false,
+    "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\dependency-groups-24\\live\\oracle-runner.py\", line 38, in <module>\r\n    assert set(groups) == {(\"dependency-groups\", name) for name in (*supported, *unsupported)}, \"missing static dependency-group declarations\"\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: missing static dependency-group declarations\r\n",
+    "stderr_truncated": false
+  }
+}

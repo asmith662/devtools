@@ -1,0 +1,28 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "038c927f-a59b-4010-89e8-becceabe991d",
+  "created_at": "2026-10-20T20:58:57.083137+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Enforce hard byte-consumption bounds for filesystem reads",
+    "summary": "Complete the filesystem roadmap hard-bounded-read obligation: a finite max_bytes must bound actual byte consumption/allocation even if a regular file grows after its observed stat size. Preserve exact complete content up to the boundary, including streams returning short reads; consume no more than max_bytes+1 bytes to detect oversize. Reject a known oversize file before loading it and reject a growing oversized file without decoding it. Preserve None/unlimited behavior, zero and negative limit semantics, codec dispatch, metadata, resource closure and permission-error normalization. Preserve all unrelated file/model APIs. Do not change tests or acceptance. Ruff, formatting and strict typing are part of acceptance.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex continuation-09 source review; 2026-10-20T20:58:57.081481+00:00"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/resources/filesystem/reading.py"
+    ],
+    "evidence": [
+      "src/devtools/resources/filesystem/docs/roadmap.md",
+      "apps/qwen/evaluation/continuation-09/bounded-read-consumption.json"
+    ],
+    "benefit": "A finite read budget bounds allocation during file growth, rather than rejecting only after unbounded allocation.",
+    "uncertainty": "Local task acceptance is not protected integration; historical implementation-specific read_bytes mocks require independently attributed updated regressions before publication.",
+    "dependencies": [
+      "Existing codec dispatch and filesystem error normalization"
+    ]
+  },
+  "payload_sha256": "9e7ddd45c3be27f2190f9de6d28b6adb5bb081caa7111233de8d2ef36eff20c4"
+}

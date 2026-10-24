@@ -1,0 +1,2098 @@
+{
+  "tests": [
+    {
+      "path": "tests/experiments/increment_25/__init__.py",
+      "blob": "2ffa18e273d633474915f5683f78b06f3970f3a0",
+      "sha256": "a8769ee16d7f7cb1850b5e1f6c9825a2021655db7db26a1208d6fab6764dd6f2",
+      "main_blob": "2ffa18e273d633474915f5683f78b06f3970f3a0",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Task population, one-facade imported-member candidate/control, blind binding and confirmation",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_25/test_confirmation.py",
+      "blob": "e8976d03091492e5a1f3b468ae9d781077a5e5a6",
+      "sha256": "48e59b1a10cb958ca4aed88f14d6f9e2cebb6d4c5deec2f730cbd42b8ccb0edf",
+      "main_blob": "e8976d03091492e5a1f3b468ae9d781077a5e5a6",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_confirmation_partition_is_exact_and_uses_committed_generator",
+          "line": 21,
+          "end": 26
+        },
+        {
+          "name": "test_development_reserve_and_unknown_confirmation_execution_are_rejected",
+          "line": 29,
+          "end": 37
+        },
+        {
+          "name": "test_confirmation_cli_has_no_partition_selection",
+          "line": 40,
+          "end": 54
+        },
+        {
+          "name": "test_confirmation_artifact_rejects_nonconfirmation_case",
+          "line": 57,
+          "end": 63
+        }
+      ],
+      "namespace_only": false,
+      "review": "Task population, one-facade imported-member candidate/control, blind binding and confirmation",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_25/test_confirmation_judgments.py",
+      "blob": "8be83828cd48afcee786a3fe78fdb57ed2e13b81",
+      "sha256": "76150d9b9c218ce4e0ed18637d6dbad13bbc0a1c779b4f0a6e5191faba5f5354",
+      "main_blob": "8be83828cd48afcee786a3fe78fdb57ed2e13b81",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_blinded",
+          "line": 24,
+          "end": 39
+        },
+        {
+          "name": "_decisions",
+          "line": 42,
+          "end": 55
+        },
+        {
+          "name": "_candidates",
+          "line": 58,
+          "end": 72
+        },
+        {
+          "name": "test_freeze_requires_exact_pair_coverage_and_three_state_labels",
+          "line": 75,
+          "end": 84
+        },
+        {
+          "name": "test_frozen_judgments_hide_address_and_origin_until_join",
+          "line": 87,
+          "end": 99
+        },
+        {
+          "name": "test_unblinding_retains_unjudged_and_counts_each_arm_without_scoring",
+          "line": 102,
+          "end": 125
+        },
+        {
+          "name": "test_evaluation_rejects_tampered_freeze_before_origin_join",
+          "line": 128,
+          "end": 145
+        },
+        {
+          "name": "test_retained_confirmation_artifacts_cover_only_frozen_confirmation",
+          "line": 148,
+          "end": 203
+        },
+        {
+          "name": "test_committed_development_artifacts_remain_byte_identical",
+          "line": 206,
+          "end": 213
+        }
+      ],
+      "namespace_only": false,
+      "review": "Task population, one-facade imported-member candidate/control, blind binding and confirmation",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_25/test_development.py",
+      "blob": "feceac389b7a2a5ae408e2af14616a6223e3cc19",
+      "sha256": "5442adec0b22a46467087c9aa57be261d172eeb452bdb9ecf42ff942eb1bd5cf",
+      "main_blob": "feceac389b7a2a5ae408e2af14616a6223e3cc19",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_card",
+          "line": 32,
+          "end": 45
+        },
+        {
+          "name": "_corpus",
+          "line": 48,
+          "end": 56
+        },
+        {
+          "name": "test_freeze_exposes_exact_development_partition_only",
+          "line": 59,
+          "end": 64
+        },
+        {
+          "name": "test_confirmation_reserve_and_unknown_execution_are_rejected",
+          "line": 67,
+          "end": 75
+        },
+        {
+          "name": "test_development_cli_has_no_partition_selection",
+          "line": 78,
+          "end": 92
+        },
+        {
+          "name": "test_git_materialization_uses_requested_parent_not_task_or_head",
+          "line": 95,
+          "end": 135
+        },
+        {
+          "name": "test_structural_expansion_is_outgoing_resolved_one_hop_and_deduplicated",
+          "line": 138,
+          "end": 184
+        },
+        {
+          "name": "test_seed_target_is_excluded_but_diagnostic_is_preserved",
+          "line": 187,
+          "end": 210
+        },
+        {
+          "name": "test_generate_case_uses_canonical_lexical_seed_and_matched_control",
+          "line": 213,
+          "end": 259
+        },
+        {
+          "name": "test_lexical_exhaustion_is_explicit",
+          "line": 262,
+          "end": 289
+        },
+        {
+          "name": "test_frozen_query_is_consumed_unchanged",
+          "line": 292,
+          "end": 305
+        },
+        {
+          "name": "test_blinded_judgment_contains_neutral_parent_content_only",
+          "line": 308,
+          "end": 333
+        },
+        {
+          "name": "test_artifact_guards_reject_labels_and_blinding_leaks",
+          "line": 336,
+          "end": 347
+        },
+        {
+          "name": "test_case_generation_is_deterministic",
+          "line": 350,
+          "end": 356
+        },
+        {
+          "name": "spy",
+          "line": 222,
+          "end": 225
+        },
+        {
+          "name": "no_resolutions",
+          "line": 227,
+          "end": 228
+        },
+        {
+          "name": "fake_additions",
+          "line": 238,
+          "end": 239
+        },
+        {
+          "name": "spy",
+          "line": 299,
+          "end": 301
+        }
+      ],
+      "namespace_only": false,
+      "review": "Task population, one-facade imported-member candidate/control, blind binding and confirmation",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_25/test_task_population.py",
+      "blob": "cb9e6426d3b41347251034c59d300a7d3930b238",
+      "sha256": "6326356fa9a4fe7617c9b64f21dde682d280a5a5dc8829fc4cce15cbfb292143",
+      "main_blob": "cb9e6426d3b41347251034c59d300a7d3930b238",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_commit",
+          "line": 15,
+          "end": 31
+        },
+        {
+          "name": "_eligible_cards",
+          "line": 34,
+          "end": 40
+        },
+        {
+          "name": "test_merge_parent_and_relevant_touch_rules_are_explicit",
+          "line": 43,
+          "end": 55
+        },
+        {
+          "name": "test_documentation_only_and_prior_mechanism_history_are_excluded",
+          "line": 58,
+          "end": 73
+        },
+        {
+          "name": "test_subjective_exclusions_preserve_exact_message_evidence",
+          "line": 76,
+          "end": 81
+        },
+        {
+          "name": "test_task_card_uses_only_message_evidence_and_keeps_paths_evaluator_only",
+          "line": 84,
+          "end": 107
+        },
+        {
+          "name": "test_population_and_sampling_ignore_input_order",
+          "line": 110,
+          "end": 116
+        },
+        {
+          "name": "test_fixed_seed_split_is_disjoint_complete_and_exact_when_population_is_large_enough",
+          "line": 119,
+          "end": 130
+        },
+        {
+          "name": "test_reserve_is_subset_of_eligible_without_duplicates",
+          "line": 133,
+          "end": 142
+        },
+        {
+          "name": "test_sampling_never_silently_downsizes",
+          "line": 145,
+          "end": 147
+        },
+        {
+          "name": "test_collect_uses_the_exclusive_cutoff",
+          "line": 150,
+          "end": 161
+        },
+        {
+          "name": "test_freeze_has_no_candidate_or_judgment_fields",
+          "line": 164,
+          "end": 172
+        },
+        {
+          "name": "test_committed_freeze_is_valid_and_sealed",
+          "line": 175,
+          "end": 182
+        },
+        {
+          "name": "fake_lines",
+          "line": 155,
+          "end": 157
+        }
+      ],
+      "namespace_only": false,
+      "review": "Task population, one-facade imported-member candidate/control, blind binding and confirmation",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_26/__init__.py",
+      "blob": "0e9972ed8468ee08ab6c44e592876692ac834275",
+      "sha256": "ad416f054dba944a885a3feb0a4e00d7177f8a3c5df74e2a0ef676afc5b89b32",
+      "main_blob": "0e9972ed8468ee08ab6c44e592876692ac834275",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Pinned dense chunks, encoder/resource projection, equal-capacity controls and frozen labels",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_26/test_configuration.py",
+      "blob": "a3201cc3dd682a55a9c3e920851ab9e2494af43b",
+      "sha256": "902a3a4e92a223831fefc8e00d7ed0717bdc3c5a7c131c0748c85e339dd74112",
+      "main_blob": "a3201cc3dd682a55a9c3e920851ab9e2494af43b",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_increment_25_population_and_partitions_are_reused_exactly",
+          "line": 17,
+          "end": 25
+        },
+        {
+          "name": "test_query_and_representation_boundaries_are_frozen",
+          "line": 28,
+          "end": 37
+        },
+        {
+          "name": "test_capacity_is_independent_matched_and_nonstructural",
+          "line": 40,
+          "end": 45
+        },
+        {
+          "name": "test_judgment_reuse_requires_need_snapshot_resource_and_semantics",
+          "line": 48,
+          "end": 54
+        },
+        {
+          "name": "test_serialization_is_deterministic_and_contains_no_outcomes",
+          "line": 57,
+          "end": 63
+        },
+        {
+          "name": "test_runtime_amendment_preserves_original_identity_and_scientific_contract",
+          "line": 66,
+          "end": 77
+        },
+        {
+          "name": "test_committed_freeze_is_valid_and_contains_no_semantic_results",
+          "line": 80,
+          "end": 88
+        },
+        {
+          "name": "test_configuration_never_imports_or_executes_an_encoder",
+          "line": 91,
+          "end": 96
+        }
+      ],
+      "namespace_only": false,
+      "review": "Pinned dense chunks, encoder/resource projection, equal-capacity controls and frozen labels",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_26/test_development.py",
+      "blob": "715d086233f519780d08cc6f278915d2a90323c1",
+      "sha256": "1938ac3c8ececfa1c1f8a4c67994eeb1f1cfc5bd735beeba63f9ecbee4a9b5e7",
+      "main_blob": "715d086233f519780d08cc6f278915d2a90323c1",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "Tokenizer",
+          "line": 41,
+          "end": 56
+        },
+        {
+          "name": "Model",
+          "line": 59,
+          "end": 70
+        },
+        {
+          "name": "card",
+          "line": 73,
+          "end": 81
+        },
+        {
+          "name": "corpus",
+          "line": 84,
+          "end": 89
+        },
+        {
+          "name": "test_exact_freeze_and_partition_enforced",
+          "line": 92,
+          "end": 106
+        },
+        {
+          "name": "test_offline_encoder_uses_exact_local_revision_without_metadata_lookup",
+          "line": 109,
+          "end": 193
+        },
+        {
+          "name": "test_offline_encoder_rejects_missing_or_unverified_weights_without_fallback",
+          "line": 197,
+          "end": 226
+        },
+        {
+          "name": "test_offline_encoder_propagates_missing_snapshot_without_network_fallback",
+          "line": 229,
+          "end": 253
+        },
+        {
+          "name": "test_offline_option_does_not_change_frozen_computation_settings",
+          "line": 256,
+          "end": 268
+        },
+        {
+          "name": "test_query_prefix_and_chunk_coverage",
+          "line": 271,
+          "end": 279
+        },
+        {
+          "name": "test_cls_float32_normalization_and_dot_similarity",
+          "line": 282,
+          "end": 288
+        },
+        {
+          "name": "test_raw_source_max_chunk_and_ties",
+          "line": 291,
+          "end": 315
+        },
+        {
+          "name": "test_additive_padding_mask_is_frozen_float32",
+          "line": 318,
+          "end": 323
+        },
+        {
+          "name": "test_artifact_guards_reject_sealed_cases_and_mechanism_leakage",
+          "line": 326,
+          "end": 334
+        },
+        {
+          "name": "test_independent_arms_blinding_and_deterministic_serialization",
+          "line": 337,
+          "end": 373
+        },
+        {
+          "name": "encode",
+          "line": 45,
+          "end": 47
+        },
+        {
+          "name": "pad",
+          "line": 49,
+          "end": 56
+        },
+        {
+          "name": "__call__",
+          "line": 60,
+          "end": 70
+        },
+        {
+          "name": "RejectingHfApi",
+          "line": 117,
+          "end": 119
+        },
+        {
+          "name": "resolve_snapshot",
+          "line": 121,
+          "end": 123
+        },
+        {
+          "name": "LoadedModel",
+          "line": 125,
+          "end": 131
+        },
+        {
+          "name": "LoadedTokenizer",
+          "line": 133,
+          "end": 144
+        },
+        {
+          "name": "AutoModel",
+          "line": 146,
+          "end": 151
+        },
+        {
+          "name": "AutoTokenizer",
+          "line": 153,
+          "end": 158
+        },
+        {
+          "name": "RejectingHfApi",
+          "line": 206,
+          "end": 208
+        },
+        {
+          "name": "resolve_snapshot",
+          "line": 210,
+          "end": 212
+        },
+        {
+          "name": "RejectingHfApi",
+          "line": 234,
+          "end": 236
+        },
+        {
+          "name": "missing_snapshot",
+          "line": 238,
+          "end": 240
+        },
+        {
+          "name": "encode",
+          "line": 295,
+          "end": 297
+        },
+        {
+          "name": "analyze",
+          "line": 342,
+          "end": 344
+        },
+        {
+          "name": "score",
+          "line": 349,
+          "end": 351
+        },
+        {
+          "name": "Output",
+          "line": 64,
+          "end": 69
+        },
+        {
+          "name": "model_info",
+          "line": 118,
+          "end": 119
+        },
+        {
+          "name": "to",
+          "line": 126,
+          "end": 128
+        },
+        {
+          "name": "eval",
+          "line": 130,
+          "end": 131
+        },
+        {
+          "name": "num_special_tokens_to_add",
+          "line": 139,
+          "end": 141
+        },
+        {
+          "name": "encode",
+          "line": 143,
+          "end": 144
+        },
+        {
+          "name": "from_pretrained",
+          "line": 148,
+          "end": 151
+        },
+        {
+          "name": "from_pretrained",
+          "line": 155,
+          "end": 158
+        },
+        {
+          "name": "model_info",
+          "line": 207,
+          "end": 208
+        },
+        {
+          "name": "model_info",
+          "line": 235,
+          "end": 236
+        }
+      ],
+      "namespace_only": false,
+      "review": "Pinned dense chunks, encoder/resource projection, equal-capacity controls and frozen labels",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_26/test_development_evaluation.py",
+      "blob": "2c44a61ded796cc20933a5d70e89b38f17b284cb",
+      "sha256": "bf7ce0b964e6f741c6b7244a6c9c84f869118d2465a7e40ee5e7362019e97f02",
+      "main_blob": "2c44a61ded796cc20933a5d70e89b38f17b284cb",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_bytes",
+          "line": 34,
+          "end": 39
+        },
+        {
+          "name": "_evaluate",
+          "line": 42,
+          "end": 48
+        },
+        {
+          "name": "test_exact_frozen_artifact_binding_and_case_population",
+          "line": 51,
+          "end": 64
+        },
+        {
+          "name": "test_modified_canonical_input_is_rejected",
+          "line": 68,
+          "end": 78
+        },
+        {
+          "name": "test_join_rejects_wrong_case_neutral_pair_and_arm_accounting",
+          "line": 81,
+          "end": 108
+        },
+        {
+          "name": "test_three_state_per_arm_and_overlap_accounting",
+          "line": 111,
+          "end": 143
+        },
+        {
+          "name": "test_lexical_reachability_distinguishes_capacity_from_positive_rank",
+          "line": 146,
+          "end": 165
+        },
+        {
+          "name": "test_result_serialization_and_identity_are_deterministic",
+          "line": 168,
+          "end": 175
+        }
+      ],
+      "namespace_only": false,
+      "review": "Pinned dense chunks, encoder/resource projection, equal-capacity controls and frozen labels",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_26/test_development_judgments.py",
+      "blob": "3a46e9f9b76d61048d24aa5cae6cbb544f5d41d9",
+      "sha256": "34c30d761339b7aaced12a558a48993f2c739676c150cb5f08943f3913976ae7",
+      "main_blob": "3a46e9f9b76d61048d24aa5cae6cbb544f5d41d9",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_input",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "_frozen",
+          "line": 35,
+          "end": 43
+        },
+        {
+          "name": "_decisions",
+          "line": 46,
+          "end": 58
+        },
+        {
+          "name": "_reseal",
+          "line": 61,
+          "end": 62
+        },
+        {
+          "name": "test_canonical_freeze_covers_exact_neutral_population_without_origins",
+          "line": 65,
+          "end": 103
+        },
+        {
+          "name": "test_freeze_rejects_missing_duplicate_and_extra_decisions",
+          "line": 106,
+          "end": 124
+        },
+        {
+          "name": "test_three_states_and_provenance_are_enforced",
+          "line": 127,
+          "end": 138
+        },
+        {
+          "name": "test_prior_reuse_requires_all_four_identity_components",
+          "line": 142,
+          "end": 159
+        },
+        {
+          "name": "test_actual_increment_25_frozen_population_has_no_reusable_pair",
+          "line": 162,
+          "end": 190
+        },
+        {
+          "name": "test_origin_leak_and_sealed_case_fail_audit",
+          "line": 193,
+          "end": 202
+        },
+        {
+          "name": "test_identity_binding_and_serialization_are_deterministic",
+          "line": 205,
+          "end": 222
+        },
+        {
+          "name": "pair_keys",
+          "line": 178,
+          "end": 188
+        }
+      ],
+      "namespace_only": false,
+      "review": "Pinned dense chunks, encoder/resource projection, equal-capacity controls and frozen labels",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/__init__.py",
+      "blob": "897a2f081115f2ac1a01b44b4f8f4b6ce5c37985",
+      "sha256": "72a195aebe119a71b9fd8c613a5c40cf48665567587fd65e6d6f51d1cea29219",
+      "main_blob": "897a2f081115f2ac1a01b44b4f8f4b6ce5c37985",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/structural_imports/__init__.py",
+      "blob": "93b261b01efd71343b5591b6f26685b496d9321c",
+      "sha256": "3d257ab1e2b963825c3d5ad7757ae12322856f6d8e232b6f29ab38296565bd13",
+      "main_blob": "93b261b01efd71343b5591b6f26685b496d9321c",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/structural_imports/test_analysis.py",
+      "blob": "4d7825f796b2789908b0af9861f00e56bdb25f18",
+      "sha256": "7012ec60a5cb338c63962c34c9d1b7c9326e07aaec4d7d18b6be04d091c7b800",
+      "main_blob": "4d7825f796b2789908b0af9861f00e56bdb25f18",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_frozen_development_result_reproduces_exact_join",
+          "line": 24,
+          "end": 68
+        },
+        {
+          "name": "test_useful_reach_direction_and_control_counts_are_deduplicated",
+          "line": 71,
+          "end": 108
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/structural_imports/test_mechanics.py",
+      "blob": "d4e242c6327fcf37635e9c99a59b83ded0bf6b47",
+      "sha256": "437b5b9f56fb14abfb3700fc335f2c304fcae8c4b3a56cf30a399e7d3483f6db",
+      "main_blob": "d4e242c6327fcf37635e9c99a59b83ded0bf6b47",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_module",
+          "line": 54,
+          "end": 55
+        },
+        {
+          "name": "_relation",
+          "line": 58,
+          "end": 82
+        },
+        {
+          "name": "_ranks",
+          "line": 85,
+          "end": 92
+        },
+        {
+          "name": "test_saved_development_partition_and_canonical_seed_contract",
+          "line": 95,
+          "end": 111
+        },
+        {
+          "name": "test_outgoing_incoming_are_separate_reverse_lookup_and_preserve_supports",
+          "line": 114,
+          "end": 169
+        },
+        {
+          "name": "test_lexical_classification_and_exhaustion",
+          "line": 172,
+          "end": 223
+        },
+        {
+          "name": "test_only_resolved_module_outcome_creates_relation",
+          "line": 226,
+          "end": 289
+        },
+        {
+          "name": "_card",
+          "line": 292,
+          "end": 305
+        },
+        {
+          "name": "test_exact_reuse_three_states_and_cost_without_outcome_analysis",
+          "line": 308,
+          "end": 367
+        },
+        {
+          "name": "test_every_exact_reuse_identity_dimension_is_required",
+          "line": 380,
+          "end": 390
+        },
+        {
+          "name": "test_frozen_candidate_artifact_precedes_cost_and_excludes_heldout",
+          "line": 393,
+          "end": 415
+        },
+        {
+          "name": "test_deterministic_serialization",
+          "line": 418,
+          "end": 425
+        },
+        {
+          "name": "test_non_ascii_canonical_json_round_trip_uses_utf8",
+          "line": 428,
+          "end": 436
+        },
+        {
+          "name": "test_compressed_candidate_is_exact_canonical_original",
+          "line": 439,
+          "end": 449
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/structural_imports/test_population.py",
+      "blob": "1d9db526db173c241a2227a596dc5585e40c8b83",
+      "sha256": "18783f68327ab2f5345fc4d2b7156819ebafaa31f003883ec2c3b8010fb62691",
+      "main_blob": "1d9db526db173c241a2227a596dc5585e40c8b83",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_saved_population_is_exact_reuse_union_and_blind",
+          "line": 21,
+          "end": 104
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_comparison_judgments.py",
+      "blob": "8bbcb670a27a7a24e29e941599cc9fc219fc924c",
+      "sha256": "188a35788945189527476677c9b4cb6ee422a3882c49537bb4a712297b32c445",
+      "main_blob": "8bbcb670a27a7a24e29e941599cc9fc219fc924c",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_frozen_judgments_cover_exactly_the_neutral_input",
+          "line": 30,
+          "end": 96
+        },
+        {
+          "name": "test_changed_neutral_input_is_rejected_before_judgment",
+          "line": 99,
+          "end": 103
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_depth_diagnostic.py",
+      "blob": "4dec5afc1dedef0aa52ba20f7a50b6bfde535ca8",
+      "sha256": "d3a05748682bde3895403ee05600affb2ae8d38e832c7fda05f41d6979fe7acf",
+      "main_blob": "4dec5afc1dedef0aa52ba20f7a50b6bfde535ca8",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_freeze_partitions_24_development_and_14_sealed_confirmation",
+          "line": 29,
+          "end": 58
+        },
+        {
+          "name": "test_freeze_records_frozen_parent_snapshots_and_queries_without_outcomes",
+          "line": 61,
+          "end": 72
+        },
+        {
+          "name": "test_existing_judgments_are_joined_with_three_states_and_exact_identity",
+          "line": 75,
+          "end": 105
+        },
+        {
+          "name": "test_depth_checkpoints_keep_unjudged_and_missing_positive_rank_explicit",
+          "line": 108,
+          "end": 143
+        },
+        {
+          "name": "test_unknown_judgment_state_is_rejected_instead_of_treated_as_negative",
+          "line": 146,
+          "end": 154
+        },
+        {
+          "name": "test_positive_ranking_requires_complete_contiguous_ordering",
+          "line": 157,
+          "end": 165
+        },
+        {
+          "name": "test_summary_uses_judged_pool_language_and_exact_buckets",
+          "line": 168,
+          "end": 194
+        },
+        {
+          "name": "test_serialization_is_deterministic",
+          "line": 197,
+          "end": 199
+        },
+        {
+          "name": "test_prior_judgment_requires_exact_need_snapshot_address_and_semantics",
+          "line": 202,
+          "end": 269
+        },
+        {
+          "name": "test_saved_rankings_are_complete_positive_order_and_exclude_heldout",
+          "line": 272,
+          "end": 299
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_evidence_diagnostic.py",
+      "blob": "d917fa509465eb0f6d16531739ce5e0d94de0b6c",
+      "sha256": "83c672bddb69511aae5eec4f214faa1d8103d04584516c5283aa343a2ffb1fb5",
+      "main_blob": "d917fa509465eb0f6d16531739ce5e0d94de0b6c",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_saved",
+          "line": 28,
+          "end": 33
+        },
+        {
+          "name": "test_exact_evidence_population_and_three_states_reproduce",
+          "line": 36,
+          "end": 69
+        },
+        {
+          "name": "test_diagnostic_preserves_missingness_and_oracle_boundary",
+          "line": 72,
+          "end": 101
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_fusion.py",
+      "blob": "a39a5051ce6eb8f925219f4de4ecc97257eeba97",
+      "sha256": "9f9c0c9cb6c484e97cb85840dc06fc3f9f07922c42b2dad70fab285fc3c575c5",
+      "main_blob": "a39a5051ce6eb8f925219f4de4ecc97257eeba97",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_saved",
+          "line": 27,
+          "end": 32
+        },
+        {
+          "name": "test_outcome_independent_freeze_and_candidate_surfaces_rebuild",
+          "line": 35,
+          "end": 64
+        },
+        {
+          "name": "test_result_reuses_exact_judgments_and_accounts_for_substitutions",
+          "line": 67,
+          "end": 110
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_lexical_comparison.py",
+      "blob": "11e8c87265763659dd5b756a1fafe2c1cf7b1922",
+      "sha256": "90e8205e59d763d36699bfa1ae40ba95d4c7b3987126650759b25716a0f1aad4",
+      "main_blob": "11e8c87265763659dd5b756a1fafe2c1cf7b1922",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_frozen_partition_and_baseline_identity",
+          "line": 28,
+          "end": 41
+        },
+        {
+          "name": "test_identifier_representation_is_deterministic_and_preserves_exact",
+          "line": 44,
+          "end": 51
+        },
+        {
+          "name": "test_bm25_plus_filters_delta_scores_without_term_overlap",
+          "line": 54,
+          "end": 59
+        },
+        {
+          "name": "test_component_accounting_positive_filter_and_stable_ties",
+          "line": 62,
+          "end": 74
+        },
+        {
+          "name": "test_rrf_uses_ranks_only_and_stable_ties",
+          "line": 77,
+          "end": 87
+        },
+        {
+          "name": "test_three_state_diagnostics_and_missing_labels",
+          "line": 90,
+          "end": 102
+        },
+        {
+          "name": "test_shallow_union_counts_judged_and_method_exclusive",
+          "line": 105,
+          "end": 119
+        },
+        {
+          "name": "test_persisted_rankings_bind_to_configuration_and_exclude_outcomes",
+          "line": 122,
+          "end": 145
+        },
+        {
+          "name": "test_persisted_analysis_is_deterministic_and_preserves_three_states",
+          "line": 148,
+          "end": 157
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py",
+      "blob": "5c3554c4a2cca7154fab9843ec85217ba9ed66c8",
+      "sha256": "fff188a1884322270f6b76f03ac8e87b40c878d7ce687fecfd8bc47dc680e0ac",
+      "main_blob": "5c3554c4a2cca7154fab9843ec85217ba9ed66c8",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_artifacts",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "test_union_and_diagnostics_use_exact_saved_top_five_rankings",
+          "line": 35,
+          "end": 109
+        },
+        {
+          "name": "test_exact_reuse_sources_and_three_state_counts",
+          "line": 112,
+          "end": 143
+        },
+        {
+          "name": "test_blinded_input_has_only_new_pairs_and_neutral_fields",
+          "line": 146,
+          "end": 211
+        },
+        {
+          "name": "test_parent_snapshot_content_and_sealed_case_boundary",
+          "line": 214,
+          "end": 286
+        },
+        {
+          "name": "test_freeze_identities_are_deterministic_and_phase1_is_untouched",
+          "line": 289,
+          "end": 315
+        },
+        {
+          "name": "forbidden_materialization",
+          "line": 217,
+          "end": 218
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_lexical_top5_judgments.py",
+      "blob": "5cf252058283e5bfcb6de4305384cfa1df0fad89",
+      "sha256": "e95d792dc3d8b079e42281829f9909d38ccf299f9b863292a2607d7d80b7734c",
+      "main_blob": "5cf252058283e5bfcb6de4305384cfa1df0fad89",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_input",
+          "line": 30,
+          "end": 31
+        },
+        {
+          "name": "test_frozen_judgments_bind_exactly_one_record_to_each_target",
+          "line": 34,
+          "end": 53
+        },
+        {
+          "name": "test_judgments_preserve_three_states_and_require_rationales",
+          "line": 56,
+          "end": 66
+        },
+        {
+          "name": "test_frozen_identity_is_deterministic_and_binds_input_and_freeze",
+          "line": 69,
+          "end": 79
+        },
+        {
+          "name": "test_blinded_input_rejects_method_rank_score_and_outcome_fields",
+          "line": 82,
+          "end": 89
+        },
+        {
+          "name": "test_judgment_artifact_rejects_retrieval_origin_fields",
+          "line": 92,
+          "end": 101
+        },
+        {
+          "name": "test_heldout_case_cannot_replace_a_frozen_development_case",
+          "line": 104,
+          "end": 111
+        },
+        {
+          "name": "test_any_change_to_the_frozen_blinded_input_fails_file_binding",
+          "line": 114,
+          "end": 125
+        },
+        {
+          "name": "test_input_population_identity_cannot_be_replaced",
+          "line": 128,
+          "end": 133
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_phase1_population.py",
+      "blob": "f433e73ef9c235cc8392857fdd3c7b3dccab96a8",
+      "sha256": "f77cbf35137a9cff2ba7ae7ee10bc197d8447cc5c07ea7d533c5602b0b76920a",
+      "main_blob": "f433e73ef9c235cc8392857fdd3c7b3dccab96a8",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_identity",
+          "line": 21,
+          "end": 22
+        },
+        {
+          "name": "_artifacts",
+          "line": 29,
+          "end": 30
+        },
+        {
+          "name": "test_pool_is_exactly_the_development_top_50_or_exhaustion_union",
+          "line": 33,
+          "end": 72
+        },
+        {
+          "name": "test_exact_reuse_preserves_three_states_and_excludes_reused_targets",
+          "line": 75,
+          "end": 119
+        },
+        {
+          "name": "test_blinded_input_contains_only_new_pairs_and_parent_snapshot_content",
+          "line": 122,
+          "end": 196
+        },
+        {
+          "name": "test_artifact_identities_and_serialization_are_deterministic",
+          "line": 199,
+          "end": 235
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_top5_results.py",
+      "blob": "2e6b5c08ab35815182524f6a7008a4e367d2c611",
+      "sha256": "4e8fe0065f48a00109611dad7a89cbb6813e237f3d8f250d273b6291d1479fed",
+      "main_blob": "2e6b5c08ab35815182524f6a7008a4e367d2c611",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_complete_frozen_join_and_three_state_semantics",
+          "line": 30,
+          "end": 59
+        },
+        {
+          "name": "test_duplicate_or_missing_judgment_fails_join",
+          "line": 62,
+          "end": 72
+        },
+        {
+          "name": "test_source_hash_and_content_identity_are_required",
+          "line": 75,
+          "end": 81
+        },
+        {
+          "name": "test_method_counts_pairwise_and_union_on_frozen_population",
+          "line": 84,
+          "end": 109
+        },
+        {
+          "name": "test_synthetic_pairwise_and_subset_accounting",
+          "line": 112,
+          "end": 129
+        },
+        {
+          "name": "test_saved_artifact_is_deterministic_and_excludes_heldout",
+          "line": 132,
+          "end": 152
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_window_judgments.py",
+      "blob": "a7b41e8eb6d4a68487506051a09707d8be13ced6",
+      "sha256": "72c33ab31a8f3ef951ac5028e018c1b758ebc9ba9c9e441ed3318b2629fa674b",
+      "main_blob": "a7b41e8eb6d4a68487506051a09707d8be13ced6",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_exact_twelve_pair_frozen_binding_and_three_states",
+          "line": 34,
+          "end": 52
+        },
+        {
+          "name": "test_deterministic_serialization_and_source_identities",
+          "line": 55,
+          "end": 66
+        },
+        {
+          "name": "test_origin_fields_and_duplicate_or_missing_targets_are_rejected",
+          "line": 69,
+          "end": 88
+        },
+        {
+          "name": "test_changed_blinded_input_cannot_be_adjudicated",
+          "line": 91,
+          "end": 98
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_window_pool.py",
+      "blob": "341a49b4d76c90bf4862a6663892fb587a6ae7e7",
+      "sha256": "816d190fde3e6ac6ef2912861080d6640378c8e1fd8831acae60117a26139cc2",
+      "main_blob": "341a49b4d76c90bf4862a6663892fb587a6ae7e7",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_pool_identity_partition_and_exact_reuse",
+          "line": 22,
+          "end": 62
+        },
+        {
+          "name": "test_blinded_input_has_exact_new_pairs_and_no_origin",
+          "line": 65,
+          "end": 113
+        },
+        {
+          "name": "test_prior_reuse_requires_exact_identity",
+          "line": 116,
+          "end": 146
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_window_results.py",
+      "blob": "9fb743a1fea72322db180cf1488bccaa5734e01d",
+      "sha256": "b244a53d3320dfddc9309b0d8b098823dbd96e435c4efc8f3b8a60d9488d2317",
+      "main_blob": "9fb743a1fea72322db180cf1488bccaa5734e01d",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_exact_source_binding_and_deterministic_result",
+          "line": 33,
+          "end": 58
+        },
+        {
+          "name": "test_complete_three_state_arm_and_union_accounting",
+          "line": 61,
+          "end": 93
+        },
+        {
+          "name": "test_per_case_coverage_and_lexical_reachability",
+          "line": 96,
+          "end": 123
+        },
+        {
+          "name": "test_exact_150_pair_join_rejects_missing_reused_label",
+          "line": 126,
+          "end": 136
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_27/test_window_unit.py",
+      "blob": "01e9dfe2a994be735cb2f9160d64f98e0f052c16",
+      "sha256": "ecd7f3d729cf54f3718b7bb83d13b328594877d3291ad3328ab6e7dc0f2a93a1",
+      "main_blob": "01e9dfe2a994be735cb2f9160d64f98e0f052c16",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_window_contract_and_saved_canonical_equivalence",
+          "line": 29,
+          "end": 41
+        },
+        {
+          "name": "test_complete_window_coverage_and_stable_identity",
+          "line": 44,
+          "end": 81
+        },
+        {
+          "name": "test_empty_short_and_boundary_windows",
+          "line": 84,
+          "end": 99
+        },
+        {
+          "name": "test_canonical_query_scoring_and_no_unmatched_positive",
+          "line": 102,
+          "end": 111
+        },
+        {
+          "name": "test_resource_projection_and_corpus_order_ties",
+          "line": 114,
+          "end": 155
+        },
+        {
+          "name": "test_surface_keeps_sealed_partition",
+          "line": 158,
+          "end": 172
+        }
+      ],
+      "namespace_only": false,
+      "review": "Depth/pools, lexical variants/RRF, fixed-window scoring, directed imports, slot replacement and post-hoc diagnostics",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_28/__init__.py",
+      "blob": "d6cf95d6fc556b2f40fc4755f5e6ed3093acf0b2",
+      "sha256": "8731abf45a2aed681d040808d3a91bd5a1e9cbf0ede09c963b73c0f0a83490f9",
+      "main_blob": "d6cf95d6fc556b2f40fc4755f5e6ed3093acf0b2",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Outcome-free fixed import supports, conservative binding, exact-window/full-source location and descriptive joins",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_28/test_analysis.py",
+      "blob": "d41454d73a8641a5e0bfe3add4510bef9f75f1f7",
+      "sha256": "014f05a97c567ee42204398f1ad21f08c3af55156252a8de005fc4bb5b69de9b",
+      "main_blob": "d41454d73a8641a5e0bfe3add4510bef9f75f1f7",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_post_checkpoint_join_preserves_exact_frozen_states",
+          "line": 18,
+          "end": 36
+        }
+      ],
+      "namespace_only": false,
+      "review": "Outcome-free fixed import supports, conservative binding, exact-window/full-source location and descriptive joins",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_28/test_import_use.py",
+      "blob": "2beb6e6e894751febe968394e5301bbb46a10506",
+      "sha256": "724a1ff84395344bdfe01e9a47d856a3ce260ec5edfee47ef9bac7ee93664532",
+      "main_blob": "2beb6e6e894751febe968394e5301bbb46a10506",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_classify",
+          "line": 27,
+          "end": 45
+        },
+        {
+          "name": "test_conservative_import_binding",
+          "line": 68,
+          "end": 79
+        },
+        {
+          "name": "test_import_statement_and_window_boundaries",
+          "line": 82,
+          "end": 88
+        },
+        {
+          "name": "test_fixed_artifact_identity_and_population",
+          "line": 91,
+          "end": 123
+        },
+        {
+          "name": "test_no_judgment_fields_in_preoutcome_artifact",
+          "line": 126,
+          "end": 130
+        }
+      ],
+      "namespace_only": false,
+      "review": "Outcome-free fixed import supports, conservative binding, exact-window/full-source location and descriptive joins",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_28/test_localization.py",
+      "blob": "c12530902b27400c6f17a843a24b34541392d7bd",
+      "sha256": "faf53bcb29bddfa5ca77978a97309215ee77b88e8f4bd67161bad76b8db98bf2",
+      "main_blob": "c12530902b27400c6f17a843a24b34541392d7bd",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_occurrence",
+          "line": 27,
+          "end": 28
+        },
+        {
+          "name": "test_qualified_read_location",
+          "line": 42,
+          "end": 55
+        },
+        {
+          "name": "test_unknown_and_partial_boundary_never_become_negative",
+          "line": 58,
+          "end": 71
+        },
+        {
+          "name": "test_candidate_aggregation_preserves_uncertainty",
+          "line": 74,
+          "end": 81
+        },
+        {
+          "name": "test_real_artifact_reproduces_fixed_supports_without_outcomes",
+          "line": 84,
+          "end": 115
+        },
+        {
+          "name": "test_preoutcome_artifact_has_no_usefulness_states",
+          "line": 118,
+          "end": 122
+        }
+      ],
+      "namespace_only": false,
+      "review": "Outcome-free fixed import supports, conservative binding, exact-window/full-source location and descriptive joins",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_28/test_localization_analysis.py",
+      "blob": "e0493e688c8c6d008382a77f104daa68a124091c",
+      "sha256": "18600ad84244649f8fbbb0498d04817015632be832cded37e9effe0e28ff5a4f",
+      "main_blob": "e0493e688c8c6d008382a77f104daa68a124091c",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_localization_join_reuses_every_existing_outgoing_state",
+          "line": 15,
+          "end": 31
+        },
+        {
+          "name": "test_primary_control_retains_unknowns_and_coarse_cell_sizes",
+          "line": 34,
+          "end": 45
+        }
+      ],
+      "namespace_only": false,
+      "review": "Outcome-free fixed import supports, conservative binding, exact-window/full-source location and descriptive joins",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_29/__init__.py",
+      "blob": "b1951548e044af6183fa1e471b51d32bbe23ed29",
+      "sha256": "e94aef9cfb7a9fa0fec6dd081d659a85d6d32ada49ba7f3c16cb62366de5f20c",
+      "main_blob": "b1951548e044af6183fa1e471b51d32bbe23ed29",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Named ImportFrom direct/one-facade function Name references and direct Call.func projection",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_29/test_analysis.py",
+      "blob": "44659e6616acc047780b31702a3ccc4adb35dee0",
+      "sha256": "b54c647bcd0b46a127c7101730cfe03349acd7d29592115673dc5ca37e93a142",
+      "main_blob": "44659e6616acc047780b31702a3ccc4adb35dee0",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_completed_join_covers_every_frozen_pair_without_relabeling",
+          "line": 16,
+          "end": 50
+        }
+      ],
+      "namespace_only": false,
+      "review": "Named ImportFrom direct/one-facade function Name references and direct Call.func projection",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_29/test_judgments.py",
+      "blob": "9b0120113b8a9b0c4d86a3c1400ff3119bbe2398",
+      "sha256": "0afc61162f800bb77ae85d087c68569ecd3b793dff898308d329f5f02588dd19",
+      "main_blob": "9b0120113b8a9b0c4d86a3c1400ff3119bbe2398",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_frozen_neutral_judgments_have_exact_coverage_and_no_origin",
+          "line": 23,
+          "end": 61
+        }
+      ],
+      "namespace_only": false,
+      "review": "Named ImportFrom direct/one-facade function Name references and direct Call.func projection",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_29/test_mechanics.py",
+      "blob": "a6cab2544d06f646ee0e893362d8d5da193c0aee",
+      "sha256": "b0d9b7eecbcc5ef49327d4fe68131cff3c397abe51a8c97e18b1fc6d91edcf8f",
+      "main_blob": "a6cab2544d06f646ee0e893362d8d5da193c0aee",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_facts",
+          "line": 25,
+          "end": 56
+        },
+        {
+          "name": "test_direct_alias_reference_and_direct_call",
+          "line": 59,
+          "end": 72
+        },
+        {
+          "name": "test_single_facade_target_and_shadowing",
+          "line": 75,
+          "end": 98
+        },
+        {
+          "name": "test_bidirectional_projection_deduplicates_and_classifies",
+          "line": 101,
+          "end": 161
+        }
+      ],
+      "namespace_only": false,
+      "review": "Named ImportFrom direct/one-facade function Name references and direct Call.func projection",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_29/test_population.py",
+      "blob": "07ac40ce7b3b2c80ff0e739b966977bb1d02a9c7",
+      "sha256": "02fb51a11ebc690d5d57ffa645230d4ec00a5e1d0867984bb4087ca5c747d161",
+      "main_blob": "07ac40ce7b3b2c80ff0e739b966977bb1d02a9c7",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_frozen_candidate_identity_and_development_boundary",
+          "line": 24,
+          "end": 49
+        },
+        {
+          "name": "test_neutral_input_exact_new_population_and_blinding",
+          "line": 52,
+          "end": 100
+        },
+        {
+          "name": "keys",
+          "line": 93,
+          "end": 98
+        }
+      ],
+      "namespace_only": false,
+      "review": "Named ImportFrom direct/one-facade function Name references and direct Call.func projection",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_30/__init__.py",
+      "blob": "0888e667c73037edd8416be0b2f1b9587136760b",
+      "sha256": "96d90207d14a4da876b25472bc97688ac861a1b952bd765075b5fde16200798e",
+      "main_blob": "0888e667c73037edd8416be0b2f1b9587136760b",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Immediate observed same-root/snapshot child/package membership, bidirectional projection and judgment reuse",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_30/test_analysis.py",
+      "blob": "b3f2ac4c690a8644041066aae2a6c956ca9667e7",
+      "sha256": "3b3f489b7053f683cd673d18260d1f368f49e10d8c4584febb30ff8aa5259d02",
+      "main_blob": "b3f2ac4c690a8644041066aae2a6c956ca9667e7",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_completed_result_is_exact_and_preserves_frozen_mechanics",
+          "line": 17,
+          "end": 75
+        }
+      ],
+      "namespace_only": false,
+      "review": "Immediate observed same-root/snapshot child/package membership, bidirectional projection and judgment reuse",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_30/test_judgments.py",
+      "blob": "07378ac2eca7f9687428ce37977d081b4e6a45ef",
+      "sha256": "8186a9a53ff138e6a7caabf9b1dac535ad6a619a182593eb1072f1b98eb7e8a2",
+      "main_blob": "07378ac2eca7f9687428ce37977d081b4e6a45ef",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_exact_neutral_judgment_coverage_and_blinding",
+          "line": 22,
+          "end": 62
+        }
+      ],
+      "namespace_only": false,
+      "review": "Immediate observed same-root/snapshot child/package membership, bidirectional projection and judgment reuse",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_30/test_mechanics.py",
+      "blob": "a3c9ff628a2362e7e913e98c40c0c02d7c26f557",
+      "sha256": "9522ae78c0062b89657f49dd8518d2b9a9a3daa77a5689fe1244fc2e1cf9aa9e",
+      "main_blob": "a3c9ff628a2362e7e913e98c40c0c02d7c26f557",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_interpret",
+          "line": 29,
+          "end": 52
+        },
+        {
+          "name": "_case",
+          "line": 55,
+          "end": 67
+        },
+        {
+          "name": "_lexical",
+          "line": 70,
+          "end": 75
+        },
+        {
+          "name": "test_immediate_membership_and_no_recursive_or_cross_root",
+          "line": 78,
+          "end": 99
+        },
+        {
+          "name": "test_ambiguous_parent_does_not_assert_relation",
+          "line": 102,
+          "end": 109
+        },
+        {
+          "name": "test_parent_from_another_snapshot_does_not_assert_relation",
+          "line": 112,
+          "end": 118
+        },
+        {
+          "name": "test_forward_reverse_seed_exclusion_and_supports",
+          "line": 121,
+          "end": 177
+        },
+        {
+          "name": "test_saved_evidence_escape_classification",
+          "line": 180,
+          "end": 204
+        }
+      ],
+      "namespace_only": false,
+      "review": "Immediate observed same-root/snapshot child/package membership, bidirectional projection and judgment reuse",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_30/test_population.py",
+      "blob": "6cf408746a2342892de7602d0eb10bc84f29f68e",
+      "sha256": "4a8c04bf440ab1daf4b164c766bdbdf79b0ff6d086352af6ec3d48508f8d12dc",
+      "main_blob": "6cf408746a2342892de7602d0eb10bc84f29f68e",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "_verify",
+          "line": 25,
+          "end": 35
+        },
+        {
+          "name": "test_frozen_population_is_exact_and_neutral",
+          "line": 38,
+          "end": 94
+        },
+        {
+          "name": "test_new_pairs_prevent_outcome_join",
+          "line": 97,
+          "end": 101
+        }
+      ],
+      "namespace_only": false,
+      "review": "Immediate observed same-root/snapshot child/package membership, bidirectional projection and judgment reuse",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_34/__init__.py",
+      "blob": "9c4e1af756607bf9a7eeb0dc02f4b7881e04d916",
+      "sha256": "68f9665adf77128d3a820cf1727de85fb828cb74a391eb292eabc4443e89fcc2",
+      "main_blob": "9c4e1af756607bf9a7eeb0dc02f4b7881e04d916",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Deduplicated direct/Graph1/Graph2 union, known outcomes and sampled/missing coverage",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_34/test_analysis.py",
+      "blob": "e331ab9fe9b9a72403b4768b9885732731bb63a1",
+      "sha256": "49394de0b9ccb3c7ba5f13fbadd48fdfddd40735e3bb521d96f40987c8935541",
+      "main_blob": "e331ab9fe9b9a72403b4768b9885732731bb63a1",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "result",
+          "line": 25,
+          "end": 26
+        },
+        {
+          "name": "test_frozen_union_is_deduplicated_and_reproducible",
+          "line": 29,
+          "end": 41
+        },
+        {
+          "name": "test_family_provenance_and_overlap",
+          "line": 44,
+          "end": 66
+        },
+        {
+          "name": "test_lexical_escapes_marginals_and_leave_one_out",
+          "line": 69,
+          "end": 92
+        },
+        {
+          "name": "test_known_states_and_unsampled_unknowns",
+          "line": 95,
+          "end": 122
+        },
+        {
+          "name": "test_conflicting_exact_judgment_is_rejected",
+          "line": 125,
+          "end": 146
+        }
+      ],
+      "namespace_only": false,
+      "review": "Deduplicated direct/Graph1/Graph2 union, known outcomes and sampled/missing coverage",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_35/__init__.py",
+      "blob": "1c89623a2db95080363c0cb90f7528a15030dbda",
+      "sha256": "dca061f9a9e02aa1a32b3360c22d6a1b2eeb67d4984d2701d36ae858b4777b60",
+      "main_blob": "1c89623a2db95080363c0cb90f7528a15030dbda",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Lexical/structural/eight-case dense union and explicitly gold-dependent known-label K5 oracle",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_35/test_analysis.py",
+      "blob": "b99b996631faa740d064c689e1a5d869a1e104e9",
+      "sha256": "639497ab35f9b07be2e5c3cec22ec0dd09f8e3b74018884f2ef91b5427182fc2",
+      "main_blob": "b99b996631faa740d064c689e1a5d869a1e104e9",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "result",
+          "line": 27,
+          "end": 28
+        },
+        {
+          "name": "test_exact_lexical_union_and_canonical_top_five",
+          "line": 31,
+          "end": 41
+        },
+        {
+          "name": "test_structural_consumption_dense_gate_and_union",
+          "line": 44,
+          "end": 63
+        },
+        {
+          "name": "test_outcome_states_and_complementarity",
+          "line": 66,
+          "end": 105
+        },
+        {
+          "name": "test_oracle_and_per_case_headroom",
+          "line": 108,
+          "end": 120
+        },
+        {
+          "name": "test_conflicting_exact_development_label_is_rejected",
+          "line": 123,
+          "end": 145
+        },
+        {
+          "name": "test_dense_case_identity_cannot_drift",
+          "line": 148,
+          "end": 154
+        },
+        {
+          "name": "test_artifact_reproduction_and_no_confirmation_dependency",
+          "line": 157,
+          "end": 164
+        }
+      ],
+      "namespace_only": false,
+      "review": "Lexical/structural/eight-case dense union and explicitly gold-dependent known-label K5 oracle",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_36/__init__.py",
+      "blob": "c157ae838396aa61249caf9063bc900b126c842f",
+      "sha256": "a4d606f0956ec5068583e8e9b7fc09fbf9ef0277598c3822217a2d965bbbff26",
+      "main_blob": "c157ae838396aa61249caf9063bc900b126c842f",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [],
+      "namespace_only": true,
+      "review": "Frozen ranked-only lexical-RRF/dense fusion outcome join",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_36/test_analysis.py",
+      "blob": "1fd923def17528590bb66ca47eaf2cf7925e3a97",
+      "sha256": "2c4c65c7ff2b580b2e73e4586f047fc3779ca57e120ec2c1f99757f0c941e8cd",
+      "main_blob": "1fd923def17528590bb66ca47eaf2cf7925e3a97",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "result",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_freeze_is_required_before_outcome_join",
+          "line": 22,
+          "end": 27
+        },
+        {
+          "name": "test_exact_k5_outcomes_and_unknownness",
+          "line": 30,
+          "end": 61
+        },
+        {
+          "name": "test_canonical_rrf_and_oracle_comparisons",
+          "line": 64,
+          "end": 82
+        },
+        {
+          "name": "test_dense_coverage_and_structural_order_boundary",
+          "line": 85,
+          "end": 95
+        },
+        {
+          "name": "test_deterministic_result_and_frozen_candidate_membership",
+          "line": 98,
+          "end": 116
+        }
+      ],
+      "namespace_only": false,
+      "review": "Frozen ranked-only lexical-RRF/dense fusion outcome join",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    },
+    {
+      "path": "tests/experiments/increment_36/test_mechanics.py",
+      "blob": "aeb6799af5dca920b8ea76750365c3d563624bff",
+      "sha256": "78c3ee8a0448bc2d5587374234bf071b71d6801d497da92c4cbeb0b39c59f87e",
+      "main_blob": "aeb6799af5dca920b8ea76750365c3d563624bff",
+      "same_on_main": true,
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEWED",
+      "cursors": [
+        {
+          "name": "test_source_integrity_and_deterministic_freeze",
+          "line": 19,
+          "end": 26
+        },
+        {
+          "name": "test_exact_k5_and_missing_dense_preserves_lexical_order",
+          "line": 29,
+          "end": 53
+        },
+        {
+          "name": "test_tie_uses_prior_lexical_rank_then_address",
+          "line": 56,
+          "end": 83
+        }
+      ],
+      "namespace_only": false,
+      "review": "Frozen ranked-only lexical-RRF/dense fusion outcome join",
+      "assertion_qualification": "Real source/numeric/negative fixtures distinguished in linked report from mocked accounting and frozen-result reproduction; original tests not executed",
+      "remaining": "Not independent semantic gold verification or inference effectiveness evidence"
+    }
+  ],
+  "additional_full_dependency_bodies": [
+    {
+      "path": "experiments/increment_25/confirmation.py",
+      "blob": "f9649d3b72fe9bc25c49e47df9d3e2ae73bd5400",
+      "sha256": "fcae8e23b4a2cf1b26766b67e0e2aa609463516280f5278d7f24f82b25b445c5",
+      "main_blob": "f9649d3b72fe9bc25c49e47df9d3e2ae73bd5400",
+      "same_on_main": true,
+      "depth": "FULL_BODY_REVIEWED",
+      "qualification": "Does not add another algorithm or reduce older current-RI obligations"
+    },
+    {
+      "path": "experiments/increment_26/development_evaluation.py",
+      "blob": "605c6fc82b4fd1d248bb8265bae15553c90ba67a",
+      "sha256": "c425235b54bdd3388494cab8dca0a28673da9cfad24dcff8cae801cc9212d11a",
+      "main_blob": "605c6fc82b4fd1d248bb8265bae15553c90ba67a",
+      "same_on_main": true,
+      "depth": "FULL_BODY_REVIEWED",
+      "qualification": "Does not add another algorithm or reduce older current-RI obligations"
+    },
+    {
+      "path": "experiments/increment_36/mechanics.py",
+      "blob": "1f207e1d84795c0a34c688e9c0fe1608ee77cb70",
+      "sha256": "ef1c2ee9c01e351f1df4d223e4394383f060e92c586dfa489c5e6ba5f689a4f8",
+      "main_blob": "1f207e1d84795c0a34c688e9c0fe1608ee77cb70",
+      "same_on_main": true,
+      "depth": "FULL_BODY_REVIEWED",
+      "qualification": "Does not add another algorithm or reduce older current-RI obligations"
+    },
+    {
+      "path": "experiments/retrieval_judgment_coverage.py",
+      "blob": "f957824874fe3cbf747725500c0289138ee9267c",
+      "sha256": "d6a8058e4e47608bc14036a7d97fed691c57734a5ff173bb7435ac486910e54b",
+      "main_blob": "f957824874fe3cbf747725500c0289138ee9267c",
+      "same_on_main": true,
+      "depth": "FULL_BODY_REVIEWED",
+      "qualification": "Does not add another algorithm or reduce older current-RI obligations"
+    }
+  ],
+  "current_consumer_boundaries": [
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    },
+    {
+      "path": "apps/qwen/navigation.py",
+      "blob": "ad51ce5a85e76b7194a926b419428fef011e64fb",
+      "sha256": "06a54b95722cf59ebf9538eff6e0ba5ede3b17de6168d7162c5031b6b76ae95a",
+      "main_blob": null,
+      "same_on_main": false,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "blob": "bf3a3a074dcb3289f116d153e5d226575cec4878",
+      "sha256": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6",
+      "main_blob": "99901656eb387cb62e62ddb80b4fc7fa7e7d683f",
+      "same_on_main": false,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    },
+    {
+      "path": "src/devtools/context/retrieval/docs/overview.md",
+      "blob": "91250ed9c7609620d50b94fdb9b9b2bb6969a311",
+      "sha256": "b11df85d218d8fcdad7f893b8d6231e4f3ad91ebb1de3b001a4c136c3c868cbd",
+      "main_blob": "89aac6722f3ca13f8b02d53e9a9d010946fafc9b",
+      "same_on_main": false,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    },
+    {
+      "path": "docs/architecture/retrieval.md",
+      "blob": "071b0e06947b053edfa34cde6ed0dce644ebb721",
+      "sha256": "042077dfb08ee20a6e98a3741ad9935e4dc762c17021087abab9d52d3b059d66",
+      "main_blob": "071b0e06947b053edfa34cde6ed0dce644ebb721",
+      "same_on_main": true,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    },
+    {
+      "path": "docs/roadmap.md",
+      "blob": "e573e7264a1fc3680e4b551525c0e4af348a8402",
+      "sha256": "831938f9f04367ebb138477f168a5ec284217e6e5ecc09a1288c5d04a7a867bc",
+      "main_blob": "3de3aa1b6c4a1e7a87631bae2d687049b605a25c",
+      "same_on_main": false,
+      "depth": "TARGETED_CONSUMER_AND_CONTRACT_REVIEW",
+      "qualification": "ContextTools dispatch671-745 and reference/navigation815-910; navigation map construction/orientation/expansion; complete source search; documented retrieval/R1 placement. Prior current118 module review not duplicated."
+    }
+  ]
+}

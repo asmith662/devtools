@@ -9,6 +9,7 @@ import pytest
 
 from devtools.core.paths import ResolvedPath
 from devtools.resources.filesystem import (
+    BinaryCodec,
     CsvCodec,
     FileFormat,
     FileFormatError,
@@ -44,17 +45,22 @@ def test_resolve_file_format_is_case_insensitive_for_supported_codecs(
     assert resolve_file_format(path) is file_format
 
 
-def test_resolution_rejects_unsupported_formats(tmp_path: Path) -> None:
+def test_resolution_rejects_unsupported_formats(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Only formats with real codecs resolve during this milestone."""
     with pytest.raises(FileFormatError, match="Unsupported file format"):
         resolve_file_format(ResolvedPath(tmp_path / "report.unsupported"))
 
+    monkeypatch.setattr("devtools.resources.filesystem.resolution._CODEC_TYPES", {})
     with pytest.raises(FileFormatError, match="No codec"):
-        resolve_codec(FileFormat.BINARY)
+        resolve_codec(FileFormat.TEXT)
 
 
 def test_resolve_codec_returns_implemented_codecs() -> None:
     """Each supported format resolves to its concrete representation codec."""
+    assert isinstance(resolve_codec(FileFormat.BINARY), BinaryCodec)
     assert isinstance(resolve_codec(FileFormat.JSON), JsonCodec)
     assert isinstance(resolve_codec(FileFormat.CSV), CsvCodec)
     assert isinstance(resolve_codec(FileFormat.MARKDOWN), MarkdownCodec)

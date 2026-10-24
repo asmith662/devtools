@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "2e70de9a-d09c-409d-a7a2-0f32f67c4768",
+  "proposal_sha256": "e4dfd85433515c99b2de082ae04df44c9008e6b5ed8e4f127ee843b1f808dde2",
+  "previous": "49eaf2c7878c56d9f22099910d4fc88bb516150d38ea100190be2b5f4a3d7596",
+  "at": "2026-10-23T21:19:35.638522+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-dogfood-lifecycle-audit.md",
+  "rationale": "Dogfood94/87 audit: original Case12/13/16 pairwise source associations independently agree across4779/4779/3084 cells and531/531/514 resources, anchored10Git seals and744original Git members; no actual swapped association demonstrated. Case16 packet rederives native content/document/snapshot/corpus and canonical order; five negative swap/duplicate/reorder/content/foreign probes reject. Case12/13 packet schema-only or content-only checks rely on pinned complete packet hashes plus later reviewed binding: do not substitute these for original23 verifier or invent universal schema. New concrete guard requirement: case16 stage_d.validation.validate accepts flipped graph_contributed_gain and arbitrary primary_answers under unchanged GRAPH_HARMFUL; it validates a metric subset, while original expected()+exact-byte verify remains a stronger defense and retained seals agree. Future versioned report-only consumer must declare subset versus full validation, bind exact input closure and independently verify claimed flags/derived prose or refuse unsupported schema. Prevent read_inputs(provenance)/native_replay=False/testing paths from being presented as authenticated publication entry points. Original closed implementations remain unchanged. Existing verification_v1 is still optional23-only; agreeing original bindings does not repair24 incomplete report digest linkage.",
+  "duplicates": [],
+  "duplicate_disposition": "Preserve original payload, state and append-only history; no approval, B-number, implementation grant or automatic closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "a57f84a2bb39de2c8cad3de8a2b776c7df8d79c8bed31be9cba92fac40e53914"
+}

@@ -113,8 +113,7 @@ def test_filename_field_is_independent_from_content_statistics() -> None:
         if item.analysis.document.resource.address.value == "src/same_name.py"
     )
     assert (
-        first_same_name.analysis.observations
-        == second_same_name.analysis.observations
+        first_same_name.analysis.observations == second_same_name.analysis.observations
     )
     assert first_same_name.document_length == 1
 
@@ -153,16 +152,16 @@ def test_filename_bm25_combines_separate_evidence_and_preserves_zero_cases() -> 
         filename_match.content_score + filename_match.weighted_filename_score,
     )
     assert (
-        filename_match.filename_term_contributions[0].normalized_term
-        == "filenameonly"
+        filename_match.filename_term_contributions[0].normalized_term == "filenameonly"
     )
     assert content_result.matches[0].content_score > 0.0
     assert content_result.matches[0].filename_score == 0.0
     assert oov_result.matches == ()
 
 
-def test_filename_retrieval_keeps_document_order_for_combined_ties_and_evaluation(
-) -> None:
+def test_filename_retrieval_keeps_document_order_for_combined_ties_and_evaluation() -> (
+    None
+):
     """Equal field scores retain upstream order and existing evaluation correlation."""
     index = _index(
         ("a/match.md", ""),
@@ -178,7 +177,9 @@ def test_filename_retrieval_keeps_document_order_for_combined_ties_and_evaluatio
         case=RepositoryTextLexicalRetrievalEvaluationCase(
             query=query,
             relevant_resource_addresses=(
-                result.matches[0].document_statistics.analysis.document.resource.address,
+                result.matches[
+                    0
+                ].document_statistics.analysis.document.resource.address,
             ),
             evaluation_k=1,
         ),

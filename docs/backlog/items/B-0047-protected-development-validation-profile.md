@@ -60,3 +60,12 @@ universal harness, sandbox framework, registry, runner, or Evaluation redesign.
 - promotion_trigger: satisfied by repeated protected work and a validated repository-local command
 - validation_level: INTEGRATION
 - live_validation_trigger: none; deterministic development isolation
+
+## Production reconciliation evidence (2026-10-23)
+
+Priority1 bounded protected-result reuse/input-closure investigation d58697fd-bb03-4e98-bdac-fa29444fc6ff is captured pending. The implemented pre-collection isolation/100% coverage profile remains unchanged and VALIDATED. Review result/base/files subject reuse against relevant source/test/plan/config/runner/toolchain mutations; no historical bypass is established.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

@@ -1,0 +1,98 @@
+{
+  "status": "FEATURE_PUBLISHED",
+  "implementation_by": "Codex",
+  "starting_head": "e67ede260cd3b18153d596960070156de4a85771",
+  "feature_commit": "4d401c828b5fef4e2d4db949c2f80549ea445fe0",
+  "review_subject": "938e7227f88862a36bb5d1cb7de7e9d65382026ccbed6c58068e4f962d7e13e5",
+  "task_definition_sha256": "68c1596f81c617becda3f64c8badad663f01ab77a6cf82a4bfb2fde5c296ad7d",
+  "unchanged_original_oracle_sha256": "e30b61a42763d4e3c4a7ba515b4f9d1532421248c040695d876a55cfa10a5d8d",
+  "candidate_sources": [
+    {
+      "evidence": "sources/apps/qwen/commands.py",
+      "path": "apps/qwen/commands.py",
+      "sha256": "3ea5802710e5c14a8e807585de3084172f557ff34d72d9870ce9e11f798c7d99"
+    },
+    {
+      "evidence": "sources/apps/qwen/change_checks.py",
+      "path": "apps/qwen/change_checks.py",
+      "sha256": "d971d9e138784193736eb407231c6d9d127397d397225138e5932d2ba74955dd"
+    }
+  ],
+  "permanent_regression": "tests/apps/qwen/test_change_checks.py",
+  "focused": {
+    "passed": 98,
+    "elapsed_seconds": 115.41
+  },
+  "strict_mypy_files": 502,
+  "protected": {
+    "passed": true,
+    "summary": "2442 passed, 2 skipped in 668.18s (0:11:08)",
+    "coverage": "TOTAL                                                                     11735      0   2928      0   100%",
+    "elapsed_seconds": 808.900944,
+    "checks": [
+      {
+        "name": "oracle",
+        "exit_code": 0,
+        "elapsed_seconds": 17.717454,
+        "stdout_sha256": "09be32716279f6e91254cd4f4d56a5cde133773240b7aaaaaa3a4cf5097bb987",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "tests",
+        "exit_code": 0,
+        "elapsed_seconds": 120.550911,
+        "stdout_sha256": "722767ef989c3818b68a3a36d6f0f084590f2b677c18f30696774116172676a3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "ruff",
+        "exit_code": 0,
+        "elapsed_seconds": 0.153177,
+        "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "format",
+        "exit_code": 0,
+        "elapsed_seconds": 0.084403,
+        "stdout_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+        "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1"
+      },
+      {
+        "name": "mypy",
+        "exit_code": 0,
+        "elapsed_seconds": 0.294247,
+        "stdout_sha256": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "protected",
+        "exit_code": 0,
+        "elapsed_seconds": 670.089641,
+        "stdout_sha256": "082d7652cd26d7a98af987ae0218bde572f20233d4023f0da3d6923d8e5867f7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "operational_demo": {
+    "elapsed_seconds": 11.472754699992947,
+    "first": "PASS",
+    "index_only_stale": true,
+    "rechecked": "PASS",
+    "behavioral_failure": "FAIL",
+    "failed_but_current": true
+  },
+  "raw_evidence": ".local/qwen-coding-worker/change-check-codex/",
+  "repository_wide_ruff": {
+    "passed": false,
+    "existing_findings": 24631,
+    "historical_files_unchanged": true
+  },
+  "model_calls": 0,
+  "model_tokens": 0,
+  "serving_changes": false,
+  "protected_main_changed": false,
+  "observed_wall_seconds_through_documentation": 7662.572512,
+  "active_coordination_time_and_paid_usage": "not available",
+  "at": "2026-10-22T12:02:46.572512+00:00"
+}

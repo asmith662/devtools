@@ -1,0 +1,26 @@
+{
+  "frozen_at": "2026-10-21T18:34:42.980086+00:00",
+  "classification": "Exposed Cohort02 development continuation, not fresh/held-out",
+  "baseline": "38dedf199e98d90ae808b7dc655ae9023821db7c",
+  "task_sha256": "36ec8fc8b4a28a3169111712b02d3c5957d6ca66948e2eb54ce32743b07531e8",
+  "oracle_sha256": "7c674a8ab3f0ae19443660ed7f56814930b7ba5fee76d94a4a7e918afc93ecd0",
+  "prior_task": "apps/qwen/evaluation/native-cohort-02/command-output-integer-limits.json",
+  "historical_outcome": "REPAIR_BUDGET_EXHAUSTED; ValueError vs TRY004 tension, then destructive repair; immutable",
+  "exception_decision": "No maintained API or regression requires ValueError for wrong types. Current Command arguments/stdin/environment/success codes use TypeError. Preserve integer-bound ValueError. Old cohort02 contract conflicts with TRY004 and was not published; do not alter original outcome.",
+  "preflight": ".local/qwen-coding-worker/output-policy-15/preflight.json",
+  "limits": {
+    "attempts": 1,
+    "requests": 20,
+    "worker_seconds": 1200,
+    "proposals": 6,
+    "components": 16,
+    "read_check_actions": 24,
+    "output_tokens": 8192,
+    "context_tokens": 32768,
+    "safety_tokens": 2048,
+    "existing_byte_limits": "unchanged"
+  },
+  "profile": "Unchanged qwen38-local IQ4_XS,32K,q4 K/V,thinking off",
+  "authority": "Trusted bounded local assignment; no backlog review/promotion/delegation; no protected publication",
+  "independence": "Host-only oracle/reference outside admitted source; no solution disclosure; no changes after inference"
+}

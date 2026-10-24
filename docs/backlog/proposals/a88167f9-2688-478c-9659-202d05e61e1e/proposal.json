@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "created_at": "2026-10-23T19:01:26.184301+00:00",
+  "payload": {
+    "kind": "refactor",
+    "title": "Disambiguate synthetic RI fixture identities and separate them from observed-source tests",
+    "parent": "B-0002",
+    "summary": "Priority2 test maintenance. tests/context/retrieval/lexical/_helpers.py _digest concatenates string parts without length framing. Independently authored _document(\"a\",\"bc\") and _document(\"ab\",\"c\") have identical document identities. Localization generation/association helpers reuse this synthetic source and manually reuse snapshot IDs across different resources. Pure scoring fixtures are legitimate, but cannot alone establish canonical observation, content hashing or freshness correctness.",
+    "resources": [
+      "tests/context/retrieval/lexical/_helpers.py",
+      "tests/context/localization/generation/test_generation.py",
+      "tests/context/localization/association/test_hypothesis.py",
+      "tests/context/localization/test_lexical.py"
+    ],
+    "benefit": "Acceptance: collision pair has distinct synthetic identities after a bounded fixture correction; retain deterministic lexical score tests and explicitly synthetic negative frames; add or identify real observation-to-localization integration with distinct snapshots, unchanged content, changed content, foreign/stale inputs and retained-source assertions. Audit dependent fixture expectations before replacing a helper. Keep domain-specific fixtures where semantics differ; no universal fixture framework or production identity change.",
+    "uncertainty": "This is a demonstrated test-helper collision, not a demonstrated production ContentIdentity collision. Fixed caller IDs can be useful adversarial fixtures; label intent rather than banning all manual construction. Existing role-input tests use real filesystem observation and remain valuable independent coverage.",
+    "dependencies": [
+      "B-0008"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-deep-audit-followup.md; independently authored primitive challenges; 2026-10-23"
+    },
+    "evidence": [
+      "docs/research/ri-deep-audit-followup.md",
+      "docs/research/code-audit/ri-followup-probes.json"
+    ]
+  },
+  "payload_sha256": "6649c2eab3d0b857d9901cf948834d31d28ae42d0270964db1b5fac5aa3e80f0"
+}

@@ -153,7 +153,9 @@ _CASES = (
         description="Locate Unicode word-span and casefold lexical analysis semantics.",
         query_text="unicode lexical spans casefold",
         relevant_resource_addresses=(
-            RepositoryResourceAddress("src/devtools/context/retrieval/lexical/analysis.py"),
+            RepositoryResourceAddress(
+                "src/devtools/context/retrieval/lexical/analysis.py",
+            ),
         ),
     ),
     RepositoryBm25BenchmarkCase(
@@ -169,7 +171,9 @@ _CASES = (
         description="Locate bounded retrieval evaluation and reciprocal-rank metrics.",
         query_text="recall reciprocal rank retrieval evaluation",
         relevant_resource_addresses=(
-            RepositoryResourceAddress("src/devtools/context/retrieval/lexical/evaluation.py"),
+            RepositoryResourceAddress(
+                "src/devtools/context/retrieval/lexical/evaluation.py",
+            ),
         ),
     ),
     RepositoryBm25BenchmarkCase(
@@ -204,7 +208,9 @@ _CASES = (
         name="architecture-context-retrieval",
         description="Locate the current architecture account of Context and retrieval.",
         query_text="Context retrieval repository intelligence architecture",
-        relevant_resource_addresses=(RepositoryResourceAddress("docs/architecture.md"),),
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("docs/architecture.md"),
+        ),
     ),
     RepositoryBm25BenchmarkCase(
         name="b0002-backlog",
@@ -232,7 +238,9 @@ _CASES = (
             RepositoryResourceAddress(
                 "src/devtools/context/retrieval/lexical/statistics.py",
             ),
-            RepositoryResourceAddress("src/devtools/context/retrieval/lexical/index.py"),
+            RepositoryResourceAddress(
+                "src/devtools/context/retrieval/lexical/index.py",
+            ),
         ),
     ),
     RepositoryBm25BenchmarkCase(

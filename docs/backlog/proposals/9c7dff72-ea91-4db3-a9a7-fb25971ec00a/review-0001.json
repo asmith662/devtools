@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "9c7dff72-ea91-4db3-a9a7-fb25971ec00a",
+  "proposal_sha256": "adcdf5d9199b584f2ab89106d6ed1fa62fb719f363973510e61016c5dbfe2f82",
+  "previous": null,
+  "at": "2026-10-24T03:08:04.994057+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-structural-discrimination-audit.md",
+  "rationale": "Downstream impact explicitly verified: Case0004 analyze.markdown consumes required_resource_reach_categories.obligation_lanes_only.count at lines1063-1074 into its Required-resource reach table. Thus retained JSON and human report display413 non-required entries, not merely a dead intermediate. No maintained production/worker/WorkCycle consumer or extra decision use found. Separate original global17/17 required reach and own/global depth remain independently computed and not invalidated. Priority2 versioned reporting/erratum requirement is sufficient under this bug; no new duplicate. Do not silently repair original JSON/md or rejudge science.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing substantive proposal is sufficient with this exact new evidence/acceptance qualification; no duplicate, approval, grant, B-number, dispatch, status change or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f32361d213166e89d5c5227a91f271cb9d30364788959e935aabc2becc5818e7"
+}

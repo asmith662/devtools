@@ -141,3 +141,26 @@ supports while retaining the global lexical safety lane and an unfiltered escape
 path. Prospective Cases 0005 and 0008 show mixed routing effects; the current
 roadmap parks it as a primary discriminator. Historical Case 0004 gold resources
 and outcomes were not rule-design inputs.
+
+
+## Top-level dependency groups
+
+Supported native `dependency-groups` settings (including empty declared groups
+and empty table presence) support PROJECT_CONFIGURATION through the existing
+PROJECT_DECLARATION kind. This namespace is top-level pyproject TOML, separate
+from project/build-system/tool tables. Original group keys, source addresses and
+native setting identities are passed through. Names such as test/pytest/lint/docs
+do not infer test, tool, documentation or build roles. Raw requirement strings
+prove neither installation nor importability, and do not select validation plans.
+
+Unsupported groups abstain from positive supports; qualified unsupported evidence
+remains in the complete authenticated native configuration inputs. Absence emits
+no dependency-group support. The existing intrinsic pyproject-name convention is
+independent of native declaration support. Existing classifications and input
+rederivation/refusal remain intact. No new role hierarchy or resolver is added.
+
+Role-view semantics deliberately advances to positive-python-repository-role-support-v2.
+Native RI setting/source IDs remain those of the supplied analysis. Changed
+support kinds and versioned role derivation change the applicable support/view/
+evidence identity values, without a new durable schema. Older evidence is not
+relabelled as current. See the [exact Qwen source and supervised integration](../../../../../../apps/qwen/evaluation/role-groups-25/README.md).

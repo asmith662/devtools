@@ -133,3 +133,239 @@ Final unchanged protected profile: 1818 passed, 2 skipped, 100% production branc
 Fourteen legacy root .devtools evidence files were additionally moved, hash-verified, to .local/preserved-root/devtools. Their independent root-runtime-manifest.json is in the repository archive directory. All 13 forensic files remain at their original paths, byte-identical and untracked.
 
 The adopted source checkpoint is main commit `ff2b135ad7cbc9109a0b80f150e238a78e4743b6`. The continuation branch is `feat/qwen-context-worker`. The final hidden-checkout scan discovered the legacy `.local/deployments/source-grounding-successor/target` at `35d464425ef13029b0ee6151e5aea232d8489068`; its 16 operational files were preserved, compressed, extracted and verified before removal. Its Git history remains at `refs/archive/scientific-legacy-target/main` and in the complete scientific bundle. Three existing host-disclosure fixtures contain synthetic alpha/beta/gamma data, not Devtools clones; they remain preserved test evidence.
+
+## Single-checkout governed-development continuation
+
+The former WorkCycle/installation/verification checkout blocker is removed on
+`feat/qwen-context-worker`. The existing lifecycle now uses ordinary branch
+selection under exclusive, recoverable coordinator-owned source mutation.
+The [integration contract](../backlog/integration.md#canonical-checkout-phase-boundary)
+documents temporary exact-byte installation, tree review, feature publication,
+local/remote destination promotion, verification and administrative closeout.
+No worktree, repository copy or source-tree clone is created. Tiny Git fixtures
+exercise real Git effects with explicitly synthetic authority and validation;
+they do not establish a real protected-main integration.
+
+B-0048's new canonical plan is recorded in its existing readiness document.
+It remains blocked by missing genuine integration authority; its old coding
+assignment and checkout-bound grants remain historical. Main is unchanged at
+`862bda2d3d1d812893f84ab69691fc068ecce268`.
+
+Four redundant `workspace/src` payloads were found in canonical/preserved Qwen
+closeout and B-0048 preparation evidence. Every file was compared with its
+decompressed member in the existing `checkout-evidence.zip`; matching baseline
+source was additionally checked against recorded Git blob identities. Only
+these verified payload directories were removed. Original receipts, candidate
+source, historical reviews, all 13 forensic files and the unchanged recovery
+packet remain. Its SHA-256 is
+`5debf60d98465c920f77ea4b6ae13a4855699f912ebcef1ad1ea15aed8f4ea5e`.
+The existing archive directory contains `redundant-source-payloads.json` and
+`redundant-source-removal.json` with per-file recovery addresses and hashes.
+This recovers 5,291,562 redundant bytes without creating another backup facility.
+
+The dashboard dependency review and production-adoption authority remain
+separate. Experiment classifications remain 24 CLOSED / nine INCOMPLETE /
+two BLOCKED. No scientific result, Qwen attempt or historical authority was
+changed by this continuation.
+
+Final continuation verification: 1950 passed, two skipped, 100% production branch
+coverage on Python 3.14 (398.63 seconds pytest / 400.13 seconds host). The existing
+`.local/reconciliation/single-checkout-*` receipts retain focused, protected,
+static and integrity evidence. Changed Python files pass Ruff/formatting; strict
+mypy passes its 472-file default and 14-file administration scopes. Ten unchanged
+source/document formatting differences and frozen-experiment static findings
+remain outside this bounded implementation. Framework adoption still requires
+reviewed integration authority; the remaining dashboard dependency blocker must
+not be imported simply by merging all feature ancestry into main.
+
+## Finite architecture and research reconciliation (2026-10-23)
+
+This section is a Codex-authored operational charter from the user's explicit
+2026-10-22 reconciliation request. It is not an imported starter document or a
+new architectural decision. Earlier consolidation/engineering reports above
+remain historical evidence with their original outcomes and authority limits.
+
+### Governing direction and limits
+
+Devtools enters a finite research, architecture/execution-lifecycle audit,
+repository-hygiene planning and successor-session preparation phase. Immediate
+work is not another Qwen feature or benchmark. Research mature open-source
+harness mechanisms ourselves, incrementally, and compare them with actual
+Devtools ownership before recommending changes.
+
+Inventory delivered software and experiments, distinguish feature publication
+from protected-main adoption, identify missing foundations and possible overlap,
+review observability/trace/event pressure, and investigate developer ergonomics.
+Classify generated/temporary/obsolete storage without deleting original evidence.
+Capture qualified discoveries in the existing backlog instead of automatically
+fixing them. Prepare a comprehensive fresh-ChatGPT-session handoff only when this
+research and reconciliation are sufficiently complete.
+
+Use one physical canonical checkout. No new clone, worktree, backup/source tree,
+agent framework, execution owner, model experiment, service lifecycle change or
+protected-main promotion is authorized by this phase. Learned Intelligence's
+separate repository and scientific catalogs remain distinct. Existing taxonomy,
+package ownership, ADRs and publication controls are unchanged.
+
+### Starter-package custody
+
+Expected input: `devtools-reconciliation-starter-2026-10-22.zip` containing
+`01-reconciliation-charter.md`, `02-oss-harness-mechanism-review-initial.md`,
+`03-audit-backlog-seeds.md` and `MANIFEST.json`.
+
+The exact package/member files were not found in accessible canonical paths and
+no attachment location was provided. Excluded caches and permission-denied
+regions limit the scan. Status: **NOT_VERIFIED_NO_INPUT**; no starter hash,
+imported content or deduplication of its 18 stories is claimed. Do not substitute
+other local ZIPs or invent missing document bodies.
+
+If supplied later, inspect the manifest/schema and member paths, reject traversal
+or unexpected executable content, verify each original member's SHA-256 before
+use, and preserve substantive source bodies/provenance. Map them into the
+existing documentation/research/backlog owners and record original-to-canonical
+addresses. Do not create a second authoritative backlog or research index.
+
+### Initial checkpoint and next bounded work
+
+The authenticated feature baseline is
+`3c09641dd17b13b83c2fe84e3f1cf4920ca7186f`; protected remote main is
+`5d979920d0728775ed529457c88f5b68b440c64f`. Local main remains
+`862bda2d3d1d812893f84ab69691fc068ecce268`; its lag is not an unfinished Commands
+integration. Commands source is already adopted; many later worker/Context/RI
+increments remain feature-only or differ at the destination.
+
+This initial checkpoint supplies:
+
+1. [Source-backed adoption/observability inventory and backlog crosswalk](../research/architecture-reconciliation-inventory.md).
+2. [Primary-source harness review cursors](../research/agent-harness-mechanism-review.md)
+   and an ordered follow-up worksheet.
+3. [Artifact custody inventory](artifact-custody-inventory.md), exact metadata
+   limitations and a safe future cleanup procedure; no removals performed.
+4. Existing pending proposal captures/advisories, unchanged canonical IDs and
+   dispositions, plus refreshed navigation through the documentation map and
+   research README. This is not completion of the entire architecture audit.
+
+Next perform one source-and-test mechanism comparison of Qwen Code and Pydantic
+AI at recorded upstream revisions, then DeepSeek Harness and Aider. Follow with
+the complete local lifecycle/dependency/adoption and custody review. Record
+facts, external observations, hypotheses and candidate decisions separately;
+implementation requires its own selected, authorized increment.
+
+### Exit conditions for the finite phase
+
+- All meaningful capabilities have source, experiment, destination, consumer,
+  test/evidence and remaining-integration classifications, including unknowns.
+- Upstream mechanism findings and local observability/lifecycle gaps have exact
+  source/test references and explicit semantic/authority differences.
+- Original starter stories are deduplicated if the package becomes available,
+  otherwise the missing-input limitation remains an explicit handoff obligation.
+- Backlog candidates preserve parent/ID/disposition; no speculative abstraction,
+  generic tracing system or unreviewed feature is promoted merely by discovery.
+- Artifact custody/recovery and exact cleanup candidates are reviewable; any
+  destructive cleanup has separate authority and safeguards.
+- Current navigation/status claims are reconciled without rewriting historical
+  experiments, and a comprehensive fresh-session handoff identifies actual Git
+  state, decisions, evidence, unresolved obligations and the next bounded task.
+
+Documentation/index/layout/intake integrity checks are appropriate to this
+checkpoint. Production source/tests are unchanged; no new full protected gate
+or inference is required merely to publish documentation and advisory intake.
+
+## Recovered inputs and second research checkpoint (2026-10-23)
+
+The original unavailable-input statement above is historical. The supplied transfer
+ZIP and all five declared payloads are now locally authenticated; the three
+original document hashes also match the original manifest. The original starter
+ZIP container hash is supplied provenance, not locally recomputed. See the
+[exact intake/candidate reconciliation](../research/reconciliation-input-reconciliation.md)
+for custody, original byte-preserved documents and all18 canonical dispositions.
+
+The original charter's long-horizon OpenMind/Continuum motivation and model-neutral
+goals remain research direction, not a new domain or accepted Agent architecture.
+Preserve its top-down, horizontal and bottom-up audit views, plus one successful
+and one failed real trajectory; these deepen the existing finite-phase method.
+Report-only maintenance/research roles remain hypotheses under B-0043/B-0044.
+No input draft grants parallel execution, new inference or destructive cleanup.
+Existing taxonomy/ADRs/backlog/index owners remain authoritative.
+
+The [pinned Qwen Code/Pydantic AI implementation-and-test comparison](../research/agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+now covers correlation, continuation, exploration/loops, Context eviction,
+validation/retry/permission, interruption, usage and instrumentation against actual
+Devtools owners. Tests were inspected, not executed upstream. It corrects the
+starter's ExternalToolset validation and mostly-empty observability assumptions.
+No architecture/runtime adoption, source refactor or model experiment follows.
+
+Next inspect DeepSeek Harness and Aider source and tests; then deepen actual local
+successful/failed lifecycle joins, production adoption and custody/recovery before
+the comprehensive successor-session handoff. That later research is not launched
+by this checkpoint.
+
+## Four-project research checkpoint and local audit selection (2026-10-23)
+
+The [DeepSeek Harness/Aider source-and-test follow-up](../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+completes the selected external mechanism comparisons at pinned revisions.
+Session append is not automatically durable; Tool schemas/visibility are not
+authorization; Aider's host matching/partial application differs from exact atomic
+admission. Existing Evidence, usage, ToolRunner, Context and WorkCycle owners are
+the comparison targets. No framework adoption, implementation, inference,
+upstream execution or production behavior change follows.
+
+The next [five-flow observability/lifecycle audit](../research/development-lifecycle-audit-plan.md)
+has original receipt paths and fingerprints for Qwen success, rejected/incomplete
+edits, Codex closeout, real source recovery and genuine source navigation.
+Those inputs are selected, not yet exhaustively joined. Reauthenticate them and
+report missing causal edges rather than inventing spans or replaying work.
+Then finish bounded destination-adoption and artifact-custody reconciliation
+before the comprehensive successor-session handoff. Historical receipts,
+original18 crosswalk, backlog dispositions and protected-main authority remain.
+
+## Executed lifecycle/observability audit (2026-10-23)
+
+The [five-flow report](../research/development-lifecycle-observability-audit.md)
+authenticates all21 selected inputs plus original stage/provider/Tool/check/
+publication evidence. It separates direct byte/call/review links from inferred
+clock order and missing occurrence joins. The planned turn06 expansion actually
+refused; two recorded physical-file hashes differ from Git blobs solely by CRLF.
+Both distinctions are documented without altering historical receipts.
+
+Reuse current Evidence, usage and application receipts with better consumers/
+joins first; generic tracing/OTel interfaces remain alternatives requiring design,
+not adopted architecture. Advisory backlog evidence records incomplete model/
+observer population, freshness/publication/recovery observation, exact-tree
+input closure and capture-policy questions. No source, tests, runtime authority,
+scientific outcome or proposal disposition changes. Next reconcile selective
+destination adoption, actual feature/experiment ownership and exact-path custody,
+then prepare the comprehensive successor-session handoff. Do not begin that next
+phase automatically.
+
+## Final production reconciliation checkpoint (2026-10-23)
+
+The [completed production-adoption/experiment/architecture report](../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody companion](../research/production-adoption-and-architecture-evidence-20261023.json)
+complete this finite phase's repository-wide investigation checkpoint. All 35
+collections have explicit dispositions; 48 overlapping capability slices cover
+all 250 framework Python files, with source/test identities and actual consumer
+qualifications. Eight selective destination-review groups preserve Commands main
+adoption and exclude unrelated feature ancestry, historic grants and evidence.
+The [extended custody inventory](artifact-custody-inventory.md) verifies packets
+and eight residuals without removal; denied/uncertain regions remain HOLD.
+
+One pending protected-validation reuse/input-closure investigation and four
+existing proposal advisories preserve the backlog's current authority. No
+implementation, approval, source/test change, inference, service mutation or
+protected-main operation follows. The next planned checkpoint is the comprehensive
+ChatGPT successor-session handoff, not another open-ended research program.
+
+## Maintainer-directed comprehensive review (2026-10-23)
+
+The prior production/experiment inventory did not establish full implementation,
+case-level or real-consumer review. The maintainer explicitly postponed the final
+successor-session dossier. Continue with the [comprehensive code audit](../research/comprehensive-code-audit.md)
+and [first RI domain report](../research/repository-intelligence-code-audit.md).
+All original reconciliation/source/evidence records remain historical. No
+Checkout recovery, branch mutation, source-tree copy, cache removal or inference
+is part of this checkpoint. Existing13 forensic files remain in original custody.
+
+## Maintainer-directed branch integration (2026-10-24)
+
+The [actual whole-feature integration candidate](../research/feature-branch-integration-20261024.md) replaces selective-only deferral as the current direction. Earlier second-checkout blockers were repaired by the already maintained single-checkout WorkCycle, and the dashboard dependency findings now have a bounded repair. Frozen scientific branches retain separate decisions. Protected-main promotion remains separately authorized; no historical grant is revived.

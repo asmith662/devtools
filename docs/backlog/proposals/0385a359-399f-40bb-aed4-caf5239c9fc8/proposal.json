@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+  "created_at": "2026-10-23T12:08:23.855342+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Qualify custody-aware cleanup and recovery of ignored execution artifacts",
+    "summary": "The canonical checkout retains local archives, preserved historical checkout evidence, failed/native worker traces and generated caches. Existing reconciliation documents describe same-SSD restore packets; current metadata finds residual preserved-checkout directories and permission-denied regions. Qualify exact ownership, unique evidence, restore manifests, future recovery requirements and a bounded cleanup allowlist before deleting anything.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex source-backed reconciliation audit at 3c09641dd17b13b83c2fe84e3f1cf4920ca7186f; documentation/intake-only assignment, 2026-10-23"
+    },
+    "parent": null,
+    "resources": [
+      "docs/development/reconciliation.md",
+      ".gitignore",
+      "scripts/validate_layout.py",
+      ".local/archives/repository-2026-10-19/preservation-manifest.json",
+      ".local/preserved-checkouts",
+      ".local/reconciliation/permission-blocked-dashboard-cache"
+    ],
+    "evidence": [
+      "docs/development/reconciliation.md#preserved-evidence-and-recoverability",
+      ".local/reconciliation-20261023/inventory.json",
+      "git:3c09641dd17b13b83c2fe84e3f1cf4920ca7186f:experiments/README.md"
+    ],
+    "benefit": "Allow later repository hygiene without destroying frozen outcomes, unknown failed-run evidence or the only local restore packet; improve successor-session recoverability.",
+    "uncertainty": "No deletion or ACL change is authorized by capture. External/off-volume backups were not inspected. Existing archive restoration claims are historical and were not rerun. Cache-looking paths may be inside evidence packets; unreadable contents remain unqualified.",
+    "dependencies": [
+      "B-0006",
+      "B-0011",
+      "B-0028"
+    ]
+  },
+  "payload_sha256": "e37d733eecafd160842fab7788105b142faee2122e12ae98903b09a6478c8f43"
+}

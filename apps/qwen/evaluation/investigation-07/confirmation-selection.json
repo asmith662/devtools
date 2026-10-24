@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-20T17:07:40.884419+00:00",
+  "before_either_confirmation_call": true,
+  "decision": "Run the pre-frozen Identity confirmation once per harness; both development tasks accepted, no integrity failure. No worker or serving changes selected after inference. No extra runs or budget changes.",
+  "development": [
+    {
+      "run": "devtools-split",
+      "accepted": true,
+      "calls": 5,
+      "seconds": 63.093794199987315
+    },
+    {
+      "run": "pi-split",
+      "accepted": true,
+      "calls": 10,
+      "seconds": 92.91518979996908
+    },
+    {
+      "run": "devtools-bsd",
+      "accepted": true,
+      "calls": 3,
+      "seconds": 38.85882620001212
+    },
+    {
+      "run": "pi-bsd",
+      "accepted": true,
+      "calls": 5,
+      "seconds": 40.88602850004099
+    }
+  ],
+  "consumed_model_calls": 23,
+  "consumed_worker_seconds": 235.7538387000095,
+  "remaining_reserved_calls": 20,
+  "remaining_reserved_worker_seconds": 1800,
+  "producer_materialization": {
+    "apps/qwen/coding_loop.py": {
+      "frozen_sha256": "044d6b29f468828db3cb74d7b42bd4bada13c361e77844b1a1e669a482f44b27",
+      "current_sha256": "83ed07f2df0e0b9859e8571bc04b6ecfd09eaba54e749b09761fef085748d4d6",
+      "equivalent": "Git autocrlf only; normalized complete source matches frozen bytes"
+    },
+    "apps/qwen/context_tools.py": {
+      "frozen_sha256": "4bfecb6c9cbd912e530084755e0bb6e89b584abb2a4bd0aa72b1eb680f0c95ee",
+      "current_sha256": "4bfecb6c9cbd912e530084755e0bb6e89b584abb2a4bd0aa72b1eb680f0c95ee",
+      "equivalent": "identical bytes"
+    },
+    "apps/qwen/edits.py": {
+      "frozen_sha256": "e79fec9bf2c443fec49ccfc51dcd6747d166d2dd59977ee08d9bdc506ca5c8f9",
+      "current_sha256": "e79fec9bf2c443fec49ccfc51dcd6747d166d2dd59977ee08d9bdc506ca5c8f9",
+      "equivalent": "identical bytes"
+    },
+    ".local/run-dev06.py": {
+      "frozen_sha256": "218f0936a5618611ad09b41404078c67f49b6bb72211ef1dca1632a00174ec49",
+      "current_sha256": "218f0936a5618611ad09b41404078c67f49b6bb72211ef1dca1632a00174ec49",
+      "equivalent": "identical bytes"
+    },
+    ".local/reference07.mjs": {
+      "frozen_sha256": "3957fe27e5e9158a4fe637ff3bb3fcb874d08fc5a82ca03c08d22903c087a57b",
+      "current_sha256": "3957fe27e5e9158a4fe637ff3bb3fcb874d08fc5a82ca03c08d22903c087a57b",
+      "equivalent": "identical bytes"
+    },
+    ".local/run-reference07.py": {
+      "frozen_sha256": "2ce2e8916460da2bf3bdb0ce394f929acb95edbcd71672eb6673629c0679104c",
+      "current_sha256": "2ce2e8916460da2bf3bdb0ce394f929acb95edbcd71672eb6673629c0679104c",
+      "equivalent": "identical bytes"
+    },
+    ".local/reference-bridge07.py": {
+      "frozen_sha256": "009be0ca68f975c13626e0f5e06fdbdec83b1cdd976508d601e114402d99ffa3",
+      "current_sha256": "009be0ca68f975c13626e0f5e06fdbdec83b1cdd976508d601e114402d99ffa3",
+      "equivalent": "identical bytes"
+    }
+  }
+}

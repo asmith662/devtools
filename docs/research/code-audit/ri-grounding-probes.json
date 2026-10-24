@@ -1,0 +1,61 @@
+{
+  "probes": [
+    {
+      "name": "valid_range_redirect",
+      "status": "REPRODUCED",
+      "selected_address": "a.py",
+      "materialized_address": "b.py",
+      "source_text": "def decoy_(): return \"B\"",
+      "unchanged_disclosure_identity": true,
+      "scope": "Directly constructed inconsistent disclosure; no demonstrated model or native edit-authority exploit"
+    },
+    {
+      "name": "same_snapshot_inconsistent_content",
+      "status": "REPRODUCED",
+      "scope": "Deliberately inconsistent host snapshot; observation producer does not emit it"
+    },
+    {
+      "name": "repeated_validation_log_destination",
+      "status": "REPRODUCED",
+      "scope": "Independent fake process, no Codex or scientific execution"
+    },
+    {
+      "name": "swapped_discrimination_resource_pairs",
+      "status": "REJECTED",
+      "error": "Canonical identity mapping differs from exact disclosure"
+    },
+    {
+      "name": "invalid_exact_locator",
+      "status": "REJECTED",
+      "input": {
+        "source_key": "foreign",
+        "quote": "aba",
+        "occurrence": 1
+      },
+      "error": "Foreign or malformed source key"
+    },
+    {
+      "name": "invalid_exact_locator",
+      "status": "REJECTED",
+      "input": {
+        "source_key": "s0000",
+        "quote": "aba",
+        "occurrence": true
+      },
+      "error": "Invalid evidence occurrence"
+    },
+    {
+      "name": "invalid_exact_locator",
+      "status": "REJECTED",
+      "input": {
+        "source_key": "s0000",
+        "quote": "absent",
+        "occurrence": 1
+      },
+      "error": "Evidence quote occurrence not found"
+    }
+  ],
+  "source": "import asyncio,json,sys,tempfile\nfrom pathlib import Path\nfrom dataclasses import replace\nR=Path.cwd();O=Path(__file__).parent;sys.path.insert(0,str(R));sys.stdout.reconfigure(encoding='utf-8')\nfrom devtools.context import Repository,RepositoryId,RepositoryResourceAddress,observe_repository_resources,derive_python_function_declarations,PythonFunctionExactNameQuery,retrieve_python_functions_by_exact_name,disclose_python_function_exact_name_retrieval,materialize_python_function_disclosure_source\nfrom devtools.core.paths import resolve_path\nfrom experiments.orchestration.workers import evidence\nfrom experiments.source_grounding.discrimination import gold,sampling\nfrom experiments.source_grounding.discrimination.test_design import fixture,judgments\nfrom experiments.source_grounding.workers import command\nout=[]\nwith tempfile.TemporaryDirectory(dir=O) as tmp:\n root=Path(tmp);a='def wanted(): return \"A\"';b='def decoy_(): return \"B\"';assert len(a)==len(b)\n for n,t in [('a.py',a),('b.py',b)]: (root/n).write_bytes(t.encode())\n snap=observe_repository_resources(repository=Repository(RepositoryId.parse('00000000-0000-4000-8000-000000000041')),root=resolve_path(root),addresses=tuple(RepositoryResourceAddress(n) for n in ['a.py','b.py']),maximum_resource_bytes=4096)\n ana=derive_python_function_declarations(snap,resource_address=RepositoryResourceAddress('a.py'));ret=retrieve_python_functions_by_exact_name(declarations=ana.declarations,query=PythonFunctionExactNameQuery('wanted'));dis=disclose_python_function_exact_name_retrieval(ret)\n item=dis.items[0];altered=replace(dis,items=(replace(item,source_occurrence=replace(item.source_occurrence,resource_address=RepositoryResourceAddress('b.py'))),))\n wrong=materialize_python_function_disclosure_source(disclosure=altered,snapshot=snap)\n assert wrong.items[0].source_text==b and altered.identity==dis.identity and wrong.items[0].disclosure_item.selected_match.knowledge.support.resource_address.value=='a.py'\n out.append(dict(name='valid_range_redirect',status='REPRODUCED',selected_address='a.py',materialized_address='b.py',source_text=wrong.items[0].source_text,unchanged_disclosure_identity=altered.identity==dis.identity,scope='Directly constructed inconsistent disclosure; no demonstrated model or native edit-authority exploit'))\n stale=replace(snap,resources=tuple(replace(r,content=b) if r.address.value=='a.py' else r for r in snap.resources))\n assert materialize_python_function_disclosure_source(disclosure=dis,snapshot=stale).items[0].source_text==b\n out.append(dict(name='same_snapshot_inconsistent_content',status='REPRODUCED',scope='Deliberately inconsistent host snapshot; observation producer does not emit it'))\n async def logs():\n  cwd=root/'cwd';cwd.mkdir();dest=root/'preflight';argv=[sys.executable,'-c','print(\"fictional-version\")']\n  await command(argv,cwd,dest,20)\n  try:await command(argv,cwd,dest,20)\n  except FileExistsError:out.append(dict(name='repeated_validation_log_destination',status='REPRODUCED',scope='Independent fake process, no Codex or scientific execution'))\n  else:raise AssertionError('collision missing')\n asyncio.run(logs())\nd,r,u=fixture();s=sampling.design_sample(d,r,u);payload=judgments(s['packet']);table=s['host']['resources'];keys=list(table);bad={**table,keys[0]:table[keys[1]],keys[1]:table[keys[0]]}\ntry:gold.project(s['packet'],payload,s['response_schema'],bad)\nexcept ValueError as e:out.append(dict(name='swapped_discrimination_resource_pairs',status='REJECTED',error=str(e)))\nelse:raise AssertionError('swapped map accepted')\nfor loc in [dict(source_key='foreign',quote='aba',occurrence=1),dict(source_key=keys[0],quote='aba',occurrence=True),dict(source_key=keys[0],quote='absent',occurrence=1)]:\n try:evidence.resolve(loc,table)\n except ValueError as e:out.append(dict(name='invalid_exact_locator',status='REJECTED',input=loc,error=str(e)))\n else:raise AssertionError('invalid locator accepted')\n(O/'probes.json').write_text(json.dumps(dict(probes=out),indent=2)+'\\n');print(json.dumps(out,indent=2))\n",
+  "source_sha256": "16b48881877bb3c4e74c2f1e9c3c17dfc892af91108302ea2bc65f41356bdff1",
+  "scope": "Independent fictional inputs only; no original treatment, report, native pickle, model or adjudication executed"
+}

@@ -1,0 +1,20 @@
+{
+  "frozen_at": "2026-10-20T20:58:57.084891+00:00",
+  "base": "21002571f5412683de321373e417206b863982bd",
+  "task_sha256": "b704886bd54b490e8b1f7136a117970ac850af8a731472dce24dff68254c6415",
+  "proposal": "038c927f-a59b-4010-89e8-becceabe991d",
+  "inference_budget": {
+    "runs": 1,
+    "model_requests": 24,
+    "worker_seconds": 1800,
+    "output_tokens_per_request": 8192,
+    "context_actions_per_task": 32,
+    "atomic_proposals": 3,
+    "paid_codex_calls": 0
+  },
+  "novelty": "Audited all historical task objectives/source paths/oracle hashes. Editing-06 disappearance case used the same read module but different race-error semantics and an invalid oracle; this task addresses the separately documented unbounded-allocation pressure and does not use disappearance assumptions. No prior task attempted hard read-consumption limits.",
+  "compatibility": "Two existing tests mock Path.read_bytes implementation rather than observable stream behavior; prospectively excluded and must be migrated to stream-level regressions before publication. All other read behavior and selected tests remain mandatory. No test modified before inference.",
+  "oracle_sha256": "13f9e2ab9c112dd2735b15f6a50d8f1c9afe4172ead3f0d747183b023c485bfc",
+  "preflight": ".local/qwen-coding-worker/continuation-09/preflight.json",
+  "selection": "One substantive fresh roadmap obligation; no additional Qwen runs or comparison retries in this budget."
+}

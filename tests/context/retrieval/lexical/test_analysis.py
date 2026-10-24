@@ -15,6 +15,7 @@ from ._helpers import _collection, _document
 if TYPE_CHECKING:
     import pytest
 
+
 def test_heterogeneous_documents_use_one_baseline_lexical_mechanism() -> None:
     """Source, Markdown, TOML, YAML, and prose share one lexical analyzer."""
     documents = (
@@ -93,14 +94,14 @@ def test_observations_preserve_order_repetition_casefolding_and_exact_spans() ->
         observation.encounter_ordinal for observation in analysis.observations
     ] == list(range(len(analysis.observations)))
     assert all(
-        document.text[observation.start : observation.end]
-        == observation.observed_text
+        document.text[observation.start : observation.end] == observation.observed_text
         for observation in analysis.observations
     )
 
 
-def test_document_analysis_is_deterministic_and_independent_of_other_documents(
-) -> None:
+def test_document_analysis_is_deterministic_and_independent_of_other_documents() -> (
+    None
+):
     """One document's analysis does not depend on collection or corpus neighbors."""
     unchanged = _document("common.txt", "Common alpha")
     first = analyze_repository_text_document(document=unchanged)

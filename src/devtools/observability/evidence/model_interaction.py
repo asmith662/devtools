@@ -3,7 +3,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import json
+from dataclasses import asdict, dataclass
 from enum import StrEnum
 from typing import TYPE_CHECKING, cast
 
@@ -81,8 +82,7 @@ class CapturedText:
         retained = self.state in {CaptureState.CAPTURED, CaptureState.REDACTED}
         if retained != (self.value is not None):
             msg = (
-                "Captured text value must exist exactly for captured or redacted "
-                "state."
+                "Captured text value must exist exactly for captured or redacted state."
             )
             raise ValueError(msg)
 
@@ -163,7 +163,27 @@ class ModelInteractionEvidence:
         serving_profile: ServingProfileIdentity | None,
     ) -> ModelInteractionEvidence:
         """Construct immutable Evidence while source payloads are still available."""
-        prompt = _capture(observation.request.prompt.content, policy.prompt)
+        prompt_input = observation.request.prompt
+        prompt_value = asdict(prompt_input)
+        history_arguments = []
+        for message in prompt_value["messages"]:
+            for call in message["tool_calls"]:
+                # Input history must not leak a category omitted/redacted by its
+                # independent capture policy merely because Prompt is captured.
+                action = (
+                    policy.tool_call_arguments
+                    if policy.prompt is CaptureAction.CAPTURE
+                    else policy.prompt
+                )
+                captured = _capture(call["arguments_json"], action)
+                history_arguments.append(captured)
+                call["arguments_json"] = asdict(captured)
+        prompt = _capture(
+            json.dumps(prompt_value, sort_keys=True)
+            if prompt_input.messages
+            else prompt_input.content,
+            policy.prompt,
+        )
         visible = _capture(observation.response.content, policy.visible_content)
         reasoning = _capture(
             observation.response.reasoning_content,
@@ -192,7 +212,7 @@ class ModelInteractionEvidence:
                 tuple(tool.input_schema for tool in tools),
             ),
             tool_call_arguments=_aggregate_capture_state(
-                tuple(call.arguments for call in tool_calls),
+                (*history_arguments, *(call.arguments for call in tool_calls)),
             ),
         )
         return cls(
@@ -254,7 +274,8 @@ class ModelInteractionInspector:
         self._serving_profile = serving_profile
         self._evidence_by_id: dict[EvidenceId, ModelInteractionEvidence] = {}
         self._evidence_by_interaction_id: dict[
-            ModelInteractionId, ModelInteractionEvidence,
+            ModelInteractionId,
+            ModelInteractionEvidence,
         ] = {}
 
     def interaction_completed(self, observation: ModelInteractionObservation) -> None:

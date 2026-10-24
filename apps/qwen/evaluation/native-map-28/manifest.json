@@ -1,0 +1,39 @@
+{
+  "baseline": "ecfe329e006307e0b2845aef21b3860feb7aa826",
+  "task_sha256": "687f21695bded313f9372e1ad4c0e9fdc59ead20d462b0703be8e5a3766ed1f1",
+  "oracle_sha256": "8bd8f0e90250d5a25821ca049e5dbd61ab00fd3daa7ce6e2b443612377871910",
+  "sources": [
+    "src/devtools/context/retrieval/source/search.py"
+  ],
+  "read_paths": [
+    "src/devtools/context/retrieval/source/index.py",
+    "src/devtools/context/retrieval/source/representation.py",
+    "src/devtools/context/retrieval/source/__init__.py",
+    "src/devtools/context/planning/source.py",
+    "src/devtools/context/retrieval/lexical/bm25.py",
+    "src/devtools/context/retrieval/fusion.py"
+  ],
+  "tests": [
+    "tests/context/retrieval/source/test_search.py"
+  ],
+  "new_paths": [],
+  "profile": "Qwen3.8-27B IQ4_XS;32K;q4 K/V;thinking off",
+  "limits": {
+    "maximum_calls": 24,
+    "wall_seconds": 1800,
+    "maximum_proposals": 6,
+    "tool_actions": 32,
+    "output_tokens": 8192
+  },
+  "atomic_limits": {
+    "region_bytes": 4096,
+    "aggregate_bytes": 8192,
+    "patch_bytes": 16384,
+    "components": 16
+  },
+  "novelty": "No previous scoped source-search assignment; map-to-source27 is not repeated. Existing B-0002 caller selection pressure, bounded filter in existing owner.",
+  "contract": "Explicit selected admitted resources; original lexical corpus/evidence; all modes; no acquisition or new ranking policy.",
+  "baseline_missing": true,
+  "stop_rule": "No arbitrary response cutoff; cumulative limits are hard and no retry. Repeated discovery measured separately.",
+  "expected_edit_feasibility": "One existing 6KB source owner; dataclass field and bounded selection/result handling fit component/region limits; no new paths required."
+}

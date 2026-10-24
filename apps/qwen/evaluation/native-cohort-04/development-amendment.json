@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-19T23:17:19.184767+00:00",
+  "stage": "development only; before any held-out model dispatch",
+  "reason": "Initial coordinated regex exhausted eight dispatch attempts within an oversized read batch, terminating before an edit. Add tested atomic batch refusal/correlated recovery, without changing limits. Reassess the fixed final worker on both original development tasks.",
+  "original_failed_run": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap",
+  "preserve_original": true,
+  "additional_run": "improved-final/regex-overlap at a distinct software checkpoint and report directory, not blind retry",
+  "allocation": "Use previously reserved sixth slot for this final development comparison. Actual control runs already required behavioral/typing repair, so a separate repair-only slot is not required.",
+  "unchanged": [
+    "all frozen task objectives, source baselines, oracles, regression and quality/type criteria",
+    "six runs, 60 calls, 5400 worker seconds cumulative; ten calls/eight dispatches/three proposals per run",
+    "model/weights/context/output/thinking settings"
+  ],
+  "prohibitions": [
+    "no held-out tuning or repeated held-out attempt",
+    "no reclassification of initial failed run",
+    "no additional seventh run"
+  ]
+}

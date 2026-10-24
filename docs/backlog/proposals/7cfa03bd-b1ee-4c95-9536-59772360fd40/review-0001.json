@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+  "proposal_sha256": "1634424301d3e0664f6712f1669c65eba32c47dbcca819d2e218c2254a3bb1cc",
+  "previous": null,
+  "at": "2026-10-24T16:51:31.456672+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/feature-branch-integration-20261024.md",
+  "rationale": "Supported integration scope now passes Ruff and formatting over src/apps/scripts/tests excluding tests/experiments:27 Python bodies AST-equivalent and one Markdown example whitespace-only, without changing Ruff configuration or disabling COM812. Historical generated-builder panic and broad research lint remain unresolved; do not close this proposal. Frontend LF attributes additionally make its existing Prettier scope reproducible; no frozen science mass-formatting or tool upgrade.",
+  "duplicates": [
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "f47f3925-6988-4d84-81f4-c5b97a571484",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0048-restore-python-3-12-json-file-model-compatibility.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve existing UUID, payload, parent and state. Evidence only; no approval, grant, B-number, dispatch, closure or protected-main publication.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f7d29329911a87a75fff9b6e7366d0b272c9c8a65f20d6c68579d24ab92c5f3c"
+}

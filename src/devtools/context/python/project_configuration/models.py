@@ -78,7 +78,9 @@ class PythonConfigurationDeclarationAnalysis:
     parse_error: str | None
     settings: PythonConfigurationSettings | None
 
-    SCOPE: ClassVar[str] = "six-selector-keys-and-bounded-project-pytest-settings-v2"
+    SCOPE: ClassVar[str] = (
+        "six-selector-keys-and-bounded-project-pytest-dependency-groups-settings-v3"
+    )
 
 
 @dataclass(frozen=True, slots=True)

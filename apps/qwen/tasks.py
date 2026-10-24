@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-# ruff: noqa: COM812, EM101, TRY003, PLR2004 -- fixed experiment task definitions
+# ruff: noqa: EM101, TRY003, PLR2004 -- fixed experiment task definitions
+
 """Host-selected configuration for the existing bounded coding loop.
 
 These are two concrete development obligations, not a task/plugin registry or
@@ -13,6 +14,7 @@ import json
 from dataclasses import asdict, dataclass
 from typing import TYPE_CHECKING
 
+from apps.qwen.api_contracts import API_TARGETS
 from apps.qwen.development_task import ACCEPTANCE, SOURCE, TESTS
 from apps.qwen.source_segment_acceptance import ACCEPTANCE as SEGMENT_ACCEPTANCE
 from devtools.context import RepositoryResourceAddress
@@ -23,7 +25,7 @@ if TYPE_CHECKING:
 
 @dataclass(frozen=True, slots=True)
 class CodingTask:
-    """One host-owned one-file objective, admitted Context, checks and bounds."""
+    """One host-owned bounded objective, exact source/read scopes and checks."""
 
     name: str
     objective: str
@@ -37,10 +39,78 @@ class CodingTask:
     output_tokens: int = 4096
     wall_seconds: int = 900
     call_seconds: int = 300
+    context_mode: str = "prepared"
+    read_paths: tuple[str, ...] = ()
+    quality_checks: bool = False
+    additional_edit_paths: tuple[str, ...] = ()
+    api_targets: tuple[str, ...] = ()
+    command_tools: bool = False
+    mechanical_format: bool = False
+    tool_actions: int = 8
+    new_paths: tuple[str, ...] = ()
+    disclose_edit_paths: bool = True
+    path_edits: bool = False
+    maximum_proposals: int = 3
+    map_navigation: bool = False
 
-    def __post_init__(self) -> None:  # noqa: C901 -- narrow configuration admission
+    def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
-        paths = (self.source, *self.tests)
+        if any(
+            type(x) is not bool
+            for x in (
+                self.quality_checks,
+                self.command_tools,
+                self.mechanical_format,
+                self.disclose_edit_paths,
+                self.path_edits,
+                self.map_navigation,
+            )
+        ):
+            raise ValueError("quality_checks must be a host-selected boolean")
+        if (
+            not isinstance(self.additional_edit_paths, tuple)
+            or len(self.additional_edit_paths) > 3
+            or any(
+                not p.startswith(("src/devtools/", "apps/"))
+                for p in self.additional_edit_paths
+            )
+            or not isinstance(self.api_targets, tuple)
+            or len(set(self.api_targets)) != len(self.api_targets)
+            or any(p not in API_TARGETS for p in self.api_targets)
+        ):
+            raise ValueError("Task edit/API scope is not host-supported")
+        paths = (*self.existing_sources, *self.tests, *self.read_paths)
+        if (
+            not isinstance(self.new_paths, tuple)
+            or len(self.sources) > 5
+            or len({*paths, *self.new_paths}) != len(paths) + len(self.new_paths)
+        ):
+            raise ValueError("New source paths must be distinct and bounded")
+        for path in self.new_paths:
+            RepositoryResourceAddress(path)
+            if not path.startswith(("src/devtools/", "apps/")) or not path.endswith(
+                ".py",
+            ):
+                raise ValueError(
+                    "New source requires an explicit Python implementation path",
+                )
+        if type(self.tool_actions) is not int or not 1 <= self.tool_actions <= 32:
+            raise ValueError("Tool actions must be host-bounded to at most 32")
+        if self.context_mode not in {"prepared", "on-demand"}:
+            raise ValueError("Unknown Context acquisition mode")
+        if (
+            type(self.maximum_proposals) is not int
+            or not 1
+            <= self.maximum_proposals
+            <= (6 if self.context_mode == "on-demand" else 3)
+            or (self.path_edits and self.context_mode != "on-demand")
+        ):
+            raise ValueError("Task requires bounded native edit proposals")
+        if (
+            not isinstance(self.read_paths, tuple)
+            or len(paths) + len(self.new_paths) > 32
+        ):
+            raise ValueError("Task requires a bounded tuple of read paths")
         if (
             not self.name.strip()
             or not self.objective.strip()
@@ -53,10 +123,14 @@ class CodingTask:
                 raise ValueError("Task requires exact SHA-256 input identities")
         for path in paths:
             address = RepositoryResourceAddress(path)
-            if not path.endswith(".py") or address.parts[0] not in {"src", "tests"}:
+            if not path.endswith(".py") or address.parts[0] not in {
+                "src",
+                "apps",
+                "tests",
+            }:
                 raise ValueError("Task requires repository Python source/test paths")
         if (
-            not self.source.startswith("src/devtools/")
+            not self.source.startswith(("src/devtools/", "apps/"))
             or not self.tests
             or any(not p.startswith("tests/") for p in self.tests)
             or len(set(paths)) != len(paths)
@@ -76,10 +150,10 @@ class CodingTask:
             if not query.strip():
                 raise ValueError("Task requires explicit nonempty retrieval queries")
         for value, bound in (
-            (self.maximum_calls, 3),
-            (self.output_tokens, 4096),
-            (self.wall_seconds, 900),
-            (self.call_seconds, 300),
+            (self.maximum_calls, 24 if self.context_mode == "on-demand" else 3),
+            (self.output_tokens, 12288 if self.context_mode == "on-demand" else 4096),
+            (self.wall_seconds, 1800 if self.context_mode == "on-demand" else 900),
+            (self.call_seconds, 600 if self.context_mode == "on-demand" else 300),
         ):
             if (
                 not isinstance(value, int)
@@ -89,6 +163,16 @@ class CodingTask:
                 raise ValueError("Task exceeds the bounded local worker limits")
 
     @property
+    def sources(self) -> tuple[str, ...]:
+        """Exact permitted implementation resources; tests remain immutable."""
+        return (*self.existing_sources, *self.new_paths)
+
+    @property
+    def existing_sources(self) -> tuple[str, ...]:
+        """Only baseline-existing files have frozen content observations."""
+        return (self.source, *self.additional_edit_paths)
+
+    @property
     def oracle_sha256(self) -> str:
         """Identify exact host-only acceptance code."""
         return hashlib.sha256(self.oracle.encode()).hexdigest()
@@ -96,13 +180,56 @@ class CodingTask:
     @property
     def definition_sha256(self) -> str:
         """Bind the complete host definition, including all checks and bounds."""
-        return hashlib.sha256(
-            json.dumps(asdict(self), sort_keys=True).encode()
-        ).hexdigest()
+        value = asdict(self)
+        for field in (
+            "additional_edit_paths",
+            "api_targets",
+            "command_tools",
+            "mechanical_format",
+            "new_paths",
+            "path_edits",
+            "map_navigation",
+        ):
+            if not value[field]:
+                del value[field]
+        if self.tool_actions == 8:
+            del value["tool_actions"]
+        if self.maximum_proposals == 3:
+            del value["maximum_proposals"]
+        if self.disclose_edit_paths:
+            del value["disclose_edit_paths"]
+        if not self.quality_checks:
+            del value["quality_checks"]
+        # Existing assignment-v1 receipts predate these optional fields. Their
+        # exact definition hashes remain valid only for legacy prepared mode.
+        if self.context_mode == "prepared" and not self.read_paths:
+            del value["context_mode"], value["read_paths"]
+        return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
 
     @property
     def prompt(self) -> str:
         """Combine the objective with the same host-controlled proposal boundary."""
+        if self.context_mode == "on-demand":
+            return (
+                self.objective
+                + (
+                    " Host acceptance includes Ruff and formatting; "
+                    "repair their diagnostics. "
+                    if self.quality_checks
+                    else ""
+                )
+                + " Only edit "
+                + self.source
+                + ". "
+                "Investigate with native read-only Context Tools as needed. "
+                "Propose one contiguous replacement using native propose_edit. "
+                "The host applies and tests it; you have no write, shell or Git "
+                "authority. Do not claim tests ran. Read results identify exact "
+                "source version hashes. After failure revise current source using the "
+                f"correlated Tool result. At most {self.maximum_proposals} edit "
+                f"proposals, {self.tool_actions} Context "
+                f"actions and {self.maximum_calls} total model calls are permitted."
+            )
         return (
             self.objective + " Only edit " + self.source + ". "
             "Use exactly one native propose_edit call for a contiguous replacement. "

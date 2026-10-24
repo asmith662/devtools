@@ -1,0 +1,25 @@
+{
+  "starting_head": "bdf4d3590a751880998c841f005930757aadd3cf",
+  "task_sha256": "3183383b67ccd4ee9ecdf15f08fde2eefb127dbc0d4771e401a3f21c23d89d71",
+  "oracle_sha256": "dab10d6ecb1315654d52982fcc77e1d7438a301eb414d4151455c7a2cac107e7",
+  "sources": {
+    "src/devtools/context/python/project_configuration/settings.py": 5464,
+    "src/devtools/context/python/project_configuration/declarations.py": 4524,
+    "src/devtools/context/python/project_configuration/models.py": 6456
+  },
+  "model": "Qwen3.8-27B IQ4_XS / 32K / q4 K,V / thinking off",
+  "bounds": {
+    "maximum_calls": 24,
+    "wall_seconds": 1800,
+    "maximum_proposals": 6,
+    "tool_actions": 32,
+    "output_tokens": 8192
+  },
+  "novelty": "No dependency-groups task in previous frozen task manifests; actual repository declares increment-27 but RI does not recognize the table.",
+  "qualification": "Public API fixtures, including unchanged resolution helper, validated by installed tomllib before assertions. Baseline must fail specifically at missing static declarations. Original test_settings 17-key absence assertion is compatibility-adapted only after run to reflect intentional coverage expansion; other existing tests unchanged.",
+  "references": [
+    "https://packaging.python.org/en/latest/specifications/dependency-groups/",
+    "https://peps.python.org/pep-0735/",
+    "https://packaging.python.org/en/latest/specifications/name-normalization/"
+  ]
+}

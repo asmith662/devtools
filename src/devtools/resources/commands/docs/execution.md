@@ -36,14 +36,16 @@ nonempty mappings overlay only their keys. Immutable specification validation an
 fluent behavior are described in [Command values](command.md). There is no shell
 or process-group configuration. The exact Qwen implementation and independent
 regressions are reviewed and feature-published; see
-[environment development 13](https://github.com/asmith662/devtools/blob/9437ed1539fd4ad2a9b471ea20fc3de775f74765/apps/qwen/evaluation/environment-13/README.md).
-Protected-main adoption remains separate.
+[environment development 13](../../../../../apps/qwen/evaluation/environment-13/README.md).
+These Commands capabilities were adopted on protected main by the reviewed
+Commands integration at `2f9218625ab4` (merge `5d979920d072`).
 
 The exact Qwen-authored stdin implementation was independently qualified after
 correcting missing standard attributes in old test doubles, then reviewed and
 feature-published through WorkCycle. The live continuation still failed at
-Context capacity; see [stdin development evidence](https://github.com/asmith662/devtools/blob/9437ed1539fd4ad2a9b471ea20fc3de775f74765/apps/qwen/evaluation/stdin-11/README.md).
-This does not claim protected-main adoption or uninterrupted autonomous success.
+Context capacity; see [stdin development evidence](../../../../../apps/qwen/evaluation/stdin-11/README.md).
+Its later protected-main integration does not establish uninterrupted autonomous
+success for that historical continuation.
 
 If creation raises `FileNotFoundError`, it becomes `CommandNotFoundError` with
 the original error retained as its cause. No started event or result is
@@ -91,4 +93,5 @@ They leave the original bytes, truncation flags, command, duration, exit code an
 event-drop metadata unchanged. Alternate codecs/error policies follow Python's
 native contract, including `UnicodeDecodeError` and `LookupError`; arguments are
 keyword-only. These Qwen-authored methods and independent permanent regressions
-are feature-published in `9b667e597f9d`; protected-main adoption remains separate.
+were feature-published in `9b667e597f9d` and adopted by the Commands integration
+at `2f9218625ab4`.

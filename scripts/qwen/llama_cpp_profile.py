@@ -12,6 +12,23 @@ from typing import Literal
 
 from devtools.models.serving.huggingface import HuggingFaceGGUFRef
 
+# Explicit optional request settings from official Qwen3.8-27B guidance.
+# They do not replace the preserved server-metadata baseline.
+QWEN38_INSTRUCT_SAMPLING = {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+}
+QWEN38_THINKING_SAMPLING = {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+}
+
 
 @dataclass(frozen=True, slots=True)
 class Qwen38LlamaCppExperimentalProfile:

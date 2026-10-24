@@ -1,0 +1,1870 @@
+{
+  "cohort_tests": [
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/test_packet_recovery.py",
+      "sha256": "e31bb8fa40f2c1fac5439903db4ee7b6d16d01c280e4dcd30f61d6d34c6d78cc",
+      "functions": [
+        {
+          "name": "stage_a",
+          "line": 19,
+          "end": 20
+        },
+        {
+          "name": "test_two_independent_renders_are_byte_identical",
+          "line": 23,
+          "end": 30
+        },
+        {
+          "name": "test_manifest_binds_payload_and_compressed_artifact",
+          "line": 33,
+          "end": 50
+        },
+        {
+          "name": "test_render_matches_frozen_stage_a_frame_task_and_obligations",
+          "line": 53,
+          "end": 57
+        },
+        {
+          "name": "test_treatment_field_leakage_is_rejected",
+          "line": 93,
+          "end": 104
+        },
+        {
+          "name": "test_existing_packet_overwrite_is_refused_by_default",
+          "line": 107,
+          "end": 121
+        },
+        {
+          "name": "test_read_only_replay_matches_repaired_packet",
+          "line": 124,
+          "end": 125
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED_NOT_EXECUTED"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/adjudication/test_stage_c.py",
+      "sha256": "422e8b77b30b8ce99a7f8bf31b4ff3c192231dedc0aee2fb9f83ad79e1e77be8",
+      "functions": [
+        {
+          "name": "test_exact_packet_and_complete_frame",
+          "line": 14,
+          "end": 22
+        },
+        {
+          "name": "test_exact_replay_and_serialization",
+          "line": 25,
+          "end": 33
+        },
+        {
+          "name": "test_corrupt_gold_is_rejected",
+          "line": 37,
+          "end": 60
+        },
+        {
+          "name": "test_overwrite_refuses_before_any_write",
+          "line": 63,
+          "end": 67
+        },
+        {
+          "name": "test_bad_seal_stops_before_decompression",
+          "line": 70,
+          "end": 76
+        },
+        {
+          "name": "test_frozen_obligation_cannot_be_rewritten",
+          "line": 79,
+          "end": 84
+        },
+        {
+          "name": "test_helpers_are_self_contained_and_parse",
+          "line": 87,
+          "end": 96
+        },
+        {
+          "name": "test_sufficient_alternatives_and_unit_statistics",
+          "line": 99,
+          "end": 108
+        },
+        {
+          "name": "forbidden_decompression",
+          "line": 72,
+          "end": 73
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED_NOT_EXECUTED"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0009/test_analysis.py",
+      "sha256": "81bcd677e896531c7d1e8655c0a2e49eff0e8f5d5a0e87d0da5edcc528226e8f",
+      "functions": [
+        {
+          "name": "analysis",
+          "line": 33,
+          "end": 35
+        },
+        {
+          "name": "test_replay_and_all_primary_totals",
+          "line": 38,
+          "end": 65
+        },
+        {
+          "name": "test_disjoint_paired_partitions",
+          "line": 68,
+          "end": 87
+        },
+        {
+          "name": "test_best_alternative_never_mixes_incompatible_members",
+          "line": 90,
+          "end": 100
+        },
+        {
+          "name": "test_all_real_completion_alternatives",
+          "line": 103,
+          "end": 120
+        },
+        {
+          "name": "test_corrupt_join_is_rejected",
+          "line": 126,
+          "end": 150
+        },
+        {
+          "name": "test_exact_source_and_score_attribution",
+          "line": 153,
+          "end": 186
+        },
+        {
+          "name": "test_rescue_requires_new_positive_and_exact_identifier_source",
+          "line": 189,
+          "end": 221
+        },
+        {
+          "name": "test_observed_whole_forms_and_readiness_query_effect",
+          "line": 224,
+          "end": 245
+        },
+        {
+          "name": "test_exact_frozen_decision_and_cost_limits",
+          "line": 248,
+          "end": 264
+        },
+        {
+          "name": "test_twenty_percent_and_three_times_boundaries",
+          "line": 267,
+          "end": 294
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED_NOT_EXECUTED"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0010/adjudication/test_stage_c.py",
+      "sha256": "8d4c41e3baf0565ccbe468f755fce97f5a89eb0653a01daf7269774c2092062c",
+      "functions": [
+        {
+          "name": "tmp_path",
+          "line": 17,
+          "end": 22
+        },
+        {
+          "name": "packet",
+          "line": 26,
+          "end": 27
+        },
+        {
+          "name": "gold",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "test_workspace_has_only_authorized_inputs_outputs_and_new_runtime_caches",
+          "line": 35,
+          "end": 36
+        },
+        {
+          "name": "test_exact_sealed_input_bindings_and_full_frame",
+          "line": 39,
+          "end": 44
+        },
+        {
+          "name": "test_complete_judgment_frame_and_source_support",
+          "line": 47,
+          "end": 50
+        },
+        {
+          "name": "test_deterministic_in_memory_rebuild_and_frozen_output_bytes",
+          "line": 53,
+          "end": 62
+        },
+        {
+          "name": "test_bad_cell_frames_fail",
+          "line": 66,
+          "end": 79
+        },
+        {
+          "name": "test_corrupt_exact_support_fails",
+          "line": 83,
+          "end": 88
+        },
+        {
+          "name": "test_incomplete_alternative_cannot_manufacture_satisfaction",
+          "line": 91,
+          "end": 95
+        },
+        {
+          "name": "test_wrong_unit_linkage_fails",
+          "line": 98,
+          "end": 103
+        },
+        {
+          "name": "test_each_modified_input_is_rejected_before_adjudication",
+          "line": 107,
+          "end": 113
+        },
+        {
+          "name": "test_packet_frame_corruption_rejected",
+          "line": 117,
+          "end": 128
+        },
+        {
+          "name": "test_exact_exhaustive_sufficient_unions",
+          "line": 131,
+          "end": 142
+        },
+        {
+          "name": "test_overwrite_refused_without_partial_writes_or_input_changes",
+          "line": 145,
+          "end": 158
+        },
+        {
+          "name": "test_forbidden_fields_rejected_recursively",
+          "line": 162,
+          "end": 164
+        },
+        {
+          "name": "test_false_blindness_attestation_rejected",
+          "line": 167,
+          "end": 171
+        },
+        {
+          "name": "test_unexpected_workspace_entry_rejected",
+          "line": 174,
+          "end": 180
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED_NOT_EXECUTED"
+    }
+  ],
+  "external_tests": [
+    {
+      "path": "tests/experiments/bm25_sensitivity/__init__.py",
+      "sha256": "d49de7444f942f757d5b65c5977129dc4659847d6276ef105560e26c3b795e52",
+      "functions": [],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_analysis.py",
+      "sha256": "c4565f8f016fb516dee7622c65c0118ea22e1ec6ac592913b6daca62b041cdb2",
+      "functions": [
+        {
+          "name": "analysis",
+          "line": 26,
+          "end": 28
+        },
+        {
+          "name": "test_committed_chain_join_and_clean_gold",
+          "line": 31,
+          "end": 49
+        },
+        {
+          "name": "test_independent_alternative_prefix_and_positive_arithmetic",
+          "line": 52,
+          "end": 121
+        },
+        {
+          "name": "test_gate_boundaries_and_exact_outcome_vocabulary",
+          "line": 124,
+          "end": 175
+        },
+        {
+          "name": "test_paired_partitions_costs_and_gates",
+          "line": 178,
+          "end": 209
+        },
+        {
+          "name": "test_diagnostic_replay_term_profiles_and_conservative_attribution",
+          "line": 212,
+          "end": 247
+        },
+        {
+          "name": "test_gold_and_treatment_tamper_rejected",
+          "line": 250,
+          "end": 271
+        },
+        {
+          "name": "forbidden_scoring",
+          "line": 274,
+          "end": 277
+        },
+        {
+          "name": "test_json_markdown_replay_without_scoring",
+          "line": 280,
+          "end": 287
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_capture.py",
+      "sha256": "30e9e89aa6392998ae6f915005f42dd660d27a4f1a3d07831c84d53ae49bef4c",
+      "functions": [
+        {
+          "name": "forbidden_scoring",
+          "line": 20,
+          "end": 23
+        },
+        {
+          "name": "test_complete_treatment_score_replay_without_scoring",
+          "line": 26,
+          "end": 36
+        },
+        {
+          "name": "test_exclusive_execution_and_packet_overwrite_refusal",
+          "line": 39,
+          "end": 44
+        },
+        {
+          "name": "test_parameter_identity_cost_and_packet_replay",
+          "line": 47,
+          "end": 77
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_development.py",
+      "sha256": "04ce9ffef4cae2848dce15504f5c009085b357c20d859154c3a88e3d5c1428ab",
+      "functions": [
+        {
+          "name": "test_complete_grid_replay_and_missing_alternatives",
+          "line": 16,
+          "end": 40
+        },
+        {
+          "name": "test_diagnostic_score_reconstruction_and_parameter_only_effects",
+          "line": 43,
+          "end": 58
+        },
+        {
+          "name": "test_sensitivity_details_replay_and_baseline_interaction_zero",
+          "line": 61,
+          "end": 69
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_prospective.py",
+      "sha256": "e3e2b1a30cbf2b1d051df661285a8a5f6cd3c3dfb1d60bed772c08f6421f39ff",
+      "functions": [
+        {
+          "name": "native",
+          "line": 24,
+          "end": 39
+        },
+        {
+          "name": "test_blind_packet_double_build_and_explicit_digest_scopes",
+          "line": 42,
+          "end": 55
+        },
+        {
+          "name": "test_blind_packet_rejects_treatment_metadata",
+          "line": 59,
+          "end": 67
+        },
+        {
+          "name": "test_native_queries_have_no_gold_and_exact_obligation_association",
+          "line": 70,
+          "end": 78
+        },
+        {
+          "name": "test_frozen_stage_a_frame_and_packet_reconstruction",
+          "line": 81,
+          "end": 90
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_protocol.py",
+      "sha256": "3bf2d7f89e64765f9d92d371f7db6c786be1c109d6348629ce0c3a3eb57a7516",
+      "functions": [
+        {
+          "name": "row",
+          "line": 15,
+          "end": 35
+        },
+        {
+          "name": "test_full_factorial_and_configuration_identity",
+          "line": 38,
+          "end": 51
+        },
+        {
+          "name": "test_role_selection_is_multiobjective_and_deduplicated",
+          "line": 54,
+          "end": 66
+        },
+        {
+          "name": "test_safety_completeness_distance_and_final_tie",
+          "line": 69,
+          "end": 84
+        },
+        {
+          "name": "test_partial_case_cannot_manufacture_full_completion_ratios",
+          "line": 87,
+          "end": 100
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_replay.py",
+      "sha256": "12d78e4ef0acd701c4fdec1719fa4de2c2582c080ffcf4892ede9bfda73f75f1",
+      "functions": [
+        {
+          "name": "test_parameter_replay_matches_native_fields_across_factorial_points",
+          "line": 26,
+          "end": 56
+        },
+        {
+          "name": "test_alternatives_never_mix_incompatible_members_and_misses_stay_null",
+          "line": 59,
+          "end": 63
+        },
+        {
+          "name": "test_normalization_safety_uses_identities_not_equal_counts",
+          "line": 66,
+          "end": 91
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/bm25_sensitivity/test_scoring.py",
+      "sha256": "d5041ca44fdfc4743c0c57ff92633284d7f86999e086ee19a10c1dc589623d82",
+      "functions": [
+        {
+          "name": "test_prospective_adapter_exact_native_baseline_tie_order_and_empty_query",
+          "line": 20,
+          "end": 39
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/identifier_sparse/__init__.py",
+      "sha256": "4294b8d7faa35e1bc07301d8a3ffb57d548688fd351990182d2885a9dd2a83eb",
+      "functions": [],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/identifier_sparse/test_analysis.py",
+      "sha256": "6b29791264edda36a5b6fa9edd8fbcd5a14d98ff74744fc301170245ed5764d8",
+      "functions": [
+        {
+          "name": "test_frozen_splitter_examples",
+          "line": 58,
+          "end": 64
+        },
+        {
+          "name": "test_occurrence_frequency_and_query_duplicates_are_distinct",
+          "line": 67,
+          "end": 75
+        },
+        {
+          "name": "test_plain_prose_and_punctuation_have_no_semantic_expansion",
+          "line": 78,
+          "end": 85
+        },
+        {
+          "name": "test_query_forms_share_concept_terms_and_diagnostics_are_bounded",
+          "line": 88,
+          "end": 99
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/identifier_sparse/test_protocol.py",
+      "sha256": "5fe51b577079f332c3171825f12914d997798cc2620fa6f2c5a8b8aeea215fd5",
+      "functions": [
+        {
+          "name": "test_freeze_is_deterministic_outcome_free_and_refuses_overwrite",
+          "line": 31,
+          "end": 48
+        },
+        {
+          "name": "test_selection_excludes_outcome_files_without_reading_them",
+          "line": 51,
+          "end": 57
+        },
+        {
+          "name": "test_packet_keys_reject_treatment_leakage_but_preserve_source_vocabulary",
+          "line": 60,
+          "end": 92
+        },
+        {
+          "name": "test_stage_a_b_and_blind_replay_on_small_mechanical_frame",
+          "line": 95,
+          "end": 147
+        },
+        {
+          "name": "git",
+          "line": 115,
+          "end": 124
+        },
+        {
+          "name": "blind_read",
+          "line": 139,
+          "end": 141
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/identifier_sparse/test_retrieval.py",
+      "sha256": "cf3397d5d62538f025a2a377d07803cd13135a1d7073a035574cd15ebaf741d9",
+      "functions": [
+        {
+          "name": "test_plain_terms_match_production_scores_fields_and_tie_order",
+          "line": 19,
+          "end": 50
+        },
+        {
+          "name": "test_identifier_query_content_and_filename_are_explicit_treatment",
+          "line": 53,
+          "end": 82
+        },
+        {
+          "name": "test_frequency_does_not_double_plain_occurrences_or_drop_repetition",
+          "line": 85,
+          "end": 91
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/__init__.py",
+      "sha256": "70041f999d2e36669a28c6e8715d52eac9fa6c962f102a9d1b744a0278a89b38",
+      "functions": [],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/helpers.py",
+      "sha256": "c3a262e3ab52fa65f96011aa0b948cfb34f512f844146ce23e490aef790c2689",
+      "functions": [
+        {
+          "name": "capture",
+          "line": 38,
+          "end": 83
+        },
+        {
+          "name": "judged",
+          "line": 86,
+          "end": 93
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/test_adapters.py",
+      "sha256": "f672f000538a5ec743878c033e5cdec255b0fe94d32ba95ade4a51167cc8acc7",
+      "functions": [
+        {
+          "name": "test_recomputed_missing_statistics_equal_retained_native_fields",
+          "line": 42,
+          "end": 101
+        },
+        {
+          "name": "test_native_role_exact_and_structural_references_preserve_qualification",
+          "line": 104,
+          "end": 178
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/test_comparison.py",
+      "sha256": "b185b5409da94dc03956c33879485a02c0dabf3b01413421739b38e67167aded",
+      "functions": [
+        {
+          "name": "test_verified_hidden_matching_cues_separate_query_document_and_filename",
+          "line": 46,
+          "end": 72
+        },
+        {
+          "name": "test_required_whole_form_is_preserved_but_rank_need_not_be",
+          "line": 75,
+          "end": 99
+        },
+        {
+          "name": "test_possible_semantic_mismatch_needs_required_gold_and_all_available_misses",
+          "line": 102,
+          "end": 117
+        },
+        {
+          "name": "test_pair_rejects_different_lane_frame_judgments_and_bounded_recovery_claim",
+          "line": 120,
+          "end": 137
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/test_dogfood.py",
+      "sha256": "16f50624ab309b5b2cfdb15a08b1eb5698f44f26c370e59075ff20758810c347",
+      "functions": [
+        {
+          "name": "diagnostic",
+          "line": 22,
+          "end": 24
+        },
+        {
+          "name": "test_case_required_partition_scores_and_stable_artifacts",
+          "line": 27,
+          "end": 46
+        },
+        {
+          "name": "test_requested_case_mechanics_are_exact",
+          "line": 49,
+          "end": 90
+        },
+        {
+          "name": "test_cli_replay_and_version_refusal",
+          "line": 93,
+          "end": 110
+        },
+        {
+          "name": "test_dogfood_rejects_frozen_capture_hash_mismatch",
+          "line": 113,
+          "end": 127
+        },
+        {
+          "name": "broken",
+          "line": 119,
+          "end": 123
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    },
+    {
+      "path": "tests/experiments/retrieval_diagnostics/test_mechanics.py",
+      "sha256": "77969118aa6ed6cffa69a8b6891451fa83d481a5b671e8d7bccb1a5a83d28a5f",
+      "functions": [
+        {
+          "name": "test_actual_scores_idf_tf_lengths_and_independent_filename_weight",
+          "line": 33,
+          "end": 56
+        },
+        {
+          "name": "test_gold_profiles_and_rank_gaps_do_not_turn_unknown_into_negative",
+          "line": 59,
+          "end": 91
+        },
+        {
+          "name": "test_ranking_discrimination_requires_gold_and_declared_burden",
+          "line": 94,
+          "end": 121
+        },
+        {
+          "name": "test_zero_bounded_and_explicit_exclusion_states_are_distinct",
+          "line": 124,
+          "end": 147
+        },
+        {
+          "name": "test_zero_weight_evidence_cannot_generate_positive_universe",
+          "line": 150,
+          "end": 161
+        },
+        {
+          "name": "test_rejects_inconsistent_frozen_evidence",
+          "line": 188,
+          "end": 261
+        },
+        {
+          "name": "test_judgment_identity_and_configuration_validation_and_serialization",
+          "line": 264,
+          "end": 291
+        },
+        {
+          "name": "test_output_mutation_cannot_corrupt_reconstruction_cache",
+          "line": 294,
+          "end": 304
+        },
+        {
+          "name": "test_exclusion_requires_a_frozen_supported_reason",
+          "line": 307,
+          "end": 311
+        }
+      ],
+      "depth": "FULL_BODY_READ;synthetic/math vs retainedgold/pickle fixtures distinguished"
+    }
+  ],
+  "source_dependencies": [
+    {
+      "path": "src/devtools/context/localization/task.py",
+      "sha256": "49d295a2fe7ca536e016145c8e9534b9bf0c9a25482ba25c30e07f1a6009a2e5",
+      "functions": [
+        {
+          "name": "__post_init__",
+          "line": 26,
+          "end": 30
+        },
+        {
+          "name": "__post_init__",
+          "line": 42,
+          "end": 64
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "f7b02fb49cbcd0215ad8dabb75a267955016987f"
+    },
+    {
+      "path": "src/devtools/context/localization/obligation.py",
+      "sha256": "95a04139555323ac65bd280fbb2e8899de683bc5af8097a8597bfb10021d3a86",
+      "functions": [
+        {
+          "name": "__post_init__",
+          "line": 34,
+          "end": 38
+        },
+        {
+          "name": "__post_init__",
+          "line": 47,
+          "end": 59
+        },
+        {
+          "name": "__post_init__",
+          "line": 75,
+          "end": 95
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "6643e19a0557bc212a6a9ec38edbc0224bf8b0d4"
+    },
+    {
+      "path": "src/devtools/context/localization/identity.py",
+      "sha256": "8a5c154197fdc3e73dcc7a3dc57d10d9754da35f272cf0d362400494ff79890f",
+      "functions": [
+        {
+          "name": "__post_init__",
+          "line": 19,
+          "end": 23
+        },
+        {
+          "name": "__post_init__",
+          "line": 33,
+          "end": 37
+        },
+        {
+          "name": "__post_init__",
+          "line": 47,
+          "end": 51
+        },
+        {
+          "name": "__post_init__",
+          "line": 61,
+          "end": 65
+        },
+        {
+          "name": "__post_init__",
+          "line": 75,
+          "end": 79
+        },
+        {
+          "name": "__post_init__",
+          "line": 90,
+          "end": 99
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "b011d80c49a6a27e1288ff9b90d2582330c3f084"
+    },
+    {
+      "path": "src/devtools/context/localization/assessment.py",
+      "sha256": "a6f483e796f1b0095662326cf94652b3cd5ce1281e38e0725269f84af424abc0",
+      "functions": [
+        {
+          "name": "_require_hashable",
+          "line": 117,
+          "end": 123
+        },
+        {
+          "name": "__post_init__",
+          "line": 45,
+          "end": 47
+        },
+        {
+          "name": "__post_init__",
+          "line": 57,
+          "end": 62
+        },
+        {
+          "name": "__post_init__",
+          "line": 73,
+          "end": 77
+        },
+        {
+          "name": "__post_init__",
+          "line": 94,
+          "end": 114
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "d239c28ea6fefb50c07fdf35ee8c33520fce7b2f"
+    },
+    {
+      "path": "src/devtools/context/localization/readiness.py",
+      "sha256": "a2ccc02f341b294a8fd1738f8d5ccadf23932ca662ef6f6badb002934db211f9",
+      "functions": [
+        {
+          "name": "assess_localization_readiness",
+          "line": 107,
+          "end": 176
+        },
+        {
+          "name": "_assess_obligation",
+          "line": 179,
+          "end": 209
+        },
+        {
+          "name": "_record_disposition",
+          "line": 212,
+          "end": 233
+        },
+        {
+          "name": "_record_helpful",
+          "line": 236,
+          "end": 250
+        },
+        {
+          "name": "_record_mandatory",
+          "line": 253,
+          "end": 275
+        },
+        {
+          "name": "_readiness_state",
+          "line": 278,
+          "end": 291
+        },
+        {
+          "name": "_assessment_matches_frame",
+          "line": 294,
+          "end": 321
+        },
+        {
+          "name": "_satisfied_alternative",
+          "line": 324,
+          "end": 337
+        },
+        {
+          "name": "_consistent_disposition",
+          "line": 340,
+          "end": 361
+        },
+        {
+          "name": "_references_match_frame",
+          "line": 364,
+          "end": 373
+        },
+        {
+          "name": "_evidence_references",
+          "line": 376,
+          "end": 387
+        },
+        {
+          "name": "is_ready",
+          "line": 71,
+          "end": 73
+        },
+        {
+          "name": "may_handoff",
+          "line": 76,
+          "end": 81
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "3552350c73f4cb443abbb1d719a225294c84e291"
+    },
+    {
+      "path": "src/devtools/context/localization/lexical.py",
+      "sha256": "f838667d8bfa144d33032e267a7ad92383ef8bbec8b75f1d04795c11f1891cac",
+      "functions": [
+        {
+          "name": "acquire_localization_lexical_evidence",
+          "line": 84,
+          "end": 136
+        },
+        {
+          "name": "_retrieve",
+          "line": 139,
+          "end": 152
+        },
+        {
+          "name": "__post_init__",
+          "line": 41,
+          "end": 45
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "91c56dc1279e1f2ba243ea7a5ed50a69531ffba3"
+    },
+    {
+      "path": "src/devtools/context/localization/grounding/contract.py",
+      "sha256": "4b2da0460a7898acd053531f1dd8710d7a2c8283c747cd517c554f5c21b49791",
+      "functions": [
+        {
+          "name": "_dotted_identifier",
+          "line": 221,
+          "end": 222
+        },
+        {
+          "name": "__post_init__",
+          "line": 82,
+          "end": 89
+        },
+        {
+          "name": "__post_init__",
+          "line": 100,
+          "end": 107
+        },
+        {
+          "name": "__post_init__",
+          "line": 117,
+          "end": 121
+        },
+        {
+          "name": "__post_init__",
+          "line": 143,
+          "end": 158
+        },
+        {
+          "name": "__post_init__",
+          "line": 195,
+          "end": 218
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "8c5d1992f9e4f338b20d8c0fbd782d257d925354"
+    },
+    {
+      "path": "src/devtools/context/localization/grounding/resolve.py",
+      "sha256": "ebc18bbf1498d861bd09f24b38e482a4abf127a652b46b5eecc22d62828e899f",
+      "functions": [
+        {
+          "name": "ground_task_anchor",
+          "line": 54,
+          "end": 96
+        },
+        {
+          "name": "_ground_resource",
+          "line": 99,
+          "end": 124
+        },
+        {
+          "name": "_ground_module",
+          "line": 127,
+          "end": 149
+        },
+        {
+          "name": "_ground_declaration",
+          "line": 152,
+          "end": 212
+        },
+        {
+          "name": "_ground_method",
+          "line": 215,
+          "end": 266
+        },
+        {
+          "name": "_candidate_disposition",
+          "line": 269,
+          "end": 278
+        },
+        {
+          "name": "_account",
+          "line": 281,
+          "end": 299
+        },
+        {
+          "name": "_referent_key",
+          "line": 302,
+          "end": 308
+        },
+        {
+          "name": "_validate_universe",
+          "line": 311,
+          "end": 343
+        }
+      ],
+      "depth": "LINES1-210;locator dispatch/resource/module/declaration;method+universe helpers previously reviewed, no new full-file credit",
+      "blob": "34cd84a66560c4def144c07117271ded9d65aec5"
+    },
+    {
+      "path": "src/devtools/context/localization/association/hypothesis.py",
+      "sha256": "4612bedd0178856a967fb647a7c49d467ff111f5f9043b0585a1d1aa1c9e92e0",
+      "functions": [
+        {
+          "name": "hypothesis_identity_key",
+          "line": 118,
+          "end": 120
+        },
+        {
+          "name": "build_candidate_witness_view",
+          "line": 285,
+          "end": 371
+        },
+        {
+          "name": "_validate_supports",
+          "line": 374,
+          "end": 434
+        },
+        {
+          "name": "_match_target",
+          "line": 437,
+          "end": 440
+        },
+        {
+          "name": "__post_init__",
+          "line": 51,
+          "end": 55
+        },
+        {
+          "name": "__post_init__",
+          "line": 65,
+          "end": 69
+        },
+        {
+          "name": "__post_init__",
+          "line": 82,
+          "end": 86
+        },
+        {
+          "name": "obligation",
+          "line": 89,
+          "end": 91
+        },
+        {
+          "name": "value",
+          "line": 94,
+          "end": 110
+        },
+        {
+          "name": "__post_init__",
+          "line": 151,
+          "end": 206
+        },
+        {
+          "name": "__post_init__",
+          "line": 216,
+          "end": 229
+        },
+        {
+          "name": "for_obligation",
+          "line": 243,
+          "end": 252
+        },
+        {
+          "name": "for_target",
+          "line": 254,
+          "end": 265
+        },
+        {
+          "name": "cross_obligation_targets",
+          "line": 268,
+          "end": 282
+        }
+      ],
+      "depth": "LINES141-373;member/hypothesis/view/frame guards",
+      "blob": "6e73a48d317d70238aa9da929da500344019c365"
+    },
+    {
+      "path": "src/devtools/context/localization/generation/generate.py",
+      "sha256": "536d406eb5d30f7c66c3dccff9bd1ed4bf6dfdd2e319ad9c69bd5696b99c78c6",
+      "functions": [
+        {
+          "name": "generate_witness_hypotheses",
+          "line": 73,
+          "end": 118
+        },
+        {
+          "name": "_validate_projection_inputs",
+          "line": 121,
+          "end": 138
+        },
+        {
+          "name": "_validate_recipes",
+          "line": 141,
+          "end": 166
+        },
+        {
+          "name": "_attempt_recipe",
+          "line": 169,
+          "end": 207
+        },
+        {
+          "name": "_fixed_disposition",
+          "line": 210,
+          "end": 213
+        },
+        {
+          "name": "_attempt_family",
+          "line": 216,
+          "end": 282
+        },
+        {
+          "name": "_admit_fixed_member",
+          "line": 285,
+          "end": 310
+        },
+        {
+          "name": "_attempt_branch",
+          "line": 313,
+          "end": 365
+        },
+        {
+          "name": "_project",
+          "line": 368,
+          "end": 437
+        },
+        {
+          "name": "_make_member",
+          "line": 440,
+          "end": 488
+        },
+        {
+          "name": "_match_target",
+          "line": 491,
+          "end": 495
+        }
+      ],
+      "depth": "LINES73-240;recipe/frame validation/native projection dispatch",
+      "blob": "ab5c0cb50f581899080e767bef71768e86b1e393"
+    },
+    {
+      "path": "src/devtools/context/localization/resolution/contract.py",
+      "sha256": "38cdb00591e19e386fc02d87d265731ccedfacaeab0fcbe2c982669eec25e093",
+      "functions": [
+        {
+          "name": "__post_init__",
+          "line": 65,
+          "end": 100
+        },
+        {
+          "name": "_validate_basis",
+          "line": 102,
+          "end": 140
+        },
+        {
+          "name": "task",
+          "line": 143,
+          "end": 145
+        },
+        {
+          "name": "obligation",
+          "line": 148,
+          "end": 150
+        },
+        {
+          "name": "repository_id",
+          "line": 153,
+          "end": 155
+        },
+        {
+          "name": "snapshot_id",
+          "line": 158,
+          "end": 160
+        },
+        {
+          "name": "__post_init__",
+          "line": 171,
+          "end": 192
+        },
+        {
+          "name": "disposition",
+          "line": 195,
+          "end": 207
+        },
+        {
+          "name": "unrecorded_members",
+          "line": 210,
+          "end": 215
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "5f809702b5e1bc0632f414714abc2560a3d5d30f"
+    },
+    {
+      "path": "src/devtools/context/localization/resolution/promotion.py",
+      "sha256": "a2e6ba29e2b7761b4d4e75a8e253c8e681884f036fabac669d2b74f797d8299d",
+      "functions": [
+        {
+          "name": "promote_supported_hypothesis",
+          "line": 67,
+          "end": 75
+        },
+        {
+          "name": "__post_init__",
+          "line": 35,
+          "end": 43
+        },
+        {
+          "name": "witness_set",
+          "line": 46,
+          "end": 48
+        },
+        {
+          "name": "supported_witnesses",
+          "line": 51,
+          "end": 64
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "7559d93759615514d7f170cc1b3a6e6c44d33055"
+    },
+    {
+      "path": "src/devtools/context/planning/plan.py",
+      "sha256": "b33122d1d2b4b6d3f7cf53986a2aacf19e9913ef47423b2ff2a29f637d258260",
+      "functions": [
+        {
+          "name": "plan_disclosures",
+          "line": 105,
+          "end": 119
+        },
+        {
+          "name": "_digest",
+          "line": 122,
+          "end": 128
+        },
+        {
+          "name": "purpose",
+          "line": 23,
+          "end": 25
+        },
+        {
+          "name": "snapshot_id",
+          "line": 28,
+          "end": 30
+        },
+        {
+          "name": "repository_id",
+          "line": 33,
+          "end": 35
+        },
+        {
+          "name": "representation",
+          "line": 38,
+          "end": 40
+        },
+        {
+          "name": "identity",
+          "line": 43,
+          "end": 45
+        },
+        {
+          "name": "materialize",
+          "line": 47,
+          "end": 49
+        },
+        {
+          "name": "__post_init__",
+          "line": 66,
+          "end": 86
+        },
+        {
+          "name": "identity",
+          "line": 89,
+          "end": 102
+        }
+      ],
+      "depth": "LINES50-128;plan/order/purpose/snapshot/identity",
+      "blob": "041b9fdd4bc1638e56f70f15048fac4df83f2007"
+    },
+    {
+      "path": "src/devtools/context/planning/source.py",
+      "sha256": "26071bc42f223b71122306c6a033c716a62cb2d779183480964c80ebe99f995a",
+      "functions": [
+        {
+          "name": "identity",
+          "line": 34,
+          "end": 41
+        },
+        {
+          "name": "snapshot_id",
+          "line": 44,
+          "end": 46
+        },
+        {
+          "name": "repository_id",
+          "line": 49,
+          "end": 51
+        },
+        {
+          "name": "materialize",
+          "line": 53,
+          "end": 94
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "362f7e525110082de0b49cf4ee1c389b9db5be7d"
+    },
+    {
+      "path": "src/devtools/context/planning/rendering.py",
+      "sha256": "335f69651d6a377d636632d80b6b983c21370677156cc6024c69cb661d32ea23",
+      "functions": [
+        {
+          "name": "render_context_disclosure",
+          "line": 23,
+          "end": 42
+        },
+        {
+          "name": "assemble_context_disclosure_model_request",
+          "line": 45,
+          "end": 73
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "973273cd94c330cb8a37d7b4422ca22f956346b5"
+    },
+    {
+      "path": "apps/qwen/tasks.py",
+      "sha256": "79199e28c205516f8ae9c8bcbb5f735410075f06b1686ff71ba0e13400b754b8",
+      "functions": [
+        {
+          "name": "select_task",
+          "line": 286,
+          "end": 291
+        },
+        {
+          "name": "__post_init__",
+          "line": 56,
+          "end": 163
+        },
+        {
+          "name": "sources",
+          "line": 166,
+          "end": 168
+        },
+        {
+          "name": "existing_sources",
+          "line": 171,
+          "end": 173
+        },
+        {
+          "name": "oracle_sha256",
+          "line": 176,
+          "end": 178
+        },
+        {
+          "name": "definition_sha256",
+          "line": 181,
+          "end": 207
+        },
+        {
+          "name": "prompt",
+          "line": 210,
+          "end": 240
+        }
+      ],
+      "depth": "LINES1-170;CodingTaskfields/admission",
+      "blob": "8d2ef204efeb56c6feed35c61bce9e1f4496111a"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "functions": [
+        {
+          "name": "_schema",
+          "line": 81,
+          "end": 129
+        },
+        {
+          "name": "context_tool_definitions",
+          "line": 168,
+          "end": 246
+        },
+        {
+          "name": "__init__",
+          "line": 75,
+          "end": 78
+        },
+        {
+          "name": "__init__",
+          "line": 255,
+          "end": 282
+        },
+        {
+          "name": "reference",
+          "line": 284,
+          "end": 297
+        },
+        {
+          "name": "definitions",
+          "line": 300,
+          "end": 307
+        },
+        {
+          "name": "_observe",
+          "line": 309,
+          "end": 322
+        },
+        {
+          "name": "_index",
+          "line": 324,
+          "end": 338
+        },
+        {
+          "name": "check_current",
+          "line": 340,
+          "end": 348
+        },
+        {
+          "name": "accept_source",
+          "line": 350,
+          "end": 413
+        },
+        {
+          "name": "accept_transaction",
+          "line": 415,
+          "end": 518
+        },
+        {
+          "name": "validate",
+          "line": 520,
+          "end": 558
+        },
+        {
+          "name": "dispatch",
+          "line": 560,
+          "end": 579
+        },
+        {
+          "name": "refusal",
+          "line": 581,
+          "end": 606
+        },
+        {
+          "name": "_metadata",
+          "line": 608,
+          "end": 623
+        },
+        {
+          "name": "execute",
+          "line": 625,
+          "end": 744
+        },
+        {
+          "name": "_read",
+          "line": 746,
+          "end": 796
+        },
+        {
+          "name": "observed",
+          "line": 798,
+          "end": 800
+        },
+        {
+          "name": "observed_matches",
+          "line": 802,
+          "end": 834
+        },
+        {
+          "name": "_navigation",
+          "line": 836,
+          "end": 846
+        },
+        {
+          "name": "_reference_analysis",
+          "line": 848,
+          "end": 878
+        },
+        {
+          "name": "_relationships",
+          "line": 880,
+          "end": 913
+        }
+      ],
+      "depth": "LINES168-520,645-836;Tool schema/scope/index/refresh/source read/observations",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211"
+    },
+    {
+      "path": "apps/qwen/commands.py",
+      "sha256": "5e4f43ffc5b8a8395abb70a3ff15dfc6391884341b80ab3b2b3dd420de5d8a43",
+      "functions": [
+        {
+          "name": "command_definitions",
+          "line": 34,
+          "end": 95
+        },
+        {
+          "name": "run_check",
+          "line": 98,
+          "end": 117
+        },
+        {
+          "name": "_input_identity",
+          "line": 120,
+          "end": 128
+        },
+        {
+          "name": "_bundle_state",
+          "line": 131,
+          "end": 208
+        },
+        {
+          "name": "_plan_identity",
+          "line": 211,
+          "end": 212
+        },
+        {
+          "name": "call_data",
+          "line": 504,
+          "end": 506
+        },
+        {
+          "name": "format_sources",
+          "line": 509,
+          "end": 547
+        },
+        {
+          "name": "observe",
+          "line": 137,
+          "end": 142
+        },
+        {
+          "name": "__init__",
+          "line": 221,
+          "end": 227
+        },
+        {
+          "name": "validate",
+          "line": 229,
+          "end": 244
+        },
+        {
+          "name": "dispatch",
+          "line": 246,
+          "end": 250
+        },
+        {
+          "name": "execute",
+          "line": 252,
+          "end": 306
+        },
+        {
+          "name": "_check_bundle",
+          "line": 308,
+          "end": 489
+        },
+        {
+          "name": "is_current",
+          "line": 491,
+          "end": 501
+        },
+        {
+          "name": "journal",
+          "line": 382,
+          "end": 396
+        },
+        {
+          "name": "authenticate",
+          "line": 398,
+          "end": 421
+        }
+      ],
+      "depth": "LINES215-330;actualToolRunnercheck/currentdispatch+receipts",
+      "blob": "b78f18ffe03c37ae44bd47c71c583b340feb194c"
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "sha256": "cc49a9b3915fac2eccd0861e9d029d2803583b5ab7d1d234f3158c1b07d7786e",
+      "functions": [
+        {
+          "name": "_validation_feedback",
+          "line": 92,
+          "end": 179
+        },
+        {
+          "name": "acquire_context",
+          "line": 182,
+          "end": 265
+        },
+        {
+          "name": "validate_workspace",
+          "line": 268,
+          "end": 280
+        },
+        {
+          "name": "preflight_coding_task",
+          "line": 283,
+          "end": 330
+        },
+        {
+          "name": "_authenticate_inputs",
+          "line": 333,
+          "end": 369
+        },
+        {
+          "name": "_prepare_workspace",
+          "line": 372,
+          "end": 379
+        },
+        {
+          "name": "_turns",
+          "line": 382,
+          "end": 1303
+        },
+        {
+          "name": "run_coding_task",
+          "line": 1306,
+          "end": 1620
+        }
+      ],
+      "depth": "LINES382-490,730-780;nativeprompt/scope/checkrequirements/callcorrelation",
+      "blob": "0d1eebc4bca7077c7e9df4d80ed936527530bb0f"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "sha256": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6",
+      "functions": [
+        {
+          "name": "search_repository_source",
+          "line": 61,
+          "end": 157
+        },
+        {
+          "name": "_consolidate",
+          "line": 160,
+          "end": 209
+        }
+      ],
+      "depth": "LINES61-209;canonical views/mixedconsolidation",
+      "blob": "bf3a3a074dcb3289f116d153e5d226575cec4878"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "functions": [
+        {
+          "name": "_digest",
+          "line": 27,
+          "end": 32
+        },
+        {
+          "name": "_document",
+          "line": 35,
+          "end": 50
+        },
+        {
+          "name": "_collection",
+          "line": 53,
+          "end": 83
+        }
+      ],
+      "depth": "FULL_BODY; synthetic hash conventions not sourceobservation authority",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b"
+    },
+    {
+      "path": "experiments/identifier_sparse/analysis.py",
+      "sha256": "64cd4265ced9c41c95e67d94b776802e219362710310e38aaa458fea21fba07a",
+      "functions": [
+        {
+          "name": "iter_terms",
+          "line": 36,
+          "end": 42
+        },
+        {
+          "name": "query_terms",
+          "line": 45,
+          "end": 47
+        },
+        {
+          "name": "compare_terms",
+          "line": 50,
+          "end": 69
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "133e56a472b52a5a3199ddac19b0a270451d8a8e"
+    },
+    {
+      "path": "experiments/identifier_sparse/index.py",
+      "sha256": "4a5ad4d5f0bd68b26fd8d57fb22c5136c4d52111cc547f0e8360d129bf8e0e07",
+      "functions": [
+        {
+          "name": "build_field",
+          "line": 38,
+          "end": 51
+        },
+        {
+          "name": "build_index",
+          "line": 62,
+          "end": 66
+        },
+        {
+          "name": "vocabulary_size",
+          "line": 28,
+          "end": 30
+        },
+        {
+          "name": "posting_count",
+          "line": 33,
+          "end": 35
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "7a67ef3bd76efa37cda6fb86d1def6503adfd8dc"
+    },
+    {
+      "path": "experiments/identifier_sparse/retrieval.py",
+      "sha256": "0afaf3cfde30c1590cdbc833c5c1f7c0fd3276710028686a72d0cd0b1739e3a1",
+      "functions": [
+        {
+          "name": "_score",
+          "line": 64,
+          "end": 96
+        },
+        {
+          "name": "retrieve",
+          "line": 99,
+          "end": 136
+        }
+      ],
+      "depth": "FULL_BODY",
+      "blob": "29c27d8db5b4bc964a8b8eb05e2dcff90ec9e91d"
+    },
+    {
+      "path": "experiments/retrieval_identifier.py",
+      "sha256": "a4e9dabdb0993275479550ef89bbaf76ae8207e555d0debb4f31eba6dcff25f4",
+      "functions": [
+        {
+          "name": "parse_arguments",
+          "line": 109,
+          "end": 114
+        },
+        {
+          "name": "expand_identifier_terms",
+          "line": 117,
+          "end": 133
+        },
+        {
+          "name": "analyze_identifier_text",
+          "line": 136,
+          "end": 153
+        },
+        {
+          "name": "analyze_identifier_query",
+          "line": 156,
+          "end": 161
+        },
+        {
+          "name": "build_identifier_index",
+          "line": 164,
+          "end": 191
+        },
+        {
+          "name": "retrieve_identifier_bm25",
+          "line": 194,
+          "end": 244
+        },
+        {
+          "name": "evaluate_identifier_retrieval",
+          "line": 247,
+          "end": 274
+        },
+        {
+          "name": "run_comparison",
+          "line": 277,
+          "end": 304
+        },
+        {
+          "name": "controlled_cases",
+          "line": 307,
+          "end": 363
+        },
+        {
+          "name": "report_payload",
+          "line": 366,
+          "end": 401
+        },
+        {
+          "name": "write_report",
+          "line": 404,
+          "end": 410
+        },
+        {
+          "name": "main",
+          "line": 413,
+          "end": 422
+        },
+        {
+          "name": "_split_identifier_piece",
+          "line": 425,
+          "end": 442
+        },
+        {
+          "name": "_document_statistics",
+          "line": 445,
+          "end": 464
+        },
+        {
+          "name": "_query_observations",
+          "line": 467,
+          "end": 484
+        },
+        {
+          "name": "_compare_case",
+          "line": 487,
+          "end": 524
+        },
+        {
+          "name": "_controlled_case",
+          "line": 527,
+          "end": 582
+        },
+        {
+          "name": "_aggregate_metrics",
+          "line": 585,
+          "end": 600
+        },
+        {
+          "name": "_summary_payload",
+          "line": 603,
+          "end": 609
+        },
+        {
+          "name": "_comparison_payload",
+          "line": 612,
+          "end": 654
+        },
+        {
+          "name": "_evaluation_metrics",
+          "line": 657,
+          "end": 666
+        },
+        {
+          "name": "_load_baseline_runner",
+          "line": 669,
+          "end": 681
+        },
+        {
+          "name": "document_length",
+          "line": 61,
+          "end": 63
+        }
+      ],
+      "depth": "Splitter/observation/index/scorer/controller source traced; no transfer of full original family credit",
+      "blob": "0ce16692a42ae3a87247665ba9ff507d57953b99"
+    }
+  ],
+  "credit": "External currentfixture and historicalversion obligations not decremented; full testbody review is not fresh original semantic adjudication"
+}

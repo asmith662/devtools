@@ -58,8 +58,7 @@ class ModelToolCall:
         """Preserve a syntactically valid untrusted argument object exactly."""
         if not self.name.strip() or self.name != self.name.strip():
             msg = (
-                "Model Tool call name must be nonblank without surrounding "
-                "whitespace."
+                "Model Tool call name must be nonblank without surrounding whitespace."
             )
             raise TypeError(msg)
         if self.provider_call_id is not None and not self.provider_call_id.strip():

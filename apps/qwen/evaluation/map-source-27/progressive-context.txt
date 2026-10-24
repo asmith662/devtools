@@ -1,0 +1,36 @@
+Task/instruction UTF-8 byte length: 40
+--- task/instruction begins ---
+Keep the original engineering objective.
+--- task/instruction ends ---
+
+Supporting repository Context UTF-8 byte length: 1702
+--- supporting repository Context begins ---
+Repository Context disclosure
+Purpose: Inspect the chosen async implementation
+Plan identity: 64ff9be1715d759d669a39eef1853cef1bb5c9da45e040214765a4a10ab3a432
+Snapshot identity: 67c2f4b35811326f306bbb7a3894654cb65b3de0c10c8cccd1c782911ce05080
+Items: 2
+
+Disclosure item 1: selected-repository-map-metadata-v1
+Option identity: ea37dddf801875cc3367c0594ed73dd11d3a99b2d0abfee26133ac491da4fb92
+Caller-selected repository map metadata (not source or sufficiency)
+Snapshot identity: 67c2f4b35811326f306bbb7a3894654cb65b3de0c10c8cccd1c782911ce05080
+Resource pointer: worker.py; content identity: 0287cde956ef3c42980cf5f5cdaa1eb4778b837104ab481912273b3115798aa5
+Resource pointer: maths.py; content identity: 306585e419c3ff4436bf3ac2f77cb042a70ec99b0c23ca3a8d88aad2519f044b
+worker.py: direct-method Worker.run; subject: 48c67bb4eaf92f94a15d63f15efc7bc4e2492deea00de03ac4a14f4e48f3191e; declaration range: 3:4-5:29 (one-based lines, zero-based UTF-8 columns, exclusive end)
+maths.py: module-function calculate; subject: 30ba4d1340babd4072327f818eeaed5058e0a2d2b4912714f5122680fc795d4d; declaration range: 1:0-2:20 (one-based lines, zero-based UTF-8 columns, exclusive end)
+
+Disclosure item 2: map-selected-exact-source-v1
+Option identity: 9a728015c17aa9c27b64e93c40668552d40de04ea170d2bd7c0cd6a59f5c2822
+Resource pointer: worker.py
+Snapshot identity: 67c2f4b35811326f306bbb7a3894654cb65b3de0c10c8cccd1c782911ce05080
+Content identity: 0287cde956ef3c42980cf5f5cdaa1eb4778b837104ab481912273b3115798aa5
+Representation: symbol; symbol: Worker.run
+Character span: [35, 111); lines: 3-5
+--- exact source begins ---
+async def run(self,
+                  value):
+        return "café", value
+--- exact source ends ---
+
+--- supporting repository Context ends ---

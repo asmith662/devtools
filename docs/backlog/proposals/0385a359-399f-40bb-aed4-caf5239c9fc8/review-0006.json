@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+  "proposal_sha256": "f55fd806f3bc37e2b539eb19ce3b98a4b7559e142e34460feb9b92d6426a3a86",
+  "previous": "3dcef04d159b75bafba0da6903978b0a9c3d728ca87eff22451040ee1eba272f",
+  "at": "2026-10-24T02:19:30.172522+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-acquisition-structural-verification-audit.md",
+  "rationale": "Custody remains unresolved for Case0009 pinned FRESH_STAGE_C_INSTRUCTIONS.md; never recreate it. Cases6 and8 retained interrupted attempts/recovery protocols/canonical returns remain separate and preserved. Case7 read-only refresh/recount and sidecar repair use exact existing capture bytes and identities, not new treatment. Case8 StageD explicitly notes recovery raw digest absent from canonical StageB member list; later Git/report hashes authenticate retained bytes, not retroactive complete original input closure. Case7 working-source mixed CRLF/LF is retained exactly in blind archive; Git comparison is separately only LF-equivalent where physical conversion differs. Future report-only custody consumer must state byte-vs-text normalization and complete input roster, no deletion or replay.",
+  "duplicates": [],
+  "duplicate_disposition": "Exact evidence/acceptance clarification; retain canonical payload, pending disposition, prior reviews and all authority boundaries. No approval, grant, renumbering, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4694da8161905611ec5c6de76de9c63ef9ccadef2b863c0050054fe4ef46632a"
+}

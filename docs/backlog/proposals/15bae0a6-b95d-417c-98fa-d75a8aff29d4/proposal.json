@@ -1,0 +1,34 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+  "created_at": "2026-10-23T17:29:30.150734+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Connect explicit Localization obligations and witness decisions to native coding Context",
+    "parent": "B-0002",
+    "summary": "Priority1 INTEGRATION. Native ContextTools/CodingCommands provide scoped search/read/edit/checks but no maintained call to acquire_localization_lexical_evidence, candidate generation/resolution or assess_localization_readiness. Existing experiments compose these under host-authored treatments; no complete native consumer exists. Implement one opt-in bounded application consumer of an explicitly trusted caller-authored task/obligation frame and existing native evidence/decision APIs. Do not infer task completeness from ranks or create an autonomous planner.",
+    "resources": [
+      "apps/qwen/context_tools.py",
+      "apps/qwen/coding_loop.py",
+      "src/devtools/context/localization/lexical.py",
+      "src/devtools/context/localization/resolution/",
+      "src/devtools/context/localization/readiness.py"
+    ],
+    "benefit": "Acceptance: an authorized task with explicit mandatory/helpful/conditional obligations obtains scoped evidence; records complementary and competing candidates and explicit supported/contradicted/unresolved decisions; promotes only fully supported witnesses by existing APIs; reports BLOCKED/CONDITIONAL/READY accurately with exact assessment identity coverage. Demonstrate result reaching a model request or native correlated Tool response and affecting an auditable acquisition/stop action. Include absent, incomplete, stale, forged, unsupported, deferred and over-bound inputs; no automatically invented accepted alternatives, no publication authority, no lost lexical escape. Scripted integration is not empirical effectiveness; actual native use must be labeled separately.",
+    "uncertainty": "ADR-0005 permits bounded caller interpretation and semantic recording, not a universal planner or automatic satisfaction. Decide the minimum application surface before implementation; source/Tool permissions and native completion remain separate. Maintenance-agent suitability: only with frozen trusted frame and independent negative oracle.",
+    "dependencies": [
+      "B-0009",
+      "B-0035"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/repository-intelligence-code-audit.md; source baseline95efbf711c3644fb32d269d85927000cd8f4aaa9;2026-10-23"
+    },
+    "evidence": [
+      "docs/research/repository-intelligence-code-audit.md",
+      "docs/research/code-audit/ri-modules.jsonl",
+      "docs/research/code-audit/agent-use.json"
+    ]
+  },
+  "payload_sha256": "a30c454f1432167db2f432727adb81dda3c56b975f850968d868926053843abe"
+}

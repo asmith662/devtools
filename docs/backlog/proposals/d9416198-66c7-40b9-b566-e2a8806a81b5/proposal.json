@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+  "created_at": "2026-10-21T17:52:05.784464+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Support explicit successful exit codes for managed developer commands",
+    "summary": "CommandResult currently treats every nonzero status as failure, while Git diff --no-index legitimately returns1 when differences are found. Add opt-in immutable per-Command success code interpretation across result/executor/Tool behavior, preserving default zero-only and raw execution facts.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex supervised Qwen engineering14; maintained-source inspection and independently qualified actual Git diff fixture"
+    },
+    "parent": "B-0009",
+    "resources": [
+      "src/devtools/resources/commands/",
+      "src/devtools/tools/command.py",
+      "tests/resources/commands/"
+    ],
+    "evidence": [
+      "src/devtools/resources/commands/models/result.py:succeeded",
+      "scripts/backlog/coordinator.py:missing_ok special-cases exit1",
+      ".local/qwen-coding-worker/engineering-14/preflight.json"
+    ],
+    "benefit": "Both Qwen and Codex consumers can explicitly classify expected developer-tool statuses without scattering exit-code special cases or replacing managed execution.",
+    "uncertainty": "The local assignment defines a narrow opt-in classification contract; no generic policy, execution-error conversion, shell, retry or authority semantics follow. Parent reliability and protected-main adoption remain open.",
+    "dependencies": [
+      "Existing immutable Command, CommandResult, CommandExecutor and ToolRunner/CommandTool; existing native coding and local closeout"
+    ]
+  },
+  "payload_sha256": "fe739f86aa226d13d032bf92f65988b6bc0441802bd3f35111cbbe57dad9a91f"
+}

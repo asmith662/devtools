@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+  "previous": "7001716ad9da7fc51890107af1f48ee644af3b3e4522b8617bb3e28475c6b800",
+  "at": "2026-10-23T19:01:26.580638+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-deep-audit-followup.md",
+  "rationale": "Explicit maintainer assignment authorized the Codex source-index correction independently of proposal promotion. Fix a0a6c22403f7df2679aa574226e420521a8accf5 replaces splitlines coordinate treatment with existing StringIO(newline=\"\") physical-line convention for symbol/window/start/end.81 permanent cases include original27 reproduction,48 windows and6 nested/decorated async/empty cases.224 focused pass; canonical protected gate2744 passed2 skipped100% coverage on authenticated final tree. Original payload/reviews/state retained; this advisory is evidence, not automatic closure/approval.",
+  "duplicates": [
+    {
+      "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original pending payload, parent, reviews and state preserved. Concrete evidence/acceptance additions only; no approval, dispatch or grant.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "0a81c287c42461ef9e982714185671a67071b0bf74f2a96b77f1eb8d0fbcc2ee"
+}

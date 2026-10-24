@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "ec430b7c8684ff9076f4398e834866e2c058d55eb942de321e35bba34a99823d",
+  "at": "2026-10-23T19:57:25.069316+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-policies-and-scientific-integrity-audit.md",
+  "rationale": "Full grounding test body now inspected. test_direct_declarations_and_methods_retain_native_analysis replaces content at lines325-331 without recomputing content_identity or byte_size; snapshot ID also reused. Later decorated/method tests recompute content fields correctly. Qualify valid synthetic frames separately from deliberate forged/stale negatives; retain real-observation graph/map tests and add canonical observed-source integration. Existing regression pass does not establish native identity legitimacy of that fixture. No production identity change authorized.",
+  "duplicates": [],
+  "duplicate_disposition": "No approval, B-number, grant or status change. Preserve existing records; bounded overlap and proposed operator reconciliation described in rationale.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "559be39555bd10233f0d97e7ec4dfee6d41eaaeb01b124403123d6a600e5b06f"
+}

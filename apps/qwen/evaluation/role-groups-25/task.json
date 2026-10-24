@@ -1,0 +1,147 @@
+{
+  "name": "dependency-group-role-integration-25",
+  "objective": "Integrate existing static dependency-group RI into the existing Localization repository-role consumer. Normative public facts: [dependency-groups] is a TOP-LEVEL table in pyproject.toml, separate from [project], [build-system] and [tool]. The RI analyzer already emits these settings with semantic keys rooted at dependency-groups; do not change the RI analyzer. Supported declared groups, including empty groups and empty declared table presence, justify PROJECT_CONFIGURATION only and use the existing PROJECT_DECLARATION support kind. Preserve original setting keys, source addresses and native identity references. Names such as test, pytest, lint, docs, build or arbitrary strings do NOT prove TEST, TEST_CONFIGURATION, TOOL_CONFIGURATION, DOCUMENTATION or BUILD_CONFIGURATION roles. Raw requirement strings do not prove installed dependencies or runtime importability. Unsupported include/mixed/colliding/invalid groups must not create positive roles; retain their qualified evidence in authenticated native inputs using established abstention conventions. True absence must not fabricate dependency-group supports. Preserve existing project, build-system, pytest, Ruff, intrinsic path and other unrelated classifications. Existing source/snapshot/derivation identities and stale/forged input rejection remain authenticated; deliberately advance the role view SEMANTICS from positive-python-repository-role-support-v1 to positive-python-repository-role-support-v2 for changed classification semantics, without changing native RI identities. Coding owner is the existing roles/configuration.py composition, with roles/models.py owning the semantics marker. Existing inputs/derivation already validate native analyses and compose supports; no new role vocabulary, parser, resolver, planner, ranking or framework is needed. Inspect the owner and essential dependencies to preserve invariants, then implement; additional reads should resolve a concrete missing dependency. After an admissible candidate invoke check_changes while installed; use actual behavioral and quality diagnostics to repair and recheck changed source. Do not search for private oracle code or hidden expectations: the public contract here is authoritative and all necessary semantics are explicit. Preserve observed pre-transaction anchors; all components in one proposal apply to the same pre-edit source. Do not exceed current atomic byte/component limits.",
+  "source": "src/devtools/context/localization/roles/configuration.py",
+  "additional_edit_paths": [
+    "src/devtools/context/localization/roles/models.py"
+  ],
+  "tests": [
+    "tests/context/localization/roles/test_configuration.py",
+    "tests/context/localization/roles/test_inputs.py",
+    "tests/context/localization/roles/test_evidence.py"
+  ],
+  "read_paths": [
+    "src/devtools/context/localization/roles/inputs.py",
+    "src/devtools/context/localization/roles/derivation.py",
+    "src/devtools/context/localization/roles/__init__.py",
+    "src/devtools/context/python/project_configuration/models.py",
+    "src/devtools/context/python/project_configuration/settings.py",
+    "tests/context/localization/roles/helpers.py"
+  ],
+  "baseline_revision": "db10f20fe71ec1c1827cbeddb9444801a0a3fcf8",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/localization/roles/configuration.py",
+      "2aecd46e4a1e3cc38916654afc0f13e77eaa94528808e49334934fa63fadaa63"
+    ],
+    [
+      "src/devtools/context/localization/roles/models.py",
+      "0e2e5a930158979ccc85932802fe806a3b22b04bed282557f4f0e52773bcd6a9"
+    ],
+    [
+      "tests/context/localization/roles/test_configuration.py",
+      "4f8b85da72a39e5a3cd7963dad42c8535c38561308ca6ef65bcaf6b3f340dc3e"
+    ],
+    [
+      "tests/context/localization/roles/test_inputs.py",
+      "94b655837c76d7aea8b1926ee154b6316c3f6197e90f67adec018886b23e0386"
+    ],
+    [
+      "tests/context/localization/roles/test_evidence.py",
+      "dd3cc7e09ade40dc56ab03772fc271695637bce73ea72886e321badc567c215b"
+    ],
+    [
+      "src/devtools/context/localization/roles/inputs.py",
+      "739f2872f3a3e8cba320dd8e79af26d2725e3e626dfe6416f22fe34daf593a34"
+    ],
+    [
+      "src/devtools/context/localization/roles/derivation.py",
+      "2447c9d8cbd40c25864ddf13bc068563159444b867c29f2c1720da48e00c6006"
+    ],
+    [
+      "src/devtools/context/localization/roles/__init__.py",
+      "f9853b01a2bca1dbe5df59dd347d77af2fb90e30da6377929e0dcc26afc1cd2c"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/models.py",
+      "81ef05e47677793ea1db686a14f2647256bdeaec92b89e7f7d685903f7b34415"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/settings.py",
+      "c3f8bd52110e24b2f26544082d221507eef4372b5d2bfbd7bd48fa344386fa7b"
+    ],
+    [
+      "tests/context/localization/roles/helpers.py",
+      "7167883b386c380cc707d3deb3b72a0d78988e90ffeca5828d36918edd2d7b42"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/localization/roles/configuration.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/localization/roles/models.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/localization/roles/test_configuration.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/localization/roles/test_inputs.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/localization/roles/test_evidence.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/localization/roles/inputs.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/localization/roles/derivation.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/localization/roles/__init__.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/models.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/settings.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/localization/roles/helpers.py",
+      "configuration repository role native inputs evidence",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "\nimport sys\nimport tempfile\nimport tomllib\nfrom dataclasses import replace\nfrom pathlib import Path\nsys.path.insert(0, str(Path.cwd()))\nfrom tests.context.localization.roles.helpers import snapshot, configuration_targets\nfrom devtools.context.localization.roles import RepositoryRoleEvidenceInputs, RepositoryRoleKind as R, RoleSupportKind as K, derive_repository_role_evidence\nfrom devtools.context.python.project_configuration import analyze_python_project_configuration\nfrom devtools.context.repository.resource import RepositoryResourceAddress\n\nCONFIGS = [\n    '[dependency-groups]\\ntest=[\"pytest\", \"pytest\"]\\npytest=[]\\nlint=[\"ruff\"]\\ndocs=[\"sphinx\"]\\n\"Mixed-Case\"=[\"raw source string !\"]',\n    '[dependency-groups]\\ngood=[]\\nmixed=[\"x\", {include-group=\"good\"}]\\ninclude=[{include-group=\"good\"}]\\nbad=42',\n    '[dependency-groups]',\n    '',\n    'dependency-groups=false',\n    '[dependency-groups]\\n\"QA.Test\"=[\"a\"]\\nqa_test=[\"b\"]\\nvalid=[]',\n    'project.name=\"sample\"\\n[dependency-groups]\\ncheck=[]\\n[build-system]\\nrequires=[\"builder\"]\\n[tool.ruff]',\n    '[dependency-groups',\n]\nfor text in CONFIGS[:-1]:\n    assert isinstance(tomllib.loads(text), dict)\nwith tempfile.TemporaryDirectory() as temporary:\n    root = Path(temporary)\n    for text in CONFIGS:\n        observed = snapshot(root, {\"pyproject.toml\": text, \"outside.py\": \"\"})\n        address = RepositoryResourceAddress(\"pyproject.toml\")\n        analysis = analyze_python_project_configuration(observed, address=address)\n        view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,)))\n        assert view.inputs.configurations == (analysis,), \"native analysis/source provenance changed\"\n        settings = analysis.settings\n        groups = [item for item in settings.declarations if item.key[0] == \"dependency-groups\"] if settings is not None else []\n        for group in groups:\n            supports = [(item.role, support) for item in view.for_resource(address) for support in item.supports if group.identity in support.native_identities]\n            if group.unsupported_reason is not None:\n                assert not supports, \"unsupported groups fabricated positive roles\"\n                assert group in view.inputs.configurations[0].settings.declarations\n            else:\n                assert {role for role, support in supports} == {R.PROJECT_CONFIGURATION}, f\"dependency-group setting {group.key!r}: expected project-configuration only; got {sorted(role.value for role, support in supports)!r}\"\n                assert len(supports) == 1, (group.key, supports)\n                role, support = supports[0]\n                assert role is R.PROJECT_CONFIGURATION, f\"declared dependency group {group.key!r} incorrectly classified as {role.value}; only project-configuration is justified\"\n                assert support.kind is K.PROJECT_DECLARATION, f\"dependency group {group.key!r} must use existing project-declaration support, got {support.kind.value}\"\n                assert support.observation == group.key\n                assert support.source_address == address\n                assert support.native_identities == (group.identity,)\n        expected = {R.PROJECT_CONFIGURATION}\n        if '[build-system]' in text: expected |= {R.BUILD_CONFIGURATION, R.TOOL_CONFIGURATION}\n        assert {item.role for item in view.for_resource(address)} == expected, \"group names or raw strings invented extra roles\"\n        assert {item.role for item in view.for_resource(RepositoryResourceAddress(\"outside.py\"))} == {R.PYTHON_CODE}\n        assert view.repository_id == observed.repository_id and view.snapshot_id == observed.id\n        assert all(item.resource == observed.resource_at(item.resource.address) for item in view.evidence)\n        assert view == derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,analysis)))\n        assert view.SEMANTICS == \"positive-python-repository-role-support-v2\", \"role derivation semantics must deliberately advance to v2\"\n        target = configuration_targets(observed)\n        target_view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configuration_targets=(target,)))\n        assert target_view.for_resource(address)[0].supports == view.for_resource(address)[0].supports\n        assert target_view.inputs.configurations == (analysis,)\n        assert target_view.inputs.configuration_targets == (target,)\n        changed = snapshot(root, {\"pyproject.toml\": text + '\\n# source identity change', \"outside.py\": \"\"})\n        try: derive_repository_role_evidence(changed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,)))\n        except ValueError: pass\n        else: raise AssertionError(\"stale native configuration input was accepted\")\n        if groups:\n            forged = replace(analysis, settings=replace(settings, declarations=tuple(replace(item, value=(\"forged\",)) if item is groups[0] else item for item in settings.declarations)))\n            try: derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(forged,)))\n            except ValueError: pass\n            else: raise AssertionError(\"forged configuration setting was accepted\")\n    for text, expected in [\n        ('project.name=\"sample\"', {R.PROJECT_CONFIGURATION}),\n        ('[build-system]\\nrequires=[\"builder\"]', {R.PROJECT_CONFIGURATION,R.BUILD_CONFIGURATION}),\n        ('[tool.ruff]', {R.PROJECT_CONFIGURATION,R.TOOL_CONFIGURATION}),\n        ('[tool.pytest.ini_options]\\npython_files=[\"test_*.py\"]', {R.PROJECT_CONFIGURATION,R.TOOL_CONFIGURATION,R.TEST_CONFIGURATION}),\n    ]:\n        observed = snapshot(root, {\"pyproject.toml\": text})\n        target = configuration_targets(observed)\n        view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(target.declarations,)))\n        assert {item.role for item in view.for_resource(address)} == expected, \"existing unrelated classification regressed\"\nprint(\"PASS: dependency-group project roles, no inferred tool/test/docs roles, native identities, absence, unsupported input and compatibility\")\n",
+  "maximum_calls": 24,
+  "wall_seconds": 1800,
+  "output_tokens": 8192,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "quality_checks": true,
+  "command_tools": true,
+  "path_edits": true,
+  "maximum_proposals": 6,
+  "tool_actions": 32
+}

@@ -1,0 +1,115 @@
+{
+  "name": "bsd-family",
+  "objective": "Extend the existing operating-system family API to recognize BSD platforms. Add OperatingSystem.BSD with stable value bsd and an is_bsd convenience property, and make get_operating_system classify exactly FreeBSD, OpenBSD, NetBSD and DragonFly as BSD. Preserve existing case-sensitive Windows/Linux/Darwin behavior and OTHER fallback, all existing enum values and boolean properties. Coordinate the model and detection behavior; do not change tests or global platform state.",
+  "source": "src/devtools/core/system/detection.py",
+  "tests": [
+    "tests/core/system/test_detection.py",
+    "tests/core/system/test_models.py"
+  ],
+  "baseline_revision": "97f24e4ca7b4c48fa22b122a692303ea5713575a",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/system/detection.py",
+      "3ee83784a4a3941c7353bb9c4033e9d37b3fe99438e707ec4c09dee161cf8f1c"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782"
+    ],
+    [
+      "tests/core/system/test_detection.py",
+      "24a2b06f9c9f64385a771f0b9aa9efbcb70b6eef6bc217b94aa5f656a449a174"
+    ],
+    [
+      "tests/core/system/test_models.py",
+      "3dd6656b520a13dd13afb61d26dc206dfb42ce9a974134baf1863bc9bdfee493"
+    ],
+    [
+      "src/devtools/core/system/__init__.py",
+      "dabee7a800c467abafb533e33416cff83984c9d8941dc6f63db1050de08f4ab5"
+    ],
+    [
+      "src/devtools/core/identity/models.py",
+      "5e3ebd3f738619165eab1f46a37ebe4368498f2956825bb9ce123669aec7ae3f"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/system/detection.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/system/test_detection.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/system/test_models.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/system/__init__.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/identity/models.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "bsd-family",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "from unittest.mock import patch\nfrom devtools.core.system import OperatingSystem,get_operating_system\nassert hasattr(OperatingSystem,'BSD'),'Missing BSD family'\nassert OperatingSystem.BSD.value=='bsd' and str(OperatingSystem.BSD)=='bsd'\nfor name in ('FreeBSD','OpenBSD','NetBSD','DragonFly'):\n    with patch('devtools.core.system.detection.platform.system',return_value=name):\n        assert get_operating_system() is OperatingSystem.BSD\nfor name,expected in [('Windows',OperatingSystem.WINDOWS),('Linux',OperatingSystem.LINUX),('Darwin',OperatingSystem.MACOS),('windows',OperatingSystem.OTHER),('freebsd',OperatingSystem.OTHER),('FreeBSD-extra',OperatingSystem.OTHER),('SunOS',OperatingSystem.OTHER),('',OperatingSystem.OTHER)]:\n    with patch('devtools.core.system.detection.platform.system',return_value=name):\n        assert get_operating_system() is expected\nfor family in OperatingSystem:\n    assert family.is_bsd is (family is OperatingSystem.BSD)\nassert not OperatingSystem.BSD.is_windows\nassert not OperatingSystem.BSD.is_linux\nassert not OperatingSystem.BSD.is_macos\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/system/__init__.py",
+    "src/devtools/core/identity/models.py",
+    "src/devtools/core/regex/search.py",
+    "src/devtools/core/paths/models.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [
+    "src/devtools/core/system/models.py"
+  ],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": []
+}

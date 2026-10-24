@@ -4,7 +4,7 @@
 
 `devtools.resources.filesystem` provides immutable file models, representation codecs,
 static format resolution, bounded generic reads, and atomic-replacement writes.
-It supports text, JSON, Markdown, and CSV I/O; binary is currently model-only.
+It supports text, JSON, Markdown, CSV and explicit-format binary I/O.
 
 ## Public API
 
@@ -16,7 +16,7 @@ at the representation-model boundary rather than the root package.
 
 | Format   | Model | Codec | Generic read/write |
 |----------|------:|------:|-------------------:|
-| Binary   |   Yes |    No |                 No |
+| Binary   |   Yes |   Yes |      Explicit only |
 | Text     |   Yes |   Yes |                Yes |
 | JSON     |   Yes |   Yes |                Yes |
 | CSV      |   Yes |   Yes |                Yes |
@@ -50,6 +50,10 @@ details are in [json.md](json.md), [markdown.md](markdown.md), and
 [csv.md](csv.md).
 
 ## Source provenance and current state
+
+`BinaryCodec` preserves exact bytes in `BinaryFile` and is exported from both the
+root and codecs packages. Binary reads require `file_format=FileFormat.BINARY`;
+no binary suffix is inferred. Binary writes use the shared atomic writer.
 
 JSON and CSV distinguish original decoded source from current structured state.
 Their `.content` is source provenance; JSON `.value` and CSV `.headers`/`.rows`

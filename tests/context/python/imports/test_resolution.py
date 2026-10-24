@@ -26,7 +26,9 @@ from devtools.core.paths import ResolvedPath
 
 
 def _snapshot(
-    tmp_path: Path, resources: dict[str, str], suffix: str = "19",
+    tmp_path: Path,
+    resources: dict[str, str],
+    suffix: str = "19",
 ) -> RepositorySnapshot:
     for address, content in resources.items():
         path = tmp_path / address
@@ -56,7 +58,9 @@ def _interpretations(
 
 
 def _declaration(
-    snapshot: RepositorySnapshot, address: str, ordinal: int = 0,
+    snapshot: RepositorySnapshot,
+    address: str,
+    ordinal: int = 0,
 ) -> object:
     return derive_python_import_declarations(
         snapshot,
@@ -88,7 +92,9 @@ def test_absolute_and_from_imports_resolve_only_eligible_module_portion(
     )
     results = tuple(
         resolve_python_import_declaration(
-            analysis, declaration, target_universe=universe,
+            analysis,
+            declaration,
+            target_universe=universe,
         )
         for declaration in analysis.declarations
     )

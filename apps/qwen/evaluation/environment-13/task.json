@@ -1,0 +1,250 @@
+{
+  "name": "command-environment-overrides-development-13",
+  "objective": "Complete the maintained command execution roadmap obligation for per-command environment overrides. Add optional environment: Mapping[str, str] | None to the existing immutable public Command specification. None (the default) and an empty mapping inherit the current parent environment at process launch; a nonempty mapping overlays only its keys, including empty-string and Unicode values. Never modify os.environ, including concurrent command execution. Snapshot caller mappings defensively, expose a read-only mapping, preserve frozen/value/hash semantics with order-independent equality/hash for equivalent overrides, and preserve the environment through every existing fluent operation. Provide with_environment(mapping) to replace overrides and without_environment() to restore inheritance. Reject non-mappings/non-string keys or values with TypeError and empty names, equals signs in names, or NUL in names/values with ValueError at construction and fluent replacement. Preserve argv, cwd, timeout, output/events/result identity and all existing command behavior. This is not a shell or permission grant. Investigate the existing implementation and related resources before coordinated edits. Behavioral acceptance, existing regressions, Ruff, formatting and strict typing are all mandatory; do not change tests or acceptance. Work through two development checkpoints in this same attempt, without partial publication: A, establish the observed Command value invariants and complete/validate the value behavior; B, complete/validate downstream execution and the full contract. Before a substantial edit briefly identify the existing initialization/value invariants and which obligations remain. Keep current source separate from proposed source: every atomic old_text anchor refers to the same current pre-transaction version. Inspect the resulting candidate for duplicate definitions and preserved invariants. These are process checkpoints, not permission to omit any acceptance requirement.",
+  "source": "src/devtools/resources/commands/models/command.py",
+  "additional_edit_paths": [
+    "src/devtools/resources/commands/execution.py"
+  ],
+  "tests": [
+    "tests/resources/commands/test_models.py",
+    "tests/resources/commands/test_execution.py",
+    "tests/resources/commands/test_handle.py",
+    "tests/resources/commands/test_events.py",
+    "tests/resources/commands/test_errors.py",
+    "tests/resources/commands/test_decoded_output.py",
+    "tests/resources/commands/test_stdin.py"
+  ],
+  "baseline_revision": "f2121c663c634b82b8223d661df69b98634189f1",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "17fd1e049ecb5e15858d542d415f48dc8e9e8acaa14894663fdd4033abf21e80"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "82c9d005e1c446a3309e291e6324bd55ba5b52b6f29dd182de7b095f03c70049"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "2447c43cbc1769c7aef1b4f1c09b264cc6dc4fcb32789f0c90210ab88b0b1e0a"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "eabeb1e9f0108ca68d9b9d61690987c34d962a3b49213622bdca39a9968f8b87"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "7c2b485593ee0ced82c82963f573272069a37d714295fd201d25b78358281b41"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "20ce6010133bdd12a1005634e6b033a986de946e74d162d68589286298ecb1da"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "136c5ed5a4494ab00dbc5d3c82c75024bc681c1c3117756e4b0e69cbf2bf6779"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "d3e83dcb4520148e17673dc87731001be5c4be9e76f85aca407d1fe757c2a90d"
+    ],
+    [
+      "src/devtools/resources/commands/models/__init__.py",
+      "6c4863894eaa186fb2cb459c1ebc2066ccfb1171591531fccc930ac5b42c4b09"
+    ],
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "6f52ca8f42219c12e1650d7bee95d6f1a45f0f78a5ba2ea1c0d20b6f2cdfa384"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "82f90b288a83ca33aa0adbb3c1716a6619483b03e42c1b90affef723f35d1af8"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "55ee926b5e94a7d468c37bf569b91e24cc2b228630424edd3f28c5b0d09194d1"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "6a92fda96e27e6f57f822e013e0d9e56846762c3eef9c84fcada2e45ac1ce906"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "c2760a1d0db7bc77fe20cd3ea920890f00a32843dd2d8043d7c8d9b8bb2e193a"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "8aa93b6ae417be679ed6b24db3f2471b104578023b73997e558e38b03f863121"
+    ],
+    [
+      "tests/resources/commands/test_stdin.py",
+      "3768ea47fb97ecf2ee3b20ed948dd903fdb21fc554dea8f4c700f8647c03cfe3"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "command",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "test_models",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "test_execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "test_handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "test_events",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "test_errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "test_decoded_output",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "output",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "result",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "events",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "models",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "writing",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_stdin.py",
+      "test_stdin",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import asyncio, inspect, json, os, sys\nfrom collections.abc import Mapping\nfrom dataclasses import FrozenInstanceError\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nfrom devtools.core.paths import ResolvedPath\nfrom devtools.core.time import Duration\nfrom devtools.resources.commands import Command, CommandExecutor\n\ndef raises(kind, operation, message):\n    try:\n        operation()\n    except kind:\n        return\n    raise AssertionError(message)\n\ndef model_checks(cls):\n    assert \"environment\" in inspect.signature(cls).parameters, \"Command must accept optional environment overrides\"\n    original = {\"DEVTOOLS_Q10_OVERRIDE\": \"snapshot\", \"DEVTOOLS_Q10_EMPTY\": \"\"}\n    command = cls(sys.executable, environment=original)\n    original[\"DEVTOOLS_Q10_OVERRIDE\"] = \"mutated\"\n    assert isinstance(command.environment, Mapping)\n    assert dict(command.environment) == {\"DEVTOOLS_Q10_OVERRIDE\": \"snapshot\", \"DEVTOOLS_Q10_EMPTY\": \"\"}, \"Command must snapshot its environment input\"\n    raises(TypeError, lambda: command.environment.__setitem__(\"x\", \"y\") if hasattr(command.environment, \"__setitem__\") else (_ for _ in ()).throw(TypeError()), \"Environment view must reject mutation\")\n    raises(FrozenInstanceError, lambda: setattr(command, \"environment\", {}), \"Command must remain frozen\")\n    equal = cls(sys.executable, environment={\"DEVTOOLS_Q10_EMPTY\": \"\", \"DEVTOOLS_Q10_OVERRIDE\": \"snapshot\"})\n    assert command == equal and hash(command) == hash(equal), \"Equivalent overrides must have order-independent equality/hash\"\n    assert command != cls(sys.executable, environment={\"DEVTOOLS_Q10_OVERRIDE\": \"other\"}), \"Override values participate in equality\"\n    assert hash(cls(sys.executable)) == hash(cls(sys.executable)), \"Default commands remain hashable\"\n    assert cls(sys.executable).environment is None\n    for transformed in (command.args(\"-V\"), command.with_args(\"-V\"), command.without_args(), command.with_executable(sys.executable), command.with_timeout(Duration.seconds(2)), command.without_timeout(), command.cwd(ResolvedPath(Path.cwd())), command.without_cwd()):\n        assert dict(transformed.environment) == dict(command.environment), \"Existing fluent operations must preserve environment\"\n    assert hasattr(command, \"with_environment\") and hasattr(command, \"without_environment\"), \"Expose immutable environment replacement/removal helpers\"\n    changed = command.with_environment({\"DEVTOOLS_Q10_OVERRIDE\": \"changed\"})\n    assert dict(changed.environment) == {\"DEVTOOLS_Q10_OVERRIDE\": \"changed\"}\n    assert command.without_environment().environment is None\n    for invalid in ([], \"KEY=value\", 1, {1: \"value\"}, {\"key\": 1}, {\"key\": None}):\n        raises(TypeError, lambda invalid=invalid: cls(sys.executable, environment=invalid), \"Environment must be a mapping of strings to strings\")\n    for invalid in ({\"\": \"x\"}, {\"a=b\": \"x\"}, {\"a\\0b\": \"x\"}, {\"a\": \"x\\0y\"}):\n        raises(ValueError, lambda invalid=invalid: cls(sys.executable, environment=invalid), \"Invalid process environment names/values must be rejected at construction\")\n    raises(ValueError, lambda: command.with_environment({\"bad=name\": \"x\"}), \"Fluent replacements must enforce the same validation\")\n\nasync def execution_checks(cls, executor_cls):\n    script = \"import os,json; print(json.dumps({k:os.environ.get(k) for k in ['DEVTOOLS_Q10_OVERRIDE','DEVTOOLS_Q10_INHERIT','DEVTOOLS_Q10_EMPTY']},ensure_ascii=True)); print(os.getcwd())\"\n    with TemporaryDirectory() as directory, patch.dict(os.environ, {\"DEVTOOLS_Q10_OVERRIDE\": \"parent\", \"DEVTOOLS_Q10_INHERIT\": \"inherited\", \"DEVTOOLS_Q10_EMPTY\": \"parent\"}):\n        command = cls(sys.executable, (\"-c\", script), working_directory=ResolvedPath(Path(directory)), timeout=Duration.seconds(10), environment={\"DEVTOOLS_Q10_OVERRIDE\": \"child-\\u03bb\", \"DEVTOOLS_Q10_EMPTY\": \"\"})\n        os.environ[\"DEVTOOLS_Q10_INHERIT\"] = \"launch-time\"\n        before = dict(os.environ)\n        results = await asyncio.gather(executor_cls().execute(command), executor_cls().execute(command.with_environment({\"DEVTOOLS_Q10_OVERRIDE\": \"sibling\"})), executor_cls().execute(command.without_environment()), executor_cls().execute(command.with_environment({})))\n        expected = [\n            {\"DEVTOOLS_Q10_OVERRIDE\": \"child-\\u03bb\", \"DEVTOOLS_Q10_INHERIT\": \"launch-time\", \"DEVTOOLS_Q10_EMPTY\": \"\"},\n            {\"DEVTOOLS_Q10_OVERRIDE\": \"sibling\", \"DEVTOOLS_Q10_INHERIT\": \"launch-time\", \"DEVTOOLS_Q10_EMPTY\": \"parent\"},\n            {\"DEVTOOLS_Q10_OVERRIDE\": \"parent\", \"DEVTOOLS_Q10_INHERIT\": \"launch-time\", \"DEVTOOLS_Q10_EMPTY\": \"parent\"},\n            {\"DEVTOOLS_Q10_OVERRIDE\": \"parent\", \"DEVTOOLS_Q10_INHERIT\": \"launch-time\", \"DEVTOOLS_Q10_EMPTY\": \"parent\"},\n        ]\n        for result, values in zip(results, expected, strict=True):\n            assert result.succeeded and result.stderr == b\"\", \"Environment-aware commands must execute normally\"\n            lines = result.stdout.decode().splitlines()\n            assert json.loads(lines[0]) == values, \"Child overrides must merge with launch-time inheritance and remain isolated\"\n            assert Path(lines[1]) == Path(directory), \"Working-directory behavior must remain unchanged\"\n            assert result.command.environment is None or isinstance(result.command.environment, Mapping)\n        assert dict(os.environ) == before, \"Executing commands must never mutate the parent environment\"\n\ndef run_checks(cls=Command, executor_cls=CommandExecutor):\n    model_checks(cls)\n    asyncio.run(execution_checks(cls, executor_cls))\n    print(\"PASS: immutable environment model, invalid inputs, fluent/hash compatibility, four concurrent real child-process scenarios and parent isolation\")\n\nif __name__ == \"__main__\":\n    run_checks()\n",
+  "maximum_calls": 20,
+  "output_tokens": 8192,
+  "wall_seconds": 1500,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/commands/__init__.py",
+    "src/devtools/resources/commands/models/__init__.py",
+    "src/devtools/resources/commands/models/output.py",
+    "src/devtools/resources/commands/models/result.py",
+    "src/devtools/resources/commands/handle.py",
+    "src/devtools/resources/commands/events.py",
+    "src/devtools/resources/commands/errors.py",
+    "src/devtools/core/paths/models.py",
+    "src/devtools/core/paths/resolution.py",
+    "src/devtools/resources/filesystem/writing.py",
+    "src/devtools/resources/filesystem/resolution.py"
+  ],
+  "quality_checks": true,
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [],
+  "disclose_edit_paths": false,
+  "maximum_proposals": 6,
+  "path_edits": true
+}

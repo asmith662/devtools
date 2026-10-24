@@ -121,20 +121,21 @@ def test_manual_okapi_bm25_score_and_contribution_evidence() -> None:
     contribution = match.term_contributions[0]
     expected_idf = math.log(
         1
-        + (4 - expected_document_frequency + 0.5)
-        / (expected_document_frequency + 0.5),
+        + (4 - expected_document_frequency + 0.5) / (expected_document_frequency + 0.5),
     )
-    expected_contribution = expected_idf * (
-        expected_term_frequency * (settings.k1 + 1)
-    ) / (
-        expected_term_frequency
-        + settings.k1
-        * (
-            1
-            - settings.b
-            + settings.b
-            * expected_document_length
-            / expected_average_document_length
+    expected_contribution = (
+        expected_idf
+        * (expected_term_frequency * (settings.k1 + 1))
+        / (
+            expected_term_frequency
+            + settings.k1
+            * (
+                1
+                - settings.b
+                + settings.b
+                * expected_document_length
+                / expected_average_document_length
+            )
         )
     )
 

@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "28a73e8127cd8271e213f16492150a2c108186f65b27dcda40c42fe7fe994248",
+  "at": "2026-10-23T19:01:27.395209+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-deep-audit-followup.md",
+  "rationale": "Source review now follows R1 per-query filename build, R2 separately sealed field construction/replay, purpose-relative repeated module interpretation and current fixture/role native-fact replay. These are concrete candidate call sites, not measured speedup. No profiler workload was executed this checkpoint. Acceptance must count AST/index/replay work in at least two actual maintained consumers, retain grammar/runtime/source-root scope and exact input closure, and compare cold/fresh/stale/error paths before choosing reuse. R2 repr seal is local experiment tamper evidence, not a replacement authority/cache identity. Distinct semantic parser scopes and lexical analyzers must not be collapsed.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original pending payload, parent, reviews and state preserved. Concrete evidence/acceptance additions only; no approval, dispatch or grant.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "277172fb2f08cb20544898e6616d6fd6224b2fae63229c6d855afdcd3a7be3c1"
+}

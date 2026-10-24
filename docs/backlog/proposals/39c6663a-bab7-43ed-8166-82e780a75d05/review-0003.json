@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "ab825005af71b51e1c0d19fabd2d1e077531b36941f172f46642cd326aa6e6df",
+  "at": "2026-10-23T14:46:45.132224+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23",
+  "rationale": "Pinned DeepSeek defineTool provides schema inference plus execute-time validation; raw registration still owns input validation, while registry enforces canonical output. Cordis cleanup is lifecycle scoping, not sandboxing. ContextTools descriptors/schemas/native argument admission and CodingCommands operation descriptors/fixed checks are two concrete local definition consumers to inspect for duplication. Measure semantic compatibility before any decorator/base class; do not split large modules mechanically or replace ToolRunner.",
+  "duplicates": [
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing qualified proposal owns the pressure; preserve its payload, parent and state. Source/test research only: no new B-number, approval, grant, inference or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "9e84ea0d6dbf7fbc3753a0f01dfa6bfcb7a1acd120e5cffd7e2410144aaed589"
+}

@@ -181,11 +181,13 @@ def interpret_python_module_resources(
             module_root=module_root,
         )
         if interpretation is None:
-            exclusions.append(PythonModuleInterpretationExclusion(
-                resource=resource,
-                module_root=module_root,
-                reason=cast("PythonModuleInterpretationExclusionReason", reason),
-            ))
+            exclusions.append(
+                PythonModuleInterpretationExclusion(
+                    resource=resource,
+                    module_root=module_root,
+                    reason=cast("PythonModuleInterpretationExclusionReason", reason),
+                ),
+            )
         else:
             interpretations.append(interpretation)
 

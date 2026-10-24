@@ -22,6 +22,7 @@ from devtools.resources.filesystem import FileFormat, TextFile, read, write
 if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
+    from typing import Any
 
     from devtools.agents.conversation import Conversation
     from devtools.core.paths import ResolvedPath
@@ -181,6 +182,11 @@ _SELECTION_STRESS_EXPECTED_PATCH = _expected_patch(_SELECTION_STRESS_FIXTURE)
 
 class PatchProposalError(ValueError):
     """Represent a rejected final patch in this fixture-specific experiment."""
+
+    def __init__(self, message: str, *, details: dict[str, Any] | None = None) -> None:
+        """Retain historical messages and optional host-owned refusal facts."""
+        super().__init__(message)
+        self.details = dict(details or {})
 
 
 class UngroundedFinalResponseError(ValueError):

@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+  "previous": "01edbb956338eebf9e02b150a631f73a4c5847e72de6e2520ea96c3436cbfcf8",
+  "at": "2026-10-24T16:51:26.064767+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/feature-branch-integration-20261024.md",
+  "rationale": "Physical-line repaira0a6c224 and physical-line regression match the reviewed source blobs in the whole-feature destination candidate0345da87. Fresh destination protected validation passes100% production branch coverage. The old eight-file selective tree remains fallback evidence, not the expected whole-merge tree. Operator should reconcile delivered implementation/candidate versus pending main adoption without closing historical SourceSpans or other contracts.",
+  "duplicates": [
+    {
+      "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve existing UUID, payload, parent and state. Evidence only; no approval, grant, B-number, dispatch, closure or protected-main publication.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "cbd3b21f7090020b907c485e090a59726bd21d62cf6ba3485f76b602b15845dc"
+}

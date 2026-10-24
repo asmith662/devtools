@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-20T14:48:48.494694+00:00",
+  "case": "read-disappearance",
+  "method_stat_calls_after_exists_is_file_explicit_stat": [
+    0,
+    0,
+    1
+  ],
+  "finding": "CPython 3.14 exists/is_file bypass overridden Path.stat. Frozen oracle injects on third Path.stat invocation, so disappearance is not actually injected for ordinary valid implementations. The oracle is coupled to implementation call counts.",
+  "disposition": "INVALID_CONFIRMATION_ORACLE",
+  "historical_run_results": "Unchanged; do not retroactively accept either candidate or count this case in comparative task acceptance. Independent Ruff failures remain actual quality failures.",
+  "remaining_budget": "Use eighth and final reserved run for a separately frozen Devtools-only public-output decoding confirmation. No new model configuration or tuning, no extra Pi call; primary matched comparison remains two development tasks.",
+  "no_inference": true
+}

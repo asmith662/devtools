@@ -294,6 +294,9 @@ def assemble_python_qualified_reference_model_request(
     context: RenderedPythonQualifiedReferenceContext,
 ) -> ModelRequest:
     """Place realized Context after the task without changing request settings."""
+    if task_request.prompt.messages:
+        msg = "Text Context assembly does not accept structured message input."
+        raise ValueError(msg)
     task_text = task_request.prompt.content
     prompt_content = "".join(
         (

@@ -1,0 +1,118 @@
+{
+  "name": "static-dependency-groups-24",
+  "objective": "Implement static source-declared Python dependency groups in the existing project_configuration settings/declaration/coverage owners. Preserve original group names, ordered string tuples including duplicates and empty groups. An absent dependency-groups table belongs in absent_keys; an empty declared table has a positive table setting with empty tuple. Non-table parents and non-array values, mixed arrays, include-group objects, nested/invalid items remain qualified unsupported settings with original semantic group keys and value None; preserve supported siblings, never partially extract or resolve includes. Group names must follow PyPA ASCII name grammar, original spelling retained; names colliding after lowercase and collapse of runs of dot/underscore/hyphen must all be qualified unsupported (value None), never merged. Requirement strings are raw source strings, not PEP508-validated or installation facts. Preserve existing metadata/selectors, dynamic readme, malformed TOML, retained-resource provenance and deterministic resolution. Deliberately advance declaration derivation to python-project-config-tomllib-declarations-v4 and analysis coverage to a descriptive dependency-groups scope ending v3. Keep public exports/types compatible; no new resolver/parser or dependency installer. The existing application tools perform validation: after an admissible candidate use check_changes and retain correct observed pre-transaction anchors. Inspect owners and essential dependencies, then implement; extra investigation should resolve a concrete missing dependency, not rediscover established ownership. All changes must fit existing edit bounds; no large whole-file replacements. This is a new RI task; source paths are authorized scope, not a solution. Existing legacy test counts 17 absent keys; new coverage intentionally has 18 and independent post-run regression maintenance will update that assertion, not remove any old expected key.",
+  "source": "src/devtools/context/python/project_configuration/settings.py",
+  "additional_edit_paths": [
+    "src/devtools/context/python/project_configuration/declarations.py",
+    "src/devtools/context/python/project_configuration/models.py"
+  ],
+  "tests": [
+    "tests/context/python/project_configuration/test_configuration.py",
+    "tests/context/python/project_configuration/test_obstructions.py"
+  ],
+  "read_paths": [
+    "src/devtools/context/python/project_configuration/resolution.py",
+    "src/devtools/context/python/project_configuration/__init__.py",
+    "tests/context/python/project_configuration/test_settings.py"
+  ],
+  "baseline_revision": "bdf4d3590a751880998c841f005930757aadd3cf",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/python/project_configuration/settings.py",
+      "640e2ee1cb2191d015bbdc663ffa3cc050ecf03e730e6702b6e11cab4e33ea24"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/declarations.py",
+      "af2fa66359243e6111692bd7520708dd05355646d2ae15c8debb74d0f28d5280"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/models.py",
+      "b44f9dc971c2e1534e008c5cf7a2ef4ac2c99abfba36a295201e0c2b19b5d312"
+    ],
+    [
+      "tests/context/python/project_configuration/test_configuration.py",
+      "a1bdbc15f6d2da3ca3ea401173062de177237b2552e8fdfd5a7ef3a93013c4e1"
+    ],
+    [
+      "tests/context/python/project_configuration/test_obstructions.py",
+      "b0b0ea3745d6712ad9033baaf46970fbb3bd77a8e3b4e84d6c7edf2334aad4c2"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/resolution.py",
+      "24f10e69026f612d9cab8a2be2d629d6997751dccff6295c8ea9df8521d530ec"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/__init__.py",
+      "f9b299b39f60441aa16ec10cdb3d5c2f6ff814ca05d40ba887d66be81fc77f33"
+    ],
+    [
+      "tests/context/python/project_configuration/test_settings.py",
+      "fd29da7dfc1e7a70b06d92f620c0fe392eba627d542045d0f6c0c8aaa9b3af64"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/python/project_configuration/settings.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/declarations.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/models.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/python/project_configuration/test_configuration.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/python/project_configuration/test_obstructions.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/resolution.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/project_configuration/__init__.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/python/project_configuration/test_settings.py",
+      "Python project configuration settings declarations resolution",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "\nimport sys\nimport tempfile\nimport tomllib\nfrom pathlib import Path\nsys.path.insert(0, str(Path.cwd()))\nfrom tests.context.python.project_configuration.test_configuration import _snapshot, _resolve\nfrom devtools.context.python.project_configuration import analyze_python_project_configuration\nfrom devtools.context.repository.resource import RepositoryResourceAddress\n\nCASES = [\n    ('[dependency-groups]\\nDev-Test=[\"pytest>=8\", \"coverage[toml]\", \"pytest>=8\"]\\nempty=[]', {\"Dev-Test\": (\"pytest>=8\", \"coverage[toml]\", \"pytest>=8\"), \"empty\": ()}, ()),\n    ('[dependency-groups]\\n\"Docs.Build\"=[\"sphinx>=2\"]\\nQA=[\"name @ https://example.org/name.whl\", \"not validated !\"]', {\"Docs.Build\": (\"sphinx>=2\",), \"QA\": (\"name @ https://example.org/name.whl\", \"not validated !\")}, ()),\n    ('[dependency-groups]\\ngood=[\"a\"]\\nmixed=[\"a\", {include-group=\"good\"}]\\ninclude=[{include-group=\"good\"}]', {\"good\": (\"a\",)}, (\"mixed\", \"include\")),\n    ('[dependency-groups]\\ngood=[]\\nscalar=\"a\"\\nnumber=1\\nboolean=true\\nbad=[\"a\", false]\\nobj=[{other=\"x\"}]\\nnested=[[\"a\"]]\\n[dependency-groups.table]\\nx=\"y\"', {\"good\": ()}, (\"scalar\", \"number\", \"boolean\", \"bad\", \"obj\", \"nested\", \"table\")),\n    ('[dependency-groups]\\n\"QA.Test\"=[\"a\"]\\n\"qa_test\"=[\"b\"]\\n\"qa--test\"=[]\\ngood=[\"ok\"]', {\"good\": (\"ok\",)}, (\"QA.Test\", \"qa_test\", \"qa--test\")),\n    ('[dependency-groups]\\n\"\"=[]\\n\"-bad\"=[]\\n\"bad \"=[]\\n\"\u00e9\"=[]\\n\"bad\\\\n\"=[]\\ngood=[]', {\"good\": ()}, (\"\", \"-bad\", \"bad \", \"\u00e9\", \"bad\\n\")),\n]\n# Qualify every fixture with the supported runtime before interrogating RI.\nfor text, supported, unsupported in CASES:\n    table = tomllib.loads(text)[\"dependency-groups\"]\n    assert set(table) == set(supported) | set(unsupported)\n    for name, expected in supported.items():\n        assert tuple(table[name]) == expected\n\nwith tempfile.TemporaryDirectory() as temporary:\n    root = Path(temporary)\n    for text, supported, unsupported in CASES:\n        snapshot = _snapshot(root, {\"pyproject.toml\": text})\n        analysis = analyze_python_project_configuration(snapshot, address=RepositoryResourceAddress(\"pyproject.toml\"))\n        assert analysis.settings is not None\n        groups = {item.key: item for item in analysis.settings.declarations if item.key[0] == \"dependency-groups\"}\n        assert set(groups) == {(\"dependency-groups\", name) for name in (*supported, *unsupported)}, \"missing static dependency-group declarations\"\n        for name, expected in supported.items():\n            item = groups[(\"dependency-groups\", name)]\n            assert item.value == expected and item.unsupported_reason is None, (name, item)\n        for name in unsupported:\n            item = groups[(\"dependency-groups\", name)]\n            assert item.unsupported_reason and item.value is None, (name, item)\n        assert (\"dependency-groups\",) not in analysis.settings.absent_keys\n        assert all(item.derivation_identity == analysis.derivation_identity for item in groups.values())\n        assert len({item.identity for item in groups.values()}) == len(groups)\n        assert list(groups) == sorted(groups)\n        assert analysis.resource == snapshot.resource_at(RepositoryResourceAddress(\"pyproject.toml\"))\n        assert analysis == analyze_python_project_configuration(snapshot, address=RepositoryResourceAddress(\"pyproject.toml\"))\n        resolved = _resolve(snapshot)\n        assert resolved.declarations == analysis and not resolved.facts\n        assert 'dependency-group' in analysis.SCOPE and analysis.SCOPE.endswith('v3')\n        assert 'python-project-config-tomllib-declarations-v4' in Path('src/devtools/context/python/project_configuration/declarations.py').read_text()\n    for text, state in [('', 'absent'), ('[dependency-groups]', 'empty'), ('dependency-groups=false', 'unsupported'), ('dependency-groups=[]', 'unsupported')]:\n        analysis = _resolve(_snapshot(root, {\"pyproject.toml\": text})).declarations\n        settings = analysis.settings\n        assert settings is not None\n        groups = [item for item in settings.declarations if item.key[0] == \"dependency-groups\"]\n        if state == 'absent':\n            assert not groups and (\"dependency-groups\",) in settings.absent_keys\n        else:\n            assert len(groups) == 1 and groups[0].key == (\"dependency-groups\",)\n            assert (\"dependency-groups\",) not in settings.absent_keys\n            if state == 'empty':\n                assert groups[0].value == () and groups[0].unsupported_reason is None\n            else:\n                assert groups[0].value is None and groups[0].unsupported_reason\n    text = 'project.name=\"sample\"\\nproject.dynamic=[\"readme\"]\\n[dependency-groups]\\ngood=[]\\nbad=[{include-group=\"good\"}]\\n[tool.pytest.ini_options]\\ntestpaths=[]'\n    result = _resolve(_snapshot(root, {\"pyproject.toml\": text}))\n    settings = result.declarations.settings\n    assert settings is not None\n    assert next(item for item in settings.declarations if item.key == (\"project\", \"name\")).value == 'sample'\n    assert any(item.unsupported_reason == 'dynamic-readme' for item in result.declarations.declarations)\n    assert (\"tool\", \"pytest\", \"ini_options\") in settings.recognized_tool_tables\n    previous = result.declarations\n    changed = _resolve(_snapshot(root, {\"pyproject.toml\": text + '\\n# retained identity changes'})).declarations\n    assert changed.derivation_identity != previous.derivation_identity\n    assert changed.settings.declarations[0].identity != previous.settings.declarations[0].identity\n    for text in ['[dependency-groups', '[dependency-groups]\\nx=[]\\nx=[]']:\n        result = _resolve(_snapshot(root, {\"pyproject.toml\": text})).declarations\n        assert result.parse_error == 'malformed-toml' and result.settings is None\n        assert not result.absent_selectors and not result.declarations\nprint('PASS: dependency-group public analysis, resolution, identity and compatibility contract')\n",
+  "maximum_calls": 24,
+  "output_tokens": 8192,
+  "wall_seconds": 1800,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "quality_checks": true,
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [],
+  "disclose_edit_paths": true,
+  "path_edits": true,
+  "maximum_proposals": 6
+}

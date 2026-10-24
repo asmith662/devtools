@@ -1,0 +1,54 @@
+{
+  "schema": "governed-work-cycle-scripted-v1",
+  "evidence_class": "Synthetic host/worker integration; NOT live Qwen competence",
+  "canonical_item": "B-0010 in an isolated temporary Git fixture only",
+  "authority": "fixture-only separately approved backlog and implementation grant",
+  "disposition": "REVIEW_CANDIDATE",
+  "worker_disposition": "ACCEPTED",
+  "scripted_model_turns": 2,
+  "repair_cycles": 1,
+  "worker_seconds": 14.771720000018831,
+  "validation_seconds": 13.813489700085483,
+  "execution_seconds": 15.298853,
+  "scripted_usage": {
+    "input_tokens": 200,
+    "output_tokens": 40,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "reasoning_tokens": null
+  },
+  "actual_provider_calls": 0,
+  "baseline_source_sha256": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+  "candidate_source_sha256": "10c12380baa26f7b561a3962d253b34288459d18f7420731b27030b77583b1b3",
+  "assignment_sha256": "178dfd8ec46c12fca4d00cbef02d54b9d38e67498b15e70a3ec8e84ae89f00ef",
+  "authorization_sha256": "9fd23a3266721572f19b0ab100d5bf4bef17d41de6a7c1b8389b4998b1368359",
+  "candidate_files": [
+    "src/devtools/resources/filesystem/models/markdown/file.py"
+  ],
+  "target_unchanged": true,
+  "tests_exit": 0,
+  "oracle_exit": 0,
+  "integration_authorized": false,
+  "canonical_item_closed": false,
+  "discovery": "A secondary proposal was captured PENDING_REVIEW; original assignment bytes stayed unchanged.",
+  "limitations": [
+    "Scripted tokens are synthetic counts, not inference measurements.",
+    "No real item or model invocation was authorized.",
+    "Review candidate does not grant integration authority."
+  ],
+  "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+  "focused_validation": {
+    "passed": 60,
+    "pytest_seconds": 59.44,
+    "host_seconds": 60.2211122
+  },
+  "protected_validation": {
+    "passed": 1766,
+    "skipped": 2,
+    "production_branch_coverage_percent": 100,
+    "pytest_seconds": 110.47,
+    "host_seconds": 112.0523679
+  },
+  "live_model_calls": 0,
+  "artifact_coverage": "JUnit retains complete result values, test logs and source hashes. Temporary fixture patch/source paths may be cleaned by pytest; real coordinator receipts persist under its .local directory."
+}

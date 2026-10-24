@@ -2,6 +2,7 @@
 """Immutable filesystem models and filesystem-domain errors."""
 
 from devtools.resources.filesystem.codecs import (
+    BinaryCodec,
     CsvCodec,
     JsonCodec,
     MarkdownCodec,
@@ -42,6 +43,7 @@ from devtools.resources.filesystem.writing import write
 
 __all__ = [
     "DEFAULT_MAX_READ_BYTES",
+    "BinaryCodec",
     "BinaryFile",
     "CsvCodec",
     "CsvDialect",

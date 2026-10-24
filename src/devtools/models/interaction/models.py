@@ -124,8 +124,7 @@ class ModelRequest:
             ProviderRequestSettings,
         ):
             msg = (
-                "Model request provider settings must be a provider extension "
-                "or None."
+                "Model request provider settings must be a provider extension or None."
             )
             raise TypeError(msg)
         if not isinstance(self.tools, tuple) or not all(

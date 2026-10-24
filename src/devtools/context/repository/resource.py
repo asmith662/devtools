@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import string
 from dataclasses import dataclass
 from pathlib import PurePosixPath, PureWindowsPath
@@ -55,6 +56,16 @@ class ContentIdentity:
     def __post_init__(self) -> None:
         """Validate the local SHA-256 hexadecimal representation."""
         _validate_sha256(self.value, label="Content identity")
+
+    @classmethod
+    def from_text(cls, content: str) -> ContentIdentity:
+        """Identify exact decoded UTF-8 text using the observation contract."""
+        digest = hashlib.sha256()
+        for value in ("decoded-utf8-text-sha256-v1", content):
+            encoded = value.encode("utf-8")
+            digest.update(len(encoded).to_bytes(8, byteorder="big"))
+            digest.update(encoded)
+        return cls(digest.hexdigest())
 
     def __str__(self) -> str:
         """Return the local hexadecimal identity representation."""

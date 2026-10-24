@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+  "proposal_sha256": "f55fd806f3bc37e2b539eb19ce3b98a4b7559e142e34460feb9b92d6426a3a86",
+  "previous": "1968a59d1bbf2f87b4b0e6b05e4f9e521d2b43a45789fdffb3a0e44849a7392b",
+  "at": "2026-10-23T23:10:10.628649+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-lexical-sensitivity-audit.md",
+  "rationale": "Concrete custody/replay obligation from42-path audit: Case0009 adjudication/stage_c.py pins FRESH_STAGE_C_INSTRUCTIONS.md SHA2562a76e05b6f8e131f702888f72f497cf75141c0cf03e1e80fd38c050929924835, but file is absent in canonical case directory and git log --all --that exact path has no record. METHOD records original external sterile workspace including it; PUBLICATION imports only eight output artifacts. codex_dogfood closeout manifest has packet=null and no such member. Existing judgments/packet/raw seals remain independently authentic; no historical corruption established. Operator action: locate original external workspace/preservation bytes read-only, verify exact pin and custody before any recovery. If unavailable retain explicit unsupported replay status; never recreate wording and claim the old hash or run sealed adjudication. Future custody audit must compare full verifier input roster to retained packet/source outputs and report missing dependencies before test/replay. No deletion, restoration or custody approval here.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing bounded scope expanded with exact evidence; preserve pending/approved status and original payload/reviews. No B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "3dcef04d159b75bafba0da6903978b0a9c3d728ca87eff22451040ee1eba272f"
+}

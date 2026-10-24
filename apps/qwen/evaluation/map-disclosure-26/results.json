@@ -1,0 +1,469 @@
+{
+  "starting_head": "cab931e3c5b56dcae87341c8226f6efec634457e",
+  "worker_eof_checkpoint": "47a4cd53",
+  "frozen_manifest": {
+    "baseline": "cab931e3c5b56dcae87341c8226f6efec634457e",
+    "task_sha256": "c5b9d451b27f04ed39b97df80dbac3dd002e83400deb3461270f632e310665a1",
+    "oracle_sha256": "52322a41fae0fb606d3f1a1c2f8cf8a3d61044081a5041c56571120cece2b277",
+    "model": "Qwen3.8-27B IQ4_XS; 32768 Context; q4 K/V; thinking off",
+    "bounds": {
+      "maximum_calls": 24,
+      "wall_seconds": 1800,
+      "maximum_proposals": 6,
+      "tool_actions": 32,
+      "output_tokens": 8192
+    },
+    "new_paths": [
+      "src/devtools/context/planning/repository_map.py"
+    ],
+    "existing_sources": [
+      "src/devtools/context/planning/__init__.py"
+    ],
+    "qualification": "Private fixture/API qualification and baseline/readiness records must pass before inference; all artifacts ignored until Checkout released.",
+    "novelty": "No previous coding task implements repository-map Context disclosure; pending B-0002 compact-map representation, existing ADR-0004 ownership.",
+    "stop_rule": "No fixed response-count cutoff. Stop only on frozen bounds or demonstrably exhausted implementation opportunity, preserving result. No retry."
+  },
+  "original_result_sha256": "50aca50e491c797bf8ff63fe7bf66dd57eac32e659cf47ec572e700e5feb43a1",
+  "native": {
+    "accepted": false,
+    "disposition": "CLEANUP_RECONCILIATION_REQUIRED",
+    "error": "PatchProposalError: Applied source differs from admitted transaction",
+    "requests": 15,
+    "usage": {
+      "cache_write_tokens": null,
+      "cached_input_tokens": null,
+      "input_tokens": 280669,
+      "output_tokens": 3690,
+      "reasoning_tokens": null
+    },
+    "worker_seconds": 346.56368089991156,
+    "model_seconds": 340.4447547001764,
+    "direct_validation_seconds": 1.0521059000166133,
+    "tools": {
+      "inspect_source": 16,
+      "lookup_symbol": 2,
+      "expand_source": 2,
+      "search_source": 2,
+      "replace_source": 2
+    },
+    "native_dispatches": 24,
+    "first_edit_response": 14,
+    "proposals": [
+      {
+        "response": 14,
+        "path": "src/devtools/context/planning/repository_map.py",
+        "old_bytes": 0,
+        "new_bytes": 9578,
+        "final_newline": true
+      },
+      {
+        "response": 15,
+        "path": "src/devtools/context/planning/repository_map.py",
+        "old_bytes": 0,
+        "new_bytes": 1148,
+        "final_newline": false
+      }
+    ],
+    "admitted_transactions": 1,
+    "admitted_components": 1,
+    "refusal": {
+      "code": "REGION_BYTE_LIMIT",
+      "component_index": 1,
+      "new_bytes": 9578,
+      "limit": 4096
+    },
+    "admission_recovery": "Response15 explicitly split into header/import creation, 1148 bytes admitted after response14 refusal. Application EOF mismatch then terminated host loop; not completed implementation or behavioral repair.",
+    "candidate_behavior_validation": false,
+    "behavioral_repair": false,
+    "quality_repair": false,
+    "context_failure": false,
+    "input_tokens": [
+      3074,
+      6613,
+      9874,
+      12628,
+      16160,
+      17651,
+      18303,
+      21711,
+      24598,
+      25866,
+      24692,
+      26007,
+      26184,
+      25612,
+      21696
+    ],
+    "output_tokens": [
+      8192,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      4096,
+      8192
+    ],
+    "native_check_changes": false,
+    "native_host_is_current": false,
+    "supervisor_created_git_contamination": false,
+    "restoration": "Original source_restored false; separate authenticated stopped-owner reconciliation restored baseline and preserved failed bytes. Original live result unchanged."
+  },
+  "codex_delivery": {
+    "accepted": true,
+    "semantic_implementation_by": "Codex; no rejected Qwen source transplanted",
+    "checks": {
+      "format": "PASS",
+      "oracle": "PASS",
+      "ruff": "PASS",
+      "tests": "PASS",
+      "typing": "PASS"
+    },
+    "status": "PASS",
+    "candidate_sha256": "f6dde30bbc745bf5cac045578728715cdd83d96b9b3f8bdfa194cfd7f49beba6",
+    "plan_sha256": "a85fb7f724b700fac66cb1b68190ee5b2281f8efb9297a63f50e299eb1ab1cb2",
+    "current_installed": {
+      "operation": "is_current",
+      "current": true,
+      "status": "PASS",
+      "ready_for_review": true,
+      "diagnostics": [],
+      "authority": "freshness only; no independent review or publication authority"
+    },
+    "stale_restored": {
+      "operation": "is_current",
+      "current": false,
+      "status": "PASS",
+      "ready_for_review": false,
+      "diagnostics": [
+        "Bound validation plan changed"
+      ],
+      "authority": "freshness only; no independent review or publication authority"
+    },
+    "tool_invocation": "Host ToolRunner only; not model evidence",
+    "independent_focused": {
+      "tests": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "coverage",
+          "run",
+          "--branch",
+          "--source=devtools.context.planning.repository_map",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "tests/context/planning/test_repository_map.py",
+          "tests/context/planning/test_plan.py",
+          "tests/context/retrieval/repository_map/test_ranking.py",
+          "-q"
+        ],
+        "exit_code": 0,
+        "stdout": "...............................                                          [100%]\r\n31 passed in 0.49s\r\n",
+        "stderr": "",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:27.511376+00:00",
+        "elapsed_seconds": 1.2587464000098407
+      },
+      "coverage": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "coverage",
+          "report",
+          "--fail-under=100",
+          "--show-missing"
+        ],
+        "exit_code": 0,
+        "stdout": "Name                                              Stmts   Miss Branch BrPart  Cover   Missing\r\n---------------------------------------------------------------------------------------------\r\nsrc\\devtools\\context\\planning\\repository_map.py      53      0     14      0   100%\r\n---------------------------------------------------------------------------------------------\r\nTOTAL                                                53      0     14      0   100%\r\n",
+        "stderr": "",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:28.770507+00:00",
+        "elapsed_seconds": 0.16567210003267974
+      },
+      "ruff": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "src/devtools/context/planning/__init__.py",
+          "src/devtools/context/planning/repository_map.py",
+          "tests/context/planning/test_repository_map.py",
+          "apps/qwen/development_task.py",
+          "tests/apps/qwen/test_development_task.py"
+        ],
+        "exit_code": 0,
+        "stdout": "All checks passed!\n",
+        "stderr": "",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:28.936574+00:00",
+        "elapsed_seconds": 0.08220079995226115
+      },
+      "format": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--check",
+          "src/devtools/context/planning/__init__.py",
+          "src/devtools/context/planning/repository_map.py",
+          "tests/context/planning/test_repository_map.py",
+          "apps/qwen/development_task.py",
+          "tests/apps/qwen/test_development_task.py"
+        ],
+        "exit_code": 0,
+        "stdout": "5 files already formatted\n",
+        "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:29.019197+00:00",
+        "elapsed_seconds": 0.08028300001751631
+      },
+      "typing": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 512 source files\r\n",
+        "stderr": "",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:29.099937+00:00",
+        "elapsed_seconds": 0.37365159997716546
+      },
+      "layout": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "scripts/validate_layout.py"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:29.474043+00:00",
+        "elapsed_seconds": 0.05701839993707836
+      },
+      "whitespace": {
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: in the working copy of 'src/devtools/context/planning/__init__.py', LF will be replaced by CRLF the next time Git touches it\n",
+        "failed": false,
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "started_at": "2026-10-22T18:53:29.531425+00:00",
+        "elapsed_seconds": 0.12382789992261678
+      }
+    }
+  },
+  "serving": "Unchanged Qwen3.8-27B IQ4_XS; 32K; q4 K/V; thinking off; no service mutation.",
+  "resources": "Observed RTX4090 Laptop16GB:14006/16376MiB allocated at idle and generation;96% GPU utilization sampled during generation. RAM/energy/paid Codex tokens/cost/active-supervision time not metered.",
+  "native_autonomy": "FAILED: concrete host EOF patch encoding defect after size-admission recovery. No native check_changes, no behavioral implementation acceptance, no context exhaustion, no retry.",
+  "publication": {
+    "disposition": "FEATURE_PUBLISHED",
+    "commit": "d3f5147312968f29b552a04ba4da558fc4356b7c",
+    "review_subject": "ec4a022895127cea6be4cf64a91b5b0fd63624d3d9e3aa938d156ce29cd9fa79",
+    "files": [
+      {
+        "path": "src/devtools/context/planning/__init__.py",
+        "author": "Codex",
+        "reference": "61953de18822eab990d71a42bfd9d2a0a6935f8709107c5f6ba57e14ff0379ec",
+        "sha256": "f19d7f64d331efc4ef610d1a0172e97a28ad5b2cc986fba067cdaa6705c37282"
+      },
+      {
+        "path": "src/devtools/context/planning/repository_map.py",
+        "author": "Codex",
+        "reference": "61953de18822eab990d71a42bfd9d2a0a6935f8709107c5f6ba57e14ff0379ec",
+        "sha256": "35cd4295b4b675f002fe074850e68b68270fbb8809aea3508aee24514abf9124"
+      },
+      {
+        "path": "tests/context/planning/test_repository_map.py",
+        "author": "Codex",
+        "reference": "Independent permanent regressions for frozen map disclosure contract, with Unicode/duplicate-name and direct-option integrity cases; no Qwen semantic source retained.",
+        "sha256": "d19e5c3ef549e8a58f1145c81c1ba1988b243782793f3cd10fc2edd46041d8b4"
+      }
+    ],
+    "protected_validation": {
+      "started_at": "2026-10-22T18:53:45.384371+00:00",
+      "profile": "pre-publication-protected",
+      "checks": [
+        {
+          "name": "oracle",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected\\oracle.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.385448,
+          "stdout": "PASS: explicit compact map selection, exact identities/native provenance, mixed plans/model assembly, source-state rejection and retained-source behavior\r\n",
+          "stderr": "",
+          "stdout_sha256": "37647d2c4a1dd989797352d00e532bb8fa851ca2b6ae44a705607ff2e4f3b331",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "tests",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected\\tests.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.998311,
+          "stdout": "...............................                                          [100%]\r\n31 passed in 0.37s\r\n",
+          "stderr": "",
+          "stdout_sha256": "42fff912bf1f3f0a8d663dd5c2e37d4ccbb41a2fd7ef257216603c1787908e87",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "ruff",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "src/devtools/context/planning/__init__.py",
+            "src/devtools/context/planning/repository_map.py",
+            "tests/context/planning/test_repository_map.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.103458,
+          "stdout": "All checks passed!\n",
+          "stderr": "",
+          "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "format",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "src/devtools/context/planning/__init__.py",
+            "src/devtools/context/planning/repository_map.py",
+            "tests/context/planning/test_repository_map.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.157379,
+          "stdout": "3 files already formatted\n",
+          "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+          "stdout_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+          "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "mypy",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "mypy",
+            "--strict",
+            "src/devtools/context/planning/__init__.py",
+            "src/devtools/context/planning/repository_map.py",
+            "tests/context/planning/test_repository_map.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.351853,
+          "stdout": "Success: no issues found in 3 source files\r\n",
+          "stderr": "",
+          "stdout_sha256": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "protected",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected\\protected.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 777.73153,
+          "stdout": "============================= test session starts =============================\r\nplatform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\r\nconfigfile: pyproject.toml\r\nplugins: anyio-4.15.1, cov-7.1.0\r\ncollected 2614 items\r\n\r\ntests\\agents\\conversation\\history\\test_history.py ..........             [  0%]\r\ntests\\agents\\conversation\\message\\test_message.py ...............        [  0%]\r\ntests\\agents\\conversation\\test_live.py s                                 [  0%]\r\ntests\\agents\\conversation\\test_session.py .....................          [  1%]\r\ntests\\agents\\conversation\\test_session_id.py ...                         [  1%]\r\ntests\\agents\\integrations\\codex\\test_agent.py ...............            [  2%]\r\ntests\\agents\\integrations\\codex\\test_live.py s                           [  2%]\r\ntests\\agents\\integrations\\codex\\test_parsing.py ...............          [  3%]\r\ntests\\agents\\integrations\\codex\\test_usage.py ..............             [  3%]\r\ntests\\apps\\operator_dashboard\\test_native_history.py .                   [  3%]\r\ntests\\apps\\operator_dashboard\\test_projection.py ...                     [  3%]\r\ntests\\apps\\operator_dashboard\\test_server.py .....                       [  3%]\r\ntests\\apps\\qwen\\test_application_scope.py ......                         [  4%]\r\ntests\\apps\\qwen\\test_change_checks.py .................................. [  5%]\r\n.......                                                                  [  5%]\r\ntests\\apps\\qwen\\test_check_bundle.py ...............................     [  6%]\r\ntests\\apps\\qwen\\test_coding_loop.py ...................                  [  7%]\r\ntests\\apps\\qwen\\test_context_tools.py .................................. [  8%]\r\n.....                                                                    [  9%]\r\ntests\\apps\\qwen\\test_development_task.py ............................... [ 10%]\r\n..............................................                           [ 12%]\r\ntests\\apps\\qwen\\test_edit_diagnostics.py ..........................      [ 13%]\r\ntests\\apps\\qwen\\test_edits.py ........................                   [ 14%]\r\ntests\\apps\\qwen\\test_environment.py ....................                 [ 14%]\r\ntests\\apps\\qwen\\test_grounding.py .......................                [ 15%]\r\ntests\\apps\\qwen\\test_live_change_checks.py .....                         [ 15%]\r\ntests\\apps\\qwen\\test_new_file_feedback.py ..                             [ 15%]\r\ntests\\apps\\qwen\\test_observed_edits.py ................................. [ 17%]\r\n..                                                                       [ 17%]\r\ntests\\apps\\qwen\\test_repair_feedback.py ............                     [ 17%]\r\ntests\\apps\\qwen\\test_task_selection.py ..................                [ 18%]\r\ntests\\context\\localization\\association\\test_hypothesis.py .............. [ 18%]\r\n............                                                             [ 19%]\r\ntests\\context\\localization\\generation\\test_branching.py ................ [ 20%]\r\n...........                                                              [ 20%]\r\ntests\\context\\localization\\generation\\test_generation.py .........       [ 20%]\r\ntests\\context\\localization\\generation\\test_imports.py .................. [ 21%]\r\n............................                                             [ 22%]\r\ntests\\context\\localization\\generation\\test_references.py ............... [ 23%]\r\n.............................                                            [ 24%]\r\ntests\\context\\localization\\grounding\\test_grounding.py ...............   [ 24%]\r\ntests\\context\\localization\\resolution\\test_resolution.py .........       [ 25%]\r\ntests\\context\\localization\\roles\\test_configuration.py ..........        [ 25%]\r\ntests\\context\\localization\\roles\\test_dependency_groups.py ............. [ 26%]\r\n....                                                                     [ 26%]\r\ntests\\context\\localization\\roles\\test_evidence.py ...                    [ 26%]\r\ntests\\context\\localization\\roles\\test_inputs.py ......                   [ 26%]\r\ntests\\context\\localization\\routing\\test_routing.py .........             [ 26%]\r\ntests\\context\\localization\\test_kernel.py .............................. [ 28%]\r\n                                                                         [ 28%]\r\ntests\\context\\localization\\test_lexical.py ...........                   [ 28%]\r\ntests\\context\\planning\\test_plan.py .......                              [ 28%]\r\ntests\\context\\planning\\test_repository_map.py ..................         [ 29%]\r\ntests\\context\\python\\classes\\test_bases.py ...........                   [ 29%]\r\ntests\\context\\python\\classes\\test_declarations.py ......                 [ 30%]\r\ntests\\context\\python\\function\\test_candidates.py ......                  [ 30%]\r\ntests\\context\\python\\function\\test_containment.py ....                   [ 30%]\r\ntests\\context\\python\\function\\test_cross_resource_pipeline.py ...        [ 30%]\r\ntests\\context\\python\\function\\test_declaration_aggregation.py .....      [ 30%]\r\ntests\\context\\python\\function\\test_declarations.py ...........           [ 31%]\r\ntests\\context\\python\\function\\test_disclosure.py ...                     [ 31%]\r\ntests\\context\\python\\function\\test_materialization.py .................. [ 31%]\r\n................................................                         [ 33%]\r\ntests\\context\\python\\function\\test_qualified_reference.py ...........    [ 34%]\r\ntests\\context\\python\\function\\test_rendering.py ...                      [ 34%]\r\ntests\\context\\python\\function\\test_request_assembly.py ...               [ 34%]\r\ntests\\context\\python\\function\\test_resource_selection.py ....            [ 34%]\r\ntests\\context\\python\\function\\test_retrieval.py ....                     [ 34%]\r\ntests\\context\\python\\imports\\test_declarations.py ...                    [ 34%]\r\ntests\\context\\python\\imports\\test_members.py ........................... [ 35%]\r\n.....                                                                    [ 36%]\r\ntests\\context\\python\\imports\\test_relations.py .....                     [ 36%]\r\ntests\\context\\python\\imports\\test_resolution.py ......                   [ 36%]\r\ntests\\context\\python\\modules\\test_interpretation.py ......               [ 36%]\r\ntests\\context\\python\\modules\\test_membership.py .......                  [ 37%]\r\ntests\\context\\python\\modules\\test_selection.py .................         [ 37%]\r\ntests\\context\\python\\project_configuration\\test_configuration.py ....... [ 37%]\r\n..........................................                               [ 39%]\r\ntests\\context\\python\\project_configuration\\test_dependency_groups.py ... [ 39%]\r\n......................                                                   [ 40%]\r\ntests\\context\\python\\project_configuration\\test_obstructions.py ........ [ 40%]\r\n................................................                         [ 42%]\r\ntests\\context\\python\\project_configuration\\test_settings.py ............ [ 43%]\r\n.........                                                                [ 43%]\r\ntests\\context\\python\\references\\declarations\\test_analysis.py .......... [ 43%]\r\n..............................                                           [ 44%]\r\ntests\\context\\python\\references\\declarations\\test_bindings.py ....       [ 45%]\r\ntests\\context\\python\\test_mirrored_paths.py .....                        [ 45%]\r\ntests\\context\\python\\test_source_candidacy.py ....                       [ 45%]\r\ntests\\context\\repository\\test_changes.py .......                         [ 45%]\r\ntests\\context\\repository\\test_corpus.py .............                    [ 46%]\r\ntests\\context\\repository\\test_discovery.py ................              [ 46%]\r\ntests\\context\\repository\\test_document.py .......                        [ 47%]\r\ntests\\context\\repository\\test_intrinsic_paths.py ..                      [ 47%]\r\ntests\\context\\repository\\test_observation.py ........................... [ 48%]\r\n...                                                                      [ 48%]\r\ntests\\context\\retrieval\\graph\\test_ranking.py ............               [ 48%]\r\ntests\\context\\retrieval\\graph\\test_typed.py .....                        [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_analysis.py ......                  [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_bm25.py ...........                 [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_evaluation.py .......               [ 49%]\r\ntests\\context\\retrieval\\lexical\\test_filename.py ....                    [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_index.py .......                    [ 50%]\r\ntests\\context\\retrieval\\lexical\\test_statistics.py ....                  [ 50%]\r\ntests\\context\\retrieval\\repository_map\\test_ranking.py ......            [ 50%]\r\ntests\\context\\retrieval\\source\\test_search.py .............              [ 51%]\r\ntests\\context\\retrieval\\test_composition.py ......                       [ 51%]\r\ntests\\context\\retrieval\\test_structural.py .....                         [ 51%]\r\ntests\\core\\conversion\\test_conversion.py ........                        [ 51%]\r\ntests\\core\\identity\\test_models.py ....                                  [ 52%]\r\ntests\\core\\identity\\test_uuid_invariant.py ..............                [ 52%]\r\ntests\\core\\paths\\test_errors.py .                                        [ 52%]\r\ntests\\core\\paths\\test_resolution.py .................                    [ 53%]\r\ntests\\core\\paths\\test_resolved_path.py ......                            [ 53%]\r\ntests\\core\\regex\\test_models.py ...                                      [ 53%]\r\ntests\\core\\regex\\test_search.py ....                                     [ 53%]\r\ntests\\core\\regex\\test_splitting.py ..........                            [ 54%]\r\ntests\\core\\system\\test_bsd.py ..........                                 [ 54%]\r\ntests\\core\\system\\test_detection.py .....                                [ 54%]\r\ntests\\core\\system\\test_models.py .....                                   [ 54%]\r\ntests\\core\\time\\test_models.py .........                                 [ 55%]\r\ntests\\core\\time\\test_parsing.py ...................                      [ 56%]\r\ntests\\core\\time\\test_timing.py ...                                       [ 56%]\r\ntests\\evaluation\\test_coverage.py .....                                  [ 56%]\r\ntests\\execution\\test_interaction_attempt.py ............................ [ 57%]\r\n..                                                                       [ 57%]\r\ntests\\execution\\test_runtime.py ..................                       [ 58%]\r\ntests\\models\\benchmarks\\test_models.py .............                     [ 58%]\r\ntests\\models\\benchmarks\\test_runner.py ................................. [ 59%]\r\n                                                                         [ 59%]\r\ntests\\models\\benchmarks\\test_storage.py .........................        [ 60%]\r\ntests\\models\\interaction\\providers\\test_llama_cpp.py ................... [ 61%]\r\n........................................................................ [ 64%]\r\n................................                                         [ 65%]\r\ntests\\models\\interaction\\test_models.py ................................ [ 66%]\r\n.......................                                                  [ 67%]\r\ntests\\models\\interaction\\test_prompt.py ........................         [ 68%]\r\ntests\\models\\interaction\\test_protocols.py ..                            [ 68%]\r\ntests\\models\\interaction\\test_tools.py ................                  [ 69%]\r\ntests\\models\\serving\\test_huggingface.py ............................    [ 70%]\r\ntests\\models\\serving\\test_llama_cpp.py ................                  [ 71%]\r\ntests\\models\\serving\\test_vllm.py ...................................... [ 72%]\r\n...................                                                      [ 73%]\r\ntests\\observability\\evidence\\test_inspection.py ...                      [ 73%]\r\ntests\\observability\\evidence\\test_invocation.py ........                 [ 73%]\r\ntests\\observability\\evidence\\test_model_interaction.py ................. [ 74%]\r\n........                                                                 [ 74%]\r\ntests\\observability\\evidence\\test_protocols.py .                         [ 74%]\r\ntests\\observability\\evidence\\test_terminal.py .                          [ 74%]\r\ntests\\observability\\usage\\test_sources.py ......                         [ 74%]\r\ntests\\observability\\usage\\test_usage.py .........                        [ 75%]\r\ntests\\persistence\\test_json.py ......................                    [ 76%]\r\ntests\\persistence\\test_sqlite.py ...........                             [ 76%]\r\ntests\\resources\\commands\\test_decoded_output.py ....                     [ 76%]\r\ntests\\resources\\commands\\test_environment.py ...............             [ 77%]\r\ntests\\resources\\commands\\test_errors.py .                                [ 77%]\r\ntests\\resources\\commands\\test_events.py .                                [ 77%]\r\ntests\\resources\\commands\\test_execution.py ...........                   [ 77%]\r\ntests\\resources\\commands\\test_handle.py .........                        [ 78%]\r\ntests\\resources\\commands\\test_models.py ....................             [ 78%]\r\ntests\\resources\\commands\\test_output_policy.py ......................... [ 79%]\r\n...................................                                      [ 81%]\r\ntests\\resources\\commands\\test_stdin.py .................                 [ 81%]\r\ntests\\resources\\commands\\test_success_exit_codes.py .................... [ 82%]\r\n........                                                                 [ 82%]\r\ntests\\resources\\filesystem\\codecs\\test_csv.py ...............            [ 83%]\r\ntests\\resources\\filesystem\\codecs\\test_json.py ......................... [ 84%]\r\n.......                                                                  [ 84%]\r\ntests\\resources\\filesystem\\codecs\\test_markdown.py ......                [ 84%]\r\ntests\\resources\\filesystem\\codecs\\test_text.py ........                  [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_dialect.py .....              [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_file.py .......               [ 85%]\r\ntests\\resources\\filesystem\\models\\csv\\test_row.py ...                    [ 85%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_file.py ...............  [ 86%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_heading.py .........     [ 86%]\r\ntests\\resources\\filesystem\\models\\markdown\\test_section.py ....          [ 86%]\r\ntests\\resources\\filesystem\\test_binary_io.py ......                      [ 87%]\r\ntests\\resources\\filesystem\\test_bounded_read.py .........                [ 87%]\r\ntests\\resources\\filesystem\\test_json_conversion.py .........             [ 87%]\r\ntests\\resources\\filesystem\\test_json_models.py ...........               [ 88%]\r\ntests\\resources\\filesystem\\test_models.py ....                           [ 88%]\r\ntests\\resources\\filesystem\\test_reading.py .................             [ 88%]\r\ntests\\resources\\filesystem\\test_resolution.py .......                    [ 89%]\r\ntests\\resources\\filesystem\\test_writing.py ................              [ 89%]\r\ntests\\scripts\\backlog\\test_checkout.py ............                      [ 90%]\r\ntests\\scripts\\backlog\\test_delegation.py ........................        [ 91%]\r\ntests\\scripts\\backlog\\test_intake.py ..................................  [ 92%]\r\ntests\\scripts\\backlog\\test_integration.py .............................. [ 93%]\r\n..                                                                       [ 93%]\r\ntests\\scripts\\backlog\\test_integration_validation.py ...                 [ 93%]\r\ntests\\scripts\\backlog\\test_local_closeout.py ........                    [ 94%]\r\ntests\\scripts\\backlog\\test_work.py ...................                   [ 94%]\r\ntests\\scripts\\qwen\\test_coding_worker.py ................                [ 95%]\r\ntests\\scripts\\qwen\\test_llama_cpp_profile.py .                           [ 95%]\r\ntests\\scripts\\qwen\\test_llama_cpp_service.py ..........................  [ 96%]\r\ntests\\scripts\\qwen\\test_patch_proposal_worker_acceptance.py ............ [ 96%]\r\n.                                                                        [ 97%]\r\ntests\\scripts\\qwen\\test_python_function_context_acceptance.py ....       [ 97%]\r\ntests\\scripts\\qwen\\test_two_action_read_only_acceptance.py .",
+          "stderr": "",
+          "stdout_sha256": "c3a6ed36550c9547a11ee952f9d9b77f8ac452e1662d32d1e7c1012a1ad95b9a",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\map-disclosure-26\\codex-delivery-02\\closeout-validation-2026-10-22T18-53-43.760429+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": true,
+          "truncated": false
+        }
+      ],
+      "passed": true,
+      "active_check": null,
+      "finished_at": "2026-10-22T19:06:45.123405+00:00",
+      "elapsed_seconds": 779.739034
+    },
+    "push": null
+  },
+  "eof_correction": {
+    "commit": "47a4cd5331d93a98514a5dd94bd4242886c68f58",
+    "files": {
+      "apps/qwen/development_task.py": "e482cec7dfc47b18da0befde8fba1c147953ab4c95fbd5af32f63cf0c9040dab",
+      "tests/apps/qwen/test_development_task.py": "e8c2114dceb91d5ddd8a82346e4b8d1cdd3c89ee4ad9e3d4ac1351b3b3c47ac7"
+    },
+    "focused_tests": 106,
+    "added_exact_eof_cases": 8,
+    "admission_and_equality_unchanged": true
+  },
+  "protected_summary": {
+    "total_line": [
+      "TOTAL                                                                     11836      0   2960      0   100%\r"
+    ],
+    "pytest_summary": [
+      "================= 2612 passed, 2 skipped in 776.01s (0:12:56) =================\r"
+    ],
+    "log_sha256": "c3a6ed36550c9547a11ee952f9d9b77f8ac452e1662d32d1e7c1012a1ad95b9a",
+    "elapsed_seconds": 777.73153,
+    "exact_tree_subject": "ec4a022895127cea6be4cf64a91b5b0fd63624d3d9e3aa938d156ce29cd9fa79"
+  },
+  "protected_main": "Unchanged remote5d979920d0728775ed529457c88f5b68b440c64f; Commands already merged; no reopening or promotion."
+}

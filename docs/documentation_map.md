@@ -1,19 +1,89 @@
 # Documentation Map
 
+Current integration checkpoint: [whole-feature destination candidate](research/feature-branch-integration-20261024.md), with [exact ref/blob/validation evidence](research/code-audit/branch-integration-20261024.json). This supersedes earlier selective-only preparation as the current integration direction; protected main is unchanged and scientific/architecture authorities remain separate.
+
+Previous audit checkpoint: [RI experimental source completion and proposed main repair adoption](research/ri-experimental-completion-and-main-adoption.md).
+All32 final selected paths have applicable full-body review:606/606 historical
+experimental paths now have version-specific dispositions, not independent
+revalidation of every judgment or completion of Repository Intelligence.
+Ten new maintained fixture reviews bring the original universe to45/93; including
+the separately added regression it is46/94, with48 current fixtures remaining.
+177 older NOT_REVIEWED versions and26 tip-delta-only versions retain their depth.
+The exact eight-path main-adoption patch is proposed only; main remains unchanged.
+Three new pending proposals and seven advisories preserve existing authorities.
+Task-obligation A+C remains unapproved; no new domain or successor dossier begins.
+
+The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
+and [dated source/custody manifest](research/production-adoption-and-architecture-evidence-20261023.json)
+extend the initial inventory with all 35 collections, 48 capability slices and
+eight selective main-adoption groups. They preserve existing authority and
+historical judgments; no runtime registry, approval or merge follows. The next
+checkpoint is comprehensive successor-session handoff. Earlier next-phase
+statements below are retained as historical checkpoint navigation.
+
+The [finite reconciliation charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)
+owns the current research/audit/handoff phase. Its
+[initial adoption and observability inventory](research/architecture-reconciliation-inventory.md),
+[upstream harness source cursors](research/agent-harness-mechanism-review.md)
+and [artifact custody observations](development/artifact-custody-inventory.md)
+are dated evidence, not new architecture/backlog authorities. The original
+missing-input finding is historical; the
+[verified transfer and exact18 crosswalk](research/reconciliation-input-reconciliation.md)
+close that intake gap. The [four-project source/test comparison](research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow lifecycle audit plan](research/development-lifecycle-audit-plan.md)
+define the current evidence checkpoint and next bounded research, not new execution authority.
+
+The [executed lifecycle/observability audit](research/development-lifecycle-observability-audit.md)
+and [authenticated evidence metadata](research/development-lifecycle-observability-evidence-20261023.json)
+now supply the five timelines, direct/derived/weak joins, incomplete outcomes and
+architecture alternatives. They correct a prospective navigation assumption
+without rewriting original receipts. Destination adoption, ownership/custody and
+the final successor handoff remain the next bounded phase.
+
 The [canonical reconciliation record](development/reconciliation.md) owns the
 2026-10-19 branch/evidence disposition. [Experiment closeout](../experiments/README.md)
 owns the collection inventory and restoration contract. The maintained standalone
 [coding application](../apps/qwen/README.md) composes framework APIs; historical
 Qwen reports remain experiment evidence. Dashboard and governed-integration
-continuation are available on the ordinary consolidation branch, with blockers
-explicitly recorded rather than described as main production capabilities.
+continuation are available on `feat/qwen-context-worker`, with remaining
+authority/adoption requirements explicitly recorded. The
+[single-checkout contract](backlog/integration.md#canonical-checkout-phase-boundary)
+owns source serialization, ordinary branch operations and recovery; this does
+not claim those branch capabilities have already entered main.
+
+The [worker's native Context contract](../apps/qwen/README.md#native-context-investigation)
+owns its task-local Tool/continuation bounds. Its [evaluation note](../apps/qwen/EVALUATION.md)
+separates historical coding outcomes, scripted acceptance, genuine native coding
+evidence and remaining source-grounding/quality limitations.
+
+[Coordinated source edits and installed API contracts](../apps/qwen/README.md#coordinated-source-edits-and-installed-api-contracts)
+owns the existing worker's versioned multi-region/multi-file local proposal
+boundary, fixed installed-API observations, atomic Git application and legacy
+compatibility. It does not expand governed assignment or integration authority.
+The [atomic refusal diagnostics](../apps/qwen/evaluation/edit-diagnostics-codex/README.md)
+describe component indices, observed-scope match counts and unchanged admission
+limits; deterministic regression results are not new Qwen inference outcomes.
+
+[Opt-in native map navigation](../apps/qwen/README.md#opt-in-repository-map-navigation)
+owns task-scoped orientation, represented-symbol expansion and current source
+observation boundaries. [Engineering28](../apps/qwen/evaluation/native-map-28/README.md)
+separates deterministic native integration, the failed original Qwen attempt and
+the independently published Codex source-search fallback.
 
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding
 failure disposition. PLAN_VALID precedes approval only after real worker imports
 pass; corrected execution requires binding-only Stage A and a new exact run ID.
 
+[Shared source-bound validation](../apps/qwen/README.md#source-bound-change-checks)
+owns the application check_changes/is_current Tool contract, declared candidate
+scope and evidence freshness. WorkCycle continues to own review/publication.
+
 ## Authority and ownership
+
+- [Governed development integration](backlog/integration.md) owns the existing
+  WorkCycle's candidate-to-destination lifecycle, separate standing integration
+  authority, exact-tree review, Git reconciliation and canonical closeout.
 
 - [Central architecture](architecture.md) is the canonical current and accepted
   system-architecture overview: domains, boundaries, dependency direction,
@@ -274,6 +344,10 @@ pass; corrected execution requires binding-only Stage A and a new exact run ID.
   this capability and mirrored-path facts. Shared exact module-name lookup
   belongs to the [modules package](../src/devtools/context/python/modules/docs/overview.md).
 
+The [retained snapshot comparison contract](../src/devtools/context/repository/docs/changes.md)
+owns the bounded existing-snapshot resource delta API and its absence/provenance
+limits. It adds no observation, state authority, mutation or maintenance owner.
+
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an
 explicit root using metadata only, caller-supplied maximum counts for examined
@@ -522,16 +596,36 @@ package overview. Broader Evaluation architecture remains unimplemented.
 
 `experiments/` is non-installable composition and may depend on `devtools`;
 reusable source must not import it. [Qwen experiment documentation](../experiments/qwen/docs/overview.md)
-describes the bounded read-only experiments. Operational entry points remain
+describes bounded read-only probes and the retrieved-Context Markdown coding
+worker, its terminal gate, isolated validation, limited repair and host task selection. Its
+[first accepted task provenance](../experiments/qwen/docs/first_accepted_coding_task.json)
+binds captured proposals, source hashes and independent acceptance to the exact
+maintained Markdown correction. The [second task preparation](../experiments/qwen/docs/second_task_preparation.json)
+freezes the separate Python source-materialization objective, Context and checks;
+it records readiness, not live Qwen acceptance. Operational entry points remain
 under `scripts/`. The [protected development validation contract](development/validation.md)
 documents the canonical test command, its pre-collection experiment-tree
 exclusion, and the separate confirmation-validation boundary.
 
 ## Backlog navigation
 
+The [read-only operator console](../apps/operator_dashboard/README.md)
+serves current intake, canonical backlog, work-cycle and Qwen evidence through
+a loopback-only API and the existing MemoryPanel-derived React UI. Task/run/turn
+inspection retains exact archived proposals, feedback and validation under
+explicit raw-disclosure configuration. It grants no authority and serves no
+arbitrary repository files. Its pinned reuse/license findings remain recorded;
+the four external discoveries are now pending at the designated coordinator.
+
 [Backlog overview](backlog/overview.md) is the canonical record index, grouped
 by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
-defines ownership, split-lineage, dependency, and promotion terminology.
+defines ownership, split-lineage, dependency, and promotion terminology. Its
+[proposal-intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns repository-local capture/review/publication APIs, provenance, host checks
+and recovery; pending proposals are not another authoritative backlog. The
+[governed work-cycle contract](backlog/metadata.md#governed-backlog-to-qwen-cycle)
+owns coordinator designation, separate implementation authority, exact target/task
+binding, existing Qwen composition and review-candidate/escalation receipts.
 
 ## Update workflow
 
@@ -722,3 +816,45 @@ The [host-disclosure prospective plan review](../experiments/source_grounding/pl
 owns the separate unapproved v2 plan for 0022/0023/0024 and its exact Stage A,
 runtime receipt, implementation/static-scope and run identity. PLAN_VALID remains
 distinct from execution authorization; no replacement scientific run is entered.
+
+The [static dependency-group RI delivery](../apps/qwen/evaluation/dependency-groups-24/README.md) records bounded raw-string recognition, unsupported evidence and deliberate coverage/derivation versions. The production settings owner remains authoritative; Codex fallback publication is distinct from the failed genuine Qwen attempt.
+
+[Dependency-group role integration and measured continuation capacity](../apps/qwen/evaluation/role-groups-25/README.md) separates exact Qwen implementation, blocked native validation, supervised publication and deterministic tokenizer replay. Existing Localization roles and application projection retain their owners.
+
+
+[Caller-selected map metadata](../src/devtools/context/planning/docs/overview.md#caller-selected-repository-map-metadata)
+owns the compact map representation in existing Context Planning. The separate
+[native26 report](../apps/qwen/evaluation/map-disclosure-26/README.md) records a
+failed native attempt, a concrete host EOF correction and Codex feature delivery;
+it is not evidence of uninterrupted Qwen acceptance.
+
+
+[Progressive map-to-source Context](../src/devtools/context/planning/docs/overview.md#exact-source-from-represented-map-symbols)
+owns explicit source expansion from represented native map symbols. The
+[27 delivery/evaluation](../apps/qwen/evaluation/map-source-27/README.md) separates
+Codex capability and real composition from the failed zero-edit Qwen attempt.
+Native worker map acquisition remains a separate integration obligation.
+
+## Recovered research inputs and source/test comparison
+
+The [original-input reconciliation](research/reconciliation-input-reconciliation.md)
+owns transfer verification, attributed original document custody and the exact18
+candidate-to-canonical crosswalk; [machine metadata](research/reconciliation-inputs-20261023.json)
+retains original descriptions/hashes/dispositions. Original bodies under
+`research/reconciliation-inputs/20261023/` are immutable research inputs, not new
+governance or live status. Existing backlog/ADRs and the finite charter retain
+authority. [Harness mechanisms](research/agent-harness-mechanism-review.md) owns
+the pinned Qwen Code/Pydantic AI comparison and local correlation map;
+[source/test identities](research/agent-harness-mechanism-evidence-20261023.json)
+support it without copying external source trees. This extends the existing
+research index, not a new documentation authority.
+
+## Comprehensive code-audit navigation (2026-10-23)
+
+The [audit program](research/comprehensive-code-audit.md) supersedes the earlier
+reconciliation's next-step recommendation to prepare the final successor dossier.
+The [RI/Retrieval/Localization/Context report](research/repository-intelligence-code-audit.md)
+and [cross-branch review ledger](research/code-audit/README.md) distinguish
+inventory, exact-version source inspection, tests, consumer tracing, original
+agent use and remaining depth. These are dated research evidence, not competing
+architecture/source/backlog authorities. Other domain audits remain scheduled.

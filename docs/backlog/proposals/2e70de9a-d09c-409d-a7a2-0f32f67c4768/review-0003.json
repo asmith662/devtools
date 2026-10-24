@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "2e70de9a-d09c-409d-a7a2-0f32f67c4768",
+  "proposal_sha256": "e4dfd85433515c99b2de082ae04df44c9008e6b5ed8e4f127ee843b1f808dde2",
+  "previous": "04b47352fa70e0704c3a959f68c0b7ab2281bc68c6902c4c245336fa54af2e82",
+  "at": "2026-10-23T20:01:35.436622+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-policies-and-scientific-integrity-audit.md",
+  "rationale": "Original report members independently authenticated without recomputing metrics. Increment23 embeds raw hashes/content identities matching the four verified members. Increment24 build_report stores source_artifacts filenames and repository checkpoint, not equivalent per-input digest closure; load_ranking_cases also lacks complete case-name/pair checks. Code names are not a direct authenticated report-to-input link. Minimum future analysis contract: externally authenticated original bytes plus supported-schema/canonical-pair verifier, then explicit ordered case/input hash closure in the new derived report. Preserve originals; this is incomplete provenance assurance, not evidence the original result was corrupted.",
+  "duplicates": [],
+  "duplicate_disposition": "Same existing scientific-binding obligation; no new bug proposal, approval or status change.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "38daeac5c22a38b25d27d1e6268a30c92323ea15ce5ac14e0bc5a2c07f2a2034"
+}

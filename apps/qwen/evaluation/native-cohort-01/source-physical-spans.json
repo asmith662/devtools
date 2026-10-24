@@ -1,0 +1,96 @@
+{
+  "name": "source-physical-spans",
+  "objective": "Ensure selectable source representations preserve exact physical source coordinates and text for valid Python containing non-newline Unicode separators in strings, with LF, CRLF or CR source. Preserve decorated async symbols, windows, source coverage, identity and existing search behavior. Investigate the responsible implementation and related contracts before proposing a one-file correction.",
+  "source": "src/devtools/context/retrieval/source/representation.py",
+  "tests": [
+    "tests/context/retrieval/source/test_search.py"
+  ],
+  "baseline_revision": "e02c9044311036883134df955438b1b809db353b",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "96dea804f6adaac562146ba32b597fca5bcea5674fc3f0ebfe0cf07a2b2bb33d"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "ad7361341589f5d2d40701c331f2669d64844d720777dd7a5a9bb8419f9d6473"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "0254329347e844ec141c34f4b87e11df0e88619ca2b11d6a2c1c4e64a4facbb1"
+    ],
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "1d41198f1ec453fd55c16532937c5a15d6bf76ecb1a927821ca416f753d7daa7"
+    ],
+    [
+      "src/devtools/context/python/function/materialization.py",
+      "6bcc26800d51ab62712d4fd78664b0f6db2af1cbcbd78aa57ea6415975e9b42b"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "a256b2dfcd13bc2ee127207c29e576fddc618d2a6582f8f9f3d5b4ff38057876"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "retrieval source representation.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "retrieval source test_search.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "retrieval source index.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "retrieval source search.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/function/materialization.py",
+      "python function materialization.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "python function declarations.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "python classes declarations.py",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "\nimport ast\nfrom io import StringIO\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.filesystem import TextFile, write\nfrom devtools.context.repository.identity import Repository\nfrom devtools.context.repository.resource import RepositoryResourceAddress\nfrom devtools.context.repository.discovery import discover_repository_resource_addresses\nfrom devtools.context.repository.observation import observe_repository_resources\nfrom devtools.context.repository.corpus import define_repository_text_corpus, realize_repository_text_corpus\nfrom devtools.context.retrieval import build_source_search_index, search_repository_source\nfor separator in ('\\v', '\\f', '\\x85', '\\u2028', '\\u2029'):\n    for newline in ('\\n', '\\r\\n', '\\r'):\n        source = newline.join(['prefix = \"' + separator + '\"', '@decorate', 'async def target():', '    return \"é\"', 'outside = 7', ''])\n        with TemporaryDirectory(prefix='source-oracle-', dir=Path.cwd() / '.local') as directory:\n            root = Path(directory)\n            write(TextFile(resolve_path(root / 'sample.py'), source))\n            repository = Repository.new()\n            discovery = discover_repository_resource_addresses(repository=repository, root=resolve_path(root), maximum_resource_count=2, maximum_traversal_entry_count=4)\n            snapshot = observe_repository_resources(repository=repository, root=resolve_path(root), addresses=discovery.addresses, maximum_resource_bytes=10000)\n            corpus = realize_repository_text_corpus(definition=define_repository_text_corpus(discovery=discovery, selected_addresses=discovery.addresses), snapshot=snapshot)\n            try:\n                index = build_source_search_index(snapshot, corpus=corpus, window_lines=2, overlap_lines=1)\n            except Exception as error:\n                raise AssertionError('valid Python source cannot be indexed with preserved physical coordinates') from error\n            symbols = next(view.units for view in index.views if view.kind == 'symbol')\n            unit = next(unit for unit in symbols if unit.qualified_name == 'target')\n            physical = list(StringIO(source, newline=''))\n            expected = ''.join(physical[1:4]).rstrip('\\r\\n')\n            assert unit.text == expected, (repr(separator), repr(newline), repr(unit.text))\n            assert unit.start_line == 2 and unit.end_line == 4\n            assert source[unit.start:unit.end] == unit.text\n            windows = next(view.units for view in index.views if view.kind == 'window')\n            starts = []\n            offset = 0\n            for line in physical:\n                starts.append(offset)\n                offset += len(line)\n            assert all(unit.start in starts for unit in windows)\n            assert all(len(list(StringIO(unit.text, newline=''))) <= 2 for unit in windows)\n            coverage = set()\n            for window in windows:\n                coverage.update(range(window.start, window.end))\n                assert source[window.start:window.end] == window.text\n            assert coverage == set(range(len(source)))\n            assert search_repository_source(index, query='target', mode='symbol').hits\nprint('SOURCE_SPANS_ACCEPTANCE_PASS')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/context/retrieval/source/index.py",
+    "src/devtools/context/retrieval/source/search.py",
+    "src/devtools/context/python/function/materialization.py",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/classes/declarations.py"
+  ]
+}

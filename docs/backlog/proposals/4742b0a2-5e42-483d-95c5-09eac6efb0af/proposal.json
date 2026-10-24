@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "4742b0a2-5e42-483d-95c5-09eac6efb0af",
+  "created_at": "2026-10-24T02:19:25.650334+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Require actual entry evidence before reopening an ambiguous experimental operation",
+    "parent": "B-0002",
+    "summary": "Priority2 recovery correctness. run_operation marks IN_PROGRESS before call, but capture_operation increments invocations only after successful return. recover_known_preinvocation_failure accepts IN_PROGRESS plus zero invocations, absent result and a nonempty explanation as proof of non-entry. An independently authored entered-then-raised callable passes the reset guard with one actual entry. Existing ambiguous run_operation guard is safe until this manual reset is called. Actual original lexical AttributeError was documented before production entry, so this is synthetic exploitability, not historical retry corruption.",
+    "resources": [
+      "experiments/codex_dogfood/case_0008/stage_b.py"
+    ],
+    "evidence": [
+      "docs/research/ri-acquisition-structural-verification-audit.md",
+      "docs/research/code-audit/ri-acquisition-probes.json"
+    ],
+    "benefit": "Keep immutable Case0008 source/state intact. For a separately versioned future controller/recovery guard, distinguish scheduled, entered, returned and captured outcomes; consume allowance durably before operation entry and refuse uncertain effects. A special proven pre-call lookup failure must have external exact operation/execution/source-bound evidence and separate authorization, not prose alone. Negative tests: entered-then-raised, timeout/cancel, lost return checkpoint, forged foreign markers, nonempty explanation without evidence, exhausted recovery. Positive tests: authenticated pre-entry failure, captured return reuse, explicit generation-only allowance with no upstream retry. Never automatically retry ambiguous effects or claim rollback. Identify real future analysis/controller caller before promotion.",
+    "uncertainty": "Historical documented before-entry lookup and preauthorized one-call generation recovery remain distinct valid evidence. No generic execution framework, exactly-once claim, historical replay or new execution grant.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-acquisition-structural-verification-audit.md"
+    }
+  },
+  "payload_sha256": "37d25031108d1e75f950b185373920aa4b8252c4b78cd8ff80fe84d8ea3bea53"
+}
