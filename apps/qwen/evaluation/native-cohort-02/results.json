@@ -1,0 +1,725 @@
+{
+  "observed_at": "2026-10-19T20:49:50.280476+00:00",
+  "status": "ONE_ACCEPTED; ONE_REPAIR_BUDGET_EXHAUSTED; GENERAL_PROFICIENCY_OPEN",
+  "model": "qwen38-local; unchanged Qwen3.8-27B IQ4_XS, 32768 Context, thinking disabled",
+  "execution": "existing run_local_task; explicit maintainer local-development authority; no production grant",
+  "worker_revision": "111975be67f97f4095674d5a37e680ad05097f94",
+  "source_baseline": "5102e5a8d4f4d132a2d999a26b36eb50122341ce",
+  "runs": [
+    {
+      "task": "regex-span-consistency",
+      "condition": "development",
+      "task_sha256": "fa30741ee6ee874d2a55f50a281a4c801240d53cab5baab3de3960d0b1289156",
+      "result_sha256": "2160409fdd640b62974ad1bfb122b40ac80313ef827f9d14663c1d3ae774e9a0",
+      "evidence": ".local/qwen-coding-worker/native-cohort-02/development/regex-span-consistency",
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "started_at": "2026-10-19T20:23:23.579325+00:00",
+      "finished_at": "2026-10-19T20:24:08.891545+00:00",
+      "elapsed_seconds": 45.31223719997797,
+      "model_seconds": 43.59481859992957,
+      "validation_seconds": 1.0705155999748968,
+      "model_calls": 4,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 15893,
+        "output_tokens": 773,
+        "reasoning_tokens": null
+      },
+      "context_actions": 5,
+      "accepted_context_actions": 5,
+      "context_bytes": 14960,
+      "source_bytes": 7260,
+      "proposals": 1,
+      "admitted_proposals": 1,
+      "repair_cycles": 0,
+      "max_input_occupancy": 0.214324951171875,
+      "omissions": 0,
+      "final_source_sha256": "42430b144215d244ff97f189377b3bdd18765dddbfad5c65381a96dfbe69ce91",
+      "final_validation": {
+        "format": {
+          "exit_code": 0,
+          "stdout": ""
+        },
+        "oracle": {
+          "exit_code": 0,
+          "stdout": "8 independent consistency scenarios passed\r\n"
+        },
+        "ruff": {
+          "exit_code": 0,
+          "stdout": "All checks passed!\n"
+        },
+        "tests": {
+          "exit_code": 0,
+          "stdout": ".......                                                                  [100%]\r\n7 passed in 0.02s\r\n"
+        }
+      },
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:23:24.422234+00:00",
+          "model_seconds": 7.668140099965967,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1250,
+            "output_tokens": 65,
+            "reasoning_tokens": null,
+            "total_tokens": 1315
+          },
+          "prompt_bytes": 1543,
+          "occupancy": 0.03814697265625,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "search_source",
+              "arguments": {
+                "mode": "file",
+                "query": "RegexMatch"
+              },
+              "provider_call_id": "ArRetPDULN2sHxmR0iRuSaY0zv9cKzdj"
+            },
+            {
+              "name": "lookup_symbol",
+              "arguments": {
+                "name": "RegexMatch"
+              },
+              "provider_call_id": "NIbW8kQHqO1DM6vOyfIxLOOgbdZLubei"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": null
+            },
+            {
+              "name": "lookup_symbol",
+              "status": "RETURNED",
+              "error": null,
+              "span": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:23:32.117672+00:00",
+          "model_seconds": 7.147417599975597,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3220,
+            "output_tokens": 123,
+            "reasoning_tokens": null,
+            "total_tokens": 3343
+          },
+          "prompt_bytes": 5563,
+          "occupancy": 0.0982666015625,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "read_source",
+              "arguments": {
+                "path": "src/devtools/core/regex/models.py",
+                "version": "aeea94f7e37d16c6b755c752cd449f7dfddc91a80bedff98c01c9cd84b9b754d",
+                "start": 0,
+                "end": 2166
+              },
+              "provider_call_id": "Y43HvCxVr7f7TPMOPRQkfxLvatT682nn"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                0,
+                2166
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:23:39.288070+00:00",
+          "model_seconds": 12.185632599983364,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4400,
+            "output_tokens": 260,
+            "reasoning_tokens": null,
+            "total_tokens": 4660
+          },
+          "prompt_bytes": 9479,
+          "occupancy": 0.13427734375,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "read_source",
+              "arguments": {
+                "end": 1635,
+                "path": "tests/core/regex/test_models.py",
+                "start": 0,
+                "version": "78ba9f42850dea03e85d0d70567cae40a4fdadd6af0c59d3aee9332f61111a8f"
+              },
+              "provider_call_id": "LilPPtNwB395I3Hs9mGKuyHDS84cG95I"
+            },
+            {
+              "name": "read_source",
+              "arguments": {
+                "end": 3459,
+                "path": "src/devtools/core/regex/search.py",
+                "start": 0,
+                "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248"
+              },
+              "provider_call_id": "4XQQey4twTcOFsmnlWuGP39TYYugquQV"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                0,
+                1635
+              ]
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                0,
+                3459
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "disposition": "ACCEPTED",
+          "started_at": "2026-10-19T20:23:51.502057+00:00",
+          "model_seconds": 16.59362830000464,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7023,
+            "output_tokens": 325,
+            "reasoning_tokens": null,
+            "total_tokens": 7348
+          },
+          "prompt_bytes": 18194,
+          "occupancy": 0.214324951171875,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "propose_edit",
+              "arguments": {
+                "path": "src/devtools/core/regex/models.py",
+                "old_text_sha256": "e0e10a4bcd2ababdda8b109de79fcef8023c02dead8f40701ee45c2bcd0613d2",
+                "old_text_characters": 393,
+                "new_text_characters": 646
+              },
+              "provider_call_id": "64NiouSFcp5tthP5ek2mr9qmqqu7ZHQj"
+            }
+          ],
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 0,
+            "tests": 0
+          },
+          "provider_termination": "tool_call",
+          "tool_results": []
+        }
+      ],
+      "source_and_inputs_restored": true,
+      "supervisor_interventions_during_run": 0,
+      "publication_eligible": false
+    },
+    {
+      "task": "command-output-integer-limits",
+      "condition": "held-out",
+      "task_sha256": "617baf9b0f84105ace11b9bf64b84fed20ff66c1a2bd38ba6cbf0b6c62e96e8b",
+      "result_sha256": "7b9ea9bc132506e97dcf1326b52c1e84890745e1d1ac63d6bab1895f2db84158",
+      "evidence": ".local/qwen-coding-worker/native-cohort-02/held-out/command-output-integer-limits",
+      "accepted": false,
+      "disposition": "REPAIR_BUDGET_EXHAUSTED",
+      "started_at": "2026-10-19T20:25:20.030630+00:00",
+      "finished_at": "2026-10-19T20:26:37.339134+00:00",
+      "elapsed_seconds": 77.30852090002736,
+      "model_seconds": 73.23392900003819,
+      "validation_seconds": 2.7736891000531614,
+      "model_calls": 7,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 37972,
+        "output_tokens": 1312,
+        "reasoning_tokens": null
+      },
+      "context_actions": 7,
+      "accepted_context_actions": 4,
+      "context_bytes": 13089,
+      "source_bytes": 3633,
+      "proposals": 3,
+      "admitted_proposals": 3,
+      "repair_cycles": 2,
+      "max_input_occupancy": 0.26904296875,
+      "omissions": 0,
+      "final_source_sha256": "784157c3918ede30f7ae9115a6e0342eb13c53fcb10abb82c6bc2d4bf65e724f",
+      "final_validation": {
+        "format": {
+          "exit_code": 0,
+          "stdout": ""
+        },
+        "oracle": {
+          "exit_code": 1,
+          "stdout": ""
+        },
+        "ruff": {
+          "exit_code": 0,
+          "stdout": "All checks passed!\n"
+        },
+        "tests": {
+          "exit_code": 0,
+          "stdout": "..........                                                               [100%]\r\n10 passed in 0.03s\r\n"
+        }
+      },
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:25:20.945898+00:00",
+          "model_seconds": 9.457266799989156,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1244,
+            "output_tokens": 87,
+            "reasoning_tokens": null,
+            "total_tokens": 1331
+          },
+          "prompt_bytes": 1548,
+          "occupancy": 0.0379638671875,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "search_source",
+              "arguments": {
+                "query": "class CommandOutputPolicy",
+                "mode": "symbol"
+              },
+              "provider_call_id": "KQXFggsZCYo4V2iXeK674qtiYdBWpC2h"
+            },
+            {
+              "name": "source_relationships",
+              "arguments": {
+                "path": "src/devtools/resources/commands/models/output.py",
+                "version": "CURRENT"
+              },
+              "provider_call_id": "NYNo79JiYrvFRHopvwFz5bJnlBBqlcfp"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": null
+            },
+            {
+              "name": "source_relationships",
+              "status": "REFUSED",
+              "error": "SOURCE_VERSION_MISMATCH",
+              "span": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:25:30.430316+00:00",
+          "model_seconds": 13.071177700010594,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3054,
+            "output_tokens": 264,
+            "reasoning_tokens": null,
+            "total_tokens": 3318
+          },
+          "prompt_bytes": 5519,
+          "occupancy": 0.09320068359375,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "read_source",
+              "arguments": {
+                "path": "src/devtools/resources/commands/models/output.py",
+                "version": "bd7b139009ad69f8bc0f5326c26eaa5d651a60cf534eef3994d0d1d5269a5336",
+                "start": 0,
+                "end": 2000
+              },
+              "provider_call_id": "QTXtDILQ6d10g4OsvVWW5xU9Pfe4YiLN"
+            },
+            {
+              "name": "read_source",
+              "arguments": {
+                "path": "tests/resources/commands/test_models.py",
+                "version": "c12ab32a475a94769120d17d1fedf7b497d8f961e080b29b5274dacf01808f28",
+                "start": 4000,
+                "end": 5200
+              },
+              "provider_call_id": "Sw27lgbOnFjJiUaTlbMvDlbSVvosAv4a"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "read_source",
+              "status": "REFUSED",
+              "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
+              "span": null
+            },
+            {
+              "name": "read_source",
+              "status": "REFUSED",
+              "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
+              "span": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:25:43.529330+00:00",
+          "model_seconds": 11.848104499978945,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4249,
+            "output_tokens": 256,
+            "reasoning_tokens": null,
+            "total_tokens": 4505
+          },
+          "prompt_bytes": 8460,
+          "occupancy": 0.129669189453125,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "read_source",
+              "arguments": {
+                "end": 1323,
+                "path": "src/devtools/resources/commands/models/output.py",
+                "start": 0,
+                "version": "bd7b139009ad69f8bc0f5326c26eaa5d651a60cf534eef3994d0d1d5269a5336"
+              },
+              "provider_call_id": "uqpuFfn5QbGj5rmcw2sgn3leHIFdDNjP"
+            },
+            {
+              "name": "read_source",
+              "arguments": {
+                "end": 4987,
+                "path": "tests/resources/commands/test_models.py",
+                "start": 4000,
+                "version": "c12ab32a475a94769120d17d1fedf7b497d8f961e080b29b5274dacf01808f28"
+              },
+              "provider_call_id": "gFmQgW67DD5EAdWGgJzbJSj8o6k6o0j0"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                0,
+                1323
+              ]
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                4000,
+                4987
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T20:25:55.407496+00:00",
+          "model_seconds": 11.751451799995266,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6058,
+            "output_tokens": 225,
+            "reasoning_tokens": null,
+            "total_tokens": 6283
+          },
+          "prompt_bytes": 13944,
+          "occupancy": 0.18487548828125,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "propose_edit",
+              "arguments": {
+                "path": "src/devtools/resources/commands/models/output.py",
+                "old_text_sha256": "a964a5396a652466a67861de34c45c99ed084d473555613d186be552b3bcf105",
+                "old_text_characters": 126,
+                "new_text_characters": 414
+              },
+              "provider_call_id": "CHL9Zac3WsBeuBovzDBDKp3QcAadgBZn"
+            }
+          ],
+          "validation": {
+            "format": 0,
+            "oracle": 0,
+            "ruff": 1,
+            "tests": 0
+          },
+          "provider_termination": "tool_call",
+          "tool_results": []
+        },
+        {
+          "number": 5,
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T20:26:08.118438+00:00",
+          "model_seconds": 9.95755840005586,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6733,
+            "output_tokens": 164,
+            "reasoning_tokens": null,
+            "total_tokens": 6897
+          },
+          "prompt_bytes": 16524,
+          "occupancy": 0.205474853515625,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "propose_edit",
+              "arguments": {
+                "path": "src/devtools/resources/commands/models/output.py",
+                "old_text_sha256": "344c3cfabb0f4ee5f14416e7dcec5053a3113a9a2a6ca32b18b1bfc6d2f9ed78",
+                "old_text_characters": 160,
+                "new_text_characters": 159
+              },
+              "provider_call_id": "wKLTwqECSDQ0bJDS5QvATqrBF3uJzcen"
+            }
+          ],
+          "validation": {
+            "format": 0,
+            "oracle": 1,
+            "ruff": 0,
+            "tests": 0
+          },
+          "provider_termination": "tool_call",
+          "tool_results": []
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T20:26:19.107010+00:00",
+          "model_seconds": 9.91438760003075,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7818,
+            "output_tokens": 176,
+            "reasoning_tokens": null,
+            "total_tokens": 7994
+          },
+          "prompt_bytes": 20556,
+          "occupancy": 0.23858642578125,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "read_source",
+              "arguments": {
+                "end": 1323,
+                "path": "src/devtools/resources/commands/models/output.py",
+                "start": 0,
+                "version": "ad10b97cf70475d21e463f0233d3c8942d01c745372be461954b5692f15b57e9"
+              },
+              "provider_call_id": "2fZu8CpnW7DB8OnEHgApZsOd0A6tLKw2"
+            }
+          ],
+          "validation": {},
+          "provider_termination": "tool_call",
+          "tool_results": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null,
+              "span": [
+                0,
+                1323
+              ]
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T20:26:29.048337+00:00",
+          "model_seconds": 7.233982199977618,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8816,
+            "output_tokens": 140,
+            "reasoning_tokens": null,
+            "total_tokens": 8956
+          },
+          "prompt_bytes": 23742,
+          "occupancy": 0.26904296875,
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "propose_edit",
+              "arguments": {
+                "path": "src/devtools/resources/commands/models/output.py",
+                "old_text_sha256": "75bd55545ada32a63fc09834ad3b802f60d2af306891804d656a3d2597468897",
+                "old_text_characters": 62,
+                "new_text_characters": 170
+              },
+              "provider_call_id": "MIxRClwRnwES5Y4T25UFVVEI4NrVyW3E"
+            }
+          ],
+          "validation": {
+            "format": 0,
+            "oracle": 1,
+            "ruff": 0,
+            "tests": 0
+          },
+          "provider_termination": "tool_call",
+          "tool_results": []
+        }
+      ],
+      "source_and_inputs_restored": true,
+      "supervisor_interventions_during_run": 0,
+      "publication_eligible": false
+    }
+  ],
+  "totals": {
+    "model_calls": 11,
+    "elapsed_seconds": 122.62075810000533,
+    "model_seconds": 116.82874759996776,
+    "validation_seconds": 3.844204700028058,
+    "context_actions": 12,
+    "accepted_context_actions": 9,
+    "repair_cycles": 2
+  },
+  "usage": {
+    "input_tokens": 53865,
+    "output_tokens": 2085
+  },
+  "findings": {
+    "source_grounding": "All four admitted edits used actually observed current source. All native requests retained correlated messages. No active exchange eviction occurred in fresh runs.",
+    "recovery": "Held-out recovered one invalid version and two out-of-range reads, using correlated host bounds; seven total Context actions, four returned source/search results.",
+    "quality": "Held-out proposal 1 passed oracle/tests but failed Ruff TRY004; proposal 2 resolved Ruff by changing ValueError to TypeError and failed oracle; proposal 3 added unused hybrid exception without fixing raised TypeError.",
+    "attribution": "Requirement-reconciliation/edit reasoning failure under host-defined ValueError-versus-Ruff tension; source and full diagnostics were visible, not evicted. This is not a clean measure of general repair competence.",
+    "limitations": "Two small distinct-module tasks; no matched old-worker or Codex comparison. No live successful behavioral repair. Conservative invalidation requires rereading unchanged regions after an edit. Byte planning is not a tokenizer guarantee.",
+    "continuation": "Do not tune against this held-out result or alter frozen checks. Future tasks must preflight exception-contract/lint compatibility; measure fresh multi-region repair. Retain duration style-rework candidate."
+  },
+  "codex_coordination_usage": "UNKNOWN",
+  "cache_reasoning_usage": "UNKNOWN",
+  "local_energy_cost": "UNKNOWN",
+  "paid_comparison_calls": 0,
+  "production_authority": "NONE; accepted regex source remains an evidence candidate; main unchanged",
+  "archived_trace_replay": {
+    "kind": "deterministic projection replay, NOT live effectiveness",
+    "previous_prompt_bytes_per_provider_input_token": {
+      "min": 1.2270850536746492,
+      "max": 3.532575347410215
+    },
+    "active_budget": {
+      "bytes": 36000,
+      "estimated_bytes_per_token": 1.5,
+      "output_reserve": 4096,
+      "schema_reserve": 2048,
+      "safety_reserve": 2048,
+      "profile_tokens": 32768
+    },
+    "diagnosis": "24000-byte whole-batch eviction preferred a prefix rather than all current observed regions. CSV tail helper at [4852,5255] was lost. Strict proposal matching prevented fabricated if-chain edits; 8-read action budget prevented reacquisition.",
+    "cases": [
+      {
+        "condition": "improved",
+        "before_bytes": 16429,
+        "complete_history_bytes": 35853,
+        "projected_bytes": 33013,
+        "before_source_bytes": 7341,
+        "after_source_bytes": 15533,
+        "before_tool_metadata_bytes": 4378,
+        "after_tool_metadata_bytes": 10701
+      },
+      {
+        "condition": "final-development",
+        "before_bytes": 19553,
+        "complete_history_bytes": 35510,
+        "projected_bytes": 33367,
+        "before_source_bytes": 5961,
+        "after_source_bytes": 11709,
+        "before_tool_metadata_bytes": 8970,
+        "after_tool_metadata_bytes": 15060
+      }
+    ]
+  },
+  "independent_review": {
+    "regex-span-consistency": "ACCEPT_RECOMMENDED_LOCAL_CANDIDATE: exact observed edit, all frozen checks and additional strict mypy shadow check pass; no integration authority",
+    "command-output-integer-limits": "REJECTED: first behavioral candidate failed Ruff TRY004; later edits failed required ValueError contract. Frozen ValueError-vs-TypeError lint tension limits interpretation. No further attempt.",
+    "candidate_reconstruction": "All four admitted proposals independently reconstruct exact recorded final bytes through existing parser. Each old_text was in an actual current source observation in that turn input.",
+    "protected_validation": "PASS: 2030 passed, 2 skipped, 100% production branch coverage, 445.74 s. Earlier full run failed one obsolete search-without-read delegated fixture; corrected to real target read and passed.",
+    "codex_comparison": "Not performed. A future separately budgeted paired comparison must freeze fresh task baselines/objectives/oracles/quality, segregate solution evidence, and record acceptance, calls, tokens, wall time and interventions. No comparable paid Codex baseline exists."
+  },
+  "verification": {
+    "protected": {
+      "passed": 2030,
+      "skipped": 2,
+      "coverage_percent": 100,
+      "elapsed_seconds": 445.74,
+      "log": ".local/grounding-protected-final.log"
+    },
+    "earlier_gate": {
+      "passed": 2029,
+      "failed": 1,
+      "skipped": 2,
+      "elapsed_seconds": 455.67,
+      "cause": "obsolete delegated fixture proposed after metadata search without reading; corrected read and grant scope unchanged"
+    },
+    "strict_mypy": "PASS: 478 configured source files; accepted regex candidate shadow check PASS",
+    "ruff": "PASS: affected maintained application and tests",
+    "format": "PASS: affected maintained application and tests",
+    "layout": "PASS",
+    "candidate_replay": ".local/qwen-coding-worker/native-cohort-02/candidate-replay.json",
+    "no_main_or_scientific_publication": true,
+    "no_new_authority": true,
+    "no_additional_checkout": true
+  }
+}

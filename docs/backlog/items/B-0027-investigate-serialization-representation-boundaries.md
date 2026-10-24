@@ -31,3 +31,11 @@ serializer, durable schema, or raw-payload persistence.
 - operational_dependencies: boundary needing stable compatible representation
 - promotion_trigger: one semantic value must reliably cross two representation boundaries
 - validation_level: NONE
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+Codex27 closeout records source.py and representation.py physical CRLF SHA-256 values; committed blobs have different SHA-256 values that reproduce those hashes exactly after LF-to-CRLF conversion. Other selected files match exactly. Document/test stored versus physical identity rather than silently equating them, normalizing model edits or rewriting historical receipts. Distinct JSON serializers/seals/views have different contracts; repeated syntax alone is not duplication.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.

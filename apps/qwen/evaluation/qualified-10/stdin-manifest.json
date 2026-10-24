@@ -1,0 +1,111 @@
+{
+  "frozen_at": "2026-10-21T01:28:09.772653+00:00",
+  "baseline": "b493f43a615a274dab0c0e292a36583ab768eb7a",
+  "task_sha256": "0fb904f7b0c33d20cd934bf1fd35e2f9bd6fbcd8535da37c01852bc4057af6ec",
+  "oracle_sha256": "b9bc291b2df229be2320046e57346f3852b3e9a2e8972e6710a4a148e87545b4",
+  "proposal": "796ac652-dbd7-488b-98bb-444f695bfa92",
+  "qualification": {
+    "positive_reference": "All model checks and real exact/empty/binary/300KB echo, pipe-pressure, early exit, timeout, concurrent child fixtures passed",
+    "negative_executor": "Child stdin must receive exact bytes and EOF without disturbing output capture",
+    "runtime": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "public_api": "(executable: 'str', arguments: 'tuple[str, ...]' = (), working_directory: 'ResolvedPath | None' = None, timeout: 'Duration | None' = None) -> None",
+    "reference_sha256": "cafe0bf42d2f496039b05843a6a3a823ae79c202ada27780f31ba8327875178c",
+    "baseline_oracle": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\qualified-10\\stdin-oracle.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\qualified-10\\stdin-oracle.py\", line 65, in <module>\r\n    if __name__==\"__main__\":run_checks()\r\n                            ~~~~~~~~~~^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\qualified-10\\stdin-oracle.py\", line 61, in run_checks\r\n    model_checks(cls)\r\n    ~~~~~~~~~~~~^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\qualified-10\\stdin-oracle.py\", line 10, in model_checks\r\n    assert \"stdin\" in inspect.signature(cls).parameters, \"Command must support optional binary stdin\"\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Command must support optional binary stdin\r\n",
+      "failed": true,
+      "started_at": "2026-10-21T01:28:08.115173+00:00",
+      "elapsed_seconds": 0.19138650002423674
+    },
+    "regressions": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/resources/commands/test_models.py",
+        "tests/resources/commands/test_execution.py",
+        "tests/resources/commands/test_handle.py",
+        "tests/resources/commands/test_events.py",
+        "tests/resources/commands/test_errors.py",
+        "tests/resources/commands/test_decoded_output.py"
+      ],
+      "exit_code": 0,
+      "stdout": "..............................................                           [100%]\r\n46 passed in 0.55s\r\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T01:28:08.306581+00:00",
+      "elapsed_seconds": 0.9921930000418797
+    },
+    "ruff": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src/devtools/resources/commands/models/command.py",
+        "src/devtools/resources/commands/execution.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T01:28:09.298795+00:00",
+      "elapsed_seconds": 0.09142710000742227
+    },
+    "format": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src/devtools/resources/commands/models/command.py",
+        "src/devtools/resources/commands/execution.py"
+      ],
+      "exit_code": 0,
+      "stdout": "2 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "failed": false,
+      "started_at": "2026-10-21T01:28:09.390238+00:00",
+      "elapsed_seconds": 0.10006810002960265
+    },
+    "typing": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "--strict",
+        "src/devtools/resources/commands/models/command.py",
+        "src/devtools/resources/commands/execution.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 2 source files\r\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T01:28:09.490323+00:00",
+      "elapsed_seconds": 0.2786434000590816
+    }
+  },
+  "novelty": "Distinct unattempted documented stdin obligation, not an environment-override retry. Prior objectives audited; full host reference/negative fixture qualification before inference. Objective gives no source path. Same broad 21-file read corpus includes alternatives.",
+  "budget": {
+    "runs": 1,
+    "model_requests": 16,
+    "worker_seconds": 1200,
+    "output_tokens": 8192,
+    "context_command_actions": 32,
+    "atomic_transactions": 3,
+    "components": 16,
+    "aggregate_edit_bytes": 8192,
+    "files": 2,
+    "paid_codex_calls": 0
+  },
+  "assignment_cumulative_bound": "First run terminal after 8 calls/189.05s. Additional 16-call/1200s prospective limit caps assignment at 24 generated calls and 1389.05 worker seconds. No retry/extension of original task."
+}

@@ -1,5 +1,26 @@
 # Research Evidence
 
+Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](ri-experimental-completion-and-main-adoption.md).
+All32 final selected paths have applicable full-body review:606/606 historical
+experimental paths now have version-specific dispositions, not independent
+revalidation of every judgment or completion of Repository Intelligence.
+Ten new maintained fixture reviews bring the original universe to45/93; including
+the separately added regression it is46/94, with48 current fixtures remaining.
+177 older NOT_REVIEWED versions and26 tip-delta-only versions retain their depth.
+The exact eight-path main-adoption patch is proposed only; main remains unchanged.
+Three new pending proposals and seven advisories preserve existing authorities.
+Task-obligation A+C remains unapproved; no new domain or successor dossier begins.
+
+The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
+now inventories all 35 collections, 48 capability slices, exact destination
+dependencies, actual consumer gaps and custody holds. Its
+[machine evidence](production-adoption-and-architecture-evidence-20261023.json) records source/test/packet identities.
+The maintainer has now required a **comprehensive cross-branch code audit**;
+the final successor-session handoff is postponed. See the current audit links
+below. Earlier audit-only boundaries remain historical; the current assignment
+explicitly authorizes the bounded exact-name repair, not inference or main adoption.
+Earlier "next" paragraphs below retain their checkpoint meaning.
+
 This directory preserves durable architectural investigations, alternatives,
 criticisms, recommendations, and unresolved questions. Research is evidence and
 historical reasoning; it does not automatically define current architecture,
@@ -11,7 +32,36 @@ tests demonstrate realized behavior. Experiments and evaluations provide bounded
 empirical evidence. Deferred and rejected-for-now findings remain discoverable
 because later evidence may justify reconsideration.
 
-## Current retrieval research checkpoint
+## Current reconciliation phase
+
+The [finite reconciliation charter](../development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)
+starts a documentation/research checkpoint, not another Qwen implementation.
+See the [initial source/adoption inventory](architecture-reconciliation-inventory.md),
+[upstream mechanism review starting point](agent-harness-mechanism-review.md)
+and [artifact custody inventory](../development/artifact-custody-inventory.md).
+The first checkpoint's missing-input finding is retained as historical evidence.
+The [recovered-input reconciliation](reconciliation-input-reconciliation.md) now
+authenticates the transfer/members and maps all18 exact original candidates.
+The [mechanism comparison](agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+adds pinned Qwen Code/Pydantic AI implementation/test findings and a Devtools
+correlation/loss map. No production code, experimental outcome or architectural
+boundary changes. The [DeepSeek Harness/Aider follow-up](agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+now adds pinned implementation/test findings on event durability, lifecycle,
+Tool dispatch, graph/map Context, editing and privacy. Next is the
+[five-flow Devtools lifecycle audit](development-lifecycle-audit-plan.md), not a
+new runtime or upstream installation. The [executed lifecycle audit](development-lifecycle-observability-audit.md)
+now authenticates the five selected flows, distinguishes strong/weak joins and
+records priority gaps. Next is selective destination adoption, actual feature/
+experiment ownership and exact-path custody reconciliation before the final
+successor handoff; none is launched by this checkpoint.
+
+<a id="current-retrieval-research-checkpoint"></a>
+
+## Earlier retrieval research checkpoint
+
+The following checkpoint preserves its earlier R1/R2 sequencing. Later outcomes
+and current ordering belong to the linked roadmap and retrieval foundation;
+the retained historical "next" recommendation is not a new execution decision.
 
 [Experimental R1 method](../../experiments/identifier_sparse/README.md) and
 [prospective Case 0009](../../experiments/codex_dogfood/case_0009/README.md) now
@@ -49,6 +99,11 @@ by default. Structural breadth is closed for now; its operators remain available
 
 | Research document | Subject | Status | Principal findings | Related ADRs | Implemented evidence | Deferred / rejected for now | Superseded/refined by | Revisit triggers |
 |---|---|---|---|---|---|---|---|---|
+| [Architecture reconciliation inventory](architecture-reconciliation-inventory.md) | Source/main adoption, observability, abstractions and backlog | Initial source-backed audit | Separate maintained code, destination blobs, consumers and experiment outcomes | 0001-0005 retained | Pinned Git/source/test/custody evidence | Automatic fixes, backlog promotion, generic Trace/Agent systems | Existing charter and current source | Complete lifecycle/harness/custody review; recover starter input |
+| [Agent harness mechanism review](agent-harness-mechanism-review.md) | Qwen Code, Pydantic AI, DeepSeek Harness and Aider | Four pinned source/test mechanism comparisons; no upstream execution | Durability barriers, instrumentation, source authority and editing mechanics have distinct semantics | None added | 132 authenticated file cursors including49 tests; selected findings, not exhaustive audits | Runtime replacement, copied framework, new model experiment | Existing taxonomy/ADRs and finite phase charter | Five real local lifecycle flows; adoption/custody reconciliation |
+| [Development lifecycle audit plan](development-lifecycle-audit-plan.md) | Existing Qwen/Codex/Checkout/source-navigation receipts | Source selection, not completed lifecycle audit | Direct joins must be distinguished from inference and absent evidence | None added | 21 existing input fingerprints; five real flows | Replay, inference, instrumentation implementation, cleanup | B-0023/B-0011/B-0028/B-0034 and finite charter | Reauthenticate originals and report join/loss timelines |
+| [Development lifecycle observability audit](development-lifecycle-observability-audit.md) | Five selected real flows and current foundational owners | Executed source/evidence audit; no replay or production change | Exact hashes/call IDs differ from weak time/custody associations; refused navigation is not source disclosure | None added | 21 original inputs; 297 file identities; 56 stages; two closeouts | New tracing framework, inference, cleanup, runtime replacement | Existing domains/ADRs and backlog | Selective destination adoption, ownership and custody audit |
+| [Recovered reconciliation inputs](reconciliation-input-reconciliation.md) | Exact original charter/notes/18 seeds and independent review | Transfer/members verified; all18 routed | Original provenance retained; one new pending investigation, no automatic approval | None added | [Verification/crosswalk](reconciliation-inputs-20261023.json) | Drafts as governance,18 duplicate stories, cleanup or inference | Current source-backed comparison qualifies original assumptions | Further audit evidence or authorized backlog disposition |
 | [Architecture adversarial review](architecture-adversarial-review.md) | Adversarial architecture challenge | Partially reconciled | Preserve evidence boundaries; resist premature abstractions | 0002-0004 | Lexical evaluation | Universal graph/store; model knowledge promotion | ADRs; Inc. 16/20 | Bounded evidence requiring reusable semantics |
 | [Framework domain boundaries](framework-domain-boundaries.md) | Framework ownership | Reconciled | Narrow orthogonal domains | 0001, 0004 | Runtime/Tool/Context separation | Workflow infrastructure | Taxonomy | Cross-domain consumer pressure |
 | [Purpose-relative repository Context](purpose-relative-repository-context.md) | Retrieval, decision, disclosure | Reconciled | Truth, surfacing, relevance, ranking, disclosure differ | 0003, 0004 | Lexical and import experiments | Universal Candidate/Selector/score | Increments 20-22 | Stable need-specific value requiring reuse beyond local policy/Context planning |
@@ -112,3 +167,48 @@ production and evaluation sequence.
 6. Preserve deferred and rejected-for-now findings rather than deleting them.
 7. Update the disposition when later ADRs, implementation, experiments, or
    research materially change its status.
+
+## Comprehensive code audit now takes precedence (2026-10-23)
+
+The maintainer has postponed the final successor-session dossier. The previous
+reconciliation is a useful inventory, not a complete code review. The
+[comprehensive audit program](comprehensive-code-audit.md),
+[first deep RI/Context report](repository-intelligence-code-audit.md) and
+[version-specific coverage ledger](code-audit/README.md) now define the current
+research checkpoint. They inventory all reachable branches/history, inspect all
+118 current RI/Evaluation implementation modules, distinguish actual native use
+from exposure, preserve adverse scientific policies, and leave omitted historical
+versions/test fixtures/controllers explicitly unreviewed. Four substantive
+pending consumer/reuse proposals and advisory evidence use canonical Intake.
+No production fix, inference, cleanup or protected promotion follows from audit.
+
+The current [structural-discrimination and decision-test audit](ri-structural-discrimination-audit.md)
+completes 37 experimental paths and nine substantive maintained fixture modules.
+Cases 0017/0018/0019 retain NO_MATERIAL/SIGNAL/NO_MATERIAL with no ranking movement.
+All 2883 original judgment bindings agree; a real experimental completion-proof consumer
+corrects an earlier selected-scope nonadoption claim. Nine existing proposals gain
+advisory evidence; no new bug or implementation approval is asserted.
+Experimental review is 510/606 with 96 remaining; current fixtures 18/93 with 75
+remaining; 177 older current-RI versions remain separate. Next is the exact 64-path
+source-grounding cohort, selected but not launched. See the
+[current coverage overlay](code-audit/README.md#structural-discrimination-and-current-fixture-overlay).
+
+The explicitly authorized [RI follow-up and source-index repair](ri-deep-audit-followup.md)
+now records the separate fix commit,100% protected coverage,48 deeper experimental
+path reviews,26 historical tip deltas, remaining fixture/body gaps and three new
+pending Intake obligations. Original checkpoint/evidence is preserved. This is
+not completion of historical RI review or the repository-wide audit.
+
+The [increment implementation/integrity audit](ri-increments-25-36-audit.md)
+completes the selected64 increment paths and reads50 associated test paths.
+It preserves bounded positive, adverse and oracle-only findings, authenticates51
+original Increment25 bindings, records a new pending task-normalization bug and
+extends existing integrity/consumer proposals. The next cohort is exactly94
+dogfood paths; RI, its84 current fixture gaps and177 older versions remain open.
+
+The [dogfood lifecycle audit](ri-dogfood-lifecycle-audit.md) now completes that
+exact94-path cohort: U2 failed capture/reconciliation, U3 fixed authored routing,
+and Graph3 capture recovery/adverse ranking. Original evidence is authenticated
+without historical replay. One new pending missing-witness analysis bug and
+eight advisory updates retain canonical Intake. Next is the exact101-path
+Cases0011/0014/0015 cohort;354 experimental paths remain, not RI completion.

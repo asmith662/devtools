@@ -1,0 +1,217 @@
+{
+  "frozen_at": "2026-10-21T17:53:44.363555+00:00",
+  "classification": "Fresh single development obligation, no paired comparison or held-out/general-proficiency claim",
+  "starting_head": "e9ec8d426284939f90280b2aea7505fdd8df9bef",
+  "baseline": "89fb5d0316e4a0237cadf128d6593c4a00a26023",
+  "task_sha256": "1ca0ae9c16d9b956eed3069f007cd6dc4c9d44822622285d05300457eac331fa",
+  "oracle_sha256": "8503ade1b8692531ed651ffe31fec200d73b4e2ed35a1e63220b0eec5e929f56",
+  "proposal": {
+    "id": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+    "state": "PENDING_REVIEW",
+    "path": "docs/backlog/proposals/d9416198-66c7-40b9-b566-e2a8806a81b5/proposal.json",
+    "promotion": "NONE; trusted local development authority comes from current assignment"
+  },
+  "value": "Real Git diff/no-index exit1 means differences, currently classified failed. Reusable opt-in Command value and CommandResult interpretation benefit both agent consumers while preserving execution facts and existing Tool boundaries.",
+  "ownership": "Existing Resources.Commands specification/result; executor and ToolRunner/CommandTool reuse unchanged unless necessary. No new policy/authorization/Tool registry.",
+  "novelty_checked": [
+    {
+      "path": "apps/qwen/evaluation/continuation-09/bounded-read-consumption-oracle-corrected.json",
+      "task": "bounded-read-consumption-oracle-corrected",
+      "objective_sha256": "6d5c4058d3c9aae6e789fabde5007caec305222a0ed5c6c0546eda48cdd69630"
+    },
+    {
+      "path": "apps/qwen/evaluation/continuation-09/bounded-read-consumption.json",
+      "task": "bounded-read-consumption",
+      "objective_sha256": "01e5f97d6fbccfb06aeba4b7fe5df0cbc16abe2046f59777d7c13629fabd2ebd"
+    },
+    {
+      "path": "apps/qwen/evaluation/editing-06/command-immutable-arguments.json",
+      "task": "command-immutable-arguments",
+      "objective_sha256": "824a70284498caf2b3e340ff6871be792529542146519b5ab38660c6c4686025"
+    },
+    {
+      "path": "apps/qwen/evaluation/editing-06/decoded-command-output.json",
+      "task": "decoded-command-output",
+      "objective_sha256": "c7782b98c2fe260c7a0ecec5cb097e6dfda79eaad277a2366a04694773dcd6e6"
+    },
+    {
+      "path": "apps/qwen/evaluation/editing-06/lazy-conversion-api.json",
+      "task": "lazy-conversion-api",
+      "objective_sha256": "c3f66aa72864689c1e3d3abe8db1f5f102fe096a2a8bfe83879b7ef4fed0480a"
+    },
+    {
+      "path": "apps/qwen/evaluation/editing-06/read-disappearance.json",
+      "task": "read-disappearance",
+      "objective_sha256": "54662bc34500bf79c9ba4dbe2f45b21675fc4c77d9abadb3892ae416e37d4fa7"
+    },
+    {
+      "path": "apps/qwen/evaluation/engineering-08/explicit-binary-io.json",
+      "task": "explicit-binary-io",
+      "objective_sha256": "0ce05907c57725cf7d667b12909eba7449ca5aeb129f697992e960f5e0bc808b"
+    },
+    {
+      "path": "apps/qwen/evaluation/engineering-08/source-search-physical-lines.json",
+      "task": "source-search-physical-lines",
+      "objective_sha256": "a3256c46ab381c0e2ceab8036b525b364c808c43e2b87b444c9aa5925ed62560"
+    },
+    {
+      "path": "apps/qwen/evaluation/environment-05/portable-dot-components.json",
+      "task": "portable-dot-components",
+      "objective_sha256": "e602a3b18b9cbb4573973ad83cd817ad1d96d9910cc25d04a23d7ef4e503ffbd"
+    },
+    {
+      "path": "apps/qwen/evaluation/environment-05/strict-json-overflow.json",
+      "task": "strict-json-overflow",
+      "objective_sha256": "32576775650928bfcf9fae29ebd2d95aec8390bc6e7cf433e4ef4340e7ef460f"
+    },
+    {
+      "path": "apps/qwen/evaluation/environment-12/recovery-task.json",
+      "task": "command-environment-overrides-continuation-12-recovered",
+      "objective_sha256": "36537ccec9fad5b73441626c19f05e53a5aa410bf59f7760c3de1dc543741e32"
+    },
+    {
+      "path": "apps/qwen/evaluation/environment-12/task.json",
+      "task": "command-environment-overrides-continuation-12",
+      "objective_sha256": "36537ccec9fad5b73441626c19f05e53a5aa410bf59f7760c3de1dc543741e32"
+    },
+    {
+      "path": "apps/qwen/evaluation/environment-13/task.json",
+      "task": "command-environment-overrides-development-13",
+      "objective_sha256": "3cab7010d716a8f5fdc238056f7b9ca5e48c0f88f9771dcbc8b0a4dfb25e07f1"
+    },
+    {
+      "path": "apps/qwen/evaluation/investigation-07/bsd-family.json",
+      "task": "bsd-family",
+      "objective_sha256": "3637054d7e0a3f557736f2a9a7e5f15e585af59888d7153f16d209f0c22a354f"
+    },
+    {
+      "path": "apps/qwen/evaluation/investigation-07/identity-uuid-invariant.json",
+      "task": "identity-uuid-invariant",
+      "objective_sha256": "b4b6df351d0134556d83d892c4c1c392d4122d06eaf2d93cf2029e1d98be2037"
+    },
+    {
+      "path": "apps/qwen/evaluation/investigation-07/regex-split-public.json",
+      "task": "regex-split-public",
+      "objective_sha256": "0212a0639fcd002ff1aa0c14438fcb3e4fc89a9a38f8e5d8f1a2bc61dd79db0f"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-01/csv-dialect.json",
+      "task": "csv-dialect",
+      "objective_sha256": "bfdc5a726829c6052de65f8dacf5cde03ec20b87ed1b9940d035b527d21c6b0e"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-01/duration-boundary.json",
+      "task": "duration-boundary",
+      "objective_sha256": "a37f94fd2e7bd4c6023a24783e207f6014a887a0682602732dc42f49959082ac"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-01/source-physical-spans.json",
+      "task": "source-physical-spans",
+      "objective_sha256": "d73762b1e9c8941f844a823ecfc246e8ca05c6b74a55b76d1bb1410f0a818445"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-02/command-output-integer-limits.json",
+      "task": "command-output-integer-limits",
+      "objective_sha256": "300024615923c64bd142fdeca583bf900475691f35da1aa58f39b171b210bcd2"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-02/regex-span-consistency.json",
+      "task": "regex-span-consistency",
+      "objective_sha256": "90ce28a9153960531bb406cc8394cc234a8841d8e0f240308a41eb15f0130ad6"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-03/json-duplicate-members.json",
+      "task": "json-duplicate-members",
+      "objective_sha256": "fb8a77c33722617d54874938331e54e992d566184145a4d7a3b62f70c06420a9"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-03/regex-callback.json",
+      "task": "regex-callback",
+      "objective_sha256": "fd14601f2edccc909b72265c3715863c046b24d544e5e8407f8a936645636310"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-03/timestamp-input-contract.json",
+      "task": "timestamp-input-contract",
+      "objective_sha256": "5a767c5931ff7c518937650560622e3ea3bcc238450112ff5ee187588dcbaaf0"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-04/regex-overlap-coordinated.json",
+      "task": "regex-overlap",
+      "objective_sha256": "f766b9da12aa554318a3a6d7ad825c98b0a986a8389ff139146cfcadbf414f0c"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-04/regex-overlap-single.json",
+      "task": "regex-overlap",
+      "objective_sha256": "f766b9da12aa554318a3a6d7ad825c98b0a986a8389ff139146cfcadbf414f0c"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-04/regex-whole-string-coordinated.json",
+      "task": "regex-whole-string",
+      "objective_sha256": "7ba513bbdf3b0dd028a64616cbb6f945a6746bdc0684ca6ab4159e03fd23c6ef"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-04/text-error-policy-coordinated.json",
+      "task": "text-error-policy",
+      "objective_sha256": "deb9557b6acc2bab61e343e183033ebf5e511d0134d60d6bb8dd0bad2eccbfb2"
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-04/text-error-policy-single.json",
+      "task": "text-error-policy",
+      "objective_sha256": "deb9557b6acc2bab61e343e183033ebf5e511d0134d60d6bb8dd0bad2eccbfb2"
+    },
+    {
+      "path": "apps/qwen/evaluation/qualified-10/command-binary-stdin.json",
+      "task": "command-binary-stdin",
+      "objective_sha256": "2d17ceb1cf3f8b44aaf16b2589905da5d75531a90b50b4c888b89119e5851650"
+    },
+    {
+      "path": "apps/qwen/evaluation/qualified-10/command-environment-overrides.json",
+      "task": "command-environment-overrides",
+      "objective_sha256": "36537ccec9fad5b73441626c19f05e53a5aa410bf59f7760c3de1dc543741e32"
+    },
+    {
+      "path": "apps/qwen/evaluation/stdin-11/recovery-task.json",
+      "task": "command-binary-stdin-continuation-11-recovered",
+      "objective_sha256": "2d17ceb1cf3f8b44aaf16b2589905da5d75531a90b50b4c888b89119e5851650"
+    },
+    {
+      "path": "apps/qwen/evaluation/stdin-11/task.json",
+      "task": "command-binary-stdin-continuation-11",
+      "objective_sha256": "2d17ceb1cf3f8b44aaf16b2589905da5d75531a90b50b4c888b89119e5851650"
+    }
+  ],
+  "preflight": {
+    "path": ".local/qwen-coding-worker/engineering-14/preflight.json",
+    "sha256": "c29441621d1c79699e61eb877cfd8369b2b84b1f7ddbe4e7811b4102344bd6f6"
+  },
+  "bounds": {
+    "attempts": 1,
+    "model_requests": 24,
+    "worker_seconds": 1800,
+    "atomic_proposals": 6,
+    "components_per_transaction": 16,
+    "read_check_actions": 32,
+    "requested_output_tokens": 8192,
+    "region_bytes": 4096,
+    "aggregate_old_new_bytes": 8192,
+    "patch_bytes": 16384,
+    "existing_editable_files": [
+      "src/devtools/resources/commands/models/command.py",
+      "src/devtools/resources/commands/models/result.py",
+      "src/devtools/resources/commands/execution.py",
+      "src/devtools/tools/command.py"
+    ],
+    "readable_resources": 30,
+    "context_tokens": 32768,
+    "safety_tokens": 2048
+  },
+  "profile": {
+    "model": "qwen38-local Qwen3.8-27B IQ4_XS",
+    "kv": "q4 K/V",
+    "thinking": false,
+    "changes": "NONE"
+  },
+  "no_solution_disclosure": "Host-only reference/oracle not in admitted corpus. No full-file prepared context or exact target list in initial prompt. Public API/behavior requirements frozen; source must be investigated.",
+  "stop_rule": "One attempt only; no increased/recovery budget after terminal result.",
+  "initial_quality_note": "Unchanged tools/disclosure.py formatter issue is out of admitted scope; no unrelated rewrite."
+}

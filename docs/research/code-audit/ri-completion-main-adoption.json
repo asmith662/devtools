@@ -1,0 +1,830 @@
+{
+  "at": "2026-10-24T14:51:31.641169+00:00",
+  "status": "PROPOSED_NOT_AUTHORIZED_OR_INSTALLED",
+  "source_feature": "fbd3ecfe5d857cfb2b80749edff2d8afddb00cd7",
+  "destination": "origin/main",
+  "destination_commit": "5d979920d0728775ed529457c88f5b68b440c64f",
+  "destination_tree": "23c68c0067564672a27706918e80b23fb61d1539",
+  "proposed_destination_tree": "561c765f554110716e6fbd9ea32ecb17b5a07e09",
+  "tree_computation": "Pure in-memory Git blob/tree hashing over pinned destination plus exactly8 paths. No Git object/index/ref write or source installation.",
+  "files": [
+    {
+      "path": "src/devtools/context/retrieval/source/representation.py",
+      "destination_blob": "0e388cce5325c6f134634302f18891220e59e8e1",
+      "proposed_blob": "2633fcfad233b600f2809f12f17f66313cfb5920",
+      "proposed_sha256": "8bdd4e3f264729cc011e7cbd1c9d52e50b1ddbd1c52443ff05d30942f5b0b40b",
+      "provenance_commit": "a0a6c22403f7df2679aa574226e420521a8accf5",
+      "destination_equals_original_repair_parent": true,
+      "operation": "REPLACE_EXACT_BLOB"
+    },
+    {
+      "path": "tests/context/retrieval/source/test_physical_lines.py",
+      "destination_blob": null,
+      "proposed_blob": "086c104c80574147a7215b33893c8d30e14e255a",
+      "proposed_sha256": "662c4c6e067efabc8826d1ea51125ceddf9e0922e4c7b48ec2c87524b30c598d",
+      "provenance_commit": "a0a6c22403f7df2679aa574226e420521a8accf5",
+      "destination_equals_original_repair_parent": true,
+      "operation": "ADD"
+    },
+    {
+      "path": "src/devtools/context/python/function/materialization.py",
+      "destination_blob": "a6cf91d35ba232808eaef9af1e2bb091b50be391",
+      "proposed_blob": "a6bb755deb8df4fc9f19e1381d332f38734a81f0",
+      "proposed_sha256": "6a5aa41c8f1a81b7d43e3bed86c52b199c1307963226b8ee5fa527da89f67f2b",
+      "provenance_commit": "7541a1a3348f960e536c8c87474764550b669196",
+      "destination_equals_original_repair_parent": true,
+      "operation": "REPLACE_EXACT_BLOB"
+    },
+    {
+      "path": "src/devtools/context/repository/observation.py",
+      "destination_blob": "1a89161ce67bec3d713a4ae40294a73fde42930a",
+      "proposed_blob": "31bd21af30edf53639df663c237f0b48720fd1e6",
+      "proposed_sha256": "e9f3f2a8d5b3a00a1bbfacd68eee4a96e66288155ed16b06e58d1db7eb28ab4b",
+      "provenance_commit": "7541a1a3348f960e536c8c87474764550b669196",
+      "destination_equals_original_repair_parent": true,
+      "operation": "REPLACE_EXACT_BLOB"
+    },
+    {
+      "path": "src/devtools/context/repository/resource.py",
+      "destination_blob": "9b8f1d77d740e8dcf6b2153c26ed1f2bf9c4880e",
+      "proposed_blob": "6485796073d6ed095648b3a54f40c512fbc41545",
+      "proposed_sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555",
+      "provenance_commit": "7541a1a3348f960e536c8c87474764550b669196",
+      "destination_equals_original_repair_parent": true,
+      "operation": "REPLACE_EXACT_BLOB"
+    },
+    {
+      "path": "tests/context/python/function/test_materialization_integrity.py",
+      "destination_blob": null,
+      "proposed_blob": "af70394720c7eeceb0f7ee880f90dc1f1a058ecc",
+      "proposed_sha256": "efe6fb62f84099f2ecf4e434b20072acf3a91162f0d08e353db4fd65156a3249",
+      "provenance_commit": "7541a1a3348f960e536c8c87474764550b669196",
+      "destination_equals_original_repair_parent": true,
+      "operation": "ADD"
+    },
+    {
+      "path": "src/devtools/context/python/function/docs/overview.md",
+      "destination_blob": "fd902b2dcd38c8e1ccf24e201a1618fb4c2294a2",
+      "proposed_blob": "9a1cc2869ea4fa7deb550b6ce0bea50ab977d406",
+      "proposed_sha256": "5b62120009250d979d643a745c451475422cbbbe4514c88df624d433ab1ac885",
+      "provenance_commit": "7541a1a3348f960e536c8c87474764550b669196",
+      "destination_equals_original_repair_parent": true,
+      "operation": "REPLACE_EXACT_BLOB"
+    },
+    {
+      "path": "src/devtools/context/retrieval/docs/overview.md",
+      "destination_blob": "89aac6722f3ca13f8b02d53e9a9d010946fafc9b",
+      "proposed_blob": "3ba28252df20518fb386ff3a58c5bab1d1d7c9d3",
+      "proposed_sha256": "c0cc7769f909469ea4e6603847450b63f26210bebb7f7b73317330db74dcbccb",
+      "provenance_commit": "a0a6c22403f7df2679aa574226e420521a8accf5",
+      "operation": "DESTINATION_SPECIFIC_DOCUMENTATION_HUNKS",
+      "destination_equals_original_repair_parent": false,
+      "reason": "Repair-parent document already contains unrelated Qwen/requested-discovery/scoped-search claims absent on main. Only physical-coordinate prose is ported."
+    }
+  ],
+  "patch_path": "docs/research/code-audit/ri-completion-main-adoption.patch",
+  "patch_sha256": "a11d2f60eed45e761381a1757085ada17f720ca71e65612197a63faa72ae53c9",
+  "static_dependency_closure": {
+    "src/devtools/context/retrieval/source/representation.py": {
+      "blob": "2633fcfad233b600f2809f12f17f66313cfb5920",
+      "sha256": "8bdd4e3f264729cc011e7cbd1c9d52e50b1ddbd1c52443ff05d30942f5b0b40b",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "tests/context/retrieval/source/test_physical_lines.py": {
+      "blob": "086c104c80574147a7215b33893c8d30e14e255a",
+      "sha256": "662c4c6e067efabc8826d1ea51125ceddf9e0922e4c7b48ec2c87524b30c598d",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "src/devtools/context/python/function/materialization.py": {
+      "blob": "a6bb755deb8df4fc9f19e1381d332f38734a81f0",
+      "sha256": "6a5aa41c8f1a81b7d43e3bed86c52b199c1307963226b8ee5fa527da89f67f2b",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "src/devtools/context/repository/observation.py": {
+      "blob": "31bd21af30edf53639df663c237f0b48720fd1e6",
+      "sha256": "e9f3f2a8d5b3a00a1bbfacd68eee4a96e66288155ed16b06e58d1db7eb28ab4b",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "src/devtools/context/repository/resource.py": {
+      "blob": "6485796073d6ed095648b3a54f40c512fbc41545",
+      "sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "tests/context/python/function/test_materialization_integrity.py": {
+      "blob": "af70394720c7eeceb0f7ee880f90dc1f1a058ecc",
+      "sha256": "efe6fb62f84099f2ecf4e434b20072acf3a91162f0d08e353db4fd65156a3249",
+      "origin": "PROPOSED_REPAIR"
+    },
+    "tests/__init__.py": {
+      "blob": "b29e6e0218fb5fc9e24e4653a1290ef159be77a1",
+      "sha256": "5280117b8ca079c5628f5930a5fab81112900b91f72162423f8413eb262afecd",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/__init__.py": {
+      "blob": "c8e24d5e5c039fad310e94fb178db36c146891b9",
+      "sha256": "a7a87440d437fdc09ea52569d680dbd866e4d0b75adf66569a259dad29841226",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/python/__init__.py": {
+      "blob": "114c0cc008ea9ecfe5d3518aece8ef0df95fe2c4",
+      "sha256": "28a42ffcd82c38b844e3062962351adf7b26183079ab85503be2836460eb13ed",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/python/function/__init__.py": {
+      "blob": "f430228714aa57d87592b53140823f5ab7e42dea",
+      "sha256": "0f809917e7d89ed6b69faa50ffd79fdc829800da25209536c4c52a1ea017ff3c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/__init__.py": {
+      "blob": "e768d99024965a5d4570445146c58bbc80c62b09",
+      "sha256": "96e10a51a49468be935bd6f205bde16829a382eb89d90d043b1d0a8d84f94cb5",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/paths/__init__.py": {
+      "blob": "3a9d1884807e3077c9260dacf4c1e1076d5935fd",
+      "sha256": "12755e2de322221edad8f20211960e8c7a7c5910fddac06a0939ad85f20ac50f",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/__init__.py": {
+      "blob": "ac74c62bdd1de3b29e6588ee94a111ba88e7b8d4",
+      "sha256": "bd02ca900683d8d1e7ac056870c62406dfc7086f982dee4d47e4defc6e51bee7",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/__init__.py": {
+      "blob": "59d9414ab27bcdd7c0aea390281e1524138a8db9",
+      "sha256": "0e7eb4bc866318b58d739b4b4bad0878c2d568f4d7c717db5af7de90523dc7af",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/__init__.py": {
+      "blob": "340213ef579df497226405c83f258429a6285c1d",
+      "sha256": "70dfa5952ec4a77d02815409b81d3ac85ed590abb7c90e97baaadc307acac9f0",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/models.py": {
+      "blob": "fd4fa5a8b8e1c7c5778984089ac8464c583082de",
+      "sha256": "b4c9d15adf87828c3e182eab178ca149f14c708ab8c52079037fe44c48bf9ced",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/observation.py": {
+      "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+      "sha256": "fc3f94e256c42ae4d78ae4c0469aff8acd3f22a899c1d4c193b5436dc408209d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/prompt.py": {
+      "blob": "dd09a43ea2196ff0f73e0a4cd66722e0d9a3b684",
+      "sha256": "0f40e3d3a2ec0d59beb4d6bce74673ddbc6363e1e6ea07b6e21969063b3cc7ae",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/protocols.py": {
+      "blob": "ca34b76bf61cb2bc5ee49190e12d3eab3bc18839",
+      "sha256": "534b64f2ceaf8e070913be94a762d26487d56cd603d5552d7538a844c838959a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/response.py": {
+      "blob": "bfa1ab38d69cfb470847ba28bf61636fe9ba2555",
+      "sha256": "e264f3458847be9d90ddaa95e04cc8b1be2b285607e4ae838111a0ad13ea827e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/termination.py": {
+      "blob": "994c5d4c6c2ef3cfab4b01cc74251ed76276fc08",
+      "sha256": "f9839ad8db62adb795adf6854a4c940efba59beaa2959568eec1cbbf9b5685ff",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/tools.py": {
+      "blob": "bf648e54abf8c70594a3699a063c782be5f9feaf",
+      "sha256": "36f40b0a623dc49995237b224a556b4bbbaa4d7969f83261c791d861a96290b7",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/models/interaction/usage.py": {
+      "blob": "27ce591f067a4f19e74516c742b12c4de44e5f94",
+      "sha256": "8f262cc6f832cb464b843a3852953b854ae6044d50f8a27768aa08f8ed2be281",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/identity/__init__.py": {
+      "blob": "c4c89c976268873df264ed0de0fd0a4b418c905f",
+      "sha256": "75c7cfc36aa61b8d136df1c85bd73be8674c04657a0ed772b69e70a892561d55",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/__init__.py": {
+      "blob": "f671fd7737aa85037597683735b1b6b81bebef29",
+      "sha256": "ae257d41b75da4ee3ad33775c3d553cd65eeb3c3765e145a079ad92405bfd9aa",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/__init__.py": {
+      "blob": "61474f28387135b0436a9b71af6d87d4eb3f499a",
+      "sha256": "4dc52fb0f283191f3c0896eddeefc96864a1b6d7c3fc97e4fcced37fa104a1d7",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/errors.py": {
+      "blob": "0232bb8c5fe9c82422e554d4d0e2d19698457500",
+      "sha256": "ba6f629fe1e11c3d7a29d63264427da94f731ddf25228818e9419a59fb83d47e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/models/__init__.py": {
+      "blob": "60bc12670515f32a057e3e2542e87125bd240a7b",
+      "sha256": "eb7fb23245cd9638339a2b18fb2bda0e965b2095be5d0786017f414cc570e1e8",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/parsing.py": {
+      "blob": "76fd75644c0002aa36b5f9af9cdbd55a619fc4e5",
+      "sha256": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/models/duration.py": {
+      "blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+      "sha256": "3bee6c195e58a5761a5d39bf7051bcf49c7242974d6ee7acbe54c071d51d6856",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/models/stopwatch.py": {
+      "blob": "baf02cfa266a6fe9d2654cd3e299da25824faf31",
+      "sha256": "e8f364c14fe56165fe5d7dd7e0635ac9a8afbc1358038dc56cf38171d8ef6e6d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/time/models/timestamp.py": {
+      "blob": "e446a9435210c2ea2c1d8a1ad8afca711f81e14b",
+      "sha256": "a50c15fad1b5c9209978be7916f2028ad140e56995600a255b37b6267e37408a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/identity/models.py": {
+      "blob": "b27a837a88817b6f0abf7bc27dd3fee382be5f6d",
+      "sha256": "5e3ebd3f738619165eab1f46a37ebe4368498f2956825bb9ce123669aec7ae3f",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/paths/errors.py": {
+      "blob": "04a093707d1001cc7ef549fd54849dbc79e7de9d",
+      "sha256": "f533cd478cc9967830ad41fcb06e7f629824d76709e3d666df1159797080bd52",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/paths/models.py": {
+      "blob": "5463528290e24874a8a0dfa4c703bd9c54d20fd4",
+      "sha256": "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/paths/resolution.py": {
+      "blob": "678327a2c520ffb43f49d14722b168956a128171",
+      "sha256": "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/__init__.py": {
+      "blob": "38fc45e1a9b05d1accc1d15a3937cab0a0ac3548",
+      "sha256": "0d37bd9f6d0077cb8a1d021e6be4cb8c774d90190893850733b58f87465d5596",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/__init__.py": {
+      "blob": "88ffbd6bcb9ef70dc12f34396f450dae6e9c2c19",
+      "sha256": "6baf5602bb7d1541672925e9d8196b1931fa2e596811bdb9d9487c22ff0e7470",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/__init__.py": {
+      "blob": "aa48daf1f3a3dc4199e7e6391a274e8517e25515",
+      "sha256": "6da7aa2cfa7c0e217ee4a991c7d56b4b123baff828b530cd8555330692ed28a3",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/__init__.py": {
+      "blob": "d508b622a53c13645760964f3445dd2d8dc1be4c",
+      "sha256": "e9f3a881cb2765fc41bc698b9d44f8fd36d0676251f99894fa286f7c862bf372",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/__init__.py": {
+      "blob": "e2e56905dcb650048a4427e0b68960260c3e5aaf",
+      "sha256": "6edfa26d488fcbfe07f1893338669a23e8425eaf17c294c1b5f764883da63f62",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/composition.py": {
+      "blob": "d2e80036ab2559d1795b2e24479222bcb665a61b",
+      "sha256": "2a4d681acf7b9e7c8d22b08ab1b2e61becd9c04e1dcf786eeaae7b6701375623",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/fusion.py": {
+      "blob": "88af311ba46f0cf0695a372ef1a637ea6661a155",
+      "sha256": "1499722fa0f430ff4b6415b0f82947ef444c40b9171ac9eed1d711e64d2f2726",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/graph/__init__.py": {
+      "blob": "5d190c7f92d2e905315c4a3e7be88d718fb612ca",
+      "sha256": "78540bc12df2fd101ff4c5f59a67401d16f5921e345baba275b57c38807b4c73",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/__init__.py": {
+      "blob": "11c3e5d34e2639f6797ee83764433bde29489da6",
+      "sha256": "232343c8c0a8b7fee929c2d20763b3d663596a22eb2dac422c834a7f4a1897d5",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/source/__init__.py": {
+      "blob": "d8d78d891088f405d13f4e1fb0318eb8eb9c8f24",
+      "sha256": "55c93722cda511bf43dedaf99ccc980106450506a71601d77300b4fdebaa1411",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/structural.py": {
+      "blob": "8fbd5e6dc346aa7b0d8c575f517b2ac6cff9973a",
+      "sha256": "ac37571c520227e3cd22b38e65cecd2326153f780dba2f26850bcac8c38b47b2",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/imports/relations.py": {
+      "blob": "5ef19168b89cfb991ec3dd8dfe299624517c0306",
+      "sha256": "161f0a995ef408fb521b6d8f8039de727dc28192ff979041b9c2839f7b5b6c32",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/modules/membership.py": {
+      "blob": "580e4df59296ccdbf5db1524daff71bf5d13909c",
+      "sha256": "bdbe712a167f874497f412f7f4eb0b47a9e7368a642a89808be5fb333acf2c63",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/analysis.py": {
+      "blob": "41679dcdbc94a4ae262d0051553bc28615a2803a",
+      "sha256": "6a7700f22e0d14ac05599ef631cc709c0ededf95585acd89a3adc5e9813d38c0",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/declarations/model.py": {
+      "blob": "dbeead68339b10ed4e3fa17dab14d537b8ab0c97",
+      "sha256": "d14997878a32dc4596649b1bf357e9ef28f713590e6537882988f7e9e01bd3fa",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/snapshot.py": {
+      "blob": "9a35913360a6c3ba454e4f3e0afba130fe1176f6",
+      "sha256": "bca32b4c24b7258ff9190e2ae3c64ff57b3a9022e8bb71c3e6f56b0a81859d3f",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/identity.py": {
+      "blob": "a5299831ab1f11ff00492cb080d102becb93a5f6",
+      "sha256": "81f9128f127192b402c7d9f05c196d7678071e38f4847a6a865fddc70b3765c3",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/__init__.py": {
+      "blob": "99d0cf272a9925b718d88f7cb23ca0cdd356b136",
+      "sha256": "45ca8ce8c7af8361ffe4fccd628f3be2ddd0cbe20c555cc9fdcb1c2ddff3dbe1",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/declarations/__init__.py": {
+      "blob": "578de7766ced9efa8cb43f5dc2783db1e432376a",
+      "sha256": "a77b07b0788419e0557e7e90c879f16aa8b7839bba6c5f108e869558f0ccac22",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/classes/declarations.py": {
+      "blob": "0aaf236ce2f668c3b4641f3613bd48f2c5c12420",
+      "sha256": "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/declarations.py": {
+      "blob": "546d313f6c8f0120c858c214f5a33235799bbe90",
+      "sha256": "a256b2dfcd13bc2ee127207c29e576fddc618d2a6582f8f9f3d5b4ff38057876",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/imports/declarations.py": {
+      "blob": "5b42cd95bccefcc0bc02b2c73c1392df158afa0c",
+      "sha256": "556d2752adf7bec22cf17fc5cdf886c6bf1933654b5904a27dab92a6cac25178",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/imports/members.py": {
+      "blob": "823a86b68c79380dbf555b2bf318a37ec90e73c7",
+      "sha256": "7f94c07701c354cd60255a41eaaa3e492e64414f87849b39377a08a601c1d8a4",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/imports/resolution.py": {
+      "blob": "0e0542e34626530e96c7ba00da3df44847fad484",
+      "sha256": "cf9765ec33be751b4f21b652827d4cc4d82855e2bea8d9a26427382c167a21fd",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/modules/declarations.py": {
+      "blob": "8a2c82826f3915b78003b4ddbfa0b1f2b7cf072a",
+      "sha256": "615a71788e3ce51dbc1941b11f351c44ad95bff88476ef6fc16d08bf9410ec42",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/modules/__init__.py": {
+      "blob": "4c2d0635d61605a48ed3446c0913f14e21d4a402",
+      "sha256": "57cd2a7b085eb0fafbd60fdec01a9f3592f64a6f352932534e9bccab87d2e038",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/modules/interpretation.py": {
+      "blob": "e3f94a1b5eab6259fb0e091d2e9f5b8e1dc55b24",
+      "sha256": "513c653a2f35578ff2cfeb19cc96badd6de10688c0c5bf2732a04ac2ec84d14c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/modules/lookup.py": {
+      "blob": "487c60e115c5212c2192f703b7c05764ba44a6a3",
+      "sha256": "896eb1b0da70da2a5181771b087073cb839800ae29e5a0cb513252ee61458cfd",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/imports/__init__.py": {
+      "blob": "c26faaa7bfc0fe0ff14455431e2b28e41b7a5926",
+      "sha256": "be5f3ea838ebcb0fe3f27f360d9d0727c09e6c553a722c36da8aa29d87d84442",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/classes/__init__.py": {
+      "blob": "13eadc873d07db310c5cd797871c4758e9625866",
+      "sha256": "5c43bfe764c1f95b8aa612b740d9589cd3525730d430e3ad0157a85e92682926",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/classes/bases.py": {
+      "blob": "474df036a8677c66c25c6c1c8bebf5d7f44acd5f",
+      "sha256": "746924b3e6418a6c8e93866d2142056167ad1deba68137b9dfd431b6caba07c1",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/classes/containment.py": {
+      "blob": "fd50cf6ba037c8fa4f32f0c6bd34c62b69fd1bb5",
+      "sha256": "d229041c979f7917b515bb901911b775e3b37d0c3b31be49d1b9cab63f0dc7f4",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/declarations/analysis.py": {
+      "blob": "649820d9c4e0367830b6b884790bb14005cee807",
+      "sha256": "fe8a8cbcf77cd03db68a7c752191c925f756b231748f5677a781865deadcdc9a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/declarations/bindings.py": {
+      "blob": "0d3623685c7add9145c2c63e13d24693edef64a6",
+      "sha256": "ee88622236e455a2f05087863e9e8eef04e74aa4e918716464937695a0be3f46",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/references/declarations/resolution.py": {
+      "blob": "9ba17f48067a02b129c794dc8396dc1759f64375",
+      "sha256": "bd3eada505f4c730acc87008b6a2de7de0b67f92f2ce087bd4513097fbb11123",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/source/index.py": {
+      "blob": "b8623d571e3ba26cdfb64f014c727ec6600bc375",
+      "sha256": "152906a55ab6ed3e1e22c82af8ab6f110652e056fbc2a635d9648d282f18488f",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/source/search.py": {
+      "blob": "99901656eb387cb62e62ddb80b4fc7fa7e7d683f",
+      "sha256": "21d2f41501acebed2b32e5ef1fc91a618b12c7db2cb37730f5f9581d7b763e39",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/document.py": {
+      "blob": "6d004d5d17f01de74603a150732a2a6359ec541c",
+      "sha256": "5f0c2be4f0c22c685c556b3ab614f0a54247cfdb79cb0ae1116654b834995510",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/corpus.py": {
+      "blob": "c762ecf8b7451a77b061e44e0760fbb14011ab4a",
+      "sha256": "6349146f827ce240d0957fcaf59e025726c69f252e0fcd62559d63f1240b6a69",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/repository/discovery.py": {
+      "blob": "f23851b582338702ac96f9858595b3a1a31f6523",
+      "sha256": "188d5098e657de92fc1b9863da9822109ac9d8cb2f52f55ab5a61ddad172d542",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/analysis.py": {
+      "blob": "2d3ef7afa8dbab09b84aa3825486940373a9b319",
+      "sha256": "513700230fce83db2769df3940e75921b768d109f443f951aeb81a2b85b666d4",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/bm25.py": {
+      "blob": "e623afd624c020e6e1f5b4dba07a5adbd37d15a9",
+      "sha256": "6a546966288ea1503c0e97ea95a079e3e3e550e2ee36dd062015a94f9ee1e9d8",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/evaluation.py": {
+      "blob": "b01d747a1f488de6b851086b4550a2559919f0c2",
+      "sha256": "e3baa644a355e45169874a72eab7a562457596e99b70d728a5c9b676d86c8184",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/filename.py": {
+      "blob": "5ea8865bcb53e946877f723a5bee6eb12a9467df",
+      "sha256": "a28f8720bf88bb77e7e1a324bd021b3a6ec6c183637ff4602ca5df8ae879fe41",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/index.py": {
+      "blob": "d2707d68c536322457623d2f1d27879c48aafc20",
+      "sha256": "53f2ab4d43ee3932061ac5f5624e387138e4b9ce6739e771cfe383119797844c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/statistics.py": {
+      "blob": "01bbf2cbe1b150adbe32d465ec9294c4dc945bb6",
+      "sha256": "eb6486935ed1957602853e216d35e2edfa572029033b2cee5453d48abd4d95a9",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/lexical/scoring.py": {
+      "blob": "7154fcd99f81db4b824a960a080bfa05d7aa24ac",
+      "sha256": "23ea9f7ab2a0066d588167fc7e0ef9d696e063c6e096075858a62bd41699b12e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/graph/pagerank.py": {
+      "blob": "aebe1da73122c9d99b500a23a6fa0064a429da02",
+      "sha256": "ada4ad3d820cf38225c5bb6abfede77e4d16972291bcf8d0350c7cbfae243b39",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/graph/view.py": {
+      "blob": "60e849567f7438c05751a2db6f7debd0bef19889",
+      "sha256": "049659233d92f3d477e1b0c7b40948c090ded340249fcb9a250834ff0c9f2a34",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/mirrored_paths.py": {
+      "blob": "bbf5d1fdb4a08adfbfc68e12bbcc4b950325a589",
+      "sha256": "908416e06738f0a37052acdb69266e02383992b05b0a1d629f1e46da9d69bde9",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/graph/walk.py": {
+      "blob": "846d29b0a743ecd5a780e6deed1edb78028bcdde",
+      "sha256": "8ea55b8ad64fd0d0340be4d1c65bab2b50fd4d4dbdf2d58bdc39eaa64ae53e41",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/repository_map/ranking.py": {
+      "blob": "56dbfffee56923f52bca892b19f343a7c0212b6a",
+      "sha256": "6c3dcb933efcf20904c4f5a2f4145fc448e145dcdbe206f17f6aaa97bcecf93c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/repository_map/__init__.py": {
+      "blob": "9d1a022674c0fc48488a6f2c395bfc3cec852eab",
+      "sha256": "f2eb6b846914a32151c61fab4f2c4dc2096b27d070b5e403e50eb491587b189d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/repository_map/relevance.py": {
+      "blob": "088148a9a5cd4c49e48ab127a9398a9892229969",
+      "sha256": "b21c0a0cc78a0387541705aa3d9c8acf08ddd108f239a68192d2328ed2af961d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/repository_map/importance.py": {
+      "blob": "b181e138b990ee8d79883ab33ffaf0a10764b597",
+      "sha256": "a4038e47e573d695044211461efa9b99f09b524b804de27b8ca1ca8d0729d2f0",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/retrieval/repository_map/view.py": {
+      "blob": "37183ef3fa3f9b2be7151532cdeae4d188a7a01b",
+      "sha256": "c3a6d7b9385431d808c3f45806c4a3a23622690e8d2b0e0df303f8b024ca71d3",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/candidates.py": {
+      "blob": "1dfba1f5ee85d0c391d2a251efeed52730f04ed7",
+      "sha256": "169a05cd73b1acb31d0517a781851a8fc2ace75cab63f504b4bd450f4e588a2c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/containment.py": {
+      "blob": "8c038eb4536e9fcdbc2e6e0586d946b6bf42e1b6",
+      "sha256": "04e53cccbb1d323c7ff73a4884d674ac44be0ea0e156fddb28218796ad4dacd3",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/disclosure.py": {
+      "blob": "fb551cbd7bd60c467ad95f50567aca52e5c57dda",
+      "sha256": "11d389b948d1d813711f04b3c5471c8c02ec69f928e989f20f992620bb806429",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/planned_reference.py": {
+      "blob": "c8000fdc4bd1343a37e15eb9eb115bac14175224",
+      "sha256": "76dc47b67b279de94bac5a260dc173a37cd0ccf1a05adfa82c498ad539756e85",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/qualified_reference.py": {
+      "blob": "07233fb243b4664bbe2d34d3d59cb2ad34a60170",
+      "sha256": "d5f82e6a0f4d1223289cd203499ae9cf47e14d7cb663fb45a81cbabab66f6301",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/rendering.py": {
+      "blob": "d382671879b5d0964cd7e8a1b943b0350d98fd8f",
+      "sha256": "c217f4d23428b754eb53f2e0c54c8c8c9163ed14f714a692dd49d0d5e73b45d7",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/request_assembly.py": {
+      "blob": "67474277fba3810ff41796b99b9fc2b9d2085ef0",
+      "sha256": "71c6383aeed87fd0773c76c487ea1ecfcf72a746d2c128d9be95a94f3325e2fc",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/function/retrieval.py": {
+      "blob": "b5916aae359105b05f0084f82d444931e8479b91",
+      "sha256": "ebaba35f12090ff6e433f8d510f10f19ede997996676c6b4b5992cc695d44b7d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/materialization.py": {
+      "blob": "a81e4b724930e785dedd4c8b3f89664509edd3c4",
+      "sha256": "a6b75289ff3a2e36b5435852ed9952b29d27df6730a48ee6a16c723790636a6e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/plan.py": {
+      "blob": "041b9fdd4bc1638e56f70f15048fac4df83f2007",
+      "sha256": "b33122d1d2b4b6d3f7cf53986a2aacf19e9913ef47423b2ff2a29f637d258260",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/python/source_candidacy.py": {
+      "blob": "be52f0106157c989eba55711f757f8a2ba11b051",
+      "sha256": "da511e0d429ea94a7013120309a666db902cbeeaec45f19190425d913196cc73",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/rendering.py": {
+      "blob": "3689dc201eec57c71c6e83abe9a442a21c7a9988",
+      "sha256": "741a4249353034c070bd9fc87dd2b4fefeefccc61d987d168df39f1bf137fbd5",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/resource.py": {
+      "blob": "857df2754225a7e0b881748c727e949a966c8dfe",
+      "sha256": "5548c1cba1903ac522165abc3be78e55fb8c48a02146ad5ee53e2b4eb2ec163e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/context/planning/source.py": {
+      "blob": "362f7e525110082de0b49cf4ee1c389b9db5be7d",
+      "sha256": "87e6bd943eeabf3fd014673537e83fe55610cd99e339debee18119d33e12c391",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/__init__.py": {
+      "blob": "55514b2cac837a70d27965f689efd05276ca54d7",
+      "sha256": "869fe3b6a92e6c78215dfc6ca42bda522883463d0b4c24b91b5c69e33f317967",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/__init__.py": {
+      "blob": "8ee6100894111b5036d1b65a0400ee3e46643885",
+      "sha256": "6f557f0b5262f18159b2c0e438242072b3ca44bd7bb25b45736a6e482d37899c",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/codecs/__init__.py": {
+      "blob": "f279f0e913d06212207e13470bc32864258b0077",
+      "sha256": "c61d479601c6240021c26788f98947c876991abc6cc132942dbe6448d3b532d8",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/errors.py": {
+      "blob": "792838376e164632763ef61a644129c38e5f489f",
+      "sha256": "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/__init__.py": {
+      "blob": "e85a46af2b48abb38b2336a28d8d000d1ef4767a",
+      "sha256": "c4fe14eed3d25ad7f254ade4c1e7080714d4e767afc267c6c9af6bc20603c317",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/reading.py": {
+      "blob": "72fc6a84aebf49d1e4d62ce8dca173228abc7fb4",
+      "sha256": "d7262de84450424c6846644a4c89b4e2d4cd63b40141f3064b9947075ea93309",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/resolution.py": {
+      "blob": "3c126fb480b389b6993289321baf0ccc95c456cc",
+      "sha256": "6258604c27106310d1addd7db65e56ccc1a03da01a0d393bcd05db2dc924b07a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/writing.py": {
+      "blob": "b450dd75a48f91d2fced96b9b297887421305562",
+      "sha256": "8db347f88084ce2b6113a35d9414c50f24c4d666280b4a44f2df0609d36e8043",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/base.py": {
+      "blob": "4e4f6c5457e90b1658815b6b99b42ee69be68f56",
+      "sha256": "adb8e3f020aff2c4b7208f02396fcf4c116ad9afc7a0a90f1b7368e45a933e09",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/binary.py": {
+      "blob": "e0187327636b757b8b651e1a11d3120ca14076db",
+      "sha256": "6e404da59ae9f84e3c2101abbc69e3ddeb3903cbd89e03fdfc82ee081f0854cf",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/csv.py": {
+      "blob": "e977dae655d615bc572fe23ffe6caf0a21bbb98b",
+      "sha256": "1095ba082e1fe5e93781e945a1d93e2d8e5d926121baeea24db92c032d943951",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/__init__.py": {
+      "blob": "1e7c7a11594c48e7cd61f7d0818af68ec6297c6d",
+      "sha256": "72513b8d1b1ec61668d3755da0dbb1e43a7b75c548e6379f090582b1861394cc",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/markdown/__init__.py": {
+      "blob": "9c7a3d8f0d137cee9537c6dd9c59b89e23ff2dc1",
+      "sha256": "2776581e53ae759b1ce663e6c888761db55c1177ac20bce3e58d511cf8a64b56",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/text.py": {
+      "blob": "c1a23c0ead3b84752789d5a4c93d596bcc8ab37e",
+      "sha256": "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/regex/__init__.py": {
+      "blob": "21ed376a71ad449617bf4b3f775817866368d498",
+      "sha256": "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/regex/models.py": {
+      "blob": "dca0a8fd9a754df077f92d277d5276743690620e",
+      "sha256": "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/regex/search.py": {
+      "blob": "7ca05f0d5d987710fdea5c5c31caeb1860eecc30",
+      "sha256": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/markdown/file.py": {
+      "blob": "64611ba0d53a7b64def3c1b8dc3da1f3cc83ed20",
+      "sha256": "7a84bf6dc46c675528fa41946022ff8f30681248f9a9d30ae3c049d0d32b91aa",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/markdown/heading.py": {
+      "blob": "21e0fd331282515f9e6a2001e8c629cbd5e0c216",
+      "sha256": "ad6336ce85e759de0c3b16b1c2d4dd25f5db7455ff2a7c2254e47b81cc3d419b",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/markdown/section.py": {
+      "blob": "4b5fe56e4a7b9eb86d06a0ffcf630acbec76fa62",
+      "sha256": "5e753e13ae43ac22fa897b37327cc947c3d5e1eeb43c26f1b57187be8a5ee249",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/base.py": {
+      "blob": "a2dcec59abf1e9b1251ff084accad0f0d0d72304",
+      "sha256": "8430b973bfeb32d41950af5fc11c94e60effc446b19703d0c9143e0c85254fa7",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/conversion.py": {
+      "blob": "608ab049736c2c2e140c5a07a22c6ed572e30e74",
+      "sha256": "c982a25f2964fd28f89d69898c310d23f674a7a8a0d9dfaadd0b52fba8d1f1bf",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/list.py": {
+      "blob": "771d64d06ed3b072265d7a20c80ff6d0c6f3c5e5",
+      "sha256": "452f668dc84b2025fb6245e46f8737d066d9b816e81ce5d3c32bd37416199952",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/object.py": {
+      "blob": "7d1baf9f394d5f08837622353cf6e2f359aeb352",
+      "sha256": "094f8bd8d742f795290c4c7ac4a57c43ec5a75b7d1afc6ac6dad758f2d978fe8",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/models/json/scalar.py": {
+      "blob": "8dd866adaf644854a083c3c623584490902b4e49",
+      "sha256": "716d807e938c252d591fe099f429655b753ecb00a9dded461485194bef0f88dd",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/conversion/__init__.py": {
+      "blob": "9383cd9fe9482d8a218bfdf33b62a0e1e53d7691",
+      "sha256": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/conversion/conversion.py": {
+      "blob": "a559a59a9d925db31ef4dac694696b1ab099fe94",
+      "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/core/conversion/errors.py": {
+      "blob": "a4d294a274930b354064e44f1398c6869024cc49",
+      "sha256": "596f2eb831ea41d318c5476c15cb87bdbecbdfc25f044162c966b3854a04ce28",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/codecs/csv.py": {
+      "blob": "b383442f462767003fbcd28dfdf3c08d64cb6ba9",
+      "sha256": "4189d3f300dc76f20ae09b5f61e591f750fe37b8553c40bd2c1132ea5a57bf0e",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/codecs/json.py": {
+      "blob": "673f78a0f7d17f5955afc86c506c364a15fa9c0d",
+      "sha256": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/codecs/markdown.py": {
+      "blob": "b48fc085bdb87e5663e4a5d11285621f177bb710",
+      "sha256": "ca3d4ba529f631b641ddb9ecf73597cc71571531f020d6a9bc95e2e349d41880",
+      "origin": "PINNED_DESTINATION"
+    },
+    "src/devtools/resources/filesystem/codecs/text.py": {
+      "blob": "757825a9c1d26c7d491ce659b94c6ea4472f7372",
+      "sha256": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/retrieval/__init__.py": {
+      "blob": "d7effaff6905546e89178ecb7614d967f701aeed",
+      "sha256": "8e86f354cd89bdfbd4f1f3bebf9a0f328adc845417f17e5f53fba1168833cb93",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/retrieval/source/__init__.py": {
+      "blob": "058ebf48acfcc8fa55b17f97b6d7467f0b73a726",
+      "sha256": "bad8a01e5dbdffe5c12bfd8f44d89785b2c134ad379f40ea7aceddec5c8b535a",
+      "origin": "PINNED_DESTINATION"
+    },
+    "tests/context/retrieval/source/test_search.py": {
+      "blob": "d464088b849482094634ba4c963d8ef05fb8fcee",
+      "sha256": "53c771bc1341d303102e99430e60be69170bbbc996c154c054593fbac4774ed1",
+      "origin": "PINNED_DESTINATION"
+    }
+  },
+  "dependency_scope": "Conservative Python AST imports, including TYPE_CHECKING/local imports and package initializers, resolved against proposed destination. Not execution proof or complete dynamic/configuration dependency closure. Main config/lock/Commands pinned; destination tests remain mandatory.",
+  "preserved_destination_identities": {
+    "src/devtools/resources/commands": "6435493e21865cf8613fd33779a6d8d1feb252af",
+    "tests/resources/commands": "a06f5f0e1496675811f3fee6a1647c6886bcfbf6",
+    "scripts/validate_development.py": "42c8787622eae1d428d289327c7f7c34eba449b1",
+    "pyproject.toml": "71ee84b817e28f484f44cc48cfd88b7291fcaf0b",
+    "uv.lock": "a9fc172db93dfa76053a8a4c787515313e3cd438"
+  },
+  "excluded": [
+    "feature ancestry merge",
+    "apps/qwen changes",
+    "requested discovery",
+    "caller-scoped source search",
+    "SnapshotDelta and exports",
+    "other Model/provider/Commands changes",
+    "all experiment machinery and research/backlog ancestry"
+  ],
+  "workflow": "Existing WorkCycle.plan authenticates a single assignment source plus tests/correction, not this4-source/2-doc slice. Local closeout accepts task.sources but only publishes ordinary features. Do not forge worker acceptance or use a historical grant. Maintainer must authorize the exact destination scope and a compatible independently reviewed multi-source integration procedure before installation/promotion.",
+  "validation_required": [
+    "pinned destination/patch review and fresh exclusive Checkout ownership",
+    "pre-fix main reproductions and genuine3 production dependency correspondence",
+    "focused function/repository/source-search/Planning regressions and main-only Commands composition tests",
+    "changed-file Ruff/format and configured strict mypy",
+    "canonical protected development gate at100% production branch coverage on exact proposed destination tree",
+    "independent exact-tree review and separate destination promotion authority",
+    "expected-ref lease promotion, remote observation and destination acceptance verification"
+  ],
+  "execution": "NOT_RUN; no source checkout, git apply, cherry-pick, reset, rebase, merge or protected ref mutation",
+  "patch_format": "Unified diff with zero context, to avoid whitespace-only context markers in maintained research artifact. Any future approved application requires exact pinned destination blob checks and git apply --unidiff-zero; never apply to a different baseline.",
+  "superseded_patch_draft": {
+    "sha256": "abc38296e9ef2d3f24e0f07c5520f8350bf2c766358d7245f15e23184f0c2cb6",
+    "local_custody": ".local/ri-completion-20261024/main-adoption-context-draft.patch",
+    "meaning": "Same8 target blobs and proposed tree; context rendering only differs."
+  },
+  "patch_blob": "9bf0370f41f72c72ec41b193e6e94814b343f0c7",
+  "patch_byte_domain": "Exact LF Git-artifact bytes at publication; SHA256 agrees with physical bytes here. Later Windows checkout conversion must not be silently accepted as the pinned patch: obtain and verify the containing commit Git blob before any approved application."
+}

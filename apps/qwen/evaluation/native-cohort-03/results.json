@@ -1,0 +1,1743 @@
+{
+  "observed_at": "2026-10-19T22:01:13.837781+00:00",
+  "status": "ONE_FRESH_HELD_OUT_ACCEPTED; NO_PAIRED_DEVELOPMENT_ACCEPTANCE_IMPROVEMENT; REPAIR_RELIABILITY_OPEN",
+  "source_baseline": "d8741a52f9342bd180e414832e8f31b52f4c8c9a",
+  "execution": "existing run_local_task, canonical Checkout owner, direct trusted local-development authority; no production publication authority",
+  "model": "qwen38-local, Qwen3.8-27B-UD-IQ4_XS, unchanged 32768 context/service/weights/decoding; explicit thinking switch only",
+  "runs": [
+    {
+      "task_name": "json-duplicate-members",
+      "task_definition_sha256": "fd53bdc07a594e1b533f640b45841a39c4f24ce62582b3c09e5556a26b9fc55a",
+      "started_at": "2026-10-19T21:19:52.107329+00:00",
+      "finished_at": "2026-10-19T21:21:39.222719+00:00",
+      "accepted": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 69319,
+        "output_tokens": 1440,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 107.11540929996409,
+      "validation_seconds": 1.2915826000389643,
+      "context_actions_requested": 7,
+      "context_actions_attempted": 7,
+      "context_actions_accepted": 7,
+      "context_bytes_disclosed": 27822,
+      "source_text_bytes_disclosed": 14620,
+      "proposals_attempted": 3,
+      "proposals_admitted": 1,
+      "proposal_refusals": 2,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "baseline-off",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/baseline-off/json-duplicate-members",
+      "result_sha256": "4e0265dfb9cd9b3ccfe7280fe773eb0eeaa027f2a7244567393bf4f71853514b",
+      "candidate_sha256": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1360,
+            "output_tokens": 35,
+            "reasoning_tokens": null,
+            "total_tokens": 1395
+          },
+          "model_seconds": 5.132684100011829,
+          "prompt_bytes": 2108,
+          "occupancy": 0.04150390625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "lookup_symbol",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1733,
+            "output_tokens": 45,
+            "reasoning_tokens": null,
+            "total_tokens": 1778
+          },
+          "model_seconds": 2.5143091999925673,
+          "prompt_bytes": 3156,
+          "occupancy": 0.052886962890625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3080,
+            "output_tokens": 124,
+            "reasoning_tokens": null,
+            "total_tokens": 3204
+          },
+          "model_seconds": 6.57412549998844,
+          "prompt_bytes": 5812,
+          "occupancy": 0.093994140625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4645,
+            "output_tokens": 127,
+            "reasoning_tokens": null,
+            "total_tokens": 4772
+          },
+          "model_seconds": 6.932797099987511,
+          "prompt_bytes": 11749,
+          "occupancy": 0.141754150390625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 5,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5947,
+            "output_tokens": 131,
+            "reasoning_tokens": null,
+            "total_tokens": 6078
+          },
+          "model_seconds": 6.90764059999492,
+          "prompt_bytes": 16414,
+          "occupancy": 0.181488037109375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7698,
+            "output_tokens": 134,
+            "reasoning_tokens": null,
+            "total_tokens": 7832
+          },
+          "model_seconds": 7.58354620001046,
+          "prompt_bytes": 22610,
+          "occupancy": 0.23492431640625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 7,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9288,
+            "output_tokens": 41,
+            "reasoning_tokens": null,
+            "total_tokens": 9329
+          },
+          "model_seconds": 3.48767180001596,
+          "prompt_bytes": 28209,
+          "occupancy": 0.283447265625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 8,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11674,
+            "output_tokens": 262,
+            "reasoning_tokens": null,
+            "total_tokens": 11936
+          },
+          "model_seconds": 14.265642800019123,
+          "prompt_bytes": 32613,
+          "occupancy": 0.35626220703125,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 1,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 9,
+          "disposition": "PROPOSAL_REFUSED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 12439,
+            "output_tokens": 264,
+            "reasoning_tokens": null,
+            "total_tokens": 12703
+          },
+          "model_seconds": 28.567561699950602,
+          "prompt_bytes": 35696,
+          "occupancy": 0.379608154296875,
+          "omitted": 2,
+          "checks": {},
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "REFUSED",
+              "error": "OLD_TEXT_NOT_UNIQUE"
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 10,
+          "disposition": "PROPOSAL_REFUSED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11455,
+            "output_tokens": 277,
+            "reasoning_tokens": null,
+            "total_tokens": 11732
+          },
+          "model_seconds": 23.055664299987257,
+          "prompt_bytes": 34636,
+          "occupancy": 0.349578857421875,
+          "omitted": 4,
+          "checks": {},
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "REFUSED",
+              "error": "OLD_TEXT_NOT_UNIQUE"
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+          "source_after": null,
+          "reasoning_characters": 0
+        }
+      ],
+      "error": null,
+      "worker_revision": "6e9eae588609ac09d992a2283ce0f817856c40d5",
+      "validation_command_seconds": 1.6468038000748493,
+      "model_seconds": 105.02164329995867,
+      "independent_review": "REJECTED",
+      "primary_failure": "Undefined helper, then nonexistent old_text proposals; no acceptance"
+    },
+    {
+      "task_name": "regex-callback",
+      "task_definition_sha256": "f3e07986b8cf7539f7790807230cfb20724382e3febb4824fe6d53ad04bae773",
+      "started_at": "2026-10-19T21:15:56.660881+00:00",
+      "finished_at": "2026-10-19T21:18:03.792643+00:00",
+      "accepted": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 59142,
+        "output_tokens": 1780,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 127.13177780003753,
+      "validation_seconds": 1.5851819000090472,
+      "context_actions_requested": 8,
+      "context_actions_attempted": 8,
+      "context_actions_accepted": 6,
+      "context_bytes_disclosed": 19632,
+      "source_text_bytes_disclosed": 6241,
+      "proposals_attempted": 3,
+      "proposals_admitted": 2,
+      "proposal_refusals": 1,
+      "repair_cycles": 1,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "baseline-off",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/baseline-off/regex-callback",
+      "result_sha256": "f6c69d2bc733314136ebc8e02f08423d4897086b440bb41c3715b7af2a0d9875",
+      "candidate_sha256": "25f1b02bdf9703c991268da9f0e7801b11592640a844d2a2790cd415e5a151a1",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1334,
+            "output_tokens": 111,
+            "reasoning_tokens": null,
+            "total_tokens": 1445
+          },
+          "model_seconds": 15.358618999947794,
+          "prompt_bytes": 2004,
+          "occupancy": 0.04071044921875,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "REFUSED",
+              "error": "SOURCE_VERSION_MISMATCH"
+            },
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4454,
+            "output_tokens": 153,
+            "reasoning_tokens": null,
+            "total_tokens": 4607
+          },
+          "model_seconds": 9.615580799989402,
+          "prompt_bytes": 8059,
+          "occupancy": 0.13592529296875,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "lookup_symbol",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5972,
+            "output_tokens": 248,
+            "reasoning_tokens": null,
+            "total_tokens": 6220
+          },
+          "model_seconds": 12.122215299983509,
+          "prompt_bytes": 12043,
+          "occupancy": 0.1822509765625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7960,
+            "output_tokens": 126,
+            "reasoning_tokens": null,
+            "total_tokens": 8086
+          },
+          "model_seconds": 7.267856000049505,
+          "prompt_bytes": 18345,
+          "occupancy": 0.242919921875,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "REFUSED",
+              "error": "SOURCE_RANGE_OUT_OF_BOUNDS"
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 5,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8555,
+            "output_tokens": 126,
+            "reasoning_tokens": null,
+            "total_tokens": 8681
+          },
+          "model_seconds": 6.319827999977861,
+          "prompt_bytes": 19808,
+          "occupancy": 0.261077880859375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 6,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9177,
+            "output_tokens": 190,
+            "reasoning_tokens": null,
+            "total_tokens": 9367
+          },
+          "model_seconds": 23.205563299998175,
+          "prompt_bytes": 23821,
+          "occupancy": 0.280059814453125,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 0,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": "31789813e74c9d54f4879c6ddc3869deb5580fa039dd6dde6627919418beb129",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 7,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10184,
+            "output_tokens": 220,
+            "reasoning_tokens": null,
+            "total_tokens": 10404
+          },
+          "model_seconds": 22.115402900031768,
+          "prompt_bytes": 27621,
+          "occupancy": 0.310791015625,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 0,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "31789813e74c9d54f4879c6ddc3869deb5580fa039dd6dde6627919418beb129",
+          "source_after": "25f1b02bdf9703c991268da9f0e7801b11592640a844d2a2790cd415e5a151a1",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 8,
+          "disposition": "PROPOSAL_REFUSED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11506,
+            "output_tokens": 606,
+            "reasoning_tokens": null,
+            "total_tokens": 12112
+          },
+          "model_seconds": 28.41944940004032,
+          "prompt_bytes": 32563,
+          "occupancy": 0.35113525390625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "REFUSED",
+              "error": "OLD_TEXT_NOT_UNIQUE"
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "25f1b02bdf9703c991268da9f0e7801b11592640a844d2a2790cd415e5a151a1",
+          "source_after": null,
+          "reasoning_characters": 0
+        }
+      ],
+      "error": null,
+      "worker_revision": "6e9eae588609ac09d992a2283ce0f817856c40d5",
+      "validation_command_seconds": 2.094115599989891,
+      "model_seconds": 124.42451470001834,
+      "independent_review": "REJECTED",
+      "primary_failure": "Incomplete import-only edits, then fabricated old_text; current unchanged function observations invalidated by first import edit"
+    },
+    {
+      "task_name": "timestamp-input-contract",
+      "task_definition_sha256": "9187979ffc3ab022b56fff8426db943231ef741536b08b39897fe151b86276e9",
+      "started_at": "2026-10-19T21:43:05.680969+00:00",
+      "finished_at": "2026-10-19T21:43:41.391893+00:00",
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 17231,
+        "output_tokens": 601,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 35.71093820000533,
+      "validation_seconds": 1.4223314999835566,
+      "context_actions_requested": 4,
+      "context_actions_attempted": 4,
+      "context_actions_accepted": 3,
+      "context_bytes_disclosed": 12855,
+      "source_text_bytes_disclosed": 6723,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "held-out",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/held-out/timestamp-input-contract",
+      "result_sha256": "8a62c5cf5646ecf840c55b63b818c7d6c06f376b7f71f65d4d67f65432780290",
+      "candidate_sha256": "d2f1f59bc0288cd8623b6d70d4ba5b9677841e828c3c119dcbc671508448dd27",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1321,
+            "output_tokens": 70,
+            "reasoning_tokens": null,
+            "total_tokens": 1391
+          },
+          "model_seconds": 5.559705600026064,
+          "prompt_bytes": 1931,
+          "occupancy": 0.040313720703125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "REFUSED",
+              "error": "SOURCE_VERSION_MISMATCH"
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1490,
+            "output_tokens": 44,
+            "reasoning_tokens": null,
+            "total_tokens": 1534
+          },
+          "model_seconds": 2.1026584000210278,
+          "prompt_bytes": 2679,
+          "occupancy": 0.04547119140625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3169,
+            "output_tokens": 127,
+            "reasoning_tokens": null,
+            "total_tokens": 3296
+          },
+          "model_seconds": 7.09881310001947,
+          "prompt_bytes": 5798,
+          "occupancy": 0.096710205078125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4640,
+            "output_tokens": 136,
+            "reasoning_tokens": null,
+            "total_tokens": 4776
+          },
+          "model_seconds": 7.220420799974818,
+          "prompt_bytes": 10881,
+          "occupancy": 0.1416015625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 5,
+          "disposition": "ACCEPTED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6611,
+            "output_tokens": 224,
+            "reasoning_tokens": null,
+            "total_tokens": 6835
+          },
+          "model_seconds": 11.620699700026307,
+          "prompt_bytes": 16460,
+          "occupancy": 0.201751708984375,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 0,
+              "behavior_passed": true
+            },
+            "ruff": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 0,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+          "source_after": "d2f1f59bc0288cd8623b6d70d4ba5b9677841e828c3c119dcbc671508448dd27",
+          "reasoning_characters": 0
+        }
+      ],
+      "error": null,
+      "worker_revision": "58f5606b1be58a9850b98b26f937319870b17bfb",
+      "validation_command_seconds": 1.7766164999920875,
+      "model_seconds": 33.602297600067686,
+      "independent_review": "ACCEPT_RECOMMENDED_LOCAL_CANDIDATE",
+      "primary_failure": null
+    },
+    {
+      "task_name": "json-duplicate-members",
+      "task_definition_sha256": "fd53bdc07a594e1b533f640b45841a39c4f24ce62582b3c09e5556a26b9fc55a",
+      "started_at": "2026-10-19T21:34:32.263003+00:00",
+      "finished_at": "2026-10-19T21:36:06.067537+00:00",
+      "accepted": false,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 52247,
+        "output_tokens": 1468,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 93.8045495999977,
+      "validation_seconds": 2.1259261000086553,
+      "context_actions_requested": 7,
+      "context_actions_attempted": 7,
+      "context_actions_accepted": 7,
+      "context_bytes_disclosed": 22506,
+      "source_text_bytes_disclosed": 10047,
+      "proposals_attempted": 2,
+      "proposals_admitted": 2,
+      "proposal_refusals": 0,
+      "repair_cycles": 1,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved-off",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-off/json-duplicate-members",
+      "result_sha256": "7f73c6e5b22b0730736a4c2813f577a60511d21dc3b383902ffe418eaffdfd2a",
+      "candidate_sha256": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1360,
+            "output_tokens": 83,
+            "reasoning_tokens": null,
+            "total_tokens": 1443
+          },
+          "model_seconds": 6.412352600018494,
+          "prompt_bytes": 2108,
+          "occupancy": 0.04150390625,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4371,
+            "output_tokens": 243,
+            "reasoning_tokens": null,
+            "total_tokens": 4614
+          },
+          "model_seconds": 13.014412899967283,
+          "prompt_bytes": 7840,
+          "occupancy": 0.133392333984375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6847,
+            "output_tokens": 144,
+            "reasoning_tokens": null,
+            "total_tokens": 6991
+          },
+          "model_seconds": 8.589421699987724,
+          "prompt_bytes": 16502,
+          "occupancy": 0.208953857421875,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 4,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8194,
+            "output_tokens": 270,
+            "reasoning_tokens": null,
+            "total_tokens": 8464
+          },
+          "model_seconds": 13.021623700042255,
+          "prompt_bytes": 21303,
+          "occupancy": 0.25006103515625,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 1,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+          "source_after": "b91be068880e1adea106d87b45d52480f3b094ef89d00638fd6415e85f964159",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 5,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 12023,
+            "output_tokens": 379,
+            "reasoning_tokens": null,
+            "total_tokens": 12402
+          },
+          "model_seconds": 24.205922900000587,
+          "prompt_bytes": 35850,
+          "occupancy": 0.366912841796875,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 1,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "b91be068880e1adea106d87b45d52480f3b094ef89d00638fd6415e85f964159",
+          "source_after": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9340,
+            "output_tokens": 176,
+            "reasoning_tokens": null,
+            "total_tokens": 9516
+          },
+          "model_seconds": 16.547085399972275,
+          "prompt_bytes": 32020,
+          "occupancy": 0.2850341796875,
+          "omitted": 7,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 7,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10112,
+            "output_tokens": 173,
+            "reasoning_tokens": null,
+            "total_tokens": 10285
+          },
+          "model_seconds": 8.78777260001516,
+          "prompt_bytes": 34219,
+          "occupancy": 0.30859375,
+          "omitted": 7,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+          "source_after": null,
+          "reasoning_characters": 0
+        }
+      ],
+      "error": "ValueError: Context budget cannot retain current source and latest validation",
+      "worker_revision": "f841e5963025ef2f71c4790e706920a4be21a0c9",
+      "validation_command_seconds": 2.6857918999739923,
+      "model_seconds": 90.57859180000378,
+      "independent_review": "REJECTED",
+      "primary_failure": "Context selection budget refusal after valid read; historical terminal label names previous phase. Candidate also has unsupported json.loads parse_object keyword and ineffective dict-based duplicate detection."
+    },
+    {
+      "task_name": "regex-callback",
+      "task_definition_sha256": "f3e07986b8cf7539f7790807230cfb20724382e3febb4824fe6d53ad04bae773",
+      "started_at": "2026-10-19T21:31:36.681771+00:00",
+      "finished_at": "2026-10-19T21:34:02.805354+00:00",
+      "accepted": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 36335,
+        "output_tokens": 2947,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 146.12360350001836,
+      "validation_seconds": 1.1091287999879569,
+      "context_actions_requested": 6,
+      "context_actions_attempted": 6,
+      "context_actions_accepted": 6,
+      "context_bytes_disclosed": 17444,
+      "source_text_bytes_disclosed": 8107,
+      "proposals_attempted": 2,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved-off",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-off/regex-callback",
+      "result_sha256": "663f10287b1a4b5ecab5f786edaa4fbd995c1deda9f791cd84afcb7fd03f5220",
+      "candidate_sha256": "87a4c4c741276c51fff05be3be86a2cd6a96a186248dbbf78a7fa825f0585dd3",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1334,
+            "output_tokens": 65,
+            "reasoning_tokens": null,
+            "total_tokens": 1399
+          },
+          "model_seconds": 5.668438300024718,
+          "prompt_bytes": 2004,
+          "occupancy": 0.04071044921875,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "lookup_symbol",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3347,
+            "output_tokens": 249,
+            "reasoning_tokens": null,
+            "total_tokens": 3596
+          },
+          "model_seconds": 12.325296900002286,
+          "prompt_bytes": 6028,
+          "occupancy": 0.102142333984375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6156,
+            "output_tokens": 140,
+            "reasoning_tokens": null,
+            "total_tokens": 6296
+          },
+          "model_seconds": 8.471264799998607,
+          "prompt_bytes": 15396,
+          "occupancy": 0.1878662109375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7347,
+            "output_tokens": 151,
+            "reasoning_tokens": null,
+            "total_tokens": 7498
+          },
+          "model_seconds": 7.704847600020003,
+          "prompt_bytes": 19279,
+          "occupancy": 0.224212646484375,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 0
+        },
+        {
+          "number": 5,
+          "disposition": "TESTS_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8131,
+            "output_tokens": 233,
+            "reasoning_tokens": null,
+            "total_tokens": 8364
+          },
+          "model_seconds": 10.828655200020876,
+          "prompt_bytes": 21423,
+          "occupancy": 0.248138427734375,
+          "omitted": 0,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "behavior_passed": false
+            },
+            "oracle": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "ruff": {
+              "exit_code": 1,
+              "behavior_passed": false
+            },
+            "tests": {
+              "exit_code": 0,
+              "behavior_passed": false
+            }
+          },
+          "tools": [
+            {
+              "name": "propose_edit",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": "87a4c4c741276c51fff05be3be86a2cd6a96a186248dbbf78a7fa825f0585dd3",
+          "reasoning_characters": 0
+        },
+        {
+          "number": 6,
+          "disposition": "PROPOSAL_ADMISSION_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10020,
+            "output_tokens": 2109,
+            "reasoning_tokens": null,
+            "total_tokens": 12129
+          },
+          "model_seconds": 99.23728369997116,
+          "prompt_bytes": 28625,
+          "occupancy": 0.3057861328125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [],
+          "termination": "tool_call",
+          "source_before": "87a4c4c741276c51fff05be3be86a2cd6a96a186248dbbf78a7fa825f0585dd3",
+          "source_after": null,
+          "reasoning_characters": 0
+        }
+      ],
+      "error": "PatchProposalError: Structured edit text is empty, unchanged or oversized",
+      "worker_revision": "f841e5963025ef2f71c4790e706920a4be21a0c9",
+      "validation_command_seconds": 1.4356875999947079,
+      "model_seconds": 144.23578650003765,
+      "independent_review": "REJECTED",
+      "primary_failure": "Misread callback assertion as missing keyword; new_text 4688 characters exceeds frozen 4096-character edit bound"
+    },
+    {
+      "task_name": "regex-callback",
+      "task_definition_sha256": "f3e07986b8cf7539f7790807230cfb20724382e3febb4824fe6d53ad04bae773",
+      "started_at": "2026-10-19T21:36:17.863504+00:00",
+      "finished_at": "2026-10-19T21:39:58.046242+00:00",
+      "accepted": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 14724,
+        "output_tokens": 4864,
+        "reasoning_tokens": null
+      },
+      "elapsed_seconds": 220.1827675999957,
+      "validation_seconds": 0.5154896000167355,
+      "context_actions_requested": 5,
+      "context_actions_attempted": 5,
+      "context_actions_accepted": 5,
+      "context_bytes_disclosed": 17677,
+      "source_text_bytes_disclosed": 7803,
+      "proposals_attempted": 0,
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved-on",
+      "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-on/regex-callback",
+      "result_sha256": "07cb2b22a3f2c1572d13c80b59f62652fe61102405b8194ad2e06b5932ef7ea2",
+      "candidate_sha256": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1370,
+            "output_tokens": 158,
+            "reasoning_tokens": null,
+            "total_tokens": 1528
+          },
+          "model_seconds": 9.980096600018442,
+          "prompt_bytes": 2004,
+          "occupancy": 0.04180908203125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "search_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 267
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4673,
+            "output_tokens": 610,
+            "reasoning_tokens": null,
+            "total_tokens": 5283
+          },
+          "model_seconds": 28.607214799965732,
+          "prompt_bytes": 8150,
+          "occupancy": 0.142608642578125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            },
+            {
+              "name": "read_source",
+              "status": "RETURNED",
+              "error": null
+            }
+          ],
+          "termination": "tool_call",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 381
+        },
+        {
+          "number": 3,
+          "disposition": "PROPOSAL_ADMISSION_FAILED",
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8681,
+            "output_tokens": 4096,
+            "reasoning_tokens": null,
+            "total_tokens": 12777
+          },
+          "model_seconds": 180.69892000005348,
+          "prompt_bytes": 21421,
+          "occupancy": 0.264923095703125,
+          "omitted": 0,
+          "checks": {},
+          "tools": [],
+          "termination": "output_limit",
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "reasoning_characters": 16552
+        }
+      ],
+      "error": "PatchProposalError: Output limit: no repair dispatch",
+      "worker_revision": "f841e5963025ef2f71c4790e706920a4be21a0c9",
+      "validation_command_seconds": 0.6754221000010148,
+      "model_seconds": 219.28623140003765,
+      "independent_review": "REJECTED",
+      "primary_failure": "output_limit during reasoning before edit; no Tool call on final request"
+    }
+  ],
+  "totals": {
+    "runs": 6,
+    "accepted": 1,
+    "model_calls": 39,
+    "input_tokens": 248998,
+    "output_tokens": 13100,
+    "worker_seconds": 730.0690460000187,
+    "source_text_bytes_disclosed": 53541
+  },
+  "budget": {
+    "runs": 6,
+    "model_calls": 60,
+    "worker_seconds": 5400,
+    "consumed_within_bounds": true,
+    "no_retry": true
+  },
+  "comparisons": {
+    "paired": "Both development tasks: 0/2 accepted unchanged vs 0/2 improved. Same task/source/oracles/quality/limits. Single non-seeded pairs, bundled feedback/source-refresh change, not causal reliability estimates.",
+    "thinking": "Native tools work with enable_thinking=true; final development request consumed 4096 output tokens, no proposal. Off: 6 requests, 146.12s, 2947 output; on: 3 requests, 220.18s, 4864 output. Neither accepted. Keep maintained off default; no general optimality claim.",
+    "held_out": "Frozen after development at 58f5606b1be58a9850b98b26f937319870b17bfb, thinking off. 16 behavioral scenarios, strict mypy, original tests, Ruff/format all pass; no repair needed. No old-worker matched held-out run; no improvement or general proficiency claim.",
+    "codex": "No paid comparator run or cost comparison. Future separately budgeted fresh paired tasks must share objectives, pinned source, oracles and quality; segregate solutions and record acceptance/runtime/interventions. Current coordination is not a comparable Codex task result."
+  },
+  "diagnosis": {
+    "cohort02": "Full explicit ValueError task contract and source were present. First proposal passed 22 behavior scenarios/10 tests; Ruff TRY004 suggested TypeError. Qwen falsely treated that as a more specific requirement and broke behavior; last hybrid class was unused. Task/lint tension and model repair interpretation, not eviction.",
+    "source_refresh": "Tiny admitted edits invalidated observations of unchanged functions in new baselines. Refresh only previously observed, exactly verified portions outside admitted edits, with prior observation/version/span/edit references; never infer unseen source.",
+    "feedback": "Freeze compatible public/exception/quality/type contracts and alternatives before inference. Repair receives current version, exact objective, categories, pass/fail invariants. Captured pytest primary failures replace duplicated tracebacks; retain counts/tail, nonduplicate stderr, truncation and complete archived logs.",
+    "selection_replay": {
+      "before_bytes": 37793,
+      "after_bytes": 33806,
+      "identical_current_regions": 9,
+      "omitted_exchanges_after": 0,
+      "meaning": "deterministic reconstruction of actual improved JSON history; no Qwen rerun or claim of accepted repair"
+    },
+    "remaining_model_limits": "Incomplete multi-region edits, wrong library/API assumptions, diagnostic misinterpretation, oversized whole-file repair. Stronger feedback does not guarantee requirement preservation."
+  },
+  "preflight": {
+    "definitions_and_oracles_verified": true,
+    "all_three_baselines_fail_intended_assertions": true,
+    "existing_baseline_regressions_lint_format_typing_pass": true,
+    "reviewer": "Codex",
+    "review_is_not_satisfiability_proof": true,
+    "no_oracle_disclosure": true
+  },
+  "independent_audit": {
+    "runs": [
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/baseline-off/json-duplicate-members",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 42,
+        "refreshed_regions_in_requests": 0,
+        "admitted_edits": [
+          {
+            "turn": 8,
+            "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+            "source_after": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+            "patch_sha256": "18be23917458ef64f092a9739b06f3951e2a33508f1dd4232cd2f9707af402fb"
+          }
+        ],
+        "candidate_sha256": "45727e8fbae93aae3d960e1e898ee05d336469ea0dbe7e3d3b0732a387fe38b0",
+        "original_restored": true
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/baseline-off/regex-callback",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 46,
+        "refreshed_regions_in_requests": 0,
+        "admitted_edits": [
+          {
+            "turn": 6,
+            "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+            "source_after": "31789813e74c9d54f4879c6ddc3869deb5580fa039dd6dde6627919418beb129",
+            "patch_sha256": "ae38fe58122fabfac05f08fbfa7b266ad14cc3dfe77f06ef60bc175963d90d2e"
+          },
+          {
+            "turn": 7,
+            "source_before": "31789813e74c9d54f4879c6ddc3869deb5580fa039dd6dde6627919418beb129",
+            "source_after": "25f1b02bdf9703c991268da9f0e7801b11592640a844d2a2790cd415e5a151a1",
+            "patch_sha256": "07cbf8af8d038e9c04de3cff6dee239d62d0dfee07225f865b257e5d99934497"
+          }
+        ],
+        "candidate_sha256": "25f1b02bdf9703c991268da9f0e7801b11592640a844d2a2790cd415e5a151a1",
+        "original_restored": true
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/held-out/timestamp-input-contract",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 10,
+        "refreshed_regions_in_requests": 0,
+        "admitted_edits": [
+          {
+            "turn": 5,
+            "source_before": "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0",
+            "source_after": "d2f1f59bc0288cd8623b6d70d4ba5b9677841e828c3c119dcbc671508448dd27",
+            "patch_sha256": "5d7e7bf5045b16105cc60d1b8962089aa7a14955aa03af141abc5cabddffb85a"
+          }
+        ],
+        "candidate_sha256": "d2f1f59bc0288cd8623b6d70d4ba5b9677841e828c3c119dcbc671508448dd27",
+        "original_restored": true
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-off/json-duplicate-members",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 24,
+        "refreshed_regions_in_requests": 13,
+        "admitted_edits": [
+          {
+            "turn": 4,
+            "source_before": "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41",
+            "source_after": "b91be068880e1adea106d87b45d52480f3b094ef89d00638fd6415e85f964159",
+            "patch_sha256": "c7cbeb03f4605526361100f58ebe740f620bb3cb06349d414d378366a74a97a8"
+          },
+          {
+            "turn": 5,
+            "source_before": "b91be068880e1adea106d87b45d52480f3b094ef89d00638fd6415e85f964159",
+            "source_after": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+            "patch_sha256": "308d45e788f38ec3c183a61434c27b1a56367252fd96630868fe4105f0317229"
+          }
+        ],
+        "candidate_sha256": "fae0a91a84fddda5b2b5812f2dc8dbf12ebddb8f9b9efdca47bf2c5c3526c1f6",
+        "original_restored": true
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-off/regex-callback",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 24,
+        "refreshed_regions_in_requests": 1,
+        "admitted_edits": [
+          {
+            "turn": 5,
+            "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+            "source_after": "87a4c4c741276c51fff05be3be86a2cd6a96a186248dbbf78a7fa825f0585dd3",
+            "patch_sha256": "434c4c5db674810a94a5caa9d99ad27771285f54f8432efa6ca2a3c0b24dbc41"
+          }
+        ],
+        "candidate_sha256": "87a4c4c741276c51fff05be3be86a2cd6a96a186248dbbf78a7fa825f0585dd3",
+        "original_restored": true
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-03/improved-on/regex-callback",
+        "task_and_oracle_intact": true,
+        "native_correlations_validated": 7,
+        "refreshed_regions_in_requests": 0,
+        "admitted_edits": [],
+        "candidate_sha256": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+        "original_restored": true
+      }
+    ],
+    "prior_candidates": [
+      {
+        "path": ".local/qwen-coding-worker/native-cohort-02/development/regex-span-consistency/final-source.py",
+        "sha256": "42430b144215d244ff97f189377b3bdd18765dddbfad5c65381a96dfbe69ce91",
+        "preserved": true
+      },
+      {
+        "path": ".local/qwen-coding-worker/native-cohort-01/baseline/duration-boundary/final-source.py",
+        "sha256": "1d029fa2f37a310f53a2396b1eaa6aacd078978682dbdcba71571f313dd9fb0c",
+        "preserved": true
+      }
+    ],
+    "no_model_calls": true,
+    "no_source_writes": true
+  },
+  "verification": {
+    "focused_new_feedback_and_grounding": "17 passed in 8.47s",
+    "earlier_existing_focused": "72 passed",
+    "protected": {
+      "passed": 2042,
+      "skipped": 2,
+      "production_branch_coverage_percent": 100,
+      "seconds": 441.23,
+      "log": ".local/native03-protected.log"
+    },
+    "strict_mypy": "PASS: 479 configured files",
+    "ruff": "PASS: Qwen apps/scripts/tests",
+    "format": "PASS: five affected Python files",
+    "layout": "PASS",
+    "source_restoration": "PASS: six runs, all baseline resources unchanged",
+    "native_correlations": "PASS: all captured request sequences validated",
+    "candidate_reconstruction": "PASS: seven exact admitted edits and final bytes"
+  },
+  "publication": {
+    "candidate_integration": "NONE; accepted timestamp remains immutable local candidate, prior regex/duration candidates preserved",
+    "protected_main_unchanged": "862bda2d3d1d812893f84ab69691fc068ecce268",
+    "scientific_branch_unchanged": "2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42",
+    "no_new_checkout_or_authority": true
+  },
+  "codex_coordination_usage": "UNKNOWN",
+  "cache_and_reasoning_token_subtotals": "UNKNOWN; provider returns null, not zero",
+  "local_energy_and_monetary_cost": "UNKNOWN",
+  "paid_comparator_calls": 0,
+  "next_step": "Evaluate coherent multi-region edit planning and API-signature verification on fresh preflighted tasks or an explicitly separate repair-only candidate. Successful requirement-preserving live repair and fair Codex comparison remain open. Qwen remains priority."
+}

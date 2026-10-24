@@ -1,0 +1,127 @@
+{
+  "name": "regex-split-public",
+  "objective": "Add the missing public split_regex(text, pattern, *, maxsplit=0, flags=0) operation to devtools.core.regex, implemented in the authorized new splitting.py module and exported at the package boundary. Return an immutable tuple preserving Python re.split semantics, including captured groups and unmatched optional captures, Unicode, empty inputs and maxsplit. Preserve existing project compiled-pattern/flags compatibility and regex error behavior; strict annotations must accurately admit None captured-group entries. Existing regex operations must remain unchanged. Investigate actual package conventions and dependencies; do not change tests.",
+  "source": "src/devtools/core/regex/__init__.py",
+  "tests": [
+    "tests/core/regex/test_search.py",
+    "tests/core/regex/test_models.py"
+  ],
+  "baseline_revision": "97f24e4ca7b4c48fa22b122a692303ea5713575a",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/regex/__init__.py",
+      "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59"
+    ],
+    [
+      "tests/core/regex/test_models.py",
+      "e86b7c2ca1aea3c3c4a642cc79047dff59017b0559f0df3d6eed4f8c0ddbebc2"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46"
+    ],
+    [
+      "src/devtools/core/conversion/conversion.py",
+      "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262"
+    ],
+    [
+      "src/devtools/core/conversion/errors.py",
+      "596f2eb831ea41d318c5476c15cb87bdbecbdfc25f044162c966b3854a04ce28"
+    ],
+    [
+      "src/devtools/core/system/detection.py",
+      "3ee83784a4a3941c7353bb9c4033e9d37b3fe99438e707ec4c09dee161cf8f1c"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/regex/__init__.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/regex/test_models.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/conversion/conversion.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/conversion/errors.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/system/detection.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "regex-split-public",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "import importlib,re,inspect\npublic=importlib.import_module('devtools.core.regex')\nassert hasattr(public,'split_regex'),'Missing public split_regex API'\nf=public.split_regex\nowner=importlib.import_module('devtools.core.regex.splitting')\nassert owner.split_regex is f and 'split_regex' in public.__all__\ncases=[('a,b,,c',',',0,0),('xaxbxx','(a)?b',0,0),('AaA','a',0,re.I),('abc','',2,0),('caf\u00e9 \u96ea',r'\\s+',0,0),('',',',0,0),('a,b,c',re.compile(','),1,0),('abc',',',-1,0)]\nfor text,pattern,maximum,flags in cases:\n    result=f(text,pattern,maxsplit=maximum,flags=flags)\n    assert isinstance(result,tuple)\n    assert result==tuple(re.split(pattern,text,maxsplit=maximum,flags=flags))\nassert f('xbx','(a)?b')==('x',None,'x')\ncompiled=re.compile(',',re.I)\nassert f('a,b',compiled)==('a','b')\ntry:f('a,b',compiled,flags=re.I)\nexcept ValueError:pass\nelse:raise AssertionError('Compiled pattern plus flags must preserve compile_regex contract')\ntry:f('a','[')\nexcept re.error:pass\nelse:raise AssertionError('Invalid regex accepted')\nsignature=inspect.signature(f)\nassert signature.parameters['maxsplit'].kind is inspect.Parameter.KEYWORD_ONLY\nassert signature.parameters['flags'].kind is inspect.Parameter.KEYWORD_ONLY\nassert public.search_regex('x','x').value=='x'\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/regex/search.py",
+    "src/devtools/core/regex/models.py",
+    "src/devtools/core/conversion/conversion.py",
+    "src/devtools/core/conversion/errors.py",
+    "src/devtools/core/system/detection.py",
+    "src/devtools/core/system/models.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": [
+    "src/devtools/core/regex/splitting.py"
+  ]
+}

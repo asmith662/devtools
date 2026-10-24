@@ -1,0 +1,1044 @@
+{
+  "outside_original606": [
+    {
+      "path": "experiments/retrieval_judgment_coverage.py",
+      "sha256": "d6a8058e4e47608bc14036a7d97fed691c57734a5ff173bb7435ac486910e54b",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "f957824874fe3cbf747725500c0289138ee9267c",
+      "reviewed_functions": [
+        {
+          "name": "judgment_identity",
+          "line": 16,
+          "end": 25
+        },
+        {
+          "name": "neutral_target_identity",
+          "line": 28,
+          "end": 30
+        },
+        {
+          "name": "validate_neutral_target_coverage",
+          "line": 33,
+          "end": 51
+        },
+        {
+          "name": "validate_frozen_judgment_coverage",
+          "line": 54,
+          "end": 84
+        },
+        {
+          "name": "validated_outcome_mappings",
+          "line": 87,
+          "end": 103
+        }
+      ],
+      "role": "SHARED_FULL_IDENTITY_VALIDATION_HELPER",
+      "consumer": "Increment32/33 population/judgment/analysis",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/codex_dogfood/acquisition/test_u1.py",
+      "sha256": "57820a45cd515ef2f8df041bde8ca7af1e98775be09b62e2c16c00588e3cf35a",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "822fead6f6ce7c2be804c8c91d3750b88b5e4257",
+      "reviewed_functions": [
+        {
+          "name": "native",
+          "line": 50,
+          "end": 80
+        },
+        {
+          "name": "test_frozen_authoring_and_native_contracts",
+          "line": 83,
+          "end": 111
+        },
+        {
+          "name": "test_need_is_purpose_not_query_and_retains_native_scope",
+          "line": 114,
+          "end": 136
+        },
+        {
+          "name": "test_trace_tamper_rejection",
+          "line": 154,
+          "end": 181
+        },
+        {
+          "name": "test_each_query_executes_once_without_fusion",
+          "line": 184,
+          "end": 218
+        },
+        {
+          "name": "test_uncommitted_execution_and_existing_marker_refused",
+          "line": 221,
+          "end": 235
+        },
+        {
+          "name": "test_blind_double_build_no_needs_queries_or_results",
+          "line": 238,
+          "end": 256
+        },
+        {
+          "name": "test_workspace_whitelist_and_packet_overwrite",
+          "line": 259,
+          "end": 274
+        },
+        {
+          "name": "test_retained_stage_a_replay_when_frozen",
+          "line": 277,
+          "end": 285
+        },
+        {
+          "name": "forbidden",
+          "line": 288,
+          "end": 291
+        },
+        {
+          "name": "test_retained_stage_b_and_sterile_packet_without_scoring",
+          "line": 294,
+          "end": 311
+        },
+        {
+          "name": "counted",
+          "line": 209,
+          "end": 211
+        },
+        {
+          "name": "absent",
+          "line": 226,
+          "end": 227
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/__init__.py",
+      "sha256": "d58a18fa46175bc4ac738368872cfa9012ee171ca4413ed869a72dcddc10ccf4",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "bc1d3a2d693c3bef0cedb0ea6c040a1fb33e90fd",
+      "reviewed_functions": [],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/test_analysis.py",
+      "sha256": "c6f03af07d72f73bdffb774b02d82851f73da29a1b6755f93ed8983bc30d23b7",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "fcd4a436d340465fe7c6770077a7cca31a35efd7",
+      "reviewed_functions": [
+        {
+          "name": "test_development_result_keeps_four_population_counts_distinct",
+          "line": 12,
+          "end": 37
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/test_judgments.py",
+      "sha256": "f90c552857cb5d04f07f2de2fc629ec872309b7a60719e4839d215050e5af267",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "39d7c9c753537e4b4f4785a0a13e3d2df35beda5",
+      "reviewed_functions": [
+        {
+          "name": "test_sampled_decisions_cover_only_frozen_neutral_targets",
+          "line": 14,
+          "end": 50
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/test_mechanics.py",
+      "sha256": "bccb5ba5851337f58f289fb9763fd71a0e48f2302bc4b34c88370380128b51dd",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "7a52e38ab284c0e5c855966acc50aecaba90afbe",
+      "reviewed_functions": [
+        {
+          "name": "_sources",
+          "line": 18,
+          "end": 89
+        },
+        {
+          "name": "_edge",
+          "line": 92,
+          "end": 107
+        },
+        {
+          "name": "test_saved_frontier_excludes_seeds_and_direct_union_is_complete",
+          "line": 110,
+          "end": 117
+        },
+        {
+          "name": "test_one_round_novelty_overlap_paths_and_no_multiplicity_score",
+          "line": 120,
+          "end": 176
+        },
+        {
+          "name": "test_snapshot_isolation_and_no_recursive_expansion",
+          "line": 179,
+          "end": 202
+        },
+        {
+          "name": "test_native_relation_projection_all_directions_and_call_tag",
+          "line": 205,
+          "end": 289
+        },
+        {
+          "name": "module",
+          "line": 208,
+          "end": 209
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/test_population.py",
+      "sha256": "8b495f4f3dd5397a794578a24a8528f44e2a53650e966c01f1728b96ad71236f",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "b8c43c5e4385b4a8cc0123bf9864c5b9b152b73f",
+      "reviewed_functions": [
+        {
+          "name": "test_frozen_graph_one_population_and_neutral_boundary",
+          "line": 27,
+          "end": 68
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_32/test_sampling.py",
+      "sha256": "e3db4e18b242bc50b9b2be9e1735c60fef8c8d3a96a937de1835640d5194bf2a",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "d36d6d71685ae922efc5eb873db952e2a47c176c",
+      "reviewed_functions": [
+        {
+          "name": "test_frozen_simple_random_sample_is_exact_and_neutral",
+          "line": 19,
+          "end": 59
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_33/__init__.py",
+      "sha256": "43bb05caeb5159d7197f6fb59dca7a031a0f3517520b464f88853ce6e9ce7fa9",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "53ab0ae143d59632f5b0e9381b6e3e3c40692f65",
+      "reviewed_functions": [],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_33/test_judgments_analysis.py",
+      "sha256": "e9abf40d4e315d6e5de93fd5a6f498b873727c78bba9ad1a7ea59e7988b6d742",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "6158f2076f1681fa94b5c1dcf992539ce1b7d059",
+      "reviewed_functions": [
+        {
+          "name": "decisions",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "test_frozen_sample_has_exact_128_identity_coverage_and_no_prior_overlap",
+          "line": 35,
+          "end": 44
+        },
+        {
+          "name": "test_bad_blinded_decision_sets_are_rejected",
+          "line": 50,
+          "end": 63
+        },
+        {
+          "name": "test_join_requires_frozen_decisions_before_candidate_read",
+          "line": 66,
+          "end": 84
+        },
+        {
+          "name": "test_result_is_deterministic_complete_and_keeps_unsampled_unjudged",
+          "line": 87,
+          "end": 110
+        },
+        {
+          "name": "test_wilson_interval_for_zero_observed_useful",
+          "line": 113,
+          "end": 119
+        },
+        {
+          "name": "spy",
+          "line": 72,
+          "end": 74
+        },
+        {
+          "name": "reject",
+          "line": 76,
+          "end": 78
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_33/test_mechanics.py",
+      "sha256": "1e2e946af518ccc005cdeaf689530bbe5666d25262eb6e12bb760bc8d7a03944",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "a3f179c6101ef0536618200dd05a107d7f5003aa",
+      "reviewed_functions": [
+        {
+          "name": "fixture",
+          "line": 14,
+          "end": 64
+        },
+        {
+          "name": "project",
+          "line": 67,
+          "end": 79
+        },
+        {
+          "name": "edge",
+          "line": 82,
+          "end": 90
+        },
+        {
+          "name": "test_complete_frozen_frontier_is_outcome_free",
+          "line": 93,
+          "end": 97
+        },
+        {
+          "name": "test_one_edge_classifies_prior_surfaces_and_retains_exact_supports",
+          "line": 100,
+          "end": 149
+        },
+        {
+          "name": "test_all_native_relation_directions_are_projected",
+          "line": 165,
+          "end": 171
+        },
+        {
+          "name": "test_call_is_one_reference_edge_with_specialization",
+          "line": 174,
+          "end": 180
+        },
+        {
+          "name": "test_snapshot_isolation_and_deterministic_projection",
+          "line": 183,
+          "end": 188
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/increment_33/test_population_sampling.py",
+      "sha256": "f8164264ba4f4102e0b8b75ac774edb728e24499369f560f0abb87fbc462b8ad",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "d87b1163507c30b64cfd232051dfc57e79e66fce",
+      "reviewed_functions": [
+        {
+          "name": "test_compact_frozen_surface_exactly_reconstructs_all_novel_paths",
+          "line": 33,
+          "end": 61
+        },
+        {
+          "name": "test_prior_reuse_and_neutral_population_reproduce_exactly",
+          "line": 64,
+          "end": 75
+        },
+        {
+          "name": "test_sample_is_reproducible_complete_and_blind",
+          "line": 78,
+          "end": 112
+        },
+        {
+          "name": "test_three_state_exact_coverage_semantics_on_synthetic_target",
+          "line": 115,
+          "end": 130
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/__init__.py",
+      "sha256": "734fd902a5ecda104ad73b68869eceadf16d1f62063759b92678a734f24d91f4",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "9d522afc7da3f4f7e5badc5a92e3f2d60a7416d2",
+      "reviewed_functions": [],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_design.py",
+      "sha256": "fb9fab12cabedd2c5a0709c7ef81078f3b681ee888add1af884072b35b40e29b",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "06de5d8f51510579fe3a994dded4fc7aaa37f08e",
+      "reviewed_functions": [
+        {
+          "name": "test_frozen_design_has_exact_partition_profile_and_controls",
+          "line": 20,
+          "end": 36
+        },
+        {
+          "name": "test_same_query_pair_has_precommitted_profiles_and_different_admission_behavior",
+          "line": 39,
+          "end": 49
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_direct_resolution.py",
+      "sha256": "f92182ffc2691859d4c31d222b81abc5aa86673a917cc23b58a8d18ca00a6a92",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "0700e84c905cdbdf0328ae7b9034fbe7be6c5437",
+      "reviewed_functions": [
+        {
+          "name": "test_direct_control_uses_exact_path_and_is_not_k5_applicable",
+          "line": 13,
+          "end": 30
+        },
+        {
+          "name": "retrieve",
+          "line": 16,
+          "end": 18
+        },
+        {
+          "name": "select",
+          "line": 20,
+          "end": 21
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_evaluation.py",
+      "sha256": "43f04b26094f65dacccf8527eba876a6ed325003b67b57ad89f26e2144809cf0",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "1ac1e1eb7daf37b78cf34370926d27417cb2909c",
+      "reviewed_functions": [
+        {
+          "name": "_case",
+          "line": 31,
+          "end": 79
+        },
+        {
+          "name": "test_ranking_construction_api_cannot_accept_judgments_or_expected_outcomes",
+          "line": 82,
+          "end": 88
+        },
+        {
+          "name": "test_evaluation_keeps_calibration_out_of_held_out_aggregate",
+          "line": 91,
+          "end": 116
+        },
+        {
+          "name": "test_metric_aggregation_preserves_hit_recall_and_mrr",
+          "line": 119,
+          "end": 130
+        },
+        {
+          "name": "test_aggregate_accounts_for_admission_abstention_displacement_loss_and_controls",
+          "line": 133,
+          "end": 162
+        },
+        {
+          "name": "test_same_query_pair_reports_profiles_and_independent_metrics",
+          "line": 165,
+          "end": 189
+        },
+        {
+          "name": "test_direct_controls_are_excluded_from_heterogeneous_metrics",
+          "line": 192,
+          "end": 195
+        },
+        {
+          "name": "test_report_serialization_is_deterministic",
+          "line": 198,
+          "end": 207
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_reservation.py",
+      "sha256": "36b20079eaaa7e791096fb664866380dd652587ac797409ee2538af7f4035322",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "286d0a2ad7e9dad393f2982b6a2005a9844bf2a5",
+      "reviewed_functions": [
+        {
+          "name": "_address",
+          "line": 23,
+          "end": 24
+        },
+        {
+          "name": "_lexical",
+          "line": 27,
+          "end": 28
+        },
+        {
+          "name": "_surface",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "test_local_profile_always_explicitly_abstains",
+          "line": 35,
+          "end": 40
+        },
+        {
+          "name": "test_direction_profiles_never_consume_opposite_direction",
+          "line": 43,
+          "end": 48
+        },
+        {
+          "name": "test_support_threshold_counts_distinct_relations_not_duplicate_encounters",
+          "line": 51,
+          "end": 59
+        },
+        {
+          "name": "test_qualifier_replaces_only_rank_five_and_already_lexical_target_is_ignored",
+          "line": 62,
+          "end": 72
+        },
+        {
+          "name": "test_abstention_and_deterministic_tie_order_are_explicit",
+          "line": 75,
+          "end": 85
+        },
+        {
+          "name": "test_more_than_one_qualifier_still_admits_only_one_and_never_uses_judgments",
+          "line": 88,
+          "end": 97
+        },
+        {
+          "name": "test_canonical_surface_helper_retains_only_first_five_lexical_addresses",
+          "line": 100,
+          "end": 105
+        },
+        {
+          "name": "test_surface_adapter_retains_duplicate_encounters_for_later_unique_support_count",
+          "line": 108,
+          "end": 122
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_validation_design.py",
+      "sha256": "72642bfd7d432016c50a85e5eb66c6651ffe07c413626fbdc4c91f4bc0a8b245",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "c1a87546c9f8c5210b7411bc1ce7457d14d65d20",
+      "reviewed_functions": [
+        {
+          "name": "test_frozen_cases_are_complete_case_disjoint_and_repository_grounded",
+          "line": 28,
+          "end": 55
+        },
+        {
+          "name": "test_frozen_cases_cover_profiles_controls_pair_and_test_semantics",
+          "line": 58,
+          "end": 78
+        },
+        {
+          "name": "test_relationship_controls_are_explicit_true_directional_not_useful_judgments",
+          "line": 81,
+          "end": 95
+        },
+        {
+          "name": "test_direct_resolution_controls_remain_outside_heterogeneous_metrics",
+          "line": 98,
+          "end": 106
+        },
+        {
+          "name": "test_design_loading_cannot_execute_prospective_mechanics",
+          "line": 109,
+          "end": 130
+        },
+        {
+          "name": "test_fingerprint_is_stable_and_captures_the_unchanged_rule_reference",
+          "line": 133,
+          "end": 135
+        },
+        {
+          "name": "prohibited",
+          "line": 114,
+          "end": 115
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_validation_execution.py",
+      "sha256": "2e9b3f9cff6676070aaf5137cb330130a189332eff626043f4941c0fe6cacdda",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "f6e389d006001875eabb93ceff4539cabedfe9a6",
+      "reviewed_functions": [
+        {
+          "name": "_evidence",
+          "line": 37,
+          "end": 38
+        },
+        {
+          "name": "_package",
+          "line": 41,
+          "end": 59
+        },
+        {
+          "name": "_mapping",
+          "line": 62,
+          "end": 69
+        },
+        {
+          "name": "test_repository_address_redaction_is_deterministic_and_handles_path_separators",
+          "line": 72,
+          "end": 86
+        },
+        {
+          "name": "test_blindness_audit_accepts_one_to_one_hidden_neutral_resource",
+          "line": 89,
+          "end": 103
+        },
+        {
+          "name": "test_blindness_audit_rejects_unapproved_address_leak",
+          "line": 106,
+          "end": 116
+        },
+        {
+          "name": "test_blindness_audit_rejects_representative_semantic_leaks",
+          "line": 133,
+          "end": 141
+        },
+        {
+          "name": "test_blindness_audit_rejects_nested_prohibited_metadata",
+          "line": 144,
+          "end": 161
+        },
+        {
+          "name": "test_projection_withholds_validation_answer_key_source",
+          "line": 164,
+          "end": 186
+        },
+        {
+          "name": "test_projection_retains_legitimate_structural_resource_evidence",
+          "line": 189,
+          "end": 206
+        },
+        {
+          "name": "test_artifact_envelopes_are_deterministic_and_tamper_evident",
+          "line": 209,
+          "end": 216
+        },
+        {
+          "name": "test_capture_package_and_mapping_bind_to_one_capture_identity",
+          "line": 219,
+          "end": 243
+        },
+        {
+          "name": "test_repair_reprojects_existing_membership_without_mechanism_execution",
+          "line": 246,
+          "end": 312
+        },
+        {
+          "name": "test_invalid_package_record_retains_identity_without_judgments",
+          "line": 315,
+          "end": 327
+        },
+        {
+          "name": "test_frozen_adjudication_artifact_round_trips_only_blinded_state",
+          "line": 330,
+          "end": 357
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_validation_mechanics.py",
+      "sha256": "68645dcf738a705d3bf5e96e578754fa1ee6a8fa450830438a80a62b71ac7dcb",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "6def855a76459ab71d007436d57f88388a5c1166",
+      "reviewed_functions": [
+        {
+          "name": "_address",
+          "line": 59,
+          "end": 60
+        },
+        {
+          "name": "_lexical",
+          "line": 63,
+          "end": 64
+        },
+        {
+          "name": "_surface",
+          "line": 67,
+          "end": 77
+        },
+        {
+          "name": "_capture",
+          "line": 80,
+          "end": 118
+        },
+        {
+          "name": "_frozen",
+          "line": 121,
+          "end": 152
+        },
+        {
+          "name": "_case",
+          "line": 155,
+          "end": 189
+        },
+        {
+          "name": "_evaluate",
+          "line": 192,
+          "end": 208
+        },
+        {
+          "name": "test_blinded_package_masks_all_mechanism_fields_and_address_by_default",
+          "line": 211,
+          "end": 220
+        },
+        {
+          "name": "test_duplicate_encounters_deduplicate_adjudication_but_retain_relation_evidence",
+          "line": 223,
+          "end": 235
+        },
+        {
+          "name": "test_useful_admission_and_not_useful_control_are_distinguished",
+          "line": 238,
+          "end": 249
+        },
+        {
+          "name": "test_control_nonexposure_and_rejection_are_not_conflated",
+          "line": 252,
+          "end": 277
+        },
+        {
+          "name": "test_rank_five_displacement_and_unjudged_admission_have_correct_states",
+          "line": 280,
+          "end": 292
+        },
+        {
+          "name": "test_initial_useful_resources_are_evaluation_only_and_can_be_absent_from_surface",
+          "line": 295,
+          "end": 307
+        },
+        {
+          "name": "test_local_and_no_qualifier_abstentions_and_inappropriate_abstention",
+          "line": 310,
+          "end": 335
+        },
+        {
+          "name": "test_freeze_rejects_incompatible_or_mutated_judgments",
+          "line": 338,
+          "end": 397
+        },
+        {
+          "name": "test_complete_adjudication_set_freezes_exact_blinded_case_order",
+          "line": 400,
+          "end": 435
+        },
+        {
+          "name": "test_complete_blinded_freeze_unblind_control_annotation_and_evaluation_transition",
+          "line": 449,
+          "end": 496
+        },
+        {
+          "name": "test_same_query_different_purpose_and_oracle_stay_outside_practical_rule",
+          "line": 499,
+          "end": 510
+        },
+        {
+          "name": "test_direct_resolution_is_excluded_and_design_loading_uses_no_real_mechanics",
+          "line": 513,
+          "end": 529
+        },
+        {
+          "name": "prohibited",
+          "line": 518,
+          "end": 519
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_validation_reporting.py",
+      "sha256": "6250dc1108c447b84a01a8df2c04ac97df49d710180631670c91d1c7e8b8a2ae",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "feaec3a1d1c43a9da76f7f7f63df3d4492701ae9",
+      "reviewed_functions": [
+        {
+          "name": "test_report_reconstructs_frozen_metrics_and_disposition",
+          "line": 19,
+          "end": 38
+        },
+        {
+          "name": "test_conflict_review_is_separate_and_report_validation_is_tamper_evident",
+          "line": 41,
+          "end": 51
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_import/__init__.py",
+      "sha256": "215d32a097c807f5fbc4d4c7493808d4497d30425a3f0a34f5bd15c52d9d7ff8",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "cdbc7eb0ff8db99b0e24ce6a8e06f5304b3ea790",
+      "reviewed_functions": [],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_import/test_cases.py",
+      "sha256": "9896a1b9190012b21a657fd87fa1a21f6543d8227a33ef5bdf380aa030735af0",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "8d49ed8a7e1b24f760d99dbfb6d6b9363958d419",
+      "reviewed_functions": [
+        {
+          "name": "test_needs_are_complete_explicit_and_preserve_paired_query_distinction",
+          "line": 19,
+          "end": 44
+        },
+        {
+          "name": "test_judged_addresses_are_in_the_selected_benchmark_corpus",
+          "line": 47,
+          "end": 57
+        },
+        {
+          "name": "test_loading_needs_performs_no_retrieval_expansion_or_oracle",
+          "line": 60,
+          "end": 74
+        },
+        {
+          "name": "fail",
+          "line": 63,
+          "end": 64
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/purpose_relative_import/test_comparison.py",
+      "sha256": "4de413e0fc5e020b8b397286a5bd1ea3f56f39afb68cf8f99241b408455d3ca9",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "5a3f26215ab37a370b64356e8aba9c8d792aa72e",
+      "reviewed_functions": [
+        {
+          "name": "_address",
+          "line": 26,
+          "end": 27
+        },
+        {
+          "name": "_need",
+          "line": 30,
+          "end": 40
+        },
+        {
+          "name": "_relation",
+          "line": 43,
+          "end": 50
+        },
+        {
+          "name": "test_multiple_typed_surfaces_group_without_erasing_direction_or_support",
+          "line": 53,
+          "end": 65
+        },
+        {
+          "name": "test_oracle_uses_frozen_judgments_only_after_universe_and_keeps_unjudged_distinct",
+          "line": 68,
+          "end": 81
+        },
+        {
+          "name": "test_blind_insertion_is_fixed_and_can_displace_lexical_resources",
+          "line": 84,
+          "end": 88
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/test_purpose_relative_ranking.py",
+      "sha256": "31b9a7c72be241b109703910ccee0268b72eca0a51603431a2e8b6339722b4ac",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "b454437cb043c8e9f794d2c04bc080ca70d13211",
+      "reviewed_functions": [
+        {
+          "name": "_candidate",
+          "line": 20,
+          "end": 21
+        },
+        {
+          "name": "test_feature_construction_accepts_no_judgments_or_control_status",
+          "line": 24,
+          "end": 28
+        },
+        {
+          "name": "test_unjudged_is_not_negative_and_purpose_varies_from_same_query",
+          "line": 31,
+          "end": 36
+        },
+        {
+          "name": "test_directional_evidence_is_separate_and_ties_are_deterministic",
+          "line": 39,
+          "end": 44
+        },
+        {
+          "name": "test_top_k_and_identity_do_not_create_relevance_feature",
+          "line": 47,
+          "end": 52
+        },
+        {
+          "name": "test_metrics_exclude_unjudged_from_definitive_precision_and_pairwise",
+          "line": 55,
+          "end": 60
+        },
+        {
+          "name": "test_design_fingerprint_is_deterministic",
+          "line": 63,
+          "end": 64
+        },
+        {
+          "name": "test_grouped_split_rejects_same_case_leakage",
+          "line": 67,
+          "end": 70
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Associated frozen experiment adapter; no maintained agent adoption established",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    },
+    {
+      "path": "tests/experiments/test_retrieval_judgment_coverage.py",
+      "sha256": "f8d4425225d57277563b8c862eab381fa2343d47584a958240484d5b89f26474",
+      "depth": "FULL_BODY_REVIEWED",
+      "blob": "d34f94a8dfa97f9214f15cb09738ab115bb4558a",
+      "reviewed_functions": [
+        {
+          "name": "_record",
+          "line": 21,
+          "end": 33
+        },
+        {
+          "name": "_validate",
+          "line": 36,
+          "end": 40
+        },
+        {
+          "name": "test_exact_valid_coverage_returns_three_state_outcomes",
+          "line": 43,
+          "end": 54
+        },
+        {
+          "name": "test_each_identity_component_must_match",
+          "line": 73,
+          "end": 76
+        },
+        {
+          "name": "test_duplicate_neutral_targets_are_rejected",
+          "line": 79,
+          "end": 81
+        },
+        {
+          "name": "test_neutral_targets_must_match_expected_unresolved_set",
+          "line": 84,
+          "end": 92
+        },
+        {
+          "name": "test_duplicate_frozen_decisions_are_rejected",
+          "line": 95,
+          "end": 97
+        },
+        {
+          "name": "test_missing_and_extra_decisions_are_rejected",
+          "line": 100,
+          "end": 105
+        },
+        {
+          "name": "test_invalid_state_and_empty_rationale_are_rejected",
+          "line": 108,
+          "end": 112
+        },
+        {
+          "name": "test_reuse_new_overlap_and_duplicate_reuse_are_rejected",
+          "line": 115,
+          "end": 123
+        },
+        {
+          "name": "test_unjudged_is_a_frozen_outcome_not_missing_coverage",
+          "line": 126,
+          "end": 133
+        }
+      ],
+      "role": "INDEPENDENT_TEST_AND_FIXTURE",
+      "consumer": "Increment32/33 population/judgment/analysis",
+      "limits": "Full body/inline fixtures inspected, dependencies independently scoped. No retained scientific result rerun or judgment-quality certification."
+    }
+  ],
+  "repair_files": [
+    {
+      "path": "experiments/purpose_relative_admission/verification_v1.py",
+      "sha256": "13be0d5025e68b8811a7cdd81213a57c938db27de9bb814444d9c59fd36e0ee5"
+    },
+    {
+      "path": "experiments/purpose_relative_admission/VERIFICATION.md",
+      "sha256": "b218a622c8febd315718a94c33944d6f93c7b1d6e652cfbce51c56515eead445"
+    },
+    {
+      "path": "tests/experiments/purpose_relative_admission/test_verification_v1.py",
+      "sha256": "bbca98c9d729aca697fdd1ae892a17f4a5949d8ae3a94eafb7d3a4edb7cb91e7"
+    }
+  ],
+  "partial_dependency_cursors": [
+    {
+      "path": "tests/context/retrieval/test_structural.py",
+      "lines": "1-165; complete _facts, not entire module"
+    },
+    {
+      "path": "tests/context/retrieval/test_composition.py",
+      "lines": "1-105; complete _lexical, not entire module"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "lines": "671-745; dispatch, not new full-module review"
+    }
+  ]
+}

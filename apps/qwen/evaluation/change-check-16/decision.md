@@ -1,0 +1,10 @@
+# Shared check_changes implementation decision
+
+1. Missing: one coherent current-candidate change/check report, not another check executor.
+2. Ownership: Context/filesystem and existing app _hash attest observed resources; Checkout serializes mutation; CodingCommands owns fixed task-scoped Git/check composition through ToolRunner; run_check selects existing managed commands; WorkCycle owns integration.
+3. Reuse: CodingCommands native disclosure/dispatch, run_check/CHECKS, _hash, _timed_command over CommandExecutor, _save and established JSON reports, canonical paths and host CodingTask scope. No framework import of apps.
+4. Extend current application Tool owner with check_changes({}) and is_current(report); no parallel framework Tool/validator. This same provider-neutral ToolRunner contract is available to either supervising agent. The running baseline model cannot call a newly implemented Tool until a subsequent interpreter loads it; the frozen oracle will exercise the implemented native dispatch and shared ToolRunner boundary in new processes.
+5. Return changed paths, exact source/validation/Git identities, independent five-check statuses, bounded diagnostics, full evidence reference, overall status and state-bound review readiness. Changed read-only scoped resources block. Unrelated preexisting files outside the bound scope are not checked or claimed clean. Missing tests, invalid plans, source/plan drift and interruptions never become passes. No success cache; explicit freshness recheck.
+6. WorkCycle retains checkout/install/review/protected validation/commit/push/promotion/backlog ownership. A passing check report is evidence, not authority or complete proof of correctness.
+
+Preflight qualifies actual installed runtimes, authored (not copied) tiny Git fixtures, genuine pytest baseline failure/positive, all fixed positive checks, Ruff and mypy negative diagnostics and hash/Git/runner drift. Protocol edge acceptance is frozen for post-implementation execution; preflight is not proof of arbitrary program satisfiability. Windows short temporary paths were canonicalized before inference. No oracle changes after freeze.

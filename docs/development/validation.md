@@ -1,5 +1,10 @@
 # Development validation
 
+> WorkCycle/delegation/integration fixtures now use tiny authored repositories
+> and ordinary branches in one checkout. They create no linked worktrees or
+> Devtools source-tree copies. The normal protected profile applies unchanged.
+
+
 ## Protected development test profile
 
 Run the ordinary repository test suite with:

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import re
+from collections import Counter
 from dataclasses import replace
 from typing import cast
 
@@ -84,6 +86,11 @@ def analyze_settings(data: object, derivation: str) -> PythonConfigurationSettin
             absent.append(key)
         else:
             declarations.extend(_entry_declarations(derivation, key, value))
+    groups = _lookup(data, ("dependency-groups",))
+    if groups is _MISSING:
+        absent.append(("dependency-groups",))
+    else:
+        declarations.extend(_dependency_groups(derivation, groups))
     for ordinal, declaration in enumerate(declarations):
         if (
             declaration.key[0] == "project"
@@ -111,6 +118,51 @@ def _lookup(data: object, key: tuple[str, ...]) -> object:
             return _MISSING
         data = table[part]
     return data
+
+
+def _dependency_groups(
+    derivation: str,
+    value: object,
+) -> tuple[PythonConfigurationSetting, ...]:
+    """Retain whole static groups, without parsing or resolving requirements.
+
+    PyPA name grammar/normalization qualifies names, never rewrites their keys.
+    Includes and mixed arrays are outside this slice, not partially extracted.
+    """
+    key = ("dependency-groups",)
+    if not isinstance(value, dict):
+        return (
+            PythonConfigurationSetting(derivation, key, None, "expected-group-table"),
+        )
+    table = cast("dict[str, object]", value)
+    if not table:
+        return (PythonConfigurationSetting(derivation, key, (), None),)
+    valid_names = {
+        name: re.sub(r"[-_.]+", "-", name).lower()
+        for name in table
+        if re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?", name)
+    }
+    counts = Counter(valid_names.values())
+    declarations = []
+    for name, items in sorted(table.items()):
+        reason = None
+        if name not in valid_names:
+            reason = "invalid-group-name"
+        elif counts[valid_names[name]] > 1:
+            reason = "normalized-group-name-collision"
+        elif not isinstance(items, list) or not all(
+            isinstance(item, str) for item in items
+        ):
+            reason = "unsupported-group-value-form"
+        declarations.append(
+            PythonConfigurationSetting(
+                derivation,
+                (*key, name),
+                tuple(cast("list[str]", items)) if reason is None else None,
+                reason,
+            ),
+        )
+    return tuple(declarations)
 
 
 def _setting(

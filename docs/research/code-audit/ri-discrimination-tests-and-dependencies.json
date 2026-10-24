@@ -1,0 +1,1297 @@
+{
+  "current_tests": [
+    {
+      "path": "tests/context/localization/association/test_hypothesis.py",
+      "blob": "2217625aeaf8eb36d319ce2038ca3492b45d06e6",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "sha256": "1ceb2111910b7960f43d4dc63d787a8b165e70364618501144a4e19444e1f9e2",
+      "functions": [
+        {
+          "name": "_frame",
+          "line": 55,
+          "end": 80
+        },
+        {
+          "name": "_member",
+          "line": 83,
+          "end": 107
+        },
+        {
+          "name": "_hypothesis",
+          "line": 110,
+          "end": 121
+        },
+        {
+          "name": "_view",
+          "line": 124,
+          "end": 135
+        },
+        {
+          "name": "test_basic_native_support_and_unresolved_boundary",
+          "line": 138,
+          "end": 170
+        },
+        {
+          "name": "test_complementarity_competition_and_deterministic_order",
+          "line": 173,
+          "end": 184
+        },
+        {
+          "name": "test_cross_obligation_target_and_obligation_specific_support",
+          "line": 187,
+          "end": 194
+        },
+        {
+          "name": "test_role_and_routing_support_preserve_native_values_without_resolution",
+          "line": 197,
+          "end": 207
+        },
+        {
+          "name": "test_reject_foreign_or_stale_inputs",
+          "line": 222,
+          "end": 280
+        },
+        {
+          "name": "test_duplicate_and_empty_semantics",
+          "line": 283,
+          "end": 295
+        },
+        {
+          "name": "test_identity_view_and_support_structure_errors",
+          "line": 298,
+          "end": 314
+        },
+        {
+          "name": "test_optional_native_inputs_and_global_lane",
+          "line": 317,
+          "end": 354
+        },
+        {
+          "name": "test_support_membership_guards",
+          "line": 374,
+          "end": 433
+        }
+      ],
+      "lines": 433,
+      "scope": "Real BM25 over hand-constructed nominal documents/snapshot; roles/routing exact native-object attachment, complementary/competing members, duplicate/foreign/stale/frame guards. No semantic resolution or complete observed-source fixture."
+    },
+    {
+      "path": "tests/context/localization/generation/test_branching.py",
+      "blob": "31645064038f67e2f0c92ad235c7567ec9414aa1",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "sha256": "666317d5d9a8b7a4cc4ff25cd399b767a645b660515bafd3d33f4254235ec2c9",
+      "functions": [
+        {
+          "name": "_run",
+          "line": 78,
+          "end": 142
+        },
+        {
+          "name": "test_zero_one_many",
+          "line": 149,
+          "end": 177
+        },
+        {
+          "name": "test_canonical_identity_and_order",
+          "line": 180,
+          "end": 195
+        },
+        {
+          "name": "test_result_and_work_bounds",
+          "line": 198,
+          "end": 223
+        },
+        {
+          "name": "test_duplicate_targets_and_failed_siblings",
+          "line": 226,
+          "end": 246
+        },
+        {
+          "name": "test_invalid_support_retained_with_valid_sibling",
+          "line": 249,
+          "end": 262
+        },
+        {
+          "name": "test_fixed_failure_blocks_every_child",
+          "line": 265,
+          "end": 282
+        },
+        {
+          "name": "test_family_contract_and_view_rejections",
+          "line": 285,
+          "end": 316
+        },
+        {
+          "name": "test_collision_validation_and_literal_namespace",
+          "line": 319,
+          "end": 351
+        },
+        {
+          "name": "test_existing_fixed_attempt_children",
+          "line": 354,
+          "end": 369
+        },
+        {
+          "name": "test_branch_source_failure_keeps_family",
+          "line": 376,
+          "end": 395
+        },
+        {
+          "name": "test_fixed_admission_failure",
+          "line": 399,
+          "end": 431
+        },
+        {
+          "name": "test_fixed_duplicates_block_family",
+          "line": 434,
+          "end": 443
+        },
+        {
+          "name": "test_complete_target_group_retains_all_support",
+          "line": 446,
+          "end": 466
+        },
+        {
+          "name": "test_two_families_and_cross_obligation_children",
+          "line": 469,
+          "end": 522
+        },
+        {
+          "name": "test_generated_identity_frame_validation",
+          "line": 525,
+          "end": 540
+        },
+        {
+          "name": "test_fixed_incomplete_projection_abstains",
+          "line": 543,
+          "end": 561
+        },
+        {
+          "name": "test_canonical_key_collisions_rejected",
+          "line": 564,
+          "end": 595
+        },
+        {
+          "name": "test_branch_validation_failures_are_target_specific",
+          "line": 599,
+          "end": 622
+        },
+        {
+          "name": "test_branch_cardinality_independent_of_supplemental_evidence",
+          "line": 625,
+          "end": 683
+        },
+        {
+          "name": "project",
+          "line": 117,
+          "end": 133
+        }
+      ],
+      "lines": 683,
+      "scope": "_run substitutes _project; exhaustive family cardinality/bounds/duplicate/fixed-failure/valid-sibling/collision accounting, not native relationship algorithm coverage. Supplemental lexical/role/escape does not alter cardinality. Other fixed paths use actual grounding."
+    },
+    {
+      "path": "tests/context/localization/generation/test_generation.py",
+      "blob": "63abcd4f10f7190464546cead6b4e3971a6dfd88",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "sha256": "998dd11236febd4866e9c7c3aec12ced252b3541690a1c5f279c9a5d54dd2748",
+      "functions": [
+        {
+          "name": "_frame",
+          "line": 89,
+          "end": 108
+        },
+        {
+          "name": "_universe",
+          "line": 111,
+          "end": 124
+        },
+        {
+          "name": "_ground",
+          "line": 127,
+          "end": 147
+        },
+        {
+          "name": "_member",
+          "line": 150,
+          "end": 161
+        },
+        {
+          "name": "_recipe",
+          "line": 164,
+          "end": 174
+        },
+        {
+          "name": "test_owner_projection_native_referents",
+          "line": 177,
+          "end": 225
+        },
+        {
+          "name": "test_mirror_projection_and_no_target_are_bounded",
+          "line": 228,
+          "end": 274
+        },
+        {
+          "name": "test_caller_shape_complementarity_competition_and_cross_obligation",
+          "line": 277,
+          "end": 314
+        },
+        {
+          "name": "test_unresolved_ambiguous_and_unsupported_grounding_never_guess",
+          "line": 317,
+          "end": 334
+        },
+        {
+          "name": "test_native_evidence_is_supplemental_including_escape",
+          "line": 337,
+          "end": 428
+        },
+        {
+          "name": "test_caller_contract_and_view_rejections",
+          "line": 431,
+          "end": 495
+        },
+        {
+          "name": "test_ambiguous_source_and_multi_target_abstain",
+          "line": 498,
+          "end": 580
+        },
+        {
+          "name": "test_structural_support_rejects_forgery_and_foreign_frames",
+          "line": 583,
+          "end": 651
+        },
+        {
+          "name": "test_foreign_native_supplemental_views_are_rejected",
+          "line": 654,
+          "end": 694
+        },
+        {
+          "name": "should_not_derive",
+          "line": 531,
+          "end": 533
+        }
+      ],
+      "lines": 694,
+      "scope": "Nominal same-ID snapshot replaces population; actual retained-text parser/grounding/owner/mirror; ambiguity/missing/unsupported/foreign/support guards. Injected mirror alternatives test abstention not native correspondence truth."
+    },
+    {
+      "path": "tests/context/localization/generation/test_imports.py",
+      "blob": "2bbed8e437d6bbee4a0911c9f787c36f28546e03",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "sha256": "a143dbd933fe7768b46aeb3187487a5b97b7f3eb0124f6cf38e68127fcf86735",
+      "functions": [
+        {
+          "name": "_request",
+          "line": 78,
+          "end": 101
+        },
+        {
+          "name": "_run",
+          "line": 104,
+          "end": 140
+        },
+        {
+          "name": "_fixture",
+          "line": 143,
+          "end": 154
+        },
+        {
+          "name": "_support",
+          "line": 157,
+          "end": 160
+        },
+        {
+          "name": "test_supported_module_portions",
+          "line": 174,
+          "end": 196
+        },
+        {
+          "name": "test_grouping_provenance_and_no_facade_traversal",
+          "line": 199,
+          "end": 246
+        },
+        {
+          "name": "test_nonpositive_or_excluded_syntax",
+          "line": 261,
+          "end": 266
+        },
+        {
+          "name": "test_ambiguous_import_has_no_target",
+          "line": 269,
+          "end": 280
+        },
+        {
+          "name": "test_exact_seed_kinds",
+          "line": 284,
+          "end": 308
+        },
+        {
+          "name": "test_missing_native_source_analysis",
+          "line": 311,
+          "end": 316
+        },
+        {
+          "name": "test_ambiguous_method_owner",
+          "line": 319,
+          "end": 344
+        },
+        {
+          "name": "test_complete_bound_and_fixed_branch_semantics",
+          "line": 348,
+          "end": 377
+        },
+        {
+          "name": "test_work_preflight_does_not_replay",
+          "line": 380,
+          "end": 395
+        },
+        {
+          "name": "test_foreign_and_forged_native_inputs",
+          "line": 412,
+          "end": 485
+        },
+        {
+          "name": "test_forged_support",
+          "line": 489,
+          "end": 518
+        },
+        {
+          "name": "test_empty_duplicate_and_colliding_support",
+          "line": 521,
+          "end": 548
+        },
+        {
+          "name": "test_frame_checks_before_any_recipe_replay",
+          "line": 552,
+          "end": 577
+        },
+        {
+          "name": "test_plan_requires_native_inputs_and_branching",
+          "line": 580,
+          "end": 590
+        },
+        {
+          "name": "test_candidates_leave_readiness_and_all_nonclaims_open",
+          "line": 593,
+          "end": 638
+        },
+        {
+          "name": "forbidden",
+          "line": 387,
+          "end": 389
+        }
+      ],
+      "lines": 638,
+      "scope": "Real temp filesystem observation, imports/resolution/module-universe and branching; direct module portion incl unknown member, no facade traversal/second hop, ambiguous/nonpositive/excluded grammar, forged source/support replay, preflight work and exact result limits; readiness unchanged."
+    },
+    {
+      "path": "tests/context/localization/generation/test_references.py",
+      "blob": "859cb46778ca53290b61b637ce6e0ce75168ca93",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "sha256": "53dba1321010c017cd968e53a634340fd0fd2698bf8c08f1f36017334a557383",
+      "functions": [
+        {
+          "name": "_request",
+          "line": 73,
+          "end": 92
+        },
+        {
+          "name": "_run",
+          "line": 95,
+          "end": 138
+        },
+        {
+          "name": "_fixture",
+          "line": 141,
+          "end": 161
+        },
+        {
+          "name": "_support",
+          "line": 164,
+          "end": 171
+        },
+        {
+          "name": "test_exact_routes_grouping_and_call_tags",
+          "line": 174,
+          "end": 198
+        },
+        {
+          "name": "test_class_and_method_subjects_remain_distinct",
+          "line": 201,
+          "end": 228
+        },
+        {
+          "name": "test_decorated_declaration_grounding_does_not_manufacture_references",
+          "line": 239,
+          "end": 263
+        },
+        {
+          "name": "test_unsupported_and_unresolved_sources",
+          "line": 267,
+          "end": 285
+        },
+        {
+          "name": "test_same_owner_collision_and_target_specific_support",
+          "line": 288,
+          "end": 314
+        },
+        {
+          "name": "test_complete_result_bound_and_incomplete_work",
+          "line": 317,
+          "end": 335
+        },
+        {
+          "name": "test_empty_frame_and_single_referencer_identity",
+          "line": 338,
+          "end": 355
+        },
+        {
+          "name": "test_ordering_and_duplicate_support",
+          "line": 358,
+          "end": 377
+        },
+        {
+          "name": "test_explicit_projection_inputs_and_branch_authorization",
+          "line": 380,
+          "end": 389
+        },
+        {
+          "name": "test_analysis_frame_rejected",
+          "line": 393,
+          "end": 415
+        },
+        {
+          "name": "test_universe_frame_rejected",
+          "line": 419,
+          "end": 442
+        },
+        {
+          "name": "test_native_replay_rejects_forged_or_incomplete_analysis",
+          "line": 445,
+          "end": 453
+        },
+        {
+          "name": "test_reference_support_replayed_not_trusted",
+          "line": 460,
+          "end": 495
+        },
+        {
+          "name": "test_source_interpretation_inputs_rejected",
+          "line": 499,
+          "end": 518
+        },
+        {
+          "name": "test_duplicate_fact_key_collision_rejected",
+          "line": 521,
+          "end": 531
+        },
+        {
+          "name": "test_base_expression_is_only_reference_support",
+          "line": 534,
+          "end": 556
+        },
+        {
+          "name": "test_ambiguous_grounding_abstains",
+          "line": 559,
+          "end": 569
+        },
+        {
+          "name": "test_universe_permutation_and_valid_support_replay",
+          "line": 572,
+          "end": 592
+        },
+        {
+          "name": "test_fact_and_coverage_integrity",
+          "line": 599,
+          "end": 645
+        },
+        {
+          "name": "test_fixed_owner_branch_bounds",
+          "line": 649,
+          "end": 668
+        },
+        {
+          "name": "test_work_preflight_performs_no_native_replay",
+          "line": 671,
+          "end": 688
+        },
+        {
+          "name": "test_reference_candidates_leave_readiness_open",
+          "line": 691,
+          "end": 721
+        },
+        {
+          "name": "forbidden",
+          "line": 678,
+          "end": 680
+        }
+      ],
+      "lines": 721,
+      "scope": "Real temp observation/native reference derivation, routes/call tags/source subjects/decorated abstention; no runtime graph or inheritance claim, forged/colliding/incomplete analyses replayed, frame/result/work/duplicate/fixed-sibling guards, readiness unchanged."
+    },
+    {
+      "path": "tests/context/localization/resolution/test_resolution.py",
+      "blob": "8aaa4092ceb679f3fd6288813b9bea260cf494f7",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "sha256": "6c6d1c468db3a4d071ef64217bc9f779a3e9ce355e5a300e439a092a4b0069d9",
+      "functions": [
+        {
+          "name": "_decision",
+          "line": 89,
+          "end": 114
+        },
+        {
+          "name": "test_partial_view_and_explicit_dispositions",
+          "line": 117,
+          "end": 177
+        },
+        {
+          "name": "test_competition_is_independent_and_order_is_deterministic",
+          "line": 180,
+          "end": 195
+        },
+        {
+          "name": "test_foreign_scope_and_same_target_support_substitution",
+          "line": 198,
+          "end": 217
+        },
+        {
+          "name": "test_basis_validation_and_record_guards",
+          "line": 220,
+          "end": 259
+        },
+        {
+          "name": "test_view_and_aggregate_frame_guards",
+          "line": 262,
+          "end": 322
+        },
+        {
+          "name": "test_lexical_only_promotion_and_existing_readiness_flow",
+          "line": 325,
+          "end": 410
+        },
+        {
+          "name": "test_structural_channels_and_independent_branch_children",
+          "line": 414,
+          "end": 457
+        }
+      ],
+      "lines": 457,
+      "scope": "Caller-authored _decision with exact attached support; partial/unrecorded/abstained/contradicted vs all-conjunct support; competing hypotheses, frame/criterion/basis exact-object rejects, explicit promotion then independent assessment update. Structural real-source adapters covered; no semantic judgment oracle."
+    },
+    {
+      "path": "tests/context/localization/routing/test_routing.py",
+      "blob": "efb7c8abd52306ccf4b7aad525cc298fa39a7a85",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "sha256": "8ad46b8a0cc3c8d3728b1e94c74b93a98b912576254c90ebaae6110315eba256",
+      "functions": [
+        {
+          "name": "_acquisition",
+          "line": 38,
+          "end": 59
+        },
+        {
+          "name": "test_two_tiers_keep_every_native_match_and_explain_preferred_support",
+          "line": 62,
+          "end": 124
+        },
+        {
+          "name": "test_role_union_has_no_evidence_count_priority_and_keeps_native_order",
+          "line": 127,
+          "end": 177
+        },
+        {
+          "name": "test_empty_preference_is_native_order_in_complete_escape_tier",
+          "line": 180,
+          "end": 198
+        },
+        {
+          "name": "test_same_obligation_queries_route_independently_without_fusion",
+          "line": 201,
+          "end": 236
+        },
+        {
+          "name": "test_rejects_foreign_stale_and_inconsistent_role_frames",
+          "line": 239,
+          "end": 274
+        },
+        {
+          "name": "test_rejects_bad_preferences_and_query_lane_associations",
+          "line": 277,
+          "end": 322
+        },
+        {
+          "name": "test_rejects_unknown_candidates_duplicate_lane_ids_and_incompatible_results",
+          "line": 325,
+          "end": 380
+        },
+        {
+          "name": "test_rejects_matches_outside_the_native_index_and_duplicate_resources",
+          "line": 383,
+          "end": 426
+        },
+        {
+          "name": "test_rejects_duplicate_or_out_of_frame_role_support_data",
+          "line": 429,
+          "end": 457
+        }
+      ],
+      "lines": 457,
+      "scope": "Nominal lexical fixture; real role derivation and stable positive preferred+complete escape, global unchanged, lane-specific native match/score identity, no evidence-count priority; stale/foreign/duplicate/unknown/index/settings guards. Not a relevance/satisfaction test."
+    },
+    {
+      "path": "tests/context/localization/test_kernel.py",
+      "blob": "025fa8e9bd5027f466abf6b1ce41a964a202844a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "sha256": "a52fc666b1f3d9b578807a5f08b04bb631ca964bff767ede89a1568cdd2d9804",
+      "functions": [
+        {
+          "name": "_provenance",
+          "line": 45,
+          "end": 46
+        },
+        {
+          "name": "_obligation",
+          "line": 49,
+          "end": 70
+        },
+        {
+          "name": "_task",
+          "line": 73,
+          "end": 84
+        },
+        {
+          "name": "_evidence",
+          "line": 87,
+          "end": 92
+        },
+        {
+          "name": "_resolved",
+          "line": 95,
+          "end": 124
+        },
+        {
+          "name": "_assess",
+          "line": 127,
+          "end": 137
+        },
+        {
+          "name": "test_task_local_anchor_identity_is_deterministic_and_not_repository_identity",
+          "line": 140,
+          "end": 153
+        },
+        {
+          "name": "test_task_interpretation_shares_anchor_across_obligations",
+          "line": 156,
+          "end": 165
+        },
+        {
+          "name": "test_task_source_and_optional_anchor_span_preserve_provenance",
+          "line": 168,
+          "end": 173
+        },
+        {
+          "name": "test_task_rejects_foreign_and_missing_anchor_references",
+          "line": 176,
+          "end": 198
+        },
+        {
+          "name": "test_identity_and_provenance_values_reject_invalid_inputs",
+          "line": 201,
+          "end": 213
+        },
+        {
+          "name": "test_obligation_retains_requirement_condition_criterion_and_anchor",
+          "line": 216,
+          "end": 223
+        },
+        {
+          "name": "test_helpful_is_not_a_conditional_priority",
+          "line": 226,
+          "end": 233
+        },
+        {
+          "name": "test_witness_set_requires_distinct_hashable_targets",
+          "line": 236,
+          "end": 246
+        },
+        {
+          "name": "test_task_and_assessment_values_reject_invalid_structure",
+          "line": 249,
+          "end": 290
+        },
+        {
+          "name": "test_obligation_rejects_foreign_duplicate_anchors_and_alternatives",
+          "line": 293,
+          "end": 307
+        },
+        {
+          "name": "test_single_witness_resolves_and_reports_alternative_index",
+          "line": 310,
+          "end": 317
+        },
+        {
+          "name": "test_conjunctive_witness_needs_every_member",
+          "line": 320,
+          "end": 331
+        },
+        {
+          "name": "test_any_complete_alternative_satisfies_and_order_is_stable",
+          "line": 334,
+          "end": 351
+        },
+        {
+          "name": "test_witness_targets_preserve_native_hashable_identity_types",
+          "line": 354,
+          "end": 360
+        },
+        {
+          "name": "test_unconditional_resolution_does_not_claim_applicability_evidence",
+          "line": 363,
+          "end": 371
+        },
+        {
+          "name": "test_conditional_obligation_requires_an_explicit_applicability_assessment",
+          "line": 374,
+          "end": 382
+        },
+        {
+          "name": "test_does_not_apply_cannot_also_claim_resolution",
+          "line": 385,
+          "end": 394
+        },
+        {
+          "name": "test_conditional_not_applicable_requires_same_snapshot_evidence",
+          "line": 397,
+          "end": 410
+        },
+        {
+          "name": "test_absent_conditional_evidence_cannot_become_not_applicable",
+          "line": 413,
+          "end": 425
+        },
+        {
+          "name": "test_open_mandatory_is_blocked_and_open_helpful_is_diagnostic_only",
+          "line": 428,
+          "end": 450
+        },
+        {
+          "name": "test_abstention_is_not_mandatory_coverage",
+          "line": 453,
+          "end": 466
+        },
+        {
+          "name": "test_named_accepted_deferred_discovery_permits_only_conditional_handoff",
+          "line": 469,
+          "end": 487
+        },
+        {
+          "name": "test_unaccepted_deferred_observation_does_not_permit_handoff",
+          "line": 490,
+          "end": 502
+        },
+        {
+          "name": "test_resolved_obligation_cannot_be_abstained_or_left_open",
+          "line": 505,
+          "end": 510
+        },
+        {
+          "name": "test_incomplete_obligation_assessment_identity_coverage_is_visible",
+          "line": 513,
+          "end": 519
+        },
+        {
+          "name": "test_duplicate_and_foreign_assessment_ids_are_invalid",
+          "line": 522,
+          "end": 535
+        },
+        {
+          "name": "test_snapshot_or_repository_mismatch_invalidates_assessment",
+          "line": 538,
+          "end": 547
+        },
+        {
+          "name": "test_stale_evidence_reference_invalidates_current_assessment_frame",
+          "line": 550,
+          "end": 560
+        },
+        {
+          "name": "test_helpful_resolution_is_not_required_for_mandatory_readiness",
+          "line": 563,
+          "end": 586
+        },
+        {
+          "name": "test_empty_or_incomplete_obligation_frame_never_claims_readiness",
+          "line": 589,
+          "end": 597
+        }
+      ],
+      "lines": 597,
+      "scope": "Intentionally nominal repository/snapshot and string evidence; independent ALL/ANY/applicability/deferred/missing/duplicate/foreign identity algebra. Supplied obligation completeness only, not actual source authentication or omitted-original-task detection."
+    },
+    {
+      "path": "tests/context/retrieval/test_structural.py",
+      "blob": "b1ffc259807e05e5d395941b41512d787484c78a",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "sha256": "3855125edff4e1edbc2918a9c72ec6f84ab240270a597182cd357614cd2b5a44",
+      "functions": [
+        {
+          "name": "_facts",
+          "line": 39,
+          "end": 99
+        },
+        {
+          "name": "test_direct_projection_retains_native_independent_supports",
+          "line": 102,
+          "end": 153
+        },
+        {
+          "name": "test_reverse_projection_and_bounded_zero",
+          "line": 156,
+          "end": 181
+        },
+        {
+          "name": "test_request_and_snapshot_mismatch_are_rejected",
+          "line": 184,
+          "end": 235
+        },
+        {
+          "name": "test_unrelated_and_self_relations_do_not_surface_resources",
+          "line": 238,
+          "end": 261
+        },
+        {
+          "name": "test_rejects_fact_family_mixups_and_unknown_seed",
+          "line": 264,
+          "end": 295
+        },
+        {
+          "name": "forbid_parse",
+          "line": 109,
+          "end": 111
+        }
+      ],
+      "lines": 295,
+      "scope": "Real tiny filesystem snapshot and native module/import/reference/package membership derivation; direct+reverse exact supports, repeats deduplicated without ranking, no parse at projection, wrong frame/fact family/self/unrelated/unknown seed refuses. Not a semantic relevance or native-worker test."
+    }
+  ],
+  "cohort_tests": [
+    {
+      "path": "experiments/structural_discrimination/post_hoc/source_quality/test_analysis.py",
+      "blob": "3aaff074d23f1b85f25f26622eb49cc8a2b74be8",
+      "sha256": "3c7cfa6259967b9f1437aa3f6c84d1f4d695060b0d05fe6d6be15bf5246757ee",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 28,
+          "end": 36
+        },
+        {
+          "name": "cohort_records",
+          "line": 40,
+          "end": 56
+        },
+        {
+          "name": "test_precedence",
+          "line": 69,
+          "end": 70
+        },
+        {
+          "name": "test_invalid_source_group",
+          "line": 74,
+          "end": 76
+        },
+        {
+          "name": "test_exact_joins_reject",
+          "line": 102,
+          "end": 145
+        },
+        {
+          "name": "test_cross_tabs_and_zero_denominators",
+          "line": 148,
+          "end": 190
+        },
+        {
+          "name": "test_exact_completed_diagnostic",
+          "line": 193,
+          "end": 250
+        },
+        {
+          "name": "test_derived_mutations_rejected",
+          "line": 256,
+          "end": 278
+        },
+        {
+          "name": "test_record_mutations_rejected",
+          "line": 294,
+          "end": 316
+        },
+        {
+          "name": "test_output_integrity_and_overwrite",
+          "line": 319,
+          "end": 329
+        },
+        {
+          "name": "test_authenticated_repeat_has_no_acquisition",
+          "line": 332,
+          "end": 348
+        },
+        {
+          "name": "forbidden",
+          "line": 335,
+          "end": 336
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    },
+    {
+      "path": "experiments/structural_discrimination/stage_b/test_capture.py",
+      "blob": "fbef5109893a43d4186aed47c56ddb8373b8b61c",
+      "sha256": "f58b94340d829be809f2582903ecdae62aed6d802afadfdb7b301344662b6675",
+      "functions": [
+        {
+          "name": "synthetic",
+          "line": 28,
+          "end": 75
+        },
+        {
+          "name": "test_complete_synthetic_capture_deep_and_sealed",
+          "line": 78,
+          "end": 120
+        },
+        {
+          "name": "test_failed_native_boundary_is_dead_and_stops",
+          "line": 123,
+          "end": 141
+        },
+        {
+          "name": "test_exact_capture_graph_encoder_order_types_aliases",
+          "line": 144,
+          "end": 158
+        },
+        {
+          "name": "test_schedule_deterministic_and_three_lanes",
+          "line": 161,
+          "end": 168
+        },
+        {
+          "name": "fail",
+          "line": 129,
+          "end": 130
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    },
+    {
+      "path": "experiments/structural_discrimination/stage_c/test_import.py",
+      "blob": "d3211a3b33a27599905b78a7fb5ccd8c688ee69e",
+      "sha256": "13d982d0bc9ab2c60a7337ffcb5e783239f33dc51e6baa0917f1272fba21146c",
+      "functions": [
+        {
+          "name": "test_imported_primary_separate_process",
+          "line": 19,
+          "end": 23
+        },
+        {
+          "name": "test_gold_projection_rejects",
+          "line": 39,
+          "end": 67
+        },
+        {
+          "name": "test_primary_summaries_and_corrections",
+          "line": 70,
+          "end": 111
+        },
+        {
+          "name": "test_import_overwrite_refused",
+          "line": 114,
+          "end": 116
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    },
+    {
+      "path": "experiments/structural_discrimination/stage_c/test_packet.py",
+      "blob": "6bfca6098cd2cd21a41f80b49ebf7c3d2746bb94",
+      "sha256": "0016fc8a89e75307e102397e0e72fec2fde9dd7f6bf4da9d95667240d5579e16",
+      "functions": [
+        {
+          "name": "synthetic_payload",
+          "line": 24,
+          "end": 52
+        },
+        {
+          "name": "test_double_build_standalone_overwrite_and_physical_tamper",
+          "line": 55,
+          "end": 83
+        },
+        {
+          "name": "test_metadata_leakage_rejects_even_with_recomputed_payload_hash",
+          "line": 104,
+          "end": 108
+        },
+        {
+          "name": "test_frozen_semantic_binding_rejects_mutation",
+          "line": 122,
+          "end": 128
+        },
+        {
+          "name": "test_actual_stage_a_spec_shape_projects_only_semantic_fields",
+          "line": 131,
+          "end": 150
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    },
+    {
+      "path": "experiments/structural_discrimination/stage_d/test_analysis.py",
+      "blob": "253788ef08eac6df8e795bc5b197e9148b4b6c7b",
+      "sha256": "febb3b41a8c44853a6ff1b6dfb488ca8ec834737a6e0d6d5fbfd56d72809b9ea",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 32,
+          "end": 39
+        },
+        {
+          "name": "test_join_mutations_rejected",
+          "line": 67,
+          "end": 117
+        },
+        {
+          "name": "test_ablation_exact_captured_a",
+          "line": 120,
+          "end": 126
+        },
+        {
+          "name": "test_category_boundaries",
+          "line": 138,
+          "end": 139
+        },
+        {
+          "name": "test_ordinal_pair_table",
+          "line": 156,
+          "end": 164
+        },
+        {
+          "name": "case_result",
+          "line": 167,
+          "end": 175
+        },
+        {
+          "name": "test_case_result_mutation",
+          "line": 182,
+          "end": 193
+        },
+        {
+          "name": "test_primary_artifact_hash",
+          "line": 196,
+          "end": 208
+        },
+        {
+          "name": "test_stage_b_completion_proof_tamper",
+          "line": 211,
+          "end": 223
+        },
+        {
+          "name": "test_output_integrity_and_overwrite",
+          "line": 226,
+          "end": 235
+        },
+        {
+          "name": "test_cohort_exact_repeated_and_no_acquisition",
+          "line": 238,
+          "end": 286
+        },
+        {
+          "name": "forbidden",
+          "line": 241,
+          "end": 242
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    },
+    {
+      "path": "experiments/structural_discrimination/test_protocol.py",
+      "blob": "b75866a282a8fccbbcb232d947c84ecc0dbe0129",
+      "sha256": "35de39200f1ebf6117b5d1404afd9a7b647fe7d99ebf1da9b4ba732dfb2a70ee",
+      "functions": [
+        {
+          "name": "native_fixture",
+          "line": 91,
+          "end": 176
+        },
+        {
+          "name": "scoped_annotation",
+          "line": 179,
+          "end": 190
+        },
+        {
+          "name": "test_support_pair_native_identity_and_no_reorder",
+          "line": 193,
+          "end": 210
+        },
+        {
+          "name": "test_unsupported_rank1_self_and_ablation",
+          "line": 213,
+          "end": 236
+        },
+        {
+          "name": "test_native_duplicate_and_input_order_invariance",
+          "line": 239,
+          "end": 245
+        },
+        {
+          "name": "test_graph_only_target_not_admitted",
+          "line": 248,
+          "end": 254
+        },
+        {
+          "name": "test_native_stale_conflicting_and_type_reject",
+          "line": 257,
+          "end": 275
+        },
+        {
+          "name": "test_foreign_task_or_match_reject",
+          "line": 278,
+          "end": 302
+        },
+        {
+          "name": "test_all_ordinal_label_pairs",
+          "line": 307,
+          "end": 323
+        },
+        {
+          "name": "test_case_categories",
+          "line": 335,
+          "end": 336
+        },
+        {
+          "name": "test_invalid_count_or_label_rejects",
+          "line": 339,
+          "end": 344
+        },
+        {
+          "name": "test_public_cohort_and_shared_contract",
+          "line": 347,
+          "end": 359
+        },
+        {
+          "name": "test_blind_spec_allowlist",
+          "line": 362,
+          "end": 386
+        },
+        {
+          "name": "test_partial_freeze_overwrite_refusal",
+          "line": 389,
+          "end": 401
+        },
+        {
+          "name": "test_stage_a_exact_rebuild_and_access_boundary",
+          "line": 404,
+          "end": 475
+        },
+        {
+          "name": "assert_case_mutations_rejected",
+          "line": 478,
+          "end": 504
+        },
+        {
+          "name": "test_external_publication_binds_implementation",
+          "line": 508,
+          "end": 538
+        },
+        {
+          "name": "expected",
+          "line": 394,
+          "end": 395
+        },
+        {
+          "name": "guarded_open",
+          "line": 418,
+          "end": 425
+        },
+        {
+          "name": "guarded_git",
+          "line": 427,
+          "end": 442
+        },
+        {
+          "name": "forbidden",
+          "line": 444,
+          "end": 446
+        },
+        {
+          "name": "captured_git",
+          "line": 526,
+          "end": 531
+        }
+      ],
+      "scope": "All bodies/decorators/fixtures/monkeypatches/failure/refusal/overwrite checks inspected. Native synthetic assertions, manual artificial A order, independent numeric tables, own frozen report rebuilding and builder replay explicitly distinguished. Only qualified synthetic selection executed."
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/context/localization/resolution/contract.py",
+      "blob": "5f809702b5e1bc0632f414714abc2560a3d5d30f",
+      "sha256": "38cdb00591e19e386fc02d87d265731ccedfacaeab0fcbe2c982669eec25e093",
+      "depth": "FULL_BODY;named caller claim/criterion/exact attached support, not semantic oracle"
+    },
+    {
+      "path": "src/devtools/context/localization/resolution/view.py",
+      "blob": "cedf6a44d794dcafca19b6dfda0e57c895f473de",
+      "sha256": "f9a2b493623a28615e8d53c71904a4a0f0d34c293304d7feecd457d1aed12dc3",
+      "depth": "FULL_BODY;canonical association revalidation and partial ALL-member states"
+    },
+    {
+      "path": "src/devtools/context/localization/resolution/promotion.py",
+      "blob": "7559d93759615514d7f170cc1b3a6e6c44d33055",
+      "sha256": "a2e6ba29e2b7761b4d4e75a8e253c8e681884f036fabac669d2b74f797d8299d",
+      "depth": "FULL_BODY;explicit promotion not readiness/action authority"
+    },
+    {
+      "path": "src/devtools/context/localization/readiness.py",
+      "blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "sha256": "a2ccc02f341b294a8fd1738f8d5ccadf23932ca662ef6f6badb002934db211f9",
+      "depth": "LINES107-END;supplied frame coverage/applicability/ALL/ANY/defer validation; no original task decomposition"
+    },
+    {
+      "path": "src/devtools/context/localization/generation/generate.py",
+      "blob": "ab5c0cb50f581899080e767bef71768e86b1e393",
+      "sha256": "536d406eb5d30f7c66c3dccff9bd1ed4bf6dfdd2e319ad9c69bd5696b99c78c6",
+      "depth": "LINES73-230;grounding replay/native input/preflight/member/association flow; no whole-file new credit"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "depth": "LINES836-END;map opt-in/reference universe analysis and outgoing bounded result; no Localization semantic consumer"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b",
+      "sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "depth": "FULL_BODY;nominal synthetic document/corpus identity and discovery"
+    },
+    {
+      "path": "tests/context/localization/test_lexical.py",
+      "blob": "7c39f54b59efb6a77769eb398ddd7438bf9de194",
+      "sha256": "93e2de05fb8c757ad9ab15a5f947ad24d76e5654e298d67f7cbb85f313162cce",
+      "depth": "HELPERS _inputs/_query/_acquire/_execute lines46-164;not full-module new credit"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "sha256": "7bfd2f099e6442d48063675820db074a56fd0e5b8b5245a251b4c7c2adcf5ce9",
+      "depth": "HELPERS _snapshot/_universe/_analysis lines60-103;real observer/native parsing;not full-module new credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/verification/case_0016.py",
+      "blob": "da8247acbab9502fbd968b912200ed471dbd8362",
+      "sha256": "01661ced7d30d7a7d87c4b3b2f2aded596e1e68de7a79c0011295a2e47575822",
+      "depth": "CALLER ranges1-135,253-289 and verify mode callsites; prior complete owner review retained, actual SourceSpans deep binding traced"
+    }
+  ],
+  "execution": "254 focused passed/2 deliberately deselected historical reconstruction;2 pinned NumPy synthetic tests passed;14 separately authored scoped probes. No frozen builders/controllers/reports/native pickles executed."
+}

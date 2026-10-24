@@ -1,0 +1,71 @@
+{
+  "frozen_at": "2026-10-21T14:55:02.621345+00:00",
+  "classification": "One source-authenticated offline prefix reconstruction followed by real live Qwen repair; not original-run success, fresh confirmation, or an additional full task attempt.",
+  "parent_result_sha256": "c693644cacc44f9d06126d9673f81de78e7bc30d6e6a5c6ccc9359e776e513c2",
+  "parent_task_sha256": "5da36b76db57a50aa9b9ba67547da8e0aec9c347974fb103f8e247f07db6ff14",
+  "recovery_task_sha256": "944042c020285036d133ce3755e3ca0d66e5e75aa27b4bd565973fbb37e922e0",
+  "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+  "prefix": [
+    {
+      "turn": 1,
+      "response_sha256": "e2ed2b6e8f91bb99e1f23bf0b5b9c6f4419d4afa2cf15975631d0578634760dc",
+      "provider_sha256": "4db4726ce779bf457b6651245913d5f26c138aa4eca903399d4e049e8d56c877"
+    },
+    {
+      "turn": 2,
+      "response_sha256": "8966d249803373086d5ec782faddb02c78a95cddfc7ec18eb05149f2102cad85",
+      "provider_sha256": "7ffc2f6f0f08280d32df51c89a6c2cbb5cab9391e80a29c86327f874811db891"
+    },
+    {
+      "turn": 3,
+      "response_sha256": "2d2d0116fbea8d631c336fdcedbba2b86617df14506e5e0e94253e34dd9357aa",
+      "provider_sha256": "ce8c6b43478726bc361a55f55ff6d4d19a0a12a0ae5811bc7230e25795bfba8b"
+    },
+    {
+      "turn": 4,
+      "response_sha256": "31bcccba12b92728920d4551ec15fbbc7771e1610cd857ad30116f5f05a2421b",
+      "provider_sha256": "a93060d2d9f224c312a5b81a43384e2be6fece4f686026d1d3ee814073297837"
+    },
+    {
+      "turn": 5,
+      "response_sha256": "18ab8be99e154639245dbbe8af42164911224224c2897d00084bd64ed9ebed32",
+      "provider_sha256": "2ac7834713291f98750bbcc6515bebcb4fdebd50dec4c4d2bd119286ddc409a1"
+    },
+    {
+      "turn": 6,
+      "response_sha256": "61dc6b10afc530a8946811108420d1b43ece2079f10a0bb901bc57bde220a5c3",
+      "provider_sha256": "3a8f4a5b6047e7865dee468b58261ead4f3d3c46a4d8414600cb24ceed486345"
+    },
+    {
+      "turn": 7,
+      "response_sha256": "9bb1d22ab750f1c7d897382d12369118869ddff390b411e57549a798a9b8635a",
+      "provider_sha256": "6a7db96a1af526f1a8d7aaaeea747c1a80f82fdb15f103f08863a017694fcfd0"
+    },
+    {
+      "turn": 8,
+      "response_sha256": "d9408c4b3c1f661be8f435831e035f020c67cf7e110cedc22bd5984d4f7d30a8",
+      "provider_sha256": "c02dcf22dbb8f407dc2c854ef8e3f62513aec57693ac25d1b84d246df9ec67c4"
+    },
+    {
+      "turn": 9,
+      "response_sha256": "9961bd612e0fb1123f388bbacd6b16e36d5e0126375a991ffcb4bc59c4279bf0",
+      "provider_sha256": "4e33295d4ce1b65a59fe440000a25f2e8941daebc4ade9f63d7cfc7117fd1fd9"
+    },
+    {
+      "turn": 10,
+      "response_sha256": "1a8c1d9f37fefe0d770bba90df9a0775508ce1015252a2d9967a545513955ec9",
+      "provider_sha256": "2bfcaabb7758aff5bfacf168a1df99a93ac5a9dfde9382dc354b253b9e3bf4c5"
+    }
+  ],
+  "prefix_requests": 10,
+  "maximum_new_model_calls": 14,
+  "maximum_new_proposals": 1,
+  "maximum_new_tool_actions": 25,
+  "remaining_worker_seconds": 1385,
+  "cumulative_limits": {
+    "model_calls": 24,
+    "atomic_proposals": 6,
+    "worker_seconds": 1800
+  },
+  "policy": "No further recovery/retry. Prefix responses marked archived-qwen-prefix, usage=None; authentic original provider usage retained only in parent. Before new inference exact reconstructed source hashes must match parent candidates. Existing worker/Checkout/validation/repair is the sole executor."
+}

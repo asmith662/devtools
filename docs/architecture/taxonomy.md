@@ -135,9 +135,11 @@ information selected as relevant Context. It is not a ConversationMessage, the
 Conversation itself, raw repository state, durable Memory, or necessarily one
 string.
 
-A future Prompt may use model-oriented messages, structured input,
-multimodal components, or provider-specific projections. This taxonomy does
-not freeze a representation.
+Current Prompt supports single text or explicit model-oriented messages with
+native assistant calls and correlated Tool results. These invocation-input
+messages are distinct from durable ConversationMessage values. Multimodal and
+other provider projections remain possible future representations; this taxonomy
+does not freeze a universal representation.
 
 ### ModelInteraction
 

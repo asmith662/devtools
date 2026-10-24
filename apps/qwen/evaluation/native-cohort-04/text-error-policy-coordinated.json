@@ -1,0 +1,68 @@
+{
+  "name": "text-error-policy",
+  "objective": "PUBLIC BEHAVIOR: Add explicit keyword errors=\"strict\" to both TextCodec.decode and TextCodec.encode, honoring the standard Python codec error-handling policies including strict, ignore, replace and backslashreplace. COMPATIBILITY: Keep strict defaults, domain exception wrapping and causes, encoding overrides, exact newline/text preservation, source-byte metadata and immutable input models. Unknown handler failures must retain the relevant text domain exception. QUALITY: Independent behavior/compatibility assertions, current tests, strict mypy, Ruff and formatting must pass. Coordinate both method contracts and implementations; verify actual Python API contracts. Multiple implementations are legitimate.",
+  "source": "src/devtools/resources/filesystem/codecs/text.py",
+  "tests": [
+    "tests/resources/filesystem/codecs/test_text.py"
+  ],
+  "baseline_revision": "39a3fd95900a583d1b8578523dd6acd8b86ba038",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "c324f8943e671422e94bab0c77a025f1e8d82333fe824ef84c6b54934117960d"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "text text error policy",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "test_text text error policy",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "text text error policy",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "errors text error policy",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from devtools.resources.filesystem import TextCodec,TextDecodingError,TextEncodingError\nfrom devtools.core.paths import resolve_path\ncodec=TextCodec();path=resolve_path(Path.cwd()/\"sample.txt\")\ntry: decoded=codec.decode(path,b\"a\\xffb\",errors=\"replace\")\nexcept TypeError as e: raise AssertionError(\"explicit codec error policies not supported\") from e\nassert decoded.content==\"a\\ufffdb\" and decoded.byte_size==3 and decoded.encoding==\"utf-8\"\nassert codec.decode(path,b\"a\\xffb\",errors=\"ignore\").content==\"ab\"\nassert codec.decode(path,b\"a\\xffb\",errors=\"backslashreplace\").content==r\"a\\xffb\"\nassert codec.decode(path,b\"a\\r\\nb\\n\",errors=\"strict\").content==\"a\\r\\nb\\n\"\nfile=codec.decode(path,\"a\u00e9z\".encode())\nassert codec.encode(file,encoding=\"ascii\",errors=\"ignore\")==b\"az\"\nassert codec.encode(file,encoding=\"ascii\",errors=\"replace\")==b\"a?z\"\nassert codec.encode(file,encoding=\"ascii\",errors=\"backslashreplace\")==b\"a\\\\xe9z\"\nassert codec.encode(file)==\"a\u00e9z\".encode()\nfor direction,error in ((\"decode\",TextDecodingError),(\"encode\",TextEncodingError)):\n for policy in (\"strict\",\"no-such-handler\"):\n  try:\n   codec.decode(path,b\"\\xff\",errors=policy) if direction==\"decode\" else codec.encode(file,encoding=\"ascii\",errors=policy)\n  except error as e: assert e.__cause__ is not None\n  else: raise AssertionError(\"domain exception compatibility lost\")\nassert file.content==\"a\u00e9z\" and file.encoding==\"utf-8\"\nprint(\"13 text codec policy and compatibility checks passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\",flush=True)\nimport asyncio,sys\nfrom devtools.resources.commands import Command,CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject=next(p for p in Path(module.__file__).parents if (p/\"pyproject.toml\").is_file())\ncommand=Command(sys.executable).args(\"-m\",\"mypy\",'src/devtools/resources/filesystem/codecs/text.py').cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\ncheck=asyncio.run(CommandExecutor().execute(command))\nprint(check.stdout.decode(errors=\"replace\"),flush=True)\nassert check.exit_code==0,\"Independent typing failure: \"+check.stderr.decode(errors=\"replace\")\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/filesystem/models/text.py",
+    "src/devtools/resources/filesystem/errors.py"
+  ],
+  "quality_checks": true,
+  "api_targets": [
+    "bytes.decode",
+    "str.encode"
+  ]
+}

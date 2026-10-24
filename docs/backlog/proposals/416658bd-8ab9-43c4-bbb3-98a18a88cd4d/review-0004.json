@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+  "previous": "20cd8676c11c3033b8d2d1d2ff051310f969e2e92c0d1b666317b26dc6bd194c",
+  "at": "2026-10-23T20:41:27.917794+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-increments-25-36-audit.md",
+  "rationale": "Production repaira0a6c22403f7df2679aa574226e420521a8accf5 remains verified and unchanged; retain prior2744-pass/two-skip/100% protected evidence as historical exact-tree evidence. New independent probe shows frozen experiments/increment_28/import_use._span maps all eight Unicode nonphysical separators incorrectly (actual o versus AST Name f). Increment29 reuses that helper. Do not rewrite sealed treatments; add explicit future-reuse guard/versioned physical-line correction and compare retained observed inputs before alleging any original result impact. Current production fix does not repair historical copies. Recommend operator reconciliation of production-implemented scope and preserve historical limitation separately.",
+  "duplicates": [
+    {
+      "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve identity, pending disposition and prior review chain; no approval, B-number, grant or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "9541ebb65d16683bff0e7fbe34a1c060358aa4096f10c59e54e4967e942ef0f7"
+}

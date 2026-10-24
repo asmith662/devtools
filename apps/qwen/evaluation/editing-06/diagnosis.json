@@ -1,0 +1,49 @@
+{
+  "archive": ".local\\qwen-coding-worker\\environment-05",
+  "runs": [
+    {
+      "turn": 6,
+      "response_sha256": "59a9cb099d1ff27d5fef2bb4685fea77403d5e0aad3bb2cff7ad1ca331b5e1a3",
+      "arguments_sha256": "ced329c9f22891943d3a9b41de7cafb54b373dd11557e0ced76e0143dc30bd1c",
+      "suffixes": [
+        "ath = Path(*parts)\"}"
+      ],
+      "adapter_argument_bytes_unchanged": true,
+      "schema": "nested edits array containing exact old/new strings and version digests"
+    },
+    {
+      "turn": 9,
+      "response_sha256": "2121d8db0f7dadeebcfac18a49aa992ceb964c9f117ce670c92082f33c718c1a",
+      "arguments_sha256": "d71ac0b08d435e2d9c1bfbf8162ec8ddd38b46b68f318818ea547f0949abc053",
+      "suffixes": [
+        "= Path(*parts)\"}]}]}"
+      ],
+      "adapter_argument_bytes_unchanged": true,
+      "schema": "nested edits array containing exact old/new strings and version digests"
+    },
+    {
+      "turn": 10,
+      "response_sha256": "add63f2fc1f5910900be0c4810d9effaa01f1e0023b1b0b6d34d233f17986caf",
+      "arguments_sha256": "d71ac0b08d435e2d9c1bfbf8162ec8ddd38b46b68f318818ea547f0949abc053",
+      "suffixes": [
+        "= Path(*parts)\"}]}]}"
+      ],
+      "adapter_argument_bytes_unchanged": true,
+      "schema": "nested edits array containing exact old/new strings and version digests"
+    }
+  ],
+  "finding": "Malformed closing syntax already occurs inside the native arguments_json string before host admission. ModelToolCall/provider adapter preserve it exactly, and JSON deserialization preserves the string value. No host trimming or approximate application. Nested JSON inside template parameter edits burdens generation.",
+  "unknown": "Historical raw HTTP response bytes and pre-decoder generated token stream were NOT_CAPTURED. Model generation versus llama.cpp native Tool decoding cannot be conclusively separated from normalized captures. New evaluation captures provider response before ModelResponse mapping.",
+  "no_inference": true,
+  "earlier_baseline_path_refusals": {
+    "run": ".local/qwen-coding-worker/environment-05/devtools-baseline-path",
+    "turns": [
+      4,
+      7,
+      9
+    ],
+    "diagnostic": "Unverified API evidence",
+    "finding": "The arguments supplied source-description prose where native api_evidence required actual observation IDs. These earlier refusals are distinct from the later malformed old_text suffixes."
+  },
+  "causal_limit": "Nested serialization burden is an interface hypothesis supported by the observed output, not proof of model-generation versus server-decoder origin. No new comparison isolates only serialization."
+}

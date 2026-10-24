@@ -146,6 +146,16 @@ representations, without Retrieval rendering or selecting disclosure.
 
 ## Selectable source representations
 
+The maintained [Qwen consumer](../../../../../apps/qwen/README.md) now selects
+these views on demand through native read-only Tools. Its byte/call budgets and
+authority remain application concerns, not ranking or RI truth. Explicit task
+corpora can call `discover_repository_resource_addresses(...,
+requested_addresses=addresses)` to probe only required canonical regular-file
+paths. The discovery result retains the requested selection and its `semantics`;
+component probes are bounded, required links/missing paths refuse, and unrelated
+directories are not enumerated. Omitting this option preserves recursive
+discovery. This is metadata discovery, not acquisition or an exhaustive corpus.
+
 `devtools.context.retrieval.source` provides `build_source_search_index` and
 `search_repository_source` (also exported by `devtools.context.retrieval`).
 This is in-memory composition of the existing explicit text corpus, lexical
@@ -179,11 +189,19 @@ not a byte/token budget: one long line can still be large.
 uses its existing identity wrapper; it does not create another document system
 or RepositorySubject. Its parent is the original observed resource. Every unit
 retains repository/snapshot identity, parent content identity, representation
-kind, half-open decoded-character offsets `[start, end)`, logical line numbers,
+kind, half-open decoded-character offsets `[start, end)`, physical line numbers,
 exact original `text`, and symbol/parent metadata where applicable. Python
 occurrences additionally retain canonical one-based line/UTF-8 byte-column
 ranges. UTF-8 columns and character offsets are distinct. LF, CRLF and bare-CR
-source bytes are preserved. The snapshot is the existing bounded text
+source bytes are preserved. Only LF, CRLF and CR delimit physical lines; VT,
+FF, FS, GS, RS, NEL, LS and PS remain source characters. The source index uses
+the same untranslated universal-newline convention as exact function source
+materialization. Window boundaries and displayed line numbers follow that
+convention for non-Python resources too. This corrects affected slices, not
+identity rules: correctly indexed units keep their existing identities, while
+previously incorrect offsets produce the identities of the corrected slices.
+No native declaration, source-observation or edit authority is broadened.
+The snapshot is the existing bounded text
 observation; the API does not claim an authenticated Git revision or a
 repository-wide simultaneous filesystem observation.
 
@@ -263,6 +281,11 @@ coding query, not a comparative retrieval-quality experiment.
 
 ### Established patterns reviewed
 
+The [bounded Qwen coding consumer](../../../../../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+uses this API with caller-admitted source/tests, symbol selection and explicit
+file expansion through Context. Host-owned acquisition exposes no second index,
+ranking policy or model-controlled filesystem mutation.
+
 [LlamaIndex CodeSplitter](https://developers.llamaindex.ai/python/framework-api-reference/node_parsers/code/)
 uses syntax-aware code chunking, while its
 [hierarchical parser](https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/node_parser/relational/hierarchical.py)
@@ -275,3 +298,20 @@ distinguishes symbol declarations from ordinary file/text results. These pattern
 support explicit units and source lineage. Devtools already owns the required
 AST coordinates, RI subjects, lexical scoring and disclosure contracts; adding
 those libraries would not remove that integration work and is unnecessary here.
+
+### Caller-selected source resources
+
+`search_repository_source(index, query=..., mode=..., resource_addresses=...)`
+accepts an explicit tuple of unique admitted RepositoryResourceAddress values.
+None preserves existing full-index behavior; () selects nothing. Selected
+resources constrain hits, supporting evidence and native match lists before
+final result limits/consolidation. Corpus statistics and BM25 match evidence
+remain those of the original admitted index; no smaller index is rebuilt.
+SourceSearchResult records the exact requested tuple, separately from index
+coverage. Invalid types, duplicates or resources without admitted file source
+units are refused. No filesystem acquisition, new authorization or runtime
+inference occurs. Retained exact-source disclosure still uses the same units.
+
+The maintained coding application's opt-in repository-map Tool uses existing
+map/Planning/source machinery; see [its native contract](../../../../../apps/qwen/README.md#opt-in-repository-map-navigation).
+Deterministic Tool integration does not prove actual model adoption.

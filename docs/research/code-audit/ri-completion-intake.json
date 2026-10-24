@@ -1,0 +1,261 @@
+{
+  "at": "2026-10-24T14:34:07.197026+00:00",
+  "new_pending": {
+    "case3": "b765fa8f-e0b7-4bc8-9869-156c6a7830cc",
+    "profiler": "b4a017bb-b1eb-4209-99f7-0b73dcf4bd44",
+    "tooling": "7cfa03bd-b1ee-4c95-9536-59772360fd40"
+  },
+  "new_records": {
+    "case3": {
+      "schema": "backlog-proposal-v1",
+      "id": "b765fa8f-e0b7-4bc8-9869-156c6a7830cc",
+      "created_at": "2026-10-24T14:34:05.058745+00:00",
+      "payload": {
+        "kind": "bug",
+        "title": "Authenticate Case0003 implementation trace and declared report inputs in versioned future analysis",
+        "parent": "B-0002",
+        "summary": "P2 historical analysis integrity, not a demonstrated worker vulnerability. experiments/codex_dogfood/case_0003/analyze.py:join returns agent telemetry from codex_trace.jsonl but never compares its bytes with post_run.implementation_trace_sha256. Independent entirely authored packet: replacing a completed trace with an incomplete foreign.py open leaves all checked pins and post_run unchanged, yet join succeeds and emits the new telemetry. Original retained actual trace matches its post_run pin; no historical corruption established.",
+        "resources": [
+          "experiments/codex_dogfood/case_0003/analyze.py",
+          "tests/experiments/codex_dogfood/test_case_0003.py"
+        ],
+        "evidence": [
+          "docs/research/ri-experimental-completion-and-main-adoption.md",
+          "docs/research/code-audit/ri-completion-probes.json",
+          "docs/research/code-audit/ri-completion-artifact-identities.json"
+        ],
+        "benefit": "Preserve frozen implementation. Add a versioned read-only future-analysis verifier for explicitly supported original schema: bind actual implementation trace to its independent post_run pin before interpreting events; authenticate declared patch/validation-log/report input closure where retained anchors exist, and reject unavailable/unsupported formats rather than reconstruct evidence. Acceptance: changed/truncated/substituted trace with unchanged pin refuses, correct retained bytes pass, encoding changes require correct original byte identity, missing/foreign pins refuse, no original receipt/output mutation. Test genuine trace-to-result association separately from neutral judgment materialization. Existing Graph3 partial-report and Increment23 neutral-binding bugs remain separate.",
+        "uncertainty": "Synthetic exploitability only. Direct digest inspection confirms the original Case3 trace is unchanged. An original hash is not semantic truth or proof every task obligation was authored. Suitable bounded maintenance/verifier implementation after authorization.",
+        "dependencies": [
+          "B-0002",
+          "B-0011"
+        ],
+        "discovery": {
+          "kind": "research",
+          "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+        }
+      },
+      "payload_sha256": "c987da4a0a56ccdc5985af110799735068a41351aee2e53f8b04be4d2c2134f6"
+    },
+    "profiler": {
+      "schema": "backlog-proposal-v1",
+      "id": "b4a017bb-b1eb-4209-99f7-0b73dcf4bd44",
+      "created_at": "2026-10-24T14:34:05.069781+00:00",
+      "payload": {
+        "kind": "bug",
+        "title": "Prevent stale phase-output reuse in retrieval performance timeout reporting",
+        "parent": "B-0002",
+        "summary": "P2 experiment-owned measurement correctness. experiments/performance/retrieval/profiler.py:profile reads a pre-existing phases/<phase>.json after CommandTimeoutError without checking current invocation identity or worker entry. Independent fake executor times out before entry with old COMPLETE output present: returned TIME_LIMIT_STOPPED_NOT_REPEATED retains the old summary and a999-second lower bound despite a120-second cap. reporting.render prefers any summary, so stale timing can appear as current stopped-phase data. No original performance result shown corrupted.",
+        "resources": [
+          "experiments/performance/retrieval/profiler.py",
+          "experiments/performance/retrieval/reporting.py",
+          "experiments/performance/retrieval/test_benchmark.py"
+        ],
+        "evidence": [
+          "docs/research/ri-experimental-completion-and-main-adoption.md",
+          "docs/research/code-audit/ri-completion-probes.json"
+        ],
+        "benefit": "Keep frozen original profiler/output immutable. Future maintained/versioned engineering entry must bind phase outputs to an exact fresh invocation or refuse pre-existing output; timeout before authenticated worker entry must report unknown/lower-bound0 without carrying old samples/summary. Permanent independent tests: stale complete/partial/foreign phase, timeout before entry, fresh heartbeat then timeout, normal complete, nonzero worker failure, one invocation/no retry. Preserve120-second bound, no science replay or ambiguous external-effect retry. Real consumers are engineering profile publication and reporting only.",
+        "uncertainty": "Original retained stopped phase has no stale summary and a bound within its cap; current source demonstration does not invalidate that run. A new generic journal, lifecycle controller or framework tracing layer is unnecessary. Suitable report-only maintenance-agent scope.",
+        "dependencies": [
+          "B-0002",
+          "B-0034"
+        ],
+        "discovery": {
+          "kind": "research",
+          "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+        }
+      },
+      "payload_sha256": "8a1be01292247253f2168abc9255efc12230e03ca31863b7adf68ad2e5ef06d5"
+    },
+    "tooling": {
+      "schema": "backlog-proposal-v1",
+      "id": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+      "created_at": "2026-10-24T14:34:05.072406+00:00",
+      "payload": {
+        "kind": "investigation",
+        "title": "Reconcile official static-check scopes and isolate Ruff diagnostic renderer panic",
+        "parent": "B-0003",
+        "summary": "Independently reproduced developer tooling failure with installed pinned Ruff0.16.2: ruff format --check experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py panics in ruff_annotate_snippets source_map.rs:185, annotation0..36669 beyond buffer36667. --quiet also panics. The file is a frozen historical builder, not supported production source. Official development docs show broad Ruff commands with no retained-tree Ruff exclusion, while strict mypy and protected pytest have explicit experiment exclusions; prior broad lint24631 findings and28 supported format discrepancies are not green checks.",
+        "resources": [
+          "pyproject.toml",
+          "uv.lock",
+          "docs/development/validation.md",
+          "experiments/codex_dogfood/case_0016/adjudication/primary/stage_c_builder.py"
+        ],
+        "evidence": [
+          "docs/research/ri-experimental-completion-and-main-adoption.md",
+          "docs/research/code-audit/ri-completion-tooling.json"
+        ],
+        "benefit": "Decide and document supported source versus immutable artifact static-check ownership. Preserve frozen bytes and production branch gate. Isolate a minimal non-sensitive diagnostic reproducer if appropriate; qualify a locked tool upgrade or scoped invocation in an explicitly approved follow-up, with wrong-scope/error-code regressions. Acceptance: supported checks cover all supported owners and return accurate statuses; retained verification remains explicit; known builder does not cause an unexplained overall gate panic;28 existing supported formatting differences receive reviewed disposition without mass-formatting scientific artifacts. No external issue submission/install/lock change authorized by research.",
+        "uncertainty": "External tool diagnostic crash, not a demonstrated RI algorithm defect. Supported-only checks previously complete; broad scope failure remains real. Needs maintainer scope decision before configuration/dependency changes. No duplicate existing narrowly matching tooling proposal found; B-0047 covers pytest isolation, not formatter/lint policy.",
+        "dependencies": [
+          "B-0047"
+        ],
+        "discovery": {
+          "kind": "research",
+          "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+        }
+      },
+      "payload_sha256": "2dd5dbf2b73f65b22f566dc6e83ff0a4ae0bd0eca756a00a88d0fbcacccc33df"
+    }
+  },
+  "advisory_reviews": [
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+      "proposal_sha256": "0bdd9f81ed621dab23054ad2850d366e3e8ce21b23c82b22259408d62ee2debc",
+      "previous": "2fec7aa3af09beffa8bea701292ba46a0dcba53c9676ab3fe1fb7848e791795e",
+      "at": "2026-10-24T14:34:05.209048+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Delivered7541a1a3 remains independently validated feature implementation; no undiagnosed status claim or automatic closure. Read-only main adoption now freezes exactly8 combined paths (4 source/2 new tests/2 docs), patch SHAabc38296e9ef2d3f24e0f07c5520f8350bf2c766358d7245f15e23184f0c2cb6 and proposed destination tree561c765f554110716e6fbd9ea32ecb17b5a07e09 over main5d979920. Original affected source equals repair parents on main. Physical-fix doc needs selective hunks to exclude unrelated Qwen/discovery/search claims.141 AST dependencies are pinned to destination/repair, not a dynamic proof. Separate authority, compatible multi-source integration procedure, destination100% branch gate, independent review and remote verification still required. WorkCycle.plan single-source interface cannot be bypassed or supplied fabricated Qwen acceptance. Current assignment only prepares scope.",
+      "duplicates": [],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "c557ee1c3a8ba5ae8ba3a0b4219bcf5eb164a6887425e4a7853464640d742cdc"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+      "proposal_sha256": "a799955acd5208d99f57179242dae73968a90d27f942e63427d3f50271b7f662",
+      "previous": "5fbc3284e944ff85a6932c67de7b2bab391bdf2e005012d8794b38106c587f59",
+      "at": "2026-10-24T14:34:05.536844+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "a0a6c224 physical-line correction is delivered and feature-validated. New read-only combined main-adoption artifact covers exact representation.py, permanent physical-line regression and destination-specific documentation plus exact-name fix dependency closure. Main still has splitlines defect. Original correction source/test equals destination-compatible existing APIs; original documentation parent differs from main due unrelated feature claims, so do not copy that full blob or merge feature ancestry. Recommend operator reconcile delivered source scope and duplicate5aa7a431 without automatically approving/closing either; destination adoption remains separate reviewed authority and exact-tree gate.",
+      "duplicates": [
+        {
+          "reference": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+          "reason": "title overlap or shared resource"
+        }
+      ],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "01edbb956338eebf9e02b150a631f73a4c5847e72de6e2520ea96c3436cbfcf8"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "proposal_sha256": "7e5bab6df0988c9541cb379908b03971c4bbb154b92de14c9ac70cd8d4be3eab",
+      "previous": "2481e9df2170ed532eb4ae8411477fbc27172f825e03fc67f70322a9b8e62f0d",
+      "at": "2026-10-24T14:34:05.843945+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Implementation evidence remains the same a0a6c224 physical-line correction as416658bd. Duplicate scope should receive normal operator reconciliation, preserving histories and unrelated historical SourceSpans defect. Main-adoption scope is now exact and independently reviewable, not executed. No additional code repair or independent second implementation implied.",
+      "duplicates": [
+        {
+          "reference": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+          "reason": "title overlap or shared resource"
+        }
+      ],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "daff1c40d38a3e0ac1d98b1ca6724775802e3d173ee3c9b4f1d2ec9c9b1f06f7"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "2e70de9a-d09c-409d-a7a2-0f32f67c4768",
+      "proposal_sha256": "e4dfd85433515c99b2de082ae04df44c9008e6b5ed8e4f127ee843b1f808dde2",
+      "previous": "d7bbc94c04b185546798d9f12d27e1c00004b85a8b78107bfc91a12474bd79f7",
+      "at": "2026-10-24T14:34:06.151627+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Supported Increment23 verification_v1 subset remains delivered with original96 historical bindings authenticated in its checkpoint. Current non-test source search finds no adopted analysis consumer outside verifier module; unchecked older entry points and Increment24 digest closure remain open. This increment verifies direct12 Increment31 new neutral/address/InformationNeed/snapshot pairs under pinned original input, not reuse of the Increment23 adapter on an unsupported schema. New Case3 trace-pin and profiler-output bugs have separate obligations; do not conflate report/trace input closure with neutral/address association. No approval/closure or original-science modification.",
+      "duplicates": [],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "5b2aa7e5bd61bee27d0a9b21363a31115f38724f6f5af4b62e56bd7ae0125571"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+      "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+      "previous": "7c04f9e655386e93d9b2bd4e80ca5ed3d6f51071bae8af50ccc23f2b360272f1",
+      "at": "2026-10-24T14:34:06.460788+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Ten additional full fixture/body reviews: declaration aggregation, containment, import members/resolution, direct bases, module interpretation, canonical BM25, filename BM25, snapshot changes and map Planning.104 selected tests passed. Real native parsing/retained dependencies distinguished from nominal lexical helper identities; manual BM25 formula independently checks arithmetic, filename hit evaluation is adapter correlation not independent effectiveness. New concrete fixture limitation: test_members._resolve(snapshot,interpretations=()) uses values=interpretations or default, silently resolves with populated default; direct resolver with genuine empty universe returns unresolved. Acceptance: distinguish None from explicit empty, add real empty/foreign/same-ID changed-source cases preserving native unsupported/ambiguous outcomes; no runtime-source or frozen-science rewrite needed. Existing fixture proposal sufficient;48 original modules remain. No new main/runtime authority inferred.",
+      "duplicates": [],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "bf88bbbe5a8c921c17443cc945a702537c4c2459cc4f21733aef7902e0a4c7d5"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+      "previous": "f2cbf9635637404a396ce453c59b46431f66af17a33335b78f340803923b51f1",
+      "at": "2026-10-24T14:34:06.791947+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Full12-path performance implementation review authenticates retained measurements: six warm queries pooled median66.7613ms/p9587.2052ms; full RI three pure-call-sum passes median288.759644s, graph pure build1.747082s, one-resource0.170641s. Workload514 resources/415 Python/3954 references, runtime3.14.0 and original implementation hashes;15 current source hashes now drift, so not measurements of current native worker. Core API filename rebuild is included; RI/provenance/serialization omitted from warm computation. Keep existing measured-reuse obligation: profile actual authorized native refresh/index build, exact invalidation/dependency identity and equivalence negatives before caching. Retained structural kernels fast does not prove graph effectiveness. No new benchmark/cache or autonomous consumer created.",
+      "duplicates": [
+        {
+          "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "reason": "title overlap or shared resource"
+        }
+      ],
+      "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "a116a8248adc259f32159b994d1518a76973d599dee3b42b01b34753d8166914"
+    },
+    {
+      "schema": "backlog-review-v1",
+      "proposal": "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+      "proposal_sha256": "0bdd9f81ed621dab23054ad2850d366e3e8ce21b23c82b22259408d62ee2debc",
+      "previous": "c557ee1c3a8ba5ae8ba3a0b4219bcf5eb164a6887425e4a7853464640d742cdc",
+      "at": "2026-10-24T14:52:45.816074+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "rationale": "Planning artifact refinement before publication: earlier context-bearing patch hashabc38296e9ef2d3f24e0f07c5520f8350bf2c766358d7245f15e23184f0c2cb6 is retained as local draft. Final zero-context transcript hasha11d2f60eed45e761381a1757085ada17f720ca71e65612197a63faa72ae53c9 removes whitespace-only diff context markers from maintained documentation. Exact eight proposed target blobs and tree561c765f554110716e6fbd9ea32ecb17b5a07e09 unchanged. Future approved application must authenticate all before blobs and use --unidiff-zero; this changes no source semantics, candidate scope, authority, validation requirement or historical evidence.",
+      "duplicates": [],
+      "duplicate_disposition": "Append-only draft-to-final artifact identity clarification. No new proposal or status/authority change.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "0a86de4df01b2d355d9bf28b62b807b4c6ec94b443a52e90f568cb0f3c6ab7fa"
+    }
+  ],
+  "states": {
+    "PENDING_REVIEW": 38,
+    "APPROVED": 1
+  },
+  "errors": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "befd10cd-f382-4f40-aade-5c4119db4c44",
+  "created_at": "2026-10-23T19:01:26.352191+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct address-only loss reporting in reusable legacy lexical report projections",
+    "parent": "B-0002",
+    "summary": "Priority3 historical-report usability. experiments/address_lexical.py _address_payload iterates RepositoryTextLexicalRetrievedRelevantResource wrappers but serializes str(wrapper) for lost resources instead of the wrapped address. A synthetic native BM25 match yields a full nested wrapper representation where an address list is promised. Numeric ranking, frozen scientific judgments and production scoring are not shown wrong.",
+    "resources": [
+      "experiments/address_lexical.py",
+      "src/devtools/context/retrieval/lexical/evaluation.py"
+    ],
+    "benefit": "Acceptance: a native independently authored retrieved-resource wrapper lost by treatment produces exactly its address in a separately versioned/read-only derived report; recovered/lost identity semantics and numeric metrics are unchanged; historical originals and their hashes stay immutable. Determine whether any current consumer needs correction before changing a retired implementation; document no-action if only frozen reports remain consumed.",
+    "uncertainty": "Only the reporting primitive was exercised; no old benchmark or ranking treatment was rerun. A derived inspection adapter may be sufficient; do not edit archived results to make an old format appear corrected.",
+    "dependencies": [
+      "B-0027"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-deep-audit-followup.md; independently authored primitive challenges; 2026-10-23"
+    },
+    "evidence": [
+      "docs/research/ri-deep-audit-followup.md",
+      "docs/research/code-audit/ri-followup-probes.json"
+    ]
+  },
+  "payload_sha256": "14da135c09de35033d2fb281ede48906e54c839456865c2af13328a2ad8b8c87"
+}

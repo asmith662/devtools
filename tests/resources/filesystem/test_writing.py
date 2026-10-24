@@ -188,9 +188,16 @@ def test_write_csv_honors_the_shared_overwrite_policy(tmp_path: Path) -> None:
     assert target.read_bytes() == b"id\nold\n"
 
 
-def test_write_rejects_models_without_an_implemented_codec(tmp_path: Path) -> None:
-    """Generic writing exposes only the currently implemented JSON codec."""
+def test_write_rejects_a_binary_model_codec_mismatch(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A broken resolver cannot route binary bytes through a text codec."""
     file = BinaryFile(ResolvedPath(tmp_path / "value.bin"), b"data")
+    monkeypatch.setattr(
+        "devtools.resources.filesystem.writing.resolve_codec",
+        lambda _file_format: TextCodec(),
+    )
 
     with pytest.raises(FileFormatError, match="No codec"):
         write(file)

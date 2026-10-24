@@ -1,0 +1,93 @@
+[
+  {
+    "member": "root-reports/b0002-purpose-relative-independent-validation.json",
+    "sha256": "b736248ff87686e06a709aef6f0eb9aa74a73856cb11e9a9f018904a63c6990b",
+    "top_level": [
+      "content_identity",
+      "payload",
+      "schema"
+    ],
+    "identity_references": [
+      {
+        "pointer": "/content_identity",
+        "value": "49ed431db96003fa4635eec0ca87d58cf6bc402d49a6d4b9049ba07d87465a51"
+      },
+      {
+        "pointer": "/payload/artifact_identities/capture/content_identity",
+        "value": "b0ec243125e3408f597f7474288ad632be9e1522ea85878de017b43b33b1598d"
+      },
+      {
+        "pointer": "/payload/artifact_identities/capture/raw_sha256",
+        "value": "f15a165e589bc48ecfedfda2b32987815c5ecc8273ce7b8fe3da84f7df79560c"
+      },
+      {
+        "pointer": "/payload/artifact_identities/frozen_adjudication/content_identity",
+        "value": "189033782e641e7826d9334df54b2a2113eef388080bbb8326f91e8915f76e59"
+      },
+      {
+        "pointer": "/payload/artifact_identities/frozen_adjudication/raw_sha256",
+        "value": "4c58ec0645080f3341ef46a9705d2e276a928cc8eb3cf869efadbe01779a5c48"
+      },
+      {
+        "pointer": "/payload/artifact_identities/mapping/content_identity",
+        "value": "9dc00a58875d3fdb63085b0f2f3feff8e6d341136c23161da71cc7587a636762"
+      },
+      {
+        "pointer": "/payload/artifact_identities/mapping/raw_sha256",
+        "value": "5cd943ca7da954a6b33f13b1ee4349d6aaef5738ee1069daa1fcb51f6d346fe8"
+      },
+      {
+        "pointer": "/payload/artifact_identities/package/content_identity",
+        "value": "6317cb1cd1de36100c6ecaa37807b994c69f71c23be490c334cdfe1ee8e9c0e9"
+      },
+      {
+        "pointer": "/payload/artifact_identities/package/raw_sha256",
+        "value": "3c2e17302f211772e2abd19458d05266ab4548accbada7e74191e181e1cbe85b"
+      },
+      {
+        "pointer": "/payload/capture_set_identity",
+        "value": "6fa52ec1717d3f677118b497edce81efb028027b1c24ae59779bb9763ee8c647"
+      },
+      {
+        "pointer": "/payload/mapping_set_identity",
+        "value": "8aec000c61772dba83f480c4708526bfb2a0087bfcbdc0fa480e14fea88d8717"
+      },
+      {
+        "pointer": "/payload/package_set_identity",
+        "value": "433efa8beabac18badb6ccdcc6fc752327968677b2876656079663e0dd36d2e3"
+      },
+      {
+        "pointer": "/payload/surface_quality/known_useful_material_resources",
+        "value": 18
+      }
+    ],
+    "source_artifacts": null,
+    "qualification": "Increment23 embeds authenticated input digests; Increment24 names source paths but does not independently embed all input digests. Code correspondence is not an authenticated per-input report link."
+  },
+  {
+    "member": "root-reports/b0002-purpose-relative-ranking-comparison.json",
+    "sha256": "9f086cfe9b18078aaf6b08814336e81e8295de50ba3361c289cfd2d1f88c9392",
+    "top_level": [
+      "content_identity",
+      "payload",
+      "schema"
+    ],
+    "identity_references": [
+      {
+        "pointer": "/content_identity",
+        "value": "7da0403d834a12134fd1008d114a088de29ed37ccccdee8b7c13dcf1aed0b105"
+      },
+      {
+        "pointer": "/payload/design_fingerprint",
+        "value": "60cb90b63f11b3b34edd7abc3a0bfeefee41cca1744013aaa1e70212ce55da73"
+      }
+    ],
+    "source_artifacts": [
+      ".b0002-increment-23-hidden-surface-capture.json",
+      ".b0002-increment-23-neutral-resource-mapping.json",
+      ".b0002-increment-23-frozen-adjudication.json",
+      ".b0002-purpose-relative-independent-validation.json"
+    ],
+    "qualification": "Increment23 embeds authenticated input digests; Increment24 names source paths but does not independently embed all input digests. Code correspondence is not an authenticated per-input report link."
+  }
+]

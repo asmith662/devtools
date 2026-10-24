@@ -10,6 +10,7 @@ class OperatingSystem(StrEnum):
     WINDOWS = "windows"
     LINUX = "linux"
     MACOS = "macos"
+    BSD = "bsd"
     OTHER = "other"
 
     @property
@@ -26,3 +27,8 @@ class OperatingSystem(StrEnum):
     def is_macos(self) -> bool:
         """Return whether this value represents macOS."""
         return self is OperatingSystem.MACOS
+
+    @property
+    def is_bsd(self) -> bool:
+        """Return whether this value represents a BSD family."""
+        return self is OperatingSystem.BSD

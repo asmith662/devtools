@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ae03cda7-955e-40c6-a131-9e2ba209c9a6",
+  "proposal_sha256": "2eaa6ff7460b998ecbe69949db133a5174b532a13c0082ac2b95ee41f86aad7c",
+  "previous": "4b88a2d0d9eaba405cb4a8d2d8e015d9489914190232867d9b1d54c405e9aed3",
+  "at": "2026-10-23T14:46:45.225252+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23",
+  "rationale": "Pinned Aider builds name-joined definition/reference graph orientation, personalizes PageRank with chat/mentions and automatically adds maps before file Context. Its map refresh tests intentionally allow stale content until refresh. Devtools already has typed native RI/maps, caller-directed Planning and opt-in native navigation with source-version admission. Investigate actual selection/freshness/effectiveness; do not add another graph or weaken retained-snapshot/source authority.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing qualified proposal owns the pressure; preserve its payload, parent and state. Source/test research only: no new B-number, approval, grant, inference or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "b04a1dd1d69d81944a86598422c718ea9634930e6f2fc4afc73b8fa505b663e5"
+}

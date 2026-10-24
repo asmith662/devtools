@@ -1,0 +1,79 @@
+
+import sys
+import tempfile
+import tomllib
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
+from tests.context.python.project_configuration.test_configuration import _snapshot, _resolve
+from devtools.context.python.project_configuration import analyze_python_project_configuration
+from devtools.context.repository.resource import RepositoryResourceAddress
+
+CASES = [
+    ('[dependency-groups]\nDev-Test=["pytest>=8", "coverage[toml]", "pytest>=8"]\nempty=[]', {"Dev-Test": ("pytest>=8", "coverage[toml]", "pytest>=8"), "empty": ()}, ()),
+    ('[dependency-groups]\n"Docs.Build"=["sphinx>=2"]\nQA=["name @ https://example.org/name.whl", "not validated !"]', {"Docs.Build": ("sphinx>=2",), "QA": ("name @ https://example.org/name.whl", "not validated !")}, ()),
+    ('[dependency-groups]\ngood=["a"]\nmixed=["a", {include-group="good"}]\ninclude=[{include-group="good"}]', {"good": ("a",)}, ("mixed", "include")),
+    ('[dependency-groups]\ngood=[]\nscalar="a"\nnumber=1\nboolean=true\nbad=["a", false]\nobj=[{other="x"}]\nnested=[["a"]]\n[dependency-groups.table]\nx="y"', {"good": ()}, ("scalar", "number", "boolean", "bad", "obj", "nested", "table")),
+    ('[dependency-groups]\n"QA.Test"=["a"]\n"qa_test"=["b"]\n"qa--test"=[]\ngood=["ok"]', {"good": ("ok",)}, ("QA.Test", "qa_test", "qa--test")),
+    ('[dependency-groups]\n""=[]\n"-bad"=[]\n"bad "=[]\n"é"=[]\n"bad\\n"=[]\ngood=[]', {"good": ()}, ("", "-bad", "bad ", "é", "bad\n")),
+]
+# Qualify every fixture with the supported runtime before interrogating RI.
+for text, supported, unsupported in CASES:
+    table = tomllib.loads(text)["dependency-groups"]
+    assert set(table) == set(supported) | set(unsupported)
+    for name, expected in supported.items():
+        assert tuple(table[name]) == expected
+
+with tempfile.TemporaryDirectory() as temporary:
+    root = Path(temporary)
+    for text, supported, unsupported in CASES:
+        snapshot = _snapshot(root, {"pyproject.toml": text})
+        analysis = analyze_python_project_configuration(snapshot, address=RepositoryResourceAddress("pyproject.toml"))
+        assert analysis.settings is not None
+        groups = {item.key: item for item in analysis.settings.declarations if item.key[0] == "dependency-groups"}
+        assert set(groups) == {("dependency-groups", name) for name in (*supported, *unsupported)}, "missing static dependency-group declarations"
+        for name, expected in supported.items():
+            item = groups[("dependency-groups", name)]
+            assert item.value == expected and item.unsupported_reason is None, (name, item)
+        for name in unsupported:
+            item = groups[("dependency-groups", name)]
+            assert item.unsupported_reason and item.value is None, (name, item)
+        assert ("dependency-groups",) not in analysis.settings.absent_keys
+        assert all(item.derivation_identity == analysis.derivation_identity for item in groups.values())
+        assert len({item.identity for item in groups.values()}) == len(groups)
+        assert list(groups) == sorted(groups)
+        assert analysis.resource == snapshot.resource_at(RepositoryResourceAddress("pyproject.toml"))
+        assert analysis == analyze_python_project_configuration(snapshot, address=RepositoryResourceAddress("pyproject.toml"))
+        resolved = _resolve(snapshot)
+        assert resolved.declarations == analysis and not resolved.facts
+        assert 'dependency-group' in analysis.SCOPE and analysis.SCOPE.endswith('v3')
+        assert 'python-project-config-tomllib-declarations-v4' in Path('src/devtools/context/python/project_configuration/declarations.py').read_text()
+    for text, state in [('', 'absent'), ('[dependency-groups]', 'empty'), ('dependency-groups=false', 'unsupported'), ('dependency-groups=[]', 'unsupported')]:
+        analysis = _resolve(_snapshot(root, {"pyproject.toml": text})).declarations
+        settings = analysis.settings
+        assert settings is not None
+        groups = [item for item in settings.declarations if item.key[0] == "dependency-groups"]
+        if state == 'absent':
+            assert not groups and ("dependency-groups",) in settings.absent_keys
+        else:
+            assert len(groups) == 1 and groups[0].key == ("dependency-groups",)
+            assert ("dependency-groups",) not in settings.absent_keys
+            if state == 'empty':
+                assert groups[0].value == () and groups[0].unsupported_reason is None
+            else:
+                assert groups[0].value is None and groups[0].unsupported_reason
+    text = 'project.name="sample"\nproject.dynamic=["readme"]\n[dependency-groups]\ngood=[]\nbad=[{include-group="good"}]\n[tool.pytest.ini_options]\ntestpaths=[]'
+    result = _resolve(_snapshot(root, {"pyproject.toml": text}))
+    settings = result.declarations.settings
+    assert settings is not None
+    assert next(item for item in settings.declarations if item.key == ("project", "name")).value == 'sample'
+    assert any(item.unsupported_reason == 'dynamic-readme' for item in result.declarations.declarations)
+    assert ("tool", "pytest", "ini_options") in settings.recognized_tool_tables
+    previous = result.declarations
+    changed = _resolve(_snapshot(root, {"pyproject.toml": text + '\n# retained identity changes'})).declarations
+    assert changed.derivation_identity != previous.derivation_identity
+    assert changed.settings.declarations[0].identity != previous.settings.declarations[0].identity
+    for text in ['[dependency-groups', '[dependency-groups]\nx=[]\nx=[]']:
+        result = _resolve(_snapshot(root, {"pyproject.toml": text})).declarations
+        assert result.parse_error == 'malformed-toml' and result.settings is None
+        assert not result.absent_selectors and not result.declarations
+print('PASS: dependency-group public analysis, resolution, identity and compatibility contract')

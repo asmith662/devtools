@@ -55,3 +55,13 @@ avoided by local workers. Preserve unavailable fields; do not equate API prices,
 subscription units and raw token counts. Pilot cheaply before an expensive matrix.
 No matrix, Qwen agent, Worker/ModelBackend/AgentBackend hierarchy, distributed ledger
 or general AgentRuntime is authorized by this record alone.
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+Original candidate16 proposes future report-only maintenance specializations.
+The [exact crosswalk](../../research/reconciliation-input-reconciliation.md#original-candidate-crosswalk)
+relates these to the already recorded ResearchAgent/ExperimentManager direction.
+Detection contracts, false-positive control, permissions, actual consumers and
+reproducible evidence remain unqualified. Do not create a BaseAgent, self-modifying
+maintenance service or new hierarchy from role labels. This is research pressure,
+not a distinct verified defect or implementation authorization.

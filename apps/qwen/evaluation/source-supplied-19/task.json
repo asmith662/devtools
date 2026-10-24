@@ -1,0 +1,127 @@
+{
+  "name": "source-supplied-all-checks-development-19",
+  "objective": "SOURCE-SUPPLIED IMPLEMENTATION ASSIGNMENT. The implementation owner is already established. The required all functionality does NOT exist; searching for its definition or future tests is unnecessary. The host supplies exact authenticated owner/helper/interface source before your first request, with current observation eligibility for edits. Your objective is to implement the specified behavior, not redesign architecture or independently relocalize the owner. Additional source inspection is appropriate only for a specific unresolved implementation dependency. After supplied source, at most THREE responses without an edit proposal are permitted before the supervisor stops; one necessary targeted dependency inspection may be justified explicitly. State such a dependency concretely, otherwise implement. Source anchors refer to common pre-transaction source. Preserve observed invariants. No task-specific implementation or oracle code is supplied.\n\nImplement the fixed all-checks selection in the existing run_check function and CodingCommands owner in apps/qwen/commands.py. This is an implementation assignment, NOT architecture/localization research. The individual five check commands already work. Compose them; preserve individual selectors and Git inspection behavior. Do not inspect WorkCycle, worker-loop, historical Task selection or unrelated architecture. Inspect the owner and essential helpers, then edit and validate. All needed Task fields are existing sources/existing_sources/new_paths/tests/read_paths/oracle/quality_checks/command_tools/definition_sha256. Existing _hash(path) returns the source hash, _save(path,value) archives JSON, _timed_command(root,*args) is the existing bounded managed-command boundary. Reuse those APIs and run_check individual execution; no new runner or plan DSL.\nExpose run_check(check=\"all\") through the existing native Tool schema and ToolRunner dispatch. CHECKS remains the five individual selectors (tests,oracle,ruff,format,typing); all is a selection, never its own component. Bundle checks always include tests/oracle, include Ruff/format when quality_checks, typing when command_tools; omitted optional checks are NOT_APPLICABLE. Do not infer tests or accept arbitrary commands/paths. Missing/blank tests or oracle, missing required runner/source/input or unavailable checks must fail closed, not pass.\nReturn the existing operation='run_check', arguments={'check':'all'}, a status PASS/FAIL/BLOCKED and checks keyed by all five names. Each check has independent status PASS/FAIL/BLOCKED/NOT_RUN/NOT_APPLICABLE/INTERRUPTED as appropriate, nonnegative elapsed_seconds, bounded stdout/stderr (max3000characters each), explicit truncation and a relative full-evidence reference. Preserve all full returned logs in existing coding-command evidence. Continue independent checks after ordinary nonzero failures; never mark unexecuted checks PASS. Managed timeout/unavailable checks are BLOCKED; host cancellation must archive INTERRUPTED/incomplete evidence and propagate cancellation.\nRecord source_sha256 and source_after_sha256 for every authorized source slot (None for uncreated authorized new slots); existing missing source is invalid. Record plan_sha256 and plan_after_sha256 as deterministic64hex identities of the actual host Task/plan and relevant test/read/runner inputs. Include source_unchanged and plan_unchanged booleans. Authenticate identity around the individual checks and after the bundle: any observed drift invalidates the bundle (BLOCKED), even if a later check restores bytes. PASS requires unchanged identities and every applicable check PASS; ordinary validation failures are FAIL. Do not mutate source/config/Git, perform Git discovery, add is_current, certify review readiness or publish. The report applies to the checked state only; full check_changes remains separate.\nAll checks must compose through existing helpers. No source/version framework, worker changes or new executor. Use exact common pre-transaction observed anchors and bounded proposals. Qwen authors semantic changes; hidden acceptance and existing regressions/Ruff/format/strict typing are host-owned and immutable. Implement a useful code increment after essential inspection rather than repeatedly searching already provided ownership.",
+  "source": "apps/qwen/commands.py",
+  "tests": [
+    "tests/tools/test_command.py",
+    "tests/tools/test_execution.py"
+  ],
+  "baseline_revision": "97dd31a753abb487176053216ea0b4f840c6a5d8",
+  "baseline_hashes": [
+    [
+      "apps/qwen/commands.py",
+      "4d218da0f3173bb59f09329404ac722001193591404e320bff1b1e94a962f2bc"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "e4ffedace5cf4276c01d1b00eff367665a02e26d8e92886a66268b7f71029afa"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "f4fd385497f435a5a62c25a0a3e189b284dc555d216ce2cfe591c2785fc4fb57"
+    ],
+    [
+      "apps/qwen/development_task.py",
+      "87096fa01faf86839ebd12f92cb30ecbe237ae2879eb702239cf878139aae986"
+    ],
+    [
+      "apps/qwen/tasks.py",
+      "9bbd6ed99a859caaa839e6d362bc4761d4f6419f93895723838ac32a0dcbac16"
+    ],
+    [
+      "src/devtools/tools/execution.py",
+      "03e4f87b8c5dd9e298e20abc0225fb9d6838b49ed99cca3e6225dca63d34d68c"
+    ],
+    [
+      "src/devtools/tools/protocols.py",
+      "bc4ac64652f06602e8c90e9cc652ff0c07bcc67810782cb521ba514cc253ca8b"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "6a92fda96e27e6f57f822e013e0d9e56846762c3eef9c84fcada2e45ac1ce906"
+    ],
+    [
+      "apps/qwen/model_tool_composition.py",
+      "6775bdbfb9576818b3ef1c5a16dc6dcd77daa2dbfef15c012a399e1a9fb32b74"
+    ]
+  ],
+  "context": [
+    [
+      "apps/qwen/commands.py",
+      "commands",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "test command",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "test execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/development_task.py",
+      "development task",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/tasks.py",
+      "tasks",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/execution.py",
+      "execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/protocols.py",
+      "protocols",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "apps/qwen/model_tool_composition.py",
+      "model tool composition",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import asyncio, hashlib, json, sys\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nfrom apps.qwen import commands\nfrom apps.qwen.coding_loop import _prepare_workspace\nfrom apps.qwen.development_task import _hash\nfrom apps.qwen.tasks import CodingTask\nfrom devtools.models.interaction import ModelToolCall\nfrom devtools.resources.commands import CommandTimeoutError\nfrom devtools.tools import ToolRunner\n\nCHECKS=('tests','oracle','ruff','format','typing')\nSOURCE='src/devtools/demo.py'; TEST='tests/test_demo.py'; READ='src/devtools/dependency.py'; NEW='src/devtools/optional.py'\nGOOD='\"\"\"Independent authored fixture.\"\"\"\\n\\nVALUE: int = 2\\n'\nasync def fixture(root):\n    files={SOURCE:GOOD,TEST:'import runpy\\nfrom pathlib import Path\\n\\ndef test_value():\\n    assert runpy.run_path(str(Path(__file__).parents[1]/\"src/devtools/demo.py\"))[\"VALUE\"] == 2\\n',READ:'VALUE = 1\\n','src/devtools/__init__.py':'','pyproject.toml':'[tool.ruff.lint]\\nselect=[\"F\"]\\n'}\n    for p,t in files.items():\n        target=root/p;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(t,encoding='utf-8')\n    paths=(SOURCE,TEST,READ)\n    task=CodingTask(name='all-checks-qualified-fixture',objective='Check authored fixture',source=SOURCE,tests=(TEST,),read_paths=(READ,),baseline_revision='0'*40,baseline_hashes=tuple((p,_hash(root/p)) for p in paths),context=tuple((p,'VALUE','mixed','file') for p in paths),oracle='assert module.VALUE >= 0\\n',context_mode='on-demand',quality_checks=True,command_tools=True,new_paths=(NEW,))\n    folder=root/'.local/evidence';folder.mkdir(parents=True);_prepare_workspace(root,folder,task)\n    return task,folder\nasync def invoke(tool):\n    result=await tool.dispatch(ModelToolCall('run_check','{\"check\":\"all\"}','native-bundle-call'))\n    assert result['operation']=='run_check' and result['arguments']=={'check':'all'}\n    assert set(result['checks'])==set(CHECKS),result\n    assert result['status'] in {'PASS','FAIL','BLOCKED'}\n    assert isinstance(result['source_unchanged'],bool) and isinstance(result['plan_unchanged'],bool)\n    assert set(result['source_sha256'])==set(tool.task.sources)\n    assert set(result['source_after_sha256'])==set(tool.task.sources)\n    assert len(result['plan_sha256'])==64 and len(result['plan_after_sha256'])==64\n    assert 'ready_for_review' not in result and 'is_current' not in result\n    full=tool.folder/result['evidence'];assert full.is_file(),'Missing full bundle evidence'\n    json.loads(full.read_text(encoding='utf-8'))\n    for row in result['checks'].values():\n        assert row['status'] in {'PASS','FAIL','BLOCKED','NOT_RUN','NOT_APPLICABLE','INTERRUPTED'}\n        assert row['elapsed_seconds']>=0\n        assert len(row.get('stdout',''))<=3000 and len(row.get('stderr',''))<=3000\n        if row['status'] in {'PASS','FAIL'}:\n            assert (tool.folder/row['evidence']).is_file(),'Per-check full log reference required'\n    return result\ndef kind(argv):\n    if any(str(x).endswith('tests-runner.py') for x in argv):return 'tests'\n    if any(str(x).endswith('oracle-runner.py') for x in argv):return 'oracle'\n    if 'mypy' in argv:return 'typing'\n    if 'format' in argv:return 'format'\n    if 'ruff' in argv:return 'ruff'\n    raise AssertionError(('Unexpected command',argv))\ndef returned(argv,failed=False,text='ok'):\n    return {'argv':argv,'exit_code':1 if failed else 0,'failed':failed,'stdout':text,'stderr':'','elapsed_seconds':0.01}\nasync def qualify_fixtures():\n    with TemporaryDirectory(prefix='devtools-bundle18-') as temp:\n        root=Path(temp).resolve();task,folder=await fixture(root)\n        for check in CHECKS:\n            r=await commands.run_check(root,folder,task,check);assert not r['failed'],(check,r)\n        (root/SOURCE).write_text(GOOD.replace('= 2','= 1'),encoding='utf-8')\n        pytest=await commands.run_check(root,folder,task,'tests');oracle=await commands.run_check(root,folder,task,'oracle')\n        assert pytest['failed'] and 'assert 1 == 2' in pytest['stdout'] and not oracle['failed']\n        for check,text,diagnostic in [('ruff',GOOD+'\\nimport os\\n','F401'),('format',GOOD.replace('int = 2','int=2'),'VALUE'),('typing',GOOD+'OTHER: int = \"bad\"\\n','assignment')]:\n            (root/SOURCE).write_text(text,encoding='utf-8');r=await commands.run_check(root,folder,task,check);assert r['failed'] and diagnostic in r['stdout'],(check,r)\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        original=_hash(root/SOURCE);(root/SOURCE).write_text(GOOD+'\\n# drift\\n',encoding='utf-8');assert _hash(root/SOURCE)!=original\n        try:await commands._timed_command(root,sys.executable,'-c','raise SystemExit(7)')\n        except Exception:raise AssertionError('Ordinary exit must remain a result')\n        print('QUALIFIED: all5 actual positives; isolated pytest/oracle compatibility; real lint/format/typing negatives; source drift and ordinary failures')\nasync def run_checks():\n    assert 'all' in json.loads(next(d for d in commands.command_definitions(type('Host',(),{'command_tools':True,'sources':(), 'tests':(), 'read_paths':()})()) if d.name=='run_check').input_schema_json)['properties']['check']['enum'],'Missing fixed all-checks selection'\n    assert tuple(commands.CHECKS)==CHECKS,'Preserve five individual selectors; all is not a component check'\n    with TemporaryDirectory(prefix='devtools-bundle18-') as temp:\n        root=Path(temp).resolve();task,folder=await fixture(root);tool=commands.CodingCommands(root,folder,task)\n        unchanged={p:(root/p).read_bytes() for p in (SOURCE,TEST,READ)}\n        result=await ToolRunner().execute(tool,('run_check',{'check':'all'}))\n        assert result['status']=='PASS' and all(result['checks'][k]['status']=='PASS' for k in CHECKS),result\n        assert result['source_unchanged'] and result['plan_unchanged'] and result['plan_sha256']==result['plan_after_sha256']\n        assert unchanged=={p:(root/p).read_bytes() for p in unchanged}\n        # Invoke again using provider-native ModelToolCall -> same ToolRunner boundary.\n        (root/SOURCE).write_text(GOOD.replace('= 2','= 1'),encoding='utf-8')\n        result=await invoke(tool);assert result['status']=='FAIL' and result['checks']['tests']['status']=='FAIL'\n        assert all(result['checks'][k]['status']=='PASS' for k in CHECKS if k!='tests'),result\n        for check,text,diagnostic in [('ruff',GOOD+'\\nimport os\\n','F401'),('format',GOOD.replace('int = 2','int=2'),'VALUE'),('typing',GOOD+'OTHER: int = \"bad\"\\n','assignment')]:\n            (root/SOURCE).write_text(text,encoding='utf-8');result=await invoke(tool)\n            assert result['status']=='FAIL' and result['checks'][check]['status']=='FAIL' and diagnostic in result['checks'][check].get('stdout',''),result\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        # Uncreated authorized new slots are allowed; present new source is checked.\n        (root/NEW).write_text('\"\"\"New authorized fixture.\"\"\"\\n',encoding='utf-8')\n        result=await invoke(tool);assert result['status']=='PASS' and result['source_sha256'][NEW]==_hash(root/NEW)\n        runner=folder/'tests-runner.py';saved=runner.read_bytes();runner.unlink()\n        result=await invoke(tool);assert result['status']=='BLOCKED' and result['checks']['tests']['status']=='BLOCKED',result\n        runner.write_bytes(saved)\n        incomplete=replace(task,oracle='');other=folder/'blank';other.mkdir();_prepare_workspace(root,other,incomplete)\n        result=await invoke(commands.CodingCommands(root,other,incomplete));assert result['status']=='BLOCKED' and result['checks']['oracle']['status']=='BLOCKED',result\n        skipped=replace(task,quality_checks=False);other=folder/'without-quality';other.mkdir();_prepare_workspace(root,other,skipped)\n        result=await invoke(commands.CodingCommands(root,other,skipped));assert result['status']=='PASS'\n        assert all(result['checks'][c]['status']=='NOT_APPLICABLE' for c in ('ruff','format')),result\n        # Patch only the existing managed command boundary, not the new bundle.\n        async def long_failure(_root,*argv):return returned(argv,kind(argv)=='ruff','X'*12000 if kind(argv)=='ruff' else 'ok')\n        with patch.object(commands,'_timed_command',long_failure):result=await invoke(tool)\n        assert result['status']=='FAIL' and result['checks']['ruff'].get('truncated') is True\n        assert 'X'*12000 in (folder/result['evidence']).read_text(encoding='utf-8'),'Full returned output lost'\n        async def timeout(_root,*argv):\n            if kind(argv)=='tests':raise CommandTimeoutError('Qualified managed timeout')\n            return returned(argv)\n        with patch.object(commands,'_timed_command',timeout):result=await invoke(tool)\n        assert result['status']=='BLOCKED' and result['checks']['tests']['status']=='BLOCKED',result\n        # Even if another check restores it, mutation invalidates successful status.\n        async def mutate(_root,*argv):\n            if kind(argv)=='tests':(root/SOURCE).write_text(GOOD+'\\n# transient drift\\n',encoding='utf-8')\n            elif kind(argv)=='oracle':(root/SOURCE).write_text(GOOD,encoding='utf-8')\n            return returned(argv)\n        with patch.object(commands,'_timed_command',mutate):result=await invoke(tool)\n        assert result['status']=='BLOCKED' and not result['source_unchanged'],result\n        (root/SOURCE).write_text(GOOD,encoding='utf-8')\n        async def plan_drift(_root,*argv):\n            if kind(argv)=='tests':runner.write_text('# changed runner\\n',encoding='utf-8')\n            return returned(argv)\n        with patch.object(commands,'_timed_command',plan_drift):result=await invoke(tool)\n        assert result['status']=='BLOCKED' and not result['plan_unchanged'],result\n        runner.write_bytes(saved)\n        async def cancelled(_root,*argv):raise asyncio.CancelledError('Qualified host interruption')\n        with patch.object(commands,'_timed_command',cancelled):\n            try:await invoke(tool)\n            except asyncio.CancelledError:pass\n            else:raise AssertionError('Cancellation must propagate after archival')\n        assert any('INTERRUPTED' in p.read_text(encoding='utf-8') for p in folder.glob('coding-command-*.json')),'No interrupted bundle evidence'\n        print('PASS: real5-check/native+ToolRunner bundle, independent failures, optional checks/new files, invalid plans/timeouts, transient source/runner drift, complete bounded-correlated logs and interruption')\nif __name__=='__main__':asyncio.run(run_checks())\n",
+  "maximum_calls": 12,
+  "output_tokens": 8192,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "apps/qwen/development_task.py",
+    "apps/qwen/tasks.py",
+    "src/devtools/tools/execution.py",
+    "src/devtools/tools/protocols.py",
+    "src/devtools/resources/commands/errors.py",
+    "apps/qwen/model_tool_composition.py"
+  ],
+  "quality_checks": true,
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 10,
+  "new_paths": [],
+  "disclose_edit_paths": true,
+  "path_edits": true,
+  "maximum_proposals": 4,
+  "api_targets": []
+}

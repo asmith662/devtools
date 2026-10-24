@@ -1,0 +1,41 @@
+{
+  "frozen_at": "2026-10-21T20:30:59.147501+00:00",
+  "classification": "Exposed Engineering16 development continuation; not fresh confirmation",
+  "baseline": "3f82cb256e999c96351a692409d5658229133de4",
+  "task_sha256": "b8caa9d4e76e6a4409e73cd23264eccb7c85ce7559fb93f50e91f271b7ee8c10",
+  "oracle_sha256": "e30b61a42763d4e3c4a7ba515b4f9d1532421248c040695d876a55cfa10a5d8d",
+  "original_contract": "apps/qwen/evaluation/change-check-16/task.json",
+  "scope_change": {
+    "removed": [
+      "apps/qwen/coding_loop.py",
+      "tests/apps/qwen/test_environment.py",
+      "tests/apps/qwen/test_application_scope.py",
+      "src/devtools/resources/commands/execution.py",
+      "src/devtools/resources/commands/models/command.py",
+      "src/devtools/tools/command.py",
+      "src/devtools/tools/errors.py",
+      "src/devtools/core/time/models/timestamp.py",
+      "src/devtools/context/repository/resource.py"
+    ],
+    "rationale": "No unrelated orchestration/closeout audit; immutable original legacy checks remain supplemental host acceptance. Actual imported helpers and fixed Tool boundary retained.",
+    "instruction": "Owner decided; inspect enough then implement two internal checkpoints, not rediscover architecture"
+  },
+  "limits": {
+    "model_requests": 20,
+    "worker_seconds": 1500,
+    "atomic_proposals": 6,
+    "components": 16,
+    "read_check_actions": 20,
+    "requested_output_tokens": 8192,
+    "context_tokens": 32768,
+    "byte_limits": "unchanged"
+  },
+  "profile": "qwen38-local Qwen3.8-27B IQ4_XS,32K,q4 K/V,thinking off; unchanged",
+  "projection_changes": "NONE: scope/framing is the prospective treatment",
+  "stop_rule": "One bounded attempt; no automatic recovery, budget extension or Codex semantic substitution after terminal failure",
+  "preflight": {
+    "path": ".local/qwen-coding-worker/change-check-17/preflight.json",
+    "sha256": "53d0f6cd3a81c5228b9efac6a99e14317f30846531126eda97e181e4d1ebe8f9"
+  },
+  "scope": "Ordinary feature only on genuine acceptance; no protected promotion or backlog approval"
+}

@@ -1,0 +1,1852 @@
+{
+  "cohort_tests": [
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/reliability/stage_c_r_test.py",
+      "blob": "de1bd19ec81f0f32383e53c7cacf15f52b9ad442",
+      "sha256": "a985ecd1910d892a1b9bb8226771f149bc193f9c59e7cc295800c3c8afcf4fe8",
+      "functions": [
+        {
+          "name": "test_exact_input_bindings_and_frame",
+          "line": 16,
+          "end": 19
+        },
+        {
+          "name": "test_full_coverage_and_exact_frozen_obligations",
+          "line": 22,
+          "end": 27
+        },
+        {
+          "name": "test_byte_identical_review_statistics_and_method_replay",
+          "line": 30,
+          "end": 33
+        },
+        {
+          "name": "test_overwrite_refusal_changes_nothing",
+          "line": 36,
+          "end": 39
+        },
+        {
+          "name": "test_detects_corrupt_review",
+          "line": 43,
+          "end": 52
+        },
+        {
+          "name": "test_alternative_statistics_independently",
+          "line": 55,
+          "end": 69
+        },
+        {
+          "name": "test_required_labels_exactly_match_witness_membership",
+          "line": 72,
+          "end": 82
+        },
+        {
+          "name": "test_output_canonicalization_only",
+          "line": 85,
+          "end": 89
+        },
+        {
+          "name": "test_workspace_output_whitelist",
+          "line": 92,
+          "end": 93
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/reliability/test_gold_comparison.py",
+      "blob": "93858f04eb1eaea53905ab726bedffe9ee5dff22",
+      "sha256": "c6f64c98d17bfda8f9f9d10a80cdef347de1af8e1ed8ab8de3290e61aaffc52c",
+      "functions": [
+        {
+          "name": "comparison",
+          "line": 29,
+          "end": 30
+        },
+        {
+          "name": "test_import_hashes",
+          "line": 33,
+          "end": 34
+        },
+        {
+          "name": "test_frame_and_duplicate_rejection",
+          "line": 37,
+          "end": 55
+        },
+        {
+          "name": "test_frame_foreign_identity_rejection",
+          "line": 58,
+          "end": 64
+        },
+        {
+          "name": "test_applicability",
+          "line": 67,
+          "end": 71
+        },
+        {
+          "name": "test_confusion_partition",
+          "line": 74,
+          "end": 85
+        },
+        {
+          "name": "test_set_partitions",
+          "line": 89,
+          "end": 104
+        },
+        {
+          "name": "test_unit_alignment",
+          "line": 107,
+          "end": 136
+        },
+        {
+          "name": "test_alternatives_and_sufficient_unions",
+          "line": 139,
+          "end": 169
+        },
+        {
+          "name": "test_gap_comparison",
+          "line": 172,
+          "end": 177
+        },
+        {
+          "name": "test_deterministic_comparison_replay",
+          "line": 180,
+          "end": 186
+        },
+        {
+          "name": "test_packet_double_build_and_exact_seals",
+          "line": 189,
+          "end": 215
+        },
+        {
+          "name": "test_leakage_rejection",
+          "line": 235,
+          "end": 240
+        },
+        {
+          "name": "test_source_identity_rejection",
+          "line": 246,
+          "end": 248
+        },
+        {
+          "name": "test_dispute_coverage_rejection",
+          "line": 251,
+          "end": 265
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 268,
+          "end": 273
+        },
+        {
+          "name": "test_source_mapping_is_outside_packet",
+          "line": 276,
+          "end": 284
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/reviewed/test_reviewed_gold.py",
+      "blob": "eff4e3e502850526bafe665c6a4aeff18b3e9b6f",
+      "sha256": "b78bd70933b9f6af61982e62b678feccddbdca8d7f1590666babad195bc23bbb",
+      "functions": [
+        {
+          "name": "gold",
+          "line": 22,
+          "end": 23
+        },
+        {
+          "name": "test_input_hash_scopes_and_inheritance_seal",
+          "line": 26,
+          "end": 30
+        },
+        {
+          "name": "test_full_frame_and_identity_partitions",
+          "line": 33,
+          "end": 45
+        },
+        {
+          "name": "test_inherited_cells_unchanged_with_one_explicit_exception",
+          "line": 48,
+          "end": 69
+        },
+        {
+          "name": "test_disputed_cells_match_each_explicit_decision",
+          "line": 72,
+          "end": 84
+        },
+        {
+          "name": "test_exact_frozen_source_support_and_tamper_rejection",
+          "line": 87,
+          "end": 95
+        },
+        {
+          "name": "test_units_cells_and_alternative_membership",
+          "line": 98,
+          "end": 115
+        },
+        {
+          "name": "test_independent_exact_cartesian_product",
+          "line": 118,
+          "end": 143
+        },
+        {
+          "name": "test_required_union_not_simultaneous_necessity",
+          "line": 146,
+          "end": 151
+        },
+        {
+          "name": "test_decisions_task_gap_and_six_limitations",
+          "line": 154,
+          "end": 172
+        },
+        {
+          "name": "test_deterministic_replay",
+          "line": 175,
+          "end": 178
+        },
+        {
+          "name": "test_overwrite_refusal_preserves_all_bytes",
+          "line": 181,
+          "end": 187
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/reconciliation_v2/packet/test_reconcile_c5_v2.py",
+      "blob": "4e45d614f6eec45e5d3c242450d3dfbe14b952d1",
+      "sha256": "4168796f73720e595c4ec422ceb50652337c9f730e71421bc7eb37f951e80292",
+      "functions": [
+        {
+          "name": "packet",
+          "line": 20,
+          "end": 24
+        },
+        {
+          "name": "synthetic",
+          "line": 27,
+          "end": 136
+        },
+        {
+          "name": "test_integrity_corruption_and_reparse_rejection",
+          "line": 140,
+          "end": 166
+        },
+        {
+          "name": "test_required_rationale_attestations_and_accepted_value",
+          "line": 168,
+          "end": 189
+        },
+        {
+          "name": "test_packet_and_exact_categories",
+          "line": 191,
+          "end": 193
+        },
+        {
+          "name": "test_replay_acceptance_and_uncertainty",
+          "line": 195,
+          "end": 200
+        },
+        {
+          "name": "test_no_full_mapping_no_default_and_closed_schema",
+          "line": 202,
+          "end": 218
+        },
+        {
+          "name": "test_duplicate_missing_unexpected_and_order",
+          "line": 220,
+          "end": 233
+        },
+        {
+          "name": "test_all_payload_fields_required",
+          "line": 235,
+          "end": 249
+        },
+        {
+          "name": "test_decision_vocabulary_and_evidence",
+          "line": 251,
+          "end": 266
+        },
+        {
+          "name": "test_each_kind_rejects_invalid_label",
+          "line": 268,
+          "end": 285
+        },
+        {
+          "name": "test_leakage_and_anonymization",
+          "line": 287,
+          "end": 307
+        },
+        {
+          "name": "test_neutral_order_and_packet_coverage_rejection",
+          "line": 309,
+          "end": 321
+        },
+        {
+          "name": "test_immutable_publish_completed_replay_and_whitelist",
+          "line": 323,
+          "end": 346
+        },
+        {
+          "name": "reparse",
+          "line": 156,
+          "end": 160
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/reconciliation_v2/test_packet.py",
+      "blob": "4097da883d150eb0650f8e9eaa4f25bdef57cc2a",
+      "sha256": "624c2da8e7d24dae2dd2e86660e5c9cdd1f87300a99dffb820483cf94392e537",
+      "functions": [
+        {
+          "name": "test_v1_defect_regression_and_unchanged_propositions",
+          "line": 19,
+          "end": 43
+        },
+        {
+          "name": "test_double_build_frozen_bytes_and_overwrite_refusal",
+          "line": 45,
+          "end": 56
+        },
+        {
+          "name": "test_instructions_no_default_or_full_derivation",
+          "line": 58,
+          "end": 69
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/reliability/test_c5_comparison.py",
+      "blob": "22fac0e9ff7faee95c10c9e6b9a57cdaa14eac58",
+      "sha256": "f2df26ff8e30a2034a65017080bce5fb9f7d7f5281545e24026af3268c41cfb5",
+      "functions": [
+        {
+          "name": "data",
+          "line": 22,
+          "end": 23
+        },
+        {
+          "name": "result",
+          "line": 27,
+          "end": 28
+        },
+        {
+          "name": "test_exact_frame",
+          "line": 31,
+          "end": 38
+        },
+        {
+          "name": "test_duplicate_pair_rejected",
+          "line": 41,
+          "end": 44
+        },
+        {
+          "name": "test_pair_partition",
+          "line": 47,
+          "end": 54
+        },
+        {
+          "name": "test_direct_partition",
+          "line": 57,
+          "end": 64
+        },
+        {
+          "name": "test_partial_and_noncoverage_partition",
+          "line": 67,
+          "end": 76
+        },
+        {
+          "name": "test_unit_coverage_and_uncovered_resolution",
+          "line": 79,
+          "end": 89
+        },
+        {
+          "name": "test_need_classifications",
+          "line": 92,
+          "end": 113
+        },
+        {
+          "name": "test_alternative_membership_and_completeness",
+          "line": 116,
+          "end": 131
+        },
+        {
+          "name": "test_granularity_and_collective_structure",
+          "line": 134,
+          "end": 150
+        },
+        {
+          "name": "test_deterministic_replay_and_manual_surface",
+          "line": 153,
+          "end": 167
+        },
+        {
+          "name": "test_full_disagreement_and_audit_coverage",
+          "line": 170,
+          "end": 230
+        },
+        {
+          "name": "test_packet_double_build",
+          "line": 233,
+          "end": 240
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 243,
+          "end": 248
+        },
+        {
+          "name": "test_leakage_rejection",
+          "line": 252,
+          "end": 254
+        },
+        {
+          "name": "test_source_and_chronology_rejection",
+          "line": 269,
+          "end": 271
+        },
+        {
+          "name": "test_position_order_rejection",
+          "line": 274,
+          "end": 283
+        },
+        {
+          "name": "test_whitelist_and_integrity_rejection",
+          "line": 286,
+          "end": 298
+        },
+        {
+          "name": "test_packet_payload_bindings",
+          "line": 301,
+          "end": 306
+        },
+        {
+          "name": "test_frozen_repository_artifacts",
+          "line": 309,
+          "end": 322
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/reliability/test_c5r_v1.py",
+      "blob": "51e254473f4c08d6d058bd62e3bee9ca985e4995",
+      "sha256": "24d7076918c32504dab8bb8fef2fa2581464d5d714a19b3212348aec950c7d41",
+      "functions": [
+        {
+          "name": "frozen",
+          "line": 17,
+          "end": 18
+        },
+        {
+          "name": "test_exact_packet_input_hashes",
+          "line": 21,
+          "end": 28
+        },
+        {
+          "name": "test_packet_manifest_bindings_and_preserved_statements",
+          "line": 31,
+          "end": 42
+        },
+        {
+          "name": "test_complete_unique_cartesian_pairs",
+          "line": 45,
+          "end": 55
+        },
+        {
+          "name": "test_labels_and_semantic_rationale_fields",
+          "line": 58,
+          "end": 67
+        },
+        {
+          "name": "test_complete_granularity",
+          "line": 70,
+          "end": 78
+        },
+        {
+          "name": "test_complete_need_classifications_and_semantic_review",
+          "line": 81,
+          "end": 99
+        },
+        {
+          "name": "test_coverage_derivation",
+          "line": 102,
+          "end": 113
+        },
+        {
+          "name": "test_collective_sets_and_minimality_records",
+          "line": 116,
+          "end": 131
+        },
+        {
+          "name": "test_all_alternatives_preserve_all_members_and_any_substitution",
+          "line": 135,
+          "end": 158
+        },
+        {
+          "name": "test_deterministic_replay",
+          "line": 161,
+          "end": 164
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 167,
+          "end": 175
+        },
+        {
+          "name": "test_no_forbidden_fields_and_scientific_whitelist",
+          "line": 178,
+          "end": 197
+        },
+        {
+          "name": "walk",
+          "line": 187,
+          "end": 192
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/results/test_c5_v1.py",
+      "blob": "91578e129c002695cea8baf5df088b56bd3a3cbc",
+      "sha256": "5f56260f3b65361822eab9dc9088d82ed39590d4909d9dd21ab0841c257c07f8",
+      "functions": [
+        {
+          "name": "objects",
+          "line": 17,
+          "end": 18
+        },
+        {
+          "name": "test_packet_exact_declared_integrity_and_bindings",
+          "line": 21,
+          "end": 24
+        },
+        {
+          "name": "test_cartesian_product",
+          "line": 27,
+          "end": 33
+        },
+        {
+          "name": "test_labels_and_all_rationales",
+          "line": 36,
+          "end": 49
+        },
+        {
+          "name": "test_unit_derivation_and_precedence",
+          "line": 52,
+          "end": 65
+        },
+        {
+          "name": "test_need_classifications_and_reviewer_judgment",
+          "line": 68,
+          "end": 83
+        },
+        {
+          "name": "test_statistics_and_redundancy",
+          "line": 86,
+          "end": 98
+        },
+        {
+          "name": "test_obligation_counts_include_cross_pairs",
+          "line": 101,
+          "end": 115
+        },
+        {
+          "name": "test_all_alternative_memberships_preserved",
+          "line": 118,
+          "end": 132
+        },
+        {
+          "name": "test_deterministic_replay_matches_frozen_files",
+          "line": 135,
+          "end": 139
+        },
+        {
+          "name": "test_overwrite_refusal_without_any_modification",
+          "line": 142,
+          "end": 149
+        },
+        {
+          "name": "test_digest_manifest",
+          "line": 152,
+          "end": 159
+        },
+        {
+          "name": "test_no_forbidden_data_fields",
+          "line": 162,
+          "end": 178
+        },
+        {
+          "name": "test_blindness_and_method_identity",
+          "line": 181,
+          "end": 187
+        },
+        {
+          "name": "test_scientific_workspace_whitelist_and_no_links",
+          "line": 190,
+          "end": 199
+        },
+        {
+          "name": "test_validation_record_requires_all_checks",
+          "line": 202,
+          "end": 215
+        },
+        {
+          "name": "walk",
+          "line": 169,
+          "end": 176
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/reviewed/test_reviewed_c5.py",
+      "blob": "4f65b4db71156b8b496b16f6a7ea3ed2ac98206f",
+      "sha256": "a0eaac3b23016a86eb96313377e13780fe2a2e56ce520e760849343e24213155",
+      "functions": [
+        {
+          "name": "data",
+          "line": 15,
+          "end": 16
+        },
+        {
+          "name": "test_complete_replay",
+          "line": 19,
+          "end": 26
+        },
+        {
+          "name": "test_exact_inheritance_and_decision_application",
+          "line": 29,
+          "end": 47
+        },
+        {
+          "name": "test_contradictory_decision_refused",
+          "line": 58,
+          "end": 65
+        },
+        {
+          "name": "test_incomplete_pair_frame_refused",
+          "line": 69,
+          "end": 79
+        },
+        {
+          "name": "test_agreement_cannot_be_reconciled",
+          "line": 82,
+          "end": 94
+        },
+        {
+          "name": "test_collective_member_mutation_refused",
+          "line": 97,
+          "end": 106
+        },
+        {
+          "name": "test_exclusive_publication_and_tamper_detection",
+          "line": 109,
+          "end": 120
+        },
+        {
+          "name": "test_partial_prior_publication_refused",
+          "line": 123,
+          "end": 129
+        },
+        {
+          "name": "test_forbidden_field_rejection",
+          "line": 133,
+          "end": 135
+        },
+        {
+          "name": "test_duplicate_json_refused",
+          "line": 138,
+          "end": 140
+        },
+        {
+          "name": "test_strict_precedence",
+          "line": 143,
+          "end": 147
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/stage_c5/test_packet.py",
+      "blob": "cbc06e1ba83b3c3930e1f1f0060d1d23bda18a34",
+      "sha256": "727563106561be5ac9683aa0a7103cdc2492e6d1fd418b85cf35e17eca821124",
+      "functions": [
+        {
+          "name": "packet",
+          "line": 24,
+          "end": 28
+        },
+        {
+          "name": "test_frozen_binding_and_deterministic_double_build",
+          "line": 31,
+          "end": 38
+        },
+        {
+          "name": "test_complete_mapping_with_cross_obligation_pairs",
+          "line": 41,
+          "end": 55
+        },
+        {
+          "name": "test_exact_need_semantics_and_neutral_unit_projection",
+          "line": 58,
+          "end": 73
+        },
+        {
+          "name": "test_nested_leakage_key_rejection",
+          "line": 101,
+          "end": 105
+        },
+        {
+          "name": "test_leakage_in_semantic_string_rejected",
+          "line": 119,
+          "end": 123
+        },
+        {
+          "name": "test_no_answer_locations_or_source_identity",
+          "line": 126,
+          "end": 133
+        },
+        {
+          "name": "test_mapping_deletion_duplicate_foreign_identity_rejected",
+          "line": 136,
+          "end": 148
+        },
+        {
+          "name": "test_future_labels_are_frozen_no_judgments",
+          "line": 151,
+          "end": 156
+        },
+        {
+          "name": "test_overwrite_refusal",
+          "line": 159,
+          "end": 164
+        },
+        {
+          "name": "test_workspace_whitelist_and_extra_file_rejection",
+          "line": 167,
+          "end": 175
+        },
+        {
+          "name": "test_integrity_tamper_and_metadata_injection_rejected",
+          "line": 178,
+          "end": 188
+        },
+        {
+          "name": "test_pre_review_document_is_exact_transparency",
+          "line": 191,
+          "end": 192
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/adjudication/test_stage_c.py",
+      "blob": "f52b18c526ee6da80511c319bd8f920055781281",
+      "sha256": "f1eba0a9bd6e6f8e6e3dfd1ecbdb05b9f90ac05445d8902c0a189fa6f2baa748",
+      "functions": [
+        {
+          "name": "packet",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "gold",
+          "line": 23,
+          "end": 24
+        },
+        {
+          "name": "test_declared_input_integrity_and_full_frame",
+          "line": 27,
+          "end": 34
+        },
+        {
+          "name": "test_only_whitelisted_regular_files_and_isolated_collection",
+          "line": 37,
+          "end": 40
+        },
+        {
+          "name": "test_complete_cell_and_source_support_validation",
+          "line": 43,
+          "end": 48
+        },
+        {
+          "name": "test_byte_identical_judgment_rebuild_twice",
+          "line": 51,
+          "end": 54
+        },
+        {
+          "name": "test_byte_identical_statistics_rebuild_twice",
+          "line": 57,
+          "end": 60
+        },
+        {
+          "name": "test_overwrite_refusal_preserves_all_fourteen_files",
+          "line": 63,
+          "end": 67
+        },
+        {
+          "name": "test_all_alternatives_are_complete_and_resources_necessary",
+          "line": 70,
+          "end": 81
+        },
+        {
+          "name": "test_statistics_partition_and_enumerated_unions",
+          "line": 84,
+          "end": 100
+        },
+        {
+          "name": "test_checksum_and_release_replay",
+          "line": 103,
+          "end": 104
+        },
+        {
+          "name": "test_rejects_protocol_or_gold_contract_corruption",
+          "line": 110,
+          "end": 129
+        },
+        {
+          "name": "test_rejects_excluded_gold_fields",
+          "line": 132,
+          "end": 137
+        },
+        {
+          "name": "test_no_repository_imports_or_external_adjudication_sources_in_scripts",
+          "line": 140,
+          "end": 150
+        },
+        {
+          "name": "test_gaps_and_start_time_inferability_are_separate",
+          "line": 153,
+          "end": 162
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0011/stage_d/test_analysis.py",
+      "blob": "f7a50b8c9742f794aa0fb1217838eafd1b73a4af",
+      "sha256": "7fffbb404dfc99cfdb1c03b08eb212dba216256e9d53e89bff968224522cef46",
+      "functions": [
+        {
+          "name": "data",
+          "line": 25,
+          "end": 38
+        },
+        {
+          "name": "result",
+          "line": 42,
+          "end": 44
+        },
+        {
+          "name": "test_chain_and_join",
+          "line": 47,
+          "end": 63
+        },
+        {
+          "name": "test_alternative_completions_independently",
+          "line": 66,
+          "end": 93
+        },
+        {
+          "name": "test_prefixes_and_bytes_independently",
+          "line": 96,
+          "end": 125
+        },
+        {
+          "name": "test_responsible_and_collective_members",
+          "line": 128,
+          "end": 160
+        },
+        {
+          "name": "test_oracle_is_secondary_and_independent",
+          "line": 163,
+          "end": 182
+        },
+        {
+          "name": "test_gate_boundaries",
+          "line": 197,
+          "end": 199
+        },
+        {
+          "name": "test_outcome_precedence_and_failures",
+          "line": 202,
+          "end": 238
+        },
+        {
+          "name": "test_capture_tamper_rejection",
+          "line": 244,
+          "end": 264
+        },
+        {
+          "name": "test_artifact_correspondence_and_overwrite",
+          "line": 267,
+          "end": 311
+        },
+        {
+          "name": "test_bad_identity_coverage",
+          "line": 314,
+          "end": 318
+        },
+        {
+          "name": "forbidden",
+          "line": 29,
+          "end": 31
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0014/adjudication/reviewed/test_materialize.py",
+      "blob": "581e6ff70a6e20aa2d2f490d76dad64fcec77623",
+      "sha256": "a27c08cf3ad23f74e0f0f7bd7774994b5c19bf6ed544f3578e31ca78abd5d3f7",
+      "functions": [
+        {
+          "name": "gold",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_reject_mutation",
+          "line": 47,
+          "end": 97
+        },
+        {
+          "name": "test_replay_and_counts",
+          "line": 100,
+          "end": 131
+        },
+        {
+          "name": "test_overwrite_and_hash_rejection",
+          "line": 134,
+          "end": 146
+        },
+        {
+          "name": "test_physical_primary_tamper",
+          "line": 149,
+          "end": 160
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0014/stage_b/test_capture.py",
+      "blob": "71005dbb64df5669d2a655a7ac5543b0e1194fc0",
+      "sha256": "cba3b6685bbbd53bf112b60e94032bdbe6e9295698da04551643439ea46ddf04",
+      "functions": [
+        {
+          "name": "test_exact_attribution_and_crossings",
+          "line": 23,
+          "end": 32
+        },
+        {
+          "name": "test_append_only_claim_return_recovery",
+          "line": 35,
+          "end": 48
+        },
+        {
+          "name": "test_return_publication_failure_never_retries",
+          "line": 51,
+          "end": 73
+        },
+        {
+          "name": "test_native_exception_and_exclusive_tamper",
+          "line": 76,
+          "end": 88
+        },
+        {
+          "name": "invoke",
+          "line": 56,
+          "end": 58
+        },
+        {
+          "name": "event",
+          "line": 62,
+          "end": 65
+        },
+        {
+          "name": "fail",
+          "line": 80,
+          "end": 81
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0014/stage_c/test_packet.py",
+      "blob": "c84ef7c25b2ef1109cbe48d1e8abf025a1c4277e",
+      "sha256": "b0da04a2c18fe1d0577f66ba62fc4205d6621143d9ec49b00b53532a55e899d1",
+      "functions": [
+        {
+          "name": "test_projection_and_native_identity_reconstruction",
+          "line": 17,
+          "end": 24
+        },
+        {
+          "name": "test_nested_treatment_metadata_rejected",
+          "line": 46,
+          "end": 53
+        },
+        {
+          "name": "test_initial_whitelist_physical_hash_tamper_and_overwrite",
+          "line": 56,
+          "end": 70
+        },
+        {
+          "name": "test_resource_and_obligation_tamper_rejected",
+          "line": 73,
+          "end": 84
+        },
+        {
+          "name": "test_relative_cli_publication_uses_explicit_canonical_base",
+          "line": 87,
+          "end": 94
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0014/stage_d/test_analysis.py",
+      "blob": "8dc32ffcec100add30b6f16f5d1d3d80323594fc",
+      "sha256": "98322c09da63220771999ed55cfb214bb7b6bff9faca340f76daba9ec20a2e0d",
+      "functions": [
+        {
+          "name": "data",
+          "line": 23,
+          "end": 24
+        },
+        {
+          "name": "result",
+          "line": 28,
+          "end": 29
+        },
+        {
+          "name": "test_frozen_input_seals_and_exact_join",
+          "line": 32,
+          "end": 71
+        },
+        {
+          "name": "test_independent_witness_prefix_and_union_oracle",
+          "line": 74,
+          "end": 141
+        },
+        {
+          "name": "test_required_ranks_attribution_and_frozen_arithmetic",
+          "line": 144,
+          "end": 188
+        },
+        {
+          "name": "test_meaningful_rank_edges",
+          "line": 202,
+          "end": 205
+        },
+        {
+          "name": "test_witness_and_regression_integer_boundaries",
+          "line": 208,
+          "end": 216
+        },
+        {
+          "name": "test_cost_is_captured_without_double_count",
+          "line": 219,
+          "end": 237
+        },
+        {
+          "name": "test_output_mutations_rejected",
+          "line": 265,
+          "end": 310
+        },
+        {
+          "name": "test_authenticated_input_mutation",
+          "line": 327,
+          "end": 335
+        },
+        {
+          "name": "test_candidate_and_application_mutations",
+          "line": 338,
+          "end": 356
+        },
+        {
+          "name": "test_capture_hash_tampering",
+          "line": 359,
+          "end": 365
+        },
+        {
+          "name": "test_deterministic_artifacts_overwrite_and_tamper",
+          "line": 368,
+          "end": 383
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0014/test_stage_a.py",
+      "blob": "47263d82020382b7de8623fd54954fe7b537cd45",
+      "sha256": "54b71e73b2aa9b46f6bea947fe63e2d19f935d168961b140ff515e77caa3592e",
+      "functions": [
+        {
+          "name": "test_every_task_query_term_and_arm_binding",
+          "line": 22,
+          "end": 33
+        },
+        {
+          "name": "test_prospective_operations_cannot_run_during_replay",
+          "line": 36,
+          "end": 54
+        },
+        {
+          "name": "test_blind_projection_leakage_guard",
+          "line": 57,
+          "end": 86
+        },
+        {
+          "name": "test_overwrite_and_tamper_rejection",
+          "line": 89,
+          "end": 107
+        },
+        {
+          "name": "test_eligibility_held_out_and_prior_case_guard",
+          "line": 110,
+          "end": 121
+        },
+        {
+          "name": "expected",
+          "line": 93,
+          "end": 94
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/adjudication/reviewed/test_materialize.py",
+      "blob": "ff308fb79494dfd7a3054e353b4a96ea3569918e",
+      "sha256": "675466218e9fe1124b698370fc0c8bab5b2f1af199c4880bd7daf539481082e4",
+      "functions": [
+        {
+          "name": "gold",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_reject_mutation",
+          "line": 49,
+          "end": 101
+        },
+        {
+          "name": "test_support_algebra_and_empty_witness",
+          "line": 104,
+          "end": 133
+        },
+        {
+          "name": "test_overwrite_and_hash_rejection",
+          "line": 136,
+          "end": 148
+        },
+        {
+          "name": "test_physical_primary_tamper",
+          "line": 151,
+          "end": 162
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/test_capture.py",
+      "blob": "df2d3bfd00b3f50501fb4ded375cc2c00b6733e7",
+      "sha256": "845e565401fc73e340255c5a8b91ae04c1e98e328b381ea1bd045d93bcee895b",
+      "functions": [
+        {
+          "name": "capture",
+          "line": 29,
+          "end": 42
+        },
+        {
+          "name": "test_split_preparation_exactly_matches_frozen_builder",
+          "line": 45,
+          "end": 51
+        },
+        {
+          "name": "test_complete_pair_formula_statistics_and_diagnostics",
+          "line": 55,
+          "end": 76
+        },
+        {
+          "name": "test_b_contribution_tamper_rejected",
+          "line": 92,
+          "end": 97
+        },
+        {
+          "name": "test_candidate_field_and_native_score_tamper",
+          "line": 100,
+          "end": 118
+        },
+        {
+          "name": "test_journal_exact_return_recovery_and_no_retry",
+          "line": 121,
+          "end": 134
+        },
+        {
+          "name": "test_failed_return_publication_and_native_raise_stop",
+          "line": 137,
+          "end": 169
+        },
+        {
+          "name": "test_publication_overwrite_refusal_and_incomplete_stop",
+          "line": 172,
+          "end": 178
+        },
+        {
+          "name": "test_durable_replay_has_no_native_invocations",
+          "line": 181,
+          "end": 202
+        },
+        {
+          "name": "event",
+          "line": 143,
+          "end": 146
+        },
+        {
+          "name": "invoke",
+          "line": 148,
+          "end": 150
+        },
+        {
+          "name": "fail",
+          "line": 161,
+          "end": 162
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/stage_b/test_capture.py",
+      "blob": "405647091be2c5b78bafb13ed875650a619f1ac4",
+      "sha256": "510e83b4fd1d3999d3db72bc56d213592a07880148719a9f5f062184ae58bdf9",
+      "functions": [
+        {
+          "name": "capture",
+          "line": 30,
+          "end": 44
+        },
+        {
+          "name": "test_split_preparation_exactly_matches_frozen_builder",
+          "line": 47,
+          "end": 53
+        },
+        {
+          "name": "test_complete_pair_formula_statistics_and_diagnostics",
+          "line": 57,
+          "end": 78
+        },
+        {
+          "name": "test_b_contribution_tamper_rejected",
+          "line": 94,
+          "end": 99
+        },
+        {
+          "name": "test_candidate_field_and_native_score_tamper",
+          "line": 102,
+          "end": 120
+        },
+        {
+          "name": "test_journal_exact_return_recovery_and_no_retry",
+          "line": 123,
+          "end": 136
+        },
+        {
+          "name": "test_failed_return_publication_and_native_raise_stop",
+          "line": 139,
+          "end": 171
+        },
+        {
+          "name": "test_publication_overwrite_refusal_and_incomplete_stop",
+          "line": 174,
+          "end": 180
+        },
+        {
+          "name": "test_durable_replay_has_no_native_invocations",
+          "line": 183,
+          "end": 204
+        },
+        {
+          "name": "event",
+          "line": 145,
+          "end": 148
+        },
+        {
+          "name": "invoke",
+          "line": 150,
+          "end": 152
+        },
+        {
+          "name": "fail",
+          "line": 163,
+          "end": 164
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/stage_b/test_recovery.py",
+      "blob": "14c9f5147da05e20c2359b75da7851ac391022c4",
+      "sha256": "4814357a45dbb40a4b583089233055d53e949f37501ab66bd9b3f0d3f3de82aa",
+      "functions": [
+        {
+          "name": "test_frozen_scientific_code_and_results_equal",
+          "line": 32,
+          "end": 40
+        },
+        {
+          "name": "test_forbidden_rich_repr_repeat_stream_and_memory",
+          "line": 43,
+          "end": 56
+        },
+        {
+          "name": "test_each_compact_state_mutation_changes_digest",
+          "line": 63,
+          "end": 153
+        },
+        {
+          "name": "test_record_encoding_unambiguous_incremental",
+          "line": 156,
+          "end": 164
+        },
+        {
+          "name": "test_resource_content_and_document_identity_mutations",
+          "line": 171,
+          "end": 193
+        },
+        {
+          "name": "test_stable_imported_records_and_separate_durable_replay",
+          "line": 196,
+          "end": 215
+        },
+        {
+          "name": "test_module_launcher_and_independent_audit_process",
+          "line": 218,
+          "end": 234
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/stage_c/test_packet.py",
+      "blob": "27be81aca97ea3315724adaedd8a3bc2e89773ac",
+      "sha256": "c67fff723695e421161e648d85f1192ea52f0d2e5f78dfb488abe3071bc212f8",
+      "functions": [
+        {
+          "name": "value",
+          "line": 24,
+          "end": 28
+        },
+        {
+          "name": "test_deep_leakage_tripwire",
+          "line": 32,
+          "end": 35
+        },
+        {
+          "name": "test_projection_exact_bytes_and_whitelist",
+          "line": 38,
+          "end": 57
+        },
+        {
+          "name": "test_original_obligation_resource_frame_tamper",
+          "line": 60,
+          "end": 65
+        },
+        {
+          "name": "test_only_sealed_publication_metadata_is_omitted",
+          "line": 68,
+          "end": 95
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/stage_d/test_analysis.py",
+      "blob": "ada97c05b6900e61f2a520a5fed3071ea9237acd",
+      "sha256": "3568e03787717e628fc4c5daf3b6f06573114ac6d9bb04d386c553aae818b776",
+      "functions": [
+        {
+          "name": "data",
+          "line": 26,
+          "end": 27
+        },
+        {
+          "name": "result",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "test_o2_empty_repository_witness_is_complete_zero",
+          "line": 35,
+          "end": 70
+        },
+        {
+          "name": "test_all_witnesses_independent_prefix_math",
+          "line": 73,
+          "end": 103
+        },
+        {
+          "name": "test_stable_selection_and_missing_member",
+          "line": 106,
+          "end": 117
+        },
+        {
+          "name": "test_exact_integer_gain_and_boundaries",
+          "line": 120,
+          "end": 133
+        },
+        {
+          "name": "test_case_wide_prefix_union",
+          "line": 136,
+          "end": 148
+        },
+        {
+          "name": "test_all_required_cells_and_frozen_outcome",
+          "line": 151,
+          "end": 170
+        },
+        {
+          "name": "test_reject_analysis_mutation",
+          "line": 192,
+          "end": 195
+        },
+        {
+          "name": "test_field_and_candidate_tamper",
+          "line": 198,
+          "end": 210
+        },
+        {
+          "name": "test_overwrite_refusal_and_output_tamper",
+          "line": 213,
+          "end": 235
+        },
+        {
+          "name": "test_mechanism_crossing_consequence",
+          "line": 238,
+          "end": 255
+        },
+        {
+          "name": "test_index_cli_mapping_preserves_blob_bytes",
+          "line": 258,
+          "end": 270
+        },
+        {
+          "name": "test_markdown_has_exactly_one_final_newline",
+          "line": 273,
+          "end": 278
+        },
+        {
+          "name": "fake_git",
+          "line": 263,
+          "end": 266
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0015/test_stage_a.py",
+      "blob": "065c0f9e278b3999d46dbe0c079889bfcfe0fae2",
+      "sha256": "35ab72633cd18e8701c9a94a433d2f5186ebadf84bb5495055d928a22cdc2da5",
+      "functions": [
+        {
+          "name": "test_task_obligation_query_binding_and_parameters",
+          "line": 22,
+          "end": 45
+        },
+        {
+          "name": "test_no_prospective_scientific_operation_can_run_during_replay",
+          "line": 48,
+          "end": 74
+        },
+        {
+          "name": "test_blind_projection_leakage_guards",
+          "line": 77,
+          "end": 122
+        },
+        {
+          "name": "test_overwrite_tamper_and_no_execution_rejection",
+          "line": 125,
+          "end": 144
+        },
+        {
+          "name": "test_eligibility_and_selection_criteria",
+          "line": 147,
+          "end": 161
+        },
+        {
+          "name": "expected",
+          "line": 129,
+          "end": 130
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURE_ERROR_CONTRACT_REVIEWED",
+      "executed": false,
+      "why_not_executed": "Historical capture/gold reconstruction and potential trusted pickle loading; audit does not replay science"
+    }
+  ],
+  "external_dependencies": [
+    {
+      "path": "experiments/query_term_weighting/classification.py",
+      "blob": "6bfd6ae32749fbbdb7eb47253c5d1c209e078b36",
+      "main_blob": "6bfd6ae32749fbbdb7eb47253c5d1c209e078b36",
+      "sha256": "7e5c05549775349ab8693f682564551ad51868f55aadaddc0f5d9bcf5389a373",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "multiplier",
+        "classify",
+        "validate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/query_term_weighting/gates.py",
+      "blob": "ea8624ae160f02835e871958dbe5567afbcceceb",
+      "main_blob": "ea8624ae160f02835e871958dbe5567afbcceceb",
+      "sha256": "49fe42291a0f23ff0a59d548df797b99df763edf3b61b2c138430f713891d177",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "evaluate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/query_term_weighting/scoring.py",
+      "blob": "e9d2c4f5d8175330937e7c679756dfca4bafa5cd",
+      "main_blob": "e9d2c4f5d8175330937e7c679756dfca4bafa5cd",
+      "sha256": "50e6c37f513433ab2b44f44c67a20155a1e2463aa9283676d5ae8ae6f283a908",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "score",
+        "require_identical_candidates",
+        "validate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/query_term_weighting/serialization.py",
+      "blob": "48dd4f17e45a2d222ffb181014f66591a057737d",
+      "main_blob": "48dd4f17e45a2d222ffb181014f66591a057737d",
+      "sha256": "16e276c19f65c401e8a5d5890ae4c4b1166e80f5497c69dfdca379c870599703",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "trace"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/query_term_weighting/test_gates.py",
+      "blob": "74b83e467b88a2b8cdc9dac083fa508ee5b7153b",
+      "main_blob": "74b83e467b88a2b8cdc9dac083fa508ee5b7153b",
+      "sha256": "b78ea39f820cc0d2642fb095017394ff4685c2d947aa48ecc0e0a495dfe363ee",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "evidence",
+        "test_precedence_and_bounded_regressions",
+        "test_exact_meaningful_burden_and_regression_boundaries",
+        "test_invalid_rank_metrics_rejected"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/query_term_weighting/test_weighting.py",
+      "blob": "1e64ffc2888848df7f14decd11ec8f8a8e01da83",
+      "main_blob": "1e64ffc2888848df7f14decd11ec8f8a8e01da83",
+      "sha256": "e4caa11eb83bd9c887597592f921b7c82fc6fdc1be45bfc175a8349ed94318b3",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "policy",
+        "native",
+        "test_task_only_classification_and_duplicate_semantics",
+        "test_policy_tamper_rejected",
+        "test_ambiguous_partial_foreign_anchor_rejected",
+        "test_scores_candidates_native_provenance_and_ties",
+        "test_result_candidate_query_and_bound_tamper_rejected",
+        "test_no_canonical_subtoken_expansion_or_query_frequency_weight",
+        "test_native_term_statistics_tamper_and_arm_isolation"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/fields.py",
+      "blob": "f07b2c18676288d1aebd6bf2e83532e1d00ff75e",
+      "main_blob": "f07b2c18676288d1aebd6bf2e83532e1d00ff75e",
+      "sha256": "8ef700b45ebc65e0ae3429850a33040b9a7eed0034dc805b8c60ee936480d9b3",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "validate_frame",
+        "build_fields",
+        "validate_state"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/gates.py",
+      "blob": "953bc5b16fb0d1d0d1dfb7fc9e922718349f45ad",
+      "main_blob": "953bc5b16fb0d1d0d1dfb7fc9e922718349f45ad",
+      "sha256": "591a1729a37835389a44462756798123f8a2b9ed25e40a2cc8d9fea0d4096920",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "evaluate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/scoring.py",
+      "blob": "4cd37f1ba3ed7d138f50f333c7328ec62e009e52",
+      "main_blob": "4cd37f1ba3ed7d138f50f333c7328ec62e009e52",
+      "sha256": "1b248158f57c85935591b28bc526d25e9f85fcca01c6e5d9c694a3b5baba127a",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "field_evidence",
+        "score",
+        "compare",
+        "__post_init__",
+        "keys"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/test_gates.py",
+      "blob": "8912119b9056f278b35372349136001154fd2f98",
+      "main_blob": "8912119b9056f278b35372349136001154fd2f98",
+      "sha256": "3cd0f1bfddf29dcf581cbe2753976d7c635380c6af2fe92e7bf82d6399c7a093",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "evidence",
+        "test_precedence_and_bounded_regressions",
+        "test_exact_meaningful_burden_and_regression_boundaries",
+        "test_invalid_rank_metrics_rejected",
+        "test_zero_task_backed_depth_and_required_rank_boundary"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/test_scoring.py",
+      "blob": "480856314f40172fa3515518852be15bec135eb6",
+      "main_blob": "480856314f40172fa3515518852be15bec135eb6",
+      "sha256": "ce9aaafcf820bfa57aecc3c54ff2435dcb7b554e07e3c775bca36df172af2f73",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "fixture",
+        "result",
+        "test_pre_saturation_single_idf_nonadditive_oracle",
+        "test_single_field_equivalence_and_own_averages",
+        "test_union_df_disjoint_overlap_and_per_field_normalization",
+        "test_candidate_union_no_addition_loss_and_canonical_ties",
+        "test_empty_filename_and_unchanged_filename_representation",
+        "test_invalid_parameters_rejected",
+        "test_positive_weights_preserve_candidates",
+        "test_foreign_stale_frames_query_and_observations_rejected",
+        "test_exact_score_provenance_replay_and_mutation_rejection",
+        "test_candidate_mismatch_is_rejected_without_union_repair"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/bm25f/trace.py",
+      "blob": "54db71869761a54a740fb279c0977cd78368433d",
+      "main_blob": "54db71869761a54a740fb279c0977cd78368433d",
+      "sha256": "b5c49170cf26b672e5ab2b862a9ee35c3757f2381992cc6c75a93b028acaad51",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "lossless",
+        "serialize",
+        "envelope",
+        "validate_envelope",
+        "verify_score",
+        "attribution",
+        "render",
+        "saturation"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/codex_dogfood/acquisition/needs.py",
+      "blob": "1a4b21f871b599915fab6016c8bb5cd63a39a758",
+      "main_blob": "1a4b21f871b599915fab6016c8bb5cd63a39a758",
+      "sha256": "0bd5c257e2e33018d1bb4797267daf3e2164aee7873cd72da83d558170fc72c0",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "__post_init__",
+        "identity"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/localization/task.py",
+      "blob": "f7b02fb49cbcd0215ad8dabb75a267955016987f",
+      "main_blob": "f7b02fb49cbcd0215ad8dabb75a267955016987f",
+      "sha256": "49d295a2fe7ca536e016145c8e9534b9bf0c9a25482ba25c30e07f1a6009a2e5",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "__post_init__",
+        "__post_init__"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/localization/obligation.py",
+      "blob": "6643e19a0557bc212a6a9ec38edbc0224bf8b0d4",
+      "main_blob": "6643e19a0557bc212a6a9ec38edbc0224bf8b0d4",
+      "sha256": "95a04139555323ac65bd280fbb2e8899de683bc5af8097a8597bfb10021d3a86",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "__post_init__",
+        "__post_init__",
+        "__post_init__"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/localization/lexical.py",
+      "blob": "91c56dc1279e1f2ba243ea7a5ed50a69531ffba3",
+      "main_blob": "91c56dc1279e1f2ba243ea7a5ed50a69531ffba3",
+      "sha256": "f838667d8bfa144d33032e267a7ad92383ef8bbec8b75f1d04795c11f1891cac",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "acquire_localization_lexical_evidence",
+        "_retrieve",
+        "__post_init__"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/localization/readiness.py",
+      "blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "main_blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "sha256": "a2ccc02f341b294a8fd1738f8d5ccadf23932ca662ef6f6badb002934db211f9",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "assess_localization_readiness",
+        "_assess_obligation",
+        "_record_disposition",
+        "_record_helpful",
+        "_record_mandatory",
+        "_readiness_state",
+        "_assessment_matches_frame",
+        "_satisfied_alternative",
+        "_consistent_disposition",
+        "_references_match_frame",
+        "_evidence_references",
+        "is_ready",
+        "may_handoff"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/retrieval/source/search.py",
+      "blob": "bf3a3a074dcb3289f116d153e5d226575cec4878",
+      "main_blob": "99901656eb387cb62e62ddb80b4fc7fa7e7d683f",
+      "sha256": "4ea9d1b1967c074f48917952e823eb2ba099c91ee3ee9ab30d80d7e7abe2c0c6",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "search_repository_source",
+        "_consolidate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "src/devtools/context/retrieval/lexical/scoring.py",
+      "blob": "7154fcd99f81db4b824a960a080bfa05d7aa24ac",
+      "main_blob": "7154fcd99f81db4b824a960a080bfa05d7aa24ac",
+      "sha256": "23ea9f7ab2a0066d588167fc7e0ef9d696e063c6e096075858a62bd41699b12e",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "calculate_bm25_inverse_document_frequency",
+        "calculate_bm25_term_contribution"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_d/validation.py",
+      "blob": "14217fca951068a662369d2d424e67db1713c96c",
+      "main_blob": "14217fca951068a662369d2d424e67db1713c96c",
+      "sha256": "2cef6eb19fabb18dc14fc51bafb8e6965036ca304ce0401fe40ef688d9c09232",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "validate"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0016/stage_d/analysis.py",
+      "blob": "3fe0dae8e76495592cf0f9338be15021c5899545",
+      "main_blob": "3fe0dae8e76495592cf0f9338be15021c5899545",
+      "sha256": "6c17c0fb314b34d4a95f8716cffcec21430989f37fd9f7d61ea438f19c7a3c12",
+      "depth": "FULL_DEPENDENT_SOURCE_BODY_READ",
+      "reviewed_functions": [
+        "expected",
+        "verify",
+        "main"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "main_blob": null,
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "depth": "TARGETED_CONSUMER_TRACE",
+      "reviewed_functions": [
+        "__init__",
+        "_observe",
+        "_index",
+        "execute",
+        "_read"
+      ],
+      "qualification": "External dependency depth only; no automatic credit against101,84fixtures or177older versions; external synthetic tests run separately from captured-case tests"
+    }
+  ]
+}

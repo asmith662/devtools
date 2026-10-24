@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-21T14:36:52.303813+00:00",
+  "serving_samples": [
+    {
+      "name": "32k",
+      "generation_context": 32768,
+      "slots": 1,
+      "samples": [
+        {
+          "size": "short",
+          "input": 320,
+          "seconds": 4.512304899981245,
+          "native_compatible": true,
+          "usage": {
+            "input_tokens": 320,
+            "output_tokens": 26,
+            "total_tokens": 346,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        },
+        {
+          "size": "archived-long",
+          "input": 27674,
+          "seconds": 29.083374099922366,
+          "native_compatible": true,
+          "usage": {
+            "input_tokens": 27674,
+            "output_tokens": 26,
+            "total_tokens": 27700,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        }
+      ],
+      "gpu": "name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\n\nNVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 14006 MiB, 0 %\n\n",
+      "container_memory": "{\"BlockIO\":\"252MB / 0B\",\"CPUPerc\":\"0.06%\",\"Container\":\"devtools-qwen38-llama-cpp\",\"ID\":\"61a6a7f97791\",\"MemPerc\":\"42.81%\",\"MemUsage\":\"6.626GiB / 15.48GiB\",\"Name\":\"devtools-qwen38-llama-cpp\",\"NetIO\":\"30.1MB / 29.9MB\",\"PIDs\":\"38\"}\n"
+    },
+    {
+      "name": "48k",
+      "generation_context": 49152,
+      "slots": 1,
+      "samples": [
+        {
+          "size": "short",
+          "input": 320,
+          "seconds": 1.9999436000362039,
+          "native_compatible": true,
+          "usage": {
+            "input_tokens": 320,
+            "output_tokens": 26,
+            "total_tokens": 346,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        },
+        {
+          "size": "archived-long",
+          "input": 27674,
+          "seconds": 29.16970940004103,
+          "native_compatible": true,
+          "usage": {
+            "input_tokens": 27674,
+            "output_tokens": 26,
+            "total_tokens": 27700,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        }
+      ],
+      "gpu": "name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\n\nNVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 14346 MiB, 14 %\n\n",
+      "container_memory": "{\"BlockIO\":\"21.2MB / 0B\",\"CPUPerc\":\"0.06%\",\"Container\":\"c96c3a6d63a9ae6ffb826fab134e0fd72e6821c270a8a2b26bcb34e781aaff06\",\"ID\":\"c96c3a6d63a9\",\"MemPerc\":\"85.47%\",\"MemUsage\":\"13.23GiB / 15.48GiB\",\"Name\":\"devtools-llama-cpp-0036b2165fad\",\"NetIO\":\"140kB / 216kB\",\"PIDs\":\"38\"}\n"
+    }
+  ],
+  "selected_context": 32768,
+  "choice": "Retain verified 32K profile with exact transaction projection. Archived repair now has >4096 safe output. 48K allocated and answered native probes without OOM; matched 27674-token probe showed no meaningful latency improvement. No coding-quality comparison or >32K-input inference was performed; warm/cold container RAM snapshots are not a controlled memory delta. Additional capacity alone does not establish better engineering.",
+  "limits": "48K kernel/offload counts and exact KV buffer allocations NOT_CAPTURED: initial probe used stdout-only Docker log capture while server logs were stderr. Both launches requested identical all-GPU/flash-on/q4 K,V and GPU usage/native latency are observed. Do not infer full kernel equivalence from flags.",
+  "revert": "Original persistent 32K container retained intact, restarted and health-checked READY. Temporary 48K container stopped/removed by existing LlamaCppServer. Original start/stop command remains the operating route.",
+  "probe_calls": 4,
+  "probe_output_limit": 128,
+  "raw_32k": ".local/qwen-coding-worker/environment-12/serving-check/result.json",
+  "raw_48k": ".local/qwen-coding-worker/environment-12/serving-48k/result.json"
+}

@@ -1,6 +1,10 @@
 # Copyright (c) 2026
 """Public repository identity, state, observation, and discovery API."""
 
+from devtools.context.repository.changes import (
+    RepositorySnapshotDelta,
+    compare_repository_snapshots,
+)
 from devtools.context.repository.corpus import (
     RepositoryTextCorpus,
     RepositoryTextCorpusDefinition,
@@ -45,6 +49,7 @@ __all__ = [
     "RepositoryResourceDiscoveryError",
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
+    "RepositorySnapshotDelta",
     "RepositorySnapshotId",
     "RepositoryTextCorpus",
     "RepositoryTextCorpusDefinition",
@@ -52,6 +57,7 @@ __all__ = [
     "RepositoryTextDocument",
     "RepositoryTextDocumentCollection",
     "RepositoryTextDocumentId",
+    "compare_repository_snapshots",
     "define_repository_text_corpus",
     "discover_repository_resource_addresses",
     "observe_repository_resource",

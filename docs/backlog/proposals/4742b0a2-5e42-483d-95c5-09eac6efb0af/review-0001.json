@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "4742b0a2-5e42-483d-95c5-09eac6efb0af",
+  "proposal_sha256": "c6befdcf57c58dc5c63c150c3b7e4e3bc0250775ce99a07465eb93ef317e7f59",
+  "previous": null,
+  "at": "2026-10-24T03:08:04.699849+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-structural-discrimination-audit.md",
+  "rationale": "Consumer trace confirms manual reset is reachable only through historical Case0008 stage_b CLI; no maintained framework, application or WorkCycle consumer found. The structural-discrimination executor uses preclaimed schedules and durable entry/return/failure records; synthetic failed-native-boundary test now passes and refuses reuse of the claim. This does not repair or change the historical reset. Priority2 for any future versioned controller/recovery reuse; do not claim current coding-worker retry vulnerability or original corruption. Prior entered-then-raised reproducer remains exact evidence. Need authenticated pre-entry proof plus authorization, not zero successful returns or prose.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing substantive proposal is sufficient with this exact new evidence/acceptance qualification; no duplicate, approval, grant, B-number, dispatch, status change or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "332f591195c0f667ca6fb22011973e0e832beaaa9ca9be5487335ed97c65bc7a"
+}

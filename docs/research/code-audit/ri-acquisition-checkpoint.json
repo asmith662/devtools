@@ -1,0 +1,121 @@
+{
+  "at": "2026-10-24T02:29:41.422424+00:00",
+  "baseline": "9ecf3ff81933e84b5300ada87164b9e2afca13d3",
+  "branch": "feat/qwen-context-worker",
+  "remote_before_commit": "9ecf3ff81933e84b5300ada87164b9e2afca13d3\trefs/heads/feat/qwen-context-worker\n5d979920d0728775ed529457c88f5b68b440c64f\trefs/heads/main\n",
+  "changed_files": {
+    "docs/backlog/overview.md": "f09aeac895ab52570a8f353d89976ea872a696aed4150d67063dfa6d5e39b8ec",
+    "docs/backlog/proposals/0385a359-399f-40bb-aed4-caf5239c9fc8/review-0006.json": "a3402310ff89542e3df1c49340f3f419b8cbfb735c6907501e44f05dfacf5e45",
+    "docs/backlog/proposals/06c3809b-f80c-461d-9585-2d4a973f8252/review-0003.json": "cb65ac794bbac6881251b93e60e9782873ab0e7e07ea3c11198c6f664d66284f",
+    "docs/backlog/proposals/15bae0a6-b95d-417c-98fa-d75a8aff29d4/review-0008.json": "647466a830ef6653a64d385cb7778c4acb0edb11326f712508f2e9632ce33867",
+    "docs/backlog/proposals/2e70de9a-d09c-409d-a7a2-0f32f67c4768/review-0007.json": "4613b108a9275660d2743f106c6be6519b5757a2b84a418494fc6009f651c5f8",
+    "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/review-0012.json": "3083d569ba61b380a48d27946aeb69cea7b215717cac8756beae093cd2ca0446",
+    "docs/backlog/proposals/4742b0a2-5e42-483d-95c5-09eac6efb0af/proposal.json": "307b3bf68c6cccf11134a3200ab48fdfd9f34de6fd539d8840e66a71beb6272e",
+    "docs/backlog/proposals/5fa23957-703a-4de9-9619-316f8f7740ed/review-0001.json": "08f55ac3bdfa95e452eedbeef650f8246ce299e4acdf13815282cadd195d9132",
+    "docs/backlog/proposals/9c7dff72-ea91-4db3-a9a7-fb25971ec00a/proposal.json": "d3e1afb5071ba0669a1f8c0448c5a0fd9985bcb881fb6c410d4ffeab1a6b70bc",
+    "docs/backlog/proposals/a88167f9-2688-478c-9659-202d05e61e1e/review-0007.json": "5f63808a008650d81fa499c5f7687e015184460d54301cbe0e2e2ea1a9de0669",
+    "docs/backlog/proposals/aedea41e-804b-4fe0-ad53-8758e074885d/review-0009.json": "7ffd13dc98dc51f3845d7aabbf7b3068e4134ba7b05bc278aacfaabb4ba3efd1",
+    "docs/backlog/proposals/d183d412-73c8-490c-8f02-a4dc8f3bb17d/proposal.json": "1a10b38b5301184a26102e30337e2ecf665b36076f0cbcc974846a2bc194557a",
+    "docs/backlog/proposals/f85c4e7f-b5a4-4187-b80d-8a85aa200369/proposal.json": "bd44183725e0001bc65360f5220f503ecc5e0ad3b7319534fbdf69029736280b",
+    "docs/documentation_map.md": "62cc19346b04492be4ed12fdc0ef2072700ffbde11fa8f08e1cb80c4e96f4e0b",
+    "docs/research/README.md": "e4977c4408a4b8eabcd212235ad80b757f4f69f20bc966d7a228ff50f68957e3",
+    "docs/research/code-audit/README.md": "20ca04a71c0b671403298f4b002ced5d609c47ab2bee6d4e05d2546579bb9169",
+    "docs/research/code-audit/ri-acquisition-artifact-identities.json": "e3afdaaf93ee7a41f695cf43d13967fa305bff64729295d6b24047f734a7348d",
+    "docs/research/code-audit/ri-acquisition-experiments.jsonl": "8c35d28472ae8418577fceaef42bff17b6fc6269000bc0852b4f11cc9223a2b2",
+    "docs/research/code-audit/ri-acquisition-intake.json": "fbb981974cc170a55ebeda6e95377085dcf445d9193ecf20fc30b399533f63c8",
+    "docs/research/code-audit/ri-acquisition-next-cohort.json": "2a1df2d8951ecbbc4f8d57543cd04b6e803c11a0b0f69f10e0833c20fb40e7ba",
+    "docs/research/code-audit/ri-acquisition-probes.json": "11ca6d7d7c9f4027c5aa8324d9da1d166677829573ccfadd97d15a36ff2d14a5",
+    "docs/research/code-audit/ri-acquisition-summary.json": "8acc167eea71772aaba4c382dacbdce854f54dac5e5483afcc3db16f12b12a33",
+    "docs/research/code-audit/ri-acquisition-tests-and-dependencies.json": "3e870102b2953539b47273c78aa1de2dd55f6ef3e30c9df8885e5e502fb15ea7",
+    "docs/research/comprehensive-code-audit.md": "14dc3f4ec3ff1819b8d3df588d50567794f71ba2f49ff7148801c5a01ec535a0",
+    "docs/research/repository-intelligence-code-audit.md": "2dac85d9b6bcec932f2c3b0e349ab4958ffd6cabfd7beafe32f550a48eea4e47",
+    "docs/research/ri-acquisition-structural-verification-audit.md": "7cad85c213f5966d29a5b10f740d05d4b362c048c180ba0c2fce03b9fcf71c9c",
+    "docs/research/task-obligation-coverage-decision.md": "c8c22eaa47f7e7ec93ba8ec47d3a5086f4c1fb8412683bb8a792aa1963a007f6",
+    "docs/roadmap.md": "943b20d7e4b4eff2b5340994b33cd39e610cef7224072f98460bccbc3a3a4acb"
+  },
+  "new_links_checked": 56,
+  "cohort_verified_paths": 78,
+  "substantive_paths": 74,
+  "namespace_paths": 4,
+  "distinct_blobs": 78,
+  "primary_case_policies": 5,
+  "shared_verification_responsibility_groups": 7,
+  "cohort_test_modules_fully_read": 23,
+  "reviewed_experimental_paths": 473,
+  "remaining_experimental_paths": 133,
+  "next_paths": 37,
+  "current_fixture_not_full": 84,
+  "older_current_ri_not_reviewed": 177,
+  "artifact_identities": 193,
+  "successful_manifest_checks": 71,
+  "original_git_anchors": 22,
+  "original_git_member_checks": 934,
+  "original_corpus_occurrences": 2588,
+  "original_pair_checks": {
+    "4": {
+      "resources": 498,
+      "explicit_gold_pair_references_checked": 0,
+      "address_only_cells_bound_to_pinned_ordered_frame": 3984,
+      "all_content_identities_rederived": true,
+      "ordered_pair_roster_checked": true
+    },
+    "5": {
+      "resources": 515,
+      "explicit_gold_pair_references_checked": 4660,
+      "address_only_cells_bound_to_pinned_ordered_frame": 0,
+      "all_content_identities_rederived": true,
+      "ordered_pair_roster_checked": true
+    },
+    "6": {
+      "resources": 531,
+      "explicit_gold_pair_references_checked": 578,
+      "address_only_cells_bound_to_pinned_ordered_frame": 0,
+      "all_content_identities_rederived": true,
+      "ordered_pair_roster_checked": true
+    },
+    "7": {
+      "resources": 521,
+      "explicit_gold_pair_references_checked": 521,
+      "address_only_cells_bound_to_pinned_ordered_frame": 0,
+      "all_content_identities_rederived": true,
+      "ordered_pair_roster_checked": true
+    },
+    "8": {
+      "resources": 523,
+      "explicit_gold_pair_references_checked": 6834,
+      "address_only_cells_bound_to_pinned_ordered_frame": 0,
+      "all_content_identities_rederived": true,
+      "ordered_pair_roster_checked": true
+    }
+  },
+  "unchanged_forensic_files": 13,
+  "unchanged_lifecycle_inputs": 297,
+  "unchanged_native_receipt_files": 115,
+  "unchanged_prior_protected_python_inputs": 659,
+  "old_audit_ledgers_unchanged": 67,
+  "original_science_unchanged": true,
+  "new_pending": 4,
+  "advisory_updates": 8,
+  "intake_states": {
+    "PENDING_REVIEW": 33,
+    "APPROVED": 1
+  },
+  "validation": {
+    "independent_probes": "25 source-span mismatches/9 ordinary controls;1 recovery reset;2 metric counterexamples;3 retained marginal agreements. Full source/results retained.",
+    "synthetic_tests": "13 passed;2 NumPy-specific unavailable (not installed). Initial run2 missing-NumPy failures/2 sandbox fixture errors retained; qualified temp run passes.",
+    "initial_test_outcome": {
+      "tests": 15,
+      "failures": 2,
+      "errors": 2
+    },
+    "qualified_test_xml_sha256": "f8044c4b65c392d4770318e62cd130cd51c7d4906ed0c26e725dbf29af791428",
+    "initial_test_xml_sha256": "49e2da949595f4b5d882dc6a7d6bc5789a1e414d869bd06723b8fea399c9215f",
+    "layout": "PASS",
+    "new_document_links": "PASS",
+    "json_and_ledger_identity": "PASS",
+    "intake_hash_chain": "PASS",
+    "git_whitespace": "PASS",
+    "protected_gate": "NOT_RUN: documentation/Intake only; production/test/scientific source and results unchanged. Prior protected-input invariance is not a new gate."
+  },
+  "errors": []
+}

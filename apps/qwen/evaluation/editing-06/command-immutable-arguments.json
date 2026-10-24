@@ -1,0 +1,47 @@
+{
+  "name": "command-immutable-arguments",
+  "objective": "Enforce Command runtime immutability and structured argv invariants at construction and through fluent methods. Executable must be a string (non-string: TypeError; blank string: existing ValueError). arguments must be a tuple of strings; lists, scalar strings and non-string members must raise TypeError. Preserve literal empty/Unicode/whitespace/shell-looking arguments, order, immutable fluent updates, cwd/timeouts and all valid behavior. Do not change tests or execute commands.",
+  "source": "src/devtools/resources/commands/models/command.py",
+  "tests": [
+    "tests/resources/commands/test_models.py"
+  ],
+  "baseline_revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "e7688ca7b5722fc0c3078deaf263f3d38091333d05e35ba68e8358b8caf2f238"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "87d1044e5cc9e333922d12f53e074590799a421580dbc6ec22099b388d2cb244"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "command-immutable-arguments",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "command-immutable-arguments",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from devtools.resources.commands import Command\nfrom dataclasses import FrozenInstanceError\nbad=[lambda:Command('echo',arguments=['x']),lambda:Command('echo',arguments='x'),lambda:Command('echo',arguments=('x',7)),lambda:Command('echo',arguments=(None,)),lambda:Command(None),lambda:Command(7),lambda:Command('echo').args(7),lambda:Command('echo').with_args(None),lambda:Command('echo').with_executable(None)]\nfor call in bad:\n    try:call()\n    except TypeError:pass\n    else:raise AssertionError('Malformed command silently admitted')\nfor s in ['', '  ']:\n    try:Command(s)\n    except ValueError:pass\n    else:raise AssertionError('Blank executable accepted')\nc=Command('echo',arguments=('','caf\u00e9','a b','; literal'))\nassert c.argv==('echo','','caf\u00e9','a b','; literal')\nassert c.args('x').arguments==(*c.arguments,'x') and c.arguments==('','caf\u00e9','a b','; literal')\nassert c.with_args().arguments==() and c.without_args().arguments==()\ntry:c.arguments=('other',)\nexcept FrozenInstanceError:pass\nelse:raise AssertionError('Mutable command')\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": []
+}

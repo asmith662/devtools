@@ -1,0 +1,343 @@
+{
+  "observed_at": "2026-10-19T19:11:49.746741+00:00",
+  "status": "LOCAL_COHORT_COMPLETE; QWEN_EFFECTIVENESS_GOAL_OPEN",
+  "execution_category": "trusted-local-development-evaluation",
+  "authority": "Explicit maintainer assignment; no backlog/grant/terminal prerequisite",
+  "model": "qwen38-local; Qwen3.8-27B IQ4_XS; existing 32K profile; thinking off",
+  "runs": [
+    {
+      "condition": "baseline",
+      "task": "duration-boundary",
+      "accepted_by_frozen_checks": true,
+      "disposition": "ACCEPTED",
+      "error": null,
+      "started_at": "2026-10-19T18:38:19.674982+00:00",
+      "finished_at": "2026-10-19T18:41:05.251818+00:00",
+      "elapsed_seconds": 165.5768535999814,
+      "model_seconds": 163.95956199982902,
+      "validation_seconds": 1.1087775999912992,
+      "model_calls": 8,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 55578,
+        "output_tokens": 2552,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 8,
+      "context_actions_attempted": 8,
+      "context_actions_returned": 8,
+      "source_text_bytes_disclosed": 8537,
+      "tool_result_json_bytes_disclosed": 27261,
+      "peak_prompt_occupancy": 0.327423095703125,
+      "history_omissions_by_request": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        4,
+        4,
+        7
+      ],
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "repair_cycles_after_applied_edits": 0,
+      "original_unchanged": true,
+      "source_baseline": "e02c9044311036883134df955438b1b809db353b",
+      "task_definition_sha256": "b5d2e3e64235c1c19803414c022d91e07c8ae0d9ba641432e5e2105cba55a1c9",
+      "oracle_sha256": "1e56696a6ca01caf65662ab7f4031078ab9fa956cd878f51d3cf87c5dbfeeecb",
+      "worker_revision": "88c52a015dd35778617151c76ec5e06581864342",
+      "receipt": ".local\\qwen-coding-worker\\native-cohort-01\\baseline\\duration-boundary\\result.json",
+      "receipt_sha256": "708d7f3264f7140bc287f83b73d6adb800e2cd0a59b4a99b3994ce0fb6a13fab",
+      "source_versions_inspected": [
+        [
+          "src/devtools/core/time/models/duration.py",
+          "69baac5a2120f0c503d4db9bf454331394921e5a606fcc7288f143380ff79241"
+        ],
+        [
+          "tests/core/time/test_models.py",
+          "0738320772b65625e0085212c949e34b4185fcf58ebe093ed4d45a8d358b6660"
+        ]
+      ],
+      "native_tool_requests": {
+        "search_source": 2,
+        "read_source": 6,
+        "propose_edit": 1
+      },
+      "captured_source_sha256": "1d029fa2f37a310f53a2396b1eaa6aacd078978682dbdcba71571f313dd9fb0c",
+      "candidate_modified": true,
+      "candidate_sha256": "1d029fa2f37a310f53a2396b1eaa6aacd078978682dbdcba71571f313dd9fb0c",
+      "supervisory_review": "BEHAVIOR_ACCEPTED_STYLE_REWORK_REQUIRED",
+      "integration_eligible": false,
+      "independent_style_review": {
+        "ruff_errors": 10,
+        "codes": [
+          "EM101",
+          "TRY003"
+        ],
+        "existing_tests_passed": 28
+      }
+    },
+    {
+      "condition": "baseline",
+      "task": "csv-dialect",
+      "accepted_by_frozen_checks": false,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "error": "ValueError: SOURCE_VERSION_MISMATCH",
+      "started_at": "2026-10-19T18:41:26.655939+00:00",
+      "finished_at": "2026-10-19T18:41:36.873028+00:00",
+      "elapsed_seconds": 10.217103799979668,
+      "model_seconds": 9.179843999969307,
+      "validation_seconds": 0.709894199972041,
+      "model_calls": 1,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 1257,
+        "output_tokens": 141,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 2,
+      "context_actions_attempted": 1,
+      "context_actions_returned": 0,
+      "source_text_bytes_disclosed": 0,
+      "tool_result_json_bytes_disclosed": 0,
+      "peak_prompt_occupancy": 0.038360595703125,
+      "history_omissions_by_request": [
+        0
+      ],
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "repair_cycles_after_applied_edits": 0,
+      "original_unchanged": true,
+      "source_baseline": "e02c9044311036883134df955438b1b809db353b",
+      "task_definition_sha256": "db62c4814dd5dba1829ce2b7ec47104fd47f1e6999d5f3b9936bb1351cb3de40",
+      "oracle_sha256": "7b4fad82968cd53f850adca5fed2f7d66fb4703856fd1933c30569cb06f37f73",
+      "worker_revision": "88c52a015dd35778617151c76ec5e06581864342",
+      "receipt": ".local\\qwen-coding-worker\\native-cohort-01\\baseline\\csv-dialect\\result.json",
+      "receipt_sha256": "3eaaa0f3524f8df13d31d4e848ae425776f5466361df4e9009ada7c08c3d8a92",
+      "source_versions_inspected": [],
+      "native_tool_requests": {
+        "read_source": 2
+      },
+      "captured_source_sha256": "4189d3f300dc76f20ae09b5f61e591f750fe37b8553c40bd2c1132ea5a57bf0e",
+      "candidate_modified": false,
+      "candidate_sha256": null,
+      "supervisory_review": "NOT_ACCEPTED",
+      "integration_eligible": false
+    },
+    {
+      "condition": "improved",
+      "task": "csv-dialect",
+      "accepted_by_frozen_checks": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "error": "PatchProposalError: Old text must match exactly one source region",
+      "started_at": "2026-10-19T18:50:53.161176+00:00",
+      "finished_at": "2026-10-19T18:52:18.533209+00:00",
+      "elapsed_seconds": 85.37205149995862,
+      "model_seconds": 83.95785190002061,
+      "validation_seconds": 0.9157126999343745,
+      "model_calls": 5,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25739,
+        "output_tokens": 1564,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 7,
+      "context_actions_attempted": 7,
+      "context_actions_returned": 7,
+      "source_text_bytes_disclosed": 15533,
+      "tool_result_json_bytes_disclosed": 28894,
+      "peak_prompt_occupancy": 0.263824462890625,
+      "history_omissions_by_request": [
+        0,
+        0,
+        0,
+        6,
+        6
+      ],
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "repair_cycles_after_applied_edits": 0,
+      "original_unchanged": true,
+      "source_baseline": "e02c9044311036883134df955438b1b809db353b",
+      "task_definition_sha256": "db62c4814dd5dba1829ce2b7ec47104fd47f1e6999d5f3b9936bb1351cb3de40",
+      "oracle_sha256": "7b4fad82968cd53f850adca5fed2f7d66fb4703856fd1933c30569cb06f37f73",
+      "worker_revision": "9e5435233a7aee6af03fedb866a4e0e0080399c3",
+      "receipt": ".local\\qwen-coding-worker\\native-cohort-01\\improved\\csv-dialect\\result.json",
+      "receipt_sha256": "f8b84916dc71232cad3d691e8004b7a593f028895c0aedc8625b789ad2679c88",
+      "source_versions_inspected": [
+        [
+          "src/devtools/resources/filesystem/codecs/csv.py",
+          "d9ddfd29e02486d5f88d36ee9f7e88f466eaa068fc22b2513afb907018717a90"
+        ],
+        [
+          "src/devtools/resources/filesystem/models/csv.py",
+          "0cade3699fe596ba492a6509405496cba9b3e2b616d8c0de6f19b47ca0ba9d40"
+        ],
+        [
+          "tests/resources/filesystem/codecs/test_csv.py",
+          "041a4788d31747d4446920c5aa3379876a01143a09843f1e37970b894ac5ec39"
+        ]
+      ],
+      "native_tool_requests": {
+        "lookup_symbol": 1,
+        "search_source": 1,
+        "read_source": 5,
+        "propose_edit": 1
+      },
+      "captured_source_sha256": "4189d3f300dc76f20ae09b5f61e591f750fe37b8553c40bd2c1132ea5a57bf0e",
+      "candidate_modified": false,
+      "candidate_sha256": null,
+      "supervisory_review": "NOT_ACCEPTED",
+      "integration_eligible": false
+    },
+    {
+      "condition": "held-out",
+      "task": "source-physical-spans",
+      "accepted_by_frozen_checks": false,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "error": "ValueError: Read range must be a nonempty exact source span",
+      "started_at": "2026-10-19T18:59:00.727528+00:00",
+      "finished_at": "2026-10-19T18:59:18.643440+00:00",
+      "elapsed_seconds": 17.91593129996909,
+      "model_seconds": 16.360957099939696,
+      "validation_seconds": 1.0513204000308178,
+      "model_calls": 2,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 6188,
+        "output_tokens": 243,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 3,
+      "context_actions_attempted": 3,
+      "context_actions_returned": 1,
+      "source_text_bytes_disclosed": 0,
+      "tool_result_json_bytes_disclosed": 5915,
+      "peak_prompt_occupancy": 0.149383544921875,
+      "history_omissions_by_request": [
+        0,
+        0
+      ],
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "repair_cycles_after_applied_edits": 0,
+      "original_unchanged": true,
+      "source_baseline": "e02c9044311036883134df955438b1b809db353b",
+      "task_definition_sha256": "bc63f9197e5a316f9afee6a2bf5eabd725fc74f38c34ff4448b742246275bbdb",
+      "oracle_sha256": "9b016385acd398b9fa49689ab1ad7bb794efd5973498c3ea4ed7ce6b288335a0",
+      "worker_revision": "0d074f5e8faf48b7c933eb68ddbe824be9999332",
+      "receipt": ".local\\qwen-coding-worker\\native-cohort-01\\held-out\\source-physical-spans\\result.json",
+      "receipt_sha256": "884dd1ee094e4ecc25a79d0f17d7985aea1cb01ca30e5f6b74415a80c4e657f4",
+      "source_versions_inspected": [],
+      "native_tool_requests": {
+        "read_source": 2,
+        "search_source": 1
+      },
+      "captured_source_sha256": "96dea804f6adaac562146ba32b597fca5bcea5674fc3f0ebfe0cf07a2b2bb33d",
+      "candidate_modified": false,
+      "candidate_sha256": null,
+      "supervisory_review": "NOT_ACCEPTED",
+      "integration_eligible": false
+    },
+    {
+      "condition": "final-development",
+      "task": "csv-dialect",
+      "accepted_by_frozen_checks": false,
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "error": null,
+      "started_at": "2026-10-19T19:00:15.334425+00:00",
+      "finished_at": "2026-10-19T19:02:55.328496+00:00",
+      "elapsed_seconds": 159.9940906999982,
+      "model_seconds": 158.83611759991618,
+      "validation_seconds": 0.6206769999698736,
+      "model_calls": 9,
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 52321,
+        "output_tokens": 2841,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 8,
+      "context_actions_attempted": 8,
+      "context_actions_returned": 8,
+      "source_text_bytes_disclosed": 11709,
+      "tool_result_json_bytes_disclosed": 28768,
+      "peak_prompt_occupancy": 0.264495849609375,
+      "history_omissions_by_request": [
+        0,
+        0,
+        0,
+        0,
+        3,
+        5,
+        7,
+        10,
+        10
+      ],
+      "proposals_admitted": 0,
+      "proposal_refusals": 3,
+      "repair_cycles_after_applied_edits": 0,
+      "original_unchanged": true,
+      "source_baseline": "e02c9044311036883134df955438b1b809db353b",
+      "task_definition_sha256": "db62c4814dd5dba1829ce2b7ec47104fd47f1e6999d5f3b9936bb1351cb3de40",
+      "oracle_sha256": "7b4fad82968cd53f850adca5fed2f7d66fb4703856fd1933c30569cb06f37f73",
+      "worker_revision": "0d074f5e8faf48b7c933eb68ddbe824be9999332",
+      "receipt": ".local\\qwen-coding-worker\\native-cohort-01\\final-development\\csv-dialect\\result.json",
+      "receipt_sha256": "1674f60c7125a3fc189cd35352ddbe057c947d230a65bb989252b1a748b04a4b",
+      "source_versions_inspected": [
+        [
+          "src/devtools/resources/filesystem/codecs/csv.py",
+          "d9ddfd29e02486d5f88d36ee9f7e88f466eaa068fc22b2513afb907018717a90"
+        ],
+        [
+          "src/devtools/resources/filesystem/models/csv.py",
+          "0cade3699fe596ba492a6509405496cba9b3e2b616d8c0de6f19b47ca0ba9d40"
+        ],
+        [
+          "tests/resources/filesystem/codecs/test_csv.py",
+          "041a4788d31747d4446920c5aa3379876a01143a09843f1e37970b894ac5ec39"
+        ]
+      ],
+      "native_tool_requests": {
+        "lookup_symbol": 1,
+        "search_source": 3,
+        "read_source": 4,
+        "propose_edit": 3
+      },
+      "captured_source_sha256": "4189d3f300dc76f20ae09b5f61e591f750fe37b8553c40bd2c1132ea5a57bf0e",
+      "candidate_modified": false,
+      "candidate_sha256": null,
+      "supervisory_review": "NOT_ACCEPTED",
+      "integration_eligible": false
+    }
+  ],
+  "totals": {
+    "model_calls": 25,
+    "input_tokens": 141083,
+    "output_tokens": 7341,
+    "worker_seconds": 439.076030899887,
+    "model_seconds": 432.2943325996748,
+    "validation_seconds": 4.406381899898406
+  },
+  "validation": {
+    "protected_passed": 2025,
+    "protected_skipped": 2,
+    "protected_seconds": 430.68,
+    "production_branch_coverage": "100%",
+    "focused_tests": "82 passed; final retention adjustment: 33 passed",
+    "ruff_format_mypy": "PASS on changed maintained Python"
+  },
+  "codex_comparison": "NOT_RUN; equal-task Codex time/cost/outcome baseline unavailable; coordination usage UNKNOWN",
+  "dashboard_projection": {
+    "local_model_receipts": 5,
+    "errors": []
+  },
+  "production_integration": "NONE; pending proposals and production authority unchanged"
+}

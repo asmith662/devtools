@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812, EM101, TRY003, TRY301, ASYNC240, PLR2004 -- bounded experiment assertions and artifacts
+
 """One real Markdown repair through Context, native Tools and patch admission."""
 
 from __future__ import annotations
@@ -51,6 +52,7 @@ from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 
 if TYPE_CHECKING:
+    from apps.qwen.tasks import CodingTask
     from devtools.core.paths import ResolvedPath
     from devtools.models.interaction import ModelInteraction
 
@@ -145,6 +147,8 @@ async def _command(root: Path, *args: str) -> dict[str, Any]:
         "stdout": result.stdout.decode(errors="replace"),
         "stderr": result.stderr.decode(errors="replace"),
         "failed": result.failed,
+        "stdout_truncated": result.stdout_truncated,
+        "stderr_truncated": result.stderr_truncated,
     }
 
 
@@ -155,6 +159,57 @@ async def _timed_command(root: Path, *args: str) -> dict[str, Any]:
     result = await _command(root, *args)
     result.update(started_at=started_at, elapsed_seconds=time.perf_counter() - started)
     return result
+
+
+def _runner_sources(root: Path, folder: Path, task: CodingTask) -> dict[str, str]:
+    """Render the existing fixed host runners; no configurable execution plan."""
+    workspace = root
+    module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
+    prelude = (
+        "import sys\nfrom pathlib import Path\n"
+        f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
+        + (
+            f"sys.path.insert(0, {str(workspace)!r})\n"
+            if task.source.startswith("apps/")
+            else ""
+        )
+        + f"import {module_name} as module\n"
+        "assert Path(module.__file__).resolve() == "
+        f"Path({str(workspace / task.source)!r})\n"
+    )
+    oracle_text = prelude + task.oracle
+    test_arguments = [
+        *(str(workspace / test) for test in task.tests),
+        "-c",
+        str(folder / "pytest.ini"),
+        f"--confcutdir={workspace}",
+        "--no-cov",
+        "-q",
+    ]
+    tests_text = (
+        prelude
+        + "import json\nimport pytest\n"
+        # Capture primary facts before pytest's traceback formatting. Some
+        # tests deliberately forbid ast.parse, which formatters also use.
+        + "class PrimaryFailures:\n"
+        + "    @pytest.hookimpl(hookwrapper=True, tryfirst=True)\n"
+        + "    def pytest_runtest_makereport(self, item, call):\n"
+        + "        if call.excinfo is not None:\n"
+        + "            facts = dict(nodeid=item.nodeid, phase=call.when, "
+        + "exception=call.excinfo.type.__name__, "
+        + "message=str(call.excinfo.value)[:1000], "
+        + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
+        + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
+        + "file=sys.stderr, flush=True)\n"
+        + "        yield\n"
+        + f"arguments = {test_arguments!r}\n"
+        + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n"
+    )
+    return {
+        "oracle-runner.py": oracle_text,
+        "tests-runner.py": tests_text,
+        "pytest.ini": "[pytest]\n",
+    }
 
 
 def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
@@ -287,6 +342,7 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
     call: ModelToolCall,
     *,
     source_path: str = SOURCE,
+    allow_empty_new: bool = False,
 ) -> tuple[str, str]:
     """Validate one exact text replacement and derive its bounded host diff."""
     if call.name != "propose_edit":
@@ -312,10 +368,13 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
     if path != source_path:
         raise PatchProposalError("Structured edit path is not the authorized source")
     if not isinstance(old_text, str) or not isinstance(new_text, str):
-        raise PatchProposalError("Structured edit text values must be strings")
+        raise PatchProposalError(
+            "Structured edit text values must be strings",
+            details={"code": "INVALID_TEXT_TYPE"},
+        )
     if (
         not old_text
-        or not new_text
+        or (not new_text and not allow_empty_new)
         or "\x00" in old_text
         or "\x00" in new_text
         or len(old_text.encode()) > 4096
@@ -323,7 +382,21 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         or old_text == new_text
     ):
         raise PatchProposalError(
-            "Structured edit text is empty, unchanged or oversized"
+            "Structured edit text is empty, unchanged or oversized",
+            details={
+                "code": (
+                    "EMPTY_TEXT"
+                    if not old_text or (not new_text and not allow_empty_new)
+                    else "NUL_TEXT"
+                    if "\x00" in old_text or "\x00" in new_text
+                    else "REGION_BYTE_LIMIT"
+                    if max(len(old_text.encode()), len(new_text.encode())) > 4096
+                    else "NO_OP"
+                ),
+                "old_bytes": len(old_text.encode()),
+                "new_bytes": len(new_text.encode()),
+                "region_limit_bytes": 4096,
+            },
         )
     # Only homogeneous LF/CRLF text is supported. Adapt the proposal, never
     # the source, so all bytes outside the selected region stay unchanged.
@@ -347,7 +420,8 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
             )
         ):
             raise PatchProposalError(
-                "Mixed or unsupported structured edit line endings"
+                "Mixed or unsupported structured edit line endings",
+                details={"code": "UNSUPPORTED_LINE_ENDINGS"},
             )
     newline = "\r\n" if "\r\n" in source else "\n"
     old_text = old_text.replace("\r\n", "\n").replace("\n", newline)
@@ -356,7 +430,15 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         old_text == new_text
         or max(len(old_text.encode()), len(new_text.encode())) > 4096
     ):
-        raise PatchProposalError("Adapted structured edit is unchanged or oversized")
+        raise PatchProposalError(
+            "Adapted structured edit is unchanged or oversized",
+            details={
+                "code": "NO_OP" if old_text == new_text else "REGION_BYTE_LIMIT",
+                "adapted_old_bytes": len(old_text.encode()),
+                "adapted_new_bytes": len(new_text.encode()),
+                "region_limit_bytes": 4096,
+            },
+        )
     matches = 0
     offset = 0
     while (found := source.find(old_text, offset)) >= 0:
@@ -365,21 +447,39 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         if matches > 1:
             break
     if matches != 1:
-        raise PatchProposalError("Old text must match exactly one source region")
+        raise PatchProposalError(
+            "Old text must match exactly one source region",
+            details={"code": "OLD_TEXT_NOT_UNIQUE"},
+        )
     updated = source.replace(old_text, new_text, 1)
     if len(updated.encode()) > 32_768:
-        raise PatchProposalError("Structured edit exceeds the bounded source size")
+        raise PatchProposalError(
+            "Structured edit exceeds the bounded source size",
+            details={
+                "code": "SOURCE_BYTE_LIMIT",
+                "source_bytes": len(updated.encode()),
+                "source_limit_bytes": 32768,
+            },
+        )
+    return _source_patch(root, source, updated, source_path=source_path), updated
+
+
+def _source_patch(
+    root: Path, source: str, updated: str, *, source_path: str, new_file: bool = False
+) -> str:
+    """Generate the shared exact-source unified diff; Git owns application."""
     patch = "".join(
-        difflib.unified_diff(
+        line if line.endswith("\n") else line + "\n\\ No newline at end of file\n"
+        for line in difflib.unified_diff(
             source.splitlines(keepends=True),
             updated.splitlines(keepends=True),
-            fromfile=f"a/{source_path}",
+            fromfile="/dev/null" if new_file else f"a/{source_path}",
             tofile=f"b/{source_path}",
             lineterm="\n",
         )
     )
-    _validate_patch_envelope(root, patch, source_path=source_path)
-    return patch, updated
+    _validate_patch_envelope(root, patch, source_path=source_path, allow_new=new_file)
+    return patch
 
 
 def _structured_edit_patch_from_calls(
@@ -1084,8 +1184,31 @@ async def apply_markdown_patch(
     source_path: str = SOURCE,
 ) -> None:
     """Admit one exact-file unified diff, then use Git's existing patch engine."""
-    _validate_patch_envelope(root, patch, source_path=source_path)
-    path = _store_patch(folder, patch)
+    await apply_source_patches(root, folder, {source_path: patch})
+
+
+async def apply_source_patches(
+    root: Path, folder: Path, patches: dict[str, str]
+) -> None:
+    """Check all scoped diffs then apply once with native Git atomic semantics.
+
+    No --reject/partial application mode is permitted. Checkout owns exclusion
+    and recovery; the planned source hashes must be journaled before entry.
+    """
+    if (
+        not patches
+        or len(patches) > 5
+        or sum(len(p.encode()) for p in patches.values()) > 16384
+    ):
+        raise PatchProposalError("Combined patch exceeds the existing byte bound")
+    for source_path, patch in patches.items():
+        _validate_patch_envelope(
+            root,
+            patch,
+            source_path=source_path,
+            allow_new=not (root / source_path).exists(),
+        )
+    path = _store_patch(folder, "".join(patches.values()))
     for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
         result = await _command(
             root, "git", "-c", "core.autocrlf=false", "apply", *args, str(path)
@@ -1095,14 +1218,22 @@ async def apply_markdown_patch(
 
 
 def _validate_patch_envelope(
-    root: Path, patch: str, *, source_path: str = SOURCE
+    root: Path, patch: str, *, source_path: str = SOURCE, allow_new: bool = False
 ) -> None:
     """Check the one-file plain-diff grammar shared by both task conditions."""
-    prefix = f"--- a/{source_path}\n+++ b/{source_path}\n@@ "
+    previous = "/dev/null" if allow_new else "a/" + source_path
+    prefix = f"--- {previous}\n+++ b/{source_path}\n@@ "
     lines = patch.splitlines()
     if len(patch.encode()) > 16_384 or not patch.startswith(prefix):
         raise PatchProposalError(
-            "Expected bounded plain unified diff for the sole permitted file"
+            "Expected bounded plain unified diff for the sole permitted file",
+            details={
+                "code": "PATCH_BYTE_LIMIT"
+                if len(patch.encode()) > 16_384
+                else "PATCH_ENVELOPE_INVALID",
+                "patch_bytes": len(patch.encode()),
+                "patch_limit_bytes": 16_384,
+            },
         )
     if any(
         line.startswith(

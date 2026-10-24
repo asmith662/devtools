@@ -1,0 +1,44 @@
+{
+  "scope": "Independently authored synthetic primitive/fixture challenges only. No real case, frozen judgment, capture, scientific treatment, model or historical replay.",
+  "lost_address": {
+    "expected": [
+      "lost.py"
+    ],
+    "actual": [
+      "RepositoryTextLexicalRetrievedRelevantResource(address=RepositoryResourceAddress(value='lost.py'), rank=1, match=Reposit [bounded; original local probe has full representation]"
+    ],
+    "actual_utf8_bytes": 1532,
+    "actual_sha256": "853547aa2d47f0fc3a83bd31beebd6ffb5753566a3226f151167b7d4210cb28d"
+  },
+  "mapping_swap": {
+    "accepted": true,
+    "before": {
+      "l1.py": "useful",
+      "l2.py": "not-useful",
+      "l3.py": "unjudged",
+      "l4.py": "unjudged",
+      "l5.py": "unjudged",
+      "target.py": "unjudged"
+    },
+    "after": {
+      "l2.py": "useful",
+      "l1.py": "not-useful",
+      "l3.py": "unjudged",
+      "l4.py": "unjudged",
+      "l5.py": "unjudged",
+      "target.py": "unjudged"
+    },
+    "frozen_fingerprint_unchanged": true
+  },
+  "fixture_collision": {
+    "first_address": "a",
+    "first_content": "bc",
+    "second_address": "ab",
+    "second_content": "c",
+    "same_document_id": true
+  },
+  "local_full_probe": {
+    "path": ".local/ri-followup-20261023/probes.json",
+    "sha256": "76a0fe4462867c462fa111026aa7e7319ed9ec4db361fe5b3e957a7bd98e86fe"
+  }
+}

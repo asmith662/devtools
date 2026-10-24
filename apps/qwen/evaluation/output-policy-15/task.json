@@ -1,0 +1,236 @@
+{
+  "name": "command-output-policy-development-15",
+  "objective": "Finish CommandOutputPolicy retention-limit validation. The current public value admits boolean and fractional limits, which are invalid buffer/event capacities. All three existing fields must accept integers including int subclasses, but reject bool and every noninteger with exactly TypeError, without coercion. Preserve nonnegative stdout/stderr byte limits (zero valid), strictly positive pending-event capacity, and existing ValueError for invalid integer bounds. Preserve valid defaults, frozen/slotted structural equality/hash and dataclasses.replace revalidation. No new public methods or exception types. Existing output/truncation/streaming, Command immutability/fluent behavior, stdin, environment overrides, successful exit statuses, subprocess lifecycle and Tool behavior must remain compatible. This is development continuation of a previously exposed obligation; the old ValueError-for-wrong-types task was not a maintained API promise. The independently reconciled contract is TypeError for wrong types, ValueError for invalid integer values, consistent with current Commands conventions and Ruff TRY004. Locate and inspect the current owner/invariants before editing. Briefly account for required behavior and what remains missing; anchor all atomic edits in the common current pre-transaction source. Preserve passing requirements while repairing actual diagnostics. Host-owned behavioral tests, existing regressions, Ruff, formatting and strict typing determine acceptance. Do not modify tests or acceptance.",
+  "source": "src/devtools/resources/commands/models/output.py",
+  "tests": [
+    "tests/resources/commands/test_decoded_output.py",
+    "tests/resources/commands/test_environment.py",
+    "tests/resources/commands/test_errors.py",
+    "tests/resources/commands/test_events.py",
+    "tests/resources/commands/test_execution.py",
+    "tests/resources/commands/test_handle.py",
+    "tests/resources/commands/test_models.py",
+    "tests/resources/commands/test_stdin.py",
+    "tests/resources/commands/test_success_exit_codes.py",
+    "tests/tools/test_command.py",
+    "tests/tools/test_execution.py"
+  ],
+  "baseline_revision": "38dedf199e98d90ae808b7dc655ae9023821db7c",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "6f52ca8f42219c12e1650d7bee95d6f1a45f0f78a5ba2ea1c0d20b6f2cdfa384"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "136c5ed5a4494ab00dbc5d3c82c75024bc681c1c3117756e4b0e69cbf2bf6779"
+    ],
+    [
+      "tests/resources/commands/test_environment.py",
+      "68b20e65a64e42ddb365fed56e178e71b6207447e4e6357fbc2d5dfce9c8de57"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "20ce6010133bdd12a1005634e6b033a986de946e74d162d68589286298ecb1da"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "7c2b485593ee0ced82c82963f573272069a37d714295fd201d25b78358281b41"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "2447c43cbc1769c7aef1b4f1c09b264cc6dc4fcb32789f0c90210ab88b0b1e0a"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "eabeb1e9f0108ca68d9b9d61690987c34d962a3b49213622bdca39a9968f8b87"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b"
+    ],
+    [
+      "tests/resources/commands/test_stdin.py",
+      "3768ea47fb97ecf2ee3b20ed948dd903fdb21fc554dea8f4c700f8647c03cfe3"
+    ],
+    [
+      "tests/resources/commands/test_success_exit_codes.py",
+      "5d3194cf4ae21c0671d47d5356ac9738c17957ff812274156f7da1d476ee8a6e"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "e4ffedace5cf4276c01d1b00eff367665a02e26d8e92886a66268b7f71029afa"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "f4fd385497f435a5a62c25a0a3e189b284dc555d216ce2cfe591c2785fc4fb57"
+    ],
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "899208f3a7d6a8dfed73dda4d42dbfd279bda8bb587a0fa80510abc49515a05f"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "1ebf20c0c88591042513f5c62b6868449b846f67f329819fb28a8890b55b98ff"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "1a76add3410aa1f6013e4fe19a01708833eef886a33ace7119bf153cc61b98c1"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "82f90b288a83ca33aa0adbb3c1716a6619483b03e42c1b90affef723f35d1af8"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "55ee926b5e94a7d468c37bf569b91e24cc2b228630424edd3f28c5b0d09194d1"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "d3e83dcb4520148e17673dc87731001be5c4be9e76f85aca407d1fe757c2a90d"
+    ],
+    [
+      "src/devtools/tools/command.py",
+      "2264808533199995f5e182c21e69db6f0441673c94aec4192c75ab7b25769e77"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "output",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "test decoded output",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_environment.py",
+      "test environment",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "test errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "test events",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "test execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "test handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "test models",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_stdin.py",
+      "test stdin",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_success_exit_codes.py",
+      "test success exit codes",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_command.py",
+      "test command",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/tools/test_execution.py",
+      "test execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "command",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "result",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "events",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "  init  ",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/tools/command.py",
+      "command",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import asyncio, sys\nfrom dataclasses import FrozenInstanceError, replace\nfrom decimal import Decimal\nfrom enum import IntEnum\nfrom fractions import Fraction\nfrom devtools.core.time import Duration\nfrom devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy\nfrom devtools.tools import ToolRunner\nfrom devtools.tools.command import CommandTool\n\nFIELDS=('max_stdout_bytes','max_stderr_bytes','max_pending_events')\nINVALID=(True,False,0.0,1.0,1.5,-0.5,float('nan'),float('inf'),'5',None,b'5',[],{},Decimal(2),Fraction(2,1))\nclass Count(IntEnum): TWO=2\nclass IndexOnly:\n    def __index__(self): return 2\ndef raises_exact(kind, operation):\n    try: operation()\n    except Exception as error:\n        assert type(error) is kind, (kind.__name__,type(error).__name__,str(error))\n        return\n    raise AssertionError('Expected '+kind.__name__)\ndef value_checks(cls=CommandOutputPolicy):\n    for field in FIELDS:\n        for value in (*INVALID,IndexOnly()):\n            raises_exact(TypeError,lambda field=field,value=value:cls(**{field:value}))\n            raises_exact(TypeError,lambda field=field,value=value:replace(cls(),**{field:value}))\n    for field,values in ((FIELDS[0],(-1,-100)),(FIELDS[1],(-1,-100)),(FIELDS[2],(0,-1,-100))):\n        for value in values: raises_exact(ValueError,lambda field=field,value=value:cls(**{field:value}))\n    for value in (1,2,1024,10**100,Count.TWO):\n        p=cls(max_stdout_bytes=value,max_stderr_bytes=value,max_pending_events=value)\n        assert all(getattr(p,f)==value for f in FIELDS)\n        assert all(getattr(p,f) is value for f in FIELDS), 'No coercion or integer-subclass loss'\n        assert hash(p)==hash(cls(value,value,value))\n    zero=cls(0,0,1)\n    assert zero==cls(max_stdout_bytes=0,max_stderr_bytes=0,max_pending_events=1)\n    assert not hasattr(zero,'__dict__')\n    raises_exact(FrozenInstanceError,lambda:setattr(zero,'max_stdout_bytes',2))\n    assert cls().max_stdout_bytes==1048576 and cls().max_stderr_bytes==1048576 and cls().max_pending_events==1024\n    assert replace(zero,max_stdout_bytes=5)==cls(5,0,1)\nasync def process_checks():\n    command=Command(sys.executable,('-c',\"import os,sys; sys.stdout.buffer.write(sys.stdin.buffer.read()+os.environ['DEVTOOLS_OUTPUT15'].encode()); sys.stderr.buffer.write(b'error'); sys.exit(1)\"),stdin=b'payload',environment={'DEVTOOLS_OUTPUT15':'!'},timeout=Duration.seconds(8)).with_success_exit_codes(1)\n    for stdout,stderr,out,err in ((0,0,b'',b''),(3,2,b'pay',b'er'),(32,32,b'payload!',b'error')):\n        policy=CommandOutputPolicy(stdout,stderr,1)\n        result=await ToolRunner().execute(CommandTool(CommandExecutor(output_policy=policy)),command)\n        assert result.command is command and result.succeeded and result.exit_code==1\n        assert result.stdout==out and result.stderr==err\n        assert result.stdout_truncated is (stdout<8) and result.stderr_truncated is (stderr<5)\ndef run_checks(cls=CommandOutputPolicy,process=True):\n    value_checks(cls)\n    if process: asyncio.run(process_checks())\n    print('PASS: exact type/range exceptions; no coercion; frozen/slotted values; real child/Tool bounded output, stdin/environment and exit classification')\nif __name__=='__main__': run_checks()\n",
+  "maximum_calls": 20,
+  "output_tokens": 8192,
+  "wall_seconds": 1200,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/commands/models/command.py",
+    "src/devtools/resources/commands/models/result.py",
+    "src/devtools/resources/commands/execution.py",
+    "src/devtools/resources/commands/handle.py",
+    "src/devtools/resources/commands/events.py",
+    "src/devtools/resources/commands/__init__.py",
+    "src/devtools/tools/command.py"
+  ],
+  "quality_checks": true,
+  "command_tools": true,
+  "tool_actions": 24,
+  "new_paths": [],
+  "disclose_edit_paths": false,
+  "path_edits": true,
+  "maximum_proposals": 6,
+  "api_targets": []
+}

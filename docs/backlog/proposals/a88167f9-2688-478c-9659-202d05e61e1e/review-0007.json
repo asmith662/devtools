@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "6e2431e784baa2ddf18864b09e3e9e0698f6a7f5ee558be98dc0bd798021957d",
+  "at": "2026-10-24T02:19:27.289570+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-acquisition-structural-verification-audit.md",
+  "rationale": "Cohort full fixture review includes own-report reconstruction, isolated manual-gold validation, native synthetic graph/alias/codec fixtures and mocked routing/generation. These prove different scopes, not independent second semantic judgment. Span helper regression covers ordinary LF/CRLF/EOF only and misses24 Unicode physical-line failures plus invalid empty UTF8-column acceptance; separate new bug owns versioned correction. Case8 ambiguous run guard test misses manual reset after actual entry-and-raise; new recovery bug owns it. Independent pure verifier run:13 pass after sandbox temp qualification; two NumPy-specific tests unavailable because NumPy not installed, not silently skipped as passed. No84-current-fixture or177-historical-version credit transferred.",
+  "duplicates": [],
+  "duplicate_disposition": "Exact evidence/acceptance clarification; retain canonical payload, pending disposition, prior reviews and all authority boundaries. No approval, grant, renumbering, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4c60b1a0b2bc410ecd8a8994599f718d5edb6ed79027a63d9d34f8f02973998c"
+}

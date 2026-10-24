@@ -1,0 +1,192 @@
+{
+  "name": "source-search-physical-lines",
+  "objective": "Repository code search can fail to build its index, select incorrect Python declarations, or report misleading source/window line locations when valid source contains non-newline separators within strings or comments. Diagnose and correct this end-to-end source representation defect. Python physical lines are LF, CRLF or CR; other Unicode/ASCII separators are source characters, not physical line breaks. Preserve exact original Unicode and newlines, decorated/nested synchronous and asynchronous symbol spans, canonical declaration/occurrence identity, enclosing expansion and deterministic overlapping windows. Non-Python windows must use the same physical-line convention. Invalid Python must retain the documented file fallback. Preserve APIs and existing ranking behavior. Do not alter tests or acceptance.",
+  "source": "src/devtools/context/retrieval/source/representation.py",
+  "tests": [
+    "tests/context/retrieval/source/test_search.py"
+  ],
+  "baseline_revision": "5dc12c7bedf3d035510f1da09f82d00e2289442c",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "96dea804f6adaac562146ba32b597fca5bcea5674fc3f0ebfe0cf07a2b2bb33d"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "ad7361341589f5d2d40701c331f2669d64844d720777dd7a5a9bb8419f9d6473"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "0254329347e844ec141c34f4b87e11df0e88619ca2b11d6a2c1c4e64a4facbb1"
+    ],
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "1d41198f1ec453fd55c16532937c5a15d6bf76ecb1a927821ca416f753d7daa7"
+    ],
+    [
+      "src/devtools/context/retrieval/source/__init__.py",
+      "49841ed1e1d2ba3f63eb2ee56921a7fce4afe0245cba623ab65317ab59cc7341"
+    ],
+    [
+      "src/devtools/context/repository/document.py",
+      "5f0c2be4f0c22c685c556b3ab614f0a54247cfdb79cb0ae1116654b834995510"
+    ],
+    [
+      "src/devtools/context/repository/observation.py",
+      "d2e4d911f1f8363e5ec2a1a582f291c9d8a2fe8f95864fc2d58962e0ee53fc0b"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89"
+    ],
+    [
+      "src/devtools/context/repository/corpus.py",
+      "6349146f827ce240d0957fcaf59e025726c69f252e0fcd62559d63f1240b6a69"
+    ],
+    [
+      "src/devtools/context/repository/discovery.py",
+      "726edfeced04ed6062b9a7f5eeb5f01b6484b68bae21c671f07631b42a9107b1"
+    ],
+    [
+      "src/devtools/context/python/function/materialization.py",
+      "6bcc26800d51ab62712d4fd78664b0f6db2af1cbcbd78aa57ea6415975e9b42b"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "a256b2dfcd13bc2ee127207c29e576fddc618d2a6582f8f9f3d5b4ff38057876"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63"
+    ],
+    [
+      "src/devtools/context/retrieval/lexical/analysis.py",
+      "513700230fce83db2769df3940e75921b768d109f443f951aeb81a2b85b666d4"
+    ],
+    [
+      "src/devtools/context/planning/materialization.py",
+      "a6b75289ff3a2e36b5435852ed9952b29d27df6730a48ee6a16c723790636a6e"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/retrieval/source/representation.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/context/retrieval/source/test_search.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/source/index.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/source/search.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/source/__init__.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/repository/document.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/repository/observation.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/repository/corpus.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/repository/discovery.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/function/materialization.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/retrieval/lexical/analysis.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/context/planning/materialization.py",
+      "source-search-physical-lines",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "import ast,sys,tempfile\nfrom pathlib import Path\nsys.path.insert(0,str(Path.cwd()))\nfrom tests.context.retrieval.source.test_search import _index\nfrom devtools.context.retrieval import search_repository_source\nseparators=('\\v','\\f','\\x1c','\\x1d','\\x1e','\\x85','\\u2028','\\u2029')\nchecked=0\nfor newline in ('\\n','\\r\\n','\\r'):\n for sep in separators:\n  text=(\"prefix = 'caf\u00e9\"+sep+\"\u96ea'\"+newline+'@trace'+newline+'class Owner:'+newline+'    @memo'+newline+'    async def fetch(self):'+newline+\"        return 'needle \u96ea'\"+newline+newline+'def tail():'+newline+\"    return 'end'\"+newline)\n  with tempfile.TemporaryDirectory() as folder:\n   try:\n    index=_index(Path(folder),{'example.py':text,'broken.py':'def broken(:'+newline,'note.txt':'note'+sep+'more'+newline})\n   except Exception as error:\n    raise AssertionError('Source index must accept valid physical-line Python: '+repr((newline,sep))) from error\n   file=next(u for u in index.views[0].units if str(u.resource.address)=='example.py')\n   symbols={u.qualified_name:u for u in index.views[1].units if u.kind=='symbol'}\n   owner=symbols['Owner']; method=symbols['Owner.fetch']; tail=symbols['tail']\n   expected_owner='@trace'+newline+'class Owner:'+newline+'    @memo'+newline+'    async def fetch(self):'+newline+\"        return 'needle \u96ea'\"\n   expected_method='@memo'+newline+'    async def fetch(self):'+newline+\"        return 'needle \u96ea'\"\n   assert owner.text==expected_owner,(newline,sep,owner.text)\n   assert method.text==expected_method,(newline,sep,method.text)\n   assert tail.text=='def tail():'+newline+\"    return 'end'\"\n   assert (owner.start_line,owner.end_line)==(2,6)\n   assert (method.start_line,method.end_line)==(4,6)\n   assert (tail.start_line,tail.end_line)==(8,9)\n   assert (file.start_line,file.end_line)==(1,9)\n   assert index.expand(method,to='class')==owner\n   assert method.parent_symbol_id==owner.id\n   for unit in (owner,method,tail):\n    assert unit.text==text[unit.start:unit.end]\n    assert unit.snapshot_id==index.snapshot.id\n    assert unit.resource is file.resource\n   windows=[u for u in index.views[2].units if u.resource==file.resource]\n   assert [(u.start_line,u.end_line) for u in windows]==[(1,5),(4,8),(7,9)]\n   assert windows[0].text==text[:text.index(\"        return\")]\n   assert windows[-1].text.endswith(\"    return 'end'\"+newline)\n   assert windows[0].start==0 and windows[-1].end==len(text)\n   for left,right in zip(windows,windows[1:]):\n    assert left.end>=right.start\n   checked+=1\nprint('QWEN_BEHAVIOR_PASSED',checked,'physical-line/source-search combinations')\n",
+  "maximum_calls": 10,
+  "output_tokens": 8192,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/context/retrieval/source/index.py",
+    "src/devtools/context/retrieval/source/search.py",
+    "src/devtools/context/retrieval/source/__init__.py",
+    "src/devtools/context/repository/document.py",
+    "src/devtools/context/repository/observation.py",
+    "src/devtools/context/repository/resource.py",
+    "src/devtools/context/repository/corpus.py",
+    "src/devtools/context/repository/discovery.py",
+    "src/devtools/context/python/function/materialization.py",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/classes/declarations.py",
+    "src/devtools/context/retrieval/lexical/analysis.py",
+    "src/devtools/context/planning/materialization.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [],
+  "disclose_edit_paths": false
+}

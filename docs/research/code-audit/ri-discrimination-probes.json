@@ -1,0 +1,86 @@
+{
+  "source": "import copy,hashlib,json,sys,tempfile\nfrom dataclasses import replace\nfrom pathlib import Path\nR=Path.cwd();O=Path(__file__).parent;sys.path.insert(0,str(R))\nfrom devtools.context.localization.resolution import WitnessResolutionView,promote_supported_hypothesis,MemberResolutionDisposition as M\nfrom experiments.structural_discrimination.stage_c import packet,validate_packet\nfrom experiments.structural_discrimination.post_hoc.source_quality.analysis import source_group\nfrom experiments.structural_discrimination.decision import Label,classify_pair\nfrom tests.context.localization.generation.test_references import _fixture,_run\nfrom tests.context.localization.resolution.test_resolution import _decision\nfrom tests.context.retrieval.lexical._helpers import _document,_collection\nfrom experiments.structural_discrimination.stage_c.test_packet import synthetic_payload\nout=[]\ndef check(name,predicate,scope):\n assert predicate,name\n out.append(dict(name=name,result='PASS',scope=scope))\ndef refused(name,invoke,scope):\n try:invoke()\n except (ValueError,KeyError,TypeError) as e:out.append(dict(name=name,result='REJECTED',diagnostic=str(e),scope=scope))\n else:raise AssertionError(name)\nvalue=synthetic_payload();_,bound=packet.render(value)\nfor key in ['address','document_identity','content_identity','git_blob_oid']:\n altered=copy.deepcopy(value);altered['resources'][0][key]='foreign'\n refused('pinned packet '+key,lambda:validate_packet.validate_payload(altered,bound),'Synthetic packet only; externally supplied original BOUND preserved, no original judgments or report reconstruction.')\nrefused('unknown source gold',lambda:source_group(['UNKNOWN']),'Post-hoc owner refuses missing semantic gold rather than inferring a negative.')\ncheck('ordinal is diagnostic',classify_pair(Label.REQUIRED,Label.UNNECESSARY).strong_beneficial,'Pure pair label table; no ranking or witness acceptance occurs.')\nwith tempfile.TemporaryDirectory(dir=O,prefix='native-') as d:\n generated=_run(_fixture(Path(d)));candidates=generated.association;hypothesis=candidates.hypotheses[0];member=hypothesis.members[0]\n empty=WitnessResolutionView(candidates)\n refused('unrecorded candidate cannot promote',lambda:promote_supported_hypothesis(empty,hypothesis.identity),'Real observed fixture and native RI projection; no model or semantic oracle.')\n support=_decision(candidates,hypothesis,member)\n unresolved=replace(support,disposition=M.UNRESOLVED,basis=())\n contradicted=replace(support,disposition=M.CONTRADICTED)\n for name,record in [('explicit unresolved',unresolved),('explicit contradicted',contradicted)]:\n  refused(name+' cannot promote',lambda record=record:promote_supported_hypothesis(WitnessResolutionView(candidates,(record,)),hypothesis.identity),'Explicit caller decision, exact attached structural support; no automatic interpretation of relationship relevance.')\n promoted=promote_supported_hypothesis(WitnessResolutionView(candidates,(support,)),hypothesis.identity)\n check('accepted support retains decision',promoted.supported_witnesses[0].evidence[-1].identity is support,'Explicit caller-owned support may promote; still no LocalizationAssessment is created or changed.')\n refused('copied evidence is not attached authority',lambda:replace(support,basis=(replace(support.basis[0],identity=replace(support.basis[0].identity)),)),'Exact native attached support identity required, not nominal equality.')\n # A candidate support is not a semantic truth evaluator. This is a documented\n # trusted caller boundary, not an assertion of vulnerability or a new oracle.\n changed=replace(support,claim='A caller-authored claim not established by rank alone')\n check('semantic judgment remains caller-owned',changed.claim!=support.claim,'Contract validates lineage/criterion/structure; truth is not inferred from positive Reference or a nonempty rationale.')\na=_document('a','bc');b=_document('ab','c')\ncheck('known synthetic helper collision reproduced',a.id==b.id and a.resource!=b.resource,'Existing a88167f9 fixture-maintenance proposal; not a production identity collision.')\nc1=_collection((_document('a.py','one'),));c2=_collection((_document('a.py','two'),))\ncheck('synthetic corpus identity ignores content',c1.corpus.id==c2.corpus.id and c1.documents!=c2.documents,'Existing nominal-fixture scope; these helpers alone cannot establish canonical freshness.')\nsource=Path(__file__).read_text(encoding='utf-8')\nresult=dict(source=source,source_sha256=hashlib.sha256(source.encode()).hexdigest(),outcomes=out,scope='Independently authored bounded synthetic probes; imported fixture helpers explicitly identified. No original scientific execution, adjudication, report rebuilding, pickle load or model use. No new production correctness defect established.')\n(O/'probes.json').write_text(json.dumps(result,indent=2)+'\\n',encoding='utf-8');print(json.dumps(dict(outcomes=len(out),results=out),indent=2))\n",
+  "source_sha256": "d364e0146543acddd1930a261d8065788052d395ec15e1aaf74d957995a8ddb7",
+  "outcomes": [
+    {
+      "name": "pinned packet address",
+      "result": "REJECTED",
+      "diagnostic": "Exact blind payload/case identity differs",
+      "scope": "Synthetic packet only; externally supplied original BOUND preserved, no original judgments or report reconstruction."
+    },
+    {
+      "name": "pinned packet document_identity",
+      "result": "REJECTED",
+      "diagnostic": "Exact blind payload/case identity differs",
+      "scope": "Synthetic packet only; externally supplied original BOUND preserved, no original judgments or report reconstruction."
+    },
+    {
+      "name": "pinned packet content_identity",
+      "result": "REJECTED",
+      "diagnostic": "Exact blind payload/case identity differs",
+      "scope": "Synthetic packet only; externally supplied original BOUND preserved, no original judgments or report reconstruction."
+    },
+    {
+      "name": "pinned packet git_blob_oid",
+      "result": "REJECTED",
+      "diagnostic": "Exact blind payload/case identity differs",
+      "scope": "Synthetic packet only; externally supplied original BOUND preserved, no original judgments or report reconstruction."
+    },
+    {
+      "name": "unknown source gold",
+      "result": "REJECTED",
+      "diagnostic": "Missing/invalid source gold",
+      "scope": "Post-hoc owner refuses missing semantic gold rather than inferring a negative."
+    },
+    {
+      "name": "ordinal is diagnostic",
+      "result": "PASS",
+      "scope": "Pure pair label table; no ranking or witness acceptance occurs."
+    },
+    {
+      "name": "unrecorded candidate cannot promote",
+      "result": "REJECTED",
+      "diagnostic": "Witness promotion requires a recorded hypothesis resolution.",
+      "scope": "Real observed fixture and native RI projection; no model or semantic oracle."
+    },
+    {
+      "name": "explicit unresolved cannot promote",
+      "result": "REJECTED",
+      "diagnostic": "Witness promotion requires a completely supported hypothesis.",
+      "scope": "Explicit caller decision, exact attached structural support; no automatic interpretation of relationship relevance."
+    },
+    {
+      "name": "explicit contradicted cannot promote",
+      "result": "REJECTED",
+      "diagnostic": "Witness promotion requires a completely supported hypothesis.",
+      "scope": "Explicit caller decision, exact attached structural support; no automatic interpretation of relationship relevance."
+    },
+    {
+      "name": "accepted support retains decision",
+      "result": "PASS",
+      "scope": "Explicit caller-owned support may promote; still no LocalizationAssessment is created or changed."
+    },
+    {
+      "name": "copied evidence is not attached authority",
+      "result": "REJECTED",
+      "diagnostic": "Resolution evidence is not an exact attached member support.",
+      "scope": "Exact native attached support identity required, not nominal equality."
+    },
+    {
+      "name": "semantic judgment remains caller-owned",
+      "result": "PASS",
+      "scope": "Contract validates lineage/criterion/structure; truth is not inferred from positive Reference or a nonempty rationale."
+    },
+    {
+      "name": "known synthetic helper collision reproduced",
+      "result": "PASS",
+      "scope": "Existing a88167f9 fixture-maintenance proposal; not a production identity collision."
+    },
+    {
+      "name": "synthetic corpus identity ignores content",
+      "result": "PASS",
+      "scope": "Existing nominal-fixture scope; these helpers alone cannot establish canonical freshness."
+    }
+  ],
+  "scope": "Independently authored bounded synthetic probes; imported fixture helpers explicitly identified. No original scientific execution, adjudication, report rebuilding, pickle load or model use. No new production correctness defect established."
+}

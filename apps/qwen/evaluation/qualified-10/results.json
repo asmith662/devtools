@@ -1,0 +1,2836 @@
+{
+  "recorded_at": "2026-10-21T01:38:40.078964+00:00",
+  "starting_head": "a28b38b718e2a9e98be175f723ed5a982951b035",
+  "runs": [
+    {
+      "run": "qwen-environment",
+      "result_sha256": "398df2c76b442ed2b5b2f69bbd421658c1dcb7d1437690f604573efe2ff16000",
+      "disposition": "CONTEXT_BUDGET_FAILED",
+      "accepted": false,
+      "task_sha256": "6612354925a09cc73329aab9e81e84180d7720b6398e325a132f053c02840289",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 102741,
+        "output_tokens": 3093,
+        "reasoning_tokens": null
+      },
+      "worker_seconds": 189.0455785000231,
+      "validation_seconds": 3.168640200048685,
+      "source_restored": true,
+      "model_requests": 8,
+      "read_corpus_count": 19,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "implementation-or-repair",
+            "input_tokens": 2245,
+            "measurements": [
+              {
+                "input_tokens": 2245,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 8192,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 2245,
+            "output_tokens": 90,
+            "reasoning_tokens": null,
+            "total_tokens": 2335
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "xRx3StNROhEQnXfkQ547kUjU5KI2vsmY",
+              "argument_bytes": 70
+            },
+            {
+              "name": "inspect_source",
+              "id": "GEZqQr8UMplsWUAz4AR5qgv7RVBylVKd",
+              "argument_bytes": 65
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 5259,
+            "measurements": [
+              {
+                "input_tokens": 5259,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5259,
+            "output_tokens": 96,
+            "reasoning_tokens": null,
+            "total_tokens": 5355
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "bKvxbtRfqCsF6zDIWKT5U27nNqqcKmSm",
+              "argument_bytes": 73
+            },
+            {
+              "name": "inspect_source",
+              "id": "qewkWnCUWct1jc5MnxQwn4t4hejqB4Gw",
+              "argument_bytes": 68
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 7693,
+            "measurements": [
+              {
+                "input_tokens": 7693,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7693,
+            "output_tokens": 74,
+            "reasoning_tokens": null,
+            "total_tokens": 7767
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "xIz1UKPsTNoQt22F90E7LxdH7p5OeqOf",
+              "argument_bytes": 60
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 9333,
+            "measurements": [
+              {
+                "input_tokens": 9333,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9333,
+            "output_tokens": 302,
+            "reasoning_tokens": null,
+            "total_tokens": 9635
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "lookup_symbol",
+              "id": "ENKlgrKS16Gv0pnkSIm3ozGwijspOP6e",
+              "argument_bytes": 53
+            },
+            {
+              "name": "inspect_source",
+              "id": "5AikspBQ7Zn9yHf54cHjGsKIiANQ6Wih",
+              "argument_bytes": 68
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 5,
+          "disposition": "TESTS_FAILED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 10857,
+            "measurements": [
+              {
+                "input_tokens": 10857,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10857,
+            "output_tokens": 1425,
+            "reasoning_tokens": null,
+            "total_tokens": 12282
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "replace_source",
+              "id": "HdWeho4mrNasjF5nbks5HFh8YDp68XYW",
+              "argument_bytes": 718
+            },
+            {
+              "name": "replace_source",
+              "id": "0jTw93irvK3vW8dMVyXl9VjDj5pgouSh",
+              "argument_bytes": 2748
+            },
+            {
+              "name": "replace_source",
+              "id": "jolNGyYyEWfnpacUpGT5QWIfu5pCSIVp",
+              "argument_bytes": 1876
+            }
+          ],
+          "validation": {
+            "format": {
+              "passed": false,
+              "elapsed_seconds": 0.07690129999537021
+            },
+            "oracle": {
+              "passed": false,
+              "elapsed_seconds": 0.25035319989547133
+            },
+            "ruff": {
+              "passed": true,
+              "elapsed_seconds": 0.07832169998437166
+            },
+            "tests": {
+              "passed": true,
+              "elapsed_seconds": 0.933471400057897
+            },
+            "typing": {
+              "passed": true,
+              "elapsed_seconds": 0.23707250005099922
+            }
+          }
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "implementation-or-repair",
+            "input_tokens": 21130,
+            "measurements": [
+              {
+                "input_tokens": 21130,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 8192,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 21130,
+            "output_tokens": 136,
+            "reasoning_tokens": null,
+            "total_tokens": 21266
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "2iTREpWzQHjU0fNu4yGSyrcEzNLZmg4Q",
+              "argument_bytes": 73
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 7,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 22739,
+            "measurements": [
+              {
+                "input_tokens": 22739,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 22739,
+            "output_tokens": 100,
+            "reasoning_tokens": null,
+            "total_tokens": 22839
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "fGRWRUkEk2jKgkARymxxv7VlOTcz3UDG",
+              "argument_bytes": 73
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 8,
+          "disposition": "TESTS_FAILED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 23485,
+            "measurements": [
+              {
+                "input_tokens": 23485,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 23485,
+            "output_tokens": 870,
+            "reasoning_tokens": null,
+            "total_tokens": 24355
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "replace_source",
+              "id": "C75V3P0IyOvpAzV9Xdcg0rmUudUp5Vyt",
+              "argument_bytes": 1141
+            },
+            {
+              "name": "replace_source",
+              "id": "7KKg8tZUcvkeP5XqyAVqTGzmRyZnO1kg",
+              "argument_bytes": 1480
+            },
+            {
+              "name": "replace_source",
+              "id": "by8NLRyJz9EkSglFHOhlC2sFWRyHJuBE",
+              "argument_bytes": 427
+            }
+          ],
+          "validation": {
+            "format": {
+              "passed": true,
+              "elapsed_seconds": 0.07919820002280176
+            },
+            "oracle": {
+              "passed": false,
+              "elapsed_seconds": 0.24167780007701367
+            },
+            "ruff": {
+              "passed": false,
+              "elapsed_seconds": 0.08296799997333437
+            },
+            "tests": {
+              "passed": false,
+              "elapsed_seconds": 0.7565644000424072
+            },
+            "typing": {
+              "passed": false,
+              "elapsed_seconds": 0.2332925999071449
+            }
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "turn": 1,
+          "name": "inspect_source",
+          "id": "xRx3StNROhEQnXfkQ547kUjU5KI2vsmY",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 1,
+          "name": "inspect_source",
+          "id": "GEZqQr8UMplsWUAz4AR5qgv7RVBylVKd",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 2,
+          "name": "inspect_source",
+          "id": "bKvxbtRfqCsF6zDIWKT5U27nNqqcKmSm",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 2,
+          "name": "inspect_source",
+          "id": "qewkWnCUWct1jc5MnxQwn4t4hejqB4Gw",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 3,
+          "name": "inspect_source",
+          "id": "xIz1UKPsTNoQt22F90E7LxdH7p5OeqOf",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 4,
+          "name": "lookup_symbol",
+          "id": "ENKlgrKS16Gv0pnkSIm3ozGwijspOP6e",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 4,
+          "name": "inspect_source",
+          "id": "5AikspBQ7Zn9yHf54cHjGsKIiANQ6Wih",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 5,
+          "name": "replace_source",
+          "id": "HdWeho4mrNasjF5nbks5HFh8YDp68XYW",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 5,
+          "name": "replace_source",
+          "id": "0jTw93irvK3vW8dMVyXl9VjDj5pgouSh",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 5,
+          "name": "replace_source",
+          "id": "jolNGyYyEWfnpacUpGT5QWIfu5pCSIVp",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 6,
+          "name": "inspect_source",
+          "id": "2iTREpWzQHjU0fNu4yGSyrcEzNLZmg4Q",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 7,
+          "name": "inspect_source",
+          "id": "fGRWRUkEk2jKgkARymxxv7VlOTcz3UDG",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "C75V3P0IyOvpAzV9Xdcg0rmUudUp5Vyt",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "7KKg8tZUcvkeP5XqyAVqTGzmRyZnO1kg",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "by8NLRyJz9EkSglFHOhlC2sFWRyHJuBE",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        }
+      ],
+      "tool_errors": [],
+      "source_observations": [
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "b0497f2f73afe48bf6902d5ec8ac8d05f1a8772352f05112edeb4687cb699663",
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "7e656c2db6bdecbbf292fae4712e201fe4522abc58728ecb301fdd3b34edb151",
+          "bytes": 4096,
+          "edit_ref": "R2"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            4096,
+            5847
+          ],
+          "sha256": "334d36fd4e1df745371c6bc992e9b4b659ef959207d73cd949f9b91a76711d83",
+          "bytes": 1751,
+          "edit_ref": "R3"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            4096,
+            8192
+          ],
+          "sha256": "d56d5df88a517f7a38c0809453a45346e14a98bf4088bfdccdbb4d694c7ed03f",
+          "bytes": 4096,
+          "edit_ref": "R4"
+        },
+        {
+          "path": "tests/resources/commands/test_models.py",
+          "version": "08672289b73f089014ec68261a9da50b1b116316fead4fb86c7861a4a9e6781d",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "e490ae42a22272fc85eb54af60f65bbc9ab64812391f777cb13c0f00c74ab05b",
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            8192,
+            9512
+          ],
+          "sha256": "5279902a73029077e3e2d466fb32064459e78502ef20f694659fd32f265ddb53",
+          "bytes": 1320,
+          "edit_ref": "R5"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            358,
+            740
+          ],
+          "sha256": "60fed1cefb54722c48d1580964ab81cdd37aa89c36d82ec4f90ff1a5c8dca3cc",
+          "bytes": 382,
+          "edit_ref": "R9"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            2441,
+            3558
+          ],
+          "sha256": "3c447fa3cab526ef4e55568df584d2d4c33902121e0868bce2656af3c00060e4",
+          "bytes": 1117,
+          "edit_ref": "R10"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            5154,
+            6417
+          ],
+          "sha256": "5060aad905ceb4fc69f37fd60ff3e3735d6db82cd1abfb563e44da69dee10ed6",
+          "bytes": 1263,
+          "edit_ref": "R11"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            6417,
+            8168
+          ],
+          "sha256": "334d36fd4e1df745371c6bc992e9b4b659ef959207d73cd949f9b91a76711d83",
+          "bytes": 1751,
+          "edit_ref": "R12"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            0,
+            358
+          ],
+          "sha256": "06b1eecadebbefac8a8cff416035c098d0ae49afc154b06ac50751c88b3088dc",
+          "bytes": 358,
+          "edit_ref": "R13"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            740,
+            2441
+          ],
+          "sha256": "2d1e81e667ae31ac5c99d54237b64ba5e9e83b108272ed22e527c465bb371ed1",
+          "bytes": 1701,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            3558,
+            5154
+          ],
+          "sha256": "629ffb450ba7abf813c0157ec2b7e11b4eb814b4d8392f6c70048d5077aa0856",
+          "bytes": 1596,
+          "edit_ref": "R15"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            3558,
+            7654
+          ],
+          "sha256": "92bd11fd494b55ef3ce8ae5b1307b5597c780e5a8336735098310184869e98e3",
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            7654,
+            8168
+          ],
+          "sha256": "4fe1eb229d6c3383ac07e56db6e1b1a5e7ba13f2abd7a18b92b9cc4268935c47",
+          "bytes": 514,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            358,
+            740
+          ],
+          "sha256": "60fed1cefb54722c48d1580964ab81cdd37aa89c36d82ec4f90ff1a5c8dca3cc",
+          "bytes": 382,
+          "edit_ref": "R18"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            2390,
+            3507
+          ],
+          "sha256": "3c447fa3cab526ef4e55568df584d2d4c33902121e0868bce2656af3c00060e4",
+          "bytes": 1117,
+          "edit_ref": "R19"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            6007,
+            7216
+          ],
+          "sha256": "c6f26053e34151fb6cfdf99906b884f62133e8e66e101747cb482e7ff69c52a2",
+          "bytes": 1209,
+          "edit_ref": "R20"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            7216,
+            8722
+          ],
+          "sha256": "0327307f6a84f7c5ce467504881650d5352adec1e522c815aed0f6b956ba351b",
+          "bytes": 1506,
+          "edit_ref": "R21"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            9846,
+            9847
+          ],
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1,
+          "edit_ref": "R30"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            0,
+            358
+          ],
+          "sha256": "06b1eecadebbefac8a8cff416035c098d0ae49afc154b06ac50751c88b3088dc",
+          "bytes": 358,
+          "edit_ref": "R23"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            740,
+            1425
+          ],
+          "sha256": "d999d6b9ff6f19cb9678f613b93a34b75853b9d9280b86c5c14d0f2f7aa1c35c",
+          "bytes": 685,
+          "edit_ref": "R24"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            1583,
+            2390
+          ],
+          "sha256": "472f70edab6e66eef2583d88c13cdf25750cb1b2cf39e4513f29320c554a1d2c",
+          "bytes": 807,
+          "edit_ref": "R25"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            3507,
+            5056
+          ],
+          "sha256": "b1880149840aad25ebe947eb68064de1a0a9e4198458c1996efee19876ad1442",
+          "bytes": 1549,
+          "edit_ref": "R27"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            6007,
+            8453
+          ],
+          "sha256": "7dd2a27e58fed2b207e7e75ed1e0d18d54e6ada6682fa663dd0663a229944547",
+          "bytes": 2446,
+          "edit_ref": "R28"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            8453,
+            8722
+          ],
+          "sha256": "43d00215b3aea5d7360d39f24d804ad30430880bab39fcf2fb5a4121b5ad4854",
+          "bytes": 269,
+          "edit_ref": "R29"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            1425,
+            1583
+          ],
+          "sha256": "f40f8c953e4ceb27ae3d161b8752b592093dc59eb947ec271e18fa0d00d27b0c",
+          "bytes": 158,
+          "edit_ref": "R31"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            5056,
+            6007
+          ],
+          "sha256": "60099b0c40af4339c7fedfd30048a59dc7d0d3a9101b03bfbe47776f350ffc14",
+          "bytes": 951,
+          "edit_ref": "R32"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "0bf7d255c8b22e0297e70b5b28dc1a6173ce9174573507cee65bd7c13d6a881c",
+          "span": [
+            8722,
+            9846
+          ],
+          "sha256": "686fdfbf094af6adf8fbc30bb24bb4fbe86943e29bc71ae8f17a299ea625eb3f",
+          "bytes": 1124,
+          "edit_ref": "R33"
+        }
+      ],
+      "unique_observed_bytes": 44795,
+      "candidate_evidence": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/commands/models/command.py",
+          "sha256": "5a77157be0e9756627726a0a1e148f7d587f87b72ebb025ee8bd56bc2229541f"
+        },
+        {
+          "evidence": "final-sources/src/devtools/resources/commands/execution.py",
+          "path": "src/devtools/resources/commands/execution.py",
+          "sha256": "d57c42635a2775e5bf85ffb4ab221b1590fca7b39784c7f0407b1362e5094f52"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/final-source.py",
+          "sha256": "5a77157be0e9756627726a0a1e148f7d587f87b72ebb025ee8bd56bc2229541f",
+          "bytes": 9847
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/final-sources/src/devtools/resources/commands/execution.py",
+          "sha256": "d57c42635a2775e5bf85ffb4ab221b1590fca7b39784c7f0407b1362e5094f52",
+          "bytes": 9512
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/freeze.json",
+          "sha256": "fb1ae8637eec70e71ceeaca40a5554ac49d69659c19ca6983202086e44746e89",
+          "bytes": 29721
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/oracle-runner.py",
+          "sha256": "fe0dc282d2e93f71c1beb0cac07ef16f68847c569d9e3567e951240f1f8b86d1",
+          "bytes": 6080
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-01.json",
+          "sha256": "7f2b39fe316ff4cce1985abfe2a5e14987935d1544f705400a6dcac04bf798dc",
+          "bytes": 1512
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-02.json",
+          "sha256": "d317b639e4f83b8185076fc435f320710d0c6e890ceec6844c3e31de5c1ea555",
+          "bytes": 1514
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-03.json",
+          "sha256": "8cc442b563b358961e54474b61a9c31ae9d8089c4152a483bba70a8609e684ef",
+          "bytes": 1346
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-04.json",
+          "sha256": "d039b16ad48118741bc1a8345bf1cc53c1b8c3853c61694da4cf75b975440f5b",
+          "bytes": 2456
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-05.json",
+          "sha256": "21d00ac411735967c0f7b4562a6ba03a4f883a920d127db3190b9f57d1962dfa",
+          "bytes": 7961
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-06.json",
+          "sha256": "c3694d72ef37d0cd1b0cfb16d3640bc5a9dd8d7bd9140e5b7e2196185ffc9bd8",
+          "bytes": 1588
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-07.json",
+          "sha256": "4bba3621e6f37e7b584dfae8ed604095980236c22c7b847b6501c521c8c6582b",
+          "bytes": 1424
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/provider-response-08.json",
+          "sha256": "3f784ee135e734ef2a8f30ac184a44db65dc0376df6e0d94a9c8fc53fae7f6b6",
+          "bytes": 5353
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/pytest.ini",
+          "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+          "bytes": 9
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/result.json",
+          "sha256": "398df2c76b442ed2b5b2f69bbd421658c1dcb7d1437690f604573efe2ff16000",
+          "bytes": 169955
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/tests-runner.py",
+          "sha256": "e19adf5db63d65b678981c3859d7879196f0ab15aae55bce71c4c79e4566d6bd",
+          "bytes": 1741
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/capacity.json",
+          "sha256": "369ab880096fea75b94b50cc93231569ebb0a0b537ab73a67aef76d860e961c5",
+          "bytes": 326
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/request.json",
+          "sha256": "78fc67ceeb5353fa6533209864b3a9616e638e1f313c986d49129634ad00b422",
+          "bytes": 9616
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/response.json",
+          "sha256": "fd0f33bb50ca8ccb486e5491cded4aea3a69f3f8fe4e15cdd71130cb839bd7e3",
+          "bytes": 782
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/stage.json",
+          "sha256": "d51a9424e2bd4d6bdf1c4fc7a4dae836a6fced9e83257b372d917f4c4a3f018d",
+          "bytes": 15120
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/tools.json",
+          "sha256": "93d095295c843339029f164725781e98265e45198925e0409673874abe676aa1",
+          "bytes": 13076
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-01/unprojected-prompt.json",
+          "sha256": "f7aa761528c976e5db68aafdfe7e1259afda19811ab9d1515ff03c369d52f436",
+          "bytes": 4479
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/capacity.json",
+          "sha256": "eb50256c0ec43dcd0103b130f2722e1b58d4094e5e8feb8ecf3cc2750d40fa33",
+          "bytes": 315
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/request.json",
+          "sha256": "a44c90862822170e86f2e55aacd010016f1ffa7d57c02a3e716c1f7279546b44",
+          "bytes": 21986
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/response.json",
+          "sha256": "f6d928f2032ef02f5e58ad767aa2725eff9cc768865cc332b8181b76d1a91a9d",
+          "bytes": 788
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/stage.json",
+          "sha256": "0afb2af8a83aa84c35bd117c43ee10658a02635263e043c51328997bb6089cef",
+          "bytes": 12663
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/tools.json",
+          "sha256": "d1d762dd6d350c913ecb42364aab985df552ef676a322783f81db20020a347e2",
+          "bytes": 10615
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-02/unprojected-prompt.json",
+          "sha256": "2868b5ddc64dd8143932b510e3b14e076d219c858c5a08ddd53aa82e380dbafc",
+          "bytes": 17698
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/capacity.json",
+          "sha256": "b25548fcc8c58173d32bcff0e89b20333f24eac4a60fba2577af1c756f5dc7ec",
+          "bytes": 315
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/request.json",
+          "sha256": "4a62f3d022aa189f586d3ee993d86ce9a2ab30b4db4454c245f0b4cfc0712ba0",
+          "bytes": 31706
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/response.json",
+          "sha256": "fd241b19a3f51e84be314913f3aa6675894f4d7a944120e2ead9689cb5c2e85e",
+          "bytes": 707
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/stage.json",
+          "sha256": "320823564f90221938e3505f7abde1179b270fc2a7fe074ade4ae707bf5881af",
+          "bytes": 8101
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/tools.json",
+          "sha256": "3484265a2cea2e798f02e7bcb10ae9303acd3c460427a41c0df3dbcf591a5e3a",
+          "bytes": 6543
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-03/unprojected-prompt.json",
+          "sha256": "e7ee723402acb5f8065dd1ad311c3a755f5ba65f0705976b4455bc5bd89a6b58",
+          "bytes": 28267
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/capacity.json",
+          "sha256": "5294e4204ab95a74eb80704a4d88929db0d32ff87ba4fe822ef4cd1109c20d29",
+          "bytes": 315
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/request.json",
+          "sha256": "bd4c9bbce78b78f6d1d53d9a65395279d0a880d14190306772055a566fe4a8b5",
+          "bytes": 38242
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/response.json",
+          "sha256": "fc81d1212243d1b25b0783d9bedcd725d70c156d2dfb8f742d5f510ed5be37ec",
+          "bytes": 1719
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/stage.json",
+          "sha256": "cd31c11e9d17fdb890929a7b4bd8e805b81652efa5b246130444f68f19f4b827",
+          "bytes": 6631
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/tools.json",
+          "sha256": "46a27ca96b5660a23b3af3d961b2bdd3b08a695a15f014f832d6b9ab531c8ff4",
+          "bytes": 4875
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-04/unprojected-prompt.json",
+          "sha256": "7822cc7e9a5ea5f735bb45cb79a2c4804aeb182a52f3dcbbea61c87148c9a48f",
+          "bytes": 35212
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/capacity.json",
+          "sha256": "1911be5d55b1b6c301c41646e56d730d2d22a15574d24eda227039b1e12a8aec",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/proposal.patch",
+          "sha256": "e3408b9c413de05e0ec1444d8884a7bea492d51b778b9b7bb174ad964db23d92",
+          "bytes": 4205
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/request.json",
+          "sha256": "d76dd25ebf699ee22fce5ece837af089f37144f7d4583517e26c9f9181bd9563",
+          "bytes": 43706
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/resolved-proposal.json",
+          "sha256": "0831b86105f50463d7e24fcbf1f5313ee8842e9fcde0d8e263600873e86dc2e6",
+          "bytes": 24649
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/response.json",
+          "sha256": "9423125d7f025c734ac229f91499da7cb2fdd3de2bd39eb0955beb156b4803da",
+          "bytes": 7128
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/stage.json",
+          "sha256": "48a5b5ccb2616bee33404dec7fa41db138a3258322ac072a8bc12f648e27fcf2",
+          "bytes": 45334
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/tools.json",
+          "sha256": "50343bfd0922d4f5286aabeeccfb804c2cddc4bbee633ce6a85b881a0b9644db",
+          "bytes": 46718
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-05/unprojected-prompt.json",
+          "sha256": "803b6636dff020857f52aa5e6d198972f59d41dbecb68ad6b8359ee6707e1c02",
+          "bytes": 40961
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/capacity.json",
+          "sha256": "da3b24bea637aa4085292e0428ce82527a3f88c0f6efddd795c3b9d53904d6a0",
+          "bytes": 328
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/request.json",
+          "sha256": "eb75e05f7e5d24638fc3d3a27a05cf97eafca919252dc59bc5e0d6cd69379af3",
+          "bytes": 81615
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/response.json",
+          "sha256": "debb3cae617ce411895444f0e519209d376cbcae27de6fa47264601258aa5a3f",
+          "bytes": 944
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/stage.json",
+          "sha256": "58be394b9cf3b7fa38258ef43c8a0123ac4b8b5fac976cc0a4fdb6153e87fd1c",
+          "bytes": 8129
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/tools.json",
+          "sha256": "9c24e03a064e60c0d458e6a952d3ac41fa704b923565f249bb6e4e7a6eacda4c",
+          "bytes": 6549
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-06/unprojected-prompt.json",
+          "sha256": "6ad20e6edf91da6bd466037a2e0d818f4067279e66565424289225292dea458a",
+          "bytes": 86986
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/capacity.json",
+          "sha256": "a880204072b291c117bf0940ecb895ebd7a93f25fe02085aadc8addf51768f34",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/request.json",
+          "sha256": "0a2a075d75dad58ed38148dbbcbfefde625b1ff49e054ab0369655cacaffebdf",
+          "bytes": 88245
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/response.json",
+          "sha256": "2097bbf0e2fd9d82b578bdac3644fafaa7bfe20471146e26c162c43f3e2c10d9",
+          "bytes": 782
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/stage.json",
+          "sha256": "5afff4a5ffaf1fd2008049f81429c1349fb0e7268d335afa35b294ae7c787e2a",
+          "bytes": 4394
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/tools.json",
+          "sha256": "138eb2390d88d4d22c9241a0a47a2ec872bf5b1b14003b0cdabae5240a271a1a",
+          "bytes": 2815
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-07/unprojected-prompt.json",
+          "sha256": "d7e1972d525afcd0981beddff2b9a36fafcc0da25c93a471687294e0bcd67f9d",
+          "bytes": 94035
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/capacity.json",
+          "sha256": "e42fb90d987eb5e52df6defe04636573113d4c2a70884b95e7cf7ce7d7c34662",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/proposal.patch",
+          "sha256": "f01d716b483c48c8f062f222a562556c499c66c3f96d470746979fee6478f19e",
+          "bytes": 2648
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/request.json",
+          "sha256": "803d14dbd0e6683e3d98eae22d981400abbe3b380805e5c3be61c641d43363d5",
+          "bytes": 90780
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/resolved-proposal.json",
+          "sha256": "68fa6c3f8a46cb70977afa5f4ef4b57613dee1e1284619096fb9ca97e29eb1a9",
+          "bytes": 14568
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/response.json",
+          "sha256": "2bfeb5c3245825aef9d08315e18caab9dc613145c609fc96ebf686f4d7159db8",
+          "bytes": 4521
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/stage.json",
+          "sha256": "8e408908fe4c73eda7bdc71cc842b244604c8fe1df780ffabc8d30bbadd024e9",
+          "bytes": 38106
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/tools.json",
+          "sha256": "64ec55f8ef4df0834dc719cf3854beb0f8648d9914d714acdd39132a622bbb06",
+          "bytes": 51076
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-08/unprojected-prompt.json",
+          "sha256": "9ae32e353ae910a8cbd9f5b306fc938e8e349b200db13c3f6aa03ebc3a46ee91",
+          "bytes": 96989
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-09/capacity.json",
+          "sha256": "23e20eddbfd709f5a477cf97f979851621db002f4c38e4a7c99b296476893945",
+          "bytes": 640
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-09/request.json",
+          "sha256": "d12604f00b66965a0f0c3ef1e95a2be34a1fdecfeabce04b1537649edae625f3",
+          "bytes": 113981
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-environment/turn-09/unprojected-prompt.json",
+          "sha256": "4378a3390371c8cb673fb48d2827d8e8c94bf8a4098ac0e9b562c15eab83da46",
+          "bytes": 145816
+        }
+      ],
+      "read_disclosures": [
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": "R1"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": "R2"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            4096,
+            5847
+          ],
+          "bytes": 1751,
+          "edit_ref": "R3"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            4096,
+            8192
+          ],
+          "bytes": 4096,
+          "edit_ref": "R4"
+        },
+        {
+          "path": "tests/resources/commands/test_models.py",
+          "version": "08672289b73f089014ec68261a9da50b1b116316fead4fb86c7861a4a9e6781d",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            8192,
+            9512
+          ],
+          "bytes": 1320,
+          "edit_ref": "R5"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            3558,
+            7654
+          ],
+          "bytes": 4096,
+          "edit_ref": "R16"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "033a1406af1a41d5287298b7703c1156c50fce516e8f17fbd59f854c0643ae29",
+          "span": [
+            7654,
+            8168
+          ],
+          "bytes": 514,
+          "edit_ref": "R17"
+        }
+      ],
+      "read_disclosure_bytes": 24065,
+      "inspected_resources": [
+        "src/devtools/resources/commands/execution.py",
+        "src/devtools/resources/commands/models/command.py",
+        "tests/resources/commands/test_models.py"
+      ]
+    },
+    {
+      "run": "qwen-stdin",
+      "result_sha256": "bbeaeedd6a90f865b344a4bc1319c0b3118593e16330422472c8eec5d199ec07",
+      "disposition": "PROPOSAL_ADMISSION_FAILED",
+      "accepted": false,
+      "task_sha256": "0fb904f7b0c33d20cd934bf1fd35e2f9bd6fbcd8535da37c01852bc4057af6ec",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 103819,
+        "output_tokens": 3348,
+        "reasoning_tokens": null
+      },
+      "worker_seconds": 207.424328800058,
+      "validation_seconds": 2.1796675003133714,
+      "source_restored": true,
+      "model_requests": 9,
+      "read_corpus_count": 19,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "implementation-or-repair",
+            "input_tokens": 2232,
+            "measurements": [
+              {
+                "input_tokens": 2232,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 8192,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 2232,
+            "output_tokens": 90,
+            "reasoning_tokens": null,
+            "total_tokens": 2322
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "r4QDZDyUIbDV4Z4xqBXN2Jb9LzSU0913",
+              "argument_bytes": 70
+            },
+            {
+              "name": "inspect_source",
+              "id": "zyuF6lqEtSRLJOD5vtVFJrH5mz7OkDj5",
+              "argument_bytes": 65
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 5271,
+            "measurements": [
+              {
+                "input_tokens": 5271,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5271,
+            "output_tokens": 96,
+            "reasoning_tokens": null,
+            "total_tokens": 5367
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "HWpBMv646Lv0h2m5grEnjcgkYv06UJ0z",
+              "argument_bytes": 73
+            },
+            {
+              "name": "inspect_source",
+              "id": "UirrQ0yKdLp757SXi8zjcQLEaPElah5o",
+              "argument_bytes": 68
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 7728,
+            "measurements": [
+              {
+                "input_tokens": 7728,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7728,
+            "output_tokens": 93,
+            "reasoning_tokens": null,
+            "total_tokens": 7821
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "BJIDzlUDJkVzRVTfkYtQjSMgVQTy4NAV",
+              "argument_bytes": 68
+            },
+            {
+              "name": "inspect_source",
+              "id": "u6tz0w6nbvBAtnXBgCLOyWPFS1TkAjk5",
+              "argument_bytes": 62
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 10126,
+            "measurements": [
+              {
+                "input_tokens": 10126,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10126,
+            "output_tokens": 112,
+            "reasoning_tokens": null,
+            "total_tokens": 10238
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "okgMZXMIzhA4O8KlJ9sBApEElrrEnhJt",
+              "argument_bytes": 71
+            },
+            {
+              "name": "git_inspect",
+              "id": "Hz9xEP6ISvzdBDFK5YjnZeoka8mkmTyY",
+              "argument_bytes": 71
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 5,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 11144,
+            "measurements": [
+              {
+                "input_tokens": 11144,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11144,
+            "output_tokens": 110,
+            "reasoning_tokens": null,
+            "total_tokens": 11254
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "tMlEz12HSd59DqWyMro5TdDFzmf8TESg",
+              "argument_bytes": 60
+            },
+            {
+              "name": "inspect_source",
+              "id": "hn5fCHvI1871AuqtjM3vw4YPOOQbcUzX",
+              "argument_bytes": 69
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 14165,
+            "measurements": [
+              {
+                "input_tokens": 14165,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 14165,
+            "output_tokens": 77,
+            "reasoning_tokens": null,
+            "total_tokens": 14242
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "inspect_source",
+              "id": "Vogb41Yu2omB6Qcy2EqZkdXPMDzCgruZ",
+              "argument_bytes": 64
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 7,
+          "disposition": "PROPOSAL_REFUSED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "investigation",
+            "input_tokens": 14982,
+            "measurements": [
+              {
+                "input_tokens": 14982,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 4096,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 14982,
+            "output_tokens": 869,
+            "reasoning_tokens": null,
+            "total_tokens": 15851
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "replace_source",
+              "id": "lBvfxWMAWdrgQvT2tdIz74T9Qv79E9ik",
+              "argument_bytes": 685
+            },
+            {
+              "name": "replace_source",
+              "id": "zZ9s2RToZUG5Xaa27Au1LiNhetvEVoWM",
+              "argument_bytes": 380
+            },
+            {
+              "name": "replace_source",
+              "id": "219m6FZUKzdpN7zjcdEpZY6T4AkbWEsv",
+              "argument_bytes": 345
+            },
+            {
+              "name": "replace_source",
+              "id": "VA60fQERlCf0fqZDpyKJK79xcThVrgxO",
+              "argument_bytes": 917
+            }
+          ],
+          "validation": {}
+        },
+        {
+          "number": 8,
+          "disposition": "TESTS_FAILED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "implementation-or-repair",
+            "input_tokens": 16511,
+            "measurements": [
+              {
+                "input_tokens": 16511,
+                "projection": "source-preserving"
+              }
+            ],
+            "output_tokens": 8192,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 16511,
+            "output_tokens": 762,
+            "reasoning_tokens": null,
+            "total_tokens": 17273
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "replace_source",
+              "id": "ucCQ0xEd5aXuM96XBQ8SOvpsvSuo6Z8N",
+              "argument_bytes": 685
+            },
+            {
+              "name": "replace_source",
+              "id": "akHww5BSUHDYLMsGirCzBhv9YuOltPYQ",
+              "argument_bytes": 380
+            },
+            {
+              "name": "replace_source",
+              "id": "nVlRyPUQBkTycQldxkqiw3UrMFlmUeq8",
+              "argument_bytes": 345
+            },
+            {
+              "name": "replace_source",
+              "id": "6ajkFhtkrWFkpxOWriRQvlUiEUWlbdws",
+              "argument_bytes": 917
+            }
+          ],
+          "validation": {
+            "format": {
+              "passed": true,
+              "elapsed_seconds": 0.08010649995412678
+            },
+            "oracle": {
+              "passed": false,
+              "elapsed_seconds": 0.28525070007890463
+            },
+            "ruff": {
+              "passed": true,
+              "elapsed_seconds": 0.08648070006165653
+            },
+            "tests": {
+              "passed": true,
+              "elapsed_seconds": 0.9361181000713259
+            },
+            "typing": {
+              "passed": true,
+              "elapsed_seconds": 0.22620869998354465
+            }
+          }
+        },
+        {
+          "number": 9,
+          "disposition": "PROPOSAL_REFUSED",
+          "capacity": {
+            "context_tokens": 32768,
+            "generation_phase": "implementation-or-repair",
+            "input_tokens": 21660,
+            "measurements": [
+              {
+                "input_tokens": 24399,
+                "projection": "source-preserving"
+              },
+              {
+                "input_tokens": 21660,
+                "projection": "compact",
+                "reacquire_read_only": 0
+              }
+            ],
+            "output_tokens": 8192,
+            "phase": "PRE_DISPATCH_CAPACITY",
+            "safety_tokens": 2048,
+            "task_output_ceiling": 8192
+          },
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 21660,
+            "output_tokens": 1139,
+            "reasoning_tokens": null,
+            "total_tokens": 22799
+          },
+          "omitted_messages": 0,
+          "calls": [
+            {
+              "name": "replace_source",
+              "id": "J3U69yprRpzYTxa1xuA1F1BAPiXsZWbM",
+              "argument_bytes": 1108
+            },
+            {
+              "name": "replace_source",
+              "id": "OFh4CahqoCnb5dJcM7f7Dq461HJ9TlSy",
+              "argument_bytes": 439
+            },
+            {
+              "name": "replace_source",
+              "id": "dPuMk5KGw8nZsSleVD1R3LK6dcOHZotv",
+              "argument_bytes": 2721
+            }
+          ],
+          "validation": {}
+        }
+      ],
+      "tool_results": [
+        {
+          "turn": 1,
+          "name": "inspect_source",
+          "id": "r4QDZDyUIbDV4Z4xqBXN2Jb9LzSU0913",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 1,
+          "name": "inspect_source",
+          "id": "zyuF6lqEtSRLJOD5vtVFJrH5mz7OkDj5",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 2,
+          "name": "inspect_source",
+          "id": "HWpBMv646Lv0h2m5grEnjcgkYv06UJ0z",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 2,
+          "name": "inspect_source",
+          "id": "UirrQ0yKdLp757SXi8zjcQLEaPElah5o",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 3,
+          "name": "inspect_source",
+          "id": "BJIDzlUDJkVzRVTfkYtQjSMgVQTy4NAV",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 3,
+          "name": "inspect_source",
+          "id": "u6tz0w6nbvBAtnXBgCLOyWPFS1TkAjk5",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 4,
+          "name": "inspect_source",
+          "id": "okgMZXMIzhA4O8KlJ9sBApEElrrEnhJt",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 4,
+          "name": "git_inspect",
+          "id": "Hz9xEP6ISvzdBDFK5YjnZeoka8mkmTyY",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 5,
+          "name": "inspect_source",
+          "id": "tMlEz12HSd59DqWyMro5TdDFzmf8TESg",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 5,
+          "name": "inspect_source",
+          "id": "hn5fCHvI1871AuqtjM3vw4YPOOQbcUzX",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 6,
+          "name": "inspect_source",
+          "id": "Vogb41Yu2omB6Qcy2EqZkdXPMDzCgruZ",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "lBvfxWMAWdrgQvT2tdIz74T9Qv79E9ik",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "zZ9s2RToZUG5Xaa27Au1LiNhetvEVoWM",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "219m6FZUKzdpN7zjcdEpZY6T4AkbWEsv",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "VA60fQERlCf0fqZDpyKJK79xcThVrgxO",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "ucCQ0xEd5aXuM96XBQ8SOvpsvSuo6Z8N",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "akHww5BSUHDYLMsGirCzBhv9YuOltPYQ",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "nVlRyPUQBkTycQldxkqiw3UrMFlmUeq8",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 8,
+          "name": "replace_source",
+          "id": "6ajkFhtkrWFkpxOWriRQvlUiEUWlbdws",
+          "status": "RETURNED",
+          "error": null,
+          "diagnostic": null
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "J3U69yprRpzYTxa1xuA1F1BAPiXsZWbM",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "OFh4CahqoCnb5dJcM7f7Dq461HJ9TlSy",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "dPuMk5KGw8nZsSleVD1R3LK6dcOHZotv",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        }
+      ],
+      "tool_errors": [
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "lBvfxWMAWdrgQvT2tdIz74T9Qv79E9ik",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "zZ9s2RToZUG5Xaa27Au1LiNhetvEVoWM",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "219m6FZUKzdpN7zjcdEpZY6T4AkbWEsv",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 7,
+          "name": "replace_source",
+          "id": "VA60fQERlCf0fqZDpyKJK79xcThVrgxO",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R3 (src/devtools/resources/commands/models/command.py, span [4096, 5847)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "J3U69yprRpzYTxa1xuA1F1BAPiXsZWbM",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "OFh4CahqoCnb5dJcM7f7Dq461HJ9TlSy",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        },
+        {
+          "turn": 9,
+          "name": "replace_source",
+          "id": "dPuMk5KGw8nZsSleVD1R3LK6dcOHZotv",
+          "status": "REFUSED",
+          "error": "TRANSACTION_REFUSED",
+          "diagnostic": "Old text is outside referenced observed source: R5 (src/devtools/resources/commands/execution.py, span [8192, 9512)). Use the observation covering this exact anchor or inspect that source region again; no component was applied."
+        }
+      ],
+      "source_observations": [
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "b0497f2f73afe48bf6902d5ec8ac8d05f1a8772352f05112edeb4687cb699663",
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "7e656c2db6bdecbbf292fae4712e201fe4522abc58728ecb301fdd3b34edb151",
+          "bytes": 4096,
+          "edit_ref": "R2"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            4096,
+            5847
+          ],
+          "sha256": "334d36fd4e1df745371c6bc992e9b4b659ef959207d73cd949f9b91a76711d83",
+          "bytes": 1751,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            4096,
+            8192
+          ],
+          "sha256": "d56d5df88a517f7a38c0809453a45346e14a98bf4088bfdccdbb4d694c7ed03f",
+          "bytes": 4096,
+          "edit_ref": "R4"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            8192,
+            9512
+          ],
+          "sha256": "5279902a73029077e3e2d466fb32064459e78502ef20f694659fd32f265ddb53",
+          "bytes": 1320,
+          "edit_ref": "R5"
+        },
+        {
+          "path": "src/devtools/resources/commands/handle.py",
+          "version": "c9825687577803f98911494be5c86ddd84af006d627acdbacbc2b28d9c82b06c",
+          "span": [
+            0,
+            3938
+          ],
+          "sha256": "82f90b288a83ca33aa0adbb3c1716a6619483b03e42c1b90affef723f35d1af8",
+          "bytes": 3938,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/__init__.py",
+          "version": "663fbad9d358d6ebb6f849fe60b189a4fc48bbf688ec809f3122929d7c68836f",
+          "span": [
+            0,
+            394
+          ],
+          "sha256": "6c4863894eaa186fb2cb459c1ebc2066ccfb1171591531fccc930ac5b42c4b09",
+          "bytes": 394,
+          "edit_ref": null
+        },
+        {
+          "path": "tests/resources/commands/test_models.py",
+          "version": "08672289b73f089014ec68261a9da50b1b116316fead4fb86c7861a4a9e6781d",
+          "span": [
+            0,
+            4096
+          ],
+          "sha256": "e490ae42a22272fc85eb54af60f65bbc9ab64812391f777cb13c0f00c74ab05b",
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/result.py",
+          "version": "a9a50d5cd04a2391eebc5abba6869d26fc35cbbb2c02d2801016551259964cbe",
+          "span": [
+            0,
+            3463
+          ],
+          "sha256": "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2",
+          "bytes": 3463,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/__init__.py",
+          "version": "7cbc6f6b95697b5c664eb09d2779fe854fedb8d868e046e913bed2ce2fbb30b3",
+          "span": [
+            0,
+            889
+          ],
+          "sha256": "d3e83dcb4520148e17673dc87731001be5c4be9e76f85aca407d1fe757c2a90d",
+          "bytes": 889,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            0,
+            1261
+          ],
+          "sha256": "1ee55caf94441cc111a09a918c6bac4f71a93ac73aac12ac56e0634b917f64e9",
+          "bytes": 1261,
+          "edit_ref": "R9"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            1772,
+            2577
+          ],
+          "sha256": "14953496901891a656cd24cb8478791c3f955e557455c16b7ec4d378197534d7",
+          "bytes": 805,
+          "edit_ref": "R10"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            2749,
+            3057
+          ],
+          "sha256": "54079098f8e70990532c902a17876e311b8cf5eca4895fc93f58ba8e3deba62b",
+          "bytes": 308,
+          "edit_ref": "R11"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            3222,
+            4575
+          ],
+          "sha256": "5845e59bd8fe31ebbd601d42b76d49f9a5363dba56e07bc42b4d05591c21db34",
+          "bytes": 1353,
+          "edit_ref": "R12"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            4575,
+            6248
+          ],
+          "sha256": "1cb573e886969e753b9f5450ef3c10ec78c4324ebdd048655c8b8796d19b7288",
+          "bytes": 1673,
+          "edit_ref": "R13"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            7001,
+            7002
+          ],
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1,
+          "edit_ref": "R14"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            1261,
+            1772
+          ],
+          "sha256": "cc768f005a167e340329fee4e604aadae74030b4f4ac15ec1b5b497387960878",
+          "bytes": 511,
+          "edit_ref": "R15"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            2577,
+            2749
+          ],
+          "sha256": "9566bdd01188cbbd06999df4026e428347fadddf9a76827fc4fc7088f3bd65fa",
+          "bytes": 172,
+          "edit_ref": "R16"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            3057,
+            3222
+          ],
+          "sha256": "602a0f7096325511ac5c7d07325ba4a0f9b53bfb108bbc1842580a42545874eb",
+          "bytes": 165,
+          "edit_ref": "R17"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "23da2db24a1461b0b397a099eaaabbbd90612a265f1886c70b2114ab1353379a",
+          "span": [
+            6248,
+            7001
+          ],
+          "sha256": "a49fdd739487f6cdb60f92193ca2c9ced93dce775b3271fcf6d7e45525d7a13a",
+          "bytes": 753,
+          "edit_ref": "R18"
+        }
+      ],
+      "unique_observed_bytes": 35141,
+      "candidate_evidence": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/commands/models/command.py",
+          "sha256": "198dd6199c96c69b84867499e48e6a92de2217d598f7bad48475c7c57f7c0486"
+        },
+        {
+          "evidence": "final-sources/src/devtools/resources/commands/execution.py",
+          "path": "src/devtools/resources/commands/execution.py",
+          "sha256": "d57c42635a2775e5bf85ffb4ab221b1590fca7b39784c7f0407b1362e5094f52"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/coding-command-01.json",
+          "sha256": "a572ced58ad92f326bbb73f560279da952d2348e7bb5557c895ad7b9a1061e30",
+          "bytes": 748
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/final-source.py",
+          "sha256": "198dd6199c96c69b84867499e48e6a92de2217d598f7bad48475c7c57f7c0486",
+          "bytes": 7002
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/final-sources/src/devtools/resources/commands/execution.py",
+          "sha256": "d57c42635a2775e5bf85ffb4ab221b1590fca7b39784c7f0407b1362e5094f52",
+          "bytes": 9512
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/freeze.json",
+          "sha256": "845ad4591187b4962cfdf2c24b2641f97147111cc6ede95e95545238b44fa86a",
+          "bytes": 28334
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/oracle-runner.py",
+          "sha256": "cf5c15151e136ca0204a278f5dc15976c03e64b94fe2393704749c4902d574f2",
+          "bytes": 5047
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-01.json",
+          "sha256": "0563371cb72d44f91742b757d45721cd298a78cd0c19f250a83061edc6abb609",
+          "bytes": 1516
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-02.json",
+          "sha256": "f2e09bcc103baac1f3f327a1d586cf3ce1aedace728878f8c72bd8e8574009e2",
+          "bytes": 1524
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-03.json",
+          "sha256": "f69f9980b4261559ae838d614b8745240495a1ea1c6c8fb1dddbdffd5bf3041f",
+          "bytes": 1514
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-04.json",
+          "sha256": "671c777b5c39c63c328ce840e49949ac5e82fcbcdf51ec927594e1bb03ac02b3",
+          "bytes": 1611
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-05.json",
+          "sha256": "b7560d8272e4ae3b4d88671b05e8ca7a9aaa47361151eadb0ed1f31f36e3e19e",
+          "bytes": 1644
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-06.json",
+          "sha256": "698f1245fcacd35869cc33bcff239781c22ca957d99fd2593203d4694cb24052",
+          "bytes": 1359
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-07.json",
+          "sha256": "e1825fe292e056296f99c8e850b00f71558a7c0e7d77a929bb2c9cc9bd4628b3",
+          "bytes": 5168
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-08.json",
+          "sha256": "38857bdbe78da4f9c659e7aae4823407ec234bd404af615c9d8a0593e4f943d2",
+          "bytes": 4652
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/provider-response-09.json",
+          "sha256": "bf6eb74d4ff294833732a4992baeeaaf43176b34bbc81ec30e672f8b1400242a",
+          "bytes": 6390
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/pytest.ini",
+          "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+          "bytes": 9
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/result.json",
+          "sha256": "bbeaeedd6a90f865b344a4bc1319c0b3118593e16330422472c8eec5d199ec07",
+          "bytes": 149992
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/tests-runner.py",
+          "sha256": "9f0cc7b43c86f6d48fa1af796183f8ee4f01c9aff6a09b58528b7194af231c00",
+          "bytes": 1735
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/capacity.json",
+          "sha256": "b563e0c75294920ec5eba5d1a9932a548c595bac171b80e38e8822cfd5cedda3",
+          "bytes": 326
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/request.json",
+          "sha256": "0e94550172adbd1871948b7aca5dae4870acc4f98bfa99c3e55ee56a6d6838fd",
+          "bytes": 9503
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/response.json",
+          "sha256": "48c26725f764e8b569e6ebc3a035124dd4413f8c2a582a0897e2d314d8babc37",
+          "bytes": 782
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/stage.json",
+          "sha256": "da7946672d7a6369b5af43571238c01a0bc6da6c0dc5478eb9784aff72f85b7f",
+          "bytes": 15116
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/tools.json",
+          "sha256": "d25dbe28cc51bda1989091fc8645a0cbe71630617e3912aede8bc257f941f111",
+          "bytes": 13076
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-01/unprojected-prompt.json",
+          "sha256": "9ad91a3de906c4528f12853fb0e404a46997d392d8f718ade423c8fb26a05f12",
+          "bytes": 4366
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/capacity.json",
+          "sha256": "4bca4778fb0afc98595021149e3ee9e008d9c0b0f301f9fd7c228d7890a6769b",
+          "bytes": 315
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/request.json",
+          "sha256": "9592c4ec98b124f431ca6ac4812c6c65c8aac12349ab19764098600c71e46aad",
+          "bytes": 21873
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/response.json",
+          "sha256": "b8e134ba7a83fd322d176fe64f80c7141ce1da5e0331e08186171e804016b58b",
+          "bytes": 788
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/stage.json",
+          "sha256": "b5b4ef90305d084fb856bb42bf2c3e3a2fc44aa3fd0a267e50261b9e33fa6442",
+          "bytes": 12663
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/tools.json",
+          "sha256": "23e50e738fc46639d9dce57311f1365eab408aa24234049f59aba2e00f69295f",
+          "bytes": 10614
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-02/unprojected-prompt.json",
+          "sha256": "7386273a116f236ec386d0f7c319594c00f525f5aafa416e9b25dddda720f3d8",
+          "bytes": 17585
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/capacity.json",
+          "sha256": "2521b262201b63ebaad8896e11947a169c70b6b9ae638119d51aab6f15f6d089",
+          "bytes": 315
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/request.json",
+          "sha256": "7fb3c0634368fe493da4b476ad5f838e760faa051e878dbb4ca78ddab4c27ed4",
+          "bytes": 31593
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/response.json",
+          "sha256": "7f2a21957367035a43c85cdb3393f3ceb1781342dc6b3d2068f5de0239b43634",
+          "bytes": 777
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/stage.json",
+          "sha256": "f618fa2a8669cab0fa656b872a20b8387c345977b464d20ec81971e6d668fb6e",
+          "bytes": 12004
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/tools.json",
+          "sha256": "4c0f219a229222e766c12afbdebad51e13caec3be87553084966776383c77bd6",
+          "bytes": 9972
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-03/unprojected-prompt.json",
+          "sha256": "c8a1d07699634563bb02740d2b87c2f558b385601cfe0b4c88a6f12b0dfeb25a",
+          "bytes": 28154
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/capacity.json",
+          "sha256": "ad0cae1ce3ffe3efceb59dda6047ee12fed0e4139e62381a294f1e91a62747a8",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/request.json",
+          "sha256": "c84f9ac0862e774f11efffdf66388228355d66dc4b20a88315f7ac7094316092",
+          "bytes": 40685
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/response.json",
+          "sha256": "6b81a8f05f7ad4937fb1a7029cd5204eaee49bb94b88744311c15b1cde3ee8fa",
+          "bytes": 874
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/stage.json",
+          "sha256": "922120c00d30b8a76f9600dd4b97bca9dcef623f92662a26a29ea57a8f49d94b",
+          "bytes": 5569
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/tools.json",
+          "sha256": "29e87915f86ae2968bdf21bd5c4e913059fa713a2871d778ff15e42d341fa38e",
+          "bytes": 3891
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-04/unprojected-prompt.json",
+          "sha256": "89e4d04a0bbd2c552fee725ec705317ea57299f3ab314c3ae575c3c3e8f54dc5",
+          "bytes": 38087
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/capacity.json",
+          "sha256": "cb9fe3d3c1f1ea0ee29c25ad095bac2301e3db9eb06c8df194c7c0a106be8c0f",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/request.json",
+          "sha256": "544f24648f779db235402f4c7780b5a2c6bc2bbaec7f87b7bd2dfc562f20c43b",
+          "bytes": 44134
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/response.json",
+          "sha256": "cd257e57d288a2de773ee1c4cb7cd9c1047eaf2ec381c099036b3cab7a2f6810",
+          "bytes": 908
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/stage.json",
+          "sha256": "757b58f154cc1cddf4340331a6563d678626ddb6c954aa1b51ba9c690aae4e7b",
+          "bytes": 14416
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/tools.json",
+          "sha256": "807517f6563e05582975d68552b6a7da4d766120cf2619fced79eb7dd14f36f1",
+          "bytes": 12381
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-05/unprojected-prompt.json",
+          "sha256": "a88b496ac8ffbc21bda3ac7bb6c803d3838154cdedbd934208fd1b417fc50c30",
+          "bytes": 41930
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/capacity.json",
+          "sha256": "9b3890fe2148c0d55e65232cbf5720e2b0fbd5c6a9007d7ca9ac03af16babbd2",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/request.json",
+          "sha256": "ffdf599e9e9ea7d20d33c9076e98d61d548792bbcfaa8001bf483c93ad02d941",
+          "bytes": 56006
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/response.json",
+          "sha256": "8b8451c47e2472c48750565ff80972068f8e7298db03422a4ac886edd2c311d8",
+          "bytes": 717
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/stage.json",
+          "sha256": "7af51f0f440bdf223c03a8147faf1c2596bdfa2efed145bd3d4de8fe8d7de3ef",
+          "bytes": 4736
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/tools.json",
+          "sha256": "fc61223ba54a0c7d0ee192b8de30b7a73a88225e62379c8356a4b1e71444755a",
+          "bytes": 3170
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-06/unprojected-prompt.json",
+          "sha256": "78267a33b58ec7e9bf9d167f4ffe00cea30ec7fa285fe529b503c563f79d44a3",
+          "bytes": 54644
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/capacity.json",
+          "sha256": "f8597bb219c9f14b915b351678c7087d21cb2ed26812526972b93cc88f9b835e",
+          "bytes": 317
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/request.json",
+          "sha256": "5fa8c1cb0cfd7a63b2cd4fe6be39e6baa177d6ba3c37c7625d8546a9363b74ab",
+          "bytes": 58908
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/response.json",
+          "sha256": "6236cb67309a39ab389e63327ec8137b85f6142c6ef6a7e72c97e2f46e0b7ca8",
+          "bytes": 4239
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/stage.json",
+          "sha256": "c2e7b923cbf0eb92455d139bfa91cbc1c92c3641bb759545e92a3c516ba46a28",
+          "bytes": 1092
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/tools.json",
+          "sha256": "582bdf81b12eb6cd783cfdeb95afe98436896a20ffc479e6c43c5614d812a766",
+          "bytes": 6226
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-07/unprojected-prompt.json",
+          "sha256": "26b5d3812f141885541938798cd730741b38234fd089bae8fd69a0081a0cf5bf",
+          "bytes": 57957
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/capacity.json",
+          "sha256": "3ef1a75a27a34f3814cf31ea10e0dba761ec7f659435ec170a7f8e7eb9df95a1",
+          "bytes": 328
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/proposal.patch",
+          "sha256": "5001cca9fb610d8883a84a050ebb20777e9719d14368f36094b67c9262481967",
+          "bytes": 2037
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/request.json",
+          "sha256": "e141d77c4b60f33a9bb6655d2d8a87879a9c133753304ea5e85d9f0dec7d87f1",
+          "bytes": 66580
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/resolved-proposal.json",
+          "sha256": "9862cf1865aced6da9753de5138c9fc6c3bcbbc7626838f6e954115532acc5da",
+          "bytes": 25579
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/response.json",
+          "sha256": "179941f71a7e49e57553e1243bd789910728647ffccf8a8348d48dc3f0cb2b0c",
+          "bytes": 3725
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/stage.json",
+          "sha256": "7aa5c7e633dbb7f5d9c27a02b57142fdd97a79f93f0122dea2345829f0b41987",
+          "bytes": 53432
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/tools.json",
+          "sha256": "416dcfebe32f73f755792df974d6b83a665de80c40519460c6b99f5cca7e0900",
+          "bytes": 48648
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-08/unprojected-prompt.json",
+          "sha256": "6e629c2eeebc31d2f2d80be549631599a71b190182bf4057e5a169deeda71c81",
+          "bytes": 65517
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/capacity.json",
+          "sha256": "eb4cfc94d77e5b6ec819c091d860c522ac4f0e9bc5bc8927efcef15c8c7b001f",
+          "bytes": 432
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/request.json",
+          "sha256": "0ac456f296284d6d541f31af3826c03718e262313ce60dd9934949f45ab04ad5",
+          "bytes": 83053
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/response.json",
+          "sha256": "b9e7c44b066a566d07f953d165ebf14390d754e869df7ff254e21d1d562511d0",
+          "bytes": 5552
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/stage.json",
+          "sha256": "6c8fd56f930b36875b6fc2f9877f6f4f5828cd5e305a7600f957a978ea55f0a6",
+          "bytes": 1092
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/tools.json",
+          "sha256": "de8a60e93dd312931f8491c6b60df49d3b0a0734e8a75cbfa77059accfb609b5",
+          "bytes": 7250
+        },
+        {
+          "path": ".local/qwen-coding-worker/qualified-10/qwen-stdin/turn-09/unprojected-prompt.json",
+          "sha256": "116970789df5047efc6549bffd5bb138729fe9011974fb6529859eef3df638ea",
+          "bytes": 112329
+        }
+      ],
+      "read_disclosures": [
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": "R1"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": "R2"
+        },
+        {
+          "path": "src/devtools/resources/commands/models/command.py",
+          "version": "dfdf7d9c8e005b97c52d605414e590e1b6653667b774151dd2deb7d4dd89d0b9",
+          "span": [
+            4096,
+            5847
+          ],
+          "bytes": 1751,
+          "edit_ref": "R3"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            4096,
+            8192
+          ],
+          "bytes": 4096,
+          "edit_ref": "R4"
+        },
+        {
+          "path": "src/devtools/resources/commands/execution.py",
+          "version": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22",
+          "span": [
+            8192,
+            9512
+          ],
+          "bytes": 1320,
+          "edit_ref": "R5"
+        },
+        {
+          "path": "src/devtools/resources/commands/handle.py",
+          "version": "c9825687577803f98911494be5c86ddd84af006d627acdbacbc2b28d9c82b06c",
+          "span": [
+            0,
+            3938
+          ],
+          "bytes": 3938,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/__init__.py",
+          "version": "663fbad9d358d6ebb6f849fe60b189a4fc48bbf688ec809f3122929d7c68836f",
+          "span": [
+            0,
+            394
+          ],
+          "bytes": 394,
+          "edit_ref": null
+        },
+        {
+          "path": "tests/resources/commands/test_models.py",
+          "version": "08672289b73f089014ec68261a9da50b1b116316fead4fb86c7861a4a9e6781d",
+          "span": [
+            0,
+            4096
+          ],
+          "bytes": 4096,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/models/result.py",
+          "version": "a9a50d5cd04a2391eebc5abba6869d26fc35cbbb2c02d2801016551259964cbe",
+          "span": [
+            0,
+            3463
+          ],
+          "bytes": 3463,
+          "edit_ref": null
+        },
+        {
+          "path": "src/devtools/resources/commands/__init__.py",
+          "version": "7cbc6f6b95697b5c664eb09d2779fe854fedb8d868e046e913bed2ce2fbb30b3",
+          "span": [
+            0,
+            889
+          ],
+          "bytes": 889,
+          "edit_ref": null
+        }
+      ],
+      "read_disclosure_bytes": 28139,
+      "inspected_resources": [
+        "src/devtools/resources/commands/__init__.py",
+        "src/devtools/resources/commands/execution.py",
+        "src/devtools/resources/commands/handle.py",
+        "src/devtools/resources/commands/models/__init__.py",
+        "src/devtools/resources/commands/models/command.py",
+        "src/devtools/resources/commands/models/result.py",
+        "tests/resources/commands/test_models.py"
+      ]
+    }
+  ],
+  "outcomes": {
+    "fresh_attempts": 2,
+    "fully_accepted": 0,
+    "behavioral_repair_successes": 0,
+    "environment": "First failure feedback delivered; second repair introduced missing _env_key and original child environment obligation remained incomplete. Context prevented request 9. Not evaluator-invalid: independent positive and negative fixture qualification passed.",
+    "stdin": "Fresh different obligation after narrow harness correction. Read/edit-handle refusal recovered once; model API-only edit passed regressions/quality but not independent execution acceptance. Real behavioral feedback delivered at request 9; final execution batch used R5 for an out-of-region anchor containing serialized Tool metadata, with zero exact source matches, exhausting 3 proposals. Raw provider arguments match normalized arguments; no harness-introduced corruption or partial application.",
+    "interpretation": "The correction makes the recorded blocked request admissible and live feedback continuation operated on a distinct task, but no task acceptance improvement or general long-task reliability is demonstrated. Do not count either partial candidate as delivered software."
+  },
+  "qualification_notes": {
+    "stdin_preflight_correction": "Before freezing or inference, host positive fixture qualification caught Windows print CRLF; digest comparison now uses splitlines while exact binary prefixes and bytes remain mandatory. No post-inference oracle edits.",
+    "read_corpus_erratum": "Initial narrative said 21+ files; authenticated task hashes contain the actual count reported per run. Scope was frozen unchanged, includes source/read/test alternatives; this is a narrative-count correction only."
+  },
+  "cumulative": {
+    "model_requests": 17,
+    "input_tokens": 206560,
+    "output_tokens": 6441,
+    "worker_seconds": 396.4699073000811,
+    "validation_seconds": 5.3483077003620565
+  },
+  "costs": {
+    "paid_codex_comparison_calls": 0,
+    "codex_coordination_tokens": "UNKNOWN",
+    "dollars": "UNKNOWN",
+    "energy": "UNKNOWN",
+    "gpu_observation": "2026-10-20 21:21:35 EDT: 14006/16376 MiB, 0% utilization, 41.91W; one post-generation sample, not peak or energy."
+  },
+  "supervision": "Codex selected/qualified both tasks and corrected observed host projection defect. No model-visible implementation guidance, semantic edits, oracle changes or unbudgeted retries during either run. Codex host-only reference adapters/draft tests are independent qualification artifacts, not Qwen work. No accepted candidate closeout is eligible.",
+  "verification": {
+    "protected": {
+      "passed": true,
+      "summary": [
+        "src\\devtools\\tools\\protocols.py                                               9      0      0      0   100%",
+        "---------------------------------------------------------------------------------------------------------------------",
+        "TOTAL                                                                     11637      0   2886      0   100%",
+        "Required test coverage of 100% reached. Total coverage: 100.00%",
+        "================= 2214 passed, 2 skipped in 484.28s (0:08:04) ================="
+      ],
+      "elapsed_seconds": 485.79531610000413,
+      "started_at": "2026-10-21T01:35:25.059353+00:00",
+      "finished_at": "2026-10-21T01:43:30.854668+00:00",
+      "evidence": ".local/qwen-coding-worker/qualified-10/protected-validation.json",
+      "sha256": "6a9effaf5e8dc0cf0192647e1a380d87cbd4a17c7ad46f91db590a8003376dce"
+    },
+    "focused": "28 tests passed: tests/apps/qwen/test_grounding.py and test_environment.py",
+    "ruff": "Changed application and regression files passed",
+    "format": "Changed application and regression files passed",
+    "mypy": "Success: no issues found in 494 source files",
+    "layout": "Passed",
+    "whitespace": "Passed",
+    "integrity": {
+      "command-environment-overrides": {
+        "task_sha256": "6612354925a09cc73329aab9e81e84180d7720b6398e325a132f053c02840289",
+        "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+        "baseline": "a28b38b718e2a9e98be175f723ed5a982951b035",
+        "resource_count": 19,
+        "passed": true
+      },
+      "command-binary-stdin": {
+        "task_sha256": "0fb904f7b0c33d20cd934bf1fd35e2f9bd6fbcd8535da37c01852bc4057af6ec",
+        "oracle_sha256": "b9bc291b2df229be2320046e57346f3852b3e9a2e8972e6710a4a148e87545b4",
+        "baseline": "b493f43a615a274dab0c0e292a36583ab768eb7a",
+        "resource_count": 19,
+        "passed": true
+      },
+      "forensic_files_unchanged": 13,
+      "historic_maintained_evaluations_unchanged": true,
+      "worktrees": "worktree C:/Users/recoveryadmin/Workspace/tools/devtools\nHEAD ba7199abe2a15da46c8fa5584335ed952362c8ed\nbranch refs/heads/feat/qwen-context-worker",
+      "owner_released": true,
+      "source_modifications": "",
+      "coordinator": "C:/Users/recoveryadmin/Workspace/tools/devtools",
+      "main": "862bda2d3d1d812893f84ab69691fc068ecce268",
+      "last_refusal": {
+        "reference": "R5",
+        "observed_span": [
+          8192,
+          9512
+        ],
+        "exact_source_matches": 0,
+        "diagnostic_prefix_offset": 8030,
+        "provider_arguments_equal_normalized_arguments": true,
+        "serialized_tool_metadata_in_old_text": true,
+        "interpretation": "Provider itself generated source mixed with serialized Tool-result metadata; harness normalization did not introduce it. Exact source admission correctly refused, with no partial installation."
+      },
+      "recorded_at": "2026-10-21T01:37:11.749222+00:00"
+    },
+    "note": "One final protected invocation; no scientific-controller or paid-model comparison. Python 3.14.3 validated; no new Python 3.12 compatibility claim."
+  },
+  "replay": {
+    "old": {
+      "context_tokens": 32768,
+      "generation_phase": "implementation-or-repair",
+      "input_tokens": 30092,
+      "measurements": [
+        {
+          "input_tokens": 33959,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 31113,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        },
+        {
+          "input_tokens": 30092,
+          "projection": "compact",
+          "reacquire_read_only": 1
+        },
+        {
+          "input_tokens": 30092,
+          "projection": "compact",
+          "reacquire_read_only": 2
+        }
+      ],
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    "new": [
+      {
+        "compact": false,
+        "reacquire_read_only": 0,
+        "input_tokens": 29612,
+        "exchanges_omitted": 0
+      },
+      {
+        "compact": true,
+        "reacquire_read_only": 0,
+        "input_tokens": 26762,
+        "exchanges_omitted": 0
+      },
+      {
+        "compact": true,
+        "reacquire_read_only": 1,
+        "input_tokens": 25741,
+        "exchanges_omitted": 0
+      }
+    ]
+  },
+  "qualification_artifacts": [
+    {
+      "path": ".local/qualify10.py",
+      "sha256": "5a3060725485c5849260e8138d66910f21f069a6c70b166106b067184b0a5ec1"
+    },
+    {
+      "path": ".local/qualify10b.py",
+      "sha256": "cafe0bf42d2f496039b05843a6a3a823ae79c202ada27780f31ba8327875178c"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/preflight.json",
+      "sha256": "f7fe24164c1ff1dd2f3acb7dc3b4cf10d71d00cb080eb3fb192c9ffafac73b7e"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/stdin-preflight.json",
+      "sha256": "42678ac996730446b4ad49af3a4290fb58b27012496290b20426d1ba88a3aa49"
+    },
+    {
+      "path": ".local/qwen-coding-worker/qualified-10/novelty.json",
+      "sha256": "d43283d969a62a90bc068ffec4633fa31551250d9ae491403a1fba8e0adbb7fc"
+    }
+  ]
+}

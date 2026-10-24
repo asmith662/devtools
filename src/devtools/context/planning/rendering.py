@@ -48,6 +48,9 @@ def assemble_context_disclosure_model_request(
     context: RenderedContextDisclosure,
 ) -> ModelRequest:
     """Place realized Context after the unchanged task and copy all settings."""
+    if task_request.prompt.messages:
+        msg = "Text Context assembly does not accept structured message input."
+        raise ValueError(msg)
     task_text = task_request.prompt.content
     prompt_content = "".join(
         (

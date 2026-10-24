@@ -15,7 +15,7 @@ from devtools.models.interaction.observation import (
     ModelInteractionObservation,
     ModelInteractionObserver,
 )
-from devtools.models.interaction.prompt import Prompt
+from devtools.models.interaction.prompt import Prompt, PromptMessage
 from devtools.models.interaction.protocols import ModelInteraction
 from devtools.models.interaction.response import ModelResponse
 from devtools.models.interaction.termination import ModelTermination
@@ -37,6 +37,7 @@ __all__ = [
     "ModelToolDefinition",
     "ModelUsage",
     "Prompt",
+    "PromptMessage",
     "ProviderRequestSettings",
     "validate_maximum_output_tokens",
     "validate_thinking_enabled",

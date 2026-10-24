@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "b765fa8f-e0b7-4bc8-9869-156c6a7830cc",
+  "created_at": "2026-10-24T14:34:05.058745+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Authenticate Case0003 implementation trace and declared report inputs in versioned future analysis",
+    "parent": "B-0002",
+    "summary": "P2 historical analysis integrity, not a demonstrated worker vulnerability. experiments/codex_dogfood/case_0003/analyze.py:join returns agent telemetry from codex_trace.jsonl but never compares its bytes with post_run.implementation_trace_sha256. Independent entirely authored packet: replacing a completed trace with an incomplete foreign.py open leaves all checked pins and post_run unchanged, yet join succeeds and emits the new telemetry. Original retained actual trace matches its post_run pin; no historical corruption established.",
+    "resources": [
+      "experiments/codex_dogfood/case_0003/analyze.py",
+      "tests/experiments/codex_dogfood/test_case_0003.py"
+    ],
+    "evidence": [
+      "docs/research/ri-experimental-completion-and-main-adoption.md",
+      "docs/research/code-audit/ri-completion-probes.json",
+      "docs/research/code-audit/ri-completion-artifact-identities.json"
+    ],
+    "benefit": "Preserve frozen implementation. Add a versioned read-only future-analysis verifier for explicitly supported original schema: bind actual implementation trace to its independent post_run pin before interpreting events; authenticate declared patch/validation-log/report input closure where retained anchors exist, and reject unavailable/unsupported formats rather than reconstruct evidence. Acceptance: changed/truncated/substituted trace with unchanged pin refuses, correct retained bytes pass, encoding changes require correct original byte identity, missing/foreign pins refuse, no original receipt/output mutation. Test genuine trace-to-result association separately from neutral judgment materialization. Existing Graph3 partial-report and Increment23 neutral-binding bugs remain separate.",
+    "uncertainty": "Synthetic exploitability only. Direct digest inspection confirms the original Case3 trace is unchanged. An original hash is not semantic truth or proof every task obligation was authored. Suitable bounded maintenance/verifier implementation after authorization.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-experimental-completion-and-main-adoption.md"
+    }
+  },
+  "payload_sha256": "c987da4a0a56ccdc5985af110799735068a41351aee2e53f8b04be4d2c2134f6"
+}

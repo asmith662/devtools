@@ -56,3 +56,65 @@ boundaries are not interchangeable.
 - operational_dependencies: consumer needing causal or operational evidence beyond terminal result
 - promotion_trigger: multiple consumers need equivalent observations at shared boundaries
 - validation_level: NONE
+
+## Source-backed reconciliation observations (2026-10-23)
+
+The [initial gap map](../../research/architecture-reconciliation-inventory.md#initial-observability-gap-map)
+inspected inspectors, invocation/usage records, narrow Runtime, ToolRunner,
+Command events and application/WorkCycle receipts. Existing implementations
+already cover substantial Evidence and usage responsibilities. ToolRunner itself
+does not provide invocation observation; best-effort Command events are not a
+durable causal trace. No shared OTel/exporter implementation was found in the
+scanned maintained owners, and pyproject declares no OTel dependency.
+
+Failure accounting, capture/privacy, temporal/correlation boundaries and actual
+shared consumers require investigation before a new type, exporter or event bus.
+The next external review starts with pinned Qwen Code/Pydantic AI sources, then
+DeepSeek Harness/Aider. Status/dependencies/promotion trigger remain unchanged;
+these observations neither authorize tracing implementation nor conflate
+Evidence, Trace and Telemetry.
+
+## Recovered-input / pinned mechanism evidence (2026-10-23)
+
+The [pinned harness comparison and local join/loss map](../../research/agent-harness-mechanism-review.md#devtools-end-to-end-correlation-map)
+inspect model IDs, Runtime attempts, provider Tool IDs, app receipts, source/
+validation hashes and WorkCycle review/commit refs. Upstream Qwen uses lifecycle
+spans and explicit execution origins; Pydantic instrumentation includes validation
+failure spans, run/conversation/call correlation and privacy paths. These show a
+concrete comparison target, not durable authority or complete accounting.
+Devtools still lacks automatic task→model occurrence→Tool→review joins in the
+native application path. Capture/observer failures, dropped Command events and
+unknown usage remain separate. Original candidates03/04 are related, not new
+Trace/EventBus implementation grants. Deferred status/trigger remain.
+
+## DeepSeek Harness / Aider evidence (2026-10-23)
+
+DeepSeek separates Session log commits, live Agent notifications and capability
+policy hooks; its OTel backend exports feedback-authorized Session records, not
+automatically a joined development span tree. Aider prefers reported usage but
+falls back to estimates and does not supply Devtools publication authority.
+Existing Model/terminal Evidence, InvocationMeasurement, Command events and
+application receipts are distinct local owners. The five-flow audit below must
+qualify direct joins, missing failures, dropped events and capture/export policy
+before choosing instrumentation. No new logger, event bus or exporter is selected.
+
+See the [pinned source-and-test comparison](../../research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+and [five-flow audit plan](../../research/development-lifecycle-audit-plan.md).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Executed five-flow lifecycle evidence (2026-10-23)
+
+The five-flow audit authenticates request/response/call/check/review links but finds absent native Model/Runtime inspector composition, weak host freshness input/time links and no separate post-push ref/time in closeout. Recommend existing-record consumers/adapters first; a shared tracing interface or OTel spans remains a design alternative. Distinguish immutable records, lossy live events, correlation and durable/export consumers.
+
+See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
+and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
+Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Production reconciliation evidence (2026-10-23)
+
+Adoption audit confirms optional model/terminal inspectors are not composed into the native worker; usage CLI/controller consumers and application receipts do exist. Prioritize existing-record joins/consumers, failed realization accounting, report identity/time and separately observed remote ref after push. Immutable Evidence, live lossy events, usage and durability remain distinct; no OpenTelemetry/EventBus dependency or tracing base selected.
+
+See the [complete audit and prioritized roadmap](../../research/production-adoption-and-architecture-reconciliation.md)
+and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
+Existing status, parent, dependencies, decision maturity and promotion trigger
+remain unchanged; advisory research does not authorize implementation.

@@ -1,0 +1,5 @@
+# Immutable supplied research inputs retain exact physical bytes and Markdown hard breaks.
+incoming/** -text
+incoming/**/*.md whitespace=-blank-at-eol
+incoming/review/devtools-reconciliation-independent-review-2026-10-23.md whitespace=-blank-at-eol,-blank-at-eof
+TRANSFER-MANIFEST.json -text

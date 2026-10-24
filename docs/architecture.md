@@ -1,5 +1,140 @@
 # Architecture
 
+The existing Commands value/result boundary now supports explicit per-command
+successful exit codes. Command owns the immutable specification; CommandResult
+interprets the raw exit status. The executor, handle/events and CommandTool retain
+their original transport/cleanup responsibilities. This adds no authorization,
+policy-engine, execution or Tool ownership. See the
+[public contract](../src/devtools/resources/commands/docs/command.md) and
+[Qwen engineering evidence](../apps/qwen/evaluation/engineering-14/README.md).
+
+The existing Commands resource now owns immutable per-command environment
+configuration and launch-time parent overlays through its Command/executor APIs;
+see [the supported contract](../src/devtools/resources/commands/docs/command.md).
+The exact Qwen implementation and independent regressions passed existing
+WorkCycle local closeout, documented in
+[environment13](../apps/qwen/evaluation/environment-13/README.md).
+No new planner, execution, Context, authority or persistence owner was introduced.
+Ordinary feature publication remains distinct from protected destination adoption.
+
+The existing Qwen continuation owner now projects completed applied arguments
+and superseded refusal arguments to explicitly labelled archival references,
+preserving native names/IDs and host receipts. Exact current observations may
+reference a larger retained span only when path, version, coordinates and every
+character agree. Handles and source identities remain; stale/duplicate envelope
+projection never invents source or changes admission. Unique current source and
+latest validation remain exact, and complete raw history stays archived.
+
+The [environment continuation](../apps/qwen/evaluation/environment-12/README.md)
+records request-fit replay and a genuine supervised feedback continuation. Its
+eventual coding failure remains a failure. This is application-local deterministic
+Context projection, not Memory, a new executor, source matching policy or general
+long-session correctness guarantee. The default verified 32K serving profile is
+unchanged after a bounded temporary 48K feasibility check.
+
+The existing Qwen application's opt-in path-based observed-edit mode delegates
+current observation resolution to the host. Exact disclosed source unions feed
+the unchanged transaction/application engine; historical reference contracts
+remain strict. Source-block presentation is derived from selected native Tool
+observations and measured using the actual server template, while raw provenance
+remains archived. Host CodingTask bounds may prospectively allow six native
+proposals; defaults and historical definition hashes remain compatible. This
+introduces no new Context, source-writing or execution authority owner.
+
+Superseded validation diagnostics may be projected to prior check statuses with
+original-message provenance; current source and the latest exact diagnostics stay
+available. An already-started repair can use at least 2K safe generation tokens
+where initial implementation requires 4K. Actual server tokenizer/template input,
+32K Context and 2K safety remain enforced. This recovered one stdin behavioral
+repair but did not prevent the next capacity refusal; no durability or general
+long-task completion guarantee is inferred. See
+[the development continuation](../apps/qwen/evaluation/stdin-11/README.md).
+
+The Qwen application's existing continuation projection also covers pre-edit
+source nested inside atomic component receipts. Such text obeys the same stale
+and duplicate rules as direct observations; exact originals remain evidence.
+This is a correction within current Context/application ownership, not a new
+Memory contract. [Qualified engineering 10](../apps/qwen/evaluation/qualified-10/README.md)
+records a real capacity failure and a distinct live feedback continuation that
+still failed edit admission. Substantial-task reliability remains unestablished.
+
+The maintained Qwen application measures the actual installed tokenizer/template
+before refusing capacity, compacts repeated Tool envelopes/outcomes with explicit
+provenance and retains current editable observations and latest feedback. Older
+read-only excerpts can be omitted only with explicit reacquisition instructions
+and remaining read/call budgets. Exact unprojected native Prompts are archived
+outside active input using the existing Prompt contract; this is not Memory or
+a second Conversation representation. Cumulative task ceilings (24 requests,
+1,800 seconds) remain distinct from the unchanged 32K request Context. The
+[continuation evidence](../apps/qwen/evaluation/continuation-09/README.md) separates
+archived request-fit replay, an evaluator-invalid fresh attempt, an accepted
+oracle-corrected development continuation and actual feature publication. No
+historical outcome, protected authority or parent-backlog completion is inferred.
+
+
+The maintained Qwen application can withhold the editable subset from diagnosis
+prompts while the host retains exact scope. Read-only Git observations use the
+admitted read corpus. Existing atomic admission supports up to sixteen anchored
+components across five explicitly authorized implementation files within the
+unchanged aggregate byte limits. Measured thinking-off continuation may reduce
+unused output reservation while retaining normal 4K generation capacity and all
+required source observations. These are application bounds, not new framework
+authority or Context ownership. [Engineering 08](../apps/qwen/evaluation/engineering-08/README.md)
+distinguishes failed live attempts from separately validated supervisory recovery.
+
+The Qwen application's direct-read mode uses the existing Context materializer
+for bounded current-source observations and truthful continuation. Its local
+ContextRequestError distinguishes model-request schema/unit/version/parent
+mistakes from integrity and authorization failures; ToolRunner itself retains
+unchanged validation/execution semantics. Historical source-read contracts and
+the existing flat atomic editing protocol remain supported. This introduces no
+framework error registry, source store or orchestration owner.
+
+The Qwen application's opt-in flat observed edit interface resolves task-local
+source handles into the existing exact atomic transaction contract. Context
+still owns disclosure/materialization, ToolRunner dispatches fixed capabilities,
+Checkout owns mutation/restoration, and WorkCycle integration owns reviewed
+closeout. Handles are provenance references, not new RI identities or authority.
+No second editing engine or transcript representation is introduced.
+
+The application's fixed `run_check(check="all")` composition reuses the existing
+single-check execution and ToolRunner boundary, with exact declared-source and
+validation-input hashes, independent outcomes and durable bounded/full evidence.
+The fixed runner rendering is shared with preparation; no second validator or
+executor exists. It has no Git discovery, historical freshness, review-readiness
+or publication authority. Local closeout can truthfully attribute explicitly
+host-selected Codex implementations while retaining the Qwen default for existing
+receipts. See [the application contract](../apps/qwen/README.md#fixed-all-check-bundle).
+
+The same CodingCommands owner now exposes `check_changes` and `is_current` through
+ToolRunner. The former composes the delivered all-checks Tool with task-authorized
+tracked/new-file discovery and exact source/Git/index/plan evidence. The latter
+authenticates saved evidence and reobserves freshness without rerunning checks.
+This introduces no source/version authority or executor. Review eligibility is
+separate from approval; WorkCycle retains installation, final reauthentication,
+independent review, protected validation, publication and destination promotion.
+See [the bounded contract](../apps/qwen/README.md#source-bound-change-checks).
+The same worker has an opt-in shared-check completion boundary: after edit
+validation it waits for model-invoked check_changes and host freshness through
+ToolRunner before restoring temporary source. Default completion remains unchanged.
+Reports are not mutated for conversation-budget presentation. This creates no new
+executor, Task schema or publication authority. Deterministic validation is
+separate from the currently unproven live Qwen use of this completion path.
+
+
+The local Qwen application composes scoped Git/check Commands as native Tools, atomic observed edits, explicit absence-bound new files and optional AST-equivalent host formatting. Local accepted candidates enter WorkCycle.integration.closeout_local for shared validation, exact-source Codex review and explicitly requested ordinary-feature publication. Protected promotion and canonical backlog completion retain separate governed authority. Model text never supplies arbitrary argv or publication authority.
+
+
+Trusted local Qwen development/evaluation is distinct from governed production
+WorkCycle execution. Invoking the bounded coding application with a host-owned
+CodingTask authorizes local inference, temporary scoped edits and fixed tests;
+it does not require backlog promotion, standing delegation or interactive consent.
+The existing canonical Checkout owner still serializes source mutation and
+restores the selected ordinary branch. Local results are candidate evidence;
+production backlog progression, integration, protected publication and privileged
+external effects retain their own authority. No new executor or policy engine
+owns this distinction. See `apps/qwen/README.md` and `docs/backlog/metadata.md`.
+
 Repository-local maintained applications live in `apps/`, composing installed
 framework APIs. They are not additional framework domains. The bounded coding
 worker lives in `apps/qwen`; its supported terminal entrypoint remains in
@@ -9,8 +144,47 @@ source does not import applications or experiments. Historical Qwen controls
 and measured outcomes remain under `experiments/qwen`. The first accepted
 Markdown fix and the independently authored Python source-coordinate repair
 are maintained framework behavior; B-0048's separate accepted candidate remains
-unintegrated. Dashboard/governed-integration continuation and checkout-policy
-blockers are recorded in [reconciliation](development/reconciliation.md).
+unintegrated. Dashboard/governed-integration continuation and authority/adoption
+requirements are recorded in [reconciliation](development/reconciliation.md).
+
+The Qwen application's task preparation reviews behavioral/API/exception and
+quality/typing criteria together; baseline preflight is evidence, not a proof
+of specification satisfiability. Repair feedback binds passed/failed check
+categories and frozen requirements to the actual source version. Admitted edits
+refresh only exactly verified unchanged portions of previously observed spans,
+preserving original observation and edit provenance. These are task-local
+Context/feedback operations, not a new Memory, persistence or authority domain.
+
+The application also supports explicit host-scoped transactions across up to
+four existing implementation files. All versioned observed anchors are admitted
+before one shared Git apply operation; invalid, stale, overlapping or unauthorized
+components refuse the proposal. Source expectations, combined diffs, per-edit
+provenance and candidate hashes use the existing Checkout/evidence contracts.
+Legacy one-file proposals and definition identities remain supported. Governed
+assignment-v1 does not silently inherit multi-file authority. Oversized read/API
+batches with positive remaining allowance refuse before dispatch and may be
+narrowed within unchanged model/action/time limits.
+
+Installed API inspection is a concrete ToolRunner consumer over fixed,
+host-allowlisted Python standard-library objects. It is not model-selected
+import/execution or a documentation-search framework. Transactions cite genuine
+signature/docstring/runtime observation digests; the host authenticates evidence
+and independent acceptance rather than the semantic correctness of a model plan.
+
+On `feat/qwen-context-worker`, the maintained worker also supports on-demand
+native repository Context Tools in its existing proposal/validation loop. It
+reuses source search, exact qualified source-unit names, source/version checks,
+enclosing expansion, static references/calls, disclosure materialization and
+ToolRunner. `PromptMessage` values are selected invocation input with native
+assistant/call/tool-result roles, not durable Conversation state. Active message
+selection preserves all distinct current observed source regions and latest
+validation, deduplicates source with explicit observation provenance, and refuses
+if required information cannot fit. Full captures remain inspectable. Native
+edits must be grounded in current observed source. Optional host-frozen quality
+checks participate in bounded repair. Exact task scope gates local development;
+production WorkCycle retains separate delegated authority. Cohort 01 produced
+genuine but limited coding evidence; subsequent outcomes are recorded separately. See the [worker contract](../apps/qwen/README.md)
+and [evaluation status](../apps/qwen/EVALUATION.md). Main adoption is separate.
 
 `devtools` is organized by responsibility. This document is the canonical
 overview of current and accepted system architecture: it records domains,
@@ -63,6 +237,42 @@ not depend on it. Pure `governance.usage` numeric constraints have no experiment
 observability dependency and grant no authority. Experiment-local composition owns
 reservations/admission. See [observed usage](../src/devtools/observability/usage/docs/overview.md).
 Generic Event/Trace/Telemetry, agent loops and broader governance remain deferred.
+
+## Repository work intake
+
+Repository-local `scripts/backlog` tooling captures original discoveries and
+append-only reviews beside the canonical Markdown backlog. It uses Core and
+filesystem substrates, not Runtime, framework Orchestration or a second database.
+Trusted-host checks gate non-advisory review and exact backlog publication;
+Codex advice remains pending without delegated authority. Backlog inclusion is
+separate from engineering/scientific execution authorization. The
+[intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns schemas, commands, duplicate hints and conservative recovery. The
+[concrete work bridge](backlog/metadata.md#governed-backlog-to-qwen-cycle) now
+binds one approved canonical item to a separately authorized existing Qwen task,
+fresh target checks, one dispatch claim and a review candidate or escalation.
+Shared local Git configuration designates one coordinator for backlog mutations;
+ordinary feature branches in the canonical checkout are execution targets.
+A durable source-owner claim serializes switching, coding, validation and recovery;
+completed operations restore known temporary edits and return to administration. Worker output and Codex advice
+do not grant protected integration. Reusable portfolio supervision, scheduling
+and general delegation remain unimplemented. The concrete repository-local
+work bridge additionally supports scoped, expiring/revocable standing local-host
+delegation for routine Qwen maintenance. It retains exact Codex supervisory
+decisions, pinned validation code/model profile, cumulative reservations and
+fresh per-call authority checks; it does not introduce framework governance.
+Manual terminal consent remains available. Protected integration is separate;
+see the [standing delegation contract](backlog/metadata.md#standing-routine-qwen-delegation).
+
+The same WorkCycle now owns the [development integration lifecycle](backlog/integration.md):
+authenticated accepted candidate, destination-based plan, separately delegated
+installation, exact-tree validation/review, feature commit/push, policy-controlled
+target promotion, post-promotion verification and canonical backlog progress.
+Standing integration grants are distinct from coding grants. Protected main also
+requires explicit repository policy; remote branch protections remain effective.
+Partial slices retain unresolved parent obligations. Immutable intents and exact
+Git-ref/tree reconciliation prevent blind repeat publication. This is maintained
+repository administration, not a generic framework workflow engine.
 
 ## Current boundaries
 
@@ -195,6 +405,14 @@ events are only future triggers/hints. Snapshot identity is deterministic and
 content-derived, but digest construction, policy-to-state-identity treatment,
 and observation mechanisms remain open. ContentIdentity is address-independent
 and reusable; ResourceOccurrences remain snapshot-local.
+
+Within the existing explicit-required-text observation contract,
+`context.repository.changes.compare_repository_snapshots` now produces immutable
+`RepositorySnapshotDelta` results retaining both snapshots and sorted exact-address
+added/removed/modified/unchanged partitions. Complete occurrence equality is used;
+repository mismatch and duplicate addresses refuse. This bounded relationship
+performs no acquisition, mutation, rename inference, applicability or maintenance.
+See the [package contract](../src/devtools/context/repository/docs/changes.md).
 
 SnapshotDelta is a difference relationship between states, and
 IncrementalMaintenance is the process of efficiently establishing applicable
@@ -536,7 +754,10 @@ runtime import resolution nor generic dependency semantics.
 selectors: project README, Hatch wheel packages, pytest testpaths, Coverage
 source, mypy files and mypy search paths. Declaration analysis uses `tomllib`
 and semantic key/item anchors with the exact configuration resource, not
-fabricated character spans.
+fabricated character spans. Missing keys and present non-table ancestors are
+distinct: obstructed selectors retain full semantic-key unsupported evidence and
+derive no targets. The existing named-setting traversal owns that distinction
+for both declaration consumers.
 Declaration analysis also retains bounded build/project metadata, named script
 and entry-point strings, pytest naming/recursion settings and recognized
 tool-table presence. These are static declarations, not effective configuration,
@@ -806,6 +1027,24 @@ separately from later required-resource adjudication. The current read-only
 `CodexAgent` adapter returns final text and continuation but does not retain
 exhaustive tool activity, so dogfood observations require an explicit external
 recording source. The [roadmap](roadmap.md) defines the controlled protocol.
+
+The separate [Qwen coding consumer](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+now composes production multi-resolution retrieval/Context with native edit
+proposals, host-controlled isolated validation and at most two test-feedback
+repairs. This concrete experimental worker owns task bounds and acceptance;
+it adds no Agent hierarchy, Runtime loop, model write authority or Memory domain.
+Its stateless requests carry current source and correlated feedback. The first
+controlled Qwen Markdown task passed after one repair, and its exact captured
+correction is integrated with permanent regressions. This is single-task evidence,
+not reusable Agent promotion or proof of general coding reliability.
+The same consumer now takes a small experiment-local host task definition for
+objective, admitted source/search/disclosure, checks and bounds. One unchanged
+control loop serves Markdown and the frozen Python source-materialization
+task. This adds no framework Task lifecycle, registry or model-directed authority.
+The second live task exhausted its repair budget; its production fix was a
+separate engineering escalation. Host feedback now captures primary pytest
+exceptions before formatting and supplies explicitly bounded log excerpts,
+while retaining full validation logs in evidence.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each
@@ -1395,3 +1634,32 @@ Typed PPR improves full-prompt complete depth while hurting early recall.
 These are local development observations, not a universal ranking/Selection
 policy. Case 0002 remains strictly diagnostic. New configuration RI facts are
 not projected into any ranking channel without a separate Retrieval decision.
+
+
+Caller-selected map metadata now has a concrete representation in the existing
+Context Planning owner: choose_repository_map_disclosure adapts selected native
+map symbols to existing disclosure plans/materialization/rendering. It preserves
+source and declaration identities and refuses incompatible state; no body,
+signature, automatic selection or sufficiency policy is added. Retrieval and RI
+ownership are unchanged. See the [planning contract](../src/devtools/context/planning/docs/overview.md#caller-selected-repository-map-metadata).
+
+
+The existing Planning owner also supports explicit map-to-source expansion:
+choose_repository_map_source_disclosure binds a represented map symbol to its
+exact native RI range within a caller-supplied admitted SourceSearchIndex. It
+reuses source identities/UTF-8 conversion and exact-source materialization,
+preserving both native map and source evidence. No parser, ranking, acquisition,
+Context policy or worker adoption is added. See the
+[progressive Planning contract](../src/devtools/context/planning/docs/overview.md#exact-source-from-represented-map-symbols).
+
+### Native map navigation28
+
+The coding application now optionally composes the existing canonical map ranking,
+map metadata/source Planning and ordinary source observation boundaries through
+ContextTools. Map metadata grants no edit authority; exact source requires current
+task scope, retained snapshot/index, represented native symbol and current host
+observations. Admitted changes discard the map frame; refresh is explicit. No
+graph/index/parser/execution authority is added. WorkCycle retains publication.
+Caller-scoped source search also filters explicitly selected admitted resources
+with original corpus/evidence and exact retained identity. This is caller selection,
+not a new ranking policy. See [native contract and measured adoption limits](../apps/qwen/evaluation/native-map-28/README.md).

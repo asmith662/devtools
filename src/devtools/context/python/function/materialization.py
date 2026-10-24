@@ -8,13 +8,18 @@ from dataclasses import dataclass
 from io import StringIO
 from typing import TYPE_CHECKING, ClassVar
 
+from devtools.context.python.function.declarations import PythonModuleResourceDependency
+from devtools.context.python.function.disclosure import (
+    disclose_python_function_exact_name_retrieval,
+)
+from devtools.context.repository.resource import ContentIdentity
+
 if TYPE_CHECKING:
     from devtools.context.python.function.declarations import PythonSourceRange
     from devtools.context.python.function.disclosure import (
         PythonFunctionDeclarationDisclosureItem,
         PythonFunctionExactNameContextDisclosure,
     )
-    from devtools.context.repository.resource import ContentIdentity
     from devtools.context.repository.snapshot import (
         RepositorySnapshot,
         RepositorySnapshotId,
@@ -71,9 +76,19 @@ def materialize_python_function_disclosure_source(
     disclosure: PythonFunctionExactNameContextDisclosure,
     snapshot: RepositorySnapshot,
 ) -> MaterializedPythonFunctionContext:
-    """Resolve selected source occurrences against explicit observed state."""
+    """Authenticate selection and exact retained source without reacquisition."""
+    expected = disclose_python_function_exact_name_retrieval(disclosure.retrieval)
+    if disclosure.selected_matches != expected.selected_matches or len(
+        disclosure.items,
+    ) != len(expected.items):
+        msg = "Function disclosure selection differs from its retrieval."
+        raise PythonFunctionSourceMaterializationError(msg)
     materialized_items: list[MaterializedPythonFunctionDeclaration] = []
-    for disclosure_item in disclosure.items:
+    for disclosure_item, expected_item in zip(
+        disclosure.items,
+        expected.items,
+        strict=True,
+    ):
         occurrence = disclosure_item.source_occurrence
         if occurrence.snapshot_id != snapshot.id:
             msg = "Source occurrence does not belong to the supplied snapshot."
@@ -84,15 +99,36 @@ def materialize_python_function_disclosure_source(
             msg = "Source occurrence does not address a resource in the snapshot."
             raise PythonFunctionSourceMaterializationError(msg) from error
 
+        # Keep malformed-coordinate refusals specific, but never return text
+        # merely because a projected range happens to fit another resource.
+        source_text = _extract_source_segment(resource.content, occurrence.source_range)
+        knowledge = expected_item.selected_match.knowledge
+        if (
+            disclosure_item != expected_item
+            or expected_item.selected_match.query != disclosure.retrieval.query
+            or knowledge.declared_name != disclosure.retrieval.query.declared_name
+            or knowledge.subject.snapshot_id != snapshot.id
+        ):
+            msg = "Function disclosure projection differs from its selected knowledge."
+            raise PythonFunctionSourceMaterializationError(msg)
+        if resource.content_identity != ContentIdentity.from_text(resource.content):
+            msg = "Retained source content differs from its content identity."
+            raise PythonFunctionSourceMaterializationError(msg)
+        dependency = PythonModuleResourceDependency(
+            snapshot_id=snapshot.id,
+            repository_id=snapshot.repository_id,
+            resource=resource,
+        )
+        if dependency.identity != knowledge.subject.resource_dependency_identity:
+            msg = "Selected function resource differs from its source dependency."
+            raise PythonFunctionSourceMaterializationError(msg)
+
         materialized_items.append(
             MaterializedPythonFunctionDeclaration(
                 disclosure_item=disclosure_item,
                 source_snapshot_id=snapshot.id,
                 source_content_identity=resource.content_identity,
-                source_text=_extract_source_segment(
-                    resource.content,
-                    occurrence.source_range,
-                ),
+                source_text=source_text,
             ),
         )
 

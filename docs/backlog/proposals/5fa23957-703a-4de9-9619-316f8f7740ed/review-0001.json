@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "5fa23957-703a-4de9-9619-316f8f7740ed",
+  "proposal_sha256": "6dfc5f21193948faee5eed5b0b047da58ddff40bfc221437d70e948c9b3a5249",
+  "previous": null,
+  "at": "2026-10-24T02:19:28.906892+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-acquisition-structural-verification-audit.md",
+  "rationale": "Selected shared verification now fully inspected: Case16 Invocation.verify compares complete expected report bytes after sealed-input authentication; normal SEALED_DOWNSTREAM and explicit DEEP_FORENSIC_REPLAY are distinct. probe/construction_probe validate only selected fields and correctly label construction not journal authenticity. This does not repair the separate stage_d.validation.validate metric-subset contract. Existing distinct whole-report proposal remains sufficient; no duplicate or automatic closure. Future proof helper is not a general source/judgment oracle.",
+  "duplicates": [],
+  "duplicate_disposition": "Exact evidence/acceptance clarification; retain canonical payload, pending disposition, prior reviews and all authority boundaries. No approval, grant, renumbering, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "92cce9ac4600e61c8dcbe5945e7e64c66ccabf1dfec0beccba6da9873fb7614c"
+}

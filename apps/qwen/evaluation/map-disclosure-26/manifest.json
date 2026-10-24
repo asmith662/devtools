@@ -1,0 +1,22 @@
+{
+  "baseline": "cab931e3c5b56dcae87341c8226f6efec634457e",
+  "task_sha256": "c5b9d451b27f04ed39b97df80dbac3dd002e83400deb3461270f632e310665a1",
+  "oracle_sha256": "52322a41fae0fb606d3f1a1c2f8cf8a3d61044081a5041c56571120cece2b277",
+  "model": "Qwen3.8-27B IQ4_XS; 32768 Context; q4 K/V; thinking off",
+  "bounds": {
+    "maximum_calls": 24,
+    "wall_seconds": 1800,
+    "maximum_proposals": 6,
+    "tool_actions": 32,
+    "output_tokens": 8192
+  },
+  "new_paths": [
+    "src/devtools/context/planning/repository_map.py"
+  ],
+  "existing_sources": [
+    "src/devtools/context/planning/__init__.py"
+  ],
+  "qualification": "Private fixture/API qualification and baseline/readiness records must pass before inference; all artifacts ignored until Checkout released.",
+  "novelty": "No previous coding task implements repository-map Context disclosure; pending B-0002 compact-map representation, existing ADR-0004 ownership.",
+  "stop_rule": "No fixed response-count cutoff. Stop only on frozen bounds or demonstrably exhausted implementation opportunity, preserving result. No retry."
+}

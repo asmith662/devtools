@@ -1,0 +1,29 @@
+{
+  "frozen_at": "2026-10-21T19:41:01.718597+00:00",
+  "starting_head": "2cace7f4ce20afc2c1d959a006abbd0cf3a4d103",
+  "baseline": "e48d8c745c2c775d1632762e6374c8783ef40a54",
+  "task_sha256": "2cd8cbdb7ddf8b95e9f3a25e44a625cdfbcd1320e4335f6030aad495cc689f94",
+  "oracle_sha256": "e30b61a42763d4e3c4a7ba515b4f9d1532421248c040695d876a55cfa10a5d8d",
+  "preflight": {
+    "path": ".local/qwen-coding-worker/change-check-16/preflight.json",
+    "sha256": "c624177a9269b3aff110989f83a17a25dde793eb8a5d18e159ed8b4e0cfa686f"
+  },
+  "classification": "New useful application-level Tool composition; not model-vs-model comparison or general proficiency claim",
+  "novelty": "No check_changes operation exists; prior15 only proposed it. Existing run_check, git_inspect and closeout are reused, not reimplemented.",
+  "prerequisite": "Codex authored only bounded explicit application-source admission/local import handling plus6focused tests in e48d8c74; Qwen authors check_changes semantics. Final protected gate covers prerequisite and candidate.",
+  "bounds": {
+    "requests": 24,
+    "worker_seconds": 1800,
+    "proposals": 6,
+    "components": 16,
+    "read_check_actions": 32,
+    "requested_output_tokens": 8192,
+    "context": 32768,
+    "safety": 2048,
+    "byte_limits": "unchanged"
+  },
+  "profile": "qwen38-local Qwen3.8-27B IQ4_XS,32K,q4 K/V,thinking off; no service changes",
+  "stop_rule": "One attempt only; no extension or recovery after terminal outcome",
+  "effects": "Trusted bounded local implementation; publication separately supervised on existing feature only; no main/approval/scientific effects",
+  "oracle_ownership": "Private qualification and authored tiny Git/check fixtures not admitted to model corpus; independent requirements and immutable oracle frozen before inference"
+}

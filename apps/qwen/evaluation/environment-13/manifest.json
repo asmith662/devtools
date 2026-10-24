@@ -1,0 +1,58 @@
+{
+  "frozen_at": "2026-10-21T16:42:23.750261+00:00",
+  "classification": "exposed environment-overrides development; no fresh/held-out claim",
+  "baseline": "f2121c663c634b82b8223d661df69b98634189f1",
+  "task_sha256": "0d666866d8de9168ad359dd0bf35beb1bbe484b09e984a7e17ad6061f31629ea",
+  "oracle_sha256": "45eb26612a58f60f33449729bcd8b2b832cf374b8c28321684e20da3581c3309",
+  "original_objective_preserved_as_prefix": true,
+  "process_addendum": "two checkpoints and observed-invariant/pre-transaction review; identical for both conditions; no implementation solution",
+  "conditions": {
+    "Pi": {
+      "model_requests": 16,
+      "worker_seconds": 600,
+      "tool_actions": 32,
+      "output_tokens": 8192,
+      "writes": "existing scoped Pi read/edit/write; exact effect scope, no shell; no six-proposal/sixteen-component batch bound in Pi"
+    },
+    "Devtools": {
+      "model_requests": 20,
+      "worker_seconds": 1500,
+      "tool_actions": 32,
+      "output_tokens": 8192,
+      "atomic_proposals": 6,
+      "components": 16,
+      "region_bytes": 4096,
+      "aggregate_old_new_bytes": 8192,
+      "patch_bytes": 16384
+    }
+  },
+  "common": {
+    "model": "qwen38-local",
+    "context": 32768,
+    "kv": "q4_0",
+    "thinking": false,
+    "endpoint": "http://127.0.0.1:8080/v1",
+    "sources": [
+      "src/devtools/resources/commands/models/command.py",
+      "src/devtools/resources/commands/execution.py"
+    ],
+    "publication": "feature-only after independent review and validation, no protected promotion",
+    "attempts": 1,
+    "additional_recovery": false
+  },
+  "Pi_package": {
+    "name": "@earendil-works/pi-coding-agent",
+    "version": "1.3.0",
+    "path": ".local/qwen-coding-worker/environment-05/pi/node_modules/@earendil-works/pi-coding-agent"
+  },
+  "preflight": {
+    "path": ".local\\qwen-coding-worker\\environment-13\\preflight.json",
+    "sha256": "d54a115336064b26577bf4723aaf50d8232609a7865979bd312986f71c56d5e8"
+  },
+  "adapters": {
+    ".local/reference13.mjs": "877fe55331e624091c5a5795b9a2f85a63490154d9e7d68e6e48ab990abfedcb",
+    ".local/reference-bridge13.py": "7530c9427e17d92c4b43fa0de642006f90194c1914a2afea161773b0f4e5ba7d",
+    ".local/run-reference13.py": "6727dd08594becaa1131054365b72c88ef817973347d2063effeeb03ce65e15e",
+    ".local/run-dev06.py": "218f0936a5618611ad09b41404078c67f49b6bb72211ef1dca1632a00174ec49"
+  }
+}

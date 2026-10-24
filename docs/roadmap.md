@@ -1,5 +1,298 @@
 # Roadmap
 
+Current deep-review checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md).
+The following reconciliation inventory is historical, not comprehensive code
+review completion. The78-path cohort is now reviewed; continue the exact37-path
+structural-discrimination/reviewer cohort before leaving RI. The133 remaining experimental
+paths,84 current-fixture gaps and177 older versions remain explicit;
+no retrieval policy or protected-main promotion is authorized by audit findings.
+
+The [obligation-completeness decision preparation](research/task-obligation-coverage-decision.md)
+recommends a trusted task-clause contract plus explicit reviewed revisions over
+existing Localization and native ContextTools. Maintainer approval is required
+before implementing that slice; current readiness remains relative to supplied
+obligations, never proof of exhaustive decomposition.
+
+## Completed finite reconciliation investigation (2026-10-23)
+
+The [production/experiment/architecture report](research/production-adoption-and-architecture-reconciliation.md)
+completes the planned repository-wide investigation. All 35 collections retain
+their original dispositions, 48 semantic slices cover current framework source,
+and destination review packets distinguish ready library candidates from
+unconsumed or authority/reliability-blocked integrations. The
+[custody extension](development/artifact-custody-inventory.md) records member
+verification and exact HOLD paths; no removal occurred.
+
+**Next checkpoint: comprehensive ChatGPT successor-session handoff.** Do not
+automatically implement the new pending reuse investigation, refactor modules,
+run Qwen, begin new science or merge feature ancestry. Later authorized work
+should first qualify protected-validation input closure and selective bounded
+destination adoption, then coupled worker/admin integration. R1/R2/GRAPH-3
+scientific verdicts remain complete as recorded later in this roadmap; the
+completed performance baseline's maintainer review/priority bottleneck remains
+separate from this research checkpoint. No scientific priority is reset here.
+
+## Immediate finite reconciliation phase (2026-10-23)
+
+The current assignment is research, source/destination inventory, architecture
+and lifecycle reconciliation, artifact-custody planning and successor-session
+preparation under the [phase charter](development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23).
+The [recovered original18 intake](research/reconciliation-input-reconciliation.md)
+and [pinned Qwen Code/Pydantic AI source/test comparison](research/agent-harness-mechanism-review.md#source-and-test-comparison-2026-10-23)
+are complete as bounded research. The [DeepSeek Harness/Aider source/test follow-up](research/agent-harness-mechanism-review.md#deepseek-harness-and-aider-source-and-test-audit-2026-10-23)
+completes the four selected external comparisons. The
+[five-flow lifecycle/observability plan](research/development-lifecycle-audit-plan.md)
+is now [executed as a source/evidence audit](research/development-lifecycle-observability-audit.md).
+Next deepen selective protected-main adoption, actual experiment/feature ownership
+and custody reconciliation before the comprehensive successor handoff. No
+next-stage execution or infrastructure implementation is launched here.
+Do not launch another Qwen feature/benchmark or automatically implement findings.
+Earlier engineering "next" paragraphs below retain their checkpoint meaning;
+the Commands integration is already on remote main. Scientific sequencing,
+accepted semantics, backlog dispositions and protected promotion remain separate.
+
+[New module22](../apps/qwen/evaluation/new-module-22/README.md) corrects the concrete
+absent-new-file feedback defect. Its real Qwen engineering attempt created a module
+but failed public integration after six proposals, with no Context failure or native
+shared-check invocation. Codex independently delivered the useful retained-snapshot
+comparison at `3c624129ee2d6324ed161a2e9e3b2733622e7b08` using the unchanged qualified oracle and final protected gate.
+
+Next bounded Qwen reliability action: make existing atomic refusals identify the
+failing component/path, then evaluate a distinct engineering task for complete
+integration and real shared-check use. This is supported by repeated wrong-owner
+anchors, not a mandate for another editor, Context framework or longer budget.
+The reviewed Commands group is ready for a separate destination-authorized
+integration assignment; protected main, B-0002 and B-0009 remain open. Earlier
+sequencing below records prior checkpoints and does not supersede this update.
+
+[Configuration obstructions21](../apps/qwen/evaluation/configuration-obstructions-21/README.md)
+delivers the B-0002 selector correction as Codex-authored source at `32c3890ff5546a335bd8397d582cc1809d7dd46e`.
+The original qualified oracle passes; permanent tests and the exact-final-source
+protected gate pass. The conditional Qwen continuation was skipped because the
+existing adapters do not authenticate the required prefix on this advanced baseline.
+
+Engineering20 remains a supervisor-limited eight-response investigation, with
+zero edits and no Context failure. An eight-response no-edit rule is unsupported
+by Engineering14's successful response9 implementation start. Use evidence-based
+frozen supervision instead. The separate absent-new-file feedback defect remains
+the next bounded worker correction before a qualified new-module live Tool task.
+The Commands contract group is ready for a separate destination-based integration
+review; parent reliability and protected-main adoption remain open.
+Older sequencing statements below retain their recorded historical status.
+
+
+The shared nonpublishing `check_changes` / `is_current` Tools are delivered as
+**Codex-authored** application source at `4d401c828b5fef4e2d4db949c2f80549ea445fe0`. They reuse the published
+all-checks bundle and add authorized tracked/new change discovery, source/Git/index/
+plan evidence and independently rechecked freshness. The original16oracle, real
+ToolRunner demonstrations, permanent regressions and protected validation pass;
+see [delivery](../apps/qwen/evaluation/change-check-codex/README.md).
+
+Next: put the shared operation to work on a fresh bounded Qwen engineering task,
+use its actionable checks during repair, and recheck freshness before Codex review.
+Keep WorkCycle's independent closeout and publication authority. This delivery is
+not new evidence of Qwen reliability. Protected-main adoption requires selective,
+destination-authorized review; do not merge the accumulated feature ancestry.
+Older roadmap entries below retain historical status.
+
+[Source-supplied19](../apps/qwen/evaluation/source-supplied-19/README.md) elicited
+implementation on response two, but every transaction failed exact admission
+(oversized text, then no-op). No bundle was delivered. The immediate delivery
+recommendation is a separately attributed Codex implementation of the unchanged
+fixed all-checks contract, not another minor Qwen variant or automatic substitute
+in this evaluation. Assess Qwen's known-limit adherence and precise admission
+feedback separately; keep strict limits and avoid new Context infrastructure.
+After bundle acceptance, finish original check_changes Git/new-file discovery,
+exact reporting and is_current freshness. No protected adoption is implied.
+
+[Fixed check-bundle18](../apps/qwen/evaluation/check-bundle-18/README.md) remains
+**not delivered**. The smaller existing-run_check extension also stopped before
+editing: nine requests, 16 successful read actions and then Context refusal.
+No bundle, source change or feature closeout exists. Keep this as the immediate
+implementation obligation; do not resume the larger check_changes assignment or
+unrelated work. An implementation-focused assignment using existing authenticated
+owner/helper disclosure is the next concrete guidance treatment to assess, without
+new retrieval/planning infrastructure or an automatic retry. After bundle
+acceptance, compose authorized Git/new-file discovery and is_current freshness
+under the unchanged full contract. Earlier entries below remain historical.
+
+[Change-check17](../apps/qwen/evaluation/change-check-17/README.md) remains **not delivered**.
+Narrower approved-owner scope avoided the prior closeout detour, but Qwen made
+11 requests/20 read actions and zero edits before Context refusal. The action
+allowance was exhausted, so source could not be omitted for future reacquisition;
+31,675 input tokens plus safety exceeded capacity. The original oracle is unchanged.
+No maintained code, projection or serving configuration changed. Next assess a
+smaller useful fixed-check bundle in existing run_check, not generic Context work
+or a claim that partial functionality completes check_changes. Older entries below
+retain their historical status.
+
+[Shared change-check16](../apps/qwen/evaluation/change-check-16/README.md) **was not delivered**.
+The one Qwen attempt made 15 requests and 20 read actions with no edit, then failed
+Context admission: 28,489 input tokens left 2,231 safe output below the 4,096 minimum.
+The exact frozen contract and failure remain evidence. Codex only enabled explicit
+maintained application task paths/local imports so Qwen could target the existing
+owner; this is not a check_changes implementation. No retry, semantic substitute
+or speculative worker optimization occurred. The next obligation remains this
+same composed Tool; prior accepted Commands features remain published.
+Earlier entries below retain their historical status.
+
+[Output policy development15](../apps/qwen/evaluation/output-policy-15/README.md) completes
+the previously exposed integer/bool validation defect with the unchanged worker.
+The independently reconciled contract uses TypeError for wrong types and
+ValueError for invalid integer bounds. Qwen's first transaction passes: 6 requests,
+one admitted proposal, no repair/refusal; exact source plus 60 independent regressions
+are feature-published at `c93e5bf0f508`. 176 focused cases and the protected gate
+pass. This is development continuation, not fresh confirmation or repair evidence.
+Next evaluate a practical shared change-check bundle over existing Git/validation
+operations; no new harness optimization is justified by this result.
+Earlier entries below retain their historical then-current status.
+
+[Fresh engineering14](../apps/qwen/evaluation/engineering-14/README.md) is accepted
+and feature-published at `73e5ee07ee49`: Qwen authored immutable successful-code
+configuration and result interpretation, then repaired an actual pre-deduplication
+validation failure. Existing executor/Tool paths pass real child fixtures; no
+harness changes or supervised semantic substitute were needed. Parent reliability
+and protected adoption stay open. Next complete the previously exposed Commands
+output-limit integer/bool validation obligation under a requalified exception
+contract; it will be development continuation, not fresh confirmation.
+
+[Environment development 13](../apps/qwen/evaluation/environment-13/README.md)
+completes the qualified per-command environment contract as Qwen-authored source,
+independently reviewed/validated and feature-published at `b81891ceeafa`.
+The unchanged 32K/native worker completed 14 requests and five atomic proposals,
+including oracle-reported missing API behavior and quality corrections. Actual
+child inheritance/overrides and existing stdin compatibility pass. No Codex
+semantic substitute or live recovery session was needed. The bounded Pi
+diagnostic did not complete and has concrete write/output/timeout confounds.
+Qwen remains primary: next assess fresh qualified cross-component completion and
+requirement-preserving behavioral repair; no new infrastructure or serving sweep
+is justified by this success. Protected adoption and general proficiency remain
+open. Earlier checkpoints below describe their recorded historical state.
+The new evidence record corrects the prior claim of absent Environment 12 executor
+forwarding; its constructor failure left child behavior unverified.
+
+[Environment continuation 12](../apps/qwen/evaluation/environment-12/README.md)
+still failed the original qualified contract. The initial Context refusal was
+recovered within original cumulative limits after exact transaction/contained-
+source projection corrections, but Qwen's final proposal broke frozen/slotted
+construction and did not implement child environment delivery. The failed source
+remains evidence-only; maintained stdin is unchanged. The last result is
+`REPAIR_BUDGET_EXHAUSTED`, with no further retry in this assignment.
+
+Immediate priority remains the same environment-overrides capability: source-
+grounded compatibility with the actual slotted immutable value, complete public
+model/fluent/hash behavior and real executor delivery. Existing admission/refusal
+and behavioral diagnostics must guide repair; do not substitute another task or
+Codex-authored source. The 48K feasibility probe does not establish better coding
+quality; 32K with corrected projection remains selected. Qwen reliability and
+protected-main adoption remain open.
+
+[Stdin continuation 11](../apps/qwen/evaluation/stdin-11/README.md) completed
+reviewed ordinary-feature publication of the exact Qwen implementation at
+`2490cb7b988d` after independent fixture qualification. Live results
+remain failed at Context capacity, despite an actual model behavioral repair.
+Path-resolved exact observed edits remove wrong-reference bookkeeping and source
+blocks distinguish code from metadata. Environment overrides remains the next
+Commands implementation priority. Reduce the demonstrated repeated-history cost
+before that continuation; do not treat offline qualification as live autonomy.
+Protected-main adoption, fresh long-task confirmation and general reliability
+remain open. The older checkpoint descriptions below remain historical.
+
+[Qualified engineering 10](../apps/qwen/evaluation/qualified-10/README.md) qualified
+positive/negative fixtures before both fresh command tasks. Neither was accepted.
+Nested pre-edit source now follows existing stale-source projection rules; live
+stdin behavioral feedback reached Qwen within capacity, but incorrect region
+handles and incomplete cross-module implementation exhausted edit attempts.
+At checkpoint 10 the next work was region-handle selection and implementation planning,
+followed by a separately qualified fresh obligation. No accepted new candidate
+existed at that checkpoint. Qwen remains primary; this is not general engineering success.
+
+[Long engineering continuation 09](../apps/qwen/evaluation/continuation-09/README.md)
+keeps critical source/feedback within measured 32K capacity and publishes the
+Qwen-authored bounded reader plus the three older reviewed candidates. The
+original new task had an invalid oracle; its corrected development continuation
+passed behavior and repaired Ruff but is not fresh confirmation. Request-fit
+replay does not establish autonomous task success. Next: qualify positive and
+negative oracle branches, then evaluate a distinct substantial long task with
+behavioral feedback under the existing budgets. Qwen remains the primary
+workstream; broader reliability, protected-main adoption and Codex parity remain
+open. No transition to Learned Intelligence, trading or swarming follows.
+
+
+[Engineering assignments 08](../apps/qwen/evaluation/engineering-08/README.md)
+did not establish graduation: both live runs stopped before behavioral validation.
+The source-search case was diagnostic reuse, incorrectly labeled fresh during
+preparation; fresh binary I/O live acceptance is 0/1. Its unchanged captured
+implementation was recovered under corrected practical bounds, mechanically
+formatted, independently validated and feature-published. This is useful delivery
+with supervisory intervention, not reliable autonomous substantial engineering.
+The Codex reference did not deliver a candidate and is not a calibrated comparison.
+Qwen remains primary: historical-case eligibility, efficient investigation,
+correct region references and actually delivered validation/repair feedback are
+the next measured obligations. No transition to other long-term workstreams.
+
+[Investigation comparison 07](../apps/qwen/evaluation/investigation-07/README.md)
+demonstrates new-module/export creation, coordinated two-module implementation
+and requirement-preserving Ruff repair with genuine native Qwen. Fresh
+development 2/2 and confirmation 1/1 accepted in both Devtools and scoped Pi;
+Devtools used 13 versus 20 requests. No general reliability or Codex parity claim.
+Next Qwen priority: repeated harder multi-module tasks and behavioral repair,
+while measuring source discovery beyond known admitted paths. Read-error
+recovery is deterministic-tested; the new live tasks had no read failures.
+Other long-term workstreams remain planned rather than implemented here.
+
+[Editing comparison 06](../apps/qwen/evaluation/editing-06/README.md) adds flat
+observed edit calls and bounded path-based source inspection through existing
+owners. Valid paired development: Devtools 1/2, Pi 2/2; replacement confirmation
+both accepted. Editing admission failures disappeared in this sample, but
+multi-file/new-module investigation still failed before editing. Next priority:
+reliable Tool selection and efficient multi-file investigation, measured on
+fresh tasks. Qwen remains primary; general reliability and Codex parity are open.
+
+Qwen remains the active engineering priority. [Environment 05](../apps/qwen/evaluation/environment-05/README.md)
+verifies actual weights/runtime and compares a scoped Pi harness with Devtools on
+two fresh tasks. Native task-scoped Git/check Tools, absence-bound new files,
+actual llama.cpp input measurement and shared reviewed feature closeout are
+implemented. Accepted JSON and genuine repair evidence coexist with a remaining
+path-proposal failure; general reliability and Codex parity remain unproven.
+No alternate serving profile is promoted from these small development comparisons.
+
+## Immediate priority: native Qwen coding effectiveness
+
+[Cohort 04](../apps/qwen/evaluation/native-cohort-04/README.md) demonstrates real
+coordinated editing/API inspection: final paired development 0/2 unchanged versus
+2/2 final, plus one accepted two-file held-out task. One regex case repaired
+behavioral/quality failures while preserving passing regressions. The earlier
+improved read-budget failure remains recorded. This small bundled sample does
+not establish general reliability or Codex parity. Next: fresh multi-module/API
+tasks and repeated repair under independent acceptance. Candidates remain
+evidence; overlapping regex snapshots require composition before integration.
+
+[Cohort 03](../apps/qwen/evaluation/native-cohort-03/README.md) adds explicit
+contract/quality preflight, versioned requirement-preserving feedback and exact
+refresh of observed unchanged source after edits. Both paired development tasks
+failed before and after; a fresh held-out timestamp task passed 19 regressions,
+16 behavior scenarios, typing, Ruff and formatting with no repair. Thinking-on
+development exhausted output before an edit; the default stays off. Next:
+coherent multi-region edits, external API assumptions and genuinely successful
+behavior-preserving repair. No reliability improvement or Codex parity is claimed.
+Accepted candidates remain unintegrated until separately authorized integration.
+
+[Cohort 01](../apps/qwen/evaluation/native-cohort-01/README.md) now has real native
+coding evidence: duration passed frozen behavioral checks but needs style
+rework; CSV and the held-out source task failed. Local evaluation uses trusted
+direct invocation without backlog/grant/terminal rituals, preserving bounded
+scope, source ownership/restoration and independent acceptance. Production
+WorkCycle/integration authority is unchanged. No task candidate entered main.
+
+Native refusal feedback and source retention were improved from development
+traces, but accepted outcomes did not improve across this small sample. Continue
+Qwen work on source-exact edits, relevant source retention, read-bound usability
+and quality-aware independent acceptance, then fresh cases and a fair Codex
+comparison. One successful native behavioral/quality repair is now observed;
+reliability and Codex parity remain unproven. Do not switch to Learned Intelligence, trading,
+swarming, new governance frameworks or unrelated research.
+
 ## Canonical consolidation checkpoint
 
 Development now uses one canonical checkout and ordinary branches. Production-safe
@@ -11,13 +304,19 @@ scientifically incomplete after its C22 pre-entry failure; no retry is implied.
 
 The maintained dashboard and governed-development continuation are consolidated
 on `feat/qwen-context-worker`, not claimed as main production capabilities.
-Reconcile WorkCycle's extra-checkout requirement with the canonical branch
-workflow and review the dashboard dependency audit before further adoption.
+The single-checkout WorkCycle/integration continuation now uses serialized
+ordinary branch operations, exact-byte restoration and recoverable ownership.
+Next: review/publish the maintained capability and issue genuinely canonical-bound
+integration authority for B-0048; review the dashboard dependency audit separately.
 Old checkout-bound grants remain historical. The
 [reconciliation record](development/reconciliation.md) records every branch and
-blocker. Learned Intelligence integration remains separate. Precise Context
-Tools, structured continuation, atomic task-local checkpoints, layered long-term
-Memory and 32K/64K Context benchmarking remain planned.
+blocker. Learned Intelligence integration remains separate. Precise read-only
+Context Tools and task-local native continuation now operate in the same bounded
+worker on this feature branch; live read-only conformance and one native
+behavioral coding task passed. Broader coding effectiveness remains unproven;
+trusted local evaluation does not require production standing authority. General structured
+continuation, atomic task-local checkpoints, layered long-term Memory and
+32K/64K Context benchmarking remain planned.
 
 ## Purpose
 
@@ -60,6 +359,98 @@ expansion uses retained file/class source. See the
 This completes the selectable representation baseline, without claiming better
 ranking or completing Context/retrieval research. No scientific study, model
 invocation, automatic Context optimizer or agent/memory implementation follows.
+
+### Bounded Qwen coding integration
+
+The [concrete Markdown worker](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+consumes production multi-resolution search and explicit Context, native proposals,
+isolated validation and up to two test-feedback repairs. The first real Markdown
+task is accepted after two Qwen calls and one repair (8,178 input / 525 output
+tokens; 34.76 seconds), with independent tests/oracle passing. Its exact captured
+implementation is integrated with permanent regressions; see the
+[provenance record](../experiments/qwen/docs/first_accepted_coding_task.json).
+Task selection now reuses that same worker via host-owned configuration. The
+second task, exact Python source materialization with non-newline separators,
+ended **REPAIR_BUDGET_EXHAUSTED** after three calls and two repairs; see its
+[measured result](../experiments/qwen/docs/second_task_result.json).
+Codex subsequently corrected the production defect with permanent regressions
+and bounded primary-failure feedback. This escalation is not Qwen success.
+The next checkpoint is failure-guided worker improvement and another independently
+bounded unresolved task, under separate local execution authorization. General coding
+reliability and autonomous multi-task coordination remain unproven.
+Task-local native assistant/Tool continuation, dynamic source acquisition and
+bounded test-feedback repair are implemented and deterministically integrated;
+the real read-only smoke is recorded in the [evaluation note](../apps/qwen/EVALUATION.md).
+The next checkpoint is one genuinely authorized, previously unattempted coding
+task and independent acceptance. General structured conversation/recovery,
+multi-task coding reliability and later 32K/64K benchmarking remain unfinished.
+
+### Governed work intake and portfolio progression
+
+Repository-local backlog proposal intake now captures discoveries with source,
+parent, affected resources, benefit, uncertainty and evidence, preserving the
+active objective. Duplicate hints and append-only advisory/authorized reviews
+precede exact publication into canonical B-number Markdown records. Trusted-host
+checks gate promotion; intake approval grants no implementation or model authority.
+The initial Python 3.12 concern is approved and published as B-0048; its
+JsonObjectFile-only assignment has now completed one genuinely delegated Qwen
+run and independent Codex review as REVIEW_CANDIDATE / ACCEPT_RECOMMENDED.
+Integration remains unauthorized; sibling list/CSV defects keep B-0048 open.
+This is the first governed intake boundary, not an autonomous supervisor.
+
+The concrete B-item-to-Qwen bridge is now implemented and deterministically
+validated: approved/published backlog item, exact preparation, separate host
+authority, fresh target validation, existing Qwen execution, review candidate or
+bounded escalation. Side discoveries route to pending intake without changing
+active scope. One designated coordinator owns canonical mutations.
+
+Scoped standing routine-Qwen delegation is now implemented in that same work
+bridge. A genuine one-time host grant can replace repeated per-task terminal
+consent, subject to exact Codex review, source/test/validation-code/model scope,
+cumulative reservations, expiration and revocation. A real maintainer-issued
+grant admitted the first B-0048 run without redundant human confirmation; three
+Qwen calls and two repairs produced a cross-version-tested review candidate.
+See the [measured outcome](../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate).
+This is not a persistent supervisor or scheduler.
+
+The [governed integration lifecycle](backlog/integration.md) now implements
+accepted-candidate installation, exact-tree gates/review, feature publication,
+separately permitted target promotion, post-promotion verification and canonical
+work closeout. Destination-based commits exclude unrelated worker ancestry.
+Next: issue a genuine separate integration grant for the accepted B-0048
+object-only candidate and independent permanent regressions, then consume the
+existing lifecycle. Main promotion additionally requires an explicit protected
+destination policy decision. No such grant is inferred from this implementation.
+Broader compatibility work remains separately scoped. This checkpoint does not implement scheduling,
+persistent Codex supervision or authorize a new coding run. Task-local native
+Context/continuation is implemented as described above; broader precise Context
+coverage, durable continuation/checkpoints, layered long-term Memory, Context
+benchmarking and Learned Intelligence integration remain on the roadmap.
+
+### Future agent working and long-term memory
+
+The [MemoryPanel operator pilot](../apps/operator_dashboard/README.md)
+adds read-only visibility over existing work and worker receipts, with explicit
+synthetic/live provenance and unknown accounting. This is UI adoption, not an
+autonomous supervisor or memory implementation. Four source-derived intake
+inputs link optional CodeGraph exploration, layered recall, validated procedural
+skills and incrementally maintained knowledge to existing pressure. They have
+been captured at the designated coordinator and remain PENDING_REVIEW, with no
+implementation authority. The console now reads current records through a
+loopback-only read API and exposes actual run/turn proposals, validation and
+available captured messages. Missing historical continuation is explicit; this
+visibility increment does not change worker execution or memory architecture.
+
+These are planned needs, not implemented architecture. Task-local working memory
+should support atomic durable checkpoints of objective, constraints, progress,
+verified evidence references, hypotheses, unresolved questions and next intended
+actions, enabling recovery after interruption or Context replacement. Long-term
+memory should consider episodic experience, validated knowledge and procedural
+strategies/playbooks; agent-specific/shared scopes; provenance, applicability,
+revision and retirement; and Context-controlled recall. Keep active Context,
+conversation history, task-local working state and long-term memory distinct.
+Reuse existing atomic filesystem writing when implementation is justified.
+No memory types, schemas or new architecture are introduced in this checkpoint.
 
 ### Automated experiment mechanics
 
@@ -1285,3 +1676,42 @@ Its next step was prospective Stage A/plan review before execution; subsequent
 blocked-run and replacement status is recorded in Current sequencing above.
 Accepted results, SEARCH_POLICY_FAILURE =
 NOT_ASSESSED and LIVE_INCREMENTAL_RI = REQUIRED / NOT_IMPLEMENTED are unchanged.
+
+
+Native coding source-grounding continuation: the existing application now retains
+all current observed source regions, refuses unobserved edits, returns recoverable
+read bounds and supports host-frozen Ruff/format feedback. Fresh cohort 02 records
+actual outcomes separately; this does not establish general Qwen proficiency.
+Long-running structured continuation, atomic task checkpoints, layered long-term memory and
+32K/64K benchmarking remain planned, without a new Memory framework.
+
+
+Cohort 02 now provides one accepted native Context coding task and one failed
+held-out repair (with a disclosed exception-contract/Ruff tension). The next Qwen
+checkpoint is fresh multi-region, requirement-preserving repair evaluation with
+preflighted behavioral/quality compatibility; no Codex parity claim or workstream
+transition follows from this small sample. Exact evidence is in the maintained
+cohort 02 record. Source integration of accepted local candidates remains separate.
+
+### Native map navigation28
+
+Caller-selected map orientation can now reach exact observed source inside the
+existing native coding worker, with scope/version checks and explicit stale-frame
+refresh. Caller-scoped source search retains existing lexical provenance. These
+Codex deliveries do not establish Qwen adoption: the single new run chose path
+inspection and failed behavior/repair Context. Next is a separately qualified,
+distinct relationship-heavy RI task using existing tools, not another graph or
+Context framework or a retry of the exposed search task. Original experimental
+sequencing, backlog statuses and protected-main authority remain unchanged.
+
+## Comprehensive review sequencing (2026-10-23)
+
+The maintainer has postponed the final successor-session dossier and requires
+[deep cross-branch code review](research/comprehensive-code-audit.md).
+The [first RI/Context review](research/repository-intelligence-code-audit.md)
+reproduces an existing physical-line defect, records real native search/source
+use and missing higher-level consumers, and preserves correctly unpromoted
+experimental policies. Next review execution/Tool/Checkout/WorkCycle and exact
+validation input closure while completing the explicit RI history/fixture/
+controller omissions. The version-specific ledger covers later domains too.
+Pending proposals are intake, not implementation or inference authorization.

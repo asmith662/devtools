@@ -1,0 +1,163 @@
+{
+  "kind": "Codex-authored deterministic diagnostics delivery; zero real model requests",
+  "starting_feature": "9437ed1539fd4ad2a9b471ea20fc3de775f74765",
+  "commands_review": {
+    "pr": "https://github.com/asmith662/devtools/pull/1",
+    "status": "merged upstream before this publication",
+    "remote_main": "5d979920d0728775ed529457c88f5b68b440c64f",
+    "integration_branch_unchanged": "2f9218625ab483ba7b07235c8b4bb7340917ec89",
+    "main_written_by_this_assignment": false
+  },
+  "protected": {
+    "started_at": "2026-10-22T16:08:44.055252+00:00",
+    "head": "9437ed1539fd4ad2a9b471ea20fc3de775f74765",
+    "source_test_sha256": {
+      "apps/qwen/edits.py": "0612519ded479ba5c9a35867c2517563df3e73c1627cc5938136bd510af0e2f9",
+      "apps/qwen/context_tools.py": "439ddd592ac90d5cdd1f6d97a97f5d58d5f0c908ab8168a5ceb75e3fbb95522c",
+      "apps/qwen/development_task.py": "eb95d9c039a015abf2c918eac172c0c10dd68ff2bf993af4417123d5febad86a",
+      "apps/qwen/patch_proposal_worker.py": "afb62a1689e2e98acd97f5fa385bc9e52125d8d883c9ef457465b6718ac27dbe",
+      "apps/qwen/coding_loop.py": "46933a15dd37f99a4e658b1cf958e3a135fad7bc837ce209117bd7c87e9ac8dc",
+      "tests/apps/qwen/test_edit_diagnostics.py": "8d65c9a78fb64f44bbff0a3b948eed671cc4ba5b152208e32c4cbb17b1a9f5f2"
+    },
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "scripts/validate_development.py"
+    ],
+    "passed": true,
+    "focused": {
+      "passed": 214,
+      "seconds": 79.78,
+      "new_diagnostic_cases": 26
+    },
+    "static": {
+      "ruff": "PASS",
+      "format": "PASS",
+      "strict_mypy_files": 508,
+      "layout": "PASS",
+      "whitespace": "PASS"
+    },
+    "stdout_sha256": "b5d5f04a51614faa7b9937382f57dc54a1872220d3f458cb55b92445a131b5b5",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "finished_at": "2026-10-22T16:21:26.141232+00:00",
+    "elapsed_seconds": 762.083436,
+    "exit_code": 0,
+    "truncated": false,
+    "source_test_unchanged": true,
+    "forensics_preserved": true,
+    "tests_passed": 2538,
+    "tests_skipped": 2,
+    "pytest_seconds": 760.4,
+    "production_coverage": "100%",
+    "evidence": ".local/atomic-edit-diagnostics/"
+  },
+  "historical_audit_sha256": "795d8503de09237f97a446a6240ea73d03cff4ea6d2202755d622edd034a6821",
+  "historical_captures": [
+    {
+      "run": "source-supplied-19",
+      "turn": 2,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "3329fcfeedcd0792955e26b12b423870ca364ca668a2e3c9970b3912a5238a8d",
+      "parsed_response_sha256": "d7fb7b2f0ef33884b8186383dcfd2b126a84452daa5bff72502a1d8832d03e20"
+    },
+    {
+      "run": "source-supplied-19",
+      "turn": 3,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "9cfb73a8d87d050ad4bf00b67aed56bcbf9779d88cdc2f9657cdc841db81115a",
+      "parsed_response_sha256": "debe7c0f6f8ac10b2b831e90732548957fa063195ffeacfce75b0a9a9f915c88"
+    },
+    {
+      "run": "source-supplied-19",
+      "turn": 5,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "ac731fb56d5b4eb3a912da2bf5fd4637e12dfb09d4e6a4268886dfcf80c5e830",
+      "parsed_response_sha256": "e558aff98d6ae4574b92f0ed21903ca2ce4d4e16f6e7948794446efd0714b97e"
+    },
+    {
+      "run": "source-supplied-19",
+      "turn": 6,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "3a05386ea7d501675762dcb201d47da72a9d841f95efdd9acd0fd4928c95ecc1",
+      "parsed_response_sha256": "764c5219208d090489ac89793c4e009fb0525543c81e4971c9a6c52b58293fc1"
+    },
+    {
+      "run": "new-module-22",
+      "turn": 4,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "23e83b0fcadaccc8fd2a11af2f8072e9e959a5302a863e1c8c66307bb9141b33",
+      "parsed_response_sha256": "02445cde80cb26f4564ca8eac51b3d474922a01b339e4fc3cdddc33277bdc0ee"
+    },
+    {
+      "run": "new-module-22",
+      "turn": 6,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "a8c2b602807e48e46e9e9e050a3a1411c3695aa02e3b60beb2778a482f044e13",
+      "parsed_response_sha256": "16aebadb80a25e7a5bdb3d04c78a67240a783458d29e87c6e2f320f550170fc3"
+    },
+    {
+      "run": "new-module-22",
+      "turn": 8,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "fb2471a93bfa9d7754e43d5b3f00fd7bdd74ee1038f4710ac0b4474ef74d1c1f",
+      "parsed_response_sha256": "6d60e55b9e286ad10a08c7c4ea26a5ce68d5ebda131b694b5d6bdc9e8bfd9c9b"
+    },
+    {
+      "run": "new-module-22",
+      "turn": 10,
+      "native_arguments_unchanged": true,
+      "provider_sha256": "c844e33510751c6148ec65fd24988e8f4a2f044426e8bb513ec50bac031bccd1",
+      "parsed_response_sha256": "0e581fc609a97cc17096ab143defff2168b9d7687e280173e3909b3e5cdbaa8d"
+    }
+  ],
+  "native_demonstration": {
+    "kind": "scripted native test double, NOT Qwen inference",
+    "responses": 4,
+    "proposals_attempted": 2,
+    "admitted": 1,
+    "refused": 1,
+    "refusal": {
+      "code": "OLD_TEXT_NOT_UNIQUE",
+      "component_index": 2,
+      "index_base": 1,
+      "match_scope": "current_disclosed_regions",
+      "new_bytes": 14,
+      "observed_match_count": 0,
+      "observed_source_version": "6fb3913f51041792a0054da48b0c5eb0e335f95299016e868340f3e3628811f6",
+      "old_bytes": 15,
+      "path": "src/devtools/demo.py",
+      "proposal_call_id": "edit-2-2",
+      "region_limit_bytes": 4096,
+      "source_observed": true
+    },
+    "actual_request_contains_correlated_structured_details": true,
+    "behavioral_repair": "not exercised; admission recovery only",
+    "model_requested_check_changes": true,
+    "is_current_while_installed": true,
+    "is_current_after_restoration": false,
+    "source_restored": true,
+    "artifacts": {
+      "result.json": "2c54a79ac70dd2c65565095a37cd0a6afbed91b945ff161875774e93c98d5d84",
+      "turn-02/response.json": "a10b56d700d5c0ed7e81a169ff9520c82e3459927f8dcf1629540fbd556913d6",
+      "turn-02/tools.json": "b594e724151a0ba74f359134d31753f6fd00a78e1b3d8381d0fa1baf94a3cc14",
+      "turn-02/stage.json": "7d19e1205294936f2813c100587a0f2eb266f0d5d7ca8c9a7ad30734ba53c6ea",
+      "turn-03/request.json": "7e4696d1ec801767bae7cc88fdb9f6ecb5e890fa219b535b1f38dcaca1f3e7d1",
+      "turn-03/stage.json": "4b289ac89803d765bc18d86e5b4ab16cd829d27424df490703207b9bd0cad8a1",
+      "turn-04/tools.json": "b57276902242956436c0a757f785f8dd67b80405d472fe69d1c6e8a2ea48dda5"
+    },
+    "evidence": ".local/atomic-edit-diagnostics/native-demonstration/"
+  },
+  "review": "Codex reviewed exact admission/feedback diff: original validation predicates, messages, ordering and bounds preserved; diagnostics only use authorized disclosed source, except transaction size counters; no argument rewriting or partial mutation.",
+  "limits_unchanged": {
+    "components": 16,
+    "region_bytes": 4096,
+    "aggregate_bytes": 8192,
+    "patch_bytes": 16384,
+    "source_bytes": 32768
+  },
+  "remaining_limitations": "Deterministic proof does not measure Qwen repair improvement; host-integrity/source-drift failures remain terminal. Next task is proposed and unqualified, not executed.",
+  "cost": {
+    "real_model_calls": 0,
+    "model_tokens": 0,
+    "codex_billing_and_active_supervision": "not exposed"
+  }
+}

@@ -83,3 +83,54 @@ bounded structural generation and explicit resolution recording are implemented.
 Current `plan_disclosures`
 remains caller-directed; it does not resolve obligations, transfer obligation
 provenance, or establish representation coverage/capacity.
+
+## Caller-selected repository-map metadata
+
+`choose_repository_map_disclosure(purpose=..., snapshot=..., view=...,
+symbols=chosen_symbols)` records an explicit ordered selection from an existing
+canonical RepositoryMapView. The resulting RepositoryMapDisclosureOption uses
+the same plan/materialize/render/assemble APIs and can coexist with whole-source
+and qualified-reference options. It emits paths, kinds, lexical names, subjects,
+exact declaration coordinates, snapshot/content identities and original selected
+native symbols as provenance. It does not emit bodies, signatures, ranks or
+unselected symbols; metadata is orientation, not sufficiency or exact source.
+
+Blank/empty/duplicate/inconsistent choices and incompatible retained source fail
+closed. Factory and materialization reuse canonical map validation; realization
+also rechecks retained resource values. Selected resources are deduplicated in
+first-selected order with aligned content identities. Choice identity binds
+purpose, snapshot/repository and ordered declaration evidence. No automatic
+selection, budget, tree renderer or source expansion policy is introduced.
+Tests: tests/context/planning/test_repository_map.py. Delivery and native failure
+remain separately attributed in apps/qwen/evaluation/map-disclosure-26/README.md.
+
+## Exact source from represented map symbols
+
+`choose_repository_map_source_disclosure(purpose=..., snapshot=...,
+map_disclosure=..., symbol=..., source_index=...)` expands one symbol explicitly
+represented by an existing RepositoryMapDisclosureOption. The caller supplies
+an existing SourceSearchIndex for the same retained snapshot and an admitted
+resource corpus; there is no implicit indexing, search or acquisition.
+
+The returned immutable RepositoryMapSourceDisclosureOption retains the selected
+symbol and exact RepositorySourceUnit. It authenticates canonical map membership,
+represented selection and admitted source frame; existing UTF-8 offset and unit
+identity helpers construct the exact RI declaration span. Materialization
+reauthenticates the coupling and delegates text presentation to the existing
+SourceSearchDisclosureOption, retaining (symbol,unit) as native provenance.
+Source purpose may differ from orientation purpose; mixed plans still require
+matching purposes as before. No existing representation identities change.
+
+RI spans use one-based physical lines and zero-based UTF-8 columns, exclusive
+end. They include declaration headers/bodies and nested content, but exclude
+preceding decorators outside the RI span even if a source-search symbol expands
+to them. Unicode, CRLF/LF and no final newline remain exact. No silent whole-file
+fallback/truncation occurs. State/scope/metadata mismatch fails; later disk changes
+do not rewrite retained evidence. Metadata and source remain distinct options.
+Both compose with existing plans, materialization, rendering and request assembly.
+This is caller-directed orientation-to-source, not automatic worker adoption,
+selection, capacity policy or sufficiency. Tests: tests/context/planning/test_map_source.py.
+
+The original RI coordinates remain authoritative in `unit.occurrence.source_range`.
+Generic source-search rendered line labels retain that component's documented
+logical `splitlines` convention; the adapter does not redefine those labels.

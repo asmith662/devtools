@@ -13,7 +13,12 @@ from devtools.context.python.project_configuration.models import (
     PythonConfigurationSelector,
     digest,
 )
-from devtools.context.python.project_configuration.settings import analyze_settings
+from devtools.context.python.project_configuration.settings import (
+    _MISSING,
+    _NON_TABLE,
+    _lookup,
+    analyze_settings,
+)
 
 if TYPE_CHECKING:
     from devtools.context.repository.resource import RepositoryResourceAddress
@@ -32,7 +37,7 @@ def analyze_python_project_configuration(
     """
     resource = snapshot.resource_at(address)
     derivation = digest(
-        "python-project-config-tomllib-declarations-v2",
+        "python-project-config-tomllib-declarations-v4",
         str(snapshot.repository_id),
         str(snapshot.id),
         address.value,
@@ -51,14 +56,14 @@ def analyze_python_project_configuration(
         settings = analyze_settings(data, derivation)
         for selector in PythonConfigurationSelector:
             key = tuple(selector.value.split("."))
-            value = _at(data, key)
-            if value is None:
+            value = _lookup(data, key)
+            if value is _MISSING:
                 absent.append(selector)
                 continue
             declarations.extend(
                 _selector_declarations(derivation, key, selector, value),
             )
-        dynamic = _at(data, ("project", "dynamic"))
+        dynamic = _lookup(data, ("project", "dynamic"))
         if isinstance(dynamic, list) and "readme" in dynamic:
             declarations = [
                 replace(item, unsupported_reason="dynamic-readme")
@@ -93,14 +98,6 @@ def analyze_python_project_configuration(
     )
 
 
-def _at(data: object, key: tuple[str, ...]) -> object:
-    for part in key:
-        if not isinstance(data, dict):
-            return None
-        data = data.get(part)
-    return data
-
-
 def _selector_declarations(
     derivation: str,
     key: tuple[str, ...],
@@ -117,7 +114,9 @@ def _selector_declarations(
     declarations = []
     for ordinal, item in items:
         reason = None
-        if not isinstance(item, str):
+        if item is _NON_TABLE:
+            reason = "non-table-parent"
+        elif not isinstance(item, str):
             reason = "unsupported-value-form"
         elif selector != PythonConfigurationSelector.README and ordinal is None:
             reason = "expected-array"

@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "5c7dc6710a649cbb7b332b00f6a06d37dbe4032b11940de37583da61c87b34c2",
+  "at": "2026-10-23T13:31:44.221230+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/agent-harness-mechanism-review.md",
+  "rationale": "CANDIDATE-02/15: source-and-test review shows upstream Tool definitions separate schema preparation, validation and orchestration. This is evidence for responsibility/API audit, not permission to mechanically split current large modules or replace ToolRunner.",
+  "duplicates": [
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Reuse the exact existing parent/proposal and preserve original payload, status and chain. Related canonical investigations are mapped in the original18 crosswalk; lexical duplicate matches do not authorize merging, approval or implementation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "ab825005af71b51e1c0d19fabd2d1e077531b36941f172f46642cd326aa6e6df"
+}

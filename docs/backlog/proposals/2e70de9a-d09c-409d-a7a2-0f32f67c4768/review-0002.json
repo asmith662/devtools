@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "2e70de9a-d09c-409d-a7a2-0f32f67c4768",
+  "proposal_sha256": "e4dfd85433515c99b2de082ae04df44c9008e6b5ed8e4f127ee843b1f808dde2",
+  "previous": "12ae18319c1735a66d05d3428932cd16bf7883d173ba104c0a313c4437509fdd",
+  "at": "2026-10-23T19:57:24.560907+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-policies-and-scientific-integrity-audit.md",
+  "rationale": "Implemented versioned read-only verification_v1 in separate commit0cc372503e8efbd899b3e0f724c903d8ebd040a2.26 independent regressions reject resealed bijective swaps, positional reorder, foreign/missing/neutral/visibility and schema/capture/package/freeze changes. Original96 pair bindings across six cases independently match authenticated archive members; no demonstrated historical corruption. Original unblind/report/ranking implementations stay frozen. Future analysis must use authenticated inputs and the verifier before joining labels; do not treat self-consistency as authenticity or silently migrate unsupported old versions. Recommend authorized status reconciliation after exact-scope review, not approval by this advisory.",
+  "duplicates": [],
+  "duplicate_disposition": "No approval, B-number, grant or status change. Preserve existing records; bounded overlap and proposed operator reconciliation described in rationale.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "04b47352fa70e0704c3a959f68c0b7ab2281bc68c6902c4c245336fa54af2e82"
+}

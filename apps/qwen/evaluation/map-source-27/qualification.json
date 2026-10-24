@@ -1,0 +1,9 @@
+{
+  "baseline_intended_failure": "missing map-to-exact-source disclosure adapter",
+  "qualification": "PASS full source-independent oracle with private runtime-only compatibility adapter; no installed source changes, no model disclosure",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "task_sha256": "1b225286fff53e1fb380829efec6020a3fa3e0b9e3feabcd26a1f01f677c0616",
+  "oracle_sha256": "0e4decc8e180a146703ed3600619e2a88aa5237dd720b7fae3cd5d7c10bb9e01",
+  "range_contract": "Actual RI declaration coordinates independently matched stdlib ast.get_source_segment; excludes preceding decorators; preserves nested contents and exact original line endings.",
+  "effects": "All fixtures in temporary bounded data directories; canonical maintained source untouched."
+}

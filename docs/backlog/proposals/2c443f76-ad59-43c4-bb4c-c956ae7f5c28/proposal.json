@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "2c443f76-ad59-43c4-bb4c-c956ae7f5c28",
+  "created_at": "2026-10-21T01:19:01.082542+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Support immutable per-command environment overrides",
+    "summary": "Complete the maintained command execution roadmap obligation for per-command environment overrides. Add optional environment: Mapping[str, str] | None to the existing immutable public Command specification. None (the default) and an empty mapping inherit the current parent environment at process launch; a nonempty mapping overlays only its keys, including empty-string and Unicode values. Never modify os.environ, including concurrent command execution. Snapshot caller mappings defensively, expose a read-only mapping, preserve frozen/value/hash semantics with order-independent equality/hash for equivalent overrides, and preserve the environment through every existing fluent operation. Provide with_environment(mapping) to replace overrides and without_environment() to restore inheritance. Reject non-mappings/non-string keys or values with TypeError and empty names, equals signs in names, or NUL in names/values with ValueError at construction and fluent replacement. Preserve argv, cwd, timeout, output/events/result identity and all existing command behavior. This is not a shell or permission grant. Investigate the existing implementation and related resources before coordinated edits. Behavioral acceptance, existing regressions, Ruff, formatting and strict typing are all mandatory; do not change tests or acceptance.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex qualified-10 roadmap/source audit 2026-10-21T01:19:01.081157+00:00"
+    },
+    "parent": "B-0009",
+    "resources": [
+      "src/devtools/resources/commands/models/command.py",
+      "src/devtools/resources/commands/execution.py"
+    ],
+    "evidence": [
+      "src/devtools/resources/commands/docs/overview.md",
+      "src/devtools/resources/commands/docs/execution.md",
+      "apps/qwen/evaluation/qualified-10/command-environment-overrides.json"
+    ],
+    "benefit": "Existing managed commands can configure child-specific execution without global environment mutation or shell workarounds.",
+    "uncertainty": "Named roadmap obligation, not a new authority system. Local task acceptance does not grant protected publication. No environment deletion API or process-group work is included.",
+    "dependencies": [
+      "Existing immutable Command, fluent replace semantics and managed child lifecycle"
+    ]
+  },
+  "payload_sha256": "194ed69ffd37b972369485c2e58127f7d7b77be3d69c52d2c07d6d6a917ea1d2"
+}

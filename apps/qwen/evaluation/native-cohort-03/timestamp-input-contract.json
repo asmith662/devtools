@@ -1,0 +1,64 @@
+{
+  "baseline_hashes": [
+    [
+      "src/devtools/core/time/parsing.py",
+      "8be6255c582691e906b2db74037e3793ef37dee1aa0858243b3e8c85473f01d0"
+    ],
+    [
+      "tests/core/time/test_parsing.py",
+      "55bfe249168f0347ed061019bd8799448b4981777430ff87d13d5ebff19ce190"
+    ],
+    [
+      "src/devtools/core/time/errors.py",
+      "ba6f629fe1e11c3d7a29d63264427da94f731ddf25228818e9419a59fb83d47e"
+    ],
+    [
+      "src/devtools/core/time/models/timestamp.py",
+      "a50c15fad1b5c9209978be7916f2028ad140e56995600a255b37b6267e37408a"
+    ]
+  ],
+  "baseline_revision": "d8741a52f9342bd180e414832e8f31b52f4c8c9a",
+  "call_seconds": 300,
+  "context": [
+    [
+      "src/devtools/core/time/parsing.py",
+      "timestamp input contract",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/time/test_parsing.py",
+      "timestamp input contract",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/time/errors.py",
+      "timestamp input contract",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/time/models/timestamp.py",
+      "timestamp input contract",
+      "mixed",
+      "none"
+    ]
+  ],
+  "context_mode": "on-demand",
+  "maximum_calls": 10,
+  "name": "timestamp-input-contract",
+  "objective": "PUBLIC BEHAVIOR: Unsupported input types passed to parse_timestamp must raise TypeError at the public parsing boundary, rather than leaking an AttributeError from string operations. Unsupported types include bool, numbers, bytes and arbitrary objects.\nCOMPATIBILITY: Preserve identity for Timestamp inputs; datetime/date support, UTC normalization, valid supported strings and None behavior remain unchanged. Empty and malformed strings must continue to raise TimestampParsingError, not TypeError. Keep public APIs and parsing formats.\nQUALITY: Existing tests, independent supported/unsupported and exception-identity checks, strict typing, Ruff and formatting must all pass. No new public exception or unrelated refactor.",
+  "oracle": "from datetime import date, datetime, UTC, timedelta, timezone\nfrom devtools.core.time import Timestamp, TimestampParsingError, parse_timestamp\nfor value in (True,False,1,1.5,b\"2020-01-01\",object(),[],{}):\n    try: parse_timestamp(value)\n    except TypeError: pass\n    except Exception as error: raise AssertionError(type(error).__name__) from error\n    else: raise AssertionError(\"unsupported type admitted\")\nfor value in (\"\", \"not-a-timestamp\"):\n    try: parse_timestamp(value)\n    except TimestampParsingError: pass\n    else: raise AssertionError(\"invalid string contract lost\")\nstamp=Timestamp(datetime(2020,1,1,tzinfo=UTC))\nassert parse_timestamp(stamp) is stamp\nassert parse_timestamp(date(2020,1,1))==stamp\nassert parse_timestamp(datetime(2020,1,1))==stamp\nassert parse_timestamp(datetime(2020,1,1,2,tzinfo=timezone(timedelta(hours=2))))==stamp\nassert parse_timestamp(\"2020-01-01\")==stamp\nassert isinstance(parse_timestamp(None),Timestamp)\nprint(\"16 timestamp contract scenarios passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\", flush=True)\nimport asyncio, sys\nfrom devtools.resources.commands import Command, CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject = next(p for p in Path(module.__file__).parents if (p / \"pyproject.toml\").is_file())\ncommand = Command(sys.executable).args(\"-m\", \"mypy\", str(Path(module.__file__))).cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\nchecked = asyncio.run(CommandExecutor().execute(command))\nprint(checked.stdout.decode(errors=\"replace\"), flush=True)\nassert checked.exit_code == 0, \"Independent typing acceptance failed: \" + checked.stderr.decode(errors=\"replace\")\n",
+  "output_tokens": 4096,
+  "quality_checks": true,
+  "read_paths": [
+    "src/devtools/core/time/errors.py",
+    "src/devtools/core/time/models/timestamp.py"
+  ],
+  "source": "src/devtools/core/time/parsing.py",
+  "tests": [
+    "tests/core/time/test_parsing.py"
+  ],
+  "wall_seconds": 900
+}

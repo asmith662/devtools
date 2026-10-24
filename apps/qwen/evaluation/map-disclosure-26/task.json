@@ -1,0 +1,236 @@
+{
+  "name": "caller-directed-repository-map-disclosure-26",
+  "objective": "Deliver caller-directed compact repository-map Context disclosure using the existing devtools.context.planning owner and existing RepositoryMapView/RepositoryMapSymbol evidence. Repository-map ranking exists already; automatic selection, new ranking, signatures, source bodies and a new graph engine are NOT requested. Implement and publicly export from devtools.context.planning a factory choose_repository_map_disclosure(*, purpose, snapshot, view, symbols), where symbols is a nonempty tuple of explicitly selected existing RepositoryMapSymbol values from the supplied canonical RepositoryMapView. Return an immutable existing-PlannedDisclosure-compatible option. A responsibility-focused new module within context/planning is authorized; reuse existing plan, materialization and rendering contracts and native map/graph validation. No top-level context export is required.\n\nNormative behavior: preserve the caller's selected symbol order, including symbols from multiple resources and functions/classes/direct methods. Do not add globally ranked or unselected symbols. Reject blank purposes, empty selections, repeated selected symbol identities, symbols not exactly present in the supplied view, foreign/stale snapshot or repository state, missing or changed supporting resources, and inconsistent selected symbol metadata. Match existing ValueError/DisclosureMaterializationError conventions; materialization must reauthenticate its dependencies, not trust only factory-time checks. Do not invent names, locations, source, parentage or runtime module/import facts. Existing map names use direct lexical qualification (for example Class.method), not inferred Python runtime identity. Use existing canonical validation/building helpers rather than implementing another parser or graph validator.\n\nMaterialize one compact metadata-only MaterializedDisclosureItem: disclose each selected symbol's exact resource address, node kind value, qualified_name, subject identity, and full original declaration source range (one-based start/end lines and zero-based UTF-8 start/end columns, exclusive end). Include snapshot identity and corresponding retained content identities. Keep native_provenance equal to the selected symbols tuple, retaining their original exact declaration/derivation support. resource_addresses must contain the selected resources once each, in first-selected-occurrence order, with aligned content_identities. Do NOT disclose source bodies, source signatures, unselected symbol names or scores. This is an orientation map, not exact source or a sufficiency claim. Original source can still be acquired separately through existing options. The option identity must deterministically bind the representation, nonblank purpose, repository/snapshot and ordered native selected symbol evidence; same inputs give the same identity, and changed purpose/order/selection/state gives different identities. Its representation must distinguish this metadata projection from whole-resource and exact-source disclosure.\n\nThe option must compose unchanged with plan_disclosures, materialize_disclosure_plan, render_context_disclosure and assemble_context_disclosure_model_request, including mixed plans with an existing whole-resource option. Preserve existing choices and APIs. Work within existing Context/RI/Retrieval ownership: caller selection remains explicit, no automatic budgets, ranking, retrieval, parser, executor, publication or new framework. Inspect the established owner and essential dependencies, then implement; further inspection should resolve a specific missing dependency. Preserve observed pre-transaction anchors and current atomic limits; all components in a transaction refer to the same pre-edit source. After an admissible candidate, invoke actual check_changes while installed, use real diagnostics to repair if needed, recheck after changes, then complete only with a passing current report. Do not search for private oracle code.",
+  "source": "src/devtools/context/planning/__init__.py",
+  "tests": [
+    "tests/context/planning/test_plan.py",
+    "tests/context/retrieval/repository_map/test_ranking.py"
+  ],
+  "read_paths": [
+    "src/devtools/context/planning/plan.py",
+    "src/devtools/context/planning/materialization.py",
+    "src/devtools/context/planning/rendering.py",
+    "src/devtools/context/planning/resource.py",
+    "src/devtools/context/planning/source.py",
+    "src/devtools/context/retrieval/repository_map/view.py",
+    "src/devtools/context/retrieval/repository_map/__init__.py",
+    "src/devtools/context/retrieval/repository_map/ranking.py",
+    "src/devtools/context/retrieval/graph/view.py",
+    "src/devtools/context/retrieval/graph/pagerank.py",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/classes/declarations.py",
+    "src/devtools/context/repository/snapshot.py",
+    "src/devtools/context/repository/resource.py",
+    "tests/context/retrieval/graph/test_typed.py",
+    "tests/context/retrieval/test_composition.py"
+  ],
+  "new_paths": [
+    "src/devtools/context/planning/repository_map.py"
+  ],
+  "baseline_revision": "cab931e3c5b56dcae87341c8226f6efec634457e",
+  "baseline_hashes": [
+    [
+      "src/devtools/context/planning/__init__.py",
+      "af97161dffac21d6191dd28f794fe63740868919c14a0b85b0e6327814c299a6"
+    ],
+    [
+      "tests/context/planning/test_plan.py",
+      "7276f720b7d22737d368e57fb0f8e3022e1e79b4f05db58cae5dee1a389d45cf"
+    ],
+    [
+      "tests/context/retrieval/repository_map/test_ranking.py",
+      "846af288106de889d5166a82462bc7563f3dcd1ad8797992086de594dca0bfd8"
+    ],
+    [
+      "src/devtools/context/planning/plan.py",
+      "b33122d1d2b4b6d3f7cf53986a2aacf19e9913ef47423b2ff2a29f637d258260"
+    ],
+    [
+      "src/devtools/context/planning/materialization.py",
+      "a6b75289ff3a2e36b5435852ed9952b29d27df6730a48ee6a16c723790636a6e"
+    ],
+    [
+      "src/devtools/context/planning/rendering.py",
+      "335f69651d6a377d636632d80b6b983c21370677156cc6024c69cb661d32ea23"
+    ],
+    [
+      "src/devtools/context/planning/resource.py",
+      "5548c1cba1903ac522165abc3be78e55fb8c48a02146ad5ee53e2b4eb2ec163e"
+    ],
+    [
+      "src/devtools/context/planning/source.py",
+      "26071bc42f223b71122306c6a033c716a62cb2d779183480964c80ebe99f995a"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/view.py",
+      "c3a6d7b9385431d808c3f45806c4a3a23622690e8d2b0e0df303f8b024ca71d3"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/__init__.py",
+      "f2eb6b846914a32151c61fab4f2c4dc2096b27d070b5e403e50eb491587b189d"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/ranking.py",
+      "6c3dcb933efcf20904c4f5a2f4145fc448e145dcdbe206f17f6aaa97bcecf93c"
+    ],
+    [
+      "src/devtools/context/retrieval/graph/view.py",
+      "049659233d92f3d477e1b0c7b40948c090ded340249fcb9a250834ff0c9f2a34"
+    ],
+    [
+      "src/devtools/context/retrieval/graph/pagerank.py",
+      "ada4ad3d820cf38225c5bb6abfede77e4d16972291bcf8d0350c7cbfae243b39"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "a256b2dfcd13bc2ee127207c29e576fddc618d2a6582f8f9f3d5b4ff38057876"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63"
+    ],
+    [
+      "src/devtools/context/repository/snapshot.py",
+      "bca32b4c24b7258ff9190e2ae3c64ff57b3a9022e8bb71c3e6f56b0a81859d3f"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89"
+    ],
+    [
+      "tests/context/retrieval/graph/test_typed.py",
+      "7778037cd59a769e2c49aca32c25da6d5bf845b4c9056a42032bcdb36efc8b38"
+    ],
+    [
+      "tests/context/retrieval/test_composition.py",
+      "ccc79773425a326362263fe37591a4d3528881a3288601a89163102e3f7d7653"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/context/planning/__init__.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/planning/test_plan.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/retrieval/repository_map/test_ranking.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/plan.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/materialization.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/rendering.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/resource.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/planning/source.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/view.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/__init__.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/repository_map/ranking.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/graph/view.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/retrieval/graph/pagerank.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/function/declarations.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/python/classes/declarations.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/snapshot.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/context/repository/resource.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/retrieval/graph/test_typed.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/context/retrieval/test_composition.py",
+      "repository map Context disclosure materialization exact native evidence",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import sys\nimport tempfile\nfrom pathlib import Path\nfrom dataclasses import replace, FrozenInstanceError\nsys.path.insert(0, str(Path.cwd()))\nimport devtools.context.planning as planning\nfrom devtools.context.repository.identity import RepositoryId\nfrom devtools.context.repository.snapshot import RepositorySnapshotId\nfrom devtools.context.retrieval.repository_map import build_repository_map_view\nfrom devtools.models.interaction import ModelRequest, Prompt\nfrom tests.context.retrieval.graph.test_typed import _inputs, _view\n\nchoose = getattr(planning, 'choose_repository_map_disclosure', None)\nassert callable(choose), 'missing caller-directed repository-map disclosure factory'\n\ndef rejects(action, description):\n    try:\n        action()\n    except ValueError:\n        return\n    raise AssertionError(description)\n\nwith tempfile.TemporaryDirectory() as temporary:\n    inputs = _inputs(Path(temporary))\n    snapshot = inputs[0]\n    view = build_repository_map_view(snapshot, core=_view(*inputs[:6]))\n    by_name = {symbol.qualified_name: symbol for symbol in view.symbols}\n    symbols = tuple(by_name[name] for name in ('Child.call', 'Base', 'helper'))\n    purpose = 'Orient to selected implementation owners'\n    selected = choose(purpose=purpose, snapshot=snapshot, view=view, symbols=symbols)\n    assert selected.purpose == purpose\n    assert selected.repository_id == snapshot.repository_id\n    assert selected.snapshot_id == snapshot.id\n    assert selected.identity == choose(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols).identity\n    assert selected.identity != choose(purpose=purpose+'!',snapshot=snapshot,view=view,symbols=symbols).identity\n    assert selected.identity != choose(purpose=purpose,snapshot=snapshot,view=view,symbols=tuple(reversed(symbols))).identity\n    assert selected.identity != choose(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols[:1]).identity\n    plan = planning.plan_disclosures(purpose=purpose,snapshot=snapshot,disclosures=(selected,))\n    realized = planning.materialize_disclosure_plan(plan=plan,snapshot=snapshot)\n    item = realized.items[0]\n    assert item.native_provenance == symbols, 'lost original selected map/RI evidence'\n    addresses = tuple(dict.fromkeys(symbol.node.resource_address for symbol in symbols))\n    assert item.resource_addresses == addresses\n    assert item.content_identities == tuple(snapshot.resource_at(address).content_identity for address in addresses)\n    assert str(snapshot.id) in item.text\n    assert all(str(identity) in item.text for identity in item.content_identities)\n    positions=[]\n    for symbol in symbols:\n        positions.append(item.text.index(symbol.qualified_name))\n        assert symbol.node.resource_address.value in item.text\n        assert symbol.node.kind.value in item.text\n        assert symbol.declaration.subject.identity in item.text\n        span=symbol.declaration.support.source_range\n        assert all(str(value) in item.text for value in (span.start_line,span.end_line,span.start_column_utf8,span.end_column_utf8))\n    assert positions == sorted(positions), 'selected symbol order changed'\n    assert 'caller' not in item.text and 'Base.run' not in item.text, 'unselected symbols disclosed'\n    assert 'def helper(' not in item.text and 'class Base:' not in item.text and 'Base.run()' not in item.text, 'source bodies/signatures disclosed'\n    assert item.representation not in ('whole-observed-resource-v1','exact-source-search-unit-v1')\n    rendered=planning.render_context_disclosure(realized)\n    original=ModelRequest(prompt=Prompt('Keep this engineering objective','user'))\n    assembled=planning.assemble_context_disclosure_model_request(task_request=original,context=rendered)\n    assert original.prompt.content == 'Keep this engineering objective'\n    assert item.text in assembled.prompt.content and original.prompt.content in assembled.prompt.content\n    whole=planning.choose_whole_resource_disclosure(purpose=purpose,snapshot=snapshot,resource_address=addresses[0])\n    mixed=planning.plan_disclosures(purpose=purpose,snapshot=snapshot,disclosures=(selected,whole))\n    assert len(planning.materialize_disclosure_plan(plan=mixed,snapshot=snapshot).items)==2\n    for changes, label in [\n        ({'purpose':' '},'blank purpose'), ({'symbols':()},'empty selection'),\n        ({'symbols':(symbols[0],symbols[0])},'duplicate selection'),\n        ({'symbols':(replace(symbols[0],qualified_name='invented'),)},'inconsistent symbol metadata'),\n        ({'snapshot':replace(snapshot,id=RepositorySnapshotId('f'*64))},'foreign snapshot'),\n        ({'snapshot':replace(snapshot,repository_id=RepositoryId.parse('00000000-0000-4000-8000-000000000026'))},'foreign repository'),\n    ]:\n        arguments=dict(purpose=purpose,snapshot=snapshot,view=view,symbols=symbols)\n        arguments.update(changes)\n        rejects(lambda:choose(**arguments),label+' accepted')\n    for changed in (\n        replace(snapshot,id=RepositorySnapshotId('e'*64)),\n        replace(snapshot,repository_id=RepositoryId.parse('00000000-0000-4000-8000-000000000026')),\n        replace(snapshot,resources=tuple(resource for resource in snapshot.resources if resource.address != addresses[0])),\n    ):\n        rejects(lambda:selected.materialize(changed),'stale/missing source accepted at materialization')\n    resource=snapshot.resource_at(addresses[0])\n    from devtools.context.repository.resource import ContentIdentity\n    changed=replace(snapshot,resources=tuple(replace(item,content_identity=ContentIdentity('a'*64)) if item.address==resource.address else item for item in snapshot.resources))\n    rejects(lambda:selected.materialize(changed),'changed retained content identity accepted')\n    # Later disk changes cannot rewrite retained source evidence or map disclosure.\n    path=Path(temporary)/addresses[0].value\n    path.write_text('unrelated later source',encoding='utf-8')\n    assert selected.materialize(snapshot)==item\n    try:\n        selected.purpose='mutated'\n    except (FrozenInstanceError,AttributeError):\n        pass\n    else:\n        raise AssertionError('mutable disclosure option')\nprint('PASS: explicit compact map selection, exact identities/native provenance, mixed plans/model assembly, source-state rejection and retained-source behavior')\n",
+  "maximum_calls": 24,
+  "wall_seconds": 1800,
+  "output_tokens": 8192,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "quality_checks": true,
+  "command_tools": true,
+  "path_edits": true,
+  "maximum_proposals": 6,
+  "tool_actions": 32
+}

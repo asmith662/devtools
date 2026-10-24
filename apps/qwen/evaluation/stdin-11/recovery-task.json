@@ -1,0 +1,239 @@
+{
+  "name": "command-binary-stdin-continuation-11-recovered",
+  "objective": "Complete the maintained managed-command roadmap obligation for binary standard input. Add stdin: bytes | None = None to the existing immutable public Command specification, plus with_stdin(bytes) replacement and without_stdin() removal. None preserves current inherited-stdin behavior; configured bytes (including empty bytes) must be delivered exactly through a child pipe followed by EOF. Accept only immutable bytes or None at construction; invalid types must raise TypeError, including fluent replacements. Preserve command value/hash semantics and stdin through every existing fluent operation. Feed input while both output streams are drained so large input and a child that writes large output before reading cannot deadlock. Early child input closure/exit remains an ordinary CommandResult, not an unhandled pipe error. Existing timeout/cancellation cleanup must still bound blocked input and reap the immediate child. Preserve argv, cwd, output/event retention and result identity, without shell execution or parent-global mutation. Investigate the existing source and dependencies; do not change tests or acceptance. Independent behavior, original regressions, Ruff, formatting and strict typing are mandatory.",
+  "source": "src/devtools/resources/commands/models/command.py",
+  "additional_edit_paths": [
+    "src/devtools/resources/commands/execution.py"
+  ],
+  "tests": [
+    "tests/resources/commands/test_models.py",
+    "tests/resources/commands/test_execution.py",
+    "tests/resources/commands/test_handle.py",
+    "tests/resources/commands/test_events.py",
+    "tests/resources/commands/test_errors.py",
+    "tests/resources/commands/test_decoded_output.py"
+  ],
+  "baseline_revision": "e9abbc76a8c1fb575feb16cca645944110f5c28c",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "d57c42635a2775e5bf85ffb4ab221b1590fca7b39784c7f0407b1362e5094f52"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "ba3c7cd654df3435854de45bfe6a9b434a44af1a182bea3047f000cc7ba49ff4"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "bb1e2c4159d1650c952eb3c93202faccdf2b1e78dd5412d25cf05f29d99d86b6"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "7c2b485593ee0ced82c82963f573272069a37d714295fd201d25b78358281b41"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "20ce6010133bdd12a1005634e6b033a986de946e74d162d68589286298ecb1da"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "136c5ed5a4494ab00dbc5d3c82c75024bc681c1c3117756e4b0e69cbf2bf6779"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "d3e83dcb4520148e17673dc87731001be5c4be9e76f85aca407d1fe757c2a90d"
+    ],
+    [
+      "src/devtools/resources/commands/models/__init__.py",
+      "6c4863894eaa186fb2cb459c1ebc2066ccfb1171591531fccc930ac5b42c4b09"
+    ],
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "6f52ca8f42219c12e1650d7bee95d6f1a45f0f78a5ba2ea1c0d20b6f2cdfa384"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "82f90b288a83ca33aa0adbb3c1716a6619483b03e42c1b90affef723f35d1af8"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "55ee926b5e94a7d468c37bf569b91e24cc2b228630424edd3f28c5b0d09194d1"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "6a92fda96e27e6f57f822e013e0d9e56846762c3eef9c84fcada2e45ac1ce906"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "c2760a1d0db7bc77fe20cd3ea920890f00a32843dd2d8043d7c8d9b8bb2e193a"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "8aa93b6ae417be679ed6b24db3f2471b104578023b73997e558e38b03f863121"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/commands/models/command.py",
+      "command",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/execution.py",
+      "execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "test_models",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_execution.py",
+      "test_execution",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_handle.py",
+      "test_handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_events.py",
+      "test_events",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_errors.py",
+      "test_errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_decoded_output.py",
+      "test_decoded_output",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/__init__.py",
+      "__init__",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/output.py",
+      "output",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "result",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/handle.py",
+      "handle",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/events.py",
+      "events",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/commands/errors.py",
+      "errors",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "models",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "writing",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "resolution",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import asyncio, hashlib, inspect, sys\nfrom dataclasses import FrozenInstanceError\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom devtools.core.paths import ResolvedPath\nfrom devtools.core.time import Duration\nfrom devtools.resources.commands import Command, CommandExecutor, CommandTimeoutError\n\ndef model_checks(cls):\n    assert \"stdin\" in inspect.signature(cls).parameters, \"Command must support optional binary stdin\"\n    command = cls(sys.executable, stdin=b\"payload\\x00\\xff\")\n    assert command.stdin == b\"payload\\x00\\xff\"\n    assert cls(sys.executable).stdin is None\n    assert command == cls(sys.executable, stdin=b\"payload\\x00\\xff\")\n    assert hash(command) == hash(cls(sys.executable, stdin=b\"payload\\x00\\xff\"))\n    assert command != cls(sys.executable, stdin=b\"other\")\n    assert hasattr(command,\"with_stdin\") and hasattr(command,\"without_stdin\"), \"Expose immutable stdin replacement/removal\"\n    assert command.with_stdin(b\"\").stdin == b\"\"\n    assert command.without_stdin().stdin is None\n    for transformed in (command.args(\"-V\"),command.with_args(\"-V\"),command.without_args(),command.with_executable(sys.executable),command.cwd(ResolvedPath(Path.cwd())),command.without_cwd(),command.with_timeout(Duration.seconds(2)),command.without_timeout()):\n        assert transformed.stdin == command.stdin\n    for invalid in (\"text\",bytearray(b\"mutable\"),1,False,memoryview(b\"view\")):\n        try:cls(sys.executable,stdin=invalid)\n        except TypeError:pass\n        else:raise AssertionError(\"Only immutable bytes or None may be configured as stdin\")\n        try:command.with_stdin(invalid)\n        except TypeError:pass\n        else:raise AssertionError(\"Fluent stdin replacement must enforce byte validation\")\n    try:setattr(command,\"stdin\",b\"changed\")\n    except FrozenInstanceError:pass\n    else:raise AssertionError(\"Command must remain frozen\")\n\nasync def execution_checks(cls, executor_cls):\n    with TemporaryDirectory() as directory:\n        path=ResolvedPath(Path(directory))\n        echo=\"import sys; data=sys.stdin.buffer.read(); sys.stdout.buffer.write(data); sys.stderr.buffer.write(b'err')\"\n        for data in (b\"\",b\"\\x00\\xffa\\r\\nb\\n\",b\"abc\"*100000):\n            command=cls(sys.executable,(\"-c\",echo),working_directory=path,timeout=Duration.seconds(8),stdin=data)\n            result=await executor_cls().execute(command)\n            assert result.succeeded and result.stdout==data and result.stderr==b\"err\", \"Child stdin must receive exact bytes and EOF without disturbing output capture\"\n            assert result.command is command\n        # Child writes both streams beyond pipe capacity before reading stdin.\n        # Serial write-before-drain implementations deadlock here.\n        payload=b\"input\"*50000\n        script=\"import sys,hashlib; sys.stdout.buffer.write(b'o'*200000); sys.stdout.buffer.flush(); sys.stderr.buffer.write(b'e'*200000); sys.stderr.buffer.flush(); data=sys.stdin.buffer.read(); print(hashlib.sha256(data).hexdigest())\"\n        result=await executor_cls().execute(cls(sys.executable,(\"-c\",script),timeout=Duration.seconds(8),stdin=payload))\n        assert result.succeeded and result.stdout[:200000] == b\"o\"*200000 and result.stdout[200000:].splitlines() == [hashlib.sha256(payload).hexdigest().encode()] and result.stderr==b\"e\"*200000, \"Input feeding and both output drains must make concurrent progress\"\n        # Exiting without consuming input is a normal command result, not a\n        # broken-pipe exception escaping the managed lifecycle.\n        result=await executor_cls().execute(cls(sys.executable,(\"-c\",\"import sys;sys.exit(7)\"),timeout=Duration.seconds(8),stdin=b\"x\"*300000))\n        assert result.exit_code == 7, \"Early input closure must preserve ordinary exit status\"\n        try:\n            await executor_cls().execute(cls(sys.executable,(\"-c\",\"import time;time.sleep(5)\"),timeout=Duration.seconds(0.1),stdin=b\"x\"*300000))\n        except CommandTimeoutError:pass\n        else:raise AssertionError(\"Timeout must also bound blocked input feeding and clean up the child\")\n        # Independent concurrent byte streams must not be interleaved.\n        results=await asyncio.gather(*(executor_cls().execute(cls(sys.executable,(\"-c\",echo),timeout=Duration.seconds(8),stdin=d)) for d in (b\"first\",b\"second\")))\n        assert [r.stdout for r in results]==[b\"first\",b\"second\"]\n\ndef run_checks(cls=Command,executor_cls=CommandExecutor):\n    model_checks(cls)\n    asyncio.run(execution_checks(cls,executor_cls))\n    print(\"PASS: immutable binary stdin, fluent/validation compatibility, exact empty/binary/large input, concurrent pipe pressure, early exit, timeout and isolated executions\")\n\nif __name__==\"__main__\":run_checks()\n",
+  "maximum_calls": 24,
+  "output_tokens": 8192,
+  "wall_seconds": 1538,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/commands/__init__.py",
+    "src/devtools/resources/commands/models/__init__.py",
+    "src/devtools/resources/commands/models/output.py",
+    "src/devtools/resources/commands/models/result.py",
+    "src/devtools/resources/commands/handle.py",
+    "src/devtools/resources/commands/events.py",
+    "src/devtools/resources/commands/errors.py",
+    "src/devtools/core/paths/models.py",
+    "src/devtools/core/paths/resolution.py",
+    "src/devtools/resources/filesystem/writing.py",
+    "src/devtools/resources/filesystem/resolution.py"
+  ],
+  "quality_checks": true,
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [],
+  "disclose_edit_paths": false,
+  "maximum_proposals": 6,
+  "path_edits": true
+}

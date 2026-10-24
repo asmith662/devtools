@@ -1,0 +1,3322 @@
+{
+  "at": "2026-10-20T15:02:44.588217+00:00",
+  "runs": [
+    {
+      "run": "devtools-command",
+      "accepted": true,
+      "elapsed_seconds": 161.710677199997,
+      "started_at": "2026-10-20T14:13:06.831437+00:00",
+      "finished_at": "2026-10-20T14:15:48.542099+00:00",
+      "result_sha256": "63b2dff6c41394162e9ea6131bb930fbf0a29d50824fd57412d565afd756139a",
+      "task_sha256": "2976e7eda8f3a1df4fca0ae5193768506b65def59c67e130deaf9e8b56413b27",
+      "oracle_sha256": "c7a3d935b64462fed895f5ec6cf0bf5e2a344a70d420db4e5594a0f465bec0be",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/commands/models/command.py",
+          "sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71"
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "ACCEPTED",
+      "model_calls": 8,
+      "input_tokens": 68843,
+      "output_tokens": 2588,
+      "repair_cycles": 1,
+      "proposals_attempted": 2,
+      "proposals_admitted": 2,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 9,
+      "context_actions_accepted": 5,
+      "source_text_bytes_disclosed": 9559,
+      "context_bytes_disclosed": 23854,
+      "peak_input_tokens": 22959,
+      "omitted_exchanges": 0,
+      "model_seconds": 157.56419079995248,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1682,
+            "output_tokens": 142,
+            "reasoning_tokens": null,
+            "total_tokens": 1824
+          },
+          "model_seconds": 23.37895030004438,
+          "input_tokens_measured": 1682
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 2012,
+            "output_tokens": 48,
+            "reasoning_tokens": null,
+            "total_tokens": 2060
+          },
+          "model_seconds": 2.6126803000224754,
+          "input_tokens_measured": 2012
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5020,
+            "output_tokens": 254,
+            "reasoning_tokens": null,
+            "total_tokens": 5274
+          },
+          "model_seconds": 13.82960469997488,
+          "input_tokens_measured": 5020
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6211,
+            "output_tokens": 252,
+            "reasoning_tokens": null,
+            "total_tokens": 6463
+          },
+          "model_seconds": 11.725750799989328,
+          "input_tokens_measured": 6211
+        },
+        {
+          "number": 5,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9503,
+            "output_tokens": 141,
+            "reasoning_tokens": null,
+            "total_tokens": 9644
+          },
+          "model_seconds": 9.28373169992119,
+          "input_tokens_measured": 9503
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10260,
+            "output_tokens": 156,
+            "reasoning_tokens": null,
+            "total_tokens": 10416
+          },
+          "model_seconds": 7.672208099975251,
+          "input_tokens_measured": 10260
+        },
+        {
+          "number": 7,
+          "disposition": "TESTS_FAILED",
+          "termination": "tool_call",
+          "edits": [
+            {
+              "end": 280,
+              "new_length": 1137,
+              "new_text_sha256": "ea78d11a9606b06066f946f5ea076cd7c4586508f589c4128a99da59dc96c2e0",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "hZlp9Ue6WMnFoXS7nLcQTP7fa9Xmzwy0",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    151
+                  ],
+                  "path": "src/devtools/resources/commands/models/command.py",
+                  "qualified_name": null,
+                  "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                  "span": [
+                    0,
+                    4380
+                  ],
+                  "unit": "812d5566f49f549e280d3ddebad9b80233c60176f9ba8c993cb809884f2b3b64",
+                  "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+                },
+                "path": "src/devtools/resources/commands/models/command.py",
+                "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4380
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                "source_length": 4380,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Command specification model.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.core.time import Duration\n\n\n@dataclass(frozen=True, slots=True)\nclass Command:\n    \"\"\"Describe an immutable command execution specification.\n\n    A command identifies an executable separately from its arguments and does\n    not imply shell parsing, interpolation, or quoting.\n\n    Fluent methods return new command instances and never mutate the original.\n\n    Example::\n\n        command = (\n            Command(\"uv\")\n            .args(\"run\", \"pytest\", \"-q\")\n            .cwd(project_root)\n            .with_timeout(Duration.minutes(2))\n        )\n\n    :ivar executable: Executable name or path.\n    :ivar arguments: Ordered executable arguments.\n    :ivar working_directory: Optional resolved working directory.\n    :ivar timeout: Optional maximum execution duration.\n    \"\"\"\n\n    executable: str\n    arguments: tuple[str, ...] = ()\n    working_directory: ResolvedPath | None = None\n    timeout: Duration | None = None\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate command invariants.\"\"\"\n        self._validate()\n\n    def _validate(self) -> None:\n        \"\"\"Validate the command specification.\n\n        :raises ValueError: If the executable is empty or whitespace-only.\n        \"\"\"\n        if not self.executable.strip():\n            msg = \"Command executable cannot be empty.\"\n            raise ValueError(msg)\n\n    @property\n    def argv(self) -> tuple[str, ...]:\n        \"\"\"Return the complete process argument vector.\n\n        :returns: Executable followed by all ordered arguments.\n        \"\"\"\n        return (self.executable, *self.arguments)\n\n    def args(self, *arguments: str) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: str) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )\n\n    def without_args(self) -> Command:\n        \"\"\"Remove all command arguments.\n\n        :returns: New command with no arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(),\n        )\n\n    def with_executable(self, executable: str) -> Command:\n        \"\"\"Replace the command executable.\n\n        :param executable: Replacement executable name or path.\n        :returns: New command with the replacement executable.\n        :raises ValueError: If the replacement executable is blank.\n        \"\"\"\n        return replace(\n            self,\n            executable=executable,\n        )\n\n    def cwd(self, working_directory: ResolvedPath) -> Command:\n        \"\"\"Set the command working directory.\n\n        :param working_directory: Directory in which the command should run.\n        :returns: New command with the supplied working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=working_directory,\n        )\n\n    def without_cwd(self) -> Command:\n        \"\"\"Remove the configured working directory.\n\n        :returns: New command without an explicit working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=None,\n        )\n\n    def with_timeout(self, timeout: Duration) -> Command:\n        \"\"\"Set the maximum command execution duration.\n\n        :param timeout: Maximum execution duration.\n        :returns: New command with the supplied timeout.\n        \"\"\"\n        return replace(\n            self,\n ",
+                "truncated": true,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4380
+                ],
+                "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "2937eb4f84e98ac0334501576a386fb0dd8bbd5d48a6546e0d03f53704107138",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "20hsnAqtNu9oAk5LlM9JRWOOe1txHxDk",
+              "start": 170,
+              "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+            },
+            {
+              "end": 1578,
+              "new_length": 525,
+              "new_text_sha256": "eb361313cd130231662e4466c3880af5d917c4161792a3960268e087fc8db8da",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "hZlp9Ue6WMnFoXS7nLcQTP7fa9Xmzwy0",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    151
+                  ],
+                  "path": "src/devtools/resources/commands/models/command.py",
+                  "qualified_name": null,
+                  "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                  "span": [
+                    0,
+                    4380
+                  ],
+                  "unit": "812d5566f49f549e280d3ddebad9b80233c60176f9ba8c993cb809884f2b3b64",
+                  "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+                },
+                "path": "src/devtools/resources/commands/models/command.py",
+                "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4380
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                "source_length": 4380,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Command specification model.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.core.time import Duration\n\n\n@dataclass(frozen=True, slots=True)\nclass Command:\n    \"\"\"Describe an immutable command execution specification.\n\n    A command identifies an executable separately from its arguments and does\n    not imply shell parsing, interpolation, or quoting.\n\n    Fluent methods return new command instances and never mutate the original.\n\n    Example::\n\n        command = (\n            Command(\"uv\")\n            .args(\"run\", \"pytest\", \"-q\")\n            .cwd(project_root)\n            .with_timeout(Duration.minutes(2))\n        )\n\n    :ivar executable: Executable name or path.\n    :ivar arguments: Ordered executable arguments.\n    :ivar working_directory: Optional resolved working directory.\n    :ivar timeout: Optional maximum execution duration.\n    \"\"\"\n\n    executable: str\n    arguments: tuple[str, ...] = ()\n    working_directory: ResolvedPath | None = None\n    timeout: Duration | None = None\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate command invariants.\"\"\"\n        self._validate()\n\n    def _validate(self) -> None:\n        \"\"\"Validate the command specification.\n\n        :raises ValueError: If the executable is empty or whitespace-only.\n        \"\"\"\n        if not self.executable.strip():\n            msg = \"Command executable cannot be empty.\"\n            raise ValueError(msg)\n\n    @property\n    def argv(self) -> tuple[str, ...]:\n        \"\"\"Return the complete process argument vector.\n\n        :returns: Executable followed by all ordered arguments.\n        \"\"\"\n        return (self.executable, *self.arguments)\n\n    def args(self, *arguments: str) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: str) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )\n\n    def without_args(self) -> Command:\n        \"\"\"Remove all command arguments.\n\n        :returns: New command with no arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(),\n        )\n\n    def with_executable(self, executable: str) -> Command:\n        \"\"\"Replace the command executable.\n\n        :param executable: Replacement executable name or path.\n        :returns: New command with the replacement executable.\n        :raises ValueError: If the replacement executable is blank.\n        \"\"\"\n        return replace(\n            self,\n            executable=executable,\n        )\n\n    def cwd(self, working_directory: ResolvedPath) -> Command:\n        \"\"\"Set the command working directory.\n\n        :param working_directory: Directory in which the command should run.\n        :returns: New command with the supplied working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=working_directory,\n        )\n\n    def without_cwd(self) -> Command:\n        \"\"\"Remove the configured working directory.\n\n        :returns: New command without an explicit working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=None,\n        )\n\n    def with_timeout(self, timeout: Duration) -> Command:\n        \"\"\"Set the maximum command execution duration.\n\n        :param timeout: Maximum execution duration.\n        :returns: New command with the supplied timeout.\n        \"\"\"\n        return replace(\n            self,\n ",
+                "truncated": true,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4380
+                ],
+                "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "283ffdc8a2ff584f9c689e09dc8ff2a60c06192cb75f76396c25395eb92d8799",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "tyIhfBXrkhl9aoM3yL4A5jz96p2oSioU",
+              "start": 1281,
+              "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+            },
+            {
+              "end": 2568,
+              "new_length": 895,
+              "new_text_sha256": "21f4a3f6ccc0972d2fb98731bfa385f33f7fc3170df2e5168bebd050b0f2d04b",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "hZlp9Ue6WMnFoXS7nLcQTP7fa9Xmzwy0",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    151
+                  ],
+                  "path": "src/devtools/resources/commands/models/command.py",
+                  "qualified_name": null,
+                  "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                  "span": [
+                    0,
+                    4380
+                  ],
+                  "unit": "812d5566f49f549e280d3ddebad9b80233c60176f9ba8c993cb809884f2b3b64",
+                  "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+                },
+                "path": "src/devtools/resources/commands/models/command.py",
+                "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4380
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                "source_length": 4380,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Command specification model.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.core.time import Duration\n\n\n@dataclass(frozen=True, slots=True)\nclass Command:\n    \"\"\"Describe an immutable command execution specification.\n\n    A command identifies an executable separately from its arguments and does\n    not imply shell parsing, interpolation, or quoting.\n\n    Fluent methods return new command instances and never mutate the original.\n\n    Example::\n\n        command = (\n            Command(\"uv\")\n            .args(\"run\", \"pytest\", \"-q\")\n            .cwd(project_root)\n            .with_timeout(Duration.minutes(2))\n        )\n\n    :ivar executable: Executable name or path.\n    :ivar arguments: Ordered executable arguments.\n    :ivar working_directory: Optional resolved working directory.\n    :ivar timeout: Optional maximum execution duration.\n    \"\"\"\n\n    executable: str\n    arguments: tuple[str, ...] = ()\n    working_directory: ResolvedPath | None = None\n    timeout: Duration | None = None\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate command invariants.\"\"\"\n        self._validate()\n\n    def _validate(self) -> None:\n        \"\"\"Validate the command specification.\n\n        :raises ValueError: If the executable is empty or whitespace-only.\n        \"\"\"\n        if not self.executable.strip():\n            msg = \"Command executable cannot be empty.\"\n            raise ValueError(msg)\n\n    @property\n    def argv(self) -> tuple[str, ...]:\n        \"\"\"Return the complete process argument vector.\n\n        :returns: Executable followed by all ordered arguments.\n        \"\"\"\n        return (self.executable, *self.arguments)\n\n    def args(self, *arguments: str) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: str) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )\n\n    def without_args(self) -> Command:\n        \"\"\"Remove all command arguments.\n\n        :returns: New command with no arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(),\n        )\n\n    def with_executable(self, executable: str) -> Command:\n        \"\"\"Replace the command executable.\n\n        :param executable: Replacement executable name or path.\n        :returns: New command with the replacement executable.\n        :raises ValueError: If the replacement executable is blank.\n        \"\"\"\n        return replace(\n            self,\n            executable=executable,\n        )\n\n    def cwd(self, working_directory: ResolvedPath) -> Command:\n        \"\"\"Set the command working directory.\n\n        :param working_directory: Directory in which the command should run.\n        :returns: New command with the supplied working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=working_directory,\n        )\n\n    def without_cwd(self) -> Command:\n        \"\"\"Remove the configured working directory.\n\n        :returns: New command without an explicit working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=None,\n        )\n\n    def with_timeout(self, timeout: Duration) -> Command:\n        \"\"\"Set the maximum command execution duration.\n\n        :param timeout: Maximum execution duration.\n        :returns: New command with the supplied timeout.\n        \"\"\"\n        return replace(\n            self,\n ",
+                "truncated": true,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4380
+                ],
+                "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "88c7cfb6e90a02c004b2c882d0dd67f8223c0b0d6639401da451681b24e3c855",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "67x5ihiE5D9F0jagpEKDJOEd797Px7mb",
+              "start": 1817,
+              "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+            },
+            {
+              "end": 3187,
+              "new_length": 473,
+              "new_text_sha256": "ee7baf787646ee0a7d5fd6fd09e5dee4239adb76c1673b3055072d932004a98a",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "hZlp9Ue6WMnFoXS7nLcQTP7fa9Xmzwy0",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    151
+                  ],
+                  "path": "src/devtools/resources/commands/models/command.py",
+                  "qualified_name": null,
+                  "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                  "span": [
+                    0,
+                    4380
+                  ],
+                  "unit": "812d5566f49f549e280d3ddebad9b80233c60176f9ba8c993cb809884f2b3b64",
+                  "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+                },
+                "path": "src/devtools/resources/commands/models/command.py",
+                "repository": "04b0fd98-1208-4d5a-9758-0d9c404cc164",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4380
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "6a91e907fbcf4af39becf0af35d95f35d01a7467d7ba4cafc1d2369937f7f1f2",
+                "source_length": 4380,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Command specification model.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.core.time import Duration\n\n\n@dataclass(frozen=True, slots=True)\nclass Command:\n    \"\"\"Describe an immutable command execution specification.\n\n    A command identifies an executable separately from its arguments and does\n    not imply shell parsing, interpolation, or quoting.\n\n    Fluent methods return new command instances and never mutate the original.\n\n    Example::\n\n        command = (\n            Command(\"uv\")\n            .args(\"run\", \"pytest\", \"-q\")\n            .cwd(project_root)\n            .with_timeout(Duration.minutes(2))\n        )\n\n    :ivar executable: Executable name or path.\n    :ivar arguments: Ordered executable arguments.\n    :ivar working_directory: Optional resolved working directory.\n    :ivar timeout: Optional maximum execution duration.\n    \"\"\"\n\n    executable: str\n    arguments: tuple[str, ...] = ()\n    working_directory: ResolvedPath | None = None\n    timeout: Duration | None = None\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate command invariants.\"\"\"\n        self._validate()\n\n    def _validate(self) -> None:\n        \"\"\"Validate the command specification.\n\n        :raises ValueError: If the executable is empty or whitespace-only.\n        \"\"\"\n        if not self.executable.strip():\n            msg = \"Command executable cannot be empty.\"\n            raise ValueError(msg)\n\n    @property\n    def argv(self) -> tuple[str, ...]:\n        \"\"\"Return the complete process argument vector.\n\n        :returns: Executable followed by all ordered arguments.\n        \"\"\"\n        return (self.executable, *self.arguments)\n\n    def args(self, *arguments: str) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: str) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )\n\n    def without_args(self) -> Command:\n        \"\"\"Remove all command arguments.\n\n        :returns: New command with no arguments.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(),\n        )\n\n    def with_executable(self, executable: str) -> Command:\n        \"\"\"Replace the command executable.\n\n        :param executable: Replacement executable name or path.\n        :returns: New command with the replacement executable.\n        :raises ValueError: If the replacement executable is blank.\n        \"\"\"\n        return replace(\n            self,\n            executable=executable,\n        )\n\n    def cwd(self, working_directory: ResolvedPath) -> Command:\n        \"\"\"Set the command working directory.\n\n        :param working_directory: Directory in which the command should run.\n        :returns: New command with the supplied working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=working_directory,\n        )\n\n    def without_cwd(self) -> Command:\n        \"\"\"Remove the configured working directory.\n\n        :returns: New command without an explicit working directory.\n        \"\"\"\n        return replace(\n            self,\n            working_directory=None,\n        )\n\n    def with_timeout(self, timeout: Duration) -> Command:\n        \"\"\"Set the maximum command execution duration.\n\n        :param timeout: Maximum execution duration.\n        :returns: New command with the supplied timeout.\n        \"\"\"\n        return replace(\n            self,\n ",
+                "truncated": true,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4380
+                ],
+                "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "9e0614d9840cbe9c446b830ba1890394c4c37de83ffa520e91456de69c43720f",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "4QgAE62S7acTdH1IXLmBV5Nc42qhRHoz",
+              "start": 2791,
+              "version": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+            }
+          ],
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11196,
+            "output_tokens": 1288,
+            "reasoning_tokens": null,
+            "total_tokens": 12484
+          },
+          "model_seconds": 57.5885685000103,
+          "input_tokens_measured": 11196
+        },
+        {
+          "number": 8,
+          "disposition": "ACCEPTED",
+          "termination": "tool_call",
+          "edits": [
+            {
+              "end": 3122,
+              "new_length": 47,
+              "new_text_sha256": "129851801100ee64fed7220d35e6b4ae55d5f3bc071c3de8b54aab2bd9cc1b94",
+              "observation": {
+                "observation_call_id": "20hsnAqtNu9oAk5LlM9JRWOOe1txHxDk",
+                "path": "src/devtools/resources/commands/models/command.py",
+                "span": [
+                  3072,
+                  3967
+                ],
+                "text": "    def args(self, *arguments: object) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        :raises TypeError: If any supplied argument is not a string.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: object) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        :raises TypeError: If any supplied argument is not a string.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )",
+                "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+              },
+              "observation_reference": "R11",
+              "old_text_sha256": "d21f80666be4632f0355ef600145dfc6affba886edf526ff7226d5360d7da04c",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "2jLILkBSrv1333WzXnrvV2FHS3oMW5Oq",
+              "start": 3072,
+              "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+            },
+            {
+              "end": 3622,
+              "new_length": 52,
+              "new_text_sha256": "ffc94d2e5f16f4725e72957e000d672d6951e1d4db9e08748ec22f5c73c1d500",
+              "observation": {
+                "observation_call_id": "20hsnAqtNu9oAk5LlM9JRWOOe1txHxDk",
+                "path": "src/devtools/resources/commands/models/command.py",
+                "span": [
+                  3072,
+                  3967
+                ],
+                "text": "    def args(self, *arguments: object) -> Command:\n        \"\"\"Append arguments to the command.\n\n        Existing arguments are preserved and the supplied arguments are\n        appended in order.\n\n        :param arguments: Arguments to append.\n        :returns: New command containing the appended arguments.\n        :raises TypeError: If any supplied argument is not a string.\n        \"\"\"\n        return replace(\n            self,\n            arguments=(*self.arguments, *arguments),\n        )\n\n    def with_args(self, *arguments: object) -> Command:\n        \"\"\"Replace all command arguments.\n\n        :param arguments: Complete replacement argument sequence.\n        :returns: New command containing only the supplied arguments.\n        :raises TypeError: If any supplied argument is not a string.\n        \"\"\"\n        return replace(\n            self,\n            arguments=arguments,\n        )",
+                "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+              },
+              "observation_reference": "R11",
+              "old_text_sha256": "c97d7c2d875fd09dd111e053131c4fb9925c0bcf224761d8942072459b288c6f",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "gSZ71JA5cUaOKilSr165r5ctjxpGtnjm",
+              "start": 3567,
+              "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+            },
+            {
+              "end": 4251,
+              "new_length": 58,
+              "new_text_sha256": "8f2490eb0c61c0129ab2c302e9b6b0338b3b0b877126149a26f6b4023077ac15",
+              "observation": {
+                "observation_call_id": "20hsnAqtNu9oAk5LlM9JRWOOe1txHxDk",
+                "path": "src/devtools/resources/commands/models/command.py",
+                "span": [
+                  4190,
+                  4663
+                ],
+                "text": "    def with_executable(self, executable: object) -> Command:\n        \"\"\"Replace the command executable.\n\n        :param executable: Replacement executable name or path.\n        :returns: New command with the replacement executable.\n        :raises TypeError: If the replacement executable is not a string.\n        :raises ValueError: If the replacement executable is blank.\n        \"\"\"\n        return replace(\n            self,\n            executable=executable,\n        )",
+                "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+              },
+              "observation_reference": "R12",
+              "old_text_sha256": "291aaab2bc798573374d9e6ae00c6d28dcfff3cd6caf37881ea7b7d9749e2eb6",
+              "path": "src/devtools/resources/commands/models/command.py",
+              "proposal_call_id": "bwygalZwhISRg36B3zLgYkelGdjIVHMm",
+              "start": 4190,
+              "version": "784b23c7fa4ca4a5efc8b2a1fb537613ab45146c527dd797431500160f49d688"
+            }
+          ],
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 22959,
+            "output_tokens": 307,
+            "reasoning_tokens": null,
+            "total_tokens": 23266
+          },
+          "model_seconds": 31.472696400014684,
+          "input_tokens_measured": 22959
+        }
+      ],
+      "tools": [
+        "read_source",
+        "read_source",
+        "search_source",
+        "read_source",
+        "read_source",
+        "read_source",
+        "read_source",
+        "read_source",
+        "read_source"
+      ],
+      "native_edit_calls": 7
+    },
+    {
+      "run": "pi-command",
+      "accepted": true,
+      "elapsed_seconds": 109.11544610001147,
+      "started_at": "2026-10-20T14:17:43.499191+00:00",
+      "finished_at": "2026-10-20T14:19:32.614621+00:00",
+      "result_sha256": "0c3bb23bc0dcc2dee039f524ae30bf20c834ee8bbdb8205b1fc04f36a16b0406",
+      "task_sha256": "2976e7eda8f3a1df4fca0ae5193768506b65def59c67e130deaf9e8b56413b27",
+      "oracle_sha256": "c7a3d935b64462fed895f5ec6cf0bf5e2a344a70d420db4e5594a0f465bec0be",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/resources/commands/models/command.py",
+          "sha256": "89aecac475f848e83f01343fb20edccb1d21f461bf6d5b15a1d4a6cc9bbca8fd"
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "tool_actions": 5,
+      "input_tokens": 23277,
+      "output_tokens": 1398,
+      "tools": [
+        "read",
+        "read",
+        "edit",
+        "read",
+        "validate"
+      ],
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      }
+    },
+    {
+      "run": "devtools-lazy",
+      "accepted": false,
+      "elapsed_seconds": 13.10605039994698,
+      "started_at": "2026-10-20T14:21:11.871793+00:00",
+      "finished_at": "2026-10-20T14:21:24.977829+00:00",
+      "result_sha256": "5f527bce7bcf0098e14e123c5a59dbaa8979ed1cd546571c45202ba933a51767",
+      "task_sha256": "b273904ff8ea4d19f3a27c4f13b5ece22e18862a84a499dfaa731d739cdd1099",
+      "oracle_sha256": "d0bd0afdbbc652e1a7d463cacf30f6aaf6d140a1fec02beb9f6e9370179387c2",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/conversion/conversion.py",
+          "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/conversion/__init__.py",
+          "path": "src/devtools/core/conversion/__init__.py",
+          "sha256": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/conversion/iteration.py",
+          "path": "src/devtools/core/conversion/iteration.py",
+          "sha256": null
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "model_calls": 1,
+      "input_tokens": 1903,
+      "output_tokens": 141,
+      "repair_cycles": 0,
+      "proposals_attempted": 0,
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 1,
+      "context_actions_accepted": 0,
+      "source_text_bytes_disclosed": 0,
+      "context_bytes_disclosed": 0,
+      "peak_input_tokens": 1903,
+      "omitted_exchanges": 0,
+      "model_seconds": 11.960633000009693,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1903,
+            "output_tokens": 141,
+            "reasoning_tokens": null,
+            "total_tokens": 2044
+          },
+          "model_seconds": 11.960633000009693,
+          "input_tokens_measured": 1903
+        }
+      ],
+      "tools": [
+        "expand_source"
+      ],
+      "native_edit_calls": 0
+    },
+    {
+      "run": "devtools-lazy-recovery",
+      "accepted": false,
+      "elapsed_seconds": 20.283590300008655,
+      "started_at": "2026-10-20T14:24:32.865283+00:00",
+      "finished_at": "2026-10-20T14:24:53.148857+00:00",
+      "result_sha256": "d9ac98c953788dfeee2ced12d236179178cd77f0cb9284ee3ec8f04657665705",
+      "task_sha256": "b273904ff8ea4d19f3a27c4f13b5ece22e18862a84a499dfaa731d739cdd1099",
+      "oracle_sha256": "d0bd0afdbbc652e1a7d463cacf30f6aaf6d140a1fec02beb9f6e9370179387c2",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/conversion/conversion.py",
+          "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/conversion/__init__.py",
+          "path": "src/devtools/core/conversion/__init__.py",
+          "sha256": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/conversion/iteration.py",
+          "path": "src/devtools/core/conversion/iteration.py",
+          "sha256": null
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "model_calls": 2,
+      "input_tokens": 8698,
+      "output_tokens": 269,
+      "repair_cycles": 0,
+      "proposals_attempted": 0,
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 4,
+      "context_actions_accepted": 2,
+      "source_text_bytes_disclosed": 0,
+      "context_bytes_disclosed": 9049,
+      "peak_input_tokens": 6774,
+      "omitted_exchanges": 0,
+      "model_seconds": 18.908899599919096,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1924,
+            "output_tokens": 76,
+            "reasoning_tokens": null,
+            "total_tokens": 2000
+          },
+          "model_seconds": 5.899446900002658,
+          "input_tokens_measured": 1924
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6774,
+            "output_tokens": 193,
+            "reasoning_tokens": null,
+            "total_tokens": 6967
+          },
+          "model_seconds": 13.009452699916437,
+          "input_tokens_measured": 6774
+        }
+      ],
+      "tools": [
+        "search_source",
+        "search_source",
+        "read_source",
+        "read_source"
+      ],
+      "native_edit_calls": 0
+    },
+    {
+      "run": "pi-lazy",
+      "accepted": true,
+      "elapsed_seconds": 64.58430180000141,
+      "started_at": "2026-10-20T14:25:35.795765+00:00",
+      "finished_at": "2026-10-20T14:26:40.380053+00:00",
+      "result_sha256": "1bbf7ac5f232cc25b7a73a4e6d8eff7cfcfca821d61ddd487ffc6b8dca059ea4",
+      "task_sha256": "b273904ff8ea4d19f3a27c4f13b5ece22e18862a84a499dfaa731d739cdd1099",
+      "oracle_sha256": "d0bd0afdbbc652e1a7d463cacf30f6aaf6d140a1fec02beb9f6e9370179387c2",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/core/conversion/conversion.py",
+          "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262"
+        },
+        {
+          "evidence": "candidate-1.py",
+          "path": "src/devtools/core/conversion/__init__.py",
+          "sha256": "5109f379491dc88bed70a79ba377df931a93bf9520a27584163a1acdb940cfcb"
+        },
+        {
+          "evidence": "candidate-2.py",
+          "path": "src/devtools/core/conversion/iteration.py",
+          "sha256": "6f7c61baaf2b1620b0c9a02b7ed5dd27ca396bd1e2fb745e22ef6e24053c6115"
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "ACCEPTED",
+      "model_calls": 8,
+      "tool_actions": 10,
+      "input_tokens": 39450,
+      "output_tokens": 1111,
+      "tools": [
+        "read",
+        "read",
+        "read",
+        "read",
+        "read",
+        "write",
+        "edit",
+        "validate",
+        "edit",
+        "validate"
+      ],
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      }
+    },
+    {
+      "run": "devtools-read",
+      "accepted": false,
+      "elapsed_seconds": 196.18295809999108,
+      "started_at": "2026-10-20T14:37:46.384156+00:00",
+      "finished_at": "2026-10-20T14:41:02.567098+00:00",
+      "result_sha256": "1641f6395a78e79cc10179fca2f1d481fb532871f941c781c913d9d7addad63d",
+      "task_sha256": "9a3d78c31e4e8b2fa79f90368f4b22afec7d61e5e1823d9915c92e94cf2b542f",
+      "oracle_sha256": "c300ff318baeac7f3b4278b2036cac5667e30e7a6e54fa7f7ffb23847f9bd00b",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/filesystem/reading.py",
+          "sha256": "d498a43c729544d26b2a04db5c8d47e56a845b8a95c5f10e86fe76c2a888678e"
+        }
+      ],
+      "scoring_eligible": false,
+      "disposition": "MODEL_CALL_BUDGET_EXHAUSTED",
+      "model_calls": 10,
+      "input_tokens": 116845,
+      "output_tokens": 3505,
+      "repair_cycles": 1,
+      "proposals_attempted": 2,
+      "proposals_admitted": 2,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 9,
+      "context_actions_accepted": 9,
+      "source_text_bytes_disclosed": 16300,
+      "context_bytes_disclosed": 28269,
+      "peak_input_tokens": 17982,
+      "omitted_exchanges": 0,
+      "model_seconds": 191.1672943996964,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1889,
+            "output_tokens": 89,
+            "reasoning_tokens": null,
+            "total_tokens": 1978
+          },
+          "model_seconds": 8.798421199899167,
+          "input_tokens_measured": 1889
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4167,
+            "output_tokens": 59,
+            "reasoning_tokens": null,
+            "total_tokens": 4226
+          },
+          "model_seconds": 4.811247800011188,
+          "input_tokens_measured": 4167
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5862,
+            "output_tokens": 46,
+            "reasoning_tokens": null,
+            "total_tokens": 5908
+          },
+          "model_seconds": 3.795888099935837,
+          "input_tokens_measured": 5862
+        },
+        {
+          "number": 4,
+          "disposition": "TESTS_FAILED",
+          "termination": "tool_call",
+          "edits": [
+            {
+              "end": 2123,
+              "new_length": 787,
+              "new_text_sha256": "648c75eed0cd566eaa1838756f32d111d44a997e53697b032c33c27973a7d41f",
+              "observation": {
+                "bytes": 3504,
+                "continuation_start": 3504,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "U5JJqWI7AFSLwHi8S5jifR46dMWxus4K",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    116
+                  ],
+                  "path": "src/devtools/resources/filesystem/reading.py",
+                  "qualified_name": null,
+                  "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "17f3cdfd5415da50730258ad37eeddd3c9d5a1de4703d63832d4867748d33ead",
+                  "span": [
+                    0,
+                    3504
+                  ],
+                  "unit": "dec4ad58175e028af767f072378d925da011e230bf400c96c833308182262a48",
+                  "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+                },
+                "path": "src/devtools/resources/filesystem/reading.py",
+                "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  3504
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "17f3cdfd5415da50730258ad37eeddd3c9d5a1de4703d63832d4867748d33ead",
+                "source_length": 3504,
+                "span": [
+                  0,
+                  3504
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Codec-backed filesystem reading.\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import TYPE_CHECKING\n\nfrom devtools.resources.filesystem.errors import (\n    FilesystemNotFoundError,\n    FilesystemPermissionError,\n    FileTooLargeError,\n    NotAFileError,\n)\nfrom devtools.resources.filesystem.resolution import (\n    resolve_codec,\n    resolve_file_format,\n)\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.resources.filesystem.models import File, FileFormat\n\nDEFAULT_MAX_READ_BYTES = 16 * 1024 * 1024\n\n\ndef read(\n    path: ResolvedPath,\n    *,\n    file_format: FileFormat | None = None,\n    max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n) -> File:\n    \"\"\"Read a filesystem file into its rich file model.\n\n    When ``file_format`` is omitted, the format is inferred from the path.\n    An explicit format overrides suffix-based inference.\n\n    The file is size-checked before loading and again after reading. A file\n    that grows between those checks can still be read into memory before the\n    second check rejects it; no oversized model is returned.\n\n    :param path: Resolved path to the file.\n    :param file_format: Explicit file format override.\n    :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n    :returns: Decoded file model.\n    :raises FilesystemNotFoundError: If the target does not exist.\n    :raises NotAFileError: If the target is not a regular file.\n    :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n    :raises FilesystemPermissionError: If filesystem access is denied.\n    \"\"\"\n    source = path.value\n\n    try:\n        if not source.exists():\n            msg = f\"Filesystem path does not exist: {path}.\"\n            raise FilesystemNotFoundError(msg)\n\n        if not source.is_file():\n            msg = f\"Filesystem path is not a regular file: {path}.\"\n            raise NotAFileError(msg)\n\n        size_bytes = source.stat().st_size\n    except PermissionError as error:\n        msg = f\"Permission denied while inspecting file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=size_bytes,\n        max_bytes=max_bytes,\n    )\n\n    try:\n        content = source.read_bytes()\n    except PermissionError as error:\n        msg = f\"Permission denied while reading file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=len(content),\n        max_bytes=max_bytes,\n    )\n\n    resolved_format = resolve_file_format(path) if file_format is None else file_format\n    codec = resolve_codec(resolved_format)\n\n    return codec.decode(\n        path,\n        content,\n    )\n\n\ndef _validate_read_size(\n    path: ResolvedPath,\n    *,\n    size_bytes: int,\n    max_bytes: int | None,\n) -> None:\n    \"\"\"Validate a file against the configured read limit.\n\n    :param path: File being validated.\n    :param size_bytes: File size reported by the filesystem.\n    :param max_bytes: Maximum permitted byte count.\n    :raises ValueError: If ``max_bytes`` is negative.\n    :raises FileTooLargeError: If the file exceeds the configured limit.\n    \"\"\"\n    if max_bytes is None:\n        return\n\n    if max_bytes < 0:\n        msg = \"Maximum read size cannot be negative.\"\n        raise ValueError(msg)\n\n    if size_bytes > max_bytes:\n        msg = f\"File size {size_bytes} exceeds maximum read size {max_bytes}: {path}.\"\n        raise FileTooLargeError(msg)\n",
+                "truncated": false,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  3504
+                ],
+                "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "7203a1f7a14d0fc8d8c0f036e92912c820335c85d805c149782f366c32db68b9",
+              "path": "src/devtools/resources/filesystem/reading.py",
+              "proposal_call_id": "UT8QDmfxi6KSFM691RIANDPlc5NM6zpy",
+              "start": 1633,
+              "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+            },
+            {
+              "end": 2433,
+              "new_length": 499,
+              "new_text_sha256": "bc5bf78d5f163e87ca74758f27bb930cafe680075caace29df2101e94f2170c4",
+              "observation": {
+                "bytes": 3504,
+                "continuation_start": 3504,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "U5JJqWI7AFSLwHi8S5jifR46dMWxus4K",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    116
+                  ],
+                  "path": "src/devtools/resources/filesystem/reading.py",
+                  "qualified_name": null,
+                  "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "17f3cdfd5415da50730258ad37eeddd3c9d5a1de4703d63832d4867748d33ead",
+                  "span": [
+                    0,
+                    3504
+                  ],
+                  "unit": "dec4ad58175e028af767f072378d925da011e230bf400c96c833308182262a48",
+                  "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+                },
+                "path": "src/devtools/resources/filesystem/reading.py",
+                "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  3504
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "17f3cdfd5415da50730258ad37eeddd3c9d5a1de4703d63832d4867748d33ead",
+                "source_length": 3504,
+                "span": [
+                  0,
+                  3504
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Codec-backed filesystem reading.\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import TYPE_CHECKING\n\nfrom devtools.resources.filesystem.errors import (\n    FilesystemNotFoundError,\n    FilesystemPermissionError,\n    FileTooLargeError,\n    NotAFileError,\n)\nfrom devtools.resources.filesystem.resolution import (\n    resolve_codec,\n    resolve_file_format,\n)\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.resources.filesystem.models import File, FileFormat\n\nDEFAULT_MAX_READ_BYTES = 16 * 1024 * 1024\n\n\ndef read(\n    path: ResolvedPath,\n    *,\n    file_format: FileFormat | None = None,\n    max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n) -> File:\n    \"\"\"Read a filesystem file into its rich file model.\n\n    When ``file_format`` is omitted, the format is inferred from the path.\n    An explicit format overrides suffix-based inference.\n\n    The file is size-checked before loading and again after reading. A file\n    that grows between those checks can still be read into memory before the\n    second check rejects it; no oversized model is returned.\n\n    :param path: Resolved path to the file.\n    :param file_format: Explicit file format override.\n    :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n    :returns: Decoded file model.\n    :raises FilesystemNotFoundError: If the target does not exist.\n    :raises NotAFileError: If the target is not a regular file.\n    :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n    :raises FilesystemPermissionError: If filesystem access is denied.\n    \"\"\"\n    source = path.value\n\n    try:\n        if not source.exists():\n            msg = f\"Filesystem path does not exist: {path}.\"\n            raise FilesystemNotFoundError(msg)\n\n        if not source.is_file():\n            msg = f\"Filesystem path is not a regular file: {path}.\"\n            raise NotAFileError(msg)\n\n        size_bytes = source.stat().st_size\n    except PermissionError as error:\n        msg = f\"Permission denied while inspecting file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=size_bytes,\n        max_bytes=max_bytes,\n    )\n\n    try:\n        content = source.read_bytes()\n    except PermissionError as error:\n        msg = f\"Permission denied while reading file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=len(content),\n        max_bytes=max_bytes,\n    )\n\n    resolved_format = resolve_file_format(path) if file_format is None else file_format\n    codec = resolve_codec(resolved_format)\n\n    return codec.decode(\n        path,\n        content,\n    )\n\n\ndef _validate_read_size(\n    path: ResolvedPath,\n    *,\n    size_bytes: int,\n    max_bytes: int | None,\n) -> None:\n    \"\"\"Validate a file against the configured read limit.\n\n    :param path: File being validated.\n    :param size_bytes: File size reported by the filesystem.\n    :param max_bytes: Maximum permitted byte count.\n    :raises ValueError: If ``max_bytes`` is negative.\n    :raises FileTooLargeError: If the file exceeds the configured limit.\n    \"\"\"\n    if max_bytes is None:\n        return\n\n    if max_bytes < 0:\n        msg = \"Maximum read size cannot be negative.\"\n        raise ValueError(msg)\n\n    if size_bytes > max_bytes:\n        msg = f\"File size {size_bytes} exceeds maximum read size {max_bytes}: {path}.\"\n        raise FileTooLargeError(msg)\n",
+                "truncated": false,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  3504
+                ],
+                "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "4fea0f13874832418f598783d6ddf425859dac31613269f7868381a4ea777e73",
+              "path": "src/devtools/resources/filesystem/reading.py",
+              "proposal_call_id": "fIMP9SducIJcnUhOBpjqLMwUpa21qQt6",
+              "start": 2231,
+              "version": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+            }
+          ],
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7411,
+            "output_tokens": 824,
+            "reasoning_tokens": null,
+            "total_tokens": 8235
+          },
+          "model_seconds": 37.029385400004685,
+          "input_tokens_measured": 7411
+        },
+        {
+          "number": 5,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 13875,
+            "output_tokens": 285,
+            "reasoning_tokens": null,
+            "total_tokens": 14160
+          },
+          "model_seconds": 25.70928259997163,
+          "input_tokens_measured": 13875
+        },
+        {
+          "number": 6,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 15741,
+            "output_tokens": 69,
+            "reasoning_tokens": null,
+            "total_tokens": 15810
+          },
+          "model_seconds": 5.252139099990018,
+          "input_tokens_measured": 15741
+        },
+        {
+          "number": 7,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 16140,
+            "output_tokens": 73,
+            "reasoning_tokens": null,
+            "total_tokens": 16213
+          },
+          "model_seconds": 4.015499299974181,
+          "input_tokens_measured": 16140
+        },
+        {
+          "number": 8,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 16484,
+            "output_tokens": 473,
+            "reasoning_tokens": null,
+            "total_tokens": 16957
+          },
+          "model_seconds": 22.98896230000537,
+          "input_tokens_measured": 16484
+        },
+        {
+          "number": 9,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 17294,
+            "output_tokens": 60,
+            "reasoning_tokens": null,
+            "total_tokens": 17354
+          },
+          "model_seconds": 3.4049313999712467,
+          "input_tokens_measured": 17294
+        },
+        {
+          "number": 10,
+          "disposition": "TESTS_FAILED",
+          "termination": "tool_call",
+          "edits": [
+            {
+              "end": 2420,
+              "new_length": 921,
+              "new_text_sha256": "4fad539eb7665f3c04e56529675a2c46c0166eda4a11cfac918041efadad1ff9",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "xHVCUOpVnclX1i0tGEuV0gtqBCcB7BC8",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    128
+                  ],
+                  "path": "src/devtools/resources/filesystem/reading.py",
+                  "qualified_name": null,
+                  "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "3a76c2c50c5b2f8c3c5bd564c9c92d1faf4ed1f52709fa75d5bee3c0e6b13e47",
+                  "span": [
+                    0,
+                    4098
+                  ],
+                  "unit": "678d9380c635cf46643d7692c50e4a1f5de1ad6b69698d1ad9307b9cfcf4d628",
+                  "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+                },
+                "path": "src/devtools/resources/filesystem/reading.py",
+                "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4096
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "3a76c2c50c5b2f8c3c5bd564c9c92d1faf4ed1f52709fa75d5bee3c0e6b13e47",
+                "source_length": 4098,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Codec-backed filesystem reading.\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import TYPE_CHECKING\n\nfrom devtools.resources.filesystem.errors import (\n    FilesystemNotFoundError,\n    FilesystemPermissionError,\n    FileTooLargeError,\n    NotAFileError,\n)\nfrom devtools.resources.filesystem.resolution import (\n    resolve_codec,\n    resolve_file_format,\n)\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.resources.filesystem.models import File, FileFormat\n\nDEFAULT_MAX_READ_BYTES = 16 * 1024 * 1024\n\n\ndef read(\n    path: ResolvedPath,\n    *,\n    file_format: FileFormat | None = None,\n    max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n) -> File:\n    \"\"\"Read a filesystem file into its rich file model.\n\n    When ``file_format`` is omitted, the format is inferred from the path.\n    An explicit format overrides suffix-based inference.\n\n    The file is size-checked before loading and again after reading. A file\n    that grows between those checks can still be read into memory before the\n    second check rejects it; no oversized model is returned.\n\n    :param path: Resolved path to the file.\n    :param file_format: Explicit file format override.\n    :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n    :returns: Decoded file model.\n    :raises FilesystemNotFoundError: If the target does not exist.\n    :raises NotAFileError: If the target is not a regular file.\n    :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n    :raises FilesystemPermissionError: If filesystem access is denied.\n    \"\"\"\n    source = path.value\n\n    try:\n        if not source.exists():\n            msg = f\"Filesystem path does not exist: {path}.\"\n            raise FilesystemNotFoundError(msg)\n\n        if not source.is_file():\n            msg = f\"Filesystem path is not a regular file: {path}.\"\n            raise NotAFileError(msg)\n\n        size_bytes = source.stat().st_size\n    except PermissionError as error:\n        msg = f\"Permission denied while inspecting file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n    except FileNotFoundError as error:\n        msg = f\"Filesystem path does not exist: {path}.\"\n        raise FilesystemNotFoundError(msg) from error\n    except IsADirectoryError as error:\n        msg = f\"Filesystem path is not a regular file: {path}.\"\n        raise NotAFileError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=size_bytes,\n        max_bytes=max_bytes,\n    )\n\n    try:\n        content = source.read_bytes()\n    except PermissionError as error:\n        msg = f\"Permission denied while reading file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n    except FileNotFoundError as error:\n        msg = f\"Filesystem path does not exist: {path}.\"\n        raise FilesystemNotFoundError(msg) from error\n    except IsADirectoryError as error:\n        msg = f\"Filesystem path is not a regular file: {path}.\"\n        raise NotAFileError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=len(content),\n        max_bytes=max_bytes,\n    )\n\n    resolved_format = resolve_file_format(path) if file_format is None else file_format\n    codec = resolve_codec(resolved_format)\n\n    return codec.decode(\n        path,\n        content,\n    )\n\n\ndef _validate_read_size(\n    path: ResolvedPath,\n    *,\n    size_bytes: int,\n    max_bytes: int | None,\n) -> None:\n    \"\"\"Validate a file against the configured read limit.\n\n    :param path: File being validated.\n    :param size_bytes: File size reported by the filesystem.\n    :param max_bytes: Maximum permitted byte count.\n    :raises ValueError: If ``max_bytes`` is negative.\n    :raises FileTooLargeError: If the file exceeds the configured limit.\n    \"\"\"\n    if max_bytes is None:\n        return\n\n    if max_bytes < 0:\n        msg = \"Maximum read size cannot be negative.\"\n        raise ValueError(msg)\n\n    if size_bytes > max_bytes:\n        msg = f\"File size {size_bytes} exceeds maximum read size {max_bytes}: {path}.\"\n        raise FileTooLargeError(msg",
+                "truncated": false,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4098
+                ],
+                "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+              },
+              "observation_reference": "R7",
+              "old_text_sha256": "648c75eed0cd566eaa1838756f32d111d44a997e53697b032c33c27973a7d41f",
+              "path": "src/devtools/resources/filesystem/reading.py",
+              "proposal_call_id": "YxFRbVJpuyhHZytmfqGVX7N4w0hZlOqx",
+              "start": 1633,
+              "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+            },
+            {
+              "end": 3027,
+              "new_length": 630,
+              "new_text_sha256": "cea1fde8acbd1cd98d1e5e055e2f6f12b45be510f2020c3547790790c413526d",
+              "observation": {
+                "bytes": 4096,
+                "continuation_start": 4096,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "xHVCUOpVnclX1i0tGEuV0gtqBCcB7BC8",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    128
+                  ],
+                  "path": "src/devtools/resources/filesystem/reading.py",
+                  "qualified_name": null,
+                  "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "3a76c2c50c5b2f8c3c5bd564c9c92d1faf4ed1f52709fa75d5bee3c0e6b13e47",
+                  "span": [
+                    0,
+                    4098
+                  ],
+                  "unit": "678d9380c635cf46643d7692c50e4a1f5de1ad6b69698d1ad9307b9cfcf4d628",
+                  "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+                },
+                "path": "src/devtools/resources/filesystem/reading.py",
+                "repository": "650402a5-c4e6-41e8-aa10-3aa1c4d51560",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  4096
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "3a76c2c50c5b2f8c3c5bd564c9c92d1faf4ed1f52709fa75d5bee3c0e6b13e47",
+                "source_length": 4098,
+                "span": [
+                  0,
+                  4096
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Codec-backed filesystem reading.\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import TYPE_CHECKING\n\nfrom devtools.resources.filesystem.errors import (\n    FilesystemNotFoundError,\n    FilesystemPermissionError,\n    FileTooLargeError,\n    NotAFileError,\n)\nfrom devtools.resources.filesystem.resolution import (\n    resolve_codec,\n    resolve_file_format,\n)\n\nif TYPE_CHECKING:\n    from devtools.core.paths import ResolvedPath\n    from devtools.resources.filesystem.models import File, FileFormat\n\nDEFAULT_MAX_READ_BYTES = 16 * 1024 * 1024\n\n\ndef read(\n    path: ResolvedPath,\n    *,\n    file_format: FileFormat | None = None,\n    max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n) -> File:\n    \"\"\"Read a filesystem file into its rich file model.\n\n    When ``file_format`` is omitted, the format is inferred from the path.\n    An explicit format overrides suffix-based inference.\n\n    The file is size-checked before loading and again after reading. A file\n    that grows between those checks can still be read into memory before the\n    second check rejects it; no oversized model is returned.\n\n    :param path: Resolved path to the file.\n    :param file_format: Explicit file format override.\n    :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n    :returns: Decoded file model.\n    :raises FilesystemNotFoundError: If the target does not exist.\n    :raises NotAFileError: If the target is not a regular file.\n    :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n    :raises FilesystemPermissionError: If filesystem access is denied.\n    \"\"\"\n    source = path.value\n\n    try:\n        if not source.exists():\n            msg = f\"Filesystem path does not exist: {path}.\"\n            raise FilesystemNotFoundError(msg)\n\n        if not source.is_file():\n            msg = f\"Filesystem path is not a regular file: {path}.\"\n            raise NotAFileError(msg)\n\n        size_bytes = source.stat().st_size\n    except PermissionError as error:\n        msg = f\"Permission denied while inspecting file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n    except FileNotFoundError as error:\n        msg = f\"Filesystem path does not exist: {path}.\"\n        raise FilesystemNotFoundError(msg) from error\n    except IsADirectoryError as error:\n        msg = f\"Filesystem path is not a regular file: {path}.\"\n        raise NotAFileError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=size_bytes,\n        max_bytes=max_bytes,\n    )\n\n    try:\n        content = source.read_bytes()\n    except PermissionError as error:\n        msg = f\"Permission denied while reading file: {path}.\"\n        raise FilesystemPermissionError(msg) from error\n    except FileNotFoundError as error:\n        msg = f\"Filesystem path does not exist: {path}.\"\n        raise FilesystemNotFoundError(msg) from error\n    except IsADirectoryError as error:\n        msg = f\"Filesystem path is not a regular file: {path}.\"\n        raise NotAFileError(msg) from error\n\n    _validate_read_size(\n        path,\n        size_bytes=len(content),\n        max_bytes=max_bytes,\n    )\n\n    resolved_format = resolve_file_format(path) if file_format is None else file_format\n    codec = resolve_codec(resolved_format)\n\n    return codec.decode(\n        path,\n        content,\n    )\n\n\ndef _validate_read_size(\n    path: ResolvedPath,\n    *,\n    size_bytes: int,\n    max_bytes: int | None,\n) -> None:\n    \"\"\"Validate a file against the configured read limit.\n\n    :param path: File being validated.\n    :param size_bytes: File size reported by the filesystem.\n    :param max_bytes: Maximum permitted byte count.\n    :raises ValueError: If ``max_bytes`` is negative.\n    :raises FileTooLargeError: If the file exceeds the configured limit.\n    \"\"\"\n    if max_bytes is None:\n        return\n\n    if max_bytes < 0:\n        msg = \"Maximum read size cannot be negative.\"\n        raise ValueError(msg)\n\n    if size_bytes > max_bytes:\n        msg = f\"File size {size_bytes} exceeds maximum read size {max_bytes}: {path}.\"\n        raise FileTooLargeError(msg",
+                "truncated": false,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  4098
+                ],
+                "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+              },
+              "observation_reference": "R7",
+              "old_text_sha256": "bc5bf78d5f163e87ca74758f27bb930cafe680075caace29df2101e94f2170c4",
+              "path": "src/devtools/resources/filesystem/reading.py",
+              "proposal_call_id": "VPr6ku0mPvWJ4UCu0W6o2kdCSKDh6snp",
+              "start": 2528,
+              "version": "d7fd6f579086eb430291a7e80c855aa1ffe7941d36658edd703bcd36b49b7cb2"
+            }
+          ],
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 17982,
+            "output_tokens": 1527,
+            "reasoning_tokens": null,
+            "total_tokens": 19509
+          },
+          "model_seconds": 75.36153719993308,
+          "input_tokens_measured": 17982
+        }
+      ],
+      "tools": [
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "inspect_source",
+        "search_source",
+        "git_inspect",
+        "search_source",
+        "git_inspect"
+      ],
+      "native_edit_calls": 4
+    },
+    {
+      "run": "pi-read",
+      "accepted": false,
+      "elapsed_seconds": 79.53584259992931,
+      "started_at": "2026-10-20T14:43:48.483785+00:00",
+      "finished_at": "2026-10-20T14:45:08.019614+00:00",
+      "result_sha256": "31de623a306797312ff64a69c1d1b368d81ada42e2f31181209088467ae1b327",
+      "task_sha256": "9a3d78c31e4e8b2fa79f90368f4b22afec7d61e5e1823d9915c92e94cf2b542f",
+      "oracle_sha256": "c300ff318baeac7f3b4278b2036cac5667e30e7a6e54fa7f7ffb23847f9bd00b",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/resources/filesystem/reading.py",
+          "sha256": "6e31f8da96455cec06c55d28ae001a45c063490b0d455200eb16ec5bc8ae24d2"
+        }
+      ],
+      "scoring_eligible": false,
+      "disposition": "REJECTED",
+      "model_calls": 10,
+      "tool_actions": 13,
+      "input_tokens": 67932,
+      "output_tokens": 1243,
+      "tools": [
+        "read",
+        "read",
+        "read",
+        "list_scope",
+        "validate",
+        "edit",
+        "validate",
+        "read",
+        "edit",
+        "read",
+        "edit",
+        "validate",
+        "edit"
+      ],
+      "validation": {
+        "format": 0,
+        "oracle": 1,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      }
+    },
+    {
+      "run": "devtools-output",
+      "accepted": true,
+      "elapsed_seconds": 51.88264110009186,
+      "started_at": "2026-10-20T14:50:49.701011+00:00",
+      "finished_at": "2026-10-20T14:51:41.583637+00:00",
+      "result_sha256": "c6a0866869cff54820afbf3bf3e88a3a444182824097a356bf8202d855e83372",
+      "task_sha256": "a4579208cf4313964babdcdfca254118bc3e7d0329369baa4035b12f4424caab",
+      "oracle_sha256": "c441c02d1a4b4a630e5a99842de77f1b10fc27a8f9b1ddd06f068b649fc41021",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/commands/models/result.py",
+          "sha256": "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2"
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "ACCEPTED",
+      "model_calls": 5,
+      "input_tokens": 21777,
+      "output_tokens": 923,
+      "repair_cycles": 0,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "context_actions_attempted": 5,
+      "context_actions_accepted": 5,
+      "source_text_bytes_disclosed": 6716,
+      "context_bytes_disclosed": 13338,
+      "peak_input_tokens": 6520,
+      "omitted_exchanges": 0,
+      "model_seconds": 49.241924899979495,
+      "turns": [
+        {
+          "number": 1,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 2023,
+            "output_tokens": 87,
+            "reasoning_tokens": null,
+            "total_tokens": 2110
+          },
+          "model_seconds": 9.17932540003676,
+          "input_tokens_measured": 2023
+        },
+        {
+          "number": 2,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3611,
+            "output_tokens": 66,
+            "reasoning_tokens": null,
+            "total_tokens": 3677
+          },
+          "model_seconds": 4.55494040006306,
+          "input_tokens_measured": 3611
+        },
+        {
+          "number": 3,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4014,
+            "output_tokens": 43,
+            "reasoning_tokens": null,
+            "total_tokens": 4057
+          },
+          "model_seconds": 2.2782652999740094,
+          "input_tokens_measured": 4014
+        },
+        {
+          "number": 4,
+          "disposition": "CONTEXT_RETURNED",
+          "termination": "tool_call",
+          "edits": null,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 5609,
+            "output_tokens": 150,
+            "reasoning_tokens": null,
+            "total_tokens": 5759
+          },
+          "model_seconds": 8.13457449991256,
+          "input_tokens_measured": 5609
+        },
+        {
+          "number": 5,
+          "disposition": "ACCEPTED",
+          "termination": "tool_call",
+          "edits": [
+            {
+              "end": 1728,
+              "new_length": 1943,
+              "new_text_sha256": "a7ff0fc73cc217ad5a56e2a0158eac121faa4442d8fe1a82e8409d123130349b",
+              "observation": {
+                "bytes": 1729,
+                "continuation_start": 1729,
+                "coordinate_convention": "half-open Unicode character offsets",
+                "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+                "observation_call_id": "VQhq6qHDEHhV5m75OMRdPePZ4MFesQ3b",
+                "parent": {
+                  "kind": "file",
+                  "lines": [
+                    1,
+                    55
+                  ],
+                  "path": "src/devtools/resources/commands/models/result.py",
+                  "qualified_name": null,
+                  "repository": "836d1a58-3f28-400e-9022-e20d2ebc120e",
+                  "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                  "semantic_declaration": null,
+                  "snapshot": "f46e1207c1620a75ef49af27ecd6e42d8b6da2eb0f7f57df23b1fb5143a87121",
+                  "span": [
+                    0,
+                    1729
+                  ],
+                  "unit": "9e35a74b8fae0ec77af7b79ec3f04ec404cbdb49615731246f87f87f2a6a17f2",
+                  "version": "9bccad0fff2036c7f3059bbd3a449d51ec0faf8093d393dc48a105dae0b3fc23"
+                },
+                "path": "src/devtools/resources/commands/models/result.py",
+                "repository": "836d1a58-3f28-400e-9022-e20d2ebc120e",
+                "representation": "exact-character-range",
+                "requested_span": [
+                  0,
+                  1729
+                ],
+                "revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+                "snapshot": "f46e1207c1620a75ef49af27ecd6e42d8b6da2eb0f7f57df23b1fb5143a87121",
+                "source_length": 1729,
+                "span": [
+                  0,
+                  1729
+                ],
+                "text": "# Copyright (c) 2026\n\"\"\"Command execution models.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from devtools.core.time import Duration\n    from devtools.resources.commands import Command\n\n\n@dataclass(frozen=True, slots=True)\nclass CommandResult:\n    \"\"\"Represent the completed result of a command execution.\n\n    A nonzero exit code is a valid command result and does not itself represent\n    an execution error. Callers may inspect :attr:`succeeded` or :attr:`failed`\n    when interpreting the command's exit status.\n\n    :ivar command: Command that was executed.\n    :ivar exit_code: Process exit code.\n    :ivar stdout: Retained leading bytes written to standard output.\n    :ivar stderr: Retained leading bytes written to standard error.\n    :ivar duration: Monotonic elapsed execution duration.\n    :ivar stdout_truncated: Whether stdout exceeded the retained limit.\n    :ivar stderr_truncated: Whether stderr exceeded the retained limit.\n    :ivar events_dropped: Number of events omitted by bounded buffering.\n    \"\"\"\n\n    command: Command\n    exit_code: int\n    stdout: bytes\n    stderr: bytes\n    duration: Duration\n    stdout_truncated: bool = False\n    stderr_truncated: bool = False\n    events_dropped: int = 0\n\n    @property\n    def succeeded(self) -> bool:\n        \"\"\"Return whether the command exited successfully.\n\n        :returns: ``True`` when the exit code is zero.\n        \"\"\"\n        return self.exit_code == 0\n\n    @property\n    def failed(self) -> bool:\n        \"\"\"Return whether the command exited unsuccessfully.\n\n        :returns: ``True`` when the exit code is nonzero.\n        \"\"\"\n        return not self.succeeded\n",
+                "truncated": false,
+                "uncertainty": "exact retained source; no runtime interpretation",
+                "valid_range": [
+                  0,
+                  1729
+                ],
+                "version": "9bccad0fff2036c7f3059bbd3a449d51ec0faf8093d393dc48a105dae0b3fc23"
+              },
+              "observation_reference": "R1",
+              "old_text_sha256": "c6179ea45430a7263ae096f768810d84dbf4230685bea010c0f9b83187ee9690",
+              "path": "src/devtools/resources/commands/models/result.py",
+              "proposal_call_id": "EjXmxnR2DidDZdjxCHkYRlDl6UAi7h8x",
+              "start": 1519,
+              "version": "9bccad0fff2036c7f3059bbd3a449d51ec0faf8093d393dc48a105dae0b3fc23"
+            }
+          ],
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6520,
+            "output_tokens": 577,
+            "reasoning_tokens": null,
+            "total_tokens": 7097
+          },
+          "model_seconds": 25.094819299993105,
+          "input_tokens_measured": 6520
+        }
+      ],
+      "tools": [
+        "inspect_source",
+        "inspect_api",
+        "search_source",
+        "inspect_source",
+        "read_source"
+      ],
+      "native_edit_calls": 1
+    },
+    {
+      "run": "pi-output",
+      "accepted": true,
+      "elapsed_seconds": 48.61055980005767,
+      "started_at": "2026-10-20T14:58:34.340152+00:00",
+      "finished_at": "2026-10-20T14:59:22.950697+00:00",
+      "result_sha256": "bef6b88eac354e8faf7c75bdfd762386c6620a6e7e6d7d5f41dafb871cfbfc65",
+      "task_sha256": "a4579208cf4313964babdcdfca254118bc3e7d0329369baa4035b12f4424caab",
+      "oracle_sha256": "c441c02d1a4b4a630e5a99842de77f1b10fc27a8f9b1ddd06f068b649fc41021",
+      "source_restored": true,
+      "candidates": [
+        {
+          "evidence": "candidate-0.py",
+          "path": "src/devtools/resources/commands/models/result.py",
+          "sha256": "f20c135c6f84f2b16b6616f1f1dcdd511269b3784d07d6ad6e4a9e2aec892e39"
+        }
+      ],
+      "scoring_eligible": true,
+      "disposition": "ACCEPTED",
+      "model_calls": 4,
+      "tool_actions": 5,
+      "input_tokens": 14472,
+      "output_tokens": 852,
+      "tools": [
+        "read",
+        "read",
+        "inspect_api",
+        "edit",
+        "validate"
+      ],
+      "validation": {
+        "format": 0,
+        "oracle": 0,
+        "ruff": 0,
+        "tests": 0,
+        "typing": 0
+      }
+    }
+  ],
+  "totals": {
+    "runs": 9,
+    "model_calls": 53,
+    "worker_seconds": 745.0120674000354,
+    "input_tokens": 363197,
+    "output_tokens": 12030
+  },
+  "independent_audit": [
+    {
+      "run": "devtools-command",
+      "native_edit_calls": 7,
+      "native_correlated_results": 47,
+      "transactions": [
+        {
+          "turn": 7,
+          "edits": 4,
+          "patch_sha256": "939cd179ddc2c191c80aa5e877737b262126fb2e7894da79d82756843116e457"
+        },
+        {
+          "turn": 8,
+          "edits": 3,
+          "patch_sha256": "bd4067d5b6a736aeb3f6f24e60de248b24ab96045e5da9e6fa91b595ff2b8deb"
+        }
+      ],
+      "wire_argument_strings_preserved": true,
+      "exact_source_observations_and_candidates": true
+    },
+    {
+      "run": "devtools-lazy",
+      "native_edit_calls": 0,
+      "native_correlated_results": 0,
+      "transactions": [],
+      "wire_argument_strings_preserved": true,
+      "exact_source_observations_and_candidates": true
+    },
+    {
+      "run": "devtools-lazy-recovery",
+      "native_edit_calls": 0,
+      "native_correlated_results": 2,
+      "transactions": [],
+      "wire_argument_strings_preserved": true,
+      "exact_source_observations_and_candidates": true
+    },
+    {
+      "run": "devtools-read",
+      "native_edit_calls": 4,
+      "native_correlated_results": 60,
+      "transactions": [
+        {
+          "turn": 4,
+          "edits": 2,
+          "patch_sha256": "0ba4c99febb48573c55d8b68d30f61159a2d4762e8ac2a2455bedf9cd1174412"
+        },
+        {
+          "turn": 10,
+          "edits": 2,
+          "patch_sha256": "550cab590f81217e894166b7109dd9cc5ecd1e6cdcbee0a6c1a98311b53e5bf3"
+        }
+      ],
+      "wire_argument_strings_preserved": true,
+      "exact_source_observations_and_candidates": true
+    },
+    {
+      "run": "devtools-output",
+      "native_edit_calls": 1,
+      "native_correlated_results": 14,
+      "transactions": [
+        {
+          "turn": 5,
+          "edits": 1,
+          "patch_sha256": "c765306e6f1444636147616fbb561d74b173d6b18440a8c0e69b61cd1c5f0a03"
+        }
+      ],
+      "wire_argument_strings_preserved": true,
+      "exact_source_observations_and_candidates": true
+    }
+  ],
+  "original_environment05_evidence_verified": 493,
+  "evidence_manifest": [
+    {
+      "path": ".local/qwen-coding-worker/editing-06/closeout-command-task.json",
+      "sha256": "256421430260fabc578581c318b49afeb76b0672a76f13e023c59ffb452bf12b",
+      "bytes": 2818
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/final-source.py",
+      "sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71",
+      "bytes": 5847
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/freeze.json",
+      "sha256": "d77d5357e6cb0c8164119e1f1d67ce0d6f5a6cb1e48201fb1778b0039d18187a",
+      "bytes": 14538
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/oracle-runner.py",
+      "sha256": "e722135bf686ce21969a35ab0aa3cc814f783df11aeb98c49f0cbd3fd9ed1209",
+      "bytes": 1411
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-01.json",
+      "sha256": "6fbb6cb04d48489952ee1c365a15cee585ddb844dcaa10f806ae912ca8452123",
+      "bytes": 1580
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-02.json",
+      "sha256": "b237867c7f29eabe2b9f0d6915a931555bb1e3f6481d20165ae5a69e77478758",
+      "bytes": 1243
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-03.json",
+      "sha256": "458249c12cfb130cbd5a5ef33f5d8f69e83ccdb18452958660a7bb3fd8a6d9e4",
+      "bytes": 1700
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-04.json",
+      "sha256": "3da26e7b905082f591b806205ba0837ac1a80fa90aa9a486d808c4c719623fb0",
+      "bytes": 1698
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-05.json",
+      "sha256": "d3b56ac5ce6991efa2d684dd7f48f821dd8fd245b00ace3420b3fc1abfcded56",
+      "bytes": 1366
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-06.json",
+      "sha256": "32453e55505899bda3dbab3a67fe84c878e86a8c21d22c723cc1c233a268db57",
+      "bytes": 1428
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-07.json",
+      "sha256": "bfac275048f5f91c891b3ce572f7922f77bdc65dbab88a0d56eeb6839e320e8b",
+      "bytes": 7619
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/provider-response-08.json",
+      "sha256": "36842f2286e4d4b483a68e9ae613711fa094458326f2ef2367361948398d9e0a",
+      "bytes": 2420
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/result.json",
+      "sha256": "63b2dff6c41394162e9ea6131bb930fbf0a29d50824fd57412d565afd756139a",
+      "bytes": 128461
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/tests-runner.py",
+      "sha256": "dd71b7c546295058284e02a1e6f3b2a7a1cf29d24f9426e70fbed8ab861273c4",
+      "bytes": 1228
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-01/capacity.json",
+      "sha256": "d61852bbaa226edc5c2d081cd94f5902749126b127a54e466a5ca91bbd2c9732",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-01/request.json",
+      "sha256": "931e0c908248009864f83f6ef57d9f518871c1d67c2e39cb7c3e23a21877a816",
+      "bytes": 6761
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-01/response.json",
+      "sha256": "4bf7f807bace161c3e549f55d74d2e1badea36a9d1d3383c98ab3624fd1fde73",
+      "bytes": 850
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-01/stage.json",
+      "sha256": "ccc881e5cd5c9e879f9f7fdcdd3c267ec25dc1b33eda04cc93c88737f7092d00",
+      "bytes": 2920
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-01/tools.json",
+      "sha256": "2d8f62c87ae61453156183feb6170352decbff4f89f65ed810a0b1eb4432584c",
+      "bytes": 1724
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-02/capacity.json",
+      "sha256": "79f7d3ad5f9ada59cbbd65e0c3bf8594d928e32ec8486a8f9a9b98a1d11dc75f",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-02/request.json",
+      "sha256": "3bbc963382aeece29815f6dbefc05bd2640cf14d84d7ceb0269ef05c9705c9eb",
+      "bytes": 8576
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-02/response.json",
+      "sha256": "8b604becfbbb5aec5ead4b0fbf3cc2e8e411aa72ba0392911a011e56ae82bd0b",
+      "bytes": 605
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-02/stage.json",
+      "sha256": "7022ec9818caf9b9cdadd0b2de68977cb84ea09a3308332400ee0edfc3cc66e2",
+      "bytes": 9240
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-02/tools.json",
+      "sha256": "75d13b15c8e582e913637c4b4a101a1fe973454bf59eeb32d7d93af62a50f6bc",
+      "bytes": 7650
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-03/capacity.json",
+      "sha256": "b9afc737d41999aeb519694e9cb2f64d2efa716550998f8b6f336403b07b21b4",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-03/request.json",
+      "sha256": "559d69ab689fc1d87ff6f9c77695f45492fbcecd77f808676d385ffb0393e587",
+      "bytes": 14410
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-03/response.json",
+      "sha256": "a0cf4c37ffeeb06d906b4a019717c5987012e58ff5aefa14bde83a57332276c4",
+      "bytes": 962
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-03/stage.json",
+      "sha256": "0782258888de96a85e1471de619a6f0e3b0428576f028798e513be5033ea1514",
+      "bytes": 4757
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-03/tools.json",
+      "sha256": "3fdd04dfc808ad91140067db1c6fbcdaf879a57c83ab49be3966cf63b5e6db6e",
+      "bytes": 3023
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-04/capacity.json",
+      "sha256": "0d4a1eb402475f20cd47b0b534d1d9e8925140bee262400b8acb25c3b893a490",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-04/request.json",
+      "sha256": "6f4d172c22e8cd976ac4ee7de8a8b7b9f46305b1413ce995adbc231420c7175c",
+      "bytes": 17687
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-04/response.json",
+      "sha256": "b91ce69494a5c78e05704e57c7b92975beedb8860fecaff0ea33c3e383928ccd",
+      "bytes": 960
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-04/stage.json",
+      "sha256": "88191909b663efff8428cec645b33e18758af22b08cc95c6d9d6d6873b2204af",
+      "bytes": 15259
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-04/tools.json",
+      "sha256": "97d5f05fc0f9cdbe2345a50fbab48169debc1a1e312a81f1db76647550a22dcf",
+      "bytes": 13224
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-05/capacity.json",
+      "sha256": "c6fb819e0a2db6fe1d8f9eefccb90004bc762719758dfbe3d2b50fb032295d62",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-05/request.json",
+      "sha256": "0c1fb08d119611b9a9f0c76d361302819d7d90877646ba0abf99131e4a33267e",
+      "bytes": 30382
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-05/response.json",
+      "sha256": "fbb78be862a5cdef0b295d5060e64413c6796d8fa88cb7f936af0e59fce42202",
+      "bytes": 724
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-05/stage.json",
+      "sha256": "834b557e4c946488ce1ad5701a6c2ef9e3fa42afd178e65790dc6fb5e2955f8f",
+      "bytes": 4301
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-05/tools.json",
+      "sha256": "9827ae73bd2d1c636eef756576b60635e0f7ace9a019f0a8a29a071f0fadcd2f",
+      "bytes": 2728
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-06/capacity.json",
+      "sha256": "12c5fec713e532f8d3d6e2cbcaf168d9971bc18f67cbd8619e96c6113775a523",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-06/request.json",
+      "sha256": "748a2f3948081ea51c855f1f8bf9bd70bc8c336dcf2861c620d969151c1e7ea4",
+      "bytes": 32673
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-06/response.json",
+      "sha256": "10ba8398c653013987b453c0b42fcaccb79a4ded9698069ecc4f63450804573e",
+      "bytes": 788
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-06/stage.json",
+      "sha256": "55fec51059a7262a3893739b66c762624c82d764d15f8346af7f2e75b2440e81",
+      "bytes": 4885
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-06/tools.json",
+      "sha256": "4bed35caf25f5855553f4080d7307e4e145eba700d70b2bb0e63b74dedf89ea1",
+      "bytes": 3322
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/capacity.json",
+      "sha256": "985fdc5c6c427f725af34b3adc2975e66d4cc0df8f9b3b8f3e7323106c0b0594",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/proposal.patch",
+      "sha256": "939cd179ddc2c191c80aa5e877737b262126fb2e7894da79d82756843116e457",
+      "bytes": 3495
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/request.json",
+      "sha256": "8aaaf7d8e0581fd5fe88db71cdc7da6b52354126dcfd7a056f6805e45d62fe87",
+      "bytes": 35708
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/resolved-proposal.json",
+      "sha256": "f94ef6c0ac58832702520492924627e304448e27868aad78e25dcd240a8fb07d",
+      "bytes": 30579
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/response.json",
+      "sha256": "2f54dd2b59462bae3021576dcf0237d4a1c9da8e96810391ab7802001e5ea2bc",
+      "bytes": 6691
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/stage.json",
+      "sha256": "195b8ebfd779d14c5883431e2022237356d9943c7d5fa348027c33c513234d1c",
+      "bytes": 57054
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-07/tools.json",
+      "sha256": "164d2a21ff024ac533a632db14e3178a8fb2589a85225a1a659c00aced55efe3",
+      "bytes": 50849
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/capacity.json",
+      "sha256": "bcc072a0d632b83b887c16f63ee11e2a90a56ed85de212f8efcd00c035f26389",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/proposal.patch",
+      "sha256": "bd4067d5b6a736aeb3f6f24e60de248b24ab96045e5da9e6fa91b595ff2b8deb",
+      "bytes": 1021
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/request.json",
+      "sha256": "8198f1a2ed7290e5aa5355e043df5807228a779e77efd3c3d20b5ccdb48f8f39",
+      "bytes": 77820
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/resolved-proposal.json",
+      "sha256": "7b8390ecb5f6c6e52802ba82ab9d99cb1363fd6a97e1dd8e03fc35ddfa74eee5",
+      "bytes": 4707
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/response.json",
+      "sha256": "a5602e321d17d91864763d209e3c108ad66ce7c67ad33b0c8828ab579385d35d",
+      "bytes": 1585
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/stage.json",
+      "sha256": "0f121efab87e448a6d4517e5c58fcd9012701b36180aab0c01c38e2fbce82d3a",
+      "bytes": 13300
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-command/turn-08/tools.json",
+      "sha256": "f670c3be67253f4b9b95f5e71266ebc178274bbc65414eea037e8efc3dda3329",
+      "bytes": 25568
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/final-source.py",
+      "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+      "bytes": 1609
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/final-sources/src/devtools/core/conversion/__init__.py",
+      "sha256": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd",
+      "bytes": 299
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/final-sources/src/devtools/core/conversion/iteration.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/freeze.json",
+      "sha256": "6f3a50d2c8fcdcec8e3e76c1d8daea468d8a11c8fd296a05d81bc3004cf74511",
+      "bytes": 17969
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/oracle-runner.py",
+      "sha256": "939547a2d4d41e63129e2b555c57d2df73ec313bbeb32e89b3fbfd8cdd04e003",
+      "bytes": 1829
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/provider-response-01.json",
+      "sha256": "5293b2a3e2ffaf2baf905ad13327934969d05432e92cd574696f80a89aebe4ae",
+      "bytes": 1796
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/result.json",
+      "sha256": "5f527bce7bcf0098e14e123c5a59dbaa8979ed1cd546571c45202ba933a51767",
+      "bytes": 15044
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/tests-runner.py",
+      "sha256": "e405852426530ca362f8d8da67eb9250dae913980dfe4edc9081cd05d9fa4ff8",
+      "bytes": 1322
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/turn-01/capacity.json",
+      "sha256": "c1ceb6b093404dfc7066eca45589bd36b6b401fccc96aa1afecc0f6df1117cee",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/turn-01/request.json",
+      "sha256": "5e69fb15c380b9744a57bc49676160e9f43b3738cd89e2c5ec5e5e519a5f2926",
+      "bytes": 7748
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/turn-01/response.json",
+      "sha256": "d3343ee1ac2525b34a926ecb1eb1eb376f0e742ed59c2f1f69badb7c785df6c1",
+      "bytes": 980
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/turn-01/stage.json",
+      "sha256": "c20f53b78468a064b8185b04341f5e317a6c85e6a22b4336adad0fe6edb5c431",
+      "bytes": 1535
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy/turn-01/tools.json",
+      "sha256": "e958ceb89f9cd6fdf965b3f98100432fa8e1ba8ca37d917dd8aee704c4a40656",
+      "bytes": 406
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/final-source.py",
+      "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+      "bytes": 1609
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/final-sources/src/devtools/core/conversion/__init__.py",
+      "sha256": "1a7a30c828c73d37bb332395c7e3c7b87bc63cceb9551e0e3f140adb354d7cbd",
+      "bytes": 299
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/final-sources/src/devtools/core/conversion/iteration.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/freeze.json",
+      "sha256": "58103bcaa69b20e355e89bb78c2a66bcf549865db0cb6edb5fd756a9eacd9af4",
+      "bytes": 18091
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/oracle-runner.py",
+      "sha256": "939547a2d4d41e63129e2b555c57d2df73ec313bbeb32e89b3fbfd8cdd04e003",
+      "bytes": 1829
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/provider-response-01.json",
+      "sha256": "33ba0d46160ce13f1dc7748558420aa0b8be5ed066fa97385d90559df24309e8",
+      "bytes": 1461
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/provider-response-02.json",
+      "sha256": "af9fa0c629f7f6835901dbc82b35b972320382b543bffdaed8486c99c52dbe52",
+      "bytes": 1625
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/result.json",
+      "sha256": "d9ac98c953788dfeee2ced12d236179178cd77f0cb9284ee3ec8f04657665705",
+      "bytes": 32905
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/tests-runner.py",
+      "sha256": "aef49f9231a49948fdec9aa35de7ffbb8359447bf5518f2241da5ca6e50c504e",
+      "bytes": 1331
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-01/capacity.json",
+      "sha256": "925a810d507429a5e115e4f6df589c6d2c573024b6014ad3dfc504a41593b035",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-01/request.json",
+      "sha256": "a40fe42a8a71ddcffd122df74a70cce39b10397746ff6f06e37d7538ab9f2f43",
+      "bytes": 7834
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-01/response.json",
+      "sha256": "db3db5c685e50f562ce3e644abe7a722d2e557426e056659bbab3be35ab8ba7f",
+      "bytes": 731
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-01/stage.json",
+      "sha256": "e23c8f25947cb13f478d1e9abbc43314f607073a20011b595dda7670ac642099",
+      "bytes": 14627
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-01/tools.json",
+      "sha256": "95d8f2e56f1827571cddd76ba4be3284b818f873258fa6467584e14f15bf2e4c",
+      "bytes": 12662
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-02/capacity.json",
+      "sha256": "15e7844d00b56ecc15a4dfb74ae9d11a054c88cd1b04433617f9fc6453ba32ad",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-02/request.json",
+      "sha256": "34c4a56eba5213ebbf0f244ca776ce840ed6f0c11f1b90b7d1e0172b336b8e46",
+      "bytes": 17542
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-02/response.json",
+      "sha256": "ebea68fcc4d11856fd0c5fb7e24252a955fb41faffea28d9694396f455acb23c",
+      "bytes": 888
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-02/stage.json",
+      "sha256": "4d11c45a9b46aed40251bc7cfca47aba0a3f1791a797a66360b88236981bf964",
+      "bytes": 3149
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-lazy-recovery/turn-02/tools.json",
+      "sha256": "0ac092ac346bb7dae7a06310502dc7a8e788755bcb4bf1f7246e2f37e8c0c601",
+      "bytes": 1946
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/final-source.py",
+      "sha256": "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2",
+      "bytes": 3463
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/freeze.json",
+      "sha256": "e07d8205047c88e7acd4e4f801b59a757723e4f3eb7a64d1e9426b8d89cdb0e0",
+      "bytes": 16529
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/oracle-runner.py",
+      "sha256": "12aa2126aae50bb09ee593704e5b6b5db5ff398f8e11a803140cc960b90dca44",
+      "bytes": 1785
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/provider-response-01.json",
+      "sha256": "5ed32225b2e6f2dd936e4dd8e666982d271c4949a77ad8668f5bcf81e9c743b8",
+      "bytes": 1546
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/provider-response-02.json",
+      "sha256": "55e143abe626b35d227e4b183f7215af44bb49566d60131874f50f60c634ea9a",
+      "bytes": 1310
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/provider-response-03.json",
+      "sha256": "c74f90a4210462eaca19f9d5e36bddb4c269459f23f01d97dbdcefa4707aac52",
+      "bytes": 1206
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/provider-response-04.json",
+      "sha256": "59538f0b4cb8e8889ddd5768edf228e5f0331e41b23b0d74a8ab665b9b722a88",
+      "bytes": 1393
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/provider-response-05.json",
+      "sha256": "873aeee30e822d1fff7875aa92a600c379b35823b4b1e867297f5c057a7269c8",
+      "bytes": 3758
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/result.json",
+      "sha256": "c6a0866869cff54820afbf3bf3e88a3a444182824097a356bf8202d855e83372",
+      "bytes": 49014
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/tests-runner.py",
+      "sha256": "1520a0415b7aa704f3b5a059ad2c139dc55efa85c29888e8ea5c112e5c90c5cd",
+      "bytes": 1225
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-01/capacity.json",
+      "sha256": "bb51c7b955ee7ecc7eea54130b6fcc31b84f0fc6913423526b262fd33efc7be1",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-01/request.json",
+      "sha256": "f80d59ae24ee49167fe2b796a2e4de109763ca624e0576a1aa26ea3fdee7d2b6",
+      "bytes": 8310
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-01/response.json",
+      "sha256": "1b03a91268f6795024ed9f856ff3e0b7bdf1e1ec9e1c854f278764ad1e4044fb",
+      "bytes": 817
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-01/stage.json",
+      "sha256": "21b0222d7829c14e11db6f19330cb46f6743ca7c511b7d76296fe2fb470c99a4",
+      "bytes": 7607
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-01/tools.json",
+      "sha256": "587762579ea3d47511bd3b7ac8288cebcd8234bb02d8c7881e8755b5f4d5148f",
+      "bytes": 5852
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-02/capacity.json",
+      "sha256": "8bdcdaed648e6f946d4861621cfafe08488eb6cdcf3263a9000f47fbaf0c94f9",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-02/request.json",
+      "sha256": "2ae13ebe6871cf911ef035991c7522d36bb355cd61d7087b8886e68eb8468112",
+      "bytes": 13928
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-02/response.json",
+      "sha256": "fe2488c7f7cd0858f0147ffdce69f5e147a71f913e909ddf04a501ed863126f2",
+      "bytes": 671
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-02/stage.json",
+      "sha256": "0b94a34c5cd3ddb7b78a760f40e46819268ca70c3e870c8a4ca995fc96996a2e",
+      "bytes": 2269
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-02/tools.json",
+      "sha256": "101f60e9ffc4acb7b137602c2f373aa44ad4176a90cfa7bbb04ce1c5e87ff295",
+      "bytes": 1001
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-03/capacity.json",
+      "sha256": "ec2e3286913a2337bf44732b891f272c9d39ec58891bf5568e1f4a6d777d9d23",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-03/request.json",
+      "sha256": "226a1b7b106255e546a54ee2aab29a7c0a93d057722940f02ae78dd94ff15248",
+      "bytes": 15312
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-03/response.json",
+      "sha256": "3640da303ee354bee98d84cab796e9fd4aa60d21d394d2e04291d0bce04ac42f",
+      "bytes": 567
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-03/stage.json",
+      "sha256": "52577c571f34ad30a671b9320eccc702b0a7c324ad47f660db1357d642a946e4",
+      "bytes": 8064
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-03/tools.json",
+      "sha256": "8d2db1d5dd944ad208d07f93050c3caf0cb79969efd7d7b093ed8ffc383e6889",
+      "bytes": 6506
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-04/capacity.json",
+      "sha256": "b535f91bd056618772afaecc2891cd4922c68fedcf0490f6a42855137877cf77",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-04/request.json",
+      "sha256": "fc37b4e50cd2c6f44b86dd3fd011f4b0c0365526137b0492efe8de70f7f95b70",
+      "bytes": 21673
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-04/response.json",
+      "sha256": "59a2d91d0fc5712f402b9436a5b422cc00410f600ce46180a45d335d31c10884",
+      "bytes": 750
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-04/stage.json",
+      "sha256": "b26a386513e06213cb1a9cbf80f91596f331211ca1e8498ac39b75b6bb5d8f3a",
+      "bytes": 4783
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-04/tools.json",
+      "sha256": "ec468a0e031d579454ab18d918f5ed3c4ae22cbb13494e815bbc365012adce53",
+      "bytes": 3222
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/capacity.json",
+      "sha256": "23f314b90aa74e4d4b79d35573020e8bdfec6eb0baae3e5a7605d308cbe6b934",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/proposal.patch",
+      "sha256": "c765306e6f1444636147616fbb561d74b173d6b18440a8c0e69b61cd1c5f0a03",
+      "bytes": 2012
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/request.json",
+      "sha256": "0189f07ce3bec88757680d1e6f8638da8b135be757846e88ca0db00e94d8459f",
+      "bytes": 24566
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/resolved-proposal.json",
+      "sha256": "91630721e97127123e33820469cb185e7e0e243e3f93a8a8ef47996d4653831d",
+      "bytes": 6353
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/response.json",
+      "sha256": "caaa4eb53e7047c006a06bc316a3874a91f0f30cfc2e33ee6f7a4d151481ac76",
+      "bytes": 3118
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/stage.json",
+      "sha256": "a071adee028c2952c1467f3e0ee33f9c4635c6c29a3bf6520c71d220535a9c9f",
+      "bytes": 12678
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-output/turn-05/tools.json",
+      "sha256": "d52dce0c7bcbf49f0b593d60707000bdff7b57a287e900dba5f5c28bf4b54bb4",
+      "bytes": 17275
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/coding-command-01.json",
+      "sha256": "7d6dde5e82268d01c8c6d857be235722081e93c69e70fb629297ad18459539c1",
+      "bytes": 738
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/coding-command-02.json",
+      "sha256": "b9083d6bedfa9528b4d9d3b1ec863684c93246221209547d20646ba850099a64",
+      "bytes": 2115
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/final-source.py",
+      "sha256": "d498a43c729544d26b2a04db5c8d47e56a845b8a95c5f10e86fe76c2a888678e",
+      "bytes": 4363
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/freeze.json",
+      "sha256": "1ab0890d601c2bcea9deedc95c1fdbdf299ffa586985c11d90fac9e95b6f9c29",
+      "bytes": 17186
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/oracle-runner.py",
+      "sha256": "e5e08f5cabab54a5c6c79fb5e304900c664e3ce5bbe5cd8f04219ad790dcab65",
+      "bytes": 1996
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-01.json",
+      "sha256": "4fe107e47fbf46a740c998e7b2ce1c05df15dbf0b81c3e32ba354e28f87908fe",
+      "bytes": 1504
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-02.json",
+      "sha256": "94c985e3f782fe53e7e2ca7bb6589e827b98715b817dcbc427d73e574b2a1bd0",
+      "bytes": 1302
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-03.json",
+      "sha256": "0b135a9871840f819393616b04d289be33010a6ecf06bb621f46333c5abfb585",
+      "bytes": 1214
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-04.json",
+      "sha256": "288b462a4334fa122fdd209af1812ef56678dcb62712c24e87ccad17aa4d7a2c",
+      "bytes": 4706
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-05.json",
+      "sha256": "74dd75cfbc2c72830097fdbb731e0cae044c9ed13d6e05408048f0e7607b99c3",
+      "bytes": 2381
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-06.json",
+      "sha256": "12bae95031f26b0e8dbc7fff179beb0daea5f681d43b69c3fa5d97eb2c09e7f9",
+      "bytes": 1337
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-07.json",
+      "sha256": "d4e484bc4c118eb11aac743fa61f4f7e9e0dcb9d4af02988ccdef13463efc83c",
+      "bytes": 1357
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-08.json",
+      "sha256": "e1bdb7228bcc74e443ae980a148205b5d46a58ba181474b4b372481f4364ea0d",
+      "bytes": 3131
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-09.json",
+      "sha256": "814138455da1c32b97a2f12144f0bdf35d58048571c12625be837c67d91b5165",
+      "bytes": 1275
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/provider-response-10.json",
+      "sha256": "79d421aa2225d2c448e62317d23e6bdab55b7a9b610df27f95b5fba0c8599be5",
+      "bytes": 7936
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/result.json",
+      "sha256": "1641f6395a78e79cc10179fca2f1d481fb532871f941c781c913d9d7addad63d",
+      "bytes": 122866
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/tests-runner.py",
+      "sha256": "9e05ab1820c489db5e00a258643857c0cbb1e17d0e02d1683b63b3c8ee663e93",
+      "bytes": 1217
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-01/capacity.json",
+      "sha256": "d154153168e8e8fde63e48746c7410d0275bc323ef87578523eb32349379f7cf",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-01/request.json",
+      "sha256": "6a2b626fa852e658b85ae962f51ad250e05b005601d0f5ace4d96b951754da32",
+      "bytes": 7676
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-01/response.json",
+      "sha256": "06e0b7c046cc59383fee856c0c3f822f4132a6e3e109ec88154a7ff2bc905521",
+      "bytes": 776
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-01/stage.json",
+      "sha256": "a321c6403222a9883e58299c9fed6de40f6ac21b709e5e47d022c99f32a705e9",
+      "bytes": 11135
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-01/tools.json",
+      "sha256": "4837db228be80a2cc8c0d33ffe8eb6e981ab50ce02b91fd8b9d1808fdee04a0b",
+      "bytes": 9106
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-02/capacity.json",
+      "sha256": "e1c976b6d0858d0a191ff4adb7019b996a458093d1686afecb9f7da6d61e0ff4",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-02/request.json",
+      "sha256": "a42114e2387af018b0be6d3bbe71d50e680fee69688c34294244318a77fad921",
+      "bytes": 15905
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-02/response.json",
+      "sha256": "2c8612cbcc0f95f6152d6ddbe28f5cdb8eadcbb6fb4998d5e2fe12b0c1ba7878",
+      "bytes": 660
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-02/stage.json",
+      "sha256": "c407b4e924b1f6146f38f4937f99daa9984c45ea8df6a3a29b11ef1964255512",
+      "bytes": 8112
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-02/tools.json",
+      "sha256": "4b0ee4744f6a6cc23e4bae8c7d4c5086a8ed8fb9c45d316ab4ccb9ddc55c41bd",
+      "bytes": 6551
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-03/capacity.json",
+      "sha256": "0dda1e7da8ead4c52e1e76b4710bba3bdf092f21d5c40492738f519ad07139fc",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-03/request.json",
+      "sha256": "c844d3be61297a1661a64652edbebe595af1d02db0d1effc52822a6a8c023c5b",
+      "bytes": 22446
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-03/response.json",
+      "sha256": "567987f4789423e6ef62e7e5b71ee332435241edd8bf5665560d9dee7068aeb6",
+      "bytes": 573
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-03/stage.json",
+      "sha256": "cd74d8b0b849f14d86e6f937571bd0a7f310f4c2ee5f48f386848fa89ec7f23b",
+      "bytes": 7590
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-03/tools.json",
+      "sha256": "836bec9517dfd02edb7d49baa67315f05511f31dac08671a125f908c4cdf8a28",
+      "bytes": 6025
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/capacity.json",
+      "sha256": "a56a8779d26d75f62a8bb9e5d63fda8ed9603ff8463937b850990bbcb7ad41db",
+      "bytes": 140
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/proposal.patch",
+      "sha256": "0ba4c99febb48573c55d8b68d30f61159a2d4762e8ac2a2455bedf9cd1174412",
+      "bytes": 1153
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/request.json",
+      "sha256": "0c55797ee35299ee6574f2b398822c0f6b53639e8f9ad747ca37367a73fe2d91",
+      "bytes": 28302
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/resolved-proposal.json",
+      "sha256": "52bdc52782c7995c964fd33ecbd3ab870e41136bef091a243a0a8d07c68e8ca4",
+      "bytes": 13651
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/response.json",
+      "sha256": "c6cfba5a95dbb03b90f28e4ae8de06541c84a3f5b777380ac06f012ddf2ed3f1",
+      "bytes": 3968
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/stage.json",
+      "sha256": "8919b3c7d03558202bf9b0e9564c66ff75bcc97eba83b23a17feadd4ac4fefed",
+      "bytes": 28210
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-04/tools.json",
+      "sha256": "1bf6531d127fbc2451bb9c7deb97707f753605ce2b6b9e1a5b4a4e2de49e0c86",
+      "bytes": 27214
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-05/capacity.json",
+      "sha256": "7efc6cbd8c2fa7b6c5e782eede295ce471f913f1f72463e1164e5d54744e1289",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-05/request.json",
+      "sha256": "5c6a4c8a45553a48a6e1ef6eb0dd1275f8bf9bc4e8f276bd9d3b56220f80f063",
+      "bytes": 50181
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-05/response.json",
+      "sha256": "83d9dff63137f5be335332e543534f394c01fa2c59f89170dd1e3c1a809a9046",
+      "bytes": 1736
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-05/stage.json",
+      "sha256": "1ab6fff74c04534442918024161a9126bb070b5ea721e1863da8e5200a6aeea9",
+      "bytes": 8040
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-05/tools.json",
+      "sha256": "3823581c546f11f5f68555a654f1eafc0593e379ba5c414af3f57398c72b5e1b",
+      "bytes": 6470
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-06/capacity.json",
+      "sha256": "0d5b7377d11031ec09e1296875792ed6c95c786556b4635007475576c8d7babe",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-06/request.json",
+      "sha256": "597df2720fe874674d5d7fef408c9990eb6de2444a7246fa502410f9e45200f4",
+      "bytes": 57497
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-06/response.json",
+      "sha256": "dcd5417b9be0e133a47c0ac9b6ae023f23bc04f286a432666119ff7e1f3bc5fb",
+      "bytes": 695
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-06/stage.json",
+      "sha256": "c8258f735a0e7e63e00bdae1c9ae2d6a785dcbfa25535da42abcf48dadbaf12a",
+      "bytes": 2258
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-06/tools.json",
+      "sha256": "cb0b0488d2db192ac93626041490eff639c9c0ad0f2b6d38b341267a46aed4bd",
+      "bytes": 984
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-07/capacity.json",
+      "sha256": "5f4d8e9a3c679c0ba7fb7c0ac0c0f35ddc68abe4685a42b71bff01689fecb00e",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-07/request.json",
+      "sha256": "05226f5c91adbf6f09ec3dd134bade2b079fd501e8bf9881a7796e387c045b9d",
+      "bytes": 58903
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-07/response.json",
+      "sha256": "afdb6701434ea5c72ca2860a9e71d1a500159a989bfc4951e737658e7bddf0eb",
+      "bytes": 716
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-07/stage.json",
+      "sha256": "f9d15f1d2aacae8b6bc0548eb0a1ff32ded54154be46d253134b69999813933d",
+      "bytes": 2410
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-07/tools.json",
+      "sha256": "ed38959bdc53c07fc8245686a09a123f123f51e0492ac20baeae8653c25b141c",
+      "bytes": 1211
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-08/capacity.json",
+      "sha256": "deaf5c2de165bfc46c23648d90eb52ee813888b57aef8bba62cbedb61731aa6e",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-08/request.json",
+      "sha256": "898d8f5bfc8bcc2223fc380552372c4523bb4c5c9220c4a48a2e79d4ca2557c7",
+      "bytes": 60373
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-08/response.json",
+      "sha256": "92b9379d1b901499ddd226a043dfa52a0a8fd2f4673e0ee0fc72e9066720fecc",
+      "bytes": 2489
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-08/stage.json",
+      "sha256": "049da8c3c134bf93f2fd771dc2fb64725e7215c4cd0af680a7562c0e9c77c580",
+      "bytes": 2264
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-08/tools.json",
+      "sha256": "3e42cd0083389e656e112330c1e8ba89568ed5d4da94eb57134e0d02d0f9df30",
+      "bytes": 991
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-09/capacity.json",
+      "sha256": "766b5b3687977fe3c4e2c088f3b8ca30c3028a0418231213dd0b2e62f61a717a",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-09/request.json",
+      "sha256": "a98a642535663830e2e324788df179cacbf5ea8bc64ef721efe93f40ebd6f07f",
+      "bytes": 63572
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-09/response.json",
+      "sha256": "f34f64b378ab749d55f87bb5546c414f88a1064ff00847fb8a65765c927ae85c",
+      "bytes": 635
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-09/stage.json",
+      "sha256": "0b39fb1cae1ed553aec21c40c1b09cc7d69ba34a57f6e505c697cc6ff09bfb5e",
+      "bytes": 3812
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-09/tools.json",
+      "sha256": "8893e6a5d1f8d34f9116f3639e2dfa8869323182dbfebea602614b2caee4aca2",
+      "bytes": 2607
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/capacity.json",
+      "sha256": "1f3e7cfcf80129d96814db8f5d2e82ff0fd942f5608632f72591904af1462650",
+      "bytes": 141
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/proposal.patch",
+      "sha256": "550cab590f81217e894166b7109dd9cc5ecd1e6cdcbee0a6c1a98311b53e5bf3",
+      "bytes": 795
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/request.json",
+      "sha256": "18ed69d10b0d48ab2c3fccd916f496252c90233c83192529f80f4bf8056ad286",
+      "bytes": 66413
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/resolved-proposal.json",
+      "sha256": "e8c058cf52880448a1a9472e6a92fcfccd15a1c776f5edcd65c26cae1351eee4",
+      "bytes": 15762
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/response.json",
+      "sha256": "bdf29d7f43e6bd9ca634c6f1c67ccbc4ce005e93a0e0dd7634df16d99c927e28",
+      "bytes": 7199
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/stage.json",
+      "sha256": "f07836931c9f812c5ae5be799ed134b21f176a3ee239c0ae9b759dcf949189d5",
+      "bytes": 30838
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/devtools-read/turn-10/tools.json",
+      "sha256": "024578413b8c541d106a160d977b58dda2a593d1c68b58e6f0d5139a91079e6e",
+      "bytes": 34598
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/independent-command-tests.py",
+      "sha256": "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b",
+      "bytes": 6415
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/oracle-review.json",
+      "sha256": "3e31ba28700cc19db8d0e587942df53c30918702827ae693f451f1d9e6df10a6",
+      "bytes": 949
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/candidate-0.py",
+      "sha256": "89aecac475f848e83f01343fb20edccb1d21f461bf6d5b15a1d4a6cc9bbca8fd",
+      "bytes": 6044
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/candidate.diff",
+      "sha256": "044a2f3102eddf1951580f676412c753e4ec09a26dfc4391096a3f00459d8822",
+      "bytes": 3419
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/config.json",
+      "sha256": "2a12470970305a092f1d2ba45f31e9e95afbcdeba9b858ce74cde214e995cae4",
+      "bytes": 2999
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/oracle-runner.py",
+      "sha256": "e722135bf686ce21969a35ab0aa3cc814f783df11aeb98c49f0cbd3fd9ed1209",
+      "bytes": 1411
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-provider-1.txt",
+      "sha256": "0014eeb1452e621129e79f27c488847ac293d6d0c0c6bb0a3afc09a85728701d",
+      "bytes": 8190
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-provider-2.txt",
+      "sha256": "157839d2792211820652446a2de2e82198ef59565ec9a005b4ffd9d9d8fa72c4",
+      "bytes": 284448
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-provider-3.txt",
+      "sha256": "18770f0371d22060d3545fa58dc1d1c0549c135aa8bc0b9fd26c67071a79c252",
+      "bytes": 9650
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-provider-4.txt",
+      "sha256": "6d3907b72296ca42301ba618453b7911e31983c9a9a88b8b4d17561dd063e079",
+      "bytes": 4965
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-provider-5.txt",
+      "sha256": "0fb1b43e544f539cf9426c17ed68b030e68a87d7bf1def22b2d1529b84933f2a",
+      "bytes": 61191
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-request-1.json",
+      "sha256": "4c3a7ed977bd33da65387f009e47a17ee54fdec5213959911986f59c50268911",
+      "bytes": 7592
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-request-2.json",
+      "sha256": "18e8894ca6f3c17c1aa5ecf42f017dac007d2c14ea5bd526ed3fa843d83200cd",
+      "bytes": 18327
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-request-3.json",
+      "sha256": "174d65830573e44d3abbdbbd64572e60a79abae6cb3626ccf4918b51de81c7c9",
+      "bytes": 23629
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-request-4.json",
+      "sha256": "103594f30811e64c95c70ef74e925585a212aa8e7eca77f3b7d7112f7c1c741e",
+      "bytes": 30526
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-request-5.json",
+      "sha256": "74e7cb32763bf3d1ef98c087a275d679bae160345466832c7b2c4ada8d9df8d8",
+      "bytes": 33510
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pi-transcript.json",
+      "sha256": "942198e2bb3335409652764ee0056b1f6f2f1378a55ab635f2b9b32c4be660b8",
+      "bytes": 138230
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/result.json",
+      "sha256": "0c3bb23bc0dcc2dee039f524ae30bf20c834ee8bbdb8205b1fc04f36a16b0406",
+      "bytes": 6353
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-command/tests-runner.py",
+      "sha256": "27a1563044e8474a623589f07faa1d0a13a8d02a22bebf1a7f84996409eaa49e",
+      "bytes": 1222
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/candidate-0.py",
+      "sha256": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+      "bytes": 1609
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/candidate-1.py",
+      "sha256": "5109f379491dc88bed70a79ba377df931a93bf9520a27584163a1acdb940cfcb",
+      "bytes": 383
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/candidate-2.py",
+      "sha256": "6f7c61baaf2b1620b0c9a02b7ed5dd27ca396bd1e2fb745e22ef6e24053c6115",
+      "bytes": 1024
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/candidate.diff",
+      "sha256": "4b9e573279de8769673e7cb5ab631422d22599ec06d03a18a7b731de01f34cf0",
+      "bytes": 584
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/config.json",
+      "sha256": "0771b1e71d0f687f6e5cef2a3d6b1360ace5877db7ab82a63ae42214da80cd55",
+      "bytes": 4676
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/oracle-runner.py",
+      "sha256": "939547a2d4d41e63129e2b555c57d2df73ec313bbeb32e89b3fbfd8cdd04e003",
+      "bytes": 1829
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-1.txt",
+      "sha256": "3d7ea81429eadd2be96f1013c8a8c6420a2b380858a6cfc6dcf8c1c3e34e5d05",
+      "bytes": 15839
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-2.txt",
+      "sha256": "0db07c0fbef3951ca00d85a109a7d0532342b0969b1ead74ec019962b419c87e",
+      "bytes": 4652
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-3.txt",
+      "sha256": "0866e035d10af5443cdb0056a2f09702e223fbaa3d0e1bbfefe5396e891f6f18",
+      "bytes": 68602
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-4.txt",
+      "sha256": "fa5be7984591dd24d66a10c499f1ce9b5269018c985fbccfb664a00ae553ac48",
+      "bytes": 48073
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-5.txt",
+      "sha256": "8822529a115156ce51a5849e6ff847c15c1433422482c1f9915115a1f0ee1665",
+      "bytes": 1740
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-6.txt",
+      "sha256": "7487ed869ac61b919db518f56be8943383fdfeff042a84e6d460ecf3a74ed011",
+      "bytes": 42586
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-7.txt",
+      "sha256": "c01e80e560309faca46301156b1ca05bc00e00d59888e20a2f7d498b18f08623",
+      "bytes": 1737
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-provider-8.txt",
+      "sha256": "938032519ee02f08037dd40a249ffb8e60fd84f4cfd0cc59bf9903718260c013",
+      "bytes": 69512
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-1.json",
+      "sha256": "2e3e1c6e8b335bc43fecd9df40ae89a210084def023869018a93b5b3339e2d9e",
+      "bytes": 8079
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-2.json",
+      "sha256": "e77b75f3a1d46e1506bb33cf79c2f5bfe72553b2f455dbbb383d6b71644e57e8",
+      "bytes": 16956
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-3.json",
+      "sha256": "303316446c52793be9aa594efd800efbc99a6b8159e00771c6096af6394a73ff",
+      "bytes": 22027
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-4.json",
+      "sha256": "e48614ecaeb05bb381ac25536fadaa91a58702cc79196609878b42557a82b30e",
+      "bytes": 23701
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-5.json",
+      "sha256": "1339eb157b4616e65aaf4b54a9f199c137cf3bac3d39b59101a0f22b45ffab38",
+      "bytes": 24911
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-6.json",
+      "sha256": "a92e2760fcc4edf639b990e6e354a18a63f5dd88d6fa3159c6f6ca79c1295589",
+      "bytes": 29490
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-7.json",
+      "sha256": "661dff71ac9ddfb2c52ad7d76b7ab5fd9de62ca980753c3156bc9f6c0dbd5b48",
+      "bytes": 30654
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-request-8.json",
+      "sha256": "30ed0d679d2820b6431c7d114421935f8e0be414296c1c53026e50c0f33aad53",
+      "bytes": 33827
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pi-transcript.json",
+      "sha256": "0838589895aa5988750cf67a5ee2f49186e142dc71f98247a8eb13f8823920b2",
+      "bytes": 128043
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/result.json",
+      "sha256": "1bbf7ac5f232cc25b7a73a4e6d8eff7cfcfca821d61ddd487ffc6b8dca059ea4",
+      "bytes": 8696
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-lazy/tests-runner.py",
+      "sha256": "ab504977be7b1f3f7450a79d6a71bf8f2f557144c270f1610d910159eb49f56c",
+      "bytes": 1316
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/candidate-0.py",
+      "sha256": "f20c135c6f84f2b16b6616f1f1dcdd511269b3784d07d6ad6e4a9e2aec892e39",
+      "bytes": 3097
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/candidate.diff",
+      "sha256": "e3a227e1bed6eacef6760b289044b93fc6bf09902d0363e90aa0c797f9b52b48",
+      "bytes": 1854
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/config.json",
+      "sha256": "50c5c24ad92d6d97861c108cbdca3c49395296d16546606721d005cd947ae2c4",
+      "bytes": 3602
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/oracle-runner.py",
+      "sha256": "12aa2126aae50bb09ee593704e5b6b5db5ff398f8e11a803140cc960b90dca44",
+      "bytes": 1785
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-provider-1.txt",
+      "sha256": "bb9e3a7a166a22cb0e49610024a7ed5d7cab272a9f3f5a007106bf8ff14f3d1a",
+      "bytes": 10009
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-provider-2.txt",
+      "sha256": "c01135c3256c83a5088846f3697702abf7d3bea63f8c2e17231a7b5726f90e8b",
+      "bytes": 143265
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-provider-3.txt",
+      "sha256": "3ec563804ff6f63ae413623d0415f8b4bca7da97830effb58975d5172873216a",
+      "bytes": 1738
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-provider-4.txt",
+      "sha256": "a87413f403adca507f375ca77dbd8810bb31c01147bbfea849aacf050e17eaf4",
+      "bytes": 55516
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-request-1.json",
+      "sha256": "f902eae613f33aea32880d5f394da2f0d40166c2e6823a166ba4383539be189a",
+      "bytes": 8393
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-request-2.json",
+      "sha256": "197eb016f42f45549583d7e2f01024db56c14936808dc54fc279cb07a2605802",
+      "bytes": 17601
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-request-3.json",
+      "sha256": "5fb37a43a78475e33c7fd2d4be9e2af3b07a632b22b9760a4476ec34b8ed752e",
+      "bytes": 20321
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-request-4.json",
+      "sha256": "a82b04c873df2f5af5aebb40df647e0b5d218147f716ca6acc38b7911a850bd7",
+      "bytes": 23238
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pi-transcript.json",
+      "sha256": "14012e9d2495707babe84e9207e123a256c9afdca7e9d5b313be160a73e0730e",
+      "bytes": 87072
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/result.json",
+      "sha256": "bef6b88eac354e8faf7c75bdfd762386c6620a6e7e6d7d5f41dafb871cfbfc65",
+      "bytes": 6948
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-output/tests-runner.py",
+      "sha256": "b0723e410bb0565ad9170053e9c734c7c501eadcba584239638440e92a02b21c",
+      "bytes": 1219
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/candidate-0.py",
+      "sha256": "6e31f8da96455cec06c55d28ae001a45c063490b0d455200eb16ec5bc8ae24d2",
+      "bytes": 4549
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/candidate.diff",
+      "sha256": "6ef049a3a700e6d04460d45f3bc5f37e183d25ee74d5b832eaa6fb89baf8002c",
+      "bytes": 2603
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/config.json",
+      "sha256": "cd2ce840ac0edd0a5c7e222c8836389606dc7dd986c6f77229a6412ccb831756",
+      "bytes": 3881
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/oracle-runner.py",
+      "sha256": "e5e08f5cabab54a5c6c79fb5e304900c664e3ce5bbe5cd8f04219ad790dcab65",
+      "bytes": 1996
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-1.txt",
+      "sha256": "c6fce3eab889fb1b42d8dd02e08382392cbb2bbf67fd093ce78d68fc43eefdd0",
+      "bytes": 11738
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-10.txt",
+      "sha256": "c1a9124395e86c2008b487948bd5696a00901cbba79dc321a70b9946ff0a5f51",
+      "bytes": 18518
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-2.txt",
+      "sha256": "3095abfd1368eac7a85c0c13d3a5c2a1b972cdc21980f2f31025101bf934b702",
+      "bytes": 2393
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-3.txt",
+      "sha256": "e1dd1708ef3669e375167e4a3d2f1049ae91fcab0e8879974e799b3859faca8c",
+      "bytes": 107980
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-4.txt",
+      "sha256": "01b6559b27c9c522ee486e402dbe44919a9ae868b608c0980e9b281295e09d1c",
+      "bytes": 1728
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-5.txt",
+      "sha256": "359027a93c0714707d0cc842ff58720be708906fc761ee71003688f0dbe9133f",
+      "bytes": 10695
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-6.txt",
+      "sha256": "dbdd1d99983c840776bb9bec11afdb914843a58cdc5ef31d8caf13fceef4bd93",
+      "bytes": 47461
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-7.txt",
+      "sha256": "c1aad4ad84b59121defb0baa360241d16f0b0f230f9054a79ddc10b74b163140",
+      "bytes": 4928
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-8.txt",
+      "sha256": "34487652fa904a17d89be9a0802527c7abea4524d8c421379805e6ed87403c06",
+      "bytes": 86812
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-provider-9.txt",
+      "sha256": "e54806e55b4db1516920f867971482ac13ccb3c2c8f8da4a59ecd83d122e08e5",
+      "bytes": 1738
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-1.json",
+      "sha256": "b499e0552c3d59b2f8d28928ec269ad53ff41f9e5c6d432e29a3251cad8ecf16",
+      "bytes": 7610
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-10.json",
+      "sha256": "77db939ecbd774f6d6b0c521d0998bc605574d0ba30b2d0b9132f191f5a5b89e",
+      "bytes": 43330
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-2.json",
+      "sha256": "9c1bfe97d89fa66fbc4791a7860445b2efb0061c233f5a5414ac15b670dfeb01",
+      "bytes": 21732
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-3.json",
+      "sha256": "0d9345b63912a4e39b9a06bbe1e716690e4a7c0ac68bc6f52f41bcf200ef64f9",
+      "bytes": 26710
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-4.json",
+      "sha256": "10a539f94978d807f20f9ba693de6dce4a38a078d518394a4d16fe19fdf72454",
+      "bytes": 28829
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-5.json",
+      "sha256": "682d5ecb25ce5323ec97580c6ed37f95a4ef95dc49fb880c0febe0d37ce6c4cc",
+      "bytes": 32129
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-6.json",
+      "sha256": "15b48d7aa287dbdce3774398e0e60e6ea8fc1bc5c15007c0c121e4d1ee655215",
+      "bytes": 32670
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-7.json",
+      "sha256": "f245fe5c1c252960027435331eeffe401604cf09a30e5f8330db0be7cdbcb3ce",
+      "bytes": 33856
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-8.json",
+      "sha256": "355bb1ed5d651762b50477b6a1859f46fcd9d47e7e1666ebbe5be99513a89678",
+      "bytes": 37948
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-request-9.json",
+      "sha256": "da311020d78fd61283205835f29d3f4186207f0feca5adcc97a11767016ac5d2",
+      "bytes": 39710
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-system.txt",
+      "sha256": "091625991ab3f7bd1027a81d17e90bee3e33c3146d23536f1a015ff52b6eb6d4",
+      "bytes": 2008
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pi-transcript.json",
+      "sha256": "6167d99a4f1e46935f17a3e55119318f38f7f7be33ef6b3cbb15ae8b80d2b9ce",
+      "bytes": 184988
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/process.json",
+      "sha256": "5faa4490afaa656e1ca4316a15e6c553264d72bdc2fd2615094c3444257a658e",
+      "bytes": 53
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/result.json",
+      "sha256": "31de623a306797312ff64a69c1d1b368d81ada42e2f31181209088467ae1b327",
+      "bytes": 7580
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/pi-read/tests-runner.py",
+      "sha256": "d59e89a13a464dffee928eb3009f06653acaa87f5cea079638391e125af25c72",
+      "bytes": 1211
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-command-immutable-arguments/oracle-runner.py",
+      "sha256": "e722135bf686ce21969a35ab0aa3cc814f783df11aeb98c49f0cbd3fd9ed1209",
+      "bytes": 1411
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-command-immutable-arguments/preflight.json",
+      "sha256": "aa1505b08ce89318036ae1eac4acd1a5383cd9aa2a2e874ea3f3c385f82bcad8",
+      "bytes": 4189
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-command-immutable-arguments/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-command-immutable-arguments/tests-runner.py",
+      "sha256": "bc724317ff6697f3e92cbfc42c499e4d6e57923af156f69862ec408fad144fd9",
+      "bytes": 1249
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-drafts.json",
+      "sha256": "931ec032021fb591ac025e2c9335ed36ed99459e723fd80425ca604b2c34039a",
+      "bytes": 16211
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-lazy-conversion-api/oracle-runner.py",
+      "sha256": "27e94bae134e342b3f64c610278d4e3a8b123e8b6732a94810b6d96e49eef88f",
+      "bytes": 1717
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-lazy-conversion-api/preflight.json",
+      "sha256": "bde6589d74452782eb53353c310a2e5f646175bfd9a76b26314dd71d5eb8c2b4",
+      "bytes": 4922
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-lazy-conversion-api/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-lazy-conversion-api/tests-runner.py",
+      "sha256": "8ac56e5cafe83f8681ec7ece577f21825f5c2a6904ef20f3bd73a12552797951",
+      "bytes": 1338
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-read-disappearance/oracle-runner.py",
+      "sha256": "c57f876f3097f3ed9baf319f43317836c4264bc3abed03de6d0cdfc5e5f0760d",
+      "bytes": 1783
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-read-disappearance/preflight.json",
+      "sha256": "319d769c7e172eeedfe43ca17f209073e1ca9181869016346d8561414d9a0e4b",
+      "bytes": 4657
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-read-disappearance/pytest.ini",
+      "sha256": "8250d20f42b419af40706490ead78aabab9feba93eab09a3f626e3de5256e1f4",
+      "bytes": 9
+    },
+    {
+      "path": ".local/qwen-coding-worker/editing-06/preflight-read-disappearance/tests-runner.py",
+      "sha256": "6a76ecb6fda287cd02475a841e28a79728da08c954fb3a96aa607a39089a063d",
+      "bytes": 1232
+    }
+  ],
+  "comparison": "Development: Devtools Command accepted, lazy failed twice; Pi both accepted. Final selected configuration: output API matched acceptance. Read-disappearance invalid confirmation is excluded from scoring; raw failures preserved. Worker revisions changed during development; do not claim uniform final-configuration 3-task benchmark.",
+  "coordination_usage": "UNKNOWN",
+  "paid_model_calls": 0,
+  "energy_and_cost": "UNKNOWN",
+  "integration": {
+    "candidate_sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71",
+    "receipt": ".local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout.json",
+    "receipt_sha256": "df332471d96b60ec13ebb097f54d28f02ebd2838e542cb0bcd73ac7e594bf112",
+    "disposition": "FEATURE_PUBLISHED",
+    "commit": "0f121bca1baf4c896050a92994fca5023699eec5",
+    "review_subject": "ae26a694ddf0508ad04fa48820a5e620f8ee593389d79197d00ee6fe1a715e82",
+    "review": {
+      "subject": "ae26a694ddf0508ad04fa48820a5e620f8ee593389d79197d00ee6fe1a715e82",
+      "reviewer": "Codex",
+      "disposition": "ACCEPT_RECOMMENDED",
+      "rationale": "Independently inspected the exact Qwen source and scoped diff. Constructor and fluent validation reject mutable/non-string argv and non-string executables without changing literal arguments, blank-string ValueError, annotations or execution semantics. No shell or publication authority is added. The frozen oracle, twenty permanent tests including ten independent Codex regressions, Ruff, format, strict typing and the 2138-pass/2-skip protected gate with 100 percent branch coverage pass. Preserve Qwen source bytes unchanged; publish only the authorized existing ordinary feature branch. Other candidates remain evidence."
+    },
+    "files": [
+      {
+        "path": "src/devtools/resources/commands/models/command.py",
+        "author": "Qwen",
+        "reference": "63b2dff6c41394162e9ea6131bb930fbf0a29d50824fd57412d565afd756139a",
+        "sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71"
+      },
+      {
+        "path": "tests/resources/commands/test_models.py",
+        "author": "Codex",
+        "reference": "Independent permanent regressions for frozen editing-06 Command contract",
+        "sha256": "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b"
+      }
+    ],
+    "validation": {
+      "oracle": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-26-19.955239+00-00\\oracle-runner.py"
+        ],
+        "exit_code": 0,
+        "stdout": "QWEN_BEHAVIOR_PASSED\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:19.959179+00:00",
+        "elapsed_seconds": 0.20241470006294549
+      },
+      "tests": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-26-19.955239+00-00\\tests-runner.py"
+        ],
+        "exit_code": 0,
+        "stdout": "....................                                                     [100%]\r\n20 passed in 8.75s\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:20.161642+00:00",
+        "elapsed_seconds": 9.309300000080839
+      },
+      "ruff": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "All checks passed!\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.470991+00:00",
+        "elapsed_seconds": 0.12661399994976819
+      },
+      "format": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--diff",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n1 file already formatted\n",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.597652+00:00",
+        "elapsed_seconds": 0.08407520002219826
+      },
+      "typing": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy",
+          "--strict",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 1 source file\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.681776+00:00",
+        "elapsed_seconds": 0.21312889992259443
+      },
+      "accepted": true
+    },
+    "protected_validation": {
+      "started_at": "2026-10-20T15:16:39.630806+00:00",
+      "profile": "pre-publication-protected",
+      "checks": [
+        {
+          "name": "oracle",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\oracle.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.179586,
+          "stdout_sha256": "bcff110356e2ca56172b700a445f3a21dc4036b6f7644d45eeebfc09dad651b0",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "tests",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\tests.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.52208,
+          "stdout_sha256": "4901b07ba4e274835bfe3bbb3999fa7621c87d7bd471ddc8d9fe46d19e8484d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "ruff",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.106773,
+          "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "format",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.139344,
+          "stdout_sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+          "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "mypy",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "mypy",
+            "--strict",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.286987,
+          "stdout_sha256": "0c37c4158c91ef55c724ba017bf6465f26018199badb08e3ff13f98acdf056c2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "protected",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\protected.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 503.710234,
+          "stdout_sha256": "a938034937ab0dd87440ba071231f799a4a7f1f4294867761d44262cf8f15f7f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": true,
+          "truncated": false
+        }
+      ],
+      "passed": true,
+      "active_check": null,
+      "finished_at": "2026-10-20T15:25:04.586047+00:00",
+      "elapsed_seconds": 504.955243,
+      "protected_suite_summary": "2138 passed, 2 skipped in 501.98s; 100.00 percent production branch coverage"
+    },
+    "source_authorship": "Qwen; unchanged accepted candidate bytes",
+    "regression_authorship": "Codex; ten new cases, twenty total focused tests",
+    "destination": "origin/feat/qwen-context-worker only; protected main unchanged",
+    "other_candidates": "Evidence only; no competing Pi or output implementation installed",
+    "focused_regressions": "20 passed including 10 newly authored permanent cases"
+  }
+}

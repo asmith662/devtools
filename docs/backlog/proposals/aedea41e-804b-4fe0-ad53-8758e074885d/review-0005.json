@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "8194f31b42008d9ed242de90691b36311ea23a38fb7b93bc4c9ee03dc3228366",
+  "at": "2026-10-23T20:41:28.315932+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-increments-25-36-audit.md",
+  "rationale": "Increment29 _source_occurrences separately parses functions, imports and AST per resource and resolves imported members per declaration; Increment27 lexical_comparison rebuilds lexical fields per query and _rrf repeatedly uses addresses.index for tie order; source.search.py native BM25 still constructs filename evidence. These are real repeated computations across historical and maintained paths, not measured speed bottlenecks. Two current consumers must be profiled with exact snapshot/root/grammar/query closure; retain necessary authentication and independent controls. No model/embedding run or speed claim in this audit.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve identity, pending disposition and prior review chain; no approval, B-number, grant or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "35ae9adf45c7a09c8a816224ba0b690705e22d1c490faddcc4a6e7c8096942d5"
+}

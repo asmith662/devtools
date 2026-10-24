@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, cast
 
@@ -19,8 +20,10 @@ from devtools.resources.filesystem import (
     TextDecodingError,
     TextEncodingError,
 )
+from devtools.resources.filesystem.codecs import json as json_module
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
     from pathlib import Path
 
 
@@ -220,3 +223,69 @@ def test_codec_created_models_retain_source_and_structured_search_and_round_trip
 
     assert isinstance(reparsed, JsonObjectFile)
     assert reparsed.value == original.value
+
+
+@pytest.mark.parametrize(
+    "content",
+    ["1e999", "-1e999", "[0,1e999]", '{"x":[{"n":-1e999}]}'],
+)
+@pytest.mark.parametrize("operation", ["parse", "decode"])
+def test_strict_json_rejects_floating_point_overflow(
+    tmp_path: Path,
+    content: str,
+    operation: str,
+) -> None:
+    """Valid numeric syntax must not introduce non-finite model values."""
+    codec = JsonCodec()
+    call: Callable[[], JsonFile] = (
+        (lambda: codec.parse(ResolvedPath(tmp_path), content))
+        if operation == "parse"
+        else (lambda: codec.decode(ResolvedPath(tmp_path), content.encode()))
+    )
+    with pytest.raises(FileFormatError) as raised:
+        call()
+    assert isinstance(raised.value.__cause__, ValueError)
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        "1e308",
+        "-1e308",
+        "1e-999",
+        "-0.0",
+        "1234567890123456789012345678901234567890",
+        '{"s":"1e999","n":1.5}',
+    ],
+)
+def test_strict_json_preserves_finite_numbers_large_integers_and_strings(
+    tmp_path: Path,
+    content: str,
+) -> None:
+    """Finite conversion, arbitrary integers, strings and source metadata survive."""
+    codec = JsonCodec()
+    file = codec.parse(ResolvedPath(tmp_path), content)
+    assert file.content == content
+    assert file.byte_size == len(content.encode())
+    assert isinstance(file, JsonScalarFile | JsonObjectFile | JsonListFile)
+    roundtrip = codec.parse(ResolvedPath(tmp_path), codec.serialize(file))
+    assert isinstance(roundtrip, JsonScalarFile | JsonObjectFile | JsonListFile)
+    assert roundtrip.value == file.value
+    assert file.value == json.loads(content)
+
+
+def test_json_float_conversion_failure_preserves_domain_cause(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """An injected lower-level conversion failure retains its exception chain."""
+
+    def conversion_failure(_value: str) -> float:
+        message = "Simulated lower-level float overflow"
+        raise OverflowError(message)
+
+    monkeypatch.setattr(json_module, "float", conversion_failure, raising=False)
+    with pytest.raises(FileFormatError) as raised:
+        JsonCodec().parse(ResolvedPath(tmp_path), "1.5")
+    assert isinstance(raised.value.__cause__, ValueError)
+    assert isinstance(raised.value.__cause__.__cause__, OverflowError)

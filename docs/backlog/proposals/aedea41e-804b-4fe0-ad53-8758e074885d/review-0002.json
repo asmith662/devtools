@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "64e3ab8e4eb9da4bcea7e5ceaf27d03d5a87f989cee79cd4953a1065f8c36c80",
+  "at": "2026-10-23T17:40:51.289320+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/repository-intelligence-code-audit.md",
+  "rationale": "Resource-cursor correction before publication: references/declarations is a package, not declarations.py. The concrete current owners are src/devtools/context/python/references/declarations/analysis.py and resolution.py. Original payload is immutable and retained; this corrects the navigation cursor, not the problem, scope or acceptance. Full existing18 proposal payloads were compared; no separate Localization/Delta/direct-base/parse-reuse concrete story duplicates these captures.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "No rewrite, automatic approval, merge, B-number or execution authority. Follow exact package cursors above.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "28a73e8127cd8271e213f16492150a2c108186f65b27dcda40c42fe7fe994248"
+}

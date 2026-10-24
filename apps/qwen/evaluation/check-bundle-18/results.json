@@ -1,0 +1,781 @@
+{
+  "disposition": "NOT_DELIVERED",
+  "classification": "Separate smaller fixed all-checks development contract; not full check_changes or independent general-proficiency confirmation",
+  "starting_head": "2d0506957bd32ec2fbfdc168fb6293e214c03eb5",
+  "task_sha256": "1a6d96972d19ae78b57710eec6cc55400ae1dbe12971334adc7eeae0ad988bdf",
+  "oracle_sha256": "2f23ecf07e9b425e37d7f5f80e7984e7db50e9283dc3606fedfefcb66e579a56",
+  "preflight": {
+    "path": ".local/qwen-coding-worker/check-bundle-18/preflight.json",
+    "sha256": "dde81ef17e5069a370b2acc591acf1c50eee384b38c4f246ab29f7ade3fb7555"
+  },
+  "worker": {
+    "accepted": false,
+    "disposition": "CONTEXT_BUDGET_FAILED",
+    "error": "ValueError: Measured input plus output/safety exceeds actual 32K capacity",
+    "elapsed_seconds": 98.74861949996557,
+    "usage_totals": {
+      "cache_write_tokens": null,
+      "cached_input_tokens": null,
+      "input_tokens": 132857,
+      "output_tokens": 718,
+      "reasoning_tokens": null
+    },
+    "validation_seconds": 1.4877693001180887,
+    "model_calls_attempted": 9,
+    "context_actions_attempted": 16,
+    "context_actions_accepted": 16,
+    "source_text_bytes_disclosed": 29308,
+    "context_bytes_disclosed": 71260,
+    "proposals_attempted": 0,
+    "proposals_admitted": 0,
+    "proposal_refusals": 0,
+    "repair_cycles": 0,
+    "source_restored": true,
+    "original_unchanged": true,
+    "candidates": [
+      {
+        "evidence": "final-source.py",
+        "path": "apps/qwen/commands.py",
+        "sha256": "4d218da0f3173bb59f09329404ac722001193591404e320bff1b1e94a962f2bc"
+      }
+    ]
+  },
+  "worker_result": {
+    "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/result.json",
+    "sha256": "3abd05187858bf1ab961e9062cbfaf29a75eab980be3dec5da9ed7fb7fd04590"
+  },
+  "tool_counts": {
+    "inspect_source": 9,
+    "lookup_symbol": 2,
+    "search_source": 5
+  },
+  "observed_spans": {
+    "apps/qwen/commands.py": {
+      "ranges": [
+        [
+          0,
+          4096
+        ],
+        [
+          4096,
+          8192
+        ],
+        [
+          8192,
+          8230
+        ]
+      ],
+      "disclosed_characters": 8230,
+      "unique_characters": 8230,
+      "repeated_characters": 0
+    },
+    "src/devtools/tools/execution.py": {
+      "ranges": [
+        [
+          0,
+          598
+        ]
+      ],
+      "disclosed_characters": 598,
+      "unique_characters": 598,
+      "repeated_characters": 0
+    },
+    "apps/qwen/development_task.py": {
+      "ranges": [
+        [
+          0,
+          4096
+        ],
+        [
+          6150,
+          10246
+        ],
+        [
+          5581,
+          9677
+        ]
+      ],
+      "disclosed_characters": 12288,
+      "unique_characters": 8761,
+      "repeated_characters": 3527
+    },
+    "apps/qwen/tasks.py": {
+      "ranges": [
+        [
+          803,
+          4899
+        ]
+      ],
+      "disclosed_characters": 4096,
+      "unique_characters": 4096,
+      "repeated_characters": 0
+    },
+    "tests/tools/test_execution.py": {
+      "ranges": [
+        [
+          0,
+          4096
+        ]
+      ],
+      "disclosed_characters": 4096,
+      "unique_characters": 4096,
+      "repeated_characters": 0
+    }
+  },
+  "model_seconds": 94.73593109997455,
+  "turns": [
+    {
+      "number": 1,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 2511,
+        "output_tokens": 85,
+        "reasoning_tokens": null,
+        "total_tokens": 2596
+      },
+      "model_seconds": 10.1227632999653,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 0
+          }
+        },
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "src/devtools/tools/execution.py",
+            "start": 0
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "implementation-or-repair",
+        "input_tokens": 2511,
+        "measurements": [
+          {
+            "input_tokens": 2511,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 8192,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-01/request.json",
+        "sha256": "74e6022c90989fdc22c8e0869dadfbfde0f2debe8d9105f4f90b4d5e10aa8eb8"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-01/response.json",
+        "sha256": "f72fc4521cdeda556a63787fe2dc5e1de722cfcd7b921f476ecd5a015acb44e9"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-01/stage.json",
+        "sha256": "ba7c8fb1528e1f42fdf67dbb515832b4b17b6af61c3c8ee7cf17ed77e5587359"
+      }
+    },
+    {
+      "number": 2,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 5200,
+        "output_tokens": 88,
+        "reasoning_tokens": null,
+        "total_tokens": 5288
+      },
+      "model_seconds": 6.55804250005167,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 4096
+          }
+        },
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 0
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 5200,
+        "measurements": [
+          {
+            "input_tokens": 5200,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-02/request.json",
+        "sha256": "cbfba991bd14d9d15972f22dc081b31f93974a183e66908ac3ceeb9b107cc770"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-02/response.json",
+        "sha256": "6b501bc86b3fe41879982cc9a943b5194563af637e4a6454669b640f4098d01f"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-02/stage.json",
+        "sha256": "7f9cda694d1598ac9cb011cf87a1e5df16276d6d5bbb63c24fece44b0c954a04"
+      }
+    },
+    {
+      "number": 3,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 8756,
+        "output_tokens": 73,
+        "reasoning_tokens": null,
+        "total_tokens": 8829
+      },
+      "model_seconds": 6.791138799977489,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/commands.py",
+            "start": 8192
+          }
+        },
+        {
+          "name": "lookup_symbol",
+          "arguments": {
+            "name": "_timed_command"
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 8756,
+        "measurements": [
+          {
+            "input_tokens": 8756,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-03/request.json",
+        "sha256": "7df24235aaa9a484d0417dbdb1da1bd38098d072e68651ba33331f0581933cc8"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-03/response.json",
+        "sha256": "eb9d7a4e2ccb5ddec3502aca3ef131f717cfddf5503224792e8879008e6a8681"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-03/stage.json",
+        "sha256": "ca80e57fc64f1168a870313d8e448ea099a1aef38ac9377ba69f9a592ecfbb31"
+      }
+    },
+    {
+      "number": 4,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 10269,
+        "output_tokens": 71,
+        "reasoning_tokens": null,
+        "total_tokens": 10340
+      },
+      "model_seconds": 5.027050800039433,
+      "tools": [
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "_timed_command def _hash _save",
+            "mode": "mixed"
+          }
+        },
+        {
+          "name": "lookup_symbol",
+          "arguments": {
+            "name": "CodingTask"
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 10269,
+        "measurements": [
+          {
+            "input_tokens": 10269,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-04/request.json",
+        "sha256": "c283c2e4038d5197def850f3bde471716e1d789c8adf27d509a7f1c80b2936c1"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-04/response.json",
+        "sha256": "d6c33cbc00aaeab25737526b559f9b7cc4595eca4c7e699580813e052154a84e"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-04/stage.json",
+        "sha256": "c2ab832e09734ca2a5fc57df23e3459b753cae9981a0cb5d8dde60d491e2dae8"
+      }
+    },
+    {
+      "number": 5,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 13849,
+        "output_tokens": 89,
+        "reasoning_tokens": null,
+        "total_tokens": 13938
+      },
+      "model_seconds": 7.57059479993768,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/tasks.py",
+            "start": 803
+          }
+        },
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 6150
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 13849,
+        "measurements": [
+          {
+            "input_tokens": 13849,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-05/request.json",
+        "sha256": "a24d899ff48c97647836d17c0b4ab5ff5b73c65dc2c1c0ad9cb566e79511599f"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-05/response.json",
+        "sha256": "9aa9032aab9807ad2eef484f6f38e9fe6a81c580afdb619610fcb8a05a48d660"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-05/stage.json",
+        "sha256": "2f4a74e4516d8fcf35d1ae5f965b3a157fe48c1f488d67834040dd07974a622a"
+      }
+    },
+    {
+      "number": 6,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 17411,
+        "output_tokens": 78,
+        "reasoning_tokens": null,
+        "total_tokens": 17489
+      },
+      "model_seconds": 7.550725199980661,
+      "tools": [
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "def _hash",
+            "mode": "symbol"
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "def _command",
+            "mode": "symbol"
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 17411,
+        "measurements": [
+          {
+            "input_tokens": 17411,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-06/request.json",
+        "sha256": "68f85a522501d7bb53b3cff4e8217d4b7eab4353578ca394b453fc023b83ac1e"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-06/response.json",
+        "sha256": "d0f6fee06be57a97c6fb414c8ed4bb58d5a0416c05dff47cd03491460da47241"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-06/stage.json",
+        "sha256": "00f38e29432995510531587bf9286d961abcc067e80cffe45a1a8d38ef84d0cf"
+      }
+    },
+    {
+      "number": 7,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 23313,
+        "output_tokens": 46,
+        "reasoning_tokens": null,
+        "total_tokens": 23359
+      },
+      "model_seconds": 8.867140499991365,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "apps/qwen/development_task.py",
+            "start": 5581
+          }
+        }
+      ],
+      "assistant_content": "",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 23313,
+        "measurements": [
+          {
+            "input_tokens": 23313,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-07/request.json",
+        "sha256": "5904f7dc9400eb1c1a0b904bdbfa573b578715e9600d9e5ca52c83f236e1406c"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-07/response.json",
+        "sha256": "e9f8304e2389cd9debeeac478bad1d8e4b601d76df4833f178741c1393f9c401"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-07/stage.json",
+        "sha256": "ce62d85715f9382dd217bdab9daffc9fa3ddd788da64ca87c125a6d2f8fcf696"
+      }
+    },
+    {
+      "number": 8,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25117,
+        "output_tokens": 116,
+        "reasoning_tokens": null,
+        "total_tokens": 25233
+      },
+      "model_seconds": 7.950552599970251,
+      "tools": [
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "run_check all plan_sha256",
+            "mode": "mixed"
+          }
+        },
+        {
+          "name": "search_source",
+          "arguments": {
+            "query": "existing_sources",
+            "mode": "symbol"
+          }
+        }
+      ],
+      "assistant_content": "I have the key pieces. Let me check the existing test expectations for run_check all and the `_save`/`existing_sources` property to match the contract.\n\n",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 25117,
+        "measurements": [
+          {
+            "input_tokens": 25117,
+            "projection": "source-preserving"
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-08/request.json",
+        "sha256": "f0994fdde4a9ae84c33618b5b351482a1c82992158552c7dca5cc5c820cd5b85"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-08/response.json",
+        "sha256": "61aee91eff9224ba2bf0375f5f969952f684593a5eb704adad9c40a2bee73b54"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-08/stage.json",
+        "sha256": "8a0c94a2e8729e6e546e51b0fff07efc1d5ef5dac10aa1381d92a9e75fb4b669"
+      }
+    },
+    {
+      "number": 9,
+      "disposition": "CONTEXT_RETURNED",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 26431,
+        "output_tokens": 72,
+        "reasoning_tokens": null,
+        "total_tokens": 26503
+      },
+      "model_seconds": 34.2979226000607,
+      "tools": [
+        {
+          "name": "inspect_source",
+          "arguments": {
+            "path": "tests/tools/test_execution.py",
+            "start": 0
+          }
+        }
+      ],
+      "assistant_content": "I have the helper contracts. Let me verify the `Command`/`CommandExecutor` exception surface for \"unavailable\" detection, then implement.\n\n",
+      "capacity": {
+        "context_tokens": 32768,
+        "generation_phase": "investigation",
+        "input_tokens": 26431,
+        "measurements": [
+          {
+            "input_tokens": 29958,
+            "projection": "source-preserving"
+          },
+          {
+            "input_tokens": 26847,
+            "projection": "compact",
+            "reacquire_read_only": 0
+          },
+          {
+            "input_tokens": 26431,
+            "projection": "compact",
+            "reacquire_read_only": 1
+          }
+        ],
+        "minimum_continuation_output_tokens": 4096,
+        "output_tokens": 4096,
+        "phase": "PRE_DISPATCH_CAPACITY",
+        "safety_tokens": 2048,
+        "task_output_ceiling": 8192
+      },
+      "request": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-09/request.json",
+        "sha256": "46647f51a613dc278d222cc12828dfe2d5e877c8defc86d27569d3b28067f2f4"
+      },
+      "response": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-09/response.json",
+        "sha256": "9d5a22dbfd3e090c040c6e11c48464abbd273a17748d11a7c6feb274b583c1e5"
+      },
+      "stage": {
+        "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-09/stage.json",
+        "sha256": "6c955ca00a51aea222327e00db5c3679196b081b8227017c43f224b97d2ba7c2"
+      }
+    }
+  ],
+  "blocked_continuation": {
+    "capacity": {
+      "context_tokens": 32768,
+      "generation_phase": "investigation",
+      "input_tokens": 27561,
+      "measurements": [
+        {
+          "input_tokens": 30847,
+          "projection": "source-preserving"
+        },
+        {
+          "input_tokens": 27561,
+          "projection": "compact",
+          "reacquire_read_only": 0
+        }
+      ],
+      "minimum_continuation_output_tokens": 4096,
+      "output_tokens": 8192,
+      "phase": "PRE_DISPATCH_CAPACITY",
+      "safety_tokens": 2048,
+      "task_output_ceiling": 8192
+    },
+    "request": {
+      "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-10/request.json",
+      "sha256": "a8b0861df986eddff60266e80754efd00b26bd896336d5c77297cd27845b9256"
+    },
+    "raw_prompt": {
+      "path": ".local/qwen-coding-worker/check-bundle-18/devtools-all-checks/turn-10/unprojected-prompt.json",
+      "sha256": "bb6cf5825438edcb26714d31dc194cab93aca4a39ba1e89a1f41849f7261c9c7"
+    },
+    "safe_generation_after_safety": 3159,
+    "deficit_for_minimum_output": 937,
+    "dispatched": false
+  },
+  "qualification": {
+    "runtime": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "baseline_failure": "Missing fixed all-checks selection",
+    "fixtures": "Actual5positive checks, isolated pytest failure while oracle passes, real Ruff/format/typing negatives, observable source drift and normal nonzero command behavior; protocol acceptance frozen for new implementation.",
+    "regressions": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/tools/test_command.py",
+        "tests/tools/test_execution.py",
+        "tests/apps/qwen/test_environment.py",
+        "tests/apps/qwen/test_application_scope.py"
+      ],
+      "exit_code": 0,
+      "stdout": "....................................                                     [100%]\r\n36 passed in 47.12s\r\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T21:14:22.920364+00:00",
+      "elapsed_seconds": 48.190328900003806
+    },
+    "ruff": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "apps/qwen/commands.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T21:15:11.110707+00:00",
+      "elapsed_seconds": 0.11063710006419569
+    },
+    "format": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "apps/qwen/commands.py"
+      ],
+      "exit_code": 0,
+      "stdout": "1 file already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "failed": false,
+      "started_at": "2026-10-21T21:15:11.221363+00:00",
+      "elapsed_seconds": 0.09206319996155798
+    },
+    "typing": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "--strict",
+        "apps/qwen/commands.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\r\n",
+      "stderr": "",
+      "failed": false,
+      "started_at": "2026-10-21T21:15:11.313443+00:00",
+      "elapsed_seconds": 0.6684586999472231
+    }
+  },
+  "delivered": {
+    "all_checks_selection": false,
+    "new_ToolRunner_demonstration": false,
+    "check_changes": false,
+    "maintained_source_changes": false,
+    "accepted_candidate_closeout": "NONE; baseline capture is not an implementation",
+    "worker_projection_or_serving_changes": false
+  },
+  "interpretation": "All16 read actions succeeded. Qwen read the full8230-character owner in3reads and overlapping helpers; it said it had key pieces at8 and helper contracts at9 yet kept investigating. No invalid Tool/refusal/edit occurred. All16actions exhausted; existing projection disallowed omission requiring reacquisition, so request10 compacted30847to27561tokens and left3159generation vs4096minimum. Capacity was the terminal host refusal; failure to transition to implementation preceded it. No behavioral implementation, repair, or semantic-coding ability was tested. The action ceiling/corpus/contract also changed from17, so earlier failure is not effectiveness improvement.",
+  "verification": {
+    "historical16_17_hashes": "unchanged",
+    "forensic_files_preserved": 13,
+    "source_index_clean": true,
+    "one_checkout": true,
+    "no_active_owner": true,
+    "main": "862bda2d3d1d812893f84ab69691fc068ecce268",
+    "protected_gate": "NOT_RUN: no maintained source/test change; preflight/scoped checks only"
+  },
+  "economics": {
+    "assignment_start": "2026-10-21T21:07:23+00:00",
+    "record_at": "2026-10-21T21:20:44.817169+00:00",
+    "worker_start": "2026-10-21T21:16:53.765298+00:00",
+    "worker_end": "2026-10-21T21:18:32.513899+00:00",
+    "Codex_coordination_usage_cost": "UNKNOWN",
+    "model_hardware_energy_cost": "NOT_MEASURED; no profile change",
+    "profile": "Verified local Qwen3.8-27B IQ4_XS,32K,q4 K/V,thinking off; unchanged",
+    "intervention": "Prospective owner/helper API and contract guidance only; no live semantic hints, Codex implementation, retry, recovery or budget extension"
+  },
+  "next_action": {
+    "immediate": "The all-checks bundle remains the immediate implementation obligation. Reuse this exact frozen contract; do not start full check_changes or unrelated Commands exercises. Before another model attempt, choose an implementation-guidance treatment that asks Qwen to implement after the essential owner/helper observations rather than searching for not-yet-existing APIs. A supplied-source implementation assignment using only authenticated essential source is a concrete alternative to another investigation evaluation; keep hidden oracle private and existing bounds/admission intact. No automatic new run is launched here.",
+    "after_acceptance": "Only after the bundle is independently accepted: compose it in CodingCommands.check_changes with authorized Git/new-file discovery, exact report identities and is_current freshness under the unchanged original Engineering16 contract. No publication authority in either operation.",
+    "not_recommended": "Another generic Context/retrieval/editing/planning system, larger serving window or blind retry."
+  }
+}

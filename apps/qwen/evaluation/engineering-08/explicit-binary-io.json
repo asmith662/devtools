@@ -1,0 +1,228 @@
+{
+  "name": "explicit-binary-io",
+  "objective": "Complete the documented filesystem binary-I/O obligation. Provide a maintained BinaryCodec in the codecs package, exported by both the codecs package and the filesystem public root, using the existing BinaryFile model. Generic read must support an explicit FileFormat.BINARY override with exact arbitrary bytes and existing byte limits; generic write must serialize BinaryFile via the codec and the existing atomic writer, preserving fsync/replacement, permission normalization, overwrite policy and cleanup. Retain immutable model metadata. Binary is explicit-only: do not infer binary from any suffix or change existing text/JSON/Markdown/CSV inference or behavior. Integrate with static codec resolution, typing and public exports; no registry or new I/O framework. Do not change tests or acceptance.",
+  "source": "src/devtools/resources/filesystem/resolution.py",
+  "tests": [
+    "tests/resources/filesystem/test_reading.py",
+    "tests/resources/filesystem/test_models.py",
+    "tests/resources/filesystem/codecs/test_text.py"
+  ],
+  "baseline_revision": "5dc12c7bedf3d035510f1da09f82d00e2289442c",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "6258604c27106310d1addd7db65e56ccc1a03da01a0d393bcd05db2dc924b07a"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "8db347f88084ce2b6113a35d9414c50f24c4d666280b4a44f2df0609d36e8043"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "c61d479601c6240021c26788f98947c876991abc6cc132942dbe6448d3b532d8"
+    ],
+    [
+      "src/devtools/resources/filesystem/__init__.py",
+      "869fe3b6a92e6c78215dfc6ca42bda522883463d0b4c24b91b5c69e33f317967"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "1b2a861787a3ca983e076d0d4754bdeaf714b668518e5c911c071f2411a4e707"
+    ],
+    [
+      "tests/resources/filesystem/test_models.py",
+      "a3cc03ee9dd3aaea407531ac9e00cfcee5f2fb6095dc82f6ff0d1face012568f"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "c324f8943e671422e94bab0c77a025f1e8d82333fe824ef84c6b54934117960d"
+    ],
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "d7262de84450424c6846644a4c89b4e2d4cd63b40141f3064b9947075ea93309"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "adb8e3f020aff2c4b7208f02396fcf4c116ad9afc7a0a90f1b7368e45a933e09"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/binary.py",
+      "6e404da59ae9f84e3c2101abbc69e3ddeb3903cbd89e03fdfc82ee081f0854cf"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/__init__.py",
+      "c4fe14eed3d25ad7f254ade4c1e7080714d4e767afc267c6c9af6bc20603c317"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "3578f489eb7daa10445c1302708bd5b13e1ae0209b1580204fd0aa3afb05ba4e"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "eedfe1d315f97256411054a08eb8199dd5ffe4ede36967d5cff3f6566df98668"
+    ],
+    [
+      "tests/resources/filesystem/test_resolution.py",
+      "c0a2ae8897fcc41fd8eeeba6717cfa058af8f37f5f742aa56a86877e888235ca"
+    ],
+    [
+      "tests/resources/filesystem/test_writing.py",
+      "462d9a45bbf5b3ec492d2127fdce40535c117e8fb856d807ea424a502fac9eb6"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/resolution.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/writing.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/__init__.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/test_reading.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/test_models.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_text.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/reading.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/binary.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/__init__.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/paths/resolution.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/test_resolution.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/test_writing.py",
+      "explicit-binary-io",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "import importlib,tempfile,os\nfrom pathlib import Path\nfrom unittest.mock import patch\nfrom devtools.core.paths import ResolvedPath\nfrom devtools.resources.filesystem import BinaryFile,FileFormat,FileFormatError,FileTooLargeError,read,write\npublic=importlib.import_module('devtools.resources.filesystem')\ncodecs=importlib.import_module('devtools.resources.filesystem.codecs')\nassert hasattr(public,'BinaryCodec'),'Missing public BinaryCodec'\ncodec=public.BinaryCodec()\nassert codecs.BinaryCodec is public.BinaryCodec\nassert importlib.import_module('devtools.resources.filesystem.codecs.binary').BinaryCodec is public.BinaryCodec\nassert 'BinaryCodec' in public.__all__ and 'BinaryCodec' in codecs.__all__\nfrom devtools.resources.filesystem.resolution import resolve_codec,resolve_file_format\nassert isinstance(resolve_codec(FileFormat.BINARY),public.BinaryCodec)\nwith tempfile.TemporaryDirectory() as folder:\n root=Path(folder)\n for n,content in enumerate((b'',b'\\x00\\xff\\xfe\\n\\r',bytes(range(256))*8)):\n  path=ResolvedPath(root/f'data-{n}.unknown')\n  model=codec.decode(path,content)\n  assert type(model) is BinaryFile and model.path==path and model.content==content\n  assert model.size_bytes==len(content) and not model.truncated\n  assert codec.encode(model)==content\n  write(model)\n  assert path.value.read_bytes()==content\n  loaded=read(path,file_format=FileFormat.BINARY,max_bytes=len(content))\n  assert type(loaded) is BinaryFile and loaded.content==content and not loaded.truncated\n  assert read(path,file_format=FileFormat.BINARY,max_bytes=None).content==content\n  if content:\n   try:read(path,file_format=FileFormat.BINARY,max_bytes=len(content)-1)\n   except FileTooLargeError:pass\n   else:raise AssertionError('Binary read bypasses byte limit')\n  try:read(path)\n  except FileFormatError:pass\n  else:raise AssertionError('Unknown suffix must still fail inference')\n  try:write(BinaryFile(path,b'changed'),overwrite=False)\n  except FileExistsError:pass\n  else:raise AssertionError('Overwrite refusal missing')\n  assert path.value.read_bytes()==content\n for suffix in ('.bin','.unknown'):\n  try:resolve_file_format(ResolvedPath(root/('probe'+suffix)))\n  except FileFormatError:pass\n  else:raise AssertionError('Binary inference was not authorized')\n target=ResolvedPath(root/'atomic.dat'); target.value.write_bytes(b'old')\n events=[]; fsync=os.fsync; replace=os.replace\n def synced(fd): events.append('fsync'); return fsync(fd)\n def replaced(src,dst):\n  assert Path(src).parent==Path(dst).parent\n  events.append('replace'); return replace(src,dst)\n with patch('devtools.resources.filesystem.writing.os.fsync',side_effect=synced),patch('devtools.resources.filesystem.writing.os.replace',side_effect=replaced):\n  write(BinaryFile(target,b'new'))\n assert events==['fsync','replace'] and target.value.read_bytes()==b'new'\n with patch('devtools.resources.filesystem.writing.os.replace',side_effect=PermissionError):\n  from devtools.resources.filesystem import FilesystemPermissionError\n  try:write(BinaryFile(target,b'never'))\n  except FilesystemPermissionError:pass\n  else:raise AssertionError('Permission contract changed')\n assert target.value.read_bytes()==b'new' and not list(root.glob('.atomic.dat.*.tmp'))\nprint('QWEN_BEHAVIOR_PASSED binary codec, bounded read, atomic write, exports, explicit-only policy')\n",
+  "maximum_calls": 10,
+  "output_tokens": 8192,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/filesystem/reading.py",
+    "src/devtools/resources/filesystem/models/base.py",
+    "src/devtools/resources/filesystem/models/binary.py",
+    "src/devtools/resources/filesystem/models/__init__.py",
+    "src/devtools/resources/filesystem/models/text.py",
+    "src/devtools/resources/filesystem/codecs/text.py",
+    "src/devtools/resources/filesystem/codecs/json.py",
+    "src/devtools/resources/filesystem/errors.py",
+    "src/devtools/core/paths/resolution.py",
+    "tests/resources/filesystem/test_resolution.py",
+    "tests/resources/filesystem/test_writing.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [
+    "src/devtools/resources/filesystem/writing.py",
+    "src/devtools/resources/filesystem/codecs/__init__.py",
+    "src/devtools/resources/filesystem/__init__.py"
+  ],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 32,
+  "new_paths": [
+    "src/devtools/resources/filesystem/codecs/binary.py"
+  ],
+  "disclose_edit_paths": false
+}

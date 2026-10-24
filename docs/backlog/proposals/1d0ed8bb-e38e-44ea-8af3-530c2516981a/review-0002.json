@@ -1,0 +1,37 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+  "proposal_sha256": "457a97de73aa9a6a0d80b38a8bddf957e8371497fbfe223e74c19fb37c58c81a",
+  "previous": "d22e9ca6e839d5958b5d145b44e2684e8b4b574c9e8a38f1e96380a7c2d7d75f",
+  "at": "2026-10-23T19:01:27.223781+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-deep-audit-followup.md",
+  "rationale": "Test-helper review finds delta test _snapshot uses real observation but default write_text may translate newlines on Windows; source-search _index deliberately writes exact UTF8 bytes. Future delta consumer acceptance should include byte-preserving CRLF/CR/no-final-newline inputs and full occurrence comparisons, not trust manually recycled snapshot IDs from arithmetic fixtures. No current invalidation bug or performance gain established; safe full rebuild remains allowed. Distinguish snapshot exclusion from deletion permission and invalidate prior map/edit/check frames on relevant changes.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original pending payload, parent, reviews and state preserved. Concrete evidence/acceptance additions only; no approval, dispatch or grant.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "c0ab5fb3243ce848e701e7450c2a310a6611a6716f0c31ff03d1bbd933b5da4d"
+}

@@ -34,8 +34,9 @@ model can be used as a dictionary key.
 ## Binary and text
 
 `BinaryFile` stores immutable `bytes`, a `truncated` flag, and `size_bytes` for
-the retained byte count. It is currently model-only; there is no BinaryCodec or
-generic binary I/O.
+the retained byte count. `BinaryCodec` and explicit-format generic reads preserve
+exact bytes; binary writes reuse the shared atomic writer. No binary suffix is
+inferred.
 
 `TextFile` stores `content`, `encoding`, `byte_size`, and `truncated`. It
 provides `character_count`, literal `contains()`, and regex wrappers

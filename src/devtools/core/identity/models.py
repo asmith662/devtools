@@ -16,6 +16,17 @@ class Identity:
 
     value: UUID
 
+    def __init__(self, value: UUID) -> None:
+        """Initialize the identity with a UUID value.
+
+        :param value: UUID backing the identity.
+        :raises TypeError: If the supplied value is not a UUID.
+        """
+        message = "Identity value must be a UUID"
+        if not isinstance(value, UUID):
+            raise TypeError(message)
+        object.__setattr__(self, "value", value)
+
     @classmethod
     def new(cls) -> Identity:
         """Generate a new identity.
@@ -32,7 +43,17 @@ class Identity:
         :returns: Parsed identity.
         :raises ValueError: If the supplied value is not a valid UUID.
         """
-        return cls(UUID(value))
+        return cls(cls._parse_uuid(value))
+
+    @staticmethod
+    def _parse_uuid(value: str) -> UUID:
+        """Parse a UUID string into a UUID instance.
+
+        :param value: UUID string representation.
+        :returns: Parsed UUID.
+        :raises ValueError: If the supplied value is not a valid UUID.
+        """
+        return UUID(value)
 
     def __str__(self) -> str:
         """Return the canonical UUID representation.

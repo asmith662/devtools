@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 import asyncio
-from dataclasses import FrozenInstanceError
+from dataclasses import FrozenInstanceError, replace
 from datetime import UTC, datetime
 
 import pytest
@@ -22,6 +22,7 @@ from devtools.models.interaction import (
     ModelToolDefinition,
     ModelUsage,
     Prompt,
+    PromptMessage,
 )
 from devtools.models.interaction.providers import LlamaCppRequestSettings, llama_cpp
 from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
@@ -91,6 +92,47 @@ def _profile() -> ServingProfileIdentity:
     )
 
 
+@pytest.mark.parametrize("prompt_action", list(CaptureAction))
+@pytest.mark.parametrize("argument_action", list(CaptureAction))
+def test_structured_prompt_capture_respects_argument_policy(
+    prompt_action: CaptureAction,
+    argument_action: CaptureAction,
+) -> None:
+    """Native history cannot smuggle omitted call arguments through Prompt capture."""
+    native = ModelToolCall("read_source", '{"secret":"private"}', "call-1")
+    observation = _observation()
+    observation = replace(
+        observation,
+        request=ModelRequest(
+            Prompt(
+                "",
+                "messages",
+                (
+                    PromptMessage("user", "task"),
+                    PromptMessage("assistant", "intent", (native,)),
+                    PromptMessage("tool", "result", tool_call_id="call-1"),
+                ),
+            ),
+        ),
+    )
+    evidence = ModelInteractionEvidence.from_observation(
+        observation,
+        policy=ModelInteractionCapturePolicy(
+            prompt=prompt_action,
+            tool_call_arguments=argument_action,
+        ),
+        serving_profile=None,
+    )
+    text = evidence.request.prompt.value or ""
+    assert ("private" in text) == (
+        prompt_action is CaptureAction.CAPTURE
+        and argument_action is CaptureAction.CAPTURE
+    )
+    if prompt_action is CaptureAction.CAPTURE:
+        assert "tool_call_id" in text
+    assert evidence.capture_manifest.tool_call_arguments is not CaptureState.UNAVAILABLE
+
+
 def test_capture_enabled_preserves_structural_and_approved_payload_facts() -> None:
     """Scenario A records a complete approved diagnostic without raw transport data."""
     policy = ModelInteractionCapturePolicy(
@@ -100,7 +142,9 @@ def test_capture_enabled_preserves_structural_and_approved_payload_facts() -> No
         provider_model=CaptureAction.CAPTURE,
     )
     evidence = ModelInteractionEvidence.from_observation(
-        _observation(), policy=policy, serving_profile=_profile(),
+        _observation(),
+        policy=policy,
+        serving_profile=_profile(),
     )
     assert evidence.request.settings == ModelSettings(
         maximum_output_tokens=512,
@@ -321,7 +365,8 @@ def test_omission_unavailability_and_redaction_are_distinct_and_nonleaking() -> 
         serving_profile=None,
     )
     assert redacted.response.visible_content == CapturedText(
-        CaptureState.REDACTED, "[REDACTED]",
+        CaptureState.REDACTED,
+        "[REDACTED]",
     )
     assert redacted.response.reasoning_content.value == "[REDACTED]"
     assert "secret thought" not in str(redacted)
@@ -349,7 +394,9 @@ def test_output_limit_and_thinking_disabled_diagnostics_remain_independent() -> 
     assert limit.response.termination is ModelTermination.OUTPUT_LIMIT
 
     normal = ModelInteractionEvidence.from_observation(
-        _observation(), policy=ModelInteractionCapturePolicy(), serving_profile=None,
+        _observation(),
+        policy=ModelInteractionCapturePolicy(),
+        serving_profile=None,
     )
     assert normal.request.settings.thinking_enabled is False
     assert normal.response.termination is ModelTermination.NORMAL_STOP

@@ -1,0 +1,37 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "06c3809b-f80c-461d-9585-2d4a973f8252",
+  "created_at": "2026-10-23T19:57:24.495287+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Connect explicit task locators to existing native grounding and source acquisition",
+    "parent": "B-0002",
+    "summary": "Priority2 bounded RI-to-agent integration. U2 exact_hint_routing and U3 mechanism_routing compose trusted authored exact hints with maintained ground_task_anchor and no-loss lexical fallback. Native ContextTools lookup_symbol only searches source-view qualified names; no caller-authored task locator/obligation bridge consumes module/direct-declaration/method grounding outcomes. Add one opt-in application composition over existing owners, not another planner, parser, locator hierarchy or ranking policy. Existing Localization witness proposal15bae0a6 remains the broader semantic-decision obligation; this capability ends at source acquisition.",
+    "resources": [
+      "apps/qwen/context_tools.py",
+      "apps/qwen/navigation.py",
+      "src/devtools/context/localization/grounding/resolve.py",
+      "src/devtools/context/planning/",
+      "experiments/exact_hint_routing/",
+      "experiments/mechanism_routing/"
+    ],
+    "benefit": "Acceptance: trusted caller supplies explicit bounded existing-resource/module/qualified-declaration or direct-method locators with task/need provenance; actual ToolRunner result preserves native current frame/candidate identities and all ambiguity/unsupported/unresolved cases. Unique grounded source is acquired through current observation/read owner before an exact edit; map/hint metadata alone never authorizes editing. Preserve authorized scope, full lexical escape and unchanged global task objective; do not route introduce-new or conceptual text as proof existing source is required. Demonstrate positive and negative native scripted sequence locator-to-source-to-admitted edit-to-check_changes PASS-to-host is_current and restoration staleness; record actual model use and controlled effectiveness only in separately authorized work. Include repeated names, multiple roots, absent/new files, stale/forged frames, Unicode/CRLF and over-budget disclosure. Maintenance-agent suitable after scoped owner/contract qualification.",
+    "uncertainty": "Public input presentation and ownership of caller-authored associations require review. U3 fixed prefixes are experimental grammar, not general intent inference. No model effectiveness or timing claim; no automatic policy promotion. Preserve current atomic limits and no source/approval authority expansion.",
+    "dependencies": [
+      "B-0002",
+      "B-0009"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-policies-and-scientific-integrity-audit.md"
+    },
+    "evidence": [
+      "docs/research/ri-policies-and-scientific-integrity-audit.md",
+      "docs/research/code-audit/ri-integrity-experiments.jsonl",
+      "experiments/exact_hint_routing/presentation.py",
+      "experiments/codex_dogfood/case_0012/stage_b/execute.py",
+      "apps/qwen/context_tools.py"
+    ]
+  },
+  "payload_sha256": "d80b4e427978d08cc3cdcbab590d470cce32b6ea1edc7ac5ff12878db0817124"
+}

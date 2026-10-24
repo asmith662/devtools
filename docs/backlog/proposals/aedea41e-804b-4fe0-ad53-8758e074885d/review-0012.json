@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "f2cbf9635637404a396ce453c59b46431f66af17a33335b78f340803923b51f1",
+  "at": "2026-10-24T14:34:06.791947+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-experimental-completion-and-main-adoption.md",
+  "rationale": "Full12-path performance implementation review authenticates retained measurements: six warm queries pooled median66.7613ms/p9587.2052ms; full RI three pure-call-sum passes median288.759644s, graph pure build1.747082s, one-resource0.170641s. Workload514 resources/415 Python/3954 references, runtime3.14.0 and original implementation hashes;15 current source hashes now drift, so not measurements of current native worker. Core API filename rebuild is included; RI/provenance/serialization omitted from warm computation. Keep existing measured-reuse obligation: profile actual authorized native refresh/index build, exact invalidation/dependency identity and equivalence negatives before caching. Retained structural kernels fast does not prove graph effectiveness. No new benchmark/cache or autonomous consumer created.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing ID/payload/state preserved; added concrete evidence and acceptance only. No approval, B-number, grant, dispatch, parent closure or protected promotion.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "a116a8248adc259f32159b994d1518a76973d599dee3b42b01b34753d8166914"
+}

@@ -1,0 +1,69 @@
+{
+  "name": "regex-whole-string",
+  "objective": "PUBLIC BEHAVIOR: Add fullmatch_regex(text, pattern, *, flags=0) returning a framework RegexMatch only when the pattern matches the entire string, otherwise None. Export it through the normal devtools.core.regex public API. COMPATIBILITY: Preserve group/named-group and Unicode character spans, empty matches, string/compiled patterns, flags and existing compiled-pattern flag errors. Existing search, replacement and match models remain unchanged. QUALITY: Independent whole-string/public-export/compatibility acceptance, existing tests, strict typing, Ruff and formatting must pass. Investigate and coordinate the authorized files; verify relevant installed API contracts. Do not redesign existing APIs.",
+  "source": "src/devtools/core/regex/search.py",
+  "tests": [
+    "tests/core/regex/test_search.py"
+  ],
+  "baseline_revision": "39a3fd95900a583d1b8578523dd6acd8b86ba038",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/regex/search.py",
+      "search regex whole string",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "test_search regex whole string",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/regex/models.py",
+      "models regex whole string",
+      "mixed",
+      "file"
+    ],
+    [
+      "src/devtools/core/regex/__init__.py",
+      "__init__ regex whole string",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "import devtools.core.regex as public\nimport re\nfunction=getattr(public,\"fullmatch_regex\",None)\nassert callable(function),\"missing public whole-string regex operation\"\nassert \"fullmatch_regex\" in public.__all__\nassert function(\"aba\",\"a\") is None\nassert function(\"aba\",\"aba\").span==(0,3)\nassert function(\"A\", \"a\",flags=re.I).value==\"A\"\nassert function(\"\u00e91\",r\"(?P<letter>\u00e9)([0-9])\").groups==(\"\u00e9\",\"1\")\nassert function(\"\u00e91\",r\"(?P<letter>\u00e9)([0-9])\").named_group(\"letter\")==\"\u00e9\"\nassert function(\"\",r\".*\").span==(0,0)\nassert function(\"a\\n\",\"a\") is None\nassert function(\"abc\",re.compile(\"abc\")).value==\"abc\"\ntry: function(\"a\",re.compile(\"a\"),flags=re.I)\nexcept ValueError: pass\nelse: raise AssertionError(\"compiled pattern flag contract lost\")\nassert public.search_regex(\"aba\",\"a\").span==(0,1)\nprint(\"11 whole-string public API compatibility checks passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\",flush=True)\nimport asyncio,sys\nfrom devtools.resources.commands import Command,CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject=next(p for p in Path(module.__file__).parents if (p/\"pyproject.toml\").is_file())\ncommand=Command(sys.executable).args(\"-m\",\"mypy\",'src/devtools/core/regex/search.py','src/devtools/core/regex/__init__.py').cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\ncheck=asyncio.run(CommandExecutor().execute(command))\nprint(check.stdout.decode(errors=\"replace\"),flush=True)\nassert check.exit_code==0,\"Independent typing failure: \"+check.stderr.decode(errors=\"replace\")\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/regex/models.py"
+  ],
+  "quality_checks": true,
+  "api_targets": [
+    "re.Pattern.fullmatch"
+  ],
+  "additional_edit_paths": [
+    "src/devtools/core/regex/__init__.py"
+  ]
+}

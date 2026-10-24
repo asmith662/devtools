@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "aa9dc2ab05e7c736bf64d33a3d16f6fcfdcc45731625eda6a78c52448890f3ee",
+  "at": "2026-10-23T23:10:10.880268+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-lexical-sensitivity-audit.md",
+  "rationale": "Full lexical cohort fixture review adds four cohort test modules and18 external paths (14 test modules, helper and3markers). Arithmetic helpers use synthetic content/document/corpus/snapshot IDs, correctly scoped to mathematical/native-adapter tests, not source observation authenticity. Full retained case fixtures call build/load_inputs and pickle, hence inspected but not executed. New independently authored native toy counterexample exposes unchecked bounded-prefix rank semantics, separate pending bug. Test names claiming independent totals or deterministic rebuild do not independently review authored relevance. Retain84 current fixture/177older-version debt; no review credit transferred from external tests or imports.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing bounded scope expanded with exact evidence; preserve pending/approved status and original payload/reviews. No B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "6e2431e784baa2ddf18864b09e3e9e0698f6a7f5ee558be98dc0bd798021957d"
+}

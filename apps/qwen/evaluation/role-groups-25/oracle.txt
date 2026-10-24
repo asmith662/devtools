@@ -1,0 +1,81 @@
+
+import sys
+import tempfile
+import tomllib
+from dataclasses import replace
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
+from tests.context.localization.roles.helpers import snapshot, configuration_targets
+from devtools.context.localization.roles import RepositoryRoleEvidenceInputs, RepositoryRoleKind as R, RoleSupportKind as K, derive_repository_role_evidence
+from devtools.context.python.project_configuration import analyze_python_project_configuration
+from devtools.context.repository.resource import RepositoryResourceAddress
+
+CONFIGS = [
+    '[dependency-groups]\ntest=["pytest", "pytest"]\npytest=[]\nlint=["ruff"]\ndocs=["sphinx"]\n"Mixed-Case"=["raw source string !"]',
+    '[dependency-groups]\ngood=[]\nmixed=["x", {include-group="good"}]\ninclude=[{include-group="good"}]\nbad=42',
+    '[dependency-groups]',
+    '',
+    'dependency-groups=false',
+    '[dependency-groups]\n"QA.Test"=["a"]\nqa_test=["b"]\nvalid=[]',
+    'project.name="sample"\n[dependency-groups]\ncheck=[]\n[build-system]\nrequires=["builder"]\n[tool.ruff]',
+    '[dependency-groups',
+]
+for text in CONFIGS[:-1]:
+    assert isinstance(tomllib.loads(text), dict)
+with tempfile.TemporaryDirectory() as temporary:
+    root = Path(temporary)
+    for text in CONFIGS:
+        observed = snapshot(root, {"pyproject.toml": text, "outside.py": ""})
+        address = RepositoryResourceAddress("pyproject.toml")
+        analysis = analyze_python_project_configuration(observed, address=address)
+        view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,)))
+        assert view.inputs.configurations == (analysis,), "native analysis/source provenance changed"
+        settings = analysis.settings
+        groups = [item for item in settings.declarations if item.key[0] == "dependency-groups"] if settings is not None else []
+        for group in groups:
+            supports = [(item.role, support) for item in view.for_resource(address) for support in item.supports if group.identity in support.native_identities]
+            if group.unsupported_reason is not None:
+                assert not supports, "unsupported groups fabricated positive roles"
+                assert group in view.inputs.configurations[0].settings.declarations
+            else:
+                assert {role for role, support in supports} == {R.PROJECT_CONFIGURATION}, f"dependency-group setting {group.key!r}: expected project-configuration only; got {sorted(role.value for role, support in supports)!r}"
+                assert len(supports) == 1, (group.key, supports)
+                role, support = supports[0]
+                assert role is R.PROJECT_CONFIGURATION, f"declared dependency group {group.key!r} incorrectly classified as {role.value}; only project-configuration is justified"
+                assert support.kind is K.PROJECT_DECLARATION, f"dependency group {group.key!r} must use existing project-declaration support, got {support.kind.value}"
+                assert support.observation == group.key
+                assert support.source_address == address
+                assert support.native_identities == (group.identity,)
+        expected = {R.PROJECT_CONFIGURATION}
+        if '[build-system]' in text: expected |= {R.BUILD_CONFIGURATION, R.TOOL_CONFIGURATION}
+        assert {item.role for item in view.for_resource(address)} == expected, "group names or raw strings invented extra roles"
+        assert {item.role for item in view.for_resource(RepositoryResourceAddress("outside.py"))} == {R.PYTHON_CODE}
+        assert view.repository_id == observed.repository_id and view.snapshot_id == observed.id
+        assert all(item.resource == observed.resource_at(item.resource.address) for item in view.evidence)
+        assert view == derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,analysis)))
+        assert view.SEMANTICS == "positive-python-repository-role-support-v2", "role derivation semantics must deliberately advance to v2"
+        target = configuration_targets(observed)
+        target_view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configuration_targets=(target,)))
+        assert target_view.for_resource(address)[0].supports == view.for_resource(address)[0].supports
+        assert target_view.inputs.configurations == (analysis,)
+        assert target_view.inputs.configuration_targets == (target,)
+        changed = snapshot(root, {"pyproject.toml": text + '\n# source identity change', "outside.py": ""})
+        try: derive_repository_role_evidence(changed, inputs=RepositoryRoleEvidenceInputs(configurations=(analysis,)))
+        except ValueError: pass
+        else: raise AssertionError("stale native configuration input was accepted")
+        if groups:
+            forged = replace(analysis, settings=replace(settings, declarations=tuple(replace(item, value=("forged",)) if item is groups[0] else item for item in settings.declarations)))
+            try: derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(forged,)))
+            except ValueError: pass
+            else: raise AssertionError("forged configuration setting was accepted")
+    for text, expected in [
+        ('project.name="sample"', {R.PROJECT_CONFIGURATION}),
+        ('[build-system]\nrequires=["builder"]', {R.PROJECT_CONFIGURATION,R.BUILD_CONFIGURATION}),
+        ('[tool.ruff]', {R.PROJECT_CONFIGURATION,R.TOOL_CONFIGURATION}),
+        ('[tool.pytest.ini_options]\npython_files=["test_*.py"]', {R.PROJECT_CONFIGURATION,R.TOOL_CONFIGURATION,R.TEST_CONFIGURATION}),
+    ]:
+        observed = snapshot(root, {"pyproject.toml": text})
+        target = configuration_targets(observed)
+        view = derive_repository_role_evidence(observed, inputs=RepositoryRoleEvidenceInputs(configurations=(target.declarations,)))
+        assert {item.role for item in view.for_resource(address)} == expected, "existing unrelated classification regressed"
+print("PASS: dependency-group project roles, no inferred tool/test/docs roles, native identities, absence, unsupported input and compatibility")

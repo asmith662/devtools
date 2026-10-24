@@ -250,6 +250,15 @@ authorized, or executed; `Tool.validate()` remains execution admission.
 
 ## Consequences
 
+The task-local Context worker now supplies explicit `PromptMessage` input through
+`Prompt.messages`, including native assistant calls and correlated Tool results.
+The stateless llama.cpp adapter serializes this caller-selected input without
+owning Conversation persistence, Tool dispatch or authority. Existing single-text
+requests and opaque continuation refusal remain. This concrete consumer extends
+Prompt representation, not Runtime or a generic Agent/conversation lifecycle.
+Capture-controlled observation respects native historical argument policy;
+exact worker captures remain outside the normalized response value.
+
 Future provider behavior has a defined home: portable request semantics in
 `ModelSettings`, typed provider-only semantics in provider extensions,
 normalized output in `ModelResponse`, and capture-controlled wire diagnostics

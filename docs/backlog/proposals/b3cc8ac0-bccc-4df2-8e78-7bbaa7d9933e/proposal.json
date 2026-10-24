@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+  "created_at": "2026-10-20T18:34:19.953105+00:00",
+  "payload": {
+    "kind": "enhancement",
+    "title": "Complete explicit binary filesystem codec and I/O",
+    "summary": "Complete the documented filesystem binary-I/O obligation. Provide a maintained BinaryCodec in the codecs package, exported by both the codecs package and the filesystem public root, using the existing BinaryFile model. Generic read must support an explicit FileFormat.BINARY override with exact arbitrary bytes and existing byte limits; generic write must serialize BinaryFile via the codec and the existing atomic writer, preserving fsync/replacement, permission normalization, overwrite policy and cleanup. Retain immutable model metadata. Binary is explicit-only: do not infer binary from any suffix or change existing text/JSON/Markdown/CSV inference or behavior. Integrate with static codec resolution, typing and public exports; no registry or new I/O framework. Do not change tests or acceptance.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex supervised engineering assignment 08; 2026-10-20T18:34:19.947887+00:00"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/resources/filesystem/resolution.py",
+      "src/devtools/resources/filesystem/writing.py",
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "src/devtools/resources/filesystem/__init__.py",
+      "src/devtools/resources/filesystem/codecs/binary.py"
+    ],
+    "evidence": [
+      "apps/qwen/evaluation/engineering-08/explicit-binary-io.json",
+      "src/devtools/resources/filesystem/docs/roadmap.md"
+    ],
+    "benefit": "Byte-preserving binary resources through existing bounded and atomic I/O",
+    "uncertainty": "Independent oracle and unchanged regressions determine correctness; local evaluation does not grant protected publication.",
+    "dependencies": [
+      "Existing BinaryFile, static codecs and atomic writer"
+    ]
+  },
+  "payload_sha256": "128a269ad270344440736e5eea18680c0b2af93dbda3579c006c4bd9043c7d33"
+}

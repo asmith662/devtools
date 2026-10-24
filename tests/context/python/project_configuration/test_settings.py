@@ -130,7 +130,8 @@ def test_supported_absence_is_bounded_to_named_keys(
     result = _analyze(tmp_path, content)
     assert result.settings is not None
     assert not result.settings.declarations
-    assert len(result.settings.absent_keys) == 17
+    assert len(result.settings.absent_keys) == 18
+    assert ("dependency-groups",) in result.settings.absent_keys
     assert not result.settings.recognized_tool_tables
     assert len(result.absent_selectors) == 6
 

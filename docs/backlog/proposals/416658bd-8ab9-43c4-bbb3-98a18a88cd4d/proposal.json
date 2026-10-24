@@ -1,0 +1,28 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+  "created_at": "2026-10-20T18:34:07.052665+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct physical-line source search spans",
+    "summary": "Repository code search can fail to build its index, select incorrect Python declarations, or report misleading source/window line locations when valid source contains non-newline separators within strings or comments. Diagnose and correct this end-to-end source representation defect. Python physical lines are LF, CRLF or CR; other Unicode/ASCII separators are source characters, not physical line breaks. Preserve exact original Unicode and newlines, decorated/nested synchronous and asynchronous symbol spans, canonical declaration/occurrence identity, enclosing expansion and deterministic overlapping windows. Non-Python windows must use the same physical-line convention. Invalid Python must retain the documented file fallback. Preserve APIs and existing ranking behavior. Do not alter tests or acceptance.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "Codex supervised engineering assignment 08; 2026-10-20T18:34:06.998812+00:00"
+    },
+    "parent": "B-0002",
+    "resources": [
+      "src/devtools/context/retrieval/source/representation.py"
+    ],
+    "evidence": [
+      "apps/qwen/evaluation/engineering-08/source-search-physical-lines.json",
+      "src/devtools/context/retrieval/source/representation.py"
+    ],
+    "benefit": "Reliable exact Context source evidence",
+    "uncertainty": "Independent oracle and unchanged regressions determine correctness; local evaluation does not grant protected publication.",
+    "dependencies": [
+      "Existing Context and RI source identity contracts"
+    ]
+  },
+  "payload_sha256": "6bcaa9b7369e078fc19d00f05c260cf1e5ee7e680ebd9e02771df1b5cccf6322"
+}
