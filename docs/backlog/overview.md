@@ -1,5 +1,7 @@
 # Architecture Backlog
 
+Current integration evidence: [whole-feature main-derived candidate](../research/feature-branch-integration-20261024.md). Six existing proposals receive advisory evidence; [pipeline branch reconciliation](proposals/2fbb85c3-ff31-4312-9df8-51a03ad45bec/proposal.json) is a distinct pending investigation. No canonical status, B-number, grant or approval changes.
+
 ## Purpose and authority
 
 The backlog records known work, architectural pressure, investigations, and

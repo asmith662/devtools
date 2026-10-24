@@ -1,6 +1,8 @@
 # Roadmap
 
-Current deep-review checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md).
+Current maintainer-directed priority: [promote the validated whole-feature integration candidate](research/feature-branch-integration-20261024.md) after the separate protected-main decision. The earlier successor-handoff and selective-only sequencing below are dated history, not current instructions. RI remains active:606/606 experimental source paths,46/93 original fixtures reviewed,47 current fixtures and177 older versions remain; the next RI cohort is queued, not launched.
+
+Earlier deep-review checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md).
 The following reconciliation inventory is historical, not comprehensive code
 review completion. The78-path cohort is now reviewed; continue the exact37-path
 structural-discrimination/reviewer cohort before leaving RI. The133 remaining experimental

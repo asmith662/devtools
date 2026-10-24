@@ -157,3 +157,7 @@ RI historical review remains incomplete:177 older exact versions,558 experimenta
 paths without full follow-up depth and unread test bodies remain enumerated in
 the overlay. The next major domain remains execution/ToolRunner/Checkout/WorkCycle;
 carry those RI obligations forward. No final successor-session dossier is due.
+
+## Branch integration assurance overlay (2026-10-24)
+
+The [whole-feature destination candidate](feature-branch-integration-20261024.md) joins completed production work and main-only Commands with fresh protected validation. The [evidence overlay](code-audit/branch-integration-20261024.json) records exact source/dependency/test identities and one additional full real-source import fixture review. This is compatibility evidence, not completion of the remaining non-RI domain audits. Protected-main promotion is the immediate separate decision.

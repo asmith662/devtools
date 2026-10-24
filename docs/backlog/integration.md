@@ -13,6 +13,18 @@ content-hashed operational records. It is not a framework scheduler, executor,
 second backlog or source of human authority. Coding delegation and
 `ACCEPT_RECOMMENDED` do not confer integration permission.
 
+## Ordinary maintainer-directed development
+
+The accepted-worker lifecycle below describes this WorkCycle API. Its
+single-source plan and single-parent publication strategy do not require every
+ordinary maintainer-authorized development branch to use that API. Direct
+developer integration may use ordinary Git merges in the canonical checkout
+under explicit scope, ownership, preservation and destination-validation rules.
+It creates no WorkCycle acceptance, integration grant or protected-main authority.
+The [2026-10-24 integration checkpoint](../research/feature-branch-integration-20261024.md)
+records one such main-derived candidate. Protected publication remains a separate
+explicit decision; existing server protections are never bypassed.
+
 ## Lifecycle and ownership
 
 | Phase | Required evidence / effect |

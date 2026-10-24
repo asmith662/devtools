@@ -365,3 +365,7 @@ and [first RI domain report](../research/repository-intelligence-code-audit.md).
 All original reconciliation/source/evidence records remain historical. No
 Checkout recovery, branch mutation, source-tree copy, cache removal or inference
 is part of this checkpoint. Existing13 forensic files remain in original custody.
+
+## Maintainer-directed branch integration (2026-10-24)
+
+The [actual whole-feature integration candidate](../research/feature-branch-integration-20261024.md) replaces selective-only deferral as the current direction. Earlier second-checkout blockers were repaired by the already maintained single-checkout WorkCycle, and the dashboard dependency findings now have a bounded repair. Frozen scientific branches retain separate decisions. Protected-main promotion remains separately authorized; no historical grant is revived.

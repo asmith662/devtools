@@ -1,5 +1,7 @@
 # Research Evidence
 
+Current integration checkpoint: [whole-feature destination candidate](feature-branch-integration-20261024.md). Source, Commands compatibility, bounded dependency/format repairs and fresh protected validation are recorded; protected-main promotion remains the immediate separate decision.
+
 Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](ri-experimental-completion-and-main-adoption.md).
 All32 final selected paths have applicable full-body review:606/606 historical
 experimental paths now have version-specific dispositions, not independent
