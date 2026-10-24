@@ -1,14 +1,14 @@
 # Documentation Map
 
-Current audit checkpoint: [structural discrimination and maintained decision tests](research/ri-structural-discrimination-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#structural-discrimination-and-current-fixture-overlay).
-The [task-obligation coverage decision preparation](research/task-obligation-coverage-decision.md)
-recommends a trusted reviewed native-consumer slice; it awaits maintainer decision
-and is not an accepted ADR or implementation grant.
-The explicitly authorized source-index repair is separately committed and
-protected-tested. Historical RI review is still incomplete:473/606 paths reviewed,
-133 remain. The exact37-path structural-discrimination/reviewer cohort is next. The final successor-session
-dossier remains postponed; earlier checkpoint directions below are historical.
+Current audit checkpoint: [source grounding, evidence boundaries and maintained tests](research/ri-source-grounding-audit.md).
+All64 selected paths/55 distinct blobs now have applicable full-body review.
+Historical review is574/606, leaving32; current fixtures are30/93, leaving63.
+The separate177 older current-RI versions retain their recorded review depth.
+Two distinct pending bugs and eight advisory updates preserve approval boundaries.
+The next exact32-path experimental cohort and subsequent fixture/version schedule
+are recorded in the version-specific ledger; no next cohort is launched here.
+The task-obligation A+C recommendation remains unapproved. RI review and the
+repository-wide program remain incomplete; the successor dossier stays postponed.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
 and [dated source/custody manifest](research/production-adoption-and-architecture-evidence-20261023.json)

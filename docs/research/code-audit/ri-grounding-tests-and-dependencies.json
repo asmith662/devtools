@@ -1,0 +1,2058 @@
+{
+  "current_tests": [
+    {
+      "path": "tests/context/localization/test_lexical.py",
+      "blob": "7c39f54b59efb6a77769eb398ddd7438bf9de194",
+      "sha256": "93e2de05fb8c757ad9ab15a5f947ad24d76e5654e298d67f7cbb85f313162cce",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_full_task_query_is_verbatim_and_native_bm25_is_retained",
+          "line": 158,
+          "end": 177
+        },
+        {
+          "name": "test_native_rank_order_and_tie_order_are_preserved",
+          "line": 180,
+          "end": 196
+        },
+        {
+          "name": "test_native_filename_evidence_is_retained_without_reinterpretation",
+          "line": 199,
+          "end": 210
+        },
+        {
+          "name": "test_explicit_obligation_lanes_retain_identity_text_order_and_native_results",
+          "line": 213,
+          "end": 259
+        },
+        {
+          "name": "test_same_resource_remains_independent_across_lanes_without_fusion",
+          "line": 262,
+          "end": 282
+        },
+        {
+          "name": "test_empty_query_and_zero_hit_query_remain_positive_acquisition_records",
+          "line": 285,
+          "end": 299
+        },
+        {
+          "name": "test_obligation_without_query_is_unchanged_in_supplied_frame",
+          "line": 302,
+          "end": 311
+        },
+        {
+          "name": "test_invalid_task_or_obligation_query_associations_are_rejected",
+          "line": 314,
+          "end": 364
+        },
+        {
+          "name": "test_empty_obligation_lanes_are_allowed_but_purpose_must_be_present",
+          "line": 367,
+          "end": 389
+        },
+        {
+          "name": "test_snapshot_and_repository_mismatch_are_rejected",
+          "line": 392,
+          "end": 410
+        },
+        {
+          "name": "test_task_purpose_is_not_replaced_by_query_text",
+          "line": 413,
+          "end": 419
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_inputs",
+          "line": 48,
+          "end": 96
+        },
+        {
+          "name": "_query",
+          "line": 99,
+          "end": 109
+        },
+        {
+          "name": "_acquire",
+          "line": 112,
+          "end": 132
+        },
+        {
+          "name": "_execute",
+          "line": 135,
+          "end": 155
+        },
+        {
+          "name": "test_full_task_query_is_verbatim_and_native_bm25_is_retained",
+          "line": 158,
+          "end": 177
+        },
+        {
+          "name": "test_native_rank_order_and_tie_order_are_preserved",
+          "line": 180,
+          "end": 196
+        },
+        {
+          "name": "test_native_filename_evidence_is_retained_without_reinterpretation",
+          "line": 199,
+          "end": 210
+        },
+        {
+          "name": "test_explicit_obligation_lanes_retain_identity_text_order_and_native_results",
+          "line": 213,
+          "end": 259
+        },
+        {
+          "name": "test_same_resource_remains_independent_across_lanes_without_fusion",
+          "line": 262,
+          "end": 282
+        },
+        {
+          "name": "test_empty_query_and_zero_hit_query_remain_positive_acquisition_records",
+          "line": 285,
+          "end": 299
+        },
+        {
+          "name": "test_obligation_without_query_is_unchanged_in_supplied_frame",
+          "line": 302,
+          "end": 311
+        },
+        {
+          "name": "test_invalid_task_or_obligation_query_associations_are_rejected",
+          "line": 314,
+          "end": 364
+        },
+        {
+          "name": "test_empty_obligation_lanes_are_allowed_but_purpose_must_be_present",
+          "line": 367,
+          "end": 389
+        },
+        {
+          "name": "test_snapshot_and_repository_mismatch_are_rejected",
+          "line": 392,
+          "end": 410
+        },
+        {
+          "name": "test_task_purpose_is_not_replaced_by_query_text",
+          "line": 413,
+          "end": 419
+        }
+      ],
+      "lines": 419,
+      "scope": "Nominal document/snapshot fixtures and canonical scorer adapter parity, full task verbatim vs supplied obligation lanes, zero/unqueried not nonapplicable/readiness; duplicate/foreign query and missing scope rejection. Not real observation or independent numeric BM25 oracle."
+    },
+    {
+      "path": "tests/context/planning/test_map_source.py",
+      "blob": "3081d31e3c1a6cf44c3851e004ee00a059252683",
+      "sha256": "d3a6f8b10ff05e22d270184f2279a721ae145d633e909fd5a8058b935d34093b",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_case",
+          "line": 51,
+          "end": 114
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_native_ranges_and_provenance_are_exact",
+          "line": 119,
+          "end": 188
+        },
+        {
+          "name": "test_progressive_composition_and_retained_source",
+          "line": 191,
+          "end": 234
+        },
+        {
+          "name": "test_factory_rejects_invalid_map_or_scope",
+          "line": 241,
+          "end": 290
+        },
+        {
+          "name": "test_stale_factory_and_materialization_rejected",
+          "line": 294,
+          "end": 343
+        },
+        {
+          "name": "test_forged_admitted_file_frame_refused",
+          "line": 350,
+          "end": 393
+        },
+        {
+          "name": "test_materialization_rejects_changed_cached_source_slice",
+          "line": 396,
+          "end": 409
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_case",
+          "line": 51,
+          "end": 114
+        },
+        {
+          "name": "test_native_ranges_and_provenance_are_exact",
+          "line": 119,
+          "end": 188
+        },
+        {
+          "name": "test_progressive_composition_and_retained_source",
+          "line": 191,
+          "end": 234
+        },
+        {
+          "name": "test_factory_rejects_invalid_map_or_scope",
+          "line": 241,
+          "end": 290
+        },
+        {
+          "name": "test_stale_factory_and_materialization_rejected",
+          "line": 294,
+          "end": 343
+        },
+        {
+          "name": "test_forged_admitted_file_frame_refused",
+          "line": 350,
+          "end": 393
+        },
+        {
+          "name": "test_materialization_rejects_changed_cached_source_slice",
+          "line": 396,
+          "end": 409
+        }
+      ],
+      "lines": 409,
+      "scope": "Real observed multi-resource Unicode/decorated async/class/method/nested and repeated-name fixtures; LF/CRLF/final/no-final exact AST ranges, map distinction, native source identity, retained after disk changes, stale/forged/scope/source-index frames reject. No actual model invocation."
+    },
+    {
+      "path": "tests/context/planning/test_plan.py",
+      "blob": "7571cebaf5b88d15b9f35548bc50c2d29c523d51",
+      "sha256": "7276f720b7d22737d368e57fb0f8e3022e1e79b4f05db58cae5dee1a389d45cf",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 49,
+          "end": 61
+        },
+        {
+          "name": "_reference_option",
+          "line": 64,
+          "end": 86
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_mixed_plan_preserves_purpose_sources_and_request",
+          "line": 89,
+          "end": 185
+        },
+        {
+          "name": "test_same_resource_reference_uses_same_plan_boundary",
+          "line": 188,
+          "end": 205
+        },
+        {
+          "name": "test_plan_rejects_mixed_or_duplicate_choices",
+          "line": 208,
+          "end": 238
+        },
+        {
+          "name": "test_whole_resource_rejects_stale_or_missing_state",
+          "line": 241,
+          "end": 275
+        },
+        {
+          "name": "test_materialization_rejects_an_option_that_changes_its_plan",
+          "line": 279,
+          "end": 318
+        },
+        {
+          "name": "test_realized_context_rejects_items_outside_the_plan",
+          "line": 321,
+          "end": 337
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_snapshot",
+          "line": 49,
+          "end": 61
+        },
+        {
+          "name": "_reference_option",
+          "line": 64,
+          "end": 86
+        },
+        {
+          "name": "test_mixed_plan_preserves_purpose_sources_and_request",
+          "line": 89,
+          "end": 185
+        },
+        {
+          "name": "test_same_resource_reference_uses_same_plan_boundary",
+          "line": 188,
+          "end": 205
+        },
+        {
+          "name": "test_plan_rejects_mixed_or_duplicate_choices",
+          "line": 208,
+          "end": 238
+        },
+        {
+          "name": "test_whole_resource_rejects_stale_or_missing_state",
+          "line": 241,
+          "end": 275
+        },
+        {
+          "name": "test_materialization_rejects_an_option_that_changes_its_plan",
+          "line": 279,
+          "end": 318
+        },
+        {
+          "name": "test_realized_context_rejects_items_outside_the_plan",
+          "line": 321,
+          "end": 337
+        },
+        {
+          "name": "identity",
+          "line": 298,
+          "end": 299
+        },
+        {
+          "name": "materialize",
+          "line": 301,
+          "end": 308
+        }
+      ],
+      "lines": 337,
+      "scope": "Real CRLF/Unicode mixed exact-source+qualified-reference composition, stable ordered plan/request semantics; materialization after deletion, stale/missing/changed retained source, duplicate/purpose/malicious item rejects. Host composition, not model uptake or current disk freshness."
+    },
+    {
+      "path": "tests/context/python/classes/test_declarations.py",
+      "blob": "8ff44413a5cea2f77a8c223794aff7abf93eeca8",
+      "sha256": "74e0950f350375e6bd57b463d07161c62813023efbbc6fdc00d9836e417a3d85",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_direct_classes_methods_exclusions_and_existing_function_contract",
+          "line": 52,
+          "end": 132
+        },
+        {
+          "name": "test_multiple_resources_same_names_and_bidirectional_navigation",
+          "line": 135,
+          "end": 184
+        },
+        {
+          "name": "test_unselected_and_wrong_snapshot_rejected",
+          "line": 187,
+          "end": 230
+        },
+        {
+          "name": "test_parse_failure_and_selection_guards",
+          "line": 233,
+          "end": 259
+        },
+        {
+          "name": "test_missing_base_source_segment_rejects_incomplete_support",
+          "line": 262,
+          "end": 273
+        },
+        {
+          "name": "test_containment_rejects_inconsistent_native_facts",
+          "line": 276,
+          "end": 368
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_snapshot",
+          "line": 37,
+          "end": 49
+        },
+        {
+          "name": "test_direct_classes_methods_exclusions_and_existing_function_contract",
+          "line": 52,
+          "end": 132
+        },
+        {
+          "name": "test_multiple_resources_same_names_and_bidirectional_navigation",
+          "line": 135,
+          "end": 184
+        },
+        {
+          "name": "test_unselected_and_wrong_snapshot_rejected",
+          "line": 187,
+          "end": 230
+        },
+        {
+          "name": "test_parse_failure_and_selection_guards",
+          "line": 233,
+          "end": 259
+        },
+        {
+          "name": "test_missing_base_source_segment_rejects_incomplete_support",
+          "line": 262,
+          "end": 273
+        },
+        {
+          "name": "test_containment_rejects_inconsistent_native_facts",
+          "line": 276,
+          "end": 368
+        },
+        {
+          "name": "reject",
+          "line": 293,
+          "end": 299
+        }
+      ],
+      "lines": 368,
+      "scope": "Real parsing module classes/direct methods and exclusion coverage, same names separate resources, bidirectional containment and replay validation; parse failure not exhaustive zero, forged stale frames rejected. write_text fixture may use platform newline, not byte-exact newline oracle."
+    },
+    {
+      "path": "tests/context/python/function/test_cross_resource_pipeline.py",
+      "blob": "afdb8f132f19e636dbbd114d4ca2f27c6017265f",
+      "sha256": "559568b39c8741cd7f35505869ecc9476d13fa9245f2f84157ba1fd2bde79800",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_cross_resource_match_reaches_request_without_reacquisition",
+          "line": 65,
+          "end": 125
+        },
+        {
+          "name": "test_duplicate_cross_resource_matches_survive_the_complete_pipeline",
+          "line": 128,
+          "end": 197
+        },
+        {
+          "name": "test_cross_resource_zero_remains_bounded_through_request_assembly",
+          "line": 200,
+          "end": 244
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_snapshot",
+          "line": 35,
+          "end": 52
+        },
+        {
+          "name": "_forbid_reacquisition",
+          "line": 55,
+          "end": 62
+        },
+        {
+          "name": "test_cross_resource_match_reaches_request_without_reacquisition",
+          "line": 65,
+          "end": 125
+        },
+        {
+          "name": "test_duplicate_cross_resource_matches_survive_the_complete_pipeline",
+          "line": 128,
+          "end": 197
+        },
+        {
+          "name": "test_cross_resource_zero_remains_bounded_through_request_assembly",
+          "line": 200,
+          "end": 244
+        },
+        {
+          "name": "forbidden_read",
+          "line": 58,
+          "end": 60
+        }
+      ],
+      "lines": 244,
+      "scope": "Real parser/retrieval/disclosure/materialization/render/request preserving order, same-name distinct knowledge, explicit unselected resource exclusion, zero bounded no repository absence claim. Monkeypatch forbids reacquisition; not actual model behavior."
+    },
+    {
+      "path": "tests/context/python/function/test_declarations.py",
+      "blob": "ffbbe0e028b11d56102948d74ceb02e34d5164d9",
+      "sha256": "01cae31680eb7354f010cfdcb6880dfd9b2ae8e55c2fde9fc52069419a2d59ee",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_derives_source_grounded_direct_function_declaration_knowledge",
+          "line": 72,
+          "end": 133
+        },
+        {
+          "name": "test_derivation_is_reproducible_and_records_narrow_semantic_input",
+          "line": 136,
+          "end": 177
+        },
+        {
+          "name": "test_valid_module_with_no_direct_declarations_is_exhaustive_zero",
+          "line": 180,
+          "end": 202
+        },
+        {
+          "name": "test_invalid_python_is_parse_failure_without_successful_coverage",
+          "line": 205,
+          "end": 221
+        },
+        {
+          "name": "test_multiple_same_name_direct_declarations_have_distinct_subjects",
+          "line": 224,
+          "end": 253
+        },
+        {
+          "name": "test_surrounding_source_shift_changes_source_grounding",
+          "line": 256,
+          "end": 277
+        },
+        {
+          "name": "test_source_range_uses_utf8_byte_columns",
+          "line": 280,
+          "end": 294
+        },
+        {
+          "name": "test_explicitly_selected_multi_snapshot_resources_are_distinct_dependencies",
+          "line": 297,
+          "end": 342
+        },
+        {
+          "name": "test_multi_snapshot_selection_rejects_an_unobserved_address",
+          "line": 345,
+          "end": 361
+        },
+        {
+          "name": "test_selected_multi_resource_zero_and_parse_failure_remain_distinct",
+          "line": 364,
+          "end": 391
+        },
+        {
+          "name": "test_explicit_resource_derivation_performs_no_filesystem_read",
+          "line": 394,
+          "end": 416
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_repository",
+          "line": 35,
+          "end": 37
+        },
+        {
+          "name": "_snapshot",
+          "line": 40,
+          "end": 49
+        },
+        {
+          "name": "_multi_snapshot",
+          "line": 52,
+          "end": 69
+        },
+        {
+          "name": "test_derives_source_grounded_direct_function_declaration_knowledge",
+          "line": 72,
+          "end": 133
+        },
+        {
+          "name": "test_derivation_is_reproducible_and_records_narrow_semantic_input",
+          "line": 136,
+          "end": 177
+        },
+        {
+          "name": "test_valid_module_with_no_direct_declarations_is_exhaustive_zero",
+          "line": 180,
+          "end": 202
+        },
+        {
+          "name": "test_invalid_python_is_parse_failure_without_successful_coverage",
+          "line": 205,
+          "end": 221
+        },
+        {
+          "name": "test_multiple_same_name_direct_declarations_have_distinct_subjects",
+          "line": 224,
+          "end": 253
+        },
+        {
+          "name": "test_surrounding_source_shift_changes_source_grounding",
+          "line": 256,
+          "end": 277
+        },
+        {
+          "name": "test_source_range_uses_utf8_byte_columns",
+          "line": 280,
+          "end": 294
+        },
+        {
+          "name": "test_explicitly_selected_multi_snapshot_resources_are_distinct_dependencies",
+          "line": 297,
+          "end": 342
+        },
+        {
+          "name": "test_multi_snapshot_selection_rejects_an_unobserved_address",
+          "line": 345,
+          "end": 361
+        },
+        {
+          "name": "test_selected_multi_resource_zero_and_parse_failure_remain_distinct",
+          "line": 364,
+          "end": 391
+        },
+        {
+          "name": "test_explicit_resource_derivation_performs_no_filesystem_read",
+          "line": 394,
+          "end": 416
+        },
+        {
+          "name": "forbidden_read",
+          "line": 405,
+          "end": 407
+        }
+      ],
+      "lines": 416,
+      "scope": "Real observed direct sync/async functions, narrow grammar/runtime derivation identity, duplicates, shifted source and UTF8 columns, empty/parse failure/foreign/multi-resource/no reacquisition. Declaration count tied to current two-kind enum is scope-sensitive, not dynamic semantic oracle."
+    },
+    {
+      "path": "tests/context/python/function/test_materialization.py",
+      "blob": "d02c1f06bd66607969af9d0042ab9130a1ce8f05",
+      "sha256": "7ac14d9f24503e40d003bca04c390cf7b20054f840d1997439abba7fe00075d2",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 95,
+          "end": 110
+        },
+        {
+          "name": "_disclosure",
+          "line": 113,
+          "end": 123
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_exact_physical_lines_preserve_non_newline_separators",
+          "line": 43,
+          "end": 69
+        },
+        {
+          "name": "test_invalid_physical_ranges_and_empty_mid_codepoint_spans",
+          "line": 85,
+          "end": 92
+        },
+        {
+          "name": "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+          "line": 126,
+          "end": 172
+        },
+        {
+          "name": "test_materializes_single_line_using_utf8_byte_columns",
+          "line": 175,
+          "end": 189
+        },
+        {
+          "name": "test_rejects_mismatched_snapshot_and_resource_state",
+          "line": 192,
+          "end": 213
+        },
+        {
+          "name": "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+          "line": 225,
+          "end": 248
+        },
+        {
+          "name": "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+          "line": 251,
+          "end": 270
+        },
+        {
+          "name": "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+          "line": 273,
+          "end": 304
+        },
+        {
+          "name": "test_multi_resource_range_is_applied_only_to_its_addressed_resource",
+          "line": 307,
+          "end": 369
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "test_exact_physical_lines_preserve_non_newline_separators",
+          "line": 43,
+          "end": 69
+        },
+        {
+          "name": "test_invalid_physical_ranges_and_empty_mid_codepoint_spans",
+          "line": 85,
+          "end": 92
+        },
+        {
+          "name": "_snapshot",
+          "line": 95,
+          "end": 110
+        },
+        {
+          "name": "_disclosure",
+          "line": 113,
+          "end": 123
+        },
+        {
+          "name": "test_materializes_duplicate_sync_and_async_exact_multiline_source",
+          "line": 126,
+          "end": 172
+        },
+        {
+          "name": "test_materializes_single_line_using_utf8_byte_columns",
+          "line": 175,
+          "end": 189
+        },
+        {
+          "name": "test_rejects_mismatched_snapshot_and_resource_state",
+          "line": 192,
+          "end": 213
+        },
+        {
+          "name": "test_rejects_source_ranges_that_cannot_be_faithfully_applied",
+          "line": 225,
+          "end": 248
+        },
+        {
+          "name": "test_zero_disclosure_materializes_without_resolving_snapshot_source",
+          "line": 251,
+          "end": 270
+        },
+        {
+          "name": "test_materialization_does_not_reacquire_parse_derive_or_retrieve",
+          "line": 273,
+          "end": 304
+        },
+        {
+          "name": "test_multi_resource_range_is_applied_only_to_its_addressed_resource",
+          "line": 307,
+          "end": 369
+        },
+        {
+          "name": "forbidden",
+          "line": 281,
+          "end": 283
+        },
+        {
+          "name": "forbidden_read",
+          "line": 337,
+          "end": 339
+        }
+      ],
+      "lines": 369,
+      "scope": "Full48 physical separator/newline/sync-async combinations plus invalid byte endpoints, exact retained CRLF/Unicode, no upstream work, zero-selection and malformed range error contracts. Redirect fixture only incompatible geometry; independent equal-length redirect demonstrates missing selected-match association validation (954a7136)."
+    },
+    {
+      "path": "tests/context/python/function/test_qualified_reference.py",
+      "blob": "013b09a8d9c817df3c1661a0abde14ae5eba7cd2",
+      "sha256": "01678ae3864cb7cb698843a2dadf1a29f255d454b9314b19a6374cfa45d8509d",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_cross_resource_call_exact_source_and_request",
+          "line": 104,
+          "end": 165
+        },
+        {
+          "name": "test_same_resource_non_call_reference_and_exact_target",
+          "line": 168,
+          "end": 184
+        },
+        {
+          "name": "test_duplicate_names_preserve_exact_qualified_target",
+          "line": 187,
+          "end": 199
+        },
+        {
+          "name": "test_one_facade_target_support_is_preserved",
+          "line": 202,
+          "end": 217
+        },
+        {
+          "name": "test_stale_source_or_target_content_is_rejected",
+          "line": 220,
+          "end": 263
+        },
+        {
+          "name": "test_redirected_or_missing_resources_are_rejected",
+          "line": 266,
+          "end": 325
+        },
+        {
+          "name": "test_fact_membership_derivation_and_ranges_are_checked",
+          "line": 328,
+          "end": 392
+        },
+        {
+          "name": "test_target_from_another_snapshot_is_rejected",
+          "line": 395,
+          "end": 425
+        },
+        {
+          "name": "test_qualified_target_support_must_match_snapshot",
+          "line": 428,
+          "end": 482
+        },
+        {
+          "name": "test_materialization_does_not_reacquire_files",
+          "line": 485,
+          "end": 498
+        },
+        {
+          "name": "test_nonfunction_and_redirected_retained_support_are_rejected",
+          "line": 501,
+          "end": 564
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_snapshot",
+          "line": 54,
+          "end": 66
+        },
+        {
+          "name": "_analysis",
+          "line": 69,
+          "end": 85
+        },
+        {
+          "name": "_materialized",
+          "line": 88,
+          "end": 101
+        },
+        {
+          "name": "test_cross_resource_call_exact_source_and_request",
+          "line": 104,
+          "end": 165
+        },
+        {
+          "name": "test_same_resource_non_call_reference_and_exact_target",
+          "line": 168,
+          "end": 184
+        },
+        {
+          "name": "test_duplicate_names_preserve_exact_qualified_target",
+          "line": 187,
+          "end": 199
+        },
+        {
+          "name": "test_one_facade_target_support_is_preserved",
+          "line": 202,
+          "end": 217
+        },
+        {
+          "name": "test_stale_source_or_target_content_is_rejected",
+          "line": 220,
+          "end": 263
+        },
+        {
+          "name": "test_redirected_or_missing_resources_are_rejected",
+          "line": 266,
+          "end": 325
+        },
+        {
+          "name": "test_fact_membership_derivation_and_ranges_are_checked",
+          "line": 328,
+          "end": 392
+        },
+        {
+          "name": "test_target_from_another_snapshot_is_rejected",
+          "line": 395,
+          "end": 425
+        },
+        {
+          "name": "test_qualified_target_support_must_match_snapshot",
+          "line": 428,
+          "end": 482
+        },
+        {
+          "name": "test_materialization_does_not_reacquire_files",
+          "line": 485,
+          "end": 498
+        },
+        {
+          "name": "test_nonfunction_and_redirected_retained_support_are_rejected",
+          "line": 501,
+          "end": 564
+        }
+      ],
+      "lines": 564,
+      "scope": "Real source and native import/one-facade function support, static direct Call tag not runtime graph, exact Name/target text and request fields, stale/missing/redirected dependencies and forged support reject. Stronger joins than old exact-name materializer; no semantic usefulness proof."
+    },
+    {
+      "path": "tests/context/python/function/test_request_assembly.py",
+      "blob": "8de09b61832a86878405b4fb5155a00e54524520",
+      "sha256": "c60b96a2c0ec18a77cd9dac421bc6099d135a23dba345f240fb5e89a54db5e14",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_assembles_real_context_after_distinct_unchanged_task",
+          "line": 70,
+          "end": 132
+        },
+        {
+          "name": "test_assembles_zero_context_without_repository_absence_claim",
+          "line": 135,
+          "end": 156
+        },
+        {
+          "name": "test_assembly_invokes_no_upstream_execution_or_conversation_work",
+          "line": 159,
+          "end": 212
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_rendered_context",
+          "line": 42,
+          "end": 67
+        },
+        {
+          "name": "test_assembles_real_context_after_distinct_unchanged_task",
+          "line": 70,
+          "end": 132
+        },
+        {
+          "name": "test_assembles_zero_context_without_repository_absence_claim",
+          "line": 135,
+          "end": 156
+        },
+        {
+          "name": "test_assembly_invokes_no_upstream_execution_or_conversation_work",
+          "line": 159,
+          "end": 212
+        },
+        {
+          "name": "forbidden",
+          "line": 171,
+          "end": 173
+        }
+      ],
+      "lines": 212,
+      "scope": "Real source pipeline, request settings/conversation/tools preserved, exact byte-length framing and zero-scope qualification; mocked forbidden upstream Runtime/Conversation functions confirm pure request construction, no model execution."
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_bindings.py",
+      "blob": "4a6b9579bc6e8f5abe83a5d4a470045490be198d",
+      "sha256": "daaf7c26c90eaae48f36fb0ba1b8bd31463a1f04af9207078a2118ab07b95287",
+      "depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "reviewed_functions": [],
+      "remaining": [
+        {
+          "name": "test_module_binding_inventory_tracks_nested_and_dynamic_syntax",
+          "line": 31,
+          "end": 63
+        },
+        {
+          "name": "test_scope_binding_inventory_catches_parameters_and_local_bindings",
+          "line": 66,
+          "end": 95
+        },
+        {
+          "name": "test_scope_assessment_excludes_argument_and_lambda_syntax",
+          "line": 98,
+          "end": 124
+        },
+        {
+          "name": "test_star_import_cannot_establish_local_binding",
+          "line": 127,
+          "end": 131
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "test_module_binding_inventory_tracks_nested_and_dynamic_syntax",
+          "line": 31,
+          "end": 63
+        },
+        {
+          "name": "test_scope_binding_inventory_catches_parameters_and_local_bindings",
+          "line": 66,
+          "end": 95
+        },
+        {
+          "name": "test_scope_assessment_excludes_argument_and_lambda_syntax",
+          "line": 98,
+          "end": 124
+        },
+        {
+          "name": "test_star_import_cannot_establish_local_binding",
+          "line": 127,
+          "end": 131
+        }
+      ],
+      "lines": 131,
+      "scope": "Real AST and observer/import/native inventory, conservative uncertain globals/star/dynamic/nested binding, parameter/local/match capture, comprehension and default/lambda unsupported scopes. Focused internals not complete runtime binding solver or application consumer."
+    },
+    {
+      "path": "tests/context/repository/test_observation.py",
+      "blob": "6325623a2f291f557aec919ac6eeece5fe127b30",
+      "sha256": "a3a8596241ae8d90c669a58ca873d618e0cb1cefb1b87de2b15d13e1e51fbf8d",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 39,
+          "end": 41
+        },
+        {
+          "name": "_observe",
+          "line": 44,
+          "end": 55
+        },
+        {
+          "name": "_observe_many",
+          "line": 58,
+          "end": 69
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_repository_nominal_identity_is_independent_of_observation_root",
+          "line": 72,
+          "end": 93
+        },
+        {
+          "name": "test_snapshot_identity_is_scoped_to_the_logical_repository",
+          "line": 96,
+          "end": 110
+        },
+        {
+          "name": "test_observes_one_required_resource_into_identified_snapshot_state",
+          "line": 113,
+          "end": 139
+        },
+        {
+          "name": "test_repeated_observation_of_unchanged_state_is_equivalent",
+          "line": 142,
+          "end": 154
+        },
+        {
+          "name": "test_changed_content_changes_content_and_snapshot_identity",
+          "line": 157,
+          "end": 168
+        },
+        {
+          "name": "test_equal_content_at_distinct_addresses_preserves_distinct_occurrences",
+          "line": 171,
+          "end": 186
+        },
+        {
+          "name": "test_observes_multiple_explicit_resources_as_one_identified_snapshot",
+          "line": 189,
+          "end": 213
+        },
+        {
+          "name": "test_multi_resource_state_is_root_and_caller_order_independent",
+          "line": 216,
+          "end": 233
+        },
+        {
+          "name": "test_changing_one_resource_changes_multi_resource_snapshot_state",
+          "line": 236,
+          "end": 251
+        },
+        {
+          "name": "test_equal_content_at_two_addresses_retains_distinct_multi_occurrences",
+          "line": 254,
+          "end": 267
+        },
+        {
+          "name": "test_empty_observation_is_identified_without_filesystem_acquisition",
+          "line": 270,
+          "end": 298
+        },
+        {
+          "name": "test_empty_observation_identity_is_deterministic_and_repository_sensitive",
+          "line": 301,
+          "end": 328
+        },
+        {
+          "name": "test_nonpositive_resource_bound_fails_before_read",
+          "line": 332,
+          "end": 350
+        },
+        {
+          "name": "test_resource_bound_is_passed_to_canonical_text_read",
+          "line": 353,
+          "end": 362
+        },
+        {
+          "name": "test_required_multi_resource_failure_does_not_publish_a_snapshot",
+          "line": 365,
+          "end": 372
+        },
+        {
+          "name": "test_unsupported_and_undecodable_multi_resources_prevent_a_snapshot",
+          "line": 375,
+          "end": 386
+        },
+        {
+          "name": "test_unreadable_multi_resource_prevents_a_snapshot",
+          "line": 389,
+          "end": 410
+        },
+        {
+          "name": "test_resource_address_rejects_empty_absolute_and_traversing_values",
+          "line": 423,
+          "end": 429
+        },
+        {
+          "name": "test_resource_address_rejects_platform_separator",
+          "line": 432,
+          "end": 435
+        },
+        {
+          "name": "test_observation_rejects_a_resolved_escape",
+          "line": 438,
+          "end": 468
+        },
+        {
+          "name": "test_missing_and_non_file_resources_do_not_produce_snapshots",
+          "line": 471,
+          "end": 481
+        },
+        {
+          "name": "test_unreadable_and_undecodable_resources_do_not_produce_snapshots",
+          "line": 484,
+          "end": 504
+        },
+        {
+          "name": "test_local_digest_identities_reject_noncanonical_values",
+          "line": 515,
+          "end": 522
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_repository",
+          "line": 39,
+          "end": 41
+        },
+        {
+          "name": "_observe",
+          "line": 44,
+          "end": 55
+        },
+        {
+          "name": "_observe_many",
+          "line": 58,
+          "end": 69
+        },
+        {
+          "name": "test_repository_nominal_identity_is_independent_of_observation_root",
+          "line": 72,
+          "end": 93
+        },
+        {
+          "name": "test_snapshot_identity_is_scoped_to_the_logical_repository",
+          "line": 96,
+          "end": 110
+        },
+        {
+          "name": "test_observes_one_required_resource_into_identified_snapshot_state",
+          "line": 113,
+          "end": 139
+        },
+        {
+          "name": "test_repeated_observation_of_unchanged_state_is_equivalent",
+          "line": 142,
+          "end": 154
+        },
+        {
+          "name": "test_changed_content_changes_content_and_snapshot_identity",
+          "line": 157,
+          "end": 168
+        },
+        {
+          "name": "test_equal_content_at_distinct_addresses_preserves_distinct_occurrences",
+          "line": 171,
+          "end": 186
+        },
+        {
+          "name": "test_observes_multiple_explicit_resources_as_one_identified_snapshot",
+          "line": 189,
+          "end": 213
+        },
+        {
+          "name": "test_multi_resource_state_is_root_and_caller_order_independent",
+          "line": 216,
+          "end": 233
+        },
+        {
+          "name": "test_changing_one_resource_changes_multi_resource_snapshot_state",
+          "line": 236,
+          "end": 251
+        },
+        {
+          "name": "test_equal_content_at_two_addresses_retains_distinct_multi_occurrences",
+          "line": 254,
+          "end": 267
+        },
+        {
+          "name": "test_empty_observation_is_identified_without_filesystem_acquisition",
+          "line": 270,
+          "end": 298
+        },
+        {
+          "name": "test_empty_observation_identity_is_deterministic_and_repository_sensitive",
+          "line": 301,
+          "end": 328
+        },
+        {
+          "name": "test_nonpositive_resource_bound_fails_before_read",
+          "line": 332,
+          "end": 350
+        },
+        {
+          "name": "test_resource_bound_is_passed_to_canonical_text_read",
+          "line": 353,
+          "end": 362
+        },
+        {
+          "name": "test_required_multi_resource_failure_does_not_publish_a_snapshot",
+          "line": 365,
+          "end": 372
+        },
+        {
+          "name": "test_unsupported_and_undecodable_multi_resources_prevent_a_snapshot",
+          "line": 375,
+          "end": 386
+        },
+        {
+          "name": "test_unreadable_multi_resource_prevents_a_snapshot",
+          "line": 389,
+          "end": 410
+        },
+        {
+          "name": "test_resource_address_rejects_empty_absolute_and_traversing_values",
+          "line": 423,
+          "end": 429
+        },
+        {
+          "name": "test_resource_address_rejects_platform_separator",
+          "line": 432,
+          "end": 435
+        },
+        {
+          "name": "test_observation_rejects_a_resolved_escape",
+          "line": 438,
+          "end": 468
+        },
+        {
+          "name": "test_missing_and_non_file_resources_do_not_produce_snapshots",
+          "line": 471,
+          "end": 481
+        },
+        {
+          "name": "test_unreadable_and_undecodable_resources_do_not_produce_snapshots",
+          "line": 484,
+          "end": 504
+        },
+        {
+          "name": "test_local_digest_identities_reject_noncanonical_values",
+          "line": 515,
+          "end": 522
+        },
+        {
+          "name": "forbidden_read",
+          "line": 277,
+          "end": 279
+        },
+        {
+          "name": "forbidden_read",
+          "line": 339,
+          "end": 341
+        },
+        {
+          "name": "deny_one",
+          "line": 400,
+          "end": 405
+        },
+        {
+          "name": "escape_resolution",
+          "line": 447,
+          "end": 455
+        },
+        {
+          "name": "deny_read",
+          "line": 492,
+          "end": 495
+        }
+      ],
+      "lines": 522,
+      "scope": "Real canonical bounded UTF8 reads and exact newline preservation; repository-sensitive/root-independent canonical snapshot order, same-content distinct occurrence, empty/negative/missing/oversized/permission/decoding failures, path escaping monkeypatch and lowercase identities. Sequential snapshot not atomic repository transaction or currentness guarantee."
+    },
+    {
+      "path": "tests/context/retrieval/source/test_search.py",
+      "blob": "d464088b849482094634ba4c963d8ef05fb8fcee",
+      "sha256": "ad7361341589f5d2d40701c331f2669d64844d720777dd7a5a9bb8419f9d6473",
+      "depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "reviewed_functions": [
+        {
+          "name": "_index",
+          "line": 53,
+          "end": 79
+        },
+        {
+          "name": "index",
+          "line": 83,
+          "end": 107
+        }
+      ],
+      "remaining": [
+        {
+          "name": "test_recursive_symbols_decorators_exact_spans_and_native_identity",
+          "line": 110,
+          "end": 166
+        },
+        {
+          "name": "test_windows_cover_exact_source_and_long_functions_without_tail_duplicates",
+          "line": 169,
+          "end": 205
+        },
+        {
+          "name": "test_file_ranking_is_canonical_and_modes_keep_native_populations",
+          "line": 208,
+          "end": 268
+        },
+        {
+          "name": "test_fallbacks_and_representations_are_not_semantic_subjects",
+          "line": 271,
+          "end": 284
+        },
+        {
+          "name": "test_mixed_file_fallback_retains_provenance_without_a_duplicate_symbol_vote",
+          "line": 287,
+          "end": 299
+        },
+        {
+          "name": "test_explicit_context_disclosure_and_snapshot_incompatibility",
+          "line": 302,
+          "end": 328
+        },
+        {
+          "name": "test_invalid_bounds_modes_expansion_and_snapshot_binding",
+          "line": 331,
+          "end": 376
+        },
+        {
+          "name": "test_line_coordinates_preserve_newlines_and_final_unterminated_line",
+          "line": 380,
+          "end": 395
+        },
+        {
+          "name": "test_parenthesized_decorators_include_opening_tokens",
+          "line": 399,
+          "end": 426
+        }
+      ],
+      "qualification": "Passing protected tests do not themselves establish independent fixture semantics. Inline monkeypatches remain unreviewed unless full test depth is explicit.",
+      "functions": [
+        {
+          "name": "_index",
+          "line": 53,
+          "end": 79
+        },
+        {
+          "name": "index",
+          "line": 83,
+          "end": 107
+        },
+        {
+          "name": "test_recursive_symbols_decorators_exact_spans_and_native_identity",
+          "line": 110,
+          "end": 166
+        },
+        {
+          "name": "test_windows_cover_exact_source_and_long_functions_without_tail_duplicates",
+          "line": 169,
+          "end": 205
+        },
+        {
+          "name": "test_file_ranking_is_canonical_and_modes_keep_native_populations",
+          "line": 208,
+          "end": 268
+        },
+        {
+          "name": "test_fallbacks_and_representations_are_not_semantic_subjects",
+          "line": 271,
+          "end": 284
+        },
+        {
+          "name": "test_mixed_file_fallback_retains_provenance_without_a_duplicate_symbol_vote",
+          "line": 287,
+          "end": 299
+        },
+        {
+          "name": "test_explicit_context_disclosure_and_snapshot_incompatibility",
+          "line": 302,
+          "end": 328
+        },
+        {
+          "name": "test_invalid_bounds_modes_expansion_and_snapshot_binding",
+          "line": 331,
+          "end": 376
+        },
+        {
+          "name": "test_line_coordinates_preserve_newlines_and_final_unterminated_line",
+          "line": 380,
+          "end": 395
+        },
+        {
+          "name": "test_parenthesized_decorators_include_opening_tokens",
+          "line": 399,
+          "end": 426
+        }
+      ],
+      "lines": 426,
+      "scope": "Real discovery/observation/corpus/parser source index, nested/decorated syntax vs native subject distinction, windows/fallbacks/mixed RRF independent reciprocal formula/canonical file parity, bounds/stale/foreign guards, LF/CRLF/CR/no-final and parenthesized decorator tests. Existing splitlines assertion only on ordinary fixture, not universal coordinate oracle."
+    }
+  ],
+  "cohort_tests": [
+    {
+      "path": "experiments/source_grounding/chunked/test_archive.py",
+      "blob": "675347bcb95c5174a4a1a45392e75c4cfd8c502b",
+      "sha256": "6787365eff462b96b30f034b63143ef9968260c406f17950381d60fa42907dea",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 17,
+          "end": 51
+        },
+        {
+          "name": "coverage",
+          "line": 54,
+          "end": 69
+        },
+        {
+          "name": "test_complete_exact_archive_and_canonical_reattachment",
+          "line": 72,
+          "end": 96
+        },
+        {
+          "name": "test_cell_coverage_and_representation_fail_closed",
+          "line": 113,
+          "end": 144
+        },
+        {
+          "name": "test_quote_aggregate_and_uncertainty_remain_explicit",
+          "line": 147,
+          "end": 172
+        },
+        {
+          "name": "test_maximum_frame_preserves_context_and_excludes_raw_content",
+          "line": 175,
+          "end": 186
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_cards.py",
+      "blob": "5766b5b10825048b487da5019d8249ac16bfcb55",
+      "sha256": "6a8a8867c764fa24fcf68e7f721eaf0932443d88468a8c61f69b915acef31eb8",
+      "functions": [
+        {
+          "name": "card",
+          "line": 19,
+          "end": 30
+        },
+        {
+          "name": "test_card_bounds_and_incomplete_representation_fail_closed",
+          "line": 33,
+          "end": 57
+        },
+        {
+          "name": "test_current_transport_cannot_claim_worst_case_strong_fit",
+          "line": 61,
+          "end": 69
+        },
+        {
+          "name": "test_sizing_rejects_unknown_population_and_accepts_small_frame",
+          "line": 72,
+          "end": 77
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_consolidation.py",
+      "blob": "e95722ef5a69a100f56bfdd073f622b0bd41a97d",
+      "sha256": "63c6767fd170d5e3082ba34d30e860a0a0bde5b75c08b76a2d9b9feb7a123e99",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 22,
+          "end": 88
+        },
+        {
+          "name": "test_final_projection_builds_exact_canonical_artifact_set",
+          "line": 91,
+          "end": 114
+        },
+        {
+          "name": "test_global_projection_never_repairs_or_drops_findings",
+          "line": 121,
+          "end": 134
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_disclosure.py",
+      "blob": "5fa6c6f3a3bcade46e37d6010b455a35febc4df3",
+      "sha256": "4c927d69a5af20185b138b13b98a829b4185913d77f033b649ecfc76008f297b",
+      "functions": [
+        {
+          "name": "context",
+          "line": 14,
+          "end": 26
+        },
+        {
+          "name": "test_all_maximum_cards_fit_without_escaping",
+          "line": 30,
+          "end": 38
+        },
+        {
+          "name": "test_exact_unicode_including_frame_looking_text",
+          "line": 45,
+          "end": 49
+        },
+        {
+          "name": "test_ambiguity_truncation_and_foreign_context_reject",
+          "line": 52,
+          "end": 61
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_execution.py",
+      "blob": "5eaa362a08d9b314f54d3f43cc562705c3c4156c",
+      "sha256": "5c78ad8085e669de89c3d0dbe0d89defc1b349c63c69d428e851e0d1caec168d",
+      "functions": [
+        {
+          "name": "event",
+          "line": 31,
+          "end": 32
+        },
+        {
+          "name": "setup",
+          "line": 35,
+          "end": 79
+        },
+        {
+          "name": "responder",
+          "line": 82,
+          "end": 184
+        },
+        {
+          "name": "test_c2_complete_host_pipeline_and_exact_replay",
+          "line": 187,
+          "end": 197
+        },
+        {
+          "name": "test_dynamic_b_byte_gate_precedes_entry",
+          "line": 200,
+          "end": 215
+        },
+        {
+          "name": "test_all_eligible_partition_excess_launches_no_a2",
+          "line": 218,
+          "end": 232
+        },
+        {
+          "name": "test_native_capture_replay_rejects_transport_and_disclosure_changes",
+          "line": 235,
+          "end": 329
+        },
+        {
+          "name": "invoke",
+          "line": 96,
+          "end": 182
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_packing.py",
+      "blob": "d8977d5ea08cda89c0ed99f50dc38520ab714293",
+      "sha256": "8f78ead0fd0001d08684d19a08ca3f8cc3a7a35b0c2d27d181ad5819b90b5dea",
+      "functions": [
+        {
+          "name": "test_partition_is_output_aware_and_independent_of_resource_input_order",
+          "line": 13,
+          "end": 33
+        },
+        {
+          "name": "test_oversized_single_resource_fails_before_any_invocation",
+          "line": 36,
+          "end": 41
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/chunked/test_stages.py",
+      "blob": "cf07d044e4861f7d5e973eee3f3a4e2990a9b724",
+      "sha256": "21035a729e917742fd3a09d99723bacb27b7f5285ecf7da6970e1dee97fff9e8",
+      "functions": [
+        {
+          "name": "test_state_only_schema_and_complete_coverage",
+          "line": 17,
+          "end": 27
+        },
+        {
+          "name": "test_a1_rejects_absent_ambiguous_and_extra_judgments",
+          "line": 43,
+          "end": 75
+        },
+        {
+          "name": "test_a2_resources_once_and_explicit_empty_eligibility",
+          "line": 78,
+          "end": 92
+        },
+        {
+          "name": "test_a1_useful_cannot_silently_lose_evidence",
+          "line": 95,
+          "end": 103
+        },
+        {
+          "name": "test_metadata_cannot_enter_a1_a2_disclosure",
+          "line": 106,
+          "end": 114
+        },
+        {
+          "name": "test_a1_partition_prototype_projection_is_preserved",
+          "line": 117,
+          "end": 130
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/discrimination/test_design.py",
+      "blob": "19fdcad185420afcd49be4249e300e412a554a36",
+      "sha256": "1bb0d142c354ac43d04bcccd016afbded25ad1950917da295aba0c70c0d59ba9",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 20,
+          "end": 59
+        },
+        {
+          "name": "judgments",
+          "line": 62,
+          "end": 83
+        },
+        {
+          "name": "test_census_replay_capacity_and_exact_anchors",
+          "line": 86,
+          "end": 108
+        },
+        {
+          "name": "test_gold_fails_closed",
+          "line": 123,
+          "end": 150
+        },
+        {
+          "name": "test_sampling_output_drives_fixed_stratum_size",
+          "line": 153,
+          "end": 172
+        },
+        {
+          "name": "test_finite_population_uncertainty_and_undefined",
+          "line": 175,
+          "end": 209
+        },
+        {
+          "name": "test_future_join_analysis_uses_only_fictional_labels",
+          "line": 212,
+          "end": 239
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/discrimination/test_execution.py",
+      "blob": "556413c1dd2971fc37adc0724fc6355ba0a3e634",
+      "sha256": "59f3a037253d8e055233cca2a3bd8ac2e78cba7647f0c0a33cb3739a7e589ee8",
+      "functions": [
+        {
+          "name": "test_single_call_host_builder_and_replay",
+          "line": 23,
+          "end": 68
+        },
+        {
+          "name": "test_native_capture_authentication",
+          "line": 71,
+          "end": 182
+        },
+        {
+          "name": "invoke",
+          "line": 34,
+          "end": 52
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/discrimination/test_startup.py",
+      "blob": "d0ca954447665845077d45990bb4b26bbdf5759e",
+      "sha256": "93c3dd1d8e25ddeadf3026095f0cabd4acda36668008a290d51f41fcf342e767",
+      "functions": [
+        {
+          "name": "test_real_entry_script_from_external_cwd",
+          "line": 18,
+          "end": 38
+        },
+        {
+          "name": "test_no_stdlib_shadowing_siblings",
+          "line": 41,
+          "end": 43
+        },
+        {
+          "name": "test_exact_four_call_inventory_rejects_fifth",
+          "line": 46,
+          "end": 72
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/test_contracts.py",
+      "blob": "5d969c4c13f766d4bea8fe53cda59da5f49cc685",
+      "sha256": "0acc0dec59e7321aaf00ac484150d458b078f95215c4a63ebff7d5f577f21f1f",
+      "functions": [
+        {
+          "name": "fixture",
+          "line": 38,
+          "end": 130
+        },
+        {
+          "name": "evidence",
+          "line": 133,
+          "end": 139
+        },
+        {
+          "name": "attestation",
+          "line": 142,
+          "end": 150
+        },
+        {
+          "name": "grounding_review",
+          "line": 153,
+          "end": 177
+        },
+        {
+          "name": "test_population_cases_and_authored_obligations",
+          "line": 180,
+          "end": 198
+        },
+        {
+          "name": "test_source_candidates_and_strict_disclosure",
+          "line": 201,
+          "end": 211
+        },
+        {
+          "name": "test_qualified_subset_and_original_predecessor",
+          "line": 215,
+          "end": 226
+        },
+        {
+          "name": "test_broad_rejects_invalid_captured_join",
+          "line": 248,
+          "end": 281
+        },
+        {
+          "name": "test_grounding_packet_rejects_leakage",
+          "line": 285,
+          "end": 304
+        },
+        {
+          "name": "test_packet_preservation_gold_blindness_and_exact_frame",
+          "line": 307,
+          "end": 320
+        },
+        {
+          "name": "test_grounding_review_exact_complete_cells",
+          "line": 323,
+          "end": 337
+        },
+        {
+          "name": "test_reviewer_rejects_identity_and_semantic_contract_defects",
+          "line": 356,
+          "end": 377
+        },
+        {
+          "name": "test_pair_order_and_strong_boundaries",
+          "line": 384,
+          "end": 395
+        },
+        {
+          "name": "test_case_category_boundaries",
+          "line": 407,
+          "end": 408
+        },
+        {
+          "name": "gold_review",
+          "line": 411,
+          "end": 450
+        },
+        {
+          "name": "test_gold_units_witnesses_gaps_and_controller_output_compatibility",
+          "line": 453,
+          "end": 465
+        },
+        {
+          "name": "test_frozen_frame_bindings_without_treatment",
+          "line": 468,
+          "end": 500
+        },
+        {
+          "name": "test_replacement_frozen_parent_bindings_without_treatment",
+          "line": 503,
+          "end": 521
+        },
+        {
+          "name": "test_grounding_rejects_cross_case_frame",
+          "line": 525,
+          "end": 529
+        },
+        {
+          "name": "test_scientific_overwrite_refusal",
+          "line": 532,
+          "end": 537
+        },
+        {
+          "name": "test_operational_critical_paths_are_not_scientific_authority",
+          "line": 540,
+          "end": 569
+        },
+        {
+          "name": "test_blind_branch_serializer_transport",
+          "line": 573,
+          "end": 625
+        },
+        {
+          "name": "test_primary_bytes_roundtrip_through_existing_native_journal",
+          "line": 628,
+          "end": 652
+        },
+        {
+          "name": "test_packet_adapter_publishes_only_blind_branch",
+          "line": 655,
+          "end": 682
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/test_runtime.py",
+      "blob": "1ac1e4da6b293c0e6cd1644c4a4ceceb58d2c62d",
+      "sha256": "de80f2318a295729df80409fbb08d0a32903ab4c53fb4d9a78be82014fa2b6a4",
+      "functions": [
+        {
+          "name": "synthetic_packet",
+          "line": 25,
+          "end": 86
+        },
+        {
+          "name": "synthetic_judgments",
+          "line": 89,
+          "end": 149
+        },
+        {
+          "name": "test_luna_designation_cannot_override_scientific_validator",
+          "line": 152,
+          "end": 158
+        },
+        {
+          "name": "direct_path",
+          "line": 161,
+          "end": 198
+        },
+        {
+          "name": "test_both_actual_callers_host_create_and_authenticate",
+          "line": 202,
+          "end": 259
+        },
+        {
+          "name": "fake",
+          "line": 211,
+          "end": 236
+        },
+        {
+          "name": "run",
+          "line": 240,
+          "end": 257
+        }
+      ]
+    },
+    {
+      "path": "experiments/source_grounding/test_scope.py",
+      "blob": "128ae9b27049add25c8b4fce7cf8f01674a956c7",
+      "sha256": "fb91a6f961100b806ebe959cb7cce13c73f86b545d0c478346a494bed2748365",
+      "functions": [
+        {
+          "name": "test_static_scope_excludes_materialized_generated_payloads",
+          "line": 25,
+          "end": 57
+        },
+        {
+          "name": "test_maintained_implementation_defect_still_fails",
+          "line": 60,
+          "end": 84
+        },
+        {
+          "name": "test_nested_grounding_adapter_bridge_with_fake_process",
+          "line": 87,
+          "end": 123
+        },
+        {
+          "name": "test_operational_process_completion_does_not_define_burden_interval",
+          "line": 126,
+          "end": 150
+        },
+        {
+          "name": "run",
+          "line": 47,
+          "end": 55
+        },
+        {
+          "name": "run",
+          "line": 71,
+          "end": 82
+        },
+        {
+          "name": "run",
+          "line": 91,
+          "end": 106
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/context/python/function/materialization.py",
+      "blob": "a6cf91d35ba232808eaef9af1e2bb091b50be391",
+      "sha256": "6bcc26800d51ab62712d4fd78664b0f6db2af1cbcbd78aa57ea6415975e9b42b",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "src/devtools/context/python/function/disclosure.py",
+      "blob": "fb551cbd7bd60c467ad95f50567aca52e5c57dda",
+      "sha256": "11d389b948d1d813711f04b3c5471c8c02ec69f928e989f20f992620bb806429",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "src/devtools/context/python/function/qualified_reference.py",
+      "blob": "a94944456d85bb1518fde794fa12e76621cc3554",
+      "sha256": "aa6ba56334cfbb54dfabff1645cab31646ab0d0a3dd35feb1fb0f54beb7ec5ec",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "apps/qwen/navigation.py",
+      "blob": "ad51ce5a85e76b7194a926b419428fef011e64fb",
+      "sha256": "06a54b95722cf59ebf9538eff6e0ba5ede3b17de6168d7162c5031b6b76ae95a",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "src/devtools/context/planning/repository_map.py",
+      "blob": "3ffab68f3b0a280653918b400522cc52d5005ebb",
+      "sha256": "a22f91cc97e1eeb8d29270ed034f8dd34f0d2a7ae42e88f007937402aed48984",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b",
+      "sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "sha256": "7bfd2f099e6442d48063675820db074a56fd0e5b8b5245a251b4c7c2adcf5ce9",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "experiments/orchestration/workers/evidence.py",
+      "blob": "ef55d70ab6b78ee46b9daca280c38682bd216ce0",
+      "sha256": "d13c8981bf3549d04645910fa75dc918a4a6d3b1baf1dc65211ea5327259da7c",
+      "depth": "FULL_BODY"
+    },
+    {
+      "path": "experiments/orchestration/workers/semantic.py",
+      "blob": "dd25ba01bb3c026cbc15411a90fbaeeb9b2b0d02",
+      "sha256": "5aa4a5253702baf294aa326e3ded097e6d744db86f2b05534f25a4c00308ea44",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "experiments/orchestration/workers/runtime.py",
+      "blob": "3b10130e37eaa10dfb8150a72a0edefcdf477485",
+      "sha256": "9f04163bd0c17501ab90958d2d0b66e07b05833cddc7c3cff93ad6860099c907",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "experiments/orchestration/workers/capacity.py",
+      "blob": "39cdff7ad32aebb52428cc05b1576543f0fdc144",
+      "sha256": "eb83dd72261dd04ee984778b2cada131851b780d10c36b9998c5d5479ae2442e",
+      "depth": "RELEVANT_CONSUMER_AND_VALIDATION_BODY; no whole-file credit"
+    },
+    {
+      "path": "experiments/codex_dogfood/verification/proof.py",
+      "blob": "3dce536bc45d863f42742034e76e90808c12f1e0",
+      "sha256": "786ea2eb729bd3cc3bc9b34fbc8ed33c4359694bc525a82cee0d5d06dc21a2b7",
+      "depth": "FULL_BODY"
+    }
+  ],
+  "history": [
+    {
+      "revision": "8bf87d4bb29349b8391de3fed2680bf1f7c94f28",
+      "path": "experiments/source_grounding/discrimination/lifecycle.py",
+      "sha256": "0213b430512beb21e03594890fa0126369c13d912866f42f5685256885a262be"
+    },
+    {
+      "revision": "f9b96b374ee87a734dd4f8a4735f37cecd26663c",
+      "path": "experiments/source_grounding/discrimination/lifecycle.py",
+      "sha256": "0213b430512beb21e03594890fa0126369c13d912866f42f5685256885a262be"
+    },
+    {
+      "revision": "b5a3c824928985098347f0ccc8d39db8088e5810",
+      "path": "experiments/source_grounding/discrimination/lifecycle.py",
+      "sha256": "0213b430512beb21e03594890fa0126369c13d912866f42f5685256885a262be"
+    },
+    {
+      "revision": "f9b96b374ee87a734dd4f8a4735f37cecd26663c",
+      "path": "experiments/source_grounding/discrimination/lifecycle.py",
+      "sha256": "0213b430512beb21e03594890fa0126369c13d912866f42f5685256885a262be"
+    },
+    {
+      "revision": "f9b96b374ee87a734dd4f8a4735f37cecd26663c",
+      "path": "experiments/orchestration/workers/process.py",
+      "sha256": "cfc728534a89e8658c2953439de1d456c5e77693fe1cbc84588a44f77202e9d8"
+    },
+    {
+      "revision": "b5a3c824928985098347f0ccc8d39db8088e5810",
+      "path": "experiments/source_grounding/runs/1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115/authorization/approval.json",
+      "sha256": "391a40ca629433c680ffa9b5833e11ec26677b2993609506ccef888b34d23285"
+    }
+  ],
+  "history_scope": "Candidate08 lifecycle exact equal current body, original immutable packet/codecs separately reviewed within64; receipt/process exact dependency only. No reduction of177 older-current-RI ledger obligations."
+}

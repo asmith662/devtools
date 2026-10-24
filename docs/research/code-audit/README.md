@@ -255,3 +255,33 @@ Localization semantic-decision consumer and unmeasured graph-assisted benefit.
 Both previously unavailable locked-NumPy synthetic tests now pass;254 focused
 tests also pass with two historical reconstruction tests deliberately deselected.
 RI and repository-wide audits remain incomplete.
+
+
+## Source-grounding and retained-source fixture overlay
+
+Current continuation: [full64-path source-grounding audit](../ri-source-grounding-audit.md),
+starting from5ed530bb. This overlay supersedes earlier current-depth counters,
+without changing dated ledgers.64 paths/55 blobs include49 distinct substantive
+blobs,13 complete experimental test modules,33 algorithm/controller paths,
+12 frozen builder/codec paths and six namespace/entry surfaces. They are not64
+algorithms or independent trials. Twelve current test modules are separately
+reviewed.574/606 experimental paths and30/93 current fixtures are reviewed;
+32 experimental,63 current-fixture and177 older current-RI versions remain.
+
+| File | Exact qualification |
+| --- | --- |
+| [ri-grounding-experiments.jsonl](ri-grounding-experiments.jsonl) |606-row overlay; only the frozen64 selected rows gain full applicable source/controller/test depth. Per-path functions, roles, scientific terminal state, consumers and backlog dispositions.|
+| [ri-grounding-fixtures.jsonl](ri-grounding-fixtures.jsonl) |93-row overlay; twelve additional complete current fixture bodies, real parser versus nominal/mock scope and independently reproduced valid-range redirect.|
+| [ri-grounding-summary.json](ri-grounding-summary.json) |Observed path/blob/role/mechanism counts and separate review universes; RI remains incomplete.|
+| [ri-grounding-tests-and-dependencies.json](ri-grounding-tests-and-dependencies.json) |Exact current/test/dependency bodies and limited read-only successor-history objects. No transfer to177 older-version obligations.|
+| [ri-grounding-artifact-identities.json](ri-grounding-artifact-identities.json) |Original source-grounding manifest, historical journals/approvals, adopted closure hashes,914 exact parent source resources,103 pair bindings and Candidate08 terminal receipt metadata. Raw content stays in original custody.|
+| [ri-grounding-probes.json](ri-grounding-probes.json) |Complete independent synthetic source and seven outcomes: valid-range projection redirect, inconsistent host frame, repeated-log collision and four correct locator/binding refusals.|
+| [ri-grounding-intake.json](ri-grounding-intake.json) |Two new PENDING_REVIEW bugs and eight append-only ADVISORY updates; preexisting states preserved.|
+| [ri-grounding-next-cohort.json](ri-grounding-next-cohort.json) |Exact remaining32 experiment paths/blobs,63 current fixtures and unchanged177 older-version obligations; no automatic execution or review credit.|
+| [ri-grounding-checkpoint.json](ri-grounding-checkpoint.json) |Actual188 focused passes,133 synthetic passes/six incompatible-profile failures, identity/Intake/link/layout/whitespace checks. No new protected gate or model inference.|
+
+The original Candidate08 result is CONTROLLER_FAILED/UNASSESSED. Local B24
+completion and adopted22/23 are quarantined branches, not scientific acceptance.
+The known source-index fix and supported binding-verifier subset remain delivered
+implementation evidence awaiting normal operator reconciliation of remaining
+proposal scope. No frozen scientific source/results are rewritten.

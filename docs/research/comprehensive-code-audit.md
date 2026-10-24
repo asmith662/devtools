@@ -2,15 +2,15 @@
 
 ## Disposition and authority
 
-Current continuation: [structural discrimination and maintained decision tests](ri-structural-discrimination-audit.md).
-All78 selected paths/blobs now have applicable full-body review;473/606
-experimental paths are reviewed,133 remain. Separate84 current-fixture paths
-and177 older versions retain their previous depth. Next is the exact37-path
-structural-discrimination and residual Case0017–0019 packet/reviewer cohort.
-The [task-obligation coverage recommendation](task-obligation-coverage-decision.md)
-is decision preparation, not an accepted architecture change.
-The maintainer requires the remaining RI mechanisms/fixtures before changing
-audit domains; this does not prepare the postponed successor-session dossier.
+Current audit checkpoint: [source grounding, evidence boundaries and maintained tests](ri-source-grounding-audit.md).
+All64 selected paths/55 distinct blobs now have applicable full-body review.
+Historical review is574/606, leaving32; current fixtures are30/93, leaving63.
+The separate177 older current-RI versions retain their recorded review depth.
+Two distinct pending bugs and eight advisory updates preserve approval boundaries.
+The next exact32-path experimental cohort and subsequent fixture/version schedule
+are recorded in the version-specific ledger; no next cohort is launched here.
+The task-obligation A+C recommendation remains unapproved. RI review and the
+repository-wide program remain incomplete; the successor dossier stays postponed.
 
 This begins the maintainer-directed deep code review. It supersedes the earlier
 reconciliation's recommendation to prepare the final successor-session dossier.

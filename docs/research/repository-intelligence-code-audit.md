@@ -1,11 +1,14 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [structural discrimination and maintained decision tests](ri-structural-discrimination-audit.md).
-The exact78 selected paths/blobs are reviewed;473/606 experimental paths
-now have applicable mechanism/export review,133 remain. Current-fixture and
-older-version obligations remain separate. See the exact37-path next cohort
-in the new overlay; this does not complete historical RI review.
-The original census below remains dated evidence; RI is not fully audited.
+Current audit checkpoint: [source grounding, evidence boundaries and maintained tests](ri-source-grounding-audit.md).
+All64 selected paths/55 distinct blobs now have applicable full-body review.
+Historical review is574/606, leaving32; current fixtures are30/93, leaving63.
+The separate177 older current-RI versions retain their recorded review depth.
+Two distinct pending bugs and eight advisory updates preserve approval boundaries.
+The next exact32-path experimental cohort and subsequent fixture/version schedule
+are recorded in the version-specific ledger; no next cohort is launched here.
+The task-obligation A+C recommendation remains unapproved. RI review and the
+repository-wide program remain incomplete; the successor dossier stays postponed.
 
 The [task-obligation coverage decision preparation](task-obligation-coverage-decision.md)
 turns the U1 omissions into concrete trusted/reviewed consumer options. Scoped

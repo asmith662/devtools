@@ -268,3 +268,17 @@ The reviewed expected roster itself is not an exhaustive-task oracle. Delegable
 authorized independent review, future agent-proposed needs, real task-only
 execution evidence, snapshot refresh and separate code-check/freshness/publication
 claims remain required as already described above.
+
+
+## Source-grounding audit sufficiency finding
+
+The [64-path grounding audit](ri-source-grounding-audit.md) adds no materially
+new architecture constraint. Exact quote occurrence, native structural support,
+primary usefulness judgment, semantic witness acceptance and edit authority are
+separate responsibilities. Candidate08 never completed its discrimination gold
+or Stage D, so it provides no effectiveness basis for a new semantic selector.
+The existing A+C preparation and proposal15bae0a6 remain sufficient and
+**RECOMMENDED, AWAITING MAINTAINER DECISION**. No implementation or accepted ADR
+follows. A reviewed expected roster still cannot prove exhaustive objective
+coverage, and independent delegable review/future agent-proposed needs remain
+their separately authorized milestones.

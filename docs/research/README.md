@@ -1,15 +1,14 @@
 # Research Evidence
 
-Current deep audit: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
-All78 selected paths/blobs are reviewed:74 substantive paths, including23 test
-modules, and four namespace surfaces. Cumulative473/606 experimental paths are
-reviewed;133 remain. Separate84 current-fixture paths and177 older versions
-retain their prior depth. Next is the exact37-path structural-discrimination
-and residual Case0017–0019 packet/reviewer cohort, not a new architectural domain.
-The [obligation-coverage decision preparation](task-obligation-coverage-decision.md)
-recommends trusted reviewed clauses with bounded revision, pending maintainer decision.
-The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor
-dossier and next architectural domain remain postponed.
+Current audit checkpoint: [source grounding, evidence boundaries and maintained tests](ri-source-grounding-audit.md).
+All64 selected paths/55 distinct blobs now have applicable full-body review.
+Historical review is574/606, leaving32; current fixtures are30/93, leaving63.
+The separate177 older current-RI versions retain their recorded review depth.
+Two distinct pending bugs and eight advisory updates preserve approval boundaries.
+The next exact32-path experimental cohort and subsequent fixture/version schedule
+are recorded in the version-specific ledger; no next cohort is launched here.
+The task-obligation A+C recommendation remains unapproved. RI review and the
+repository-wide program remain incomplete; the successor dossier stays postponed.
 
 The [completed production/experiment/cohesion reconciliation](production-adoption-and-architecture-reconciliation.md)
 now inventories all 35 collections, 48 capability slices, exact destination
