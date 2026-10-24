@@ -30,6 +30,10 @@ from devtools.context.python.modules.interpretation import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
+from devtools.context.python.modules.selection import (
+    PythonSourceDeclarationKind,
+    select_python_module_source_declarations,
+)
 from devtools.context.python.references import (
     PythonDeclarationReferenceAnalysis,
     PythonDeclarationReferenceKnowledge,
@@ -58,7 +62,7 @@ def _snapshot(tmp_path: Path, contents: dict[str, str]) -> RepositorySnapshot:
     for name, content in contents.items():
         path = tmp_path / name
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_text(content, encoding="utf-8", newline="")
     return observe_repository_resources(
         repository=Repository(
             RepositoryId.parse("00000000-0000-4000-8000-000000000073"),
@@ -108,6 +112,116 @@ def _fact(
     ]
     assert len(matches) == 1
     return matches[0]
+
+
+@pytest.mark.parametrize(
+    "declaration",
+    ["def f():\n    pass\n", "class f:\n    pass\n"],
+)
+@pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case f:\n        pass\n",
+        "match []:\n    case [*f]:\n        pass\n",
+        "match {}:\n    case {**f}:\n        pass\n",
+        "try:\n    pass\nexcept Exception as f:\n    pass\n",
+    ],
+)
+@pytest.mark.parametrize("before", [True, False])
+def test_module_capture_and_handler_bindings_prevent_false_reference_truth(
+    tmp_path: Path,
+    declaration: str,
+    binding: str,
+    *,
+    before: bool,
+) -> None:
+    """Visible competing syntax is not a unique binding, in either source order."""
+    source = (binding + declaration if before else declaration + binding) + "f()\n"
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/a.py": source,
+            "src/use.py": "from a import f\nimport a\nf()\na.f()\n",
+        },
+    )
+    universe = _universe(snapshot)
+    module = next(i for i in universe.interpretations if i.dotted_name == "a")
+    lookup = lookup_python_module_declaration(
+        snapshot,
+        module=module,
+        declared_name="f",
+    )
+    assert lookup.outcome is PythonModuleDeclarationLookupOutcome.AMBIGUOUS
+    assert lookup.target is None
+    selected = select_python_module_source_declarations(
+        snapshot,
+        module=module,
+        declared_name="f",
+        kind=PythonSourceDeclarationKind.CLASS
+        if declaration.startswith("class")
+        else PythonSourceDeclarationKind.FUNCTION,
+    )
+    assert len(selected.declarations) == 1
+    assert selected.declarations[0].declared_name == "f"
+    assert selected.module.resource.content == source
+    for address, names in (("src/a.py", {"f"}), ("src/use.py", {"f", "a.f"})):
+        analysis = _analysis(snapshot, address)
+        assessments = [a for a in analysis.assessments if a.source_text in names]
+        assert len(assessments) == len(names)
+        assert all(a.outcome is Outcome.AMBIGUOUS_BINDING for a in assessments)
+        assert all(a.reference is None for a in assessments)
+
+
+@pytest.mark.parametrize(
+    "suffix",
+    [
+        "match 0:\n    case unrelated:\n        pass\n",
+        "try:\n    pass\nexcept Exception as unrelated:\n    pass\n",
+        "def outer():\n    match 0:\n        case f:\n            pass\n",
+        (
+            "if flag:\n    def outer():\n"
+            "        match 0:\n            case f:\n                pass\n"
+        ),
+        (
+            "if flag:\n    class Inner:\n"
+            "        match 0:\n            case f:\n                pass\n"
+        ),
+    ],
+)
+def test_unrelated_or_nested_capture_does_not_replace_module_declaration(
+    tmp_path: Path,
+    suffix: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {"src/a.py": "def f():\n    pass\n" + suffix + "f()\n"},
+    )
+    module = _universe(snapshot).interpretations[0]
+    lookup = lookup_python_module_declaration(
+        snapshot,
+        module=module,
+        declared_name="f",
+    )
+    assert lookup.outcome is PythonModuleDeclarationLookupOutcome.RESOLVED
+    assert lookup.target is not None
+    assert (
+        _analysis(snapshot, "src/a.py").references[-1].target_declaration
+        == lookup.target
+    )
+
+
+def test_handler_alias_is_not_a_restored_declaration_after_handler_exit(
+    tmp_path: Path,
+) -> None:
+    """Temporary exception aliases cannot imply the old declaration survives."""
+    source = (
+        "def f():\n    pass\ntry:\n    pass\nexcept Exception as f:\n    f()\nf()\n"
+    )
+    analysis = _analysis(_snapshot(tmp_path, {"src/a.py": source}), "src/a.py")
+    uses = [a for a in analysis.assessments if a.source_text == "f"]
+    assert len(uses) == 2
+    assert all(a.outcome is Outcome.AMBIGUOUS_BINDING for a in uses)
+    assert all(a.reference is None for a in uses)
 
 
 def _outcome(

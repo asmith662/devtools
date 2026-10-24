@@ -26,6 +26,7 @@ from devtools.context.python.imports.resolution import (
     PythonImportResolutionOutcome,
     resolve_python_import_declaration,
 )
+from devtools.context.python.modules.bindings import iter_non_name_bindings
 from devtools.context.python.modules.declarations import (
     PythonModuleDeclarationLookup,
     PythonModuleDeclarationLookupOutcome,
@@ -404,6 +405,9 @@ def _bindings(
         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             values.append(_Binding(node.name, "other"))
         else:
+            values.extend(
+                _Binding(name, "other") for name in iter_non_name_bindings(node)
+            )
             values.extend(
                 _Binding(child.id, "other")
                 for child in ast.walk(node)

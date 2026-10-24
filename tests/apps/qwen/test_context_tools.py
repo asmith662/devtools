@@ -116,6 +116,43 @@ def test_search_lookup_read_expand_and_relationships(tools: ContextTools) -> Non
 
 
 @pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case helper:\n        pass\n",
+        "match []:\n    case [*helper]:\n        pass\n",
+        "match {}:\n    case {**helper}:\n        pass\n",
+        "try:\n    pass\nexcept Exception as helper:\n    pass\n",
+    ],
+)
+def test_native_relationships_do_not_disclose_falsely_resolved_bindings(
+    tools: ContextTools, binding: str
+) -> None:
+    """Real Tool dispatch retains source syntax but omits false Reference facts."""
+    source = tools.task.source
+    text = "def helper():\n    return 1\n" + binding + "helper()\n"
+    (tools.root / source).write_bytes(text.encode("utf-8"))
+    tools = ContextTools(tools.root, tools.task)
+    version = str(tools.snapshot.resource_at(tools.addresses[0]).content_identity)
+    local = dispatch(tools, "source_relationships", path=source, version=version)
+    assert local["references"] == []
+    imported_path = tools.task.tests[0]
+    imported_version = str(
+        tools.snapshot.resource_at(tools.addresses[1]).content_identity
+    )
+    imported = dispatch(
+        tools, "source_relationships", path=imported_path, version=imported_version
+    )
+    assert imported["references"] == []
+    selected = dispatch(tools, "lookup_symbol", name="helper")["matches"]
+    assert len(selected) == 1
+    observed = dispatch(
+        tools, "read_source", path=source, version=version, start=0, end=len(text)
+    )
+    assert observed["text"] == text
+    assert observed["version"] == version
+
+
+@pytest.mark.parametrize(
     ("name", "arguments"),
     [
         ("shell", {}),

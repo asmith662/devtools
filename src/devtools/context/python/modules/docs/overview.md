@@ -50,6 +50,18 @@ imports or establish runtime attribute identity.
 Directness is relative to this module. Class-base and Reference resolution
 consume the same operation without duplicating its binding policy.
 
+Pattern captures (simple names, starred sequences and mapping-rest names) and
+exception-handler aliases are competing bindings even though their names are
+string fields rather than `Name(Store)` nodes in the AST. The bounded check
+retains uncertainty in either declaration order; it does not simulate pattern
+execution or treat a handler alias as restoring an earlier declaration after
+the alias is cleared. New capture/alias collection does not descend into nested
+function or class namespaces. The shared `modules.bindings` helper extracts
+only these names; References and direct-base callers retain their distinct
+scope and source-order policies. A direct base's later module statements do
+not retroactively change its earlier evaluation. Source declaration selection
+continues to expose the original syntax independently of namespace ambiguity.
+
 
 ## Exact source declaration selection
 

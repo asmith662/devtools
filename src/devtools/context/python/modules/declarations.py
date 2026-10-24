@@ -17,6 +17,7 @@ from devtools.context.python.function.declarations import (
     PythonFunctionDeclarationAnalysis,
     derive_python_function_declarations,
 )
+from devtools.context.python.modules.bindings import iter_non_name_bindings
 
 if TYPE_CHECKING:
     from devtools.context.python.classes.declarations import (
@@ -137,6 +138,9 @@ def lookup_python_module_declaration(  # noqa: C901, PLR0912, PLR0915
                 ) == declared_name:
                     candidates.append(None)
             continue
+        candidates.extend(
+            None for name in iter_non_name_bindings(node) if name == declared_name
+        )
         for child in ast.walk(node):
             if isinstance(child, ast.Name) and isinstance(
                 child.ctx,

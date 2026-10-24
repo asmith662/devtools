@@ -75,6 +75,72 @@ def _derive(snapshot: RepositorySnapshot) -> PythonDirectBaseAnalysis:
     )
 
 
+@pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case Base:\n        pass\n",
+        "match []:\n    case [*Base]:\n        pass\n",
+        "match {}:\n    case {**Base}:\n        pass\n",
+        "try:\n    pass\nexcept Exception as Base:\n    pass\n",
+    ],
+)
+@pytest.mark.parametrize(
+    "placement",
+    ["before_declaration", "before_child", "after_child"],
+)
+def test_non_name_bindings_respect_local_base_evaluation_order(
+    tmp_path: Path,
+    binding: str,
+    placement: str,
+) -> None:
+    declaration = "class Base:\n    pass\n"
+    child = "class Child(Base):\n    pass\n"
+    source = {
+        "before_declaration": binding + declaration + child,
+        "before_child": declaration + binding + child,
+        "after_child": declaration + child + binding,
+    }[placement]
+    analysis = _derive(_snapshot(tmp_path, {"src/a.py": source}))
+    assessment = analysis.assessments[0]
+    if placement == "after_child":
+        assert assessment.outcome is Outcome.RESOLVED
+        assert assessment.target is not None
+        assert assessment.target.declared_name == "Base"
+    else:
+        assert assessment.outcome is Outcome.AMBIGUOUS_BINDING
+        assert assessment.target is None
+
+
+@pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case Base:\n        pass\n",
+        "match []:\n    case [*Base]:\n        pass\n",
+        "match {}:\n    case {**Base}:\n        pass\n",
+        "try:\n    pass\nexcept Exception as Base:\n    pass\n",
+    ],
+)
+def test_imported_bases_refuse_competing_pattern_and_handler_bindings(
+    tmp_path: Path,
+    binding: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/a.py": "class Base:\n    pass\n" + binding,
+            "src/use.py": (
+                "from a import Base\nimport a\n"
+                "class Child(Base):\n    pass\n"
+                "class Qualified(a.Base):\n    pass\n"
+            ),
+        },
+    )
+    assessments = _derive(snapshot).assessments
+    assert len(assessments) == 2
+    assert all(a.outcome is Outcome.AMBIGUOUS_TARGET for a in assessments)
+    assert all(a.target is None for a in assessments)
+
+
 def test_local_order_multiple_bases_identity_navigation_and_no_transitive(
     tmp_path: Path,
 ) -> None:

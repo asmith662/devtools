@@ -16,6 +16,10 @@ from devtools.context.python.function.declarations import (
 from devtools.context.python.imports.declarations import (
     derive_python_import_declarations,
 )
+from devtools.context.python.modules.bindings import (
+    iter_non_name_bindings,
+    non_name_binding,
+)
 from devtools.context.python.references.declarations.bindings import (
     _module_bindings,
     _scope_bindings,
@@ -129,3 +133,20 @@ def test_star_import_cannot_establish_local_binding() -> None:
     function = tree.body[0]
     assert isinstance(function, ast.FunctionDef)
     assert not _scope_bindings(function)
+
+
+def test_non_name_inventory_excludes_wildcards_and_nested_namespaces() -> None:
+    tree = ast.parse(
+        "match value:\n"
+        "    case {'key': _, **tail}:\n        pass\n"
+        "    case [*rest]:\n        pass\n"
+        "try:\n    pass\nexcept Exception:\n    pass\n"
+        "if flag:\n"
+        "    async def nested():\n"
+        "        match value:\n            case hidden:\n                pass\n"
+        "    class Inner:\n"
+        "        try:\n            pass\n"
+        "        except Exception as hidden:\n            pass\n",
+    )
+    assert tuple(iter_non_name_bindings(tree)) == ("tail", "rest")
+    assert non_name_binding(ast.parse("value").body[0]) is None
