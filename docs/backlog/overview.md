@@ -1,5 +1,7 @@
 # Architecture Backlog
 
+Delivered P1 follow-through: [module-binding repair](../development/ri-module-binding-repair.md), PR#5. Proposal16b27e74 receives implemented-and-merged acceptance evidence via append-only ADVISORY; no coding/adoption work remains for this scope. Intake has no delivered/closed proposal enum; no approval, B-number, grant or parent closure was invented.
+
 Integrated RI assurance evidence: [current report](../research/ri-assurance-and-cohesion-audit.md). One distinct new pending [module-pattern/exception binding bug](proposals/16b27e74-f553-40a8-b342-c3458a7b7a01/proposal.json), independently reproduced with real observations, and eight append-only advisories. Delivered-main fixes remain delivered; no implementation repeated, status changed, B-number assigned, approval/grant created or parent closed. Missing Localization and measured reuse retain existing proposal homes.
 
 Production adoption evidence: [PR #2 / main f1adf2c9](../research/feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24) delivers the whole-feature integration and both RI corrections. Seven existing proposals receive append-only main-adoption/remaining-scope advisories; proposal approvals, statuses and B-numbers remain unchanged.

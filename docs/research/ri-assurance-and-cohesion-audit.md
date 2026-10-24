@@ -1,5 +1,7 @@
 # Integrated RI assurance and architectural cohesion audit
 
+Implementation follow-through: [the reproduced binding defect is now repaired and merged](../development/ri-module-binding-repair.md), PR#5. Its bounded acceptance is delivered on main; do not schedule this correction again. The original evidence and pending-at-audit-time findings below remain historical.
+
 Reviewed baseline: `5f53f5ac34b1a8a91e3119aa5faba329b8dedfa4`, ordinary branch
 `audit/ri-assurance-cohesion-20261024`. This is an audit checkpoint, not an
 accepted architecture decision or production repair. PR #2 production integration

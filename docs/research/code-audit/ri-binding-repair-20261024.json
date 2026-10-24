@@ -1,0 +1,356 @@
+{
+  "at": "2026-10-24T22:07:20.062647+00:00",
+  "starting_main": "5f53f5ac34b1a8a91e3119aa5faba329b8dedfa4",
+  "audit_pr": {
+    "number": 4,
+    "head": "77f9f417590b01b9bb07d07c93b3d674b28ae9e3",
+    "merge": "48a01216dde95ad2b7034844f3954fdc404f232e"
+  },
+  "production_pr": 5,
+  "production_main": "9ffc559fa5a6175d4d25f025ddb310553200fe53",
+  "production_commit": "ab994225872840bddcf66149256aaa7d46f7f9da",
+  "production_tree": "d2edc5b9a437e192982f6c368d3ba7503c75b16c",
+  "source_test_paths": {
+    "src/devtools/context/python/modules/bindings.py": {
+      "blob": "ec44be1963e006e8191f6c5e52d239319c24387f",
+      "sha256": "76b17453bed417115499e32cecb2131bd4e2a33eb28a0687c8805878d6681b08"
+    },
+    "src/devtools/context/python/modules/declarations.py": {
+      "blob": "248c38a529343cc240694311aa2fd3e2af1377bc",
+      "sha256": "5a065d713a52e3e01f8af9b0eb7b9e79ca45d0819b7abee6eabd257a05cb5274"
+    },
+    "src/devtools/context/python/references/declarations/bindings.py": {
+      "blob": "62791f34c3101641e33b1b6f9b05c94f71f48644",
+      "sha256": "f2adc4821c57835e2daddf5284c5e6ff2655b413c43ca13e18a11190954504de"
+    },
+    "src/devtools/context/python/classes/bases.py": {
+      "blob": "aa45be139ed238f34b964d1c26da9d19ec241133",
+      "sha256": "8b03a467af678e4728dbfd64893a8e7ac11257ebfe9227be789ff5f576e14365"
+    },
+    "src/devtools/context/python/modules/docs/overview.md": {
+      "blob": "9cebdfe15c3315252cf1d32810a182346f6843cb",
+      "sha256": "f84dbe6ee9e2a54ba5bb7b22a9bb6118535b038c64797094cb1a8e55b9492057"
+    },
+    "tests/context/python/references/declarations/test_analysis.py": {
+      "blob": "d825519a0ba1b8aec1abd8a7f399a371828fe999",
+      "sha256": "05840c4ed7cdc7837b462796a153e10662a2b9cd40e30998d89c22b9737a30d2"
+    },
+    "tests/context/python/references/declarations/test_bindings.py": {
+      "blob": "f303bc97e30fdfcbcf89e86c888ebe2b8856ab29",
+      "sha256": "c62d3de9c66a3ca24c79749f2729f3150434040955b86eabe18bb4d5907ba9a0"
+    },
+    "tests/context/python/classes/test_bases.py": {
+      "blob": "82798bbf184bcfdd2a57004520d3209cc180c7ba",
+      "sha256": "3f545bde6b0858dcf3ad8132c0a099eee7b3bfb0defccde09c62e6d50e231496"
+    },
+    "tests/apps/qwen/test_context_tools.py": {
+      "blob": "554e09ed91da2229c8feff22298555bd9a0324b1",
+      "sha256": "cf387d280618c0b34e15309e78cf7a7f6a3a645630f6a4fcfd954128897ebb81"
+    }
+  },
+  "authority": "Explicit maintainer normal PR promotion for PR4 and exact P1 correction; actual GitHub requirements checked; no protection override, fake approval, WorkCycle grant or ref deletion.",
+  "pre_fix": {
+    "regression_summary": "28 failed,4 passed,56 deselected on unchanged production; baseline-compatible tests collected and reached claimed outcomes.",
+    "log_sha256": "0365089f158c8d5cd99ff6f1f551c6e42a6856b53d05e172607f4f95f7c6ab0c",
+    "original_probe_reference": "ri-assurance-probes.json",
+    "probe_log_sha256": "f6f9d9e83f1352461bdca28461739dd85687249498033196b62d895b035a2cfd"
+  },
+  "validation": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/context/python/modules",
+        "tests/context/python/references",
+        "tests/context/python/classes",
+        "tests/context/python/imports",
+        "tests/context/python/function",
+        "tests/context/retrieval/source",
+        "tests/context/planning",
+        "tests/apps/qwen/test_context_tools.py",
+        "tests/apps/qwen/test_navigation.py"
+      ],
+      "head": "48a01216dde95ad2b7034844f3954fdc404f232e",
+      "at": "2026-10-24T21:26:01.724059+00:00",
+      "elapsed_seconds": 46.771492,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "259eb6b6b2d08da7c1b78de0238d541a634c2fd0e5e2b9faf5db73eddf87dd29",
+      "unchanged_inputs": true,
+      "log_sha256": "09cccb6ce21202bbe48d9e6d89df550c23bb6bb02e043b9bc021978609d21da2"
+    },
+    "ruff": {
+      "name": "ruff",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "head": "48a01216dde95ad2b7034844f3954fdc404f232e",
+      "at": "2026-10-24T21:26:01.724064+00:00",
+      "elapsed_seconds": 0.065219,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "259eb6b6b2d08da7c1b78de0238d541a634c2fd0e5e2b9faf5db73eddf87dd29",
+      "unchanged_inputs": true,
+      "log_sha256": "f78434f0f81a8fed2240a7879eda40bd74cab1d54c181ba11eef299ac4baee47"
+    },
+    "format": {
+      "name": "format",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "--exclude",
+        "tests/experiments",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "head": "48a01216dde95ad2b7034844f3954fdc404f232e",
+      "at": "2026-10-24T21:26:01.724209+00:00",
+      "elapsed_seconds": 0.06038,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "259eb6b6b2d08da7c1b78de0238d541a634c2fd0e5e2b9faf5db73eddf87dd29",
+      "unchanged_inputs": true,
+      "log_sha256": "d355d8ecea1d8c2776f5c85f2fe7dddc9bd405126064cd9123680d233e6ab414"
+    },
+    "typing": {
+      "name": "typing",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "head": "48a01216dde95ad2b7034844f3954fdc404f232e",
+      "at": "2026-10-24T21:26:01.806227+00:00",
+      "elapsed_seconds": 0.688948,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "259eb6b6b2d08da7c1b78de0238d541a634c2fd0e5e2b9faf5db73eddf87dd29",
+      "unchanged_inputs": true,
+      "log_sha256": "969d660c3764099c46b94eb5f5612c6adf052b60067665498d74ac6edbd38250"
+    },
+    "protected": {
+      "name": "protected",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_development.py"
+      ],
+      "head": "ab994225872840bddcf66149256aaa7d46f7f9da",
+      "at": "2026-10-24T21:27:22.892269+00:00",
+      "elapsed_seconds": 766.579347,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "259eb6b6b2d08da7c1b78de0238d541a634c2fd0e5e2b9faf5db73eddf87dd29",
+      "unchanged_inputs": true,
+      "log_sha256": "b13a49cb303dade955af597e8c14aa8fae529ab8402ed5dc2712917e7f6a2759"
+    },
+    "postmerge": {
+      "name": "postmerge",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/context/python/references/declarations/test_analysis.py",
+        "tests/context/python/references/declarations/test_bindings.py",
+        "tests/context/python/classes/test_bases.py",
+        "tests/context/python/function/test_materialization_integrity.py",
+        "tests/context/retrieval/source/test_physical_lines.py",
+        "tests/resources/commands/test_composition.py",
+        "tests/apps/qwen/test_context_tools.py"
+      ],
+      "head": "9ffc559fa5a6175d4d25f025ddb310553200fe53",
+      "at": "2026-10-24T21:59:26.168544+00:00",
+      "elapsed_seconds": 50.142046,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c54c52bf2d84cb08a73bc3010ae5a8829469c2af5eaeda61f4677f97db127204",
+      "unchanged_inputs": true,
+      "log_sha256": "0601f28a67866d1f0196200525d0d3600193c6f4bc44153f89fd96da49055ed3"
+    }
+  },
+  "coverage": {
+    "covered_lines": 11953,
+    "num_statements": 11953,
+    "percent_covered": 100.0,
+    "percent_covered_display": "100",
+    "missing_lines": 0,
+    "excluded_lines": 588,
+    "percent_statements_covered": 100.0,
+    "percent_statements_covered_display": "100",
+    "num_branches": 2994,
+    "num_partial_branches": 0,
+    "covered_branches": 2994,
+    "missing_branches": 0,
+    "percent_branches_covered": 100.0,
+    "percent_branches_covered_display": "100"
+  },
+  "protected_tests": {
+    "passed": 2808,
+    "skipped": 2
+  },
+  "review_universes": {
+    "experiments": "606/606 defined source review",
+    "original_fixtures": "57/93 full;36 remain; no new audit-cohort credit",
+    "historical_versions": "7 full,170 unreviewed,26 tip-delta-only; unchanged"
+  },
+  "unsupported": "No runtime pattern evaluation, exception restoration, last-write binding interpreter, transitive runtime call graph, source/edit authority or automatic task-obligation architecture. Existing unsupported/ambiguous policies remain. No new model invocation/effectiveness claim.",
+  "publication": "Production merged through actual PR; this containing documentation commit records closeout separately. Its own later PR merge does not change executable inputs.",
+  "validated_root_identities": {
+    "src": "fdf61fa7946a9051d837ddd586db86a008232082",
+    "tests": "821ea076f8fdd79973e5097884b1fb6138e227f9",
+    "apps": "9ea3506abed6d7c7e473c54b3a7a3c3be6fa61f8",
+    "scripts": "ec4903149040002f7aa0333ecef7ac25448a6b1a",
+    "pyproject.toml": "71ee84b817e28f484f44cc48cfd88b7291fcaf0b",
+    "uv.lock": "a9fc172db93dfa76053a8a4c787515313e3cd438",
+    "src/devtools/resources/commands": "0875680dd7a51687941a0ba155372fe549179cd5",
+    "tests/resources/commands/test_composition.py": "3e0ce6532625ec8609162301aac84ca7d1c72303"
+  },
+  "post_merge_tests_passed": 239,
+  "checkout_representation_equivalence": [
+    {
+      "path": "src/devtools/context/python/classes/bases.py",
+      "gate_sha256": "8b03a467af678e4728dbfd64893a8e7ac11257ebfe9227be789ff5f576e14365",
+      "post_main_sha256": "ed979a2fd46ca420bd6a9c74e76615194a337f6e48c2af8a7a78ce11adf41216",
+      "qualification": "Only authenticated Git LF versus CRLF checkout materialization; accepted Git tree unchanged"
+    },
+    {
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "gate_sha256": "76b17453bed417115499e32cecb2131bd4e2a33eb28a0687c8805878d6681b08",
+      "post_main_sha256": "1cf26bda610501d5e6ca409a2fbf976437b3b808f0d0dba04532d2dd161e9dda",
+      "qualification": "Only authenticated Git LF versus CRLF checkout materialization; accepted Git tree unchanged"
+    },
+    {
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "gate_sha256": "5a065d713a52e3e01f8af9b0eb7b9e79ca45d0819b7abee6eabd257a05cb5274",
+      "post_main_sha256": "2575f9af3d983d50dfe62cec64711d762da890f270648d6b4058f8bbfd355043",
+      "qualification": "Only authenticated Git LF versus CRLF checkout materialization; accepted Git tree unchanged"
+    },
+    {
+      "path": "src/devtools/context/python/modules/docs/overview.md",
+      "gate_sha256": "f84dbe6ee9e2a54ba5bb7b22a9bb6118535b038c64797094cb1a8e55b9492057",
+      "post_main_sha256": "f6a9c5d95f875d759ad94705ad760250f4c99de408fa24b5aa6c41885a7327f0",
+      "qualification": "Non-executable package Markdown: pre-gate mixed-newline physical hash recorded with its committed Git blob; post-checkout canonical representation matches that same blob. Original mixed physical bytes not separately archived. No executable input exception."
+    },
+    {
+      "path": "src/devtools/context/python/references/declarations/bindings.py",
+      "gate_sha256": "f2adc4821c57835e2daddf5284c5e6ff2655b413c43ca13e18a11190954504de",
+      "post_main_sha256": "e2d7e7f2cbac947e813d28316791d655c9ea788dc3afcf472b50157b12cb79b9",
+      "qualification": "Only authenticated Git LF versus CRLF checkout materialization; accepted Git tree unchanged"
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_bindings.py",
+      "gate_sha256": "c62d3de9c66a3ca24c79749f2729f3150434040955b86eabe18bb4d5907ba9a0",
+      "post_main_sha256": "ac3f32ae675a46f813ad011893406e6a1c0ed0b760fb9e3a1a4270aeb262bb9b",
+      "qualification": "Only authenticated Git LF versus CRLF checkout materialization; accepted Git tree unchanged"
+    }
+  ],
+  "probe_authentication": {
+    "published_git_blob": "ec98f6ad74a9d3d580a0195c2a36a9bb2c8ec759",
+    "probe_source_sha256": "3f08686c7069d8028874b32a053ef78f78f4ebd22e7398ab4731dd870e76bcb8",
+    "recipes": 12,
+    "exact_original_results_reproduced": true,
+    "pre_fix_implementation_baseline": "48a01216dde95ad2b7034844f3954fdc404f232e",
+    "old_label_in_original_probe": "5f53f5ac; executable tree authenticated identical to pre-fix baseline"
+  },
+  "github_requirements": {
+    "4": {
+      "protected": false,
+      "protection_status": 404,
+      "rules": [],
+      "rulesets": [],
+      "reviews": [],
+      "checks": 0,
+      "statuses": 0,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merge_permission": true,
+      "allow_merge_commit": true
+    },
+    "5": {
+      "protected": false,
+      "protection_status": 404,
+      "rules": [],
+      "rulesets": [],
+      "reviews": [],
+      "checks": 0,
+      "statuses": 0,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merge_permission": true,
+      "allow_merge_commit": true
+    }
+  },
+  "fixture_delta_evidence": [
+    {
+      "path": "tests/context/python/classes/test_bases.py",
+      "old_blob": "ed75f2beb5b688f36db6ca94b7e10982487aca13",
+      "new_blob": "82798bbf184bcfdd2a57004520d3209cc180c7ba",
+      "unchanged_top_level_functions": 13,
+      "changed_existing": [],
+      "added_functions": [
+        "test_imported_bases_refuse_competing_pattern_and_handler_bindings",
+        "test_non_name_bindings_respect_local_base_evaluation_order"
+      ],
+      "method": "Prior full body review plus exact AST equality for unchanged functions and authored/inspected new matrix; fixture _snapshot now retains authored line endings."
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "old_blob": "410d0f584506522e8e084aec25c7f7b87d9ab18f",
+      "new_blob": "d825519a0ba1b8aec1abd8a7f399a371828fe999",
+      "unchanged_top_level_functions": 20,
+      "changed_existing": [
+        "_snapshot"
+      ],
+      "added_functions": [
+        "test_handler_alias_is_not_a_restored_declaration_after_handler_exit",
+        "test_module_capture_and_handler_bindings_prevent_false_reference_truth",
+        "test_unrelated_or_nested_capture_does_not_replace_module_declaration"
+      ],
+      "method": "Prior full body review plus exact AST equality for unchanged functions and authored/inspected new matrix; fixture _snapshot now retains authored line endings."
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_bindings.py",
+      "old_blob": "4a6b9579bc6e8f5abe83a5d4a470045490be198d",
+      "new_blob": "f303bc97e30fdfcbcf89e86c888ebe2b8856ab29",
+      "unchanged_top_level_functions": 4,
+      "changed_existing": [],
+      "added_functions": [
+        "test_non_name_inventory_excludes_wildcards_and_nested_namespaces"
+      ],
+      "method": "Prior full body review plus exact AST equality for unchanged functions and authored/inspected new matrix; fixture _snapshot now retains authored line endings."
+    }
+  ],
+  "canonical_backlog": {
+    "proposal": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+    "state": "PENDING_REVIEW",
+    "review_sha256": "924bd93d53c3de87127385e53d886ff6ddd3449dcda9873306a0f6aececd7afe",
+    "implemented_and_merged": true,
+    "acceptance_satisfied": true,
+    "remaining_implementation": "NONE for bounded reproduced scope; no automatic status/parent change"
+  }
+}

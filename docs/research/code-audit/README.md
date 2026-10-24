@@ -1,5 +1,7 @@
 # Code audit evidence ledger
 
+Delivered implementation overlay: [module-binding repair](../../development/ri-module-binding-repair.md), [production and validation identities](ri-binding-repair-20261024.json). Three fixture records retain prior full-review plus authenticated authored-delta evidence; original57/93 and historical version counts unchanged. No audit cohort launched.
+
 Latest integrated-main overlay: [RI assurance/cohesion report](../ri-assurance-and-cohesion-audit.md), [exact twelve-fixture/seven-body records and counts](ri-assurance-cohesion.json), [independent native binding probes](ri-assurance-probes.json), [history grouping fingerprints](ri-assurance-history-groups.json), [canonical Intake advisories](ri-assurance-intake.json), and [next ten-fixture/eight-version cohort](ri-assurance-next-cohort.json). Existing `ri-completion-fixtures.jsonl` and `ri-followup-history.jsonl` carry the updated exact-version depths. Original fixtures57/93; older7 full,170 unreviewed,26 tip-delta-only. No automatic fingerprint-equivalence credit, new science or protected-main mutation. Both old source repairs are delivered on main; candidate-only notices below are historical.
 
 [Checkpoint validation](ri-assurance-checkpoint.json) records the unchanged executable inputs,121 selected/179 repair-regression passes, exact source identities, Intake chains, links, layout, whitespace and thirteen forensic checks. It is documentation validation, not a newly executed protected production gate.
