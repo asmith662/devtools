@@ -97,6 +97,36 @@ resource. The adapter calls the existing materializer and renderer; it does
 not weaken their snapshot, content, or Reference/Call semantics. The original
 narrow API remains available unchanged.
 
+## Exact-name selection integrity
+
+`materialize_python_function_disclosure_source` rechecks the all-match selection
+and ordered declaration projection against the supplied exact-name retrieval.
+Each projected occurrence, name, kind and proposition must correspond to that
+selected match. Its query and native subject must agree with the selected frame.
+After checking range geometry, materialization verifies the actual retained
+text's content identity and the native subject's repository/snapshot/resource
+dependency before returning any source. A fitting range in another file, a
+copied snapshot ID or a caller-supplied hash cannot replace these checks.
+
+`ContentIdentity.from_text` owns the existing observation hash calculation for
+exact decoded UTF-8 text. Repository observation and source materialization use
+the same method; framing and resulting identities are unchanged. This performs
+no normalization, source parsing, filesystem read or new observation.
+
+Directly constructed inconsistent disclosures now fail explicitly. Genuine
+factory-generated disclosure and materialization identities, all-match order,
+duplicate names and bounded zero-match success are unchanged. A zero selection
+requires no source lookup and may still be realized with an unrelated snapshot.
+Invalid-range and missing-resource diagnostics remain specific. Direct
+module-body sync/async functions are this API's declaration scope; nested bodies
+are retained within their selected declaration. Methods/nested-symbol navigation
+remain owned by their existing separate RI/source-search/Planning interfaces.
+
+These checks authenticate correspondence to supplied native knowledge and retained
+source. They do not certify semantic relevance, original-task completeness,
+current filesystem state or permission to edit; a wholly fabricated consistent
+host frame still requires its normal observation/authorization trust boundary.
+
 ## Physical source-line correctness
 
 Exact extraction recognizes only Python physical LF, CRLF and CR line endings.

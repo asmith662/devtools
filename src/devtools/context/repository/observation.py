@@ -29,7 +29,6 @@ from devtools.context.repository.snapshot import (
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.resources.filesystem import FileFormat, TextFile, read
 
-_CONTENT_IDENTITY_SEMANTICS = "decoded-utf8-text-sha256-v1"
 _SNAPSHOT_IDENTITY_SEMANTICS = RepositorySnapshot.OBSERVATION_SEMANTICS
 
 
@@ -146,9 +145,7 @@ def _observe_resource(
             max_bytes=maximum_resource_bytes,
         ),
     )
-    content_identity = ContentIdentity(
-        _semantic_digest(_CONTENT_IDENTITY_SEMANTICS, file.content),
-    )
+    content_identity = ContentIdentity.from_text(file.content)
     return RepositoryResourceOccurrence(
         address=address,
         content_identity=content_identity,
