@@ -1,5 +1,7 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
+Current integrated-baseline checkpoint: [RI assurance/cohesion](ri-assurance-and-cohesion-audit.md) and [exact review evidence](code-audit/ri-assurance-cohesion.json). Twelve selected current modules/seven older bodies reviewed; **57/93** original fixtures full,36 remaining,170 older NOT_REVIEWED and26 tip-delta-only. Experimental source review remains606/606. New pending16b27e74 qualifies real source-derived binding false positives. Source-index and exact-name repairs are already delivered on main. Earlier preparation/count notices below are historical; they do not reopen adoption or approve A+C.
+
 Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](ri-experimental-completion-and-main-adoption.md).
 All32 final selected paths have applicable full-body review:606/606 historical
 experimental paths now have version-specific dispositions, not independent

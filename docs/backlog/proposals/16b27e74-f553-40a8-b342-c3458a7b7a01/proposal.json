@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+  "created_at": "2026-10-24T19:13:13.997015+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Reject non-Name module rebindings before asserting declaration, Reference or direct-base truth",
+    "parent": "B-0002",
+    "summary": "P1 RI correctness, source-authenticated false positive. Current modules.declarations lookup, references.declarations.bindings._module_bindings and classes.bases._bindings omit names stored in MatchAs, MatchStar, MatchMapping.rest and ExceptHandler.name. With real observed target.py defining f followed by case f or except ValueError as f, lookup and final f() Reference remain RESOLVED; local and imported class bases also remain RESOLVED. Ordinary f=0 is correctly ambiguous. Twelve independently authored function/class fixtures include eight defective variants, two valid controls and two assignment negatives. No runtime source executed, forged identities or native edit-authority bypass claimed.",
+    "resources": [
+      "src/devtools/context/python/modules/declarations.py",
+      "src/devtools/context/python/references/declarations/bindings.py",
+      "src/devtools/context/python/classes/bases.py",
+      "tests/context/python/references/declarations/test_analysis.py",
+      "tests/context/python/references/declarations/test_bindings.py",
+      "tests/context/python/classes/test_bases.py",
+      "apps/qwen/context_tools.py",
+      "apps/qwen/navigation.py"
+    ],
+    "evidence": [
+      "docs/research/ri-assurance-and-cohesion-audit.md",
+      "docs/research/code-audit/ri-assurance-probes.json"
+    ],
+    "benefit": "Owner context/python bounded static binding semantics. Preserve direct source-syntax selection independently of binding resolution. Add independent real-observation regressions for pattern name/star/mapping-rest and exception aliases, local/direct-module/imported targets, and before/after child evaluation where relevant. Nonpositive or unsupported output must replace false established relations; no runtime execution required. Reuse existing _scope_bindings string-name recognition only where scope/traversal semantics actually match; do not create a general Python evaluator. Cover unrelated names, nested local scopes that must not shadow module names, ordinary assignment/delete, decorated/dynamic/wildcard and valid unchanged imports, plus native source_relationships/map fact composition. Preserve resource identities, ordering, unsupported distinctions, exact-source admission and source-selection behavior. Run focused/static and full100% protected gate on final source/test tree. Maintenance-agent implementation suitable with this frozen independently specified fixture matrix.",
+    "uncertainty": "One shared correctness family across three actual owners, not three duplicate stories. Native ContextTools._reference_analysis/_relationships and optional map preparation consume these facts; reachability is proven by source, no model invocation/effectiveness or observed historical engineering harm established. Complete guard repair must inspect scope and order contracts; audit records pending repair instead of silently broadening binding semantics during documentation review. Preserve frozen historical sources; direct-base historical8927 has the same local guard limitation and is superseded for target lookup.",
+    "dependencies": [
+      "B-0008",
+      "cea1b3e7-bfa6-492a-b850-343a0c543878"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-assurance-and-cohesion-audit.md"
+    }
+  },
+  "payload_sha256": "978e482044516188a62dc516bcb7e64bba064487b6fe14ed90086f1d139b13f6"
+}

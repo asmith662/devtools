@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "6b8f44bef76c86646c4ff0481d386513ce1e38e786e5739786866af45e7efd66",
+  "at": "2026-10-24T19:13:14.130380+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-assurance-and-cohesion-audit.md",
+  "rationale": "Full twelve-module review: lexical _helpers intentionally constructs nominal hashes and still has the already qualified concatenation collision. Synthetic arithmetic expectations remain legitimate. Module selection fixture is nominal, while membership/import/References/composition have genuine observations; do not count nominal tests as source authenticity. Keep existing collision and explicit-empty resolver-helper acceptance; no duplicate repair. Current import declarations697926d7 already fully reviewed during integration and now rechecked, not new coverage. Add binding-pattern/exception negative matrix under the distinct new production bug, not merely fixture style work.",
+  "duplicates": [],
+  "duplicate_disposition": "Preserve existing identity and append-only history; no approval, B-number, grant, dispatch or automatic closure. Distinct new production binding proposal 16b27e74-f553-40a8-b342-c3458a7b7a01.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f3da413e317eb09196e9d0f419fc4c268d3805aae971a2738bb2ac57997dc098"
+}

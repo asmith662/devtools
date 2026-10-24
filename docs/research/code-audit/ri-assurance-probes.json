@@ -1,0 +1,300 @@
+{
+  "at": "2026-10-24T20:43:09.130658+00:00",
+  "baseline": "5f53f5ac34b1a8a91e3119aa5faba329b8dedfa4",
+  "method": "Independently authored real UTF-8 files; observation, native interpretation, declaration lookup, References and direct bases. Input code parsed only, never executed. No model or experiment run.",
+  "results": [
+    {
+      "case": "control",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "02cbb63e8ed317e78e3d7f5fcf8ab9737fd6c8409cba7231add83b6502bf9a0d",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": true,
+      "non_name_binding_nodes": [],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ]
+    },
+    {
+      "case": "control",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "039b9cc26098d1ba8d8101e651d4057f518134512a54bff98563198ee3168f35",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": true,
+      "non_name_binding_nodes": [],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "resolved",
+        "Child": "resolved"
+      }
+    },
+    {
+      "case": "assignment",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\nf = 0\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "c835dbca571ffcdb46a9394a1bd295b5edd304cdc65301a38553d751aaf44cca",
+      "lookup": "ambiguous",
+      "reference": "ambiguous-binding",
+      "reference_positive": false,
+      "expect_positive": false,
+      "non_name_binding_nodes": [],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "ambiguous-binding",
+          "positive": false
+        }
+      ]
+    },
+    {
+      "case": "assignment",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\nf = 0\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "00be58b39205a9384958ae14b544190fff04d3f4d188446adbfcaff0c9aa8948",
+      "lookup": "ambiguous",
+      "reference": "ambiguous-binding",
+      "reference_positive": false,
+      "expect_positive": false,
+      "non_name_binding_nodes": [],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "ambiguous-binding",
+          "positive": false
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "ambiguous-binding",
+        "Child": "ambiguous-target"
+      }
+    },
+    {
+      "case": "match_capture",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\nmatch 0:\n    case f:\n        pass\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "707bf8fd17f2e9d27b767659eea2dfc1078dd759293e1b5f4ccc0a4d36c631aa",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchAs"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ]
+    },
+    {
+      "case": "match_capture",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\nmatch 0:\n    case f:\n        pass\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "491e53f1730d7d02916c7f51eabe89b0a7b972c45e4d47fce172b4f056e832b1",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchAs"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "resolved",
+        "Child": "resolved"
+      }
+    },
+    {
+      "case": "match_star",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\nmatch []:\n    case [*f]:\n        pass\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "3c4bbd5cfc92129f2dbaa094412698d91ed64e7292f4a6504ac65394972fcb12",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchStar"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ]
+    },
+    {
+      "case": "match_star",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\nmatch []:\n    case [*f]:\n        pass\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "99524712b7c05555c47ed57caf09c4d2c80bc2bf08c69c27c96010c3e4e2e454",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchStar"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "resolved",
+        "Child": "resolved"
+      }
+    },
+    {
+      "case": "match_mapping",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\nmatch {}:\n    case {**f}:\n        pass\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "86bfe29f9ba053f95bfac9f4b7eb6a757339256275ff7705e1293ca1929b8fbb",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchMapping"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ]
+    },
+    {
+      "case": "match_mapping",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\nmatch {}:\n    case {**f}:\n        pass\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "40009b7f5c95be5db9182c88eb40c3e9e6d597735b1b87144e6341ec033b6c90",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "MatchMapping"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "resolved",
+        "Child": "resolved"
+      }
+    },
+    {
+      "case": "exception_alias",
+      "declaration": "function",
+      "sources": {
+        "target.py": "def f():\n    pass\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\nf()\n",
+        "consumer.py": "from target import f\nf()\n"
+      },
+      "snapshot": "e2cc840204e8f37295cacb2faa29c120cf65913471e7d3efca5967d8e49d2cfd",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "ExceptHandler"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ]
+    },
+    {
+      "case": "exception_alias",
+      "declaration": "class",
+      "sources": {
+        "target.py": "class f:\n    pass\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\nf()\nclass LocalChild(f):\n    pass\n",
+        "consumer.py": "from target import f\nclass Child(f):\n    pass\n"
+      },
+      "snapshot": "e2e96ed9b17ef5f652bd4e513879914bf2df3c59841c87dc69d6d6612eb3b643",
+      "lookup": "resolved",
+      "reference": "resolved",
+      "reference_positive": true,
+      "expect_positive": false,
+      "non_name_binding_nodes": [
+        "ExceptHandler"
+      ],
+      "consumer_reference_assessments": [
+        {
+          "source": "f",
+          "outcome": "resolved",
+          "positive": true
+        }
+      ],
+      "direct_bases": {
+        "LocalChild": "resolved",
+        "Child": "resolved"
+      }
+    }
+  ],
+  "reproducer_source": "import ast, hashlib, json, tempfile\nfrom pathlib import Path\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Timestamp\nfrom devtools.context.repository.identity import Repository, RepositoryId\nfrom devtools.context.repository.observation import observe_repository_resources\nfrom devtools.context.repository.resource import RepositoryResourceAddress\nfrom devtools.context.python.modules.interpretation import PythonModuleRoot, interpret_python_module_resources, define_python_module_interpretation_universe\nfrom devtools.context.python.modules.declarations import lookup_python_module_declaration\nfrom devtools.context.python.classes.declarations import analyze_python_class_method_resources\nfrom devtools.context.python.classes.bases import derive_python_direct_bases\nfrom devtools.context.python.references.declarations.analysis import derive_python_declaration_references\n\nRECIPES={\n 'control': '',\n 'assignment': 'f = 0\\n',\n 'match_capture': 'match 0:\\n    case f:\\n        pass\\n',\n 'match_star': 'match []:\\n    case [*f]:\\n        pass\\n',\n 'match_mapping': 'match {}:\\n    case {**f}:\\n        pass\\n',\n 'exception_alias': 'try:\\n    raise ValueError()\\nexcept ValueError as f:\\n    pass\\n',\n}\nresults=[]\nwith tempfile.TemporaryDirectory(prefix='devtools-ri-assurance-') as folder:\n root=Path(folder)\n for name, tail in RECIPES.items():\n  for declaration in ('function','class'):\n   head='def f():\\n    pass\\n' if declaration=='function' else 'class f:\\n    pass\\n'\n   source=head+tail+'f()\\n'\n   if declaration=='class': source+='class LocalChild(f):\\n    pass\\n'\n   sources={'target.py': source, 'consumer.py': 'from target import f\\nf()\\n'}\n   if declaration=='class': sources['consumer.py']='from target import f\\nclass Child(f):\\n    pass\\n'\n   for path,text in sources.items(): (root/path).write_bytes(text.encode())\n   addresses=tuple(RepositoryResourceAddress(p) for p in sources)\n   snapshot=observe_repository_resources(repository=Repository(RepositoryId.parse('00000000-0000-4000-8000-000000000099')),root=resolve_path(root),addresses=addresses,maximum_resource_bytes=4096)\n   interpreted=interpret_python_module_resources(snapshot,module_root=PythonModuleRoot('.'),resource_addresses=addresses)\n   universe=define_python_module_interpretation_universe(repository_id=snapshot.repository_id,interpretations=interpreted.interpretations)\n   target=next(i for i in interpreted.interpretations if i.resource.address.value=='target.py')\n   lookup=lookup_python_module_declaration(snapshot,module=target,declared_name='f')\n   refs=derive_python_declaration_references(snapshot,resource_address=addresses[0],module_universe=universe)\n   last=next(a for a in refs.assessments if a.source_text=='f' and a.occurrence.source_range.start_line==len((head+tail+'f()\\n').splitlines()))\n   row=dict(case=name,declaration=declaration,sources=sources,snapshot=str(snapshot.id),lookup=lookup.outcome.value,reference=last.outcome.value,reference_positive=last.reference is not None,expect_positive=name=='control',non_name_binding_nodes=[type(n).__name__ for n in ast.walk(ast.parse(source)) if isinstance(n,(ast.MatchAs,ast.MatchStar,ast.MatchMapping,ast.ExceptHandler))])\n   consumer_refs=derive_python_declaration_references(snapshot,resource_address=addresses[1],module_universe=universe)\n   row['consumer_reference_assessments']=[dict(source=a.source_text,outcome=a.outcome.value,positive=a.reference is not None) for a in consumer_refs.assessments if a.source_text=='f']\n   if declaration=='class':\n    agg=analyze_python_class_method_resources(snapshot,resource_addresses=addresses)\n    bases=derive_python_direct_bases(snapshot,aggregate=agg,module_universe=universe)\n    row['direct_bases']={a.child.declared_name:a.outcome.value for a in bases.assessments}\n   results.append(row)\nassert all(r['lookup']=='resolved' and r['reference_positive'] for r in results if r['case'] in {'control','match_capture','match_star','match_mapping','exception_alias'})\nassert all(r['lookup']!='resolved' and not r['reference_positive'] for r in results if r['case']=='assignment')\nout=dict(at=str(Timestamp.now()),baseline='5f53f5ac34b1a8a91e3119aa5faba329b8dedfa4',method='Independently authored real UTF-8 files; observation, native interpretation, declaration lookup, References and direct bases. Input code parsed only, never executed. No model or experiment run.',results=results)\nPath(__file__).with_name('probes.json').write_text(json.dumps(out,indent=2)+'\\n',encoding='utf-8')\nprint(json.dumps(results,indent=2))\n"
+}

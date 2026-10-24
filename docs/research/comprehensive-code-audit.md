@@ -1,5 +1,7 @@
 # Comprehensive code audit program — 2026-10-23
 
+Current integrated-baseline checkpoint: [RI assurance and architectural cohesion](ri-assurance-and-cohesion-audit.md), main `5f53f5ac`. All twelve selected fixtures and seven historical bodies reviewed; eleven new fixture paths bring original coverage to **57/93**, with **36** remaining. Historical versions: seven full,170 unreviewed,26 tip-delta-only. Experimental source review stays606/606. One new pending production binding bug and eight append-only advisories; no source/policy implementation. Both prior RI repairs are delivered on main. Earlier candidate/completion notices below are dated evidence, superseded for current integration/counts. A+C remains unapproved; no successor dossier.
+
 ## Disposition and authority
 
 Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](ri-experimental-completion-and-main-adoption.md).
