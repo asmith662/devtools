@@ -243,3 +243,28 @@ is accounted for, and its supplied localization frame has the recorded readiness
 under the retained evidence and explicit review assumptions**. It is never proof
 that the original task was exhaustively decomposed or the engineering work is
 universally complete.
+
+## Structural-discrimination audit qualification
+
+The [37-path structural-discrimination audit](ri-structural-discrimination-audit.md)
+adds evidence, not implementation approval or a new architecture constraint.
+Its same-A Reference support never changed a rank; Case0018 SIGNAL is one
+hypothetical strong pair. Source-quality grouping is gold-conditioned and not
+available to a runtime selector. REQUIRED may mean conditional membership in one
+minimal witness, not unconditional satisfaction or indispensability. Case0019's
+conditional integration evidence cannot close its unspecified provider contract.
+
+Nine fully reviewed maintained tests and the existing resolution source show
+the usable boundary: exact attached support plus a named caller's criterion-
+specific decision; complete ALL-member support before explicit promotion; a
+separate assessment update before readiness. Contradiction, unrecorded decisions,
+unresolved support and competing alternatives stay distinct. Neither rank nor a
+relationship justifies semantic acceptance on its own. Kernel tests using nominal
+evidence establish algebra, not truthful semantic judgment or exhaustive task
+decomposition. Proposal 15bae0a6 receives this concrete acceptance evidence.
+
+The recommendation remains **RECOMMENDED, AWAITING MAINTAINER DECISION**.
+The reviewed expected roster itself is not an exhaustive-task oracle. Delegable
+authorized independent review, future agent-proposed needs, real task-only
+execution evidence, snapshot refresh and separate code-check/freshness/publication
+claims remain required as already described above.

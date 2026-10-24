@@ -2,7 +2,7 @@
 
 ## Disposition and authority
 
-Current continuation: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
+Current continuation: [structural discrimination and maintained decision tests](ri-structural-discrimination-audit.md).
 All78 selected paths/blobs now have applicable full-body review;473/606
 experimental paths are reviewed,133 remain. Separate84 current-fixture paths
 and177 older versions retain their previous depth. Next is the exact37-path

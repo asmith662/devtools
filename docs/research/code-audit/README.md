@@ -225,3 +225,33 @@ candidate expansion and gold-conditioned completion policies. The obligation
 coverage recommendation remains unapproved; this checkpoint adds delegable
 review and explicit future agent-proposal/review requirements without implementing
 them. RI and the repository-wide audit remain incomplete.
+
+## Structural discrimination and current fixture overlay
+
+The [structural-discrimination report](../ri-structural-discrimination-audit.md)
+starts at `a6800529516e104938f7eea400ec0b8bbce14c63`. Earlier ledgers and
+scientific results are unchanged; review credit is exact-path/blob specific.
+
+| Artifact | Scope and assurance |
+| --- | --- |
+| [ri-discrimination-summary.json](ri-discrimination-summary.json) |37 paths/37 blobs:31 substantive, six namespace surfaces, six full experimental tests;303 function cursors. Three primary case judgments, shared projection/ordinal diagnostic and oracle-only follow-up, not37 algorithms.510/606 reviewed;96 remain.|
+| [ri-discrimination-experiments.jsonl](ri-discrimination-experiments.jsonl) |Same606-path universe, exactly37 new applicable full-body dispositions; every other prior record preserved. Current/main archived-blob equality does not prove adoption.|
+| [ri-discrimination-fixtures.jsonl](ri-discrimination-fixtures.jsonl) |Same93-path current fixture universe, nine new substantive full-body reviews.18full/75remaining, separately from historical experiments and177older versions.|
+| [ri-discrimination-tests-and-dependencies.json](ri-discrimination-tests-and-dependencies.json) |Nine full current tests, six full experimental tests, precise external fixture/source dependency ranges; manual/mock/real-native/reconstruction assurance distinguished.|
+| [ri-discrimination-history.json](ri-discrimination-history.json) |37 exact current versions plus two distinct older packet/controller-test bodies fully read; pre-publication shape mismatch superseded. No177older-current-RI obligation credit transferred.|
+| [ri-discrimination-artifact-identities.json](ri-discrimination-artifact-identities.json) |1955 observed identities,2625 member checks,2154 original Git checks and five stage anchors;961 source resources/2883 exact gold pointer pairs. Current dependency drift is explicitly distinguished from authenticated original bytes. No historical report/native-object replay.|
+| [ri-discrimination-probes.json](ri-discrimination-probes.json) |Full source and14 bounded outcomes: original-bound packet refusals, unknown source gold, explicit semantic-decision/promotion separation and known nominal fixture collisions. No new production defect asserted.|
+| [ri-discrimination-intake.json](ri-discrimination-intake.json) |Zero new pending proposals, nine append-only advisories with exact consumer/acceptance/risk evidence; states and prior authorities unchanged.|
+| [ri-discrimination-next-cohort.json](ri-discrimination-next-cohort.json) |Exact64 remaining source-grounding paths/blobs and all96 experimental remainder; separate75current fixtures/177older-current-RI versions retained. Selected, not launched.|
+| [ri-discrimination-checkpoint.json](ri-discrimination-checkpoint.json) |Actual focused tests, links/layout/JSON/identity/Intake/forensic/whitespace and changed-file hashes; containing commit binds final publication identity.|
+
+Cases0017/0018/0019 retain NO_MATERIAL/SIGNAL/NO_MATERIAL with zero ranking
+movement. Gold-conditioned source-quality associations remain non-gating.
+Completion-proof publication/authentication is genuinely consumed by these
+experimental captures; this supersedes the narrower previous synthetic-only
+observation without changing old evidence or claiming production integration.
+Actual native source search/read/edit use remains distinct from a missing
+Localization semantic-decision consumer and unmeasured graph-assisted benefit.
+Both previously unavailable locked-NumPy synthetic tests now pass;254 focused
+tests also pass with two historical reconstruction tests deliberately deselected.
+RI and repository-wide audits remain incomplete.

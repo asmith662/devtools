@@ -181,6 +181,17 @@ versions/test fixtures/controllers explicitly unreviewed. Four substantive
 pending consumer/reuse proposals and advisory evidence use canonical Intake.
 No production fix, inference, cleanup or protected promotion follows from audit.
 
+The current [structural-discrimination and decision-test audit](ri-structural-discrimination-audit.md)
+completes 37 experimental paths and nine substantive maintained fixture modules.
+Cases 0017/0018/0019 retain NO_MATERIAL/SIGNAL/NO_MATERIAL with no ranking movement.
+All 2883 original judgment bindings agree; a real experimental completion-proof consumer
+corrects an earlier selected-scope nonadoption claim. Nine existing proposals gain
+advisory evidence; no new bug or implementation approval is asserted.
+Experimental review is 510/606 with 96 remaining; current fixtures 18/93 with 75
+remaining; 177 older current-RI versions remain separate. Next is the exact 64-path
+source-grounding cohort, selected but not launched. See the
+[current coverage overlay](code-audit/README.md#structural-discrimination-and-current-fixture-overlay).
+
 The explicitly authorized [RI follow-up and source-index repair](ri-deep-audit-followup.md)
 now records the separate fix commit,100% protected coverage,48 deeper experimental
 path reviews,26 historical tip deltas, remaining fixture/body gaps and three new

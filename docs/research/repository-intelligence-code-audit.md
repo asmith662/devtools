@@ -1,6 +1,6 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
+Latest depth overlay: [structural discrimination and maintained decision tests](ri-structural-discrimination-audit.md).
 The exact78 selected paths/blobs are reviewed;473/606 experimental paths
 now have applicable mechanism/export review,133 remain. Current-fixture and
 older-version obligations remain separate. See the exact37-path next cohort

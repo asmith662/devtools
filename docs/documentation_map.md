@@ -1,7 +1,7 @@
 # Documentation Map
 
-Current audit checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#acquisition-structural-and-verification-overlay).
+Current audit checkpoint: [structural discrimination and maintained decision tests](research/ri-structural-discrimination-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#structural-discrimination-and-current-fixture-overlay).
 The [task-obligation coverage decision preparation](research/task-obligation-coverage-decision.md)
 recommends a trusted reviewed native-consumer slice; it awaits maintainer decision
 and is not an accepted ADR or implementation grant.
