@@ -8,6 +8,11 @@ from collections import Counter
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from devtools.context.python.modules.bindings import (
+    iter_non_name_bindings,
+    non_name_binding,
+)
+
 if TYPE_CHECKING:
     from devtools.context.python.classes.declarations import (
         PythonClassDeclarationKnowledge,
@@ -96,6 +101,10 @@ def _module_bindings(  # noqa: C901, PLR0912
                     ),
                 )
         else:
+            values.extend(
+                _Binding(name, "other", node.lineno)
+                for name in iter_non_name_bindings(node)
+            )
             for child in ast.walk(node):
                 if isinstance(child, ast.Name) and isinstance(
                     child.ctx,
@@ -139,7 +148,7 @@ def _scope_bindings(  # noqa: C901
     if args.kwarg is not None:
         names[args.kwarg.arg] += 1
 
-    def visit(current: ast.AST) -> None:  # noqa: C901
+    def visit(current: ast.AST) -> None:
         if isinstance(current, ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef):
             names[current.name] += 1
             return
@@ -165,12 +174,9 @@ def _scope_bindings(  # noqa: C901
             ast.Store | ast.Del,
         ):
             names[current.id] += 1
-        if isinstance(current, ast.ExceptHandler) and current.name:
-            names[current.name] += 1
-        if isinstance(current, ast.MatchAs | ast.MatchStar) and current.name:
-            names[current.name] += 1
-        if isinstance(current, ast.MatchMapping) and current.rest:
-            names[current.rest] += 1
+        name = non_name_binding(current)
+        if name is not None:
+            names[name] += 1
         for child in ast.iter_child_nodes(current):
             visit(child)
 
