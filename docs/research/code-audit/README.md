@@ -1,5 +1,7 @@
 # Code audit evidence ledger
 
+Current integration overlay: [branch/ref, exact destination blobs, dependency closure, fixture and validation evidence](branch-integration-20261024.json), explained in the [whole-feature integration report](../feature-branch-integration-20261024.md). It does not replace the census or grant semantic review credit to tested/imported files.
+
 This is dated research metadata for the [comprehensive audit](../comprehensive-code-audit.md)
 and [RI domain report](../repository-intelligence-code-audit.md), based on feature
 `95efbf711c3644fb32d269d85927000cd8f4aaa9` and remote main

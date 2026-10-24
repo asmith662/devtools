@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+  "proposal_sha256": "7e5bab6df0988c9541cb379908b03971c4bbb154b92de14c9ac70cd8d4be3eab",
+  "previous": "daff1c40d38a3e0ac1d98b1ca6724775802e3d173ee3c9b4f1d2ec9c9b1f06f7",
+  "at": "2026-10-24T16:51:27.471192+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/feature-branch-integration-20261024.md",
+  "rationale": "Duplicate implementation scope remains the same a0a6c224 physical-line repair as416658bd. It is now present in the validated whole-feature destination candidate0345da87, not yet protected main. Recommend normal operator duplicate/delivered-scope reconciliation preserving both histories; no new B-number, second repair or automatic closure.",
+  "duplicates": [
+    {
+      "reference": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Preserve existing UUID, payload, parent and state. Evidence only; no approval, grant, B-number, dispatch, closure or protected-main publication.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "1031e1d0694b9401e98d4343d726aa86957139fdfa13ffca1db36adf9c454c33"
+}

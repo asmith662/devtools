@@ -1,6 +1,8 @@
 # Documentation Map
 
-Current audit checkpoint: [RI experimental source completion and proposed main repair adoption](research/ri-experimental-completion-and-main-adoption.md).
+Current integration checkpoint: [whole-feature destination candidate](research/feature-branch-integration-20261024.md), with [exact ref/blob/validation evidence](research/code-audit/branch-integration-20261024.json). This supersedes earlier selective-only preparation as the current integration direction; protected main is unchanged and scientific/architecture authorities remain separate.
+
+Previous audit checkpoint: [RI experimental source completion and proposed main repair adoption](research/ri-experimental-completion-and-main-adoption.md).
 All32 final selected paths have applicable full-body review:606/606 historical
 experimental paths now have version-specific dispositions, not independent
 revalidation of every judgment or completion of Repository Intelligence.
