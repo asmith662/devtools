@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "014aa624594a302069470c93c56ffd2c70ef42c304ce69999a39b87582109ddd",
+  "at": "2026-10-24T02:19:27.021930+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-acquisition-structural-verification-audit.md",
+  "rationale": "Source-backed responsibility evidence from full Cases4-8 and verifier review: repeated exclusive JSON/gzip writes, checkpoint serializers, frame identity guards and exact source rehydration vary materially in normalization and entry/return/durability guarantees. Shared capture._require_lexical_snapshot overlaps maintained composition.require_lexical_result_snapshot; future compatible composition should reuse that substrate. Packet allowlist checks are not full authenticity, gold construction is not independent semantic verification, and partial probe versus full expected report must remain explicit. Any module extraction must preserve these distinct roles and control independence; immutable cases are not refactor targets. Existing application cohesion investigation remains sufficient; do not create generic controller/Evidence abstractions solely from file length.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Exact evidence/acceptance clarification; retain canonical payload, pending disposition, prior reviews and all authority boundaries. No approval, grant, renumbering, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "7f2bb6fea3a7b0f8cf4120c4d423b4660024a09d89acf501c874beeb2278a9a3"
+}

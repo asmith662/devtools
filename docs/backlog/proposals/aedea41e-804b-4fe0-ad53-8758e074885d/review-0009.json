@@ -1,0 +1,45 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "aedea41e-804b-4fe0-ad53-8758e074885d",
+  "proposal_sha256": "3c8731085d24fbfb255ba49ab5e08c8af8dfddac65b3922fc41110b67ac2ceaa",
+  "previous": "4ffd6a04043620ddae62838348d3b1b8b5769c61c4456d08de2924cc0e005c2a",
+  "at": "2026-10-24T02:19:26.753102+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-acquisition-structural-verification-audit.md",
+  "rationale": "Measured-reuse scope enriched, no cache approved. Current generation _validate_recipes replays each grounding; native reference projection replays all supplied source analyses, then association/support validation replays native evidence per member; mirror analysis is prepared once per generation but structural support rederives it. ContextTools._reference_analysis rebuilds module interpretation/universe per call; map view shares this entry point. Case7 generation1130.740s and Case8 generation-only recovery1316.840868s are whole-call original timings, not attribution or a comparative benchmark. Existing experiment verification invocation-owned immutable blocks demonstrate bounded memo mechanics with strong references/alias checks, but they assume pinned historical schemas and have a newly found SourceSpans defect. Do not transplant them into production caching. Profile identical authorized snapshots with explicit fresh/changed inputs in both maintained navigation and generation consumers; retain cold/warm work counts and source identity checks before choosing a canonical analysis seam.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Exact evidence/acceptance clarification; retain canonical payload, pending disposition, prior reviews and all authority boundaries. No approval, grant, renumbering, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "06233e779f317612d4d5dd4d87262a32c14e32637d0fd738f613e4e3577bfb12"
+}

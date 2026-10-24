@@ -2,11 +2,11 @@
 
 ## Disposition and authority
 
-Current continuation: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
-All42 selected paths/blobs now have applicable full-body review;395/606
-experimental paths are reviewed,211 remain. Separate84 current-fixture paths
-and177 older versions retain their previous depth. Next is the exact78-path
-Cases0004–0008, shared capture and evidence-verification cohort.
+Current continuation: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
+All78 selected paths/blobs now have applicable full-body review;473/606
+experimental paths are reviewed,133 remain. Separate84 current-fixture paths
+and177 older versions retain their previous depth. Next is the exact37-path
+structural-discrimination and residual Case0017–0019 packet/reviewer cohort.
 The [task-obligation coverage recommendation](task-obligation-coverage-decision.md)
 is decision preparation, not an accepted architecture change.
 The maintainer requires the remaining RI mechanisms/fixtures before changing

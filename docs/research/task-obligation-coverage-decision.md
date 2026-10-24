@@ -34,6 +34,32 @@ No implementation is performed by this checkpoint. Rejecting this recommendation
 leaves current scoped readiness behavior intact. The alternatives below remain
 available for an explicit different maintainer decision.
 
+### Clarification from the acquisition/structural audit
+
+The [Cases0004–0008 audit](ri-acquisition-structural-verification-audit.md)
+does not change this status: **the maintainer has not approved implementation**.
+A+C establishes accountability relative to a reviewed expected clause roster;
+it cannot prove that the roster exhaustively captures the original objective.
+The first trusted-caller composition is not a permanent requirement for personal
+human drafting on every task.
+
+Record an explicit follow-on milestone for B: an agent proposes existing
+obligations/needs against the retained original task, and a separately authorized
+reviewer examines clause correspondence, omissions, ambiguity and contradictions
+before admission. Reviewer responsibility may be delegated inside a defined
+authorization envelope; worker self-approval is not authority. That milestone
+needs its own input/revision identity, review provenance, invocation/failure
+evidence, budgets and independent positive/negative acceptance tests. Deterministic
+fixtures must first prove omitted clauses remain visible; later genuine model
+acceptance and comparative effectiveness require separate authorization. A second
+model call alone establishes neither independence nor complete interpretation.
+
+Task-only execution requirements retain actual review/execution evidence rather
+than fabricated repository witnesses. Supplied-frame semantic readiness, code-check
+PASS, host freshness, independent review and publication remain distinct claims.
+Pending15bae0a6 plus these clarifications is sufficient for the bounded decision;
+no accepted ADR, new obligation hierarchy or automatic planner is created.
+
 ## Evidence and present ownership
 
 [U1](ri-u1-r17-r2-audit.md) independently reviewed 32 necessary semantic units.

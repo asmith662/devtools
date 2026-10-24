@@ -1,9 +1,11 @@
 # Research Evidence
 
-Current deep audit: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
-All42 selected paths/blobs are reviewed; the cumulative ledger records395/606
-experimental paths and the separate9/93 current fixture paths at full review
-depth. The next78-path cohort follows native Localization composition and evidence verification.
+Current deep audit: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
+All78 selected paths/blobs are reviewed:74 substantive paths, including23 test
+modules, and four namespace surfaces. Cumulative473/606 experimental paths are
+reviewed;133 remain. Separate84 current-fixture paths and177 older versions
+retain their prior depth. Next is the exact37-path structural-discrimination
+and residual Case0017–0019 packet/reviewer cohort, not a new architectural domain.
 The [obligation-coverage decision preparation](task-obligation-coverage-decision.md)
 recommends trusted reviewed clauses with bounded revision, pending maintainer decision.
 The versioned verifier's96 original bindings remain unchanged. RI work remains active; the successor

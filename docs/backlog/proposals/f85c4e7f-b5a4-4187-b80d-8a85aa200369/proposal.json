@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "f85c4e7f-b5a4-4187-b80d-8a85aa200369",
+  "created_at": "2026-10-24T02:19:25.633367+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct experiment verification source-span physical lines and UTF-8 boundary validation",
+    "parent": "B-0002",
+    "summary": "Priority2 experiment-verification correctness. SourceSpans.extract caches text.splitlines(keepends=True), which treats eight non-newline separators as physical lines although Python AST does not. Independently generated real AST Name ranges return b instead of x in24 LF/CRLF/CR fixtures; an empty range inside a multibyte code point is accepted although the canonical function materializer rejects it. Consumer: case_0016.Invocation.replay installs this extractor for deep native algebra replay. Normal sealed downstream completion does not use it. Production representation.py repair a0a6c224 is delivered and is not this remaining owner.",
+    "resources": [
+      "experiments/codex_dogfood/verification/spans.py"
+    ],
+    "evidence": [
+      "docs/research/ri-acquisition-structural-verification-audit.md",
+      "docs/research/code-audit/ri-acquisition-probes.json"
+    ],
+    "benefit": "Preserve frozen historical code and receipts. Add a separately versioned supported analysis/verifier adapter using the canonical physical-line/UTF-8 convention, or delegate to the canonical extractor where its native contract fits. Independently test all eight separators across LF/CRLF/CR, valid real AST ranges, Unicode multibyte start/end and empty invalid columns, EOF/empty/unterminated source and ordinary parity. Document supported artifact/schema versions and prove the actual deep-verifier binding uses the corrected path without decoding unknown archives or weakening source identity. Reject unsupported versions; no hidden fallback. Suitable bounded maintenance work after version/consumer approval.",
+    "uncertainty": "Historical corruption or changed Case16 outcome is not established; do not rerun or rewrite sealed science. Delivered production source-span proposals remain delivered implementation evidence; operator reconciles their review/status separately.",
+    "dependencies": [
+      "B-0002",
+      "B-0011"
+    ],
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-acquisition-structural-verification-audit.md"
+    }
+  },
+  "payload_sha256": "3bc93b45a0596d38b3cbfeb388a52cc84c1c0c658dd282f239cb3f90d460b22b"
+}

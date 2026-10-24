@@ -1,0 +1,1502 @@
+{
+  "cohort_tests": [
+    {
+      "path": "experiments/codex_dogfood/case_0004/adjudication/test_adjudication_support.py",
+      "sha256": "75f5abeec72028f331964abfa15a8f902959d06fc9b0bb0b38d68c24b1c0cfb5",
+      "functions": [
+        {
+          "name": "setUpClass",
+          "line": 18,
+          "end": 25
+        },
+        {
+          "name": "rejected",
+          "line": 27,
+          "end": 31
+        },
+        {
+          "name": "test_exact_coverage_and_deterministic_replay",
+          "line": 33,
+          "end": 40
+        },
+        {
+          "name": "test_duplicate_missing_and_unexpected_resources",
+          "line": 42,
+          "end": 51
+        },
+        {
+          "name": "test_unknown_witness_and_duplicate_unit",
+          "line": 53,
+          "end": 63
+        },
+        {
+          "name": "test_missing_inferability_and_wrong_applicability",
+          "line": 65,
+          "end": 71
+        },
+        {
+          "name": "test_forbidden_field_and_digest_corruption",
+          "line": 73,
+          "end": 75
+        },
+        {
+          "name": "test_matrix_cannot_disagree_with_units",
+          "line": 77,
+          "end": 82
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0005/adjudication/test_blind_judgments.py",
+      "sha256": "ce5ba023db558360a3cc03a4c1ef38a56e6dbd68001b3d5dea351910589875f9",
+      "functions": [
+        {
+          "name": "test_packet_contract_and_content_digests",
+          "line": 16,
+          "end": 17
+        },
+        {
+          "name": "test_packet_rejects_treatment_field",
+          "line": 20,
+          "end": 25
+        },
+        {
+          "name": "test_exact_coverage_and_independent_cell_accounting",
+          "line": 28,
+          "end": 47
+        },
+        {
+          "name": "test_frozen_evaluation_primitive_reports_all_diagnostics",
+          "line": 50,
+          "end": 56
+        },
+        {
+          "name": "test_witness_targets_reviews_and_applicability",
+          "line": 59,
+          "end": 89
+        },
+        {
+          "name": "test_serialization_replay_and_frozen_digest",
+          "line": 92,
+          "end": 100
+        },
+        {
+          "name": "test_artifact_contains_no_treatment_fields",
+          "line": 103,
+          "end": 132
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0005/test_analyze.py",
+      "sha256": "56c77b6c3e1e2caab6b2e211dc31ba3daca60700c1f962b333ef690eb89e1b4d",
+      "functions": [
+        {
+          "name": "joined",
+          "line": 15,
+          "end": 17
+        },
+        {
+          "name": "test_checkpoint_and_join_invariants",
+          "line": 20,
+          "end": 31
+        },
+        {
+          "name": "test_alternative_completion_is_conjunctive_and_surface_specific",
+          "line": 34,
+          "end": 78
+        },
+        {
+          "name": "test_prefix_union_and_labels_are_recomputed_from_actual_candidates",
+          "line": 81,
+          "end": 113
+        },
+        {
+          "name": "test_empty_preference_preserves_every_rank",
+          "line": 116,
+          "end": 139
+        },
+        {
+          "name": "test_rendered_artifacts_replay_and_correspond",
+          "line": 142,
+          "end": 163
+        },
+        {
+          "name": "test_frozen_hash_failure_and_overwrite_refusal",
+          "line": 166,
+          "end": 186
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0005/test_blind_packet.py",
+      "sha256": "849a377f730ebab1e29a882cd3abb50889a7eb62c6eb0aed0b15df480acb57c0",
+      "functions": [
+        {
+          "name": "test_read_only_packet_reconstruction_and_source_boundary",
+          "line": 38,
+          "end": 57
+        },
+        {
+          "name": "test_strict_allowlists_and_conditionality",
+          "line": 60,
+          "end": 79
+        },
+        {
+          "name": "test_existing_packet_refuses_overwrite_without_changes",
+          "line": 82,
+          "end": 101
+        },
+        {
+          "name": "test_forbidden_schema_field_is_rejected",
+          "line": 104,
+          "end": 110
+        },
+        {
+          "name": "bounded",
+          "line": 43,
+          "end": 47
+        },
+        {
+          "name": "forbidden",
+          "line": 89,
+          "end": 90
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0005/test_capture.py",
+      "sha256": "07e4bfde9f030c782643311a6f9c2353dab12f4538f8bd2e5a7d3870b3261634",
+      "functions": [
+        {
+          "name": "forbidden",
+          "line": 25,
+          "end": 27
+        },
+        {
+          "name": "test_read_only_correspondence",
+          "line": 30,
+          "end": 39
+        },
+        {
+          "name": "test_capture_refuses_overwrite_before_production_calls",
+          "line": 42,
+          "end": 56
+        },
+        {
+          "name": "test_corrupt_routing_serialization_rejected",
+          "line": 59,
+          "end": 69
+        },
+        {
+          "name": "test_json_checkout_line_endings_do_not_change_committed_digest",
+          "line": 72,
+          "end": 85
+        },
+        {
+          "name": "test_global_lane_unrouted_and_validation_preference_empty",
+          "line": 88,
+          "end": 100
+        },
+        {
+          "name": "changed",
+          "line": 63,
+          "end": 65
+        },
+        {
+          "name": "checked_out",
+          "line": 76,
+          "end": 82
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0005/test_freeze.py",
+      "sha256": "4eaa497ae7a4dd59fbf5dc43f4fff2d42d6928d11cde1e744375d8eedc36edc2",
+      "functions": [
+        {
+          "name": "forbidden",
+          "line": 25,
+          "end": 27
+        },
+        {
+          "name": "test_native_freeze_without_execution",
+          "line": 30,
+          "end": 40
+        },
+        {
+          "name": "test_frame_selection",
+          "line": 59,
+          "end": 61
+        },
+        {
+          "name": "test_empty_preference_and_no_gold",
+          "line": 64,
+          "end": 71
+        },
+        {
+          "name": "test_artifact_tamper_rejected",
+          "line": 74,
+          "end": 84
+        },
+        {
+          "name": "test_refuse_second_freeze",
+          "line": 87,
+          "end": 90
+        },
+        {
+          "name": "changed",
+          "line": 78,
+          "end": 80
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0006/adjudication/test_freeze.py",
+      "sha256": "9ef57ebad17a0581cb19facff609b997cc3874443f469c9b62b2409d1c9c016c",
+      "functions": [
+        {
+          "name": "setUpClass",
+          "line": 25,
+          "end": 27
+        },
+        {
+          "name": "assert_invalid",
+          "line": 29,
+          "end": 31
+        },
+        {
+          "name": "test_deterministic_replay_and_exact_frame",
+          "line": 33,
+          "end": 42
+        },
+        {
+          "name": "test_both_packet_digest_changes_rejected",
+          "line": 44,
+          "end": 60
+        },
+        {
+          "name": "test_duplicate_and_missing_resource_rejected",
+          "line": 62,
+          "end": 67
+        },
+        {
+          "name": "test_unexpected_resource_rejected",
+          "line": 69,
+          "end": 72
+        },
+        {
+          "name": "test_foreign_required_target_rejected",
+          "line": 74,
+          "end": 79
+        },
+        {
+          "name": "test_out_of_bounds_unit_rejected",
+          "line": 81,
+          "end": 84
+        },
+        {
+          "name": "test_missing_obligation_or_applicability_rejected",
+          "line": 86,
+          "end": 92
+        },
+        {
+          "name": "test_alternative_requires_all_valid_distinct_members",
+          "line": 94,
+          "end": 100
+        },
+        {
+          "name": "test_required_member_cannot_be_orphaned",
+          "line": 102,
+          "end": 105
+        },
+        {
+          "name": "test_inferability_and_discovery_prerequisites_rejected",
+          "line": 107,
+          "end": 113
+        },
+        {
+          "name": "test_forbidden_structured_fields_but_ordinary_words_allowed",
+          "line": 115,
+          "end": 127
+        },
+        {
+          "name": "test_gap_representation_required",
+          "line": 129,
+          "end": 132
+        },
+        {
+          "name": "test_freeze_refuses_overwrite_and_keeps_bytes",
+          "line": 134,
+          "end": 142
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0006/test_analysis.py",
+      "sha256": "536b4976ed69ef71152861a6909e58e8b8b050e8c04f2a050d291fb8b0ba68b6",
+      "functions": [
+        {
+          "name": "test_frozen_join_metrics_and_counterfactual",
+          "line": 15,
+          "end": 38
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0006/test_build_adjudication_packet.py",
+      "sha256": "77ec65d3c6c8fefa5ffdd740e317d0e51b985befa154794d3adc9839fab6428b",
+      "functions": [
+        {
+          "name": "_packet_values",
+          "line": 16,
+          "end": 74
+        },
+        {
+          "name": "test_blind_schema_allows_full_frame_without_treatment_fields",
+          "line": 77,
+          "end": 79
+        },
+        {
+          "name": "test_treatment_field_is_rejected_by_manifest_allowlist",
+          "line": 82,
+          "end": 86
+        },
+        {
+          "name": "test_treatment_field_is_rejected_by_resource_allowlist",
+          "line": 89,
+          "end": 96
+        },
+        {
+          "name": "test_build_refuses_existing_packet_before_stage_a_read",
+          "line": 99,
+          "end": 110
+        },
+        {
+          "name": "stage_a_must_not_be_read",
+          "line": 105,
+          "end": 106
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0006/test_capture.py",
+      "sha256": "9533200cfdf3f1ed64bee91a07a883ebbaed725c44625adebcefcc7898a3be21",
+      "functions": [
+        {
+          "name": "test_existing_output_refuses_before_any_treatment_call",
+          "line": 13,
+          "end": 30
+        },
+        {
+          "name": "test_member_correspondence_uses_identity_not_constructor_order",
+          "line": 33,
+          "end": 37
+        },
+        {
+          "name": "test_member_correspondence_rejects_identity_mismatch",
+          "line": 44,
+          "end": 46
+        },
+        {
+          "name": "test_recovery_policy_has_one_additional_execution",
+          "line": 49,
+          "end": 59
+        },
+        {
+          "name": "test_raw_capture_forces_resume_and_blocks_reexecution_without_raw",
+          "line": 62,
+          "end": 76
+        },
+        {
+          "name": "test_recovery_raw_is_marked_incomplete_and_carries_native_state",
+          "line": 79,
+          "end": 104
+        },
+        {
+          "name": "test_corrupt_or_non_incomplete_raw_is_rejected",
+          "line": 107,
+          "end": 111
+        },
+        {
+          "name": "test_canonical_outputs_are_exclusive",
+          "line": 114,
+          "end": 121
+        },
+        {
+          "name": "test_canonical_artifacts_require_validation_and_refuse_overwrite",
+          "line": 124,
+          "end": 136
+        },
+        {
+          "name": "test_attempt_record_freezes_prior_failure_and_no_execution_in_this_checkpoint",
+          "line": 139,
+          "end": 149
+        },
+        {
+          "name": "treatment_must_not_run",
+          "line": 21,
+          "end": 22
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0007/adjudication/test_stage_c.py",
+      "sha256": "01b2827c22828f136050094af16bf7fe578e04f25cb3af89ca34896583035d9c",
+      "functions": [
+        {
+          "name": "gold",
+          "line": 29,
+          "end": 31
+        },
+        {
+          "name": "packet_directory",
+          "line": 35,
+          "end": 40
+        },
+        {
+          "name": "test_packet_exact_identities",
+          "line": 43,
+          "end": 47
+        },
+        {
+          "name": "test_manual_encoding_replays_exact_bytes",
+          "line": 50,
+          "end": 52
+        },
+        {
+          "name": "test_exact_complete_coverage_and_gold_counts",
+          "line": 55,
+          "end": 62
+        },
+        {
+          "name": "test_blind_input_tampering_rejected",
+          "line": 66,
+          "end": 70
+        },
+        {
+          "name": "test_invalid_gold_rejected",
+          "line": 98,
+          "end": 150
+        },
+        {
+          "name": "test_forbidden_metadata_rejected",
+          "line": 169,
+          "end": 171
+        },
+        {
+          "name": "test_ordinary_repository_words_are_allowed",
+          "line": 174,
+          "end": 175
+        },
+        {
+          "name": "test_freeze_replay_and_overwrite_refusal",
+          "line": 178,
+          "end": 186
+        },
+        {
+          "name": "test_frozen_judgment_tampering_rejected",
+          "line": 189,
+          "end": 194
+        },
+        {
+          "name": "test_canonical_content_change_breaks_seal",
+          "line": 197,
+          "end": 206
+        },
+        {
+          "name": "test_seal_tampering_rejected",
+          "line": 209,
+          "end": 216
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0007/test_adjudication_packet.py",
+      "sha256": "d4c148e53245374d5c01971168251c8660e69669185b6a84b106163eefac90bf",
+      "functions": [
+        {
+          "name": "built_packet",
+          "line": 21,
+          "end": 24
+        },
+        {
+          "name": "test_packet_contains_exact_frozen_frame_and_allowlisted_semantics",
+          "line": 27,
+          "end": 62
+        },
+        {
+          "name": "test_forbidden_treatment_operations_and_stage_b_files_are_not_accessed",
+          "line": 65,
+          "end": 94
+        },
+        {
+          "name": "test_deterministic_read_only_reconstruction_and_overwrite_refusal",
+          "line": 97,
+          "end": 103
+        },
+        {
+          "name": "test_tampering_is_detected",
+          "line": 106,
+          "end": 114
+        },
+        {
+          "name": "test_blind_manifest_rejects_treatment_fields",
+          "line": 117,
+          "end": 135
+        },
+        {
+          "name": "forbidden",
+          "line": 69,
+          "end": 70
+        },
+        {
+          "name": "guarded_open",
+          "line": 88,
+          "end": 91
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0007/test_analyze.py",
+      "sha256": "c2cb3f72f3e6155f895c3925936c0808dc2baaa990992ddd8e499fd320fcfcc9",
+      "functions": [
+        {
+          "name": "test_joined_gold_and_structural_counts",
+          "line": 18,
+          "end": 27
+        },
+        {
+          "name": "test_writer_refuses_to_overwrite_frozen_analysis",
+          "line": 30,
+          "end": 32
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0007/test_capture.py",
+      "sha256": "f3b9d5af5bd9651aa35e0cae505d2f54f378db35e12bda27151d9f81a13e543e",
+      "functions": [
+        {
+          "name": "test_stage_a_archive_is_loaded_without_rebuilding_or_running_treatment",
+          "line": 16,
+          "end": 23
+        },
+        {
+          "name": "test_raw_checkpoint_round_trips_and_rejects_foreign_stage_a",
+          "line": 26,
+          "end": 49
+        },
+        {
+          "name": "test_canonical_exclusive_write_refuses_overwrite",
+          "line": 52,
+          "end": 61
+        },
+        {
+          "name": "test_completed_operation_is_reused_without_calling_its_function",
+          "line": 64,
+          "end": 73
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0007/test_freeze.py",
+      "sha256": "8c48c02440574f596337123d96dcc8f71eee2f6f44234b64a03ebc59134eed19",
+      "functions": [
+        {
+          "name": "forbidden",
+          "line": 18,
+          "end": 19
+        },
+        {
+          "name": "test_stage_a_validation_never_executes_treatment",
+          "line": 22,
+          "end": 36
+        },
+        {
+          "name": "test_ineligible_addresses",
+          "line": 50,
+          "end": 51
+        },
+        {
+          "name": "test_eligible_addresses",
+          "line": 65,
+          "end": 66
+        },
+        {
+          "name": "test_invalid_recipe_multiplicity_rejected",
+          "line": 69,
+          "end": 81
+        },
+        {
+          "name": "test_invalid_branch_spec_rejected",
+          "line": 93,
+          "end": 103
+        },
+        {
+          "name": "test_exact_task_and_unaccepted_witnesses",
+          "line": 106,
+          "end": 112
+        },
+        {
+          "name": "test_identity_collision_rejected",
+          "line": 115,
+          "end": 118
+        },
+        {
+          "name": "test_reference_module_seed_rejected",
+          "line": 121,
+          "end": 131
+        },
+        {
+          "name": "test_integrity_tampering_rejected",
+          "line": 134,
+          "end": 143
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0008/adjudication/test_stage_c.py",
+      "sha256": "0a7ff71e81bc4db955b5cd3f611067bd0b04bbde0a78611ae1bf3bf2d16b2147",
+      "functions": [
+        {
+          "name": "tmp_path",
+          "line": 37,
+          "end": 42
+        },
+        {
+          "name": "packet",
+          "line": 46,
+          "end": 48
+        },
+        {
+          "name": "gold",
+          "line": 52,
+          "end": 54
+        },
+        {
+          "name": "test_packet_and_complete_coverage",
+          "line": 57,
+          "end": 78
+        },
+        {
+          "name": "test_digest_rejection",
+          "line": 81,
+          "end": 90
+        },
+        {
+          "name": "test_forbidden_nested_fields",
+          "line": 115,
+          "end": 123
+        },
+        {
+          "name": "test_reject_invalid_gold",
+          "line": 152,
+          "end": 222
+        },
+        {
+          "name": "test_freeze_replay_overwrite_and_tamper",
+          "line": 225,
+          "end": 237
+        },
+        {
+          "name": "test_existing_seal_refuses_freeze",
+          "line": 240,
+          "end": 246
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0008/test_adjudication_packet.py",
+      "sha256": "3a56ca516aeca7c84afeaa817061df60d83748c3bb9bfa7aed9ac74fe202c4b0",
+      "functions": [
+        {
+          "name": "test_packet_has_exact_frame_and_allowlisted_semantics",
+          "line": 41,
+          "end": 60
+        },
+        {
+          "name": "test_stage_b_paths_are_tripwired_during_reconstruction",
+          "line": 63,
+          "end": 81
+        },
+        {
+          "name": "test_builder_has_no_treatment_operation_dependencies",
+          "line": 84,
+          "end": 95
+        },
+        {
+          "name": "test_reconstruction_does_not_import_treatment_packages",
+          "line": 98,
+          "end": 109
+        },
+        {
+          "name": "test_strict_schema_rejects_treatment_metadata",
+          "line": 112,
+          "end": 126
+        },
+        {
+          "name": "test_deterministic_reconstruction_and_overwrite_refusal",
+          "line": 129,
+          "end": 145
+        },
+        {
+          "name": "test_tampered_archive_and_content_identity_mismatch_are_rejected",
+          "line": 148,
+          "end": 171
+        },
+        {
+          "name": "test_forbidden_field_detector_checks_metadata_keys_only",
+          "line": 174,
+          "end": 179
+        },
+        {
+          "name": "guarded_read_bytes",
+          "line": 69,
+          "end": 72
+        },
+        {
+          "name": "guarded_open",
+          "line": 74,
+          "end": 77
+        },
+        {
+          "name": "guarded_import",
+          "line": 103,
+          "end": 106
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0008/test_analysis.py",
+      "sha256": "705728b44e5d7711e36f331f3a03381358a1d93dfbfd8d3fd0068b6887062a46",
+      "functions": [
+        {
+          "name": "test_joined_analysis_covers_frozen_gold_and_structural_surfaces",
+          "line": 12,
+          "end": 25
+        },
+        {
+          "name": "test_analysis_serialization_replays_exactly",
+          "line": 28,
+          "end": 33
+        },
+        {
+          "name": "test_freeze_refuses_overwrite_and_replay_matches_frozen_files",
+          "line": 36,
+          "end": 57
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0008/test_freeze.py",
+      "sha256": "cd2b8200b4ee0db6c0d51c2b4675d88f6b6fc519d9df31e644cf65524b80265b",
+      "functions": [
+        {
+          "name": "treatment",
+          "line": 25,
+          "end": 26
+        },
+        {
+          "name": "test_exact_task_empty_gold_and_all_four_operator_shapes",
+          "line": 29,
+          "end": 44
+        },
+        {
+          "name": "test_rejects_invalid_treatment",
+          "line": 65,
+          "end": 107
+        },
+        {
+          "name": "test_forbidden_operation_tripwires",
+          "line": 136,
+          "end": 143
+        },
+        {
+          "name": "test_generic_native_preparation_without_any_treatment",
+          "line": 146,
+          "end": 190
+        },
+        {
+          "name": "test_excluded_frames_never_exported",
+          "line": 206,
+          "end": 207
+        },
+        {
+          "name": "test_broad_frame_includes_code_tests_and_policy",
+          "line": 222,
+          "end": 223
+        },
+        {
+          "name": "test_freeze_refuses_overwrite_before_git_or_treatment",
+          "line": 226,
+          "end": 230
+        },
+        {
+          "name": "test_stage_b_marker_rejected_without_loading_native_archive",
+          "line": 233,
+          "end": 237
+        },
+        {
+          "name": "test_atomic_text_write_refuses_overwrite",
+          "line": 240,
+          "end": 244
+        },
+        {
+          "name": "test_artifact_digest_drift_rejected_before_pickle",
+          "line": 247,
+          "end": 257
+        },
+        {
+          "name": "test_readme_relative_links_exist",
+          "line": 260,
+          "end": 265
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/case_0008/test_stage_b.py",
+      "sha256": "e778cac7d139a0aca67eea8b843b7b2d17a9af3275e94553ddeea86ee8620d0d",
+      "functions": [
+        {
+          "name": "state",
+          "line": 27,
+          "end": 36
+        },
+        {
+          "name": "test_checkpoint_captures_return_and_refuses_second_invocation",
+          "line": 39,
+          "end": 57
+        },
+        {
+          "name": "test_ambiguous_in_progress_state_is_never_retried",
+          "line": 60,
+          "end": 69
+        },
+        {
+          "name": "test_alias_preflight_accepts_only_exact_shared_role_evidence",
+          "line": 72,
+          "end": 93
+        },
+        {
+          "name": "test_recovery_result_is_persisted_before_validation_and_never_retried",
+          "line": 96,
+          "end": 127
+        },
+        {
+          "name": "test_failed_recovery_call_is_recorded_and_cannot_be_reentered",
+          "line": 130,
+          "end": 158
+        },
+        {
+          "name": "test_recovery_state_preserves_attempt_and_recovery_identity",
+          "line": 161,
+          "end": 170
+        },
+        {
+          "name": "test_captured_recovery_plan_preserves_required_aliases_and_frozen_recipe_shape",
+          "line": 173,
+          "end": 216
+        },
+        {
+          "name": "test_frozen_attempt_and_recovery_authorization_are_consistent",
+          "line": 219,
+          "end": 232
+        },
+        {
+          "name": "operation",
+          "line": 47,
+          "end": 50
+        },
+        {
+          "name": "operation",
+          "line": 111,
+          "end": 114
+        },
+        {
+          "name": "validate",
+          "line": 116,
+          "end": 122
+        },
+        {
+          "name": "operation",
+          "line": 144,
+          "end": 147
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/verification/test_native.py",
+      "sha256": "05f41b5b9549d4f675f6a18fec94b6a99f8a0bb372bc3efcdd4d613a1a844f69",
+      "functions": [
+        {
+          "name": "test_reference_scanner_exact_regex",
+          "line": 28,
+          "end": 43
+        },
+        {
+          "name": "test_reference_template_exact_relocation",
+          "line": 46,
+          "end": 57
+        },
+        {
+          "name": "test_parse_once_and_new_invocation",
+          "line": 67,
+          "end": 75
+        },
+        {
+          "name": "test_archive_once_and_exact_digest_binding",
+          "line": 78,
+          "end": 92
+        },
+        {
+          "name": "test_base85_exact_historical_codec",
+          "line": 95,
+          "end": 109
+        },
+        {
+          "name": "test_alias_relocation_type_fields_order_and_unique_closure",
+          "line": 112,
+          "end": 132
+        },
+        {
+          "name": "test_native_description_template_exact_bytes",
+          "line": 135,
+          "end": 150
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/verification/test_proof.py",
+      "sha256": "0365a633d83bd1c6d26bb5708b5ca967c9f483b640bdc059f43267fa7cc40e1f",
+      "functions": [
+        {
+          "name": "bindings",
+          "line": 29,
+          "end": 39
+        },
+        {
+          "name": "test_future_proof_executes_once_and_authenticates_exact_result",
+          "line": 42,
+          "end": 80
+        },
+        {
+          "name": "test_failed_deep_proof_cannot_publish",
+          "line": 83,
+          "end": 87
+        },
+        {
+          "name": "test_normal_rejects_gold_mutation",
+          "line": 90,
+          "end": 104
+        },
+        {
+          "name": "test_normal_rejects_capture_mutation",
+          "line": 122,
+          "end": 134
+        },
+        {
+          "name": "test_normal_rejects_frame_and_implementation_binding",
+          "line": 137,
+          "end": 159
+        },
+        {
+          "name": "test_normal_never_decodes_native_and_reauthenticates",
+          "line": 162,
+          "end": 209
+        },
+        {
+          "name": "prove",
+          "line": 47,
+          "end": 50
+        },
+        {
+          "name": "read",
+          "line": 94,
+          "end": 100
+        },
+        {
+          "name": "read",
+          "line": 128,
+          "end": 130
+        },
+        {
+          "name": "read",
+          "line": 142,
+          "end": 148
+        },
+        {
+          "name": "forbidden",
+          "line": 165,
+          "end": 166
+        },
+        {
+          "name": "authenticate",
+          "line": 171,
+          "end": 174
+        },
+        {
+          "name": "checkpoints",
+          "line": 183,
+          "end": 186
+        },
+        {
+          "name": "wrapped",
+          "line": 188,
+          "end": 190
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    },
+    {
+      "path": "experiments/codex_dogfood/verification/test_replay.py",
+      "sha256": "4f4d980f105e3fafb755f8ec7619612e3c40d1b469753b8fa059b736ad5088a6",
+      "functions": [
+        {
+          "name": "test_canonical_correspondence_aliases_and_blocks",
+          "line": 49,
+          "end": 70
+        },
+        {
+          "name": "test_native_journal_checks",
+          "line": 74,
+          "end": 94
+        },
+        {
+          "name": "test_span_index_exact",
+          "line": 97,
+          "end": 115
+        },
+        {
+          "name": "test_gold_authentication_once_and_next_invocation",
+          "line": 118,
+          "end": 131
+        },
+        {
+          "name": "test_expected_bytes_and_all_semantics",
+          "line": 134,
+          "end": 155
+        },
+        {
+          "name": "test_resource_index_matches_scanning",
+          "line": 158,
+          "end": 162
+        },
+        {
+          "name": "test_sealed_historical_files",
+          "line": 165,
+          "end": 167
+        },
+        {
+          "name": "test_exact_row_order_and_floats",
+          "line": 170,
+          "end": 182
+        },
+        {
+          "name": "test_bulk_graph_and_new_process_state",
+          "line": 185,
+          "end": 198
+        },
+        {
+          "name": "test_indexed_scans_exact",
+          "line": 201,
+          "end": 214
+        },
+        {
+          "name": "test_capture_integrity_tamper",
+          "line": 217,
+          "end": 223
+        }
+      ],
+      "depth": "FULL_BODY_FIXTURES_ERROR_CONTRACTS_INSPECTED;historical fixtures not executed"
+    }
+  ],
+  "source_dependencies": [
+    {
+      "path": "src/devtools/context/localization/routing/derive.py",
+      "sha256": "42d7b5691c72b76b0a058ad26800a22866a3b4dcf30e29b6858aa10d0531da48",
+      "functions": [
+        {
+          "name": "route_localization_lexical_evidence",
+          "line": 38,
+          "end": 67
+        },
+        {
+          "name": "_validate_frame",
+          "line": 70,
+          "end": 79
+        },
+        {
+          "name": "_validate_role_evidence",
+          "line": 82,
+          "end": 108
+        },
+        {
+          "name": "_validate_native_acquisition",
+          "line": 111,
+          "end": 139
+        },
+        {
+          "name": "_validate_result_matches",
+          "line": 142,
+          "end": 155
+        },
+        {
+          "name": "_validate_preferences",
+          "line": 158,
+          "end": 177
+        },
+        {
+          "name": "_route_lane",
+          "line": 180,
+          "end": 222
+        }
+      ],
+      "depth": "FULL_BODY;positive soft preferred/complete escape/native corpus/source guards",
+      "blob": "4908106d49a4dd955be41b1a620b2e4b79f6d708"
+    },
+    {
+      "path": "src/devtools/context/localization/generation/imports.py",
+      "sha256": "0a54d75eb25955546138286d651e8cc3e8d85a4ec4a4a1c89f514dcdabfd7adc",
+      "functions": [
+        {
+          "name": "project_direct_import_dependencies",
+          "line": 31,
+          "end": 99
+        }
+      ],
+      "depth": "FULL_BODY;direct native import grouping/provenance/work frontier",
+      "blob": "bf370c1f0fb04bd15074b8bb309ea6b414ac0415"
+    },
+    {
+      "path": "src/devtools/context/localization/generation/references.py",
+      "sha256": "b449bd8109433ee22cb760a8726494b0fe8ba647e5dc29a45c592fa93572c687",
+      "functions": [
+        {
+          "name": "project_referencing_resources",
+          "line": 27,
+          "end": 85
+        }
+      ],
+      "depth": "FULL_BODY;exact incoming declaration source replay and bounded frame",
+      "blob": "9d6836f6c7aecb95f5a1d7fbb4fc8aedf6d7c265"
+    },
+    {
+      "path": "src/devtools/context/localization/association/structural.py",
+      "sha256": "27955dc731dea0d4a7162398843b6ec636d24cef8f455d4432a4302e624e5430",
+      "functions": [
+        {
+          "name": "owner_resource",
+          "line": 58,
+          "end": 69
+        },
+        {
+          "name": "validate_structural_support",
+          "line": 72,
+          "end": 112
+        },
+        {
+          "name": "structural_support_key",
+          "line": 115,
+          "end": 131
+        },
+        {
+          "name": "_referent_key",
+          "line": 134,
+          "end": 140
+        }
+      ],
+      "depth": "FULL_BODY;native owner/mirror/reference/import validation, exact grounding replay",
+      "blob": "44ac07840e38cf0ed57f5bea3d2796792b962fd0"
+    },
+    {
+      "path": "src/devtools/context/localization/generation/generate.py",
+      "sha256": "536d406eb5d30f7c66c3dccff9bd1ed4bf6dfdd2e319ad9c69bd5696b99c78c6",
+      "functions": [
+        {
+          "name": "generate_witness_hypotheses",
+          "line": 73,
+          "end": 118
+        },
+        {
+          "name": "_validate_projection_inputs",
+          "line": 121,
+          "end": 138
+        },
+        {
+          "name": "_validate_recipes",
+          "line": 141,
+          "end": 166
+        },
+        {
+          "name": "_attempt_recipe",
+          "line": 169,
+          "end": 207
+        },
+        {
+          "name": "_fixed_disposition",
+          "line": 210,
+          "end": 213
+        },
+        {
+          "name": "_attempt_family",
+          "line": 216,
+          "end": 282
+        },
+        {
+          "name": "_admit_fixed_member",
+          "line": 285,
+          "end": 310
+        },
+        {
+          "name": "_attempt_branch",
+          "line": 313,
+          "end": 365
+        },
+        {
+          "name": "_project",
+          "line": 368,
+          "end": 437
+        },
+        {
+          "name": "_make_member",
+          "line": 440,
+          "end": 488
+        },
+        {
+          "name": "_match_target",
+          "line": 491,
+          "end": 495
+        }
+      ],
+      "depth": "LINES73-252,286-492;recipe/frame/grounding replays, branch member admission, source projection and source support joins; omitted middle family bound details already prior reviewed, no new whole-file credit",
+      "blob": "ab5c0cb50f581899080e767bef71768e86b1e393"
+    },
+    {
+      "path": "src/devtools/context/localization/grounding/resolve.py",
+      "sha256": "ebc18bbf1498d861bd09f24b38e482a4abf127a652b46b5eecc22d62828e899f",
+      "functions": [
+        {
+          "name": "ground_task_anchor",
+          "line": 54,
+          "end": 96
+        },
+        {
+          "name": "_ground_resource",
+          "line": 99,
+          "end": 124
+        },
+        {
+          "name": "_ground_module",
+          "line": 127,
+          "end": 149
+        },
+        {
+          "name": "_ground_declaration",
+          "line": 152,
+          "end": 212
+        },
+        {
+          "name": "_ground_method",
+          "line": 215,
+          "end": 266
+        },
+        {
+          "name": "_candidate_disposition",
+          "line": 269,
+          "end": 278
+        },
+        {
+          "name": "_account",
+          "line": 281,
+          "end": 299
+        },
+        {
+          "name": "_referent_key",
+          "line": 302,
+          "end": 308
+        },
+        {
+          "name": "_validate_universe",
+          "line": 311,
+          "end": 343
+        }
+      ],
+      "depth": "LINES152-213;source-syntax selection distinct from runtime binding; rest prior audit not repeated",
+      "blob": "34cd84a66560c4def144c07117271ded9d65aec5"
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "sha256": "c0abfb8ec0251605d4d1c6aa36566b9feadadc034b8c868aa9559740434acd63",
+      "functions": [
+        {
+          "name": "_schema",
+          "line": 81,
+          "end": 129
+        },
+        {
+          "name": "context_tool_definitions",
+          "line": 168,
+          "end": 246
+        },
+        {
+          "name": "__init__",
+          "line": 75,
+          "end": 78
+        },
+        {
+          "name": "__init__",
+          "line": 255,
+          "end": 282
+        },
+        {
+          "name": "reference",
+          "line": 284,
+          "end": 297
+        },
+        {
+          "name": "definitions",
+          "line": 300,
+          "end": 307
+        },
+        {
+          "name": "_observe",
+          "line": 309,
+          "end": 322
+        },
+        {
+          "name": "_index",
+          "line": 324,
+          "end": 338
+        },
+        {
+          "name": "check_current",
+          "line": 340,
+          "end": 348
+        },
+        {
+          "name": "accept_source",
+          "line": 350,
+          "end": 413
+        },
+        {
+          "name": "accept_transaction",
+          "line": 415,
+          "end": 518
+        },
+        {
+          "name": "validate",
+          "line": 520,
+          "end": 558
+        },
+        {
+          "name": "dispatch",
+          "line": 560,
+          "end": 579
+        },
+        {
+          "name": "refusal",
+          "line": 581,
+          "end": 606
+        },
+        {
+          "name": "_metadata",
+          "line": 608,
+          "end": 623
+        },
+        {
+          "name": "execute",
+          "line": 625,
+          "end": 744
+        },
+        {
+          "name": "_read",
+          "line": 746,
+          "end": 796
+        },
+        {
+          "name": "observed",
+          "line": 798,
+          "end": 800
+        },
+        {
+          "name": "observed_matches",
+          "line": 802,
+          "end": 834
+        },
+        {
+          "name": "_navigation",
+          "line": 836,
+          "end": 846
+        },
+        {
+          "name": "_reference_analysis",
+          "line": 848,
+          "end": 878
+        },
+        {
+          "name": "_relationships",
+          "line": 880,
+          "end": 913
+        }
+      ],
+      "depth": "LINES625-744,836-end;actual native source/search/map/relationship dispatch and source analysis ownership; prior observation/edit scope conclusions retained",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211"
+    },
+    {
+      "path": "src/devtools/context/python/function/materialization.py",
+      "sha256": "6bcc26800d51ab62712d4fd78664b0f6db2af1cbcbd78aa57ea6415975e9b42b",
+      "functions": [
+        {
+          "name": "materialize_python_function_disclosure_source",
+          "line": 69,
+          "end": 102
+        },
+        {
+          "name": "_extract_source_segment",
+          "line": 105,
+          "end": 133
+        },
+        {
+          "name": "_absolute_byte_offset",
+          "line": 136,
+          "end": 157
+        },
+        {
+          "name": "_semantic_digest",
+          "line": 160,
+          "end": 167
+        },
+        {
+          "name": "identity",
+          "line": 50,
+          "end": 66
+        }
+      ],
+      "depth": "Canonical _extract_source_segment and errors used as independently verified physical-line/UTF8 reference; prior owner inspection retained, no new fixture credit",
+      "blob": "a6cf91d35ba232808eaef9af1e2bb091b50be391"
+    }
+  ],
+  "credit": "No84 current fixture or177older-version credit transferred. AST functions locate reviewed bodies, not automatic proof of semantic inspection. Alias/graph/proof synthetic tests actual13PASS;2NumPy-only unavailable; initial sandbox temp failures retained."
+}

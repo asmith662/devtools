@@ -1,9 +1,9 @@
 # Repository Intelligence, Retrieval, Localization and Context code audit
 
-Latest depth overlay: [R1 identifier retrieval, diagnostics and BM25 sensitivity](ri-lexical-sensitivity-audit.md).
-The exact42 selected paths/blobs are reviewed;395/606 experimental paths
-now have applicable mechanism/export review,211 remain. Current-fixture and
-older-version obligations remain separate. See the exact78-path next cohort
+Latest depth overlay: [obligation acquisition, structural candidates and shared verification](ri-acquisition-structural-verification-audit.md).
+The exact78 selected paths/blobs are reviewed;473/606 experimental paths
+now have applicable mechanism/export review,133 remain. Current-fixture and
+older-version obligations remain separate. See the exact37-path next cohort
 in the new overlay; this does not complete historical RI review.
 The original census below remains dated evidence; RI is not fully audited.
 

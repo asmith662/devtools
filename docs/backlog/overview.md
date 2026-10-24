@@ -306,3 +306,26 @@ and the unsafe sensitivity replacements remain intentional non-adoption; known
 Graph3/U2/binding/normalization bugs keep their separate pending scopes. Previously
 delivered physical-line repairs await operator reconciliation, not rediscovery.
 No approval, B-number, implementation grant, dispatch or automatic closure follows.
+
+## RI acquisition and shared-verification audit intake
+
+The [78-path source/evidence audit](../research/ri-acquisition-structural-verification-audit.md)
+adds four distinct **PENDING_REVIEW** bug proposals:
+
+- [f85c4e7f](proposals/f85c4e7f-b5a4-4187-b80d-8a85aa200369/proposal.json): experiment-local physical-line/UTF-8 source-span correctness, distinct from the delivered production repair.
+- [4742b0a2](proposals/4742b0a2-5e42-483d-95c5-09eac6efb0af/proposal.json): ambiguous entered operation must not be declared unentered from zero successful-return count.
+- [9c7dff72](proposals/9c7dff72-ea91-4db3-a9a7-fb25971ec00a/proposal.json): Case4 required-resource partition includes413 non-required resources; preserve original report and supply versioned correction/erratum.
+- [d183d412](proposals/d183d412-73c8-490c-8f02-a4dc8f3bb17d/proposal.json): marginal obligation/unit gains must not require a globally new resource; retained Case8 marginal totals remain qualified as agreeing.
+
+[Eight advisory updates](../research/code-audit/ri-acquisition-intake.json) distinguish
+reviewed-roster limits, delegable independent review and a future agent-proposal
+milestone in15bae0a6 from implementation approval. Exact-locator, measured reuse,
+application cohesion, fixture, binding-verifier, Graph3 report-assurance and custody
+records retain their distinct scopes. The Case9 pinned instruction remains missing;
+no reconstruction is authorized. Source-span fixes already delivered in a0a6c224
+and supported binding-verifier subsets warrant operator reconciliation through
+the existing process, not automatic approval/closure or rediscovery as uninvestigated.
+The pending0182a013 diagnostic-ranking defect and other known bugs are unchanged.
+
+These are intake and append-only evidence, not approved B-number stories,
+implementation grants, dispatches or parent completion. Frozen science is unchanged.

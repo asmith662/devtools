@@ -1,9 +1,9 @@
 # Roadmap
 
-Current deep-review checkpoint: [R1 identifier retrieval, diagnostics and BM25 sensitivity](research/ri-lexical-sensitivity-audit.md).
+Current deep-review checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md).
 The following reconciliation inventory is historical, not comprehensive code
-review completion. The42-path cohort is now reviewed; continue the exact78-path
-Cases0004–0008 and shared verification cohort before leaving RI. The211 remaining experimental
+review completion. The78-path cohort is now reviewed; continue the exact37-path
+structural-discrimination/reviewer cohort before leaving RI. The133 remaining experimental
 paths,84 current-fixture gaps and177 older versions remain explicit;
 no retrieval policy or protected-main promotion is authorized by audit findings.
 

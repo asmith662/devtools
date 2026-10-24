@@ -201,3 +201,27 @@ remain bounded original conclusions. Native canonical BM25 is consumed; these
 experimental policies and gold-conditioned diagnostics are not adopted rankers.
 The whole-task/obligation authorship seam requires the explicit maintainer
 decision above; scoped readiness is never proof of exhaustive task decomposition.
+
+## Acquisition structural and verification overlay
+
+The [Cases0004–0008 and shared verification report](../ri-acquisition-structural-verification-audit.md)
+starts at `9ecf3ff81933e84b5300ada87164b9e2afca13d3`. Original scientific
+source, reports, judgments, forensics and all earlier ledgers remain unchanged.
+
+| Artifact | Scope and depth |
+| --- | --- |
+| [ri-acquisition-summary.json](ri-acquisition-summary.json) |78 paths/78 blobs;74 substantive paths including23 complete test/fixture modules, four namespace surfaces; five primary case policies and seven shared verification responsibility groups. Cumulative473/606,133 remain. |
+| [ri-acquisition-experiments.jsonl](ri-acquisition-experiments.jsonl) | Same606-path universe; exactly78 applicable full-body dispositions and681 function cursors, distinct original/recovery roles, test/consumer/backlog scopes. All other prior records unchanged. |
+| [ri-acquisition-tests-and-dependencies.json](ri-acquisition-tests-and-dependencies.json) |23 cohort test modules, exact dependency/source bodies or targeted ranges. No transferred84 current-fixture or177 older-version credit. |
+| [ri-acquisition-artifact-identities.json](ri-acquisition-artifact-identities.json) |193 retained byte identities,71 member checks,22 original ancestor anchors,934 Git-object/member checks,2588 resource occurrences and exact ordered population joins. Case7 physical mixed newlines versus Git LF equivalence explicitly separated. No pickle or scientific replay. |
+| [ri-acquisition-probes.json](ri-acquisition-probes.json) | Full independent source/results:25 source-span mismatches/nine ordinary controls, one ambiguous recovery reset, Case4 required-population leakage and Case8 cross-obligation marginal-unit counterexample. Actual retained-field versus synthetic impact qualified. |
+| [ri-acquisition-intake.json](ri-acquisition-intake.json) | Four distinct new pending bugs; eight append-only advisory updates. Existing approvals, grants, payloads and statuses preserved. |
+| [ri-acquisition-next-cohort.json](ri-acquisition-next-cohort.json) | Exact37 remaining structural-discrimination and Case0017–0019 reviewer/packet paths; all133 remaining experimental paths also enumerated. Separate84 current-fixture/177older-version obligations retained. |
+| [ri-acquisition-checkpoint.json](ri-acquisition-checkpoint.json) | Changed documentation/Intake identities and actual focused/layout/link/identity/Intake/preservation validation. Containing commit binds this file's identity. |
+
+All78 exact historical blobs also occur on main; that is archive presence, not
+production adoption. Positive source facts differ from unpromoted routing,
+candidate expansion and gold-conditioned completion policies. The obligation
+coverage recommendation remains unapproved; this checkpoint adds delegable
+review and explicit future agent-proposal/review requirements without implementing
+them. RI and the repository-wide audit remain incomplete.

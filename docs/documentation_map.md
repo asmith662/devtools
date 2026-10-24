@@ -1,13 +1,13 @@
 # Documentation Map
 
-Current audit checkpoint: [R1 identifier retrieval, diagnostics and BM25 sensitivity](research/ri-lexical-sensitivity-audit.md)
-and its [version-specific overlay](research/code-audit/README.md#lexical-diagnostics-and-sensitivity-overlay).
+Current audit checkpoint: [obligation acquisition, structural candidates and shared verification](research/ri-acquisition-structural-verification-audit.md)
+and its [version-specific overlay](research/code-audit/README.md#acquisition-structural-and-verification-overlay).
 The [task-obligation coverage decision preparation](research/task-obligation-coverage-decision.md)
 recommends a trusted reviewed native-consumer slice; it awaits maintainer decision
 and is not an accepted ADR or implementation grant.
 The explicitly authorized source-index repair is separately committed and
-protected-tested. Historical RI review is still incomplete:395/606 paths reviewed,
-211 remain. The exact78-path Localization composition/verification cohort is next. The final successor-session
+protected-tested. Historical RI review is still incomplete:473/606 paths reviewed,
+133 remain. The exact37-path structural-discrimination/reviewer cohort is next. The final successor-session
 dossier remains postponed; earlier checkpoint directions below are historical.
 
 The [completed production/experiment/architecture reconciliation](research/production-adoption-and-architecture-reconciliation.md)
