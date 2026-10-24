@@ -305,9 +305,7 @@ def test_absent_and_duplicate_facade_bindings_are_distinct_states(
         tmp_path,
         {
             "consumer.py": "from package import f\n",
-            "package/__init__.py": (
-                "from .first import f\nfrom .second import f\n"
-            ),
+            "package/__init__.py": ("from .first import f\nfrom .second import f\n"),
             "package/first.py": "def f():\n    pass\n",
             "package/second.py": "def f():\n    pass\n",
         },
@@ -476,9 +474,7 @@ def test_dunder_all_does_not_change_direct_binding_semantics(
         tmp_path,
         {
             "consumer.py": "from package import f\n",
-            "package/__init__.py": (
-                f"__all__ = {all_value}\nfrom .impl import f\n"
-            ),
+            "package/__init__.py": (f"__all__ = {all_value}\nfrom .impl import f\n"),
             "package/impl.py": "def f():\n    pass\n",
         },
     )

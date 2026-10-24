@@ -17,8 +17,7 @@ from devtools.models.interaction import (
 from devtools.tools import ToolDescriptor
 
 _SCHEMA = (
-    '{"type":"object","properties":{"path":{"type":"string"}},'
-    '"required":["path"]}'
+    '{"type":"object","properties":{"path":{"type":"string"}},"required":["path"]}'
 )
 
 

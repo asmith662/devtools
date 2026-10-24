@@ -231,11 +231,15 @@ additional filesystem acquisition or implicit inclusion of ignored/private files
 
 ```python
 from devtools.context.retrieval import (
-    build_source_search_index, search_repository_source,
+    build_source_search_index,
+    search_repository_source,
 )
 
 index = build_source_search_index(
-    snapshot, corpus=corpus, window_lines=40, overlap_lines=10,
+    snapshot,
+    corpus=corpus,
+    window_lines=40,
+    overlap_lines=10,
 )
 files = search_repository_source(index, query="timeout", mode="file")
 symbols = search_repository_source(index, query="with_timeout", mode="symbol")
@@ -252,18 +256,23 @@ inside a class to expand that way. Expansion and disclosure remain caller choice
 
 ```python
 from devtools.context.planning import (
-    SourceSearchDisclosureOption, choose_whole_resource_disclosure,
-    materialize_disclosure_plan, plan_disclosures,
+    SourceSearchDisclosureOption,
+    choose_whole_resource_disclosure,
+    materialize_disclosure_plan,
+    plan_disclosures,
 )
 
 choice = SourceSearchDisclosureOption("inspect timeout", enclosing_class)
 plan = plan_disclosures(
-    purpose="inspect timeout", snapshot=snapshot, disclosures=(choice,),
+    purpose="inspect timeout",
+    snapshot=snapshot,
+    disclosures=(choice,),
 )
 context = materialize_disclosure_plan(plan=plan, snapshot=snapshot)
 # Alternatively use the existing whole-resource option:
 file_choice = choose_whole_resource_disclosure(
-    purpose="inspect timeout", snapshot=snapshot,
+    purpose="inspect timeout",
+    snapshot=snapshot,
     resource_address=whole_file.resource.address,
 )
 ```

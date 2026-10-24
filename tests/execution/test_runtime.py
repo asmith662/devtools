@@ -117,7 +117,9 @@ def test_runtime_projects_conversation_message_and_materializes_response() -> No
     asyncio.run(exercise())
 
 
-def test_runtime_forwards_an_explicit_output_bound_without_treating_it_as_budget() -> None:
+def test_runtime_forwards_an_explicit_output_bound_without_treating_it_as_budget() -> (
+    None
+):
     """Runtime mechanically forwards the caller's one-interaction constraint."""
 
     async def exercise() -> None:

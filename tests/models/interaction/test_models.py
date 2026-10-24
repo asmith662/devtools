@@ -50,7 +50,8 @@ def test_maximum_output_tokens_allows_absence() -> None:
 
 @pytest.mark.parametrize("value", [None, True, False])
 def test_thinking_enabled_accepts_strict_optional_boolean(
-    *, value: bool | None,
+    *,
+    value: bool | None,
 ) -> None:
     """The thinking request control accepts only its typed values."""
     validate_thinking_enabled(value)

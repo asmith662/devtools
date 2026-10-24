@@ -283,7 +283,8 @@ def test_candidate_selection_invokes_no_other_pipeline_operation(
 
     monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
     monkeypatch.setattr(
         "devtools.context.python.function.declarations.derive_python_function_declarations",

@@ -143,7 +143,8 @@ def test_disclosure_does_not_acquire_parse_or_derive(
 
     monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
     monkeypatch.setattr(
         "devtools.context.python.function.declarations.derive_python_function_declarations",

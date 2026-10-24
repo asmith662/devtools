@@ -164,7 +164,8 @@ def test_retrieval_does_not_read_or_parse_source(
 
     monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
 
     result = retrieve_python_functions_by_exact_name(

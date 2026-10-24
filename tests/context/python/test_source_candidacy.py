@@ -202,7 +202,8 @@ def test_candidate_projection_performs_no_filesystem_or_pipeline_work(
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
     monkeypatch.setattr(
         "devtools.context.python.function.declarations.derive_python_function_declarations",

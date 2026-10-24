@@ -369,11 +369,13 @@ def _inspect_facade_bindings(
         else:
             kind = _direct_competing_kind(node, requested_name)
             if kind is not None:
-                competing.append(PythonFacadeCompetingBinding(
-                    name=requested_name,
-                    kind=kind,
-                    support=support,
-                ))
+                competing.append(
+                    PythonFacadeCompetingBinding(
+                        name=requested_name,
+                        kind=kind,
+                        support=support,
+                    ),
+                )
         nested_import = nested_import or _contains_nested_import(node, requested_name)
     return _FacadeSyntax(
         star_import=star_import,

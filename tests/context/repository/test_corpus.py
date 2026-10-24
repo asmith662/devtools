@@ -32,8 +32,14 @@ def _discovery() -> RepositoryResourceDiscovery:
         addresses=tuple(
             RepositoryResourceAddress(value)
             for value in (
-                ".gitignore", "README.md", "assets/image.bin", "config.json",
-                "notes", "pyproject.toml", "src/example.py", "uv.lock",
+                ".gitignore",
+                "README.md",
+                "assets/image.bin",
+                "config.json",
+                "notes",
+                "pyproject.toml",
+                "src/example.py",
+                "uv.lock",
             )
         ),
     )
@@ -81,7 +87,9 @@ def test_membership_is_discovery_grounded_heterogeneous_and_canonical() -> None:
     )
     assert definition.discovery is discovery
     assert tuple(map(str, definition.selected_addresses)) == (
-        "assets/image.bin", "src/example.py", "uv.lock",
+        "assets/image.bin",
+        "src/example.py",
+        "uv.lock",
     )
     assert tuple(map(str, definition.excluded_addresses)) == (
         ".gitignore",
@@ -154,6 +162,7 @@ def test_definition_construction_performs_no_acquisition_or_analysis(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Membership construction does not rediscover, observe, parse, or classify."""
+
     def fail(*_args: object, **_kwargs: object) -> None:
         msg = "Definition construction must not perform work."
         raise AssertionError(msg)

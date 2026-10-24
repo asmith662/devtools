@@ -20,8 +20,7 @@ class ToolDescriptor:
         """Validate and canonically retain one JSON Schema object."""
         if not self.name.strip() or self.name != self.name.strip():
             msg = (
-                "Tool descriptor name must be nonblank without surrounding "
-                "whitespace."
+                "Tool descriptor name must be nonblank without surrounding whitespace."
             )
             raise TypeError(msg)
         if not self.description.strip():

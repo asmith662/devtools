@@ -158,7 +158,8 @@ def test_duplicate_presentations_do_not_erase_independent_supports(
 ) -> None:
     snapshot, lexical, structural = _inputs(tmp_path)
     target_candidate = next(
-        item for item in structural.candidates
+        item
+        for item in structural.candidates
         if item.resource_address == RepositoryResourceAddress("pkg/target.py")
     )
     repeated_structural = replace(
@@ -168,7 +169,8 @@ def test_duplicate_presentations_do_not_erase_independent_supports(
     repeated_lexical = replace(lexical, matches=(*lexical.matches, lexical.matches[0]))
     result = _compose(snapshot, repeated_lexical, repeated_structural)
     target = next(
-        item for item in result.resources
+        item
+        for item in result.resources
         if item.resource.address == target_candidate.resource_address
     )
     assert len(target.structural_supports) == len(target_candidate.supports)
@@ -189,7 +191,8 @@ def test_rejects_stale_lexical_corpus_even_when_match_is_unchanged(
     snapshot, _lexical_result, _structural_result = _inputs(tmp_path)
     lexical = _lexical(tmp_path, snapshot, query_text="unrelated")
     (tmp_path / "pkg" / "target.py").write_text(
-        "def f():\n    return 1\n", encoding="utf-8",
+        "def f():\n    return 1\n",
+        encoding="utf-8",
     )
     newer = observe_repository_resources(
         repository=Repository(snapshot.repository_id),
