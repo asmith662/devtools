@@ -1,0 +1,310 @@
+{
+  "baseline": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+  "method": "Independently authored tiny actual files, retained observation, native module/import/reference derivation; never execute source fixtures or model inference.",
+  "implementation_blobs": {
+    "src/devtools/context/python/imports/members.py": "7c921183cb0171c131485f353829aba47334d131",
+    "src/devtools/context/python/references/declarations/resolution.py": "9ba17f48067a02b129c794dc8396dc1759f64375",
+    "src/devtools/context/python/modules/bindings.py": "ec44be1963e006e8191f6c5e52d239319c24387f",
+    "apps/qwen/context_tools.py": "e9c49e5f175512958584489f5ad22b5aaea75211"
+  },
+  "independent_reproducer": "\"\"\"Independent observed-source probe; never executes captured Python source.\"\"\"\nimport hashlib\nimport json\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\n\nfrom devtools.context.python.imports import derive_python_import_declarations, resolve_python_imported_member\nfrom devtools.context.python.modules import PythonModuleRoot, define_python_module_interpretation_universe, interpret_python_module_resources\nfrom devtools.context.python.modules.declarations import lookup_python_module_declaration\nfrom devtools.context.python.references import derive_python_declaration_references\nfrom devtools.context.repository.identity import Repository, RepositoryId\nfrom devtools.context.repository.observation import observe_repository_resources\nfrom devtools.context.repository.resource import RepositoryResourceAddress\nfrom devtools.core.paths import resolve_path\n\nCASES = {\n    \"plain_control\": \"\",\n    \"assignment_control\": \"f = 0\\n\",\n    \"simple_capture\": \"match 0:\\n    case f:\\n        pass\\n\",\n    \"star_capture\": \"match [0]:\\n    case [*f]:\\n        pass\\n\",\n    \"mapping_rest\": \"match {}:\\n    case {**f}:\\n        pass\\n\",\n    \"exception_alias\": \"try:\\n    raise ValueError()\\nexcept ValueError as f:\\n    pass\\n\",\n}\nrows = []\nfor case, suffix in CASES.items():\n    with TemporaryDirectory(prefix=\"ri-facade-probe-\") as temporary:\n        root = Path(temporary)\n        texts = {\"src/target.py\": \"def f():\\n    pass\\n\", \"src/facade.py\": \"from target import f\\n\" + suffix, \"src/use.py\": \"from facade import f\\nf()\\n\"}\n        for name, text in texts.items():\n            path = root / name\n            path.parent.mkdir(parents=True, exist_ok=True)\n            path.write_text(text, encoding=\"utf-8\", newline=\"\")\n        snapshot = observe_repository_resources(repository=Repository(RepositoryId.parse(\"00000000-0000-4000-8000-000000000099\")), root=resolve_path(root), addresses=tuple(RepositoryResourceAddress(name) for name in texts), maximum_resource_bytes=4096)\n        interpretations = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot(\"src\"), resource_addresses=tuple(item.address for item in snapshot.resources)).interpretations\n        universe = define_python_module_interpretation_universe(repository_id=snapshot.repository_id, interpretations=interpretations)\n        address = RepositoryResourceAddress(\"src/use.py\")\n        source = derive_python_import_declarations(snapshot, resource_address=address)\n        facade = next(item for item in interpretations if item.resource.address.value == \"src/facade.py\")\n        direct = lookup_python_module_declaration(snapshot, module=facade, declared_name=\"f\")\n        member = resolve_python_imported_member(snapshot, source, source.declarations[0], module_universe=universe)\n        references = derive_python_declaration_references(snapshot, resource_address=address, module_universe=universe)\n        assessment = next(item for item in references.assessments if item.source_text == \"f\")\n        fact = assessment.reference\n        row = dict(case=case, sources=texts, source_sha256={name: hashlib.sha256(text.encode()).hexdigest() for name, text in texts.items()}, snapshot=str(snapshot.id), direct=direct.outcome.value, member=member.outcome.value, reference_outcome=assessment.outcome.value, fact=None if fact is None else dict(identity=fact.identity, route=fact.route.value, direct_call=fact.direct_call, target_path=str(fact.target_resource.address), target_name=fact.target_declaration.declared_name, target_identity=fact.target_declaration.identity, target_source=fact.target_resource.content), expected_unique=case == \"plain_control\")\n        rows.append(row)\n        if case == \"plain_control\":\n            assert member.outcome.value == \"resolved\" and fact is not None\n        elif case == \"assignment_control\":\n            assert member.outcome.value != \"resolved\" and fact is None\n        else:\n            # Demonstrates actual incorrect maintained behavior, not the intended result.\n            assert member.outcome.value == \"resolved\" and fact is not None\nprint(json.dumps(rows, indent=2))\nPath(__file__).with_name(\"facade-probe-result.json\").write_text(json.dumps(rows, indent=2) + \"\\n\", encoding=\"utf-8\")\n",
+  "results": [
+    {
+      "case": "plain_control",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "582db25477c7e14227de6ed27b9565be83b1dbffbc43b99af6b9d8fbfeef59d0",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "d707c1bbf9c42164348dc72179ae598bbf5cdee1c4e34b29dd2f45aa4f2aa299",
+      "direct": "not-supported-declaration",
+      "member": "resolved",
+      "reference_outcome": "resolved",
+      "fact": {
+        "identity": "7547240e6322692221f5c8376874c538acc2d97552a1af1120e15a630e1f28af",
+        "route": "one-facade-imported-member",
+        "direct_call": true,
+        "target_path": "src/target.py",
+        "target_name": "f",
+        "target_identity": "019426222f4516d3cdb1534f7011f12cd66185b8da37f5afd424e1979bce2854",
+        "target_source": "def f():\n    pass\n"
+      },
+      "expected_unique": true
+    },
+    {
+      "case": "assignment_control",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\nf = 0\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "a4dbad7ae99dd714536e4b01c2866b58f37264fcd09d737acd3e6ef1834195b5",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "c1202558443c3ca38a6757525b965dbf949a2eca8f45ed0775f460f8d93daaf4",
+      "direct": "ambiguous",
+      "member": "unsupported",
+      "reference_outcome": "ambiguous-binding",
+      "fact": null,
+      "expected_unique": false
+    },
+    {
+      "case": "simple_capture",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\nmatch 0:\n    case f:\n        pass\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "b819adf4330ce82df36f799934c7fb8f2dde12ba7181e52bb0ab65dc34405ac5",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "cc4771455c534e40e7f6ec5d83079803773b658912e5b28bd1a62107a143e152",
+      "direct": "ambiguous",
+      "member": "resolved",
+      "reference_outcome": "resolved",
+      "fact": {
+        "identity": "6013d8b606dd5d31ab6e2b7311ceb0620847a008c6bd271b7b4f0a6d2c6535f0",
+        "route": "one-facade-imported-member",
+        "direct_call": true,
+        "target_path": "src/target.py",
+        "target_name": "f",
+        "target_identity": "2866103a446feea6befc9aaf20b9c5c2aefa850283d2649630aec079e22c491a",
+        "target_source": "def f():\n    pass\n"
+      },
+      "expected_unique": false
+    },
+    {
+      "case": "star_capture",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\nmatch [0]:\n    case [*f]:\n        pass\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "6786d14d6a1580ef0d102ce56516744fa59da2e2e9ff853cb4ddc298474169bd",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "cba0d96715a9ed179d5d22b8a3cc0f5ae34902cc3ae345aff5628505d947eb53",
+      "direct": "ambiguous",
+      "member": "resolved",
+      "reference_outcome": "resolved",
+      "fact": {
+        "identity": "41a5ab84563d35d6a4ce2a6e27139401654a2defce1f611af0b56f171911aea4",
+        "route": "one-facade-imported-member",
+        "direct_call": true,
+        "target_path": "src/target.py",
+        "target_name": "f",
+        "target_identity": "375ebb78b5729ae18de7b3a6c0c5de6dcb2e7534e586089c87c4611b6301e766",
+        "target_source": "def f():\n    pass\n"
+      },
+      "expected_unique": false
+    },
+    {
+      "case": "mapping_rest",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\nmatch {}:\n    case {**f}:\n        pass\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "d87ae27b23fe46c14ee062258579b21661ddb623cff5d830eb3428bb09449127",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "50cb36593c0144b176bc20dfb1edf8839cb66f7d19f1bdf0ab6f2c32cd6e0238",
+      "direct": "ambiguous",
+      "member": "resolved",
+      "reference_outcome": "resolved",
+      "fact": {
+        "identity": "328e29adbe96f0a3e08aaa78ba81651647958a384875e52f17aaea2cd6db70af",
+        "route": "one-facade-imported-member",
+        "direct_call": true,
+        "target_path": "src/target.py",
+        "target_name": "f",
+        "target_identity": "a9a773a7ad75488a7001de68f4a3dc52b8f6a0f3ea7c5c74c98aba78f00f54a3",
+        "target_source": "def f():\n    pass\n"
+      },
+      "expected_unique": false
+    },
+    {
+      "case": "exception_alias",
+      "sources": {
+        "src/target.py": "def f():\n    pass\n",
+        "src/facade.py": "from target import f\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\n",
+        "src/use.py": "from facade import f\nf()\n"
+      },
+      "source_sha256": {
+        "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+        "src/facade.py": "dd7839365d818aad7cb7f08a6c8bdab23764e5d6a85709b04774ffdd676058cd",
+        "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+      },
+      "snapshot": "5f5e47322bcd1c0e900f92819d2ef2b5d153792eb3b896f42009bad8a989dfd2",
+      "direct": "ambiguous",
+      "member": "resolved",
+      "reference_outcome": "resolved",
+      "fact": {
+        "identity": "efbd0949be2f778ef07063906cd946be3a1b50df44532db50e15190b759ea5a4",
+        "route": "one-facade-imported-member",
+        "direct_call": true,
+        "target_path": "src/target.py",
+        "target_name": "f",
+        "target_identity": "859ddf58e52edfc5dce3d6fe7f330e48f1fbc9e8b7c31f264a834b03719ba7ed",
+        "target_source": "def f():\n    pass\n"
+      },
+      "expected_unique": false
+    }
+  ],
+  "native_reproducer": "\"\"\"Deterministic real ContextTools path, no model, source execution or edits.\"\"\"\nimport asyncio\nimport hashlib\nimport json\nimport sys\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\n\nsys.path.insert(0, str(Path.cwd()))\nfrom apps.qwen.context_tools import ContextTools\nfrom apps.qwen.tasks import CodingTask\nfrom devtools.models.interaction import ModelToolCall\n\nasync def main():\n    rows = []\n    for label, suffix in [(\"plain_control\", \"\"), (\"capture\", \"match 0:\\n    case f:\\n        pass\\n\"), (\"exception_alias\", \"try:\\n    raise ValueError()\\nexcept ValueError as f:\\n    pass\\n\")]:\n        with TemporaryDirectory(prefix=\"ri-native-facade-\") as temporary:\n            root = Path(temporary)\n            texts = {\"src/devtools/target.py\": \"def f():\\n    pass\\n\", \"src/devtools/facade.py\": \"from devtools.target import f\\n\" + suffix, \"tests/test_use.py\": \"from devtools.facade import f\\nf()\\n\"}\n            for name, content in texts.items():\n                path = root / name\n                path.parent.mkdir(parents=True, exist_ok=True)\n                path.write_text(content, encoding=\"utf-8\", newline=\"\")\n            task = CodingTask(\"facade-probe\", \"Inspect the source relationship\", \"src/devtools/target.py\", (\"tests/test_use.py\",), \"457defb3e97770c6ef8db4b5faf681ebc202f0a9\", tuple((name, hashlib.sha256(text.encode()).hexdigest()) for name, text in texts.items()), tuple((name, \"f\", \"file\", \"none\") for name in texts), \"assert False\", context_mode=\"on-demand\", read_paths=(\"src/devtools/facade.py\",))\n            tools = ContextTools(root, task)\n            name = \"tests/test_use.py\"\n            version = str(next(r for r in tools.snapshot.resources if str(r.address) == name).content_identity)\n            observation = await tools.dispatch(ModelToolCall(\"source_relationships\", json.dumps(dict(path=name, version=version)), \"independent-probe\"))\n            assert len(observation[\"references\"]) == 1 and observation[\"references\"][0][\"route\"] == \"one-facade-imported-member\"\n            rows.append(dict(case=label, sources=texts, observation=observation, expected_unique=label == \"plain_control\", evidence_level=\"deterministic ToolRunner invocation; no autonomous model use\"))\n    Path(__file__).with_name(\"native-facade-result.json\").write_text(json.dumps(rows, indent=2)+\"\\n\", encoding=\"utf-8\")\n    print(json.dumps([dict(case=r[\"case\"], target=r[\"observation\"][\"references\"][0][\"target_path\"], expected_unique=r[\"expected_unique\"]) for r in rows]))\nasyncio.run(main())\n",
+  "native_results": [
+    {
+      "case": "plain_control",
+      "sources": {
+        "src/devtools/target.py": "def f():\n    pass\n",
+        "src/devtools/facade.py": "from devtools.target import f\n",
+        "tests/test_use.py": "from devtools.facade import f\nf()\n"
+      },
+      "observation": {
+        "operation": "source_relationships",
+        "repository": "ff9aaa0c-c2d6-462c-a069-d1187334a5b4",
+        "snapshot": "c36a8813f9df20e44fadb23541d12969d55e025c98df7cdaab2dbb485ca9743f",
+        "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+        "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+        "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+        "path": "tests/test_use.py",
+        "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+        "derivation": "cd8d5b4942f63be35587a7f4d286b222df5993b8ebb39797a2a78c19c784d979",
+        "references": [
+          {
+            "identity": "91bbe8caeba3231ce6776e947e86e807ecea42e2eec86a6c2669c3eebe0d92e7",
+            "from": {
+              "start_line": 2,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 1
+            },
+            "target_path": "src/devtools/target.py",
+            "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+            "target_declaration": "d5836e1f59a06440629f6633fe0ad09a7bfd8db50747c19d38a51d4d8ef1ac89",
+            "target_span": {
+              "start_line": 1,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 8
+            },
+            "direct_call": true,
+            "route": "one-facade-imported-member"
+          }
+        ],
+        "truncated": false,
+        "assessed": 1,
+        "resolved": 1
+      },
+      "expected_unique": true,
+      "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+    },
+    {
+      "case": "capture",
+      "sources": {
+        "src/devtools/target.py": "def f():\n    pass\n",
+        "src/devtools/facade.py": "from devtools.target import f\nmatch 0:\n    case f:\n        pass\n",
+        "tests/test_use.py": "from devtools.facade import f\nf()\n"
+      },
+      "observation": {
+        "operation": "source_relationships",
+        "repository": "c813ed4a-0fb4-42d1-bc22-7ca072ee2b60",
+        "snapshot": "bd7fba86ed1dbb6c36c6f93454cc98dbd0704bd5cb46c614453842d4ee91ce0a",
+        "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+        "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+        "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+        "path": "tests/test_use.py",
+        "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+        "derivation": "129c0141e2831cf5e8e08f3b8c0c8384d6504aa65f45e15630f963d5b1995623",
+        "references": [
+          {
+            "identity": "c36b741d765ac6d590cf10699d4c1e18a659440ceefafc93656943d32cab0599",
+            "from": {
+              "start_line": 2,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 1
+            },
+            "target_path": "src/devtools/target.py",
+            "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+            "target_declaration": "45d7f1234081f4141f0418f93c4c72436c987b8d21c5932d68f89b7260dfc56d",
+            "target_span": {
+              "start_line": 1,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 8
+            },
+            "direct_call": true,
+            "route": "one-facade-imported-member"
+          }
+        ],
+        "truncated": false,
+        "assessed": 1,
+        "resolved": 1
+      },
+      "expected_unique": false,
+      "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+    },
+    {
+      "case": "exception_alias",
+      "sources": {
+        "src/devtools/target.py": "def f():\n    pass\n",
+        "src/devtools/facade.py": "from devtools.target import f\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\n",
+        "tests/test_use.py": "from devtools.facade import f\nf()\n"
+      },
+      "observation": {
+        "operation": "source_relationships",
+        "repository": "a7299d6a-3bb1-406d-9ccc-7de65e786fb4",
+        "snapshot": "46775028c983f7dc9dfc4cebf58387433f36605fb8dc1e96053ce10ee3b128eb",
+        "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+        "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+        "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+        "path": "tests/test_use.py",
+        "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+        "derivation": "ef0be67c4bd1125ff50a1cc5a38f236173582b73875eb49d824149f8fbd92a94",
+        "references": [
+          {
+            "identity": "9a33c1ddd5cf0188a09affa5f426a2f245783837f7a917eff26422f5505556b4",
+            "from": {
+              "start_line": 2,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 1
+            },
+            "target_path": "src/devtools/target.py",
+            "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+            "target_declaration": "be624a4b28d7016e977dd4400f15acaa1c9c536782c6684447332777e0f6ed9d",
+            "target_span": {
+              "start_line": 1,
+              "start_column_utf8": 0,
+              "end_line": 2,
+              "end_column_utf8": 8
+            },
+            "direct_call": true,
+            "route": "one-facade-imported-member"
+          }
+        ],
+        "truncated": false,
+        "assessed": 1,
+        "resolved": 1
+      },
+      "expected_unique": false,
+      "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+    }
+  ],
+  "finding": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "limits": "Production false facts demonstrated. No claim of historical corruption, actual autonomous model invocation, edit-authority bypass or controlled effectiveness."
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "created_at": "2026-10-24T22:42:09.324099+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Prevent one-facade import fallback from overriding competing pattern or handler bindings",
+    "parent": "B-0002",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    "summary": "P1 maintained RI false-positive References. With actual observed target.py defining f, facade.py importing f then binding f through MatchAs, MatchStar, MatchMapping.rest or ExceptHandler.name, corrected direct module lookup refuses unique declaration truth, but resolve_python_imported_member returns RESOLVED. references.declarations.resolution._resolve overrides the direct refusal with ONE_FACADE and emits a direct-call Reference to target.f. Real ContextTools source_relationships dispatch also exposes the incorrect target for capture and handler cases. Six independently authored source fixtures include valid plain import and refusing ordinary-assignment controls. No source fixture executed, model invoked or edit-authority bypass established.",
+    "resources": [
+      "src/devtools/context/python/imports/members.py",
+      "src/devtools/context/python/references/declarations/resolution.py",
+      "src/devtools/context/python/modules/bindings.py",
+      "tests/context/python/imports/test_members.py",
+      "tests/context/python/references/declarations/test_analysis.py",
+      "apps/qwen/context_tools.py",
+      "tests/apps/qwen/test_context_tools.py"
+    ],
+    "evidence": [
+      "docs/research/ri-configuration-role-closure-audit.md",
+      "docs/research/code-audit/ri-config-role-probes.json"
+    ],
+    "benefit": "Bounded owner: one-facade imported-member resolution and its Reference fallback, separate from the delivered direct lookup/module-local/base correction. Fail closed on genuine competing bindings and preserve qualified support/reasons. Reuse the maintained non-Name binding extraction only with correct facade scope/traversal; never blindly scan nested local scopes. Acceptance: real retained-source independent regressions for simple/star/mapping-rest captures and exception aliases after facade import; unrelated/local names, unchanged sync/async facade and ordinary assignments remain correct; before/after/lifetime differences remain conservative rather than interpreted at runtime. No fallback may upgrade an authenticated competing-binding refusal into a positive Reference. Cover complete resolver-to-Reference-to-ContextTools ToolRunner composition with literal target/refusal expectations, stale/foreign inputs and stable provenance. Preserve syntactic declaration selection and edit authority. Run focused regressions, Ruff/format, strict mypy and final-tree protected 100% branch coverage before normal PR promotion.",
+    "uncertainty": "Observed at main457def and actual maintained APIs; synthetic tiny source repositories establish production code-path correctness failure, not observed historical corruption or autonomous engineering harm. No source fix in this audit: separate bounded repair requires permanent regressions/full gate. Pattern capture and exception alias lifetimes differ; do not erase those distinctions or build a general scope evaluator. Target-module rebinding and other unsupported forms require explicit inspection during the bounded repair, not an assertion that they are already fixed. Original proposal16b27e74 remains implemented and merged for its three-owner scope; this is a distinct facade/fallback responsibility not included in that patch.",
+    "dependencies": [
+      "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "B-0008"
+    ]
+  },
+  "payload_sha256": "79af9bdebcf8baa3b43cb3d1a4bac1dbb8acd22178a8e7caf9ec009ec3f603ff"
+}

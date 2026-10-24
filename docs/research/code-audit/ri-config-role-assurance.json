@@ -1,0 +1,978 @@
+{
+  "baseline": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+  "branch": "audit/ri-config-role-assurance-20261024",
+  "manifest": {
+    "path": "docs/research/code-audit/ri-assurance-next-cohort.json",
+    "blob": "67b979be06f8a6e147c48af8bba45c48852d9c0a",
+    "physical_sha256": "87c81ce747e47e61113336dfd368402d6f8a95a3204f7d3faffb900db219b335"
+  },
+  "current_fixtures": [
+    {
+      "path": "tests/context/localization/roles/helpers.py",
+      "blob": "c80475e3bd960547de68806861cc47b348e25ffa",
+      "git_sha256": "7167883b386c380cc707d3deb3b72a0d78988e90ffeca5828d36918edd2d7b42",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "snapshot",
+          "line": 24,
+          "end": 37
+        },
+        {
+          "name": "configuration_targets",
+          "line": 40,
+          "end": 64
+        }
+      ],
+      "findings": "Real filesystem observation and explicit module/configuration frames; despite synthetic title no fabricated snapshots. Default platform write_text newline behavior is not a byte-exact source oracle. No universal helper warranted.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/localization/roles/test_configuration.py",
+      "blob": "38ff83661f25d1f7998828837124d042cd982dd9",
+      "git_sha256": "09e1f9568fb746b6caa9b4ccf6093d480e7b98b2886813ff356fb557612a8d80",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_supported_metadata_tables_and_targets_have_distinct_native_bases",
+          "line": 23,
+          "end": 122
+        },
+        {
+          "name": "test_absent_malformed_and_unsupported_declarations_abstain",
+          "line": 129,
+          "end": 147
+        },
+        {
+          "name": "test_pattern_forms_and_missing_target_scope_remain_explicit",
+          "line": 158,
+          "end": 180
+        },
+        {
+          "name": "test_globs_are_bounded_case_sensitive_observations_and_conventions_survive",
+          "line": 183,
+          "end": 221
+        },
+        {
+          "name": "test_nested_configuration_uses_native_tool_root_and_retained_content",
+          "line": 224,
+          "end": 244
+        }
+      ],
+      "findings": "Literal metadata/testpath/glob positive roles; case-sensitive bounded matching, duplicate support/order, malformed/unsupported/no-target/nested-root and retained-source cases. Pytest addopts stays opaque; TEST hint is not collection, relevance or witness satisfaction.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/localization/roles/test_dependency_groups.py",
+      "blob": "4fbfca690978c9bd3d5c55e356afdbb78a856167",
+      "git_sha256": "21e6972db130455cbe27e53e5b6d722bb706b7e2bb6507a78b3a832146f9ddb2",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_names_do_not_infer_roles_and_native_source_is_preserved",
+          "line": 31,
+          "end": 67
+        },
+        {
+          "name": "test_native_presence_is_distinct_from_absence_without_filename_hints",
+          "line": 78,
+          "end": 104
+        },
+        {
+          "name": "test_unsupported_groups_abstain_but_native_evidence_is_retained",
+          "line": 118,
+          "end": 137
+        },
+        {
+          "name": "test_mixed_siblings_preserve_independent_support_kinds",
+          "line": 140,
+          "end": 190
+        },
+        {
+          "name": "test_changed_or_forged_native_groups_are_rejected",
+          "line": 193,
+          "end": 233
+        }
+      ],
+      "findings": "Raw group setting identity, names do not imply test/lint/doc roles; valid siblings, empty/absent/unsupported and normalized collisions, forged/stale native replay independently covered. No package installation or group inclusion interpretation.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/localization/roles/test_evidence.py",
+      "blob": "cd518c53d8d315c6f188ce47b6a5aaf191d6058e",
+      "git_sha256": "91785f9cc667664c13327a28742b5665b93534f7273f318b57544b61a4d7593e",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_intrinsic_conventions_are_multi_label_and_not_exclusion",
+          "line": 34,
+          "end": 97
+        },
+        {
+          "name": "test_native_structural_supports_and_duplicate_input_normalization",
+          "line": 100,
+          "end": 180
+        },
+        {
+          "name": "test_empty_and_duplicate_resource_frames",
+          "line": 183,
+          "end": 191
+        }
+      ],
+      "findings": "Real observation/native modules/membership/mirrors and literal positive roles, independent supports/dedup/order/empty/foreign/unknown resources. No confidence, exclusion, obligation truth or autonomous consumer claim.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_configuration.py",
+      "blob": "45005371153c6cc5894abbe327593f88bbb488a7",
+      "git_sha256": "91ca3d7bd64063e79a30b417853e5627292c8098e17e3573b4c5c6404086d8ff",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_snapshot",
+          "line": 38,
+          "end": 50
+        },
+        {
+          "name": "_resolve",
+          "line": 53,
+          "end": 81
+        },
+        {
+          "name": "test_actual_project_selectors_retained_content_and_coverage",
+          "line": 84,
+          "end": 127
+        },
+        {
+          "name": "test_separate_nested_config_and_command_frames_and_duplicates",
+          "line": 130,
+          "end": 190
+        },
+        {
+          "name": "test_unsupported_literals",
+          "line": 215,
+          "end": 224
+        },
+        {
+          "name": "test_invalid_toml_never_publishes_declarations_or_facts",
+          "line": 228,
+          "end": 237
+        },
+        {
+          "name": "test_unsupported_selector_forms_and_dynamic_readme",
+          "line": 251,
+          "end": 259
+        },
+        {
+          "name": "test_empty_arrays_absent_keys_and_non_table_nodes",
+          "line": 262,
+          "end": 284
+        },
+        {
+          "name": "test_coverage_competing_routes_roots_and_many_members",
+          "line": 301,
+          "end": 325
+        },
+        {
+          "name": "test_coverage_path_only_and_module_without_path_frame",
+          "line": 328,
+          "end": 345
+        },
+        {
+          "name": "test_reject_foreign_or_stale_dependencies",
+          "line": 364,
+          "end": 420
+        },
+        {
+          "name": "test_default_frame_missing_address_and_dependency_changes",
+          "line": 423,
+          "end": 455
+        },
+        {
+          "name": "test_dynamic_readme_preserves_static_syntax_and_ordinals",
+          "line": 458,
+          "end": 483
+        },
+        {
+          "name": "test_readme_missing_exact_target_never_selects_prefix",
+          "line": 486,
+          "end": 501
+        },
+        {
+          "name": "test_frame_order_does_not_change_derivation_or_fact_order",
+          "line": 504,
+          "end": 522
+        }
+      ],
+      "findings": "Real retained TOML, explicit roots/selectors, malformed/non-table/dynamic/unsupported distinctions, source-relative scopes, module alternatives, foreign/forged dependencies and unchanged retained source. One repo-pyproject smoke is configuration-coupled; many literal fixtures independently protect semantics. Impossible prefix/exact collision deliberately isolates resolver arithmetic.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_dependency_groups.py",
+      "blob": "5ae1cb3d6626b4e78558f7007b7a3fc7e37f874a",
+      "git_sha256": "7d3a20f32281135cae6c0f0be796a6e894776fa7de4f264b0246138198b8c5ef",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_ordered_raw_strings_and_empty_groups",
+          "line": 20,
+          "end": 60
+        },
+        {
+          "name": "test_unsupported_groups_retain_whole_group_and_valid_sibling",
+          "line": 77,
+          "end": 94
+        },
+        {
+          "name": "test_invalid_names_are_qualified_without_dropping_original_key",
+          "line": 98,
+          "end": 116
+        },
+        {
+          "name": "test_collisions_are_all_unsupported_and_original_names_preserved",
+          "line": 119,
+          "end": 140
+        },
+        {
+          "name": "test_absence_empty_table_and_unsupported_parent",
+          "line": 152,
+          "end": 173
+        },
+        {
+          "name": "test_malformed_input_cannot_claim_absence",
+          "line": 180,
+          "end": 185
+        },
+        {
+          "name": "test_dependency_settings_are_authenticated_by_resolution",
+          "line": 188,
+          "end": 228
+        }
+      ],
+      "findings": "Raw ordered dependency arrays including invalid requirement strings; grammar/normalization collisions, no partial extraction, valid siblings, empty/absent/unsupported, setting JSON shapes and native replay. Not a PEP resolver or installer.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_obstructions.py",
+      "blob": "109fa9c3f33b9a42a118cfa4e650d0a6e638e56b",
+      "git_sha256": "da74a0c762811b5b7e7d6f6f715892904cbff80879ea8acc5561f31e46d719e4",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_each_non_table_parent_retains_full_selector_provenance",
+          "line": 33,
+          "end": 65
+        },
+        {
+          "name": "test_valid_adjacent_branches_still_resolve",
+          "line": 68,
+          "end": 98
+        },
+        {
+          "name": "test_genuine_absence_is_not_an_obstruction",
+          "line": 105,
+          "end": 109
+        },
+        {
+          "name": "test_present_unsupported_leaf_retains_existing_reason",
+          "line": 120,
+          "end": 137
+        },
+        {
+          "name": "test_empty_array_and_dynamic_readme_survive_adjacent_obstruction",
+          "line": 140,
+          "end": 169
+        },
+        {
+          "name": "test_malformed_toml_never_claims_absence_or_obstructions",
+          "line": 173,
+          "end": 182
+        },
+        {
+          "name": "test_obstruction_identity_tracks_exact_retained_configuration",
+          "line": 185,
+          "end": 199
+        }
+      ],
+      "findings": "All strict selector parent shapes, mixed valid siblings, malformed/empty/dynamic branches and retained/native identities. Enum-derived generic expected selector inventory is qualified by independent literal branch cases. Non-table is never absence.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/python/project_configuration/test_settings.py",
+      "blob": "c3e25e8a0e3307a8080d1ff0d2d57a8fb690aecb",
+      "git_sha256": "ca4facf8c2a67810bc6fde40e42abc1d4649e8f9f5ad3a3df8d0f4252b08ff5d",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_analyze",
+          "line": 23,
+          "end": 28
+        },
+        {
+          "name": "test_supported_build_project_and_tool_declarations",
+          "line": 31,
+          "end": 92
+        },
+        {
+          "name": "test_pytest_patterns_exclusions_and_opaque_arguments",
+          "line": 95,
+          "end": 122
+        },
+        {
+          "name": "test_supported_absence_is_bounded_to_named_keys",
+          "line": 126,
+          "end": 136
+        },
+        {
+          "name": "test_malformed_toml_cannot_claim_setting_absence",
+          "line": 140,
+          "end": 147
+        },
+        {
+          "name": "test_unsupported_shapes_keep_source_and_do_not_claim_absence",
+          "line": 171,
+          "end": 187
+        },
+        {
+          "name": "test_entrypoint_tables_invalid_shapes_reserved_groups_and_empty_tables",
+          "line": 190,
+          "end": 223
+        },
+        {
+          "name": "test_dynamic_values_are_declarations_not_effective_metadata",
+          "line": 226,
+          "end": 242
+        },
+        {
+          "name": "test_identity_binds_snapshot_repository_resource_shape_and_retained_content",
+          "line": 245,
+          "end": 283
+        },
+        {
+          "name": "test_dynamic_entrypoints_are_retained_without_effective_binding_claims",
+          "line": 286,
+          "end": 312
+        },
+        {
+          "name": "test_resolution_rejects_forged_or_duplicate_setting_declarations",
+          "line": 315,
+          "end": 334
+        },
+        {
+          "name": "test_setting_identity_distinguishes_absent_value_and_empty_string",
+          "line": 337,
+          "end": 339
+        },
+        {
+          "name": "test_table_order_does_not_change_setting_order",
+          "line": 342,
+          "end": 350
+        }
+      ],
+      "findings": "Literal metadata/build/pytest/entrypoint setting shapes, unsupported/absent/dynamic/reserved distinctions, JSON key/value tuple identities, actual native replay refuses forged/duplicate settings. No registration execution or environment truth.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/python/test_source_candidacy.py",
+      "blob": "de99ce62b6c6cd648f22f3ada3146349163cf1f6",
+      "git_sha256": "03b46e7c57c620a47e82f98c766ae7fed7c7cf90670eef5f6f95046f5683b179",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 42,
+          "end": 44
+        },
+        {
+          "name": "_discover",
+          "line": 47,
+          "end": 54
+        },
+        {
+          "name": "test_exact_dot_py_candidacy_preserves_discovery_order_and_address_values",
+          "line": 57,
+          "end": 83
+        },
+        {
+          "name": "test_discovery_candidates_compose_through_the_function_context_pipeline",
+          "line": 86,
+          "end": 162
+        },
+        {
+          "name": "test_candidate_zero_is_successful_and_bounded_to_discovered_addresses",
+          "line": 165,
+          "end": 179
+        },
+        {
+          "name": "test_candidate_projection_performs_no_filesystem_or_pipeline_work",
+          "line": 182,
+          "end": 236
+        },
+        {
+          "name": "forbidden",
+          "line": 190,
+          "end": 192
+        }
+      ],
+      "findings": "Real discovery/observation; lowercase .py convention, literal7-to4-to3-to1 pipeline, exact disclosure/request text, zero-success and projection-only monkeypatches. Token match is not declaration; constructed ModelRequest is not model invocation or edit authority.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/test_analysis.py",
+      "blob": "2a9c299e521c212b9d789dd4bd473beca5487dcc",
+      "git_sha256": "d724e29a381bbfb6b011b3371f43d0531a0db9376e4975e384f0e035e1de570e",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_heterogeneous_documents_use_one_baseline_lexical_mechanism",
+          "line": 19,
+          "end": 46
+        },
+        {
+          "name": "test_observations_preserve_order_repetition_casefolding_and_exact_spans",
+          "line": 49,
+          "end": 99
+        },
+        {
+          "name": "test_document_analysis_is_deterministic_and_independent_of_other_documents",
+          "line": 102,
+          "end": 118
+        },
+        {
+          "name": "test_empty_document_and_empty_collection_are_successful_zero_results",
+          "line": 121,
+          "end": 131
+        },
+        {
+          "name": "test_analysis_performs_no_acquisition_parsing_or_retrieval",
+          "line": 134,
+          "end": 166
+        },
+        {
+          "name": "test_analysis_exposes_no_statistics_or_retrieval_state",
+          "line": 169,
+          "end": 188
+        },
+        {
+          "name": "fail",
+          "line": 140,
+          "end": 142
+        }
+      ],
+      "findings": "Literal Unicode word/casefold/character spans, repeats/order/locality and empty synthetic documents independently protect tokenizer arithmetic. No identifier splitting or source authenticity claim; helper collision retains existing a88167f9 disposition.",
+      "consumer": "Framework/source Context request composition; no new observed model use",
+      "report": "docs/research/ri-configuration-role-closure-audit.md"
+    }
+  ],
+  "historical_versions": [
+    {
+      "path": "src/devtools/context/localization/roles/configuration.py",
+      "blob": "485f158d5fd22b65364fc2c8c92827fe057e9022",
+      "git_sha256": "2aecd46e4a1e3cc38916654afc0f13e77eaa94528808e49334934fa63fadaa63",
+      "current_blob": "8eb4aa4529183be340764186ba9d910c8b6241d5",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "configuration_supports",
+          "line": 39,
+          "end": 88
+        },
+        {
+          "name": "_analysis_supports",
+          "line": 91,
+          "end": 144
+        },
+        {
+          "name": "_declaration_roles",
+          "line": 147,
+          "end": 166
+        },
+        {
+          "name": "_pattern_supports",
+          "line": 169,
+          "end": 228
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "Full configuration-role support/target/limit body. Current adds dependency-groups -> PROJECT_CONFIGURATION only; coherent old producer had no group settings. Do not infer historical corruption from mixing producer versions."
+    },
+    {
+      "path": "src/devtools/context/localization/roles/models.py",
+      "blob": "31ae660b644d1135803314bc03103553bfa6a5f7",
+      "git_sha256": "0e2e5a930158979ccc85932802fe806a3b22b04bed282557f4f0e52773bcd6a9",
+      "current_blob": "52b20451de0dbe59a914e675623805cba1cabf26",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "RepositoryRoleKind",
+          "line": 32,
+          "end": 43
+        },
+        {
+          "name": "RoleSupportKind",
+          "line": 46,
+          "end": 67
+        },
+        {
+          "name": "RepositoryRoleEvidenceInputs",
+          "line": 71,
+          "end": 78
+        },
+        {
+          "name": "RepositoryRoleSupport",
+          "line": 82,
+          "end": 99
+        },
+        {
+          "name": "RepositoryRoleLimitation",
+          "line": 103,
+          "end": 109
+        },
+        {
+          "name": "ResourceRoleEvidence",
+          "line": 113,
+          "end": 135
+        },
+        {
+          "name": "RepositoryRoleEvidenceView",
+          "line": 139,
+          "end": 177
+        },
+        {
+          "name": "digest",
+          "line": 180,
+          "end": 184
+        },
+        {
+          "name": "identity",
+          "line": 91,
+          "end": 99
+        },
+        {
+          "name": "identity",
+          "line": 124,
+          "end": 135
+        },
+        {
+          "name": "for_resource",
+          "line": 152,
+          "end": 160
+        },
+        {
+          "name": "for_role",
+          "line": 162,
+          "end": 164
+        },
+        {
+          "name": "supports_for",
+          "line": 166,
+          "end": 177
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "Full role/support/query models and deterministic length-framed digest; current semantics v2 versus v1 binds dependency-group role behavior. Field/API behavior otherwise retained; version delta meaningful."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/declarations.py",
+      "blob": "0d7818293dd6783ea27a9c7c6e69d3dfb9bfce60",
+      "git_sha256": "42ffe5f4a8dd5be210404332e0b357602c762bacaaff40b00dbe5e81e66331ad",
+      "current_blob": "512a1138b347fd206b9f2d7414d4201c0763c504",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "analyze_python_project_configuration",
+          "line": 23,
+          "end": 93
+        },
+        {
+          "name": "_at",
+          "line": 96,
+          "end": 101
+        },
+        {
+          "name": "_selector_declarations",
+          "line": 104,
+          "end": 134
+        }
+      ],
+      "disposition": "HISTORICAL_DEFECT_SUPERSEDED",
+      "findings": "v2 full TOML/readme/selector/settings body: _at conflates absent keys with non-table parents. Current sentinels correctly retain obstruction, protected by literal obstruction regressions. No backport/obsolete API revival."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/declarations.py",
+      "blob": "c3150c4dbbf98b8c4ecaaec6c50f85bdfa5ac134",
+      "git_sha256": "2cd99eaf097d39b4ecbedca06fa6699c89006e1ac402de26743b8eafb54eb1ea",
+      "current_blob": "512a1138b347fd206b9f2d7414d4201c0763c504",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "analyze_python_project_configuration",
+          "line": 28,
+          "end": 98
+        },
+        {
+          "name": "_selector_declarations",
+          "line": 101,
+          "end": 133
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "v3 complete declarations uses shared missing/non-table sentinels; no false-absence defect there. Current v4 uses expanded dependency-group setting producer. Source/parser/dependency derivation retained."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/declarations.py",
+      "blob": "d86c09c7cd14704493864a5fd3b5a5164cc5cc53",
+      "git_sha256": "3cbe2d0549af58769c07dd5445789fc8dd48bd9a993badbabac63e3cfe25effd",
+      "current_blob": "512a1138b347fd206b9f2d7414d4201c0763c504",
+      "prior_depth": "NOT_REVIEWED",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "analyze_python_project_configuration",
+          "line": 22,
+          "end": 102
+        },
+        {
+          "name": "_at",
+          "line": 105,
+          "end": 110
+        },
+        {
+          "name": "_selector_declarations",
+          "line": 113,
+          "end": 143
+        }
+      ],
+      "disposition": "HISTORICAL_DEFECT_SUPERSEDED",
+      "findings": "v1 complete six-selector TOML parser, entrypoint presence unsupported, no setting representation; _at loses non-table obstruction. Current raw settings/entrypoints and sentinel distinctions supersede; no unique useful unadopted behavior."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/models.py",
+      "blob": "16905ccfb114d5076ab560ec77ab4ef4c86a7696",
+      "git_sha256": "86b4328be3286c06feb7f13694d804a3d3878bf9afeeda134ae05ecfef985922",
+      "current_blob": "8141b6fdef6dd7f564612b11ae32b191bcc7a8e2",
+      "prior_depth": "NOT_REVIEWED",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "PythonConfigurationSelector",
+          "line": 22,
+          "end": 30
+        },
+        {
+          "name": "PythonConfigurationStatus",
+          "line": 33,
+          "end": 39
+        },
+        {
+          "name": "PythonConfigurationDeclaration",
+          "line": 43,
+          "end": 64
+        },
+        {
+          "name": "PythonConfigurationDeclarationAnalysis",
+          "line": 68,
+          "end": 79
+        },
+        {
+          "name": "PythonConfigurationFrame",
+          "line": 83,
+          "end": 87
+        },
+        {
+          "name": "PythonConfigurationAlternative",
+          "line": 91,
+          "end": 99
+        },
+        {
+          "name": "PythonConfigurationAssessment",
+          "line": 103,
+          "end": 109
+        },
+        {
+          "name": "PythonConfigurationTargetFact",
+          "line": 113,
+          "end": 136
+        },
+        {
+          "name": "PythonConfigurationResolutionAnalysis",
+          "line": 140,
+          "end": 151
+        },
+        {
+          "name": "digest",
+          "line": 154,
+          "end": 161
+        },
+        {
+          "name": "identity",
+          "line": 54,
+          "end": 64
+        },
+        {
+          "name": "identity",
+          "line": 125,
+          "end": 136
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "Full original declaration/source/selector/frame/resolution models, derivation framing and six-selector scope; current adds settings/source setting identities and versioned scope. Syntactic declarations distinct from effective configuration."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/models.py",
+      "blob": "16e6d66936e34046544dd07450d4dd7359a92839",
+      "git_sha256": "b44f9dc971c2e1534e008c5cf7a2ef4ac2c99abfba36a295201e0c2b19b5d312",
+      "current_blob": "8141b6fdef6dd7f564612b11ae32b191bcc7a8e2",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "PythonConfigurationSelector",
+          "line": 23,
+          "end": 31
+        },
+        {
+          "name": "PythonConfigurationStatus",
+          "line": 34,
+          "end": 40
+        },
+        {
+          "name": "PythonConfigurationDeclaration",
+          "line": 44,
+          "end": 65
+        },
+        {
+          "name": "PythonConfigurationDeclarationAnalysis",
+          "line": 69,
+          "end": 81
+        },
+        {
+          "name": "PythonConfigurationSetting",
+          "line": 85,
+          "end": 102
+        },
+        {
+          "name": "PythonConfigurationSettings",
+          "line": 106,
+          "end": 111
+        },
+        {
+          "name": "PythonConfigurationFrame",
+          "line": 115,
+          "end": 119
+        },
+        {
+          "name": "PythonConfigurationAlternative",
+          "line": 123,
+          "end": 131
+        },
+        {
+          "name": "PythonConfigurationAssessment",
+          "line": 135,
+          "end": 141
+        },
+        {
+          "name": "PythonConfigurationTargetFact",
+          "line": 145,
+          "end": 168
+        },
+        {
+          "name": "PythonConfigurationResolutionAnalysis",
+          "line": 172,
+          "end": 183
+        },
+        {
+          "name": "digest",
+          "line": 186,
+          "end": 193
+        },
+        {
+          "name": "identity",
+          "line": 55,
+          "end": 65
+        },
+        {
+          "name": "identity",
+          "line": 94,
+          "end": 102
+        },
+        {
+          "name": "identity",
+          "line": 157,
+          "end": 168
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "Complete setting/declaration/target models; current SCOPE version2->3 changes supported raw dependency-group contract. Same fields/method bodies do not imply an identical semantic dependency frame."
+    },
+    {
+      "path": "src/devtools/context/python/project_configuration/settings.py",
+      "blob": "8544f6795eaee10f75188d648e10be70de7fb90f",
+      "git_sha256": "640e2ee1cb2191d015bbdc663ffa3cc050ecf03e730e6702b6e11cab4e33ea24",
+      "current_blob": "ce5356d1dba9a12d855cec40f41d26da518ba726",
+      "prior_depth": "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT",
+      "depth": "FULL_BODY_AND_CONTRACT_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "analyze_settings",
+          "line": 56,
+          "end": 102
+        },
+        {
+          "name": "_lookup",
+          "line": 105,
+          "end": 113
+        },
+        {
+          "name": "_setting",
+          "line": 116,
+          "end": 135
+        },
+        {
+          "name": "_entry_declarations",
+          "line": 138,
+          "end": 166
+        }
+      ],
+      "disposition": "SUPERSEDED",
+      "findings": "Full metadata/build/pytest/entrypoint/dynamic/table/lookup setting producer; current adds validated dependency-group names, collision handling and complete raw arrays. Current still declines install/include/effective-config semantics."
+    }
+  ],
+  "counts": {
+    "historical_experiments_reviewed": 606,
+    "historical_experiments_total": 606,
+    "original_fixtures_reviewed": 67,
+    "original_fixtures_total": 93,
+    "augmented_fixtures_reviewed": 68,
+    "augmented_fixtures_total": 94,
+    "historical_depths": {
+      "NOT_REVIEWED": 168,
+      "TIP_DELTA_REVIEWED_AGAINST_INSPECTED_CURRENT": 20,
+      "FULL_BODY_AND_CONTRACT_REVIEWED": 15
+    },
+    "historical_versions_total": 203
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "new_pending": [
+    "ff4c4110-9c3b-480d-8f0f-77cf4610b700"
+  ],
+  "advisories": [
+    "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+    "16b27e74-f553-40a8-b342-c3458a7b7a01"
+  ],
+  "focused_tests": {
+    "command": "uv run pytest --no-cov -q tests/context/localization/roles tests/context/python/project_configuration tests/context/python/test_source_candidacy.py tests/context/retrieval/lexical/test_analysis.py tests/context/python/imports/test_members.py tests/context/python/references/declarations",
+    "exit_code": 0,
+    "passed": 296,
+    "seconds": 6.46,
+    "protected_gate": "NOT_RUN: no maintained production/test/config changes; prior2808/2skip/100% belongs to delivered PR5 only"
+  },
+  "history_groups": {
+    "exports-packaging-and-legacy-context-relocation": 77,
+    "localization-witness-resolution-readiness": 13,
+    "planning-disclosure-and-materialization": 12,
+    "repository-observation-and-source-admission": 9,
+    "python-module-configuration-and-structural-relationships": 6,
+    "lexical-graph-and-repository-map-retrieval": 14,
+    "historical-test-oracles-and-failure-contracts": 57
+  },
+  "limits": "No model/scientific replay, obligation architecture implementation or next cohort review. Full historical experimental source review is not independent judgment revalidation or RI autonomous capability completion.",
+  "additional_regressions": {
+    "command": "uv run pytest --no-cov -q tests/context/retrieval/source tests/context/python/function tests/context/python/classes/test_bases.py tests/apps/qwen/test_context_tools.py",
+    "passed": 322,
+    "exit_code": 0,
+    "seconds": 34.8
+  }
+}
