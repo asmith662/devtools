@@ -27,9 +27,11 @@ repeatable host configuration and cannot be changed by an HTTP client. No model,
 Docker or worker service is started. `--port` may select another loopback port.
 
 The server authenticates the configured `devtools.backlogCoordinator` through
-existing Git/common-directory checks at startup. It does not relocate it. Current
-coordinator is `qwen-context-worker` at `3d6a86d`; the dashboard's own branch is
-not an alternative backlog. Only read-only Git HEAD inspection occurs per overview.
+existing Git/common-directory checks at startup. It does not relocate it. The
+configured canonical checkout remains the coordinator; a historical branch or
+commit printed in an old receipt is not its current identity. The dashboard's
+branch is not an alternative backlog. Only read-only Git HEAD inspection occurs
+per overview.
 
 ## Fresh views and evidence
 
@@ -137,3 +139,15 @@ coordinator metadata and worker execution are unchanged. Tea's legacy React peer
 and forwardRef warnings and the roughly 729 kB JS bundle remain known limitations.
 The next useful improvement is operator review of these detail/disclosure choices;
 missing native conversation capture requires separately authorized worker work.
+
+## Integration dependency maintenance (2026-10-24)
+
+The main-derived integration candidate pins Vite 6.4.4 and Vitest 4.1.12 in
+`web/package.json` and the dependency lock. These replace the recorded vulnerable
+Vite 6.4.1 / Vitest 3.2.4 development dependencies; no server exposure, frontend
+application behavior, Python dependency or execution authority is added.
+Install with the existing `npm ci --ignore-scripts` procedure and run the tests,
+format check and build above. The dated integration report records the actual
+audit and validation results; a dependency-audit result is not a guarantee about
+future advisories. Tea's existing React peer warnings and bundle-size warning
+remain distinct from the repaired dependency findings.
