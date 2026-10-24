@@ -610,3 +610,152 @@ def test_inputs_must_share_one_repository_snapshot(tmp_path: Path) -> None:
             module_universe=universe,
             source_interpretations=(changed_interpretations[0],),
         )
+
+
+@pytest.mark.parametrize(
+    "binding",
+    [
+        "match 0:\n    case f:\n        pass\n",
+        "match [0]:\n    case [*f]:\n        pass\n",
+        "match {}:\n    case {**f}:\n        pass\n",
+        "try:\n    pass\nexcept ValueError as f:\n    pass\n",
+    ],
+)
+@pytest.mark.parametrize("before_import", [False, True])
+def test_pattern_and_handler_bindings_refuse_facade_resolution(
+    tmp_path: Path,
+    binding: str,
+    *,
+    before_import: bool,
+) -> None:
+    """Competing syntax cannot prove the imported function is the binding."""
+    statement = "from .impl import f\n"
+    facade = binding + statement if before_import else statement + binding
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from package import f\n",
+            "package/__init__.py": facade,
+            "package/impl.py": "def f():\n    pass\n",
+        },
+    )
+    result = _resolve(snapshot)
+    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED
+    assert result.target_declaration is None
+    assert result.unsupported_reason is (
+        PythonImportedMemberUnsupportedReason.COMPETING_FACADE_BINDING
+    )
+    support = result.competing_facade_bindings[0]
+    assert support.name == "f"
+    assert support.kind.value == "pattern-or-handler"
+    assert support.support.snapshot_id == snapshot.id
+    assert support.support.resource_address.value == "package/__init__.py"
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        "match 0:\n    case other:\n        pass\n",
+        "match 0:\n    case _:\n        pass\n",
+        "def outer():\n    match 0:\n        case f:\n            pass\n",
+        "class Owner:\n    match 0:\n        case f:\n            pass\n",
+        (
+            "def outer():\n    try:\n        pass\n"
+            "    except ValueError as f:\n        pass\n"
+        ),
+    ],
+)
+def test_unrelated_or_nested_local_captures_preserve_facade(
+    tmp_path: Path,
+    extra: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from package import f\n",
+            "package/__init__.py": "from .impl import f\n" + extra,
+            "package/impl.py": "async def f():\n    pass\n",
+        },
+    )
+    result = _resolve(snapshot)
+    assert result.outcome is PythonImportedMemberResolutionOutcome.RESOLVED
+    assert result.target_declaration is not None
+    assert result.target_declaration.declared_name == "f"
+    assert result.target_declaration.support.resource_address.value == "package/impl.py"
+
+
+@pytest.mark.parametrize(
+    "extra",
+    ["if enabled:\n    f = 0\n", "globals()\n"],
+)
+def test_facade_namespace_uncertainty_is_not_positive(
+    tmp_path: Path,
+    extra: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from package import f\n",
+            "package/__init__.py": "from .impl import f\n" + extra,
+            "package/impl.py": "def f():\n    pass\n",
+        },
+    )
+    result = _resolve(snapshot)
+    assert result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS
+    assert result.target_declaration is None
+
+
+@pytest.mark.parametrize(
+    "target",
+    [
+        "def f():\n    pass\nf = 0\n",
+        "def f():\n    pass\nmatch 0:\n    case f:\n        pass\n",
+        "def f():\n    pass\nmatch [0]:\n    case [*f]:\n        pass\n",
+        "def f():\n    pass\nmatch {}:\n    case {**f}:\n        pass\n",
+        "def f():\n    pass\ntry:\n    pass\nexcept ValueError as f:\n    pass\n",
+        "@unknown\ndef f():\n    pass\n",
+    ],
+)
+def test_facade_target_requires_unique_binding_not_only_declaration(
+    tmp_path: Path,
+    target: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from package import f\n",
+            "package/__init__.py": "from .impl import f\n",
+            "package/impl.py": target,
+        },
+    )
+    result = _resolve(snapshot)
+    assert result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS
+    assert result.target_declaration is None
+    assert result.target_function_analysis is not None
+    # Syntax remains visible; it is not sufficient to establish the binding.
+    assert result.target_declarations[0].declared_name == "f"
+
+
+def test_facade_content_cannot_change_under_matching_nominal_identities(
+    tmp_path: Path,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from package import f\n",
+            "package/__init__.py": "from .impl import f\n",
+            "package/impl.py": "def f():\n    pass\n",
+        },
+    )
+    interpretations = _interpret(
+        snapshot,
+        tuple(item.address.value for item in snapshot.resources),
+    )
+    inconsistent = tuple(
+        replace(item, resource=replace(item.resource, content="from .impl import g\n"))
+        if item.resource.address.value == "package/__init__.py"
+        else item
+        for item in interpretations
+    )
+    with pytest.raises(ValueError, match="another snapshot state"):
+        _resolve(snapshot, interpretations=inconsistent)

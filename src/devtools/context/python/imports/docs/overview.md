@@ -33,6 +33,20 @@ function/class binding lookup lives in modules RI and is also consumed by
 Reference RI; its decorator and namespace guards differ from source-declaration
 grounding. None of these operations establish public exports or `__all__` truth.
 
+Facade pattern captures (including starred and mapping-rest names) and exception
+aliases are competing module-scope syntax. The shared module binding-name
+extractor excludes nested function/class namespaces; support is anchored to the
+containing facade statement. Captures and handler aliases have different runtime
+lifetimes; this resolver conservatively refuses competing names on either side
+of the import and performs no later-use execution analysis. Unrelated and local
+names do not compete. Canonical module lookup also guards facade namespace
+uncertainty and the final target binding: a syntactic function declaration alone
+cannot establish a reexport after rebinding or an unknown decorator. Such target
+uncertainty is ambiguous; its declaration syntax and native analysis remain
+available. The one-facade target contract remains direct functions (sync/async),
+not a new class-reexport or recursive import capability. Direct class lookup is
+unchanged.
+
 The [Localization adapter](../../../localization/docs/overview.md#direct-static-python-import-dependency-resources)
 consumes only the existing directed module-import relation for one forward step.
 Its dependency candidate is the exact imported module's resource, including for
