@@ -18,6 +18,7 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
 from scripts.backlog.checkout import Checkout
+from scripts.backlog.checkout import _paths as file_names
 from scripts.backlog.coordinator import git
 from scripts.backlog.integration.git import publish, remote_head
 from scripts.backlog.integration.lifecycle import independent_files
@@ -32,6 +33,15 @@ if TYPE_CHECKING:
 MAX_SOURCE_BYTES = 32768
 MAX_FILES = 8
 MAX_INSTALL_BYTES = 131072
+
+
+def _fresh_protected(report: dict[str, Any]) -> bool:
+    """Accept only the current direct validator's fresh protected result."""
+    return (
+        report.get("passed") is True
+        and report.get("profile") == "pre-publication-protected"
+        and report.get("reuse_policy") == "fresh-only-v1"
+    )
 
 
 async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable installation/review/publication phase
@@ -168,12 +178,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 or await git(root, "show", "-s", "--format=%P", head) != expected_head
             ):
                 raise PermissionError("Recorded feature commit diverged")
-            changed = set(
-                (
-                    await git(
-                        root, "diff-tree", "--no-commit-id", "--name-only", "-r", head
-                    )
-                ).splitlines()
+            changed = await file_names(
+                root, "diff-tree", "--no-commit-id", "--name-only", "-r", head
             )
             if not changed <= set(installed) or not changed:
                 raise PermissionError("Recorded commit contains unapproved changes")
@@ -183,9 +189,55 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 ) != text.replace("\r\n", "\n"):
                     raise PermissionError("Recorded committed source changed")
             if push:
-                await publish(root, "origin", branch, head, previous["remote_before"])
+                observed_remote = await remote_head(root, "origin", branch)
+                if observed_remote != head:
+                    if observed_remote != previous["remote_before"]:
+                        raise PermissionError("Remote advanced; reconcile publication")
+                    if (
+                        await git(root, "branch", "--show-current") != branch
+                        or await git(root, "rev-parse", "HEAD") != head
+                    ):
+                        raise PermissionError("Exact committed checkout required")
+                    async with Checkout(
+                        cycle, "local-publish:" + result_sha, branch, head, files=[]
+                    ):
+                        report = await validate_tree(
+                            root,
+                            evidence
+                            / (
+                                "committed-validation-"
+                                + str(Timestamp.now()).replace(":", "-")
+                            ),
+                            {
+                                "source": task.source,
+                                "tests": list(task.tests),
+                                "files": files,
+                                "validation_seconds": 1800,
+                            },
+                            task.oracle,
+                            post=False,
+                        )
+                        if not _fresh_protected(report):
+                            raise PermissionError(
+                                "Fresh committed protected validation required"
+                            )
+                        previous["committed_protected_validation"] = report
+                        write(
+                            TextFile(
+                                resolve_path(receipt), json.dumps(previous, indent=2)
+                            )
+                        )
+                        await publish(
+                            root, "origin", branch, head, previous["remote_before"]
+                        )
+                # An already accepted exact ref is observation, not reuse of a
+                # passing check as proof of current environment/input freshness.
                 previous["disposition"] = "FEATURE_PUBLISHED"
-                write(TextFile(resolve_path(receipt), json.dumps(previous, indent=2)))
+            previous["publication_eligible"] = False
+            previous["validation_claim"] = (
+                "historical result; not current reusable proof"
+            )
+            write(TextFile(resolve_path(receipt), json.dumps(previous, indent=2)))
             return previous
     if (
         await git(root, "rev-parse", "HEAD") != expected_head
@@ -249,7 +301,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         _prepare_workspace(root, checks, task)
         validation = await validate_workspace(root, checks, task=task)
         record["validation"] = validation
-        if validation["accepted"] and protected_validation:
+        if validation["accepted"] and (protected_validation or commit):
             plan = {
                 "source": task.source,
                 "tests": list(task.tests),
@@ -259,8 +311,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
             record["protected_validation"] = await validate_tree(
                 root, checks / "protected", plan, task.oracle, post=False
             )
-            validation["accepted"] = (
-                validation["accepted"] and record["protected_validation"]["passed"]
+            validation["accepted"] = validation["accepted"] and _fresh_protected(
+                record["protected_validation"]
             )
         record["disposition"] = (
             "SUPERVISORY_REVIEW"
@@ -277,13 +329,12 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 sort_keys=True,
             ).encode()
         ).hexdigest()
-        if previous.get("review_subject") == record["review_subject"] and previous.get(
-            "protected_validation", {}
-        ).get("passed"):
-            record.setdefault("protected_validation", previous["protected_validation"])
-        record["publication_eligible"] = validation["accepted"] and record.get(
-            "protected_validation", {}
-        ).get("passed", False)
+        record["publication_eligible"] = validation["accepted"] and _fresh_protected(
+            record.get("protected_validation", {})
+        )
+        record["validation_claim"] = (
+            "fresh invocation only; saved results cannot authorize reuse"
+        )
         write(TextFile(resolve_path(receipt), json.dumps(record, indent=2)))
         if not validation["accepted"] or not commit:
             return record

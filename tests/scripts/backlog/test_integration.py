@@ -8,7 +8,9 @@ import argparse
 import asyncio
 import difflib
 import getpass
+import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +19,7 @@ import pytest
 from devtools.core.time import Duration, Timestamp
 from devtools.resources.filesystem import write
 from devtools.resources.filesystem.errors import FilesystemError
+from scripts.backlog.checkout import Checkout
 from scripts.backlog.coordinator import git
 from scripts.backlog.integration import cli as integration_cli
 from scripts.backlog.integration import lifecycle
@@ -24,6 +27,65 @@ from scripts.backlog.integration.authority import ACTIONS
 from scripts.backlog.integration.git import publish, remote_head
 from tests.scripts.backlog import test_work as helpers
 from tests.scripts.backlog.test_work import fixture as fixture  # noqa: PLC0414
+
+
+def test_exact_planned_path_population_with_unicode_and_special_names(
+    fixture: dict[str, Any],
+) -> None:
+    """Real staged and untracked paths authenticate; unplanned names still refuse."""
+
+    async def run() -> None:
+        f = fixture
+        root, cycle = f["root"], f["cycle"]
+        names = ["tests/test_π.py", "tests/test spaced & (π).py"]
+        if os.name != "nt":
+            names.extend(['tests/test_"quoted".py', "tests/test_new\nline.py"])
+        text = "def test_literal():\n    assert True\n"
+        files = [
+            {
+                "path": name,
+                "text": text,
+                "sha256": hashlib.sha256(text.encode()).hexdigest(),
+            }
+            for name in names
+        ]
+        plan = {
+            "feature": "feat/fixture",
+            "destination_base": f["task"].baseline_revision,
+            "files": files,
+        }
+        integration = cycle.integration
+        async with Checkout(
+            cycle,
+            "exact-planned-paths",
+            "feat/fixture",
+            f["task"].baseline_revision,
+            files=files,
+        ) as owner:
+            integration._checkout = owner
+            for entry in files:
+                owner.expect(entry["path"], text)
+                (root / entry["path"]).write_bytes(text.encode())
+            # First inspect real untracked filenames, then the staged diff.
+            expected = {
+                name: hashlib.sha256(text.encode()).hexdigest() for name in names
+            }
+            assert await integration._files(plan, root) == expected
+            await git(root, "add", "--", *names)
+            assert await integration._files(plan, root) == expected
+            plain = await git(root, "diff", "--name-only", f["task"].baseline_revision)
+            assert '"tests/test_' in plain  # default Git quoting is genuinely active
+            extra = root / "tests/unplanned_π.py"
+            extra.write_bytes(b"# unplanned\n")
+            with pytest.raises(PermissionError, match="Unapproved files"):
+                await integration._files(plan, root)
+            extra.unlink()
+            (root / names[0]).write_bytes(b"# wrong planned bytes\n")
+            with pytest.raises(PermissionError, match="Unreviewed change"):
+                await integration._files(plan, root)
+            (root / names[0]).write_bytes(text.encode())
+
+    asyncio.run(run())
 
 
 async def setup(f: dict[str, Any]) -> dict[str, Any]:

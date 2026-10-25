@@ -35,6 +35,23 @@ Never remove the experiment-tree exclusion to make this profile pass.
 
 ## Other quality gates
 
+### Freshness and reusable claims
+
+The fixed integration validator records a fresh command invocation, not complete
+transitive file, toolchain or environment closure. Its reports declare
+`reuse_policy: fresh-only-v1`. Local closeout cannot reuse a saved passing result
+to authorize a new feature commit; it reruns protected validation. An unchanged
+Git tree does not authenticate ignored configuration or installed dependencies.
+Existing scoped CodingCommands `is_current` reuse is a different claim and remains
+available for unchanged declared inputs; it confers neither independent review
+nor publication authority. See the [local integration contract](../backlog/integration.md).
+
+Pre-commit validation is not proof of HEAD-sensitive post-commit behavior. A
+delayed local push validates the exact existing commit. Developer production
+repairs must run their final protected gate on committed executable inputs and
+authenticate those inputs through publication; broader HEAD/toolchain closure
+remains an explicitly tracked obligation.
+
 Run `uv run python scripts/validate_layout.py` for canonical root ownership.
 Default strict mypy checks maintained framework, tests and applications;
 retained experiments/generated programs and `tests/experiments/` have explicit

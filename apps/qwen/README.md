@@ -1,5 +1,17 @@
 # Bounded local coding worker
 
+## Command receipt custody
+
+CodingCommands reserves a journal name before command entry using atomic directory
+creation in its evidence folder. Existing receipts and reservations are never
+reused, including across fresh adapters. Bundles and change reports use the same
+allocator. Reservations survive interruption and are not stale locks to delete.
+Single commands retain intent before execution and replace only their own intent
+with the completed result. Missing completion means unknown outcome, not permission
+to redispatch. A storage failure before intent prevents execution; failed result
+persistence after entry is reported without retry. This is not a power-loss or
+exactly-once external-effect guarantee.
+
 ## Maintained worker acceptance integrity
 
 Prepared and native coding validation use the same journaled fixed-check bundle.

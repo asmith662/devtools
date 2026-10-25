@@ -42,6 +42,8 @@ def test_fixed_validation_and_failure_stop(
         validate_tree(tmp_path, tmp_path / "pre", plan, "assert True\n", post=False)
     )
     assert report["passed"] is not failure
+    assert report["reuse_policy"] == "fresh-only-v1"
+    assert "Not reusable" in report["input_assurance"]
     assert len(calls) == (1 if failure else 6)
     if not failure:
         assert calls[-1].arguments == ("-I", "-B", str(tmp_path / "pre/protected.py"))

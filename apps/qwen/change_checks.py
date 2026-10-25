@@ -161,12 +161,7 @@ def _view(report: dict[str, Any]) -> dict[str, Any]:
 
 
 def _receipt_path(tool: CodingCommands) -> Path:
-    tool.count += 1
-    target = tool.folder / f"change-check-{tool.count:02d}.json"
-    while target.exists():
-        tool.count += 1
-        target = tool.folder / f"change-check-{tool.count:02d}.json"
-    return target
+    return tool.reserve_evidence("change-check")
 
 
 def _load(path: Path) -> dict[str, Any]:

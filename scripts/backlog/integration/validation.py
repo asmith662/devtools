@@ -89,6 +89,12 @@ async def validate_tree(
     report: dict[str, Any] = {
         "started_at": str(Timestamp.now()),
         "profile": "post-promotion-focused" if post else "pre-publication-protected",
+        "reuse_policy": "fresh-only-v1",
+        "input_assurance": (
+            "Fixed commands executed in this invocation; no transitive input or "
+            "environment attestation. Not reusable validation proof. "
+            "Pre-commit checks do not attest HEAD-sensitive post-commit behavior."
+        ),
         "checks": [],
         "passed": False,
     }
