@@ -944,9 +944,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 for c in response.tool_calls
             ):
                 raise PatchProposalError("Do not mix Context calls with edit proposals")
-            if proposals >= task.maximum_proposals:
-                raise PatchProposalError("Edit proposal budget exhausted")
-            proposals += 1
+        if proposals >= task.maximum_proposals:
+            raise PatchProposalError("Edit proposal budget exhausted")
+        proposals += 1
         stage["proposal_attempted"] = True
         transaction = bool(
             coordinated_edits
@@ -1291,11 +1291,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         if validation["accepted"] and not check_changes_before_completion:
             report.update(accepted=True, disposition="ACCEPTED")
             return
-        if (
-            tools is not None
-            and proposals >= task.maximum_proposals
-            and not validation["accepted"]
-        ):
+        if proposals >= task.maximum_proposals and not validation["accepted"]:
             report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
             return
         # One latest state, not an ever-growing transcript; full assistant output
@@ -1621,7 +1617,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             bool(stage.get("proposal_attempted")) for stage in report["turns"]
         )
         report["proposal_refusals"] = sum(
-            stage["disposition"] == "PROPOSAL_REFUSED" for stage in report["turns"]
+            bool(stage.get("proposal_attempted"))
+            and not stage.get("proposal_valid", False)
+            for stage in report["turns"]
         )
         report["proposals_admitted"] = sum(
             bool(stage.get("proposal_valid")) for stage in report["turns"]

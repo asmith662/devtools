@@ -479,6 +479,113 @@ def test_worker_refuses_candidate_that_changes_frozen_test(
     assert result["turns"][-1]["validation"]["oracle"]["exit_code"] is None
 
 
+@pytest.mark.parametrize("native", [False, True])
+@pytest.mark.parametrize("cap", [1, 2])
+def test_worker_enforces_proposal_cap_across_modes(
+    tmp_path: Path,
+    *,
+    native: bool,
+    cap: int,
+) -> None:
+    """One failed proposal stops at one; a permitted second can legitimately pass."""
+    root = resolve_path(tmp_path / "task").value
+    task = replace(asyncio.run(_tiny_task(root, native=native)), maximum_proposals=cap)
+    wrong = "def value():\n    return 2\n"
+    model = _TinyScripted(task, ((_TINY_OLD, wrong), (wrong, _TINY_GOOD)))
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            root / ".local/run",
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert result["accepted"] is (cap == 2), result
+    assert result["proposals_attempted"] == cap
+    assert result["proposals_admitted"] == cap
+    assert result["proposal_refusals"] == 0
+    assert result["model_calls_attempted"] == cap + int(native)
+    assert result["limits"]["proposals"] == cap
+    assert result["source_restored"]
+    assert result["original_unchanged"]
+    if cap == 1:
+        assert result["disposition"] == "REPAIR_BUDGET_EXHAUSTED"
+    else:
+        assert "tiny-" in str(model.requests[-1].prompt)
+
+
+@pytest.mark.parametrize("native", [False, True])
+def test_worker_absolute_call_cap_remains_independent(
+    tmp_path: Path,
+    *,
+    native: bool,
+) -> None:
+    """A larger proposal allowance never permits another model invocation."""
+    root = resolve_path(tmp_path / "task").value
+    task = replace(
+        asyncio.run(_tiny_task(root, native=native)), maximum_calls=1 + int(native)
+    )
+    wrong = "def value():\n    return 2\n"
+    model = _TinyScripted(task, ((_TINY_OLD, wrong), (wrong, _TINY_GOOD)))
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            root / ".local/run",
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert not result["accepted"]
+    assert result["model_calls_attempted"] == task.maximum_calls
+    assert result["proposals_admitted"] == 1
+    assert result["source_restored"]
+
+
+@pytest.mark.parametrize("native", [False, True])
+def test_refused_proposal_is_counted_without_extra_mutation(
+    tmp_path: Path,
+    *,
+    native: bool,
+) -> None:
+    """A refused first edit consumes the proposal cap without becoming admitted."""
+    root = resolve_path(tmp_path / "task").value
+    task = replace(asyncio.run(_tiny_task(root, native=native)), maximum_proposals=1)
+    model = _TinyScripted(
+        task, (("missing literal", _TINY_GOOD), (_TINY_OLD, _TINY_GOOD))
+    )
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            root / ".local/run",
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert not result["accepted"]
+    assert result["proposals_attempted"] == 1
+    assert result["proposal_refusals"] == 1
+    assert result["proposals_admitted"] == 0
+    assert result["model_calls_attempted"] == 1 + int(native)
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+
+
+@pytest.mark.parametrize("native", [False, True])
+def test_zero_proposal_cap_is_not_an_admitted_task(
+    tmp_path: Path, *, native: bool
+) -> None:
+    """Existing task construction refuses zero; no model or Tool can enter."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root, native=native))
+    with pytest.raises(ValueError, match="bounded native edit proposals"):
+        replace(task, maximum_proposals=0)
+
+
 @pytest.mark.parametrize("target", ["test", "read", "runner", "configuration"])
 def test_worker_refuses_drift_between_fixed_checks(
     tmp_path: Path,
