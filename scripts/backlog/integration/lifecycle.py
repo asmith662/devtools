@@ -19,6 +19,7 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
 from scripts.backlog.checkout import Checkout
+from scripts.backlog.checkout import _paths as file_names
 from scripts.backlog.checkout import untracked as untracked_files
 from scripts.backlog.coordinator import common_directory, git
 from scripts.backlog.intake import _digest, _read
@@ -548,15 +549,11 @@ class Integration:
                 or content.replace("\r\n", "\n") != f["text"].replace("\r\n", "\n")
             ):
                 raise PermissionError("Unreviewed change to integration source/tests")
-        changed = set(
-            (
-                await git(checkout, "diff", "--name-only", plan["destination_base"])
-            ).splitlines()
+        changed = await file_names(
+            checkout, "diff", "--name-only", plan["destination_base"]
         )
-        untracked = set(
-            (
-                await git(checkout, "ls-files", "--others", "--exclude-standard")
-            ).splitlines()
+        untracked = await file_names(
+            checkout, "ls-files", "--others", "--exclude-standard"
         )
         preserved = set(self._checkout.record["untracked"])
         if not (changed | (untracked - preserved)) <= {
@@ -1183,10 +1180,8 @@ class Integration:
                 if intent["grant"] != grant:
                     raise PermissionError("Closeout belongs to another authority")
             paths = [v["path"] for v in intent["files"]]
-            changed = set(
-                (
-                    await git(self.cycle.root, "diff", "--name-only", intent["base"])
-                ).splitlines()
+            changed = await file_names(
+                self.cycle.root, "diff", "--name-only", intent["base"]
             )
             if (
                 not changed <= set(paths)
@@ -1228,17 +1223,13 @@ class Integration:
                 raise PermissionError(
                     "Ambiguous closeout commit; reconcile without duplication"
                 )
-            if not set(
-                (
-                    await git(
-                        self.cycle.root,
-                        "diff-tree",
-                        "--no-commit-id",
-                        "--name-only",
-                        "-r",
-                        head,
-                    )
-                ).splitlines()
+            if not await file_names(
+                self.cycle.root,
+                "diff-tree",
+                "--no-commit-id",
+                "--name-only",
+                "-r",
+                head,
             ) <= set(paths):
                 raise PermissionError("Unrelated changes in closeout commit")
             await clean(self.cycle.root)

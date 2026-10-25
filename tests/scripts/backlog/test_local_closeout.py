@@ -45,10 +45,12 @@ def evidence(f: dict[str, Any]) -> Path:
 
 
 @pytest.mark.parametrize("author", ["Qwen", "Codex"])
+@pytest.mark.parametrize("test_path", ["tests/test_independent.py", "tests/test_π & independent.py"])
 def test_local_candidate_validation_review_commit_push_and_idempotence(
     fixture: dict[str, Any],
     monkeypatch: pytest.MonkeyPatch,
     author: str,
+    test_path: str,
 ) -> None:
     """Use actual scoped validation, feature commit and a bare fixture remote."""
 
@@ -74,7 +76,7 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
         await git(root, "remote", "add", "origin", str(remote))
         await git(root, "push", "origin", "HEAD:refs/heads/feat/fixture")
         addition = {
-            "path": "tests/test_independent.py",
+            "path": test_path,
             "text": "def test_independent():\n    assert True\n",
             "author": "Codex",
             "reference": "independent synthetic regression",

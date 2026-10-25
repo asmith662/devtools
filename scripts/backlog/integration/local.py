@@ -18,6 +18,7 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
 from scripts.backlog.checkout import Checkout
+from scripts.backlog.checkout import _paths as file_names
 from scripts.backlog.coordinator import git
 from scripts.backlog.integration.git import publish, remote_head
 from scripts.backlog.integration.lifecycle import independent_files
@@ -168,12 +169,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 or await git(root, "show", "-s", "--format=%P", head) != expected_head
             ):
                 raise PermissionError("Recorded feature commit diverged")
-            changed = set(
-                (
-                    await git(
-                        root, "diff-tree", "--no-commit-id", "--name-only", "-r", head
-                    )
-                ).splitlines()
+            changed = await file_names(
+                root, "diff-tree", "--no-commit-id", "--name-only", "-r", head
             )
             if not changed <= set(installed) or not changed:
                 raise PermissionError("Recorded commit contains unapproved changes")
