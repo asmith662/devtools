@@ -1,5 +1,7 @@
 # Checkout custody correction
 
+Delivered through normal PR#14, verified main `f54b4a0a6d1b81be805b2d1d63ea43f23df0100a`, production `ce1a8ea523cdfe9772c7e8b5ed0479528d3aba50`. Committed-tree gate **2889 passed, 2 opt-in live skips,100% configured production branch coverage**;136 focused passes and bounded post-main regressions pass. Supported Ruff/format/mypy, exact inputs and all13 forensic hashes validate. [Exact implementation, tests, baseline and Intake evidence](../research/code-audit/checkout-custody-repair-20261025.json). All three original proposals have implemented-and-merged advisories, not approval/closure; broader obligations remain open.
+
 This correction addresses proposals69688104 (owner fencing),30bd833e (recovery
 consent) and3b2f566b (filesystem custody). The [original audit](../research/execution-ownership-and-recovery-audit.md)
 and immutable probes retain the pre-repair behavior.

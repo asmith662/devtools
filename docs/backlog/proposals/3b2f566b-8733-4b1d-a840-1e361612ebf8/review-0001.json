@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "3b2f566b-8733-4b1d-a840-1e361612ebf8",
+  "proposal_sha256": "e167dbaececff491101b3ea73194fb50ff1e4c163ff11277e9e5907bee80ede9",
+  "previous": null,
+  "at": "2026-10-25T13:27:22.550890+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/checkout-custody-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Filesystem entry custody. Lexical lstat checks detect dangling entries and traverse nested components before both entry and return branch switches. Symlinks/Windows reparse ancestors refuse without dereferencing foreign source or deleting unknown entries. Real Windows dangling file/directory links, existing and dangling junctions, regular ignored files and a noncolliding ignored link pass permanent custody controls with original entry identity and literal outside bytes preserved. Production ce1a8ea523cdfe9772c7e8b5ed0479528d3aba50; normal GitHub PR#14; independently verified accepted main f54b4a0a6d1b81be805b2d1d63ea43f23df0100a. Committed protected gate 2889 passed/2 opt-in live skips,100% configured production branch coverage;136 focused passes, supported Ruff/format/strict mypy and bounded post-main regressions pass. The independent baseline probes reproduced all three failures; four selected permanent negative tests also fail for actual baseline behavior, not collection errors. Full source/test/config bytes match the validated committed inputs. Delivered bounded scope should not be scheduled again. Trusted local/cooperating filesystem and stopped-owner/command-descendant preconditions remain; network/uncooperative writers and generic rollback are not established. Broader custody0385a359, check closure d58697fd and cohesion39c6663a remain open.",
+  "duplicates": [
+    {
+      "reference": "30bd833e-f19d-4a4c-bbb6-465fd22db403",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "69688104-098b-404c-acca-745bebac6653",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original UUID and append-only history retained. Intake has no delivered/closed state: advisory records implemented-and-merged evidence without approval, new B-number, grant, duplicate implementation or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "a2911a5cc2d2e2da71b23dab932ed3439248cf6a23c1395dc50856f28e652df9"
+}
