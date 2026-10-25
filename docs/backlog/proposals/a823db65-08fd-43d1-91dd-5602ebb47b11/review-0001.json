@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a823db65-08fd-43d1-91dd-5602ebb47b11",
+  "proposal_sha256": "a929524580fcd8a5424dcf3fbf53c52d2fc8ed5f7bf7db517b99757c06a4d891",
+  "previous": null,
+  "at": "2026-10-25T23:04:47.532346+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/usage-evidence-integrity-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Comparable operator identities. Dashboard producer requires a nonblank string proposal identity and equal present provider_call_id before MATCH; absence, blank/noncomparable values and mismatch remain NOT_ESTABLISHED. Existing frontend displays that unresolved status, including a missing legacy status, without claiming an error or authority. Permanent actual turn_detail, archived HTTP and rendered frontend tests protect absence on either side and equal/unequal controls. Application-local record consumption remains intact; normalized framework Evidence ingestion is not introduced. Production commits {'usage': '5a54d2d9c14ae4a197baa0cece06ecb25c6ddecb', 'dashboard': '228c073f464e38adaa9a68c64839f347fb12085f', 'frontend_fixture': '8f34dbdee381cf4493dd1f5e2a5508653dfe2891'}; final validated head 8f34dbdee381cf4493dd1f5e2a5508653dfe2891; normal GitHub PR#20; independently accepted main 3e59c20f4c9276a7f28682a127ff95428e673564, tree c15b6029f8baab32bf803c635004361339977674. Independent baseline probes ran before edits; permanent baseline negatives:12 intended failures/4 valid controls. Exact committed protected gate 2937 passed/2 optional live skips/100% configured production branch coverage, 1108.617s managed. Supported Ruff/format, strict mypy, TypeScript/frontend build,13 frontend tests, frontend formatting, layout, links, Intake chains and whitespace pass;350 focused Python tests pass before and after merge with identical physical executable inputs. All13 forensic hashes and refs preserved; no live models/scientific replay. These bounded corrections are delivered and must not be scheduled again. B-0011/B-0023/B-0034 normalized Qwen/WorkCycle Evidence ingestion, lifecycle correlation, accounting/reporting boundaries and broader validation-input d58697fd remain separate open work. Core/Resources12 pinned bodies match accepted main and are not audited in this increment.",
+  "duplicates": [],
+  "duplicate_disposition": "Same existing UUID, one append-only delivered advisory. Intake has no delivered/closed state; administrative PENDING_REVIEW does not reschedule implementation. No new proposal, approval, grant, B-number, parent closure or ref deletion.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "08bd31213d5a601f4746a4fcb735ffd78b3a5cf0e1cfe95152976dfa03046bb5"
+}
