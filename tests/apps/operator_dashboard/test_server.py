@@ -151,6 +151,39 @@ def request(
     ).startswith("application/json") else body
 
 
+@pytest.mark.parametrize(
+    ("proposal", "call", "expected"),
+    [
+        (None, None, "NOT_ESTABLISHED"),
+        ("id", None, "NOT_ESTABLISHED"),
+        (None, "id", "NOT_ESTABLISHED"),
+        ("id", "other", "NOT_ESTABLISHED"),
+        ("id", "id", "MATCH"),
+    ],
+)
+def test_actual_api_does_not_join_absent_identities(
+    api: DashboardServer, proposal: str | None, call: str | None, expected: str
+) -> None:
+    """Archived JSON reaches the real HTTP detail producer with literal status."""
+    root = api.worker_roots[0]
+    run(root, "identity-case", turns=1)
+    folder = root / "identity-case"
+    result = json.loads((folder / "result.json").read_text())
+    result["turns"][0]["proposal_id"] = proposal
+    put(folder / "result.json", result)
+    response = json.loads((folder / "turn-01/response.json").read_text())
+    response["tool_calls"][0]["provider_call_id"] = call
+    put(folder / "turn-01/response.json", response)
+    before = (folder / "turn-01/response.json").read_bytes()
+    status, overview = request(api, "/api/overview")
+    assert status == 200
+    key = next(r["key"] for r in overview["workers"] if r["id"] == "identity-case")
+    status, detail = request(api, "/api/runs/" + key)
+    assert status == 200
+    assert detail["turns"][0]["proposal_correlation"] == expected
+    assert (folder / "turn-01/response.json").read_bytes() == before
+
+
 def test_fresh_records_and_real_vs_scripted(api: DashboardServer) -> None:
     """New source records appear through the same running API without a build."""
     status, overview = request(api, "/api/overview")

@@ -6,6 +6,8 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING
 
+import pytest
+
 from apps.operator_dashboard.details import turn_detail
 
 if TYPE_CHECKING:
@@ -43,3 +45,37 @@ def test_native_history_and_tool_results_are_archived_not_invented(
     assert hidden["request_text"]["availability"] == "NOT_DISCLOSED"
     assert hidden["tool_results"]["availability"] == "NOT_DISCLOSED"
     assert before == {p.name: p.read_bytes() for p in turn.iterdir()}
+
+
+@pytest.mark.parametrize(
+    ("proposal", "call", "expected"),
+    [
+        (None, None, "NOT_ESTABLISHED"),
+        ("id", None, "NOT_ESTABLISHED"),
+        (None, "id", "NOT_ESTABLISHED"),
+        ("", "", "NOT_ESTABLISHED"),
+        (" ", " ", "NOT_ESTABLISHED"),
+        (1, 1, "NOT_ESTABLISHED"),
+        ("id", "other", "NOT_ESTABLISHED"),
+        ("id", "id", "MATCH"),
+    ],
+)
+def test_missing_or_noncomparable_call_ids_never_match(
+    tmp_path: Path,
+    proposal: object,
+    call: object,
+    expected: str,
+) -> None:
+    """Actual archived data-to-detail joins require two present opaque strings."""
+    turn = tmp_path / "turn-01"
+    turn.mkdir()
+    response = {
+        "tool_calls": [
+            {"name": "read_file", "provider_call_id": call, "arguments_json": "{}"},
+        ],
+    }
+    (turn / "response.json").write_text(json.dumps(response), encoding="utf-8")
+    before = (turn / "response.json").read_bytes()
+    detail = turn_detail(tmp_path, {"number": 1, "proposal_id": proposal}, raw=False)
+    assert detail["proposal_correlation"] == expected
+    assert (turn / "response.json").read_bytes() == before

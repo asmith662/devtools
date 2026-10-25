@@ -116,6 +116,7 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
     request = load_json(request_path) if request_path.is_file() else {}
     response = load_json(response_path) if response_path.is_file() else {}
     calls = response.get("tool_calls", [])
+    proposal_id = stage.get("proposal_id")
     tools = [
         {
             "name": call.get("name"),
@@ -168,7 +169,9 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
         "response_source": response.get("source", "NOT_CAPTURED"),
         "tools": tools,
         "proposal_correlation": "MATCH"
-        if any(c.get("provider_call_id") == stage.get("proposal_id") for c in calls)
+        if isinstance(proposal_id, str)
+        and bool(proposal_id.strip())
+        and any(c.get("provider_call_id") == proposal_id for c in calls)
         else "NOT_ESTABLISHED",
         "feedback": display(_feedback(request), disclosed=raw),
         "patch": _captured(turn, "proposal.patch", raw=raw),
