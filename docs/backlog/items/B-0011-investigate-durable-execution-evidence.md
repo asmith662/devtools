@@ -75,3 +75,9 @@ remain unchanged; advisory research does not authorize implementation.
 The validation/publication audit authenticates real repository-local progress, intents and result/commit/ref receipts, plus filesystem temp-file fsync/atomic replace without parent-directory fsync. Those durable app records are not automatically the framework ExecutionInspector terminal Evidence store. Worker usage remains in app receipts; selected dashboard projection reads those records directly. Missing/unknown usage is not zero. The next frozen Evidence/usage cohort will inspect normalized ingestion, conflicts, deduplication and durable/operator consumers. No new store, serializer, approval or decision-maturity change is implied.
 
 See the [source, independent probes and limitations](../../research/validation-review-publication-audit.md). This append-only evidence does not approve, dispatch or close the story.
+
+## Evidence/usage/operator audit — 2026-10-25
+
+The frozen12-body Evidence/usage audit identifies actual process-local terminal/model inspectors, a separate mutable usage snapshot and repository usage CLI, and app-local Qwen/WorkCycle records read directly by dashboard. Native Qwen does not automatically emit normalized InvocationMeasurement or store inspector Evidence. A bounded existing-record adapter for a real operator consumer is preferable to a second store, but source/task/occurrence identity joins, conflict/unknown semantics, capture/privacy and retention need an explicit decision. Two collection P2 defects have distinct pending proposals; no durable consumer implementation or status promotion is authorized.
+
+See the [source, probes and consumer assessment](../../research/evidence-usage-and-operator-audit.md). Deferred status, decision maturity, dependencies and promotion trigger remain unchanged; no implementation, approval or closure.

@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+  "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+  "previous": "1b7fd828311c9c265a1c1ce5b777eb6443601b63169b1dbf303123dcd4756646",
+  "at": "2026-10-25T21:23:39.554734+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+  "rationale": "Prior bounded stale-local-reuse correction is implemented and merged through PR17/18; do not reschedule it. This audit reauthenticates unchanged repaired source and distinguishes fixed check reports, current declared-input freshness and semantic/publication authority. Mutable usage snapshots and captured validation flags cannot be promoted into exact executable/input closure. Broader toolchain/environment/transitive/HEAD-sensitive validation remains open; no new defect or repair credited here.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "c6c9c2f6a40221209c564b8a7d8720714ec5a4075677471de7f029be38159ef3"
+}

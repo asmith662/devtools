@@ -1,0 +1,883 @@
+{
+  "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+  "probe": {
+    "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+    "method": "Independent literal metadata and temporary files; no original science or model execution",
+    "cases": [
+      {
+        "case": "disjoint_known_unknown",
+        "expected": "Known subtotal10 plus one explicit unknown, never total10 for both",
+        "actual": {
+          "fresh_invocations": 2,
+          "tokens": {
+            "input_tokens": 10,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 1,
+            "cached_input_tokens": 2,
+            "cache_write_tokens": 2,
+            "output_tokens": 1,
+            "reasoning_tokens": 2
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 2
+        },
+        "defect": false
+      },
+      {
+        "case": "cross_provider_thread_alias",
+        "expected": "Adding unrelated provider-B must not invalidate provider-A single-turn alias",
+        "input": [
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "digest-A",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": null,
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "alias-A",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-B",
+            "provider": "provider-B",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation-B",
+            "thread_id": "thread",
+            "turn_id": "turn-B",
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "digest-B",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          }
+        ],
+        "alone": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 10,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 1
+        },
+        "actual": {
+          "fresh_invocations": 2,
+          "tokens": {
+            "input_tokens": 20,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 4,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 2,
+            "cache_write_tokens": 2,
+            "output_tokens": 0,
+            "reasoning_tokens": 2
+          },
+          "conflicting_invocations_excluded": 1,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 2
+        },
+        "defect": true
+      },
+      {
+        "case": "duplicate_response_order",
+        "expected": "Same response identity and compatible partial facts must not erase known usage depending on input order",
+        "input": [
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": "response-A",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "digest-A",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "RESPONSE",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": "response-A",
+            "usage": {
+              "input_tokens": null,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "partial",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "RESPONSE",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          }
+        ],
+        "known_then_partial": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 1,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 1
+        },
+        "partial_then_known": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 10,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 1
+        },
+        "defect": true
+      },
+      {
+        "case": "conflicting_known_tokens",
+        "expected": "Conflict visible and excluded",
+        "actual": {
+          "fresh_invocations": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "conflicting_invocations_excluded": 1,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 0
+        },
+        "defect": false
+      },
+      {
+        "case": "contradictory_outcomes",
+        "expected": "Qualify terminal fact domains before interpreting incompatible-looking outcomes",
+        "input": [
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "digest-A",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": true,
+            "accepted": true,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "failure",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": false,
+            "validated": false,
+            "accepted": false,
+            "failure_class": "OBSERVED_FAILURE",
+            "original_attribution": null,
+            "reported_model": null
+          }
+        ],
+        "actual": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 10,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 1,
+          "failed": 0,
+          "outcome_unknown": 0
+        },
+        "defect": false,
+        "disposition": "Existing explicit accepted-first report precedence. B-0023 must qualify source/layer/acceptance-domain and progression; this synthetic combination alone does not prove same-domain production corruption."
+      },
+      {
+        "case": "storage_duplicates_and_tamper_scope",
+        "expected": "Exact duplicate dedup and writer contention refusal; schema-only local snapshot does not attest source truth",
+        "stored_rows": 2,
+        "report": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 1,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 1
+        },
+        "modified_valid_payload_loads": true,
+        "claim": "Deliberately mutable metadata snapshot, not authenticated source-binding store. Existing B-0011 boundary; no demonstrated original corruption.",
+        "defect": false
+      },
+      {
+        "case": "corrupt_storage",
+        "expected": "Refuse corrupt durable snapshot",
+        "error": "FileFormatError",
+        "defect": false
+      },
+      {
+        "case": "operator_uncertain_worker",
+        "expected": "Unknown tokens and completion uncertainty remain visible, not normalized framework Evidence by inference",
+        "actual": {
+          "id": "uncertain",
+          "key": "5fd51cc4d20892c0b5a110373a3cf9acbaeed965a5aa6ab9ebdce6538fda29af",
+          "task_key": "NOT_RECORDED",
+          "task_name": "Task NOT_RECORDED",
+          "evidence_class": "UNCLASSIFIED_NOT_PROOF_OF_LIVE_INFERENCE",
+          "disposition": "TIMEOUT_COMPLETION_UNKNOWN_NO_RETRY",
+          "accepted": false,
+          "started_at": null,
+          "finished_at": null,
+          "elapsed_seconds": null,
+          "model_calls": 1,
+          "repair_cycles": null,
+          "usage": {
+            "input_tokens": null,
+            "output_tokens": null,
+            "cached_input_tokens": null,
+            "reasoning_tokens": null
+          },
+          "validation": {
+            "tests": null,
+            "oracle": null
+          },
+          "reference": {
+            "path": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-usage-custody-uy19qx80\\.local\\qwen-coding-worker\\uncertain\\result.json",
+            "sha256": "84dbc47f80f2009f0a8506e27898376b01bab87ea509d0210b245d44af32a5c0"
+          },
+          "coverage": "Local worker receipt; provider categories may be unknown. Not account-wide usage."
+        },
+        "defect": false
+      },
+      {
+        "case": "tool_cancel_after_entry",
+        "expected": "Cancellation propagates without rollback or automatic completion record/retry",
+        "effects": [
+          "entered"
+        ],
+        "defect": false
+      }
+    ]
+  },
+  "extra": {
+    "cases": [
+      {
+        "case": "cross_provider_invocation_alias",
+        "expected": "Two providers may reuse their local invocation labels without conflict",
+        "actual": {
+          "fresh_invocations": 0,
+          "tokens": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "conflicting_invocations_excluded": 2,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 0
+        },
+        "defect": true
+      },
+      {
+        "case": "partial_turn_conflict_hidden_by_chosen_row",
+        "expected": "Two incompatible known reasoning counts for the same invocation must remain conflicting even if the chosen more-complete row lacks reasoning",
+        "actual": {
+          "fresh_invocations": 1,
+          "tokens": {
+            "input_tokens": 10,
+            "cached_input_tokens": 0,
+            "cache_write_tokens": 0,
+            "output_tokens": 2,
+            "reasoning_tokens": 0
+          },
+          "unknown_category_observations": {
+            "input_tokens": 0,
+            "cached_input_tokens": 1,
+            "cache_write_tokens": 1,
+            "output_tokens": 0,
+            "reasoning_tokens": 1
+          },
+          "conflicting_invocations_excluded": 0,
+          "accepted": 0,
+          "failed": 0,
+          "outcome_unknown": 1
+        },
+        "inputs": [
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 2,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "digest-A",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": null,
+              "output_tokens": null,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": 1
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "reasoning1",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          },
+          {
+            "timestamp": "2026-10-25T12:00:00+00:00",
+            "backend": "backend-A",
+            "provider": "provider-A",
+            "model": "literal-model",
+            "reasoning_effort": "UNKNOWN",
+            "execution_profile": "AUDIT_FIXTURE",
+            "invocation_id": "invocation",
+            "thread_id": "thread",
+            "turn_id": "turn-A",
+            "response_id": null,
+            "usage": {
+              "input_tokens": null,
+              "output_tokens": null,
+              "total_tokens": null,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": 2
+            },
+            "source": "INDEPENDENT_LITERAL",
+            "source_digest": "reasoning2",
+            "attribution": {
+              "project": "literal",
+              "purpose": "UNKNOWN",
+              "experiment": "UNKNOWN",
+              "case": "UNKNOWN",
+              "stage": "UNKNOWN"
+            },
+            "granularity": "TURN",
+            "execution_origin": "EXECUTED",
+            "original_timestamp": null,
+            "completed": true,
+            "validated": null,
+            "accepted": null,
+            "failure_class": null,
+            "original_attribution": null,
+            "reported_model": null
+          }
+        ],
+        "defect": true,
+        "owner": "Same partial-observation reconciliation repair as response ordering; no third proposal"
+      },
+      {
+        "case": "runtime_cancel_after_model_entry",
+        "expected": "Known fake entry and terminal cancellation, but no returned token usage or durable Evidence inferred",
+        "attempt": "56700fe1-ffca-49a7-be1f-989c48c2d04b",
+        "evidence": "5254fb38-2ef2-4a36-90f9-7fb47bb584ed",
+        "outcome": "InteractionAttemptCancelled",
+        "usage": "UNKNOWN_NOT_ZERO",
+        "live_model": false,
+        "defect": false
+      },
+      {
+        "case": "operator_missing_call_identity_matches",
+        "expected": "Absent proposal identity and absent provider call identity must be NOT_ESTABLISHED, not a successful join",
+        "actual": "MATCH",
+        "stage_proposal_id": null,
+        "response_provider_call_id": null,
+        "response_tool_name": "read_file",
+        "consumer": "DashboardServer.detail -> run_detail -> turn_detail -> RunDetail proposal_correlation",
+        "defect": true
+      },
+      {
+        "case": "abrupt_writer_exit_after_effect",
+        "expected": "External effect remains; stale lease blocks retry rather than claiming no effect or auto-clearing",
+        "exit": 9,
+        "stdout": "AFTER_EFFECT_BEFORE_COMPLETION\r\n",
+        "bytes": "external-effect-observed",
+        "lease_retained": true,
+        "automatic_retry": false,
+        "defect": false
+      }
+    ]
+  },
+  "source": {
+    "probes.py": "import asyncio,hashlib,json,sys\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nsys.path.insert(0,str(Path.cwd()))\nfrom devtools.core.time import Timestamp\nfrom devtools.models.interaction.usage import ModelUsage\nfrom devtools.observability.usage import Attribution,UsageObservation,UsageWindow,report\nfrom devtools.observability.usage.collection import reconcile,sum_usage\nfrom devtools.observability.usage.storage import load,save,writer\nfrom devtools.tools import ToolRunner\nfrom apps.operator_dashboard.project import project\nO=Path(__file__).parent; AT=Timestamp.from_isoformat('2026-10-25T12:00:00Z');WINDOW=UsageWindow.rolling(AT)\ndef row(**changes):\n return replace(UsageObservation(timestamp=AT,backend='backend-A',provider='provider-A',model='literal-model',reasoning_effort='UNKNOWN',execution_profile='AUDIT_FIXTURE',invocation_id='invocation',thread_id='thread',turn_id='turn-A',response_id=None,usage=ModelUsage(input_tokens=10,output_tokens=2),source='INDEPENDENT_LITERAL',source_digest='digest-A',attribution=Attribution(project='literal'),completed=True),**changes)\ndef show(rows):\n v=report(tuple(rows),UsageWindow.rolling(Timestamp.from_isoformat('2026-10-25T13:00:00Z')))\n return {k:v[k] for k in ['fresh_invocations','tokens','unknown_category_observations','conflicting_invocations_excluded','accepted','failed','outcome_unknown']}\nasync def main():\n out=[]\n known=row();unknown=row(invocation_id='other',thread_id='other',usage=ModelUsage(),source_digest='unknown')\n assert sum_usage((known.usage,unknown.usage)).input_tokens is None\n v=show([known,unknown]);assert v['tokens']['input_tokens']==10 and v['unknown_category_observations']['input_tokens']==1\n out.append(dict(case='disjoint_known_unknown',expected='Known subtotal10 plus one explicit unknown, never total10 for both',actual=v,defect=False))\n other=row(backend='backend-B',provider='provider-B',turn_id='turn-B',invocation_id='invocation-B',source_digest='digest-B')\n alias=row(turn_id=None,source_digest='alias-A')\n alone=show([known,alias]);together=show([known,alias,other])\n assert alone['conflicting_invocations_excluded']==0 and together['conflicting_invocations_excluded']==1\n out.append(dict(case='cross_provider_thread_alias',expected='Adding unrelated provider-B must not invalidate provider-A single-turn alias',input=[r.to_dict() for r in [known,alias,other]],alone=alone,actual=together,defect=True))\n r=row(granularity='RESPONSE',response_id='response-A');partial=replace(r,usage=ModelUsage(output_tokens=2),source_digest='partial')\n first=show([r,partial]);second=show([partial,r]);assert first['tokens']['input_tokens']==0 and second['tokens']['input_tokens']==10\n out.append(dict(case='duplicate_response_order',expected='Same response identity and compatible partial facts must not erase known usage depending on input order',input=[r.to_dict(),partial.to_dict()],known_then_partial=first,partial_then_known=second,defect=True))\n bad=replace(r,usage=ModelUsage(input_tokens=11),source_digest='contradictory');v=show([r,bad]);assert v['conflicting_invocations_excluded']==1\n out.append(dict(case='conflicting_known_tokens',expected='Conflict visible and excluded',actual=v,defect=False))\n accepted=row(completed=True,validated=True,accepted=True);failed=replace(accepted,completed=False,validated=False,accepted=False,failure_class='OBSERVED_FAILURE',source_digest='failure')\n v=show([accepted,failed]);assert v['accepted']==1 and v['failed']==0 and v['conflicting_invocations_excluded']==0\n out.append(dict(case='contradictory_outcomes',expected='Qualify terminal fact domains before interpreting incompatible-looking outcomes',input=[accepted.to_dict(),failed.to_dict()],actual=v,defect=False,disposition='Existing explicit accepted-first report precedence. B-0023 must qualify source/layer/acceptance-domain and progression; this synthetic combination alone does not prove same-domain production corruption.'))\n with TemporaryDirectory(prefix='devtools-usage-custody-') as directory:\n  root=Path(directory);p=root/'ledger.json'\n  with writer(p):\n   save(p,(r,r,partial))\n   try:\n    with writer(p):raise AssertionError('Second writer entered')\n   except FileExistsError:pass\n  persisted=load(p);assert len(persisted)==2\n  v=show(persisted)\n  before=p.read_bytes();raw=json.loads(before);raw['observations'][0]['usage']['input_tokens']=99;p.write_text(json.dumps(raw),encoding='utf-8');altered=load(p)\n  assert any(a.usage.input_tokens==99 for a in altered)\n  out.append(dict(case='storage_duplicates_and_tamper_scope',expected='Exact duplicate dedup and writer contention refusal; schema-only local snapshot does not attest source truth',stored_rows=len(persisted),report=v,modified_valid_payload_loads=True,claim='Deliberately mutable metadata snapshot, not authenticated source-binding store. Existing B-0011 boundary; no demonstrated original corruption.',defect=False))\n  p.write_text('{\"schema\":',encoding='utf-8')\n  try:load(p)\n  except Exception as error:corrupt=type(error).__name__\n  else:raise AssertionError('Corrupt record accepted')\n  out.append(dict(case='corrupt_storage',expected='Refuse corrupt durable snapshot',error=corrupt,defect=False))\n  backlog=root/'docs/backlog';backlog.mkdir(parents=True);(backlog/'overview.md').write_text('# Backlog\\n')\n  worker=root/'.local/qwen-coding-worker/uncertain';worker.mkdir(parents=True)\n  body=dict(schema='qwen-coding-loop-v2',disposition='TIMEOUT_COMPLETION_UNKNOWN_NO_RETRY',accepted=False,model_calls_attempted=1,usage_totals={'input_tokens':None},turns=[])\n  (worker/'result.json').write_text(json.dumps(body))\n  snap=project(root);assert snap['workers'][0]['usage']['input_tokens'] is None and snap['workers'][0]['disposition']==body['disposition']\n  assert 'measurement' not in snap['workers'][0]\n  out.append(dict(case='operator_uncertain_worker',expected='Unknown tokens and completion uncertainty remain visible, not normalized framework Evidence by inference',actual=snap['workers'][0],defect=False))\n class EffectTool:\n  def validate(self,args):assert args=='admitted'\n  async def execute(self,args):effects.append('entered');raise asyncio.CancelledError()\n effects=[]\n try:await ToolRunner().execute(EffectTool(),'admitted')\n except asyncio.CancelledError:pass\n assert effects==['entered']\n out.append(dict(case='tool_cancel_after_entry',expected='Cancellation propagates without rollback or automatic completion record/retry',effects=effects,defect=False))\n (O/'probes.json').write_text(json.dumps(dict(baseline='138adc07fa758032743cf5d79ff4b2fe0bb790cc',method='Independent literal metadata and temporary files; no original science or model execution',cases=out),indent=2)+'\\n',encoding='utf-8')\n print(json.dumps([dict(case=r['case'],defect=r['defect']) for r in out],indent=2))\nif __name__=='__main__':asyncio.run(main())\n",
+    "extra_probes.py": "import asyncio,json,sys\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nsys.path.insert(0,str(Path.cwd()))\nfrom probes import row,show\nfrom devtools.agents.conversation import Conversation,ConversationMessage,ConversationMessageRole\nfrom devtools.core.paths import resolve_path\nfrom devtools.models.interaction import InteractionSource\nfrom devtools.execution import Runtime,InteractionAttemptCancelled\nfrom devtools.observability.evidence import ExecutionInspector\nfrom devtools.resources.commands import Command,CommandExecutor\nfrom devtools.observability.usage.storage import load,writer\nO=Path(__file__).parent\nasync def main():\n rows=[]\n a=row(invocation_id='same-local-invocation',thread_id='thread-A')\n b=row(backend='backend-B',provider='provider-B',invocation_id='same-local-invocation',thread_id='thread-B',source_digest='B')\n v=show([a,b]);assert v['conflicting_invocations_excluded']==2\n rows.append(dict(case='cross_provider_invocation_alias',expected='Two providers may reuse their local invocation labels without conflict',actual=v,defect=True))\n from devtools.models.interaction.usage import ModelUsage\n from dataclasses import replace\n strongest=row(usage=ModelUsage(input_tokens=10,output_tokens=2))\n partial1=replace(strongest,usage=ModelUsage(reasoning_tokens=1),source_digest='reasoning1')\n partial2=replace(strongest,usage=ModelUsage(reasoning_tokens=2),source_digest='reasoning2')\n v=show([strongest,partial1,partial2]);assert v['conflicting_invocations_excluded']==0\n rows.append(dict(case='partial_turn_conflict_hidden_by_chosen_row',expected='Two incompatible known reasoning counts for the same invocation must remain conflicting even if the chosen more-complete row lacks reasoning',actual=v,inputs=[r.to_dict() for r in [strongest,partial1,partial2]],defect=True,owner='Same partial-observation reconciliation repair as response ordering; no third proposal'))\n entered=[]\n class Interrupted:\n  source=InteractionSource('independent-interrupted-model')\n  async def send(self,request):entered.append(str(self.source));raise asyncio.CancelledError()\n inspector=ExecutionInspector();conversation=Conversation.new()\n try:\n  await Runtime(observer=inspector).send(conversation=conversation,interaction=Interrupted(),message=ConversationMessage.new('literal question',role=ConversationMessageRole.USER,source=InteractionSource('literal caller')))\n except asyncio.CancelledError:pass\n ids=inspector.attempt_ids();assert len(ids)==1\n evidence=inspector.get_evidence_for_attempt(ids[0]);assert isinstance(evidence[0].outcome,InteractionAttemptCancelled) and len(entered)==1\n rows.append(dict(case='runtime_cancel_after_model_entry',expected='Known fake entry and terminal cancellation, but no returned token usage or durable Evidence inferred',attempt=str(ids[0]),evidence=str(evidence[0].id),outcome=type(evidence[0].outcome).__name__,usage='UNKNOWN_NOT_ZERO',live_model=False,defect=False))\n from apps.operator_dashboard.details import turn_detail\n with TemporaryDirectory(prefix='devtools-operator-join-') as directory:\n  folder=Path(directory);turn=folder/'turn-01';turn.mkdir()\n  (turn/'response.json').write_text(json.dumps(dict(tool_calls=[dict(name='read_file',provider_call_id=None,arguments_json='{}')])));\n  detail=turn_detail(folder,dict(number=1,disposition='CONTEXT_RETURNED'),raw=False)\n  assert detail['proposal_correlation']=='MATCH'\n  rows.append(dict(case='operator_missing_call_identity_matches',expected='Absent proposal identity and absent provider call identity must be NOT_ESTABLISHED, not a successful join',actual=detail['proposal_correlation'],stage_proposal_id=None,response_provider_call_id=None,response_tool_name='read_file',consumer='DashboardServer.detail -> run_detail -> turn_detail -> RunDetail proposal_correlation',defect=True))\n with TemporaryDirectory(prefix='devtools-usage-crash-') as directory:\n  p=Path(directory)/'ledger.json'\n  code=\"from pathlib import Path\\nimport os\\nfrom devtools.observability.usage.storage import writer\\np=Path(\"+repr(str(p))+ \")\\nwith writer(p):\\n p.write_text('external-effect-observed',encoding='utf-8')\\n print('AFTER_EFFECT_BEFORE_COMPLETION',flush=True)\\n os._exit(9)\\n\"\n  result=await CommandExecutor().execute(Command(sys.executable).args('-c',code).cwd(resolve_path(Path.cwd())))\n  assert result.exit_code==9 and p.read_text()=='external-effect-observed' and p.with_suffix('.writer').is_dir()\n  try:\n   with writer(p):raise AssertionError('Unsafe retry admitted')\n  except FileExistsError:pass\n  rows.append(dict(case='abrupt_writer_exit_after_effect',expected='External effect remains; stale lease blocks retry rather than claiming no effect or auto-clearing',exit=result.exit_code,stdout=result.stdout.decode(),bytes=p.read_text(),lease_retained=True,automatic_retry=False,defect=False))\n (O/'extra-probes.json').write_text(json.dumps(dict(cases=rows),indent=2)+'\\n',encoding='utf-8');print(json.dumps(rows,indent=2))\nasyncio.run(main())\n"
+  },
+  "receipts": {
+    "independent-final": {
+      "at": "2026-10-25T21:13:24.593545+00:00",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        ".local/evidence-usage-audit-20261025/probes.py"
+      ],
+      "exit": 0,
+      "elapsed": "0:00:00.770678",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "log_sha256": "f608390095b4d9164a996034fe0397b7bd53cccbd8b5bb5a9663cae39db8641c"
+    },
+    "extra-final": {
+      "at": "2026-10-25T21:30:47.196806+00:00",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        ".local/evidence-usage-audit-20261025/extra_probes.py"
+      ],
+      "exit": 0,
+      "elapsed": "0:00:00.912368",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "log_sha256": "0ad51f09a4cbc0e219c2fe9e8197718ee0c41dd0df9ee0c8a87149bb8c010117"
+    },
+    "focused-valid": {
+      "at": "2026-10-25T21:11:03.330813+00:00",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/observability",
+        "tests/scripts/test_usage.py",
+        "tests/apps/operator_dashboard",
+        "tests/execution",
+        "tests/tools"
+      ],
+      "exit": 0,
+      "elapsed": "0:00:07.335379",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "log_sha256": "e68eb4f78c44c92ec8a9f6e4690815cc247165e60405d647b3df53a20c2effc5"
+    }
+  },
+  "qualification": "Initial nonexistent tests/governance path selected no tests and is a harness error. An imported probe module was guarded before final extra run; only14 distinct cases counted. No live model, archived controller or actual Devtools fault target.",
+  "frontend": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--reporter=dot"
+    ],
+    "cwd": "apps/operator_dashboard/web",
+    "exit": 0,
+    "passed": 7,
+    "vitest_seconds": 51.95,
+    "receipt_kind": "Transcribed actual tool execution result, no raw-log hash claim",
+    "warning": "Existing forwardRef arity warning; tests passed."
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ]
+}

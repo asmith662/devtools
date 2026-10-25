@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+  "proposal_sha256": "00a3b12479a130030a27c5e2db4225616a018536a0fc6178d46fce484a25e019",
+  "previous": null,
+  "at": "2026-10-25T21:28:23.716278+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+  "rationale": "Material same-owner acceptance addition: an independent partial TURN probe supplies one row with input10/output2 and two same-invocation partial rows with reasoning1 versus reasoning2. reconcile compares only against the chosen input/output row, which lacks reasoning, and reports no conflict. Preserve and compare all known category facts, not only the selected winner, across both RESPONSE duplicates and TURN partials. Future regression must exclude this real contradiction, retain compatible complementary facts, and be permutation-independent through public report/storage. This is the existing partial-observation reconciliation repair, not a third proposal, outcome-policy decision or new framework.",
+  "duplicates": [
+    {
+      "reference": "bbba08b8-234e-4f31-bbef-972ac90189e2",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "a271bba02fe406130b312cbc9fb88918c9f906a5990d91cc19acfcd1fd97377f"
+}
