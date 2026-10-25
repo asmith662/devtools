@@ -14,8 +14,28 @@ UNKNOWN is explicit. A local session's project is its observed CWD basename,
 not a classification inferred from private messages.
 
 Reconciliation matches thread/turn, invocation and provider-response identities.
+Thread and invocation aliases are local to the exact backend/provider pair;
+another provider's equally named identity cannot supply or invalidate an alias.
+This does not translate raw provider token fields or infer a universal schema.
+
+Compatible partial copies of one RESPONSE or ordinary TURN measurement preserve
+every known category independently of ordering. Unknown is not a conflicting
+zero. Contradictory known counts (including a supplied provider total) mark the
+component as conflicting and its numerical report contribution is excluded.
+Original observations are retained unchanged. When consumption combines fields,
+its `source` is `RECONCILED_USAGE` and its digest identifies the sorted contributing
+metadata; it does not pretend a single source supplied the union or independently
+authenticate original file bytes. Representative metadata selection is
+deterministic, not authority to choose between conflicting measurements.
+
 Disjoint responses are summed then compared with completed-turn totals. Cumulative
-local turn snapshots may advance. Duplicate copies count once; conflicts are
+local turn snapshots may advance under their explicit timestamp ordering. Copies
+at the same time merge as one measurement; unknown intermediate categories cannot
+hide a known decrease, and absent time supplies no authority for different counts.
+An older known cumulative value remains in history but is not guessed as the exact
+value of a later unknown update. Aggregate counts are not allocated to missing
+response slices, and overlapping categories are never added into a new total.
+Duplicate copies count once; conflicts are
 marked and excluded. An absent turn matches a thread only when one turn is known.
 Long agentic turns may switch model/effort: count one turn with MIXED attribution.
 Provider response IDs do not establish underlying HTTP request/retry counts.

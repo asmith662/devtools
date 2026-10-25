@@ -4,6 +4,7 @@
 
 import json
 from dataclasses import replace
+from itertools import permutations
 from pathlib import Path
 from typing import Any
 
@@ -307,3 +308,252 @@ def test_week_boundaries_and_dst() -> None:
         UsageWindow.calendar_week(AT, "UTC", week_start=7)
     with pytest.raises(ValueError, match="exceeds"):
         UsageWindow(AT, rolling.start)
+
+
+@pytest.mark.parametrize("dimension", ["backend", "provider"])
+@pytest.mark.parametrize("alias", ["thread", "invocation", "invocation-only"])
+def test_provider_local_aliases_do_not_exclude_other_providers(
+    tmp_path: Path,
+    dimension: str,
+    alias: str,
+) -> None:
+    """Public reports and persisted rows keep names local to both discriminators."""
+    original = observation()
+    rows: tuple[UsageObservation, ...]
+    other = (
+        replace(original, backend="other")
+        if dimension == "backend"
+        else replace(original, provider="other")
+    )
+    if alias == "thread":
+        rows = (original, replace(original, turn_id=None, source_digest="alias"))
+        other = replace(
+            other,
+            turn_id="other-turn",
+            invocation_id="other-invocation",
+        )
+    else:
+        rows = (
+            (original,)
+            if alias == "invocation"
+            else (
+                original,
+                replace(original, thread_id=None, turn_id=None, source_digest="alias"),
+            )
+        )
+        other = replace(other, thread_id="other-thread")
+    alone = report(rows, UsageWindow.rolling(AT))
+    assert alone["fresh_invocations"] == 1
+    assert alone["tokens"]["input_tokens"] == 10
+    for sequence in permutations((*rows, other)):
+        path = tmp_path / "provider-ledger.json"
+        with writer(path):
+            save(path, sequence)
+        result = report(load(path), UsageWindow.rolling(AT))
+        assert result["conflicting_invocations_excluded"] == 0
+        assert result["fresh_invocations"] == 2
+        assert result["tokens"]["input_tokens"] == 20
+        assert result["tokens"]["output_tokens"] == 8
+
+
+@pytest.mark.parametrize("granularity", ["TURN", "RESPONSE"])
+def test_partial_copies_preserve_all_known_fields_in_any_order(
+    tmp_path: Path,
+    granularity: str,
+) -> None:
+    """Independent literal expected counts survive duplicate copies and save/load."""
+    first = observation(
+        granularity=granularity,
+        response_id="response" if granularity == "RESPONSE" else None,
+        usage=ModelUsage(input_tokens=10),
+    )
+    second = replace(
+        first,
+        usage=ModelUsage(output_tokens=4, reasoning_tokens=2, total_tokens=14),
+        source_digest="complement",
+    )
+    empty = replace(first, usage=ModelUsage(), source_digest="unknown-copy")
+    for sequence in permutations((first, second, empty)):
+        result = report(sequence, UsageWindow.rolling(AT))
+        assert result["tokens"]["input_tokens"] == 10
+        assert result["tokens"]["output_tokens"] == 4
+        assert result["tokens"]["reasoning_tokens"] == 2
+        assert result["unknown_category_observations"]["cached_input_tokens"] == 1
+        assert result["conflicting_invocations_excluded"] == 0
+        component = reconcile(sequence)[0]
+        assert component.consumption[0].usage.total_tokens == 14
+        assert component.consumption[0].source == "RECONCILED_USAGE"
+        assert set(component.observations) == set(sequence)
+        # Derived usage must not claim one original source supplied all fields.
+        assert component.consumption[0].source_digest not in {
+            r.source_digest for r in sequence
+        }
+        path = tmp_path / "partial-ledger.json"
+        with writer(path):
+            save(path, (*sequence, first))
+        restored = report(load(path), UsageWindow.rolling(AT))
+        assert restored == result
+
+
+@pytest.mark.parametrize("granularity", ["TURN", "RESPONSE"])
+def test_partial_conflicts_cannot_hide_behind_more_complete_row(
+    granularity: str,
+) -> None:
+    """The most complete row is not authority to ignore two other known facts."""
+    first = observation(
+        granularity=granularity,
+        response_id="response" if granularity == "RESPONSE" else None,
+        usage=ModelUsage(input_tokens=10, output_tokens=4),
+    )
+    second = replace(
+        first,
+        usage=ModelUsage(reasoning_tokens=1),
+        source_digest="partial1",
+    )
+    third = replace(
+        first,
+        usage=ModelUsage(reasoning_tokens=2),
+        source_digest="partial2",
+    )
+    for sequence in permutations((first, second, third)):
+        result = report(sequence, UsageWindow.rolling(AT))
+        assert result["conflicting_invocations_excluded"] == 1
+        assert result["fresh_invocations"] == 0
+        assert (
+            result["tokens"]["input_tokens"] == 0
+        )  # explicitly excluded, not consumption
+        assert reconcile(sequence)[0].conflict
+
+
+@pytest.mark.parametrize(
+    "scenario",
+    [
+        "decrease-through-unknown",
+        "same-time-conflict",
+        "missing-time",
+        "missing-time-total",
+        "same-time-partials",
+        "unknown-later-total",
+    ],
+)
+def test_cumulative_snapshot_order_is_explicit(scenario: str) -> None:
+    """Only the existing timestamped cumulative contract may supersede counts."""
+    first = observation(
+        source="LOCAL_CODEX_TURN_SUMMARY",
+        usage=ModelUsage(input_tokens=10),
+    )
+    later = replace(
+        first,
+        timestamp=AT,
+        source_digest="later",
+        usage=ModelUsage(input_tokens=20),
+    )
+    expected_conflict = scenario in {
+        "decrease-through-unknown",
+        "same-time-conflict",
+        "missing-time",
+        "missing-time-total",
+    }
+    rows: tuple[UsageObservation, ...]
+    if scenario == "decrease-through-unknown":
+        later = replace(later, usage=ModelUsage(input_tokens=5))
+        middle = replace(
+            first,
+            timestamp=Timestamp.from_isoformat("2026-10-14T13:00:00Z"),
+            usage=ModelUsage(),
+            source_digest="unknown",
+        )
+        rows = (first, middle, later)
+    elif scenario == "same-time-conflict":
+        rows = (first, replace(later, timestamp=first.timestamp))
+    elif scenario == "missing-time":
+        rows = (first, replace(later, timestamp=None))
+    elif scenario == "missing-time-total":
+        rows = (
+            replace(first, usage=ModelUsage(total_tokens=14)),
+            replace(later, timestamp=None, usage=ModelUsage(total_tokens=15)),
+        )
+    elif scenario == "same-time-partials":
+        rows = (
+            first,
+            replace(
+                later,
+                timestamp=first.timestamp,
+                usage=ModelUsage(output_tokens=4),
+            ),
+        )
+    else:
+        rows = (first, replace(later, usage=ModelUsage()))
+    for sequence in permutations(rows):
+        component = reconcile(sequence)[0]
+        assert component.conflict is expected_conflict
+        result = report(
+            sequence,
+            UsageWindow.rolling(Timestamp.from_isoformat("2026-10-15T19:00:00Z")),
+        )
+        assert result["conflicting_invocations_excluded"] == int(
+            expected_conflict
+            and scenario not in {"missing-time", "missing-time-total"},
+        )
+        if scenario in {"missing-time", "missing-time-total"}:
+            assert result["unallocated_timestamp_observations"] == 1
+        if scenario == "same-time-partials":
+            assert result["tokens"]["input_tokens"] == 10
+            assert result["tokens"]["output_tokens"] == 4
+        if scenario == "unknown-later-total":
+            # The old historical count is retained, but is not guessed as the
+            # current value of a later cumulative measurement at another time.
+            assert component.observations[0].usage.input_tokens in {10, None}
+            assert component.consumption[0].usage.input_tokens is None
+            assert result["unknown_category_observations"]["input_tokens"] == 1
+
+
+@pytest.mark.parametrize(
+    "kind",
+    ["known-conflict", "unknown-model", "reported-total", "source-fallback"],
+)
+def test_response_identity_and_conflicts_remain_supported(kind: str) -> None:
+    """Distinct source support and model/total conflicts are not summable copies."""
+    first = observation(
+        granularity="RESPONSE",
+        response_id="same",
+        usage=ModelUsage(input_tokens=10, output_tokens=4, total_tokens=14),
+    )
+    second = replace(first, source_digest="other-copy")
+    if kind == "known-conflict":
+        second = replace(second, model="other-model")
+    elif kind == "unknown-model":
+        second = replace(second, model="UNKNOWN")
+    elif kind == "reported-total":
+        second = replace(
+            second,
+            usage=ModelUsage(input_tokens=10, output_tokens=4, total_tokens=15),
+        )
+    else:
+        first = replace(first, response_id=None, source_digest="same-capture")
+        second = replace(first)
+    for sequence in permutations((first, second)):
+        result = report(sequence, UsageWindow.rolling(AT))
+        assert result["conflicting_invocations_excluded"] == int(
+            kind in {"known-conflict", "reported-total"},
+        )
+        if kind in {"source-fallback", "unknown-model"}:
+            assert result["fresh_invocations"] == 1
+            assert result["tokens"]["input_tokens"] == 10
+
+
+def test_incomplete_response_slices_do_not_gain_unallocated_turn_counts() -> None:
+    """A complete aggregate cannot assign missing counts to individual responses."""
+    total = observation(usage=ModelUsage(input_tokens=10))
+    first = replace(
+        total,
+        granularity="RESPONSE",
+        response_id="one",
+        usage=ModelUsage(input_tokens=5),
+    )
+    second = replace(first, response_id="two", usage=ModelUsage())
+    result = report((first, second, total), UsageWindow.rolling(AT))
+    assert result["tokens"]["input_tokens"] == 5
+    assert result["unknown_category_observations"]["input_tokens"] == 1
+    assert result["fresh_invocations"] == 1
+    assert result["conflicting_invocations_excluded"] == 0
