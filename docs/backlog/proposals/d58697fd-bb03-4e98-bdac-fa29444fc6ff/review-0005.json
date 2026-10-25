@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+  "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+  "previous": "0b1fe78f8e712570dd285640967117ac2fcab7beaf34efe93cec7d6a6ff3f76f",
+  "at": "2026-10-25T20:15:43.668384+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/validation-evidence-path-repair.md",
+  "rationale": "BOUNDED_SCOPE_IMPLEMENTED_AND_MERGED: Local closeout protected reuse. Every new local feature commit runs genuinely fresh fixed protected validation; unsupported/legacy saved reports never authorize reuse. Current direct reports declare pre-publication-protected/fresh-only-v1. Preview without fresh proof is not publication eligible. Delayed unpublished commit replay checks its exact committed checkout; an already accepted identical remote ref is historical observation, not fresh eligibility. Existing scoped CodingCommands is_current reuse remains. Broader transitive inputs, ignored/environment/toolchain closure, HEAD-sensitive pre/post-commit assurance and cross-toolchain reuse remain OPEN; this delivers no universal protected cache or completeness claim. Production 1a9e3ff1e56aebb8522c4d437d46de5f31679389; normal PR#17; independently accepted main ae88c69267961cf6a73bf41454a08cb8f97a14c4. Exact committed gate 2903 passed/2 opt-in live skips/100% configured devtools production branch coverage, 1114.868s managed. Supported Ruff/format, strict mypy, layout, links, Intake and whitespace pass; 265 focused post-main tests pass on identical physical executable inputs. Three independent original failures reproduced before edits; permanent negatives also expose their original owners. No live models/scientific reruns. Delivered bounded scope must not be scheduled again. Broader d58697fd, custody0385a359, cohesion39c6663a and evidence/review/publication limitations remain separate.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same original UUID, append-only advisory; Intake has no delivered state. No approval, B-number, grant, parent closure, duplicate implementation or new proposal.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "cab014d368e7f23d1d4fa5bd3dde6c25f32f3a9dc86e53d8ebc7a704d843082d"
+}
