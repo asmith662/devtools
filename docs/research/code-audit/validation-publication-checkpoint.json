@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-25T18:29:45.260755+00:00",
+  "baseline": "5b0bb0b769c2db8d698c86c0e669db820537eec1",
+  "branch": "audit/validation-publication-20261025",
+  "changed_paths": {
+    "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md": "ba96573e8a941686046ad5df984ad02708878fc6",
+    "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md": "f81b08f03d30c1f9b478119b5c5c8cadbdc91a6b",
+    "docs/backlog/overview.md": "5029fb2837324330ebbe51d6b988b5fa6ec96b20",
+    "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/review-0017.json": "6d27fd2cdacb036a021e6057c70ac8ab2099ba42",
+    "docs/backlog/proposals/84a5d9b1-2bef-47e0-991c-77b4d8cdda49/proposal.json": "43e9196460348e3c6a668816d9feef5d40f0ea7b",
+    "docs/backlog/proposals/b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd/proposal.json": "31f179875665f2de2caa0084973c1cbe562c52af",
+    "docs/backlog/proposals/d58697fd-bb03-4e98-bdac-fa29444fc6ff/review-0004.json": "b093c7a41959e3c4020b0ac865f3fbd9ef0e7318",
+    "docs/documentation_map.md": "1bebefb2a4489c838ca424078d97585c169ad404",
+    "docs/research/code-audit/README.md": "f38b543c5e36b7ab3f4ea18f04895f3e4c32765f",
+    "docs/research/code-audit/execution-evidence-next-cohort.json": "a20d7a2b3c1d739d5e095dadf8c181c13da678f5",
+    "docs/research/code-audit/validation-publication-assurance.json": "c658726fd93d5f751fbf4dd897d12647e422e0f5",
+    "docs/research/code-audit/validation-publication-intake.json": "bb04635b0ab5975352bdd0495f2e5d317d443cce",
+    "docs/research/code-audit/validation-publication-probes.json": "d1ac947120725d946e68953a0fa9e98cb6fe103e",
+    "docs/research/code-audit/validation-publication-tests.json": "5ed596633d0f32af1087378361b9618d12c1cee7",
+    "docs/research/comprehensive-code-audit.md": "537786f8d00b8029b488777f52c27f50b6a49e57",
+    "docs/research/validation-review-publication-audit.md": "4e33513ea967e98f6f95791c1a626c0c94239b60",
+    "docs/roadmap.md": "febe792dbd41716a4c7568bfc3f5a5ce4aedac78"
+  },
+  "selected_bodies_reviewed": 10,
+  "selected_implementation_bodies": 6,
+  "selected_test_bodies": 4,
+  "focused_passed": 252,
+  "focused_exit": 0,
+  "recorded_probe_cases": 13,
+  "confirmed_findings": {
+    "existing_P1": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+    "new_P2": [
+      "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+      "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd"
+    ]
+  },
+  "new_pending": 2,
+  "existing_proposal_advisories": 2,
+  "existing_B_story_evidence_notes": 2,
+  "B_states_unchanged": true,
+  "intake_chains": 50,
+  "intake_errors": [],
+  "links_checked": 686,
+  "json_files": 10,
+  "unchanged_JSONL_rows_parsed": 297,
+  "layout": "PASS",
+  "whitespace": "PASS",
+  "forensics": 13,
+  "executable_inputs_equal_baseline": true,
+  "prior_delivered_commits_in_main": [
+    "a0a6c22403f7df2679aa574226e420521a8accf5",
+    "7541a1a3348f960e536c8c87474764550b669196",
+    "ab994225872840bddcf66149256aaa7d46f7f9da",
+    "cf9db4af17516dc19092f1ae18c197783f1f5b3d",
+    "18f6ac247bf5d1173e8b488910557207ccfaf92c",
+    "ce1a8ea523cdfe9772c7e8b5ed0479528d3aba50"
+  ],
+  "RI": "93/93 fixtures,606/606 experimental paths,188 historical obligations unchanged; no new RI credit.",
+  "protected_gate": "Not run for documentation/Intake-only audit; ce1 prior2889/2 live skips/100% remains prior repair evidence.",
+  "self_identity": "Containing Git commit binds this receipt; no recursive self hash."
+}

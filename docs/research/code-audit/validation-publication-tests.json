@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-25T18:08:38.223297+00:00",
+  "command": [
+    "uv",
+    "run",
+    "pytest",
+    "--no-cov",
+    "-q",
+    "tests/apps/qwen/test_change_checks.py",
+    "tests/scripts/backlog/test_local_closeout.py",
+    "tests/scripts/backlog/test_integration_validation.py",
+    "tests/scripts/backlog/test_integration.py",
+    "tests/resources/commands"
+  ],
+  "exit": 0,
+  "elapsed": "0:08:35.349487",
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "log_sha256": "8d45c0c06c70a5bbc170997b8820eb20667e182f7a60a7ab9fc02459db1bed81",
+  "passed": 252,
+  "pytest_seconds": 513.06,
+  "log": "........................................................................ [ 28%]\n........................................................................ [ 57%]\n........................................................................ [ 85%]\n....................................                                     [100%]\n252 passed in 513.06s (0:08:33)\n\nSTDERR\n",
+  "limits": "Four selected test modules fully inspected. Additional Commands tests executed as dependencies; no blanket body-level credit. No new protected gate for docs/Intake-only changes; prior ce1 gate remains delivered evidence."
+}
