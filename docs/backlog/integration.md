@@ -234,6 +234,30 @@ an author mismatch refuses. This changes provenance only: exact candidate,
 validation, Codex review, feature-only publication and protected-destination
 restrictions remain unchanged. It does not fabricate a model execution receipt.
 
+Local closeout now treats protected validation as **fresh-only**. Its candidate
+review subject identifies result/base/files, not a complete validation-input
+closure. Every new local feature commit runs the fixed protected validator in
+that invocation, even when the caller omits `protected_validation=True`. A preview
+without fresh protected validation is not publication-eligible. Saved, legacy or
+unrecognized protected reports cannot authorize another commit. Current reports
+declare `reuse_policy: fresh-only-v1`; this is a limitation, not a cache key.
+
+Replaying an unpublished committed candidate requires fresh protected validation
+on its exact active committed checkout before pushing. Observing an already
+accepted exact remote commit is idempotent reconciliation, not new validation
+proof; the replay projection explicitly disclaims current publication eligibility.
+Independent semantic review and explicit ordinary-feature authority remain required.
+Scoped CodingCommands freshness/reuse retains its separate, narrower contract.
+Ignored configuration, transitive inputs, environment and HEAD-sensitive checks
+are not universally attested by an unchanged tree or this report schema. Broader
+input closure remains existing proposal d58697fd work, not a delivered universal
+validation cache.
+
+Integration filename admission and local committed replay use Checkout's existing
+NUL-delimited Git path reader. Git's quoted filename display is not a path identity.
+Exact planned byte/scope checks remain mandatory; this does not broaden edit or
+publication authority.
+
 New plans use `operating_model: single-checkout-v1` and exact canonical `checkout`;
 new integration policies use `checkout` instead of historical `worktree_root`.
 The existing record hashes distinguish these contracts. Historical records remain
