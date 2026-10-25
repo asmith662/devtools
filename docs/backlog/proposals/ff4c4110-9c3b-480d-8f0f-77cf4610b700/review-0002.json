@@ -1,0 +1,49 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "proposal_sha256": "2a234c846d5f33ff7d9ec8f7965b2b21bb8d5c3b3a3203819a4852e8a5a866f4",
+  "previous": "710d1db64070dcb158b88366e6f13e9928e5e41b683160d3aa8e3d79e2c434fa",
+  "at": "2026-10-25T00:08:55.192256+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/ri-facade-binding-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: production cf9db4af17516dc19092f1ae18c197783f1f5b3d, normal GitHub PR#8, main 5a5485e98908922722ba2a4b177094364c1aac31. Four non-Name facade binding forms now refuse; canonical module guards protect facade uncertainty and final function target; References never overrides ambiguous direct lookup. Permanent source/Reference/ToolRunner regressions include before/after, nested/unrelated/valid sync/async aliases, direct classes, source order, target rebinding/decorator, and inconsistent retained content. Original new tests first produced25 assertion failures/two passing controls with no collection error. Final committed protected gate 2842 passed/2 live skips,100% production branch coverage; supported Ruff/format and strict mypy pass. Acceptance fulfilled for this bounded repair; no repeat implementation/adoption should be scheduled. Existing handler versus capture lifetime uncertainty, function-only one-facade target, recursive/dynamic runtime semantics remain deliberately unsupported. Prior16b27e74 repair stays separate and delivered; no A+C or agent-effectiveness claim.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing UUID retained. Advisory records actual delivered scope; no closed/delivered proposal enum, B-number, approval, grant or parent closure invented.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "92638a0accbf1d7d19ad8a8e6613367b18f4a7e6d9ab726b09debc643398808d"
+}
