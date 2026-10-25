@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "30bd833e-f19d-4a4c-bbb6-465fd22db403",
+  "proposal_sha256": "eca66dd1ca154d174cb81dd89e5b010dd0a4a91072eb9e236f0288d86a02d16e",
+  "previous": null,
+  "at": "2026-10-25T13:27:20.721795+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/checkout-custody-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Exact recovery consent. Actual CLI passes the displayed journal digest into required expected_owner recovery admission under the same OS fence. Replaced, disappeared, foreign or corrupt journals refuse; no stale Boolean-only fallback. Default-No, unchanged-owner success, live replacement preservation and fresh display/confirmation are permanent tests. Existing v1 journals without generation remain recoverable by exact digest; no historical nonce is invented. Production ce1a8ea523cdfe9772c7e8b5ed0479528d3aba50; normal GitHub PR#14; independently verified accepted main f54b4a0a6d1b81be805b2d1d63ea43f23df0100a. Committed protected gate 2889 passed/2 opt-in live skips,100% configured production branch coverage;136 focused passes, supported Ruff/format/strict mypy and bounded post-main regressions pass. The independent baseline probes reproduced all three failures; four selected permanent negative tests also fail for actual baseline behavior, not collection errors. Full source/test/config bytes match the validated committed inputs. Delivered bounded scope should not be scheduled again. Trusted local/cooperating filesystem and stopped-owner/command-descendant preconditions remain; network/uncooperative writers and generic rollback are not established. Broader custody0385a359, check closure d58697fd and cohesion39c6663a remain open.",
+  "duplicates": [
+    {
+      "reference": "3b2f566b-8733-4b1d-a840-1e361612ebf8",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "69688104-098b-404c-acca-745bebac6653",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original UUID and append-only history retained. Intake has no delivered/closed state: advisory records implemented-and-merged evidence without approval, new B-number, grant, duplicate implementation or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "7c585df647c8425f3612b4047a150687f846df8a1b80e05f1cab1318920cf2ac"
+}

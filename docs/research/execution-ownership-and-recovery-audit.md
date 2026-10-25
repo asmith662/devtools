@@ -1,5 +1,7 @@
 # Checkout, WorkCycle, delegation and recovery audit — 2026-10-25
 
+Delivered follow-through: [Checkout fencing, exact recovery consent and filesystem custody](../development/checkout-custody-repair.md), production `ce1a8ea523cdfe9772c7e8b5ed0479528d3aba50`, PR#14, verified main `f54b4a0a6d1b81be805b2d1d63ea43f23df0100a`. Full committed-tree gate 2889 passed/2 opt-in live skips/100% configured production branch coverage. Proposals69688104/30bd833e/3b2f566b retain implemented-and-merged advisory evidence; do not repeat these repairs. Broader custody, check-input closure and cohesion remain separate. RI93/93,606/606 and188 historical obligations are unchanged. A+C remains unapproved; the next frozen validation/publication audit has not begun. Earlier pending-repair statements below are dated history.
+
 Reviewed integrated main `264915928a9045795d5e07c728ffa1aaba4c1704` in the
 canonical checkout. The nine frozen source/test versions have received complete
 body-level review. **Three independently reproduced P1 Checkout defects remain
