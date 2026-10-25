@@ -13,6 +13,11 @@ Both modes consume one proposal allowance per attempted edit response, including
 refusals. Multiple components in one admitted native batch remain one proposal.
 The independently bounded model-call limit still applies; prepared prompt and
 receipt counters distinguish attempted, refused and admitted proposals.
+The application retains the returned response and usage, then authenticates its
+source against the interaction selected before invocation. A foreign label stops
+before Tool/edit admission with RESPONSE_VALIDATION_FAILED and no redispatch.
+Runtime's equivalent private check remains within its own narrow boundary; the
+coding application does not require a Conversation or a new execution framework.
 
 ## Map-to-source27: Codex capability, native investigation exhausted Context
 

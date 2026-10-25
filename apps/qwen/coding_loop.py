@@ -705,8 +705,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "Measured input plus output/safety exceeds actual 32K capacity"
                 )
         source_hash = _hash(workspace / task.source)
+        selected_source = interaction.source
         stage: dict[str, Any] = {
             "number": number,
+            "selected_source": str(selected_source),
             "input_tokens_measured": measured_tokens,
             "capacity_safety_tokens": 2048 if measured_capacity else None,
             "started_at": str(Timestamp.now()),
@@ -741,10 +743,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 if response.usage and response.usage.input_tokens is not None
                 else None
             ),
-            phase="PROPOSAL_ADMISSION",
+            phase="RESPONSE_VALIDATION",
+            response_source=str(response.source),
         )
         _save(turn / "response.json", asdict(response))
         stage["response_sha256"] = _hash(turn / "response.json")
+        if response.source != selected_source:
+            raise ValueError(
+                "Model response source does not match model interaction source."
+            )
+        stage["phase"] = "PROPOSAL_ADMISSION"
         if response.termination == ModelTermination.OUTPUT_LIMIT:
             raise PatchProposalError("Output limit: no repair dispatch")
         if _hash(workspace / task.source) != source_hash:

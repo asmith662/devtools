@@ -23,6 +23,7 @@ from devtools.models.interaction import (
     ModelResponse,
     ModelTermination,
     ModelToolCall,
+    ModelUsage,
 )
 from devtools.resources.commands import Command, CommandExecutor
 from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_execution
@@ -438,6 +439,7 @@ class _TinyScripted:
             "Literal independent proposal.",
             InteractionSource("tiny-foreign") if self.foreign else self.source,
             termination=ModelTermination.TOOL_CALL,
+            usage=ModelUsage(input_tokens=11, output_tokens=7),
             tool_calls=(ModelToolCall(name, json.dumps(values), f"tiny-{index}"),),
         )
 
@@ -629,18 +631,27 @@ def test_worker_refuses_drift_between_fixed_checks(
     assert result["source_restored"]
 
 
+@pytest.mark.parametrize("target", ["test", "runner", "configuration"])
 def test_worker_reauthenticates_before_final_acceptance(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
+    target: str,
 ) -> None:
     """Later immutable drift cannot leave an accepted=True terminal receipt."""
     root = resolve_path(tmp_path / "task").value
     task = asyncio.run(_tiny_task(root))
     original = worker._turns
+    folder = root / ".local/run"
+    changed = {
+        "test": root / _TINY_TEST,
+        "runner": folder / "tests-runner.py",
+        "configuration": root / "pytest.ini",
+    }[target]
 
     async def drift(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- preserve the complete worker signature in fault injection
         await original(*args, **kwargs)
-        (root / _TINY_TEST).write_text("# after validation\n", encoding="utf-8")
+        assert args[3]["accepted"]
+        changed.write_text("# after validation\n", encoding="utf-8")
 
     monkeypatch.setattr(worker, "_turns", drift)
     result = asyncio.run(
@@ -652,6 +663,132 @@ def test_worker_reauthenticates_before_final_acceptance(
         )
     )
     assert not result["accepted"]
-    assert not result["original_unchanged"]
+    assert result["original_unchanged"] is (target != "test")
     assert result["disposition"] == "INPUT_INTEGRITY_FAILED"
     assert result["source_restored"]
+
+
+@pytest.mark.parametrize("native", [False, True])
+@pytest.mark.parametrize("foreign", [False, True])
+def test_response_source_is_checked_before_tools(
+    tmp_path: Path,
+    *,
+    native: bool,
+    foreign: bool,
+) -> None:
+    """Selected-source responses work; foreign facts remain archived, never acted on."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root, native=native))
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_GOOD),), foreign=foreign)
+    folder = root / ".local/run"
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            folder,
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert result["accepted"] is (not foreign), result
+    assert result["source_restored"]
+    assert result["original_unchanged"]
+    response = json.loads((folder / "turn-01/response.json").read_text())
+    assert response["source"] == {
+        "value": "tiny-foreign" if foreign else "tiny-selected"
+    }
+    assert response["tool_calls"][0]["provider_call_id"] == "tiny-0"
+    assert response["usage"]["output_tokens"] == 7
+    if foreign:
+        assert result["disposition"] == "RESPONSE_VALIDATION_FAILED"
+        assert result["model_calls_attempted"] == 1
+        assert result["context_actions_attempted"] == 0
+        assert result["proposals_attempted"] == 0
+        assert result["proposals_admitted"] == 0
+        assert result["turns"][0]["selected_source"] == "tiny-selected"
+        assert result["turns"][0]["response_source"] == "tiny-foreign"
+        assert result["turns"][0]["usage"]["input_tokens"] == 11
+        assert not (folder / "turn-01/tools.json").exists()
+
+
+def test_runtime_already_refuses_the_same_foreign_source(tmp_path: Path) -> None:
+    """The worker's correspondence check matches the existing narrow Runtime."""
+    from devtools.agents.conversation import (  # noqa: PLC0415
+        Conversation,
+        ConversationMessage,
+        ConversationMessageRole,
+    )
+    from devtools.execution import Runtime  # noqa: PLC0415
+
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_GOOD),), foreign=True)
+    with pytest.raises(ValueError, match="response source does not match"):
+        asyncio.run(
+            Runtime().send(
+                conversation=Conversation.new(),
+                interaction=model,
+                message=ConversationMessage.new(
+                    "Inspect the tiny source",
+                    role=ConversationMessageRole.USER,
+                    source=InteractionSource("tiny-caller"),
+                ),
+            )
+        )
+    assert len(model.requests) == 1
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+
+
+def test_native_batch_components_consume_one_proposal(tmp_path: Path) -> None:
+    """Two observed regions share the original transaction-level allowance."""
+    root = resolve_path(tmp_path / "task").value
+    task = replace(asyncio.run(_tiny_task(root, native=True)), maximum_proposals=1)
+
+    class Batch(_TinyScripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            response = await super().send(request)
+            if len(self.requests) == 1:
+                return response
+            return replace(
+                response,
+                tool_calls=tuple(
+                    ModelToolCall(
+                        "replace_source",
+                        json.dumps(
+                            {
+                                "path": _TINY_SOURCE,
+                                "old_text": old,
+                                "new_text": new,
+                            }
+                        ),
+                        f"component-{index}",
+                    )
+                    for index, (old, new) in enumerate(
+                        (
+                            ("def value():", "def value() -> int:"),
+                            ("return 0", "return 1"),
+                        )
+                    )
+                ),
+            )
+
+    folder = root / ".local/run"
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            folder,
+            Batch(task, ((_TINY_OLD, _TINY_GOOD),)),
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+        )
+    )
+    assert result["accepted"], result
+    assert result["proposals_attempted"] == 1
+    assert result["proposals_admitted"] == 1
+    assert len(result["turns"][-1]["edits"]) == 2
+    assert (
+        folder / "final-source.py"
+    ).read_text() == "def value() -> int:\n    return 1\n"
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
