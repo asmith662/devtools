@@ -100,12 +100,8 @@ async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa
                 raise PermissionError(
                     "Checkout recovery requires a genuine interactive terminal"
                 )
-            print(
-                json.dumps(
-                    load_json(root / ".local/backlog/checkout-owner/owner.json"),
-                    indent=2,
-                )
-            )
+            owner = load_json(root / ".local/backlog/checkout-owner/owner.json")
+            print(json.dumps(owner, indent=2))
             consent = (
                 input(  # noqa: ASYNC250 -- deliberate trusted terminal boundary
                     "Confirm the recorded owner is stopped and restore only "
@@ -116,7 +112,7 @@ async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa
                 .lower()
                 == "y"
             )
-            await recover(cycle, authorize=consent)
+            await recover(cycle, authorize=consent, expected_owner=owner["sha256"])
             return {"disposition": "CHECKOUT_RECOVERED", "dispatch_authorized": False}
         case "delegation-issue":
             return await Delegations(cycle).issue(

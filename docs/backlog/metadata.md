@@ -507,6 +507,13 @@ to use this repository-local administrative feature.
 branch/HEAD, exact target revision, admitted edit fingerprints and original
 untracked file identities. Atomic directory creation excludes another source
 writer. It is not execution authority and never expires automatically.
+Cooperating transitions also hold a crash-released native OS lock on the stable
+`.local/backlog/checkout.lock` file across admission, effects and release. Never
+delete/replace it as stale-lock cleanup. New journals carry a nonreusable generation;
+existing v1 records remain recoverable by exact confirmed digest. The default-No
+decision binds the displayed journal; replaced or changed owners require a fresh
+decision. Released journals are retained by a single directory rename. See the
+[custody contract and limitations](../development/checkout-custody-repair.md).
 Interrupted ownership must be inspected after the old process has stopped:
 
 ```powershell

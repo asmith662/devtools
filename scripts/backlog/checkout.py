@@ -11,6 +11,10 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import secrets
+import stat
+import sys
+from contextlib import contextmanager
 from typing import TYPE_CHECKING, Any, Self
 
 from devtools.context import RepositoryResourceAddress
@@ -21,10 +25,89 @@ from scripts.backlog.coordinator import git
 from scripts.backlog.intake import _digest, load_json
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
     from pathlib import Path
     from types import TracebackType
 
     from scripts.backlog.work import WorkCycle
+
+
+@contextmanager
+def _transition(root: Path) -> Iterator[None]:
+    """Fence cooperating processes/threads across effects, not just admission.
+
+    This stable local file is never removed or replaced. The OS releases its
+    advisory lock on close/process exit; its existence is not a stale lease.
+    Unsupported/network filesystem locking is not a supported custody boundary.
+    """
+    path = root / ".local/backlog/checkout.lock"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    entry = _entry(path)
+    if entry is not None and (not stat.S_ISREG(entry.st_mode) or _link(entry)):
+        raise PermissionError("Checkout lock must be a regular local file")
+    # A descriptor is necessary for OS locking; filesystem atomic text writes
+    # do not supply this primitive. Do not unlink this inode even after release.
+    with path.open("a+b") as stream:
+        try:
+            if sys.platform == "win32":
+                import msvcrt  # noqa: PLC0415 -- native Windows lock boundary
+
+                msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+            else:
+                import fcntl  # noqa: PLC0415 -- native POSIX lock boundary
+
+                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as error:
+            raise PermissionError("Checkout transition in progress") from error
+        try:
+            yield
+        finally:
+            # Closing releases even on cancellation or an interrupted finalizer.
+            stream.close()
+
+
+def _entry(path: Path) -> os.stat_result | None:
+    """Inspect lexical presence, including dangling links; fail closed on errors."""
+    try:
+        return path.lstat()
+    except FileNotFoundError:
+        return None
+
+
+def _link(entry: os.stat_result) -> bool:
+    """Include Windows junctions and other reparse points, not only symlinks."""
+    return stat.S_ISLNK(entry.st_mode) or bool(
+        getattr(entry, "st_file_attributes", 0)
+        & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+    )
+
+
+async def _collisions(root: Path, revision: str) -> None:
+    """Refuse unknown entries or traversed aliases before a Git branch effect."""
+    names = await _paths(root, "ls-tree", "-r", "--name-only", revision)
+    current = await _paths(root, "ls-files")
+    for name in names:
+        path = root
+        parts = RepositoryResourceAddress(name).value.split("/")
+        for index, part in enumerate(parts):
+            path /= part
+            entry = _entry(path)
+            if entry is None:
+                break
+            relative = "/".join(parts[: index + 1])
+            if index == len(parts) - 1:
+                if name not in current:
+                    raise PermissionError(
+                        "Untracked/ignored path collides with target: " + name
+                    )
+            elif _link(entry):
+                raise PermissionError("Branch target traverses a link: " + relative)
+            elif not stat.S_ISDIR(entry.st_mode):
+                if relative in current:
+                    break  # Git owns this tracked file-to-directory transition.
+                raise PermissionError(
+                    "Branch target crosses unknown entry: " + relative
+                )
 
 
 async def fingerprint(path: Path) -> str:
@@ -97,8 +180,9 @@ class Checkout:
         self.create = create
         self.commit_allowed = commit_allowed
         self.record: dict[str, Any] = {}
+        self._sealed: str | None = None
 
-    def save(self) -> None:
+    def _save(self) -> None:
         """Atomically checkpoint host-owned recovery information."""
         write(
             TextFile(
@@ -107,6 +191,19 @@ class Checkout:
                 + "\n",
             )
         )
+        self._sealed = _digest(self.record)
+
+    def _owned(self) -> None:
+        """Require the exact last journal, including its nonreusable generation."""
+        value = load_json(self.folder / "owner.json")
+        digest = value.pop("sha256", None)
+        if (
+            self._sealed is None
+            or digest != self._sealed
+            or _digest(value) != digest
+            or value.get("root") != str(self.root)
+        ):
+            raise PermissionError("Checkout owner changed; reconciliation required")
 
     def source_path(self, relative: str) -> Path:
         """Reject aliases as well as escapes at the exact-file authority boundary."""
@@ -118,6 +215,12 @@ class Checkout:
 
     def expect(self, path: str, text: str) -> None:
         """Admit exact host-validated proposal bytes before applying them."""
+        with _transition(self.root):
+            self._owned()
+            self._expect(path, text)
+
+    def _expect(self, path: str, text: str) -> None:
+        """Update the journal while already holding the transition fence."""
         entry = next(f for f in self.record["files"] if f["path"] == path)
         content = text.encode()
         digest = hashlib.new(
@@ -127,11 +230,16 @@ class Checkout:
         ).hexdigest()
         if digest not in entry["expected"]:
             entry["expected"].append(digest)
-            self.save()
+            self._save()
 
-    async def __aenter__(self) -> Self:  # noqa: C901, PLR0912 -- fail-closed claim before Git effects
+    async def __aenter__(self) -> Self:
         """Claim before switching; refuse rather than stash unrelated work."""
         await self.cycle._coordinator()
+        with _transition(self.root):
+            return await self._enter()
+
+    async def _enter(self) -> Self:  # noqa: C901 -- fenced branch admission
+        """Keep admission, journal installation and branch effects indivisible."""
         self.folder.parent.mkdir(parents=True, exist_ok=True)
         try:
             # Share Intake's admission mutex, then retain exclusive source
@@ -149,16 +257,8 @@ class Checkout:
                 raise PermissionError("A named administrative branch is required")
             await git(self.root, "check-ref-format", "refs/heads/" + self.branch)
             await git(self.root, "cat-file", "-e", self.revision + "^{commit}")
-            names = await _paths(
-                self.root, "ls-tree", "-r", "--name-only", self.revision
-            )
+            await _collisions(self.root, self.revision)
             current = await _paths(self.root, "ls-files")
-            for name in names:
-                path = self.root / name
-                if name not in current and path.exists():
-                    raise PermissionError(
-                        "Untracked/ignored path collides with target: " + name
-                    )
             branch_head = await git(
                 self.root,
                 "for-each-ref",
@@ -170,13 +270,14 @@ class Checkout:
             entries = []
             for file in self.files:
                 path = self.source_path(file["path"])
-                if path.exists() and file["path"] not in current:
+                if _entry(path) is not None and file["path"] not in current:
                     raise PermissionError(
                         "Untracked edit target must not be overwritten"
                     )
                 entries.append({"path": file["path"], "expected": []})
             self.record = {
                 "schema": "backlog-checkout-owner-v1",
+                "generation": secrets.token_hex(32),
                 "operation": self.operation,
                 "pid": os.getpid(),
                 "at": str(Timestamp.now()),
@@ -192,9 +293,9 @@ class Checkout:
                 "untracked": await untracked(self.root),
                 "files": entries,
             }
-            self.save()
+            self._save()
             for file in self.files:
-                self.expect(file["path"], file["text"])
+                self._expect(file["path"], file["text"])
             if not branch_head:
                 await git(self.root, "branch", self.branch, self.revision)
             if original != self.branch:
@@ -202,7 +303,7 @@ class Checkout:
             for file in self.files:
                 self.source_path(file["path"])
             self.record["activated"] = True
-            self.save()
+            self._save()
             return self
         except BaseException:
             # Once a Git effect was attempted, retain ownership for inspection.
@@ -210,12 +311,19 @@ class Checkout:
                 self.folder.rmdir()
             raise
 
-    async def finish(self) -> None:  # noqa: C901, PLR0912 -- authenticate every effect before restoring owned paths
+    async def finish(self) -> None:
         """Discard only authenticated temporary edits, preserving all other bytes."""
+        with _transition(self.root):
+            self._owned()
+            await self._finish()
+
+    async def _finish(self) -> None:  # noqa: C901, PLR0912 -- fenced restoration/release
+        """Hold the same fence until all source effects and owner release finish."""
         await _operations(self.root)
         branch = await git(self.root, "branch", "--show-current")
         if branch != self.branch and (
-            self.record.get("activated") or branch != self.record["return_branch"]
+            (self.record.get("activated") and not self.record.get("returning"))
+            or branch != self.record["return_branch"]
         ):
             raise PermissionError("Checkout branch changed; recovery required")
         if not self.record["commit_allowed"] and await git(
@@ -261,6 +369,9 @@ class Checkout:
                 != self.record["return_head"]
             ):
                 raise PermissionError("Administrative branch moved; recovery required")
+            await _collisions(self.root, self.record["return_head"])
+            self.record["returning"] = True
+            self._save()
             await git(self.root, "switch", self.record["return_branch"])
         if await untracked(self.root) != original:
             raise PermissionError("Untracked evidence changed across branch switch")
@@ -272,8 +383,10 @@ class Checkout:
             "final_head": await git(self.root, "rev-parse", "HEAD"),
         }
         self.cycle._save(history / (_digest(sealed) + ".json"), sealed)
-        (self.folder / "owner.json").unlink()
-        self.folder.rmdir()
+        # One local directory rename is the release point. A crash cannot leave
+        # an empty owner directory with no journal to authenticate for recovery.
+        # Retain the original journal; never unlink a replacement owner's claim.
+        self.folder.rename(history / ("released-" + _digest(sealed)))
 
     async def __aexit__(
         self,
@@ -285,7 +398,7 @@ class Checkout:
         await self.finish()
 
 
-async def recover(cycle: WorkCycle, *, authorize: bool) -> None:
+async def recover(cycle: WorkCycle, *, authorize: bool, expected_owner: str) -> None:
     """Explicit host reconciliation after the recorded process has stopped.
 
     Never redispatches, repeats validation, transfers authority or discards
@@ -293,11 +406,21 @@ async def recover(cycle: WorkCycle, *, authorize: bool) -> None:
     """
     if not authorize:
         raise PermissionError("Explicit stopped-owner reconciliation required")
-    path = cycle.root / ".local/backlog/checkout-owner/owner.json"
-    value = load_json(path)
-    digest = value.pop("sha256")
-    if _digest(value) != digest or value["root"] != str(cycle.root):
-        raise PermissionError("Checkout recovery identity mismatch")
-    checkout = Checkout(cycle, value["operation"], value["branch"], value["revision"])
-    checkout.record = value
-    await checkout.finish()
+    await cycle._coordinator()
+    with _transition(cycle.root):
+        path = cycle.root / ".local/backlog/checkout-owner/owner.json"
+        value = load_json(path)
+        digest = value.pop("sha256", None)
+        if (
+            digest != expected_owner
+            or _digest(value) != digest
+            or value.get("root") != str(cycle.root)
+            or value.get("schema") != "backlog-checkout-owner-v1"
+        ):
+            raise PermissionError("Checkout recovery identity mismatch")
+        checkout = Checkout(
+            cycle, value["operation"], value["branch"], value["revision"]
+        )
+        checkout.record = value
+        checkout._sealed = digest
+        await checkout._finish()
