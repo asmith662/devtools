@@ -241,6 +241,7 @@ it.each([
       vi.fn().mockResolvedValue({
         ok: true,
         json: async () => ({
+          objective: { text: "Literal identity-correlation fixture" },
           turns: [
             {
               number: 1,
