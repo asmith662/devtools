@@ -84,7 +84,7 @@ pytest 906.36s; managed 908.225s. Production branch
 coverage is **100%**, zero missing lines/branches. Exact source/test/configuration
 inputs are hashed before/after. Focused: **638 passed,
 0 skipped**. Supported Ruff, supported formatting (634 files),
-configured strict mypy (520 files) and post-main regressions pass. This is actual
+configured strict mypy (520 files) and post-main regressions pass.
 The post-main run passed116 tests in109.24s, with identical physical inputs to
 the committed gate.
 This is destination evidence, not a previous gate. Frozen/generated broad-tool limitations
