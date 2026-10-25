@@ -1,0 +1,65 @@
+{
+  "baseline": "264915928a9045795d5e07c728ffa1aaba4c1704",
+  "status": "FROZEN_NOT_STARTED",
+  "priority": "Repair the three confirmed Checkout P1 defects in a separately authorized bounded implementation first; this next audit remains planned.",
+  "flow": "Fixed Commands and model-vs-host checks -> exact input closure/freshness -> independent review -> publication ambiguity -> retained evidence.",
+  "cohort": [
+    {
+      "path": "apps/qwen/change_checks.py",
+      "blob": "153235f68136af55bb3597b66498506f7a765605",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "apps/qwen/commands.py",
+      "blob": "32bf2dc2bbe2d11b47de5a7fe6f6ccd0e9a43268",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "scripts/backlog/integration/validation.py",
+      "blob": "c5daa189e682a583717c2a0e95de7c2a074eeb32",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "scripts/backlog/integration/local.py",
+      "blob": "4cd211b2a87c18b09a03e7671dd377ea71a7ff75",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "scripts/backlog/integration/lifecycle.py",
+      "blob": "a4ecb97b0317d017101a5e7eaee29f1ebcedf0c6",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "scripts/backlog/integration/git.py",
+      "blob": "79e08263fa829914e387e0a48e96a5ee35ba8455",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "tests/apps/qwen/test_change_checks.py",
+      "blob": "dbcedc4e4928d16afdaacf70e319ab2e5f0f6c68",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "tests/scripts/backlog/test_local_closeout.py",
+      "blob": "192c6f94b332efe3d6ab6649ba3bfc35be75c37b",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "tests/scripts/backlog/test_integration_validation.py",
+      "blob": "8c22b938d8f85cef61869107b7f5b5aeaf4bf480",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    },
+    {
+      "path": "tests/scripts/backlog/test_integration.py",
+      "blob": "36220ec7f4aca980adef3addf00f822135839c12",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims."
+    }
+  ],
+  "questions": [
+    "All required tests/read/source/runner/config/toolchain inputs in fresh and reused validation?",
+    "Host check vs model-visible feedback and review vs publication authority?",
+    "Actual process completion, truncation, timeout and interrupted publication effect reconciliation?",
+    "Result/commit/review subject identity and durable operation correlation across crash windows?"
+  ],
+  "history": "Existing188 RI versions in seven families unchanged; do not block operational audit indefinitely."
+}

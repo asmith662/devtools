@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "69688104-098b-404c-acca-745bebac6653",
+  "created_at": "2026-10-25T11:49:49.275028+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/execution-ownership-and-recovery-audit.md"
+    },
+    "evidence": [
+      "docs/research/execution-ownership-and-recovery-audit.md",
+      "docs/research/code-audit/execution-ownership-probes.json"
+    ],
+    "dependencies": [
+      "B-0006"
+    ],
+    "title": "Fence Checkout recovery and finalization against replacement owners",
+    "summary": "P1 maintained source-ownership correctness. After a real child Checkout owner exits, recovery R1 authenticates its admitted edit and pauses immediately before actual Git restore. Recovery R2 completes, releasing that claim; a new valid Checkout B enters and writes its own admitted bytes. R1 resumes, restores B source to old HEAD and removes B owner.json/directory without an error. Independent tiny Git fixture observes value=2 become value=0 and new owner absent. No canonical source, grants, models or remote publication were involved.",
+    "resources": [
+      "scripts/backlog/checkout.py",
+      "scripts/backlog/intake.py",
+      "tests/scripts/backlog/test_checkout.py"
+    ],
+    "benefit": "Bind each recovery/finalizer to the exact lease it acquired and serialize or fence the entire effect/release window against other recovery and new owners. Rechecking once before an await is insufficient. Permanent independent two-recoverer plus replacement-writer tests must preserve B bytes and B claim, stale normal finish must refuse, and a valid stopped-owner recovery must still restore only known edits. Retain default-No stopped-process precondition, raw source fingerprints, canonical-root checks, untracked custody, immutable history and schema compatibility; do not clear unknown owner state automatically. Full focused/static/protected100% production branch gate on final repair tree.",
+    "uncertainty": "The directory claim serializes __aenter__ but recover/finish do not fence owner identity across Git awaits or at owner deletion. This is a demonstrated concurrency defect, not a claim of historical main corruption or authority from Checkout. Repair remains in the current Checkout/Intake boundary; no generic transaction manager, scheduler, EventBus or new Agent framework. Existing v1 records need explicit safe compatibility; PID alone is not a lease epoch."
+  },
+  "payload_sha256": "f8c9ca087435e390ff3ad80cc8f19529b5f02dd835dd398de9bf52941105fcbd"
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+  "proposal_sha256": "f55fd806f3bc37e2b539eb19ce3b98a4b7559e142e34460feb9b92d6426a3a86",
+  "previous": "4694da8161905611ec5c6de76de9c63ef9ccadef2b863c0050054fe4ef46632a",
+  "at": "2026-10-25T11:49:51.587301+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/execution-ownership-and-recovery-audit.md",
+  "rationale": "Custody finding from real current Checkout: ordinary untracked forensic bytes are fingerprinted and preserved, but ignored dangling-entry collision can be lost during a branch switch; that specific production bug is separately captured with real-Git evidence. Ignore status is not permission to discard evidence. Recovery retains malformed/foreign/unknown owner effects and requires an explicitly stopped process; missing/corrupted initial journals have no automatic safe-reset proof and remain an operator evidence requirement. This audit authorizes no cleanup, abandoned-owner removal, ACL change, historical grant rewrite or archive restoration. All13 original forensic hashes remain preserved.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing scope retained; advisory evidence only, no approval, grant, closure or duplicate implementation instruction.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "ff534533deb9c440ef7c96970edd54d28371170a29b023646ce6c1e5be44fffc"
+}

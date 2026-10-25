@@ -1,5 +1,7 @@
 # Code audit evidence ledger
 
+Current integrated-main audit: [Checkout, WorkCycle, delegation and recovery](../execution-ownership-and-recovery-audit.md), baseline `264915928a9045795d5e07c728ffa1aaba4c1704`. All nine selected bodies reviewed;114 focused tests pass. Three independently reproduced P1 Checkout defects are pending: replacement-owner recovery/finalization fencing (69688104), displayed-owner consent binding (30bd833e), and ignored dangling-link preservation (3b2f566b). No production fix in this checkpoint. See [exact nine-path review](execution-ownership-assurance.json), [independent probes](execution-ownership-probes.json), [tests](execution-ownership-tests.json), [Intake](execution-ownership-intake.json) and [checkpoint](execution-ownership-checkpoint.json). The three prior worker repairs remain delivered; do not schedule them again. RI fixtures93/93, experimental source606/606 and188 historical obligations are unchanged. A+C remains unapproved. Earlier notices below are dated history.
+
 ## Current RI fixture closure and operational assurance
 
 The [fixture closure/execution report](../ri-fixture-closure-and-execution-audit.md)

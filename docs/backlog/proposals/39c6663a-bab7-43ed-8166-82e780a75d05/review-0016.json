@@ -1,0 +1,65 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "877920ce35c4e959ab64ca092a586117dffa9f83ea9b5221ce4478be6300f7a7",
+  "at": "2026-10-25T11:49:50.298580+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/execution-ownership-and-recovery-audit.md",
+  "rationale": "Substantive operational cohort confirms repository-local WorkCycle/Checkout/Delegations and application coding_loop have distinct intended owners; narrow Runtime and ToolRunner are not general orchestration or authority engines. Standing policy is intentionally Qwen/Codex-specific and does not make the reusable framework model-specific. Apps change_checks uses the existing coordinator managed Git helper while scripts compose apps; inspect the concrete helper responsibility rather than invent a second executor/Git framework. Raw Git blob and trimmed administration helpers have different legitimate semantics. Some current work-test docstrings still say linked worktree despite one ordinary tiny checkout; record that clarity debt, without claiming copied Devtools sources or requiring fixture-style rewrites. Three distinct lease/consent/collision bugs have their own bounded repair records; a large cohesion investigation must not hide them.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing scope retained; advisory evidence only, no approval, grant, closure or duplicate implementation instruction.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "87761e4a9b73150951b7faea4412ea039207231090224c720fd61ecf95d420b1"
+}

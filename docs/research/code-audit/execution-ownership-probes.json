@@ -1,0 +1,227 @@
+{
+  "method": "Real tiny Git repositories and an actual exited child owner; cooperative faults schedule real Git effects. No standing grants, model outputs, approvals or protected publication are fabricated.",
+  "baseline": "264915928a9045795d5e07c728ffa1aaba4c1704",
+  "cases": [
+    {
+      "case": "competing",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 105280,
+        "owner_sha": "fb2fc6996cc62678f94ee1bd932fe2b4285f173515961f4ced72295416eaba20"
+      },
+      "error": "Checkout owned; explicit recovery required",
+      "owner_retained": true,
+      "source": "value = 1\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "unknown",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 102884,
+        "owner_sha": "e73c1804627accb56d38568533fee3b778e15586813d8f77722847ee02eb329d"
+      },
+      "error": "PermissionError: Unreviewed source bytes; recovery required",
+      "owner_retained": true,
+      "source": "unrecognized = True\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "corrupt",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 98020,
+        "owner_sha": "60e9afe53013b2e308d41a59e46ccdf5978e5ce975bf8a285336f0314442c339"
+      },
+      "error": "PermissionError: Checkout recovery identity mismatch",
+      "owner_retained": true,
+      "source": "value = 1\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "foreign_root",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 109100,
+        "owner_sha": "aa0515e93b79618e63f6d1cc27117c8596c70c9c8a79f2dc80e79bbe93d4f311"
+      },
+      "error": "PermissionError: Checkout recovery identity mismatch",
+      "owner_retained": true,
+      "source": "value = 1\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "branch_changed",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 103404,
+        "owner_sha": "00871a0d0510eb41db442ae8e455ea83570c70ee7ce9ef80fe3bbf8d7fe81dbd"
+      },
+      "error": "PermissionError: Checkout branch changed; recovery required",
+      "owner_retained": true,
+      "source": "value = 1\n",
+      "branch": "feat/foreign"
+    },
+    {
+      "case": "explicit_no",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 110572,
+        "owner_sha": "56666f5da36d4774b11246a1a29753c0b9aa2dd1eabed37f87bba00b2cf106c8"
+      },
+      "error": "PermissionError: Explicit stopped-owner reconciliation required",
+      "owner_retained": true,
+      "source": "value = 1\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "known_recovery",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 95636,
+        "owner_sha": "a69df36313da93ad68f33e299ef9b09e70380d83b95c107b58613a734f23c677"
+      },
+      "error": null,
+      "owner_retained": false,
+      "source": "value = 0\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "repeated_recovery",
+      "child": {
+        "child_exit": 0,
+        "owner_pid": 111240,
+        "owner_sha": "11eaa5b7c6aa5bb2821ceb98f2364f94a94cfc3066756b271a7cad9b35fde881"
+      },
+      "error": "Filesystem not found; no retained owner to repeat",
+      "owner_retained": false,
+      "source": "value = 0\n",
+      "branch": "fixture"
+    },
+    {
+      "case": "before_switch",
+      "branch_after_error": "fixture",
+      "owner_retained": true,
+      "recovery_returned_to_original": true,
+      "adapter_entered": true,
+      "actual_switch_entered": false
+    },
+    {
+      "case": "after_switch",
+      "branch_after_error": "feat/target",
+      "owner_retained": true,
+      "recovery_returned_to_original": true,
+      "adapter_entered": true,
+      "actual_switch_entered": true
+    }
+  ],
+  "recovery_race": {
+    "case": "stale_recovery_crosses_new_owner",
+    "expectation": "A stale recovery must not restore a new owner source or remove its claim",
+    "child": {
+      "child_exit": 0,
+      "owner_pid": 109632,
+      "owner_sha": "4a50d64ea607f44dce44ba30bb2a68adf19940f868449d13ebab61047fbc9249"
+    },
+    "new_source_before": "value = 2\n",
+    "source_after": "value = 0\n",
+    "new_owner_exists_after": false,
+    "new_owner_record_preserved": false,
+    "error": null,
+    "violates_expected_contract": true
+  },
+  "stale_consent": {
+    "case": "recovery_consent_rebound_to_replacement",
+    "expectation": "Consent for displayed stopped owner A must not authorize a later owner B",
+    "child": {
+      "child_exit": 0,
+      "owner_pid": 107316,
+      "owner_sha": "974bba615d1c630d8485f240378b09ac503878ef80808346112847e3c95735f5"
+    },
+    "displayed_sha": "974bba615d1c630d8485f240378b09ac503878ef80808346112847e3c95735f5",
+    "displayed_pid": 107316,
+    "replacement_sha": "9070ea955726909ca29e98d694e11d2657e5060a6578ffcdbc73e17c272a70a7",
+    "replacement_pid": 102404,
+    "replacement_process_is_current": true,
+    "expected_preserved_source": "value = 2\n",
+    "source_after": "value = 0\n",
+    "new_owner_exists_after": false,
+    "returned": {
+      "disposition": "CHECKOUT_RECOVERED",
+      "dispatch_authorized": false
+    },
+    "terminal": "Explicit synthetic I/O inside tiny fixture only, not a real user approval or grant",
+    "violates_expected_contract": true
+  },
+  "policy_probes": [
+    {
+      "case": "applicable_only",
+      "policy_applicable": true,
+      "authority_created": false
+    },
+    {
+      "case": "foreign_source",
+      "error": "Task category, source, tests or acceptance code outside delegation",
+      "authority_created": false
+    },
+    {
+      "case": "foreign_oracle",
+      "error": "Task category, source, tests or acceptance code outside delegation",
+      "authority_created": false
+    },
+    {
+      "case": "calls_exceeded",
+      "error": "Task exceeds delegated limits",
+      "authority_created": false
+    },
+    {
+      "case": "category_mismatch",
+      "error": "Task category, source, tests or acceptance code outside delegation",
+      "authority_created": false
+    }
+  ],
+  "ignored_collision": {
+    "case": "ignored_dangling_collision",
+    "expectation": "Refuse before a Git switch can overwrite an ignored dangling link",
+    "entered": true,
+    "link_preserved": false,
+    "exists": false,
+    "error": null,
+    "branch": "fixture",
+    "violates_expected_contract": true
+  },
+  "entry_label_note": "Raw early receipt entered_git meant the injected Git adapter entered. This projection distinguishes actual switch entry using the explicit fault schedule and observed branch; no original scientific evidence changed.",
+  "scripts": [
+    {
+      "name": "probes.py",
+      "source": "\"\"\"Independent tiny-Git probes; no canonical source mutation, model or execution grant.\"\"\"\nimport asyncio,hashlib,json,sys\nimport argparse\nfrom concurrent.futures import ThreadPoolExecutor\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nsys.path.insert(0,str(Path.cwd()))\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy\nfrom devtools.resources.filesystem.errors import FilesystemNotFoundError\nfrom scripts.backlog import checkout\nfrom scripts.backlog.coordinator import git,designate\nfrom scripts.backlog.work import WorkCycle\nO=Path(__file__).parent;CANONICAL=Path.cwd();SOURCE='src/devtools/sample.py';OLD='value = 0\\n';A='value = 1\\n';B='value = 2\\n'\nasync def setup(root):\n assert root!=CANONICAL\n root.mkdir();(root/'src/devtools').mkdir(parents=True);(root/SOURCE).write_bytes(OLD.encode());(root/'.gitignore').write_text('.local/\\n',encoding='utf-8')\n (root/'docs/backlog').mkdir(parents=True);(root/'docs/backlog/overview.md').write_text('# Independent empty fixture backlog\\n',encoding='utf-8')\n for args in [('init','-b','fixture'),('config','user.name','Independent Audit'),('config','user.email','audit@localhost'),('add','.'),('commit','-m','Tiny authored owner fixture')]:await git(root,*args)\n await designate(root,authorize=lambda _:True)\n return WorkCycle(root),await git(root,'rev-parse','HEAD')\ndef lease(cycle,base):return checkout.Checkout(cycle,'independent-fixture','fixture',base,files=[dict(path=SOURCE,text=OLD)])\nasync def abandon_in_child(root,base):\n code='''import asyncio,sys\nfrom pathlib import Path\nsys.path.insert(0,sys.argv[1])\nfrom scripts.backlog.work import WorkCycle\nfrom scripts.backlog.checkout import Checkout\nasync def main():\n root=Path(sys.argv[2]);c=Checkout(WorkCycle(root),'stopped-child-fixture','fixture',sys.argv[3],files=[dict(path='src/devtools/sample.py',text='value = 0\\\\n')])\n await c.__aenter__();c.expect('src/devtools/sample.py','value = 1\\\\n');(root/'src/devtools/sample.py').write_bytes(b'value = 1\\\\n')\nasyncio.run(main())\n'''\n r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20)).execute(Command(sys.executable).args('-I','-B','-c',code,str(CANONICAL),str(root),base).cwd(resolve_path(root)))\n assert not r.failed,(r.stdout,r.stderr)\n value=json.loads((root/'.local/backlog/checkout-owner/owner.json').read_text())\n assert value['pid']!=__import__('os').getpid() and (root/SOURCE).read_text()==A\n return dict(child_exit=r.exit_code,owner_pid=value['pid'],owner_sha=value['sha256'])\nasync def simple_cases():\n rows=[]\n for mode in ['competing','unknown','corrupt','foreign_root','branch_changed','explicit_no','known_recovery','repeated_recovery','before_switch','after_switch']:\n  with TemporaryDirectory(prefix='devtools-owner-audit-') as tmp:\n   root=resolve_path(Path(tmp)/'repo').value;c,base=await setup(root);owner=lease(c,base)\n   child=None\n   if mode in ['before_switch','after_switch']:\n    await git(root,'branch','feat/target',base);owner.branch='feat/target';original=checkout.git\n    async def fail(r,*args,**kwargs):\n     if args[:2]==('switch','feat/target'):\n      if mode=='after_switch':await original(r,*args,**kwargs)\n      raise RuntimeError('Injected ambiguous Git return')\n     return await original(r,*args,**kwargs)\n    with patch.object(checkout,'git',fail):\n     try:await owner.__aenter__()\n     except RuntimeError:pass\n     else:raise AssertionError('Fault did not enter')\n    owned=owner.folder.exists();branch=await git(root,'branch','--show-current')\n    assert owned\n    await checkout.recover(c,authorize=True)\n    assert not owner.folder.exists() and await git(root,'branch','--show-current')=='fixture'\n    rows.append(dict(case=mode,adapter_entered=True,actual_switch_entered=mode=='after_switch',branch_after_error=branch,owner_retained=owned,recovery_returned_to_original=True));continue\n   child=await abandon_in_child(root,base)\n   error=None\n   if mode=='competing':\n    try:await lease(c,base).__aenter__()\n    except PermissionError as e:error=str(e)\n    else:raise AssertionError('Competing owner admitted')\n   else:\n    if mode=='unknown':(root/SOURCE).write_text('unrecognized = True\\n',encoding='utf-8')\n    if mode in ['corrupt','foreign_root']:\n     p=owner.folder/'owner.json';v=json.loads(p.read_text());v['root']='foreign-root'\n     if mode=='foreign_root':\n      from scripts.backlog.intake import _digest\n      v['sha256']=_digest({k:x for k,x in v.items() if k!='sha256'})\n     p.write_text(json.dumps(v),encoding='utf-8')\n    if mode=='branch_changed':await git(root,'switch','-c','feat/foreign')\n    try:await checkout.recover(c,authorize=mode!='explicit_no')\n    except (PermissionError,FileNotFoundError) as e:error=type(e).__name__+': '+str(e)\n    if mode in ['unknown','corrupt','foreign_root','branch_changed','explicit_no']:assert error and owner.folder.exists()\n    elif mode=='repeated_recovery':\n     try:await checkout.recover(c,authorize=True)\n     except (FileNotFoundError,FilesystemNotFoundError):error='Filesystem not found; no retained owner to repeat'\n     else:raise AssertionError('Repeated recovery invented a completion')\n   rows.append(dict(case=mode,child=child,error=error,owner_retained=owner.folder.exists(),source=(root/SOURCE).read_text(),branch=await git(root,'branch','--show-current')))\n return rows\nasync def recovery_race():\n with TemporaryDirectory(prefix='devtools-recovery-race-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;c,base=await setup(root);child=await abandon_in_child(root,base)\n  stopped=asyncio.Event();resume=asyncio.Event();original=checkout.git;stale=None\n  async def schedule(r,*args,**kwargs):\n   if asyncio.current_task() is stale and args[:2]==('restore','--source=HEAD'):\n    stopped.set();await resume.wait()\n   return await original(r,*args,**kwargs)\n  with patch.object(checkout,'git',schedule):\n   stale=asyncio.create_task(checkout.recover(c,authorize=True))\n   await asyncio.wait_for(stopped.wait(),10)\n   await checkout.recover(c,authorize=True)  # Same stopped owner; first recovery completes.\n   new=lease(c,base);await new.__aenter__();new.expect(SOURCE,B);(root/SOURCE).write_bytes(B.encode())\n   owner_before=(new.folder/'owner.json').read_bytes();assert (root/SOURCE).read_text()==B\n   resume.set();error=None\n   try:await stale\n   except Exception as e:error=type(e).__name__+': '+str(e)\n  row=dict(case='stale_recovery_crosses_new_owner',expectation='A stale recovery must not restore a new owner source or remove its claim',child=child,new_source_before=B,source_after=(root/SOURCE).read_text(),new_owner_exists_after=new.folder.exists(),new_owner_record_preserved=(new.folder/'owner.json').exists() and (new.folder/'owner.json').read_bytes()==owner_before,error=error)\n  row['violates_expected_contract']=row['source_after']!=B or not row['new_owner_record_preserved']\n  assert row['violates_expected_contract'],row\n  return row\nasync def stale_consent():\n from scripts.backlog import __main__ as cli\n with TemporaryDirectory(prefix='devtools-consent-audit-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;c,base=await setup(root);child=await abandon_in_child(root,base)\n  displayed=json.loads((root/'.local/backlog/checkout-owner/owner.json').read_text());new_owner=None;replacement={}\n  async def replace_owner():\n   nonlocal new_owner,replacement\n   await checkout.recover(c,authorize=True)\n   new_owner=lease(c,base);await new_owner.__aenter__();new_owner.expect(SOURCE,B);(root/SOURCE).write_bytes(B.encode())\n   replacement=json.loads((new_owner.folder/'owner.json').read_text())\n  def answer(prompt):\n   assert 'recorded owner is stopped' in prompt\n   with ThreadPoolExecutor(max_workers=1) as bridge:bridge.submit(lambda:asyncio.run(replace_owner())).result()\n   return 'y'  # Synthetic terminal decision applies only to the owner already displayed.\n  with patch.object(sys.stdin,'isatty',lambda:True),patch.object(sys.stdout,'isatty',lambda:True),patch('builtins.input',answer):\n   result=await cli._work(argparse.Namespace(command='work-recover'),root)\n  row=dict(case='recovery_consent_rebound_to_replacement',expectation='Consent for displayed stopped owner A must not authorize a later owner B',child=child,displayed_sha=displayed['sha256'],displayed_pid=displayed['pid'],replacement_sha=replacement['sha256'],replacement_pid=replacement['pid'],replacement_process_is_current=True,expected_preserved_source=B,source_after=(root/SOURCE).read_text(),new_owner_exists_after=new_owner.folder.exists(),returned=result,terminal='Explicit synthetic I/O inside tiny fixture only, not a real user approval or grant')\n  row['violates_expected_contract']=row['displayed_sha']!=row['replacement_sha'] and (row['source_after']!=B or not row['new_owner_exists_after'])\n  assert row['violates_expected_contract'];return row\nasync def main():\n value=dict(method='Real tiny Git repositories and an actual exited child owner; cooperative faults schedule real Git effects. No standing grants, model outputs, approvals or protected publication are fabricated.',baseline='264915928a9045795d5e07c728ffa1aaba4c1704',cases=await simple_cases(),recovery_race=await recovery_race(),stale_consent=await stale_consent())\n (O/'probes.json').write_text(json.dumps(value,indent=2)+'\\n',encoding='utf-8');print(json.dumps(value,indent=2))\nif __name__=='__main__':asyncio.run(main())\n",
+      "sha256": "90a853d8694589033df2eb16f57dbd295eba047cd86ea93da8b247e16444100a"
+    },
+    {
+      "name": "extras.py",
+      "source": "import asyncio,json,sys\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nsys.path.insert(0,str(Path.cwd()));sys.path.insert(0,str(Path(__file__).parent))\nfrom probes import setup,lease,OLD,SOURCE,O\nfrom devtools.core.paths import resolve_path\nfrom scripts.backlog.checkout import Checkout\nfrom scripts.backlog.coordinator import git\nfrom scripts.backlog.delegation import Delegations\nfrom apps.qwen.tasks import MARKDOWN\nasync def main():\n value=json.loads((O/'probes.json').read_text());rows=[]\n task=MARKDOWN\n policy=dict(categories=['bug'],sources=[task.source],tests=list(task.tests),oracles=[task.oracle_sha256],per_task=dict(calls=3,output_tokens=4096,seconds=900,edits=3),total=dict(tasks=1,calls=3,output_tokens=12288,seconds=900))\n assignment=dict(backlog=dict(proposal=dict(payload=dict(kind='bug'))))\n for case in ['applicable_only','foreign_source','foreign_oracle','calls_exceeded','category_mismatch']:\n  p=json.loads(json.dumps(policy));a=json.loads(json.dumps(assignment))\n  if case=='foreign_source':p['sources']=['src/devtools/other.py']\n  if case=='foreign_oracle':p['oracles']=['a'*64]\n  if case=='calls_exceeded':p['per_task']['calls']=1\n  if case=='category_mismatch':a['backlog']['proposal']['payload']['kind']='investigation'\n  try:Delegations.eligible(p,a,task)\n  except PermissionError as e:assert case!='applicable_only';rows.append(dict(case=case,error=str(e),authority_created=False))\n  else:assert case=='applicable_only';rows.append(dict(case=case,policy_applicable=True,authority_created=False))\n value['policy_probes']=rows\n with TemporaryDirectory(prefix='devtools-collision-audit-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;c,base=await setup(root)\n  (root/'.gitignore').write_text('.local/\\ncollision.txt\\n',encoding='utf-8');await git(root,'add','.gitignore');await git(root,'commit','-m','Ignore fixture collision')\n  await git(root,'switch','-c','feat/target');(root/'collision.txt').write_text('tracked target\\n',encoding='utf-8');await git(root,'add','-f','collision.txt');await git(root,'commit','-m','Target fixture path');target=await git(root,'rev-parse','HEAD');await git(root,'switch','fixture')\n  link=root/'collision.txt'\n  try:link.symlink_to('missing-fixture-target')\n  except OSError as e:row=dict(case='ignored_dangling_collision',state='UNAVAILABLE_OS_SYMLINK_PERMISSION',error=str(e),not_a_defect_reproduction=True)\n  else:\n   assert link.is_symlink() and not link.exists()\n   error=None;entered=False\n   try:\n    async with Checkout(c,'ignored-link-fixture','feat/target',target):entered=True\n   except (PermissionError,ValueError) as e:error=str(e)\n   row=dict(case='ignored_dangling_collision',expectation='Refuse before a Git switch can overwrite an ignored dangling link',entered=entered,link_preserved=link.is_symlink(),exists=link.exists(),error=error,branch=await git(root,'branch','--show-current'))\n   row['violates_expected_contract']=not row['link_preserved']\n  value['ignored_collision']=row\n (O/'probes.json').write_text(json.dumps(value,indent=2)+'\\n',encoding='utf-8');print(json.dumps(dict(policy_cases=len(rows),ignored_collision=row),indent=2))\nasyncio.run(main())\n",
+      "sha256": "28863526781e68919367401d629fb989e0a65604ffd4d1fd6d8ed49aa789859f"
+    }
+  ],
+  "limitations": [
+    "Only independently authored temporary Git repositories, actual stopped child owner, controlled fault schedule and synthetic terminal I/O. No actual Devtools source mutations, execution grants, models or promotion.",
+    "Before/after-switch fault adapter does not establish every OS/process failure behavior.",
+    "Initial missing fixture overview and wrong expected exception were harness failures, corrected before product results; not product defects.",
+    "Five pure delegation-policy probes create no authority. Full grant/expiry/assignment tests are maintained tests with explicit fixture authority.",
+    "Self-consistent hashes are not protection against a fully malicious local state writer."
+  ],
+  "confirmed_defects": [
+    {
+      "key": "recovery_race",
+      "proposal": "69688104-098b-404c-acca-745bebac6653"
+    },
+    {
+      "key": "stale_consent",
+      "proposal": "30bd833e-f19d-4a4c-bbb6-465fd22db403"
+    },
+    {
+      "key": "ignored_collision",
+      "proposal": "3b2f566b-8733-4b1d-a840-1e361612ebf8"
+    }
+  ]
+}
