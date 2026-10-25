@@ -1,5 +1,7 @@
 # Validation, review, publication and evidence audit — 2026-10-25
 
+Delivered bounded follow-through: [validation freshness, command receipt custody and Git path identity](../development/validation-evidence-path-repair.md), production `1a9e3ff1e56aebb8522c4d437d46de5f31679389`, PR#17, verified main `ae88c69267961cf6a73bf41454a08cb8f97a14c4`. Committed gate 2903 passed/2 opt-in live skips/100% configured production branch coverage; 265 focused post-main tests pass. Existing proposals d58697fd/84a5d9b1/b0c02dbf retain implemented-and-merged evidence; broader d586 input closure/HEAD/toolchain work remains open. No delivered bounded repair should be repeated. RI93/93,606/606,188 historical obligations and A+C-unapproved status are unchanged. Next Evidence/usage cohort is frozen and not started; earlier pending notices below are dated history.
+
 Reviewed integrated main `5b0bb0b769c2db8d698c86c0e669db820537eec1`.
 All ten frozen implementation/test bodies received full review. **Protected
 validation reuse is not sound for all inputs it currently permits**: an ignored

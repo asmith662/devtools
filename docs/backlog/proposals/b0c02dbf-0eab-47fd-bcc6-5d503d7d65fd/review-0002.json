@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+  "proposal_sha256": "653a4ffae8eb346cd6601a17ca73cc13044e1913d18c0693e929debf5368dfd4",
+  "previous": "617d0db86ffacf5e8849e992b16be799ec4f0780093c4414c9e8e13f3a3b38cd",
+  "at": "2026-10-25T20:16:37.825921+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/validation-evidence-path-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Exact Git path identity. Integration _files staged/untracked populations, local committed replay and equivalent closeout diff joins reuse Checkout _paths with -z/trim=False. Unicode, spaces and supported special characters stay exact; unplanned names and modified planned bytes still refuse. Real Windows Git/Checkout/Tool-independent public local closeout controls pass. Literal quote/newline filesystem cases are conditional on POSIX capability and were not executed on Windows; native UTF-8 path decoding remains the existing supported contract. No relaxed source or publication authority. Production 1a9e3ff1e56aebb8522c4d437d46de5f31679389; normal PR#17; independently accepted main ae88c69267961cf6a73bf41454a08cb8f97a14c4. Exact committed gate 2903 passed/2 opt-in live skips/100% configured devtools production branch coverage, 1114.868s managed. Supported Ruff/format, strict mypy, layout, links, Intake and whitespace pass; 265 focused post-main tests pass on identical physical executable inputs. Three independent original failures reproduced before edits; permanent negatives also expose their original owners. No live models/scientific reruns. Delivered bounded scope must not be scheduled again. Broader d58697fd, custody0385a359, cohesion39c6663a and evidence/review/publication limitations remain separate.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same original UUID, append-only advisory; Intake has no delivered state. No approval, B-number, grant, parent closure, duplicate implementation or new proposal.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "bab92b725ca57244d036b59aa7047033b9b223f60e68e580ff53e349595f1c18"
+}

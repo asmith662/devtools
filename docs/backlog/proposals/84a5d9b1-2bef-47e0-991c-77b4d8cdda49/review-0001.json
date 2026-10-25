@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+  "proposal_sha256": "682d62aeaa7b122f7ca3ff8e4f2ebd9378ce83f09ff825dc5e69efcdb8d4f718",
+  "previous": null,
+  "at": "2026-10-25T20:15:44.079608+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/validation-evidence-path-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: CodingCommands receipt custody. Atomic directory reservations allocate never-reused journal names before external entry across fresh/cooperating adapters. Single commands persist intent before entry, then only their own completed result. Bundles and change reports share this existing-owner allocator. Original receipts remain immutable; pre-entry allocation/storage failure causes zero execution; post-entry persistence failure retains unknown intent and never redispatches. Reservations survive interruption, not stale locks to clear. Current cooperating writers/trusted local evidence only; no power-loss or exactly-once effect guarantee. Production 1a9e3ff1e56aebb8522c4d437d46de5f31679389; normal PR#17; independently accepted main ae88c69267961cf6a73bf41454a08cb8f97a14c4. Exact committed gate 2903 passed/2 opt-in live skips/100% configured devtools production branch coverage, 1114.868s managed. Supported Ruff/format, strict mypy, layout, links, Intake and whitespace pass; 265 focused post-main tests pass on identical physical executable inputs. Three independent original failures reproduced before edits; permanent negatives also expose their original owners. No live models/scientific reruns. Delivered bounded scope must not be scheduled again. Broader d58697fd, custody0385a359, cohesion39c6663a and evidence/review/publication limitations remain separate.",
+  "duplicates": [
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same original UUID, append-only advisory; Intake has no delivered state. No approval, B-number, grant, parent closure, duplicate implementation or new proposal.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "5a35c5105e74e3e3647327e61bfef9d826dc3084ee046f227122d81145b6f3d0"
+}
