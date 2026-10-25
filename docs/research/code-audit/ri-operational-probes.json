@@ -1,0 +1,1067 @@
+{
+  "method": "Tiny independently authored temporary repositories; real observation, admission/Git/checks and scripted model protocol. Injected executor failures are fault models, not proof of actual Git IO partial writes.",
+  "worker_cases": [
+    {
+      "case": "valid",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 1\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:06.994094+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "438ebf9c-3e3c-45c0-828a-826b2fdf98ce",
+            "snapshot": "7c39857b675733999dac15ae9c2076095732fb2b89a5c0e586c64dc5e4819ed3",
+            "revision": "d4fa63e48d4c69cc6c680eb8738d6296002b7933",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/sample.py",
+            "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/sample.py",
+              "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+              "repository": "438ebf9c-3e3c-45c0-828a-826b2fdf98ce",
+              "revision": "d4fa63e48d4c69cc6c680eb8738d6296002b7933",
+              "snapshot": "7c39857b675733999dac15ae9c2076095732fb2b89a5c0e586c64dc5e4819ed3",
+              "unit": "a835387f011c551caf3d0a42956430c022db2d38a6b49a90b887b3152c2b6209",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def value():\n    return 0\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-0",
+            "edit_ref": "R1",
+            "host_limits": {
+              "context_actions_remaining": 7,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.0021941999439150095
+        }
+      ],
+      "error": null,
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "foreign_response",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 2,
+      "response_source": "audit-foreign",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 1\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:08.291465+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "a55a2d68-ef64-4651-abf8-aac25c204993",
+            "snapshot": "3959250d633961c3664f37178ad4d181b154466574893cdddcd48f26b0696c47",
+            "revision": "609747d90eb66cddcb60e44e228ae2412d7ee19a",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/sample.py",
+            "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/sample.py",
+              "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+              "repository": "a55a2d68-ef64-4651-abf8-aac25c204993",
+              "revision": "609747d90eb66cddcb60e44e228ae2412d7ee19a",
+              "snapshot": "3959250d633961c3664f37178ad4d181b154466574893cdddcd48f26b0696c47",
+              "unit": "2433922756c5fa49ff875bb61ff098336cb24bbcda9528b7cabc90fe7702e6f7",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def value():\n    return 0\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-0",
+            "edit_ref": "R1",
+            "host_limits": {
+              "context_actions_remaining": 7,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.0019608999136835337
+        }
+      ],
+      "error": null,
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": true,
+      "required_behavior": "Refuse mismatched response source before Tool execution",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "prepared_test_mutation",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "source_restored": true,
+      "original_unchanged": false,
+      "model_calls": 1,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "def test_bypassed():\n    assert True\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "from pathlib import Path\nPath(__file__).resolve().parents[2].joinpath(\"tests/test_sample.py\").write_text(\"def test_bypassed():\\n    assert True\\n\", encoding=\"utf-8\")\ndef value():\n    return 1\n"
+      },
+      "tool_events": [],
+      "error": null,
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": true,
+      "required_behavior": "Never accept candidate with changed frozen validation inputs",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 0,
+        "proposals": 3,
+        "active_messages_bytes": 60000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "native_test_mutation",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": false,
+      "disposition": "VALIDATION_FAILED",
+      "source_restored": true,
+      "original_unchanged": false,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "def test_bypassed():\n    assert True\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "from pathlib import Path\nPath(__file__).resolve().parents[2].joinpath(\"tests/test_sample.py\").write_text(\"def test_bypassed():\\n    assert True\\n\", encoding=\"utf-8\")\ndef value():\n    return 1\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:11.047430+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "d22de1c0-1946-4fee-a2f2-964490d3992c",
+            "snapshot": "70edd931e3532b65f01543fe3afd7d8901faf7eadd126935ec40b2c310dd219b",
+            "revision": "798552e175484d84d1d27febe397b317dcbba7d6",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/sample.py",
+            "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/sample.py",
+              "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+              "repository": "d22de1c0-1946-4fee-a2f2-964490d3992c",
+              "revision": "798552e175484d84d1d27febe397b317dcbba7d6",
+              "snapshot": "70edd931e3532b65f01543fe3afd7d8901faf7eadd126935ec40b2c310dd219b",
+              "unit": "57c9af2766046a4103f600f3aba1092bd630e6ca16776e689d4fefc4c8670837",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def value():\n    return 0\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-0",
+            "edit_ref": "R1",
+            "host_limits": {
+              "context_actions_remaining": 7,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.002110700006596744
+        }
+      ],
+      "error": "ValueError: SOURCE_DRIFT: admitted Context changed",
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "known_partial",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": "src/devtools/other.py",
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": false,
+      "disposition": "PATCH_APPLICATION_FAILED",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 1\n",
+        "src/devtools/other.py": "def other():\n    return 2\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:12.568094+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "0e19275d-ea5a-4583-8252-0cbba3a945fa",
+            "snapshot": "8000afb43181d8aac0ff21219cc0f03f21af7c07425f73ef19e5f9ff1e8eafd0",
+            "revision": "b7b10190d84fb94d279fbe0b457e547dbd3863c3",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/sample.py",
+            "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/sample.py",
+              "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+              "repository": "0e19275d-ea5a-4583-8252-0cbba3a945fa",
+              "revision": "b7b10190d84fb94d279fbe0b457e547dbd3863c3",
+              "snapshot": "8000afb43181d8aac0ff21219cc0f03f21af7c07425f73ef19e5f9ff1e8eafd0",
+              "unit": "542d1c4c6695d04a72de7af5ce3a1e82bd51207445343da7beacfcc6bf4414a6",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def value():\n    return 0\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-0",
+            "edit_ref": "R1",
+            "host_limits": {
+              "context_actions_remaining": 7,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.002563199959695339
+        },
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/other.py\", \"start\": 0}",
+            "provider_call_id": "read-1"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:12.571777+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "0e19275d-ea5a-4583-8252-0cbba3a945fa",
+            "snapshot": "8000afb43181d8aac0ff21219cc0f03f21af7c07425f73ef19e5f9ff1e8eafd0",
+            "revision": "b7b10190d84fb94d279fbe0b457e547dbd3863c3",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/other.py",
+            "version": "941c1f09cc6576450d1e0b3153d00a10186269757ba3d8cb4ce05671b1d230be",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/other.py",
+              "version": "941c1f09cc6576450d1e0b3153d00a10186269757ba3d8cb4ce05671b1d230be",
+              "repository": "0e19275d-ea5a-4583-8252-0cbba3a945fa",
+              "revision": "b7b10190d84fb94d279fbe0b457e547dbd3863c3",
+              "snapshot": "8000afb43181d8aac0ff21219cc0f03f21af7c07425f73ef19e5f9ff1e8eafd0",
+              "unit": "482a4e549a2955bd6c670cac07c2ab522b2ff35d5f5c5717bb14218a3832a677",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def other():\n    return 2\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-1",
+            "edit_ref": "R2",
+            "host_limits": {
+              "context_actions_remaining": 6,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.002209399943239987
+        }
+      ],
+      "error": "RuntimeError: Injected entered executor failure; do not retry",
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "unknown_partial",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": "src/devtools/other.py",
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": false,
+      "disposition": "CLEANUP_RECONCILIATION_REQUIRED",
+      "source_restored": false,
+      "original_unchanged": false,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "UNKNOWN EXTERNAL BYTES\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "UNKNOWN EXTERNAL BYTES\n",
+        "src/devtools/other.py": "def other():\n    return 2\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:13.812803+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "a157c0b0-6dc2-4968-b7b1-cfb9788950cf",
+            "snapshot": "489840348d606e915ccfb9ff20c50dd4672673a11ff801b872f5bd81077e7a17",
+            "revision": "565a4961672dc3c6547f45738ab35cfb558f2e2a",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/sample.py",
+            "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/sample.py",
+              "version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19",
+              "repository": "a157c0b0-6dc2-4968-b7b1-cfb9788950cf",
+              "revision": "565a4961672dc3c6547f45738ab35cfb558f2e2a",
+              "snapshot": "489840348d606e915ccfb9ff20c50dd4672673a11ff801b872f5bd81077e7a17",
+              "unit": "086926a96b6e7b16e7ccd130689171b58046efbe986e5de50b0ce7e164167e86",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def value():\n    return 0\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-0",
+            "edit_ref": "R1",
+            "host_limits": {
+              "context_actions_remaining": 7,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.0023131000343710184
+        },
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/other.py\", \"start\": 0}",
+            "provider_call_id": "read-1"
+          },
+          "status": "RETURNED",
+          "started_at": "2026-10-25T01:12:13.816149+00:00",
+          "result": {
+            "operation": "inspect_source",
+            "repository": "a157c0b0-6dc2-4968-b7b1-cfb9788950cf",
+            "snapshot": "489840348d606e915ccfb9ff20c50dd4672673a11ff801b872f5bd81077e7a17",
+            "revision": "565a4961672dc3c6547f45738ab35cfb558f2e2a",
+            "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+            "uncertainty": "exact retained source; no runtime interpretation",
+            "path": "src/devtools/other.py",
+            "version": "941c1f09cc6576450d1e0b3153d00a10186269757ba3d8cb4ce05671b1d230be",
+            "source_length": 26,
+            "valid_range": [
+              0,
+              26
+            ],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": 26,
+            "parent": {
+              "path": "src/devtools/other.py",
+              "version": "941c1f09cc6576450d1e0b3153d00a10186269757ba3d8cb4ce05671b1d230be",
+              "repository": "a157c0b0-6dc2-4968-b7b1-cfb9788950cf",
+              "revision": "565a4961672dc3c6547f45738ab35cfb558f2e2a",
+              "snapshot": "489840348d606e915ccfb9ff20c50dd4672673a11ff801b872f5bd81077e7a17",
+              "unit": "2ae99cedcdf06bd7f077c636d0ef3c16da7508f3f2cec6085a2b641c86514bcb",
+              "kind": "file",
+              "qualified_name": null,
+              "span": [
+                0,
+                26
+              ],
+              "lines": [
+                1,
+                2
+              ],
+              "semantic_declaration": null
+            },
+            "representation": "exact-character-range",
+            "text": "def other():\n    return 2\n",
+            "requested_span": [
+              0,
+              26
+            ],
+            "span": [
+              0,
+              26
+            ],
+            "truncated": false,
+            "bytes": 26,
+            "observation_call_id": "read-1",
+            "edit_ref": "R2",
+            "host_limits": {
+              "context_actions_remaining": 6,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0.0020399000495672226
+        }
+      ],
+      "error": "RuntimeError: Injected entered executor failure; do not retry",
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 1,
+      "proposals_admitted": 1
+    },
+    {
+      "case": "budget",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": false,
+      "disposition": "MODEL_COMPLETED_WITHOUT_EDIT",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 0\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "budget-0"
+          },
+          "status": "REFUSED",
+          "dispatched": false,
+          "result": {
+            "status": "REFUSED",
+            "error": "CONTEXT_BATCH_EXCEEDS_REMAINING",
+            "instruction": "No Tool was dispatched. Select at most 1 read/API actions; use narrow ranges and avoid redundant acquisition.",
+            "host_limits": {
+              "context_actions_remaining": 1,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0
+        },
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "budget-1"
+          },
+          "status": "REFUSED",
+          "dispatched": false,
+          "result": {
+            "status": "REFUSED",
+            "error": "CONTEXT_BATCH_EXCEEDS_REMAINING",
+            "instruction": "No Tool was dispatched. Select at most 1 read/API actions; use narrow ranges and avoid redundant acquisition.",
+            "host_limits": {
+              "context_actions_remaining": 1,
+              "model_calls_remaining": 2,
+              "proposals_remaining": 3
+            }
+          },
+          "elapsed_seconds": 0
+        }
+      ],
+      "error": null,
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 1,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 0,
+      "proposals_admitted": 0
+    },
+    {
+      "case": "unexpected_executor",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": false,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 1,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 0\n"
+      },
+      "tool_events": [
+        {
+          "call": {
+            "name": "inspect_source",
+            "arguments_json": "{\"path\": \"src/devtools/sample.py\", \"start\": 0}",
+            "provider_call_id": "read-0"
+          },
+          "status": "REFUSED",
+          "started_at": "2026-10-25T01:12:15.711733+00:00",
+          "error": "TypeError: argument of type 'NoneType' is not a container or iterable",
+          "elapsed_seconds": 0.0019591000163927674
+        }
+      ],
+      "error": "TypeError: argument of type 'NoneType' is not a container or iterable",
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": false,
+      "required_behavior": "Preserve scoped effects, truthful failure and no automatic retry",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 8,
+        "proposals": 3,
+        "active_messages_bytes": 36000
+      },
+      "proposals_attempted": 0,
+      "proposals_admitted": 0
+    },
+    {
+      "case": "prepared_proposal_budget",
+      "task": {
+        "source": "src/devtools/sample.py",
+        "tests": [
+          "tests/test_sample.py"
+        ],
+        "second_source": null,
+        "old_source": "def value():\n    return 0\n",
+        "expected_good": "def value():\n    return 1\n",
+        "old_test": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n"
+      },
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "source_restored": true,
+      "original_unchanged": true,
+      "model_calls": 2,
+      "response_source": "audit-selected",
+      "selected_source": "audit-selected",
+      "test_after": "from devtools.sample import value\ndef test_integer():\n    assert isinstance(value(), int)\n",
+      "source_after": "def value():\n    return 0\n",
+      "candidate_sources": {
+        "src/devtools/sample.py": "def value():\n    return 1\n"
+      },
+      "tool_events": [],
+      "error": null,
+      "expectation": "independently specified in literal assertions below",
+      "violates_expected_contract": true,
+      "required_behavior": "Stop failed prepared repair at maximum_proposals=1",
+      "limits": {
+        "model_calls": 3,
+        "output_tokens": 4096,
+        "wall_seconds": 900,
+        "per_call_seconds": 300,
+        "context_actions": 0,
+        "proposals": 1,
+        "active_messages_bytes": 60000
+      },
+      "proposals_attempted": 2,
+      "proposals_admitted": 2
+    }
+  ],
+  "admission_refusals": [
+    {
+      "case": "unauthorized",
+      "error": "Unauthorized observed replacement path",
+      "details": {
+        "code": "UNAUTHORIZED_PATH",
+        "component_index": 1,
+        "index_base": 1,
+        "proposal_call_id": "bad-path"
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "stale_version",
+      "error": "Edit source was not observed at current version",
+      "details": {
+        "code": "OBSERVATION_MISSING",
+        "component_index": 1,
+        "index_base": 1,
+        "proposal_call_id": "actual-edit",
+        "path": "src/devtools/sample.py",
+        "old_bytes": 8,
+        "new_bytes": 8,
+        "region_limit_bytes": 4096,
+        "observed_match_count": 0,
+        "match_scope": "current_disclosed_regions",
+        "source_observed": false
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "unobserved",
+      "error": "Edit source was not observed at current version",
+      "details": {
+        "code": "OBSERVATION_MISSING",
+        "component_index": 1,
+        "index_base": 1,
+        "proposal_call_id": "actual-edit",
+        "path": "src/devtools/sample.py",
+        "old_bytes": 8,
+        "new_bytes": 8,
+        "region_limit_bytes": 4096,
+        "observed_match_count": 0,
+        "match_scope": "current_disclosed_regions",
+        "source_observed": false
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "overlap",
+      "error": "Overlapping transaction anchors",
+      "details": {
+        "code": "OVERLAPPING_COMPONENTS",
+        "overlapping_components": [
+          1,
+          2
+        ],
+        "component_index": 2,
+        "index_base": 1,
+        "proposal_call_id": "actual-edit",
+        "path": "src/devtools/sample.py",
+        "old_bytes": 8,
+        "new_bytes": 8,
+        "region_limit_bytes": 4096,
+        "observed_match_count": 1,
+        "match_scope": "current_disclosed_regions",
+        "source_observed": true,
+        "observed_source_version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19"
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "unsupported_text",
+      "error": "Structured edit text is empty, unchanged or oversized",
+      "details": {
+        "code": "NUL_TEXT",
+        "old_bytes": 8,
+        "new_bytes": 10,
+        "region_limit_bytes": 4096,
+        "component_index": 1,
+        "index_base": 1,
+        "proposal_call_id": "bad-text",
+        "path": "src/devtools/sample.py",
+        "observed_match_count": 1,
+        "match_scope": "current_disclosed_regions",
+        "source_observed": true,
+        "observed_source_version": "edc69dbc3206fe14ee3187dfa5c113b002765f1385453c438d1d344467229f19"
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "component_limit",
+      "error": "One to sixteen coordinated calls required",
+      "details": {
+        "code": "COMPONENT_LIMIT",
+        "components": 17,
+        "limit": 16
+      },
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    },
+    {
+      "case": "filesystem_drift",
+      "error": "SOURCE_DRIFT: admitted Context changed",
+      "details": {},
+      "no_mutation": true,
+      "observation_path": "src/devtools/sample.py"
+    }
+  ],
+  "tool_runner": [
+    {
+      "case": "valid",
+      "events": [
+        "validate",
+        "execute"
+      ],
+      "effects": [
+        "effect"
+      ],
+      "result": "literal result"
+    },
+    {
+      "case": "invalid",
+      "events": [
+        "validate"
+      ],
+      "effects": [],
+      "result": "ValueError"
+    },
+    {
+      "case": "entered_failure",
+      "events": [
+        "validate",
+        "execute"
+      ],
+      "effects": [
+        "effect"
+      ],
+      "result": "LookupError"
+    },
+    {
+      "case": "cancelled",
+      "events": [
+        "validate",
+        "execute"
+      ],
+      "effects": [
+        "effect"
+      ],
+      "result": "CancelledError"
+    }
+  ],
+  "known_fixture_collision": {
+    "left": {
+      "address": "a",
+      "text": "bc"
+    },
+    "right": {
+      "address": "ab",
+      "text": "c"
+    },
+    "same_id": "f2df40ba7551b777b36e8130ec452dbc5f6cad7139b7e98fd5a3ba5963df6df8",
+    "coverage_is_exact": true,
+    "owner": "Existing a88167f9; comparator correctly compares the supplied IDs"
+  },
+  "baseline": "4d36ce586e106bfc7f89b1dd3c5931e73e1f5084",
+  "reproducer_source": "\"\"\"Independent small operational fixtures; no model or actual-repository edits.\"\"\"\nimport asyncio,hashlib,json,sys\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nsys.path.insert(0,str(Path.cwd()))\nfrom apps.qwen import coding_loop\nfrom apps.qwen.context_tools import ContextTools\nfrom apps.qwen.edits import admit_observed\nfrom apps.qwen.patch_proposal_worker import PatchProposalError\nfrom apps.qwen.tasks import CodingTask\nfrom devtools.core.paths import resolve_path\nfrom devtools.models.interaction import InteractionSource,ModelResponse,ModelToolCall\nfrom devtools.resources.commands import Command,CommandExecutor\nfrom devtools.tools import ToolRunner\n\nO=Path(__file__).parent;CANONICAL=Path.cwd();A='src/devtools/sample.py';B='src/devtools/other.py';T='tests/test_sample.py'\nOLD='def value():\\n    return 0\\n';GOOD='def value():\\n    return 1\\n';TEST='from devtools.sample import value\\ndef test_integer():\\n    assert isinstance(value(), int)\\n'\nasync def git(root,*args):\n assert root!=CANONICAL\n r=await CommandExecutor().execute(Command('git').args(*args).cwd(resolve_path(root)));assert not r.failed,(args,r.stderr);return r.stdout.decode().strip()\nasync def setup(root,*,prepared=False,two=False,actions=8):\n texts={A:OLD,T:TEST,'src/devtools/__init__.py':'','# init': ''}\n del texts['# init']\n if two:texts[B]='def other():\\n    return 2\\n'\n for name,text in texts.items():\n  p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8',newline='')\n (root/'.gitignore').write_text('.local/\\n',encoding='utf-8')\n await git(root,'init','--quiet');await git(root,'add','--','.');await git(root,'-c','user.name=Audit Fixture','-c','user.email=audit@localhost','commit','--quiet','-m','Independent tiny task fixture')\n head=await git(root,'rev-parse','HEAD');paths=[A,T,*([B] if two else [])]\n return CodingTask('independent-audit','Return one; preserve test and source scope',A,(T,),head,tuple((p,hashlib.sha256((root/p).read_bytes()).hexdigest()) for p in paths),tuple((p,'value' if p!=B else 'other','file','none') for p in paths),'assert module.value() == 1, \"must return one\"',context_mode='prepared' if prepared else 'on-demand',maximum_calls=3,tool_actions=actions,path_edits=not prepared,additional_edit_paths=(B,) if two else ())\ndef call(name,values,identity):return ModelToolCall(name,json.dumps(values),identity)\nclass Scripted:\n source=InteractionSource('audit-selected')\n def __init__(self,task,*,foreign=False,prepared=False,two=False,mutate_test=False,budget=False,proposal_budget=False):\n  self.task=task;self.foreign=foreign;self.prepared=prepared;self.two=two;self.mutate_test=mutate_test;self.budget=budget;self.proposal_budget=proposal_budget;self.requests=[]\n async def send(self,request):\n  self.requests.append(request);number=len(self.requests)\n  source=InteractionSource('audit-foreign') if self.foreign else self.source\n  if self.budget:\n   calls=tuple(call('inspect_source',dict(path=A,start=0),f'budget-{i}') for i in range(2)) if number==1 else ()\n  elif not self.prepared and number==1:\n   calls=tuple(call('inspect_source',dict(path=p,start=0),'read-'+str(i)) for i,p in enumerate([A,*([B] if self.two else [])]))\n  else:\n   replacement=GOOD\n   if self.mutate_test:\n    replacement=('from pathlib import Path\\n'\n      'Path(__file__).resolve().parents[2].joinpath(\"tests/test_sample.py\").write_text(\"def test_bypassed():\\\\n    assert True\\\\n\", encoding=\"utf-8\")\\n'+GOOD)\n   if self.prepared:\n    wrong='def value():\\n    return 2\\n'\n    if self.proposal_budget and number==1:replacement=wrong\n    calls=(call('propose_edit',dict(path=A,old_text=wrong if self.proposal_budget and number>1 else OLD,new_text=replacement),'edit-a'),)\n   else:\n    calls=(call('replace_source',dict(path=A,old_text=OLD,new_text=replacement),'edit-a'),)\n    if self.two:calls+=(call('replace_source',dict(path=B,old_text='return 2',new_text='return 3'),'edit-b'),)\n  return ModelResponse('independently scripted proposal',source,tool_calls=calls)\nasync def run_case(label,**kwargs):\n with TemporaryDirectory(prefix='devtools-operational-audit-') as temporary:\n  root=resolve_path(Path(temporary)).value;prepared=kwargs.get('prepared',False);two=kwargs.get('two',False)\n  task=await setup(root,prepared=prepared,two=two,actions=1 if kwargs.get('budget') else 8)\n  if kwargs.get('proposal_budget'):task=replace(task,maximum_proposals=1)\n  model=Scripted(task,**{k:v for k,v in kwargs.items() if k not in ['failure','unexpected']});folder=root/'.local/run'\n  applied=coding_loop.apply_source_patches\n  async def fail_after_effect(workspace,turn,patches):\n   first=next(iter(patches))\n   if kwargs['failure']=='unknown':(workspace/first).write_text('UNKNOWN EXTERNAL BYTES\\n',encoding='utf-8')\n   else:await applied(workspace,turn,{first:patches[first]})\n   raise RuntimeError('Injected entered executor failure; do not retry')\n  original_execute=ContextTools.execute\n  async def unexpected_execute(self,arguments):return None\n  with (patch.object(coding_loop,'apply_source_patches',fail_after_effect) if kwargs.get('failure') else patch.object(coding_loop,'apply_source_patches',applied)), patch.object(ContextTools,'execute',unexpected_execute if kwargs.get('unexpected') else original_execute):\n   result=await coding_loop.run_coding_task(root,folder,model,task=task,coordinated_edits=not prepared,observed_edits=not prepared)\n  row=dict(case=label,task=dict(source=A,tests=[T],second_source=B if two else None,old_source=OLD,expected_good=GOOD,old_test=TEST),accepted=result['accepted'],disposition=result['disposition'],source_restored=result['source_restored'],original_unchanged=result['original_unchanged'],model_calls=result['model_calls_attempted'],response_source='audit-foreign' if kwargs.get('foreign') else 'audit-selected',selected_source='audit-selected',test_after=(root/T).read_text(),source_after=(root/A).read_text(),candidate_sources={c['path']:(folder/c['evidence']).read_text() for c in result.get('candidates',[])},tool_events=[e for s in result['turns'] for e in s.get('context_tools',[])],error=result.get('error'),expectation='independently specified in literal assertions below')\n  row['violates_expected_contract']=label in ['foreign_response','prepared_test_mutation','prepared_proposal_budget']\n  row['required_behavior']='Refuse mismatched response source before Tool execution' if label=='foreign_response' else 'Never accept candidate with changed frozen validation inputs' if label=='prepared_test_mutation' else 'Stop failed prepared repair at maximum_proposals=1' if label=='prepared_proposal_budget' else 'Preserve scoped effects, truthful failure and no automatic retry'\n  row['limits']=result['limits'];row['proposals_attempted']=result['proposals_attempted'];row['proposals_admitted']=result['proposals_admitted']\n  (O/(label+'-attempt.json')).write_text(json.dumps(dict(row=row,result=result),indent=2)+'\\n',encoding='utf-8')\n  if label in ['valid','foreign_response']:assert result['accepted'] and result['source_restored'] and result['original_unchanged'] and row['candidate_sources'][A]==GOOD\n  elif label=='prepared_test_mutation':assert result['accepted'] and not result['original_unchanged'] and row['test_after']!=TEST\n  elif label=='native_test_mutation':assert not result['accepted'] and not result['original_unchanged'] and result['disposition']=='VALIDATION_FAILED'\n  elif kwargs.get('failure')=='known':assert not result['accepted'] and result['source_restored'] and result['original_unchanged'] and row['candidate_sources'][A]==GOOD and row['candidate_sources'][B]=='def other():\\n    return 2\\n'\n  elif kwargs.get('failure')=='unknown':assert not result['accepted'] and not result['source_restored'] and result['disposition']=='CLEANUP_RECONCILIATION_REQUIRED'\n  elif label=='budget':assert not result['accepted'] and all(e.get('dispatched') is False for e in row['tool_events'])\n  elif label=='unexpected_executor':assert not result['accepted'] and result['model_calls_attempted']==1 and result['disposition']=='CONTEXT_TOOL_EXECUTION_FAILED' and result['original_unchanged']\n  elif label=='prepared_proposal_budget':assert result['accepted'] and result['limits']['proposals']==1 and result['proposals_admitted']==2 and result['model_calls_attempted']==2\n  return row\nasync def refusal_cases():\n rows=[]\n for kind in ['unauthorized','stale_version','unobserved','overlap','unsupported_text','component_limit','filesystem_drift']:\n  with TemporaryDirectory(prefix='devtools-admission-audit-') as temporary:\n   root=resolve_path(Path(temporary)).value;task=await setup(root);tools=ContextTools(root,task,direct_reads=True)\n   observation=await tools.dispatch(call('inspect_source',dict(path=A,start=0),'actual-read'))\n   source={A:OLD};proposal=call('replace_source',dict(path=A,old_text='return 0',new_text='return 1'),'actual-edit');calls=(proposal,)\n   if kind=='unauthorized':calls=(call('replace_source',dict(path=T,old_text='value',new_text='other'),'bad-path'),)\n   elif kind=='stale_version':tools.observations[0]['version']='0'*64\n   elif kind=='unobserved':tools.observations.clear()\n   elif kind=='overlap':calls=(proposal,proposal)\n   elif kind=='unsupported_text':calls=(call('replace_source',dict(path=A,old_text='return 0',new_text='return \"\\\\x00\"'.replace('\\\\x00','\\x00')),'bad-text'),)\n   elif kind=='component_limit':calls=(proposal,)*17\n   elif kind=='filesystem_drift':(root/A).write_text('# outside drift\\n',encoding='utf-8');source[A]='# outside drift\\n'\n   before=(root/A).read_bytes()\n   try:admit_observed(root,source,calls,tools)\n   except (PatchProposalError,ValueError) as error:rows.append(dict(case=kind,error=str(error),details=getattr(error,'details',{}),no_mutation=(root/A).read_bytes()==before,observation_path=observation['path']))\n   else:raise AssertionError('Expected independent admission refusal: '+kind)\n   assert (root/A).read_bytes()==before\n return rows\nasync def runner_cases():\n rows=[]\n for mode in ['valid','invalid','entered_failure','cancelled']:\n  events=[];effect=[]\n  class Capability:\n   name='fixture';description='No authority engine'\n   def validate(self,args):\n    events.append('validate')\n    if mode=='invalid':raise ValueError('invalid')\n   async def execute(self,args):\n    events.append('execute');effect.append('effect')\n    if mode=='entered_failure':raise LookupError('entered failure')\n    if mode=='cancelled':raise asyncio.CancelledError()\n    return 'literal result'\n  try:value=await ToolRunner().execute(Capability(),None)\n  except (ValueError,LookupError,asyncio.CancelledError) as error:value=type(error).__name__\n  assert events==(['validate'] if mode=='invalid' else ['validate','execute'])\n  rows.append(dict(case=mode,events=events,effects=effect,result=value))\n return rows\nasync def main():\n rows=[]\n for label,kwargs in [('valid',{}),('foreign_response',dict(foreign=True)),('prepared_test_mutation',dict(prepared=True,mutate_test=True)),('native_test_mutation',dict(mutate_test=True)),('known_partial',dict(two=True,failure='known')),('unknown_partial',dict(two=True,failure='unknown')),('budget',dict(budget=True)),('unexpected_executor',dict(unexpected=True)),('prepared_proposal_budget',dict(prepared=True,proposal_budget=True))]:\n  row=await run_case(label,**kwargs);rows.append(row);print(json.dumps({k:row[k] for k in ['case','accepted','disposition','source_restored','original_unchanged']}),flush=True)\n value=dict(method='Tiny independently authored temporary repositories; real observation, admission/Git/checks and scripted model protocol. Injected executor failures are fault models, not proof of actual Git IO partial writes.',worker_cases=rows,admission_refusals=await refusal_cases(),tool_runner=await runner_cases())\n # Synthetic lexical identities are appropriate only inside their explicit fixture scope.\n from tests.context.retrieval.lexical._helpers import _document\n from devtools.evaluation.coverage import compare_identity_coverage\n a,b=_document('a','bc'),_document('ab','c')\n assert a.id==b.id and a.resource.address!=b.resource.address\n value['known_fixture_collision']=dict(left=dict(address='a',text='bc'),right=dict(address='ab',text='c'),same_id=str(a.id),coverage_is_exact=compare_identity_coverage(expected=(a.id,),observed=(b.id,)).is_exact,owner='Existing a88167f9; comparator correctly compares the supplied IDs')\n (O/'probes.json').write_text(json.dumps(value,indent=2)+'\\n',encoding='utf-8');print('All independently specified audit probe assertions passed.')\nasyncio.run(main())\n",
+  "reproducer_sha256": "cedb7d2408a3d91a6926f13aa8c90d0d8180ffcc3015544a876818192f0f0058",
+  "execution_notes": [
+    "Two initial fixture preparation failures used a Windows short TEMP spelling inconsistent with resolved import source. Normalize the tiny fixture root with canonical resolve_path; these are not valid production defect reproductions or passed controls.",
+    "No model inference, archived treatment/controller, actual-repository mutation or fabricated WorkCycle authority. Probe assertions confirm observed behavior, including three desired-contract violations; do not report all cases as correctness passes.",
+    "Injected known/unknown partial apply exceptions are fault models, not proof of native Git arbitrary IO partial-write behavior."
+  ]
+}

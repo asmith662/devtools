@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+  "created_at": "2026-10-25T01:15:10.175136+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    "evidence": [
+      "docs/research/ri-fixture-closure-and-execution-audit.md",
+      "docs/research/code-audit/ri-operational-probes.json"
+    ],
+    "title": "Enforce frozen validation inputs before prepared worker acceptance",
+    "summary": "P1 worker acceptance-integrity defect, independently reproduced on main4d36. In prepared mode an admitted candidate module writes the tiny fixture test file during fixed validation, then returns the oracle-required value. Both checks pass and run_coding_task returns accepted=True/ACCEPTED while original_unchanged=False and the frozen test remains changed. Same source in native observed mode is refused by tools.check_current with VALIDATION_FAILED. This is not a demonstrated main-promotion bypass: WorkCycle._closeout requires original_unchanged and Checkout rejects unauthorized/unrecognized bytes. Source validation is not an OS sandbox.",
+    "resources": [
+      "apps/qwen/coding_loop.py",
+      "apps/qwen/commands.py",
+      "apps/qwen/change_checks.py",
+      "scripts/backlog/work.py",
+      "scripts/backlog/checkout.py",
+      "tests/apps/qwen/test_coding_loop.py"
+    ],
+    "benefit": "Before/between/after fixed validation, authenticate task tests/read paths and host runners/required plan against their frozen frame using compatible existing owners. Never report accepted when frozen inputs or required final invariants fail. Preserve unknown changes and reconciliation rather than silently restoring immutable evidence. Permanent independent tiny-source regressions must cover validation-time test/runner drift, valid unchanged controls, native/prepared parity, source restoration and WorkCycle/Checkout rejection. Full final-tree protected gate, supported Ruff/format and strict mypy required. Do not introduce a generic validator or run source in a claimed nonexistent sandbox.",
+    "uncertainty": "Trusted candidate execution can have external effects; this request fixes acceptance/evidence integrity, not universal filesystem confinement. Downstream protections mitigate publication; do not claim they are bypassed. Current boolean acceptance uses exit/failed fields without a prepared-mode frozen-input guard. d58697fd remains the separate protected-validation closure/reuse investigation, not a substitute disposition for this reproduced bug. Bounded repair needs explicit implementation scope and existing authority rules.",
+    "dependencies": [
+      "d58697fd-bb03-4e98-bdac-fa29444fc6ff"
+    ]
+  },
+  "payload_sha256": "c2719b758a1fbd73796ee836e2436881ce54c4c1381e010a65786bc256761ea4"
+}
