@@ -1,0 +1,66 @@
+{
+  "baseline": "4d36ce586e106bfc7f89b1dd3c5931e73e1f5084",
+  "objective": "Checkout ownership, guarded assignment and recovery across actual lifecycle; prioritize bounded prepared-worker repairs separately before claiming operational correctness.",
+  "cohort": [
+    {
+      "path": "scripts/backlog/checkout.py",
+      "blob": "0dfc2d07c6b1c5c3a5e599079061a00ac4462dd8",
+      "scope": "Recover and reconcile owner/source after partial effect, ambiguous state and competing mutations; reuse fully inspected entry/finalization evidence.",
+      "depth": "REMAINDER_NOT_YET_FULL_REVIEWED"
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "scope": "Authority/claimed dispatch/result closeout durability, no automatic redispatch, full remaining lifecycle bodies.",
+      "depth": "REMAINDER_NOT_YET_FULL_REVIEWED"
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "scope": "Grant issue/active/revoke, assignment/input authority; reconcile guard model effects and revocation.",
+      "depth": "REMAINDER_NOT_YET_FULL_REVIEWED"
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "scope": "CLI/interaction construction and complete local task owner lifecycle.",
+      "depth": "REMAINDER_NOT_YET_FULL_REVIEWED"
+    },
+    {
+      "path": "tests/scripts/backlog/test_checkout.py",
+      "blob": "8a371ac09e02c436b78efb67049e3c115d8e2613",
+      "scope": "Real tiny Git source/owner/recovery fixtures and competing attempts.",
+      "depth": "NEXT_COHORT_NOT_STARTED"
+    },
+    {
+      "path": "tests/scripts/backlog/test_work.py",
+      "blob": "8f7cbd7bad42735afb46a82106a40c0f072b9355",
+      "scope": "Assignment, execution entry, refusal, closeout and ambiguous effects.",
+      "depth": "NEXT_COHORT_NOT_STARTED"
+    },
+    {
+      "path": "tests/scripts/backlog/test_delegation.py",
+      "blob": "a66c3a7d890457cb94c569949e0bdb644986e349",
+      "scope": "Grant boundaries and guarded interaction tests.",
+      "depth": "NEXT_COHORT_NOT_STARTED"
+    },
+    {
+      "path": "tests/scripts/backlog/test_local_closeout.py",
+      "blob": "192c6f94b332efe3d6ab6649ba3bfc35be75c37b",
+      "scope": "Local outcome versus review/publication authority.",
+      "depth": "NEXT_COHORT_NOT_STARTED"
+    },
+    {
+      "path": "tests/scripts/qwen/test_coding_worker.py",
+      "blob": "8587488a9c1a915ddab1ffd1a715e6f7c6f00114",
+      "scope": "Trusted host admission and owner restoration tests.",
+      "depth": "NEXT_COHORT_NOT_STARTED"
+    }
+  ],
+  "subsequent_flows": [
+    "Fixed command/check freshness, failure and reuse; complete change_checks test-body review.",
+    "Independent review, integration, publication, retained evidence correlation/durability."
+  ],
+  "historical_RI": "188 exact obligations remain unchanged in the seven existing families; no credit transferred.",
+  "implementation_authority": "Review scope only; no implicit authority to implement new lifecycle abstractions or A+C."
+}

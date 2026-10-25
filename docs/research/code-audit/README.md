@@ -1,5 +1,26 @@
 # Code audit evidence ledger
 
+## Current RI fixture closure and operational assurance
+
+The [fixture closure/execution report](../ri-fixture-closure-and-execution-audit.md)
+supersedes earlier current-depth counts, without rewriting dated scientific evidence.
+Original fixtures93/93; augmented ledger94/94. Four substantive modules and22
+regular-package markers received full applicable review; the markers are not22
+algorithms. Experimental source606/606 and history15 full/168 unread/20 tip-only
+remain unchanged. The first actual task-to-edit audit found two P1 prepared-worker
+defects and one P2 response-source defect; fixes are pending, not implemented.
+
+| Artifact | Current depth and limits |
+| --- | --- |
+| [ri-completion-fixtures.jsonl](ri-completion-fixtures.jsonl) | Existing94 rows, exactly26 updated; all original93 paths have justified full-body or marker dispositions. |
+| [ri-fixture-execution-assurance.json](ri-fixture-execution-assurance.json) | Exact26 blobs/functions/markers, current production and test-body scope, dependency remainders and13 preserved forensic hashes. |
+| [ri-operational-probes.json](ri-operational-probes.json) | Full independent source and nine worker cases (three desired-contract violations), seven admission refusals, four ToolRunner contracts and known synthetic fixture collision. No live inference or actual-repository edit target. |
+| [ri-operational-intake.json](ri-operational-intake.json) | Three new pending operational bugs, three append-only advisories; no approvals, B-numbers, grants or closures. |
+| [ri-operational-tests.json](ri-operational-tests.json) |62 RI and225 operational focused passes; no new full protected gate for documentation-only changes. |
+| [ri-operational-checkpoint.json](ri-operational-checkpoint.json) | Exact identity, JSON/JSONL, Intake, layout/link/whitespace, executable-input equality and forensic preservation validation. |
+| [execution-ownership-next-cohort.json](execution-ownership-next-cohort.json) | Nine exact Checkout/WorkCycle/delegation/entry/test paths, unreviewed remainders; not started.188 RI historical obligations remain in their existing seven families. |
+
+
 Delivered follow-through: [one-facade binding repair](../../development/ri-facade-binding-repair.md), production `cf9db4af17516dc19092f1ae18c197783f1f5b3d`, PR#8, verified main `5a5485e98908922722ba2a4b177094364c1aac31`. Proposal ff4c4110 has implemented-and-merged advisory evidence; do not repeat the repair/adoption. Earlier P1-pending notices below are dated history. The next RI fixture/operational scope remains unchanged; A+C is unapproved and this repair adds no audit-cohort credit.
 
 Current main457def assurance: [configuration/role and closure review](../ri-configuration-role-closure-audit.md) and [exact ten-fixture/eight-version evidence](ri-config-role-assurance.json). Original fixtures **67/93** (26 remain: four substantive,22 namespace); history **15 full/168 unread/20 tip-only**. New one-facade fallback P1 has a distinct pending repair; direct lookup/bases PR5 and both source-integrity fixes remain delivered. Repair that bounded facade path, then finish the final current-fixture cohort and transition to the documented operational workflow audit while responsibility-grouped historical work remains explicit. Historical experiment source606/606 is unchanged. A+C remains unapproved. Earlier overlay counts/priorities below are dated history, superseded by this checkpoint.

@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "660900a1-fb47-4823-bd8c-f9d77205146b",
+  "created_at": "2026-10-25T01:15:10.179544+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    "evidence": [
+      "docs/research/ri-fixture-closure-and-execution-audit.md",
+      "docs/research/code-audit/ri-operational-probes.json"
+    ],
+    "title": "Enforce prepared coding-task proposal budget before further mutation",
+    "summary": "P1 bounded host-limit defect: prepared CodingTask maximum_proposals=1 and maximum_calls=3 is accepted by configuration. A scripted first proposal changes value() from0 to2 and fails the independent oracle; a second proposal changes2 to1 and is admitted/accepted. Receipt reports limits.proposals=1, proposals_admitted=2 and model_calls_attempted=2. The proposal counter/increment/terminal failure check exists only inside native tools branches. Absolute model-call cap remains enforced; no unbounded execution or protected-main publication is claimed.",
+    "resources": [
+      "apps/qwen/coding_loop.py",
+      "apps/qwen/tasks.py",
+      "tests/apps/qwen/test_coding_loop.py",
+      "tests/apps/qwen/test_observed_edits.py",
+      "scripts/backlog/work.py"
+    ],
+    "benefit": "Make the existing host proposal budget effective in prepared and on-demand protocols. With one failed allowed proposal, do not dispatch/admit a second edit or automatic repair; record truthful exhaustion and known-source restoration. Independently test caps1/default3, refused and admitted proposals, unchanged valid default behavior, model-call cap versus proposal cap, multi-component transaction accounting as one proposal, and current native six-proposal semantics. Verify public wrappers and any frozen assignment action totals are compatible; preserve existing limits and durable contracts rather than relaxing them. Full final-tree protected100% branch coverage and supported static checks.",
+    "uncertainty": "Semantic task/proposal bounds already exist; no new lifecycle or policy engine needed. This bug is independent from frozen-input acceptance and response provenance even though the same orchestration function owns all three. WorkCycle records a separate actions.total frame; inspect its relation during repair instead of claiming the prepared bug bypasses every grant. No existing approved story or generic investigation explicitly fixes this demonstrated mode-specific cap failure.",
+    "dependencies": [
+      "B-0035"
+    ]
+  },
+  "payload_sha256": "fa20ffde421dfa4687ac17e58e969405fa095edf23e0eff600c24c63de91c611"
+}

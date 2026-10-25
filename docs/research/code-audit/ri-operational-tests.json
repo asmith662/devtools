@@ -1,0 +1,53 @@
+{
+  "baseline": "4d36ce586e106bfc7f89b1dd3c5931e73e1f5084",
+  "focused": [
+    {
+      "at": "2026-10-25T00:39:57.340025+00:00",
+      "argv": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_intrinsic_paths.py",
+        "tests/evaluation/test_coverage.py",
+        "tests/context/retrieval/lexical"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.739086,
+      "log_sha256": "71525d90a162cca10d53393207b315f002efc70339b5131dbc46c691e53edd86",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "passed": 62,
+      "captured_output": "..............................................................           [100%]\n62 passed in 0.40s\n\nSTDERR\n"
+    },
+    {
+      "at": "2026-10-25T00:43:11.889134+00:00",
+      "argv": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/tools/test_execution.py",
+        "tests/tools/test_runtime_integration.py",
+        "tests/execution",
+        "tests/apps/qwen/test_edits.py",
+        "tests/apps/qwen/test_observed_edits.py",
+        "tests/apps/qwen/test_coding_loop.py",
+        "tests/apps/qwen/test_context_tools.py",
+        "tests/apps/qwen/test_change_checks.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 196.287734,
+      "log_sha256": "cf77cb5181d9f1fef831a653426f1eb8d0b8d6799f8c8e7d6d9163c61935d07d",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "passed": 225,
+      "captured_output": "........................................................................ [ 32%]\n........................................................................ [ 64%]\n........................................................................ [ 96%]\n.........                                                                [100%]\n225 passed in 193.91s (0:03:13)\n\nSTDERR\n"
+    }
+  ],
+  "protected_gate": "NOT_RUN_THIS_CHECKPOINT: documentation/Intake only, production/application/test/configuration inputs unchanged; prior2842/2skip/100% is prior evidence, not a new gate.",
+  "live_or_scientific": "No live model or historical scientific controller/adjudication. Maintained change_checks tests include a deterministic fixed host oracle; this is contract validation, not a new scientific or autonomous-effectiveness result."
+}

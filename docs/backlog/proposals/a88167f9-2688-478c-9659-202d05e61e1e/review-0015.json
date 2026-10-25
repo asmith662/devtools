@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "a88167f9-2688-478c-9659-202d05e61e1e",
+  "proposal_sha256": "c5739913bbe9b27d6b3ad7e4b6427601e56da4aaf4a1bf4b0f7e943eeb16dba4",
+  "previous": "f3da413e317eb09196e9d0f419fc4c268d3805aae971a2738bb2ac57997dc098",
+  "at": "2026-10-25T01:15:10.355829+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/ri-fixture-closure-and-execution-audit.md",
+  "rationale": "Final original lexical _helpers.py body is now fully reviewed at5ffbfa53. Independent _document(a,bc) versus _document(ab,c) has equal document ID and different addresses; identity coverage correctly reports exact for those supplied IDs. This is the existing synthetic fixture collision, not production comparator/content-identity corruption. _collection(()) genuinely supports empty input here; do not impose another helper's default-empty bug on this helper. Use length-framed canonical-compatible test identity or another independently specified collision-free fixture contract, with negative fixture regression; preserve pure arithmetic fixtures and distinct source-observation integration tests.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing owner/scope sufficient; separate new operational bugs are 41a497a8-54f1-461c-a5fe-2f63f22594d4, 660900a1-fb47-4823-bd8c-f9d77205146b, 751451cb-8998-4778-bc89-43609323c7ea. No approval, B-number, grant, dispatch or closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "17ef5f55a4c31e0a2ac50d874467e40d5f90500bbdfeb89ab9ecc8816f3c3016"
+}

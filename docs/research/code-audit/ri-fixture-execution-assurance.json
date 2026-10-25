@@ -1,0 +1,1094 @@
+{
+  "at": "2026-10-25T01:21:26.624862+00:00",
+  "baseline": "4d36ce586e106bfc7f89b1dd3c5931e73e1f5084",
+  "branch": "audit/ri-fixture-execution-20261024",
+  "manifest": {
+    "path": "docs/research/code-audit/ri-config-role-next-cohort.json",
+    "blob": "c9b6191641fa4d81427457dc205bfb3dab43d9f6"
+  },
+  "current_fixtures": [
+    {
+      "path": "tests/context/__init__.py",
+      "blob": "c8e24d5e5c039fad310e94fb178db36c146891b9",
+      "git_sha256": "a7a87440d437fdc09ea52569d680dbd866e4d0b75adf66569a259dad29841226",
+      "physical_sha256": "a7a87440d437fdc09ea52569d680dbd866e4d0b75adf66569a259dad29841226",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/__init__.py",
+      "blob": "e098bea6bdbab6213622c1a5ef89aeb9e949272f",
+      "git_sha256": "3c29f92ca4ce0e1e38fd34d4872867b921effe21aa13a5200cd6f0e78d9b428a",
+      "physical_sha256": "3c29f92ca4ce0e1e38fd34d4872867b921effe21aa13a5200cd6f0e78d9b428a",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/association/__init__.py",
+      "blob": "fb51f162cf5c89d36331cf74278d1f405223d953",
+      "git_sha256": "9ad5beba37d5881f578beb027c3a8cac5b0996a2e9a511f0d5a75a2b71e0ae36",
+      "physical_sha256": "9ad5beba37d5881f578beb027c3a8cac5b0996a2e9a511f0d5a75a2b71e0ae36",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/generation/__init__.py",
+      "blob": "f692f4a3d69a3d0f80c278d263140e0034c8ce64",
+      "git_sha256": "bb76c4041f324c2ec73392db33bc87db5eedbda0526fccaaeac37684f96d2a47",
+      "physical_sha256": "bb76c4041f324c2ec73392db33bc87db5eedbda0526fccaaeac37684f96d2a47",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/grounding/__init__.py",
+      "blob": "0033c9fe69d390a4fb8c40ee24bf04ed2d83ce74",
+      "git_sha256": "7799b84f21497c36a7fba20f7597c081bd691373641ee68e24a48990f8f60e60",
+      "physical_sha256": "7799b84f21497c36a7fba20f7597c081bd691373641ee68e24a48990f8f60e60",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/resolution/__init__.py",
+      "blob": "4ab470ab4fb2302c06a576496f2e27e674aa5940",
+      "git_sha256": "72835aeba7c58c3969c2e5b4d4f53b73be877251ca8ef58cea43098d797618fd",
+      "physical_sha256": "72835aeba7c58c3969c2e5b4d4f53b73be877251ca8ef58cea43098d797618fd",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/roles/__init__.py",
+      "blob": "d73ba153de296f09b4e1c71f8d6a8a5d5d7a4fb4",
+      "git_sha256": "8315d6b080a98f54244402536ca38afd4563d2b9f8c419cd26307b186a39ded9",
+      "physical_sha256": "8315d6b080a98f54244402536ca38afd4563d2b9f8c419cd26307b186a39ded9",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/localization/routing/__init__.py",
+      "blob": "5bd63f5f82b989d9a7842cd4a19ed0d285675608",
+      "git_sha256": "f2e7032b35b603bf996a879d0fbfe849a86716ad4f8d268aab9e117ef16fefff",
+      "physical_sha256": "f2e7032b35b603bf996a879d0fbfe849a86716ad4f8d268aab9e117ef16fefff",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/planning/__init__.py",
+      "blob": "c4964d44e35d0d96feab4a2976e0eb50161ff3c4",
+      "git_sha256": "bafefb7d8450124fbecf404ddc15295f1af5ce925adf80cd0bcb987035342301",
+      "physical_sha256": "bafefb7d8450124fbecf404ddc15295f1af5ce925adf80cd0bcb987035342301",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/__init__.py",
+      "blob": "114c0cc008ea9ecfe5d3518aece8ef0df95fe2c4",
+      "git_sha256": "28a42ffcd82c38b844e3062962351adf7b26183079ab85503be2836460eb13ed",
+      "physical_sha256": "28a42ffcd82c38b844e3062962351adf7b26183079ab85503be2836460eb13ed",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/classes/__init__.py",
+      "blob": "4b4a4ec123c51aeb6d927d0b119403f18257b8d6",
+      "git_sha256": "073560bc532f504deceba74673a4c226058503fd52c06026514e2adf35c7a861",
+      "physical_sha256": "073560bc532f504deceba74673a4c226058503fd52c06026514e2adf35c7a861",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/function/__init__.py",
+      "blob": "f430228714aa57d87592b53140823f5ab7e42dea",
+      "git_sha256": "0f809917e7d89ed6b69faa50ffd79fdc829800da25209536c4c52a1ea017ff3c",
+      "physical_sha256": "0f809917e7d89ed6b69faa50ffd79fdc829800da25209536c4c52a1ea017ff3c",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/imports/__init__.py",
+      "blob": "ec7837351a944124955f15e98e8f1f1f8c4b6451",
+      "git_sha256": "0a4b3466ac65c70fa53f416fa744f035b9659f16561067c90152a51a6a86b387",
+      "physical_sha256": "0a4b3466ac65c70fa53f416fa744f035b9659f16561067c90152a51a6a86b387",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/modules/__init__.py",
+      "blob": "cf9021f360218f220cea224d0023884fb16f1eaf",
+      "git_sha256": "862430c2e64cdf083c0a33322d7ed4d6d515757e6e9c7d5073f777a2903f6398",
+      "physical_sha256": "862430c2e64cdf083c0a33322d7ed4d6d515757e6e9c7d5073f777a2903f6398",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/project_configuration/__init__.py",
+      "blob": "c729661764b8f61935670b48e70ef81dafa12151",
+      "git_sha256": "507158801af46477b8bc5fdbebea10f730de8350066613c70d5cb354abee3c52",
+      "physical_sha256": "507158801af46477b8bc5fdbebea10f730de8350066613c70d5cb354abee3c52",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/references/__init__.py",
+      "blob": "70788996e1c93b40c4dc6b8b968c7ebea5646aec",
+      "git_sha256": "fc5a268d1cfccb8df10753b7df112ce6a790da883abbd6ff4807eddb3336bfe3",
+      "physical_sha256": "fc5a268d1cfccb8df10753b7df112ce6a790da883abbd6ff4807eddb3336bfe3",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/python/references/declarations/__init__.py",
+      "blob": "27cc56f0ab7f5eb1dffd7d9e65b71d6c31ba8541",
+      "git_sha256": "504767dc6e56388a9c58fc79d04ac57dd764cbf0be8ff5daeb7f05dc8fd57919",
+      "physical_sha256": "504767dc6e56388a9c58fc79d04ac57dd764cbf0be8ff5daeb7f05dc8fd57919",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/repository/__init__.py",
+      "blob": "7d35031427348f25943b8697f80e974b31ec89c4",
+      "git_sha256": "b4e050eb190db5d15f4cb3d22c782941270e9e9c3a2c3d31c3762fd02cc301f5",
+      "physical_sha256": "b4e050eb190db5d15f4cb3d22c782941270e9e9c3a2c3d31c3762fd02cc301f5",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/repository/test_discovery.py",
+      "blob": "54454dc95ee8cabaef8be8e91ffa275e47e256a8",
+      "git_sha256": "746fa1e5aacfb5fb530d0eff2b25211ec0f04ca5e4320c76e4dcd20fb7438eb4",
+      "physical_sha256": "3b084700ce939ed085eb93f488a38d7b9238bf33fff30b854dcdc36acbb916c5",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_repository",
+          "line": 45,
+          "end": 47
+        },
+        {
+          "name": "test_explicit_discovery_never_enumerates_unrequested_directories",
+          "line": 50,
+          "end": 84
+        },
+        {
+          "name": "test_explicit_discovery_missing_duplicate_link_and_bounds_refuse",
+          "line": 87,
+          "end": 130
+        },
+        {
+          "name": "test_recursive_discovery_composes_with_explicit_observation",
+          "line": 133,
+          "end": 203
+        },
+        {
+          "name": "test_discovery_feeds_the_existing_python_function_pipeline",
+          "line": 206,
+          "end": 277
+        },
+        {
+          "name": "test_discovery_skips_symbolic_links_and_directories",
+          "line": 280,
+          "end": 300
+        },
+        {
+          "name": "test_empty_discovery_is_successful_and_resource_bound_is_strict",
+          "line": 303,
+          "end": 328
+        },
+        {
+          "name": "test_discovery_requires_a_positive_resource_bound",
+          "line": 332,
+          "end": 343
+        },
+        {
+          "name": "test_discovery_requires_a_positive_traversal_bound",
+          "line": 347,
+          "end": 358
+        },
+        {
+          "name": "test_empty_directories_can_exhaust_the_traversal_bound",
+          "line": 361,
+          "end": 380
+        },
+        {
+          "name": "test_invalid_discovery_root_fails_instead_of_returning_empty",
+          "line": 384,
+          "end": 402
+        },
+        {
+          "name": "test_traversal_and_classification_failures_publish_no_partial_result",
+          "line": 405,
+          "end": 457
+        },
+        {
+          "name": "test_resolved_child_escape_is_rejected_before_traversal",
+          "line": 460,
+          "end": 489
+        },
+        {
+          "name": "test_discovery_invokes_no_observation_or_downstream_pipeline_work",
+          "line": 492,
+          "end": 551
+        },
+        {
+          "name": "forbidden",
+          "line": 59,
+          "end": 61
+        },
+        {
+          "name": "denied",
+          "line": 116,
+          "end": 120
+        },
+        {
+          "name": "forbidden_read",
+          "line": 152,
+          "end": 154
+        },
+        {
+          "name": "denied_scandir",
+          "line": 412,
+          "end": 414
+        },
+        {
+          "name": "FailingEntry",
+          "line": 428,
+          "end": 433
+        },
+        {
+          "name": "FailingScandir",
+          "line": 435,
+          "end": 445
+        },
+        {
+          "name": "escape_resolution",
+          "line": 472,
+          "end": 476
+        },
+        {
+          "name": "forbidden",
+          "line": 502,
+          "end": 504
+        },
+        {
+          "name": "is_symlink",
+          "line": 431,
+          "end": 433
+        },
+        {
+          "name": "__enter__",
+          "line": 436,
+          "end": 437
+        },
+        {
+          "name": "__exit__",
+          "line": 439,
+          "end": 445
+        }
+      ],
+      "namespace_only": false,
+      "remaining": [],
+      "role": "Metadata discovery and real discovery-to-function-Context composition",
+      "findings": "Complete real filesystem, symlink/junction, explicit/recursive bounds and deterministic ordering tests; monkeypatches prove no observation/AST/content acquisition during discovery and no scandir on explicit probes. All failure assertions refuse partial populations. Escaped-child resolver injection tests a local refusal, not an OS race. Real downstream observation/AST/selection/materialization checks counts and paths, not every returned byte; independent permanent exact-source regressions own the stronger correspondence guarantee.",
+      "consumer": "ContextTools.observe_sources and coding task scoped source acquisition; Tool availability/use remains distinct from autonomous task sufficiency.",
+      "disposition": "Qualified no-action; metadata discovery is intentionally not atomic filesystem observation.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/repository/test_intrinsic_paths.py",
+      "blob": "84873e4b36fad17d06e0d650cc62450c122e42cb",
+      "git_sha256": "e12a3638d32a71275300113f2295cbeea217a052b8aa93527edfedee1aa6d8dc",
+      "physical_sha256": "e12a3638d32a71275300113f2295cbeea217a052b8aa93527edfedee1aa6d8dc",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_canonical_address_answers_resource_path_questions",
+          "line": 10,
+          "end": 22
+        },
+        {
+          "name": "test_root_resource_and_suffix_semantics_are_stdlib_values",
+          "line": 25,
+          "end": 32
+        }
+      ],
+      "namespace_only": false,
+      "remaining": [],
+      "role": "Intrinsic POSIX address facets",
+      "findings": "Both full test bodies independently specify parts/name/suffix/parent/depth/containment and compound/dotfile suffixes. Appropriate constructed-address arithmetic, no claimed retained-source integration. Role is deliberately not intrinsic path metadata.",
+      "consumer": "Repository resource identity and candidate path presentation.",
+      "disposition": "No new defect; invalid address and observed-source contracts remain with their existing owners/tests.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/retrieval/__init__.py",
+      "blob": "d7effaff6905546e89178ecb7614d967f701aeed",
+      "git_sha256": "8e86f354cd89bdfbd4f1f3bebf9a0f328adc845417f17e5f53fba1168833cb93",
+      "physical_sha256": "8e86f354cd89bdfbd4f1f3bebf9a0f328adc845417f17e5f53fba1168833cb93",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/__init__.py",
+      "blob": "ee1f8ff919e31fde8b8fc9f8699e97b10767e1e5",
+      "git_sha256": "60a1264ea5e971125f22950f7a7e3331b984489d343ca25dccc60889b3f0553a",
+      "physical_sha256": "60a1264ea5e971125f22950f7a7e3331b984489d343ca25dccc60889b3f0553a",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/retrieval/lexical/_helpers.py",
+      "blob": "5ffbfa539869ae2f8dd1447a16b1112e736a213b",
+      "git_sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "physical_sha256": "d6ecae3dd035ccbbaa9a5cfca09166034dead44df8932b2f81e78c5b534b4a50",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "_digest",
+          "line": 27,
+          "end": 32
+        },
+        {
+          "name": "_document",
+          "line": 35,
+          "end": 50
+        },
+        {
+          "name": "_collection",
+          "line": 53,
+          "end": 83
+        }
+      ],
+      "namespace_only": false,
+      "remaining": [],
+      "role": "Synthetic lexical fixture constructors",
+      "findings": "All helper bodies inspected. Raw concatenation in _digest lets _document(\"a\",\"bc\") and _document(\"ab\",\"c\") share an identity despite distinct addresses. Synthetic digest is not canonical observed ContentIdentity. _collection(()) correctly preserves empty membership; do not attribute other helpers empty-default bug here. Arithmetic fixtures remain useful; no source-authenticity evidence.",
+      "consumer": "Maintained lexical arithmetic/index/statistics tests, not production identity construction.",
+      "disposition": "Existing a88167f9-2688-478c-9659-202d05e61e1e materially expanded; independent collision retained. No production comparator bug.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/context/retrieval/source/__init__.py",
+      "blob": "058ebf48acfcc8fa55b17f97b6d7467f0b73a726",
+      "git_sha256": "bad8a01e5dbdffe5c12bfd8f44d89785b2c134ad379f40ea7aceddec5c8b535a",
+      "physical_sha256": "af1814662310e960213999b7161e3af218e66f6831b10afe6ac8171ccad6c579",
+      "prior_depth": "OUTER_HELPERS_REVIEWED_TEST_BODIES_REMAIN",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/evaluation/__init__.py",
+      "blob": "c2c6bd247ea5c678f80d4a184cc0de29219b8b1a",
+      "git_sha256": "956d1010c77623fd1e751dfeda16faf31682d52cf4aceb5bcbb35bcb4e6b5265",
+      "physical_sha256": "956d1010c77623fd1e751dfeda16faf31682d52cf4aceb5bcbb35bcb4e6b5265",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [],
+      "namespace_only": true,
+      "remaining": [],
+      "role": "Regular local test-package marker",
+      "findings": "Copyright and module docstring only; no import/reexport/registration or algorithm. Normal package metadata/import resolution verified at this exact file; child packages are not imported by this body. No independent framework public API.",
+      "consumer": "Pytest collection and absolute test helper imports; normal Python package resolution.",
+      "disposition": "No-action: exact marker role reviewed, not algorithm credit.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    {
+      "path": "tests/evaluation/test_coverage.py",
+      "blob": "6c714a12efc36f5d1d7b0d5d7218fe8c062924d4",
+      "git_sha256": "db700bd8baf4e1009d2284ffecaa8b4eba09d926af10919081b86c6f50ad6eb0",
+      "physical_sha256": "db700bd8baf4e1009d2284ffecaa8b4eba09d926af10919081b86c6f50ad6eb0",
+      "prior_depth": "ASSERTION_INDEXED_NOT_FULL_FIXTURE_REVIEW",
+      "depth": "TEST_AND_FIXTURE_REVIEWED",
+      "reviewed_functions": [
+        {
+          "name": "test_exact_and_empty_coverage",
+          "line": 14,
+          "end": 21
+        },
+        {
+          "name": "test_missing_unexpected_and_simultaneous_diagnostics",
+          "line": 24,
+          "end": 34
+        },
+        {
+          "name": "test_duplicates_are_reported_independently_and_in_first_order",
+          "line": 37,
+          "end": 47
+        },
+        {
+          "name": "DomainIdentity",
+          "line": 51,
+          "end": 53
+        },
+        {
+          "name": "NonSortableIdentity",
+          "line": 56,
+          "end": 66
+        },
+        {
+          "name": "test_structured_hashable_and_non_sortable_identities",
+          "line": 69,
+          "end": 83
+        },
+        {
+          "name": "ConsumerOutcome",
+          "line": 86,
+          "end": 89
+        },
+        {
+          "name": "ConsumerRecord",
+          "line": 93,
+          "end": 95
+        },
+        {
+          "name": "test_unjudged_payload_is_observed_and_unsampled_expected_identity_is_missing",
+          "line": 98,
+          "end": 112
+        },
+        {
+          "name": "__init__",
+          "line": 59,
+          "end": 60
+        },
+        {
+          "name": "__eq__",
+          "line": 62,
+          "end": 63
+        },
+        {
+          "name": "__hash__",
+          "line": 65,
+          "end": 66
+        }
+      ],
+      "namespace_only": false,
+      "remaining": [],
+      "role": "Caller-defined identity presence coverage",
+      "findings": "Five full tests and hashable non-sortable fixture independently specify absent/unexpected members, duplicate first-occurrence order, generator/structured/empty cases. An UNJUDGED payload remains present, not a negative usefulness label. Coverage proves only the supplied expected identity roster, not its semantic completeness.",
+      "consumer": "Framework evaluation and host population checks; no automatic task-obligation completeness.",
+      "disposition": "No-action for coverage arithmetic; lexical fixture collision belongs upstream.",
+      "report": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    }
+  ],
+  "namespaces": [
+    {
+      "path": "tests/context/__init__.py",
+      "blob": "c8e24d5e5c039fad310e94fb178db36c146891b9",
+      "docstring": "Tests for repository intelligence and Context.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/__init__.py",
+      "blob": "e098bea6bdbab6213622c1a5ef89aeb9e949272f",
+      "docstring": "Tests for caller-authored repository Localization semantics.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/association/__init__.py",
+      "blob": "fb51f162cf5c89d36331cf74278d1f405223d953",
+      "docstring": "Candidate witness association tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/generation/__init__.py",
+      "blob": "f692f4a3d69a3d0f80c278d263140e0034c8ce64",
+      "docstring": "Focused bounded witness-generation tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/grounding/__init__.py",
+      "blob": "0033c9fe69d390a4fb8c40ee24bf04ed2d83ce74",
+      "docstring": "Focused task-anchor grounding tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/resolution/__init__.py",
+      "blob": "4ab470ab4fb2302c06a576496f2e27e674aa5940",
+      "docstring": "Tests for explicit Localization resolution recording.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/roles/__init__.py",
+      "blob": "d73ba153de296f09b4e1c71f8d6a8a5d5d7a4fb4",
+      "docstring": "Soft repository-role evidence tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/localization/routing/__init__.py",
+      "blob": "5bd63f5f82b989d9a7842cd4a19ed0d285675608",
+      "docstring": "Caller-directed role-routing tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/planning/__init__.py",
+      "blob": "c4964d44e35d0d96feab4a2976e0eb50161ff3c4",
+      "docstring": "Tests for common repository Context planning.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/__init__.py",
+      "blob": "114c0cc008ea9ecfe5d3518aece8ef0df95fe2c4",
+      "docstring": "Python-specific Context tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/classes/__init__.py",
+      "blob": "4b4a4ec123c51aeb6d927d0b119403f18257b8d6",
+      "docstring": "Bounded Python class and method declaration tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/function/__init__.py",
+      "blob": "f430228714aa57d87592b53140823f5ab7e42dea",
+      "docstring": "Python-function Context tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/imports/__init__.py",
+      "blob": "ec7837351a944124955f15e98e8f1f1f8c4b6451",
+      "docstring": "Tests for bounded Python import declarations.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/modules/__init__.py",
+      "blob": "cf9021f360218f220cea224d0023884fb16f1eaf",
+      "docstring": "Tests for explicit-root Python-module interpretation.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/project_configuration/__init__.py",
+      "blob": "c729661764b8f61935670b48e70ef81dafa12151",
+      "docstring": "Python project configuration RI tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/references/__init__.py",
+      "blob": "70788996e1c93b40c4dc6b8b968c7ebea5646aec",
+      "docstring": "Production Python function-reference tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/python/references/declarations/__init__.py",
+      "blob": "27cc56f0ab7f5eb1dffd7d9e65b71d6c31ba8541",
+      "docstring": "Canonical Python declaration Reference tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/repository/__init__.py",
+      "blob": "7d35031427348f25943b8697f80e974b31ec89c4",
+      "docstring": "Repository Context tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/retrieval/__init__.py",
+      "blob": "d7effaff6905546e89178ecb7614d967f701aeed",
+      "docstring": "Retrieval-specific Context tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/retrieval/lexical/__init__.py",
+      "blob": "ee1f8ff919e31fde8b8fc9f8699e97b10767e1e5",
+      "docstring": "Tests for lexical retrieval analysis, statistics, and indexing.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/context/retrieval/source/__init__.py",
+      "blob": "058ebf48acfcc8fa55b17f97b6d7467f0b73a726",
+      "docstring": "Source representation retrieval acceptance tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    },
+    {
+      "path": "tests/evaluation/__init__.py",
+      "blob": "c2c6bd247ea5c678f80d4a184cc0de29219b8b1a",
+      "docstring": "Evaluation tests.",
+      "import_path_authenticated": true,
+      "independent_algorithm": false
+    }
+  ],
+  "source_review": [
+    {
+      "path": "src/devtools/context/repository/discovery.py",
+      "blob": "9998276fb5632dec5bcb7270063cd9b9abfff1a7",
+      "git_sha256": "726edfeced04ed6062b9a7f5eeb5f01b6484b68bae21c671f07631b42a9107b1",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/context/repository/resource.py",
+      "blob": "6485796073d6ed095648b3a54f40c512fbc41545",
+      "git_sha256": "940914c15eaeac559411611bc4003b4bdbf212277027752fac5ac6c66f802555",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/evaluation/coverage.py",
+      "blob": "60396386a10fe144d13d4aff3c6c2344ed5cbacf",
+      "git_sha256": "2be94b0f9c042415cfcc3f41fae109458d474c5e4b5fe1a8607aad43228478ae",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "git_sha256": "03e4f87b8c5dd9e298e20abc0225fb9d6838b49ed99cca3e6225dca63d34d68c",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/tools/protocols.py",
+      "blob": "8e875098f9ff951d411ed82a20a79ace55350f16",
+      "git_sha256": "bc4ac64652f06602e8c90e9cc652ff0c07bcc67810782cb521ba514cc253ca8b",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "git_sha256": "75313020ff18fc5aa3d676ac3c30c39cefa6b2678d9f3e14029f1d4db17ab8c2",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "git_sha256": "1ff589b661d0c3462e39c2ad9167fe3223e22794908a7636fc7f3506fa8298e4",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0d1eebc4bca7077c7e9df4d80ed936527530bb0f",
+      "git_sha256": "4f8ce278dbb4d9c61e2541e9b9f6163cf24f5eb615a34050e5fc91fe1b13aeb0",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/edits.py",
+      "blob": "737aec5347b8684e2515d86f2f61efc0eb2cc110",
+      "git_sha256": "8c37cd4631fa8f6c7f01c0de4f0592c276904c0644c3404521656e233ab03c96",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/commands.py",
+      "blob": "b78f18ffe03c37ae44bd47c71c583b340feb194c",
+      "git_sha256": "3ea5802710e5c14a8e807585de3084172f557ff34d72d9870ce9e11f798c7d99",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/change_checks.py",
+      "blob": "153235f68136af55bb3597b66498506f7a765605",
+      "git_sha256": "d971d9e138784193736eb407231c6d9d127397d397225138e5932d2ba74955dd",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/tasks.py",
+      "blob": "8d2ef204efeb56c6feed35c61bce9e1f4496111a",
+      "git_sha256": "98767acb5f2b9669788dddf5be2afb6c938195a5490aa1b5488945ed0f22aead",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/tools/test_execution.py",
+      "blob": "0289192a64a9475ab6d64d3bb87bdba329e83488",
+      "git_sha256": "f4fd385497f435a5a62c25a0a3e189b284dc555d216ce2cfe591c2785fc4fb57",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/tools/test_runtime_integration.py",
+      "blob": "3a29187a81db6f249d203d18a5e9c7246c7725cc",
+      "git_sha256": "5166695a6cf75106935196749b0dad59dc6990b95f834d3419e637bb641526bd",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/execution/test_runtime.py",
+      "blob": "11526bb591531a9398becb63578e9482eef24e54",
+      "git_sha256": "59b71fd2d6e66b79e265efa87c8234ef340e250c65560569d5f4cbd850b6e7a5",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/apps/qwen/test_coding_loop.py",
+      "blob": "fdfb7910791cd74ade991e86f0b133db0061acf0",
+      "git_sha256": "2eb2d5939755a4a226a2073d62174b7fff04566199513afb61c937fb1e84bdd6",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/apps/qwen/test_edits.py",
+      "blob": "966710489e4bb5c776afb2ed01cc48622f0f0a11",
+      "git_sha256": "448ad589c8ceb9cd873105f5afdbc74c0e96142d58873a28720bdc757b561c3a",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/apps/qwen/test_observed_edits.py",
+      "blob": "5173e7161678bf472cb30f8aa1d8fcae0f4b07f9",
+      "git_sha256": "10067be4786beb2bd24522d8e1bba880c5d9db1e9363b05b901824396f4db15b",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "tests/apps/qwen/conftest.py",
+      "blob": "7840f6dfa6249e1eb27d6b5f07c946996ab47640",
+      "git_sha256": "b4cbcd7b1749e4d6a408dc67a915c9eaa681b1f3dc0cc5faff0386d5a3856bef",
+      "depth": "FULL_BODY_REVIEW",
+      "scope": "All substantive bodies, errors and helpers read; execution is separately qualified."
+    },
+    {
+      "path": "apps/qwen/development_task.py",
+      "blob": "8d2fc7bda8e61fc9ff02607f88230969288848c3",
+      "git_sha256": "8407a8a0768a0cf07a4c299f45136cee8079be96d26fcc8022c65d51e6249989",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "_save/_hash/_command/_timed_command/_runner_sources, _structured_edit_definition/_structured_edit_patch/_source_patch/_structured_edit_patch_from_calls, apply_markdown_patch/apply_source_patches/_validate_patch_envelope/_store_patch. Other historical freezers/runners not reviewed."
+    },
+    {
+      "path": "apps/qwen/context_tools.py",
+      "blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+      "git_sha256": "279cf2794bdab9eed023eeb7b8ab4cf794df93eb25e2c4c19486d7d2aa1ddf3a",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "Constructor, definitions, reference/snapshot/observation/index/check_current, accept_source/accept_transaction, validate/dispatch/metadata/execute, _read/observed/observed_matches. Relationship helpers rely on prior RI evidence; remaining navigation bodies not newly credited."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "git_sha256": "18e0bd787ecd9851925b69c4bea336047a3eea74e09ece2304196aca59106630",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "run_local_task entry, owner serialization, source validation and finalization; factory/CLI parsing remains."
+    },
+    {
+      "path": "scripts/backlog/checkout.py",
+      "blob": "0dfc2d07c6b1c5c3a5e599079061a00ac4462dd8",
+      "git_sha256": "060083330a60034f68302490462abebae1a0c3788c01497ed7265f5e97d91b0f",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "Owner entry/save/source_path/expect/finish/__aexit__ through line287. Recovery body remains unreviewed."
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "git_sha256": "3d2a01e90a936b257106b306cfa0d37b90cfeaf7c0701e379dc269fc30219be3",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "_coordinator/_target/_baseline/prepare/_validate/authorize/execute/_execute/_closeout through line495 and integration property; status/discovery/remaining publication paths not reviewed."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "git_sha256": "bbeb8d53c7cd0831f27b9009f6a602b84713fed9055cc2fd052c08b28b48a300",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "model wrapper and guarded interaction near line459 onward; active/issue/revoke/authority management remain."
+    },
+    {
+      "path": "tests/apps/qwen/test_change_checks.py",
+      "blob": "dbcedc4e4928d16afdaacf70e319ab2e5f0f6c68",
+      "git_sha256": "905756438bc6815406d600224e5dad946717b74d96aff40215277ca740b3e1cb",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "Fixture contract/candidate/fast-check helpers and first actual host-oracle test. Remaining tests executed but not full-body reviewed."
+    },
+    {
+      "path": "tests/apps/qwen/test_context_tools.py",
+      "blob": "858855cc887761cdf7d09d0f94d4fcb719319adc",
+      "git_sha256": "adc745eadb0e2a5d1507f16f0d8e5eda2e4eeecea18a1c6db7507ee4e5725598",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "Relevant scoped source/context consumer paths plus prior RI review evidence; no new whole-body credit from execution."
+    },
+    {
+      "path": "tests/execution/test_interaction_attempt.py",
+      "blob": "194232f241fa34ea9f16d2dd26707da7a462fdd0",
+      "git_sha256": "2537513311e9efb43978905c40da4b57f5b2144c21d1a5bed3156d9d26fde17d",
+      "depth": "SELECTED_DEPENDENCY_BODIES_ONLY",
+      "scope": "Selected construction/state assertions; executed suite does not supply full-body review credit."
+    }
+  ],
+  "counts": {
+    "original_fixtures_reviewed": 93,
+    "original_universe": 93,
+    "augmented_ledger_reviewed": 94,
+    "augmented_ledger_rows": 94,
+    "new_substantive_bodies": 4,
+    "new_markers": 22,
+    "independent_namespace_algorithms": 0,
+    "experimental_source_reviewed": 606,
+    "experimental_source_universe": 606,
+    "historical_versions_full": 15,
+    "historical_versions_unread": 168,
+    "historical_versions_tip_only": 20,
+    "historical_remaining": 188
+  },
+  "history_unchanged": {
+    "ledger": "b68e57b2118ec9fc3bacfb3a1947a13c7cd79e64",
+    "groups": "cb0a5cabccbf9904c5243288271f9efc3952c9d9"
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ]
+}

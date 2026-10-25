@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "751451cb-8998-4778-bc89-43609323c7ea",
+  "created_at": "2026-10-25T01:15:10.182231+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/ri-fixture-closure-and-execution-audit.md"
+    },
+    "evidence": [
+      "docs/research/ri-fixture-closure-and-execution-audit.md",
+      "docs/research/code-audit/ri-operational-probes.json"
+    ],
+    "title": "Reject foreign ModelResponse sources before native coding Tool admission",
+    "summary": "P2 model-protocol/provenance defect: scripted ModelInteraction.source=audit-selected returns native source-read and edit responses labeled audit-foreign. The actual coding loop dispatches ContextTools, applies an admitted change, passes independent checks and reports ACCEPTED. Runtime.send correctly rejects the same source mismatch and has independent tests, but the coding application directly calls interaction.send without an equivalent response-source check. No live provider corruption or new scientific/model effectiveness is established.",
+    "resources": [
+      "apps/qwen/coding_loop.py",
+      "src/devtools/execution/runtime.py",
+      "scripts/backlog/delegation.py",
+      "tests/apps/qwen/test_coding_loop.py",
+      "tests/execution/test_runtime.py"
+    ],
+    "benefit": "Validate normalized response source against the selected interaction immediately after return and before any Tool/edit admission. Retain raw invalid-response and selected-source evidence with a protocol-failure disposition; no automatic redispatch. Independent tests must cover valid controls, foreign response with allowed Tool/edit calls, returned usage/termination capture and current delegated envelope compatibility. Reuse an existing compatible validation seam if justified; do not move the application loop into Runtime, require a new Conversation, or build a generic Agent. Full protected/static validation for the eventual production repair.",
+    "uncertainty": "Actual native provider adapter source construction has not been shown to mislabel a live response. A synthetic protocol implementation establishes the missing defensive boundary, not that another live model acted or that authorization/publication was bypassed. Runtime is correctly narrow; optional direct ModelInteraction use is valid but should preserve selected-source correspondence. Existing source-integrity repairs are unrelated and remain delivered.",
+    "dependencies": [
+      "B-0009"
+    ]
+  },
+  "payload_sha256": "7b322192c872ca37ad34f95a32e306360d596b94c76259e714813fcd9bd2a1aa"
+}
