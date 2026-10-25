@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+  "created_at": "2026-10-25T21:23:38.266165+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Preserve compatible response usage independently of observation order",
+    "summary": "P2: collection.reconcile overwrites responses[response_id] for compatible partial duplicates. A valid response reporting input10 followed by the same response with unknown input yields known subtotal0/unknown1; reversing input order yields input10. Snapshot save/load preserves both nonidentical metadata rows and orders by payload hash, so a new copy can change the selected amount without new consumption. Existing report/usage CLI consumers can understate or lose known facts; this is not proof any retained historical balance was corrupted.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "docs/research/evidence-usage-and-operator-audit.md"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/observability/usage/collection.py",
+      "src/devtools/observability/usage/storage.py",
+      "src/devtools/observability/usage/report.py",
+      "tests/observability/usage/test_usage.py"
+    ],
+    "evidence": [
+      "docs/research/code-audit/evidence-usage-probes.json",
+      "docs/research/evidence-usage-and-operator-audit.md",
+      "git:138adc07fa758032743cf5d79ff4b2fe0bb790cc:src/devtools/observability/usage/collection.py"
+    ],
+    "benefit": "Acceptance: public report and storage roundtrips over all permutations of complementary, identical and unknown partial copies for one response produce equal known categories and unknown provenance. Distinct disjoint responses still add once each; conflicting known fields/model labels remain visible and excluded. Preserve partial/unknown categories without manufacturing totals or replacing absence with zero. Add literal expected tests through actual reconciliation/report, not self-equality or only a private merge helper. Do not broaden into generic Evidence truth, outcome precedence or billing authority.",
+    "uncertainty": "Independent deterministic temporary metadata reproduction; no model execution, actual subscription/billing claim, automatic approval or repair in this audit.",
+    "dependencies": [
+      "B-0011",
+      "B-0023"
+    ]
+  },
+  "payload_sha256": "97368ae04ec2c810f890509c8d3ae05405cb57b1412d51cf972a888c6385a272"
+}

@@ -1,0 +1,438 @@
+{
+  "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+  "manifest": "docs/research/code-audit/execution-evidence-next-cohort.json",
+  "selected_count": 12,
+  "full_review": [
+    {
+      "path": "src/devtools/observability/evidence/invocation.py",
+      "blob": "401f2bc56642409076b4d67ceab2a18a4d34a156",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "b76dd3cf486d5f14d3e05e00029ed70f82c789fee4dbc81d871d0e47fa8f6c6a",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Typed Measured/InvocationMeasurement invariants",
+      "observed_contract": "Availability/value/provenance and finite durations; accepted implies completed+validated. Local IDs and source strings remain caller assertions; no authority or payload authentication.",
+      "actual_consumer": "Experimental normalized worker capture and usage ingestion; not native Qwen emission.",
+      "test_assurance_and_limits": "Tests protect absent versus reported0, adoption, duration failures and acceptance support; no actual provider/task-bound capture.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "src/devtools/observability/evidence/inspection.py",
+      "blob": "b6f032a71ed23aea3a2570d2af5cf8ad35317fd1",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "9da182e282dd9c5eaf985a4bf167783d2096e44cebb30e429408948ec200e0fe",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Terminal inspector and optional synchronous sink",
+      "observed_contract": "Retains live attempts and first Evidence per EvidenceId in memory; repeated terminal callbacks create observation IDs, not invocation counts. No durable/conflict/source-auth claim.",
+      "actual_consumer": "Optional Runtime observer; no native coding loop composition.",
+      "test_assurance_and_limits": "Tests isolate lifecycle facts, no Evidence for live attempts, forwarding/clear. The test named conflicting constructs an identical value, not a contradictory payload.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "src/devtools/observability/usage/models.py",
+      "blob": "496e18b0b979af6e7e0e4e54c1ae4ad9f6ad0dfe",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "fe148d0b0b24c8c8fb8924da9ee1983c3db427cf46a8da360832303cc2dd3c01",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Usage metadata and wire restoration",
+      "observed_contract": "Exact named wire fields, typed ModelUsage and attribution/enums; source digest and local IDs are not independently authenticated. Original task_id does not survive projection; acceptance-domain name is not retained.",
+      "actual_consumer": "Usage CLI/backfill, snapshots/report; no WorkCycle grant authority.",
+      "test_assurance_and_limits": "Synthetic local metadata tests are appropriate; contradictory layers/semantic outcomes require B-0023 interpretation.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "src/devtools/observability/usage/ingestion.py",
+      "blob": "88e9fd2e124162bbbfc11fdb588cdcc2465e1806",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "c73516e8d69df755324e58dc94e03b1ff54bb9e84e673b58d0968b7994fbdc9e",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Capture/session ingestion",
+      "observed_contract": "Preserves optional counts and old missing response-size fields; acceptance withheld unless capture names a domain; failure text replaced. Session metadata only, known Codex/OpenAI boundary.",
+      "actual_consumer": "scripts/usage.py backfill and public ingestion APIs; no normalized native Qwen adapter.",
+      "test_assurance_and_limits": "Complete test_sources guards private sentinel before JSON decoding, unknown shapes, reported provider, capture restoration, unset/unknown budget constraints and empirical forecast limits.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "src/devtools/observability/usage/collection.py",
+      "blob": "798a2f7d17ddf73602a443839b9b7b9b411e0137",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "d8430bce99378ded92cbbd48d91c57513eba34cdc5b9733481eb1eb1ef5ab514",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Identity and category reconciliation",
+      "observed_contract": "Disjoint sum propagates None, no overlapping total. Legitimate duplicates/adoption/cumulative snapshots/conflicts supported. Two confirmed P2 defects: unscoped aliases and order-dependent partial response selection.",
+      "actual_consumer": "Public report, local usage CLI and snapshot consumers. Mixed-provider operational billing or governance bypass not demonstrated.",
+      "test_assurance_and_limits": "Existing tests cover positive duplicates/conflicts/windows but omit provider namespace collisions and compatible partial-copy permutations.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "src/devtools/observability/usage/storage.py",
+      "blob": "d3639cddaf36999f0ff3d38d3d82f5f6ac00d91a",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "19c52c9b406191b1e0c67a12ea33a68087fea6891a3c560ee48ceed18e8820ef",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Versioned snapshot and local writer lease",
+      "observed_contract": "Mutable replaceable snapshot; whole-row content dedup, not event-key conflict rejection. Caller-held atomic mkdir lease; abrupt process death leaves lease and blocks retry. Canonical write is atomic replace/file fsync, no parent fsync.",
+      "actual_consumer": "scripts/usage.py serializes save/load under writer; no second Evidence store.",
+      "test_assurance_and_limits": "Tests cover exact duplicates, contention, exception release, invalid schema/type. Valid JSON tampering is not authenticated; not a violated signature contract.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "tests/observability/evidence/test_invocation.py",
+      "blob": "f565832dd22d9e422c1a64afe6c8c82d69fc040f",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "2cefd1ef8f2795989d8d5881332a1f8e8d6d07af79680dd8b7db763eaba452a4",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Independent invocation measurement fixtures",
+      "observed_contract": "All helper and parameterized bodies read; literal counts and durations independently specified, no live model competence.",
+      "actual_consumer": "Local measurement contract tests.",
+      "test_assurance_and_limits": "Negative availability/duration/identity/acceptance controls; no durable current task/source attestation.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "tests/observability/evidence/test_inspection.py",
+      "blob": "9ec15b315e309b5e1780dbb88a835e7c6c8d7774",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "ddccf16c76becb5af7b898461b2492f9511f791309a959a5a183fe84af1501c8",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Terminal inspection fixtures",
+      "observed_contract": "All attempt/sink/identity/clear/live-state tests read; synthetic identities deliberately isolate process-local correlation.",
+      "actual_consumer": "Runtime inspector contract tests.",
+      "test_assurance_and_limits": "First-wins duplicate case is identical, not a conflict oracle; no persistence or sink-crash durability claim.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "tests/observability/usage/test_usage.py",
+      "blob": "2be0565b52d9a33e6e7b6ba36eaac9606d254249",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "d10ebfdd2ccca1f628bc14d449dee2ee338af694d8f931749d955f9e03d4958d",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Usage report/storage fixtures",
+      "observed_contract": "All bodies read: adoption, mixed models, aliases, categories/scopes, cumulative snapshots, storage writer, wire shapes, window/DST boundaries.",
+      "actual_consumer": "Framework reports/snapshot contracts.",
+      "test_assurance_and_limits": "Independent arithmetic and expected window literals; no cross-provider namespaces, partial response order permutations or actual usage-accounting outcome proof.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "tests/observability/usage/test_sources.py",
+      "blob": "60a66d44ba37db9a70a0d361bdad19e738872c00",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "75179a57de362fa1ec2efb44202651dd4dc1dbcb5ebe72580211db0b139da9e4",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Metadata source, budget and forecast fixtures",
+      "observed_contract": "All helpers/tests read including json.loads sentinel monkeypatch, closed allowed event shapes, native parser reuse and compatibility defaults.",
+      "actual_consumer": "Codex metadata import, pure constraints and empirical forecast seams.",
+      "test_assurance_and_limits": "Synthetic UsageAmount tests prove UNKNOWN blocks configured dimensions, not actual reservations/model launch authority. Forecasts are not pricing/tokenizer evidence.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "apps/operator_dashboard/project.py",
+      "blob": "472b8ef254f5ccdc94a781400ddcd6c07ece0f5f",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "c850a3c4d51b605905ef363ac3e51b44122a2ea77aa8994e56d8ad78e75711e1",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Operator projection",
+      "observed_contract": "All bodies read: allowlisted proposal/backlog/work/worker fields, corrupt/missing records, configured roots and exact UTF8 reference digests. Canonical WorkCycle.status used but integration details dropped in overview.",
+      "actual_consumer": "Loopback DashboardServer overview; optional static export.",
+      "test_assurance_and_limits": "None remains None; worker/schema/model labels are source-reported, not independent inference/authorship proof. No normalized usage ledger or inspector consumer.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    },
+    {
+      "path": "tests/apps/operator_dashboard/test_projection.py",
+      "blob": "9a4c704b7293164486547f176a48c813bd61cc7b",
+      "scope": "Full relevant source/test body; explicitly reuse authenticated current ingestion/storage dependency review without assuming full reconciliation or consumer assurance.",
+      "sha256": "69eddace26737f4be9f23b225aade0e1ee5560d9329fcd5dc228d5f7007c813d",
+      "depth": "FULL_BODY_AND_FIXTURE_REVIEW",
+      "role": "Operator projection fixtures",
+      "observed_contract": "All three tests and helper read; real Intake hash logic plus constructed minimal work/worker records, missing/partial/error/sentinel controls.",
+      "actual_consumer": "Dashboard metadata projection tests.",
+      "test_assurance_and_limits": "Correct isolated fixtures do not establish real execution, Checkout release, independent review, remote publication or autonomous effectiveness.",
+      "disposition": "Two new P2 collection proposals and one operator-correlation P2; existing B-0011/B-0023/B-0034/39c6663a/d58697fd otherwise sufficient. No production edits.",
+      "remaining_dependencies": "Domain/input truth, durable correlation, provider implementations and other framework domains are not implicitly reviewed."
+    }
+  ],
+  "additional_depth": [
+    {
+      "path": "src/devtools/observability/usage/report.py",
+      "blob": "cf16a119e26b8cbdd28bdf8bc9e47867adaf6669",
+      "depth": "Full report body read: known subtotals+unknown counters, accepted-first precedence, conflict exclusion, dimensions/windows. Not billing or authority."
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "Full capture/inspector body read as dependency: default omitted categories, partial manifests, per-occurrence first retention, successful-response-only hook. No durable store."
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "depth": "Full narrow send/attempt callbacks read; source validation, stage-specific failure/cancel, best-effort terminal observer, no usage receipt or generic retry."
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "depth": "Full validate-then-execute body read; exception/cancellation preserved, no builtin authorization, rollback, journal or entry receipt."
+    },
+    {
+      "path": "scripts/usage.py",
+      "blob": "7d99dde50f24135990dcf005d8848b6e5b2ba07a",
+      "depth": "Full repository-specific backfill/render/main body read: trusted session/retained capture inputs, metadata-only projections, explicit unsupported sources, serialized local snapshot. No Qwen worker-result import. Original science not executed."
+    },
+    {
+      "path": "src/devtools/governance/usage.py",
+      "blob": "db1186ddf4f7352bb45f856c6284d99ccff880cc",
+      "depth": "Full numeric constraints body read: UNKNOWN blocks configured limits, UNSET omits dimension; no admission or lifecycle reservation owner."
+    },
+    {
+      "path": "src/devtools/observability/usage/docs/overview.md",
+      "blob": "46da1d4acabe3870adc10b71991255ee17b7bd38",
+      "depth": "Full contract read; partial known subtotals and mutable snapshot authority are deliberately qualified."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/App.tsx",
+      "blob": "529a984b81cac5c9b2510d438f3a2bbe5f1ae5a9",
+      "depth": "Full UI body read: refresh/stale error, NOT_RECORDED helper consumption, historical activity, separated source/review/authority text."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/App.test.tsx",
+      "blob": "5f6102d0e32140a18c5c7dd3c85aaa87f3b3fc2b",
+      "depth": "Full7 frontend test cases read: mocked fetch, stale retained result, plain inert text and archived evidence; no live worker behavior."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/Inspection.tsx",
+      "blob": "23ca81407d48e216c2dcb86651b93b238c1387dd",
+      "depth": "Selected useRecord/known/Fields and turn/detail rendering; not complete frontend domain review."
+    },
+    {
+      "path": "apps/operator_dashboard/server.py",
+      "blob": "9c5d11539dd95dcd0bc5e726450d3667adc11459",
+      "depth": "Selected configured roots, overview and closed-ID detail callers; no blanket server/security signoff."
+    },
+    {
+      "path": "apps/operator_dashboard/details.py",
+      "blob": "da8af5561a0602561b31d4ed1da96eda5ef16cb8",
+      "depth": "Selected confinement, raw disclosure, request/response/Tool correspondence and run detail; not full domain credit."
+    },
+    {
+      "path": "tests/apps/operator_dashboard/test_native_history.py",
+      "blob": "828967347ee9cf0dbe94411ef8b060604946cbf1",
+      "depth": "Full one-body fixture read: native archived request/feedback/Tool results and default raw-disclosure refusal; no missing-ID correlation oracle."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "depth": "Selected actual LlamaCppInteraction factory with no observer parameter; no worker execution or whole-script review."
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "Selected actual request/response write, usage/phase, cancellation, restoration, final aggregation; reuse earlier full operational review, not new whole-file credit."
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "depth": "Selected dispatch/worker/closeout/status consumers; reuse authenticated prior lifecycle review."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "depth": "Selected reservation/admission accounting; allowances not refunded even on uncertainty. Prior full audit reused."
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+      "depth": "Selected completed observation hook; callback may fail after returned provider effect. Existing B-0023, not a new production defect claimed."
+    },
+    {
+      "path": "experiments/orchestration/workers/measurement.py",
+      "blob": "f436cbd435bdc949a2e3c5981864d272449aaed1",
+      "depth": "Read normalized capture producer dependency only; no execution, result reconstruction or new historical audit credit."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/writing.py",
+      "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+      "depth": "Reused existing atomic-write/file-fsync/no-parent-fsync evidence with immediate source check; broader Resources review deferred."
+    }
+  ],
+  "intake": {
+    "new_pending": [
+      {
+        "id": "bbba08b8-234e-4f31-bbef-972ac90189e2",
+        "title": "Scope usage identity aliases to their backend and provider",
+        "severity": "P2"
+      },
+      {
+        "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+        "title": "Preserve compatible response usage independently of observation order",
+        "severity": "P2"
+      },
+      {
+        "id": "a823db65-08fd-43d1-91dd-5602ebb47b11",
+        "title": "Reject absent identity matches in dashboard proposal correlation",
+        "severity": "P2"
+      }
+    ],
+    "existing_advisories": [
+      {
+        "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+        "review": {
+          "schema": "backlog-review-v1",
+          "proposal": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+          "proposal_sha256": "00a3b12479a130030a27c5e2db4225616a018536a0fc6178d46fce484a25e019",
+          "previous": null,
+          "at": "2026-10-25T21:28:23.716278+00:00",
+          "decision": "ADVISORY",
+          "reviewer": "Codex",
+          "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+          "rationale": "Material same-owner acceptance addition: an independent partial TURN probe supplies one row with input10/output2 and two same-invocation partial rows with reasoning1 versus reasoning2. reconcile compares only against the chosen input/output row, which lacks reasoning, and reports no conflict. Preserve and compare all known category facts, not only the selected winner, across both RESPONSE duplicates and TURN partials. Future regression must exclude this real contradiction, retain compatible complementary facts, and be permutation-independent through public report/storage. This is the existing partial-observation reconciliation repair, not a third proposal, outcome-policy decision or new framework.",
+          "duplicates": [
+            {
+              "reference": "bbba08b8-234e-4f31-bbef-972ac90189e2",
+              "reason": "title overlap or shared resource"
+            }
+          ],
+          "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+          "scope": "canonical-backlog-only; no execution authority",
+          "publication": null,
+          "sha256": "a271bba02fe406130b312cbc9fb88918c9f906a5990d91cc19acfcd1fd97377f"
+        }
+      },
+      {
+        "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+        "review": {
+          "schema": "backlog-review-v1",
+          "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+          "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+          "previous": "001397e0a6883761dab21599da22fc3fd980814e741e52805cb0a213f3058e75",
+          "at": "2026-10-25T21:23:38.432790+00:00",
+          "decision": "ADVISORY",
+          "reviewer": "Codex",
+          "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+          "rationale": "Actual native Qwen producers retain per-stage response usage and propagate unknown categories across the whole task, including interrupted stages; WorkCycle copies those task receipts. Framework InvocationMeasurement/UsageObservation/Runtime inspector are not automatically composed into that native path. Existing shared category arithmetic may be reused only with equivalent empty-population and attempted-call semantics: sum_usage(()) returns mathematical zeros, whereas no native turns intentionally retain UNKNOWN. Prefer a bounded existing-record consumer and explicit task/invocation joins; do not blindly replace app aggregators or put general orchestration in Runtime. Dashboard projection consumes app JSON directly; broader application cohesion and normalized-consumer integration remain open.",
+          "duplicates": [
+            {
+              "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+              "reason": "title overlap or shared resource"
+            }
+          ],
+          "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+          "scope": "canonical-backlog-only; no execution authority",
+          "publication": null,
+          "sha256": "b0de8c51ff60b20a5ea02d425fcf73fa08669fda369199bb03c0229299f160c3"
+        }
+      },
+      {
+        "id": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+        "review": {
+          "schema": "backlog-review-v1",
+          "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+          "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+          "previous": "1b7fd828311c9c265a1c1ce5b777eb6443601b63169b1dbf303123dcd4756646",
+          "at": "2026-10-25T21:23:39.554734+00:00",
+          "decision": "ADVISORY",
+          "reviewer": "Codex",
+          "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+          "rationale": "Prior bounded stale-local-reuse correction is implemented and merged through PR17/18; do not reschedule it. This audit reauthenticates unchanged repaired source and distinguishes fixed check reports, current declared-input freshness and semantic/publication authority. Mutable usage snapshots and captured validation flags cannot be promoted into exact executable/input closure. Broader toolchain/environment/transitive/HEAD-sensitive validation remains open; no new defect or repair credited here.",
+          "duplicates": [
+            {
+              "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+              "reason": "title overlap or shared resource"
+            },
+            {
+              "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+              "reason": "title overlap or shared resource"
+            }
+          ],
+          "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+          "scope": "canonical-backlog-only; no execution authority",
+          "publication": null,
+          "sha256": "c6c9c2f6a40221209c564b8a7d8720714ec5a4075677471de7f029be38159ef3"
+        }
+      }
+    ],
+    "intake_chains": 53,
+    "errors": [],
+    "existing_B_owners": [
+      "B-0011",
+      "B-0023",
+      "B-0034",
+      "B-0024"
+    ],
+    "administrative_retry": "Private prior closeout helper duplication is documented under B-0034 existing effect-reconciliation scope. Intake.review intentionally appends distinct historical decisions and has no automatic content-dedup claim; no new production Intake bug or replacement Intake system inferred."
+  },
+  "RI": "93/93 fixtures;606/606 experimental paths;188 historical obligations unchanged",
+  "source_changes": false,
+  "architecture_decisions_approved": false
+}

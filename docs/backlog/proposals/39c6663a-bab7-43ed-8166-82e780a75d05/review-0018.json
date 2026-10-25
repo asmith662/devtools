@@ -1,0 +1,69 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "001397e0a6883761dab21599da22fc3fd980814e741e52805cb0a213f3058e75",
+  "at": "2026-10-25T21:23:38.432790+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/evidence-usage-and-operator-audit.md",
+  "rationale": "Actual native Qwen producers retain per-stage response usage and propagate unknown categories across the whole task, including interrupted stages; WorkCycle copies those task receipts. Framework InvocationMeasurement/UsageObservation/Runtime inspector are not automatically composed into that native path. Existing shared category arithmetic may be reused only with equivalent empty-population and attempted-call semantics: sum_usage(()) returns mathematical zeros, whereas no native turns intentionally retain UNKNOWN. Prefer a bounded existing-record consumer and explicit task/invocation joins; do not blindly replace app aggregators or put general orchestration in Runtime. Dashboard projection consumes app JSON directly; broader application cohesion and normalized-consumer integration remain open.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing sufficient owner; append-only evidence, no duplicate implementation, approval, grant, B-number or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "b0de8c51ff60b20a5ea02d425fcf73fa08669fda369199bb03c0229299f160c3"
+}

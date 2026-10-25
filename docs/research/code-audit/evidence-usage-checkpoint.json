@@ -1,0 +1,165 @@
+{
+  "at": "2026-10-25T21:33:20.712322+00:00",
+  "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+  "branch": "audit/evidence-usage-20261025",
+  "reviewed_selected_bodies": 12,
+  "additional_depth": [
+    {
+      "path": "src/devtools/observability/usage/report.py",
+      "blob": "cf16a119e26b8cbdd28bdf8bc9e47867adaf6669",
+      "depth": "Full report body read: known subtotals+unknown counters, accepted-first precedence, conflict exclusion, dimensions/windows. Not billing or authority."
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "Full capture/inspector body read as dependency: default omitted categories, partial manifests, per-occurrence first retention, successful-response-only hook. No durable store."
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "depth": "Full narrow send/attempt callbacks read; source validation, stage-specific failure/cancel, best-effort terminal observer, no usage receipt or generic retry."
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "depth": "Full validate-then-execute body read; exception/cancellation preserved, no builtin authorization, rollback, journal or entry receipt."
+    },
+    {
+      "path": "scripts/usage.py",
+      "blob": "7d99dde50f24135990dcf005d8848b6e5b2ba07a",
+      "depth": "Full repository-specific backfill/render/main body read: trusted session/retained capture inputs, metadata-only projections, explicit unsupported sources, serialized local snapshot. No Qwen worker-result import. Original science not executed."
+    },
+    {
+      "path": "src/devtools/governance/usage.py",
+      "blob": "db1186ddf4f7352bb45f856c6284d99ccff880cc",
+      "depth": "Full numeric constraints body read: UNKNOWN blocks configured limits, UNSET omits dimension; no admission or lifecycle reservation owner."
+    },
+    {
+      "path": "src/devtools/observability/usage/docs/overview.md",
+      "blob": "46da1d4acabe3870adc10b71991255ee17b7bd38",
+      "depth": "Full contract read; partial known subtotals and mutable snapshot authority are deliberately qualified."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/App.tsx",
+      "blob": "529a984b81cac5c9b2510d438f3a2bbe5f1ae5a9",
+      "depth": "Full UI body read: refresh/stale error, NOT_RECORDED helper consumption, historical activity, separated source/review/authority text."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/App.test.tsx",
+      "blob": "5f6102d0e32140a18c5c7dd3c85aaa87f3b3fc2b",
+      "depth": "Full7 frontend test cases read: mocked fetch, stale retained result, plain inert text and archived evidence; no live worker behavior."
+    },
+    {
+      "path": "apps/operator_dashboard/web/src/Inspection.tsx",
+      "blob": "23ca81407d48e216c2dcb86651b93b238c1387dd",
+      "depth": "Selected useRecord/known/Fields and turn/detail rendering; not complete frontend domain review."
+    },
+    {
+      "path": "apps/operator_dashboard/server.py",
+      "blob": "9c5d11539dd95dcd0bc5e726450d3667adc11459",
+      "depth": "Selected configured roots, overview and closed-ID detail callers; no blanket server/security signoff."
+    },
+    {
+      "path": "apps/operator_dashboard/details.py",
+      "blob": "da8af5561a0602561b31d4ed1da96eda5ef16cb8",
+      "depth": "Selected confinement, raw disclosure, request/response/Tool correspondence and run detail; not full domain credit."
+    },
+    {
+      "path": "tests/apps/operator_dashboard/test_native_history.py",
+      "blob": "828967347ee9cf0dbe94411ef8b060604946cbf1",
+      "depth": "Full one-body fixture read: native archived request/feedback/Tool results and default raw-disclosure refusal; no missing-ID correlation oracle."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "depth": "Selected actual LlamaCppInteraction factory with no observer parameter; no worker execution or whole-script review."
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "Selected actual request/response write, usage/phase, cancellation, restoration, final aggregation; reuse earlier full operational review, not new whole-file credit."
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "depth": "Selected dispatch/worker/closeout/status consumers; reuse authenticated prior lifecycle review."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "depth": "Selected reservation/admission accounting; allowances not refunded even on uncertainty. Prior full audit reused."
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+      "depth": "Selected completed observation hook; callback may fail after returned provider effect. Existing B-0023, not a new production defect claimed."
+    },
+    {
+      "path": "experiments/orchestration/workers/measurement.py",
+      "blob": "f436cbd435bdc949a2e3c5981864d272449aaed1",
+      "depth": "Read normalized capture producer dependency only; no execution, result reconstruction or new historical audit credit."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/writing.py",
+      "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+      "depth": "Reused existing atomic-write/file-fsync/no-parent-fsync evidence with immediate source check; broader Resources review deferred."
+    }
+  ],
+  "new_pending": [
+    {
+      "id": "bbba08b8-234e-4f31-bbef-972ac90189e2",
+      "title": "Scope usage identity aliases to their backend and provider",
+      "severity": "P2"
+    },
+    {
+      "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+      "title": "Preserve compatible response usage independently of observation order",
+      "severity": "P2"
+    },
+    {
+      "id": "a823db65-08fd-43d1-91dd-5602ebb47b11",
+      "title": "Reject absent identity matches in dashboard proposal correlation",
+      "severity": "P2"
+    }
+  ],
+  "advisories": 3,
+  "existing_B_notes": 3,
+  "intake_chains": 53,
+  "intake_errors": [],
+  "focused_python_passed": 149,
+  "frontend_passed": 7,
+  "distinct_authored_probes": 14,
+  "probe_names": [
+    "disjoint_known_unknown",
+    "cross_provider_thread_alias",
+    "duplicate_response_order",
+    "conflicting_known_tokens",
+    "contradictory_outcomes",
+    "storage_duplicates_and_tamper_scope",
+    "corrupt_storage",
+    "operator_uncertain_worker",
+    "tool_cancel_after_entry",
+    "cross_provider_invocation_alias",
+    "partial_turn_conflict_hidden_by_chosen_row",
+    "runtime_cancel_after_model_entry",
+    "operator_missing_call_identity_matches",
+    "abrupt_writer_exit_after_effect"
+  ],
+  "links": 549,
+  "json_files": 9,
+  "unchanged_JSONL_rows_parsed": 297,
+  "unchanged_ledgers": {
+    "docs/research/code-audit/ri-completion-fixtures.jsonl": "77c4c85e5dea7081bd5d15acaa5a00e9cd13e84f",
+    "docs/research/code-audit/ri-followup-history.jsonl": "b68e57b2118ec9fc3bacfb3a1947a13c7cd79e64"
+  },
+  "layout": "PASS",
+  "whitespace": "PASS",
+  "forensics": 13,
+  "executable_trees_equal_baseline": true,
+  "protected_gate": "Not rerun for documentation/Intake-only audit. Prior committed production2903/2 live skips/100% remains prior repair evidence, not a new gate.",
+  "next_major_domain": "Core/Resources",
+  "next_manifest": "docs/research/code-audit/core-resources-next-cohort.json",
+  "next_started": false,
+  "RI": "93/93 original fixtures;606/606 experimental source;188 historical exact versions unchanged",
+  "self_identity": "Containing Git commit binds receipt; no recursive self hash."
+}

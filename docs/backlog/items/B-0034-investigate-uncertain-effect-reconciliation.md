@@ -61,3 +61,9 @@ Status, dependencies, decision maturity and promotion trigger remain unchanged.
 An independently authored tiny Git/bare-remote probe lost acknowledgment after a real push. Retrying the maintained publish helper observed the exact intended commit and issued no second push; advancing the remote caused refusal and preserved the new ref. This is a verified operation-specific reconciliation subset, not exactly-once arbitrary external effects or GitHub PR equivalence. Intents precede effects and completion records follow them; missing completion remains uncertain. Existing scripted lifecycle tests cover commit/push resume and interrupted installation. Generic policy, deferred status and authority remain unchanged.
 
 See the [source, independent probes and limitations](../../research/validation-review-publication-audit.md). This append-only evidence does not approve, dispatch or close the story.
+
+## Evidence/usage/operator audit — 2026-10-25
+
+Independent temporary subprocess exits after a recorded filesystem effect and before normal completion; usage writer lease remains and retry refuses. Runtime/Tool cancellation has no rollback or zero-usage implication. Prior closeout helper also durably appended review advisories before a reporting failure, then duplicated them by checking reference instead of canonical decision_reference. Immutable duplicates were preserved. This is caller retry reconciliation, not proof Intake.review promises idempotency; legitimate repeated reviews must not be globally content-deduplicated. Current audit checks exact existing capture/review identity before retry; no new general reconciliation engine or authority is approved.
+
+See the [source, probes and consumer assessment](../../research/evidence-usage-and-operator-audit.md). Deferred status, decision maturity, dependencies and promotion trigger remain unchanged; no implementation, approval or closure.

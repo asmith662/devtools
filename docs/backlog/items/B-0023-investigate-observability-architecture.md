@@ -118,3 +118,9 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Evidence/usage/operator audit — 2026-10-25
+
+The actual usage report has known-subtotal/unknown semantics and accepted-first outcome precedence. Synthetic incompatible flags do not prove same-domain corruption: preserve capture/provider/scientific/host domains and progression before changing policy. Capture observers are optional and successful-response-only; native Qwen and Runtime occurrence identities are not automatically joined. Dashboard reads app records, not normalized usage or inspector persistence. Existing metadata projections and app adapters are first choices; no EventBus, OTel, schema or generic observer approval follows. Provider-local alias and partial-copy accounting defects have concrete pending repair records.
+
+See the [source, probes and consumer assessment](../../research/evidence-usage-and-operator-audit.md). Deferred status, decision maturity, dependencies and promotion trigger remain unchanged; no implementation, approval or closure.

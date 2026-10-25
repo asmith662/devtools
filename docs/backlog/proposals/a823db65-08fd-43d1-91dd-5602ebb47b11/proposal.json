@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "a823db65-08fd-43d1-91dd-5602ebb47b11",
+  "created_at": "2026-10-25T21:32:04.701660+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Reject absent identity matches in dashboard proposal correlation",
+    "summary": "P2 read-only operator evidence integrity. details.turn_detail reports proposal_correlation=MATCH when stage proposal_id is absent and an archived Tool call has provider_call_id=None, because None equals None. A literal read_file response with no proposal identity reaches the actual RunDetail proposal_response_correlation display as MATCH. This is a false association in a maintained consumer, not proof of native editing, authority bypass or a real model invocation.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "docs/research/evidence-usage-and-operator-audit.md"
+    },
+    "parent": null,
+    "resources": [
+      "apps/operator_dashboard/details.py",
+      "apps/operator_dashboard/web/src/Inspection.tsx",
+      "tests/apps/operator_dashboard/test_native_history.py"
+    ],
+    "evidence": [
+      "docs/research/code-audit/evidence-usage-probes.json",
+      "docs/research/evidence-usage-and-operator-audit.md",
+      "git:138adc07fa758032743cf5d79ff4b2fe0bb790cc:src/devtools/observability/usage/collection.py"
+    ],
+    "benefit": "Acceptance: through actual turn_detail/run_detail and served/detail projection, absent or empty stage/provider identifiers cannot establish a join. Cover both missing, only one missing, distinct nonempty IDs, genuinely matching nonempty IDs, read-only calls and supported legacy/partial records. Frontend must display NOT_ESTABLISHED for missing identity without inventing a link; preserve exact raw receipts and valid source references. Use the existing dashboard owner, not a new graph or Tool identity system.",
+    "uncertainty": "Independent deterministic temporary metadata reproduction; no model execution, actual subscription/billing claim, automatic approval or repair in this audit.",
+    "dependencies": [
+      "B-0011",
+      "B-0023"
+    ]
+  },
+  "payload_sha256": "fbdfccbf7a3ce88d171de5555566e2bf1bc37c8b5042a25f19dd8b2d952c1b7d"
+}
