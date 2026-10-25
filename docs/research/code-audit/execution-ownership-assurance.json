@@ -1,0 +1,1234 @@
+{
+  "at": "2026-10-25T11:57:33.064173+00:00",
+  "baseline": "264915928a9045795d5e07c728ffa1aaba4c1704",
+  "manifest": {
+    "path": "docs/research/code-audit/execution-ownership-next-cohort.json",
+    "blob": "42af1ce4808813a8c69bb83240e2178f7f75d873"
+  },
+  "selected_paths": [
+    {
+      "path": "scripts/backlog/checkout.py",
+      "blob": "0dfc2d07c6b1c5c3a5e599079061a00ac4462dd8",
+      "git_sha256": "060083330a60034f68302490462abebae1a0c3788c01497ed7265f5e97d91b0f",
+      "original_manifest_depth": "REMAINDER_NOT_YET_FULL_REVIEWED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_REPOSITORY_WORKFLOW",
+      "review": "Full source body: claim, source_path/expect, finish, restore, release, recover and all refusal/error paths.",
+      "functions": [
+        {
+          "name": "fingerprint",
+          "line": 30,
+          "end_line": 32
+        },
+        {
+          "name": "untracked",
+          "line": 35,
+          "end_line": 38
+        },
+        {
+          "name": "_paths",
+          "line": 41,
+          "end_line": 45
+        },
+        {
+          "name": "idle",
+          "line": 48,
+          "end_line": 52
+        },
+        {
+          "name": "_operations",
+          "line": 55,
+          "end_line": 72
+        },
+        {
+          "name": "recover",
+          "line": 288,
+          "end_line": 303
+        },
+        {
+          "name": "__init__",
+          "line": 78,
+          "end_line": 99
+        },
+        {
+          "name": "save",
+          "line": 101,
+          "end_line": 109
+        },
+        {
+          "name": "source_path",
+          "line": 111,
+          "end_line": 117
+        },
+        {
+          "name": "expect",
+          "line": 119,
+          "end_line": 130
+        },
+        {
+          "name": "__aenter__",
+          "line": 132,
+          "end_line": 211
+        },
+        {
+          "name": "finish",
+          "line": 213,
+          "end_line": 276
+        },
+        {
+          "name": "__aexit__",
+          "line": 278,
+          "end_line": 285
+        }
+      ],
+      "observed_contract": "Known-byte restoration, root/branch admission, tracked/untracked accounting; missing owner-epoch fencing and lexical dangling-entry collision.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "69688104-098b-404c-acca-745bebac6653; 30bd833e-f19d-4a4c-bbb6-465fd22db403; 3b2f566b-8733-4b1d-a840-1e361612ebf8",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "git_sha256": "3d2a01e90a936b257106b306cfa0d37b90cfeaf7c0701e379dc269fc30219be3",
+      "original_manifest_depth": "REMAINDER_NOT_YET_FULL_REVIEWED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_REPOSITORY_WORKFLOW",
+      "review": "Full source body: preparation/binding, execution grant, dispatch claim, worker serialization, closeout, status/discovery and failures.",
+      "functions": [
+        {
+          "name": "_digest_text",
+          "line": 40,
+          "end_line": 41
+        },
+        {
+          "name": "same_backlog",
+          "line": 44,
+          "end_line": 55
+        },
+        {
+          "name": "task_from_dict",
+          "line": 58,
+          "end_line": 71
+        },
+        {
+          "name": "_load",
+          "line": 74,
+          "end_line": 79
+        },
+        {
+          "name": "__init__",
+          "line": 85,
+          "end_line": 89
+        },
+        {
+          "name": "integration",
+          "line": 92,
+          "end_line": 96
+        },
+        {
+          "name": "_coordinator",
+          "line": 98,
+          "end_line": 102
+        },
+        {
+          "name": "_folder",
+          "line": 104,
+          "end_line": 107
+        },
+        {
+          "name": "_save",
+          "line": 109,
+          "end_line": 112
+        },
+        {
+          "name": "_target",
+          "line": 114,
+          "end_line": 134
+        },
+        {
+          "name": "_baseline",
+          "line": 136,
+          "end_line": 145
+        },
+        {
+          "name": "prepare",
+          "line": 147,
+          "end_line": 203
+        },
+        {
+          "name": "_validate",
+          "line": 205,
+          "end_line": 236
+        },
+        {
+          "name": "authorize",
+          "line": 238,
+          "end_line": 278
+        },
+        {
+          "name": "execute",
+          "line": 280,
+          "end_line": 313
+        },
+        {
+          "name": "_execute",
+          "line": 315,
+          "end_line": 410
+        },
+        {
+          "name": "_closeout",
+          "line": 412,
+          "end_line": 494
+        },
+        {
+          "name": "status",
+          "line": 496,
+          "end_line": 519
+        },
+        {
+          "name": "discover",
+          "line": 521,
+          "end_line": 538
+        }
+      ],
+      "observed_contract": "Execution grant and once-only dispatch are distinct from Checkout; result receipt precedes Checkout exit and cannot prove release or publication.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "39c6663a-bab7-43ed-8166-82e780a75d05; new Checkout bugs apply to callers",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "git_sha256": "bbeb8d53c7cd0831f27b9009f6a602b84713fed9055cc2fd052c08b28b48a300",
+      "original_manifest_depth": "REMAINDER_NOT_YET_FULL_REVIEWED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_REPOSITORY_WORKFLOW",
+      "review": "Full source body: policy validation, issue/revoke/active, reviews, reservation/authorize, model guard and failure accounting.",
+      "functions": [
+        {
+          "name": "validate_policy",
+          "line": 49,
+          "end_line": 116
+        },
+        {
+          "name": "__init__",
+          "line": 122,
+          "end_line": 124
+        },
+        {
+          "name": "folder",
+          "line": 126,
+          "end_line": 130
+        },
+        {
+          "name": "active",
+          "line": 132,
+          "end_line": 154
+        },
+        {
+          "name": "issue",
+          "line": 156,
+          "end_line": 202
+        },
+        {
+          "name": "revoke",
+          "line": 204,
+          "end_line": 243
+        },
+        {
+          "name": "check",
+          "line": 245,
+          "end_line": 251
+        },
+        {
+          "name": "eligible",
+          "line": 254,
+          "end_line": 277
+        },
+        {
+          "name": "review",
+          "line": 279,
+          "end_line": 347
+        },
+        {
+          "name": "authority",
+          "line": 349,
+          "end_line": 383
+        },
+        {
+          "name": "authorize",
+          "line": 385,
+          "end_line": 457
+        },
+        {
+          "name": "model",
+          "line": 459,
+          "end_line": 471
+        },
+        {
+          "name": "guard",
+          "line": 473,
+          "end_line": 518
+        },
+        {
+          "name": "send",
+          "line": 483,
+          "end_line": 516
+        }
+      ],
+      "observed_contract": "Worst-case reservations and exact assignment/supervision linkage; eligibility alone creates no authority; unknown usage not refunded.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "Qualified no-action; scoped policy and stopped-process recovery limitations retained",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "git_sha256": "18e0bd787ecd9851925b69c4bea336047a3eea74e09ece2304196aca59106630",
+      "original_manifest_depth": "REMAINDER_NOT_YET_FULL_REVIEWED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_REPOSITORY_WORKFLOW",
+      "review": "Full source body: client/settings adapters, bounded local task entry, materialization, ownership, CLI/report/closeout gates.",
+      "functions": [
+        {
+          "name": "local_interaction",
+          "line": 45,
+          "end_line": 66
+        },
+        {
+          "name": "report_directory",
+          "line": 69,
+          "end_line": 83
+        },
+        {
+          "name": "_sampling_settings",
+          "line": 86,
+          "end_line": 111
+        },
+        {
+          "name": "run_local_task",
+          "line": 114,
+          "end_line": 217
+        },
+        {
+          "name": "main",
+          "line": 220,
+          "end_line": 415
+        }
+      ],
+      "observed_contract": "Trusted direct local evaluation differs from WorkCycle dispatch; exact task/fixed checks and Checkout remain required.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "39c6663a-bab7-43ed-8166-82e780a75d05; prior three worker repairs delivered",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "tests/scripts/backlog/test_checkout.py",
+      "blob": "8a371ac09e02c436b78efb67049e3c115d8e2613",
+      "git_sha256": "9931ce96f5198dac36b24c323206bdd3b4e02e5631fcaa0280f7baadafd2df27",
+      "original_manifest_depth": "NEXT_COHORT_NOT_STARTED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixture, test function, patch and assertion.",
+      "functions": [
+        {
+          "name": "session",
+          "line": 19,
+          "end_line": 28
+        },
+        {
+          "name": "test_branch_lease_preserves_forensics_and_serializes",
+          "line": 31,
+          "end_line": 63
+        },
+        {
+          "name": "test_backlog_writer_prevents_branch_claim",
+          "line": 66,
+          "end_line": 79
+        },
+        {
+          "name": "test_incompatible_checkout_refuses",
+          "line": 83,
+          "end_line": 111
+        },
+        {
+          "name": "test_interrupted_operation_recovers_without_dispatch",
+          "line": 114,
+          "end_line": 135
+        },
+        {
+          "name": "test_unknown_effects_retain_owner",
+          "line": 141,
+          "end_line": 165
+        },
+        {
+          "name": "run",
+          "line": 36,
+          "end_line": 61
+        },
+        {
+          "name": "run",
+          "line": 69,
+          "end_line": 77
+        },
+        {
+          "name": "run",
+          "line": 86,
+          "end_line": 109
+        },
+        {
+          "name": "run",
+          "line": 119,
+          "end_line": 133
+        },
+        {
+          "name": "run",
+          "line": 144,
+          "end_line": 163
+        }
+      ],
+      "observed_contract": "Tiny ordinary repositories test claim, expected/unknown bytes, branch/HEAD, binary/untracked and recovery; omit concurrent recovery, delayed consent and ignored dangling link.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "Three new bugs require permanent independent regressions in a repair increment",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "tests/scripts/backlog/test_work.py",
+      "blob": "8f7cbd7bad42735afb46a82106a40c0f072b9355",
+      "git_sha256": "21af2b08ceceffba1fb13957ce9b871cf08a3647e1e25c3325773e15a03b822c",
+      "original_manifest_depth": "NEXT_COHORT_NOT_STARTED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixture/test body, scripted interactions, approval callbacks, result/status and failure assertions.",
+      "functions": [
+        {
+          "name": "discovery",
+          "line": 80,
+          "end_line": 93
+        },
+        {
+          "name": "fixture",
+          "line": 97,
+          "end_line": 187
+        },
+        {
+          "name": "prepare",
+          "line": 190,
+          "end_line": 198
+        },
+        {
+          "name": "grant",
+          "line": 201,
+          "end_line": 210
+        },
+        {
+          "name": "factory",
+          "line": 213,
+          "end_line": 221
+        },
+        {
+          "name": "test_real_scripted_cycle_repair_discovery_and_review_candidate",
+          "line": 224,
+          "end_line": 278
+        },
+        {
+          "name": "test_failed_work_remains_bounded_escalation",
+          "line": 281,
+          "end_line": 300
+        },
+        {
+          "name": "test_unapproved_work_refused",
+          "line": 304,
+          "end_line": 325
+        },
+        {
+          "name": "test_fresh_admission_refuses_without_factory_or_model",
+          "line": 339,
+          "end_line": 373
+        },
+        {
+          "name": "test_separate_authorization_required_even_after_approval",
+          "line": 376,
+          "end_line": 391
+        },
+        {
+          "name": "test_duplicate_preparation_and_ambiguous_dispatch_never_relaunch",
+          "line": 394,
+          "end_line": 425
+        },
+        {
+          "name": "test_only_designated_coordinator_can_mutate",
+          "line": 428,
+          "end_line": 439
+        },
+        {
+          "name": "test_terminal_work_authority_defaults_no",
+          "line": 442,
+          "end_line": 451
+        },
+        {
+          "name": "test_expiry_during_terminal_consent_is_rechecked",
+          "line": 454,
+          "end_line": 478
+        },
+        {
+          "name": "test_factory_failure_is_reviewable_escalation_not_retry",
+          "line": 481,
+          "end_line": 507
+        },
+        {
+          "name": "test_implementation_scope_must_match_reviewed_resources",
+          "line": 510,
+          "end_line": 537
+        },
+        {
+          "name": "test_missing_designation_cannot_fall_back_to_local_writes",
+          "line": 540,
+          "end_line": 554
+        },
+        {
+          "name": "test_implementation_branch_need_not_contain_later_backlog_approval",
+          "line": 557,
+          "end_line": 598
+        },
+        {
+          "name": "__init__",
+          "line": 50,
+          "end_line": 53
+        },
+        {
+          "name": "send",
+          "line": 55,
+          "end_line": 77
+        },
+        {
+          "name": "construct",
+          "line": 100,
+          "end_line": 185
+        },
+        {
+          "name": "create",
+          "line": 218,
+          "end_line": 219
+        },
+        {
+          "name": "run",
+          "line": 230,
+          "end_line": 268
+        },
+        {
+          "name": "run",
+          "line": 284,
+          "end_line": 298
+        },
+        {
+          "name": "run",
+          "line": 344,
+          "end_line": 371
+        },
+        {
+          "name": "run",
+          "line": 381,
+          "end_line": 389
+        },
+        {
+          "name": "run",
+          "line": 399,
+          "end_line": 423
+        },
+        {
+          "name": "run",
+          "line": 459,
+          "end_line": 476
+        },
+        {
+          "name": "run",
+          "line": 486,
+          "end_line": 505
+        },
+        {
+          "name": "run",
+          "line": 562,
+          "end_line": 596
+        },
+        {
+          "name": "forbidden",
+          "line": 360,
+          "end_line": 361
+        },
+        {
+          "name": "interrupted",
+          "line": 405,
+          "end_line": 406
+        },
+        {
+          "name": "delayed_consent",
+          "line": 464,
+          "end_line": 466
+        },
+        {
+          "name": "forbidden",
+          "line": 468,
+          "end_line": 469
+        },
+        {
+          "name": "unavailable",
+          "line": 490,
+          "end_line": 492
+        }
+      ],
+      "observed_contract": "Exercises real tiny Git/task lifecycle with deterministic model doubles; callbacks are fixture authority, not evidence of real independent approval.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "No additional reproduced defect; Checkout and broader closure records sufficient",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "tests/scripts/backlog/test_delegation.py",
+      "blob": "a66c3a7d890457cb94c569949e0bdb644986e349",
+      "git_sha256": "56df54f8eed7397ad582b33c494513c60c3a285377cea2fb1e77d74695743092",
+      "original_manifest_depth": "NEXT_COHORT_NOT_STARTED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixture/test, synthetic principal/profile/clock/grant setup, scope/reservation/revocation/expiry and guard refusal.",
+      "functions": [
+        {
+          "name": "policy",
+          "line": 37,
+          "end_line": 47
+        },
+        {
+          "name": "setup",
+          "line": 50,
+          "end_line": 63
+        },
+        {
+          "name": "review",
+          "line": 66,
+          "end_line": 76
+        },
+        {
+          "name": "provenance",
+          "line": 79,
+          "end_line": 90
+        },
+        {
+          "name": "test_delegated_scripted_repair_and_review_without_terminal",
+          "line": 93,
+          "end_line": 134
+        },
+        {
+          "name": "test_delegated_native_context_worker_preserves_assignment_scope",
+          "line": 137,
+          "end_line": 225
+        },
+        {
+          "name": "test_scope_refusals",
+          "line": 229,
+          "end_line": 267
+        },
+        {
+          "name": "test_missing_supervision_refusal_and_no_reservation",
+          "line": 270,
+          "end_line": 292
+        },
+        {
+          "name": "test_output_overrun_blocks_grant_and_preserves_response",
+          "line": 295,
+          "end_line": 327
+        },
+        {
+          "name": "test_inactive_grant_refused",
+          "line": 331,
+          "end_line": 360
+        },
+        {
+          "name": "test_competing_admission_and_writer_lease",
+          "line": 363,
+          "end_line": 414
+        },
+        {
+          "name": "test_untrusted_policy_cannot_issue_and_paths_are_confined",
+          "line": 417,
+          "end_line": 447
+        },
+        {
+          "name": "test_profile_refusal_retains_claim_no_invocation",
+          "line": 450,
+          "end_line": 469
+        },
+        {
+          "name": "test_real_terminal_defaults_no",
+          "line": 475,
+          "end_line": 484
+        },
+        {
+          "name": "test_noninteractive_standing_issue_refused",
+          "line": 487,
+          "end_line": 491
+        },
+        {
+          "name": "test_each_resource_allowance_is_enforced",
+          "line": 495,
+          "end_line": 519
+        },
+        {
+          "name": "test_partial_authorization_does_not_refund_allowance",
+          "line": 522,
+          "end_line": 546
+        },
+        {
+          "name": "test_per_call_guard_revocation_limits_and_profile",
+          "line": 549,
+          "end_line": 587
+        },
+        {
+          "name": "run",
+          "line": 98,
+          "end_line": 132
+        },
+        {
+          "name": "run",
+          "line": 142,
+          "end_line": 223
+        },
+        {
+          "name": "run",
+          "line": 232,
+          "end_line": 265
+        },
+        {
+          "name": "run",
+          "line": 275,
+          "end_line": 290
+        },
+        {
+          "name": "run",
+          "line": 300,
+          "end_line": 325
+        },
+        {
+          "name": "run",
+          "line": 336,
+          "end_line": 358
+        },
+        {
+          "name": "run",
+          "line": 366,
+          "end_line": 412
+        },
+        {
+          "name": "run",
+          "line": 422,
+          "end_line": 445
+        },
+        {
+          "name": "run",
+          "line": 453,
+          "end_line": 467
+        },
+        {
+          "name": "run",
+          "line": 500,
+          "end_line": 517
+        },
+        {
+          "name": "run",
+          "line": 527,
+          "end_line": 544
+        },
+        {
+          "name": "run",
+          "line": 552,
+          "end_line": 585
+        },
+        {
+          "name": "factory",
+          "line": 108,
+          "end_line": 109
+        },
+        {
+          "name": "factory",
+          "line": 198,
+          "end_line": 199
+        },
+        {
+          "name": "interrupted",
+          "line": 532,
+          "end_line": 537
+        },
+        {
+          "name": "send",
+          "line": 149,
+          "end_line": 194
+        },
+        {
+          "name": "send",
+          "line": 304,
+          "end_line": 309
+        }
+      ],
+      "observed_contract": "Real maintained policy and receipt wiring under explicit fixture authority; no actual production grant or model execution.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "Qualified no-action; no generic model-neutral policy promotion justified",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "tests/scripts/backlog/test_local_closeout.py",
+      "blob": "192c6f94b332efe3d6ab6649ba3bfc35be75c37b",
+      "git_sha256": "5e328c6fcf5addd222da964f234233605b3fc8bd04af21cd3b21364d9b66f7c0",
+      "original_manifest_depth": "NEXT_COHORT_NOT_STARTED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixture/test body, stubbed validation/review, commit/push/reconciliation cases.",
+      "functions": [
+        {
+          "name": "evidence",
+          "line": 21,
+          "end_line": 44
+        },
+        {
+          "name": "test_local_candidate_validation_review_commit_push_and_idempotence",
+          "line": 48,
+          "end_line": 149
+        },
+        {
+          "name": "test_local_closeout_refuses_before_mutation",
+          "line": 153,
+          "end_line": 179
+        },
+        {
+          "name": "test_local_closeout_requires_explicit_matching_implementation_attribution",
+          "line": 183,
+          "end_line": 200
+        },
+        {
+          "name": "protected_fixture",
+          "line": 55,
+          "end_line": 56
+        },
+        {
+          "name": "run",
+          "line": 60,
+          "end_line": 147
+        },
+        {
+          "name": "run",
+          "line": 158,
+          "end_line": 177
+        },
+        {
+          "name": "run",
+          "line": 188,
+          "end_line": 198
+        }
+      ],
+      "observed_contract": "Actual Git wiring; validate_tree stub SCRIPTED-FIXTURE-ONLY and constructed exact-subject review do not establish full protected execution or independent semantic review.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "d58697fd-bb03-4e98-bdac-fa29444fc6ff materially advised",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    },
+    {
+      "path": "tests/scripts/qwen/test_coding_worker.py",
+      "blob": "8587488a9c1a915ddab1ffd1a715e6f7c6f00114",
+      "git_sha256": "f74f2480e8d37300739e7d1095df6b9eb63b16a02643c4feb45431c8954c5677",
+      "original_manifest_depth": "NEXT_COHORT_NOT_STARTED",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixture/test, actual local task entry, admission/materialization/restore, report/CLI failures.",
+      "functions": [
+        {
+          "name": "cli",
+          "line": 31,
+          "end_line": 41
+        },
+        {
+          "name": "test_report_directory_resolves_against_cwd_without_confirmation",
+          "line": 46,
+          "end_line": 75
+        },
+        {
+          "name": "test_invalid_report_directory_fails_before_dispatch",
+          "line": 79,
+          "end_line": 97
+        },
+        {
+          "name": "test_shared_local_profile_factory_never_invokes_model",
+          "line": 101,
+          "end_line": 135
+        },
+        {
+          "name": "test_host_definition_selects_native_worker_without_confirmation",
+          "line": 138,
+          "end_line": 168
+        },
+        {
+          "name": "test_cli_reports_local_outcome_without_input",
+          "line": 172,
+          "end_line": 196
+        },
+        {
+          "name": "test_local_runner_owns_source_without_backlog_approval",
+          "line": 200,
+          "end_line": 322
+        },
+        {
+          "name": "boundary",
+          "line": 62,
+          "end_line": 69
+        },
+        {
+          "name": "forbidden",
+          "line": 91,
+          "end_line": 92
+        },
+        {
+          "name": "status",
+          "line": 106,
+          "end_line": 111
+        },
+        {
+          "name": "construct",
+          "line": 116,
+          "end_line": 118
+        },
+        {
+          "name": "command",
+          "line": 120,
+          "end_line": 121
+        },
+        {
+          "name": "dispatch",
+          "line": 152,
+          "end_line": 160
+        },
+        {
+          "name": "run",
+          "line": 184,
+          "end_line": 193
+        },
+        {
+          "name": "factory",
+          "line": 249,
+          "end_line": 250
+        },
+        {
+          "name": "forbidden",
+          "line": 252,
+          "end_line": 253
+        },
+        {
+          "name": "run",
+          "line": 259,
+          "end_line": 320
+        },
+        {
+          "name": "send",
+          "line": 229,
+          "end_line": 247
+        }
+      ],
+      "observed_contract": "Deterministic model doubles exercise genuine worker consumer; no live inference, authority or effectiveness claim.",
+      "consumer": "WorkCycle/Checkout/Qwen application or its deterministic maintained test family; no new autonomous model evidence",
+      "disposition": "Qualified no-action; prior worker/source-integrity repairs remain delivered",
+      "remaining": "Whole operational lifecycle is not signed off; next validation/publication closure remains explicit."
+    }
+  ],
+  "additional_dependencies": [
+    {
+      "path": "scripts/backlog/coordinator.py",
+      "blob": "993d4aae623bfb99baa571e7c7e5f91f06946ecc",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "git",
+          "line": 20,
+          "end_line": 40
+        },
+        {
+          "name": "common_directory",
+          "line": 43,
+          "end_line": 47
+        },
+        {
+          "name": "locate",
+          "line": 50,
+          "end_line": 60
+        },
+        {
+          "name": "designate",
+          "line": 63,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/__main__.py",
+      "blob": "13174f1bcec9c399bf035f1497fd331b68b0bd4e",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "confirm",
+          "line": 26,
+          "end_line": 44
+        },
+        {
+          "name": "confirm_work",
+          "line": 47,
+          "end_line": 67
+        },
+        {
+          "name": "confirm_delegation",
+          "line": 70,
+          "end_line": 90
+        },
+        {
+          "name": "_work",
+          "line": 93,
+          "end_line": 206
+        },
+        {
+          "name": "main",
+          "line": 209,
+          "end_line": 368
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/authority.py",
+      "blob": "fef0f50d9588dab9d61176aa6b58ea06b2818391",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "policy_check",
+          "line": 27,
+          "end_line": 76
+        },
+        {
+          "name": "__init__",
+          "line": 82,
+          "end_line": 84
+        },
+        {
+          "name": "folder",
+          "line": 86,
+          "end_line": 90
+        },
+        {
+          "name": "issue",
+          "line": 92,
+          "end_line": 140
+        },
+        {
+          "name": "revoke",
+          "line": 142,
+          "end_line": 174
+        },
+        {
+          "name": "admit",
+          "line": 176,
+          "end_line": 250
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/git.py",
+      "blob": "79e08263fa829914e387e0a48e96a5ee35ba8455",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "remote_head",
+          "line": 18,
+          "end_line": 26
+        },
+        {
+          "name": "blob",
+          "line": 29,
+          "end_line": 39
+        },
+        {
+          "name": "clean",
+          "line": 42,
+          "end_line": 45
+        },
+        {
+          "name": "publish",
+          "line": 48,
+          "end_line": 66
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/local.py",
+      "blob": "4cd211b2a87c18b09a03e7671dd377ea71a7ff75",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "closeout_local",
+          "line": 37,
+          "end_line": 352
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/validation.py",
+      "blob": "c5daa189e682a583717c2a0e95de7c2a074eeb32",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "validate_tree",
+          "line": 24,
+          "end_line": 153
+        },
+        {
+          "name": "progress",
+          "line": 97,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/lifecycle.py",
+      "blob": "a4ecb97b0317d017101a5e7eaee29f1ebcedf0c6",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "_operate",
+        "_context",
+        "_intent",
+        "_files",
+        "_publish",
+        "_promote",
+        "_verify (dependency traversal; broader plan/review/closeout not fully reviewed)"
+      ]
+    },
+    {
+      "path": "scripts/backlog/intake.py",
+      "blob": "625bb2d67cf12eb4585a6f2d0cdae5d789def5b4",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "writer/admission, source-idle guard, JSON/hash-chain capture/review/queue contracts; remainder not full-body reviewed"
+      ]
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "prepared/native current repaired task path; reuse existing exact version repair evidence, not new whole-body credit"
+      ]
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "ToolRunner call/validation/result boundary, existing earlier full audit evidence"
+      ]
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "selected ModelInteraction/response-source boundary; prior exact repair evidence"
+      ]
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "depth": "SELECTED_DEPENDENCY_AND_PRIOR_EVIDENCE",
+      "scope": [
+        "specialized attempt observation; no general worker/grant authority"
+      ]
+    }
+  ],
+  "full_selected_paths": 9,
+  "full_selected_source_paths": 4,
+  "full_selected_test_paths": 5,
+  "additional_full_source_paths": 6,
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "coverage": {
+    "ri_original_fixtures": "93/93 unchanged",
+    "ri_experimental": "606/606 unchanged at defined depth",
+    "historical_ri_remaining": 188,
+    "historical_ri_credit_added": 0
+  },
+  "authority": "Dated research ledger continuation, not authority, runtime registry or new scientific result. No source/test modifications."
+}

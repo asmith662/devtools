@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+  "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+  "previous": "fc51d1e762c1c14f0e3913a54b6791def244e4bc7cc35555844802cacfaba23f",
+  "at": "2026-10-25T11:49:49.448731+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/execution-ownership-and-recovery-audit.md",
+  "rationale": "Material current-consumer evidence: local.closeout_local still reuses previous protected_validation when review_subject(result/base/files) is equal. The new worker basic acceptance guard does not prove that broader protected input closure, toolchain/config or stale-result reuse. The selected local-closeout tests stub validate_tree to SCRIPTED-FIXTURE-ONLY and supply synthetic exact-subject reviews; they protect wiring/reconciliation, not an actual independent protected run or semantic review. No invalid historical publication is demonstrated here. Keep the exact source/test/read/plan/runner/config/toolchain mutation matrix and use the next frozen validation cohort; do not reschedule delivered41a497a8.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing scope retained; advisory evidence only, no approval, grant, closure or duplicate implementation instruction.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "8957616316a04dab4fd2494f7ea3cf1c56669fbbc93878a72a0036c261db69d2"
+}

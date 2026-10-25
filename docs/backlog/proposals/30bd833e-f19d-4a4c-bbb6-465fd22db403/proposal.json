@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "30bd833e-f19d-4a4c-bbb6-465fd22db403",
+  "created_at": "2026-10-25T11:49:49.277435+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/execution-ownership-and-recovery-audit.md"
+    },
+    "evidence": [
+      "docs/research/execution-ownership-and-recovery-audit.md",
+      "docs/research/code-audit/execution-ownership-probes.json"
+    ],
+    "dependencies": [
+      "B-0006"
+    ],
+    "title": "Bind recovery confirmation to the exact displayed Checkout owner",
+    "summary": "P1 maintained recovery-authority correspondence. CLI work-recover reads/displays owner A before a default-No prompt. In an explicitly synthetic tiny-fixture terminal callback, A is recovered elsewhere and new active owner B enters before y is returned for displayed A. The CLI calls recover(authorize=True), which rereads B rather than binding A. It returns CHECKOUT_RECOVERED, restores B admitted value=2 to value=0 and removes B claim. Displayed and replaced SHA/PID differ; B PID is the current live probe process. No genuine user approval, actual grant or canonical owner was fabricated.",
+    "resources": [
+      "scripts/backlog/__main__.py",
+      "scripts/backlog/checkout.py",
+      "tests/scripts/backlog/test_checkout.py",
+      "tests/scripts/backlog/test_work.py"
+    ],
+    "benefit": "Bind the trusted recovery decision to the exact owner identity shown before consent. Pass and reauthenticate that expected identity inside the serialized/fenced recovery admission, refusing changed owner/missing owner/altered source before effects. A changed owner requires a new explicit default-No decision, never automatic yes propagation. Permanent tests must exercise actual CLI before/after-prompt replacement, intact unchanged owner success, denied consent, schema/root mismatch and legitimate process-stopped checks. Preserve API/custody compatibility explicitly and do not turn this into a new authority engine. Run focused/static and full protected validation for eventual source/test correction.",
+    "uncertainty": "This is separate from a stale finalizer crossing an already acquired new lease: even a single perfectly serialized recovery can reinterpret earlier consent if it loads a different owner after the prompt. Existing coding-grant issue/dispatch already rechecks state after terminal waits; use compatible exact-state semantics here. Terminal I/O was explicitly mocked only in disposable data; this proves the code path, not that a real operator approved B."
+  },
+  "payload_sha256": "53a1665654475fff7354b812273918d01a913230a380e33add8f73e563d912be"
+}

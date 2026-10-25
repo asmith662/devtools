@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-25T04:18:20.095196+00:00",
+  "command": [
+    "uv",
+    "run",
+    "pytest",
+    "--no-cov",
+    "-q",
+    "tests/scripts/backlog/test_checkout.py",
+    "tests/scripts/backlog/test_work.py",
+    "tests/scripts/backlog/test_delegation.py",
+    "tests/scripts/backlog/test_local_closeout.py",
+    "tests/scripts/qwen/test_coding_worker.py",
+    "tests/scripts/backlog/test_integration.py",
+    "tests/scripts/backlog/test_integration_validation.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 559.588595,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "log_sha256": "88ff9603dbd168a5872d204c303cf32c03fbb7fedc5b2f56e523563c836eae44",
+  "passed": 114,
+  "pytest_reported_seconds": 558.5,
+  "log": "........................................................................ [ 63%]\n..........................................                               [100%]\n114 passed in 558.50s (0:09:18)\n\nSTDERR\n",
+  "selected_full_test_bodies": 5,
+  "executed_dependency_test_bodies": [
+    "tests/scripts/backlog/test_integration.py",
+    "tests/scripts/backlog/test_integration_validation.py"
+  ],
+  "qualification": "Execution of dependency tests gives no full-body review credit. No new protected production gate for docs/Intake-only changes; prior2867/2live skips/100% remains prior repair evidence."
+}

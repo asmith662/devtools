@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "3b2f566b-8733-4b1d-a840-1e361612ebf8",
+  "created_at": "2026-10-25T11:49:49.279624+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/execution-ownership-and-recovery-audit.md"
+    },
+    "evidence": [
+      "docs/research/execution-ownership-and-recovery-audit.md",
+      "docs/research/code-audit/execution-ownership-probes.json"
+    ],
+    "dependencies": [
+      "B-0006"
+    ],
+    "title": "Refuse ignored dangling-link collisions before Checkout branch switching",
+    "summary": "P1 maintained forensic/source custody. Checkout.__aenter__ checks path.exists() for a target-only untracked/ignored collision. An ignored dangling symlink reports exists=False. A real Windows tiny-Git fixture has that link on the entry branch and a tracked regular file at the same path on the target. Entry succeeds, Git replaces the link, and finalization returns to the entry branch with the original link gone, reporting no error. The actual OS allowed symlink creation; this is not a mocked missing-path result. All13 canonical forensic files remain unchanged.",
+    "resources": [
+      "scripts/backlog/checkout.py",
+      "devtools.resources.filesystem",
+      "tests/scripts/backlog/test_checkout.py"
+    ],
+    "benefit": "Treat lexical directory-entry presence, including broken links and supported reparse points, as a collision independently of dereferenced target existence. Reuse compatible canonical filesystem/path entry inspection. Refuse before Git switching, preserve the original link target/bytes and all untracked/ignored evidence, and leave source/ref/index unchanged. Permanent real-Git tests: ignored dangling file link, regular ignored file, existing file/directory links, ordinary absent target success and supported platform junction handling. Do not dereference foreign content or delete unknown entries to make the switch pass. Focused/static and final protected100% production validation required.",
+    "uncertainty": "This demonstrates lost link metadata in a disposable repository, not actual historical forensic loss or off-root file mutation. Existing nonbroken alias and collision refusals remain valid. Custody/cleanup0385a359 remains separate; this is a specific pre-switch admission defect, not permission to remove ignored artifacts."
+  },
+  "payload_sha256": "6ac9acc01ca8a97ab96990d0930311861e1df26d6913086455c1c871bec57b9a"
+}
