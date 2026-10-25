@@ -266,18 +266,35 @@ def acquire_context(
 
 
 async def validate_workspace(
-    root: Path, folder: Path, *, task: CodingTask = MARKDOWN
+    root: Path,
+    folder: Path,
+    *,
+    task: CodingTask = MARKDOWN,
+    commands: CodingCommands | None = None,
 ) -> dict[str, Any]:
-    """Execute only host-selected commands with the isolated source on sys.path."""
-    oracle = await run_check(root, folder, task, "oracle")
-    tests = await run_check(root, folder, task, "tests")
-    result = {"oracle": oracle, "tests": tests}
-    if task.quality_checks:
-        for name in ("ruff", "format"):
-            result[name] = await run_check(root, folder, task, name)
-    if task.command_tools:
-        result["typing"] = await run_check(root, folder, task, "typing")
-    return {**result, "accepted": all(not check["failed"] for check in result.values())}
+    """Use the shared frozen-input/check journal, retaining full host diagnostics."""
+    bound = commands if commands is not None else CodingCommands(root, folder, task)
+    bundle = await bound._check_bundle(bounded=False)  # noqa: SLF001 -- host adapter over the same application-owned validation
+    result = {
+        name: {
+            **row,
+            "failed": row["status"] != "PASS",
+            "exit_code": row.get("exit_code"),
+        }
+        for name, row in bundle["checks"].items()
+        if row["status"] != "NOT_APPLICABLE"
+    }
+    return {
+        **result,
+        "integrity": {
+            "failed": bundle["status"] == "BLOCKED",
+            "source_unchanged": bundle["source_unchanged"],
+            "plan_unchanged": bundle["plan_unchanged"],
+            "diagnostics": bundle["diagnostics"],
+            "evidence": bundle["evidence"],
+        },
+        "accepted": bundle["status"] == "PASS",
+    }
 
 
 async def preflight_coding_task(
@@ -394,6 +411,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
     check_changes_before_completion: bool = False,
+    commands: CodingCommands | None = None,
 ) -> None:
     measured_capacity = isinstance(interaction, LlamaCppInteraction)
     active_limit = (
@@ -409,7 +427,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         if task.context_mode == "on-demand"
         else None
     )
-    commands = CodingCommands(workspace, folder, task)
+    commands = (
+        commands if commands is not None else CodingCommands(workspace, folder, task)
+    )
     report["context_preparation_seconds"] = time.perf_counter() - prepared_at
     active_prompt = task.prompt
     if coordinated_edits:
@@ -685,8 +705,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "Measured input plus output/safety exceeds actual 32K capacity"
                 )
         source_hash = _hash(workspace / task.source)
+        selected_source = interaction.source
         stage: dict[str, Any] = {
             "number": number,
+            "selected_source": str(selected_source),
             "input_tokens_measured": measured_tokens,
             "capacity_safety_tokens": 2048 if measured_capacity else None,
             "started_at": str(Timestamp.now()),
@@ -721,10 +743,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 if response.usage and response.usage.input_tokens is not None
                 else None
             ),
-            phase="PROPOSAL_ADMISSION",
+            phase="RESPONSE_VALIDATION",
+            response_source=str(response.source),
         )
         _save(turn / "response.json", asdict(response))
         stage["response_sha256"] = _hash(turn / "response.json")
+        if response.source != selected_source:
+            raise ValueError(
+                "Model response source does not match model interaction source."
+            )
+        stage["phase"] = "PROPOSAL_ADMISSION"
         if response.termination == ModelTermination.OUTPUT_LIMIT:
             raise PatchProposalError("Output limit: no repair dispatch")
         if _hash(workspace / task.source) != source_hash:
@@ -924,9 +952,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 for c in response.tool_calls
             ):
                 raise PatchProposalError("Do not mix Context calls with edit proposals")
-            if proposals >= task.maximum_proposals:
-                raise PatchProposalError("Edit proposal budget exhausted")
-            proposals += 1
+        if proposals >= task.maximum_proposals:
+            raise PatchProposalError("Edit proposal budget exhausted")
+        proposals += 1
         stage["proposal_attempted"] = True
         transaction = bool(
             coordinated_edits
@@ -1140,13 +1168,18 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             f"{Timestamp.now()} turn {number}: edit admitted; focused validation",
             flush=True,
         )
-        validation = await validate_workspace(workspace, folder, task=task)
+        validation = await validate_workspace(
+            workspace, folder, task=task, commands=commands
+        )
         stage.update(
             validation=validation,
             elapsed_seconds=time.perf_counter() - started,
             finished_at=str(Timestamp.now()),
             disposition=("ACCEPTED" if validation["accepted"] else "TESTS_FAILED"),
         )
+        if validation["integrity"]["failed"]:
+            _save(turn / "stage.json", stage, overwrite=True)
+            raise ValueError("Validation source or frozen inputs changed")
         if tools is not None:
             tools.check_current()
             if observed_edits:
@@ -1266,11 +1299,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         if validation["accepted"] and not check_changes_before_completion:
             report.update(accepted=True, disposition="ACCEPTED")
             return
-        if (
-            tools is not None
-            and proposals >= task.maximum_proposals
-            and not validation["accepted"]
-        ):
+        if proposals >= task.maximum_proposals and not validation["accepted"]:
             report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
             return
         # One latest state, not an ever-growing transcript; full assistant output
@@ -1394,17 +1423,20 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         else "single-edit-legacy",
     }
     workspace: Path | None = None
+    validation_commands: CodingCommands | None = None
     try:
         async with asyncio.timeout(task.wall_seconds):
             workspace = _prepare_workspace(root, folder, task)
             await _authenticate_inputs(root, workspace, task)
+            validation_commands = CodingCommands(workspace, folder, task)
             report["baseline_validation"] = await validate_workspace(
-                workspace, folder, task=task
+                workspace, folder, task=task, commands=validation_commands
             )
             baseline = report["baseline_validation"]
             if (
                 not baseline["oracle"]["failed"]
                 or baseline["tests"]["failed"]
+                or baseline["integrity"]["failed"]
                 or "AssertionError" not in baseline["oracle"]["stderr"]
             ):
                 raise ValueError("Baseline must pass existing tests and fail oracle")
@@ -1455,6 +1487,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 reasoning_effort=reasoning_effort,
                 request_settings=request_settings,
                 check_changes_before_completion=check_changes_before_completion,
+                commands=validation_commands,
             )
     except asyncio.CancelledError:
         report.update(
@@ -1545,6 +1578,12 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 for path, digest in original_hashes.items()
             ),
         )
+        if report["accepted"] and (
+            not report["original_unchanged"]
+            or validation_commands is None
+            or not validation_commands.inputs_current()
+        ):
+            report.update(accepted=False, disposition="INPUT_INTEGRITY_FAILED")
         for stage in report["turns"]:
             if stage["disposition"] == "DISPATCH_ATTEMPTED":
                 stage.update(
@@ -1586,7 +1625,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             bool(stage.get("proposal_attempted")) for stage in report["turns"]
         )
         report["proposal_refusals"] = sum(
-            stage["disposition"] == "PROPOSAL_REFUSED" for stage in report["turns"]
+            bool(stage.get("proposal_attempted"))
+            and not stage.get("proposal_valid", False)
+            for stage in report["turns"]
         )
         report["proposals_admitted"] = sum(
             bool(stage.get("proposal_valid")) for stage in report["turns"]

@@ -119,7 +119,7 @@ def test_measured_capacity_can_reduce_only_unused_nonreasoning_output_reservatio
 
         async def send(self, request: ModelRequest) -> ModelResponse:
             assert request.settings.maximum_output_tokens == 8053
-            return ModelResponse("No proposal", InteractionSource("measured-fixture"))
+            return ModelResponse("No proposal", self.source)
 
     task = replace(tools.task, output_tokens=8192)
     folder = tmp_path / "measured-reservation"
@@ -182,7 +182,7 @@ def test_exact_capacity_compacts_then_remeasures_before_dispatch(
         async def send(self, request: ModelRequest) -> ModelResponse:
             assert request.settings.maximum_output_tokens == 8192
             assert request.prompt.messages[0].content
-            return ModelResponse("No proposal", InteractionSource("compact-fixture"))
+            return ModelResponse("No proposal", self.source)
 
     model = CompactWindow(
         endpoint="http://127.0.0.1:8080",

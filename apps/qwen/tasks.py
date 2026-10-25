@@ -236,7 +236,8 @@ class CodingTask:
             "The host applies and tests it; you have no write, shell or Git authority. "
             "Do not claim tests ran. Context below is CURRENT source state. "
             "After failure, revise current source using correlated host feedback. "
-            f"At most {self.maximum_calls} proposals are permitted."
+            f"At most {self.maximum_proposals} edit proposals and "
+            f"{self.maximum_calls} total model calls are permitted."
         )
 
 
