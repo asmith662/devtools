@@ -1,5 +1,7 @@
 # RI configuration, role and closure assurance
 
+Delivered follow-through: [one-facade binding repair](../development/ri-facade-binding-repair.md), production `cf9db4af17516dc19092f1ae18c197783f1f5b3d`, PR#8, verified main `5a5485e98908922722ba2a4b177094364c1aac31`. Proposal ff4c4110 has implemented-and-merged advisory evidence; do not repeat the repair/adoption. Earlier P1-pending notices below are dated history. The next RI fixture/operational scope remains unchanged; A+C is unapproved and this repair adds no audit-cohort credit.
+
 Baseline: integrated main `457defb3e97770c6ef8db4b5faf681ebc202f0a9`.
 Branch: `audit/ri-config-role-assurance-20261024`. This is maintainer-authorized
 audit and Intake work, not a production repair, accepted architectural decision,

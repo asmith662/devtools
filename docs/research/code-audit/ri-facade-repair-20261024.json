@@ -1,0 +1,710 @@
+{
+  "baseline": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+  "proposal": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "production": {
+    "head": "cf9db4af17516dc19092f1ae18c197783f1f5b3d",
+    "parent": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+    "tree": "39596bf80f77e52068127f3b1affe636e801e045",
+    "paths": {
+      "src/devtools/context/python/imports/docs/overview.md": "defbef2d88caeb878f99a9dbeb659b116a67aba3",
+      "src/devtools/context/python/imports/members.py": "a26c743f52f2702c00c3c2d249e6d132529b27c9",
+      "src/devtools/context/python/references/declarations/resolution.py": "eea4f863e1ddf45963dca6f3b6616aa0f863292d",
+      "src/devtools/context/python/references/docs/overview.md": "124d2d28778ff050704e121dcaed3ae7699bb5f6",
+      "tests/apps/qwen/test_context_tools.py": "858855cc887761cdf7d09d0f94d4fcb719319adc",
+      "tests/context/python/imports/test_members.py": "73114e3c0c8e8013fd5c198baf5ef973f8959513",
+      "tests/context/python/references/declarations/test_analysis.py": "a0d3b914ce3fe745e3c814fc2f08d728bbe38ae0"
+    }
+  },
+  "accepted": {
+    "main": "5a5485e98908922722ba2a4b177094364c1aac31",
+    "tree": "39596bf80f77e52068127f3b1affe636e801e045",
+    "parents": [
+      "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+      "cf9db4af17516dc19092f1ae18c197783f1f5b3d"
+    ],
+    "pr": 8
+  },
+  "validation": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/context/python/modules",
+        "tests/context/python/references",
+        "tests/context/python/classes",
+        "tests/context/python/imports",
+        "tests/context/python/function",
+        "tests/context/retrieval/source",
+        "tests/context/planning",
+        "tests/apps/qwen/test_context_tools.py",
+        "tests/apps/qwen/test_navigation.py"
+      ],
+      "head": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+      "at": "2026-10-24T23:32:02.991388+00:00",
+      "elapsed_seconds": 53.979875,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+      "unchanged_inputs": true,
+      "log_sha256": "1d56dc51aab559e8caa3360982ef7707e71dad2244738c44f0a6a80eda430570"
+    },
+    "ruff": {
+      "name": "ruff",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "head": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+      "at": "2026-10-24T23:32:41.394481+00:00",
+      "elapsed_seconds": 0.05322,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+      "unchanged_inputs": true,
+      "log_sha256": "f78434f0f81a8fed2240a7879eda40bd74cab1d54c181ba11eef299ac4baee47"
+    },
+    "format": {
+      "name": "format",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "--exclude",
+        "tests/experiments",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "head": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+      "at": "2026-10-24T23:32:41.401804+00:00",
+      "elapsed_seconds": 0.063232,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+      "unchanged_inputs": true,
+      "log_sha256": "d355d8ecea1d8c2776f5c85f2fe7dddc9bd405126064cd9123680d233e6ab414"
+    },
+    "typing": {
+      "name": "typing",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "head": "368ae557ff2eb9f9dad69dfcbc3bcc7264ae942c",
+      "at": "2026-10-24T23:32:41.409377+00:00",
+      "elapsed_seconds": 0.498474,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+      "unchanged_inputs": true,
+      "log_sha256": "969d660c3764099c46b94eb5f5612c6adf052b60067665498d74ac6edbd38250"
+    },
+    "protected": {
+      "name": "protected",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_development.py"
+      ],
+      "head": "cf9db4af17516dc19092f1ae18c197783f1f5b3d",
+      "at": "2026-10-24T23:34:37.268062+00:00",
+      "elapsed_seconds": 838.632179,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+      "unchanged_inputs": true,
+      "log_sha256": "088df817dfe434eace959ad285102d29ffe39c05ef4353e266cb7aa874eaf4cf"
+    },
+    "postmerge": {
+      "name": "postmerge",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/context/python/imports/test_members.py",
+        "tests/context/python/references/declarations/test_analysis.py",
+        "tests/context/python/references/declarations/test_bindings.py",
+        "tests/context/python/classes/test_bases.py",
+        "tests/context/python/function/test_materialization_integrity.py",
+        "tests/context/retrieval/source/test_physical_lines.py",
+        "tests/resources/commands/test_composition.py",
+        "tests/apps/qwen/test_context_tools.py"
+      ],
+      "head": "5a5485e98908922722ba2a4b177094364c1aac31",
+      "at": "2026-10-24T23:59:05.478891+00:00",
+      "elapsed_seconds": 59.227164,
+      "exit_code": 0,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "input_sha256": "b4b3f5ffc5d43f0fcc9006fb35f07add6c902a7e59236c8d09c8aefac717d706",
+      "unchanged_inputs": true,
+      "log_sha256": "5906f3c8512d5fc9c543b3907b99bf3d9eb5bae7aae8fe80d58f2b0a814ce64d"
+    }
+  },
+  "checkout_normalization": [
+    {
+      "path": "src/devtools/context/python/imports/docs/overview.md",
+      "gate_physical_sha256": "9133b8810c01ea97f89b1a948cbf4f7b219a866d4d7269601d50ef662711655c",
+      "post_main_physical_sha256": "e60e0b22176208c7e02342ed8100a4e8d295c548268a262744300687b2a0aa2b",
+      "change": "LF->CRLF only; same committed blob",
+      "post_main_tests": 305
+    },
+    {
+      "path": "src/devtools/context/python/references/declarations/resolution.py",
+      "gate_physical_sha256": "c9fa3347f9928d82d6ef3ad0b6dc2267eeb4ec979043630f99497cc1c10c113c",
+      "post_main_physical_sha256": "b39498978fdc53386731bd50a3fc237808229074124cca8bd0fe241606326a0e",
+      "change": "LF->CRLF only; same committed blob",
+      "post_main_tests": 305
+    }
+  ],
+  "gate_summary": {
+    "passed": 2842,
+    "skipped": 2,
+    "pytest_seconds": 836.83,
+    "elapsed_seconds": 838.632179,
+    "coverage_percent": 100,
+    "missing_lines": 0,
+    "missing_branches": 0,
+    "totals": {
+      "covered_lines": 11960,
+      "num_statements": 11960,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 589,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 2996,
+      "num_partial_branches": 0,
+      "covered_branches": 2996,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    }
+  },
+  "input_manifest_sha256": "c7be73b5c444ea7e090e70900ed95007ecfa2ac150f89bb16c864d0ecb303085",
+  "pre_fix": {
+    "assertion_failures": 25,
+    "controls_passed": 2,
+    "collection_errors": 0,
+    "log_encoding": "UTF-16LE with BOM from PowerShell redirection; original bytes preserved",
+    "log_sha256": "05678a1950c4511bafc707143465a29265f38eaa846a9b1a92203fcbc7001975",
+    "independent_api_results": [
+      {
+        "case": "plain_control",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "582db25477c7e14227de6ed27b9565be83b1dbffbc43b99af6b9d8fbfeef59d0",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "d707c1bbf9c42164348dc72179ae598bbf5cdee1c4e34b29dd2f45aa4f2aa299",
+        "direct": "not-supported-declaration",
+        "member": "resolved",
+        "reference_outcome": "resolved",
+        "fact": {
+          "identity": "7547240e6322692221f5c8376874c538acc2d97552a1af1120e15a630e1f28af",
+          "route": "one-facade-imported-member",
+          "direct_call": true,
+          "target_path": "src/target.py",
+          "target_name": "f",
+          "target_identity": "019426222f4516d3cdb1534f7011f12cd66185b8da37f5afd424e1979bce2854",
+          "target_source": "def f():\n    pass\n"
+        },
+        "expected_unique": true
+      },
+      {
+        "case": "assignment_control",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\nf = 0\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "a4dbad7ae99dd714536e4b01c2866b58f37264fcd09d737acd3e6ef1834195b5",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "c1202558443c3ca38a6757525b965dbf949a2eca8f45ed0775f460f8d93daaf4",
+        "direct": "ambiguous",
+        "member": "unsupported",
+        "reference_outcome": "ambiguous-binding",
+        "fact": null,
+        "expected_unique": false
+      },
+      {
+        "case": "simple_capture",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\nmatch 0:\n    case f:\n        pass\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "b819adf4330ce82df36f799934c7fb8f2dde12ba7181e52bb0ab65dc34405ac5",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "cc4771455c534e40e7f6ec5d83079803773b658912e5b28bd1a62107a143e152",
+        "direct": "ambiguous",
+        "member": "resolved",
+        "reference_outcome": "resolved",
+        "fact": {
+          "identity": "6013d8b606dd5d31ab6e2b7311ceb0620847a008c6bd271b7b4f0a6d2c6535f0",
+          "route": "one-facade-imported-member",
+          "direct_call": true,
+          "target_path": "src/target.py",
+          "target_name": "f",
+          "target_identity": "2866103a446feea6befc9aaf20b9c5c2aefa850283d2649630aec079e22c491a",
+          "target_source": "def f():\n    pass\n"
+        },
+        "expected_unique": false
+      },
+      {
+        "case": "star_capture",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\nmatch [0]:\n    case [*f]:\n        pass\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "6786d14d6a1580ef0d102ce56516744fa59da2e2e9ff853cb4ddc298474169bd",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "cba0d96715a9ed179d5d22b8a3cc0f5ae34902cc3ae345aff5628505d947eb53",
+        "direct": "ambiguous",
+        "member": "resolved",
+        "reference_outcome": "resolved",
+        "fact": {
+          "identity": "41a5ab84563d35d6a4ce2a6e27139401654a2defce1f611af0b56f171911aea4",
+          "route": "one-facade-imported-member",
+          "direct_call": true,
+          "target_path": "src/target.py",
+          "target_name": "f",
+          "target_identity": "375ebb78b5729ae18de7b3a6c0c5de6dcb2e7534e586089c87c4611b6301e766",
+          "target_source": "def f():\n    pass\n"
+        },
+        "expected_unique": false
+      },
+      {
+        "case": "mapping_rest",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\nmatch {}:\n    case {**f}:\n        pass\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "d87ae27b23fe46c14ee062258579b21661ddb623cff5d830eb3428bb09449127",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "50cb36593c0144b176bc20dfb1edf8839cb66f7d19f1bdf0ab6f2c32cd6e0238",
+        "direct": "ambiguous",
+        "member": "resolved",
+        "reference_outcome": "resolved",
+        "fact": {
+          "identity": "328e29adbe96f0a3e08aaa78ba81651647958a384875e52f17aaea2cd6db70af",
+          "route": "one-facade-imported-member",
+          "direct_call": true,
+          "target_path": "src/target.py",
+          "target_name": "f",
+          "target_identity": "a9a773a7ad75488a7001de68f4a3dc52b8f6a0f3ea7c5c74c98aba78f00f54a3",
+          "target_source": "def f():\n    pass\n"
+        },
+        "expected_unique": false
+      },
+      {
+        "case": "exception_alias",
+        "sources": {
+          "src/target.py": "def f():\n    pass\n",
+          "src/facade.py": "from target import f\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\n",
+          "src/use.py": "from facade import f\nf()\n"
+        },
+        "source_sha256": {
+          "src/target.py": "16797664978a811647328d92f3a3ca9a3b3a4712db9abc1bd63416b30aca4fe0",
+          "src/facade.py": "dd7839365d818aad7cb7f08a6c8bdab23764e5d6a85709b04774ffdd676058cd",
+          "src/use.py": "ef59a325b6499b634e74b698583280b5d6dd633985bb8d232a3a0c48204a495b"
+        },
+        "snapshot": "5f5e47322bcd1c0e900f92819d2ef2b5d153792eb3b896f42009bad8a989dfd2",
+        "direct": "ambiguous",
+        "member": "resolved",
+        "reference_outcome": "resolved",
+        "fact": {
+          "identity": "efbd0949be2f778ef07063906cd946be3a1b50df44532db50e15190b759ea5a4",
+          "route": "one-facade-imported-member",
+          "direct_call": true,
+          "target_path": "src/target.py",
+          "target_name": "f",
+          "target_identity": "859ddf58e52edfc5dce3d6fe7f330e48f1fbc9e8b7c31f264a834b03719ba7ed",
+          "target_source": "def f():\n    pass\n"
+        },
+        "expected_unique": false
+      }
+    ],
+    "native_tool_results": [
+      {
+        "case": "plain_control",
+        "sources": {
+          "src/devtools/target.py": "def f():\n    pass\n",
+          "src/devtools/facade.py": "from devtools.target import f\n",
+          "tests/test_use.py": "from devtools.facade import f\nf()\n"
+        },
+        "observation": {
+          "operation": "source_relationships",
+          "repository": "cf11e169-1c36-4276-9d5e-7984f806cd08",
+          "snapshot": "3eee7ce8a9a4f7a1eb94510d7100188623cdfc460de0672c239f2dddceed8437",
+          "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+          "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+          "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+          "path": "tests/test_use.py",
+          "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+          "derivation": "67b6f5b9d474d7441ce8d223ab54ba79d6d8403ba496498d182491dbde07a419",
+          "references": [
+            {
+              "identity": "8a708d150447699d2e44b99821ec51e0dd39f7b7e0c8c44d5fa3de189f2fa1dc",
+              "from": {
+                "start_line": 2,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 1
+              },
+              "target_path": "src/devtools/target.py",
+              "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+              "target_declaration": "3564ec8aef72456e591098997d72b52946e727510a995f1d0e5a36dc63352f05",
+              "target_span": {
+                "start_line": 1,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 8
+              },
+              "direct_call": true,
+              "route": "one-facade-imported-member"
+            }
+          ],
+          "truncated": false,
+          "assessed": 1,
+          "resolved": 1
+        },
+        "expected_unique": true,
+        "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+      },
+      {
+        "case": "capture",
+        "sources": {
+          "src/devtools/target.py": "def f():\n    pass\n",
+          "src/devtools/facade.py": "from devtools.target import f\nmatch 0:\n    case f:\n        pass\n",
+          "tests/test_use.py": "from devtools.facade import f\nf()\n"
+        },
+        "observation": {
+          "operation": "source_relationships",
+          "repository": "6d596e29-a7b7-4cfa-beae-5d5a653b918b",
+          "snapshot": "d856333bcddbf6dfb310740c8973289f2604af83831dc9807fd3a7ddec079447",
+          "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+          "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+          "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+          "path": "tests/test_use.py",
+          "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+          "derivation": "1889cf1cb4741df8de06868a5fe0d5ee9f2dc6f485bbf63749602a6660289e11",
+          "references": [
+            {
+              "identity": "a5a072cd2abcaba87b260953f496527eaa59db34a4e7ea6ca94b8394dbf57c45",
+              "from": {
+                "start_line": 2,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 1
+              },
+              "target_path": "src/devtools/target.py",
+              "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+              "target_declaration": "10acf5fab5f447e3831581e997eacc4b6d25320aed21e85feb129ffc463244c8",
+              "target_span": {
+                "start_line": 1,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 8
+              },
+              "direct_call": true,
+              "route": "one-facade-imported-member"
+            }
+          ],
+          "truncated": false,
+          "assessed": 1,
+          "resolved": 1
+        },
+        "expected_unique": false,
+        "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+      },
+      {
+        "case": "exception_alias",
+        "sources": {
+          "src/devtools/target.py": "def f():\n    pass\n",
+          "src/devtools/facade.py": "from devtools.target import f\ntry:\n    raise ValueError()\nexcept ValueError as f:\n    pass\n",
+          "tests/test_use.py": "from devtools.facade import f\nf()\n"
+        },
+        "observation": {
+          "operation": "source_relationships",
+          "repository": "8e8a3568-5735-489c-8d53-957b611a8eec",
+          "snapshot": "0ec311528691fa32f9eb00168d7e691c62598ead70510e51cfa297620a07b659",
+          "revision": "457defb3e97770c6ef8db4b5faf681ebc202f0a9",
+          "discovery_semantics": "explicit-address-component-bounded-regular-files-v1",
+          "uncertainty": "bounded static outgoing relationships; unresolved is not absence",
+          "path": "tests/test_use.py",
+          "version": "222730b3ea01e20baa1621898f983cb4aa6733f9608db96d58f27cfae6a356d8",
+          "derivation": "66174b0583a18776d4c88950446c97f4028ce582ca15edc80a9e3543f99349a0",
+          "references": [
+            {
+              "identity": "a426e651089ae3b5792d02308ba1b53b468590861f28b6d138737b8ac42fcf06",
+              "from": {
+                "start_line": 2,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 1
+              },
+              "target_path": "src/devtools/target.py",
+              "target_version": "a9274249c907565e30ff39349b1d3d1dfd055bbdef1d8fa73b1f1b9ba4a8831f",
+              "target_declaration": "5452dc7ae4e3cc39c0082dee55af02140d2295386387e7f31212899cf9a574ce",
+              "target_span": {
+                "start_line": 1,
+                "start_column_utf8": 0,
+                "end_line": 2,
+                "end_column_utf8": 8
+              },
+              "direct_call": true,
+              "route": "one-facade-imported-member"
+            }
+          ],
+          "truncated": false,
+          "assessed": 1,
+          "resolved": 1
+        },
+        "expected_unique": false,
+        "evidence_level": "deterministic ToolRunner invocation; no autonomous model use"
+      }
+    ]
+  },
+  "fixture_delta": [
+    {
+      "path": "tests/context/python/imports/test_members.py",
+      "blob": "73114e3c0c8e8013fd5c198baf5ef973f8959513",
+      "reviewed_delta": [
+        {
+          "name": "test_pattern_and_handler_bindings_refuse_facade_resolution",
+          "line": 625,
+          "end": 652
+        },
+        {
+          "name": "test_unrelated_or_nested_local_captures_preserve_facade",
+          "line": 668,
+          "end": 684
+        },
+        {
+          "name": "test_facade_namespace_uncertainty_is_not_positive",
+          "line": 691,
+          "end": 705
+        },
+        {
+          "name": "test_facade_target_requires_unique_binding_not_only_declaration",
+          "line": 719,
+          "end": 736
+        },
+        {
+          "name": "test_facade_content_cannot_change_under_matching_nominal_identities",
+          "line": 739,
+          "end": 761
+        }
+      ],
+      "original_path_credit": 0
+    },
+    {
+      "path": "tests/context/python/references/declarations/test_analysis.py",
+      "blob": "a0d3b914ce3fe745e3c814fc2f08d728bbe38ae0",
+      "reviewed_delta": [
+        {
+          "name": "test_facade_fallback_cannot_restore_competing_binding",
+          "line": 728,
+          "end": 753
+        },
+        {
+          "name": "test_authoritative_ambiguity_does_not_invoke_facade_fallback",
+          "line": 756,
+          "end": 776
+        },
+        {
+          "name": "test_facade_reference_controls_preserve_target_and_source_order",
+          "line": 779,
+          "end": 805
+        }
+      ],
+      "original_path_credit": 0
+    }
+  ],
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "intake": {
+    "id": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+    "review": {
+      "schema": "backlog-review-v1",
+      "proposal": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+      "proposal_sha256": "2a234c846d5f33ff7d9ec8f7965b2b21bb8d5c3b3a3203819a4852e8a5a866f4",
+      "previous": "710d1db64070dcb158b88366e6f13e9928e5e41b683160d3aa8e3d79e2c434fa",
+      "at": "2026-10-25T00:08:55.192256+00:00",
+      "decision": "ADVISORY",
+      "reviewer": "Codex",
+      "decision_reference": "docs/development/ri-facade-binding-repair.md",
+      "rationale": "IMPLEMENTED_AND_MERGED: production cf9db4af17516dc19092f1ae18c197783f1f5b3d, normal GitHub PR#8, main 5a5485e98908922722ba2a4b177094364c1aac31. Four non-Name facade binding forms now refuse; canonical module guards protect facade uncertainty and final function target; References never overrides ambiguous direct lookup. Permanent source/Reference/ToolRunner regressions include before/after, nested/unrelated/valid sync/async aliases, direct classes, source order, target rebinding/decorator, and inconsistent retained content. Original new tests first produced25 assertion failures/two passing controls with no collection error. Final committed protected gate 2842 passed/2 live skips,100% production branch coverage; supported Ruff/format and strict mypy pass. Acceptance fulfilled for this bounded repair; no repeat implementation/adoption should be scheduled. Existing handler versus capture lifetime uncertainty, function-only one-facade target, recursive/dynamic runtime semantics remain deliberately unsupported. Prior16b27e74 repair stays separate and delivered; no A+C or agent-effectiveness claim.",
+      "duplicates": [
+        {
+          "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+          "reason": "title overlap or shared resource"
+        }
+      ],
+      "duplicate_disposition": "Existing UUID retained. Advisory records actual delivered scope; no closed/delivered proposal enum, B-number, approval, grant or parent closure invented.",
+      "scope": "canonical-backlog-only; no execution authority",
+      "publication": null,
+      "sha256": "92638a0accbf1d7d19ad8a8e6613367b18f4a7e6d9ab726b09debc643398808d"
+    }
+  },
+  "audit_counts": {
+    "experiments_reviewed": 606,
+    "original_fixtures_reviewed": 67,
+    "original_fixtures_total": 93,
+    "current_remaining_substantive": 4,
+    "current_remaining_namespace": 22,
+    "history_full": 15,
+    "history_unread": 168,
+    "history_tip_only": 20
+  },
+  "limits": "No models, science replay, new audit cohort or A+C implementation. Existing one-facade contract remains function-only; direct class semantics remain valid. No authority change. Containing closeout commit binds administrative evidence; source/tree identities reference actual validated production and accepted main."
+}
