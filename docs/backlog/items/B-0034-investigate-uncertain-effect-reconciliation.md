@@ -55,3 +55,9 @@ Recovery26 preserves original CLEANUP_RECONCILIATION_REQUIRED, exact one-LF byte
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Validation/publication audit evidence — 2026-10-25
+
+An independently authored tiny Git/bare-remote probe lost acknowledgment after a real push. Retrying the maintained publish helper observed the exact intended commit and issued no second push; advancing the remote caused refusal and preserved the new ref. This is a verified operation-specific reconciliation subset, not exactly-once arbitrary external effects or GitHub PR equivalence. Intents precede effects and completion records follow them; missing completion remains uncertain. Existing scripted lifecycle tests cover commit/push resume and interrupted installation. Generic policy, deferred status and authority remain unchanged.
+
+See the [source, independent probes and limitations](../../research/validation-review-publication-audit.md). This append-only evidence does not approve, dispatch or close the story.

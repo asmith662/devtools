@@ -1,0 +1,32 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+  "created_at": "2026-10-25T18:22:11.033556+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "title": "Preserve literal Git paths in integration population authentication",
+    "summary": "P2 conservative false refusal in maintained Integration._files. A real canonical tiny repository and Checkout contain the exact planned staged tests/test_\u03c0.py bytes. Git diff --name-only quotes the path as tests/test_\\317\\200.py; the validator compares that rendered string against the literal plan population and raises Unapproved files in integration checkout. NUL-delimited output independently returns the exact literal path. Canonical RepositoryResourceAddress accepts the path; no foreign file or production grant was involved. This proves exact-population refusal, not a protected-publication bypass. Similar line-based joins in local committed replay and closeout require bounded inspection, not assumed automatic credit.",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/validation-review-publication-audit.md"
+    },
+    "resources": [
+      "scripts/backlog/integration/lifecycle.py",
+      "scripts/backlog/integration/local.py",
+      "scripts/backlog/integration/git.py",
+      "tests/scripts/backlog/test_integration.py"
+    ],
+    "evidence": [
+      "docs/research/validation-review-publication-audit.md",
+      "docs/research/code-audit/validation-publication-probes.json",
+      "git:5b0bb0b769c2db8d698c86c0e669db820537eec1"
+    ],
+    "benefit": "Acceptance: exact real-Git/Checkout populations for ASCII, Unicode, spaces and supported quoted characters authenticate planned bytes and still refuse foreign additions. Use Git -z/trim=False with existing managed Git semantics and explicit literal path comparisons; inspect all affected changed/untracked sets and committed replay consumers. Do not solve by disabling core.quotepath globally or weakening subset checks. Retain scope, source identity, history and authority; full focused/static/protected100% validation in the future bounded repair.",
+    "uncertainty": "Independent bounded synthetic evidence; no claim of actual retained production corruption, autonomous effectiveness or permission bypass. Audit only: correction needs separate bounded implementation authorization.",
+    "dependencies": [
+      "B-0006"
+    ]
+  },
+  "payload_sha256": "7cbbaf32e01775ce9323339aa767215eab0266b947d52f4df647130ef79154d4"
+}

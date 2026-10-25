@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+  "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+  "previous": "8957616316a04dab4fd2494f7ea3cf1c56669fbbc93878a72a0036c261db69d2",
+  "at": "2026-10-25T18:22:11.201207+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/validation-review-publication-audit.md",
+  "rationale": "CONFIRMED P1 stale protected-validation reuse in local.closeout_local, not merely an untested hypothesis. Independent tiny fixture first records a passed validation adapter running an actual Ruff command. Ignored .ruff.toml then changes to an incompatible required-version; an independent fresh Ruff command exits2. An unchanged result/base/files subject nevertheless reuses the old passed record with only one closeout validation dispatch, sets publication_eligible=True and creates an ordinary feature commit. No actual production protected gate or remote/main write was fabricated: the constrained adapter is explicitly labeled INDEPENDENT_SINGLE_REAL_RUFF_CHECK_NOT_PROTECTED_GATE. The real cache consumer and Git commit are exercised. Existing scoped CodingCommands controls independently reject changed tests/config/runner/declared dependency/selector and retain freshness for unrelated evidence; tracked-tree guards are useful but do not close ignored/toolchain/environment inputs. Bounded next repair: refuse unsafe reuse until a supported exact validation-input profile exists, or require fresh protected validation before commit. Bind executable/check selector, relevant inputs, toolchain/environment assumptions and declared exclusions; unknown/older profiles cannot silently qualify. Add ignored-config drift, fresh failure, unchanged reuse and irrelevant-file controls. Separately qualify HEAD-sensitive validation: integration validates working bytes before committing; tree equality alone does not prove HEAD/worktree-sensitive tests or external inputs equivalent. No universal filesystem read tracer, validator framework, gate weakening or retrospective receipt rewrite. Preserve source/review/task/grant boundaries; future repair needs explicit implementation scope.",
+  "duplicates": [
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Original UUID retained; append-only evidence only. No approval, B-number, grant, closure or duplicate parent obligation.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "0b1fe78f8e712570dd285640967117ac2fcab7beaf34efe93cec7d6a6ff3f76f"
+}

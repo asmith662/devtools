@@ -1,0 +1,140 @@
+{
+  "new_pending": [
+    {
+      "id": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+      "title": "Reserve fresh single-check receipt identity before execution",
+      "severity": "P2"
+    },
+    {
+      "id": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "title": "Preserve literal Git paths in integration population authentication",
+      "severity": "P2"
+    }
+  ],
+  "existing_advisories": [
+    {
+      "id": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "review": {
+        "schema": "backlog-review-v1",
+        "proposal": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+        "proposal_sha256": "4720973467ae3168ab615d33b3f4590df312374aba88902538cc75abb129c203",
+        "previous": "8957616316a04dab4fd2494f7ea3cf1c56669fbbc93878a72a0036c261db69d2",
+        "at": "2026-10-25T18:22:11.201207+00:00",
+        "decision": "ADVISORY",
+        "reviewer": "Codex",
+        "decision_reference": "docs/research/validation-review-publication-audit.md",
+        "rationale": "CONFIRMED P1 stale protected-validation reuse in local.closeout_local, not merely an untested hypothesis. Independent tiny fixture first records a passed validation adapter running an actual Ruff command. Ignored .ruff.toml then changes to an incompatible required-version; an independent fresh Ruff command exits2. An unchanged result/base/files subject nevertheless reuses the old passed record with only one closeout validation dispatch, sets publication_eligible=True and creates an ordinary feature commit. No actual production protected gate or remote/main write was fabricated: the constrained adapter is explicitly labeled INDEPENDENT_SINGLE_REAL_RUFF_CHECK_NOT_PROTECTED_GATE. The real cache consumer and Git commit are exercised. Existing scoped CodingCommands controls independently reject changed tests/config/runner/declared dependency/selector and retain freshness for unrelated evidence; tracked-tree guards are useful but do not close ignored/toolchain/environment inputs. Bounded next repair: refuse unsafe reuse until a supported exact validation-input profile exists, or require fresh protected validation before commit. Bind executable/check selector, relevant inputs, toolchain/environment assumptions and declared exclusions; unknown/older profiles cannot silently qualify. Add ignored-config drift, fresh failure, unchanged reuse and irrelevant-file controls. Separately qualify HEAD-sensitive validation: integration validates working bytes before committing; tree equality alone does not prove HEAD/worktree-sensitive tests or external inputs equivalent. No universal filesystem read tracer, validator framework, gate weakening or retrospective receipt rewrite. Preserve source/review/task/grant boundaries; future repair needs explicit implementation scope.",
+        "duplicates": [
+          {
+            "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+            "reason": "title overlap or shared resource"
+          }
+        ],
+        "duplicate_disposition": "Original UUID retained; append-only evidence only. No approval, B-number, grant, closure or duplicate parent obligation.",
+        "scope": "canonical-backlog-only; no execution authority",
+        "publication": null,
+        "sha256": "0b1fe78f8e712570dd285640967117ac2fcab7beaf34efe93cec7d6a6ff3f76f"
+      }
+    },
+    {
+      "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "review": {
+        "schema": "backlog-review-v1",
+        "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+        "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+        "previous": "87761e4a9b73150951b7faea4412ea039207231090224c720fd61ecf95d420b1",
+        "at": "2026-10-25T18:22:11.959900+00:00",
+        "decision": "ADVISORY",
+        "reviewer": "Codex",
+        "decision_reference": "docs/research/validation-review-publication-audit.md",
+        "rationale": "Material cohort ownership evidence: task-scoped CodingCommands bundles and change_checks share existing fixed selectors and managed Commands; local closeout adds protected validation and feature-only authority; governed Integration independently owns destination tree/review/promotion. These are different claims, so do not merge them blindly into one validator or move orchestration into Runtime. Single-command evidence-name selection diverges from all-bundle/change-report reservation and has a distinct new P2 proposal rather than being hidden under this investigation. A small application-local receipt-allocation composition may be justified by those real consumers. Scripted review/validation fixtures prove wiring, not independent semantic review or model effectiveness. Existing large application/edit-size pressure and useful shared substrate remain open; no package split, new Agent or generic transaction system authorized.",
+        "duplicates": [
+          {
+            "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+            "reason": "title overlap or shared resource"
+          },
+          {
+            "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+            "reason": "title overlap or shared resource"
+          }
+        ],
+        "duplicate_disposition": "Original UUID retained; append-only evidence only. No approval, B-number, grant, closure or duplicate parent obligation.",
+        "scope": "canonical-backlog-only; no execution authority",
+        "publication": null,
+        "sha256": "001397e0a6883761dab21599da22fc3fd980814e741e52805cb0a213f3058e75"
+      }
+    }
+  ],
+  "existing_sufficient": [
+    "0385a359-399f-40bb-aed4-caf5239c9fc8",
+    "B-0011",
+    "B-0034"
+  ],
+  "implemented_repairs": "All prior bounded source, binding, worker and Checkout repairs stay delivered; no new implementation authorized.",
+  "intake_chains": 50,
+  "errors": []
+}

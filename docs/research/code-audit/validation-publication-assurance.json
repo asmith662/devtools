@@ -1,0 +1,1322 @@
+{
+  "at": "2026-10-25T18:26:05.515879+00:00",
+  "baseline": "5b0bb0b769c2db8d698c86c0e669db820537eec1",
+  "manifest": {
+    "path": "docs/research/code-audit/execution-validation-next-cohort.json",
+    "blob": "a37818d7e642676c4ca361634843765a43a816c3"
+  },
+  "cohort": [
+    {
+      "path": "apps/qwen/change_checks.py",
+      "blob": "153235f68136af55bb3597b66498506f7a765605",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "e833e60661736f19c5f303717f732ca38b4517b2bde4b6cef784bfc7d2dd4dc6",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "Scoped Git/source/plan check composition, receipt authentication and freshness; every function and exception path.",
+      "functions": [
+        {
+          "name": "git_state",
+          "line": 26,
+          "end_line": 81
+        },
+        {
+          "name": "_state",
+          "line": 84,
+          "end_line": 98
+        },
+        {
+          "name": "_changes",
+          "line": 101,
+          "end_line": 142
+        },
+        {
+          "name": "_view",
+          "line": 145,
+          "end_line": 160
+        },
+        {
+          "name": "_receipt_path",
+          "line": 163,
+          "end_line": 169
+        },
+        {
+          "name": "_load",
+          "line": 172,
+          "end_line": 179
+        },
+        {
+          "name": "_attach_bundle",
+          "line": 182,
+          "end_line": 209
+        },
+        {
+          "name": "check_changes",
+          "line": 212,
+          "end_line": 334
+        },
+        {
+          "name": "current_report",
+          "line": 337,
+          "end_line": 397
+        },
+        {
+          "name": "journal",
+          "line": 258,
+          "end_line": 269
+        }
+      ],
+      "assurance_limits": "No whole-environment or full repository dependency closure. current FAIL can be fresh without review eligibility. Receipt/underlying bundle hashes reject changed projections.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "apps/qwen/commands.py",
+      "blob": "32bf2dc2bbe2d11b47de5a7fe6f6ccd0e9a43268",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "a58e688aaf397723bea14730cd67c303e3533d26c764c55b140e623af66e1981",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "Fixed selectors/host runners, bound plans, individual and bundle checks, journal/cancellation, formatting and synchronous bridge.",
+      "functions": [
+        {
+          "name": "command_definitions",
+          "line": 34,
+          "end_line": 95
+        },
+        {
+          "name": "run_check",
+          "line": 98,
+          "end_line": 117
+        },
+        {
+          "name": "_input_identity",
+          "line": 120,
+          "end_line": 128
+        },
+        {
+          "name": "_bundle_state",
+          "line": 131,
+          "end_line": 208
+        },
+        {
+          "name": "_plan_identity",
+          "line": 211,
+          "end_line": 212
+        },
+        {
+          "name": "call_data",
+          "line": 515,
+          "end_line": 517
+        },
+        {
+          "name": "format_sources",
+          "line": 520,
+          "end_line": 558
+        },
+        {
+          "name": "observe",
+          "line": 137,
+          "end_line": 142
+        },
+        {
+          "name": "__init__",
+          "line": 221,
+          "end_line": 227
+        },
+        {
+          "name": "inputs_current",
+          "line": 229,
+          "end_line": 236
+        },
+        {
+          "name": "validate",
+          "line": 238,
+          "end_line": 253
+        },
+        {
+          "name": "dispatch",
+          "line": 255,
+          "end_line": 259
+        },
+        {
+          "name": "execute",
+          "line": 261,
+          "end_line": 315
+        },
+        {
+          "name": "_check_bundle",
+          "line": 317,
+          "end_line": 500
+        },
+        {
+          "name": "is_current",
+          "line": 502,
+          "end_line": 512
+        },
+        {
+          "name": "journal",
+          "line": 391,
+          "end_line": 405
+        },
+        {
+          "name": "authenticate",
+          "line": 407,
+          "end_line": 430
+        }
+      ],
+      "assurance_limits": "Bundle boundary checks are strong within declared scope. Fresh single-check adapters collide after actual completion; two receipt allocation paths diverge.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "scripts/backlog/integration/validation.py",
+      "blob": "c5daa189e682a583717c2a0e95de7c2a074eeb32",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "cce83c277ac0d63e545ffe23837e266c649c0e421cdac01a82faed2acf14fb8c",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "All six fixed pre-publication checks, two post checks, target import prelude, progress/raw logs, timeout/truncation/error paths.",
+      "functions": [
+        {
+          "name": "validate_tree",
+          "line": 24,
+          "end_line": 153
+        },
+        {
+          "name": "progress",
+          "line": 97,
+          "end_line": 98
+        }
+      ],
+      "assurance_limits": "Executes current working bytes; complete input manifest/HEAD insensitivity/environment not authenticated by this function. No full gate run in this audit.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "scripts/backlog/integration/local.py",
+      "blob": "4cd211b2a87c18b09a03e7671dd377ea71a7ff75",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "e15bd300f77883ee982b1f20bd14fd25c641f54a415153b1501a7582b4ed043d",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "Complete candidate/baseline/addition admission, previous receipt/commit reconciliation, checks, review subject, commit/push effects.",
+      "functions": [
+        {
+          "name": "closeout_local",
+          "line": 37,
+          "end_line": 352
+        }
+      ],
+      "assurance_limits": "P1 stale protected reuse confirmed under exact result/base/files subject after ignored relevant config changed. Explicit trusted-host feature authority only; source reviewed does not imply gate current.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "scripts/backlog/integration/lifecycle.py",
+      "blob": "a4ecb97b0317d017101a5e7eaee29f1ebcedf0c6",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "33e062e296af42d6426a9a08802d8df4f582e3370d49c5b9bd3238d5aa1c3f72",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "Every body: candidate/plan, context/operate, reservation/install, validation/review, publish/promote/verify, status/refusal, completion review/closeout.",
+      "functions": [
+        {
+          "name": "digest_text",
+          "line": 37,
+          "end_line": 39
+        },
+        {
+          "name": "independent_files",
+          "line": 42,
+          "end_line": 71
+        },
+        {
+          "name": "__init__",
+          "line": 77,
+          "end_line": 80
+        },
+        {
+          "name": "closeout_local",
+          "line": 82,
+          "end_line": 93
+        },
+        {
+          "name": "folder",
+          "line": 95,
+          "end_line": 99
+        },
+        {
+          "name": "record",
+          "line": 101,
+          "end_line": 106
+        },
+        {
+          "name": "save",
+          "line": 108,
+          "end_line": 125
+        },
+        {
+          "name": "candidate",
+          "line": 127,
+          "end_line": 179
+        },
+        {
+          "name": "plan",
+          "line": 181,
+          "end_line": 328
+        },
+        {
+          "name": "_context",
+          "line": 330,
+          "end_line": 349
+        },
+        {
+          "name": "_operate",
+          "line": 351,
+          "end_line": 447
+        },
+        {
+          "name": "install",
+          "line": 449,
+          "end_line": 451
+        },
+        {
+          "name": "validate",
+          "line": 453,
+          "end_line": 455
+        },
+        {
+          "name": "review",
+          "line": 457,
+          "end_line": 476
+        },
+        {
+          "name": "publish",
+          "line": 478,
+          "end_line": 480
+        },
+        {
+          "name": "promote",
+          "line": 482,
+          "end_line": 484
+        },
+        {
+          "name": "verify",
+          "line": 486,
+          "end_line": 488
+        },
+        {
+          "name": "close_review",
+          "line": 490,
+          "end_line": 509
+        },
+        {
+          "name": "closeout",
+          "line": 511,
+          "end_line": 513
+        },
+        {
+          "name": "_intent",
+          "line": 515,
+          "end_line": 531
+        },
+        {
+          "name": "_files",
+          "line": 533,
+          "end_line": 566
+        },
+        {
+          "name": "_path",
+          "line": 569,
+          "end_line": 574
+        },
+        {
+          "name": "_reserve",
+          "line": 576,
+          "end_line": 602
+        },
+        {
+          "name": "_install",
+          "line": 604,
+          "end_line": 648
+        },
+        {
+          "name": "_validate",
+          "line": 650,
+          "end_line": 689
+        },
+        {
+          "name": "_review",
+          "line": 691,
+          "end_line": 736
+        },
+        {
+          "name": "_publish",
+          "line": 738,
+          "end_line": 808
+        },
+        {
+          "name": "_promote",
+          "line": 810,
+          "end_line": 861
+        },
+        {
+          "name": "_verify",
+          "line": 863,
+          "end_line": 922
+        },
+        {
+          "name": "status",
+          "line": 924,
+          "end_line": 990
+        },
+        {
+          "name": "refusal",
+          "line": 992,
+          "end_line": 1007
+        },
+        {
+          "name": "_close_review",
+          "line": 1009,
+          "end_line": 1047
+        },
+        {
+          "name": "_closeout",
+          "line": 1049,
+          "end_line": 1261
+        }
+      ],
+      "assurance_limits": "Pinned destination, staged tree/review/commit/ref leases and durable intents; UTF-8 quoted path false refusal confirmed. Review is trusted supplied decision, not automatically invoked reviewer.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "scripts/backlog/integration/git.py",
+      "blob": "79e08263fa829914e387e0a48e96a5ee35ba8455",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "2232d7f88bcce4ff16a52da12492f335820e2663dfec83b75b211234e964ec51",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "MAINTAINED_IMPLEMENTATION",
+      "review": "All functions: remote_head, raw blob, clean, compare-and-swap publish and ambiguous observation.",
+      "functions": [
+        {
+          "name": "remote_head",
+          "line": 18,
+          "end_line": 26
+        },
+        {
+          "name": "blob",
+          "line": 29,
+          "end_line": 39
+        },
+        {
+          "name": "clean",
+          "line": 42,
+          "end_line": 45
+        },
+        {
+          "name": "publish",
+          "line": 48,
+          "end_line": 66
+        }
+      ],
+      "assurance_limits": "Lost real push acknowledgment propagates uncertainty; retry observes desired ref without repush; divergent ref refuses. Parent/authority policy belongs to caller.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "tests/apps/qwen/test_change_checks.py",
+      "blob": "dbcedc4e4928d16afdaacf70e319ab2e5f0f6c68",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "54baddd36751978aeef953b1d1acf1e808f8253224dc57f2676ed5060c960908",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every helper, trusted retained engineering oracle, source fixture, monkeypatch and assertion.",
+      "functions": [
+        {
+          "name": "_contract",
+          "line": 34,
+          "end_line": 43
+        },
+        {
+          "name": "candidate",
+          "line": 47,
+          "end_line": 52
+        },
+        {
+          "name": "_invoke",
+          "line": 55,
+          "end_line": 58
+        },
+        {
+          "name": "_current",
+          "line": 61,
+          "end_line": 62
+        },
+        {
+          "name": "_fast_checks",
+          "line": 65,
+          "end_line": 82
+        },
+        {
+          "name": "test_original_oracle_and_real_checks_in_fresh_interpreter",
+          "line": 85,
+          "end_line": 97
+        },
+        {
+          "name": "test_actual_git_change_kinds_and_freshness",
+          "line": 101,
+          "end_line": 130
+        },
+        {
+          "name": "test_saved_success_becomes_stale",
+          "line": 148,
+          "end_line": 188
+        },
+        {
+          "name": "test_index_only_drift_then_new_current_report",
+          "line": 191,
+          "end_line": 202
+        },
+        {
+          "name": "test_scope_and_absence_fail_closed",
+          "line": 208,
+          "end_line": 226
+        },
+        {
+          "name": "test_unrelated_forensics_excluded_and_no_changes_runs_nothing",
+          "line": 229,
+          "end_line": 242
+        },
+        {
+          "name": "test_tampered_payload_never_trusted",
+          "line": 248,
+          "end_line": 261
+        },
+        {
+          "name": "test_failure_is_current_but_not_review_eligible",
+          "line": 264,
+          "end_line": 279
+        },
+        {
+          "name": "test_drift_during_check_invalidates_bundle",
+          "line": 283,
+          "end_line": 305
+        },
+        {
+          "name": "test_incomplete_plan_and_execution_cannot_pass",
+          "line": 311,
+          "end_line": 329
+        },
+        {
+          "name": "test_cancellation_preserves_both_journals",
+          "line": 332,
+          "end_line": 355
+        },
+        {
+          "name": "test_native_argument_admission",
+          "line": 358,
+          "end_line": 366
+        },
+        {
+          "name": "test_actual_unmerged_index_blocks_readiness",
+          "line": 369,
+          "end_line": 391
+        },
+        {
+          "name": "test_mutation_while_reading_git_cannot_validate_old_source",
+          "line": 394,
+          "end_line": 412
+        },
+        {
+          "name": "test_journal_tampering_and_missing_full_evidence_are_refused",
+          "line": 415,
+          "end_line": 426
+        },
+        {
+          "name": "check",
+          "line": 68,
+          "end_line": 79
+        },
+        {
+          "name": "check",
+          "line": 267,
+          "end_line": 273
+        },
+        {
+          "name": "check",
+          "line": 286,
+          "end_line": 300
+        },
+        {
+          "name": "cancel",
+          "line": 335,
+          "end_line": 341
+        },
+        {
+          "name": "conflict",
+          "line": 374,
+          "end_line": 386
+        },
+        {
+          "name": "drift",
+          "line": 401,
+          "end_line": 407
+        },
+        {
+          "name": "check",
+          "line": 323,
+          "end_line": 325
+        }
+      ],
+      "assurance_limits": "Real Git/ToolRunner composition; many fast checks stub process math. Explicit source/index/test/read/config/runner/projection/cancellation controls; one trusted oracle runs real checks. No autonomous effectiveness proof.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "tests/scripts/backlog/test_local_closeout.py",
+      "blob": "192c6f94b332efe3d6ab6649ba3bfc35be75c37b",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "0cd0d382d86b48c004d044a9f8e7d3645181dddd73fa5135cd5d051ee4ee10da",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every authored tiny fixture, attribution/scope/candidate test, independent addition and committed replay assertion.",
+      "functions": [
+        {
+          "name": "evidence",
+          "line": 21,
+          "end_line": 44
+        },
+        {
+          "name": "test_local_candidate_validation_review_commit_push_and_idempotence",
+          "line": 48,
+          "end_line": 149
+        },
+        {
+          "name": "test_local_closeout_refuses_before_mutation",
+          "line": 153,
+          "end_line": 179
+        },
+        {
+          "name": "test_local_closeout_requires_explicit_matching_implementation_attribution",
+          "line": 183,
+          "end_line": 200
+        },
+        {
+          "name": "protected_fixture",
+          "line": 55,
+          "end_line": 56
+        },
+        {
+          "name": "run",
+          "line": 60,
+          "end_line": 147
+        },
+        {
+          "name": "run",
+          "line": 158,
+          "end_line": 177
+        },
+        {
+          "name": "run",
+          "line": 188,
+          "end_line": 198
+        }
+      ],
+      "assurance_limits": "Real fixed task checks and Git; protected gate scripted. Constructed review is not genuine independent semantic review. Missing ignored-config reuse and fresh single-receipt tests.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "tests/scripts/backlog/test_integration_validation.py",
+      "blob": "8c22b938d8f85cef61869107b7f5b5aeaf4bf480",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "bd2db83d9a9c85ec2fd28d72b3f97b92d0e2f841b580dd75d38d44b5d46bed2a",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Every fixed dispatch/failure/raw-byte/post profile and actual protected-launcher test.",
+      "functions": [
+        {
+          "name": "test_fixed_validation_and_failure_stop",
+          "line": 22,
+          "end_line": 60
+        },
+        {
+          "name": "test_protected_subprocess_uses_target_source",
+          "line": 63,
+          "end_line": 100
+        },
+        {
+          "name": "execute",
+          "line": 28,
+          "end_line": 32
+        },
+        {
+          "name": "execute",
+          "line": 82,
+          "end_line": 85
+        }
+      ],
+      "assurance_limits": "Most commands stubbed. Actual target script TARGET_GATE_PASS validates import binding, not the real 100% production policy or independent review.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    },
+    {
+      "path": "tests/scripts/backlog/test_integration.py",
+      "blob": "36220ec7f4aca980adef3addf00f822135839c12",
+      "scope": "Full relevant source/test bodies and exact input/result closure; distinguish reused prior local/Git review from new claims.",
+      "raw_sha256": "fc0006ff8c728a7ac48a90702d688a61c6362428b1693ae362a2957b066440b3",
+      "depth": "FULL_BODY_AND_RELEVANT_CONTRACT_REVIEWED",
+      "role": "TEST_AND_FIXTURE",
+      "review": "Complete fixture policy/review setup and all lifecycle, scope, interruption, replay, destination, completion and corruption tests.",
+      "functions": [
+        {
+          "name": "setup",
+          "line": 29,
+          "end_line": 135
+        },
+        {
+          "name": "prepared",
+          "line": 139,
+          "end_line": 162
+        },
+        {
+          "name": "through_publish",
+          "line": 165,
+          "end_line": 182
+        },
+        {
+          "name": "test_full_git_cycle_and_partial_parent_closeout",
+          "line": 185,
+          "end_line": 240
+        },
+        {
+          "name": "test_missing_integration_branch_requires_reconciliation",
+          "line": 244,
+          "end_line": 277
+        },
+        {
+          "name": "test_integration_authority_refusals",
+          "line": 281,
+          "end_line": 308
+        },
+        {
+          "name": "test_tampered_candidate_and_rejected_review_refuse",
+          "line": 311,
+          "end_line": 326
+        },
+        {
+          "name": "test_unapproved_changes_and_validation_failure_block_publication",
+          "line": 329,
+          "end_line": 365
+        },
+        {
+          "name": "test_remote_divergence_and_protected_refusal",
+          "line": 368,
+          "end_line": 389
+        },
+        {
+          "name": "test_commit_interruption_reconciles_without_duplicate",
+          "line": 393,
+          "end_line": 430
+        },
+        {
+          "name": "test_protected_promotion_requires_both_policies",
+          "line": 433,
+          "end_line": 464
+        },
+        {
+          "name": "test_parent_close_requires_explicit_scope_and_decision",
+          "line": 467,
+          "end_line": 512
+        },
+        {
+          "name": "test_post_validation_failure_prevents_closeout",
+          "line": 515,
+          "end_line": 548
+        },
+        {
+          "name": "test_missing_and_rejected_review",
+          "line": 551,
+          "end_line": 578
+        },
+        {
+          "name": "test_plan_detects_diverged_source_and_excludes_history",
+          "line": 581,
+          "end_line": 612
+        },
+        {
+          "name": "test_integration_consent_is_real_default_no",
+          "line": 618,
+          "end_line": 628
+        },
+        {
+          "name": "test_each_integration_scope_is_enforced",
+          "line": 641,
+          "end_line": 659
+        },
+        {
+          "name": "test_reservation_exhaustion_and_partial_install_recovery",
+          "line": 662,
+          "end_line": 697
+        },
+        {
+          "name": "test_independent_additions_require_scope_and_tree_review",
+          "line": 700,
+          "end_line": 740
+        },
+        {
+          "name": "test_branch_switch_and_unrelated_commit_refuse",
+          "line": 743,
+          "end_line": 795
+        },
+        {
+          "name": "test_rejected_candidate_review_refuses_planning",
+          "line": 798,
+          "end_line": 813
+        },
+        {
+          "name": "test_windows_backlog_materialization_preserves_review_binding",
+          "line": 816,
+          "end_line": 841
+        },
+        {
+          "name": "test_cli_refusal_is_durable_and_nonexecuting",
+          "line": 844,
+          "end_line": 858
+        },
+        {
+          "name": "test_corrupt_reservation_refuses_resume",
+          "line": 861,
+          "end_line": 887
+        },
+        {
+          "name": "checks",
+          "line": 145,
+          "end_line": 159
+        },
+        {
+          "name": "run",
+          "line": 188,
+          "end_line": 238
+        },
+        {
+          "name": "run",
+          "line": 249,
+          "end_line": 275
+        },
+        {
+          "name": "run",
+          "line": 286,
+          "end_line": 306
+        },
+        {
+          "name": "run",
+          "line": 316,
+          "end_line": 324
+        },
+        {
+          "name": "run",
+          "line": 334,
+          "end_line": 363
+        },
+        {
+          "name": "run",
+          "line": 371,
+          "end_line": 387
+        },
+        {
+          "name": "run",
+          "line": 398,
+          "end_line": 428
+        },
+        {
+          "name": "run",
+          "line": 436,
+          "end_line": 462
+        },
+        {
+          "name": "run",
+          "line": 472,
+          "end_line": 510
+        },
+        {
+          "name": "run",
+          "line": 520,
+          "end_line": 546
+        },
+        {
+          "name": "run",
+          "line": 554,
+          "end_line": 576
+        },
+        {
+          "name": "run",
+          "line": 586,
+          "end_line": 610
+        },
+        {
+          "name": "run",
+          "line": 646,
+          "end_line": 657
+        },
+        {
+          "name": "run",
+          "line": 667,
+          "end_line": 695
+        },
+        {
+          "name": "run",
+          "line": 705,
+          "end_line": 738
+        },
+        {
+          "name": "run",
+          "line": 746,
+          "end_line": 793
+        },
+        {
+          "name": "run",
+          "line": 801,
+          "end_line": 811
+        },
+        {
+          "name": "run",
+          "line": 821,
+          "end_line": 839
+        },
+        {
+          "name": "run",
+          "line": 864,
+          "end_line": 885
+        },
+        {
+          "name": "fail",
+          "line": 348,
+          "end_line": 349
+        },
+        {
+          "name": "unavailable",
+          "line": 405,
+          "end_line": 410
+        },
+        {
+          "name": "failed",
+          "line": 531,
+          "end_line": 532
+        },
+        {
+          "name": "unavailable",
+          "line": 678,
+          "end_line": 679
+        }
+      ],
+      "assurance_limits": "Actual tiny Git/bare remotes with explicitly synthetic grants and review. Expensive validation stubbed. Lost commit/push, partial install and divergence cases useful; ASCII-only path assumptions miss Unicode refusal.",
+      "backlog": "See validation-publication-intake.json; previous delivered repairs not rescheduled."
+    }
+  ],
+  "selected_paths": 10,
+  "selected_implementation_bodies": 6,
+  "selected_test_bodies": 4,
+  "additional_dependencies": [
+    {
+      "path": "scripts/backlog/integration/authority.py",
+      "blob": "fef0f50d9588dab9d61176aa6b58ea06b2818391",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "policy_check",
+          "line": 27,
+          "end_line": 76
+        },
+        {
+          "name": "__init__",
+          "line": 82,
+          "end_line": 84
+        },
+        {
+          "name": "folder",
+          "line": 86,
+          "end_line": 90
+        },
+        {
+          "name": "issue",
+          "line": 92,
+          "end_line": 140
+        },
+        {
+          "name": "revoke",
+          "line": 142,
+          "end_line": 174
+        },
+        {
+          "name": "admit",
+          "line": 176,
+          "end_line": 250
+        }
+      ]
+    },
+    {
+      "path": "scripts/backlog/integration/cli.py",
+      "blob": "61839efec35404e89ef9a7b501a37204a381e62a",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "confirm",
+          "line": 25,
+          "end_line": 45
+        },
+        {
+          "name": "configure",
+          "line": 48,
+          "end_line": 86
+        },
+        {
+          "name": "run",
+          "line": 89,
+          "end_line": 117
+        },
+        {
+          "name": "_run",
+          "line": 120,
+          "end_line": 218
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/resources/commands/execution.py",
+      "blob": "2b81abce1be791e0ec17f944870d8e15d4bc01c6",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "__init__",
+          "line": 43,
+          "end_line": 52
+        },
+        {
+          "name": "start",
+          "line": 54,
+          "end_line": 66
+        },
+        {
+          "name": "execute",
+          "line": 68,
+          "end_line": 77
+        },
+        {
+          "name": "_run",
+          "line": 79,
+          "end_line": 173
+        },
+        {
+          "name": "_terminate_and_reap",
+          "line": 175,
+          "end_line": 183
+        },
+        {
+          "name": "_create_process",
+          "line": 185,
+          "end_line": 215
+        },
+        {
+          "name": "_collect_output",
+          "line": 217,
+          "end_line": 251
+        },
+        {
+          "name": "_stream_process",
+          "line": 253,
+          "end_line": 296
+        },
+        {
+          "name": "_feed_stdin",
+          "line": 299,
+          "end_line": 322
+        },
+        {
+          "name": "_read_stream",
+          "line": 324,
+          "end_line": 346
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/resources/commands/handle.py",
+      "blob": "016aaf5e20d392c914b7a975c4c59f60742d46b5",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "__init__",
+          "line": 35,
+          "end_line": 52
+        },
+        {
+          "name": "__await__",
+          "line": 54,
+          "end_line": 61
+        },
+        {
+          "name": "is_running",
+          "line": 64,
+          "end_line": 69
+        },
+        {
+          "name": "is_complete",
+          "line": 72,
+          "end_line": 77
+        },
+        {
+          "name": "events_dropped",
+          "line": 80,
+          "end_line": 88
+        },
+        {
+          "name": "events",
+          "line": 90,
+          "end_line": 115
+        },
+        {
+          "name": "_emit",
+          "line": 117,
+          "end_line": 128
+        },
+        {
+          "name": "_close_events",
+          "line": 130,
+          "end_line": 133
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/resources/commands/models/result.py",
+      "blob": "5fcba682b24ec828637e0b98bdf94a9687d2292d",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "succeeded",
+          "line": 42,
+          "end_line": 48
+        },
+        {
+          "name": "failed",
+          "line": 51,
+          "end_line": 57
+        },
+        {
+          "name": "stdout_text",
+          "line": 59,
+          "end_line": 78
+        },
+        {
+          "name": "stderr_text",
+          "line": 80,
+          "end_line": 99
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/resources/filesystem/writing.py",
+      "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "write",
+          "line": 35,
+          "end_line": 88
+        },
+        {
+          "name": "_atomic_write",
+          "line": 91,
+          "end_line": 134
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/observability/usage/ingestion.py",
+      "blob": "88e9fd2e124162bbbfc11fdb588cdcc2465e1806",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "measurement",
+          "line": 45,
+          "end_line": 58
+        },
+        {
+          "name": "from_capture",
+          "line": 61,
+          "end_line": 86
+        },
+        {
+          "name": "from_session",
+          "line": 89,
+          "end_line": 122
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/observability/usage/storage.py",
+      "blob": "d3639cddaf36999f0ff3d38d3d82f5f6ac00d91a",
+      "depth": "FULL_BODY_REVIEWED",
+      "scope": [
+        {
+          "name": "writer",
+          "line": 24,
+          "end_line": 38
+        },
+        {
+          "name": "load",
+          "line": 41,
+          "end_line": 53
+        },
+        {
+          "name": "save",
+          "line": 56,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "path": "apps/qwen/development_task.py",
+      "blob": "8d2fc7bda8e61fc9ff02607f88230969288848c3",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "_save/_hash/_command/_timed_command/_runner_sources"
+      ]
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "validate_workspace, _prepare_workspace, selected _turns admission, final run_coding_task cleanup/usage totals; prior whole-body evidence reused, no new whole-body credit"
+      ]
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "_execute dispatch/result, _closeout, status; prior full review reused"
+      ]
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "_reserve/authorize and guard; prior full review reused"
+      ]
+    },
+    {
+      "path": "src/devtools/observability/usage/collection.py",
+      "blob": "798a2f7d17ddf73602a443839b9b7b9b411e0137",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "sum_usage/incompatible plus initial reconcile identity grouping; remainder next cohort"
+      ]
+    },
+    {
+      "path": "apps/operator_dashboard/project.py",
+      "blob": "472b8ef254f5ccdc94a781400ddcd6c07ece0f5f",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "WorkCycle.status and worker receipt/usage projections at100-198; rest not reviewed"
+      ]
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "Full small ToolRunner body, existing review reused"
+      ]
+    },
+    {
+      "path": "apps/qwen/tasks.py",
+      "blob": "6af35e557c530ea34e56bbfd56d91de97f81b2d6",
+      "depth": "SELECTED_DEPENDENCY_OR_PRIOR_EVIDENCE",
+      "scope": [
+        "CodingTask field admission/definition; prior review reused"
+      ]
+    }
+  ],
+  "limits": "Execution of other Commands tests gives no complete test-body credit. Exact source universe unchanged. Not a runtime registry, new authority or complete operational signoff.",
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "RI": {
+    "original_fixtures": "93/93 unchanged",
+    "experimental_source": "606/606 unchanged",
+    "historical_remaining": 188,
+    "new_history_credit": 0
+  }
+}

@@ -69,3 +69,9 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Validation/publication audit evidence — 2026-10-25
+
+The validation/publication audit authenticates real repository-local progress, intents and result/commit/ref receipts, plus filesystem temp-file fsync/atomic replace without parent-directory fsync. Those durable app records are not automatically the framework ExecutionInspector terminal Evidence store. Worker usage remains in app receipts; selected dashboard projection reads those records directly. Missing/unknown usage is not zero. The next frozen Evidence/usage cohort will inspect normalized ingestion, conflicts, deduplication and durable/operator consumers. No new store, serializer, approval or decision-maturity change is implied.
+
+See the [source, independent probes and limitations](../../research/validation-review-publication-audit.md). This append-only evidence does not approve, dispatch or close the story.

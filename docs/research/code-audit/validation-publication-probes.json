@@ -1,0 +1,422 @@
+{
+  "baseline": "5b0bb0b769c2db8d698c86c0e669db820537eec1",
+  "method": "Independent literal tiny repositories; native maintained callers. No actual Devtools mutation, live models, real grants or fabricated protected gate. Explicitly qualified validation/review fixture doubles.",
+  "scoped": [
+    {
+      "case": "unchanged",
+      "expected": true,
+      "current": {
+        "operation": "is_current",
+        "current": true,
+        "status": "PASS",
+        "ready_for_review": true,
+        "diagnostics": [],
+        "authority": "freshness only; no independent review or publication authority"
+      },
+      "report": {
+        "operation": "check_changes",
+        "status": "PASS",
+        "ready_for_review": true,
+        "changed": {
+          "src/devtools/sample.py": {
+            "index_status": " ",
+            "worktree_status": "M",
+            "sha256": "682d770aa6f9d44b38b0a18dde4fd3ee43350d1ca1e1844bb2000bbb3e8938fe",
+            "present": true,
+            "new_slot": false
+          }
+        },
+        "source_sha256": {
+          "src/devtools/sample.py": "682d770aa6f9d44b38b0a18dde4fd3ee43350d1ca1e1844bb2000bbb3e8938fe"
+        },
+        "plan_sha256": "9b01cca6992b1973afa45c7903b36afdd7680d29b4280560bb9f5771ffb80e0e",
+        "task_definition_sha256": "3ce6a065bb05f5251a71be72090346c97f81fd21122aadc26e724ead19e41418",
+        "candidate_sha256": "a75cf5f0c515cc9f9e3f07f16c200c8236c508dae302ad9acbc748e0ff018104",
+        "checked_candidate_sha256": "a75cf5f0c515cc9f9e3f07f16c200c8236c508dae302ad9acbc748e0ff018104",
+        "after_candidate_sha256": "a75cf5f0c515cc9f9e3f07f16c200c8236c508dae302ad9acbc748e0ff018104",
+        "checks": {
+          "format": {
+            "argv": [
+              "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "-m",
+              "ruff",
+              "format",
+              "--diff",
+              "src/devtools/sample.py"
+            ],
+            "elapsed_seconds": 0.08466019993647933,
+            "evidence": "coding-command-02.json",
+            "exit_code": 0,
+            "failed": false,
+            "started_at": "2026-10-25T18:24:07.194160+00:00",
+            "status": "PASS",
+            "stderr": "1 file already formatted\n",
+            "stderr_truncated": false,
+            "stdout": "",
+            "stdout_truncated": false,
+            "truncated": false
+          },
+          "oracle": {
+            "argv": [
+              "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "-I",
+              "-B",
+              "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-scoped-freshness-mylhzae5\\repo\\.local\\commands\\oracle-runner.py"
+            ],
+            "elapsed_seconds": 0.05250599991995841,
+            "evidence": "coding-command-02.json",
+            "exit_code": 0,
+            "failed": false,
+            "started_at": "2026-10-25T18:24:06.081041+00:00",
+            "status": "PASS",
+            "stderr": "",
+            "stderr_truncated": false,
+            "stdout": "",
+            "stdout_truncated": false,
+            "truncated": false
+          },
+          "ruff": {
+            "argv": [
+              "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "-m",
+              "ruff",
+              "check",
+              "src/devtools/sample.py"
+            ],
+            "elapsed_seconds": 0.08615699992515147,
+            "evidence": "coding-command-02.json",
+            "exit_code": 0,
+            "failed": false,
+            "started_at": "2026-10-25T18:24:06.824209+00:00",
+            "status": "PASS",
+            "stderr": "",
+            "stderr_truncated": false,
+            "stdout": "All checks passed!\n",
+            "stdout_truncated": false,
+            "truncated": false
+          },
+          "tests": {
+            "argv": [
+              "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "-I",
+              "-B",
+              "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-scoped-freshness-mylhzae5\\repo\\.local\\commands\\tests-runner.py"
+            ],
+            "elapsed_seconds": 0.5262767999665812,
+            "evidence": "coding-command-02.json",
+            "exit_code": 0,
+            "failed": false,
+            "started_at": "2026-10-25T18:24:05.198074+00:00",
+            "status": "PASS",
+            "stderr": "",
+            "stderr_truncated": false,
+            "stdout": ".                                                                        [100%]\r\n1 passed in 0.01s\r\n",
+            "stdout_truncated": false,
+            "truncated": false
+          },
+          "typing": {
+            "argv": [
+              "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "-m",
+              "mypy",
+              "--strict",
+              "src/devtools/sample.py"
+            ],
+            "elapsed_seconds": 0.63454409991391,
+            "evidence": "coding-command-02.json",
+            "exit_code": 0,
+            "failed": false,
+            "started_at": "2026-10-25T18:24:07.549471+00:00",
+            "status": "PASS",
+            "stderr": "",
+            "stderr_truncated": false,
+            "stdout": "Success: no issues found in 1 source file\r\n",
+            "stdout_truncated": false,
+            "truncated": false
+          }
+        },
+        "diagnostics": [],
+        "evidence": "change-check-01.json",
+        "complete": true,
+        "current": true,
+        "scope": {
+          "editable": [
+            "src/devtools/sample.py"
+          ],
+          "inputs": [
+            "tests/test_sample.py",
+            "src/devtools/support.py"
+          ],
+          "configuration": [
+            ".mypy.ini",
+            ".ruff.toml",
+            "conftest.py",
+            "mypy.ini",
+            "pyproject.toml",
+            "pytest.ini",
+            "ruff.toml",
+            "setup.cfg",
+            "src/.ruff.toml",
+            "src/devtools/.ruff.toml",
+            "src/devtools/pyproject.toml",
+            "src/devtools/ruff.toml",
+            "src/pyproject.toml",
+            "src/ruff.toml",
+            "tests/conftest.py"
+          ],
+          "unrelated_untracked": "excluded; no whole-repository cleanliness claim"
+        },
+        "authority": "review eligibility only; WorkCycle retains independent review/publication",
+        "elapsed_seconds": 3.65280169993639,
+        "bundle_evidence": "coding-command-02.json",
+        "bundle_sha256": "cddd77f72990324916845191e886aa6d63f60469804aefa450ccde31e8019681",
+        "receipt_sha256": "cff261ed499d9bfd70f6e00b6f3c05d6ce56ca52d6ec55b2117461667347c9d0"
+      }
+    },
+    {
+      "case": "test",
+      "expected_current": false,
+      "changed_path": "tests\\test_sample.py",
+      "before": "2d339f2f37ef63a22d2aca115c88cc1971e7c0789de0e5b9eb1a0c8fe1b54db1",
+      "after": "7a9164b4db2d76fe2245048f7d2a1b442e05cbda992f01eb5a63768af9854d8d",
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "PASS",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Frozen validation input differs: tests/test_sample.py",
+          "Frozen validation input differs: tests/test_sample.py",
+          "Bound validation plan changed"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "configuration",
+      "expected_current": false,
+      "changed_path": "pyproject.toml",
+      "before": "e8ac2f916ab9d7422a94209e23873f28f61f3b1a10cbaab439add4676a952e4c",
+      "after": "0d2dd070e58928099db779221011ae25f61376d30de2f44a90b2353972e13ba9",
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "PASS",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Bound validation plan changed"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "runner",
+      "expected_current": false,
+      "changed_path": ".local\\commands\\tests-runner.py",
+      "before": "92f14b98fab95f744c9ad8326a26728c3a3c2bf40fc6a583cb5cabdc84c5ec82",
+      "after": "eb14efbcdeff9dbd87d7cee894cdec67e3beb91a6cd61f4b3b0825198eecb2e8",
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "PASS",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Bound validation plan changed"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "declared_dependency",
+      "expected_current": false,
+      "changed_path": "src\\devtools\\support.py",
+      "before": "e13df8c44af5dea1e412403910b99cc5a48f2ccbf68a66b3374d6ab9cef9fc65",
+      "after": "f6e92299952be629cf96533f1603f97f7d7390d1ed7d46e783ea86b82e1f005b",
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "PASS",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Frozen validation input differs: src/devtools/support.py",
+          "Frozen validation input differs: src/devtools/support.py",
+          "Bound validation plan changed"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "changed_check_selector_oracle",
+      "expected_current": false,
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "INVALID_REPORT",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Report payload or task provenance mismatch"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "unrelated_untracked",
+      "expected_current": true,
+      "observed": {
+        "operation": "is_current",
+        "current": true,
+        "status": "PASS",
+        "ready_for_review": true,
+        "diagnostics": [],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "foreign_review_projection",
+      "expected_current": false,
+      "observed": {
+        "operation": "is_current",
+        "current": false,
+        "status": "INVALID_REPORT",
+        "ready_for_review": false,
+        "diagnostics": [
+          "Report payload or task provenance mismatch"
+        ],
+        "authority": "freshness only; no independent review or publication authority"
+      }
+    },
+    {
+      "case": "fresh_adapter_single_check",
+      "expected": "archive new evidence or refuse before execution",
+      "observed_error": "FileExistsError: Filesystem path already exists: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-scoped-freshness-mylhzae5\\repo\\.local\\commands\\coding-command-01.json.",
+      "completed_real_checks": [
+        {
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-scoped-freshness-mylhzae5\\repo\\.local\\commands\\tests-runner.py"
+          ],
+          "exit_code": 0,
+          "stdout": ".                                                                        [100%]\r\n1 passed in 0.00s\r\n",
+          "stderr": "",
+          "failed": false,
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "started_at": "2026-10-25T18:24:10.903826+00:00",
+          "elapsed_seconds": 0.4247149999719113
+        }
+      ],
+      "original_receipt_unchanged": true,
+      "qualification": "Public adapter/host reuse; normal worker retains same adapter. No native autonomous failure claimed."
+    }
+  ],
+  "protected_reuse": {
+    "case": "protected_cache_after_relevant_ignored_configuration_drift",
+    "expected": "Refuse stale protected evidence or rerun relevant checks before commit",
+    "profile": "One actual Ruff command substitutes for protected gate only in fixture; no genuine production gate receipt fabricated",
+    "initial_config": "0595e79548494d7ea546543337ffd6d0f793eb9de434bdfdd40858baf6412b5a",
+    "current_config": "ea942c907c58ae169e39b9371dfb1020e25e8b2e4a253a7fe94e543befe71c39",
+    "fresh_check": {
+      "passed": false,
+      "profile": "INDEPENDENT_SINGLE_REAL_RUFF_CHECK_NOT_PROTECTED_GATE",
+      "checks": [
+        {
+          "exit": 2,
+          "stdout": "",
+          "stderr": "ruff failed\n  Cause: Failed to load configuration `C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-protected-reuse-qai0lwsj\\repo\\.ruff.toml`\n  Cause: Required version `==0.0.0` does not match the running version `0.16.2`\n",
+          "truncated": false
+        }
+      ],
+      "config_sha256": "ea942c907c58ae169e39b9371dfb1020e25e8b2e4a253a7fe94e543befe71c39"
+    },
+    "reused": {
+      "passed": true,
+      "profile": "INDEPENDENT_SINGLE_REAL_RUFF_CHECK_NOT_PROTECTED_GATE",
+      "checks": [
+        {
+          "exit": 0,
+          "stdout": "All checks passed!\n",
+          "stderr": "",
+          "truncated": false
+        }
+      ],
+      "config_sha256": "0595e79548494d7ea546543337ffd6d0f793eb9de434bdfdd40858baf6412b5a"
+    },
+    "same_review_subject": true,
+    "protected_dispatches": 1,
+    "feature_commit": "35771cf226a5b8d0390891bd243b374b19e5783a",
+    "actual_git_head": "35771cf226a5b8d0390891bd243b374b19e5783a",
+    "publication_eligible": true,
+    "protected_main_or_remote_effect": false,
+    "violates_expected_contract": true
+  },
+  "publication": {
+    "case": "lost_push_ack_and_remote_divergence",
+    "expected": "An error need not mean no effect; observe same commit on retry without another push; refuse divergent remote",
+    "error": "Independent lost acknowledgment AFTER actual push",
+    "base": "90dd98f07b8745edef1a7e09888bc7dc30d95b8c",
+    "candidate": "56db2ad7b6dd885cacc5260eb23676d7c1a56271",
+    "observed_after_error": "56db2ad7b6dd885cacc5260eb23676d7c1a56271",
+    "push_invocations": 1,
+    "divergent_remote": "8fd0cad49de9a4048d79fe5790bbfc309838fab6",
+    "refusal": "Remote advanced; replan/review instead of overwriting",
+    "divergent_ref_preserved": true,
+    "GitHub_PR_behavior_exercised": false
+  },
+  "extra": {
+    "path_identity": {
+      "case": "unicode_integration_population",
+      "expected": "Exact planned staged UTF-8 path authenticates",
+      "path": "tests/test_π.py",
+      "Git_plain_names": "\"tests/test_\\317\\200.py\"",
+      "Git_NUL_names": "tests/test_π.py\u0000",
+      "observed_error": "Unapproved files in integration checkout",
+      "planned_and_actual_bytes_equal": true,
+      "qualification": "Actual Integration._files with real Checkout/source/Git, isolated exact-population admission; no production integration grant or independent review fabricated.",
+      "violates_expected_contract": true
+    },
+    "usage": {
+      "case": "disjoint_known_and_unknown_usage",
+      "expected_known_sum": 5,
+      "actual_known_sum": 5,
+      "expected_missing": null,
+      "actual_missing": null,
+      "scope": "Local arithmetic helper only, not full ledger reconciliation or WorkCycle integration."
+    }
+  },
+  "receipt": {
+    "at": "2026-10-25T18:24:23.181674+00:00",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/validation-publication-audit-20261025/probes.py"
+    ],
+    "exit": 0,
+    "elapsed": "0:00:19.471082",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "log_sha256": "60faabbcce8eb531292cd2418963d5e755440b0e6ccca6441f8847f7b445b077"
+  },
+  "sources": [
+    {
+      "name": "probes.py",
+      "sha256": "432fc9d7dc047ea606a330086e2ee97cc0808ddc8e7c9a67917ba6283cebb507",
+      "source": "\"\"\"Independent literal fixtures; no Devtools mutation, models or real grants.\"\"\"\nimport asyncio,copy,hashlib,json,sys\nfrom dataclasses import replace\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nsys.path.insert(0,str(Path.cwd()))\nfrom apps.qwen.tasks import CodingTask\nfrom apps.qwen.coding_loop import _prepare_workspace\nfrom apps.qwen.commands import CodingCommands\nfrom apps.qwen import commands as coding_commands\nfrom devtools.models.interaction import ModelToolCall\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nfrom devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy\nfrom scripts.backlog.coordinator import git,designate\nfrom scripts.backlog.integration import local,git as remote_git\nfrom scripts.backlog.work import WorkCycle\nO=Path(__file__).parent;ROOT=Path.cwd();SRC='src/devtools/sample.py';TEST='tests/test_sample.py';READ='src/devtools/support.py'\nOLD='\"\"\"Authored audit fixture.\"\"\"\\n\\n\\ndef value() -> int:\\n    \"\"\"Return the selected value.\"\"\"\\n    return 0\\n';NEW=OLD.replace('return 0','return 1')\ndef sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()\nasync def setup(root):\n assert root!=ROOT;root.mkdir();(root/'src/devtools').mkdir(parents=True);(root/'tests').mkdir();(root/'docs/backlog').mkdir(parents=True)\n bodies={SRC:OLD,TEST:'from devtools.sample import value\\n\\n\\ndef test_value() -> None:\\n    assert value() >= 0\\n',READ:'VALUE = 1\\n','src/devtools/__init__.py':'\"\"\"Fixture package.\"\"\"\\n','.gitignore':'.local/\\n__pycache__/\\n.pytest_cache/\\n.ruff.toml\\n','.gitattributes':'* -text\\n','pyproject.toml':'[tool.ruff.lint]\\nselect = [\"E9\", \"F63\"]\\n','docs/backlog/overview.md':'# Empty independent fixture backlog\\n'}\n for name,text in bodies.items():(root/name).write_bytes(text.encode())\n for args in [('init','-b','feat/audit'),('config','user.name','Independent Audit'),('config','user.email','audit@localhost'),('add','.'),('commit','-m','Independent literal validation fixture')]:await git(root,*args)\n await designate(root,authorize=lambda _:True)\n task=CodingTask(name='independent-audit',objective='Return one while preserving a nonnegative public value.',source=SRC,tests=(TEST,),baseline_revision=await git(root,'rev-parse','HEAD'),baseline_hashes=tuple((p,sha(root/p)) for p in (SRC,TEST,READ)),context=tuple((p,'value','file','file') for p in (SRC,TEST,READ)),oracle='assert module.value() == 1\\n',read_paths=(READ,),quality_checks=True,command_tools=True)\n folder=root/'.local/commands';folder.mkdir(parents=True);_prepare_workspace(root,folder,task)\n return task,folder,WorkCycle(root)\nasync def execute(root,*args):\n r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20,max_stderr_bytes=1<<20)).execute(Command(sys.executable).args(*args).cwd(resolve_path(root)).with_timeout(Duration.seconds(30)))\n return dict(exit=r.exit_code,stdout=r.stdout.decode(errors='replace'),stderr=r.stderr.decode(errors='replace'),truncated=r.stdout_truncated or r.stderr_truncated)\nasync def scoped():\n rows=[]\n with TemporaryDirectory(prefix='devtools-scoped-freshness-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;task,folder,_=await setup(root);(root/SRC).write_bytes(NEW.encode());tool=CodingCommands(root,folder,task)\n  report=await tool.execute(('check_changes',{}));assert report['ready_for_review'],report\n  current=await tool.execute(('is_current',{'report':report}));assert current['current']\n  rows.append(dict(case='unchanged',expected=True,current=current,report=report))\n  for case,path in [('test',root/TEST),('configuration',root/'pyproject.toml'),('runner',folder/'tests-runner.py'),('declared_dependency',root/READ)]:\n   before=path.read_bytes();path.write_bytes(before+b'\\n# independently changed input\\n');observed=await tool.execute(('is_current',{'report':report}));assert not observed['current'],case\n   rows.append(dict(case=case,expected_current=False,changed_path=str(path.relative_to(root)),before=hashlib.sha256(before).hexdigest(),after=sha(path),observed=observed));path.write_bytes(before)\n  oldtask=tool.task;tool.task=replace(task,oracle='assert module.value() == 2\\n');observed=await tool.execute(('is_current',{'report':report}));assert not observed['current'];rows.append(dict(case='changed_check_selector_oracle',expected_current=False,observed=observed));tool.task=oldtask\n  (root/'forensic-note.txt').write_bytes(b'unrelated evidence');observed=await tool.execute(('is_current',{'report':report}));assert observed['current'];rows.append(dict(case='unrelated_untracked',expected_current=True,observed=observed))\n  altered=copy.deepcopy(report);altered['ready_for_review']=False;observed=await tool.execute(('is_current',{'report':altered}));assert not observed['current'];rows.append(dict(case='foreign_review_projection',expected_current=False,observed=observed))\n  # A supported fresh adapter can authenticate an existing report, but a single\n  # run_check then collides after executing. Record observation, not a claim of\n  # native-loop failure: the live loop normally keeps one adapter instance.\n  await CodingCommands(root,folder,task).dispatch(ModelToolCall('run_check','{\"check\":\"tests\"}','independent-first'))\n  before=(folder/'coding-command-01.json').read_bytes();fresh=CodingCommands(root,folder,task);error=None;completed=[];real_check=coding_commands.run_check\n  async def record_completed(*args):\n   result=await real_check(*args);completed.append(result);return result\n  with patch.object(coding_commands,'run_check',record_completed):\n   try:await fresh.dispatch(ModelToolCall('run_check','{\"check\":\"tests\"}','independent-second'))\n   except Exception as e:error=type(e).__name__+': '+str(e)\n  assert error and len(completed)==1 and completed[0]['exit_code']==0\n  rows.append(dict(case='fresh_adapter_single_check',expected='archive new evidence or refuse before execution',observed_error=error,completed_real_checks=completed,original_receipt_unchanged=(folder/'coding-command-01.json').read_bytes()==before,qualification='Public adapter/host reuse; normal worker retains same adapter. No native autonomous failure claimed.'))\n return rows\nasync def cache():\n with TemporaryDirectory(prefix='devtools-protected-reuse-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;task,_,cycle=await setup(root);task=replace(task,quality_checks=False,command_tools=False)\n  evidence=root/'.local/candidate';evidence.mkdir();(evidence/'source.py').write_bytes(NEW.encode());(evidence/'result.json').write_text(json.dumps(dict(accepted=True,task_definition_sha256=task.definition_sha256,oracle_sha256=task.oracle_sha256,candidates=[dict(path=SRC,evidence='source.py',sha256=sha(evidence/'source.py'))])),encoding='utf-8')\n  config=root/'.ruff.toml';config.write_bytes(b'[lint]\\nignore = [\"ALL\"]\\n');calls=[]\n  async def bounded_check(checkout,where,plan,oracle,*,post):\n   value=await execute(root,'-m','ruff','check',str(root/SRC));calls.append(dict(config_sha256=sha(config),result=value))\n   return dict(passed=value['exit']==0,profile='INDEPENDENT_SINGLE_REAL_RUFF_CHECK_NOT_PROTECTED_GATE',checks=[value],config_sha256=sha(config))\n  base=await git(root,'rev-parse','HEAD')\n  with patch.object(local,'validate_tree',bounded_check):\n   first=await cycle.integration.closeout_local(task,evidence,branch='feat/audit',expected_head=base,protected_validation=True);assert first['publication_eligible'] and len(calls)==1,first\n   unchanged=await cycle.integration.closeout_local(task,evidence,branch='feat/audit',expected_head=base);assert unchanged['publication_eligible'] and len(calls)==1\n   config.write_bytes(b'required-version = \"==0.0.0\"\\n')\n   actual=await bounded_check(root,None,None,None,post=False);assert not actual['passed'];calls.pop() # Independent fresh counterfactual, not closeout dispatch.\n   review=dict(subject=first['review_subject'],reviewer='Codex',disposition='ACCEPT_RECOMMENDED',rationale='EXPLICIT FIXTURE INPUT ONLY; not real independent review or production authority')\n   committed=await cycle.integration.closeout_local(task,evidence,branch='feat/audit',expected_head=base,review=review,commit=True)\n   assert committed['publication_eligible'] and committed['commit'] and len(calls)==1\n   return dict(case='protected_cache_after_relevant_ignored_configuration_drift',expected='Refuse stale protected evidence or rerun relevant checks before commit',profile='One actual Ruff command substitutes for protected gate only in fixture; no genuine production gate receipt fabricated',initial_config=calls[0]['config_sha256'],current_config=sha(config),fresh_check=actual,reused=committed['protected_validation'],same_review_subject=committed['review_subject']==first['review_subject'],protected_dispatches=len(calls),feature_commit=committed['commit'],actual_git_head=await git(root,'rev-parse','HEAD'),publication_eligible=committed['publication_eligible'],protected_main_or_remote_effect=False,violates_expected_contract=True)\nasync def publication():\n with TemporaryDirectory(prefix='devtools-publication-ack-') as tmp:\n  root=resolve_path(Path(tmp)/'repo').value;_,_,_=await setup(root);base=await git(root,'rev-parse','HEAD');remote=root.parent/'origin.git';await git(root,'init','--bare',str(remote));await git(root,'remote','add','origin',str(remote));await git(root,'push','origin',base+':refs/heads/delivery')\n  await git(root,'commit','--allow-empty','-m','Reviewed fixture successor');candidate=await git(root,'rev-parse','HEAD');actual_git=remote_git.git;pushes=[]\n  async def lost(where,*args,**kwargs):\n   value=await actual_git(where,*args,**kwargs)\n   if args[0]=='push':pushes.append(args);raise OSError('Independent lost acknowledgment AFTER actual push')\n   return value\n  with patch.object(remote_git,'git',lost):\n   try:await remote_git.publish(root,'origin','delivery',candidate,base)\n   except OSError as error:message=str(error)\n   else:raise AssertionError('Fault did not enter')\n  observed=await remote_git.remote_head(root,'origin','delivery');assert observed==candidate\n  with patch.object(remote_git,'git',lost):await remote_git.publish(root,'origin','delivery',candidate,base)\n  assert len(pushes)==1\n  await git(root,'commit','--allow-empty','-m','Independent remote advance');advanced=await git(root,'rev-parse','HEAD');await git(root,'push','origin',advanced+':refs/heads/delivery')\n  try:await remote_git.publish(root,'origin','delivery',candidate,base)\n  except PermissionError as error:refusal=str(error)\n  else:raise AssertionError('Diverged remote overwritten')\n  assert await remote_git.remote_head(root,'origin','delivery')==advanced\n  return dict(case='lost_push_ack_and_remote_divergence',expected='An error need not mean no effect; observe same commit on retry without another push; refuse divergent remote',error=message,base=base,candidate=candidate,observed_after_error=observed,push_invocations=len(pushes),divergent_remote=advanced,refusal=refusal,divergent_ref_preserved=True,GitHub_PR_behavior_exercised=False)\nasync def main():\n result=dict(baseline='5b0bb0b769c2db8d698c86c0e669db820537eec1',method='Independent literal tiny repositories; native maintained callers. No actual Devtools mutation, live models, real grants or fabricated protected gate. Explicitly qualified validation/review fixture doubles.',scoped=await scoped(),protected_reuse=await cache(),publication=await publication())\n (O/'probes.json').write_text(json.dumps(result,indent=2)+'\\n',encoding='utf-8');print(json.dumps(result,indent=2))\nif __name__=='__main__':asyncio.run(main())\n"
+    },
+    {
+      "name": "extra_probes.py",
+      "sha256": "b4ee41b0982b9cb282bed0978bdbfd8737179024b766625d2a35973362e8bbd8",
+      "source": "import asyncio,hashlib,json,sys\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\nsys.path.insert(0,str(Path.cwd()));sys.path.insert(0,str(Path(__file__).parent))\nfrom probes import setup\nfrom devtools.core.paths import resolve_path\nfrom devtools.models.interaction.usage import ModelUsage\nfrom devtools.observability.usage.collection import sum_usage\nfrom scripts.backlog.checkout import Checkout\nfrom scripts.backlog.coordinator import git\nO=Path(__file__).parent\nasync def main():\n with TemporaryDirectory(prefix='devtools-integration-path-identity-') as directory:\n  root=resolve_path(Path(directory)/'repo').value;task,_,cycle=await setup(root)\n  name='tests/test_\\u03c0.py';body='def test_independent() -> None:\\n    assert True\\n'\n  plan=dict(feature='feat/audit',destination_base=task.baseline_revision,files=[dict(path=name,text=body,sha256=hashlib.sha256(body.encode()).hexdigest(),author='Independent fixture',reference='literal path contract')])\n  original_error=None\n  async with Checkout(cycle,'independent-path-population','feat/audit',task.baseline_revision,files=[dict(path=name,text=body)]) as owner:\n   owner.expect(name,body);(root/name).write_bytes(body.encode());await git(root,'add','--',name)\n   integration=cycle.integration;integration._checkout=owner\n   literal=await git(root,'diff','--name-only',task.baseline_revision)\n   nul=await git(root,'diff','--name-only','-z',task.baseline_revision,trim=False)\n   try:await integration._files(plan,root)\n   except PermissionError as error:original_error=str(error)\n   assert original_error and nul==name+'\\0'\n   row=dict(case='unicode_integration_population',expected='Exact planned staged UTF-8 path authenticates',path=name,Git_plain_names=literal,Git_NUL_names=nul,observed_error=original_error,planned_and_actual_bytes_equal=(root/name).read_bytes()==body.encode(),qualification='Actual Integration._files with real Checkout/source/Git, isolated exact-population admission; no production integration grant or independent review fabricated.',violates_expected_contract=True)\n known=sum_usage((ModelUsage(input_tokens=2),ModelUsage(input_tokens=3)))\n unknown=sum_usage((ModelUsage(input_tokens=2),ModelUsage()))\n assert known.input_tokens==5 and unknown.input_tokens is None\n out=dict(path_identity=row,usage=dict(case='disjoint_known_and_unknown_usage',expected_known_sum=5,actual_known_sum=known.input_tokens,expected_missing=None,actual_missing=unknown.input_tokens,scope='Local arithmetic helper only, not full ledger reconciliation or WorkCycle integration.'))\n (O/'extra-probes.json').write_text(json.dumps(out,indent=2)+'\\n',encoding='utf-8');print(json.dumps(out,indent=2))\nasyncio.run(main())\n"
+    }
+  ],
+  "limits": [
+    "Protected-validation adapter executes one actual Ruff command with the exact production Ruff selector; not a real full protected gate. Actual stale cache consumer, task checks and feature commit execute. No retained historical bypass proven.",
+    "foreign_review_projection case is tampered check-report projection only, not integration semantic review.",
+    "Unicode probe exercises actual exact-population validator under real Checkout but no full production integration grant.",
+    "Normal worker retains one CodingCommands instance; fresh-adapter collision is a demonstrated host/Tool API case, not an observed native worker failure.",
+    "Initial missing single receipt was a fixture numbering error, not product evidence. A private execution-receipt filename collision was separated from retained stdout without rerunning or changing result semantics.",
+    "Local bare remote behavior does not establish GitHub PR/protection behavior. No real grants, models, scientific replay or canonical source mutation."
+  ]
+}

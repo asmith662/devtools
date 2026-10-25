@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "84a5d9b1-2bef-47e0-991c-77b4d8cdda49",
+  "created_at": "2026-10-25T18:22:11.031019+00:00",
+  "payload": {
+    "kind": "bug",
+    "parent": "B-0003",
+    "title": "Reserve fresh single-check receipt identity before execution",
+    "summary": "P2 maintained host/Tool adapter reliability. Two valid CodingCommands instances share a legitimate task evidence directory. A first single check writes coding-command-01.json; a fresh adapter dispatches run_check(tests) through ToolRunner, and the real test command completes successfully. Saving then raises FileExistsError at that same receipt name. The original receipt is preserved but the new operation has no retained result. Unlike the all-check bundle/change-report paths, single execute increments an in-memory counter without avoiding existing evidence. The normal native coding loop keeps one adapter, so this is not a demonstrated autonomous-worker failure or lost historical receipt.",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/validation-review-publication-audit.md"
+    },
+    "resources": [
+      "apps/qwen/commands.py",
+      "apps/qwen/change_checks.py",
+      "tests/apps/qwen/test_change_checks.py"
+    ],
+    "evidence": [
+      "docs/research/validation-review-publication-audit.md",
+      "docs/research/code-audit/validation-publication-probes.json",
+      "git:5b0bb0b769c2db8d698c86c0e669db820537eec1"
+    ],
+    "benefit": "Acceptance: actual CodingCommands.dispatch/ToolRunner with fresh sequential adapters and existing bundle/single receipts must reserve an unused evidence identity before external entry, preserve previous bytes, and retain the new actual result or refuse before execution. Cover run_check and git_inspect, valid same-adapter order, explicit capture failure and failed command results. Reuse the existing evidence owner/all-bundle name selection semantics where compatible, not a generic logger or new execution framework. Preserve task authorization and current no-redispatch behavior; full focused/static/protected100% validation for a subsequent repair.",
+    "uncertainty": "Independent bounded synthetic evidence; no claim of actual retained production corruption, autonomous effectiveness or permission bypass. Audit only: correction needs separate bounded implementation authorization.",
+    "dependencies": [
+      "B-0006"
+    ]
+  },
+  "payload_sha256": "4be187caa08dfb7cb4cd7d52886b2233e67a2b9b01d0a4a7f6c8858adeff79ca"
+}
