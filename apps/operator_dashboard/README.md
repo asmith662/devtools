@@ -35,6 +35,13 @@ per overview.
 
 ## Fresh views and evidence
 
+The proposal/response association is `MATCH` only when a recorded nonempty string
+proposal identity equals a present call identity. Missing, empty, noncomparable or
+different identities remain `NOT_ESTABLISHED`; two absent identities are never a
+positive join. The UI also uses this unresolved status for legacy detail records
+without a correlation field. It describes archived identity correspondence, not
+Tool admission, execution success, review or publication authority.
+
 UI opens and view changes fetch current data. Refresh rereads the selected source
 records; visible pages also poll once per 60 seconds. Last successful observation
 is shown with local time and its UTC source. Fetch errors retain previously loaded

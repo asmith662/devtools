@@ -251,7 +251,8 @@ export function RunDetail({ id, refresh }: { id: string; refresh: string }) {
                   usage: turn.stage.usage,
                   proposal_id: turn.stage.proposal_id,
                   proposal_admitted: turn.stage.proposal_valid,
-                  proposal_response_correlation: turn.proposal_correlation,
+                  proposal_response_correlation:
+                    turn.proposal_correlation ?? "NOT_ESTABLISHED",
                   source_before: turn.stage.source_before,
                   source_after: turn.stage.source_after,
                   settings: turn.settings,
@@ -259,6 +260,10 @@ export function RunDetail({ id, refresh }: { id: string; refresh: string }) {
                   recorded_response_source: turn.response_source,
                 }}
               />
+              <p>
+                Missing call identities leave the proposal association
+                unresolved.
+              </p>
               <details>
                 <summary>
                   Host Context acquisition ·{" "}

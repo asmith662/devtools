@@ -225,3 +225,46 @@ it.each(["propose_edit", "propose_edits"])(
     expect(node.querySelector("script")).toBeNull();
   },
 );
+
+it.each([
+  ["both absent", null, "NOT_ESTABLISHED"],
+  ["proposal absent", null, "NOT_ESTABLISHED"],
+  ["call absent", "id", "NOT_ESTABLISHED"],
+  ["unequal identities", "id", "NOT_ESTABLISHED"],
+  ["equal identities", "id", "MATCH"],
+  ["legacy status absent", null, undefined],
+])(
+  "displays unresolved or matching call identity: %s",
+  async (_name, proposal, correlation) => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          objective: { text: "Literal identity-correlation fixture" },
+          turns: [
+            {
+              number: 1,
+              stage: { disposition: "ARCHIVED", proposal_id: proposal },
+              tools: [],
+              validation: {},
+              proposal_correlation: correlation,
+            },
+          ],
+          limitations: [],
+          reference: { path: "literal-fixture" },
+        }),
+      }),
+    );
+    const node = await render(<RunDetail id="fixture" refresh="one" />);
+    const label = [...node.querySelectorAll("dt")].find(
+      (dt) => dt.textContent === "proposal response correlation",
+    );
+    expect(label?.parentElement?.textContent).toContain(
+      correlation ?? "NOT_ESTABLISHED",
+    );
+    expect(node.textContent).toContain(
+      "Missing call identities leave the proposal association unresolved.",
+    );
+  },
+);
