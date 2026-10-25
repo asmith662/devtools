@@ -1,5 +1,15 @@
 # Bounded local coding worker
 
+## Maintained worker acceptance integrity
+
+Prepared and native coding validation use the same journaled fixed-check bundle.
+The worker binds its immutable validation plan before baseline checks, preserves
+complete host diagnostics, checks input/source correspondence between checks and
+reauthenticates before final acceptance. Changed tests, read inputs, runners or
+configuration refuse acceptance; unexpected bytes remain for reconciliation.
+Known admitted source restoration is separate from immutable-input integrity.
+This is not an OS sandbox, task-completeness proof or publication authority.
+
 ## Map-to-source27: Codex capability, native investigation exhausted Context
 
 Caller-selected map orientation can now expand a represented symbol to its exact

@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+from dataclasses import replace
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
@@ -13,8 +14,9 @@ import pytest
 
 from apps.qwen import coding_loop as worker
 from apps.qwen.development_task import SOURCE, _hash
-from apps.qwen.tasks import MARKDOWN
+from apps.qwen.tasks import MARKDOWN, CodingTask
 from devtools.context import Repository
+from devtools.core.paths import resolve_path
 from devtools.models.interaction import (
     InteractionSource,
     ModelRequest,
@@ -22,14 +24,15 @@ from devtools.models.interaction import (
     ModelTermination,
     ModelToolCall,
 )
+from devtools.resources.commands import Command, CommandExecutor
 from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_execution
 
 ROOT = Path(__file__).resolve().parents[3]
 
 if TYPE_CHECKING:
     from collections.abc import Callable
+    from typing import Any
 
-    from apps.qwen.tasks import CodingTask
     from devtools.context.retrieval.source import SourceSearchMode
 
 
@@ -323,7 +326,14 @@ def test_primary_exception_captured_before_pytest_reporting_failure(
         "    monkeypatch.setattr(ast, 'parse', forbidden)\n"
         "    raise TypeError('primary code failure')\n"
     )
-    result = asyncio.run(worker.validate_workspace(workspace, folder))
+    # The diagnostic test is a newly host-authored input, not candidate drift.
+    task = replace(
+        MARKDOWN,
+        baseline_hashes=tuple(
+            (p, _hash(workspace / p)) for p, _ in MARKDOWN.baseline_hashes
+        ),
+    )
+    result = asyncio.run(worker.validate_workspace(workspace, folder, task=task))
     assert result["tests"]["failed"]
     feedback = worker._validation_feedback(result)
     primary = feedback["tests"]["primary_failures"][0]
@@ -331,3 +341,210 @@ def test_primary_exception_captured_before_pytest_reporting_failure(
     assert primary["exception"] == "TypeError"
     assert primary["message"] == "primary code failure"
     assert "secondary formatter failure" in result["tests"]["stderr"]
+
+
+_TINY_SOURCE = "src/devtools/sample.py"
+_TINY_TEST = "tests/test_sample.py"
+_TINY_OLD = "def value():\n    return 0\n"
+_TINY_GOOD = "def value():\n    return 1\n"
+_TINY_TEST_TEXT = (
+    "from devtools.sample import value\n"
+    "def test_integer():\n    assert isinstance(value(), int)\n"
+)
+
+
+async def _tiny_task(root: Path, *, native: bool = False) -> CodingTask:
+    """Create a tiny actual Git baseline, without copying the Devtools tree."""
+    root.mkdir()  # noqa: ASYNC240 -- tiny synchronous fixture setup, managed Git below
+    for path, text in {
+        _TINY_SOURCE: _TINY_OLD,
+        _TINY_TEST: _TINY_TEST_TEXT,
+        "src/devtools/__init__.py": "",
+        "src/devtools/read_input.py": "# Frozen task read input.\n",
+        ".gitignore": ".local/\n",
+    }.items():
+        target = root / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text, encoding="utf-8", newline="")
+    head = ""
+    for args in (
+        ("init", "--quiet"),
+        ("add", "--", "."),
+        (
+            "-c",
+            "user.name=Independent Test",
+            "-c",
+            "user.email=test@localhost",
+            "commit",
+            "--quiet",
+            "-m",
+            "Tiny authored worker baseline",
+        ),
+        ("rev-parse", "HEAD"),
+    ):
+        result = await CommandExecutor().execute(
+            Command("git").args(*args).cwd(resolve_path(root)),
+        )
+        assert not result.failed, result.stderr
+        head = result.stdout.decode().strip()
+    return CodingTask(
+        "tiny-worker",
+        "Return one; preserve frozen tests and read inputs.",
+        _TINY_SOURCE,
+        (_TINY_TEST,),
+        head,
+        tuple(
+            (p, _hash(root / p))
+            for p in (_TINY_SOURCE, _TINY_TEST, "src/devtools/read_input.py")
+        ),
+        tuple(
+            (p, "Frozen" if p.endswith("read_input.py") else "value", "file", "none")
+            for p in (_TINY_SOURCE, _TINY_TEST, "src/devtools/read_input.py")
+        ),
+        'assert module.value() == 1, "must return one"',
+        read_paths=("src/devtools/read_input.py",),
+        context_mode="on-demand" if native else "prepared",
+        path_edits=native,
+    )
+
+
+class _TinyScripted:
+    """Literal source proposals and real native read feedback, without inference."""
+
+    source = InteractionSource("tiny-selected")
+
+    def __init__(
+        self,
+        task: CodingTask,
+        changes: tuple[tuple[str, str], ...],
+        *,
+        foreign: bool = False,
+    ) -> None:
+        self.task, self.changes, self.foreign = task, changes, foreign
+        self.requests: list[ModelRequest] = []
+
+    async def send(self, request: ModelRequest) -> ModelResponse:
+        """Read before native proposals; preserve exact call identities."""
+        self.requests.append(request)
+        index = len(self.requests) - 1
+        native = self.task.context_mode == "on-demand"
+        if native and index == 0:
+            name, values = "inspect_source", {"path": _TINY_SOURCE, "start": 0}
+        else:
+            old, new = self.changes[index - int(native)]
+            name = "replace_source" if native else "propose_edit"
+            values = {"path": _TINY_SOURCE, "old_text": old, "new_text": new}
+        return ModelResponse(
+            "Literal independent proposal.",
+            InteractionSource("tiny-foreign") if self.foreign else self.source,
+            termination=ModelTermination.TOOL_CALL,
+            tool_calls=(ModelToolCall(name, json.dumps(values), f"tiny-{index}"),),
+        )
+
+
+@pytest.mark.parametrize("native", [False, True])
+def test_worker_refuses_candidate_that_changes_frozen_test(
+    tmp_path: Path,
+    *,
+    native: bool,
+) -> None:
+    """Real validation-time test writes invalidate acceptance in both modes."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root, native=native))
+    changed = "def test_replaced():\n    assert True\n"
+    candidate = (
+        "from pathlib import Path\n"
+        f"Path({str(root / _TINY_TEST)!r}).write_text({changed!r})\n" + _TINY_GOOD
+    )
+    model = _TinyScripted(task, ((_TINY_OLD, candidate),))
+    folder = root / ".local/run"
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            folder,
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert not result["accepted"], result
+    assert result["disposition"] == "VALIDATION_FAILED"
+    assert result["source_restored"]
+    assert not result["original_unchanged"]
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+    assert (root / _TINY_TEST).read_text() == changed
+    assert (folder / "final-source.py").read_text() == candidate
+    assert result["turns"][-1]["validation"]["tests"]["exit_code"] == 0
+    assert result["turns"][-1]["validation"]["oracle"]["exit_code"] is None
+
+
+@pytest.mark.parametrize("target", ["test", "read", "runner", "configuration"])
+def test_worker_refuses_drift_between_fixed_checks(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    target: str,
+) -> None:
+    """Host checking never rebinds its plan to a candidate-mutated input."""
+    from apps.qwen import commands  # noqa: PLC0415 -- exercise actual shared selector
+
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    folder = root / ".local/run"
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_GOOD),))
+    original = commands.run_check
+    calls: list[str] = []
+    changed = {
+        "test": root / _TINY_TEST,
+        "read": root / "src/devtools/read_input.py",
+        "runner": folder / "tests-runner.py",
+        "configuration": root / "pytest.ini",
+    }[target]
+
+    async def drift(
+        check_root: Path,
+        check_folder: Path,
+        check_task: CodingTask,
+        name: str,
+    ) -> dict[str, Any]:
+        calls.append(name)
+        result = await original(check_root, check_folder, check_task, name)
+        if len(calls) == 3:  # baseline tests/oracle, then candidate tests
+            changed.write_text("# unexpected validation drift\n", encoding="utf-8")
+        return result
+
+    monkeypatch.setattr(commands, "run_check", drift)
+    result = asyncio.run(worker.run_coding_task(root, folder, model, task=task))
+    assert not result["accepted"], result
+    assert result["disposition"] == "VALIDATION_FAILED"
+    assert calls == ["tests", "oracle", "tests"]
+    assert changed.read_text() == "# unexpected validation drift\n"
+    assert result["source_restored"]
+
+
+def test_worker_reauthenticates_before_final_acceptance(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Later immutable drift cannot leave an accepted=True terminal receipt."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    original = worker._turns
+
+    async def drift(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- preserve the complete worker signature in fault injection
+        await original(*args, **kwargs)
+        (root / _TINY_TEST).write_text("# after validation\n", encoding="utf-8")
+
+    monkeypatch.setattr(worker, "_turns", drift)
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            root / ".local/run",
+            _TinyScripted(task, ((_TINY_OLD, _TINY_GOOD),)),
+            task=task,
+        )
+    )
+    assert not result["accepted"]
+    assert not result["original_unchanged"]
+    assert result["disposition"] == "INPUT_INTEGRITY_FAILED"
+    assert result["source_restored"]

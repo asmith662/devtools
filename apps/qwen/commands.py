@@ -226,6 +226,15 @@ class CodingCommands:
         self._change_git: dict[str, Any] | None = None
         self._changes_lock = asyncio.Lock()
 
+    def inputs_current(self) -> bool:
+        """Recheck the same bound immutable plan, not publication authority."""
+        _, plan, errors = _bundle_state(self.root, self.folder, self.task)
+        return (
+            not errors
+            and plan == self._bound_plan
+            and plan["runners"] == plan["expected_runners"]
+        )
+
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Refuse unknown operations, paths and keys before execution."""
         name, values = arguments
@@ -305,7 +314,7 @@ class CodingCommands:
             "authority": "observation only; does not confer acceptance or publication",
         }
 
-    async def _check_bundle(self) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- five fixed checks, one evidence journal
+    async def _check_bundle(self, *, bounded: bool = True) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- five fixed checks, one evidence journal
         """Compose existing selectors; never certify review or publish source."""
         self.count += 1
         target = self.folder / f"coding-command-{self.count:02d}.json"
@@ -476,6 +485,8 @@ class CodingCommands:
             if errors or not source_unchanged or not plan_unchanged:
                 report["status"] = "BLOCKED"
             journal()
+        if not bounded:
+            return report
         # Raw command outputs remain in the journal; only this view is bounded.
         view = {**report, "diagnostics": [e[:1000] for e in errors[:8]], "checks": {}}
         view.pop("plan")
