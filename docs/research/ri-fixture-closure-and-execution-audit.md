@@ -1,5 +1,7 @@
 # RI fixture closure and first execution-lifecycle audit
 
+Delivered bounded worker repairs: [acceptance, budgets and response correspondence](../development/qwen-worker-contract-repair.md); production `18f6ac247bf5d1173e8b488910557207ccfaf92c`, normal PR#11, verified main `6c4267e8bd47d8ac897e01230fa843db74f34a81`. Three existing proposals41a497a8/660900a1/751451cb now have implemented-and-merged advisory evidence; do not repeat their bounded implementation. Broader check-input/cohesion work remains open. RI fixture93/93, historical188 and A+C-unapproved status are unchanged. Next is the already frozen Checkout/WorkCycle/delegation recovery audit; it was not launched. Earlier pending-repair notices are dated history.
+
 Audit baseline: integrated main `4d36ce586e106bfc7f89b1dd3c5931e73e1f5084`.
 Ordinary branch: `audit/ri-fixture-execution-20261024`. Local review date
 2026-10-24; some UTC receipts are dated 2026-10-25. This checkpoint changes
