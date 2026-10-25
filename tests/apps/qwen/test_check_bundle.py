@@ -272,6 +272,130 @@ def test_receipts_are_not_overwritten_by_new_tool_instance(
     assert (bundle.folder / first["evidence"]).read_bytes() == saved
 
 
+def test_single_real_checks_preserve_preexisting_and_successive_receipts(
+    bundle: commands.CodingCommands,
+) -> None:
+    """Actual managed tests get distinct evidence through fresh ToolRunner callers."""
+    original = bundle.folder / "coding-command-01.json"
+    original.write_bytes(b'{"original": "immutable"}\n')
+    saved = original.read_bytes()
+    paths = []
+    for _ in range(2):
+        tool = commands.CodingCommands(bundle.root, bundle.folder, bundle.task)
+        result = asyncio.run(
+            ToolRunner().execute(tool, ("run_check", {"check": "tests"}))
+        )
+        assert result["status"] == "PASS"
+        paths.append(result["evidence"])
+        receipt = json.loads((bundle.folder / result["evidence"]).read_text())
+        assert receipt["status"] == "COMPLETED"
+        assert receipt["result"]["exit_code"] == 0
+        assert receipt["source_sha256"] == result["source_sha256"]
+    assert paths == ["coding-command-02.json", "coding-command-03.json"]
+    assert original.read_bytes() == saved
+
+
+def test_competing_adapters_reserve_before_command_entry(
+    bundle: commands.CodingCommands, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Deterministic overlapping calls cannot select the same durable journal."""
+
+    async def run() -> None:
+        entered = 0
+        both = asyncio.Event()
+
+        async def check(*_args: object) -> dict[str, Any]:
+            nonlocal entered
+            entered += 1
+            if entered == 2:
+                both.set()
+            await asyncio.wait_for(both.wait(), 5)
+            journals = list(bundle.folder.glob("coding-command-*.json"))
+            assert len(journals) == 2
+            return _success("independent-side-effect")
+
+        monkeypatch.setattr(commands, "run_check", check)
+        first = commands.CodingCommands(bundle.root, bundle.folder, bundle.task)
+        second = commands.CodingCommands(bundle.root, bundle.folder, bundle.task)
+        results = await asyncio.gather(
+            *(
+                ToolRunner().execute(tool, ("run_check", {"check": "tests"}))
+                for tool in (first, second)
+            )
+        )
+        assert {r["evidence"] for r in results} == {
+            "coding-command-01.json",
+            "coding-command-02.json",
+        }
+        assert entered == 2
+        assert all(
+            json.loads((bundle.folder / r["evidence"]).read_text())["status"]
+            == "COMPLETED"
+            for r in results
+        )
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("failure", ["reservation", "intent", "completed"])
+def test_storage_failures_never_redispatch_or_overwrite(
+    bundle: commands.CodingCommands, monkeypatch: pytest.MonkeyPatch, failure: str
+) -> None:
+    """Fail before entry, or retain unknown effect evidence after failed persistence."""
+    entered = []
+    mkdir = Path.mkdir
+
+    def reserve(
+        path: Path, mode: int = 0o777, *, parents: bool = False, exist_ok: bool = False
+    ) -> None:
+        if path.suffix == ".reservation" and failure == "reservation":
+            message = "independent reservation failure"
+            raise PermissionError(message)
+        mkdir(path, mode, parents=parents, exist_ok=exist_ok)
+
+    def save(path: Path, value: object, *, overwrite: bool = False) -> None:
+        if (failure == "intent" and not overwrite) or (
+            failure == "completed" and overwrite
+        ):
+            message = "independent persistence failure"
+            raise OSError(message)
+        _save(path, value, overwrite=overwrite)
+
+    async def check(*_args: object) -> dict[str, Any]:
+        entered.append("actual deterministic executor entered")
+        return _success("fixed-check")
+
+    monkeypatch.setattr(Path, "mkdir", reserve)
+    monkeypatch.setattr(commands, "_save", save)
+    monkeypatch.setattr(commands, "run_check", check)
+    with pytest.raises(OSError, match="independent"):
+        asyncio.run(ToolRunner().execute(bundle, ("run_check", {"check": "tests"})))
+    assert len(entered) == (1 if failure == "completed" else 0)
+    if failure == "completed":
+        receipt = json.loads((bundle.folder / "coding-command-01.json").read_text())
+        assert receipt["status"] == "EXECUTION_INTENT"
+        assert "result" not in receipt
+    # Reserved names remain unavailable even without a completed result.
+    assert (bundle.folder / "coding-command-01.reservation").is_dir() is (
+        failure != "reservation"
+    )
+
+
+def test_single_source_drift_retains_completed_result_before_refusal(
+    bundle: commands.CodingCommands, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    async def mutate(*_args: object) -> dict[str, Any]:
+        (bundle.root / bundle.task.source).write_text("# unexpected executor bytes\n")
+        return _success("fixed-check")
+
+    monkeypatch.setattr(commands, "run_check", mutate)
+    with pytest.raises(ValueError, match="mutated source"):
+        asyncio.run(ToolRunner().execute(bundle, ("run_check", {"check": "tests"})))
+    receipt = json.loads((bundle.folder / "coding-command-01.json").read_text())
+    assert receipt["source_unchanged"] is False
+    assert receipt["result"]["exit_code"] == 0
+
+
 def test_optional_typing_and_quality_are_not_applicable_for_direct_host_check(
     bundle: commands.CodingCommands,
 ) -> None:

@@ -258,6 +258,25 @@ class CodingCommands:
             self, (call.name, json.loads(call.arguments_json))
         )
 
+    def reserve_evidence(self, prefix: str = "coding-command") -> Path:
+        """Reserve a never-reused journal name before command entry.
+
+        Atomic directory creation excludes cooperating processes and adapters.
+        Reservations survive interruption: absence of a result never licenses a
+        retry or reuse of the name. These are custody markers, not live locks.
+        """
+        while True:
+            self.count += 1
+            target = self.folder / f"{prefix}-{self.count:02d}.json"
+            reservation = target.with_suffix(".reservation")
+            try:
+                reservation.mkdir()
+            except FileExistsError:
+                continue
+            if target.exists() or target.is_symlink():
+                continue
+            return target
+
     async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
         """Archive full check output and return a bounded, version-bound view."""
         name, values = arguments
@@ -280,6 +299,14 @@ class CodingCommands:
             p: _hash(self.root / p) if (self.root / p).exists() else None
             for p in self.task.sources
         }
+        target = self.reserve_evidence()
+        record = {
+            "call": call_data(arguments),
+            "source_sha256": versions,
+            "status": "EXECUTION_INTENT",
+            "outcome": "unknown until result is durably recorded; do not retry",
+        }
+        _save(target, record)
         if name == "run_check":
             result = await run_check(self.root, self.folder, self.task, values["check"])
         else:
@@ -289,17 +316,23 @@ class CodingCommands:
                 "history": ("log", "-5", "--format=%H %s", "--", values["path"]),
             }[values["operation"]]
             result = await _timed_command(self.root, "git", *args)
-        if versions != {
+        source_unchanged = versions == {
             p: _hash(self.root / p) if (self.root / p).exists() else None
             for p in self.task.sources
-        }:
-            raise ValueError("Read/check operation unexpectedly mutated source")
-        self.count += 1
-        target = self.folder / f"coding-command-{self.count:02d}.json"
+        }
         _save(
             target,
-            {"call": call_data(arguments), "source_sha256": versions, "result": result},
+            {
+                **record,
+                "status": "COMPLETED",
+                "outcome": "recorded result; persistence does not authorize retry",
+                "source_unchanged": source_unchanged,
+                "result": result,
+            },
+            overwrite=True,
         )
+        if not source_unchanged:
+            raise ValueError("Read/check operation unexpectedly mutated source")
         return {
             "operation": name,
             "arguments": values,
@@ -316,12 +349,7 @@ class CodingCommands:
 
     async def _check_bundle(self, *, bounded: bool = True) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- five fixed checks, one evidence journal
         """Compose existing selectors; never certify review or publish source."""
-        self.count += 1
-        target = self.folder / f"coding-command-{self.count:02d}.json"
-        # Preserve existing immutable receipts even across fresh Tool instances.
-        while target.exists():
-            self.count += 1
-            target = self.folder / f"coding-command-{self.count:02d}.json"
+        target = self.reserve_evidence()
         evidence = target.relative_to(self.folder).as_posix()
         sources, plan, errors = _bundle_state(self.root, self.folder, self.task)
         source_unchanged = True
