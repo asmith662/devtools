@@ -1,5 +1,7 @@
 # Evidence, usage custody and operator audit — 2026-10-25
 
+Delivered follow-through: [provider-local usage, partial/conflicting facts and operator identity integrity](../development/usage-evidence-integrity-repair.md), production `8f34dbdee381cf4493dd1f5e2a5508653dfe2891`, PR#20, verified main `3e59c20f4c9276a7f28682a127ff95428e673564`. Final committed gate 2937 passed/2 opt-in live skips/100% configured production branch coverage;350 focused post-main tests and13 frontend tests pass. Existing bbba08b8/ca5a0aac/a823db65 retain implemented-and-merged evidence; do not schedule these repairs again. Broader B-0011/B-0023/B-0034 consumers and d586 closure remain open. All12 Core/Resources pinned bodies match main and remain unaudited: that is the next major domain. RI93/93,606/606,188 historical obligations and A+C-unapproved status are unchanged. Earlier notices below retain their dated meaning.
+
 Reviewed integrated main `138adc07fa758032743cf5d79ff4b2fe0bb790cc`. All **twelve** frozen source/test bodies received
 substantive review; [exact blobs and review depths](code-audit/evidence-usage-assurance.json)
 separate complete bodies from selected dependencies. **Three P2 accounting/operator
