@@ -1,0 +1,37 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "751451cb-8998-4778-bc89-43609323c7ea",
+  "proposal_sha256": "3cedb3bca27bb7cd9a15f7b558fd75ad7d55eb610a5022cbf1934947f2b8fe3c",
+  "previous": null,
+  "at": "2026-10-25T03:36:43.541515+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/qwen-worker-contract-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Selected response provenance. The selected interaction source is captured before invocation. Original response, usage and call IDs are retained, then source equality is enforced before any Tool/proposal admission. Foreign responses terminate RESPONSE_VALIDATION_FAILED with zero Tool dispatches/proposals and no redispatch; valid prepared/native controls remain accepted. Existing Runtime private validation remains unchanged; no new Conversation/Agent/public model identity hierarchy. Production commits c3f63c419cfedfc4aae9e2d9c4eba469db3162de, 2da5f714e273f01bef1addc0a540803cb78a6b84, 06361e355409e7a1943c9956abc2956e58558c25, 18f6ac247bf5d1173e8b488910557207ccfaf92c; normal GitHub PR#11; verified main 6c4267e8bd47d8ac897e01230fa843db74f34a81. Committed-tree protected gate 2867 passed/2 live skips,100% production branch coverage; supported Ruff/format/strict mypy and focused/post-main regressions pass. Source/test/configuration inputs unchanged throughout gate and post-main checks. Original independent nine-case probe reproduced all three behaviors before source edits. Permanent regressions against exact baseline Git-object module bodies yield three intended assertion failures and one Runtime control pass without import/collection failures. Delivered acceptance scope should not be scheduled again. Broader d58697fd check-input/reuse and39c6663a application cohesion remain open; A+C remains unapproved.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing UUID retained. Intake has no delivered/closed proposal enum; this advisory records actual delivery without approval, B-number, grant, duplicate implementation obligation or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "9b11d76f5db8e3f8767013d14762ddace5b15474f29653059f1cc1252b0b8872"
+}

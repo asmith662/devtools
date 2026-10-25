@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+  "proposal_sha256": "25d283732754a8bc30a5b9ed4a109df1a95e8530872d7837bd20100fd4ad0cf9",
+  "previous": null,
+  "at": "2026-10-25T03:36:40.995716+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/qwen-worker-contract-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Frozen validation input acceptance. The worker binds CodingCommands before baseline checking and reuses its complete fixed-check journal with raw host diagnostics. Per-check authentication preserves required tests/read inputs, runners, configuration and source correspondence; blocked or incomplete checks cannot establish acceptance. A final immutable-plan/original_unchanged guard rejects late drift while retaining actual unexpected bytes. Valid prepared/native controls, actual candidate test mutation, between-check test/read/runner/config drift and post-validation drift are independently tested. Source restoration is scoped and truthful; no OS sandbox or general rollback claim. Production commits c3f63c419cfedfc4aae9e2d9c4eba469db3162de, 2da5f714e273f01bef1addc0a540803cb78a6b84, 06361e355409e7a1943c9956abc2956e58558c25, 18f6ac247bf5d1173e8b488910557207ccfaf92c; normal GitHub PR#11; verified main 6c4267e8bd47d8ac897e01230fa843db74f34a81. Committed-tree protected gate 2867 passed/2 live skips,100% production branch coverage; supported Ruff/format/strict mypy and focused/post-main regressions pass. Source/test/configuration inputs unchanged throughout gate and post-main checks. Original independent nine-case probe reproduced all three behaviors before source edits. Permanent regressions against exact baseline Git-object module bodies yield three intended assertion failures and one Runtime control pass without import/collection failures. Delivered acceptance scope should not be scheduled again. Broader d58697fd check-input/reuse and39c6663a application cohesion remain open; A+C remains unapproved.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing UUID retained. Intake has no delivered/closed proposal enum; this advisory records actual delivery without approval, B-number, grant, duplicate implementation obligation or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "826daaa99f03720e66e59191854567a0f55789b014503ce788ea1c3feb3dbf9d"
+}
