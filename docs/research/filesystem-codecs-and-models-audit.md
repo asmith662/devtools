@@ -1,5 +1,7 @@
 # Filesystem codecs and structured models audit
 
+Delivered follow-through: [CSV strings, compatible JSON member lookup and Python3.12 structured initialization](../development/filesystem-contract-repair.md), production `39c583ba2b252b44b998b8fbf6e8ef6ecf163294`, normal PR#29, verified main `2b20f6119b5cbcdda2fcc78c276178fbcde780ee`. Final committed gate3077 passed/2 opt-in live skips/100% configured production branch coverage;275 focused tests/15 subtests and246 consumer tests pass;8 maintained stdlib tests plus12 original compatibility cases pass on each3.12.13/3.14.3 interpreter. [Exact receipt](code-audit/filesystem-contract-repair-20261026.json). CSV67f7d086 and JSON1671955c have append-only implemented-and-merged evidence; do not repeat their scope. B-0048 constructors are delivered; broader runtime matrix remains open. AuditPR#28 is integrated. Next major audit is ModelInteraction/serving; no new cohort begun. RI93/93,606/606,188 historical obligations and A+C-unapproved unchanged. Earlier notices are dated history. `repair:filesystem-contracts:39c583ba:20261026`.
+
 ## Baseline and authority
 
 Reviewed integrated main `26bd8053ab8ad8323dd3273b4b0e986de05388e9` in the

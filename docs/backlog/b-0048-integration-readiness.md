@@ -1,5 +1,7 @@
 # B-0048 object-slice integration readiness
 
+Delivered current constructor scope: [repair report](../development/filesystem-contract-repair.md), production `39c583ba2b252b44b998b8fbf6e8ef6ecf163294`, normal PR#29, verified main `2b20f6119b5cbcdda2fcc78c276178fbcde780ee`. Object/list/CSV initialization and actual codec/read/Tool cases pass on3.12.13 and3.14.3. Do not schedule the old object-only integration plan or these three constructor repairs again. Broader runtime/dependency matrix remains open; original readiness/grant paragraphs below retain their historical target/interface meaning. `repair:filesystem-contracts:39c583ba:20261026`.
+
 > Single-checkout continuation: WorkCycle and integration use the canonical
 > checkout and ordinary branches under exclusive source ownership. Historical
 > secondary-checkout assignments, grants and plans remain inspection-only; they

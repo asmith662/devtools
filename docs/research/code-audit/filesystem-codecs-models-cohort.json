@@ -539,5 +539,49 @@
     ],
     "new_complete_bodies_or_surfaces": 41,
     "prior_identical_reuse": 2
-  }
+  },
+  "maintenance_overlays": [
+    {
+      "reference": "repair:filesystem-contracts:39c583ba:20261026",
+      "production": "39c583ba2b252b44b998b8fbf6e8ef6ecf163294",
+      "accepted_main": "2b20f6119b5cbcdda2fcc78c276178fbcde780ee",
+      "pr": 29,
+      "report": "docs/development/filesystem-contract-repair.md",
+      "receipt": "docs/research/code-audit/filesystem-contract-repair-20261026.json",
+      "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+      "changed_reviewed_paths": [
+        {
+          "path": "src/devtools/resources/filesystem/codecs/csv.py",
+          "original_review_blob": "b383442f462767003fbcd28dfdf3c08d64cb6ba9",
+          "current_blob": "588b628ae6fe0b754dac08b99f9c5681d3882007"
+        },
+        {
+          "path": "src/devtools/resources/filesystem/models/csv.py",
+          "original_review_blob": "e977dae655d615bc572fe23ffe6caf0a21bbb98b",
+          "current_blob": "9923c57baca768a3857b97b3e87691d6d86792bb"
+        },
+        {
+          "path": "src/devtools/resources/filesystem/models/json/list.py",
+          "original_review_blob": "771d64d06ed3b072265d7a20c80ff6d0c6f3c5e5",
+          "current_blob": "cf7f48e178a3b471d3782045350e0bf6c999097b"
+        },
+        {
+          "path": "src/devtools/resources/filesystem/models/json/object.py",
+          "original_review_blob": "7d1baf9f394d5f08837622353cf6e2f359aeb352",
+          "current_blob": "db841ef8b7511fc0fb77541c76d41c95fa451db0"
+        },
+        {
+          "path": "tests/resources/filesystem/codecs/test_csv.py",
+          "original_review_blob": "ccccbec7df2366c59330d6839bd08f63c577686b",
+          "current_blob": "3a9729b873c85b5acf83e12b8e71eb7fbab8aa59"
+        },
+        {
+          "path": "tests/resources/filesystem/test_json_models.py",
+          "original_review_blob": "07707c48786d3e4f4a6e48ddd6a9cad1d81cfbed",
+          "current_blob": "3f7084125e2dc983d89f04599a5ebd3a8da07cb5"
+        }
+      ],
+      "new_maintained_regression": "tests/resources/filesystem/test_structured_compatibility.py"
+    }
+  ]
 }

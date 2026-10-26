@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+  "proposal_sha256": "8271d0df7e05f4060723cffbcea25f747ae6158889c415c53d3ad22a414d8dd4",
+  "previous": null,
+  "at": "2026-10-26T18:12:03.224641+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:filesystem-contracts:39c583ba:20261026:1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+  "rationale": "IMPLEMENTED_AND_MERGED: JsonListFile.find_by requires key presence and freezes the compatible query once before traversal. Explicit null, first mapping, scalar match/miss, list/tuple/nested mapping values, nonmapping rows, frozen state/provenance and actual ToolRunner rich-file results are protected. Separate implementation commits are retained in 39c583ba2b252b44b998b8fbf6e8ef6ecf163294; ordinary PR#29, independently accepted main 2b20f6119b5cbcdda2fcc78c276178fbcde780ee, tree 8ada637caae056fdf696ba4d76e6c9caacd88a39. Audit PR#28 was normally merged first at 0ca4d9b908ba257e93b381c6de1bb6eef850af64. Before production modification,25 intended CSV/JSON/Tool regressions failed and8 controls passed; the valid baseline had no import/collection error. Native3.12 permanent tests exposed the existing constructor boundary; fixture setup errors were corrected and not counted as product defects. Final committed protected gate3077 passed/2 opt-in live skips/100% configured production branch coverage;275 focused tests/15 subtests,246 representative Qwen/Context/Runtime consumers,8 permanent stdlib tests and12 original compatibility probes per interpreter pass on3.12.13 and3.14.3. Supported Ruff/format and configured strict mypy pass. 811 recorded tracked source/test/app/script/package-doc/config physical inputs remain identical through accepted main and post-main checks. This is not complete transitive environment closure or a complete3.12 suite. All13 forensics and historical RI ledgers remain intact. No duplicate proposal, approval, B-number, grant, parent closure, live model or scientific replay. Existing administrative PENDING_REVIEW does not schedule this delivered implementation again. See docs/development/filesystem-contract-repair.md and docs/research/code-audit/filesystem-contract-repair-20261026.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Delivered bounded scope under the existing owner; preserve original audit/scientific history. B0048 compatibility matrix and broader lifecycle/Evidence questions remain separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "e4b2061590f6a9e044ccae77fb00026fd6f092980f23d6f4288a7a0cc99a5fb1"
+}

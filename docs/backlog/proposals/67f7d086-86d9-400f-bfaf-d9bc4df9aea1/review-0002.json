@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+  "proposal_sha256": "6eabd3b51f8e03ad3b86951fe6d0f3477e838bbac110aeaeba81a79fa5ef78e5",
+  "previous": "74b63d2473acdb44a89ab326365da13ea617a70b98d9ef7b6e6681063af843f5",
+  "at": "2026-10-26T18:12:02.766059+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:filesystem-contracts:39c583ba:20261026:67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+  "rationale": "IMPLEMENTED_AND_MERGED: CSV NONNUMERIC input uses stdlib minimal quoting without numeric coercion; writer remains NONNUMERIC. Literal001/1.50/1e2/-0, numeric-looking headers, custom delimiter/escape/CRLF, parse/decode, malformed rows/duplicate headers and exact writer controls are protected. Separate implementation commits are retained in 39c583ba2b252b44b998b8fbf6e8ef6ecf163294; ordinary PR#29, independently accepted main 2b20f6119b5cbcdda2fcc78c276178fbcde780ee, tree 8ada637caae056fdf696ba4d76e6c9caacd88a39. Audit PR#28 was normally merged first at 0ca4d9b908ba257e93b381c6de1bb6eef850af64. Before production modification,25 intended CSV/JSON/Tool regressions failed and8 controls passed; the valid baseline had no import/collection error. Native3.12 permanent tests exposed the existing constructor boundary; fixture setup errors were corrected and not counted as product defects. Final committed protected gate3077 passed/2 opt-in live skips/100% configured production branch coverage;275 focused tests/15 subtests,246 representative Qwen/Context/Runtime consumers,8 permanent stdlib tests and12 original compatibility probes per interpreter pass on3.12.13 and3.14.3. Supported Ruff/format and configured strict mypy pass. 811 recorded tracked source/test/app/script/package-doc/config physical inputs remain identical through accepted main and post-main checks. This is not complete transitive environment closure or a complete3.12 suite. All13 forensics and historical RI ledgers remain intact. No duplicate proposal, approval, B-number, grant, parent closure, live model or scientific replay. Existing administrative PENDING_REVIEW does not schedule this delivered implementation again. See docs/development/filesystem-contract-repair.md and docs/research/code-audit/filesystem-contract-repair-20261026.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Delivered bounded scope under the existing owner; preserve original audit/scientific history. B0048 compatibility matrix and broader lifecycle/Evidence questions remain separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "2b5e2a233a5a7e913fa2e2ff80f543b83bed5fba6a7dc2d03268886cdee4bb6a"
+}
