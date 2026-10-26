@@ -542,5 +542,46 @@
     ],
     "matching_prior_full_body_revalidated": 1,
     "remaining_selected_paths": []
-  }
+  },
+  "maintenance_overlays": [
+    {
+      "reference": "repair:codex-input-metadata:c39c1f0f:20261026",
+      "production": "c39c1f0f61350ca57795dc06c8b97730918a0d99",
+      "accepted": "4189fffd79eaaa64debfc7b601bb729de92002de",
+      "pr": 35,
+      "changed_reviewed_versions": [
+        {
+          "path": "src/devtools/agents/integrations/codex/agent.py",
+          "original_blob": "00c6be32ee3da256c18243b32355b85ac4076daa",
+          "corrected_blob": "bd86c538683767d550bb19387a828945088588b2",
+          "depth": "FULL_CHANGED_OWNER_BODY_AND_PUBLIC_REGRESSIONS",
+          "production": "c39c1f0f61350ca57795dc06c8b97730918a0d99"
+        },
+        {
+          "path": "src/devtools/agents/integrations/codex/sessions.py",
+          "original_blob": "4abad39304d87075d87dbee735f0723eb4f6edcf",
+          "corrected_blob": "cdecfa28e6398dd68d50c0111c366db674af1d40",
+          "depth": "FULL_CHANGED_OWNER_BODY_AND_PUBLIC_REGRESSIONS",
+          "production": "c39c1f0f61350ca57795dc06c8b97730918a0d99"
+        },
+        {
+          "path": "tests/agents/integrations/codex/test_agent.py",
+          "original_blob": "715604e58dfdcfc5b87f88c8c84ed5265d832242",
+          "corrected_blob": "27b8b17bedc6c0dea808705ce649d642ee578a05",
+          "depth": "FULL_CHANGED_TEST_FIXTURE_ASSERTION_BODY",
+          "production": "c39c1f0f61350ca57795dc06c8b97730918a0d99"
+        },
+        {
+          "path": "tests/observability/usage/test_sources.py",
+          "original_blob": "60a66d44ba37db9a70a0d361bdad19e738872c00",
+          "corrected_blob": "b511666f022223feef877745564577b2c139fe99",
+          "depth": "FULL_CHANGED_TEST_FIXTURE_ASSERTION_BODY",
+          "production": "c39c1f0f61350ca57795dc06c8b97730918a0d99"
+        }
+      ],
+      "original_fields_unchanged": true,
+      "report": "docs/development/codex-input-and-metadata-repair.md",
+      "receipt": "docs/research/code-audit/codex-input-metadata-repair-20261026.json"
+    }
+  ]
 }
