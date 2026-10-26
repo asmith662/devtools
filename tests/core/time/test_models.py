@@ -5,10 +5,24 @@ from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
 from datetime import UTC, datetime, timedelta, timezone
+from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
 from devtools.core.time import Duration, Timestamp
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+
+_DURATION_FACTORIES = (
+    Duration.nanoseconds,
+    Duration.seconds,
+    Duration.milliseconds,
+    Duration.minutes,
+    Duration.hours,
+)
 
 
 def test_timestamp_normalizes_aware_values_to_utc_and_is_immutable() -> None:
@@ -126,3 +140,117 @@ def test_duration_arithmetic_and_invalid_operands() -> None:
 def test_duration_nanoseconds_uses_timedelta_bounded_precision() -> None:
     """Sub-microsecond values follow timedelta's available precision."""
     assert Duration.nanoseconds(1).value == timedelta()
+
+
+@pytest.mark.parametrize(
+    ("factory", "value"),
+    [
+        (Duration.nanoseconds, -1),
+        (Duration.nanoseconds, -499),
+        (Duration.seconds, -1e-12),
+        (Duration.milliseconds, -1e-9),
+        (Duration.minutes, -1e-12),
+        (Duration.hours, -1e-14),
+    ],
+)
+def test_duration_factories_reject_negative_inputs_before_rounding(
+    factory: Callable[..., Duration],
+    value: float,
+) -> None:
+    """Negative source values must not become admitted zero durations."""
+    with pytest.raises(ValueError, match="Duration cannot be negative"):
+        factory(value)
+
+
+@pytest.mark.parametrize("factory", _DURATION_FACTORIES)
+def test_duration_factories_reject_ordinary_negative_inputs(
+    factory: Callable[..., Duration],
+) -> None:
+    """Every factory retains ordinary finite negative-input refusal."""
+    with pytest.raises(ValueError, match="Duration cannot be negative"):
+        factory(-1_000)
+
+
+@pytest.mark.parametrize("factory", _DURATION_FACTORIES)
+@pytest.mark.parametrize("value", [0, -0.0])
+def test_duration_factories_preserve_zero_inputs(
+    factory: Callable[..., Duration],
+    value: float,
+) -> None:
+    """Zero and negative floating zero retain their exact represented value."""
+    assert factory(value).value == timedelta()
+
+
+@pytest.mark.parametrize(
+    ("factory", "value", "expected"),
+    [
+        (Duration.nanoseconds, 1, timedelta()),
+        (Duration.nanoseconds, 499, timedelta()),
+        (Duration.nanoseconds, 500, timedelta()),
+        (Duration.nanoseconds, 501, timedelta(microseconds=1)),
+        (Duration.nanoseconds, 1_500, timedelta(microseconds=2)),
+        (Duration.nanoseconds, 2_500, timedelta(microseconds=2)),
+        (Duration.seconds, 1e-12, timedelta()),
+        (Duration.milliseconds, 1e-9, timedelta()),
+        (Duration.minutes, 1e-12, timedelta()),
+        (Duration.hours, 1e-14, timedelta()),
+    ],
+)
+def test_duration_factories_preserve_literal_positive_rounding(
+    factory: Callable[..., Duration],
+    value: float,
+    expected: timedelta,
+) -> None:
+    """Positive precision remains microsecond-bounded with half-even ties."""
+    assert factory(value).value == expected
+
+
+@pytest.mark.parametrize("factory", _DURATION_FACTORIES)
+@pytest.mark.parametrize(
+    ("value", "error"),
+    [
+        (float("nan"), ValueError),
+        (float("inf"), OverflowError),
+        (-float("inf"), OverflowError),
+    ],
+)
+def test_duration_factories_preserve_nonfinite_conversion_errors(
+    factory: Callable[..., Duration],
+    value: float,
+    error: type[Exception],
+) -> None:
+    """Nonfinite runtime inputs retain the existing conversion exception classes."""
+    with pytest.raises(error):
+        factory(value)
+
+
+@pytest.mark.parametrize("factory", _DURATION_FACTORIES)
+@pytest.mark.parametrize("value", ["1", None, object(), Decimal("-0.1")])
+def test_duration_factories_preserve_unsupported_input_errors(
+    factory: Callable[..., Duration],
+    value: object,
+) -> None:
+    """Sign admission must not replace unsupported-value errors with ValueError."""
+    with pytest.raises(TypeError):
+        factory(value)
+
+
+@pytest.mark.parametrize("factory", _DURATION_FACTORIES)
+def test_duration_factories_preserve_range_overflow(
+    factory: Callable[..., Duration],
+) -> None:
+    """An out-of-range nonnegative integer retains native overflow refusal."""
+    with pytest.raises(OverflowError):
+        factory(10**1000)
+
+
+def test_duration_arithmetic_preserves_represented_result_policy() -> None:
+    """Factory admission does not change arithmetic's rounded-result semantics."""
+    tiny = Duration(timedelta(microseconds=1))
+    zero = Duration(timedelta())
+
+    assert (tiny * -0.1).value == timedelta()
+    assert (-0.1 * tiny).value == timedelta()
+    assert (tiny / -10).value == timedelta()
+    assert (zero * -1).value == timedelta()
+    assert (tiny * 2).value == timedelta(microseconds=2)
