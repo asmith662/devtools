@@ -40,8 +40,9 @@ stat -> pre-read check -> bounded stream read -> post-read check -> decode
 
 `max_bytes=None` still permits complete unbounded content. Permission failures
 at open/read retain domain normalization. The Qwen-authored bounded reader and
-independent stream/Repository-observation regressions are published on the
-feature branch in `61637ff8`; protected-main adoption remains separate.
+independent stream/Repository-observation regressions, originally feature-published
+in `61637ff8`, are integrated on main. The original engineering evidence retains
+its historical execution and acceptance qualifications.
 
 ## Writing
 
@@ -53,7 +54,14 @@ The model's `format`, not the target suffix, selects its codec. `BinaryFile`
 uses `BinaryCodec` and the same overwrite/atomic-replacement policy. Explicit model
 and codec matching prevents JSON, Markdown, and CSV TextFile subclasses from
 being encoded by TextCodec. Missing parent directories are not created.
-`overwrite=False` raises built-in `FileExistsError` when the destination exists.
+`overwrite=False` raises built-in `FileExistsError` when a destination directory
+entry exists, including a dangling symbolic link. Inspection uses `lstat`, so
+refusal preserves the original link independently of referent existence. Permission
+failures normalize to `FilesystemPermissionError`; other inspection errors
+propagate rather than being interpreted as safe absence. A genuinely missing
+entry remains writable. `overwrite=True` retains atomic replacement semantics.
+This admission check is not atomic concurrent create-if-absent: external writers
+can still race it, and higher-level ownership remains necessary.
 
 The normal write lifecycle is:
 
