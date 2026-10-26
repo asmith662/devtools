@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "8c79f8ca-20c0-434d-90f8-9418f0767e57",
+  "created_at": "2026-10-26T19:57:41.724189+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Normalize malformed UTF8 model HTTP responses without losing HTTP status",
+    "summary": "P2: public LlamaCppInteraction.send with correctly framed body byte ff leaks UnicodeDecodeError both for HTTP200 and500. Expected typed LlamaCppResponseError for successful-status malformed body and LlamaCppHttpError retaining500 for error response. Current _post_json/_error_detail decode outside appropriate normalization. One invocation, finally closes connection, no observation or retry. Preserve primary HTTP status, causal decoding detail and existing valid/chunked/error controls; add real maintained-caller deterministic wire regressions. Baseline a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1. Acceptance: 200 invalid UTF8 yields ResponseError;500 invalid UTF8 yields HttpError withstatus500; valid UTF8/JSON unchanged; exactly one request and closed writer; no retry or fabricated observation.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:model-interaction-serving:a7a49cc1:20261026:NEW_UTF8_ERROR_NORMALIZATION"
+    },
+    "parent": "B-0046",
+    "resources": [
+      "src/devtools/models/interaction/providers/llama_cpp.py",
+      "tests/models/interaction/providers/test_llama_cpp.py"
+    ],
+    "evidence": [
+      "docs/research/model-interaction-and-serving-audit.md",
+      "docs/research/code-audit/model-interaction-serving-probes.json"
+    ],
+    "benefit": "Make the existing supported boundary conservative and reliable without inventing new lifecycle or authority.",
+    "uncertainty": "Deterministic maintained-call probes, not live model/GPU/Docker proof. Production correction is not authorized by this audit; preserve ownership and public compatibility.",
+    "dependencies": [
+      "Existing ADR-0001 ModelInteraction/Serving ownership and current public error/JSON/config contracts; no new architectural approval implied."
+    ]
+  },
+  "payload_sha256": "5c7c925eb55a5094b8aaeb399964ad9ba818abf5cd668687665e68a557be6f0b"
+}

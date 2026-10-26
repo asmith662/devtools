@@ -1,0 +1,1261 @@
+{
+  "at": "2026-10-26T19:57:49.370501+00:00",
+  "baseline": "a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1",
+  "tree": "922681231aa238a9ad6927dc2bf3562db4641d39",
+  "branch": "audit/model-interaction-serving-20261026",
+  "reviewed": [
+    {
+      "path": "src/devtools/models/interaction/__init__.py",
+      "blob": "ca471454226fdc5c66849e541a91132841460d73",
+      "lines": 44,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit supported public imports and __all__; dependency/export compatibility",
+      "finding": "Exports correspond to actual owners. ModelInteraction does not import ToolRunner/observability/Serving; Serving stays separate. No dynamic provider registry.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/models.py",
+      "blob": "f44938a918053b54a035bfec3beca916aec776c3",
+      "lines": 137,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Immutable settings, provider extension discriminator and request composition",
+      "finding": "Strict optional positive integer and bool controls; duplicate Tool names refused; typed continuation/settings validated. Supplied portable controls must honor/reject, not disappear. Not an authority or universal provider schema.",
+      "functions_inspected": [
+        "validate_maximum_output_tokens",
+        "validate_thinking_enabled",
+        "__post_init__",
+        "__post_init__",
+        "__post_init__",
+        "__str__",
+        "__post_init__",
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/observation.py",
+      "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+      "lines": 70,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Interaction occurrence ID, ordered timestamps, normalized response and optional provider identity",
+      "finding": "Completed-success-only observation; backwards wall interval refuses before callback. No failure/entry journal; existing ADR/B0011/B0046 limitation. Not an instruction to clamp time or retry.",
+      "functions_inspected": [
+        "new",
+        "parse",
+        "__str__",
+        "__post_init__",
+        "interaction_completed"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/prompt.py",
+      "blob": "b95d60c773eb5bdd69665573ee608038de1c7604",
+      "lines": 97,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Legacy prompt plus structured messages, Tool results, reasoning and request conversion",
+      "finding": "Assistant/tool shape, IDs and pending-call order validated; reuse after completed groups intentional. Canonical prompt does not own Conversation or Agent execution. Annotated role/content values are trusted typed inputs, not generalized untrusted parsing.",
+      "functions_inspected": [
+        "__post_init__",
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/protocols.py",
+      "blob": "ca34b76bf61cb2bc5ee49190e12d3eab3bc18839",
+      "lines": 27,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "One selected source and async send(ModelRequest) protocol",
+      "finding": "Runtime-checkable capability, no executor or serving startup/authority dependency. Source equality belongs to caller boundaries as demonstrated by Runtime/Qwen.",
+      "functions_inspected": [
+        "source",
+        "send"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/__init__.py",
+      "blob": "a576fdab8479aa35bd28ebfb16e388cc1a768bcf",
+      "lines": 22,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit supported public imports and __all__; dependency/export compatibility",
+      "finding": "Exports correspond to actual owners. ModelInteraction does not import ToolRunner/observability/Serving; Serving stays separate. No dynamic provider registry.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+      "lines": 616,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Request projection, one HTTP invocation, count_tokens, response/reasoning/termination/usage/calls and observation",
+      "finding": "NEW UTF8 P2: decoding ff leaks UnicodeDecodeError for200 and500. Transport errors preserve cause but do not distinguish pre/post write. Writer finally closes on error/cancel. No retry/whole-request timeout/body cap. Three-field usage intentionally scoped; repeated choice checks are local redundancy.",
+      "functions_inspected": [
+        "_parse_endpoint",
+        "_provider_role",
+        "_provider_messages",
+        "_post_chat_completion",
+        "_post_json",
+        "_read_http_response",
+        "_parse_http_headers",
+        "_read_content_length_body",
+        "_read_chunked_body",
+        "_consume_chunk_trailers",
+        "_read_http_line",
+        "_error_detail",
+        "_optional_provider_text",
+        "_provider_tool_definition",
+        "_model_tool_calls",
+        "_model_tool_call",
+        "_first_choice",
+        "_final_assistant_content",
+        "_model_usage",
+        "_model_termination",
+        "_model_reasoning_content",
+        "_usage_token_count",
+        "__init__",
+        "source",
+        "send",
+        "_request_payload",
+        "count_input_tokens"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+      "blob": "fd43565f0433e01852e678262c9c6cd53651b843",
+      "lines": 29,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Local typed request, transport, response and HTTP exceptions",
+      "finding": "HTTP status/detail and transport causes are real evidence; exceptions are not nonentry certificates and do not carry full response/usage/occurrence after local observation failure.",
+      "functions_inspected": [
+        "__init__",
+        "__init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+      "blob": "360c12847334b36df4a1de2077c7ba22af6f8451",
+      "lines": 47,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Explicit typed llama.cpp sampling/template controls",
+      "finding": "Provider-local documented subset: reasoning_effort, temperature, top_p, top_k, min_p and presence_penalty, finite/range/type checks and deterministic projection. No arbitrary options bag or claim of complete backend surface.",
+      "functions_inspected": [
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/response.py",
+      "blob": "bfa1ab38d69cfb470847ba28bf61636fe9ba2555",
+      "lines": 33,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Normalized response and provider-owned continuation",
+      "finding": "Continuation source correspondence and immutable Tool-call tuple protected. Other typed normalized values trust provider contract; ModelResponse is not AgentResult, task completion or Evidence.",
+      "functions_inspected": [
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/termination.py",
+      "blob": "994c5d4c6c2ef3cfab4b01cc74251ed76276fc08",
+      "lines": 12,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Model-neutral stop/output-limit/native-Tool/unknown reasons",
+      "finding": "Unknown remains unknown; provider stop projection does not imply task success or permission to execute calls.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/tools.py",
+      "blob": "42ad0034186a96d620f1b9ddfa5335e599e1f181",
+      "lines": 74,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Immutable Tool definition schema and raw requested call object",
+      "finding": "NEW Tool JSON P2: permissive json accepts NaN/Infinity; schema can emit invalid wire JSON. Syntactic object promise, not full metaschema validation. Preserve legitimate raw arguments and large JSON numeric grammar; no authority or executable Tool dependency.",
+      "functions_inspected": [
+        "_canonical_schema",
+        "__post_init__",
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/interaction/usage.py",
+      "blob": "27ce591f067a4f19e74516c742b12c4de44e5f94",
+      "lines": 35,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Six optional nonnegative strict integer usage fields",
+      "finding": "Unknown remains None; bool/negative refused. Reported total not derived or silently reconciled against prompt/completion. Pinned llama adapter deliberately promotes only three fields.",
+      "functions_inspected": [
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/__init__.py",
+      "blob": "2c77c4cb3c934ebbacfba1394690c19251de9b61",
+      "lines": 13,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit supported public imports and __all__; dependency/export compatibility",
+      "finding": "Exports correspond to actual owners. ModelInteraction does not import ToolRunner/observability/Serving; Serving stays separate. No dynamic provider registry.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/errors.py",
+      "blob": "7800c2d90905adfd6b97ad267cc731d06bce72d8",
+      "lines": 68,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Serving errors including command/readiness/timeout/stop and bounded diagnostics",
+      "finding": "Typed domain outcomes preserve process diagnostics; startup exception is not proof Docker never entered. Cleanup exceptions annotate primary failures where supported.",
+      "functions_inspected": [
+        "__init__",
+        "__init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/huggingface.py",
+      "blob": "98e4555a8fc1493205499b01c0f64f791a143f56",
+      "lines": 132,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Thread-delegated pinned single-GGUF acquisition, cache containment and backing validation",
+      "finding": "No inference provider; cancellation does not stop blocking download thread. Probe fake writes after cancellation; no actual download. Snapshot/backing checks do not validate model magic/hash beyond trusted library/pin.",
+      "functions_inspected": [
+        "acquire_huggingface_gguf",
+        "_acquire",
+        "_validate_repository_and_revision",
+        "__post_init__",
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/identity.py",
+      "blob": "41967a3c33dad626b6b17cf4c9f76a0c1dc89054",
+      "lines": 60,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Pinned HF repo/revision and acquired snapshot versus backing GGUF paths",
+      "finding": "Immutable shape/40hex revision and canonical paths; configured identity is not independently measured model bytes or access authority.",
+      "functions_inspected": [
+        "__post_init__",
+        "__str__",
+        "__post_init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/llama_cpp.py",
+      "blob": "deefe9ea5aa547c60c351a827f8de1199ed7b540",
+      "lines": 501,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Config, managed launch/help preflight, ready/status/owned stop, argv, health HTTP",
+      "finding": "NEW writer cleanup P2 on read error/cancel/timeout; NEW image-tag P2 accepts registry port with no tag. Launch/preflight and readiness budgets differ. CID+label protects known handle cleanup; lost launch acknowledgment before handle remains ambiguous. Persistent Qwen uses private helpers with separate lifecycle.",
+      "functions_inspected": [
+        "_build_launch_command",
+        "_n_cpu_ffn_arguments",
+        "_help_command",
+        "_preflight_required_features",
+        "_advertises_n_cpu_ffn",
+        "_new_container_name",
+        "_parse_container_id",
+        "_inspect_command",
+        "_inspect_container",
+        "_is_exact_container_not_found",
+        "_diagnostic_text",
+        "_launch_error_message",
+        "_stop_error_message",
+        "_provider_log_tail",
+        "_probe_ready",
+        "_http_get",
+        "__post_init__",
+        "__post_init__",
+        "__init__",
+        "config",
+        "container_id",
+        "endpoint",
+        "started_at",
+        "start",
+        "wait_ready",
+        "status",
+        "stop",
+        "_stop_after_unsuccessful_start"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "src/devtools/models/serving/vllm.py",
+      "blob": "f4916cdef9dcd3a46db689d23c49cd0f715cac36",
+      "lines": 598,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Config, Docker argv/cache/offload, ready/status/owned stop and model listing",
+      "finding": "NEW readiness P2: one read loses legal short response and valid nonobject JSON raises AttributeError. Same NEW writer-cleanup and registry-port-tag defects. Timeout covers readiness, not full launch. No vLLM ModelInteraction provider or live serving certification.",
+      "functions_inspected": [
+        "_validate_prefetch_offload",
+        "_build_launch_command",
+        "_inspect_command",
+        "_stop_command",
+        "_remove_command",
+        "_logs_command",
+        "_new_container_name",
+        "_parse_container_id",
+        "_inspect_container",
+        "_parse_inspection",
+        "_is_exact_container_not_found",
+        "_inspection_error_message",
+        "_launch_error_message",
+        "_diagnostic_text",
+        "_cleanup_failure_note",
+        "_provider_log_tail",
+        "_probe_model_ready",
+        "_http_get",
+        "__post_init__",
+        "__init__",
+        "config",
+        "container_id",
+        "cache_root",
+        "endpoint",
+        "started_at",
+        "start",
+        "wait_ready",
+        "status",
+        "stop",
+        "_stop_after_unsuccessful_start"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/__init__.py",
+      "blob": "5dea5beec886251d1a0929889c56a67c66a9eb8e",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_MARKER_ROLE",
+      "role": "Test package marker, no executable initialization/reexport",
+      "finding": "No independent algorithm; package discovery and absence of side effects inspected.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/providers/__init__.py",
+      "blob": "6ba60841d4e0cd3245df37c40e364ac841d1496e",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_MARKER_ROLE",
+      "role": "Test package marker, no executable initialization/reexport",
+      "finding": "No independent algorithm; package discovery and absence of side effects inspected.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/providers/test_llama_cpp.py",
+      "blob": "b7bb4ea79fd6cb71b9ac9a2a9977da59372a7b4a",
+      "lines": 1579,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Payload/settings/template counting, HTTP chunk/EOF/length/errors, response variants, usage and observations",
+      "finding": "Full fixtures/monkeypatch branches read. Independent literal wire/content cases meaningful; deterministic fake streams are not live backend conformance. Missing invalid UTF8 and nonstandard JSON constants; observer success/error existing scope not full failure Evidence. Three usage fields intentional.",
+      "functions_inspected": [
+        "_reader",
+        "_response",
+        "_message",
+        "_interaction",
+        "test_interaction_maps_existing_message_roles_to_non_streaming_llama_request",
+        "test_interaction_emits_optional_bounded_observation_after_response",
+        "test_interaction_maps_requested_output_bound_to_pinned_llama_cpp_max_tokens",
+        "test_interaction_maps_explicit_thinking_control_to_chat_template_kwargs",
+        "test_interaction_combines_thinking_control_and_output_bound_without_other_fields",
+        "test_interaction_rejects_malformed_thinking_control_before_provider_request",
+        "test_interaction_rejects_invalid_output_bound_before_provider_request",
+        "test_interaction_preserves_pinned_llama_cpp_standard_usage",
+        "test_interaction_maps_pinned_llama_cpp_finish_reasons",
+        "test_interaction_preserves_pinned_llama_cpp_reasoning_separately",
+        "test_interaction_preserves_missing_null_and_empty_pinned_reasoning",
+        "test_interaction_rejects_malformed_pinned_reasoning",
+        "test_interaction_retains_provider_shape_validation_for_reasoning",
+        "test_interaction_allows_missing_or_null_pinned_finish_reason",
+        "test_interaction_rejects_unknown_or_malformed_pinned_finish_reason",
+        "test_interaction_rejects_invalid_choice_shape_for_termination",
+        "test_interaction_allows_partial_pinned_usage_without_estimation",
+        "test_interaction_keeps_absent_or_zero_usage_honest",
+        "test_interaction_rejects_malformed_usage",
+        "test_interaction_rejects_malformed_successful_response",
+        "test_interaction_preserves_non_success_http_as_provider_local_failure",
+        "test_interaction_rejects_continuation_for_stateless_provider",
+        "test_interaction_rejects_other_provider_settings_before_a_provider_request",
+        "test_interaction_accepts_its_empty_typed_extension",
+        "test_provider_sampling_refuses_invalid_values",
+        "test_supported_sampling_is_exactly_forwarded",
+        "test_native_token_budget_uses_exact_template_and_no_inference",
+        "test_explicit_medium_reasoning_and_native_reasoning_continuity",
+        "test_reasoning_settings_and_roles_refuse_invalid_values",
+        "test_interaction_rejects_endpoint_shapes_outside_its_narrow_origin_contract",
+        "test_interaction_rejects_blank_model_name",
+        "test_interaction_uses_configured_model_and_source_on_real_request_path",
+        "test_interaction_preserves_transport_failure",
+        "test_interaction_rejects_invalid_http_or_success_payload_shapes",
+        "test_interaction_rejects_invalid_final_assistant_message_shapes",
+        "test_provider_error_detail_falls_back_when_error_shape_is_not_usable",
+        "test_provider_helpers_reject_defensive_invalid_origin_and_empty_headers",
+        "test_interaction_reads_fragmented_content_length_response",
+        "test_interaction_reads_fragmented_chunked_response",
+        "test_interaction_rejects_malformed_http_body_framing",
+        "_read_framed_response",
+        "test_private_http_reader_rejects_invalid_header_or_framing",
+        "test_private_http_reader_accepts_chunk_extensions_and_trailers",
+        "test_private_http_reader_rejects_header_limit_overrun",
+        "_read_http_line_with_limit",
+        "test_private_http_reader_rejects_chunk_line_limit_overrun",
+        "_read_incomplete_http_line",
+        "test_private_http_reader_rejects_incomplete_chunk_line",
+        "test_interaction_serializes_and_parses_native_tools_without_execution",
+        "test_interaction_serializes_multiple_native_tools_in_request_order",
+        "test_interaction_parses_multiple_native_tool_calls_in_provider_order",
+        "test_native_tool_call_parser_rejects_malformed_provider_shapes",
+        "test_native_tool_call_parser_rejects_non_object_arguments",
+        "__init__",
+        "write",
+        "drain",
+        "close",
+        "wait_closed",
+        "__init__",
+        "interaction_completed",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "post",
+        "post",
+        "post",
+        "connection",
+        "connection",
+        "connection",
+        "read_empty_headers",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "connection",
+        "deliver",
+        "deliver"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/test_models.py",
+      "blob": "cd9b9ae808235eeda0e5a22efd9cea601a19ca15",
+      "lines": 305,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Settings/request/response/continuation/observation/usage invariants",
+      "finding": "Independent literal valid/invalid controls; tests use synthetic local values appropriately. No independent end-to-end provider side-effect/observation failure oracle; new probes establish known policy limitations.",
+      "functions_inspected": [
+        "test_maximum_output_tokens_accepts_positive_integers",
+        "test_maximum_output_tokens_rejects_nonpositive_or_noninteger_values",
+        "test_maximum_output_tokens_allows_absence",
+        "test_thinking_enabled_accepts_strict_optional_boolean",
+        "test_thinking_enabled_rejects_non_boolean_values",
+        "test_model_settings_retains_only_established_immutable_request_controls",
+        "test_model_settings_rejects_invalid_output_control",
+        "test_model_settings_rejects_invalid_thinking_control",
+        "test_model_request_is_immutable_and_separates_input_from_settings",
+        "test_model_request_rejects_untyped_provider_settings",
+        "test_provider_request_settings_is_immutable_and_identified",
+        "test_provider_request_settings_rejects_blank_or_padded_discriminators",
+        "test_model_request_rejects_nonsemantic_boundary_values",
+        "test_prompt_is_an_immutable_model_input_without_conversation_identity",
+        "test_interaction_source_rejects_blank_or_padded_values",
+        "test_response_carries_model_output_not_a_conversation_message",
+        "test_response_rejects_continuation_from_another_source",
+        "test_model_usage_retains_reported_counts_without_deriving_a_total",
+        "test_model_response_retains_termination_separately_from_usage",
+        "test_model_response_retains_reasoning_separately_from_visible_content",
+        "test_model_response_keeps_reasoning_usage_and_termination_independent",
+        "test_model_termination_uses_provider_neutral_immutable_values",
+        "test_model_usage_allows_partial_provider_counts",
+        "test_model_usage_rejects_invalid_provider_counts",
+        "test_conversation_ref_is_opaque_and_immutable",
+        "test_conversation_ref_rejects_blank_or_padded_values"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/test_prompt.py",
+      "blob": "06d71a8f8915382b237c95935ab5719c34ac3de9",
+      "lines": 156,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Legacy and structured prompt conversion, reasoning, Tool IDs and sequence errors",
+      "finding": "Literal serialized messages and pending-response checks meaningful. Closed-group ID reuse deliberate; these tests do not establish conversation durability or Agent task completion.",
+      "functions_inspected": [
+        "native_prompt",
+        "test_malformed_message_refuses",
+        "test_incomplete_or_dual_prompt_refuses",
+        "test_resolved_provider_id_can_recur_in_a_later_exchange",
+        "test_native_provider_serializes_messages_without_flattening",
+        "test_text_assemblers_do_not_silently_discard_structured_history",
+        "post"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/test_protocols.py",
+      "blob": "857e043e163b5b5ed59adf9afafce812c3179271",
+      "lines": 61,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Structural protocol conformance with deterministic interaction doubles",
+      "finding": "Local protocol availability, not real inference/provider compliance or actual Agent usefulness.",
+      "functions_inspected": [
+        "test_model_interaction_is_structural_and_accepts_prompts",
+        "test_model_interaction_exposes_one_request_parameter_without_legacy_controls",
+        "send",
+        "send_twice"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/interaction/test_tools.py",
+      "blob": "9c9f85e6ce820ae7bd236b6880d4459cb58df166",
+      "lines": 96,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Names, descriptions, canonical schema and exact raw Tool arguments",
+      "finding": "Valid literal normalization/refusal controls; missing strict JSON NaN/Infinity cases explain reproduced gap. No executable Tool or authorization exercised.",
+      "functions_inspected": [
+        "test_descriptor_and_definition_are_immutable_disclosure_values",
+        "test_descriptor_normalization_is_a_real_composition_boundary",
+        "test_model_tool_call_preserves_untrusted_json_without_tool_admission",
+        "test_request_and_response_reject_invalid_or_duplicate_tool_collections",
+        "test_tool_values_reject_malformed_disclosure_or_call_data"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/serving/__init__.py",
+      "blob": "e11286eda0a2311d51e6c3054c96a27a15be04e9",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_MARKER_ROLE",
+      "role": "Test package marker, no executable initialization/reexport",
+      "finding": "No independent algorithm; package discovery and absence of side effects inspected.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/serving/test_huggingface.py",
+      "blob": "fca750f1ae79e4eb3a9a587cacb4f1442896849b",
+      "lines": 258,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Pinned identity/cache/file/backing validation and blocking download doubles",
+      "finding": "Literal path/error expectations and real tiny filesystem fixtures valid. No model download/3rd-party cancellation guarantee; added fake-thread cancellation probe shows delayed effects.",
+      "functions_inspected": [
+        "test_model_ref_is_immutable_hashable_value",
+        "test_model_ref_rejects_unusable_identity",
+        "test_gguf_ref_is_immutable_exact_artifact_identity",
+        "test_gguf_ref_rejects_nonreproducible_or_unsafe_identity",
+        "test_acquire_gguf_maps_exact_identity_to_explicit_cache",
+        "test_acquire_gguf_retains_snapshot_gguf_path_for_suffixless_blob",
+        "test_acquire_gguf_rejects_invalid_hub_result",
+        "test_acquire_gguf_rejects_snapshot_resolving_outside_cache",
+        "test_acquire_gguf_preserves_hub_failure",
+        "download",
+        "download"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/serving/test_llama_cpp.py",
+      "blob": "b0a2d1aac2fc3e9877111d07071dcd6a6e1446f3",
+      "lines": 733,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Config/preflight/start/health/status/owned cleanup and Docker argv doubles",
+      "finding": "Full fakes/assertions read. Registry-colon and writer-close-on-error/cancel gaps; readiness cancellation and cleanup tests otherwise real contract assertions, not Docker lifecycle/inference proof.",
+      "functions_inspected": [
+        "_result",
+        "_config",
+        "test_values_and_config_validate",
+        "test_launch_argv_is_exact_and_safe",
+        "test_launch_argv_mounts_snapshot_backing_file_with_gguf_target",
+        "test_n_cpu_ffn_preflight_uses_exact_image_before_model_launch",
+        "test_n_cpu_ffn_preflight_rejects_unsupported_image_before_launch",
+        "test_n_cpu_ffn_preflight_reports_failed_inspection_without_option_claim",
+        "test_n_cpu_ffn_option_match_is_exact",
+        "test_id_parser_and_inspection_are_strict",
+        "test_start_ready_and_no_success_logs",
+        "test_start_exit_logs_cleanup_and_cancellation",
+        "test_timeout_status_and_stop_boundaries",
+        "test_readiness_loading_timeout_and_http",
+        "test_remaining_failure_boundaries",
+        "test_uncovered_operational_paths",
+        "test_start_preserves_timeout_and_cancellation_through_cleanup",
+        "test_start_retains_primary_when_owned_remove_fails",
+        "__init__",
+        "execute",
+        "ready",
+        "execute",
+        "ready",
+        "fail",
+        "absent",
+        "owned",
+        "loading",
+        "get",
+        "good",
+        "failed",
+        "stopped",
+        "bad_remove",
+        "connection",
+        "running",
+        "commands",
+        "failed_stop",
+        "refused",
+        "accepted",
+        "invalid",
+        "empty_header",
+        "wait_timeout",
+        "clean_stop",
+        "wait_cancelled",
+        "failed_stop",
+        "fail_ready",
+        "read",
+        "write",
+        "drain",
+        "close",
+        "wait_closed",
+        "read",
+        "write",
+        "drain",
+        "close",
+        "wait_closed",
+        "read",
+        "read"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    },
+    {
+      "path": "tests/models/serving/test_vllm.py",
+      "blob": "8c2084a046e4228394271b2bb4fa5042eb9497ab",
+      "lines": 1310,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY",
+      "role": "Configuration, cache/offload argv, ready/model alias/start/cleanup/errors/status",
+      "finding": "Existing reader fake returns entire buffered response; misses legal short reads and nonobject JSON. Both serving suites omit registry-port-only image and writer finally settlement; no live GPU/Docker proof.",
+      "functions_inspected": [
+        "_config",
+        "_result",
+        "_not_found_result",
+        "_assert_no_prefetch_arguments",
+        "test_config_is_immutable_hashable_and_preserves_defaults",
+        "test_server_exposes_config_and_start_facts",
+        "test_config_rejects_invalid_structural_values",
+        "test_start_builds_deterministic_owned_docker_launch",
+        "test_launch_adds_exact_positive_cpu_weight_offload",
+        "test_launch_adds_exact_wsl2_pinned_memory_environment",
+        "test_launch_adds_exact_disabled_cudagraph_memory_estimate_environment",
+        "test_prefetch_offload_requires_complete_isolated_configuration",
+        "test_launch_adds_exact_prefetch_offload_arguments",
+        "test_start_preserves_default_readiness_timeout",
+        "test_start_forwards_custom_readiness_timeout",
+        "test_launch_honors_explicit_remote_code_opt_in",
+        "test_nonzero_docker_launch_raises_bounded_serving_error",
+        "test_missing_docker_error_propagates_unchanged",
+        "test_success_without_container_id_is_rejected",
+        "test_start_rejects_multiline_container_id_before_readiness",
+        "test_container_id_parser_rejects_malformed_docker_launch_output",
+        "test_container_id_parser_accepts_one_full_id_with_trailing_newline",
+        "test_readiness_timeout_stops_owned_container",
+        "test_wait_ready_rejects_nonpositive_timeout",
+        "test_cancellation_during_readiness_stops_owned_container",
+        "test_cancellation_preserves_identity_when_removal_fails",
+        "test_readiness_timeout_preserves_primary_when_removal_fails",
+        "test_early_container_exit_preserves_bounded_provider_log_tail",
+        "test_early_container_exit_preserves_startup_error_when_removal_fails",
+        "test_early_container_exit_preserves_startup_error_when_logs_fail",
+        "test_early_container_exit_preserves_startup_error_when_log_command_raises",
+        "test_status_distinguishes_running_ready_and_stopped",
+        "test_stop_requires_ownership_and_is_idempotent",
+        "test_inspection_operational_failure_surfaces_without_http_or_stop",
+        "test_different_container_not_found_does_not_establish_absence",
+        "test_startup_cleanup_preserves_primary_failure_when_inspection_fails",
+        "test_startup_cleanup_preserves_cancelled_error_identity",
+        "test_stop_handles_owned_stopped_and_docker_stop_failure",
+        "test_failed_start_cleanup_notes_secondary_cleanup_error",
+        "test_internal_parsing_and_diagnostics_cover_invalid_docker_output",
+        "test_probe_model_ready_interprets_only_matching_model",
+        "test_http_get_handles_unusable_or_refused_endpoints",
+        "test_http_get_parses_and_rejects_malformed_provider_responses",
+        "__init__",
+        "execute",
+        "execute",
+        "ready",
+        "execute",
+        "ready",
+        "execute",
+        "ready",
+        "execute",
+        "ready",
+        "execute",
+        "unexpected_probe",
+        "execute",
+        "not_ready",
+        "execute",
+        "not_ready",
+        "run",
+        "execute",
+        "cancelled_wait",
+        "execute",
+        "not_ready",
+        "execute",
+        "execute",
+        "execute",
+        "execute",
+        "execute",
+        "ready",
+        "stopped",
+        "missing",
+        "wrong_label",
+        "missing",
+        "execute",
+        "unexpected_probe",
+        "execute",
+        "unexpected_probe",
+        "execute",
+        "not_ready",
+        "execute",
+        "recording_execute",
+        "stopped",
+        "failed_stop",
+        "failed_stop_without_diagnostic",
+        "failed_removal",
+        "failed_removal_without_diagnostic",
+        "get",
+        "connection",
+        "read",
+        "write",
+        "drain",
+        "close",
+        "wait_closed"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/model-interaction-and-serving-audit.md"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/models/__init__.py",
+      "blob": "340213ef579df497226405c83f258429a6285c1d",
+      "depth": "FULL_MARKER_ROLE",
+      "scope": "Model package docstring only; no hidden provider initialization."
+    },
+    {
+      "path": "tests/models/__init__.py",
+      "blob": "7a5534d66de5ffd260815ee61de3c7f3f54087c7",
+      "depth": "FULL_MARKER_ROLE",
+      "scope": "Model test package marker only."
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Conversation serialization, provider response-source check, attempt lifecycle and contained terminal observer errors; not whole Runtime/Agents domain credit."
+    },
+    {
+      "path": "apps/qwen/model_tool_composition.py",
+      "blob": "620eb08347de86e58d438bba41aaa8d0ee10e604",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "ToolDescriptor projection to ModelToolDefinition; repeated JSON parsing/canonicalization and nonstandard constant propagation."
+    },
+    {
+      "path": "src/devtools/tools/disclosure.py",
+      "blob": "aa8c208a7c06aedb2d28ca01d49c3ba731cd8971",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Descriptor validation and structural disclosure protocol, no Tool authority."
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "Native request/count budget/send/source validation/archive/Tool admission and explicit task deadlines; no full application audit credit."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "local_interaction constructs LlamaCppInteraction only after existing persistent service fingerprint/readiness; default observerNone."
+    },
+    {
+      "path": "scripts/qwen/llama_cpp_service.py",
+      "blob": "5c920e41700f512da6c2241d24561ad1c82b7a6c",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "Persistent stable-name labels/config-fingerprint/reuse/start/stop and private serving helper use; not transient LlamaCppServer.start lifecycle."
+    },
+    {
+      "path": "scripts/model_benchmarks/vllm.py",
+      "blob": "eab4a82e0903e54696fdf1a92f30c2e54bcfa8d0",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "run_experiment transient VLLMServer.start, benchmark and stop; never invoked here."
+    },
+    {
+      "path": "src/devtools/models/benchmarks/runner.py",
+      "blob": "ea747a058e8e67d0220b696a318f4dadfad04d4c",
+      "depth": "TARGETED_DEPENDENCY",
+      "scope": "Streaming benchmark owner and stopwatch latency; not a ModelInteraction provider or full HTTP review."
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "depth": "TARGETED_DEPENDENCY",
+      "scope": "Specialized attempt status/failed invocation/terminal observer contracts, separate occurrence identity."
+    },
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "depth": "TARGETED_DEPENDENCY",
+      "scope": "new/retained input/history and continuation ownership; failed provider observation does not commit response to history."
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "Policy-controlled observation capture, default omissions, first-wins duplicate ID documented; provider-setting type only; no native Qwen automatic ingestion."
+    },
+    {
+      "path": "tests/execution/test_runtime.py",
+      "blob": "11526bb591531a9398becb63578e9482eef24e54",
+      "depth": "TARGETED_TEST_CONSUMER",
+      "scope": "Source mismatch, attempts and callback controls; executed not full-source review."
+    },
+    {
+      "path": "tests/observability/evidence/test_model_interaction.py",
+      "blob": "0077d7d690fdd3e883c6d518c85fc5e2c5619712",
+      "depth": "TARGETED_TEST_CONSUMER",
+      "scope": "Observation capture/Inspector privacy and normalization controls; executed not new full review."
+    },
+    {
+      "path": "tests/apps/qwen/test_coding_loop.py",
+      "blob": "e4c835c6be2d9390d3a88da33485bd5cb27c4e23",
+      "depth": "TARGETED_TEST_CONSUMER",
+      "scope": "Actual run_coding_task deterministic Tool and response-source/budget controls; no inference."
+    },
+    {
+      "path": "tests/scripts/qwen/test_llama_cpp_service.py",
+      "blob": "0e97604bb47b784be0771db02c7149b2fb8212da",
+      "depth": "TARGETED_TEST_CONSUMER",
+      "scope": "Persistent profile deterministic command/health fakes; no actual service changes."
+    },
+    {
+      "path": "src/devtools/models/interaction/docs/overview.md",
+      "blob": "da0a9f7d1669c3fb51eee33fca00e1c094d38b48",
+      "depth": "FULL_PACKAGE_DOCUMENTATION",
+      "scope": "Current request/provider/Tool/usage/observation supported scope and exclusions."
+    },
+    {
+      "path": "src/devtools/models/serving/docs/overview.md",
+      "blob": "4959bd67b379c2d8bea72e19efd78dc2f33b208e",
+      "depth": "FULL_PACKAGE_DOCUMENTATION",
+      "scope": "Experimental APIs, pin/acquisition/start controls; stale only-vLLM Status belongs B0006."
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+      "blob": "81fce50378303a618f67416c667f2ce47cd3b130",
+      "depth": "FULL_ACCEPTED_DECISION",
+      "scope": "Three implemented slices and explicit deferred failure/observation/correlation policies."
+    }
+  ],
+  "focused": [
+    {
+      "command": "uv run pytest --no-cov tests/models/interaction tests/models/serving -q",
+      "exit_code": 0,
+      "passed": 321,
+      "seconds": 2.91,
+      "skipped": 0,
+      "log_sha256": "fe04727bb48e98a59b95b042c764df66922e4f6d8830549a465d76207987a392",
+      "scope": "Deterministic maintained tests; executed dependency tests do not confer full review depth; not protected gate or live conformance."
+    },
+    {
+      "command": "uv run pytest --no-cov tests/execution/test_runtime.py tests/observability/evidence/test_model_interaction.py tests/apps/qwen/test_coding_loop.py tests/scripts/qwen/test_llama_cpp_service.py -q",
+      "exit_code": 0,
+      "passed": 113,
+      "seconds": 57.62,
+      "skipped": 0,
+      "log_sha256": "ad763ee18be30d0a763c60089c64a30d953553ae42e6c26c2d37ce2f0799d5e1",
+      "scope": "Deterministic maintained tests; executed dependency tests do not confer full review depth; not protected gate or live conformance."
+    }
+  ],
+  "probe_cases": 44,
+  "contract_failures": 18,
+  "agreeing_controls": 26,
+  "findings": [
+    {
+      "key": "NEW_UTF8_ERROR_NORMALIZATION",
+      "parent": "B-0046",
+      "title": "Normalize malformed UTF8 model HTTP responses without losing HTTP status",
+      "resources": [
+        "src/devtools/models/interaction/providers/llama_cpp.py",
+        "tests/models/interaction/providers/test_llama_cpp.py"
+      ],
+      "summary": "P2: public LlamaCppInteraction.send with correctly framed body byte ff leaks UnicodeDecodeError both for HTTP200 and500. Expected typed LlamaCppResponseError for successful-status malformed body and LlamaCppHttpError retaining500 for error response. Current _post_json/_error_detail decode outside appropriate normalization. One invocation, finally closes connection, no observation or retry. Preserve primary HTTP status, causal decoding detail and existing valid/chunked/error controls; add real maintained-caller deterministic wire regressions.",
+      "acceptance": "200 invalid UTF8 yields ResponseError;500 invalid UTF8 yields HttpError withstatus500; valid UTF8/JSON unchanged; exactly one request and closed writer; no retry or fabricated observation.",
+      "proposal": "8c79f8ca-20c0-434d-90f8-9418f0767e57",
+      "duplicate_candidates": []
+    },
+    {
+      "key": "NEW_VLLM_READINESS_RESPONSE",
+      "parent": null,
+      "title": "Handle short HTTP reads and nonobject model-list JSON in vLLM readiness",
+      "resources": [
+        "src/devtools/models/serving/vllm.py",
+        "tests/models/serving/test_vllm.py"
+      ],
+      "summary": "P2: VLLMServer.status against a healthy owned-container fake returns readyFalse when valid matching /v1/models JSON arrives after a legal short read. A complete valid JSON [] or null instead raises AttributeError through .get rather than established conservative runningTrue/readyFalse. _http_get consumes only one read(65536); _probe_model_ready assumes dict root. Repair narrow existing readiness mechanics; preserve alias match/mismatch, malformed response, cancellation and timeout controls without a new HTTP framework.",
+      "acceptance": "Valid matching alias with split header/body is ready; nonobject listing refuses readiness without AttributeError; wrong/missing alias remains false; all owned response streams close; source of liveness versus readiness distinct.",
+      "proposal": "333df5ec-5a67-4b3c-8b1b-71dd4f544f83",
+      "duplicate_candidates": []
+    },
+    {
+      "key": "NEW_READINESS_WRITER_CLEANUP",
+      "parent": "B-0041",
+      "title": "Close owned serving readiness streams on read failure cancellation and timeout",
+      "resources": [
+        "src/devtools/models/serving/llama_cpp.py",
+        "src/devtools/models/serving/vllm.py",
+        "tests/models/serving/test_llama_cpp.py",
+        "tests/models/serving/test_vllm.py"
+      ],
+      "summary": "P2: both public serving status/wait paths leave their opened StreamWriter unclosed when read raises OSError, cancellation or timeout. Six deterministic stream cases plus a real ephemeral local HTTP sink cancellation demonstrate missing finally settlement. Under retained fixture reference actual writer is_closingFalse after task cancellation settles. This proves failure to release the owned connection at operation boundary, not leaked inference process or permanent OS leak. Repair existing helpers; preserve original failure/cancellation, await close appropriately and do not retry model/process work.",
+      "acceptance": "Both serving adapters settle owned stream close after error/cancel/readiness timeout and success; original outcomes preserved; real loopback cancellation control; no stale waiter/automatic external retry. Separate from delivered Command collector37a647f2.",
+      "proposal": "54fe0021-8992-47b2-85bc-4bdce6ade4e0",
+      "duplicate_candidates": [
+        {
+          "reference": "333df5ec-5a67-4b3c-8b1b-71dd4f544f83",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    },
+    {
+      "key": "NEW_IMAGE_TAG_ADMISSION",
+      "parent": null,
+      "title": "Distinguish Docker registry port from explicit image tag in serving admission",
+      "resources": [
+        "src/devtools/models/serving/llama_cpp.py",
+        "src/devtools/models/serving/vllm.py",
+        "tests/models/serving/test_llama_cpp.py",
+        "tests/models/serving/test_vllm.py"
+      ],
+      "summary": "P2: both serving configurations accept registry.example:5000/team/server although existing policy requires explicit tag or digest. A colon in registry port is not a tag in final image component. Repair local existing config admission; preserve server:cuda and server@sha256:<64hex> controls, unqualified/blank and other current validation. Probe only constructs configs, never Docker. An explicit mutable tag is not cryptographic model/image immutability.",
+      "acceptance": "Registry-port-only image refused before executor; same registry with explicit last-component tag or digest accepted; valid existing images unchanged; independent both-adapter configuration tests.",
+      "proposal": "a0ccec58-586d-4f46-8da8-37d26a447bf2",
+      "duplicate_candidates": [
+        {
+          "reference": "333df5ec-5a67-4b3c-8b1b-71dd4f544f83",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "54fe0021-8992-47b2-85bc-4bdce6ade4e0",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    },
+    {
+      "key": "NEW_TOOL_JSON_SYNTAX",
+      "parent": "B-0046",
+      "title": "Reject nonstandard JSON constants in model Tool schemas and requested arguments",
+      "resources": [
+        "src/devtools/models/interaction/tools.py",
+        "src/devtools/tools/disclosure.py",
+        "apps/qwen/model_tool_composition.py",
+        "tests/models/interaction/test_tools.py",
+        "tests/models/interaction/providers/test_llama_cpp.py"
+      ],
+      "summary": "P2: ModelToolDefinition and ToolDescriptor accept schema {\"type\":\"object\",\"default\":NaN}; actual llama request contains NaN and independent strict JSON parser rejects wire. Native response Tool arguments containing NaN,Infinity,-Infinity are admitted as ModelToolCall despite valid-JSON object contract. Standard json.loads/dumps defaults are permissive. Fix compatible existing boundaries and direct Qwen disclosure composition without a new JSON or schema framework. Preserve raw valid call spelling and object checks; do not confuse valid large number grammar such as1e999 with nonstandard constant tokens or expand duplicate-member/metaschema policy.",
+      "acceptance": "NaN/Infinity/-Infinity refused at definition/disclosure and native-call normalization boundaries, no invalid outgoing request; valid literal/null/number/nested object controls and raw call spelling retained. No Tool execution or authority claim; no rewrite of generic rich JsonFile semantics.",
+      "proposal": "bf8cf791-ffc8-4d7f-ac6c-94613b87e181",
+      "duplicate_candidates": [
+        {
+          "reference": "8c79f8ca-20c0-434d-90f8-9418f0767e57",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    }
+  ],
+  "duplicate_check": {
+    "chains_checked": 57,
+    "terms": [
+      "utf8",
+      "utf-8",
+      "nan",
+      "infinity",
+      "readiness",
+      "streamwriter",
+      "registry",
+      "observer",
+      "clock"
+    ],
+    "candidates": [
+      {
+        "id": "0182a013-c116-4864-aa10-88ccc0c2a709",
+        "title": "Verify bounded lexical captures are actual ranked prefixes before diagnosing omissions"
+      },
+      {
+        "id": "06c3809b-f80c-461d-9585-2d4a973f8252",
+        "title": "Connect explicit task locators to existing native grounding and source acquisition"
+      },
+      {
+        "id": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+        "title": "Connect explicit Localization obligations and witness decisions to native coding Context"
+      },
+      {
+        "id": "1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+        "title": "Correct JSON list member lookup for missing/null and compatible array queries"
+      },
+      {
+        "id": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+        "title": "Reject non-Name module rebindings before asserting declaration, Reference or direct-base truth"
+      },
+      {
+        "id": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+        "title": "Consume RepositorySnapshotDelta in authorized native Context refresh"
+      },
+      {
+        "id": "255498b8-4b09-4153-a819-56af0fa5bb36",
+        "title": "Evaluate incrementally maintained and linted knowledge wiki"
+      },
+      {
+        "id": "2fbb85c3-ff31-4312-9df8-51a03ad45bec",
+        "title": "Reconcile preserved experiment-pipeline ownership and conflicting B-0048 before main integration"
+      },
+      {
+        "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+        "title": "Review coding application module sizes against governed edit and closeout limits"
+      },
+      {
+        "id": "5fa23957-703a-4de9-9619-316f8f7740ed",
+        "title": "Contract Graph3 metric validation separately from full report authentication"
+      },
+      {
+        "id": "660900a1-fb47-4823-bd8c-f9d77205146b",
+        "title": "Enforce prepared coding-task proposal budget before further mutation"
+      },
+      {
+        "id": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+        "title": "Correct csv dialect contract"
+      },
+      {
+        "id": "751451cb-8998-4778-bc89-43609323c7ea",
+        "title": "Reject foreign ModelResponse sources before native coding Tool admission"
+      },
+      {
+        "id": "954a7136-e132-4e96-80cb-8b38a6b72c4c",
+        "title": "Authenticate exact-name function disclosure projection before materializing retained source"
+      },
+      {
+        "id": "a88167f9-2688-478c-9659-202d05e61e1e",
+        "title": "Disambiguate synthetic RI fixture identities and separate them from observed-source tests"
+      },
+      {
+        "id": "ae03cda7-955e-40c6-a131-9e2ba209c9a6",
+        "title": "Evaluate optional task-conditioned CodeGraph exploration"
+      },
+      {
+        "id": "aedea41e-804b-4fe0-ad53-8758e074885d",
+        "title": "Qualify retained Python analysis and lexical-field reuse across real consumers"
+      },
+      {
+        "id": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+        "title": "Complete explicit binary filesystem codec and I/O"
+      },
+      {
+        "id": "b4a017bb-b1eb-4209-99f7-0b73dcf4bd44",
+        "title": "Prevent stale phase-output reuse in retrieval performance timeout reporting"
+      },
+      {
+        "id": "b765fa8f-e0b7-4bc8-9869-156c6a7830cc",
+        "title": "Authenticate Case0003 implementation trace and declared report inputs in versioned future analysis"
+      },
+      {
+        "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+        "title": "Preserve compatible response usage independently of observation order"
+      },
+      {
+        "id": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+        "title": "Expose qualified direct-base RI through existing native source navigation"
+      },
+      {
+        "id": "d4a3d2ed-2eed-45c7-9c5f-f245b9ac1b50",
+        "title": "Make repeated source-grounding packet preflight preserve distinct operation logs"
+      },
+      {
+        "id": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+        "title": "Qualify protected-validation evidence input closure and exact-state reuse"
+      },
+      {
+        "id": "dabfa1f7-b4ae-4ed0-82c9-179f47e31630",
+        "title": "Preserve complete task words in versioned research task-card normalization"
+      },
+      {
+        "id": "edfb9e28-34fb-497f-8ff1-d3a4c7320eb0",
+        "title": "Handle missing witness completion throughout versioned U2 analysis"
+      },
+      {
+        "id": "f85c4e7f-b5a4-4187-b80d-8a85aa200369",
+        "title": "Correct experiment verification source-span physical lines and UTF-8 boundary validation"
+      },
+      {
+        "id": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+        "title": "Prevent one-facade import fallback from overriding competing pattern or handler bindings"
+      }
+    ],
+    "conclusion": "No existing bounded repair duplicates identified. B0046 owns interaction pressure; B0041 investigation/previous Command cleanup is separate. B0011/ADR already own clock/observer limitation; no duplicate proposal for that policy."
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "unchanged_executable_inputs": true,
+  "new_protected_gate": false,
+  "observations": "Existing B0011/B0046/ADR limitation, not new approval: callback/backwards-wall failure can hide normalized successful response; Runtime contains terminal attempt observer, not provider observer.",
+  "remaining": [
+    "Five bounded P2 corrections need separate implementation authorization/permanent regressions/final committed full gate.",
+    "Explicit post-response observation policy and durable compatibility decision; no automatic suppression, retry, fabricated time/Evidence.",
+    "Agents/Runtime and remaining Persistence/application/model-benchmark/tooling full reviews; immediate dependency inspection is not whole-domain signoff.",
+    "RI original93/93,experiment606/606,remaining188 exact historical versions unchanged; A+C unapproved.",
+    "B0011 normalized native ingestion/lifecycle correlation, B0034 external-effect reconciliation, d586 broader validation closure and application cohesion remain open."
+  ]
+}

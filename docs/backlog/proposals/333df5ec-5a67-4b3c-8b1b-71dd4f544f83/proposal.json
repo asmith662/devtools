@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "333df5ec-5a67-4b3c-8b1b-71dd4f544f83",
+  "created_at": "2026-10-26T19:57:43.220593+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Handle short HTTP reads and nonobject model-list JSON in vLLM readiness",
+    "summary": "P2: VLLMServer.status against a healthy owned-container fake returns readyFalse when valid matching /v1/models JSON arrives after a legal short read. A complete valid JSON [] or null instead raises AttributeError through .get rather than established conservative runningTrue/readyFalse. _http_get consumes only one read(65536); _probe_model_ready assumes dict root. Repair narrow existing readiness mechanics; preserve alias match/mismatch, malformed response, cancellation and timeout controls without a new HTTP framework. Baseline a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1. Acceptance: Valid matching alias with split header/body is ready; nonobject listing refuses readiness without AttributeError; wrong/missing alias remains false; all owned response streams close; source of liveness versus readiness distinct.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:model-interaction-serving:a7a49cc1:20261026:NEW_VLLM_READINESS_RESPONSE"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/models/serving/vllm.py",
+      "tests/models/serving/test_vllm.py"
+    ],
+    "evidence": [
+      "docs/research/model-interaction-and-serving-audit.md",
+      "docs/research/code-audit/model-interaction-serving-probes.json"
+    ],
+    "benefit": "Make the existing supported boundary conservative and reliable without inventing new lifecycle or authority.",
+    "uncertainty": "Deterministic maintained-call probes, not live model/GPU/Docker proof. Production correction is not authorized by this audit; preserve ownership and public compatibility.",
+    "dependencies": [
+      "Existing ADR-0001 ModelInteraction/Serving ownership and current public error/JSON/config contracts; no new architectural approval implied."
+    ]
+  },
+  "payload_sha256": "b0cc86f5f7504e3fbfd4027aaa5b7f6e0985b15192b73d6f3c87510a405fe308"
+}

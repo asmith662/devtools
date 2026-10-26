@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "54fe0021-8992-47b2-85bc-4bdce6ade4e0",
+  "created_at": "2026-10-26T19:57:44.734144+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Close owned serving readiness streams on read failure cancellation and timeout",
+    "summary": "P2: both public serving status/wait paths leave their opened StreamWriter unclosed when read raises OSError, cancellation or timeout. Six deterministic stream cases plus a real ephemeral local HTTP sink cancellation demonstrate missing finally settlement. Under retained fixture reference actual writer is_closingFalse after task cancellation settles. This proves failure to release the owned connection at operation boundary, not leaked inference process or permanent OS leak. Repair existing helpers; preserve original failure/cancellation, await close appropriately and do not retry model/process work. Baseline a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1. Acceptance: Both serving adapters settle owned stream close after error/cancel/readiness timeout and success; original outcomes preserved; real loopback cancellation control; no stale waiter/automatic external retry. Separate from delivered Command collector37a647f2.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:model-interaction-serving:a7a49cc1:20261026:NEW_READINESS_WRITER_CLEANUP"
+    },
+    "parent": "B-0041",
+    "resources": [
+      "src/devtools/models/serving/llama_cpp.py",
+      "src/devtools/models/serving/vllm.py",
+      "tests/models/serving/test_llama_cpp.py",
+      "tests/models/serving/test_vllm.py"
+    ],
+    "evidence": [
+      "docs/research/model-interaction-and-serving-audit.md",
+      "docs/research/code-audit/model-interaction-serving-probes.json"
+    ],
+    "benefit": "Make the existing supported boundary conservative and reliable without inventing new lifecycle or authority.",
+    "uncertainty": "Deterministic maintained-call probes, not live model/GPU/Docker proof. Production correction is not authorized by this audit; preserve ownership and public compatibility.",
+    "dependencies": [
+      "Existing ADR-0001 ModelInteraction/Serving ownership and current public error/JSON/config contracts; no new architectural approval implied."
+    ]
+  },
+  "payload_sha256": "6022fc1f19fd957c8dd6060bcd5cde8458bc691edb22698b71b7ddb8be48df0f"
+}

@@ -1,0 +1,983 @@
+{
+  "baseline": "a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1",
+  "execution": {
+    "started_at": "2026-10-26T19:51:05.869162+00:00",
+    "finished_at": "2026-10-26T19:51:06.455704+00:00",
+    "head": "a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1",
+    "tree": "922681231aa238a9ad6927dc2bf3562db4641d39",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/model-interaction-serving-audit-20261026/probes.py"
+    ],
+    "seconds": 0.581356,
+    "exit_code": 0,
+    "source_sha256": "ee59fddf69e9edd410f128f235ba9e447090b33b59ed2fa318e7f255ebedc66c",
+    "stdout": "{\r\n  \"cases\": 44,\r\n  \"unexpected_controls\": [],\r\n  \"reproduced\": [\r\n    \"invalid-response-utf8-200\",\r\n    \"invalid-response-utf8-500\",\r\n    \"readiness-split-body\",\r\n    \"readiness-nonobject-[]\",\r\n    \"readiness-nonobject-null\",\r\n    \"readiness-owned-close-llama-oserror\",\r\n    \"readiness-owned-close-llama-cancel\",\r\n    \"readiness-owned-close-llama-timeout\",\r\n    \"image-registry-port-llama\",\r\n    \"readiness-owned-close-vllm-oserror\",\r\n    \"readiness-owned-close-vllm-cancel\",\r\n    \"readiness-owned-close-vllm-timeout\",\r\n    \"image-registry-port-vllm\",\r\n    \"real-readiness-cancel-writer\",\r\n    \"tool-schema-nonstandard-json\",\r\n    \"tool-argument-nonstandard-NaN\",\r\n    \"tool-argument-nonstandard-Infinity\",\r\n    \"tool-argument-nonstandard--Infinity\"\r\n  ]\r\n}\r\n",
+    "stderr": ""
+  },
+  "reproducer_sha256": "ee59fddf69e9edd410f128f235ba9e447090b33b59ed2fa318e7f255ebedc66c",
+  "reproducer_source": "\"\"\"Bounded independent contracts: no inference, Docker, or downloads.\"\"\"\nimport asyncio,inspect,json,sys,tempfile,threading\nfrom pathlib import Path\nfrom unittest.mock import patch\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Timestamp,Duration\nfrom devtools.models.interaction import (\n    ConversationRef,InteractionSource,ModelRequest,ModelResponse,ModelSettings,\n    ModelToolCall,ModelToolDefinition,Prompt,ProviderRequestSettings,\n)\nfrom devtools.models.interaction.providers import llama_cpp as client\nfrom devtools.models.serving import llama_cpp as llama,vllm,huggingface as hf\nfrom devtools.resources.commands import CommandExecutor,CommandResult\n\nOUT=Path(__file__).parent;ROWS=[]\nasync def check(name,expected,action,kind='CONTROL',literal=None):\n    try:\n        value=action();observed=await value if inspect.isawaitable(value) else value\n    except BaseException as error:\n        observed={'harness_error':type(error).__name__,'message':str(error)}\n    ROWS.append(dict(name=name,kind=kind,literal=literal,expected=expected,observed=observed,agrees=observed==expected))\n\nclass Writer:\n    def __init__(self):self.data=b'';self.closed=False;self.waited=0\n    def write(self,data):self.data+=data\n    async def drain(self):pass\n    def close(self):self.closed=True\n    async def wait_closed(self):self.waited+=1\n\ndef wire(body,status=200):\n    body=body if isinstance(body,bytes) else json.dumps(body).encode()\n    return f'HTTP/1.1 {status} Test\\r\\nContent-Length: {len(body)}\\r\\n\\r\\n'.encode()+body\nVALID={'id':'reply-1','model':'fixture','choices':[{'finish_reason':'stop','message':{'role':'assistant','content':'reply'}}],'usage':{'prompt_tokens':8,'completion_tokens':4,'total_tokens':99}}\n\nasync def send(body=VALID,status=200,request=None,observer_mode=None,backward=False,fail=None,facts=False):\n    writer=Writer();connections=0;seen=[]\n    async def connection(host,port):\n        nonlocal connections\n        connections+=1\n        if fail=='connect':raise OSError('offline before write')\n        reader=asyncio.StreamReader();reader.feed_data(wire(body,status));reader.feed_eof()\n        if fail=='after-write':\n            async def failed(*args,**kwargs):raise OSError('read failed after drain')\n            reader.readuntil=failed\n        return reader,writer\n    class Observer:\n        def interaction_completed(self,observation):\n            seen.append(observation)\n            if observer_mode=='raise':raise RuntimeError('observer-failed-after-response')\n    times=[Timestamp.from_isoformat('2026-10-26T10:00:01+00:00'),Timestamp.from_isoformat('2026-10-26T10:00:00+00:00' if backward else '2026-10-26T10:00:02+00:00')]\n    class Clock:\n        @staticmethod\n        def now():return times.pop(0)\n    result=None;error=None\n    with patch.object(asyncio,'open_connection',connection),patch.object(client,'Timestamp',Clock):\n        interaction=client.LlamaCppInteraction(endpoint='http://fixture:8080',model='fixture',source=InteractionSource('fixture'),observer=Observer() if observer_mode else None)\n        try:result=await interaction.send(request or ModelRequest(Prompt('question','user')))\n        except BaseException as exc:error=type(exc).__name__\n    if facts:\n        observation=seen[0]\n        return dict(caller_outcome=error,connections=connections,observations=len(seen),provider_response_id=observation.provider_response_id,provider_model=observation.provider_model,source=str(observation.source),response_source=str(observation.response.source),usage=[observation.response.usage.input_tokens,observation.response.usage.output_tokens,observation.response.usage.total_tokens])\n    return dict(outcome=error or 'ModelResponse',content=result.content if result else None,connections=connections,wrote=bool(writer.data),closed=writer.closed,observations=len(seen),observed_reply=seen[0].response.content if seen else None,usage=[result.usage.input_tokens,result.usage.output_tokens,result.usage.total_tokens] if result and result.usage else None)\n\ndef expected_send(outcome='ModelResponse',content='reply',connections=1,wrote=True,closed=True,observations=0,observed_reply=None,usage=(8,4,99)):\n    return dict(outcome=outcome,content=content,connections=connections,wrote=wrote,closed=closed,observations=observations,observed_reply=observed_reply,usage=list(usage) if usage else None)\n\nclass Executor(CommandExecutor):\n    def __init__(self,mode='owned'):self.commands=[];self.mode=mode\n    async def execute(self,command):\n        self.commands.append(command)\n        return CommandResult(command,0,b'true|true\\n' if self.mode=='owned' else b'true|false\\n',b'',Duration.seconds(0))\n\ndef serving(root,provider,*,port=8765,image='registry.example/server:cuda',executor=None):\n    if provider=='llama':\n        path=root/'fixture.gguf';path.write_bytes(b'GGUF')\n        config=llama.LlamaCppServingConfig(llama.GGUFModel(resolve_path(path)),image,port,'wanted',4096,'all')\n        return llama.LlamaCppServer(config=config,container_id='a'*64,container_name='fixture',executor=executor or Executor(),started_at=Timestamp.now())\n    config=vllm.VLLMServingConfig(hf.HuggingFaceModelRef('org/model','a'*40),image,resolve_path(root/'cache'),port,'wanted',4096,.8,1)\n    return vllm.VLLMServer(config=config,container_id='b'*64,container_name='fixture',executor=executor or Executor(),started_at=Timestamp.now())\n\nclass Fragments:\n    def __init__(self,parts):self.parts=list(parts)\n    async def read(self,n=-1):\n        if n<0:result=b''.join(self.parts);self.parts=[];return result\n        return self.parts.pop(0) if self.parts else b''\n\nasync def readiness(root,body='{\"data\":[{\"id\":\"wanted\"}]}',fragmented=False):\n    health=wire(b'{}');models=wire(body.encode());head,sep,payload=models.partition(b'\\r\\n\\r\\n')\n    readers=[Fragments([health]),Fragments([head+sep,payload] if fragmented else [models])];writers=[];error=None;result=None\n    async def connection(host,port):\n        writer=Writer();writers.append(writer);return readers[len(writers)-1],writer\n    with patch.object(asyncio,'open_connection',connection):\n        try:result=await serving(root,'vllm').status()\n        except BaseException as exc:error=type(exc).__name__\n    return dict(error=error,running=result.container_running if result else None,ready=result.model_ready if result else None,connections=len(writers),closed=all(w.closed for w in writers))\n\nasync def cleanup(root,provider,mode):\n    writer=Writer();entered=asyncio.Event()\n    class Reader:\n        async def read(self,*args):\n            entered.set()\n            if mode=='oserror':raise OSError('failed response read')\n            await asyncio.Event().wait()\n    async def connection(*args):return Reader(),writer\n    result=None;outcome=None\n    with patch.object(asyncio,'open_connection',connection):\n        server=serving(root,provider)\n        task=asyncio.create_task(server.wait_ready(readiness_timeout=Duration.seconds(.02)) if mode=='timeout' else server.status())\n        await entered.wait()\n        if mode=='cancel':task.cancel()\n        try:result=await task\n        except BaseException as exc:outcome=type(exc).__name__\n    return dict(outcome=outcome or 'ServerStatus',closed=writer.closed,waited=writer.waited,wrote=bool(writer.data),ready=result.model_ready if result else None)\n\nasync def real_cancel(root):\n    \"\"\"Authored empty local HTTP sink, not a model endpoint or serving process.\"\"\"\n    started=asyncio.Event();finished=asyncio.Event();client_writers=[];handler_errors=[]\n    original=asyncio.open_connection\n    async def handler(reader,writer):\n        try:\n            await reader.readuntil(b'\\r\\n\\r\\n');started.set();await reader.read()\n        except Exception as exc:handler_errors.append(type(exc).__name__)\n        finally:writer.close();await writer.wait_closed();finished.set()\n    listener=await asyncio.start_server(handler,'127.0.0.1',0)\n    port=listener.sockets[0].getsockname()[1]\n    async def connection(*args):\n        reader,writer=await original(*args);client_writers.append(writer);return reader,writer\n    error=None\n    try:\n        with patch.object(asyncio,'open_connection',connection):\n            task=asyncio.create_task(serving(root,'llama',port=port).status())\n            await asyncio.wait_for(started.wait(),2);task.cancel()\n            try:await task\n            except asyncio.CancelledError as exc:error=exc\n        observed=dict(outcome=type(error).__name__,closing=client_writers[0].is_closing(),request_received=started.is_set())\n    finally:\n        for writer in client_writers:writer.close();await writer.wait_closed()\n        await asyncio.wait_for(finished.wait(),2)\n        listener.close();await listener.wait_closed()\n    assert not handler_errors,handler_errors\n    return observed\n\nasync def invocation_cancel(mode):\n    writer=Writer();entered=asyncio.Event()\n    class Reader:\n        async def readuntil(self,*args):entered.set();await asyncio.Event().wait()\n    async def connection(*args):return Reader(),writer\n    interaction=client.LlamaCppInteraction(endpoint='http://fixture:8080',model='fixture',source=InteractionSource('fixture'))\n    async def run():\n        if mode=='timeout':\n            async with asyncio.timeout(.02):return await interaction.send(ModelRequest(Prompt('question','user')))\n        return await interaction.send(ModelRequest(Prompt('question','user')))\n    with patch.object(asyncio,'open_connection',connection):\n        task=asyncio.create_task(run());await entered.wait()\n        if mode=='cancel':task.cancel()\n        try:await task\n        except BaseException as exc:outcome=type(exc).__name__\n    return dict(outcome=outcome,closed=writer.closed,waited=writer.waited,wrote=bool(writer.data))\n\nasync def cancelled_acquisition(root):\n    entered=asyncio.Event();release=threading.Event();finished=threading.Event();loop=asyncio.get_running_loop()\n    artifact=root/'cache'/'snapshots'/('a'*40)/'fixture.gguf'\n    def download(**kwargs):\n        loop.call_soon_threadsafe(entered.set);release.wait(2)\n        artifact.parent.mkdir(parents=True);artifact.write_bytes(b'GGUF');finished.set();return str(artifact)\n    with patch.object(hf,'hf_hub_download',download):\n        task=asyncio.create_task(hf.acquire_huggingface_gguf(model=hf.HuggingFaceGGUFRef('org/model','a'*40,'fixture.gguf'),cache_root=resolve_path(root/'cache')))\n        try:\n            await entered.wait();task.cancel()\n            try:await task\n            except asyncio.CancelledError:cancelled=True\n        finally:release.set()\n        assert await asyncio.to_thread(finished.wait,2),'Authored thread fixture did not settle'\n    return dict(cancelled=cancelled,artifact_exists=artifact.is_file(),bytes=artifact.read_bytes().decode())\n\ndef image_case(root,provider,image):\n    try:server=serving(root,provider,image=image)\n    except ValueError:return 'ValueError'\n    return 'ACCEPTED'\n\nasync def schema_case():\n    writer=Writer();connections=0\n    async def connection(host,port):\n        nonlocal connections\n        connections+=1;reader=asyncio.StreamReader();reader.feed_data(wire(VALID));reader.feed_eof();return reader,writer\n    try:definition=ModelToolDefinition('read','Read','{\"type\":\"object\",\"default\":NaN}')\n    except ValueError:return dict(outcome='ValueError',requests=0,strict_wire=None)\n    with patch.object(asyncio,'open_connection',connection):\n        result=await client.LlamaCppInteraction(endpoint='http://fixture',model='fixture',source=InteractionSource('fixture')).send(ModelRequest(Prompt('question','user'),tools=(definition,)))\n    def refuse(value):raise ValueError('nonstandard constant '+value)\n    try:json.loads(writer.data.partition(b'\\r\\n\\r\\n')[2],parse_constant=refuse);strict=True\n    except ValueError:strict=False\n    return dict(outcome=type(result).__name__,requests=connections,strict_wire=strict)\n\nasync def runtime_observer(mode):\n    from devtools.agents.conversation import Conversation,ConversationMessage,ConversationMessageRole\n    from devtools.execution import Runtime\n    entered=0;finished=[];observed=[]\n    async def post(endpoint,payload):\n        nonlocal entered\n        entered+=1;return VALID\n    class ProviderObserver:\n        def interaction_completed(self,value):\n            observed.append(value)\n            if mode=='provider':raise RuntimeError('provider observer after response')\n    class AttemptObserver:\n        def attempt_started(self,value):pass\n        def attempt_finished(self,attempt,outcome):\n            finished.append((attempt.state.value,getattr(getattr(outcome,'stage',None),'value',None)))\n            if mode=='runtime':raise RuntimeError('attempt observer after response')\n    conversation=Conversation.new();result=None;error=None\n    with patch.object(client,'_post_chat_completion',post):\n        interaction=client.LlamaCppInteraction(endpoint='http://fixture',model='fixture',source=InteractionSource('fixture'),observer=ProviderObserver())\n        try:\n            result=await Runtime(observer=AttemptObserver()).send(conversation=conversation,interaction=interaction,message=ConversationMessage.new('question',role=ConversationMessageRole.USER,source=InteractionSource('caller')))\n        except BaseException as exc:error=type(exc).__name__\n    return dict(outcome=error or 'ModelResponse',entered=entered,observed_reply=observed[0].response.content,history=[m.content for m in conversation.history],attempt_state=finished[0][0],attempt_stage=finished[0][1])\n\nasync def launch_lost_ack(root,provider):\n    marker=root/(provider+'-executor-entry.txt');calls=[]\n    class LostAck(Executor):\n        async def execute(self,command):\n            calls.append(command.arguments[0]);marker.write_bytes(b'entered before lost acknowledgment')\n            raise ConnectionResetError('executor acknowledgment unavailable')\n    configured=serving(root,provider,executor=LostAck())\n    try:await type(configured).start(config=configured.config,executor=configured._executor)\n    except ConnectionResetError:outcome='ConnectionResetError'\n    return dict(outcome=outcome,executor_calls=calls,entered_marker=marker.exists(),returned_handle=False)\n\nasync def main():\n    loop_errors=[]\n    asyncio.get_running_loop().set_exception_handler(lambda loop,context:loop_errors.append(str(context)))\n    with tempfile.TemporaryDirectory(prefix='devtools-model-audit-') as temp:\n        root=Path(temp)\n        await check('normal-reported-total-not-derived',expected_send(),send)\n        await check('observed-success',expected_send(observations=1,observed_reply='reply'),lambda:send(observer_mode='collect'))\n        await check('foreign-provider-settings-pre-entry',expected_send('ValueError',None,connections=0,wrote=False,closed=False,usage=None),lambda:send(request=ModelRequest(Prompt('q','user'),provider_settings=ProviderRequestSettings('other'))))\n        await check('continuation-pre-entry',expected_send('ValueError',None,connections=0,wrote=False,closed=False,usage=None),lambda:send(request=ModelRequest(Prompt('q','user'),conversation=ConversationRef(InteractionSource('fixture'),'opaque'))))\n        await check('connection-failure',expected_send('LlamaCppTransportError',None,wrote=False,closed=False,usage=None),lambda:send(fail='connect'))\n        await check('post-write-failure-no-retry',expected_send('LlamaCppTransportError',None,usage=None),lambda:send(fail='after-write'))\n        await check('malformed-successful-root',expected_send('LlamaCppResponseError',None,usage=None),lambda:send(body=[]))\n        await check('malformed-reported-usage',expected_send('LlamaCppResponseError',None,usage=None),lambda:send(body={**VALID,'usage':{'total_tokens':True}}))\n        await check('missing-usage-not-zero',expected_send(usage=None),lambda:send(body={k:v for k,v in VALID.items() if k!='usage'}))\n        await check('observer-failure-after-success',expected_send('RuntimeError',None,observations=1,observed_reply='reply',usage=None),lambda:send(observer_mode='raise'),'EXISTING_ADR0001_B0011_LIMITATION')\n        await check('observer-failure-still-has-response-facts',dict(caller_outcome='RuntimeError',connections=1,observations=1,provider_response_id='reply-1',provider_model='fixture',source='fixture',response_source='fixture',usage=[8,4,99]),lambda:send(observer_mode='raise',facts=True),'EXISTING_ADR0001_B0011_LIMITATION')\n        await check('backward-clock-observed',expected_send('ValueError',None,usage=None),lambda:send(observer_mode='collect',backward=True),'EXISTING_ADR0001_B0011_LIMITATION')\n        await check('backward-clock-unobserved',expected_send(),lambda:send(backward=True))\n        await check('runtime-provider-observer-failure',dict(outcome='RuntimeError',entered=1,observed_reply='reply',history=['question'],attempt_state='failed',attempt_stage='interaction_invocation'),lambda:runtime_observer('provider'),'EXISTING_ADR0001_B0011_LIMITATION')\n        await check('runtime-terminal-observer-contained',dict(outcome='ModelResponse',entered=1,observed_reply='reply',history=['question','reply'],attempt_state='succeeded',attempt_stage=None),lambda:runtime_observer('runtime'),'EXISTING_ADR0001_B0011_LIMITATION')\n        for status,error in [(200,'LlamaCppResponseError'),(500,'LlamaCppHttpError')]:\n            await check('invalid-response-utf8-'+str(status),expected_send(error,None,usage=None),lambda status=status:send(body=b'\\xff',status=status),'NEW_UTF8_ERROR_NORMALIZATION','Raw body ff after well-framed HTTP '+str(status))\n        for mode,outcome in [('cancel','CancelledError'),('timeout','TimeoutError')]:\n            await check('invocation-'+mode,dict(outcome=outcome,closed=True,waited=1,wrote=True),lambda mode=mode:invocation_cancel(mode))\n        await check('readiness-complete-control',dict(error=None,running=True,ready=True,connections=2,closed=True),lambda:readiness(root))\n        await check('readiness-split-body',dict(error=None,running=True,ready=True,connections=2,closed=True),lambda:readiness(root,fragmented=True),'NEW_VLLM_READINESS_RESPONSE','Matching model response delivered as header then body; each valid read(n) may be short.')\n        for body in ['[]','null']:\n            await check('readiness-nonobject-'+body,dict(error=None,running=True,ready=False,connections=2,closed=True),lambda body=body:readiness(root,body=body),'NEW_VLLM_READINESS_RESPONSE',body)\n        await check('readiness-wrong-model-control',dict(error=None,running=True,ready=False,connections=2,closed=True),lambda:readiness(root,body='{\"data\":[{\"id\":\"other\"}]}'))\n        for provider in ['llama','vllm']:\n            await check('launch-lost-ack-'+provider,dict(outcome='ConnectionResetError',executor_calls=['run'],entered_marker=True,returned_handle=False),lambda provider=provider:launch_lost_ack(root,provider),'SUPPORTED_UNCERTAIN_EFFECT_LIMITATION','Actual temporary marker written by deterministic executor before raising; no Docker/container effect claimed.')\n            for mode,outcome,ready in [('oserror','ServerStatus',False),('cancel','CancelledError',None),('timeout','ServingReadinessTimeoutError',None)]:\n                await check('readiness-owned-close-'+provider+'-'+mode,dict(outcome=outcome,closed=True,waited=1,wrote=True,ready=ready),lambda provider=provider,mode=mode:cleanup(root,provider,mode),'NEW_READINESS_WRITER_CLEANUP')\n            await check('image-registry-port-'+provider,'ValueError',lambda provider=provider:image_case(root,provider,'registry.example:5000/team/server'),'NEW_IMAGE_TAG_ADMISSION','A registry authority port is not an image tag after its final slash. No Docker entry.')\n            for image in ['registry.example:5000/team/server:cuda','registry.example:5000/team/server@sha256:'+'a'*64]:\n                await check('image-explicit-control-'+provider+'-'+str(len(image)),'ACCEPTED',lambda provider=provider,image=image:image_case(root,provider,image))\n        await check('real-readiness-cancel-writer',dict(outcome='CancelledError',closing=True,request_received=True),lambda:real_cancel(root),'NEW_READINESS_WRITER_CLEANUP','Authored local HTTP sink; real StreamWriter inspected before fixture cleanup, not a model-serving process.')\n        await check('cancelled-acquisition-not-rollback',dict(cancelled=True,artifact_exists=True,bytes='GGUF'),lambda:cancelled_acquisition(root),'SUPPORTED_UNCERTAIN_EFFECT_LIMITATION')\n        await check('tool-schema-nonstandard-json',dict(outcome='ValueError',requests=0,strict_wire=None),schema_case,'NEW_TOOL_JSON_SYNTAX','{\"type\":\"object\",\"default\":NaN}')\n        for literal in ['NaN','Infinity','-Infinity']:\n            body={'choices':[{'message':{'role':'assistant','content':'','tool_calls':[{'type':'function','id':'call-1','function':{'name':'read','arguments':'{\"value\":'+literal+'}'}}]},'finish_reason':'tool_calls'}]}\n            await check('tool-argument-nonstandard-'+literal,expected_send('LlamaCppResponseError',None,usage=None),lambda body=body:send(body=body),'NEW_TOOL_JSON_SYNTAX',literal)\n    value=dict(at=str(Timestamp.now()),python=sys.version,rows=ROWS,unhandled_loop_errors=loop_errors,harness_errors=[r['name'] for r in ROWS if isinstance(r['observed'],dict) and 'harness_error' in r['observed']],unexpected_controls=[r['name'] for r in ROWS if not r['agrees'] and not r['kind'].startswith('NEW_')],scope='Only deterministic transport/Command/download doubles, temporary data and one authored local empty HTTP sink. No inference, Docker, model download, source edit or scientific replay.')\n    (OUT/'probes.json').write_text(json.dumps(value,indent=2)+'\\n',encoding='utf-8')\n    print(json.dumps(dict(cases=len(ROWS),unexpected_controls=value['unexpected_controls'],reproduced=[r['name'] for r in ROWS if not r['agrees']]),indent=2))\n    assert not value['unexpected_controls'] and not value['harness_errors'] and not loop_errors,value\nasyncio.run(main())\n",
+  "result": {
+    "at": "2026-10-26T19:51:06.417598+00:00",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "rows": [
+      {
+        "name": "normal-reported-total-not-derived",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "observed-success",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 1,
+          "observed_reply": "reply",
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 1,
+          "observed_reply": "reply",
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "foreign-provider-settings-pre-entry",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 0,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 0,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "continuation-pre-entry",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 0,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 0,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "connection-failure",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "LlamaCppTransportError",
+          "content": null,
+          "connections": 1,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "LlamaCppTransportError",
+          "content": null,
+          "connections": 1,
+          "wrote": false,
+          "closed": false,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "post-write-failure-no-retry",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "LlamaCppTransportError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "LlamaCppTransportError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "malformed-successful-root",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "malformed-reported-usage",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "missing-usage-not-zero",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "observer-failure-after-success",
+        "kind": "EXISTING_ADR0001_B0011_LIMITATION",
+        "literal": null,
+        "expected": {
+          "outcome": "RuntimeError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 1,
+          "observed_reply": "reply",
+          "usage": null
+        },
+        "observed": {
+          "outcome": "RuntimeError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 1,
+          "observed_reply": "reply",
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "observer-failure-still-has-response-facts",
+        "kind": "EXISTING_ADR0001_B0011_LIMITATION",
+        "literal": null,
+        "expected": {
+          "caller_outcome": "RuntimeError",
+          "connections": 1,
+          "observations": 1,
+          "provider_response_id": "reply-1",
+          "provider_model": "fixture",
+          "source": "fixture",
+          "response_source": "fixture",
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "observed": {
+          "caller_outcome": "RuntimeError",
+          "connections": 1,
+          "observations": 1,
+          "provider_response_id": "reply-1",
+          "provider_model": "fixture",
+          "source": "fixture",
+          "response_source": "fixture",
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "backward-clock-observed",
+        "kind": "EXISTING_ADR0001_B0011_LIMITATION",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "backward-clock-unobserved",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "reply",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": [
+            8,
+            4,
+            99
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-provider-observer-failure",
+        "kind": "EXISTING_ADR0001_B0011_LIMITATION",
+        "literal": null,
+        "expected": {
+          "outcome": "RuntimeError",
+          "entered": 1,
+          "observed_reply": "reply",
+          "history": [
+            "question"
+          ],
+          "attempt_state": "failed",
+          "attempt_stage": "interaction_invocation"
+        },
+        "observed": {
+          "outcome": "RuntimeError",
+          "entered": 1,
+          "observed_reply": "reply",
+          "history": [
+            "question"
+          ],
+          "attempt_state": "failed",
+          "attempt_stage": "interaction_invocation"
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-terminal-observer-contained",
+        "kind": "EXISTING_ADR0001_B0011_LIMITATION",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "entered": 1,
+          "observed_reply": "reply",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "attempt_state": "succeeded",
+          "attempt_stage": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "entered": 1,
+          "observed_reply": "reply",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "attempt_state": "succeeded",
+          "attempt_stage": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "invalid-response-utf8-200",
+        "kind": "NEW_UTF8_ERROR_NORMALIZATION",
+        "literal": "Raw body ff after well-framed HTTP 200",
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "UnicodeDecodeError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "invalid-response-utf8-500",
+        "kind": "NEW_UTF8_ERROR_NORMALIZATION",
+        "literal": "Raw body ff after well-framed HTTP 500",
+        "expected": {
+          "outcome": "LlamaCppHttpError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "UnicodeDecodeError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "invocation-cancel",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CancelledError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true
+        },
+        "observed": {
+          "outcome": "CancelledError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true
+        },
+        "agrees": true
+      },
+      {
+        "name": "invocation-timeout",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "TimeoutError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true
+        },
+        "observed": {
+          "outcome": "TimeoutError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true
+        },
+        "agrees": true
+      },
+      {
+        "name": "readiness-complete-control",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "error": null,
+          "running": true,
+          "ready": true,
+          "connections": 2,
+          "closed": true
+        },
+        "observed": {
+          "error": null,
+          "running": true,
+          "ready": true,
+          "connections": 2,
+          "closed": true
+        },
+        "agrees": true
+      },
+      {
+        "name": "readiness-split-body",
+        "kind": "NEW_VLLM_READINESS_RESPONSE",
+        "literal": "Matching model response delivered as header then body; each valid read(n) may be short.",
+        "expected": {
+          "error": null,
+          "running": true,
+          "ready": true,
+          "connections": 2,
+          "closed": true
+        },
+        "observed": {
+          "error": null,
+          "running": true,
+          "ready": false,
+          "connections": 2,
+          "closed": true
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-nonobject-[]",
+        "kind": "NEW_VLLM_READINESS_RESPONSE",
+        "literal": "[]",
+        "expected": {
+          "error": null,
+          "running": true,
+          "ready": false,
+          "connections": 2,
+          "closed": true
+        },
+        "observed": {
+          "error": "AttributeError",
+          "running": null,
+          "ready": null,
+          "connections": 2,
+          "closed": true
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-nonobject-null",
+        "kind": "NEW_VLLM_READINESS_RESPONSE",
+        "literal": "null",
+        "expected": {
+          "error": null,
+          "running": true,
+          "ready": false,
+          "connections": 2,
+          "closed": true
+        },
+        "observed": {
+          "error": "AttributeError",
+          "running": null,
+          "ready": null,
+          "connections": 2,
+          "closed": true
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-wrong-model-control",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "error": null,
+          "running": true,
+          "ready": false,
+          "connections": 2,
+          "closed": true
+        },
+        "observed": {
+          "error": null,
+          "running": true,
+          "ready": false,
+          "connections": 2,
+          "closed": true
+        },
+        "agrees": true
+      },
+      {
+        "name": "launch-lost-ack-llama",
+        "kind": "SUPPORTED_UNCERTAIN_EFFECT_LIMITATION",
+        "literal": "Actual temporary marker written by deterministic executor before raising; no Docker/container effect claimed.",
+        "expected": {
+          "outcome": "ConnectionResetError",
+          "executor_calls": [
+            "run"
+          ],
+          "entered_marker": true,
+          "returned_handle": false
+        },
+        "observed": {
+          "outcome": "ConnectionResetError",
+          "executor_calls": [
+            "run"
+          ],
+          "entered_marker": true,
+          "returned_handle": false
+        },
+        "agrees": true
+      },
+      {
+        "name": "readiness-owned-close-llama-oserror",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "ServerStatus",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": false
+        },
+        "observed": {
+          "outcome": "ServerStatus",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": false
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-owned-close-llama-cancel",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "CancelledError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": null
+        },
+        "observed": {
+          "outcome": "CancelledError",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-owned-close-llama-timeout",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "ServingReadinessTimeoutError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": null
+        },
+        "observed": {
+          "outcome": "ServingReadinessTimeoutError",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "image-registry-port-llama",
+        "kind": "NEW_IMAGE_TAG_ADMISSION",
+        "literal": "A registry authority port is not an image tag after its final slash. No Docker entry.",
+        "expected": "ValueError",
+        "observed": "ACCEPTED",
+        "agrees": false
+      },
+      {
+        "name": "image-explicit-control-llama-38",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": "ACCEPTED",
+        "observed": "ACCEPTED",
+        "agrees": true
+      },
+      {
+        "name": "image-explicit-control-llama-105",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": "ACCEPTED",
+        "observed": "ACCEPTED",
+        "agrees": true
+      },
+      {
+        "name": "launch-lost-ack-vllm",
+        "kind": "SUPPORTED_UNCERTAIN_EFFECT_LIMITATION",
+        "literal": "Actual temporary marker written by deterministic executor before raising; no Docker/container effect claimed.",
+        "expected": {
+          "outcome": "ConnectionResetError",
+          "executor_calls": [
+            "run"
+          ],
+          "entered_marker": true,
+          "returned_handle": false
+        },
+        "observed": {
+          "outcome": "ConnectionResetError",
+          "executor_calls": [
+            "run"
+          ],
+          "entered_marker": true,
+          "returned_handle": false
+        },
+        "agrees": true
+      },
+      {
+        "name": "readiness-owned-close-vllm-oserror",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "ServerStatus",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": false
+        },
+        "observed": {
+          "outcome": "ServerStatus",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": false
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-owned-close-vllm-cancel",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "CancelledError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": null
+        },
+        "observed": {
+          "outcome": "CancelledError",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "readiness-owned-close-vllm-timeout",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": null,
+        "expected": {
+          "outcome": "ServingReadinessTimeoutError",
+          "closed": true,
+          "waited": 1,
+          "wrote": true,
+          "ready": null
+        },
+        "observed": {
+          "outcome": "ServingReadinessTimeoutError",
+          "closed": false,
+          "waited": 0,
+          "wrote": true,
+          "ready": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "image-registry-port-vllm",
+        "kind": "NEW_IMAGE_TAG_ADMISSION",
+        "literal": "A registry authority port is not an image tag after its final slash. No Docker entry.",
+        "expected": "ValueError",
+        "observed": "ACCEPTED",
+        "agrees": false
+      },
+      {
+        "name": "image-explicit-control-vllm-38",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": "ACCEPTED",
+        "observed": "ACCEPTED",
+        "agrees": true
+      },
+      {
+        "name": "image-explicit-control-vllm-105",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": "ACCEPTED",
+        "observed": "ACCEPTED",
+        "agrees": true
+      },
+      {
+        "name": "real-readiness-cancel-writer",
+        "kind": "NEW_READINESS_WRITER_CLEANUP",
+        "literal": "Authored local HTTP sink; real StreamWriter inspected before fixture cleanup, not a model-serving process.",
+        "expected": {
+          "outcome": "CancelledError",
+          "closing": true,
+          "request_received": true
+        },
+        "observed": {
+          "outcome": "CancelledError",
+          "closing": false,
+          "request_received": true
+        },
+        "agrees": false
+      },
+      {
+        "name": "cancelled-acquisition-not-rollback",
+        "kind": "SUPPORTED_UNCERTAIN_EFFECT_LIMITATION",
+        "literal": null,
+        "expected": {
+          "cancelled": true,
+          "artifact_exists": true,
+          "bytes": "GGUF"
+        },
+        "observed": {
+          "cancelled": true,
+          "artifact_exists": true,
+          "bytes": "GGUF"
+        },
+        "agrees": true
+      },
+      {
+        "name": "tool-schema-nonstandard-json",
+        "kind": "NEW_TOOL_JSON_SYNTAX",
+        "literal": "{\"type\":\"object\",\"default\":NaN}",
+        "expected": {
+          "outcome": "ValueError",
+          "requests": 0,
+          "strict_wire": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "requests": 1,
+          "strict_wire": false
+        },
+        "agrees": false
+      },
+      {
+        "name": "tool-argument-nonstandard-NaN",
+        "kind": "NEW_TOOL_JSON_SYNTAX",
+        "literal": "NaN",
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "tool-argument-nonstandard-Infinity",
+        "kind": "NEW_TOOL_JSON_SYNTAX",
+        "literal": "Infinity",
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "tool-argument-nonstandard--Infinity",
+        "kind": "NEW_TOOL_JSON_SYNTAX",
+        "literal": "-Infinity",
+        "expected": {
+          "outcome": "LlamaCppResponseError",
+          "content": null,
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "content": "",
+          "connections": 1,
+          "wrote": true,
+          "closed": true,
+          "observations": 0,
+          "observed_reply": null,
+          "usage": null
+        },
+        "agrees": false
+      }
+    ],
+    "unhandled_loop_errors": [],
+    "harness_errors": [],
+    "unexpected_controls": [],
+    "scope": "Only deterministic transport/Command/download doubles, temporary data and one authored local empty HTTP sink. No inference, Docker, model download, source edit or scientific replay."
+  },
+  "scope": "44 deterministic cases;18 contract failures across five new P2 families;26 agreeing controls/known limitation observations. Temporary fixture data only. One actual ephemeral loopback HTTP sink with explicit closure; no model or serving process, Docker, remote endpoint or download. Lost-launch and HF effects are deterministic fake marker writes, not actual provider entry."
+}
