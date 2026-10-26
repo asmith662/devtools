@@ -191,3 +191,7 @@ Provider send normalizes before calling optional completion observer. Transport/
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## ModelInteraction/Serving evidence — 2026-10-26
+
+ModelInteraction/Serving audit on `a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1`: all30 selected bodies/export/marker surfaces (7,119 lines) fully reviewed,321 focused plus113 real-consumer deterministic tests pass.44 independent cases reproduce five bounded P2 families (UTF8 normalization, vLLM response framing/shape, readiness writer cleanup, registry-port/tag admission, strict Tool JSON). See [report](../../research/model-interaction-and-serving-audit.md) and [exact evidence](../../research/code-audit/model-interaction-serving-assurance.json). No source/test change, live inference or new protected gate. All three ADR slices remain delivered. New bounded UTF8 and Tool-JSON bugs have separate pending UUIDs in the report; no provider-framework rewrite. Three promoted llama usage fields are deliberately scoped, no inferred total/cache/reasoning promise. Observer error policy remains an explicit decision, not authority to suppress or retry. Existing status, decision maturity, dependencies, approvals and authority remain unchanged. `audit:model-interaction-serving:a7a49cc1:20261026`.

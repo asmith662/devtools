@@ -1,0 +1,427 @@
+{
+  "at": "2026-10-26T18:30:20.289648+00:00",
+  "baseline": "a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1",
+  "status": "FROZEN_FOR_REVIEW",
+  "cohort": [
+    {
+      "path": "src/devtools/models/interaction/__init__.py",
+      "blob": "ca471454226fdc5c66849e541a91132841460d73",
+      "lines": 44,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/models.py",
+      "blob": "f44938a918053b54a035bfec3beca916aec776c3",
+      "lines": 137,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/observation.py",
+      "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+      "lines": 70,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/prompt.py",
+      "blob": "b95d60c773eb5bdd69665573ee608038de1c7604",
+      "lines": 97,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/protocols.py",
+      "blob": "ca34b76bf61cb2bc5ee49190e12d3eab3bc18839",
+      "lines": 27,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/__init__.py",
+      "blob": "a576fdab8479aa35bd28ebfb16e388cc1a768bcf",
+      "lines": 22,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+      "lines": 616,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+      "blob": "fd43565f0433e01852e678262c9c6cd53651b843",
+      "lines": 29,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+      "blob": "360c12847334b36df4a1de2077c7ba22af6f8451",
+      "lines": 47,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/response.py",
+      "blob": "bfa1ab38d69cfb470847ba28bf61636fe9ba2555",
+      "lines": 33,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/termination.py",
+      "blob": "994c5d4c6c2ef3cfab4b01cc74251ed76276fc08",
+      "lines": 12,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/tools.py",
+      "blob": "42ad0034186a96d620f1b9ddfa5335e599e1f181",
+      "lines": 74,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/interaction/usage.py",
+      "blob": "27ce591f067a4f19e74516c742b12c4de44e5f94",
+      "lines": 35,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/__init__.py",
+      "blob": "2c77c4cb3c934ebbacfba1394690c19251de9b61",
+      "lines": 13,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/errors.py",
+      "blob": "7800c2d90905adfd6b97ad267cc731d06bce72d8",
+      "lines": 68,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/huggingface.py",
+      "blob": "98e4555a8fc1493205499b01c0f64f791a143f56",
+      "lines": 132,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/identity.py",
+      "blob": "41967a3c33dad626b6b17cf4c9f76a0c1dc89054",
+      "lines": 60,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/llama_cpp.py",
+      "blob": "deefe9ea5aa547c60c351a827f8de1199ed7b540",
+      "lines": 501,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/models/serving/vllm.py",
+      "blob": "f4916cdef9dcd3a46db689d23c49cd0f715cac36",
+      "lines": 598,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/__init__.py",
+      "blob": "5dea5beec886251d1a0929889c56a67c66a9eb8e",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/providers/__init__.py",
+      "blob": "6ba60841d4e0cd3245df37c40e364ac841d1496e",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/providers/test_llama_cpp.py",
+      "blob": "b7bb4ea79fd6cb71b9ac9a2a9977da59372a7b4a",
+      "lines": 1579,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/test_models.py",
+      "blob": "cd9b9ae808235eeda0e5a22efd9cea601a19ca15",
+      "lines": 305,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/test_prompt.py",
+      "blob": "06d71a8f8915382b237c95935ab5719c34ac3de9",
+      "lines": 156,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/test_protocols.py",
+      "blob": "857e043e163b5b5ed59adf9afafce812c3179271",
+      "lines": 61,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/interaction/test_tools.py",
+      "blob": "9c9f85e6ce820ae7bd236b6880d4459cb58df166",
+      "lines": 96,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/serving/__init__.py",
+      "blob": "e11286eda0a2311d51e6c3054c96a27a15be04e9",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/serving/test_huggingface.py",
+      "blob": "fca750f1ae79e4eb3a9a587cacb4f1442896849b",
+      "lines": 258,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/serving/test_llama_cpp.py",
+      "blob": "b0a2d1aac2fc3e9877111d07071dcd6a6e1446f3",
+      "lines": 733,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/models/serving/test_vllm.py",
+      "blob": "8c2084a046e4228394271b2bb4fa5042eb9497ab",
+      "lines": 1310,
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    }
+  ],
+  "body_lines": 7119,
+  "scope": "All maintained Python source/test bodies under interaction and serving, including exports, marker roles and complete test helpers. Package docs and real callers inspected separately with explicit depth. No model entry, serving start, download, source/test change or full protected gate authorized.",
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "review_overlay": {
+    "at": "2026-10-26T19:57:49.370501+00:00",
+    "baseline": "a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1",
+    "status": "COMPLETED_AT_DEFINED_DEPTH_WITH_FIVE_OPEN_P2_FINDINGS",
+    "report": "docs/research/model-interaction-and-serving-audit.md",
+    "reviewed": [
+      {
+        "path": "src/devtools/models/interaction/__init__.py",
+        "blob": "ca471454226fdc5c66849e541a91132841460d73",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/models.py",
+        "blob": "f44938a918053b54a035bfec3beca916aec776c3",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/observation.py",
+        "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/prompt.py",
+        "blob": "b95d60c773eb5bdd69665573ee608038de1c7604",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/protocols.py",
+        "blob": "ca34b76bf61cb2bc5ee49190e12d3eab3bc18839",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/providers/__init__.py",
+        "blob": "a576fdab8479aa35bd28ebfb16e388cc1a768bcf",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+        "blob": "fd43565f0433e01852e678262c9c6cd53651b843",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+        "blob": "360c12847334b36df4a1de2077c7ba22af6f8451",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/response.py",
+        "blob": "bfa1ab38d69cfb470847ba28bf61636fe9ba2555",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/termination.py",
+        "blob": "994c5d4c6c2ef3cfab4b01cc74251ed76276fc08",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/tools.py",
+        "blob": "42ad0034186a96d620f1b9ddfa5335e599e1f181",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/interaction/usage.py",
+        "blob": "27ce591f067a4f19e74516c742b12c4de44e5f94",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/__init__.py",
+        "blob": "2c77c4cb3c934ebbacfba1394690c19251de9b61",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/errors.py",
+        "blob": "7800c2d90905adfd6b97ad267cc731d06bce72d8",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/huggingface.py",
+        "blob": "98e4555a8fc1493205499b01c0f64f791a143f56",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/identity.py",
+        "blob": "41967a3c33dad626b6b17cf4c9f76a0c1dc89054",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/llama_cpp.py",
+        "blob": "deefe9ea5aa547c60c351a827f8de1199ed7b540",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/models/serving/vllm.py",
+        "blob": "f4916cdef9dcd3a46db689d23c49cd0f715cac36",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "tests/models/interaction/__init__.py",
+        "blob": "5dea5beec886251d1a0929889c56a67c66a9eb8e",
+        "depth": "FULL_TEST_MARKER_ROLE"
+      },
+      {
+        "path": "tests/models/interaction/providers/__init__.py",
+        "blob": "6ba60841d4e0cd3245df37c40e364ac841d1496e",
+        "depth": "FULL_TEST_MARKER_ROLE"
+      },
+      {
+        "path": "tests/models/interaction/providers/test_llama_cpp.py",
+        "blob": "b7bb4ea79fd6cb71b9ac9a2a9977da59372a7b4a",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/interaction/test_models.py",
+        "blob": "cd9b9ae808235eeda0e5a22efd9cea601a19ca15",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/interaction/test_prompt.py",
+        "blob": "06d71a8f8915382b237c95935ab5719c34ac3de9",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/interaction/test_protocols.py",
+        "blob": "857e043e163b5b5ed59adf9afafce812c3179271",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/interaction/test_tools.py",
+        "blob": "9c9f85e6ce820ae7bd236b6880d4459cb58df166",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/serving/__init__.py",
+        "blob": "e11286eda0a2311d51e6c3054c96a27a15be04e9",
+        "depth": "FULL_TEST_MARKER_ROLE"
+      },
+      {
+        "path": "tests/models/serving/test_huggingface.py",
+        "blob": "fca750f1ae79e4eb3a9a587cacb4f1442896849b",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/serving/test_llama_cpp.py",
+        "blob": "b0a2d1aac2fc3e9877111d07071dcd6a6e1446f3",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/models/serving/test_vllm.py",
+        "blob": "8c2084a046e4228394271b2bb4fa5042eb9497ab",
+        "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
+      }
+    ]
+  }
+}

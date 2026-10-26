@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "a0ccec58-586d-4f46-8da8-37d26a447bf2",
+  "created_at": "2026-10-26T19:57:46.264200+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Distinguish Docker registry port from explicit image tag in serving admission",
+    "summary": "P2: both serving configurations accept registry.example:5000/team/server although existing policy requires explicit tag or digest. A colon in registry port is not a tag in final image component. Repair local existing config admission; preserve server:cuda and server@sha256:<64hex> controls, unqualified/blank and other current validation. Probe only constructs configs, never Docker. An explicit mutable tag is not cryptographic model/image immutability. Baseline a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1. Acceptance: Registry-port-only image refused before executor; same registry with explicit last-component tag or digest accepted; valid existing images unchanged; independent both-adapter configuration tests.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:model-interaction-serving:a7a49cc1:20261026:NEW_IMAGE_TAG_ADMISSION"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/models/serving/llama_cpp.py",
+      "src/devtools/models/serving/vllm.py",
+      "tests/models/serving/test_llama_cpp.py",
+      "tests/models/serving/test_vllm.py"
+    ],
+    "evidence": [
+      "docs/research/model-interaction-and-serving-audit.md",
+      "docs/research/code-audit/model-interaction-serving-probes.json"
+    ],
+    "benefit": "Make the existing supported boundary conservative and reliable without inventing new lifecycle or authority.",
+    "uncertainty": "Deterministic maintained-call probes, not live model/GPU/Docker proof. Production correction is not authorized by this audit; preserve ownership and public compatibility.",
+    "dependencies": [
+      "Existing ADR-0001 ModelInteraction/Serving ownership and current public error/JSON/config contracts; no new architectural approval implied."
+    ]
+  },
+  "payload_sha256": "5e110bc86a6d27a5d398740556c16692f09c0deeb123b490d350d190ccad26aa"
+}
