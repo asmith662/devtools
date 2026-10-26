@@ -1,0 +1,863 @@
+{
+  "at": "2026-10-26T00:43:33.664821+00:00",
+  "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+  "selection_original": {
+    "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+    "status": "FROZEN_NOT_STARTED",
+    "flow": "Semantic path admission -> bounded resource IO -> managed process entry/output/cancellation -> externally observed effect and caller responsibility",
+    "priority": "Next major framework domain after concrete P2 usage repair disposition; do not add another narrow operational audit by default.",
+    "cohort": [
+      {
+        "path": "src/devtools/core/paths/resolution.py",
+        "blob": "678327a2c520ffb43f49d14722b168956a128171",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "src/devtools/core/paths/models.py",
+        "blob": "5463528290e24874a8a0dfa4c703bd9c54d20fd4",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "src/devtools/resources/filesystem/reading.py",
+        "blob": "50e7ac2f138d87f309aba6072c6e281625141c9a",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "src/devtools/resources/filesystem/writing.py",
+        "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "src/devtools/resources/commands/execution.py",
+        "blob": "2b81abce1be791e0ec17f944870d8e15d4bc01c6",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "src/devtools/resources/commands/handle.py",
+        "blob": "016aaf5e20d392c914b7a975c4c59f60742d46b5",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/core/paths/test_resolution.py",
+        "blob": "fe582fe2e5c84bb833e739d825ffab0d35153c6c",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/resources/filesystem/test_writing.py",
+        "blob": "74a62a9e03b3f60ec48a9ceec59f6f37ebb01d3b",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/resources/filesystem/test_bounded_read.py",
+        "blob": "cc437d11f3e89f38f2e93a9d0540a6acb83d3c11",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/resources/commands/test_execution.py",
+        "blob": "e7df04e4ad835d9ac80b0d845c39e6791963b441",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/resources/commands/test_handle.py",
+        "blob": "229cd4fe5f4d14d91ea702513d6fa93bb11450fe",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      },
+      {
+        "path": "tests/resources/commands/test_events.py",
+        "blob": "f64fe3c799d79925cfb0e7a177e4d63988f988d2",
+        "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      }
+    ],
+    "limits": "Selection only. No body review in this assignment; no new framework or transaction mechanism authorized. Remaining Core/time/identity, codecs/models, ModelInteraction/serving, Agents, Persistence, full applications and scientific/developer infrastructure stay explicit."
+  },
+  "reviewed": [
+    {
+      "path": "src/devtools/core/paths/resolution.py",
+      "blob": "678327a2c520ffb43f49d14722b168956a128171",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Explicit base parsing/resolution and conventional locations",
+      "findings": "All parse/dot/suffix/base branches and Path.resolve(strict=False) calls inspected. No containment/authority promise; native errors propagate. Cross-drive relative path uses ambient CWD. Embedded separators/dot parsing remain mechanical.",
+      "consumer": "Shared path callers in RI observation, ReadRepositoryFileTool, Qwen check inputs and Checkout. Those callers add their own containment/address/alias rules.",
+      "disposition": "NEW_P2_PATH_POLICY",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "src/devtools/core/paths/models.py",
+      "blob": "5463528290e24874a8a0dfa4c703bd9c54d20fd4",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Absolute immutable path representation",
+      "findings": "All absolute invariant, path accessors, os.PathLike/string/equality mechanics inspected. Direct construction does not normalize, authenticate existence or grant authority. Windows case equality is native Path semantics, not file identity.",
+      "consumer": "Resources consume value; Source/Checkout policies re-resolve where required.",
+      "disposition": "QUALIFIED_NO_ACTION",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/reading.py",
+      "blob": "50e7ac2f138d87f309aba6072c6e281625141c9a",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Bounded codec-backed reads",
+      "findings": "Complete precheck, bounded/unlimited read loops, short reads, sentinel/postcheck, format dispatch and permission paths inspected. Bounds are bytes, not decoded characters; no atomic snapshot or path lease.",
+      "consumer": "RepositoryObservation derives content identity from actual returned decoded bytes; Tool/native Context retain stronger source contracts separately.",
+      "disposition": "DELIVERED_BOUND_WITH_LIMITS",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/writing.py",
+      "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Atomic replacement write",
+      "findings": "All model/codec matches, existence check, sibling temp creation, write/flush/fsync/replace and cleanup paths inspected. Dangling link exists-check failure reproduced; no directory fsync, metadata preservation or concurrency guarantee.",
+      "consumer": "Intake immutable JSON, Checkout owner checkpoints, usage snapshots, Qwen receipts and edits compose this owner with distinct admission/leases.",
+      "disposition": "NEW_P2_DANGLING_ENTRY",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "src/devtools/resources/commands/execution.py",
+      "blob": "2b81abce1be791e0ec17f944870d8e15d4bc01c6",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Managed process transport",
+      "findings": "Full create/collect/feed/read/reap/timeout/cancel/error paths inspected. Direct argv and launch-time env overlays; post-creation timeout, bounded prefixes, drain-on-normal completion. Read-failure gather leaves sibling collector alive.",
+      "consumer": "CommandTool/ToolRunner, Qwen fixed checks and backlog Git helper await actual results. No automatic authority/retry/rollback.",
+      "disposition": "NEW_P2_COLLECTOR_CLEANUP",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "src/devtools/resources/commands/handle.py",
+      "blob": "016aaf5e20d392c914b7a975c4c59f60742d46b5",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Single live handle/event queue",
+      "findings": "Complete shared task await, running/done views, single event consumer, queue overflow and stream closure bodies inspected. One awaiter cancellation propagates to shared task; consumer cancellation is not command rollback.",
+      "consumer": "Current maintained callers generally execute/await; live event consumer search found tests only. Events are best effort, not durable Evidence or terminal proof.",
+      "disposition": "QUALIFIED_NO_ACTION",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/core/paths/test_resolution.py",
+      "blob": "fe582fe2e5c84bb833e739d825ffab0d35153c6c",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Path test fixtures",
+      "findings": "Every test/helper inspected. Ordinary Path/string/dot/base/suffix and known-location controls; model normalization expectations often mirror pathlib rather than independent OS policy. No foreign-drive/CWD, UNC, link or permission schedule.",
+      "consumer": "Protects thin delegation/local input contracts; no retained-source authenticity or authorization proof claimed.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/resources/filesystem/test_writing.py",
+      "blob": "74a62a9e03b3f60ec48a9ceec59f6f37ebb01d3b",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Writer tests",
+      "findings": "Every test/monkeypatch inspected. Real bytes/JSON/CSV current-state controls; fake fsync/replace failures and cleanup. fsync and replace calls are recorded separately, so the test name promises ordering more strongly than its assertions. No dangling entry or concurrent create.",
+      "consumer": "Actual filesystem roundtrips plus isolated injected error contracts; no full power-loss, ACL or immutable-journal integration proof.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/resources/filesystem/test_bounded_read.py",
+      "blob": "cc437d11f3e89f38f2e93a9d0540a6acb83d3c11",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Bounded read tests",
+      "findings": "Every parametrized body and ObservedStream helper inspected. Genuine stat target plus deliberately replaced byte stream isolates allocation/short-read mechanics, asserts requests/consumption <=cap+1 and closure. Pure stream injection is appropriate. No file snapshot authenticity is implied.",
+      "consumer": "Real RI observation tests in focused suite exercise consumer composition; selected module is resource arithmetic/stream assurance.",
+      "disposition": "SUFFICIENT_LOCAL_CONTRACT",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/resources/commands/test_execution.py",
+      "blob": "e7df04e4ad835d9ac80b0d845c39e6791963b441",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Executor tests",
+      "findings": "Every test/fake inspected. Real Python argv/cwd/exit controls; fakes isolate missing executable/pipes/exit, timeout, zero retention/drop behavior and post-create timeout boundary. Fake kill/wait flags alone are not OS cleanup proof.",
+      "consumer": "Companion real stdin tests and independent real probes corroborate bounded child behavior.",
+      "disposition": "QUALIFIED_WITH_CLEANUP_GAP",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/resources/commands/test_handle.py",
+      "blob": "229cd4fe5f4d14d91ea702513d6fa93bb11450fe",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Handle tests",
+      "findings": "Every test/helper inspected. Real repeated awaits/event streams and claim guard; fakes for failure/cancellation/reap. The failing-stdout fixture uses immediate-EOF stderr, so cannot detect pending sibling collectors.",
+      "consumer": "Companion real blocked-input cancellation inspected; independent after-effect cancellation confirms reaping without rollback.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    },
+    {
+      "path": "tests/resources/commands/test_events.py",
+      "blob": "f64fe3c799d79925cfb0e7a177e4d63988f988d2",
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Event value tests",
+      "findings": "Complete immutable-value test inspected. Independently literal data/equality/hash and FrozenInstanceError assertions. Does not establish delivery, queue loss, durability or cross-stream order; those belong to handle/executor tests.",
+      "consumer": "Events are lightweight Resource observations, not framework Evidence/Trace/Telemetry records.",
+      "disposition": "SUFFICIENT_VALUE_CONTRACT",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/core/paths/errors.py",
+      "blob": "04a093707d1001cc7ef549fd54849dbc79e7de9d",
+      "depth": "TARGETED_ERROR_HIERARCHY"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/resolution.py",
+      "blob": "02346f3859440f1da3557114927b0814b9819724",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/text.py",
+      "blob": "757825a9c1d26c7d491ce659b94c6ea4472f7372",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/binary.py",
+      "blob": "4e67f00a67dc0b3e88b5ba71a71840178f71be9b",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/errors.py",
+      "blob": "792838376e164632763ef61a644129c38e5f489f",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/commands/events.py",
+      "blob": "e5a9e45a48a1b18a986e901bc6e17bbefee66b53",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/commands/models/output.py",
+      "blob": "cfc2becf7236abd5ed9f33c1b2052676ef68ddee",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/commands/models/result.py",
+      "blob": "5fcba682b24ec828637e0b98bdf94a9687d2292d",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/resources/commands/models/command.py",
+      "blob": "6fb4fd8f8e479525a6e2622ab606361fe845c1f2",
+      "depth": "TARGETED_VALIDATION_AND_FLUENT_CONTRACTS"
+    },
+    {
+      "path": "src/devtools/context/repository/observation.py",
+      "blob": "31bd21af30edf53639df663c237f0b48720fd1e6",
+      "depth": "TARGETED_ROOT_CONTAINMENT_READ_AND_IDENTITY"
+    },
+    {
+      "path": "src/devtools/tools/filesystem.py",
+      "blob": "2f2754c0a3c7086b3f689272342e104b8487bad9",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "src/devtools/tools/command.py",
+      "blob": "27b241d9f6dbf3ce73baf2e7b219c00478149d51",
+      "depth": "FULL_BODY_READ"
+    },
+    {
+      "path": "scripts/backlog/coordinator.py",
+      "blob": "993d4aae623bfb99baa571e7c7e5f91f06946ecc",
+      "depth": "TARGETED_GIT_ROOT_HELPERS"
+    },
+    {
+      "path": "scripts/backlog/checkout.py",
+      "blob": "01339ae4b1d19796bf79ff24fecd251d847e3821",
+      "depth": "TARGETED_SOURCE_PATH_OWNERSHIP_AND_JOURNAL"
+    },
+    {
+      "path": "scripts/backlog/intake.py",
+      "blob": "625bb2d67cf12eb4585a6f2d0cdae5d789def5b4",
+      "depth": "TARGETED_IMMUTABLE_WRITE_AND_INTAKE_PROCEDURES"
+    },
+    {
+      "path": "apps/qwen/commands.py",
+      "blob": "e2a7c83a4e3d0f6533398e06645c7bb78ad9d856",
+      "depth": "TARGETED_INPUT_SCOPE_AND_EXECUTOR_CALLS"
+    },
+    {
+      "path": "apps/qwen/tasks.py",
+      "blob": "6af35e557c530ea34e56bbfd56d91de97f81b2d6",
+      "depth": "TARGETED_TASK_SCOPE_VALIDATION"
+    },
+    {
+      "path": "apps/qwen/edits.py",
+      "blob": "737aec5347b8684e2515d86f2f61efc0eb2cc110",
+      "depth": "TARGETED_IMPORTS_AND_ADMISSION"
+    },
+    {
+      "path": "tests/resources/commands/test_stdin.py",
+      "blob": "0e78b83e0132eb162b32dd3d37645fab61c79b9e",
+      "depth": "TARGETED_REAL_TIMEOUT_CANCELLATION_AND_PIPE_CONTRACTS"
+    },
+    {
+      "path": "tests/resources/filesystem/test_reading.py",
+      "blob": "2cbd28de4253d5679800fc4c47cd095418d99aab",
+      "depth": "TARGETED_GROWTH_AND_LIMIT_TESTS"
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "depth": "TRAVERSED_SERIALIZATION_IMPORTS_ONLY_NOT_AUDITED"
+    },
+    {
+      "path": "src/devtools/observability/usage/storage.py",
+      "blob": "d3639cddaf36999f0ff3d38d3d82f5f6ac00d91a",
+      "depth": "TARGETED_LEASE_AND_SNAPSHOT_IO"
+    }
+  ],
+  "probes": {
+    "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+    "at": "2026-10-26T00:39:34.806343+00:00",
+    "platform": "nt",
+    "method": "Independent literal expected outcomes; temporary filesystem inputs, real bounded managed child processes, explicit deterministic read/reap fakes. No model or production source mutation.",
+    "cases": [
+      {
+        "case": "ordinary_relative_and_missing",
+        "expected": "An explicit base resolves missing relative members; it is not an allowed-root policy.",
+        "actual": {
+          "resolved": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\a\\new",
+          "parent_same_directory": true,
+          "escape": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\outside"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "drive_relative_foreign_base",
+        "expected": "A relative input must not silently depend on ambient CWD after an explicit absolute base is supplied; reject incompatible drive-relative inputs or define an equally explicit policy.",
+        "actual": {
+          "input": "C:relative.txt",
+          "base": "Z:/explicit-base",
+          "first": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\a\\relative.txt",
+          "second": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\b\\relative.txt",
+          "cwd_dependent": true
+        },
+        "classification": "CONFIRMED_POLICY_DEFECT"
+      },
+      {
+        "case": "dot_components_native_root",
+        "expected": "Mechanical dot components are not Python identifiers or a containment guarantee.",
+        "actual": {
+          "input": "one./escape",
+          "result": "\\escape",
+          "absolute": false
+        },
+        "classification": "QUALIFIED_LIMITATION"
+      },
+      {
+        "case": "ordinary_no_overwrite",
+        "expected": "Existing regular bytes stay old under overwrite=False.",
+        "actual": {
+          "refused": true,
+          "bytes": "old"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "dangling_no_overwrite",
+        "expected": "FileExistsError; the original symlink directory entry remains untouched.",
+        "actual": {
+          "capability": true,
+          "before_link": "\\\\?\\C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\missing-target.bin",
+          "error": null,
+          "after_symlink": false,
+          "after_bytes": "new"
+        },
+        "classification": "CONFIRMED_DEFECT"
+      },
+      {
+        "case": "stable_link_resolution",
+        "expected": "The resolved target is outside the selected root; caller must refuse.",
+        "actual": {
+          "resolved": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-na44n5q5\\outside\\secret.txt",
+          "contained": false
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "real_binary_bound",
+        "expected": "Exact five bytes return; four-byte cap refuses.",
+        "actual": {
+          "content_hex": "6162636465",
+          "overflow": "FileTooLargeError"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "mutation_before_open",
+        "expected": "Generic read returns the actual bytes it reads, not a stat-time snapshot or earlier content identity.",
+        "actual": {
+          "read_hex": "767778797a",
+          "expected_hex": "767778797a"
+        },
+        "classification": "QUALIFIED_LIMITATION"
+      },
+      {
+        "case": "concurrent_no_overwrite",
+        "expected": "No concurrent-writer safety is documented; higher-layer serialization is required.",
+        "actual": {
+          "after": "NEW",
+          "other_preserved": false
+        },
+        "classification": "DOCUMENTED_LIMITATION"
+      },
+      {
+        "case": "real_command_bounded_events",
+        "expected": "One execution, exact prefixes and explicit loss flags; no required terminal event in a saturated queue.",
+        "actual": {
+          "stdout": "abc",
+          "stderr": "x",
+          "stdout_truncated": true,
+          "stderr_truncated": true,
+          "events": [
+            "CommandStarted"
+          ],
+          "dropped": 3,
+          "same_result": true
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "missing_cwd_classification",
+        "expected": "A missing working directory is not proof that the existing Python executable is absent.",
+        "actual": {
+          "error": "NotADirectoryError",
+          "message": "[WinError 267] The directory name is invalid",
+          "cause": "NoneType"
+        },
+        "classification": "DIAGNOSTIC_LIMITATION"
+      },
+      {
+        "case": "real_blocked_stdin_timeout",
+        "expected": "Immediate-child timeout propagates as CommandTimeoutError; it does not prove rollback.",
+        "actual": {
+          "error": "CommandTimeoutError"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "real_cancellation_after_effect",
+        "expected": "Reap the actual immediate child, propagate cancellation, close events without a fabricated exit result; the earlier external effect remains.",
+        "actual": {
+          "returncode": 1,
+          "handle_complete": true,
+          "marker": "EFFECT",
+          "events": [
+            "CommandStarted",
+            "CommandStdout"
+          ]
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "reader_failure_sibling_lifetime",
+        "expected": "All owned collector tasks should finish/cancel before terminal failure is returned; no background reader remains.",
+        "actual": {
+          "handle_complete": true,
+          "killed": true,
+          "reaped": true,
+          "sibling_entered": true,
+          "sibling_cancelled": false,
+          "pending_reader_tasks": 1,
+          "events": [
+            "CommandStarted"
+          ]
+        },
+        "classification": "CONFIRMED_CLEANUP_DEFECT"
+      }
+    ]
+  },
+  "reproducer_source": "\"\"\"Bounded independent probes. No model, repo edits, archived controller or source copy.\"\"\"\nimport asyncio,hashlib,importlib,json,os,sys,tempfile\nfrom pathlib import Path\nfrom unittest.mock import patch\nfrom devtools.core.paths import ResolvedPath,resolve_path,parse_dot_path\nfrom devtools.core.time import Timestamp,Duration\nfrom devtools.resources.filesystem import BinaryFile,FileFormat,read,write\nfrom devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy,CommandStdout\nO=Path(__file__).parent.resolve();BASE='0e240ec102e9d54c92a3e85071586a9a8e74b308';cases=[]\ndef add(name,expected,actual,classification):cases.append(dict(case=name,expected=expected,actual=actual,classification=classification))\nasync def main():\n with tempfile.TemporaryDirectory(prefix='devtools-core-resource-audit-') as folder:\n  root=Path(folder);a=root/'a';b=root/'b';a.mkdir();b.mkdir()\n  # Literal independent semantics, not another call to the resolver as oracle.\n  normal=resolve_path('child/../new',base_directory=a).value\n  assert normal.name=='new' and os.path.samefile(normal.parent,a)\n  add('ordinary_relative_and_missing','An explicit base resolves missing relative members; it is not an allowed-root policy.',dict(resolved=str(normal),parent_same_directory=os.path.samefile(normal.parent,a),escape=str(resolve_path('../outside',base_directory=a))), 'CONTROL')\n  if os.name=='nt':\n   old=Path.cwd();drive=old.drive;other='Z:' if drive.upper()!='Z:' else 'Y:';results=[]\n   try:\n    for cwd in [a,b]:\n     os.chdir(cwd);results.append(str(resolve_path(drive+'relative.txt',base_directory=Path(other+'/explicit-base'))))\n   finally:os.chdir(old)\n   add('drive_relative_foreign_base','A relative input must not silently depend on ambient CWD after an explicit absolute base is supplied; reject incompatible drive-relative inputs or define an equally explicit policy.',dict(input=drive+'relative.txt',base=other+'/explicit-base',first=results[0],second=results[1],cwd_dependent=results[0]!=results[1]),'CONFIRMED_POLICY_DEFECT' if results[0]!=results[1] else 'NO_DEFECT')\n  add('dot_components_native_root','Mechanical dot components are not Python identifiers or a containment guarantee.',dict(input='one./escape',result=str(parse_dot_path('one./escape')),absolute=parse_dot_path('one./escape').is_absolute()),'QUALIFIED_LIMITATION')\n  target=root/'target.bin';target.write_bytes(b'old')\n  try:write(BinaryFile(ResolvedPath(target),b'new'),overwrite=False)\n  except FileExistsError:ordinary=True\n  else:ordinary=False\n  add('ordinary_no_overwrite','Existing regular bytes stay old under overwrite=False.',dict(refused=ordinary,bytes=target.read_bytes().decode()),'CONTROL')\n  link=root/'entry.bin'\n  try:link.symlink_to(root/'missing-target.bin')\n  except OSError as e:add('dangling_no_overwrite','An existing dangling directory entry should not be replaced when overwrite=False.',dict(capability=False,error=type(e).__name__,winerror=getattr(e,'winerror',None)),'PLATFORM_UNAVAILABLE')\n  else:\n   before=os.readlink(link);error=None\n   try:write(BinaryFile(ResolvedPath(link),b'new'),overwrite=False)\n   except Exception as e:error=type(e).__name__\n   add('dangling_no_overwrite','FileExistsError; the original symlink directory entry remains untouched.',dict(capability=True,before_link=before,error=error,after_symlink=link.is_symlink(),after_bytes=None if link.is_symlink() else link.read_bytes().decode()),'CONFIRMED_DEFECT' if not link.is_symlink() else 'CONTROL')\n  # Containment normalization handles a stable link, not a lease across later IO.\n  inside=root/'inside';outside=root/'outside';inside.mkdir();outside.mkdir();(outside/'secret.txt').write_bytes(b'OUTSIDE')\n  alias=inside/'alias'\n  try:alias.symlink_to(outside,target_is_directory=True)\n  except OSError as e:add('stable_link_resolution','Stable aliases resolve before consumer containment checks.',dict(capability=False,error=type(e).__name__),'PLATFORM_UNAVAILABLE')\n  else:add('stable_link_resolution','The resolved target is outside the selected root; caller must refuse.',dict(resolved=str(resolve_path(alias/'secret.txt')),contained=resolve_path(alias/'secret.txt').value.is_relative_to(inside)),'CONTROL')\n  sample=root/'sample.bin';sample.write_bytes(b'abcde')\n  r=read(ResolvedPath(sample),file_format=FileFormat.BINARY,max_bytes=5)\n  try:read(ResolvedPath(sample),file_format=FileFormat.BINARY,max_bytes=4)\n  except Exception as e:overflow=type(e).__name__\n  add('real_binary_bound','Exact five bytes return; four-byte cap refuses.',dict(content_hex=r.content.hex(),overflow=overflow),'CONTROL')\n  original_open=Path.open\n  def changing_open(p,*args,**kwargs):\n   if p==sample:sample.write_bytes(b'vwxyz')\n   return original_open(p,*args,**kwargs)\n  with patch.object(Path,'open',changing_open):\n   # Use original_open to avoid recursive fixture writes.\n   pass\n  changed=False\n  def replaced_open(p,*args,**kwargs):\n   nonlocal changed\n   if p==sample and not changed:\n    changed=True\n    with original_open(p,'wb') as h:h.write(b'vwxyz')\n   return original_open(p,*args,**kwargs)\n  with patch.object(Path,'open',replaced_open):result=read(ResolvedPath(sample),file_format=FileFormat.BINARY,max_bytes=5)\n  add('mutation_before_open','Generic read returns the actual bytes it reads, not a stat-time snapshot or earlier content identity.',dict(read_hex=result.content.hex(),expected_hex=b'vwxyz'.hex()),'QUALIFIED_LIMITATION')\n  # Independent effect-boundary scheduling: destination appears after precheck.\n  writing=importlib.import_module('devtools.resources.filesystem.writing');real_temp=writing.NamedTemporaryFile;race=root/'race.bin'\n  def arriving(**kwargs):\n   race.write_bytes(b'OTHER');return real_temp(**kwargs)\n  with patch.object(writing,'NamedTemporaryFile',arriving):write(BinaryFile(ResolvedPath(race),b'NEW'),overwrite=False)\n  add('concurrent_no_overwrite','No concurrent-writer safety is documented; higher-layer serialization is required.',dict(after=race.read_bytes().decode(),other_preserved=race.read_bytes()==b'OTHER'),'DOCUMENTED_LIMITATION')\n  binary=Command(sys.executable).args('-c','import sys; sys.stdout.buffer.write(b\"abcdef\"); sys.stderr.buffer.write(b\"xyz\")')\n  h=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=3,max_stderr_bytes=1,max_pending_events=1)).start(binary)\n  first=await h;second=await h;events=[type(e).__name__ async for e in h.events()]\n  add('real_command_bounded_events','One execution, exact prefixes and explicit loss flags; no required terminal event in a saturated queue.',dict(stdout=first.stdout.decode(),stderr=first.stderr.decode(),stdout_truncated=first.stdout_truncated,stderr_truncated=first.stderr_truncated,events=events,dropped=first.events_dropped,same_result=first is second),'CONTROL')\n  nonexistent=root/'missing-directory'\n  try:await CommandExecutor().execute(Command(sys.executable).args('-c','pass').cwd(ResolvedPath(nonexistent)))\n  except Exception as e:actual=dict(error=type(e).__name__,message=str(e),cause=type(e.__cause__).__name__)\n  add('missing_cwd_classification','A missing working directory is not proof that the existing Python executable is absent.',actual,'DIAGNOSTIC_LIMITATION')\n  # A nonempty stdin may still be blocked while the immediate child is killed.\n  try:await CommandExecutor().execute(Command(sys.executable).args('-c','import time; time.sleep(1)').with_stdin(b'x'*1000000).with_timeout(Duration.seconds(0.05)))\n  except Exception as e:actual=type(e).__name__\n  add('real_blocked_stdin_timeout','Immediate-child timeout propagates as CommandTimeoutError; it does not prove rollback.',dict(error=actual),'CONTROL')\n  created=[];marker=root/'effect.txt'\n  class ObservedExecutor(CommandExecutor):\n   async def _create_process(self,command):\n    process=await super()._create_process(command);created.append(process);return process\n  h=ObservedExecutor().start(Command(sys.executable).args('-c',\"from pathlib import Path; import sys,time; Path(sys.argv[1]).write_bytes(b'EFFECT'); print('READY',flush=True); time.sleep(2)\",str(marker)))\n  pending=asyncio.ensure_future(h);stream=h.events();seen=[]\n  async with asyncio.timeout(5):\n   async for event in stream:\n    seen.append(type(event).__name__)\n    if isinstance(event,CommandStdout) and b'READY' in event.data:break\n   pending.cancel()\n   try:await pending\n   except asyncio.CancelledError:pass\n   seen.extend([type(e).__name__ async for e in stream])\n  assert marker.read_bytes()==b'EFFECT' and created[0].returncode is not None\n  add('real_cancellation_after_effect','Reap the actual immediate child, propagate cancellation, close events without a fabricated exit result; the earlier external effect remains.',dict(returncode=created[0].returncode,handle_complete=h.is_complete,marker=marker.read_bytes().decode(),events=seen),'CONTROL')\n  # Both fakes model actual stream/read and reap boundaries. No real child exists.\n  class Failing:\n   async def read(self,n):raise RuntimeError('independent reader failure')\n  class Blocking:\n   def __init__(self):self.entered=asyncio.Event();self.release=asyncio.Event();self.cancelled=False;self.complete=False\n   async def read(self,n):\n    self.entered.set()\n    try:await self.release.wait();self.complete=True;return b''\n    except asyncio.CancelledError:self.cancelled=True;raise\n  class Process:\n   stdin=None;returncode=None\n   def __init__(self):self.stdout=Failing();self.stderr=Blocking();self.killed=False;self.waited=False\n   def kill(self):self.killed=True;self.returncode=-1\n   async def wait(self):self.waited=True\n  p=Process()\n  async def create(*args,**kwargs):return p\n  with patch('devtools.resources.commands.execution.asyncio.create_subprocess_exec',create):\n   h=CommandExecutor().start(Command('deterministic-fake'))\n   try:await h\n   except RuntimeError:pass\n   await asyncio.sleep(0)\n   pending=[t for t in asyncio.all_tasks() if t is not asyncio.current_task() and '_read_stream' in t.get_coro().__qualname__ and not t.done()]\n   add('reader_failure_sibling_lifetime','All owned collector tasks should finish/cancel before terminal failure is returned; no background reader remains.',dict(handle_complete=h.is_complete,killed=p.killed,reaped=p.waited,sibling_entered=p.stderr.entered.is_set(),sibling_cancelled=p.stderr.cancelled,pending_reader_tasks=len(pending),events=[type(e).__name__ async for e in h.events()]),'CONFIRMED_CLEANUP_DEFECT' if pending else 'CONTROL')\n   p.stderr.release.set()\n   if pending:await asyncio.gather(*pending)\n out=dict(baseline=BASE,at=str(Timestamp.now()),platform=os.name,method='Independent literal expected outcomes; temporary filesystem inputs, real bounded managed child processes, explicit deterministic read/reap fakes. No model or production source mutation.',cases=cases)\n (O/'probes.json').write_text(json.dumps(out,indent=2)+'\\n',encoding='utf-8')\n print(json.dumps([dict(case=r['case'],classification=r['classification'],actual=r['actual']) for r in cases],indent=2))\nasyncio.run(main())\n",
+  "probe_receipt": {
+    "at": "2026-10-26T00:39:34.824258+00:00",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/core-resources-audit-20261025/probes.py"
+    ],
+    "exit": 0,
+    "elapsed": "0:00:00.571350",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "log_sha256": "ca566c45b2b119ee578800c1a84b5623691f0caa9ce6933a5e75bd75710c01a6"
+  },
+  "initial_probe_results": {
+    "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+    "at": "2026-10-26T00:32:03.655407+00:00",
+    "platform": "nt",
+    "method": "Independent literal expected outcomes; temporary filesystem inputs, real bounded managed child processes, explicit deterministic read/reap fakes. No model or production source mutation.",
+    "cases": [
+      {
+        "case": "ordinary_relative_and_missing",
+        "expected": "An explicit base resolves missing relative members; it is not an allowed-root policy.",
+        "actual": {
+          "resolved": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\a\\new",
+          "expected": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\a\\new",
+          "escape": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\outside"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "drive_relative_foreign_base",
+        "expected": "A relative input must not silently depend on ambient CWD after an explicit absolute base is supplied; reject incompatible drive-relative inputs or define an equally explicit policy.",
+        "actual": {
+          "input": "C:relative.txt",
+          "base": "Z:/explicit-base",
+          "first": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\a\\relative.txt",
+          "second": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\b\\relative.txt",
+          "cwd_dependent": true
+        },
+        "classification": "CONFIRMED_POLICY_DEFECT"
+      },
+      {
+        "case": "dot_components_native_root",
+        "expected": "Mechanical dot components are not Python identifiers or a containment guarantee.",
+        "actual": {
+          "input": "one./escape",
+          "result": "\\escape",
+          "absolute": false
+        },
+        "classification": "QUALIFIED_LIMITATION"
+      },
+      {
+        "case": "ordinary_no_overwrite",
+        "expected": "Existing regular bytes stay old under overwrite=False.",
+        "actual": {
+          "refused": true,
+          "bytes": "old"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "dangling_no_overwrite",
+        "expected": "FileExistsError; the original symlink directory entry remains untouched.",
+        "actual": {
+          "capability": true,
+          "before_link": "\\\\?\\C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\missing-target.bin",
+          "error": null,
+          "after_symlink": false,
+          "after_bytes": "new"
+        },
+        "classification": "CONFIRMED_DEFECT"
+      },
+      {
+        "case": "stable_link_resolution",
+        "expected": "The resolved target is outside the selected root; caller must refuse.",
+        "actual": {
+          "resolved": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-core-resource-audit-k00zeoq1\\outside\\secret.txt",
+          "contained": false
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "real_binary_bound",
+        "expected": "Exact five bytes return; four-byte cap refuses.",
+        "actual": {
+          "content_hex": "6162636465",
+          "overflow": "FileTooLargeError"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "mutation_before_open",
+        "expected": "Generic read returns the actual bytes it reads, not a stat-time snapshot or earlier content identity.",
+        "actual": {
+          "read_hex": "767778797a",
+          "expected_hex": "767778797a"
+        },
+        "classification": "QUALIFIED_LIMITATION"
+      },
+      {
+        "case": "concurrent_no_overwrite",
+        "expected": "No concurrent-writer safety is documented; higher-layer serialization is required.",
+        "actual": {
+          "after": "NEW",
+          "other_preserved": false
+        },
+        "classification": "DOCUMENTED_LIMITATION"
+      },
+      {
+        "case": "real_command_bounded_events",
+        "expected": "One execution, exact prefixes and explicit loss flags; no required terminal event in a saturated queue.",
+        "actual": {
+          "stdout": "abc",
+          "stderr": "x",
+          "stdout_truncated": true,
+          "stderr_truncated": true,
+          "events": [
+            "CommandStarted"
+          ],
+          "dropped": 3,
+          "same_result": true
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "missing_cwd_classification",
+        "expected": "A missing working directory is not proof that the existing Python executable is absent.",
+        "actual": {
+          "error": "NotADirectoryError",
+          "message": "[WinError 267] The directory name is invalid",
+          "cause": "NoneType"
+        },
+        "classification": "DIAGNOSTIC_LIMITATION"
+      },
+      {
+        "case": "real_blocked_stdin_timeout",
+        "expected": "Immediate-child timeout propagates as CommandTimeoutError; it does not prove rollback.",
+        "actual": {
+          "error": "CommandTimeoutError"
+        },
+        "classification": "CONTROL"
+      },
+      {
+        "case": "reader_failure_sibling_lifetime",
+        "expected": "All owned collector tasks should finish/cancel before terminal failure is returned; no background reader remains.",
+        "actual": {
+          "handle_complete": true,
+          "killed": true,
+          "reaped": true,
+          "sibling_entered": true,
+          "sibling_cancelled": false,
+          "pending_reader_tasks": 1,
+          "events": [
+            "CommandStarted"
+          ]
+        },
+        "classification": "CONFIRMED_CLEANUP_DEFECT"
+      }
+    ]
+  },
+  "harness_qualification": "An async-generator list-extension error in the added cancellation harness was corrected; its failed run is not product evidence. Windows short/long path aliases are checked with samefile, not a false literal-string oracle.",
+  "focused": {
+    "at": "2026-10-26T00:32:48.256207+00:00",
+    "command": [
+      "uv",
+      "run",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "tests/core/paths",
+      "tests/resources/filesystem",
+      "tests/resources/commands",
+      "tests/tools/test_command.py",
+      "tests/tools/test_filesystem.py",
+      "tests/context/repository"
+    ],
+    "exit": 0,
+    "elapsed": "0:00:05.690911",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "log_sha256": "98469e40c521e366e057202837b81854aec4bfdf8a330c23f08429f81835125b"
+  },
+  "focused_summary": "479 passed in4.50s; --no-cov focused assurance, not a new protected gate.",
+  "proposals": [
+    {
+      "id": "bdcf3bbc-7d26-4826-bfef-f0171187b864",
+      "title": "Windows drive-relative resolution uses ambient CWD despite explicit base",
+      "severity": "P2",
+      "state": "PENDING_REVIEW"
+    },
+    {
+      "id": "4cb7c397-e664-4379-893c-c36d3a739cef",
+      "title": "Preserve existing dangling entries when filesystem overwrite is disabled",
+      "severity": "P2",
+      "state": "PENDING_REVIEW"
+    },
+    {
+      "id": "37a647f2-0cb9-4a3b-a4d6-b61e2166bd12",
+      "title": "Drain owned command collector tasks after stream failure",
+      "severity": "P2",
+      "state": "PENDING_REVIEW"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "038c927f-a59b-4010-89e8-becceabe991d",
+      "administrative_state": "PENDING_REVIEW",
+      "review": {
+        "schema": "backlog-review-v1",
+        "proposal": "038c927f-a59b-4010-89e8-becceabe991d",
+        "proposal_sha256": "1b4aad43b6c7e1656b9631188c225fbd44bd7a1b3d34fc3f415535d44eb1d240",
+        "previous": null,
+        "at": "2026-10-26T00:43:30.408067+00:00",
+        "decision": "ADVISORY",
+        "reviewer": "Codex",
+        "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+        "rationale": "Hard bounded reads are implemented on integrated main. Full reading body and independent selected bounded-read tests confirm finite max_bytes+1 consumption, short-read accumulation, zero/unlimited controls and closure before decode/refusal. Real-byte bound probes and479 focused tests pass. This is delivered scope, not permission to reschedule the same implementation; snapshot atomicity, source authority and format-specific streaming remain distinct. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+        "duplicates": [],
+        "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+        "scope": "canonical-backlog-only; no execution authority",
+        "publication": null,
+        "sha256": "6daf100761ae968b39f85e68c8a9a9f8a48ff04bbd3327d8384ce75152323982"
+      }
+    },
+    {
+      "id": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+      "administrative_state": "PENDING_REVIEW",
+      "review": {
+        "schema": "backlog-review-v1",
+        "proposal": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+        "proposal_sha256": "da94a9262dc8198fdcba3efba99fd38ba060a4530f54439361a1e344195bd19f",
+        "previous": null,
+        "at": "2026-10-26T00:43:31.511124+00:00",
+        "decision": "ADVISORY",
+        "reviewer": "Codex",
+        "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+        "rationale": "Explicit BinaryCodec/static resolution/generic binary read/write is present on integrated main. Real byte-control probes and selected writer/bounded-reader tests pass. The binary enhancement is delivered; the newly reproduced writer dangling-entry defect is a separate owner/contract and must not be conflated with restoring binary support. No arbitrary binary inference or dynamic registry is approved. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+        "duplicates": [
+          {
+            "reference": "4cb7c397-e664-4379-893c-c36d3a739cef",
+            "reason": "title overlap or shared resource"
+          }
+        ],
+        "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+        "scope": "canonical-backlog-only; no execution authority",
+        "publication": null,
+        "sha256": "e2171e7880217452cb1f66e6d0b06206668c053dae32da704ed53e299e6c5274"
+      }
+    },
+    {
+      "id": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+      "administrative_state": "PENDING_REVIEW",
+      "review": {
+        "schema": "backlog-review-v1",
+        "proposal": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+        "proposal_sha256": "97e1f91a523d8b33b5b4ab5a00ff8b04b1584396c90318a1310395df4c23808c",
+        "previous": "7c9f9122eaf5064523cda9011b8ed5e17f99162a6658326d819e8b390d7f1309",
+        "at": "2026-10-26T00:43:31.999302+00:00",
+        "decision": "ADVISORY",
+        "reviewer": "Codex",
+        "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+        "rationale": "Explicit per-Command success_exit_codes and CommandResult interpretation are present on integrated main. Full selected executor/handle/event bodies and targeted model/Tool inspection show raw exit and transport semantics preserved;479 maintained focused tests include Commands families. The original status interpretation implementation is delivered; new collector cleanup evidence does not schedule that enhancement again. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+        "duplicates": [],
+        "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+        "scope": "canonical-backlog-only; no execution authority",
+        "publication": null,
+        "sha256": "f0cf9dcea98103b19adb63e3236d2ad1dfae1514ba09fdeb56576b922fab01ea"
+      }
+    }
+  ],
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "unchanged_production": true,
+  "limits": [
+    "Native Windows symlinks were constructible. No ACL, network UNC, drive mapping, junction-race or POSIX execution claim.",
+    "No atomic snapshot, hard filesystem confinement, total-process memory cap, descendant process cleanup or external-effect rollback is established.",
+    "No production source/test/configuration change or new full protected gate; inherited production2937/2skip/100% record remains historical, with exact executable identity checked.",
+    "Core/Resources12 full bodies are complete; other Core primitives/codecs/models/platform contracts remain unreviewed. RI93/93,606/606 and188 historical obligations unchanged;A+C unapproved."
+  ]
+}

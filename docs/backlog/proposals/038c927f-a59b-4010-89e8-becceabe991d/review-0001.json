@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "038c927f-a59b-4010-89e8-becceabe991d",
+  "proposal_sha256": "1b4aad43b6c7e1656b9631188c225fbd44bd7a1b3d34fc3f415535d44eb1d240",
+  "previous": null,
+  "at": "2026-10-26T00:43:30.408067+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+  "rationale": "Hard bounded reads are implemented on integrated main. Full reading body and independent selected bounded-read tests confirm finite max_bytes+1 consumption, short-read accumulation, zero/unlimited controls and closure before decode/refusal. Real-byte bound probes and479 focused tests pass. This is delivered scope, not permission to reschedule the same implementation; snapshot atomicity, source authority and format-specific streaming remain distinct. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "6daf100761ae968b39f85e68c8a9a9f8a48ff04bbd3327d8384ce75152323982"
+}

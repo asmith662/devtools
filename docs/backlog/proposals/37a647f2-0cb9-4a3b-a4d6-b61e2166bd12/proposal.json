@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "37a647f2-0cb9-4a3b-a4d6-b61e2166bd12",
+  "created_at": "2026-10-26T00:43:30.256147+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Drain owned command collector tasks after stream failure",
+    "summary": "P2 execution-resource cleanup. A deterministic create_subprocess_exec fake gives stdout a RuntimeError and keeps stderr.read blocked. Public CommandExecutor.start/await returns the original failure, closes events and reports a complete handle after killing/reaping the fake immediate child, yet one owned _read_stream task remains pending and uncancelled. Existing test_handle stream-failure fixture gives stderr immediate EOF, hiding this state. asyncio.gather propagates one child exception without cancelling surviving collectors.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "docs/research/core-paths-filesystem-and-commands-audit.md; independently authored bounded probe at 0e240ec102e9d54c92a3e85071586a9a8e74b308"
+    },
+    "parent": "B-0041",
+    "resources": [
+      "src/devtools/resources/commands/execution.py",
+      "tests/resources/commands/test_handle.py",
+      "tests/resources/commands/test_execution.py"
+    ],
+    "evidence": [
+      "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "docs/research/code-audit/core-resources-assurance.json"
+    ],
+    "benefit": "Within existing Commands ownership, cancel and await every owned stream/input collector before returning terminal failure, cancellation or timeout; preserve the original exception and child cleanup semantics. Add deterministic blocked-sibling and blocked-input fault schedules plus real normal/timeout/cancellation controls, single execution/repeated awaits and closed event behavior. No orphan collector may remain after failed execute returns. Do not add retries, process-tree authority, a general executor or a new lifecycle framework.",
+    "uncertainty": "This task-lifetime defect is established with explicit I/O fault fakes, not an observed leaked real child or historical corrupted run. Real managed timeout and cancellation controls passed; side effects remain after cancellation. Commands has actual CommandTool/Qwen/Git/check callers; live events have no maintained application consumer found by the bounded caller search. B-0041 remains the broader execution-local lifecycle investigation.",
+    "dependencies": [
+      "Existing owner/API contracts; separately authorized bounded production repair; independent permanent regressions and full unchanged protected validation."
+    ]
+  },
+  "payload_sha256": "dd680a4f52463152e278356fdfc54d8d2f487b1ec08815f923689fe05c70367f"
+}

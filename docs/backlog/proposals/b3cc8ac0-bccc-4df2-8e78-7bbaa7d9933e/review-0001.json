@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+  "proposal_sha256": "da94a9262dc8198fdcba3efba99fd38ba060a4530f54439361a1e344195bd19f",
+  "previous": null,
+  "at": "2026-10-26T00:43:31.511124+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+  "rationale": "Explicit BinaryCodec/static resolution/generic binary read/write is present on integrated main. Real byte-control probes and selected writer/bounded-reader tests pass. The binary enhancement is delivered; the newly reproduced writer dangling-entry defect is a separate owner/contract and must not be conflated with restoring binary support. No arbitrary binary inference or dynamic registry is approved. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+  "duplicates": [
+    {
+      "reference": "4cb7c397-e664-4379-893c-c36d3a739cef",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "e2171e7880217452cb1f66e6d0b06206668c053dae32da704ed53e299e6c5274"
+}

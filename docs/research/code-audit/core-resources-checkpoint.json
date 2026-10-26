@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-26T00:45:18.800199+00:00",
+  "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+  "reviewed_bodies": 12,
+  "authenticated_selected_blobs": 12,
+  "next_selected_blobs": 10,
+  "focused": {
+    "at": "2026-10-26T00:32:48.256207+00:00",
+    "command": [
+      "uv",
+      "run",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "tests/core/paths",
+      "tests/resources/filesystem",
+      "tests/resources/commands",
+      "tests/tools/test_command.py",
+      "tests/tools/test_filesystem.py",
+      "tests/context/repository"
+    ],
+    "exit": 0,
+    "elapsed": "0:00:05.690911",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "log_sha256": "98469e40c521e366e057202837b81854aec4bfdf8a330c23f08429f81835125b"
+  },
+  "probes": {
+    "at": "2026-10-26T00:39:34.824258+00:00",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/core-resources-audit-20261025/probes.py"
+    ],
+    "exit": 0,
+    "elapsed": "0:00:00.571350",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "log_sha256": "ca566c45b2b119ee578800c1a84b5623691f0caa9ce6933a5e75bd75710c01a6"
+  },
+  "links": 535,
+  "json_files": 9,
+  "unchanged_JSONL_rows": 297,
+  "unchanged_RI_ledgers": {
+    "docs/research/code-audit/ri-completion-fixtures.jsonl": "77c4c85e5dea7081bd5d15acaa5a00e9cd13e84f",
+    "docs/research/code-audit/ri-followup-history.jsonl": "b68e57b2118ec9fc3bacfb3a1947a13c7cd79e64"
+  },
+  "intake_chains": 56,
+  "intake_errors": [],
+  "new_pending_P2": 3,
+  "existing_advisories": 3,
+  "forensics": 13,
+  "production_source_test_config_unchanged": true,
+  "physical_inputs_equal_previous_committed_gate": true,
+  "new_full_protected_gate": false,
+  "claim": "Documentation/Intake audit only.479 focused tests and14 independent probes are current results;2937/2skip/100% is inherited prior production validation, not a newly run gate.",
+  "layout": "PASS",
+  "whitespace": "PASS",
+  "changed_paths": {
+    "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md": "3c0a52e8785c0767b23ad04a29a604de09a98969",
+    "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md": "16c6a907b0692f558e3c10cb8e1d732a8af7ad1a",
+    "docs/backlog/overview.md": "2e67e1d53b0c82469cd5e5f9e173cf282a3dd0ce",
+    "docs/backlog/proposals/038c927f-a59b-4010-89e8-becceabe991d/review-0001.json": "35f351283baa5cb17f2f2d758b68f14f22248afd",
+    "docs/backlog/proposals/37a647f2-0cb9-4a3b-a4d6-b61e2166bd12/proposal.json": "c3868167b2f9f0dd771a872b7188cb6190b9ab08",
+    "docs/backlog/proposals/4cb7c397-e664-4379-893c-c36d3a739cef/proposal.json": "e508ec00ee0d9930fce68d9fa3df9eb7e8945f07",
+    "docs/backlog/proposals/b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e/review-0001.json": "d22136b9429bc6d19782785ec0d6c088a3658f91",
+    "docs/backlog/proposals/bdcf3bbc-7d26-4826-bfef-f0171187b864/proposal.json": "af231400de2815331f83378af4e49534fc575c1e",
+    "docs/backlog/proposals/d9416198-66c7-40b9-b566-e2a8806a81b5/review-0002.json": "6caff0b9174bd2124a2eda1a236190602f8ba5a4",
+    "docs/documentation_map.md": "ece504b1a4b57c67d623e3585eac1f437fd651fa",
+    "docs/research/code-audit/README.md": "84fe66efa80b2fd6a35aec87d50ff5ec330866b2",
+    "docs/research/code-audit/core-identity-time-next-cohort.json": "3e11eeb84ecf178c367e83b75d44e21c5e83fa96",
+    "docs/research/code-audit/core-resources-assurance.json": "34ee335abd089edf5e4b65f5540f30c63497b674",
+    "docs/research/code-audit/core-resources-next-cohort.json": "69fb76463feeba653d66d2c207ba9508241a2894",
+    "docs/research/comprehensive-code-audit.md": "34d3e7d7a2946c97673ea3ea323bbd343b8201ec",
+    "docs/research/core-paths-filesystem-and-commands-audit.md": "8a0a19205690bb430a626daa388e602abb53734a"
+  },
+  "self_identity": "Containing commit authenticates this receipt; no recursive self hash."
+}

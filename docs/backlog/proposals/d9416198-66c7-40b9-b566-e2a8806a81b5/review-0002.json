@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+  "proposal_sha256": "97e1f91a523d8b33b5b4ab5a00ff8b04b1584396c90318a1310395df4c23808c",
+  "previous": "7c9f9122eaf5064523cda9011b8ed5e17f99162a6658326d819e8b390d7f1309",
+  "at": "2026-10-26T00:43:31.999302+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/research/core-paths-filesystem-and-commands-audit.md",
+  "rationale": "Explicit per-Command success_exit_codes and CommandResult interpretation are present on integrated main. Full selected executor/handle/event bodies and targeted model/Tool inspection show raw exit and transport semantics preserved;479 maintained focused tests include Commands families. The original status interpretation implementation is delivered; new collector cleanup evidence does not schedule that enhancement again. Baseline 0e240ec102e9d54c92a3e85071586a9a8e74b308. Documentation-only audit, no new production gate/implementation, approval, grant, B-number or parent closure. Exact blobs/probes and bounds are in docs/research/code-audit/core-resources-assurance.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing UUID, one append-only assurance/delivered-scope advisory; broader concerns stay separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f0cf9dcea98103b19adb63e3236d2ad1dfae1514ba09fdeb56576b922fab01ea"
+}
