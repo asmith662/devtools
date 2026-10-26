@@ -1,0 +1,564 @@
+{
+  "baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+  "at": "2026-10-26T14:56:08.555051+00:00",
+  "reproducer_source": "\"\"\"Independent bounded Core identity/time probes; no live model or source mutation.\"\"\"\nimport asyncio\nimport importlib\nimport json\nimport platform\nimport tempfile\nimport time\nfrom dataclasses import FrozenInstanceError\nfrom datetime import UTC, date, datetime, timedelta, timezone\nfrom pathlib import Path\nfrom unittest.mock import AsyncMock, patch\nfrom uuid import UUID\nfrom zoneinfo import ZoneInfo\n\nfrom devtools.agents.conversation import (\n    Conversation, ConversationId, ConversationMessage, ConversationMessageRole, History, MessageId,\n)\nfrom devtools.core.identity import Identity\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration, Stopwatch, Timestamp, parse_timestamp\nfrom devtools.execution import InteractionAttempt, InteractionAttemptId\nfrom devtools.models.interaction import InteractionSource, ModelRequest, Prompt\nfrom devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction\nfrom devtools.observability.evidence.terminal import EvidenceId, InteractionAttemptTerminalEvidence\nfrom devtools.observability.usage.models import UsageObservation\nfrom devtools.observability.usage.windows import UsageWindow\nfrom devtools.models.interaction.usage import ModelUsage\nfrom devtools.persistence import SqliteConversationStore, decode_conversation_json, encode_conversation_json\n\nOUT = Path(__file__).parent\nrows = []\n\ndef observe(name, expected, operation, classification=\"CONTROL\"):\n    try:\n        actual = operation()\n    except Exception as error:\n        actual = {\"error\": type(error).__name__}\n    rows.append(dict(name=name, expected=expected, observed=actual,\n                     agrees=actual == expected, classification=classification))\n\ntext = \"12345678-1234-5678-9234-567812345678\"\nobserve(\"identity UUID string normalization\", text,\n        lambda: str(Identity.parse(\"URN:UUID:\".lower() + text.upper())))\nobserve(\"identity rejects non UUID construction\", {\"error\":\"TypeError\"}, lambda: Identity(text))\nobserve(\"identity all UUID versions accepted\", 1,\n        lambda: Identity.parse(\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\").value.version)\nobserve(\"identity same UUID equal and hash compatible\", [True, True],\n        lambda: [Identity.parse(text) == Identity(UUID(text)), hash(Identity.parse(text)) == hash(Identity(UUID(text)))])\nobserve(\"semantic IDs distinguish same backing UUID\", [False, False, True],\n        lambda: [ConversationId.parse(text) == MessageId.parse(text),\n                 EvidenceId.parse(text) == InteractionAttemptId.parse(text),\n                 ConversationId.parse(text) == ConversationId.parse(text)])\nobserve(\"identity has no ordering\", {\"error\":\"TypeError\"}, lambda: Identity.parse(text) < Identity.parse(text))\ndef immutable():\n    value = Identity.parse(text)\n    value.value = UUID(int=0)\nobserve(\"identity immutability\", {\"error\":\"FrozenInstanceError\"}, immutable)\n\nfor method, amount in [(\"nanoseconds\",-1),(\"nanoseconds\",-499),(\"seconds\",-1e-12),\n                       (\"milliseconds\",-1e-9),(\"minutes\",-1e-12),(\"hours\",-1e-14)]:\n    observe(f\"negative factory {method} {amount}\", {\"error\":\"ValueError\"},\n            lambda method=method, amount=amount: getattr(Duration, method)(amount).total_seconds,\n            \"EXISTING_DURATION_PROPOSAL\")\nfor method in [\"nanoseconds\",\"seconds\",\"milliseconds\",\"minutes\",\"hours\"]:\n    observe(f\"zero {method}\", 0.0, lambda method=method: getattr(Duration,method)(0).total_seconds)\nobserve(\"positive precision half even nanoseconds\", [0,0,2,2],\n        lambda:[Duration.nanoseconds(n).value.microseconds for n in (1,500,1500,2500)])\nobserve(\"positive arithmetic\", [5.0,1.5], lambda:[(Duration.seconds(3)+Duration.seconds(2)).total_seconds,\n                                                (Duration.seconds(3)/2).total_seconds])\nobserve(\"negative subtraction\", {\"error\":\"ValueError\"}, lambda: Duration.seconds(1)-Duration.seconds(2))\nobserve(\"negative scale rounds away\", {\"error\":\"ValueError\"},\n        lambda:(Duration.nanoseconds(1000)*-0.1).total_seconds, \"DURATION_ARITHMETIC_SCOPE_QUALIFICATION\")\nobserve(\"negative divisor rounds away\", {\"error\":\"ValueError\"},\n        lambda:(Duration.nanoseconds(1000)/-10).total_seconds, \"DURATION_ARITHMETIC_SCOPE_QUALIFICATION\")\nobserve(\"NaN seconds\", {\"error\":\"ValueError\"}, lambda: Duration.seconds(float('nan')))\nobserve(\"infinite seconds\", {\"error\":\"OverflowError\"}, lambda: Duration.seconds(float('inf')))\nobserve(\"divide by zero\", {\"error\":\"ZeroDivisionError\"}, lambda: Duration.seconds(1)/0)\n\nobserve(\"timestamp direct naive refusal\", {\"error\":\"ValueError\"}, lambda: Timestamp(datetime(2026,1,2)))\nobserve(\"naive parse intentionally UTC\", \"2026-01-02T00:00:00+00:00\", lambda: str(parse_timestamp(date(2026,1,2))))\nobserve(\"ISO naive intentionally UTC\", \"2026-01-02T03:04:05+00:00\",\n        lambda: str(Timestamp.from_isoformat(\"2026-01-02T03:04:05\")))\nobserve(\"offset canonical equality and hash\", [True,True],\n        lambda:[Timestamp.from_isoformat(\"2026-01-02T08:04:05+05:00\") == Timestamp.from_isoformat(\"2026-01-02T03:04:05Z\"),\n                hash(Timestamp.from_isoformat(\"2026-01-02T08:04:05+05:00\")) == hash(Timestamp.from_isoformat(\"2026-01-02T03:04:05Z\"))])\nobserve(\"timestamp microsecond round trip\", \"2026-01-02T03:04:05.123456+00:00\",\n        lambda:str(Timestamp.from_isoformat(str(Timestamp(datetime(2026,1,2,3,4,5,123456,tzinfo=UTC))))))\nobserve(\"invalid date\", {\"error\":\"TimestampParsingError\"}, lambda: parse_timestamp(\"2026-02-30\"))\nobserve(\"non ISO fallback deliberately separate\", {\"error\":\"TimestampParsingError\"}, lambda: Timestamp.from_isoformat(\"01/02/2026\"))\nobserve(\"DST repeated local hour distinct instants\", [\"2026-11-01T05:30:00+00:00\",\"2026-11-01T06:30:00+00:00\"],\n        lambda:[str(Timestamp(datetime(2026,11,1,1,30,tzinfo=ZoneInfo('America/New_York'),fold=f))) for f in (0,1)])\nobserve(\"timestamp underflow retains native overflow\", {\"error\":\"OverflowError\"},\n        lambda: Timestamp(datetime.min.replace(tzinfo=timezone(timedelta(hours=1)))))\nobserve(\"negative timestamp difference refused\", {\"error\":\"ValueError\"},\n        lambda: Timestamp.from_isoformat(\"2026-01-01T00:00:00Z\")-Timestamp.from_isoformat(\"2026-01-02T00:00:00Z\"))\n\ndef stopwatch_boundary():\n    with patch('devtools.core.time.models.stopwatch.perf_counter_ns', side_effect=[1000000,1100000,1400000]) as clock:\n        s=Stopwatch()\n        running=s.elapsed.value.microseconds\n        stopped=s.stop().value.microseconds\n        again=s.stop().value.microseconds\n        return [running,stopped,again,clock.call_count,s.is_stopped]\nobserve(\"monotonic stopwatch exact values and idempotent stop\", [100,400,400,3,True], stopwatch_boundary)\ndef stopwatch_exception():\n    with patch('devtools.core.time.models.stopwatch.perf_counter_ns',side_effect=[1000000,1100000]):\n        s=Stopwatch()\n        try:\n            with s: raise RuntimeError('original')\n        except RuntimeError as error:\n            return [str(error),s.elapsed.value.microseconds,s.is_stopped]\nobserve(\"context preserves exception\", ['original',100,True], stopwatch_exception)\ndef tiny_elapsed():\n    with patch('devtools.core.time.models.stopwatch.perf_counter_ns',side_effect=[10000,10100]):\n        return Stopwatch().stop().total_seconds\nobserve(\"submicrosecond elapsed rounds zero intentionally\", 0.0, tiny_elapsed)\n\nstamp=Timestamp.from_isoformat('2026-01-02T03:04:05.123456Z')\nmessage=ConversationMessage(id=MessageId.parse(text),created_at=stamp,content='literal evidence',\n                            role=ConversationMessageRole.USER,source=InteractionSource('caller'))\nconversation=Conversation(id=ConversationId.parse(text),created_at=stamp,history=History(messages=(message,)))\ndef persistence_roundtrip():\n    encoded=encode_conversation_json(conversation)\n    value=json.loads(encoded)\n    assert value['session']['id']==text\n    assert value['session']['created_at']=='2026-01-02T03:04:05.123456+00:00'\n    restored=decode_conversation_json(encoded)\n    with tempfile.TemporaryDirectory(prefix='devtools-time-probe-') as folder:\n        store=SqliteConversationStore(database=resolve_path(Path(folder)/'state.sqlite'))\n        store.save(restored)\n        saved=store.load(ConversationId.parse(text))\n        return [restored.id==conversation.id,restored.created_at==stamp,\n                restored.history.messages[0].id==message.id,\n                saved.id==conversation.id,saved.created_at==stamp,\n                saved.history.messages[0].created_at==stamp]\nobserve(\"real JSON and SQLite identity time round trip\", [True]*6, persistence_roundtrip)\ndef foreign_identity():\n    value=json.loads(encode_conversation_json(conversation));value['session']['id']='../../foreign'\n    return decode_conversation_json(json.dumps(value))\nobserve(\"persistence refuses malformed identity\", {\"error\":\"PersistenceFormatError\"}, foreign_identity)\n\ndef usage_roundtrip():\n    u=UsageObservation(timestamp=stamp,backend='fake',provider='fixed',model='m',reasoning_effort='unknown',\n                       execution_profile='probe',invocation_id=text,thread_id=None,turn_id=None,response_id=None,\n                       usage=ModelUsage(input_tokens=7),source='literal',source_digest='probe-digest')\n    restored=UsageObservation.from_dict(u.to_dict())\n    return [restored.timestamp==stamp,restored.original_timestamp is None,restored.usage.input_tokens]\nobserve(\"usage persistence preserves time and unknown\", [True,True,7], usage_roundtrip)\nobserve(\"usage window half open and missing time\", [True,False,False],\n        lambda:[UsageWindow(stamp,stamp+Duration.seconds(1)).contains(x)\n                for x in (stamp,stamp+Duration.seconds(1),None)])\nobserve(\"DST calendar week vs elapsed week\", [167.0,168.0], lambda:[\n    (UsageWindow.calendar_week(Timestamp.from_isoformat('2026-03-08T12:00:00Z'),'America/New_York').end.value-\n     UsageWindow.calendar_week(Timestamp.from_isoformat('2026-03-08T12:00:00Z'),'America/New_York').start.value).total_seconds()/3600,\n    (UsageWindow.rolling(stamp).end.value-UsageWindow.rolling(stamp).start.value).total_seconds()/3600])\n\nearly=Timestamp.from_isoformat('2026-01-02T00:00:00Z')\nlate=Timestamp.from_isoformat('2026-01-02T00:00:01Z')\ndef lifecycle_evidence():\n    with patch.object(Timestamp,'now',side_effect=[early,late,late]):\n        a=InteractionAttempt.new(conversation_id=ConversationId.parse(text),message_id=MessageId.parse(text),interaction_source=InteractionSource('fake'))\n        a.succeed()\n        from devtools.execution import InteractionAttemptSucceeded\n        e=InteractionAttemptTerminalEvidence.new(attempt_id=a.id,occurred_at=a.completed_at,outcome=InteractionAttemptSucceeded())\n        return [a.started_at==early,a.completed_at==late,e.occurred_at==late,e.observed_at==late,e.attempt_id==a.id]\nobserve(\"real attempt and evidence timestamp producer\", [True]*5, lifecycle_evidence)\n\nclass Observer:\n    def __init__(self): self.records=[]\n    def interaction_completed(self, observation): self.records.append(observation)\n\nasync def adapter_with_clock_change(observer_enabled, reverse):\n    observer=Observer() if observer_enabled else None\n    adapter=LlamaCppInteraction(endpoint='http://127.0.0.1:1',model='deterministic-double',source=InteractionSource('fake'),observer=observer)\n    reply={'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':'literal reply'}}]}\n    post=AsyncMock(return_value=reply)\n    clocks=[late,early] if reverse else [early,late]\n    with patch('devtools.models.interaction.providers.llama_cpp._post_chat_completion',post),patch.object(Timestamp,'now',side_effect=clocks):\n        try:\n            response=await adapter.send(ModelRequest(prompt=Prompt('literal prompt','user')))\n            outcome={'returned':response.content,'provider_entries':post.await_count,'observations':len(observer.records) if observer else 0}\n        except Exception as error:\n            outcome={'error':type(error).__name__,'provider_entries':post.await_count,'observations':len(observer.records) if observer else 0}\n    return outcome\nobserve(\"provider adapter forward clock control\", {'returned':'literal reply','provider_entries':1,'observations':1},\n        lambda:asyncio.run(adapter_with_clock_change(True,False)))\nobserve(\"provider adapter backward wall clock no observer\", {'returned':'literal reply','provider_entries':1,'observations':0},\n        lambda:asyncio.run(adapter_with_clock_change(False,True)))\nobserve(\"provider adapter backward wall clock observed outcome\", {'error':'ValueError','provider_entries':1,'observations':0},\n        lambda:asyncio.run(adapter_with_clock_change(True,True)), 'DOCUMENTED_OBSERVATION_LIMITATION')\n\nresult=dict(at=str(Timestamp.now()),python=platform.python_version(),platform=platform.platform(),\n            clock=dict(monotonic=time.get_clock_info('perf_counter').monotonic,resolution=time.get_clock_info('perf_counter').resolution),\n            rows=rows,expected_control_mismatches=[r for r in rows if not r['agrees'] and r['classification'] not in\n               {'EXISTING_DURATION_PROPOSAL','DURATION_ARITHMETIC_SCOPE_QUALIFICATION'}],\n            scope='Deterministic input/clock/transport doubles plus temporary JSON/SQLite; no live models, real grants, production edits or external source mutations.')\n(OUT/'probes.json').write_text(json.dumps(result,indent=2)+'\\n',encoding='utf-8')\nprint(json.dumps(dict(cases=len(rows),reproduced_duration_boundaries=sum(not r['agrees'] for r in rows),unexpected=result['expected_control_mismatches']),indent=2))\nassert not result['expected_control_mismatches'],result['expected_control_mismatches']\n",
+  "reproducer_sha256": "e01471787d8ef14fbdc6fac73085ad0c41f98b9876fd1f75b77b577766e1d0d9",
+  "command": "uv run python .local/core-identity-time-audit-20261026/probes.py",
+  "exit_code": 0,
+  "result": {
+    "at": "2026-10-26T14:47:00.335176+00:00",
+    "python": "3.14.3",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "clock": {
+      "monotonic": true,
+      "resolution": 1e-07
+    },
+    "rows": [
+      {
+        "name": "identity UUID string normalization",
+        "expected": "12345678-1234-5678-9234-567812345678",
+        "observed": "12345678-1234-5678-9234-567812345678",
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "identity rejects non UUID construction",
+        "expected": {
+          "error": "TypeError"
+        },
+        "observed": {
+          "error": "TypeError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "identity all UUID versions accepted",
+        "expected": 1,
+        "observed": 1,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "identity same UUID equal and hash compatible",
+        "expected": [
+          true,
+          true
+        ],
+        "observed": [
+          true,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "semantic IDs distinguish same backing UUID",
+        "expected": [
+          false,
+          false,
+          true
+        ],
+        "observed": [
+          false,
+          false,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "identity has no ordering",
+        "expected": {
+          "error": "TypeError"
+        },
+        "observed": {
+          "error": "TypeError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "identity immutability",
+        "expected": {
+          "error": "FrozenInstanceError"
+        },
+        "observed": {
+          "error": "FrozenInstanceError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "negative factory nanoseconds -1",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "negative factory nanoseconds -499",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "negative factory seconds -1e-12",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "negative factory milliseconds -1e-09",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "negative factory minutes -1e-12",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "negative factory hours -1e-14",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "EXISTING_DURATION_PROPOSAL"
+      },
+      {
+        "name": "zero nanoseconds",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "zero seconds",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "zero milliseconds",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "zero minutes",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "zero hours",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "positive precision half even nanoseconds",
+        "expected": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "observed": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "positive arithmetic",
+        "expected": [
+          5.0,
+          1.5
+        ],
+        "observed": [
+          5.0,
+          1.5
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "negative subtraction",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": {
+          "error": "ValueError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "negative scale rounds away",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "DURATION_ARITHMETIC_SCOPE_QUALIFICATION"
+      },
+      {
+        "name": "negative divisor rounds away",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": 0.0,
+        "agrees": false,
+        "classification": "DURATION_ARITHMETIC_SCOPE_QUALIFICATION"
+      },
+      {
+        "name": "NaN seconds",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": {
+          "error": "ValueError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "infinite seconds",
+        "expected": {
+          "error": "OverflowError"
+        },
+        "observed": {
+          "error": "OverflowError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "divide by zero",
+        "expected": {
+          "error": "ZeroDivisionError"
+        },
+        "observed": {
+          "error": "ZeroDivisionError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "timestamp direct naive refusal",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": {
+          "error": "ValueError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "naive parse intentionally UTC",
+        "expected": "2026-01-02T00:00:00+00:00",
+        "observed": "2026-01-02T00:00:00+00:00",
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "ISO naive intentionally UTC",
+        "expected": "2026-01-02T03:04:05+00:00",
+        "observed": "2026-01-02T03:04:05+00:00",
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "offset canonical equality and hash",
+        "expected": [
+          true,
+          true
+        ],
+        "observed": [
+          true,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "timestamp microsecond round trip",
+        "expected": "2026-01-02T03:04:05.123456+00:00",
+        "observed": "2026-01-02T03:04:05.123456+00:00",
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "invalid date",
+        "expected": {
+          "error": "TimestampParsingError"
+        },
+        "observed": {
+          "error": "TimestampParsingError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "non ISO fallback deliberately separate",
+        "expected": {
+          "error": "TimestampParsingError"
+        },
+        "observed": {
+          "error": "TimestampParsingError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "DST repeated local hour distinct instants",
+        "expected": [
+          "2026-11-01T05:30:00+00:00",
+          "2026-11-01T06:30:00+00:00"
+        ],
+        "observed": [
+          "2026-11-01T05:30:00+00:00",
+          "2026-11-01T06:30:00+00:00"
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "timestamp underflow retains native overflow",
+        "expected": {
+          "error": "OverflowError"
+        },
+        "observed": {
+          "error": "OverflowError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "negative timestamp difference refused",
+        "expected": {
+          "error": "ValueError"
+        },
+        "observed": {
+          "error": "ValueError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "monotonic stopwatch exact values and idempotent stop",
+        "expected": [
+          100,
+          400,
+          400,
+          3,
+          true
+        ],
+        "observed": [
+          100,
+          400,
+          400,
+          3,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "context preserves exception",
+        "expected": [
+          "original",
+          100,
+          true
+        ],
+        "observed": [
+          "original",
+          100,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "submicrosecond elapsed rounds zero intentionally",
+        "expected": 0.0,
+        "observed": 0.0,
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "real JSON and SQLite identity time round trip",
+        "expected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "observed": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "persistence refuses malformed identity",
+        "expected": {
+          "error": "PersistenceFormatError"
+        },
+        "observed": {
+          "error": "PersistenceFormatError"
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "usage persistence preserves time and unknown",
+        "expected": [
+          true,
+          true,
+          7
+        ],
+        "observed": [
+          true,
+          true,
+          7
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "usage window half open and missing time",
+        "expected": [
+          true,
+          false,
+          false
+        ],
+        "observed": [
+          true,
+          false,
+          false
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "DST calendar week vs elapsed week",
+        "expected": [
+          167.0,
+          168.0
+        ],
+        "observed": [
+          167.0,
+          168.0
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "real attempt and evidence timestamp producer",
+        "expected": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "observed": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "provider adapter forward clock control",
+        "expected": {
+          "returned": "literal reply",
+          "provider_entries": 1,
+          "observations": 1
+        },
+        "observed": {
+          "returned": "literal reply",
+          "provider_entries": 1,
+          "observations": 1
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "provider adapter backward wall clock no observer",
+        "expected": {
+          "returned": "literal reply",
+          "provider_entries": 1,
+          "observations": 0
+        },
+        "observed": {
+          "returned": "literal reply",
+          "provider_entries": 1,
+          "observations": 0
+        },
+        "agrees": true,
+        "classification": "CONTROL"
+      },
+      {
+        "name": "provider adapter backward wall clock observed outcome",
+        "expected": {
+          "error": "ValueError",
+          "provider_entries": 1,
+          "observations": 0
+        },
+        "observed": {
+          "error": "ValueError",
+          "provider_entries": 1,
+          "observations": 0
+        },
+        "agrees": true,
+        "classification": "DOCUMENTED_OBSERVATION_LIMITATION"
+      }
+    ],
+    "expected_control_mismatches": [],
+    "scope": "Deterministic input/clock/transport doubles plus temporary JSON/SQLite; no live models, real grants, production edits or external source mutations."
+  },
+  "qualifications": [
+    "Six intended factory expectation failures reproduce existing P2; two negative-scale expectations qualify arithmetic policy, not new approved scope.",
+    "Clock rollback observation error is documented ADR0001 behavior; fake transport entered once, no live model invocation.",
+    "Temporary SQLite fixture and controlled clocks never mutate Devtools source or system time."
+  ]
+}

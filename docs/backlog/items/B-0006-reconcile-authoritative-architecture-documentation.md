@@ -63,3 +63,7 @@ Core/Resources full-body review finds current filesystem package documentation s
 ## Core/Resources repair evidence (2026-10-26)
 
 The bounded Core/Resources repair updates current path/I/O/Commands contracts and stale package I/O/roadmap adoption wording. Original scientific/engineering history is unchanged. Other documentation reconciliation, including older dated notes and remaining wording, remains separate. See the [delivered repair](../../development/core-resources-integrity-repair.md). Status, maturity and parent authority remain unchanged.
+
+## Core Identity/Time evidence — 2026-10-26
+
+Current Identity overview correctly describes runtime UUID checking in Construction but incorrectly denies it in Limitations, and says no typed IDs exist despite maintained ConversationId/MessageId/InteractionAttemptId/ModelInteractionId/EvidenceId wrappers. This is stale documentation under existing B-0006, not missing primitive semantics or authority to redesign IDs. Preserve any later migration as separate work. [Full review](../../research/core-identity-and-time-audit.md). Status/maturity unchanged. `audit:core-identity-time:32c91a17:20261026`.
