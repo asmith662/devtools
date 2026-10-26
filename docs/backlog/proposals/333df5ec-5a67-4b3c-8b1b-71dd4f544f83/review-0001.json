@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "333df5ec-5a67-4b3c-8b1b-71dd4f544f83",
+  "proposal_sha256": "dbbe107f715380c6a12f6cb6e6e93251c7b678f4a57859686c0833505bf3468c",
+  "previous": null,
+  "at": "2026-10-26T21:34:50.253982+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:model-serving-contracts:5125ab6a:20261026:NEW_VLLM_READINESS_RESPONSE",
+  "rationale": "Implemented and merged bounded P2 contract on main a602dae60b3a7c71bdd1c1231613143c309292c1 through normal PR32, production 5125ab6a847ee1844913c006d801b01f5fea7cc4. Original source e8b7553afca8275fc7afcfa552db65f57b6e8afc and independently authored pre-fix tests produced36 intended failures/234 controls/no setup errors; original44 audit probes separately retained. Valid matching alias with split header/body is ready; nonobject listing refuses readiness without AttributeError; wrong/missing alias remains false; all owned response streams close; source of liveness versus readiness distinct. Corrected by existing owner, permanent public-caller regressions. Final committed gate 3142 passed/2 opt-in live skips/100% production branch coverage; supported Ruff/format, strict mypy and post-main tests pass. All44 original probes now agree; observer/backwards-clock behavior remains explicitly unchanged under ADR0001/B0011/B0046. See docs/development/model-serving-contract-repair.md and docs/research/code-audit/model-serving-contract-repair-20261026.json. This UUID remains administratively PENDING_REVIEW; bounded implementation is delivered, not an instruction to repeat it. No grant, approval, B-number or parent-scope closure. Residual framing/platform/capture/ambiguous-effect limits are explicitly documented.",
+  "duplicates": [
+    {
+      "reference": "54fe0021-8992-47b2-85bc-4bdce6ade4e0",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "a0ccec58-586d-4f46-8da8-37d26a447bf2",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing canonical UUID sufficient; bounded defect delivered on main. Broader observation/evidence/serving lifecycle obligations remain separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "02d714976b0e784f87541b18512ba6d7622a7af925504ee9fe2be4e951f8f8fc"
+}

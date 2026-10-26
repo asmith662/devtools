@@ -423,5 +423,85 @@
         "depth": "FULL_TEST_HELPER_FIXTURE_ASSERTION_BODY"
       }
     ]
-  }
+  },
+  "maintenance_overlays": [
+    {
+      "reference": "repair:model-serving-contracts:5125ab6a:20261026",
+      "production": "5125ab6a847ee1844913c006d801b01f5fea7cc4",
+      "accepted_main": "a602dae60b3a7c71bdd1c1231613143c309292c1",
+      "pr": 32,
+      "report": "docs/development/model-serving-contract-repair.md",
+      "receipt": "docs/research/code-audit/model-serving-contract-repair-20261026.json",
+      "changed_reviewed_paths": [
+        {
+          "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+          "audited_blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+          "delivered_blob": "b6b7e61a8636ee49081fb56d8ce57b43da7f4566",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/models/interaction/tools.py",
+          "audited_blob": "42ad0034186a96d620f1b9ddfa5335e599e1f181",
+          "delivered_blob": "9221001578a566b523c61494bc4a859743538c90",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/models/serving/llama_cpp.py",
+          "audited_blob": "deefe9ea5aa547c60c351a827f8de1199ed7b540",
+          "delivered_blob": "721e55f93c10554682f99fd7872e6235a3d3e152",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/models/serving/vllm.py",
+          "audited_blob": "f4916cdef9dcd3a46db689d23c49cd0f715cac36",
+          "delivered_blob": "fc2b669431ed8b81ae51917b7a34e55965f07a6f",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "tests/models/interaction/providers/test_llama_cpp.py",
+          "audited_blob": "b7bb4ea79fd6cb71b9ac9a2a9977da59372a7b4a",
+          "delivered_blob": "9e20e73dcfa3a74ea0bc7a83e80e2085a265d9c0",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "tests/models/interaction/test_tools.py",
+          "audited_blob": "9c9f85e6ce820ae7bd236b6880d4459cb58df166",
+          "delivered_blob": "b1f6efe761d6191ea9d4011d3d05eab36f9a0914",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "tests/models/serving/test_llama_cpp.py",
+          "audited_blob": "b0a2d1aac2fc3e9877111d07071dcd6a6e1446f3",
+          "delivered_blob": "56529cd3b9de8559bc427a647297bf2beb85c835",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "tests/models/serving/test_vllm.py",
+          "audited_blob": "8c2084a046e4228394271b2bb4fa5042eb9497ab",
+          "delivered_blob": "3bc48a935291b7cd425ca42eb085c2e1e615745e",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/tools/disclosure.py",
+          "audited_blob": "aa8c208a7c06aedb2d28ca01d49c3ba731cd8971",
+          "delivered_blob": "0a20e941fb5ab1070c06e109839deaead0bf2075",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/models/interaction/docs/overview.md",
+          "audited_blob": "da0a9f7d1669c3fb51eee33fca00e1c094d38b48",
+          "delivered_blob": "676d85e6508eb22ef8f01bf7aa1c67b5ab20241e",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        },
+        {
+          "path": "src/devtools/models/serving/docs/overview.md",
+          "audited_blob": "4959bd67b379c2d8bea72e19efd78dc2f33b208e",
+          "delivered_blob": "95ebef6ab2058db6662753b43ce9c5a0c8cb67d1",
+          "depth": "BOUNDED_REPAIR_AND_REGRESSION_REVIEW_NO_NEW_COHORT_CREDIT"
+        }
+      ],
+      "original_audit_fields_unchanged": true,
+      "observer_policy_unchanged": true
+    }
+  ]
 }
