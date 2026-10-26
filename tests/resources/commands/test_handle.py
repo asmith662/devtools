@@ -410,3 +410,155 @@ class _FailingStream:
         """Raise the unexpected stream failure under test."""
         message = "stream failure"
         raise RuntimeError(message)
+
+
+@pytest.mark.parametrize(
+    "ending",
+    [
+        "stdout",
+        "stderr",
+        "stdin",
+        "stdout-cleanup",
+        "stderr-cleanup",
+        "stdin-cleanup",
+        "timeout",
+        "cancel",
+        "success",
+    ],
+)
+def test_public_execution_settles_every_owned_collector(  # noqa: C901, PLR0915 -- one deterministic three-channel lifecycle fixture
+    monkeypatch: pytest.MonkeyPatch,
+    ending: str,
+) -> None:
+    """A terminal handle must not leave sibling output/input tasks pending."""
+
+    async def run() -> None:  # noqa: C901, PLR0915 -- keep fault schedules and their task observations together
+        ready = asyncio.Event()
+        release = asyncio.Event()
+        entered: set[str] = set()
+        settled: set[str] = set()
+        channels = {"stdout", "stderr", "stdin"}
+        tasks: dict[str, asyncio.Task[object]] = {}
+        failure = RuntimeError("literal collector failure")
+        origin = ending.partition("-")[0]
+
+        async def participate(name: str) -> None:
+            task = asyncio.current_task()
+            assert task is not None
+            tasks[name] = task
+            entered.add(name)
+            if entered == channels:
+                ready.set()
+            try:
+                await ready.wait()
+                if origin == name:
+                    raise failure
+                if ending != "success":
+                    await release.wait()
+            finally:
+                # A cleanup scheduling point verifies that cancellation is joined.
+                await asyncio.sleep(0)
+                settled.add(name)
+                if ending.endswith("-cleanup") and name != origin:
+                    cleanup_error = "secondary cleanup error"
+                    raise LookupError(cleanup_error)
+
+        class Reader:
+            def __init__(self, name: str, payload: bytes) -> None:
+                self.name = name
+                self.payload = payload
+                self.read = self.first_read
+
+            async def first_read(self, _size: int) -> bytes:
+                await participate(self.name)
+                self.read = self.eof
+                return self.payload
+
+            async def eof(self, _size: int) -> bytes:
+                return b""
+
+        class Writer:
+            def write(self, data: bytes) -> None:
+                assert data == b"input"
+
+            async def drain(self) -> None:
+                await participate("stdin")
+
+            def close(self) -> None:
+                pass
+
+        class Process:
+            def __init__(self) -> None:
+                self.stdout = Reader("stdout", b"out")
+                self.stderr = Reader("stderr", b"err")
+                self.stdin = Writer()
+                self.returncode: int | None = None
+                self.kills = 0
+                self.waits = 0
+
+            def kill(self) -> None:
+                self.kills += 1
+                self.returncode = 1
+
+            async def wait(self) -> None:
+                self.waits += 1
+                if self.returncode is None:
+                    self.returncode = 0
+
+        process = Process()
+        creates = 0
+
+        async def create(*_args: object, **_kwargs: object) -> Process:
+            nonlocal creates
+            creates += 1
+            return process
+
+        monkeypatch.setattr(
+            "devtools.resources.commands.execution.asyncio.create_subprocess_exec",
+            create,
+        )
+        command = Command(
+            "literal-fake",
+            stdin=b"input",
+            timeout=Duration.seconds(0.02) if ending == "timeout" else None,
+        )
+        execution = CommandExecutor().start(command)
+        pending = asyncio.ensure_future(execution)
+        try:
+            async with asyncio.timeout(3):
+                await ready.wait()
+                if ending == "cancel":
+                    pending.cancel()
+                    with pytest.raises(asyncio.CancelledError):
+                        await pending
+                elif ending == "timeout":
+                    with pytest.raises(CommandTimeoutError):
+                        await pending
+                elif ending == "success":
+                    result = await pending
+                    assert result.stdout == b"out"
+                    assert result.stderr == b"err"
+                    assert await execution is result
+                else:
+                    with pytest.raises(RuntimeError) as raised:
+                        await pending
+                    assert raised.value is failure
+                    with pytest.raises(RuntimeError) as repeated:
+                        await execution
+                    assert repeated.value is failure
+            assert execution.is_complete
+            assert settled == channels
+            assert all(task.done() for task in tasks.values())
+            assert creates == 1
+            assert process.waits == 1
+            assert process.kills == int(ending != "success")
+            events = [event async for event in execution.events()]
+            assert any(isinstance(e, CommandStarted) for e in events)
+            assert any(isinstance(e, CommandExited) for e in events) is (
+                ending == "success"
+            )
+        finally:
+            release.set()
+            await asyncio.gather(*tasks.values(), return_exceptions=True)
+
+    asyncio.run(run())
