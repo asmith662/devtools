@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "bf8cf791-ffc8-4d7f-ac6c-94613b87e181",
+  "proposal_sha256": "1f67db03e303e7f7c7dede4cfbe88991f04d3192de54a06c46a88ed7d34c3d52",
+  "previous": null,
+  "at": "2026-10-26T21:34:51.614001+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:model-serving-contracts:5125ab6a:20261026:NEW_TOOL_JSON_SYNTAX",
+  "rationale": "Implemented and merged bounded P2 contract on main a602dae60b3a7c71bdd1c1231613143c309292c1 through normal PR32, production 5125ab6a847ee1844913c006d801b01f5fea7cc4. Original source e8b7553afca8275fc7afcfa552db65f57b6e8afc and independently authored pre-fix tests produced36 intended failures/234 controls/no setup errors; original44 audit probes separately retained. NaN/Infinity/-Infinity refused at definition/disclosure and native-call normalization boundaries, no invalid outgoing request; valid literal/null/number/nested object controls and raw call spelling retained. No Tool execution or authority claim; no rewrite of generic rich JsonFile semantics. Corrected by existing owner, permanent public-caller regressions. Final committed gate 3142 passed/2 opt-in live skips/100% production branch coverage; supported Ruff/format, strict mypy and post-main tests pass. All44 original probes now agree; observer/backwards-clock behavior remains explicitly unchanged under ADR0001/B0011/B0046. See docs/development/model-serving-contract-repair.md and docs/research/code-audit/model-serving-contract-repair-20261026.json. This UUID remains administratively PENDING_REVIEW; bounded implementation is delivered, not an instruction to repeat it. No grant, approval, B-number or parent-scope closure. Residual framing/platform/capture/ambiguous-effect limits are explicitly documented.",
+  "duplicates": [
+    {
+      "reference": "8c79f8ca-20c0-434d-90f8-9418f0767e57",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing canonical UUID sufficient; bounded defect delivered on main. Broader observation/evidence/serving lifecycle obligations remain separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4685895cd5bc348c10ed5ffa62f270b1e4935cbc2927ef0b6071e400e27b120a"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "8c79f8ca-20c0-434d-90f8-9418f0767e57",
+  "proposal_sha256": "befdcced84fed0c76bb435874e9000ad9699766bb67e0c14281948f61fb7e5db",
+  "previous": null,
+  "at": "2026-10-26T21:34:49.706222+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:model-serving-contracts:5125ab6a:20261026:NEW_UTF8_ERROR_NORMALIZATION",
+  "rationale": "Implemented and merged bounded P2 contract on main a602dae60b3a7c71bdd1c1231613143c309292c1 through normal PR32, production 5125ab6a847ee1844913c006d801b01f5fea7cc4. Original source e8b7553afca8275fc7afcfa552db65f57b6e8afc and independently authored pre-fix tests produced36 intended failures/234 controls/no setup errors; original44 audit probes separately retained. 200 invalid UTF8 yields ResponseError;500 invalid UTF8 yields HttpError withstatus500; valid UTF8/JSON unchanged; exactly one request and closed writer; no retry or fabricated observation. Corrected by existing owner, permanent public-caller regressions. Final committed gate 3142 passed/2 opt-in live skips/100% production branch coverage; supported Ruff/format, strict mypy and post-main tests pass. All44 original probes now agree; observer/backwards-clock behavior remains explicitly unchanged under ADR0001/B0011/B0046. See docs/development/model-serving-contract-repair.md and docs/research/code-audit/model-serving-contract-repair-20261026.json. This UUID remains administratively PENDING_REVIEW; bounded implementation is delivered, not an instruction to repeat it. No grant, approval, B-number or parent-scope closure. Residual framing/platform/capture/ambiguous-effect limits are explicitly documented.",
+  "duplicates": [
+    {
+      "reference": "bf8cf791-ffc8-4d7f-ac6c-94613b87e181",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing canonical UUID sufficient; bounded defect delivered on main. Broader observation/evidence/serving lifecycle obligations remain separate.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "3a6ababccdf6889260bc873cef2c6c4ba0e3fd6b0ef8629ba08b0eea1c3cdbf8"
+}

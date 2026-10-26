@@ -293,3 +293,7 @@ production status. Publication identity belongs to its containing commit and the
 ignored completion report, not a self-referential source hash.
 
 `audit:model-interaction-serving:a7a49cc1:20261026`
+
+## Delivered maintenance overlay — 2026-10-26
+
+The five independently evidenced P2 families above are corrected by production `5125ab6a847ee1844913c006d801b01f5fea7cc4`, normal PR32, verified main `a602dae60b3a7c71bdd1c1231613143c309292c1`. Original audit findings/probes remain historical evidence. [Delivered correction](../development/model-serving-contract-repair.md); [exact validation](code-audit/model-serving-contract-repair-20261026.json); [unapproved observer decision brief](../development/model-observation-policy-decision-brief.md). No observer policy or broader lifecycle signoff is implied. `repair:model-serving-contracts:5125ab6a:20261026`.
