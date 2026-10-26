@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+  "proposal_sha256": "6eabd3b51f8e03ad3b86951fe6d0f3477e838bbac110aeaeba81a79fa5ef78e5",
+  "previous": null,
+  "at": "2026-10-26T17:17:25.843776+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "audit:filesystem-codecs-models:26bd8053:20261026:csv-existing-owner",
+  "rationale": "Existing P2 independently reproduced on 26bd8053ab8ad8323dd3273b4b0e986de05388e9 with five parse/decode/string-spelling failures plus numeric-header AttributeError. All quoted NONNUMERIC/default-MINIMAL/CRLF/ragged/duplicate controls behave as recorded. Root remains direct stdlib QUOTE_NONNUMERIC float conversion; CsvRow requires strings. Existing proposal is accurate but not delivered: reject the description of silently returned normalized strings; actual current calls refuse. Add literal001/1.50/1e2/-0, customsemicolon, parse/decode, numeric headers, malformed-source/encoding and state/provenance controls. Native default ReadRepositoryFileTool uses MINIMAL, so no demonstrated NONNUMERIC autonomous Tool failure. Historical baseline/improved/final CSV treatments were NOT_ACCEPTED and modified no candidate; do not adopt an experimental patch. No source/test edit or execution grant; see docs/research/filesystem-codecs-and-models-audit.md and docs/research/code-audit/filesystem-codecs-models-probes.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing67f7d086 is sufficient for spelling/type/error-normalization family; no duplicate CSV proposal. B0048 and new JSON member lookup are independent contracts.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "74b63d2473acdb44a89ab326365da13ea617a70b98d9ef7b6e6681063af843f5"
+}

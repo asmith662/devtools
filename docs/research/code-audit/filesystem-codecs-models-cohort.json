@@ -1,0 +1,543 @@
+{
+  "at": "2026-10-26T16:53:05.201287+00:00",
+  "baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+  "status": "FROZEN_FOR_REVIEW",
+  "cohort": [
+    {
+      "path": "src/devtools/resources/filesystem/__init__.py",
+      "blob": "dd22923c2e6ed02657d0887f15ec42c7d57a1941",
+      "lines": 79,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/__init__.py",
+      "blob": "8239e988d5d6d54c43afac5c5111f7bae4eafdfa",
+      "lines": 16,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/binary.py",
+      "blob": "4e67f00a67dc0b3e88b5ba71a71840178f71be9b",
+      "lines": 39,
+      "scope": "Reuse identical prior body review; inspect representation contract and supplement consumer/probe evidence without new body credit.",
+      "selection": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "prior_evidence": "docs/research/code-audit/core-resources-assurance.json"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/csv.py",
+      "blob": "b383442f462767003fbcd28dfdf3c08d64cb6ba9",
+      "lines": 174,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/json.py",
+      "blob": "cf6fc8c29dc07bbe94f1786489e02a422a41a74c",
+      "lines": 228,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/markdown.py",
+      "blob": "b48fc085bdb87e5663e4a5d11285621f177bb710",
+      "lines": 75,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/text.py",
+      "blob": "757825a9c1d26c7d491ce659b94c6ea4472f7372",
+      "lines": 70,
+      "scope": "Reuse identical prior body review; inspect representation contract and supplement consumer/probe evidence without new body credit.",
+      "selection": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "prior_evidence": "docs/research/code-audit/core-resources-assurance.json"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/__init__.py",
+      "blob": "e85a46af2b48abb38b2336a28d8d000d1ef4767a",
+      "lines": 49,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/base.py",
+      "blob": "4e4f6c5457e90b1658815b6b99b42ee69be68f56",
+      "lines": 37,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/binary.py",
+      "blob": "e0187327636b757b8b651e1a11d3120ca14076db",
+      "lines": 36,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/csv.py",
+      "blob": "e977dae655d615bc572fe23ffe6caf0a21bbb98b",
+      "lines": 310,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/__init__.py",
+      "blob": "1e7c7a11594c48e7cd61f7d0818af68ec6297c6d",
+      "lines": 27,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/base.py",
+      "blob": "a2dcec59abf1e9b1251ff084accad0f0d0d72304",
+      "lines": 41,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/conversion.py",
+      "blob": "608ab049736c2c2e140c5a07a22c6ed572e30e74",
+      "lines": 47,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/list.py",
+      "blob": "771d64d06ed3b072265d7a20c80ff6d0c6f3c5e5",
+      "lines": 192,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/object.py",
+      "blob": "7d1baf9f394d5f08837622353cf6e2f359aeb352",
+      "lines": 168,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/scalar.py",
+      "blob": "8dd866adaf644854a083c3c623584490902b4e49",
+      "lines": 32,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/__init__.py",
+      "blob": "9c7a3d8f0d137cee9537c6dd9c59b89e23ff2dc1",
+      "lines": 12,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+      "blob": "64611ba0d53a7b64def3c1b8dc3da1f3cc83ed20",
+      "lines": 190,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/heading.py",
+      "blob": "21e0fd331282515f9e6a2001e8c629cbd5e0c216",
+      "lines": 63,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/section.py",
+      "blob": "4b5fe56e4a7b9eb86d06a0ffcf630acbec76fa62",
+      "lines": 97,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/text.py",
+      "blob": "c1a23c0ead3b84752789d5a4c93d596bcc8ab37e",
+      "lines": 118,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/__init__.py",
+      "blob": "b8577385349e210e55662942b618b5d18f2e5c16",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/__init__.py",
+      "blob": "9a8ccc4a4c1c7cf2d11438050dd082dfed6d67e0",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_csv.py",
+      "blob": "ccccbec7df2366c59330d6839bd08f63c577686b",
+      "lines": 173,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_json.py",
+      "blob": "3a5915db5c972ea97deb443b62e7ff68951f1db7",
+      "lines": 291,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_markdown.py",
+      "blob": "7dd1954563ebb98c2895f9c2db934a38c9a58eff",
+      "lines": 88,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_text.py",
+      "blob": "0da69a0ddffbd636b1cb353e11145a1a9da55e6e",
+      "lines": 106,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/__init__.py",
+      "blob": "98a1989bb5507eb173b3d6efd34034396c21c778",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/__init__.py",
+      "blob": "307fd725907d07401fd473fce45612a70eefa05a",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_dialect.py",
+      "blob": "798433f6e1dd8fea7b743fe003cb8114a4792b22",
+      "lines": 46,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_file.py",
+      "blob": "99d86a76725657d0e50b0f2bed4df97a8986b846",
+      "lines": 133,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_row.py",
+      "blob": "f85d72d5e0af1bffc678a17ffd86314d1216c98b",
+      "lines": 68,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/__init__.py",
+      "blob": "1de2d51d59fcfbd7b2390727f2176a9a8a7a2031",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_file.py",
+      "blob": "386851eac8ab045406768c5864504bc930d205b2",
+      "lines": 201,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_heading.py",
+      "blob": "85370f557556a36a7c53f7f797793625454b57eb",
+      "lines": 42,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_section.py",
+      "blob": "4ca27b2aa06e8e59abe9c97c722d31f703b9b6c3",
+      "lines": 52,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_binary_io.py",
+      "blob": "65472e8bc2db66e479635132f810d7a90e5d18e6",
+      "lines": 88,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_json_conversion.py",
+      "blob": "e1b5592a212de9ebef3f445a0d801e2da0286148",
+      "lines": 143,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_json_models.py",
+      "blob": "07707c48786d3e4f4a6e48ddd6a9cad1d81cfbed",
+      "lines": 185,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_models.py",
+      "blob": "52bd60804e46155602d2d01ea3e9fd989bf697b8",
+      "lines": 79,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_reading.py",
+      "blob": "2cbd28de4253d5679800fc4c47cd095418d99aab",
+      "lines": 236,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    },
+    {
+      "path": "tests/resources/filesystem/test_resolution.py",
+      "blob": "2bb992ae3a358a6da13e5aa9761a1b055662d7ad",
+      "lines": 67,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED"
+    }
+  ],
+  "boundary": "All maintained filesystem codec/model/export bodies and corresponding tests; reading/resolution tests included to close prior targeted fixture/dispatch assurance. Prior read/write/bounds/Commands and identical binary/text codecs are reused without duplicate credit. No production/test change authorized.",
+  "excluded_previous_full_review": [
+    "src/devtools/resources/filesystem/reading.py",
+    "src/devtools/resources/filesystem/writing.py",
+    "src/devtools/resources/filesystem/resolution.py",
+    "src/devtools/resources/filesystem/errors.py",
+    "tests/resources/filesystem/test_writing.py",
+    "tests/resources/filesystem/test_bounded_read.py"
+  ],
+  "review_overlay": {
+    "at": "2026-10-26T17:22:04.471250+00:00",
+    "status": "COMPLETED_AT_DEFINED_DEPTH_WITH_OPEN_P2_FINDINGS",
+    "report": "docs/research/filesystem-codecs-and-models-audit.md",
+    "reviewed": [
+      {
+        "path": "src/devtools/resources/filesystem/__init__.py",
+        "blob": "dd22923c2e6ed02657d0887f15ec42c7d57a1941",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/__init__.py",
+        "blob": "8239e988d5d6d54c43afac5c5111f7bae4eafdfa",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/binary.py",
+        "blob": "4e67f00a67dc0b3e88b5ba71a71840178f71be9b",
+        "depth": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/csv.py",
+        "blob": "b383442f462767003fbcd28dfdf3c08d64cb6ba9",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/json.py",
+        "blob": "cf6fc8c29dc07bbe94f1786489e02a422a41a74c",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/markdown.py",
+        "blob": "b48fc085bdb87e5663e4a5d11285621f177bb710",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/codecs/text.py",
+        "blob": "757825a9c1d26c7d491ce659b94c6ea4472f7372",
+        "depth": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/__init__.py",
+        "blob": "e85a46af2b48abb38b2336a28d8d000d1ef4767a",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/base.py",
+        "blob": "4e4f6c5457e90b1658815b6b99b42ee69be68f56",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/binary.py",
+        "blob": "e0187327636b757b8b651e1a11d3120ca14076db",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/csv.py",
+        "blob": "e977dae655d615bc572fe23ffe6caf0a21bbb98b",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/__init__.py",
+        "blob": "1e7c7a11594c48e7cd61f7d0818af68ec6297c6d",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/base.py",
+        "blob": "a2dcec59abf1e9b1251ff084accad0f0d0d72304",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/conversion.py",
+        "blob": "608ab049736c2c2e140c5a07a22c6ed572e30e74",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/list.py",
+        "blob": "771d64d06ed3b072265d7a20c80ff6d0c6f3c5e5",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/object.py",
+        "blob": "7d1baf9f394d5f08837622353cf6e2f359aeb352",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/json/scalar.py",
+        "blob": "8dd866adaf644854a083c3c623584490902b4e49",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/markdown/__init__.py",
+        "blob": "9c7a3d8f0d137cee9537c6dd9c59b89e23ff2dc1",
+        "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+        "blob": "64611ba0d53a7b64def3c1b8dc3da1f3cc83ed20",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "blob": "21e0fd331282515f9e6a2001e8c629cbd5e0c216",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/markdown/section.py",
+        "blob": "4b5fe56e4a7b9eb86d06a0ffcf630acbec76fa62",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "src/devtools/resources/filesystem/models/text.py",
+        "blob": "c1a23c0ead3b84752789d5a4c93d596bcc8ab37e",
+        "depth": "FULL_IMPLEMENTATION_BODY_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/__init__.py",
+        "blob": "b8577385349e210e55662942b618b5d18f2e5c16",
+        "depth": "FULL_MARKER_ONLY_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/codecs/__init__.py",
+        "blob": "9a8ccc4a4c1c7cf2d11438050dd082dfed6d67e0",
+        "depth": "FULL_MARKER_ONLY_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/codecs/test_csv.py",
+        "blob": "ccccbec7df2366c59330d6839bd08f63c577686b",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/codecs/test_json.py",
+        "blob": "3a5915db5c972ea97deb443b62e7ff68951f1db7",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/codecs/test_markdown.py",
+        "blob": "7dd1954563ebb98c2895f9c2db934a38c9a58eff",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/codecs/test_text.py",
+        "blob": "0da69a0ddffbd636b1cb353e11145a1a9da55e6e",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/__init__.py",
+        "blob": "98a1989bb5507eb173b3d6efd34034396c21c778",
+        "depth": "FULL_MARKER_ONLY_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/csv/__init__.py",
+        "blob": "307fd725907d07401fd473fce45612a70eefa05a",
+        "depth": "FULL_MARKER_ONLY_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/csv/test_dialect.py",
+        "blob": "798433f6e1dd8fea7b743fe003cb8114a4792b22",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/csv/test_file.py",
+        "blob": "99d86a76725657d0e50b0f2bed4df97a8986b846",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/csv/test_row.py",
+        "blob": "f85d72d5e0af1bffc678a17ffd86314d1216c98b",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/markdown/__init__.py",
+        "blob": "1de2d51d59fcfbd7b2390727f2176a9a8a7a2031",
+        "depth": "FULL_MARKER_ONLY_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/markdown/test_file.py",
+        "blob": "386851eac8ab045406768c5864504bc930d205b2",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/markdown/test_heading.py",
+        "blob": "85370f557556a36a7c53f7f797793625454b57eb",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/models/markdown/test_section.py",
+        "blob": "4ca27b2aa06e8e59abe9c97c722d31f703b9b6c3",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_binary_io.py",
+        "blob": "65472e8bc2db66e479635132f810d7a90e5d18e6",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_json_conversion.py",
+        "blob": "e1b5592a212de9ebef3f445a0d801e2da0286148",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_json_models.py",
+        "blob": "07707c48786d3e4f4a6e48ddd6a9cad1d81cfbed",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_models.py",
+        "blob": "52bd60804e46155602d2d01ea3e9fd989bf697b8",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_reading.py",
+        "blob": "2cbd28de4253d5679800fc4c47cd095418d99aab",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      },
+      {
+        "path": "tests/resources/filesystem/test_resolution.py",
+        "blob": "2bb992ae3a358a6da13e5aa9761a1b055662d7ad",
+        "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW"
+      }
+    ],
+    "new_complete_bodies_or_surfaces": 41,
+    "prior_identical_reuse": 2
+  }
+}

@@ -1,0 +1,734 @@
+{
+  "baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+  "at": "2026-10-26T17:22:04.471250+00:00",
+  "reproducer_source": "\"\"\"Independent bounded public-API probes; no source fixtures are executed.\"\"\"\nimport asyncio\nimport json\nimport platform\nimport sys\nimport tempfile\nfrom pathlib import Path\n\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.conversion import convert, convert_all\nfrom devtools.core.time import Timestamp\nfrom devtools.resources.filesystem import (\n    BinaryFile, CsvDialect, CsvFile, CsvQuoting, CsvRow, JsonListFile, JsonObjectFile,\n    JsonScalarFile, MarkdownFile, TextFile, read, write,\n)\nfrom devtools.resources.filesystem.codecs import BinaryCodec, CsvCodec, JsonCodec, MarkdownCodec, TextCodec\nfrom devtools.tools import ToolRunner\nfrom devtools.tools.filesystem import ReadRepositoryFileTool\n\nOUT=Path(__file__).parent\nROWS=[]\ndef check(name, expected, action, classification='CONTROL', source=None):\n    try:\n        observed=action()\n    except Exception as error:\n        observed={'error':type(error).__name__, 'message':str(error)}\n    agrees=(observed==expected)\n    ROWS.append(dict(name=name,classification=classification,source=source,expected=expected,observed=observed,agrees=agrees))\n\ndef exception_name(action):\n    try: action()\n    except Exception as error: return type(error).__name__\n    return 'NO_EXCEPTION'\n\nwith tempfile.TemporaryDirectory(prefix='devtools-codec-audit-') as directory:\n    root=Path(directory); p=resolve_path(root/'data.json')\n    j=JsonCodec(); c=CsvCodec(); nonnumeric=CsvDialect(quoting=CsvQuoting.NONNUMERIC)\n    if '--compat' in sys.argv:\n        for name,action in [\n            ('json-object-constructor',lambda: type(JsonObjectFile(p,'{}',value={})).__name__),\n            ('json-list-constructor',lambda: type(JsonListFile(p,'[]',value=())).__name__),\n            ('csv-constructor',lambda: type(CsvFile(p,'id\\n',headers=('id',),rows=())).__name__),\n            ('json-object-codec',lambda:type(j.parse(p,'{}')).__name__),\n            ('json-list-codec',lambda:type(j.parse(p,'[]')).__name__),\n            ('csv-codec',lambda:type(c.parse(p,'id\\n007\\n')).__name__),\n        ]:\n            expected='CsvFile' if name.startswith('csv') else ('JsonObjectFile' if 'object' in name else 'JsonListFile')\n            check(name,expected,action,'EXISTING_B0048')\n        check('scalar-codec-control','JsonScalarFile',lambda:type(j.parse(p,'null')).__name__)\n        check('markdown-control','MarkdownFile',lambda:type(MarkdownFile(p,'# title\\n')).__name__)\n        check('text-control','TextFile',lambda:type(TextFile(p,'plain')).__name__)\n        check('binary-control','BinaryFile',lambda:type(BinaryFile(p,b'\\x00')).__name__)\n        (root/'object.json').write_text('{}',encoding='utf-8')\n        check('public-read-object','JsonObjectFile',lambda:type(read(resolve_path(root/'object.json'))).__name__,'EXISTING_B0048')\n        async def tool_read():\n            result=await ToolRunner().execute(ReadRepositoryFileTool(resolve_path(root)),resolve_path(root/'object.json'))\n            return type(result).__name__\n        check('toolrunner-object','JsonObjectFile',lambda:asyncio.run(tool_read()),'EXISTING_B0048')\n    else:\n        for label,source,expected,dialect in [\n            ('simple','\"id\",\"name\"\\n1,\"Ada\"\\n',['1','Ada'],nonnumeric),\n            ('zeroes','\"id\",\"value\"\\n001,1.50\\n',['001','1.50'],nonnumeric),\n            ('exponent','\"id\",\"value\"\\n1e2,-0\\n',['1e2','-0'],nonnumeric),\n            ('semicolon','\"id\";\"value\"\\n007;\"x;y\"\\n',['007','x;y'],CsvDialect(delimiter=';',quoting=CsvQuoting.NONNUMERIC)),\n        ]:\n            check('csv-nonnumeric-'+label,expected,lambda s=source,d=dialect:list(c.parse(p,s,dialect=d).rows[0].cells),'EXISTING_CSV_PROPOSAL',source)\n        check('csv-decode-nonnumeric',['001','1.50'],lambda:list(c.decode(p,b'\"id\",\"value\"\\n001,1.50\\n',dialect=nonnumeric).rows[0].cells),'EXISTING_CSV_PROPOSAL')\n        check('csv-numeric-string-headers',[['1','2'],['3','4']],lambda:(lambda file:[list(file.headers),list(file.rows[0].cells)])(c.parse(p,'1,2\\n3,4\\n',dialect=nonnumeric)),'EXISTING_CSV_PROPOSAL','1,2\\n3,4\\n')\n        check('csv-quoted-control',['001','1.50'],lambda:list(c.parse(p,'\"id\",\"value\"\\n\"001\",\"1.50\"\\n',dialect=nonnumeric).rows[0].cells))\n        check('csv-minimal-control',['001','1.50'],lambda:list(c.parse(p,'id,value\\n001,1.50\\n').rows[0].cells))\n        check('csv-crlf-quoted-newline',['a\\r\\nb','x,y'],lambda:list(c.parse(p,'id,value\\r\\n\"a\\r\\nb\",\"x,y\"\\r\\n').rows[0].cells))\n        check('csv-ragged-refusal','FileFormatError',lambda:exception_name(lambda:c.parse(p,'id,value\\nonly\\n')))\n        check('csv-duplicate-header-refusal','FileFormatError',lambda:exception_name(lambda:c.parse(p,'id,id\\nx,y\\n')))\n        def csv_changed():\n            changed=c.parse(p,'id\\n001\\n').with_row(0,CsvRow(('id',),('002',)))\n            return [changed.content,c.serialize(changed)]\n        check('csv-source-versus-state',['id\\n001\\n','id\\n002\\n'],csv_changed)\n        cases=[('missing-versus-null','[{\"tag\":\"missing\"},{\"tag\":\"present\",\"key\":null}]',None,'present'),\n               ('list-query','[{\"tag\":\"array\",\"key\":[1,2]}]',[1,2],'array'),\n               ('nested-query','[{\"tag\":\"nested\",\"key\":{\"items\":[1]}}]',{'items':[1]},'nested')]\n        for label,source,query,expected in cases:\n            def find(source=source,query=query):\n                result=j.parse(p,source).find_by('key',query)\n                return None if result is None else result['tag']\n            check('json-find-'+label,expected,find,'NEW_JSON_MEMBER_LOOKUP',source)\n        check('json-find-scalar-control','present',lambda:j.parse(p,'[{\"key\":7,\"tag\":\"present\"}]').find_by('key',7)['tag'])\n        check('json-find-missing-control',None,lambda:j.parse(p,'[{\"key\":8}]').find_by('key',7))\n        for source in ['NaN','Infinity','1e999','{\"x\":}']:\n            check('json-invalid-'+source,'FileFormatError',lambda s=source:exception_name(lambda:j.parse(p,s)))\n        check('json-duplicate-last-wins',2,lambda:j.parse(p,'{\"x\":1,\"x\":2}').value['x'],'DOCUMENTED_OR_STDLIB_LIMITATION')\n        check('json-source-current-state-separation',['{\"x\": 1}',2],lambda:(lambda f:[f.content,f.with_item('x',2).value['x']])(j.parse(p,'{\"x\": 1}')))\n        original={'items':[1]}\n        model=JsonObjectFile(p,'source',value=original);original['items'].append(2)\n        check('json-input-alias-isolation',[1],lambda:list(model.value['items']))\n        def assign(): model.value['x']=2\n        check('json-immutable-object','TypeError',lambda:exception_name(assign))\n        check('json-thaw-independent',[1],lambda:(lambda mutable:(mutable['items'].append(9),list(model.value['items']))[1])(model.convert(lambda value:value)))\n        def conversion_failure():\n            visited=[]\n            def converter(value):\n                visited.append(value)\n                return int(value)\n            try: convert_all(['1','bad','3'],converter)\n            except Exception as error:\n                return [type(error).__name__,type(error.__cause__).__name__,type(error.__cause__.__cause__).__name__,visited]\n            return 'NO_EXCEPTION'\n        check('conversion-fail-fast-cause',['ConversionError','ConversionError','ValueError',['1','bad']],conversion_failure)\n        check('conversion-success-order',[2,3],lambda:list(convert_all([1,2],lambda value:value+1)))\n        check('json-float-normalization',1.5,lambda:j.parse(p,'1.50').value,'DOCUMENTED_OR_STDLIB_LIMITATION')\n        raw=b'\\x00\\xff\\r\\n'\n        check('binary-exact',raw.hex(),lambda:BinaryCodec().encode(BinaryCodec().decode(p,raw)).hex())\n        text='\\ufeffpi=π\\r\\n\\x00\\n'\n        check('text-utf8-exact',text,lambda:TextCodec().decode(p,TextCodec().encode(TextFile(p,text))).content)\n        check('text-invalid-utf8','TextDecodingError',lambda:exception_name(lambda:TextCodec().decode(p,b'\\xff')))\n        markdown='# title\\r\\n```\\r\\n# hidden\\r\\n```\\r\\n## child\\r\\nbody\\r\\n'\n        md=MarkdownCodec().decode(p,markdown.encode())\n        check('markdown-source-exact',markdown,lambda:MarkdownCodec().encode(md).decode())\n        check('markdown-headings-fence',['title','child'],lambda:[h.text for h in md.headings])\n        check('markdown-logical-sections-no-cr',True,lambda:all('\\r' not in s.content for s in md.sections),'DOCUMENTED_OR_STDLIB_LIMITATION')\n        target=resolve_path(root/'plain.txt');write(TextFile(target,text));check('public-text-read-write',text,lambda:read(target).content)\n        (root/'items.json').write_text('[{}, {\"key\":null,\"tag\":\"present\"}]',encoding='utf-8')\n        async def tool_find():\n            result=await ToolRunner().execute(ReadRepositoryFileTool(resolve_path(root)),resolve_path(root/'items.json'))\n            match=result.find_by('key',None)\n            return None if match is None else dict(match)\n        check('toolrunner-rich-json-member',{'key':None,'tag':'present'},lambda:asyncio.run(tool_find()),'NEW_JSON_MEMBER_LOOKUP')\n\nvalue=dict(at=str(Timestamp.now()),python=sys.version,platform=platform.platform(),mode='compat' if '--compat' in sys.argv else 'representation',rows=ROWS,\n           unexpected_control_failures=[r['name'] for r in ROWS if not r['agrees'] and r['classification'] in ['CONTROL','DOCUMENTED_OR_STDLIB_LIMITATION']])\nname='compat-'+str(sys.version_info.minor)+'.json' if '--compat' in sys.argv else 'probes.json'\n(OUT/name).write_text(json.dumps(value,indent=2,ensure_ascii=False)+'\\n',encoding='utf-8')\nprint(json.dumps(dict(output=name,cases=len(ROWS),mismatches=[r['name'] for r in ROWS if not r['agrees']],unexpected_control_failures=value['unexpected_control_failures']),indent=2))\nif value['unexpected_control_failures']:sys.exit(1)\n",
+  "reproducer_sha256": "6d10d032c9e29e24d4d8e0d66343a94e7d05b44a3f3328fcefb9a0d15aa39c49",
+  "compatibility_driver": "\"\"\"Use the existing Python 3.12 interpreter without installing any environment.\"\"\"\nimport asyncio, hashlib, json\nfrom pathlib import Path\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Timestamp, Stopwatch\nfrom devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy\nR=Path.cwd();O=Path(__file__).parent\nasync def main():\n    executable=Path('C:/Users/recoveryadmin/AppData/Roaming/uv/python/cpython-3.12.13-windows-x86_64-none/python.exe')\n    assert executable.is_file()\n    timer=Stopwatch();start=str(Timestamp.now())\n    result=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20,max_stderr_bytes=1<<20)).execute(\n        Command(str(executable)).args('-B',str(O/'probes.py'),'--compat').cwd(resolve_path(R)).with_environment({'PYTHONPATH':str(R/'src'),'PYTHONDONTWRITEBYTECODE':'1'}))\n    timer.stop()\n    (O/'compatibility-execution.json').write_text(json.dumps(dict(at=start,executable=str(executable),executable_sha256=hashlib.sha256(executable.read_bytes()).hexdigest(),exit_code=result.exit_code,elapsed_seconds=timer.elapsed.total_seconds,stdout=result.stdout.decode(),stderr=result.stderr.decode(),environment='Only child PYTHONPATH=canonical/src and PYTHONDONTWRITEBYTECODE=1; existing interpreter; no installs or dependency sharing.'),indent=2)+'\\n')\n    print(result.stdout.decode());assert not result.failed,result.stderr\nasyncio.run(main())\n",
+  "compatibility_driver_sha256": "badaae7decf3f73ff26532a3225d77924b145d635e8b080e1ece3f06e521c769",
+  "execution": [
+    {
+      "at": "2026-10-26T17:21:57.230364+00:00",
+      "args": [
+        "uv",
+        "run",
+        "python",
+        ".local/filesystem-codecs-audit-20261026/probes.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.370257,
+      "stdout": "{\r\n  \"output\": \"probes.json\",\r\n  \"cases\": 37,\r\n  \"mismatches\": [\r\n    \"csv-nonnumeric-simple\",\r\n    \"csv-nonnumeric-zeroes\",\r\n    \"csv-nonnumeric-exponent\",\r\n    \"csv-nonnumeric-semicolon\",\r\n    \"csv-decode-nonnumeric\",\r\n    \"csv-numeric-string-headers\",\r\n    \"json-find-missing-versus-null\",\r\n    \"json-find-list-query\",\r\n    \"json-find-nested-query\",\r\n    \"toolrunner-rich-json-member\"\r\n  ],\r\n  \"unexpected_control_failures\": []\r\n}\r\n",
+      "stderr": "",
+      "script_sha256": "6d10d032c9e29e24d4d8e0d66343a94e7d05b44a3f3328fcefb9a0d15aa39c49"
+    },
+    {
+      "at": "2026-10-26T17:21:57.600936+00:00",
+      "args": [
+        "uv",
+        "run",
+        "python",
+        ".local/filesystem-codecs-audit-20261026/probes.py",
+        "--compat"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.329541,
+      "stdout": "{\r\n  \"output\": \"compat-14.json\",\r\n  \"cases\": 12,\r\n  \"mismatches\": [],\r\n  \"unexpected_control_failures\": []\r\n}\r\n",
+      "stderr": "",
+      "script_sha256": "6d10d032c9e29e24d4d8e0d66343a94e7d05b44a3f3328fcefb9a0d15aa39c49"
+    },
+    {
+      "at": "2026-10-26T17:21:57.930751+00:00",
+      "args": [
+        "uv",
+        "run",
+        "python",
+        ".local/filesystem-codecs-audit-20261026/compatibility.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.504183,
+      "stdout": "{\r\r\n  \"output\": \"compat-12.json\",\r\r\n  \"cases\": 12,\r\r\n  \"mismatches\": [\r\r\n    \"json-object-constructor\",\r\r\n    \"json-list-constructor\",\r\r\n    \"csv-constructor\",\r\r\n    \"json-object-codec\",\r\r\n    \"json-list-codec\",\r\r\n    \"csv-codec\",\r\r\n    \"public-read-object\",\r\r\n    \"toolrunner-object\"\r\r\n  ],\r\r\n  \"unexpected_control_failures\": []\r\r\n}\r\r\n\r\n",
+      "stderr": "",
+      "script_sha256": "badaae7decf3f73ff26532a3225d77924b145d635e8b080e1ece3f06e521c769"
+    }
+  ],
+  "commands": [
+    {
+      "command": "uv run python .local/filesystem-codecs-audit-20261026/probes.py",
+      "exit_code": 0,
+      "result": {
+        "at": "2026-10-26T17:21:57.468780+00:00",
+        "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "mode": "representation",
+        "rows": [
+          {
+            "name": "csv-nonnumeric-simple",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": "\"id\",\"name\"\n1,\"Ada\"\n",
+            "expected": [
+              "1",
+              "Ada"
+            ],
+            "observed": {
+              "error": "FileFormatError",
+              "message": "Invalid CSV row: CSV row values must be strings.."
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-nonnumeric-zeroes",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": "\"id\",\"value\"\n001,1.50\n",
+            "expected": [
+              "001",
+              "1.50"
+            ],
+            "observed": {
+              "error": "FileFormatError",
+              "message": "Invalid CSV row: CSV row values must be strings.."
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-nonnumeric-exponent",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": "\"id\",\"value\"\n1e2,-0\n",
+            "expected": [
+              "1e2",
+              "-0"
+            ],
+            "observed": {
+              "error": "FileFormatError",
+              "message": "Invalid CSV row: CSV row values must be strings.."
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-nonnumeric-semicolon",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": "\"id\";\"value\"\n007;\"x;y\"\n",
+            "expected": [
+              "007",
+              "x;y"
+            ],
+            "observed": {
+              "error": "FileFormatError",
+              "message": "Invalid CSV row: CSV row values must be strings.."
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-decode-nonnumeric",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": null,
+            "expected": [
+              "001",
+              "1.50"
+            ],
+            "observed": {
+              "error": "FileFormatError",
+              "message": "Invalid CSV row: CSV row values must be strings.."
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-numeric-string-headers",
+            "classification": "EXISTING_CSV_PROPOSAL",
+            "source": "1,2\n3,4\n",
+            "expected": [
+              [
+                "1",
+                "2"
+              ],
+              [
+                "3",
+                "4"
+              ]
+            ],
+            "observed": {
+              "error": "AttributeError",
+              "message": "'float' object has no attribute 'strip'"
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-quoted-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "001",
+              "1.50"
+            ],
+            "observed": [
+              "001",
+              "1.50"
+            ],
+            "agrees": true
+          },
+          {
+            "name": "csv-minimal-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "001",
+              "1.50"
+            ],
+            "observed": [
+              "001",
+              "1.50"
+            ],
+            "agrees": true
+          },
+          {
+            "name": "csv-crlf-quoted-newline",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "a\r\nb",
+              "x,y"
+            ],
+            "observed": [
+              "a\r\nb",
+              "x,y"
+            ],
+            "agrees": true
+          },
+          {
+            "name": "csv-ragged-refusal",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "csv-duplicate-header-refusal",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "csv-source-versus-state",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "id\n001\n",
+              "id\n002\n"
+            ],
+            "observed": [
+              "id\n001\n",
+              "id\n002\n"
+            ],
+            "agrees": true
+          },
+          {
+            "name": "json-find-missing-versus-null",
+            "classification": "NEW_JSON_MEMBER_LOOKUP",
+            "source": "[{\"tag\":\"missing\"},{\"tag\":\"present\",\"key\":null}]",
+            "expected": "present",
+            "observed": "missing",
+            "agrees": false
+          },
+          {
+            "name": "json-find-list-query",
+            "classification": "NEW_JSON_MEMBER_LOOKUP",
+            "source": "[{\"tag\":\"array\",\"key\":[1,2]}]",
+            "expected": "array",
+            "observed": null,
+            "agrees": false
+          },
+          {
+            "name": "json-find-nested-query",
+            "classification": "NEW_JSON_MEMBER_LOOKUP",
+            "source": "[{\"tag\":\"nested\",\"key\":{\"items\":[1]}}]",
+            "expected": "nested",
+            "observed": null,
+            "agrees": false
+          },
+          {
+            "name": "json-find-scalar-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "present",
+            "observed": "present",
+            "agrees": true
+          },
+          {
+            "name": "json-find-missing-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": null,
+            "observed": null,
+            "agrees": true
+          },
+          {
+            "name": "json-invalid-NaN",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "json-invalid-Infinity",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "json-invalid-1e999",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "json-invalid-{\"x\":}",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "FileFormatError",
+            "observed": "FileFormatError",
+            "agrees": true
+          },
+          {
+            "name": "json-duplicate-last-wins",
+            "classification": "DOCUMENTED_OR_STDLIB_LIMITATION",
+            "source": null,
+            "expected": 2,
+            "observed": 2,
+            "agrees": true
+          },
+          {
+            "name": "json-source-current-state-separation",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "{\"x\": 1}",
+              2
+            ],
+            "observed": [
+              "{\"x\": 1}",
+              2
+            ],
+            "agrees": true
+          },
+          {
+            "name": "json-input-alias-isolation",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              1
+            ],
+            "observed": [
+              1
+            ],
+            "agrees": true
+          },
+          {
+            "name": "json-immutable-object",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "TypeError",
+            "observed": "TypeError",
+            "agrees": true
+          },
+          {
+            "name": "json-thaw-independent",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              1
+            ],
+            "observed": [
+              1
+            ],
+            "agrees": true
+          },
+          {
+            "name": "conversion-fail-fast-cause",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "ConversionError",
+              "ConversionError",
+              "ValueError",
+              [
+                "1",
+                "bad"
+              ]
+            ],
+            "observed": [
+              "ConversionError",
+              "ConversionError",
+              "ValueError",
+              [
+                "1",
+                "bad"
+              ]
+            ],
+            "agrees": true
+          },
+          {
+            "name": "conversion-success-order",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              2,
+              3
+            ],
+            "observed": [
+              2,
+              3
+            ],
+            "agrees": true
+          },
+          {
+            "name": "json-float-normalization",
+            "classification": "DOCUMENTED_OR_STDLIB_LIMITATION",
+            "source": null,
+            "expected": 1.5,
+            "observed": 1.5,
+            "agrees": true
+          },
+          {
+            "name": "binary-exact",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "00ff0d0a",
+            "observed": "00ff0d0a",
+            "agrees": true
+          },
+          {
+            "name": "text-utf8-exact",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "﻿pi=π\r\n\u0000\n",
+            "observed": "﻿pi=π\r\n\u0000\n",
+            "agrees": true
+          },
+          {
+            "name": "text-invalid-utf8",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "TextDecodingError",
+            "observed": "TextDecodingError",
+            "agrees": true
+          },
+          {
+            "name": "markdown-source-exact",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "# title\r\n```\r\n# hidden\r\n```\r\n## child\r\nbody\r\n",
+            "observed": "# title\r\n```\r\n# hidden\r\n```\r\n## child\r\nbody\r\n",
+            "agrees": true
+          },
+          {
+            "name": "markdown-headings-fence",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": [
+              "title",
+              "child"
+            ],
+            "observed": [
+              "title",
+              "child"
+            ],
+            "agrees": true
+          },
+          {
+            "name": "markdown-logical-sections-no-cr",
+            "classification": "DOCUMENTED_OR_STDLIB_LIMITATION",
+            "source": null,
+            "expected": true,
+            "observed": true,
+            "agrees": true
+          },
+          {
+            "name": "public-text-read-write",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "﻿pi=π\r\n\u0000\n",
+            "observed": "﻿pi=π\r\n\u0000\n",
+            "agrees": true
+          },
+          {
+            "name": "toolrunner-rich-json-member",
+            "classification": "NEW_JSON_MEMBER_LOOKUP",
+            "source": null,
+            "expected": {
+              "key": null,
+              "tag": "present"
+            },
+            "observed": {},
+            "agrees": false
+          }
+        ],
+        "unexpected_control_failures": []
+      }
+    },
+    {
+      "command": "uv run python .local/filesystem-codecs-audit-20261026/probes.py --compat",
+      "exit_code": 0,
+      "result": {
+        "at": "2026-10-26T17:21:57.829527+00:00",
+        "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "mode": "compat",
+        "rows": [
+          {
+            "name": "json-object-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": "JsonObjectFile",
+            "agrees": true
+          },
+          {
+            "name": "json-list-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonListFile",
+            "observed": "JsonListFile",
+            "agrees": true
+          },
+          {
+            "name": "csv-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "CsvFile",
+            "observed": "CsvFile",
+            "agrees": true
+          },
+          {
+            "name": "json-object-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": "JsonObjectFile",
+            "agrees": true
+          },
+          {
+            "name": "json-list-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonListFile",
+            "observed": "JsonListFile",
+            "agrees": true
+          },
+          {
+            "name": "csv-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "CsvFile",
+            "observed": "CsvFile",
+            "agrees": true
+          },
+          {
+            "name": "scalar-codec-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "JsonScalarFile",
+            "observed": "JsonScalarFile",
+            "agrees": true
+          },
+          {
+            "name": "markdown-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "MarkdownFile",
+            "observed": "MarkdownFile",
+            "agrees": true
+          },
+          {
+            "name": "text-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "TextFile",
+            "observed": "TextFile",
+            "agrees": true
+          },
+          {
+            "name": "binary-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "BinaryFile",
+            "observed": "BinaryFile",
+            "agrees": true
+          },
+          {
+            "name": "public-read-object",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": "JsonObjectFile",
+            "agrees": true
+          },
+          {
+            "name": "toolrunner-object",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": "JsonObjectFile",
+            "agrees": true
+          }
+        ],
+        "unexpected_control_failures": []
+      }
+    },
+    {
+      "command": "uv run python .local/filesystem-codecs-audit-20261026/compatibility.py",
+      "exit_code": 0,
+      "execution": {
+        "at": "2026-10-26T17:21:58.128027+00:00",
+        "executable": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12.13-windows-x86_64-none\\python.exe",
+        "executable_sha256": "4f42bdff52794f78ca6cca46432baa7d7d16e52f4c59d25c2500d6e8dd6d6fcc",
+        "exit_code": 0,
+        "elapsed_seconds": 0.29266,
+        "stdout": "{\r\n  \"output\": \"compat-12.json\",\r\n  \"cases\": 12,\r\n  \"mismatches\": [\r\n    \"json-object-constructor\",\r\n    \"json-list-constructor\",\r\n    \"csv-constructor\",\r\n    \"json-object-codec\",\r\n    \"json-list-codec\",\r\n    \"csv-codec\",\r\n    \"public-read-object\",\r\n    \"toolrunner-object\"\r\n  ],\r\n  \"unexpected_control_failures\": []\r\n}\r\n",
+        "stderr": "",
+        "environment": "Only child PYTHONPATH=canonical/src and PYTHONDONTWRITEBYTECODE=1; existing interpreter; no installs or dependency sharing."
+      },
+      "result": {
+        "at": "2026-10-26T17:21:58.274282+00:00",
+        "python": "3.12.13 (main, Aug  5 2026, 17:14:30) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "mode": "compat",
+        "rows": [
+          {
+            "name": "json-object-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "json-list-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonListFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-constructor",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "CsvFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "json-object-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "json-list-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonListFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "csv-codec",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "CsvFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "scalar-codec-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "JsonScalarFile",
+            "observed": "JsonScalarFile",
+            "agrees": true
+          },
+          {
+            "name": "markdown-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "MarkdownFile",
+            "observed": "MarkdownFile",
+            "agrees": true
+          },
+          {
+            "name": "text-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "TextFile",
+            "observed": "TextFile",
+            "agrees": true
+          },
+          {
+            "name": "binary-control",
+            "classification": "CONTROL",
+            "source": null,
+            "expected": "BinaryFile",
+            "observed": "BinaryFile",
+            "agrees": true
+          },
+          {
+            "name": "public-read-object",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          },
+          {
+            "name": "toolrunner-object",
+            "classification": "EXISTING_B0048",
+            "source": null,
+            "expected": "JsonObjectFile",
+            "observed": {
+              "error": "TypeError",
+              "message": "super(type, obj): obj must be an instance or subtype of type"
+            },
+            "agrees": false
+          }
+        ],
+        "unexpected_control_failures": []
+      }
+    }
+  ],
+  "qualifications": [
+    "37 representation +12 host compatibility +12 native3.12 compatibility =61 cases. Six existing CSV mismatches, four JSON lookup mismatches (three distinct inputs plus actual ToolRunner), eight existing B0048 mismatches;43 controls agree.",
+    "Observed expectation failures are product evidence; probe harness exits0 when only declared finding classes differ. No suppressed unexpected control failures.",
+    "Initial private harness used nonexistent with_value/heading.title; corrected to public with_item/heading.text. Those two setup errors are NOT findings or review credit.",
+    "Python3.12 has no pytest; native stdlib/public-caller probes only, not package-wide3.12 test support. No runtime/dependency install or shared3.14 site-packages.",
+    "No live model, arbitrary source execution, frozen controller, full protected gate or production edit."
+  ]
+}
