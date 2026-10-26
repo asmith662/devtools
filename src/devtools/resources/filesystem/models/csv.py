@@ -185,7 +185,8 @@ class CsvFile(TextFile):
 
     def __post_init__(self) -> None:
         """Validate text metadata and freeze structured CSV state."""
-        super().__post_init__()
+        # Explicit class avoids the pre-slots __class__ cell on Python 3.12.
+        super(CsvFile, self).__post_init__()
         object.__setattr__(self, "headers", tuple(self.headers))
         object.__setattr__(self, "rows", tuple(self.rows))
 

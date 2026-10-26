@@ -28,7 +28,8 @@ class JsonListFile(JsonFile, Sequence[JsonValue]):
 
     def __post_init__(self) -> None:
         """Validate inherited text fields and freeze JSON storage."""
-        super().__post_init__()
+        # Explicit class avoids the pre-slots __class__ cell on Python 3.12.
+        super(JsonListFile, self).__post_init__()
         frozen = freeze_json(self.value)
 
         if not isinstance(frozen, tuple):
