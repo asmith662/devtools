@@ -37,7 +37,9 @@ class CodexAgent:
     The configured directory governs every command process and Codex's fresh
     working root. The installed 0.147.0 CLI does not expose ``--sandbox`` or
     ``--cd`` on ``exec resume``; resumed commands retain process cwd and force
-    the supported read-only ``sandbox_mode`` configuration override.
+    the supported read-only ``sandbox_mode`` configuration override. Prompts use
+    the documented stdin operand, with options terminated before positional
+    operands, so literal text cannot select CLI options (including ``-``).
     """
 
     _SOURCE: ClassVar[InteractionSource] = InteractionSource("codex")
@@ -121,7 +123,11 @@ class CodexAgent:
         conversation: ConversationRef | None,
     ) -> Command:
         """Build the installed CLI's direct-argv JSONL invocation."""
-        command = Command(self._executable).cwd(self._working_directory)
+        command = (
+            Command(self._executable)
+            .cwd(self._working_directory)
+            .with_stdin(prompt.encode("utf-8"))
+        )
         if conversation is None:
             return command.args(
                 "exec",
@@ -130,7 +136,8 @@ class CodexAgent:
                 "--cd",
                 str(self._working_directory),
                 "--json",
-                prompt,
+                "--",
+                "-",
             )
         return command.args(
             "exec",
@@ -138,8 +145,9 @@ class CodexAgent:
             "-c",
             _READ_ONLY_SANDBOX_CONFIG,
             "--json",
+            "--",
             conversation.value,
-            prompt,
+            "-",
         )
 
 

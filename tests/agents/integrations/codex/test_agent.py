@@ -1,5 +1,4 @@
 # Copyright (c) 2026
-# ruff: noqa: E501
 """Tests for the CLI-backed Codex agent."""
 
 from __future__ import annotations
@@ -119,9 +118,11 @@ def test_agent_builds_fresh_read_only_jsonl_command_and_maps_turn(
         "--cd",
         str(tmp_path),
         "--json",
-        "A prompt with\nmultiple lines.",
+        "--",
+        "-",
     )
     assert executor.commands[0].working_directory == ResolvedPath(tmp_path)
+    assert executor.commands[0].stdin == b"A prompt with\nmultiple lines."
 
 
 def test_usage_survives_nonzero_exit_and_invalid_scientific_payload(
@@ -158,10 +159,12 @@ def test_agent_builds_resume_command_with_provider_thread_id(tmp_path: Path) -> 
         "-c",
         'sandbox_mode="read-only"',
         "--json",
+        "--",
         "thread-42",
-        "Follow up",
+        "-",
     )
     assert executor.commands[0].working_directory == ResolvedPath(tmp_path)
+    assert executor.commands[0].stdin == b"Follow up"
 
 
 @pytest.mark.parametrize(
@@ -268,14 +271,15 @@ def test_root_public_api_is_exact() -> None:
     assert CodexError is devtools.agents.integrations.codex.CodexError
 
 
-def test_agent_preserves_an_empty_prompt_as_one_argument(tmp_path: Path) -> None:
-    """Direct argv transport does not discard a valid empty ConversationMessage content."""
+def test_agent_preserves_an_empty_prompt_as_explicit_stdin(tmp_path: Path) -> None:
+    """An empty message is explicit empty input, never inherited interactive stdin."""
     executor = RecordingExecutor([(0, _SUCCESS, False)])
     agent = _agent(executor, tmp_path)
 
     asyncio.run(agent.send(_user_message("")))
 
-    assert executor.commands[0].argv[-1] == ""
+    assert executor.commands[0].argv[-2:] == ("--", "-")
+    assert executor.commands[0].stdin == b""
 
 
 def test_default_resolution_failure_preserves_command_domain_error(
@@ -289,3 +293,59 @@ def test_default_resolution_failure_preserves_command_domain_error(
 
     with pytest.raises(CommandNotFoundError):
         asyncio.run(agent.send(_user_message()))
+
+
+@pytest.mark.parametrize("resumed", [False, True])
+@pytest.mark.parametrize(
+    "prompt",
+    [
+        "--help",
+        "--version",
+        "-",
+        "--",
+        "--config=x",
+        "ordinary",
+        "",
+        " \n\t",
+        "π\r\nnext",
+    ],
+)
+def test_literal_prompts_use_explicit_stdin_operand(
+    tmp_path: Path,
+    prompt: str,
+    *,
+    resumed: bool,
+) -> None:
+    """User bytes never become options or the stdin-control operand itself."""
+    executor = RecordingExecutor([(0, _SUCCESS, False)])
+    agent = _agent(executor, tmp_path)
+    ref = ConversationRef(agent.source, "--opaque-thread") if resumed else None
+    turn = asyncio.run(agent.send(_user_message(prompt), conversation=ref))
+    assert len(executor.commands) == 1
+    command = executor.commands[0]
+    expected = (
+        (
+            "exec",
+            "resume",
+            "-c",
+            'sandbox_mode="read-only"',
+            "--json",
+            "--",
+            "--opaque-thread",
+            "-",
+        )
+        if resumed
+        else (
+            "exec",
+            "--sandbox",
+            "read-only",
+            "--cd",
+            str(tmp_path),
+            "--json",
+            "--",
+            "-",
+        )
+    )
+    assert command.argv == ("test-codex", *expected)
+    assert command.stdin == prompt.encode("utf-8")
+    assert turn.conversation == ConversationRef(agent.source, "thread-42")

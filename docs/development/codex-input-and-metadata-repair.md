@@ -1,0 +1,31 @@
+# Codex literal input and metadata admission repair
+
+This bounded correction follows the [Agents/Runtime audit](../research/agents-conversation-and-runtime-audit.md), integrated through PR #34 at `1a74e04740a0955531a48c9a2dd2109d1c1a7001` (tree `7e76d69b6f3fb04c2dd6d7aedf6f96b488f52b8c`). It changes two existing Codex integration contracts. Production publication and delivered Intake evidence require separately verified normal PR acceptance; local passing tests alone do not establish delivery.
+
+## Literal prompt transport
+
+`CodexAgent.send` uses the supported `exec`/`exec resume` stdin operand `-`, after an explicit `--` option delimiter. Exact UTF-8 message bytes, including empty, whitespace, multiline, Unicode and literal `-`, travel through the existing managed Command stdin. Fresh read-only flags, resumed configuration, cwd, continuation identity, response parsing, usage and errors remain separate and unchanged. The delimiter also protects the opaque resumed session operand. No shell interpolation, extra command, model call, retry or version probe is added to `send`.
+
+Installed Codex CLI 0.162.1 help documents stdin for both forms. Safe parser probes always insert a forced `--help` before the delimiter, so they cannot establish model execution or a completed inference. Permanent deterministic tests independently assert the exact command and stdin for fresh and resumed calls. Empty input is transported rather than invented into a successful CLI response; CLI refusal remains the existing command error contract. Compatibility requires the documented exec/resume grammar, not an undocumented version-specific quoting assumption.
+
+## Decoded metadata admission and privacy
+
+`read_session_usage` and `read_exec_usage` retain their narrow, local metadata purpose. Candidate usage records are bounded to 65,536 bytes per physical line, including its newline. Oversized content is drained in bounded chunks without JSON decoding. Session candidates with unsupported metadata are skipped; exec candidates refuse with fixed ValueError text. Unknown usage stays unknown.
+
+An early raw-name check still avoids decoding obvious private fields, but it is only an optimization. The authoritative standard-library JSON decoder checks decoded object member names at every depth, rejects unknown names and duplicate names (including escape-equivalent duplicates), and rejects nonstandard constants/unsupported arrays. Comparisons are exact and case-sensitive. Allowed escaped keys and values remain supported. Counts must satisfy existing ModelUsage invariants. Malformed, invalid-encoding, excessive-depth and oversized candidate input cannot become a usage observation. Decoder errors and their raw document are not attached to the exec refusal.
+
+Context is deliberately a bounded direct scalar-prefix projection, not a full session-content decoder. It stops before the value of an unknown member or supported-name container, recognizes escaped names through the existing JSON decoder, and cannot discover model/project values nested inside private content. Duplicate direct scalar context is unavailable. Metadata after a private/unsupported member remains unavailable. Context prefixes are at most 8,192 bytes; this is not complete validation of a personal session record.
+
+Rejected bounded candidate metadata can exist transiently in the decoder. This explicitly qualifies the original proposal's stronger predecode aspiration: parsing untrusted JSON is not a privacy guarantee. Rejected values never become returned rows/raw_json, usage observations or diagnostic payloads. Content events are still skipped without wholesale deserialization. No arbitrary personal-message ingestion, new store or normalized lifecycle ingestion is authorized.
+
+## Independent failures, consumers and severity
+
+Baseline permanent regressions on the accepted audit source produced **36 intended failures, 26 passing controls and zero setup errors**. Earlier encoding/pytest temporary-name setup failures are retained separately and excluded from this result. Original audit probes remain historical evidence.
+
+In addition to the original escaped `priv\u0061te` admission, authored probes show that an escaped unknown field nested in exec `usage` can survive in returned `CodexUsage.raw_json`, and an escaped private context container can supply a false model attribution. `from_session` actually converts session rows into normalized usage observations/reports. `scripts/usage.py` consumes exec counts, checks trusted thread lineage independently, and hashes raw usage into source provenance rather than displaying its private member values. Its ingestion failures record exception class only. These are confirmed local ingestion/privacy and attribution defects, retained as P2; no cross-user access, remote exfiltration or actual personal-log exposure was established. The two original proposal identities remain distinct: `b8cf4f09-0b9b-4592-8bd3-4d42d5a1778d` and `f99678ae-c7d8-4574-a057-da582647d540`.
+
+## Boundaries and remaining decisions
+
+Runtime, Conversation, InteractionAttempt, ModelInteraction, Qwen Tool admission and observation behavior are unchanged. Optional post-response capture remains an unapproved architecture decision. Its explicit prerequisites are per-invocation correlation for shared adapters (interaction observation/provider invocation owner), safe secondary-report failure semantics (Inspector/EvidenceSink composition), privacy-safe payload and retention (observability capture policy), and mandatory-versus-optional evidence admission before downstream actions (trusted Qwen host/WorkCycle acceptance, independently of Runtime attempt success).
+
+No final lifecycle signoff, broader Evidence integration, B-0023/B-0043 closure, A+C approval or historical RI completion follows. The original Agents/Runtime 35-path audit remains exact historical evidence; changed source/test blobs require a maintenance overlay. Next is a bounded Persistence audit of actual serialization, storage identity, conflict handling and producer/consumer restoration, not another Agent architecture or automatic observation-policy implementation. The 188 historical RI versions remain separate.
