@@ -1,69 +1,169 @@
 {
   "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
-  "status": "FROZEN_NOT_STARTED",
+  "status": "FULL_BODY_REVIEWED_WITH_PENDING_P2_REPAIRS",
   "flow": "Semantic path admission -> bounded resource IO -> managed process entry/output/cancellation -> externally observed effect and caller responsibility",
   "priority": "Next major framework domain after concrete P2 usage repair disposition; do not add another narrow operational audit by default.",
   "cohort": [
     {
       "path": "src/devtools/core/paths/resolution.py",
       "blob": "678327a2c520ffb43f49d14722b168956a128171",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Explicit base parsing/resolution and conventional locations",
+      "findings": "All parse/dot/suffix/base branches and Path.resolve(strict=False) calls inspected. No containment/authority promise; native errors propagate. Cross-drive relative path uses ambient CWD. Embedded separators/dot parsing remain mechanical.",
+      "consumer": "Shared path callers in RI observation, ReadRepositoryFileTool, Qwen check inputs and Checkout. Those callers add their own containment/address/alias rules.",
+      "disposition": "NEW_P2_PATH_POLICY",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "src/devtools/core/paths/models.py",
       "blob": "5463528290e24874a8a0dfa4c703bd9c54d20fd4",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Absolute immutable path representation",
+      "findings": "All absolute invariant, path accessors, os.PathLike/string/equality mechanics inspected. Direct construction does not normalize, authenticate existence or grant authority. Windows case equality is native Path semantics, not file identity.",
+      "consumer": "Resources consume value; Source/Checkout policies re-resolve where required.",
+      "disposition": "QUALIFIED_NO_ACTION",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "src/devtools/resources/filesystem/reading.py",
       "blob": "50e7ac2f138d87f309aba6072c6e281625141c9a",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Bounded codec-backed reads",
+      "findings": "Complete precheck, bounded/unlimited read loops, short reads, sentinel/postcheck, format dispatch and permission paths inspected. Bounds are bytes, not decoded characters; no atomic snapshot or path lease.",
+      "consumer": "RepositoryObservation derives content identity from actual returned decoded bytes; Tool/native Context retain stronger source contracts separately.",
+      "disposition": "DELIVERED_BOUND_WITH_LIMITS",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "src/devtools/resources/filesystem/writing.py",
       "blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Atomic replacement write",
+      "findings": "All model/codec matches, existence check, sibling temp creation, write/flush/fsync/replace and cleanup paths inspected. Dangling link exists-check failure reproduced; no directory fsync, metadata preservation or concurrency guarantee.",
+      "consumer": "Intake immutable JSON, Checkout owner checkpoints, usage snapshots, Qwen receipts and edits compose this owner with distinct admission/leases.",
+      "disposition": "NEW_P2_DANGLING_ENTRY",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "src/devtools/resources/commands/execution.py",
       "blob": "2b81abce1be791e0ec17f944870d8e15d4bc01c6",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Managed process transport",
+      "findings": "Full create/collect/feed/read/reap/timeout/cancel/error paths inspected. Direct argv and launch-time env overlays; post-creation timeout, bounded prefixes, drain-on-normal completion. Read-failure gather leaves sibling collector alive.",
+      "consumer": "CommandTool/ToolRunner, Qwen fixed checks and backlog Git helper await actual results. No automatic authority/retry/rollback.",
+      "disposition": "NEW_P2_COLLECTOR_CLEANUP",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "src/devtools/resources/commands/handle.py",
       "blob": "016aaf5e20d392c914b7a975c4c59f60742d46b5",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Single live handle/event queue",
+      "findings": "Complete shared task await, running/done views, single event consumer, queue overflow and stream closure bodies inspected. One awaiter cancellation propagates to shared task; consumer cancellation is not command rollback.",
+      "consumer": "Current maintained callers generally execute/await; live event consumer search found tests only. Events are best effort, not durable Evidence or terminal proof.",
+      "disposition": "QUALIFIED_NO_ACTION",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/core/paths/test_resolution.py",
       "blob": "fe582fe2e5c84bb833e739d825ffab0d35153c6c",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Path test fixtures",
+      "findings": "Every test/helper inspected. Ordinary Path/string/dot/base/suffix and known-location controls; model normalization expectations often mirror pathlib rather than independent OS policy. No foreign-drive/CWD, UNC, link or permission schedule.",
+      "consumer": "Protects thin delegation/local input contracts; no retained-source authenticity or authorization proof claimed.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/resources/filesystem/test_writing.py",
       "blob": "74a62a9e03b3f60ec48a9ceec59f6f37ebb01d3b",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Writer tests",
+      "findings": "Every test/monkeypatch inspected. Real bytes/JSON/CSV current-state controls; fake fsync/replace failures and cleanup. fsync and replace calls are recorded separately, so the test name promises ordering more strongly than its assertions. No dangling entry or concurrent create.",
+      "consumer": "Actual filesystem roundtrips plus isolated injected error contracts; no full power-loss, ACL or immutable-journal integration proof.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/resources/filesystem/test_bounded_read.py",
       "blob": "cc437d11f3e89f38f2e93a9d0540a6acb83d3c11",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Bounded read tests",
+      "findings": "Every parametrized body and ObservedStream helper inspected. Genuine stat target plus deliberately replaced byte stream isolates allocation/short-read mechanics, asserts requests/consumption <=cap+1 and closure. Pure stream injection is appropriate. No file snapshot authenticity is implied.",
+      "consumer": "Real RI observation tests in focused suite exercise consumer composition; selected module is resource arithmetic/stream assurance.",
+      "disposition": "SUFFICIENT_LOCAL_CONTRACT",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/resources/commands/test_execution.py",
       "blob": "e7df04e4ad835d9ac80b0d845c39e6791963b441",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Executor tests",
+      "findings": "Every test/fake inspected. Real Python argv/cwd/exit controls; fakes isolate missing executable/pipes/exit, timeout, zero retention/drop behavior and post-create timeout boundary. Fake kill/wait flags alone are not OS cleanup proof.",
+      "consumer": "Companion real stdin tests and independent real probes corroborate bounded child behavior.",
+      "disposition": "QUALIFIED_WITH_CLEANUP_GAP",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/resources/commands/test_handle.py",
       "blob": "229cd4fe5f4d14d91ea702513d6fa93bb11450fe",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Handle tests",
+      "findings": "Every test/helper inspected. Real repeated awaits/event streams and claim guard; fakes for failure/cancellation/reap. The failing-stdout fixture uses immediate-EOF stderr, so cannot detect pending sibling collectors.",
+      "consumer": "Companion real blocked-input cancellation inspected; independent after-effect cancellation confirms reaping without rollback.",
+      "disposition": "NEW_P2_REGRESSION_REQUIRED",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     },
     {
       "path": "tests/resources/commands/test_events.py",
       "blob": "f64fe3c799d79925cfb0e7a177e4d63988f988d2",
-      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit."
+      "scope": "Full body/test contract review required; prior selected-function evidence does not confer credit.",
+      "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "role": "Event value tests",
+      "findings": "Complete immutable-value test inspected. Independently literal data/equality/hash and FrozenInstanceError assertions. Does not establish delivery, queue loss, durability or cross-stream order; those belong to handle/executor tests.",
+      "consumer": "Events are lightweight Resource observations, not framework Evidence/Trace/Telemetry records.",
+      "disposition": "SUFFICIENT_VALUE_CONTRACT",
+      "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
     }
   ],
-  "limits": "Selection only. No body review in this assignment; no new framework or transaction mechanism authorized. Remaining Core/time/identity, codecs/models, ModelInteraction/serving, Agents, Persistence, full applications and scientific/developer infrastructure stay explicit."
+  "limits": "Selection only. No body review in this assignment; no new framework or transaction mechanism authorized. Remaining Core/time/identity, codecs/models, ModelInteraction/serving, Agents, Persistence, full applications and scientific/developer infrastructure stay explicit.",
+  "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+  "selection_baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
+  "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
+  "assurance": "docs/research/code-audit/core-resources-assurance.json"
 }

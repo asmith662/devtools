@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "4cb7c397-e664-4379-893c-c36d3a739cef",
+  "created_at": "2026-10-26T00:43:29.980630+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Preserve existing dangling entries when filesystem overwrite is disabled",
+    "summary": "P2 filesystem custody correctness. A real Windows symlink directory entry points to an absent target. write(BinaryFile(ResolvedPath(link), b\"new\"), overwrite=False) returns normally, replaces the link with a regular file and loses the original link. ResolvedPath direct construction with an absolute path is supported. Path.exists follows the absent referent and does not detect the existing entry. An ordinary existing regular target correctly refuses. This is distinct from the delivered Checkout target-branch collision repair.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "docs/research/core-paths-filesystem-and-commands-audit.md; independently authored bounded probe at 0e240ec102e9d54c92a3e85071586a9a8e74b308"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/resources/filesystem/writing.py",
+      "tests/resources/filesystem/test_writing.py"
+    ],
+    "evidence": [
+      "docs/research/core-paths-filesystem-and-commands-audit.md",
+      "docs/research/code-audit/core-resources-assurance.json"
+    ],
+    "benefit": "Use lexical directory-entry inspection for the existing-destination refusal at the writer boundary; preserve the original link on FileExistsError. Add real public BinaryFile/TextFile tests for dangling and live links, regular destinations, missing targets and documented platform capability. Keep normal atomic replacement/cleanup, codec ownership and permitted overwrite behavior. Explicitly decide/document cooperative-writer/no-clobber limits; the current no-lock race is a separate documented limitation, not authorization for a generic transaction layer.",
+    "uncertainty": "The public writer is affected without concurrency. Intake/WorkCycle/Qwen use write(overwrite=False), usually after resolve_path, so these callers may canonicalize to the referent instead; this probe does not prove a production journal was lost. The existing Checkout link repair remains delivered. Native Windows file symlink construction succeeded; junction variants are untested.",
+    "dependencies": [
+      "Existing owner/API contracts; separately authorized bounded production repair; independent permanent regressions and full unchanged protected validation."
+    ]
+  },
+  "payload_sha256": "f3fe6b93b48bccc02bc55e113b6039e9c93c55423261f7e111cbc4da95228f3b"
+}

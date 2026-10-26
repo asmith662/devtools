@@ -23,3 +23,7 @@ narrow and is not a universal control plane.
 - operational_dependencies: conflicting live execution lifecycle behavior
 - promotion_trigger: local boundaries need shared lifecycle control semantics
 - validation_level: NONE
+
+## Core/Resources audit evidence (2026-10-25)
+
+A deterministic public Commands I/O-fault probe returns terminal failure while one sibling reader remains pending. A specific P2 repair is captured without promoting generic lifecycle control. Actual immediate-child cancellation/timeout controls pass and external effects remain; no leaked live child is demonstrated. See the [review and exact bounded scopes](../../research/core-paths-filesystem-and-commands-audit.md). Status, decision maturity and promotion authority remain unchanged.

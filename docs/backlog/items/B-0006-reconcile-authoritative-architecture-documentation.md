@@ -55,3 +55,7 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Core/Resources audit evidence (2026-10-25)
+
+Core/Resources full-body review finds current filesystem package documentation still describes feature-only binary/bounded-read publication even though those owners are integrated. Reading implementation docstring also retains imprecise pre-bounded growth wording. New report supplies exact current-owner evidence; no source semantics or historical records were rewritten. See the [review and exact bounded scopes](../../research/core-paths-filesystem-and-commands-audit.md). Status, decision maturity and promotion authority remain unchanged.

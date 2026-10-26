@@ -1,0 +1,59 @@
+{
+  "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+  "status": "FROZEN_NOT_STARTED",
+  "flow": "Semantic identity -> timestamp/duration parsing -> monotonic elapsed/deadline values -> actual execution/receipt consumers",
+  "priority": "Separately authorize the three bounded P2 repairs; continue shared Core values next, not another Evidence/RI cycle. Do not launch automatically.",
+  "cohort": [
+    {
+      "path": "src/devtools/core/identity/models.py",
+      "blob": "67e4667256e277b94b0c0d406ff2189fdceb7779",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "tests/core/identity/test_models.py",
+      "blob": "59ec8620dd4112bfcc547766a9fdc7b04c234d8b",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "tests/core/identity/test_uuid_invariant.py",
+      "blob": "5b9c673d6e12db75b5c9dca85a671c989133195d",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "src/devtools/core/time/models/timestamp.py",
+      "blob": "e446a9435210c2ea2c1d8a1ad8afca711f81e14b",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "src/devtools/core/time/models/duration.py",
+      "blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "src/devtools/core/time/models/stopwatch.py",
+      "blob": "baf02cfa266a6fe9d2654cd3e299da25824faf31",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "src/devtools/core/time/parsing.py",
+      "blob": "76fd75644c0002aa36b5f9af9cdbd55a619fc4e5",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "tests/core/time/test_models.py",
+      "blob": "cf333d6ce8f64b9a7676bb28c098b2395ad3ac26",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "tests/core/time/test_parsing.py",
+      "blob": "92af22970a2b4ea937c9a4ca5e8a0dd9986d22bd",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    },
+    {
+      "path": "tests/core/time/test_timing.py",
+      "blob": "881e7a360ac8c25b0f7ee7406678f92ee0e1a726",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+    }
+  ],
+  "remaining": "Filesystem structured models/codecs and platform process edge cases remain separate; then ModelInteraction/serving, Agents/Runtime, Persistence, applications/dashboard and developer/scientific tooling.188 historical RI versions stay separately tracked."
+}
