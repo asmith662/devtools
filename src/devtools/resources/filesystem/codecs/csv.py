@@ -78,7 +78,12 @@ class CsvCodec:
                 doublequote=dialect.doublequote,
                 skipinitialspace=dialect.skipinitialspace,
                 lineterminator=dialect.lineterminator,
-                quoting=_to_csv_quoting(dialect.quoting),
+                # NONNUMERIC controls output quoting, never input cell coercion.
+                quoting=_to_csv_quoting(
+                    CsvQuoting.MINIMAL
+                    if dialect.quoting == CsvQuoting.NONNUMERIC
+                    else dialect.quoting,
+                ),
                 strict=True,
             )
             headers = tuple(next(reader))

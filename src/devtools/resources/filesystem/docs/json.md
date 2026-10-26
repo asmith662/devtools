@@ -33,6 +33,11 @@ and slices. It supports `find()`, `find_all()`, top-level-mapping `find_by()`,
 `appended()`, `extended()`, `with_item()`, `without_index()`, and
 `convert_items()`.
 
+`find_by()` requires the member to be present: an absent member does not match
+an explicit null query. It freezes a compatible query once, so ordinary lists
+and nested mapping/list values compare against immutable arrays/mappings without
+changing the model. Matching mappings remain in first-item order.
+
 `JsonScalarFile` is a valid scalar-root model with `.value` and `.convert()`;
 it does not pretend to be a collection. Every JSON model inherits source
 regex search from TextFile. Structured predicates operate on current frozen

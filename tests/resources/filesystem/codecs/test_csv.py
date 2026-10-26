@@ -171,3 +171,108 @@ def test_encode_uses_model_encoding_override_and_normalizes_errors(
 
     with pytest.raises(TextEncodingError, match="unknown-codec"):
         codec.encode(file, encoding="unknown-codec")
+
+
+@pytest.mark.parametrize("decode_bytes", [False, True])
+@pytest.mark.parametrize(
+    ("source", "dialect", "headers", "cells"),
+    [
+        (
+            '"id","value"\n001,1.50\n',
+            CsvDialect(quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("001", "1.50"),
+        ),
+        (
+            '"id","value"\n1e2,-0\n',
+            CsvDialect(quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("1e2", "-0"),
+        ),
+        (
+            "1,2\n3,4\n",
+            CsvDialect(quoting=CsvQuoting.NONNUMERIC),
+            ("1", "2"),
+            ("3", "4"),
+        ),
+        (
+            'id;value\r\n007;"x;y"\r\n',
+            CsvDialect(delimiter=";", quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("007", "x;y"),
+        ),
+        (
+            'id;value\r\n001;"a\r\nb"\r\n',
+            CsvDialect(delimiter=";", quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("001", "a\r\nb"),
+        ),
+        (
+            "id;value\n001;x\\;y\n",
+            CsvDialect(delimiter=";", escapechar="\\", quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("001", "x;y"),
+        ),
+        (
+            'id,value\n001,"a ""quote"""\n',
+            CsvDialect(quoting=CsvQuoting.NONNUMERIC),
+            ("id", "value"),
+            ("001", 'a "quote"'),
+        ),
+    ],
+)
+def test_nonnumeric_preserves_literal_string_source(  # noqa: PLR0913
+    tmp_path: Path,
+    source: str,
+    dialect: CsvDialect,
+    headers: tuple[str, ...],
+    cells: tuple[str, ...],
+    *,
+    decode_bytes: bool,
+) -> None:
+    """Unquoted spelling is specified directly, independently of the writer."""
+    path = ResolvedPath(tmp_path / "literal.csv")
+    codec = CsvCodec()
+    file = (
+        codec.decode(path, source.encode(), dialect=dialect)
+        if decode_bytes
+        else codec.parse(path, source, dialect=dialect)
+    )
+
+    assert file.headers == headers
+    assert file.rows[0].cells == cells
+    assert file.content == source
+    assert file.path == path
+    assert file.byte_size == len(source.encode())
+    assert file.dialect == dialect
+
+
+@pytest.mark.parametrize(
+    "source",
+    ["1,1\n2,3\n", "1,2\n3\n", '1,2\n3,"unterminated', ",2\n3,4\n"],
+)
+def test_nonnumeric_malformed_source_uses_domain_errors(
+    tmp_path: Path,
+    source: str,
+) -> None:
+    """Header/row failures must not leak float conversion or attribute errors."""
+    with pytest.raises(FileFormatError):
+        CsvCodec().parse(
+            ResolvedPath(tmp_path / "invalid.csv"),
+            source,
+            dialect=CsvDialect(quoting=CsvQuoting.NONNUMERIC),
+        )
+
+
+def test_nonnumeric_serialization_still_quotes_string_fields(tmp_path: Path) -> None:
+    """Decoding policy does not change the existing writer's quoting contract."""
+    file = CsvFile(
+        ResolvedPath(tmp_path / "literal.csv"),
+        "original source",
+        headers=("id", "value"),
+        rows=(CsvRow(("id", "value"), ("001", "1.50")),),
+        dialect=CsvDialect(quoting=CsvQuoting.NONNUMERIC, lineterminator="\r\n"),
+    )
+
+    assert CsvCodec().serialize(file) == '"id","value"\r\n"001","1.50"\r\n'
+    assert file.content == "original source"

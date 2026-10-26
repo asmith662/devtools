@@ -31,6 +31,11 @@ recursively immutable JSON mappings use `MappingProxyType`, which is not
 hashable. Equality remains predictable; callers must not assume every file
 model can be used as a dictionary key.
 
+Structured subclass initialization retains cooperative inherited text metadata
+validation. Explicit-class `super` calls support the slotted dataclasses on
+Python 3.12 as well as newer supported interpreters; this is not a guarantee
+that every framework dependency has been validated on every declared runtime.
+
 ## Binary and text
 
 `BinaryFile` stores immutable `bytes`, a `truncated` flag, and `size_bytes` for

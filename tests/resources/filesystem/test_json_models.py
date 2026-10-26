@@ -9,7 +9,12 @@ from typing import TYPE_CHECKING
 import pytest
 
 from devtools.core.paths import ResolvedPath
-from devtools.resources.filesystem import JsonListFile, JsonObjectFile, JsonScalarFile
+from devtools.resources.filesystem import (
+    JsonCodec,
+    JsonListFile,
+    JsonObjectFile,
+    JsonScalarFile,
+)
 from devtools.resources.filesystem.models.json import freeze_json
 
 if TYPE_CHECKING:
@@ -183,3 +188,68 @@ def _list_value(value: tuple[JsonCompatible, ...]) -> tuple[JsonValue, ...]:
     frozen = freeze_json(value)
     assert isinstance(frozen, tuple)
     return frozen
+
+
+@pytest.mark.parametrize(
+    ("query", "expected_tag"),
+    [
+        (None, "null-first"),
+        ([1, 2], "array-first"),
+        ((1, 2), "array-first"),
+        ({"items": [1]}, "nested"),
+        ({"items": (1,)}, "nested"),
+        (7, "scalar"),
+        ("text", "text"),
+        ([9], None),
+        ({"items": [9]}, None),
+        ("absent", None),
+    ],
+)
+def test_find_by_compatible_member_queries(
+    tmp_path: Path,
+    query: JsonCompatible,
+    expected_tag: str | None,
+) -> None:
+    """Public parsed values match compatible queries in first-member order."""
+    source = (
+        '[0,null,{}, {"key":null,"tag":"null-first"},'
+        '{"key":null,"tag":"null-second"},'
+        '{"key":[1,2],"tag":"array-first"},'
+        '{"key":[1,2],"tag":"array-second"},'
+        '{"key":{"items":[1]},"tag":"nested"},'
+        '{"key":7,"tag":"scalar"},{"key":"text","tag":"text"}]'
+    )
+    file = JsonCodec().parse(ResolvedPath(tmp_path / "items.json"), source)
+    assert isinstance(file, JsonListFile)
+    match = file.find_by("key", query)
+
+    if expected_tag is None:
+        assert match is None
+    else:
+        assert isinstance(match, Mapping)
+        assert match["tag"] == expected_tag
+    assert file.content == source
+    assert file.value[5] == {"key": (1, 2), "tag": "array-first"}
+
+
+def test_find_by_member_must_exist_even_for_null(tmp_path: Path) -> None:
+    """A missing member cannot satisfy a present-null lookup."""
+    file = JsonCodec().parse(ResolvedPath(tmp_path / "items.json"), "[{},0,null]")
+    assert isinstance(file, JsonListFile)
+
+    assert file.find_by("key", None) is None
+
+
+def test_find_by_compatible_query_does_not_expose_mutable_state(tmp_path: Path) -> None:
+    """Normalizing a query neither mutates source nor grants a mutable result."""
+    source = '[{"key":{"items":[1]},"tag":"nested"}]'
+    file = JsonCodec().parse(ResolvedPath(tmp_path / "items.json"), source)
+    assert isinstance(file, JsonListFile)
+    values: list[JsonCompatible] = [1]
+    match = file.find_by("key", {"items": values})
+    assert isinstance(match, Mapping)
+    assert match["key"] == {"items": (1,)}
+    values.append(2)
+    assert match["key"] == {"items": (1,)}
+    assert file.content == source
+    assert file.find_by("key", {"items": [1]}) is match
