@@ -280,10 +280,15 @@ async def _post_json(
                 await writer.wait_closed()
 
     if not _SUCCESS_STATUS_START <= status < _SUCCESS_STATUS_END:
-        raise LlamaCppHttpError(status, _error_detail(body_bytes))
+        try:
+            detail = _error_detail(body_bytes)
+        except UnicodeDecodeError as error:
+            detail = body_bytes[:_MAX_ERROR_DETAIL_BYTES].decode(errors="replace")
+            raise LlamaCppHttpError(status, detail.strip()) from error
+        raise LlamaCppHttpError(status, detail)
     try:
         decoded = json.loads(body_bytes)
-    except json.JSONDecodeError as error:
+    except (json.JSONDecodeError, UnicodeDecodeError) as error:
         msg = "llama.cpp successful response was not valid JSON."
         raise LlamaCppResponseError(msg) from error
     if not isinstance(decoded, dict):

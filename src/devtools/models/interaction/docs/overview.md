@@ -88,6 +88,19 @@ model output, not execution. The composition seam that converts a tools-owned
 `ToolDescriptor` into this normalized model value is outside both packages.
 Structured output and capabilities remain unimplemented.
 
+Tool schemas are JSON objects with finite representable numeric values;
+nonstandard `NaN`/`Infinity` constants and serialization overflow are refused.
+Requested call arguments retain their original valid JSON spelling, including
+large grammar-valid numeric literals, without granting execution authority or
+converting them into a new structured representation. This is not full JSON
+Schema metaschema validation. Tool disclosure keeps its own compatible boundary;
+generic filesystem JSON models and their source/provenance are not substituted.
+
+Malformed successful response bytes refuse as `LlamaCppResponseError`, including
+invalid UTF-8. Non-success responses retain `LlamaCppHttpError.status`, bounded
+replacement-decoded diagnostic text and the decoding cause when applicable.
+These error categories do not prove that the provider did not execute.
+
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned
 by `devtools.models.serving`.

@@ -8,6 +8,7 @@ import json
 import math
 import re
 import uuid
+from contextlib import suppress
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Literal, Self
 from urllib.parse import urlsplit
@@ -37,6 +38,8 @@ _MAX_DIAGNOSTIC_BYTES = 4_096
 _MAX_HOST_PORT = 65_535
 _HTTP_OK = 200
 _HTTP_STATUS_PARTS = 2
+_MAX_READINESS_RESPONSE_BYTES = 65_536
+_READINESS_CLOSE_TIMEOUT_SECONDS = 1
 DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 _CONTAINER_ID = re.compile(r"^[0-9a-fA-F]{64}$")
 _PROVIDER_LOG_TAIL_LINES = 200
@@ -70,7 +73,14 @@ class VLLMServingConfig:
 
     def __post_init__(self) -> None:
         """Validate structural launch constraints."""
-        if not self.image.strip() or ":" not in self.image:
+        image_name, digest_separator, digest = self.image.partition("@")
+        repository, tag_separator, tag = image_name.rsplit("/", 1)[-1].partition(":")
+        if (
+            not self.image.strip()
+            or not repository
+            or (digest_separator and not all(digest.partition(":")[::2]))
+            or (not digest_separator and not (tag_separator and tag))
+        ):
             msg = "vLLM image must include an explicit tag or digest."
             raise ValueError(msg)
 
@@ -556,6 +566,9 @@ async def _probe_model_ready(endpoint: str, model_name: str) -> bool:
     except json.JSONDecodeError:
         return False
 
+    if not isinstance(payload, dict):
+        return False
+
     data = payload.get("data")
     if not isinstance(data, list):
         return False
@@ -573,26 +586,85 @@ async def _http_get(endpoint: str, path: str) -> tuple[int, str]:
     port = parsed.port or 80
     try:
         reader, writer = await asyncio.open_connection(host, port)
+    except OSError:
+        return 0, ""
+    try:
         request = (
             f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n"
         ).encode()
         writer.write(request)
         await writer.drain()
-        response = await reader.read(65_536)
-        writer.close()
-        await writer.wait_closed()
+        response = await _read_probe_response(reader)
     except OSError:
         return 0, ""
+    finally:
+        writer.close()
+        with suppress(OSError, TimeoutError):
+            async with asyncio.timeout(_READINESS_CLOSE_TIMEOUT_SECONDS):
+                await writer.wait_closed()
 
     head, separator, body = response.partition(b"\r\n\r\n")
-    if not separator:
-        return 0, ""
-
     status_line = head.split(b"\r\n", maxsplit=1)[0].split()
-    if len(status_line) < _HTTP_STATUS_PARTS:
+    if (
+        not separator
+        or len(status_line) < _HTTP_STATUS_PARTS
+        or status_line[0] not in {b"HTTP/1.0", b"HTTP/1.1"}
+    ):
         return 0, ""
 
     try:
         return int(status_line[1]), body.decode("utf-8", errors="replace")
     except ValueError:
         return 0, ""
+
+
+async def _read_probe_response(reader: asyncio.StreamReader) -> bytes:
+    """Accumulate bounded EOF/Content-Length readiness HTTP, refusing truncation.
+
+    Transfer encodings are unsupported here. The caller's readiness timeout
+    still covers reads; the total header/body allocation remains bounded.
+    """
+    response = bytearray()
+    expected: int | None = None
+    while True:
+        chunk = await reader.read(_MAX_READINESS_RESPONSE_BYTES + 1 - len(response))
+        if not chunk:
+            return bytes(response) if expected is None else b""
+        response.extend(chunk)
+        if len(response) > _MAX_READINESS_RESPONSE_BYTES:
+            return b""
+        head, separator, _body = response.partition(b"\r\n\r\n")
+        if not separator:
+            continue
+        try:
+            length = _probe_content_length(bytes(head))
+        except ValueError:
+            return b""
+        if length is not None:
+            expected = len(head) + 4 + length
+            if expected > _MAX_READINESS_RESPONSE_BYTES:
+                return b""
+            if len(response) >= expected:
+                return bytes(response[:expected])
+
+
+def _probe_content_length(head: bytes) -> int | None:
+    """Parse only the bounded readiness body's supported framing metadata."""
+    headers: dict[bytes, bytes] = {}
+    for line in head.split(b"\r\n")[1:]:
+        name, colon, value = line.partition(b":")
+        name = name.lower()
+        if not colon or not name or name in headers:
+            msg = "Malformed or repeated readiness header."
+            raise ValueError(msg)
+        headers[name] = value.strip()
+    if b"transfer-encoding" in headers:
+        msg = "Transfer encodings are unsupported for readiness."
+        raise ValueError(msg)
+    length = headers.get(b"content-length")
+    if length is None:
+        return None
+    if not length.isdigit() or len(length) > len(str(_MAX_READINESS_RESPONSE_BYTES)):
+        msg = "Invalid or oversized readiness Content-Length."
+        raise ValueError(msg)
+    return int(length)

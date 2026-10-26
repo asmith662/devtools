@@ -1,6 +1,7 @@
 # Copyright (c) 2026
 """Tests for normalized model-facing Tool values."""
 
+import json
 from dataclasses import FrozenInstanceError
 
 import pytest
@@ -19,6 +20,45 @@ from devtools.tools import ToolDescriptor
 _SCHEMA = (
     '{"type":"object","properties":{"path":{"type":"string"}},"required":["path"]}'
 )
+
+
+@pytest.mark.parametrize("constant", ["NaN", "Infinity", "-Infinity", "1e999"])
+@pytest.mark.parametrize("factory", [ModelToolDefinition, ToolDescriptor])
+def test_disclosed_schema_rejects_nonfinite_values(
+    factory: object,
+    constant: str,
+) -> None:
+    """Nested schema values must survive strict outgoing JSON serialization."""
+    with pytest.raises(ValueError, match="valid JSON") as raised:
+        factory("read", "Read.", '{"type":"object","default":[' + constant + "]}")  # type: ignore[operator]
+    assert isinstance(raised.value.__cause__, ValueError)
+
+
+@pytest.mark.parametrize("constant", ["NaN", "Infinity", "-Infinity"])
+def test_tool_call_rejects_nonstandard_nested_constants(constant: str) -> None:
+    """Raw arguments must use JSON grammar even though they remain untrusted."""
+    with pytest.raises(ValueError, match="valid JSON"):
+        ModelToolCall("read", '{"nested":{"value":' + constant + "}}")
+
+
+def test_strict_finite_disclosure_and_raw_argument_spelling() -> None:
+    """Finite schema values and grammar-valid large raw numbers stay compatible."""
+    descriptor = ToolDescriptor(
+        "read",
+        "Read.",
+        '{"type":"object","default":[null,1.5,-2,1e100]}',
+    )
+    definition = normalize_tool_descriptor(descriptor)
+
+    def reject_constant(value: str) -> None:
+        raise AssertionError(value)
+
+    assert json.loads(definition.input_schema_json, parse_constant=reject_constant) == {
+        "type": "object",
+        "default": [None, 1.5, -2, 1e100],
+    }
+    arguments = ' {"large":1e999,"finite":1.50,"null":null} '
+    assert ModelToolCall("read", arguments).arguments_json == arguments
 
 
 def test_descriptor_and_definition_are_immutable_disclosure_values() -> None:

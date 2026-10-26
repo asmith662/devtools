@@ -11,7 +11,7 @@ import pytest
 
 from devtools.core.paths import ResolvedPath
 from devtools.core.time import Duration, Timestamp
-from devtools.models.serving import llama_cpp
+from devtools.models.serving import llama_cpp, vllm
 from devtools.models.serving.errors import (
     LlamaCppCapabilityError,
     LlamaCppInspectionError,
@@ -21,9 +21,200 @@ from devtools.models.serving.errors import (
     LlamaCppStopError,
     ServingReadinessTimeoutError,
 )
+from devtools.models.serving.huggingface import HuggingFaceModelRef
 from devtools.resources.commands import Command, CommandExecutor, CommandResult
 
 _ID = "a" * 64
+
+
+@pytest.mark.parametrize(
+    "image",
+    [
+        "registry.example:5000/team/server",
+        "server:",
+        "repo/server@",
+        "repo/server@sha256:",
+    ],
+)
+def test_config_refuses_missing_terminal_image_version(
+    tmp_path: Path, image: str
+) -> None:
+    with pytest.raises(ValueError, match="tag or digest"):
+        _config(tmp_path, image=image)
+
+
+@pytest.mark.parametrize(
+    "image",
+    [
+        "server:cuda",
+        "registry.example:5000/team/server:cuda",
+        "registry.example:5000/team/server@sha256:" + "a" * 64,
+    ],
+)
+def test_config_retains_explicit_image_versions(tmp_path: Path, image: str) -> None:
+    assert _config(tmp_path, image=image).image == image
+
+
+def _cleanup_server(
+    tmp_path: Path, adapter: str, port: int = 8081
+) -> llama_cpp.LlamaCppServer | vllm.VLLMServer:
+    executor = _Executor([_result(Command("docker"), out=b"true|true\n")])
+    if adapter == "llama":
+        return llama_cpp.LlamaCppServer(
+            config=_config(tmp_path, host_port=port),
+            container_id=_ID,
+            container_name="fixture",
+            executor=executor,
+            started_at=Timestamp.now(),
+        )
+    config = vllm.VLLMServingConfig(
+        HuggingFaceModelRef("org/model", "a" * 40),
+        "server:cuda",
+        ResolvedPath(tmp_path),
+        port,
+        "local-model",
+        4096,
+        0.8,
+        1,
+    )
+    return vllm.VLLMServer(
+        config=config,
+        container_id=_ID,
+        container_name="fixture",
+        executor=executor,
+        started_at=Timestamp.now(),
+    )
+
+
+@pytest.mark.parametrize("adapter", ["llama", "vllm"])
+@pytest.mark.parametrize(
+    "fault", ["read", "drain", "cancel", "timeout", "close-timeout", "unexpected"]
+)
+def test_public_probe_settles_owned_writer_after_failure(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, adapter: str, fault: str
+) -> None:
+    """Refusal/cancellation cannot outlive the owned readiness connection."""
+    entered = asyncio.Event()
+    state = {"closed": 0, "waited": 0}
+
+    class Reader:
+        async def read(self, _size: int = -1) -> bytes:
+            entered.set()
+            if fault in {"read", "close-timeout"}:
+                msg = "primary read failure"
+                raise OSError(msg)
+            if fault == "unexpected":
+                msg = "primary unexpected read failure"
+                raise RuntimeError(msg)
+            await asyncio.Event().wait()
+            return b""
+
+    class Writer:
+        def write(self, _data: bytes) -> None:
+            pass
+
+        async def drain(self) -> None:
+            if fault == "drain":
+                msg = "primary drain failure"
+                raise OSError(msg)
+
+        def close(self) -> None:
+            state["closed"] += 1
+
+        async def wait_closed(self) -> None:
+            state["waited"] += 1
+            if fault == "close-timeout":
+                await asyncio.Event().wait()
+            msg = "secondary close failure"
+            raise OSError(msg)
+
+    async def connection(_host: str, _port: int) -> tuple[Reader, Writer]:
+        return Reader(), Writer()
+
+    async def scenario() -> None:
+        server = _cleanup_server(tmp_path, adapter)
+        if fault == "timeout":
+            with pytest.raises(ServingReadinessTimeoutError):
+                await server.wait_ready(readiness_timeout=Duration.seconds(0.02))
+        elif fault == "cancel":
+            task = asyncio.create_task(server.status())
+            await entered.wait()
+            task.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await task
+        elif fault == "unexpected":
+            with pytest.raises(RuntimeError, match="primary unexpected read"):
+                await server.status()
+        else:
+            status = await server.status()
+            assert status.container_running and not status.model_ready
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    monkeypatch.setattr(
+        llama_cpp if adapter == "llama" else vllm,
+        "_READINESS_CLOSE_TIMEOUT_SECONDS",
+        0.01,
+        raising=False,
+    )
+    asyncio.run(scenario())
+    assert state == {"closed": 1, "waited": 1}
+
+
+@pytest.mark.parametrize("adapter", ["llama", "vllm"])
+def test_real_probe_connection_is_closed_after_cancellation(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, adapter: str
+) -> None:
+    """A real local socket is closing before the cancelled status call settles."""
+
+    async def scenario() -> None:
+        entered = asyncio.Event()
+        release = asyncio.Event()
+        completed = asyncio.Event()
+        owned: list[asyncio.StreamWriter] = []
+        original = asyncio.open_connection
+
+        async def handler(
+            reader: asyncio.StreamReader, writer: asyncio.StreamWriter
+        ) -> None:
+            try:
+                await reader.readuntil(b"\r\n\r\n")
+                entered.set()
+                await release.wait()
+            finally:
+                writer.close()
+                await writer.wait_closed()
+                completed.set()
+
+        async def connection(
+            host: str, port: int
+        ) -> tuple[asyncio.StreamReader, asyncio.StreamWriter]:
+            reader, writer = await original(host, port)
+            owned.append(writer)
+            return reader, writer
+
+        listener = await asyncio.start_server(handler, "127.0.0.1", 0)
+        try:
+            monkeypatch.setattr(asyncio, "open_connection", connection)
+            task = asyncio.create_task(
+                _cleanup_server(
+                    tmp_path, adapter, listener.sockets[0].getsockname()[1]
+                ).status()
+            )
+            await asyncio.wait_for(entered.wait(), 2)
+            task.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await task
+            assert len(owned) == 1 and owned[0].is_closing()
+        finally:
+            for writer in owned:
+                writer.close()
+                await writer.wait_closed()
+            release.set()
+            await asyncio.wait_for(completed.wait(), 2)
+            listener.close()
+            await listener.wait_closed()
+
+    asyncio.run(scenario())
 
 
 def _result(
