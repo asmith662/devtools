@@ -1,0 +1,542 @@
+{
+  "at": "2026-10-26T14:56:08.555051+00:00",
+  "baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+  "branch": "audit/core-identity-time-20261026",
+  "selection_original": {
+    "baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
+    "status": "FROZEN_NOT_STARTED",
+    "flow": "Semantic identity -> timestamp/duration parsing -> monotonic elapsed/deadline values -> actual execution/receipt consumers",
+    "priority": "Separately authorize the three bounded P2 repairs; continue shared Core values next, not another Evidence/RI cycle. Do not launch automatically.",
+    "cohort": [
+      {
+        "path": "src/devtools/core/identity/models.py",
+        "blob": "67e4667256e277b94b0c0d406ff2189fdceb7779",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "tests/core/identity/test_models.py",
+        "blob": "59ec8620dd4112bfcc547766a9fdc7b04c234d8b",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "tests/core/identity/test_uuid_invariant.py",
+        "blob": "5b9c673d6e12db75b5c9dca85a671c989133195d",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "src/devtools/core/time/models/timestamp.py",
+        "blob": "e446a9435210c2ea2c1d8a1ad8afca711f81e14b",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "src/devtools/core/time/models/duration.py",
+        "blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "src/devtools/core/time/models/stopwatch.py",
+        "blob": "baf02cfa266a6fe9d2654cd3e299da25824faf31",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "src/devtools/core/time/parsing.py",
+        "blob": "76fd75644c0002aa36b5f9af9cdbd55a619fc4e5",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "tests/core/time/test_models.py",
+        "blob": "cf333d6ce8f64b9a7676bb28c098b2395ad3ac26",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "tests/core/time/test_parsing.py",
+        "blob": "92af22970a2b4ea937c9a4ca5e8a0dd9986d22bd",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      },
+      {
+        "path": "tests/core/time/test_timing.py",
+        "blob": "881e7a360ac8c25b0f7ee7406678f92ee0e1a726",
+        "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
+      }
+    ],
+    "remaining": "Filesystem structured models/codecs and platform process edge cases remain separate; then ModelInteraction/serving, Agents/Runtime, Persistence, applications/dashboard and developer/scientific tooling.188 historical RI versions stay separately tracked."
+  },
+  "reviewed": [
+    {
+      "path": "src/devtools/core/identity/models.py",
+      "blob": "67e4667256e277b94b0c0d406ff2189fdceb7779",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "reviewed_functions": [
+        "__init__",
+        "new",
+        "parse",
+        "_parse_uuid",
+        "__str__"
+      ],
+      "remaining_functions": [],
+      "role": "UUID construction, inherited factories, canonical text, frozen same-class equality/hash",
+      "findings": "UUID invariant and typed composition hold; typed wrapper construction is owned by each domain. No ordering, authority or uniqueness oracle.",
+      "consumer": "Identity.parse/new feed Conversation, attempt/Evidence/ModelInteraction IDs and Intake; real JSON/SQLite round trip exercised.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "tests/core/identity/test_models.py",
+      "blob": "59ec8620dd4112bfcc547766a9fdc7b04c234d8b",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "reviewed_functions": [
+        "test_identity_preserves_uuid_value_and_canonical_string",
+        "test_identity_new_generates_uuid4_and_parse_rejects_invalid_text",
+        "test_identity_is_immutable_and_has_uuid_value_equality_and_hashing",
+        "test_identity_parse_normalizes_text_and_preserves_non_v4_versions"
+      ],
+      "remaining_functions": [],
+      "role": "Four Identity behavior tests: canonical UUID, version/parse, immutable equality/hash and normalization",
+      "findings": "Literal UUID/string oracles are independent; no cross-semantic-type or malformed durable-record assertion in this module. The version=length tuple is awkward but correct.",
+      "consumer": "Public Identity used through imports; companion invariant module covers inherited validation.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "tests/core/identity/test_uuid_invariant.py",
+      "blob": "5b9c673d6e12db75b5c9dca85a671c989133195d",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "reviewed_functions": [
+        "test_invalid_direct_identity_values",
+        "test_valid_uuid_and_factories_preserve_semantic_identity"
+      ],
+      "remaining_functions": [],
+      "role": "Parametrized UUID constructor regressions on base and inherited specialization",
+      "findings": "None/string/int/bool/bytes/object refusal, literal UUID retention, inherited factories, hash and immutability genuinely covered. External subclass overrides are not promised.",
+      "consumer": "Protects the already integrated UUID constructor repair; no reimplementation needed.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "src/devtools/core/time/models/timestamp.py",
+      "blob": "e446a9435210c2ea2c1d8a1ad8afca711f81e14b",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "reviewed_functions": [
+        "__post_init__",
+        "_validate",
+        "now",
+        "isoformat",
+        "__str__",
+        "from_isoformat",
+        "__add__",
+        "__sub__"
+      ],
+      "remaining_functions": [],
+      "role": "Aware UTC normalization, ISO conversion, arithmetic and negative difference refusal",
+      "findings": "Direct construction intentionally differs from naive representation parsing. UTC conversion/equality/hash and native overflow hold. No monotonicity or native ordering promise.",
+      "consumer": "WorkCycle/delegation compare .value UTC instants; Checkout records wall timestamps, not expiry-based owner transfer.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "src/devtools/core/time/models/duration.py",
+      "blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "reviewed_functions": [
+        "__post_init__",
+        "_validate",
+        "nanoseconds",
+        "seconds",
+        "milliseconds",
+        "minutes",
+        "hours",
+        "total_seconds",
+        "total_milliseconds",
+        "__str__",
+        "__add__",
+        "__sub__",
+        "__mul__",
+        "__rmul__",
+        "__truediv__"
+      ],
+      "remaining_functions": [],
+      "role": "Five unit factories, stored timedelta invariant, accessors and arithmetic protocol",
+      "findings": "P2 existing ea7c18ff reproduced in all six original cases: negative inputs round to zero before validation. Stored values never become negative. Two negative-scaling edge cases require separate compatibility qualification.",
+      "consumer": "Stopwatch precision and Commands timeout use the rounded value; accepted local Qwen candidate was not production adoption.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "src/devtools/core/time/models/stopwatch.py",
+      "blob": "baf02cfa266a6fe9d2654cd3e299da25824faf31",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "reviewed_functions": [
+        "__post_init__",
+        "__enter__",
+        "__exit__",
+        "is_running",
+        "is_stopped",
+        "elapsed",
+        "stop"
+      ],
+      "remaining_functions": [],
+      "role": "Monotonic perf_counter_ns measurement, running/stopped state, idempotent stop and context exit",
+      "findings": "Correct under documented monotonic, process-local clock. Microsecond storage rounds 100ns to zero. No deadline/reset/restart/thread-safety/distributed-clock contract.",
+      "consumer": "CommandExecutor and WorkCycle directly instantiate and stop it; measured elapsed is not a source of grant authority.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "src/devtools/core/time/parsing.py",
+      "blob": "76fd75644c0002aa36b5f9af9cdbd55a619fc4e5",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "reviewed_functions": [
+        "parse_timestamp",
+        "_normalize_datetime",
+        "_parse_datetime_string"
+      ],
+      "remaining_functions": [],
+      "role": "Timestamp dispatch, normalization, ordered ISO/alternate datetime/date formats and typed parsing failure",
+      "findings": "Existing Timestamp passes through; naive/date explicitly mean UTC; ISO parser breadth is delegated to stdlib. Unsupported runtime types remain outside annotated API.",
+      "consumer": "Representation conversion is not authentication of external time; durable JSON/SQLite and usage use stricter per-owner schemas around Timestamp.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "tests/core/time/test_models.py",
+      "blob": "cf333d6ce8f64b9a7676bb28c098b2395ad3ac26",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "reviewed_functions": [
+        "test_timestamp_normalizes_aware_values_to_utc_and_is_immutable",
+        "test_timestamp_rejects_naive_datetimes",
+        "test_timestamp_now_returns_a_utc_timestamp",
+        "test_timestamp_arithmetic_preserves_time_invariants",
+        "test_duration_factories_create_expected_values",
+        "test_duration_accessors_string_and_value_semantics",
+        "test_duration_rejects_negative_values_and_negative_results",
+        "test_duration_arithmetic_and_invalid_operands",
+        "test_duration_nanoseconds_uses_timedelta_bounded_precision"
+      ],
+      "remaining_functions": [],
+      "role": "Nine Timestamp/Duration public-value tests, arithmetic failures and positive nanosecond precision",
+      "findings": "Positive factory checks and normal negative values are covered; tiny negative raw inputs, negative scaling to zero, nonfinite inputs, DST folds and extremes are absent.",
+      "consumer": "Focused execution passes; independent literal probes expose the missing input-sign boundary.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "tests/core/time/test_parsing.py",
+      "blob": "92af22970a2b4ea937c9a4ca5e8a0dd9986d22bd",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "reviewed_functions": [
+        "test_parse_timestamp_accepts_existing_timestamp",
+        "test_parse_timestamp_accepts_and_normalizes_datetime_values",
+        "test_parse_timestamp_accepts_date_values_at_utc_midnight",
+        "test_parse_timestamp_accepts_supported_string_formats",
+        "test_parse_timestamp_none_returns_a_structurally_valid_current_time",
+        "test_parse_timestamp_rejects_invalid_strings",
+        "test_timestamp_from_isoformat_accepts_only_iso_text",
+        "test_time_errors_are_available_from_the_public_package"
+      ],
+      "remaining_functions": [],
+      "role": "Timestamp pass-through, date/aware/naive parsing, nine literal formats, four invalid strings, ISO-only and error hierarchy",
+      "findings": "Literal UTC datetime oracles are meaningful. now(None) checks UTC shape only, not delegation timing. DST folds, boundaries and serialization consumers require additional evidence.",
+      "consumer": "Public parser/error exports used; independent DST/round-trip/native-overflow probes supplement tests.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    },
+    {
+      "path": "tests/core/time/test_timing.py",
+      "blob": "881e7a360ac8c25b0f7ee7406678f92ee0e1a726",
+      "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection.",
+      "review_baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+      "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW",
+      "reviewed_functions": [
+        "test_stopwatch_measures_running_and_stopped_elapsed_time",
+        "test_stopwatch_context_stops_and_preserves_exceptions",
+        "test_stopwatch_context_returns_the_same_instance"
+      ],
+      "remaining_functions": [],
+      "role": "Three injected-clock stopwatch tests, state/idempotence and exception propagation",
+      "findings": "Deterministic monkeypatch is appropriate. Expected elapsed uses Duration.nanoseconds itself; 100ns checks normalize to zero and do not independently check numeric conversion.",
+      "consumer": "Independent 100us/400us literal checks establish observed conversion and exact call count; no need for a clock framework.",
+      "report": "docs/research/core-identity-and-time-audit.md"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/core/identity/__init__.py",
+      "blob": "c4c89c976268873df264ed0de0fd0a4b418c905f",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/__init__.py",
+      "blob": "f671fd7737aa85037597683735b1b6b81bebef29",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/models/__init__.py",
+      "blob": "60bc12670515f32a057e3e2542e87125bd240a7b",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/errors.py",
+      "blob": "0232bb8c5fe9c82422e554d4d0e2d19698457500",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/identity/docs/overview.md",
+      "blob": "aa8e7f45e72b5f55792805f7981a2f94315a1af9",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/docs/overview.md",
+      "blob": "b9342bd899924e9e7de53543bf3e65ab4f98d860",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/docs/timestamps.md",
+      "blob": "a4c096802987d47db5083ff70c553173471df6b3",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/core/time/docs/timing.md",
+      "blob": "e1453d6bbd99d95bcec0a9989216636b694bbc37",
+      "depth": "FULL_EXPORT_ERROR_OR_PACKAGE_DOCUMENTATION_BODY"
+    },
+    {
+      "path": "src/devtools/resources/commands/execution.py",
+      "blob": "c26c2142b3f82b572da2c3ac88e33a3f57ec2e4a",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Stopwatch construction/stop/finally and asyncio timeout(total_seconds); owned task cleanup remains delivered PR23."
+    },
+    {
+      "path": "src/devtools/resources/commands/models/command.py",
+      "blob": "6fb4fd8f8e479525a6e2622ab606361fe845c1f2",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Duration-valued timeout and fluent policy; no source authorization."
+    },
+    {
+      "path": "scripts/backlog/work.py",
+      "blob": "cd5a994cd3b2b4683a2c6e63f572fef2bd9044aa",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "authorize/_execute time checks, recheck after confirmation, execution_elapsed_seconds; no worker or grant issued by this audit."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "active/issue compare issued_at <= now < expires_at, expiry after consent; trusted wall-clock assumption."
+    },
+    {
+      "path": "scripts/backlog/checkout.py",
+      "blob": "01339ae4b1d19796bf79ff24fecd251d847e3821",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Claim/finalize timestamps versus generation and fenced transition authority; no age-based custody transfer."
+    },
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "ConversationId/new/parse and Conversation construction/id/time properties for persistence consumer."
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "MessageId factories and immutable ConversationMessage identity/time fields."
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "encode/decode session/message identity and ISO timestamp correspondence; strict schema failure boundary."
+    },
+    {
+      "path": "src/devtools/persistence/sqlite.py",
+      "blob": "4cd07d7f64f46df0f5a2a6a87ab7fa86703070a6",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "save/load and message row reconstruction retain typed IDs/ISO times; not full persistence audit."
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Typed ID factories, start/completion timestamps and terminal transition; not monotonic elapsed measurement."
+    },
+    {
+      "path": "src/devtools/observability/evidence/terminal.py",
+      "blob": "7c386fba479ee3bbad19b8fa32c894cb5f31a5e0",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "EvidenceId/new and occurred_at versus observed_at."
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Captured model duration derives from ordered wall timestamps; not monotonic Stopwatch."
+    },
+    {
+      "path": "src/devtools/models/interaction/observation.py",
+      "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Typed invocation ID and completed_at >= started_at guard."
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "0c589a3f1f69f250bf93dfe985b5dc1ff75c08f6",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "send creates wall timestamps and optional observation only after normalized response; deterministic fake transport only."
+    },
+    {
+      "path": "src/devtools/observability/evidence/invocation.py",
+      "blob": "401f2bc56642409076b4d67ceab2a18a4d34a156",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Finite/nonnegative optional measured durations and accepted/completed/validated invariants."
+    },
+    {
+      "path": "src/devtools/observability/usage/models.py",
+      "blob": "496e18b0b979af6e7e0e4e54c1ae4ad9f6ad0dfe",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "UsageObservation timestamp/original_timestamp serialization; unknown preserved."
+    },
+    {
+      "path": "src/devtools/observability/usage/windows.py",
+      "blob": "884291f1727f6ea5f4fbbdebe281f4c0b540d8e2",
+      "depth": "TARGETED_CONSUMER_CONTRACT_INSPECTION",
+      "scope": "Half-open UTC windows, rolling elapsed days versus local calendar week/DST."
+    }
+  ],
+  "focused": {
+    "core": {
+      "command": "uv run pytest --no-cov tests/core/identity tests/core/time -q",
+      "exit_code": 0,
+      "passed": 49,
+      "seconds": 0.08,
+      "log_sha256": "426de452887ba5d61581883222f28f2675792f8b353a3c6b91164d733d68a4b1"
+    },
+    "consumers": {
+      "command": "uv run pytest --no-cov tests/persistence/test_json.py tests/persistence/test_sqlite.py tests/execution/test_interaction_attempt.py tests/execution/test_runtime.py tests/observability/evidence/test_terminal.py tests/observability/usage/test_usage.py tests/resources/commands/test_execution.py tests/scripts/backlog/test_work.py tests/scripts/backlog/test_delegation.py tests/scripts/backlog/test_checkout.py -q",
+      "exit_code": 0,
+      "passed": 200,
+      "seconds": 268.54,
+      "log_sha256": "2574ffde25a9ae50a179f2fea2335255c5fdce1cb0fa0bb5de9cf686e6a10335"
+    }
+  },
+  "focused_total": 249,
+  "probes": {
+    "path": "docs/research/code-audit/core-identity-time-probes.json",
+    "cases": 48,
+    "original_factory_failures": 6,
+    "arithmetic_qualifications": 2,
+    "unexpected_control_failures": 0
+  },
+  "intake": {
+    "id": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+    "decision": "ADVISORY",
+    "review_sha256": "a3d859892141b1bed8563f489e5dc6fd9046506532a1044c056c274633dd8e2b",
+    "state": "PENDING_REVIEW",
+    "new_proposals": 0
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "unchanged_production": true,
+  "new_protected_gate": false,
+  "remaining": [
+    "Separately authorize bounded Duration factory repair; no historical Qwen candidate adoption.",
+    "B0006 stale Identity documentation remains; B0011/ADR0001 own concrete wall-clock observation limitation.",
+    "No deadline/sandbox/scheduler/authority/monotonic-wall-clock primitive introduced.",
+    "Next audit: remaining filesystem codecs/structured models, existing CSV and B0048 obligations; then ModelInteraction/serving.",
+    "RI93/93 original fixtures and606/606 experiment paths remain defined-depth reviewed;188 historical obligations and A+C unapproved unchanged."
+  ],
+  "historical_duration_receipt": {
+    "path": ".local\\qwen-coding-worker\\native-cohort-01\\baseline\\duration-boundary\\result.json",
+    "sha256": "708d7f3264f7140bc287f83b73d6adb800e2cd0a59b4a99b3994ce0fb6a13fab",
+    "source_restored": true,
+    "original_unchanged": true,
+    "accepted": true,
+    "qualification": "Retained historical local result, not fresh execution or production adoption."
+  }
+}

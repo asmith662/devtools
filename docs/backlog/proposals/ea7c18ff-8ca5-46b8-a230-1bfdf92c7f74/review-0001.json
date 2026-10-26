@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+  "proposal_sha256": "4d809899085c3d9625e52cf59affbaeedf7df52c2876dba3cda7f07b986da334",
+  "previous": null,
+  "at": "2026-10-26T14:56:11.908418+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "audit:core-identity-time:32c91a17:20261026",
+  "rationale": "P2 maintained API input-admission defect independently reproduced on integrated main 32c91a17e8df961fc0a834399d8b72c51fbab919. All six original factory examples return zero rather than reject the negative raw input after timedelta rounding; source blob remains 2ad7166e890795ddbdef968fb3f0b75d80de4ab5. Stored timedelta stays nonnegative, so do not describe a negative stored value or timeout-authority bypass. Positive zero/tie-rounding/arithmetic controls pass; 49 Core and200 selected consumer tests pass. The old accepted local Qwen candidate was restored, not integrated. Recommend a separately authorized narrow raw-sign factory repair with literal regressions for six examples/all five factories, zero/positive tie-rounding/nonfinite/native-error controls and real Commands timeout compatibility. Negative tiny scaling/division also rounds to zero; decide that arithmetic policy explicitly instead of silently broadening factory scope or rejecting every zero-result arithmetic operation. No source/test change, approval, grant, B-number or production merge is supplied by this audit. See docs/research/core-identity-and-time-audit.md and docs/research/code-audit/core-identity-time-probes.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing Duration owner is sufficient; do not duplicate or adopt the historical local candidate. Earlier Core/Resources P2 repairs are separately delivered PR23.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "a3d859892141b1bed8563f489e5dc6fd9046506532a1044c056c274633dd8e2b"
+}

@@ -55,5 +55,65 @@
       "scope": "Full body, independent tests and actual lifecycle consumer; no review credit assigned by selection."
     }
   ],
-  "remaining": "Filesystem structured models/codecs and platform process edge cases remain separate; then ModelInteraction/serving, Agents/Runtime, Persistence, applications/dashboard and developer/scientific tooling.188 historical RI versions stay separately tracked."
+  "remaining": "Filesystem structured models/codecs and platform process edge cases remain separate; then ModelInteraction/serving, Agents/Runtime, Persistence, applications/dashboard and developer/scientific tooling.188 historical RI versions stay separately tracked.",
+  "review_overlay": {
+    "at": "2026-10-26T14:56:08.555051+00:00",
+    "baseline": "32c91a17e8df961fc0a834399d8b72c51fbab919",
+    "status": "FULL_BODY_REVIEWED_WITH_EXISTING_P2_REPAIR_RECOMMENDATION",
+    "report": "docs/research/core-identity-and-time-audit.md",
+    "assurance": "docs/research/code-audit/core-identity-time-assurance.json",
+    "reviewed_paths": [
+      {
+        "path": "src/devtools/core/identity/models.py",
+        "blob": "67e4667256e277b94b0c0d406ff2189fdceb7779",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "tests/core/identity/test_models.py",
+        "blob": "59ec8620dd4112bfcc547766a9fdc7b04c234d8b",
+        "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW"
+      },
+      {
+        "path": "tests/core/identity/test_uuid_invariant.py",
+        "blob": "5b9c673d6e12db75b5c9dca85a671c989133195d",
+        "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW"
+      },
+      {
+        "path": "src/devtools/core/time/models/timestamp.py",
+        "blob": "e446a9435210c2ea2c1d8a1ad8afca711f81e14b",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/core/time/models/duration.py",
+        "blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/core/time/models/stopwatch.py",
+        "blob": "baf02cfa266a6fe9d2654cd3e299da25824faf31",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/core/time/parsing.py",
+        "blob": "76fd75644c0002aa36b5f9af9cdbd55a619fc4e5",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "tests/core/time/test_models.py",
+        "blob": "cf333d6ce8f64b9a7676bb28c098b2395ad3ac26",
+        "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW"
+      },
+      {
+        "path": "tests/core/time/test_parsing.py",
+        "blob": "92af22970a2b4ea937c9a4ca5e8a0dd9986d22bd",
+        "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW"
+      },
+      {
+        "path": "tests/core/time/test_timing.py",
+        "blob": "881e7a360ac8c25b0f7ee7406678f92ee0e1a726",
+        "depth": "FULL_TEST_BODY_AND_FIXTURE_REVIEW"
+      }
+    ],
+    "selection_qualification": "Original baseline/status/priority are frozen selection history; three old P2s are delivered PR23. This overlay is the current review disposition."
+  }
 }
