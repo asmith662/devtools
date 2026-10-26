@@ -2,8 +2,8 @@
 
 ## Status
 
-Experimental and unfrozen. This first slice supports only concrete vLLM Docker
-server lifecycle management.
+Experimental and unfrozen. Concrete vLLM and llama.cpp Docker lifecycle owners
+remain separate from ModelInteraction and from the persistent Qwen service.
 
 ## Purpose
 
@@ -21,6 +21,28 @@ and uptime are operational facts, not serving identity. Per-request model
 settings remain owned by `models.interaction`.
 
 ## Current scope
+
+Both image configurations require a nonempty terminal tag or a nonempty
+algorithm/digest qualifier. A registry port alone is not a tag. This is narrow
+version admission, not a complete OCI-reference validator or proof that mutable
+tags identify immutable image bytes.
+
+The vLLM readiness reader accumulates fragmented headers/bodies up to 65,536
+total response bytes, plus a single oversize-detection byte. It supports explicit
+Content-Length and EOF framing, refuses truncated/invalid/oversized framing and
+unsupported transfer encodings, and treats nonobject model-list JSON as not
+ready. A status call still needs a caller deadline/cancellation; `wait_ready`
+supplies its existing readiness deadline rather than a whole-start deadline.
+The llama.cpp health reader retains its existing EOF-read policy; this increment
+does not claim a new universal response-size contract for it.
+
+After acquiring either readiness connection, the owner closes its writer on
+success, read/write failure, timeout or cancellation and awaits close under a
+one-second cleanup bound. Expected close I/O errors or cleanup timeout do not
+replace the primary result. A repeated external cancellation may interrupt that
+wait after close was issued. Connection cleanup is not server termination or
+rollback; ambiguous Docker startup and blocking acquisition-thread effects
+retain their separate reconciliation limitations.
 
 The experimental `llama_cpp` module is the second concrete provider. Slice 2A
 launches one caller-supplied local `.gguf` entry artifact with a caller-supplied

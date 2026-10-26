@@ -6,6 +6,7 @@ from __future__ import annotations
 import asyncio
 import re
 import uuid
+from contextlib import suppress
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Literal, Self
 from urllib.parse import urlsplit
@@ -35,6 +36,7 @@ _CONTAINER_ID = re.compile(r"^[0-9a-fA-F]{64}$")
 _MAX_HOST_PORT = 65_535
 _POLL_INTERVAL_SECONDS = 0.25
 _HTTP_OK = 200
+_READINESS_CLOSE_TIMEOUT_SECONDS = 1
 _PROVIDER_LOG_TAIL_LINES = 200
 _PROVIDER_LOG_TAIL_BYTES = 16 * 1024
 _MAX_DIAGNOSTIC_BYTES = 4_096
@@ -86,7 +88,14 @@ class LlamaCppServingConfig:
     n_cpu_ffn: int = 0
 
     def __post_init__(self) -> None:
-        if not self.image.strip() or ":" not in self.image:
+        image_name, digest_separator, digest = self.image.partition("@")
+        repository, tag_separator, tag = image_name.rsplit("/", 1)[-1].partition(":")
+        if (
+            not self.image.strip()
+            or not repository
+            or (digest_separator and not all(digest.partition(":")[::2]))
+            or (not digest_separator and not (tag_separator and tag))
+        ):
             raise ValueError("llama.cpp image must include an explicit tag or digest.")
         if not 1 <= self.host_port <= _MAX_HOST_PORT:
             raise ValueError("Host port must be between 1 and 65535.")
@@ -480,20 +489,24 @@ async def _http_get(endpoint: str, path: str) -> tuple[int, str]:
             parsed.hostname,
             parsed.port or 80,
         )
+    except OSError:
+        return 0, ""
+    try:
         writer.write(
             f"GET {path} HTTP/1.1\r\nHost: {parsed.hostname}\r\nConnection: close\r\n\r\n".encode(),
         )
         await writer.drain()
         response = await reader.read()
-        writer.close()
-        await writer.wait_closed()
     except OSError:
         return 0, ""
+    finally:
+        writer.close()
+        with suppress(OSError, TimeoutError):
+            async with asyncio.timeout(_READINESS_CLOSE_TIMEOUT_SECONDS):
+                await writer.wait_closed()
     header, separator, body = response.partition(b"\r\n\r\n")
-    if not separator:
-        return 0, ""
     header_lines = header.splitlines()
-    if not header_lines:
+    if not separator or not header_lines:
         return 0, ""
     parts = header_lines[0].split()
     if len(parts) != 3 or not parts[1].isdigit():

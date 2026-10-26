@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from devtools.core.paths import ResolvedPath
-from devtools.core.time import Duration
+from devtools.core.time import Duration, Timestamp
 from devtools.models.serving import vllm
 from devtools.models.serving.errors import (
     ServingReadinessTimeoutError,
@@ -38,6 +38,200 @@ _PREFETCH_OPTIONS = (
 _WSL2_PIN_MEMORY_ENVIRONMENT = "VLLM_WSL2_ENABLE_PIN_MEMORY=1"
 _CUDAGRAPH_MEMORY_ESTIMATE_ENVIRONMENT = "VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0"
 _COMBINED_ENVIRONMENT_OPTION_COUNT = 2
+
+
+@pytest.mark.parametrize(
+    "image",
+    [
+        "registry.example:5000/team/server",
+        "server:",
+        "repo/server@",
+        "repo/server@sha256:",
+    ],
+)
+def test_config_refuses_missing_terminal_image_version(
+    tmp_path: Path,
+    image: str,
+) -> None:
+    """A registry port or empty version is not an explicit image tag/digest."""
+    with pytest.raises(ValueError, match="tag or digest"):
+        _config(tmp_path, image=image)
+
+
+@pytest.mark.parametrize(
+    "image",
+    [
+        "server:cuda",
+        "registry.example:5000/team/server:cuda",
+        "registry.example:5000/team/server@sha256:" + "a" * 64,
+    ],
+)
+def test_config_retains_explicit_image_versions(tmp_path: Path, image: str) -> None:
+    """Explicit terminal versions remain unchanged, including registry ports."""
+    assert _config(tmp_path, image=image).image == image
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [b"[]", b"null", b'{"data":null}', b'{"data":[null,{"id":"other"}]}'],
+)
+def test_status_conservatively_refuses_invalid_model_listing(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    payload: bytes,
+) -> None:
+    """Real status consumes foreign JSON shapes without incidental exceptions."""
+    status, writers = _status_from_wire(
+        monkeypatch,
+        tmp_path,
+        payload,
+        fragmented=False,
+    )
+    assert status.container_running
+    assert not status.model_ready
+    assert all(writer.closed for writer in writers)
+
+
+@pytest.mark.parametrize("framed", [True, False])
+def test_status_accepts_fragmented_headers_and_model_body(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    *,
+    framed: bool,
+) -> None:
+    """Arbitrarily fragmented finite responses retain their matching alias."""
+    status, writers = _status_from_wire(
+        monkeypatch,
+        tmp_path,
+        b'{"data":[{"id":"qwen-local"}]}',
+        fragmented=True,
+        framed=framed,
+    )
+    assert status.container_running
+    assert status.model_ready
+    assert all(writer.closed for writer in writers)
+
+
+@pytest.mark.parametrize(
+    "wire",
+    [
+        b"HTTP/1.1 200 OK\r\nContent-Length: 99\r\n\r\n{}",
+        b"HTTP/1.1 200 OK\r\nContent-Length: nope\r\n\r\n{}",
+        b"HTTP/1.1 200 OK\r\nContent-Length: -1\r\n\r\n{}",
+        b"HTTP/1.1 200 OK\r\nContent-Length: 65536\r\n\r\n",
+        b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\n",
+        b"HTTP/1.1 200 OK\r\nContent-Length: 2\r\nContent-Length: 2\r\n\r\n{}",
+        b"HTTP/1.1 200 OK\r\nmissing-colon\r\n\r\n{}",
+        b"HTTP/1.1 200 OK\r\n\r\n" + b"x" * 65536,
+        b"HTTP/1.1 200 OK\r\n\r\nnot-json",
+        b"HTTP/1.1 200",
+        b"HTTP/1.1 200 OK\r\nContent-Length: " + b"9" * 5000 + b"\r\n\r\n",
+        b"INVALID 200 OK\r\n\r\n{}",
+    ],
+    ids=[
+        "truncated",
+        "bad-length",
+        "negative-length",
+        "oversized-length",
+        "unsupported-transfer",
+        "duplicate-length",
+        "bad-header",
+        "oversized-body",
+        "bad-json",
+        "partial-header",
+        "huge-length",
+        "bad-protocol",
+    ],
+)
+def test_status_refuses_truncated_unsupported_or_oversized_response(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    wire: bytes,
+) -> None:
+    """Bounded public readiness refuses invalid framing, shape and content."""
+    status, writers = _status_from_wire(
+        monkeypatch,
+        tmp_path,
+        b"",
+        fragmented=True,
+        raw=wire,
+    )
+    assert status.container_running
+    assert not status.model_ready
+    assert all(writer.closed for writer in writers)
+
+
+class _ProbeWriter:
+    """Track real ownership requirements of a readiness connection."""
+
+    def __init__(self) -> None:
+        self.closed = False
+
+    def write(self, _data: bytes) -> None:
+        """Accept the fixed probe request."""
+
+    async def drain(self) -> None:
+        """Complete the fixed probe write."""
+
+    def close(self) -> None:
+        """Retain closure evidence."""
+        self.closed = True
+
+    async def wait_closed(self) -> None:
+        """Complete closure."""
+
+
+def _status_from_wire(  # noqa: PLR0913 -- independent wire/framing/scheduling inputs
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    payload: bytes,
+    *,
+    fragmented: bool,
+    framed: bool = True,
+    raw: bytes | None = None,
+) -> tuple[vllm.VLLMServerStatus, list[_ProbeWriter]]:
+    """Feed independently authored health/model bytes through public status."""
+    model_wire = (
+        raw
+        if raw is not None
+        else (
+            b"HTTP/1.1 200 OK\r\n"
+            + (f"Content-Length: {len(payload)}\r\n".encode() if framed else b"")
+            + b"\r\n"
+            + payload
+        )
+    )
+    wires = [b"HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n", model_wire]
+    writers: list[_ProbeWriter] = []
+
+    class Reader:
+        def __init__(self, data: bytes) -> None:
+            self.data = data
+
+        async def read(self, size: int) -> bytes:
+            count = min(size, 3) if fragmented else size
+            result, self.data = self.data[:count], self.data[count:]
+            return result
+
+    async def connection(_host: str, _port: int) -> tuple[Reader, _ProbeWriter]:
+        writer = _ProbeWriter()
+        writers.append(writer)
+        return Reader(wires.pop(0)), writer
+
+    async def execute(command: Command) -> CommandResult:
+        return _result(command, stdout=b"true|true\n")
+
+    executor = _Executor([])
+    executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    server = VLLMServer(
+        config=_config(tmp_path),
+        container_id=_VALID_CONTAINER_ID,
+        container_name="fixture",
+        executor=executor,  # type: ignore[arg-type]
+        started_at=Timestamp.now(),
+    )
+    return asyncio.run(server.status()), writers
 
 
 def _config(tmp_path: Path, **changes: object) -> VLLMServingConfig:
@@ -1281,9 +1475,13 @@ def test_http_get_parses_and_rejects_malformed_provider_responses(
     class Reader:
         """Return one planned wire response."""
 
+        def __init__(self) -> None:
+            self.response = responses.pop(0)
+
         async def read(self, _size: int) -> bytes:
             """Return planned bytes."""
-            return responses.pop(0)
+            response, self.response = self.response, b""
+            return response
 
     class Writer:
         """Record the minimal connection-close behavior."""
