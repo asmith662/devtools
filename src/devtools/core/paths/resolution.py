@@ -97,7 +97,8 @@ def resolve_path(
     :returns: Normalized absolute resolved path.
     :raises PathParsingError: If the filesystem path representation is empty.
     :raises PathResolutionError: If a relative path has no base directory or
-        the supplied base directory is not absolute.
+        the supplied base directory is not absolute, or a drive-relative
+        path specifies a different drive from that base.
     """
     candidate = parse_path(value)
 
@@ -112,6 +113,10 @@ def resolve_path(
 
     if not base.is_absolute():
         msg = "Base directory must be absolute."
+        raise PathResolutionError(msg)
+
+    if candidate.drive and candidate.drive.casefold() != base.drive.casefold():
+        msg = "Drive-relative path drive must match the base directory drive."
         raise PathResolutionError(msg)
 
     return ResolvedPath((base / candidate).resolve(strict=False))

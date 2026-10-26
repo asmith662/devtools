@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pytest
@@ -148,3 +149,39 @@ def test_known_directory_helpers_return_conventional_absolute_paths(
     assert get_home_dir() == ResolvedPath(home_directory.resolve())
     assert get_temp_dir() == ResolvedPath(temp_directory.resolve())
     assert get_downloads_dir() == ResolvedPath((home_directory / "Downloads").resolve())
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Native Windows drive semantics")
+@pytest.mark.parametrize("suffix", ["relative.txt", ""])
+def test_drive_relative_foreign_base_never_uses_current_directory(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    suffix: str,
+) -> None:
+    """The same explicit inputs refuse independently of ambient per-drive CWD."""
+    drive = tmp_path.drive
+    other = "Z:" if drive.upper() != "Z:" else "Y:"
+    for name in ("first", "second"):
+        working = tmp_path / name
+        working.mkdir()
+        monkeypatch.chdir(working)
+        with pytest.raises(PathResolutionError, match="drive"):
+            resolve_path(drive + suffix, base_directory=Path(other + "/explicit"))
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Native Windows drive semantics")
+def test_native_windows_same_drive_rooted_and_absolute_controls(tmp_path: Path) -> None:
+    """An explicit matching drive and native rooted/absolute forms stay valid."""
+    base = tmp_path.resolve()
+    assert (
+        resolve_path(base.drive.lower() + "child.txt", base_directory=base).value
+        == base / "child.txt"
+    )
+    assert resolve_path(base.drive, base_directory=base).value == base
+    assert resolve_path("child.txt", base_directory=base).value == base / "child.txt"
+    rooted = Path(base.drive + "/rooted-control.txt")
+    assert resolve_path("\\rooted-control.txt", base_directory=base).value == rooted
+    absolute = base / "absolute.txt"
+    assert (
+        resolve_path(absolute, base_directory=Path("unused-relative")).value == absolute
+    )
