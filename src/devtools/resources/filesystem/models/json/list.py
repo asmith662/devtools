@@ -114,14 +114,16 @@ class JsonListFile(JsonFile, Sequence[JsonValue]):
     ) -> JsonValue | None:
         """Find the first mapping item containing a matching member.
 
-        Only top-level array items that are mappings participate.
+        Only top-level array items containing the key participate. Compatible
+        mutable query containers compare against the same frozen representation.
 
         :param key: Mapping key.
         :param value: Required member value.
         :returns: First matching JSON item or ``None``.
         """
+        expected = freeze_json(value)
         for item in self.value:
-            if isinstance(item, Mapping) and item.get(key) == value:
+            if isinstance(item, Mapping) and key in item and item[key] == expected:
                 return item
 
         return None

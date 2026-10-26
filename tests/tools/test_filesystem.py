@@ -4,9 +4,10 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
@@ -16,6 +17,7 @@ from devtools.resources.filesystem import (
     FileFormatError,
     FilesystemNotFoundError,
     FilesystemPermissionError,
+    JsonListFile,
     MarkdownFile,
     NotAFileError,
     TextDecodingError,
@@ -28,6 +30,9 @@ from devtools.tools.filesystem import (
     RepositoryDirectoryEntry,
     RepositoryDirectoryEntryKind,
 )
+
+if TYPE_CHECKING:
+    from devtools.resources.filesystem.models.json.base import JsonCompatible
 
 _TWO_ENTRIES = 2
 
@@ -512,3 +517,35 @@ def test_list_repository_directory_tool_classifies_other_direct_entry() -> None:
         "socket",
         RepositoryDirectoryEntryKind.OTHER,
     )
+
+
+@pytest.mark.parametrize(
+    ("query", "expected_tag"),
+    [(None, "null"), ([1, 2], "array"), ({"items": [1]}, "nested")],
+)
+def test_rich_json_member_lookup_through_toolrunner(
+    tmp_path: Path,
+    query: JsonCompatible,
+    expected_tag: str,
+) -> None:
+    """An actual admitted disk read returns the same correct rich lookup API."""
+    source = (
+        '[0,null,{}, {"key":null,"tag":"null"},'
+        '{"key":[1,2],"tag":"array"},'
+        '{"key":{"items":[1]},"tag":"nested"}]'
+    )
+    path = tmp_path / "items.json"
+    path.write_text(source, encoding="utf-8")
+
+    async def exercise() -> None:
+        file = await ToolRunner().execute(
+            ReadRepositoryFileTool(_resolved(tmp_path)),
+            _resolved(path),
+        )
+        assert isinstance(file, JsonListFile)
+        match = file.find_by("key", query)
+        assert isinstance(match, Mapping)
+        assert match["tag"] == expected_tag
+        assert file.content == source
+
+    asyncio.run(exercise())
