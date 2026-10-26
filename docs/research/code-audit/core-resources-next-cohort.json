@@ -177,7 +177,18 @@
       "consumer": "Companion real stdin tests and independent real probes corroborate bounded child behavior.",
       "disposition": "QUALIFIED_WITH_CLEANUP_GAP",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_history": [
+        {
+          "production": "171699ac6de9ddb15f51b4cee440b8ee412646be",
+          "accepted_main": "7bc03e9d22c919314103375934f4bf74cac5e27d",
+          "pr": 26,
+          "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+          "report": "docs/development/duration-factory-input-repair.md",
+          "original_review_blob": "e7df04e4ad835d9ac80b0d845c39e6791963b441",
+          "current_blob": "f191fedfe08b691beeefd9caeb566c4f1a16e879"
+        }
+      ]
     },
     {
       "path": "tests/resources/commands/test_handle.py",

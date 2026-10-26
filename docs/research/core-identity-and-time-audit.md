@@ -1,5 +1,7 @@
 # Core Identity/Time audit
 
+Delivered follow-through: [Duration factory-input correction](../development/duration-factory-input-repair.md), production `171699ac6de9ddb15f51b4cee440b8ee412646be`, normal PR#26, verified main `7bc03e9d22c919314103375934f4bf74cac5e27d`. Final committed gate3035 passed/2 opt-in live skips/100% configured production branch coverage;415 focused and415 post-main tests pass. [Exact receipt](code-audit/duration-factory-repair-20261026.json). Existing ea7c18ff records implemented-and-merged evidence; do not schedule the factory repair again. Arithmetic represented-result semantics remain unchanged. PR#25 audit integration is complete; historical findings below retain their dated meaning. Remaining codecs/models, B-0048,188 historical RI versions and unapproved A+C remain separate. `repair:duration-factory:171699ac:20261026`.
+
 ## Baseline, scope and disposition
 
 Reviewed integrated `main` at `32c91a17e8df961fc0a834399d8b72c51fbab919`.
