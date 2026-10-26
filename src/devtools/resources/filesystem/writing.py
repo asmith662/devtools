@@ -55,12 +55,16 @@ def write(
     target = file.path.value
 
     try:
-        if target.exists() and not overwrite:
-            msg = f"Filesystem path already exists: {file.path}."
-            raise FileExistsError(msg)
+        target.lstat()
+    except FileNotFoundError:
+        pass
     except PermissionError as error:
         msg = f"Permission denied while inspecting file: {file.path}."
         raise FilesystemPermissionError(msg) from error
+    else:
+        if not overwrite:
+            msg = f"Filesystem path already exists: {file.path}."
+            raise FileExistsError(msg)
 
     codec = resolve_codec(file.format)
 

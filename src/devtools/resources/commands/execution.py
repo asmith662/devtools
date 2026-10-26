@@ -228,27 +228,28 @@ class CommandExecutor:
         :returns: Retained stdout/stderr byte sequences and truncation flags.
         :raises TimeoutError: If the configured timeout expires.
         """
-        operation = self._stream_process(
-            process,
-            execution,
-            self._output_policy,
+        operation = asyncio.create_task(
+            self._stream_process(process, execution, self._output_policy),
         )
-        stdin_operation = self._feed_stdin(process, command.stdin)
+        stdin_operation = asyncio.create_task(self._feed_stdin(process, command.stdin))
         timeout = command.timeout
 
-        if timeout is None:
-            (output, _stdin) = await asyncio.gather(
-                operation,
-                stdin_operation,
-            )
-            return output
+        try:
+            if timeout is None:
+                (output, _stdin) = await asyncio.gather(operation, stdin_operation)
+                return output
 
-        async with asyncio.timeout(timeout.total_seconds):
-            (output, _stdin) = await asyncio.gather(
+            async with asyncio.timeout(timeout.total_seconds):
+                (output, _stdin) = await asyncio.gather(operation, stdin_operation)
+                return output
+        finally:
+            operation.cancel()
+            stdin_operation.cancel()
+            await asyncio.gather(
                 operation,
                 stdin_operation,
+                return_exceptions=True,
             )
-            return output
 
     async def _stream_process(
         self,
@@ -286,14 +287,21 @@ class CommandExecutor:
             ),
         )
 
-        (stdout, stdout_truncated), (stderr, stderr_truncated) = await asyncio.gather(
-            stdout_task,
-            stderr_task,
-        )
+        try:
+            (
+                (stdout, stdout_truncated),
+                (stderr, stderr_truncated),
+            ) = await asyncio.gather(
+                stdout_task,
+                stderr_task,
+            )
+            await process.wait()
 
-        await process.wait()
-
-        return stdout, stderr, stdout_truncated, stderr_truncated
+            return stdout, stderr, stdout_truncated, stderr_truncated
+        finally:
+            stdout_task.cancel()
+            stderr_task.cancel()
+            await asyncio.gather(stdout_task, stderr_task, return_exceptions=True)
 
     @staticmethod
     async def _feed_stdin(

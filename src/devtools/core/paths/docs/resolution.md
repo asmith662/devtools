@@ -62,6 +62,14 @@ identifiers. Embedded platform-native separators are not prohibited.
 resolves without a base. Relative input requires an explicit absolute base;
 missing or relative bases raise `PathResolutionError`.
 
+On Windows, drive-relative inputs such as `C:child` or `C:` require a matching
+base drive (case-insensitive). An incompatible drive raises `PathResolutionError`
+before normalization can consult ambient per-drive CWD. Matching-drive inputs
+join the supplied base. Rooted inputs without a drive, such as `\child`, retain
+native semantics: they use the base drive's root, not its directory. Fully
+absolute inputs resolve directly, independently of the optional base. On POSIX,
+drive-looking text retains ordinary native filename semantics.
+
 Resolution uses `Path.resolve(strict=False)`. A target need not exist; `.` and
 `..` are normalized, and existing symlink components are handled according to
 `pathlib` behavior. The result is `ResolvedPath`.

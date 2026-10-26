@@ -84,6 +84,14 @@ cancel the shared command execution for all awaiters.
 Only the immediate child is managed. Descendants and process groups are not
 terminated.
 
+Output and stdin collection tasks are owned by this execution. Each collecting
+boundary cancels and joins its unfinished children before returning, including
+when a sibling read/write fails, timeout expires or the caller cancels. Cleanup
+collects sibling exceptions without replacing the originating failure. Normal
+completion still drains streams and produces one result; failure produces no
+successful result or exit event. This is task cleanup, not durable evidence,
+external-effect rollback, retry authority or descendant-process management.
+
 
 ## Explicit decoded output views
 

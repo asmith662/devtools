@@ -24,6 +24,8 @@ from devtools.resources.filesystem import (
     write,
 )
 
+_SYMLINK_PRIVILEGE_NOT_HELD = 1314
+
 
 def test_write_persists_a_new_json_file_and_fsyncs_before_replacement(
     tmp_path: Path,
@@ -34,14 +36,17 @@ def test_write_persists_a_new_json_file_and_fsyncs_before_replacement(
     file = JsonCodec().parse(ResolvedPath(target), '{"name":"Ada"}')
     fsync_calls: list[int] = []
     replace_calls: list[tuple[Path, Path]] = []
+    order: list[str] = []
     original_fsync = os.fsync
     original_replace = os.replace
 
     def record_fsync(file_descriptor: int) -> None:
+        order.append("fsync")
         fsync_calls.append(file_descriptor)
         original_fsync(file_descriptor)
 
     def record_replace(source: Path, destination: Path) -> None:
+        order.append("replace")
         replace_calls.append((source, destination))
         original_replace(source, destination)
 
@@ -57,6 +62,7 @@ def test_write_persists_a_new_json_file_and_fsyncs_before_replacement(
     assert fsync_calls
     assert replace_calls[0][0].parent == target.parent
     assert replace_calls[0][1] == target
+    assert order == ["fsync", "replace"]
 
 
 def test_write_persists_current_json_value_not_stale_source_provenance(
@@ -319,10 +325,10 @@ def test_write_normalizes_inspection_and_temporary_creation_permission_errors(
     target = tmp_path / "value.json"
     file = JsonCodec().parse(ResolvedPath(target), "{}")
 
-    def deny_exists(_path: Path) -> bool:
+    def deny_lstat(_path: Path) -> Never:
         raise PermissionError
 
-    monkeypatch.setattr(Path, "exists", deny_exists)
+    monkeypatch.setattr(Path, "lstat", deny_lstat)
 
     with pytest.raises(FilesystemPermissionError, match="inspecting"):
         write(file)
@@ -339,3 +345,121 @@ def test_write_normalizes_inspection_and_temporary_creation_permission_errors(
 
     with pytest.raises(FilesystemPermissionError, match="writing"):
         write(file)
+
+
+@pytest.mark.parametrize("binary", [False, True])
+@pytest.mark.parametrize("directory", [False, True])
+@pytest.mark.parametrize("live", [False, True])
+def test_no_overwrite_preserves_real_link_entry(
+    tmp_path: Path,
+    *,
+    binary: bool,
+    directory: bool,
+    live: bool,
+) -> None:
+    """Entry existence is independent of whether its referent currently exists."""
+    target = tmp_path / "referent"
+    if live:
+        if directory:
+            target.mkdir()
+            (target / "member").write_bytes(b"original")
+        else:
+            target.write_bytes(b"original")
+    folder = tmp_path / "nested"
+    folder.mkdir()
+    link = folder / "entry"
+    try:
+        link.symlink_to(target, target_is_directory=directory)
+    except OSError as error:
+        if os.name == "nt" and error.winerror == _SYMLINK_PRIVILEGE_NOT_HELD:
+            pytest.skip("Windows symlink privilege unavailable")
+        raise
+    before = link.lstat()
+    original_link = os.readlink(link)  # noqa: PTH115 -- preserve exact native target spelling
+    file = (
+        BinaryFile(ResolvedPath(link), b"new")
+        if binary
+        else TextCodec().decode(ResolvedPath(link), b"new")
+    )
+    with pytest.raises(FileExistsError, match="already exists"):
+        write(file, overwrite=False)
+    assert link.is_symlink()
+    assert os.readlink(link) == original_link  # noqa: PTH115 -- exact link identity
+    assert link.lstat().st_ino == before.st_ino
+    assert target.exists() is live
+    if live:
+        assert (target / "member" if directory else target).read_bytes() == b"original"
+    assert tuple(folder.iterdir()) == (link,)
+
+
+@pytest.mark.parametrize("binary", [False, True])
+def test_no_overwrite_absent_and_directory_controls(
+    tmp_path: Path,
+    *,
+    binary: bool,
+) -> None:
+    """Absent entries write normally; an existing directory stays intact."""
+    path = tmp_path / "absent"
+    file = (
+        BinaryFile(ResolvedPath(path), b"literal")
+        if binary
+        else TextCodec().decode(ResolvedPath(path), b"literal")
+    )
+    write(file, overwrite=False)
+    assert path.read_bytes() == b"literal"
+    folder = tmp_path / "directory"
+    folder.mkdir()
+    existing = BinaryFile(ResolvedPath(folder), b"literal")
+    with pytest.raises(FileExistsError):
+        write(existing, overwrite=False)
+    assert folder.is_dir()
+    assert tuple(folder.iterdir()) == ()
+
+
+def test_unclassifiable_destination_refuses_before_preparing_a_write(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """An inspection error is not evidence of absence or permission to replace."""
+    path = tmp_path / "unknown"
+    error = OSError("literal inspection failure")
+
+    def fail_inspection(_path: Path) -> Never:
+        raise error
+
+    def unexpected_prepare(**_kwargs: object) -> Never:
+        pytest.fail("Writer entered preparation after unclassified destination")
+
+    monkeypatch.setattr(Path, "lstat", fail_inspection)
+    monkeypatch.setattr(
+        "devtools.resources.filesystem.writing.NamedTemporaryFile",
+        unexpected_prepare,
+    )
+    with pytest.raises(OSError, match="literal inspection failure") as raised:
+        write(BinaryFile(ResolvedPath(path), b"new"), overwrite=False)
+    assert raised.value is error
+
+
+@pytest.mark.parametrize("live", [False, True])
+def test_permitted_overwrite_replaces_link_without_writing_its_referent(
+    tmp_path: Path,
+    *,
+    live: bool,
+) -> None:
+    """The explicit overwrite policy still replaces a file-link directory entry."""
+    target = tmp_path / "target"
+    if live:
+        target.write_bytes(b"original")
+    link = tmp_path / "link"
+    try:
+        link.symlink_to(target)
+    except OSError as error:
+        if os.name == "nt" and error.winerror == _SYMLINK_PRIVILEGE_NOT_HELD:
+            pytest.skip("Windows symlink privilege unavailable")
+        raise
+    write(BinaryFile(ResolvedPath(link), b"replacement"), overwrite=True)
+    assert not link.is_symlink()
+    assert link.read_bytes() == b"replacement"
+    assert target.exists() is live
+    if live:
+        assert target.read_bytes() == b"original"
