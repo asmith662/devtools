@@ -94,3 +94,7 @@ one provider invocation, no Tool dispatch from a failed/unadmitted frame, no
 automatic retry/refund, no fabricated Evidence and explicit failed-capture
 visibility. It must not introduce a new EventBus, general Agent lifecycle,
 persistence store or retry supervisor.
+
+## Agents/Runtime feasibility overlay — 2026-10-26
+
+Maintainer prefers Option B in principle; this is design preference, not implementation approval. The [completed Agents/Conversation/Runtime audit](../research/agents-conversation-and-runtime-audit.md#concrete-observation-policy-feasibility) identifies existing producer/Inspector/host boundaries, opt-in compatibility, per-invocation correlation, reporter failure, mandatory-evidence refusal, privacy/unknown usage and independently testable acceptance. Current code and original options above remain unchanged. No new response wrapper, Runtime lifecycle, durable schema or automatic suppression is approved. `audit:agents-conversation-runtime:87f5b9d2:20261026`.

@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "b8cf4f09-0b9b-4592-8bd3-4d42d5a1778d",
+  "created_at": "2026-10-26T22:13:47.779052+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Preserve literal Codex prompts and continuation values across CLI option parsing",
+    "summary": "P2: CodexAgent.send accepts arbitrary user text, but appends it to fresh/resumed CLI argv without an option terminator. Literal --help reaches installed codex-cli0.162.1 as a help option, exits0 with CLI help and raises CodexOutputError instead of transporting prompt text. Both actual maintained public send paths reproduced using help-only calls in authored temporary directories; no model/task invocation, dangerous flag or authority bypass was executed. Direct argv prevents shell splitting, not CLI option interpretation. Existing fake-executor tests miss this boundary. Baseline 87f5b9d2cbe8f92538af8510da7bca6e148d31b6. Acceptance: Independently protect leading-dash prompts, Unicode/multiline/empty controls and opaque continuation IDs from option parsing; explicitly handle the CLI dash/stdin sentinel. Prefer existing Command stdin mechanics or supported positional delimiting after inspecting current fresh/resume grammar, not a generic escaping framework. Preserve readonly/cwd/role/source/usage/error contracts and one invocation/no retry. Use deterministic executor/parser fakes and genuinely help-only CLI validation; do not rerun the baseline --help-through-adapter probe after correction where it might become a real model request.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:agents-conversation-runtime:87f5b9d2:20261026:NEW_PROMPT_OPTION_BOUNDARY"
+    },
+    "parent": "B-0043",
+    "resources": [
+      "src/devtools/agents/integrations/codex/agent.py",
+      "tests/agents/integrations/codex/test_agent.py",
+      "src/devtools/agents/integrations/codex/docs/cli.md"
+    ],
+    "evidence": [
+      "docs/research/agents-conversation-and-runtime-audit.md",
+      "docs/research/code-audit/agents-conversation-runtime-probes.json"
+    ],
+    "benefit": "Restore the existing literal-input or metadata-only boundary without new Agent, execution, parsing or persistence architecture.",
+    "uncertainty": "Only deterministic authored input and version/help CLI execution. No live inference, dangerous option, production/private log or effect outside temporary test data; no demonstrated source-mutation or execution-authority bypass.",
+    "dependencies": [
+      "Maintainer must separately authorize bounded implementation, permanent independent regressions and final committed protected gate; current audit authorizes documentation only."
+    ]
+  },
+  "payload_sha256": "caed30d240fc5abbe8697d31ce04bde48caac5c65ec8baba167f24d27d7dd88d"
+}

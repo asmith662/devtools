@@ -1,0 +1,1120 @@
+{
+  "baseline": "87f5b9d2cbe8f92538af8510da7bca6e148d31b6",
+  "execution": {
+    "started_at": "2026-10-26T22:07:39.999817+00:00",
+    "finished_at": "2026-10-26T22:07:40.636773+00:00",
+    "seconds": 0.63182,
+    "exit_code": 0,
+    "head": "87f5b9d2cbe8f92538af8510da7bca6e148d31b6",
+    "tree": "0a0ad1f97e7c15c6cd22da4aa638d26bda8fe7ac",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "source_sha256": "cef8e9659dfb10c627d7f4f95182af0e95e13d1ea50be9b206bc07f92a40c7f1",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/agents-conversation-runtime-audit-20261026/probes.py"
+    ],
+    "stdout": "{\r\n  \"cases\": 33,\r\n  \"reproduced\": [\r\n    \"literal-help-is-cli-option-False\",\r\n    \"literal-help-is-cli-option-True\",\r\n    \"escaped-private-key-session\",\r\n    \"escaped-private-key-exec\"\r\n  ],\r\n  \"harness_errors\": [],\r\n  \"unexpected_controls\": [],\r\n  \"loop_errors\": []\r\n}\r\n",
+    "stderr": ""
+  },
+  "reproducer_source": "\"\"\"Independent lifecycle, CLI-help and metadata-only audit probes; no inference.\"\"\"\nimport asyncio,json,sys,tempfile\nfrom pathlib import Path\nfrom unittest.mock import patch\nfrom devtools.agents.conversation import Conversation,ConversationMessage,ConversationMessageRole\nfrom devtools.agents.integrations.codex import CodexAgent,CodexOutputError\nfrom devtools.agents.integrations.codex.sessions import read_session_usage,read_exec_usage\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration,Timestamp\nfrom devtools.execution import Runtime\nfrom devtools.models.interaction import ConversationRef,InteractionSource,ModelResponse,ModelUsage,ModelRequest,Prompt\nfrom devtools.models.interaction.providers import llama_cpp as provider\nfrom devtools.observability.evidence import ExecutionInspector\nfrom devtools.resources.commands import CommandExecutor,CommandResult\nO=Path(__file__).parent;ROWS=[];MODEL=InteractionSource('fixture')\ndef user(text='question'):return ConversationMessage.new(text,role=ConversationMessageRole.USER,source=InteractionSource('caller'))\nasync def check(name,expected,action,kind='CONTROL',literal=None):\n try:\n  value=action();observed=await value if hasattr(value,'__await__') else value\n except BaseException as error:observed=dict(harness_error=type(error).__name__,detail=str(error))\n ROWS.append(dict(name=name,kind=kind,literal=literal,expected=expected,observed=observed,agrees=observed==expected))\nclass Observer:\n def __init__(self,start=None,finish=None):self.started=[];self.finished=[];self.start=start;self.finish=finish\n def attempt_started(self,a):\n  self.started.append(a)\n  if self.start:raise self.start\n def attempt_finished(self,a,o):\n  self.finished.append(dict(state=a.state.value,outcome=type(o).__name__,stage=getattr(getattr(o,'stage',None),'value',None)))\n  if self.finish:raise self.finish\nclass Interaction:\n source=MODEL\n def __init__(self,response=None,error=None):self.calls=[];self.response=response or ModelResponse('reply',MODEL);self.error=error;self.effects=[]\n async def send(self,r):\n  self.calls.append(dict(prompt=r.prompt.content,continuation=r.conversation.value if r.conversation else None))\n  if self.error:self.effects.append('adapter entered');raise self.error\n  return self.response\nasync def runtime_case(mode):\n class RetentionFault(Conversation):\n  def add(self,m):\n   if m.role is ConversationMessageRole.ASSISTANT and mode=='retention':raise LookupError('output retention fault')\n   super().add(m)\n  def set_conversation(self,c):\n   if mode=='continuation' and c.value=='replacement':raise LookupError('continuation retention fault')\n   super().set_conversation(c)\n c=RetentionFault.new();c.set_conversation(ConversationRef(MODEL,'old'))\n response=ModelResponse('reply',InteractionSource('foreign') if mode=='foreign' else MODEL,conversation=ConversationRef(MODEL,'replacement') if mode=='continuation' else None)\n error=OSError('after possible entry') if mode=='transport' else asyncio.CancelledError() if mode=='cancel' else None\n observer=Observer(start=ValueError('admission') if mode=='admission' else None,finish=RuntimeError('secondary observation') if mode=='finish' else None)\n interaction=Interaction(response,error);caught=None;returned=None\n try:returned=await Runtime(observer=observer).send(conversation=c,interaction=interaction,message=user())\n except BaseException as e:caught=e\n return dict(result=type(caught).__name__ if caught else type(returned).__name__,history=[m.content for m in c.history],calls=len(interaction.calls),same_error=(caught is error) if error else None,continuation=c.conversation_for(MODEL).value,finished=observer.finished,effects=interaction.effects)\nasync def repeat_failure():\n c=Conversation.new();o=Observer();r=Runtime(observer=o);i=Interaction(error=OSError('uncertain entry'));m=user('same input')\n try:await r.send(conversation=c,interaction=i,message=m)\n except OSError:pass\n i.error=None;await r.send(conversation=c,interaction=i,message=m)\n return dict(history=[m.content for m in c.history],calls=len(i.calls),same_input_id=c.history[0].id==c.history[1].id,attempts=len(o.started),unique_attempts=len({str(a.id) for a in o.started}),states=[a.state.value for a in o.started])\nasync def serialized(cancel_waiter=False):\n entered=asyncio.Event();release=asyncio.Event();attempted=asyncio.Event();c=Conversation.new();o=Observer();r=Runtime(observer=o)\n class Blocking(Interaction):\n  async def send(self,request):\n   self.calls.append(request.prompt.content)\n   if request.prompt.content=='a':entered.set();await release.wait()\n   return ModelResponse('reply-'+request.prompt.content,MODEL)\n i=Blocking();first=asyncio.create_task(r.send(conversation=c,interaction=i,message=user('a')));await entered.wait()\n async def second():attempted.set();return await r.send(conversation=c,interaction=i,message=user('b'))\n other=asyncio.create_task(second());await attempted.wait();before=[m.content for m in c.history]\n if cancel_waiter:\n  other.cancel()\n  try:await other\n  except asyncio.CancelledError:pass\n release.set();await first\n if not cancel_waiter:await other\n return dict(before=before,history=[m.content for m in c.history],calls=i.calls,attempts=len(o.started))\nasync def cooperative_and_reentrant():\n c=Conversation.new();r=Runtime();i=Interaction();timed_out=False\n async with c.turn():\n  c.add(user('external mutation'))\n  try:await asyncio.wait_for(r.send(conversation=c,interaction=i,message=user('nested')), .02)\n  except TimeoutError:timed_out=True\n await r.send(conversation=c,interaction=i,message=user('after release'))\n return dict(nested_timed_out=timed_out,history=[m.content for m in c.history],calls=len(i.calls))\nasync def provider_observer(mode):\n calls=0;seen=[];c=Conversation.new();o=Observer();reply=None;error=None\n class Capture:\n  def interaction_completed(self,value):\n   seen.append(value)\n   if mode=='callback':raise RuntimeError('capture failed after normalized response')\n async def post(endpoint,payload):\n  nonlocal calls\n  calls+=1;return {'id':'provider-reply','model':'fixture','choices':[{'message':{'role':'assistant','content':'known reply'}}],'usage':{'prompt_tokens':7,'completion_tokens':3}}\n times=[Timestamp.from_isoformat('2026-10-26T10:00:01Z'),Timestamp.from_isoformat('2026-10-26T10:00:00Z' if mode=='clock' else '2026-10-26T10:00:02Z')]\n class Clock:\n  @staticmethod\n  def now():return times.pop(0)\n with patch.object(provider,'_post_chat_completion',post),patch.object(provider,'Timestamp',Clock):\n  adapter=provider.LlamaCppInteraction(endpoint='http://fixture',model='fixture',source=MODEL,observer=Capture() if mode!='unobserved' else None)\n  try:reply=await Runtime(observer=o).send(conversation=c,interaction=adapter,message=user())\n  except Exception as exc:error=type(exc).__name__\n return dict(outcome=error or 'ModelResponse',calls=calls,history=[m.content for m in c.history],captured=len(seen),known_capture_usage=[seen[0].response.usage.input_tokens,seen[0].response.usage.output_tokens] if seen else None,finished=o.finished)\nasync def sink_failure():\n class Sink:\n  def accept(self,e):raise OSError('sink unavailable after in-memory retention')\n inspector=ExecutionInspector(Sink());c=Conversation.new()\n result=await Runtime(observer=inspector).send(conversation=c,interaction=Interaction(),message=user())\n a=inspector.get_attempt(inspector.attempt_ids()[0]);e=inspector.get_evidence_for_attempt(a.id)\n return dict(response=result.content,state=a.state.value,in_memory_evidence=len(e),history=[m.content for m in c.history])\nSUCCESS=b'{\"type\":\"thread.started\",\"thread_id\":\"thread-a\"}\\n{\"type\":\"item.completed\",\"item\":{\"type\":\"agent_message\",\"text\":\"known reply\"}}\\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":7}}\\n'\nclass Executor(CommandExecutor):\n def __init__(self,body=SUCCESS,code=0,truncated=False,error=None):self.body=body;self.code=code;self.truncated=truncated;self.error=error;self.commands=[]\n async def execute(self,command):\n  self.commands.append(command)\n  if self.error:raise self.error\n  return CommandResult(command,self.code,self.body,b'ignored diagnostic',Duration.seconds(0),stdout_truncated=self.truncated)\nasync def codex_case(root,mode):\n body=SUCCESS\n if mode=='usage':body=SUCCESS.replace(b'\"input_tokens\":7',b'\"input_tokens\":false')\n if mode=='utf8':body=b'\\xff'\n if mode=='partial':body=SUCCESS+b'{\"type\":\"turn.started\",\"turn_id\":\"unfinished\"}\\n'\n error=asyncio.CancelledError() if mode=='cancel' else None\n ex=Executor(body,code=5 if mode=='exit' else 0,truncated=mode=='truncated',error=error);agent=CodexAgent(ex,resolve_path(root),executable='authored-fake')\n message=user();continuation=ConversationRef(InteractionSource('codex'),'thread-a') if mode=='resume' else ConversationRef(InteractionSource('foreign'),'thread-a') if mode=='foreign' else None\n if mode=='role':message=ConversationMessage.new('not user',role=ConversationMessageRole.SYSTEM,source=MODEL)\n caught=None;result=None\n try:result=await agent.send(message,conversation=continuation)\n except BaseException as exc:caught=exc\n usage=result.usage if result else getattr(caught,'usage',())\n return dict(outcome=type(caught).__name__ if caught else 'CodexConversationResult',calls=len(ex.commands),message=result.message.content if result else None,thread=result.conversation.value if result else None,usage=[u.counts.input_tokens for u in usage],usage_error=bool(result.usage_error if result else getattr(caught,'usage_error',None)),cwd_correct=all(cmd.working_directory==resolve_path(root) for cmd in ex.commands),cause=type(caught.__cause__).__name__ if caught and caught.__cause__ else None)\nasync def actual_help(root,resume):\n # Only an independently verified --help option reaches the real executable.\n # No arbitrary literal/task/model arguments are run by this probe.\n class BoundedExecutor(CommandExecutor):\n  async def execute(self,command):\n   assert command.arguments[-1]=='--help'\n   assert '--' not in command.arguments, 'Refuse a corrected literal prompt: this baseline-only probe must never invoke a model'\n   self.command=command\n   self.result=await super().execute(command.with_timeout(Duration.seconds(10)))\n   return self.result\n ex=BoundedExecutor();agent=CodexAgent(ex,resolve_path(root));outcome=None\n try:await agent.send(user('--help'),conversation=ConversationRef(agent.source,'00000000-0000-4000-8000-000000000001') if resume else None)\n except CodexOutputError:outcome='CodexOutputError'\n return dict(outcome=outcome,exit_code=ex.result.exit_code,help_instead_of_prompt=b'Usage: codex exec' in ex.result.stdout,option_terminator='--' in ex.command.arguments)\ndef metadata_privacy(root,kind,escaped):\n path=root/('session' if kind=='session' else 'exec');sentinel='AUDIT_PRIVATE_PAYLOAD'\n if kind=='session':\n  prefix=b'{\"type\":\"session_meta\",\"payload\":{\"model_provider\":\"openai\",\"cwd\":\"C:/authored\"}}\\n'\n  line=b'{\"timestamp\":\"2026-10-26T10:00:00Z\",\"type\":\"token_usage_record\",\"payload\":{\"thread_id\":\"t\",\"turn_id\":\"u\",\"response_id\":\"r\",\"usage\":{\"input_tokens\":7},\"turn_token_usage\":{\"input_tokens\":7},'\n  suffix=b'}}\\n'\n else:\n  prefix=b'{\"type\":\"thread.started\",\"thread_id\":\"t\"}\\n';line=b'{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":7},';suffix=b'}\\n'\n key=b'\"priv\\\\u0061te\"' if escaped else b'\"private\"'\n path.write_bytes(prefix+line+key+b':\"'+sentinel.encode()+b'\"'+suffix)\n original=json.loads;decoded=[];error=None;rows=()\n def tracked(value,*args,**kwargs):\n  if sentinel in str(value):decoded.append(True)\n  return original(value,*args,**kwargs)\n with patch.object(json,'loads',tracked):\n  try:rows=(read_session_usage if kind=='session' else read_exec_usage)(path)\n  except ValueError as exc:error=type(exc).__name__\n return dict(private_deserialized=bool(decoded),rows=len(rows),error=error)\nasync def main():\n errors=[];asyncio.get_running_loop().set_exception_handler(lambda loop,context:errors.append(str(context)))\n with tempfile.TemporaryDirectory(prefix='devtools-agents-audit-') as temp:\n  root=Path(temp)\n  for mode,result,history,stage,calls,effects in [('normal','ModelResponse',['question','reply'],None,1,[]),('finish','ModelResponse',['question','reply'],None,1,[]),('foreign','ValueError',['question'],'result_validation',1,[]),('admission','ValueError',['question'],'admission',0,[]),('transport','OSError',['question'],'interaction_invocation',1,['adapter entered']),('cancel','CancelledError',['question'],'interaction_invocation',1,['adapter entered']),('retention','LookupError',['question'],'output_retention',1,[]),('continuation','LookupError',['question','reply'],'continuation_replacement',1,[])]:\n   outcome='InteractionAttemptCancelled' if mode=='cancel' else 'InteractionAttemptFailed' if stage else 'InteractionAttemptSucceeded'\n   expected=dict(result=result,history=history,calls=calls,same_error=True if mode in ['transport','cancel'] else None,continuation='old',finished=[dict(state='cancelled' if mode=='cancel' else 'failed' if stage else 'succeeded',outcome=outcome,stage=stage)],effects=effects)\n   await check('runtime-'+mode,expected,lambda mode=mode:runtime_case(mode),'INJECTED_RETENTION_BOUNDARY' if mode in ['retention','continuation'] else 'CONTROL')\n  await check('explicit-repeat-not-idempotent',dict(history=['same input','same input','reply'],calls=2,same_input_id=True,attempts=2,unique_attempts=2,states=['failed','succeeded']),repeat_failure,'SUPPORTED_LIMITATION')\n  for cancel in [False,True]:await check('serialized-cancel-waiter-'+str(cancel),dict(before=['a'],history=['a','reply-a'] if cancel else ['a','reply-a','b','reply-b'],calls=['a'] if cancel else ['a','b'],attempts=1 if cancel else 2),lambda cancel=cancel:serialized(cancel))\n  await check('cooperative-lock-nonreentrant',dict(nested_timed_out=True,history=['external mutation','after release','reply'],calls=1),cooperative_and_reentrant,'SUPPORTED_LIMITATION')\n  for mode,error,captured in [('observed',None,1),('callback','RuntimeError',1),('clock','ValueError',0),('unobserved',None,0)]:\n   await check('provider-observation-'+mode,dict(outcome=error or 'ModelResponse',calls=1,history=['question'] if error else ['question','known reply'],captured=captured,known_capture_usage=[7,3] if captured else None,finished=[dict(state='failed' if error else 'succeeded',outcome='InteractionAttemptFailed' if error else 'InteractionAttemptSucceeded',stage='interaction_invocation' if error else None)]),lambda mode=mode:provider_observer(mode),'EXISTING_OBSERVATION_POLICY')\n  await check('execution-sink-failure-after-local-retention',dict(response='reply',state='succeeded',in_memory_evidence=1,history=['question','reply']),sink_failure,'EXISTING_EVIDENCE_LIMITATION')\n  for mode,outcome,calls,message,usage,usage_error,cause in [('normal','CodexConversationResult',1,'known reply',[7],False,None),('resume','CodexConversationResult',1,'known reply',[7],False,None),('foreign','ValueError',0,None,[],False,None),('role','ValueError',0,None,[],False,None),('exit','CodexCommandError',1,None,[7],False,None),('truncated','CodexOutputError',1,None,[],True,None),('utf8','CodexOutputError',1,None,[],True,'UnicodeDecodeError'),('usage','CodexConversationResult',1,'known reply',[],True,None),('cancel','CancelledError',1,None,[],False,None),('partial','CodexConversationResult',1,'known reply',[7],False,None)]:\n   await check('codex-'+mode,dict(outcome=outcome,calls=calls,message=message,thread='thread-a' if message else None,usage=usage,usage_error=usage_error,cwd_correct=True,cause=cause),lambda mode=mode:codex_case(root,mode),'DOCUMENTED_PRESENCE_PARSER_LIMITATION' if mode=='partial' else 'CONTROL')\n  for resume in [False,True]:await check('literal-help-is-cli-option-'+str(resume),dict(outcome='LiteralPromptTransport',exit_code=None,help_instead_of_prompt=False,option_terminator=True),lambda resume=resume:actual_help(root,resume),'NEW_PROMPT_OPTION_BOUNDARY','Literal user prompt --help; only CLI-help parsing is exercised, never inference.')\n  for kind in ['session','exec']:\n   await check('plain-private-refusal-'+kind,dict(private_deserialized=False,rows=0,error=None if kind=='session' else 'ValueError'),lambda kind=kind:metadata_privacy(root,kind,False))\n   await check('escaped-private-key-'+kind,dict(private_deserialized=False,rows=0,error=None if kind=='session' else 'ValueError'),lambda kind=kind:metadata_privacy(root,kind,True),'NEW_METADATA_ALLOWLIST','Authored private sentinel under a valid escaped JSON key priv\\\\u0061te; no real private record.')\n result=dict(at=str(Timestamp.now()),rows=ROWS,unhandled_loop_errors=errors,harness_errors=[r['name'] for r in ROWS if isinstance(r['observed'],dict) and 'harness_error' in r['observed']],unexpected_controls=[r['name'] for r in ROWS if not r['agrees'] and not r['kind'].startswith('NEW_')],scope='Temporary authored data and deterministic doubles. Actual installed Codex only receives literal --help; no live inference/agent session/model/service/experiment.')\n (O/'probes.json').write_text(json.dumps(result,indent=2)+'\\n')\n print(json.dumps(dict(cases=len(ROWS),reproduced=[r['name'] for r in ROWS if not r['agrees']],harness_errors=result['harness_errors'],unexpected_controls=result['unexpected_controls'],loop_errors=errors),indent=2))\n assert not result['harness_errors'] and not result['unexpected_controls'] and not errors\nasyncio.run(main())\n",
+  "reproducer_sha256": "cef8e9659dfb10c627d7f4f95182af0e95e13d1ea50be9b206bc07f92a40c7f1",
+  "result": {
+    "at": "2026-10-26T22:07:40.612727+00:00",
+    "rows": [
+      {
+        "name": "runtime-normal",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "ModelResponse",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "ModelResponse",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-finish",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "ModelResponse",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "ModelResponse",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-foreign",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "ValueError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "result_validation"
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "ValueError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "result_validation"
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-admission",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "ValueError",
+          "history": [
+            "question"
+          ],
+          "calls": 0,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "admission"
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "ValueError",
+          "history": [
+            "question"
+          ],
+          "calls": 0,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "admission"
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-transport",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "OSError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": true,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ],
+          "effects": [
+            "adapter entered"
+          ]
+        },
+        "observed": {
+          "result": "OSError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": true,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ],
+          "effects": [
+            "adapter entered"
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-cancel",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "result": "CancelledError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": true,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "cancelled",
+              "outcome": "InteractionAttemptCancelled",
+              "stage": "interaction_invocation"
+            }
+          ],
+          "effects": [
+            "adapter entered"
+          ]
+        },
+        "observed": {
+          "result": "CancelledError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": true,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "cancelled",
+              "outcome": "InteractionAttemptCancelled",
+              "stage": "interaction_invocation"
+            }
+          ],
+          "effects": [
+            "adapter entered"
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-retention",
+        "kind": "INJECTED_RETENTION_BOUNDARY",
+        "literal": null,
+        "expected": {
+          "result": "LookupError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "output_retention"
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "LookupError",
+          "history": [
+            "question"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "output_retention"
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "runtime-continuation",
+        "kind": "INJECTED_RETENTION_BOUNDARY",
+        "literal": null,
+        "expected": {
+          "result": "LookupError",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "continuation_replacement"
+            }
+          ],
+          "effects": []
+        },
+        "observed": {
+          "result": "LookupError",
+          "history": [
+            "question",
+            "reply"
+          ],
+          "calls": 1,
+          "same_error": null,
+          "continuation": "old",
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "continuation_replacement"
+            }
+          ],
+          "effects": []
+        },
+        "agrees": true
+      },
+      {
+        "name": "explicit-repeat-not-idempotent",
+        "kind": "SUPPORTED_LIMITATION",
+        "literal": null,
+        "expected": {
+          "history": [
+            "same input",
+            "same input",
+            "reply"
+          ],
+          "calls": 2,
+          "same_input_id": true,
+          "attempts": 2,
+          "unique_attempts": 2,
+          "states": [
+            "failed",
+            "succeeded"
+          ]
+        },
+        "observed": {
+          "history": [
+            "same input",
+            "same input",
+            "reply"
+          ],
+          "calls": 2,
+          "same_input_id": true,
+          "attempts": 2,
+          "unique_attempts": 2,
+          "states": [
+            "failed",
+            "succeeded"
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "serialized-cancel-waiter-False",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "before": [
+            "a"
+          ],
+          "history": [
+            "a",
+            "reply-a",
+            "b",
+            "reply-b"
+          ],
+          "calls": [
+            "a",
+            "b"
+          ],
+          "attempts": 2
+        },
+        "observed": {
+          "before": [
+            "a"
+          ],
+          "history": [
+            "a",
+            "reply-a",
+            "b",
+            "reply-b"
+          ],
+          "calls": [
+            "a",
+            "b"
+          ],
+          "attempts": 2
+        },
+        "agrees": true
+      },
+      {
+        "name": "serialized-cancel-waiter-True",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "before": [
+            "a"
+          ],
+          "history": [
+            "a",
+            "reply-a"
+          ],
+          "calls": [
+            "a"
+          ],
+          "attempts": 1
+        },
+        "observed": {
+          "before": [
+            "a"
+          ],
+          "history": [
+            "a",
+            "reply-a"
+          ],
+          "calls": [
+            "a"
+          ],
+          "attempts": 1
+        },
+        "agrees": true
+      },
+      {
+        "name": "cooperative-lock-nonreentrant",
+        "kind": "SUPPORTED_LIMITATION",
+        "literal": null,
+        "expected": {
+          "nested_timed_out": true,
+          "history": [
+            "external mutation",
+            "after release",
+            "reply"
+          ],
+          "calls": 1
+        },
+        "observed": {
+          "nested_timed_out": true,
+          "history": [
+            "external mutation",
+            "after release",
+            "reply"
+          ],
+          "calls": 1
+        },
+        "agrees": true
+      },
+      {
+        "name": "provider-observation-observed",
+        "kind": "EXISTING_OBSERVATION_POLICY",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "calls": 1,
+          "history": [
+            "question",
+            "known reply"
+          ],
+          "captured": 1,
+          "known_capture_usage": [
+            7,
+            3
+          ],
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ]
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "calls": 1,
+          "history": [
+            "question",
+            "known reply"
+          ],
+          "captured": 1,
+          "known_capture_usage": [
+            7,
+            3
+          ],
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "provider-observation-callback",
+        "kind": "EXISTING_OBSERVATION_POLICY",
+        "literal": null,
+        "expected": {
+          "outcome": "RuntimeError",
+          "calls": 1,
+          "history": [
+            "question"
+          ],
+          "captured": 1,
+          "known_capture_usage": [
+            7,
+            3
+          ],
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ]
+        },
+        "observed": {
+          "outcome": "RuntimeError",
+          "calls": 1,
+          "history": [
+            "question"
+          ],
+          "captured": 1,
+          "known_capture_usage": [
+            7,
+            3
+          ],
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "provider-observation-clock",
+        "kind": "EXISTING_OBSERVATION_POLICY",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "calls": 1,
+          "history": [
+            "question"
+          ],
+          "captured": 0,
+          "known_capture_usage": null,
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ]
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "calls": 1,
+          "history": [
+            "question"
+          ],
+          "captured": 0,
+          "known_capture_usage": null,
+          "finished": [
+            {
+              "state": "failed",
+              "outcome": "InteractionAttemptFailed",
+              "stage": "interaction_invocation"
+            }
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "provider-observation-unobserved",
+        "kind": "EXISTING_OBSERVATION_POLICY",
+        "literal": null,
+        "expected": {
+          "outcome": "ModelResponse",
+          "calls": 1,
+          "history": [
+            "question",
+            "known reply"
+          ],
+          "captured": 0,
+          "known_capture_usage": null,
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ]
+        },
+        "observed": {
+          "outcome": "ModelResponse",
+          "calls": 1,
+          "history": [
+            "question",
+            "known reply"
+          ],
+          "captured": 0,
+          "known_capture_usage": null,
+          "finished": [
+            {
+              "state": "succeeded",
+              "outcome": "InteractionAttemptSucceeded",
+              "stage": null
+            }
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "execution-sink-failure-after-local-retention",
+        "kind": "EXISTING_EVIDENCE_LIMITATION",
+        "literal": null,
+        "expected": {
+          "response": "reply",
+          "state": "succeeded",
+          "in_memory_evidence": 1,
+          "history": [
+            "question",
+            "reply"
+          ]
+        },
+        "observed": {
+          "response": "reply",
+          "state": "succeeded",
+          "in_memory_evidence": 1,
+          "history": [
+            "question",
+            "reply"
+          ]
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-normal",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-resume",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-foreign",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "calls": 0,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "calls": 0,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-role",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "ValueError",
+          "calls": 0,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "ValueError",
+          "calls": 0,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-exit",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexCommandError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexCommandError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-truncated",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexOutputError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexOutputError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-utf8",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexOutputError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": "UnicodeDecodeError"
+        },
+        "observed": {
+          "outcome": "CodexOutputError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": "UnicodeDecodeError"
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-usage",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [],
+          "usage_error": true,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-cancel",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "outcome": "CancelledError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CancelledError",
+          "calls": 1,
+          "message": null,
+          "thread": null,
+          "usage": [],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "codex-partial",
+        "kind": "DOCUMENTED_PRESENCE_PARSER_LIMITATION",
+        "literal": null,
+        "expected": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "observed": {
+          "outcome": "CodexConversationResult",
+          "calls": 1,
+          "message": "known reply",
+          "thread": "thread-a",
+          "usage": [
+            7
+          ],
+          "usage_error": false,
+          "cwd_correct": true,
+          "cause": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "literal-help-is-cli-option-False",
+        "kind": "NEW_PROMPT_OPTION_BOUNDARY",
+        "literal": "Literal user prompt --help; only CLI-help parsing is exercised, never inference.",
+        "expected": {
+          "outcome": "LiteralPromptTransport",
+          "exit_code": null,
+          "help_instead_of_prompt": false,
+          "option_terminator": true
+        },
+        "observed": {
+          "outcome": "CodexOutputError",
+          "exit_code": 0,
+          "help_instead_of_prompt": true,
+          "option_terminator": false
+        },
+        "agrees": false
+      },
+      {
+        "name": "literal-help-is-cli-option-True",
+        "kind": "NEW_PROMPT_OPTION_BOUNDARY",
+        "literal": "Literal user prompt --help; only CLI-help parsing is exercised, never inference.",
+        "expected": {
+          "outcome": "LiteralPromptTransport",
+          "exit_code": null,
+          "help_instead_of_prompt": false,
+          "option_terminator": true
+        },
+        "observed": {
+          "outcome": "CodexOutputError",
+          "exit_code": 0,
+          "help_instead_of_prompt": true,
+          "option_terminator": false
+        },
+        "agrees": false
+      },
+      {
+        "name": "plain-private-refusal-session",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": null
+        },
+        "observed": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": null
+        },
+        "agrees": true
+      },
+      {
+        "name": "escaped-private-key-session",
+        "kind": "NEW_METADATA_ALLOWLIST",
+        "literal": "Authored private sentinel under a valid escaped JSON key priv\\u0061te; no real private record.",
+        "expected": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": null
+        },
+        "observed": {
+          "private_deserialized": true,
+          "rows": 1,
+          "error": null
+        },
+        "agrees": false
+      },
+      {
+        "name": "plain-private-refusal-exec",
+        "kind": "CONTROL",
+        "literal": null,
+        "expected": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": "ValueError"
+        },
+        "observed": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": "ValueError"
+        },
+        "agrees": true
+      },
+      {
+        "name": "escaped-private-key-exec",
+        "kind": "NEW_METADATA_ALLOWLIST",
+        "literal": "Authored private sentinel under a valid escaped JSON key priv\\u0061te; no real private record.",
+        "expected": {
+          "private_deserialized": false,
+          "rows": 0,
+          "error": "ValueError"
+        },
+        "observed": {
+          "private_deserialized": true,
+          "rows": 1,
+          "error": null
+        },
+        "agrees": false
+      }
+    ],
+    "unhandled_loop_errors": [],
+    "harness_errors": [],
+    "unexpected_controls": [],
+    "scope": "Temporary authored data and deterministic doubles. Actual installed Codex only receives literal --help; no live inference/agent session/model/service/experiment."
+  },
+  "cli": [
+    {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\AppData\\Roaming\\npm\\codex.cmd",
+        "--version"
+      ],
+      "at": "2026-10-26T21:54:46.741428+00:00",
+      "seconds": 0.371206,
+      "exit_code": 0,
+      "stdout_sha256": "1df57fdc934f35bbd09e26308fbbd895698596f3be833ace1027c6bcfd2f81e2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage_lines": [
+        "codex-cli 0.162.1"
+      ],
+      "scope": "Version/help only; not current live inference/sandbox acceptance."
+    },
+    {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\AppData\\Roaming\\npm\\codex.cmd",
+        "exec",
+        "--help"
+      ],
+      "at": "2026-10-26T21:54:47.112645+00:00",
+      "seconds": 0.090601,
+      "exit_code": 0,
+      "stdout_sha256": "df0d864ca2076f7654288c6a1e3394e3eaa2ea8f15021df2524efdd90c70986c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage_lines": [
+        "Usage: codex exec [OPTIONS] [PROMPT]"
+      ],
+      "scope": "Version/help only; not current live inference/sandbox acceptance."
+    },
+    {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\AppData\\Roaming\\npm\\codex.cmd",
+        "exec",
+        "resume",
+        "--help"
+      ],
+      "at": "2026-10-26T21:54:47.203257+00:00",
+      "seconds": 0.090098,
+      "exit_code": 0,
+      "stdout_sha256": "186d8922e15809b2072de0fcd943d47ce1745e9ab112b651f3e4e722a17fa969",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage_lines": [
+        "Usage: codex exec resume [OPTIONS] [SESSION_ID] [PROMPT]"
+      ],
+      "scope": "Version/help only; not current live inference/sandbox acceptance."
+    }
+  ],
+  "official_reference": {
+    "url": "https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+    "fetched": "2026-10-26",
+    "scope": "Current official CLI reference documents positional PROMPT, stdin dash and repeated config controls. Installed0.162.1 help/probe is primary evidence for actual local interpretation; no current web page establishes historical live sandbox acceptance."
+  },
+  "safety": "Baseline-only actual-help executor refuses positional delimiter and non-help input before process entry; do not reuse unchanged after an argv repair as a real model test."
+}

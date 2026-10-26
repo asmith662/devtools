@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "f99678ae-c7d8-4574-a057-da582647d540",
+  "created_at": "2026-10-26T22:13:49.102751+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Reject escaped unknown fields before decoding Codex metadata-only payloads",
+    "summary": "P2: read_session_usage/read_exec_usage promise metadata-only deserialization and reject unknown field shapes before json.loads. Regex _KEY only recognizes plain ASCII keys, so valid escaped unknown key priv\\u0061te is invisible to the allowlist. Instrumented loads observes an authored private sentinel being deserialized and both readers admit one usage row; plain private controls skip/refuse with zero decoding. This is a privacy/minimal-ingestion contract defect, not observed returned private payload, real personal log exposure or external exfiltration. from_session and scripts/usage.py are actual maintained consumers. Baseline 87f5b9d2cbe8f92538af8510da7bca6e148d31b6. Acceptance: Before decoding a payload, fail closed on unknown/private keys including equivalent escaped JSON spellings and nested keys. Keep allowed metadata values, supported escaped value strings, stable identities/counts and unknown/skip/refusal semantics. Independently spy on decoding using authored sentinels, never personal logs; verify session and exec public readers plus actual ingestion/report consumer. Do not fix by decoding all content then filtering, broadening capture, creating another persistence store or replacing Intake/JSON architecture.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:agents-conversation-runtime:87f5b9d2:20261026:NEW_METADATA_ALLOWLIST"
+    },
+    "parent": "B-0023",
+    "resources": [
+      "src/devtools/agents/integrations/codex/sessions.py",
+      "tests/observability/usage/test_sources.py",
+      "src/devtools/observability/usage/ingestion.py",
+      "scripts/usage.py"
+    ],
+    "evidence": [
+      "docs/research/agents-conversation-and-runtime-audit.md",
+      "docs/research/code-audit/agents-conversation-runtime-probes.json"
+    ],
+    "benefit": "Restore the existing literal-input or metadata-only boundary without new Agent, execution, parsing or persistence architecture.",
+    "uncertainty": "Only deterministic authored input and version/help CLI execution. No live inference, dangerous option, production/private log or effect outside temporary test data; no demonstrated source-mutation or execution-authority bypass.",
+    "dependencies": [
+      "Maintainer must separately authorize bounded implementation, permanent independent regressions and final committed protected gate; current audit authorizes documentation only."
+    ]
+  },
+  "payload_sha256": "c53d5eacecc38da0574ea64d0cb3fb8c98cf374c80082a870c9aca949d042f25"
+}

@@ -75,3 +75,7 @@ ModelInteraction/Serving audit on `a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1`: al
 ## ModelInteraction/Serving repair evidence — 2026-10-26
 
 Current Serving Status and corrected package contracts now describe both concrete adapters and bounded readiness/cleanup. Other stale identity/application wording and broader reconciliation remain separate. [Delivered repair](../../development/model-serving-contract-repair.md), production `5125ab6a847ee1844913c006d801b01f5fea7cc4`, normal PR32, verified main `a602dae60b3a7c71bdd1c1231613143c309292c1`. No state/maturity/approval/parent closure or new authority. `repair:model-serving-contracts:5125ab6a:20261026`.
+
+## Agents/Conversation/Runtime audit — 2026-10-26
+
+Codex root docstring still calls it a ModelInteraction provider; tests retain Context/Session/ModelResponse wording; CLI docs live command points to removed tests/interactions path and older0.147 live acceptance. Architecture page contains dated feature/B0048 claims despite merged corrections. Current notices and this audit qualify them; no semantic rename or reopening delivered scope. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
