@@ -1,0 +1,546 @@
+{
+  "at": "2026-10-26T21:50:05.702123+00:00",
+  "baseline": "87f5b9d2cbe8f92538af8510da7bca6e148d31b6",
+  "tree": "0a0ad1f97e7c15c6cd22da4aa638d26bda8fe7ac",
+  "status": "FROZEN_BEFORE_SUBSTANTIVE_REVIEW",
+  "cohort": [
+    {
+      "path": "src/devtools/agents/__init__.py",
+      "blob": "9c5bf15d1bdb9d486b05f015d6c16d4c6c2c09f2",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/conversation/__init__.py",
+      "blob": "b1b2241e1fc40da0fcce2102cb644d5942f17460",
+      "lines": 21,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "lines": 158,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/agents/conversation/conversation.py",
+          "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+          "depth": "TARGETED_DEPENDENCY",
+          "scope": "new/retained input/history and continuation ownership; failed provider observation does not commit response to history."
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/agents/conversation/history.py",
+      "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+      "lines": 44,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "lines": 105,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/__init__.py",
+      "blob": "0b48fb955d51e2154d2ade218d81c1dc9a84d04d",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/__init__.py",
+      "blob": "2339e3e5c1d18e44458e45fca4621cda03034855",
+      "lines": 18,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/agent.py",
+      "blob": "00c6be32ee3da256c18243b32355b85ac4076daa",
+      "lines": 158,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/errors.py",
+      "blob": "813c1502ecc8d4e7b6f5ea31b3d959173d0a0869",
+      "lines": 32,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/models.py",
+      "blob": "5232b8ebba16f61b0d823ee39894d9f6fe314edb",
+      "lines": 36,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/parsing.py",
+      "blob": "12068006a87662d9742510b42c2e3421fae4f874",
+      "lines": 141,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/sessions.py",
+      "blob": "4abad39304d87075d87dbee735f0723eb4f6edcf",
+      "lines": 171,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/usage.py",
+      "blob": "f0e5363bf46a6cde404e558f3c6991a07b5b7836",
+      "lines": 91,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/execution/__init__.py",
+      "blob": "efec5ee0c4a550256699cf56d1704a98a693729e",
+      "lines": 28,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "lines": 200,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/execution/interaction_attempt.py",
+          "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+          "depth": "TARGETED_DEPENDENCY",
+          "scope": "Specialized attempt status/failed invocation/terminal observer contracts, separate occurrence identity."
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/execution/protocols.py",
+      "blob": "c91e52f8843cb157cf495c4ad95e82ae8433ec04",
+      "lines": 23,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "lines": 177,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/execution/runtime.py",
+          "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+          "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+          "scope": "Conversation serialization, provider response-source check, attempt lifecycle and contained terminal observer errors; not whole Runtime/Agents domain credit."
+        }
+      ]
+    },
+    {
+      "path": "tests/agents/__init__.py",
+      "blob": "e2fdba80bbe45991169c531c5badd68c14208fa5",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/__init__.py",
+      "blob": "89b7011fd0a5775ca009b2ee8520887bf5eb0320",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/history/__init__.py",
+      "blob": "b0f172a8900c36f3c0a9f1d4cd1d077d6f77d762",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/history/test_history.py",
+      "blob": "43bd2bbab38a6da01662318a39dac71b70070814",
+      "lines": 210,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/message/__init__.py",
+      "blob": "aa2e1c6449da5cb4619fc874606bd1a506524fc4",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/message/test_message.py",
+      "blob": "cab03612de7f88f6c645124206ffc2df6515355e",
+      "lines": 180,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/test_live.py",
+      "blob": "9d96894009561d0625a50da4495b5e4e942ef584",
+      "lines": 142,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/test_session.py",
+      "blob": "9744393fcbc7ec8caf9c879e69ecf5a48656db8b",
+      "lines": 411,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/conversation/test_session_id.py",
+      "blob": "bff5fc3a9b01d8264b37afc6a23d5120a8282677",
+      "lines": 56,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/__init__.py",
+      "blob": "e157db5e683f5df1b1c09d56e02adff1d0b93eed",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/codex/__init__.py",
+      "blob": "d7d5f5b6eb1ca5afbdd99694f4894a7e47dfe82a",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_agent.py",
+      "blob": "715604e58dfdcfc5b87f88c8c84ed5265d832242",
+      "lines": 291,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_live.py",
+      "blob": "019b611d9b7ebfc3283b91fada1d4322f31d4ff7",
+      "lines": 84,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_parsing.py",
+      "blob": "5ba61118099b0c84586f58aab3f735f78e513250",
+      "lines": 107,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_usage.py",
+      "blob": "677e20c15bcd3b682223bc0394ed1b0d4c0c372a",
+      "lines": 98,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/execution/__init__.py",
+      "blob": "e5abadb0bd6a0847bb05115905f62d84ad7d5993",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/execution/test_interaction_attempt.py",
+      "blob": "194232f241fa34ea9f16d2dd26707da7a462fdd0",
+      "lines": 391,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": []
+    },
+    {
+      "path": "tests/execution/test_runtime.py",
+      "blob": "11526bb591531a9398becb63578e9482eef24e54",
+      "lines": 530,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "tests/execution/test_runtime.py",
+          "blob": "11526bb591531a9398becb63578e9482eef24e54",
+          "depth": "TARGETED_TEST_CONSUMER",
+          "scope": "Source mismatch, attempts and callback controls; executed not full-source review."
+        }
+      ]
+    }
+  ],
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "scope": "Maintained Conversation/Codex/Execution and all requested Agents/Execution tests; live test bodies read but never opt-in executed. Prior full Runtime body is matching evidence, not automatic credit to targeted dependencies.",
+  "review_overlay": {
+    "at": "2026-10-26T22:13:50.457607+00:00",
+    "status": "COMPLETED_AT_DEFINED_DEPTH_WITH_TWO_OPEN_P2_FINDINGS",
+    "report": "docs/research/agents-conversation-and-runtime-audit.md",
+    "reviewed": [
+      {
+        "path": "src/devtools/agents/__init__.py",
+        "blob": "9c5bf15d1bdb9d486b05f015d6c16d4c6c2c09f2",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "src/devtools/agents/conversation/__init__.py",
+        "blob": "b1b2241e1fc40da0fcce2102cb644d5942f17460",
+        "depth": "FULL_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/agents/conversation/conversation.py",
+        "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/conversation/history.py",
+        "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/conversation/message.py",
+        "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/__init__.py",
+        "blob": "0b48fb955d51e2154d2ade218d81c1dc9a84d04d",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/__init__.py",
+        "blob": "2339e3e5c1d18e44458e45fca4621cda03034855",
+        "depth": "FULL_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/agent.py",
+        "blob": "00c6be32ee3da256c18243b32355b85ac4076daa",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/errors.py",
+        "blob": "813c1502ecc8d4e7b6f5ea31b3d959173d0a0869",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/models.py",
+        "blob": "5232b8ebba16f61b0d823ee39894d9f6fe314edb",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/parsing.py",
+        "blob": "12068006a87662d9742510b42c2e3421fae4f874",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/sessions.py",
+        "blob": "4abad39304d87075d87dbee735f0723eb4f6edcf",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/agents/integrations/codex/usage.py",
+        "blob": "f0e5363bf46a6cde404e558f3c6991a07b5b7836",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/execution/__init__.py",
+        "blob": "efec5ee0c4a550256699cf56d1704a98a693729e",
+        "depth": "FULL_EXPORT_AND_IMPORT_BODY"
+      },
+      {
+        "path": "src/devtools/execution/interaction_attempt.py",
+        "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/execution/protocols.py",
+        "blob": "c91e52f8843cb157cf495c4ad95e82ae8433ec04",
+        "depth": "FULL_IMPLEMENTATION_BODY"
+      },
+      {
+        "path": "src/devtools/execution/runtime.py",
+        "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+        "depth": "FULL_IMPLEMENTATION_BODY_WITH_MATCHING_PRIOR_REVALIDATION"
+      },
+      {
+        "path": "tests/agents/__init__.py",
+        "blob": "e2fdba80bbe45991169c531c5badd68c14208fa5",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/conversation/__init__.py",
+        "blob": "89b7011fd0a5775ca009b2ee8520887bf5eb0320",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/conversation/history/__init__.py",
+        "blob": "b0f172a8900c36f3c0a9f1d4cd1d077d6f77d762",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/conversation/history/test_history.py",
+        "blob": "43bd2bbab38a6da01662318a39dac71b70070814",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/conversation/message/__init__.py",
+        "blob": "aa2e1c6449da5cb4619fc874606bd1a506524fc4",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/conversation/message/test_message.py",
+        "blob": "cab03612de7f88f6c645124206ffc2df6515355e",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/conversation/test_live.py",
+        "blob": "9d96894009561d0625a50da4495b5e4e942ef584",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/conversation/test_session.py",
+        "blob": "9744393fcbc7ec8caf9c879e69ecf5a48656db8b",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/conversation/test_session_id.py",
+        "blob": "bff5fc3a9b01d8264b37afc6a23d5120a8282677",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/integrations/__init__.py",
+        "blob": "e157db5e683f5df1b1c09d56e02adff1d0b93eed",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/integrations/codex/__init__.py",
+        "blob": "d7d5f5b6eb1ca5afbdd99694f4894a7e47dfe82a",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/agents/integrations/codex/test_agent.py",
+        "blob": "715604e58dfdcfc5b87f88c8c84ed5265d832242",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/integrations/codex/test_live.py",
+        "blob": "019b611d9b7ebfc3283b91fada1d4322f31d4ff7",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/integrations/codex/test_parsing.py",
+        "blob": "5ba61118099b0c84586f58aab3f735f78e513250",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/agents/integrations/codex/test_usage.py",
+        "blob": "677e20c15bcd3b682223bc0394ed1b0d4c0c372a",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/execution/__init__.py",
+        "blob": "e5abadb0bd6a0847bb05115905f62d84ad7d5993",
+        "depth": "FULL_MARKER_ROLE_REVIEW"
+      },
+      {
+        "path": "tests/execution/test_interaction_attempt.py",
+        "blob": "194232f241fa34ea9f16d2dd26707da7a462fdd0",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      },
+      {
+        "path": "tests/execution/test_runtime.py",
+        "blob": "11526bb591531a9398becb63578e9482eef24e54",
+        "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY"
+      }
+    ],
+    "matching_prior_full_body_revalidated": 1,
+    "remaining_selected_paths": []
+  }
+}

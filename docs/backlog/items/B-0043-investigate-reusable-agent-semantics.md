@@ -65,3 +65,7 @@ Detection contracts, false-positive control, permissions, actual consumers and
 reproducible evidence remain unqualified. Do not create a BaseAgent, self-modifying
 maintenance service or new hierarchy from role labels. This is research pressure,
 not a distinct verified defect or implementation authorization.
+
+## Agents/Conversation/Runtime audit — 2026-10-26
+
+CodexAgent is external-agent adaptation, not ModelInteraction; no maintained native caller found beyond tests, while parser/usage helpers have retained experimental/usage consumers. New pending P2 literal-prompt transport owner in report. Runtime sends current message/continuation rather than full history; native Qwen owns its separate bounded Tool loop. No BaseAgent/Run/registry promotion follows. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.

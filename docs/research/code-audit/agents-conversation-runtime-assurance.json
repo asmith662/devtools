@@ -1,0 +1,1282 @@
+{
+  "at": "2026-10-26T22:13:50.457607+00:00",
+  "baseline": "87f5b9d2cbe8f92538af8510da7bca6e148d31b6",
+  "tree": "0a0ad1f97e7c15c6cd22da4aa638d26bda8fe7ac",
+  "branch": "audit/agents-conversation-runtime-20261026",
+  "reviewed": [
+    {
+      "path": "src/devtools/agents/__init__.py",
+      "blob": "9c5bf15d1bdb9d486b05f015d6c16d4c6c2c09f2",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/conversation/__init__.py",
+      "blob": "b1b2241e1fc40da0fcce2102cb644d5942f17460",
+      "lines": 21,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit canonical import/reexport surface and compatibility",
+      "finding": "Public types match ownership; no dynamic provider/Agent registry or new authority.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "lines": 158,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/agents/conversation/conversation.py",
+          "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+          "depth": "TARGETED_DEPENDENCY",
+          "scope": "new/retained input/history and continuation ownership; failed provider observation does not commit response to history."
+        }
+      ],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "ConversationId, reconstruction, live continuation view, retained immutable history, local turn coordination",
+      "finding": "Object identity differs from durable ID. add/set_conversation are synchronous cooperative mutators, not authority or globally fenced commits. Nonreentrant object-local lock serializes Runtime turns; equal-ID reconstructions have independent locks. No rollback/idempotency, Run lifecycle or Context assembly.",
+      "functions_inspected": [
+        "new",
+        "parse",
+        "__str__",
+        "__init__",
+        "new",
+        "id",
+        "created_at",
+        "history",
+        "conversations",
+        "add",
+        "conversation_for",
+        "set_conversation",
+        "turn",
+        "__eq__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/conversation/history.py",
+      "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+      "lines": 44,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Immutable Sequence, tuple-order iteration/slicing and persistent append",
+      "finding": "Preserves supplied messages exactly, insertion order rather than wall time, duplicate positions and stable old snapshots. Typed tuple construction is trusted; no synthetic invalid-list constructor bug claimed.",
+      "functions_inspected": [
+        "__len__",
+        "__iter__",
+        "__getitem__",
+        "__getitem__",
+        "__getitem__",
+        "append"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "lines": 105,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Message identity, role strings, immutable content/source/time and factories",
+      "finding": "Literal content including empty/Unicode/multiline retained without trimming. UUID wrappers reuse Core policy; Message stores semantic text, not full ModelResponse reasoning/Tool/usage or AgentRun replay.",
+      "functions_inspected": [
+        "new",
+        "parse",
+        "__str__",
+        "new",
+        "__str__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/__init__.py",
+      "blob": "0b48fb955d51e2154d2ade218d81c1dc9a84d04d",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/__init__.py",
+      "blob": "2339e3e5c1d18e44458e45fca4621cda03034855",
+      "lines": 18,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit canonical import/reexport surface and compatibility",
+      "finding": "Canonical exports inspected. Codex root docstring incorrectly calls external Agent a ModelInteraction provider; B0006 stale wording, no actual adapter/protocol merge.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/agent.py",
+      "blob": "00c6be32ee3da256c18243b32355b85ac4076daa",
+      "lines": 158,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Explicit managed executor/cwd, fresh and resumed argv, output acceptance and recoverable usage",
+      "finding": "NEW P2: user text --help becomes an option in both public send paths. Source/role preconditions correct; stdout truncation refuses; nonzero/semantic errors preserve usage where safe. No retries/Command exception wrapping/automatic Conversation retention. Constructor grammar0.147 docs versus installed0.162.1 help qualified.",
+      "functions_inspected": [
+        "_resolve_executable",
+        "__init__",
+        "source",
+        "send",
+        "_build_command"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/errors.py",
+      "blob": "813c1502ecc8d4e7b6f5ea31b3d959173d0a0869",
+      "lines": 32,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Typed external CLI failure with separately recoverable usage/error",
+      "finding": "Completed nonzero exits differ from command-entry/cancellation exceptions; unknown usage is empty/unavailable, not a free invocation. No known-external-effect rollback guarantee.",
+      "functions_inspected": [
+        "__init__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/models.py",
+      "blob": "5232b8ebba16f61b0d823ee39894d9f6fe314edb",
+      "lines": 36,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Frozen parsed turn and external-agent conversation result",
+      "finding": "Message/continuation plus optional usage_error is an existing response-versus-accounting separation precedent; not ModelResponse or permission to copy fields into it.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/parsing.py",
+      "blob": "12068006a87662d9742510b42c2e3421fae4f874",
+      "lines": 141,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "UTF8/JSONL decode, narrow event fields, final text and optional usage",
+      "finding": "Presence-based state deliberately documented: incomplete later turn can coexist with an accepted earlier answer. Not full event-order assurance; classify policy limitation, not new implicit implementation obligation. Last completed message wins; turn.failed refuses; recoverable error events ignored intentionally.",
+      "functions_inspected": [
+        "parse_codex_turn_output",
+        "_apply_event",
+        "_apply_completed_item",
+        "_parse_event",
+        "_required_thread_id",
+        "_required_string"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/sessions.py",
+      "blob": "4abad39304d87075d87dbee735f0723eb4f6edcf",
+      "lines": 171,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Metadata-only session/exec import, scalar prefixes, field allowlist and completion projection",
+      "finding": "NEW P2: escaped unknown JSON key priv\\u0061te bypasses regex field allowlist; actual private sentinel decoded and one row admitted by both readers. Plain-key controls refuse before decoding. Actual usage ingress/CLI consumers exist; no returned payload leak, live private log or external exfiltration claimed.",
+      "functions_inspected": [
+        "_scalar",
+        "_counts",
+        "read_session_usage",
+        "read_exec_usage"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/usage.py",
+      "blob": "f0e5363bf46a6cde404e558f3c6991a07b5b7836",
+      "lines": 91,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Usage-only independent capture, turn ordinal and duplicate/identity checks",
+      "finding": "Five counts preserved without inferred totals. Missing usage unknown; malformed/duplicate stream explicitly refuses capture without erasing valid semantic output. Turn aggregate is not model-request count.",
+      "functions_inspected": [
+        "_invalid_usage",
+        "capture_codex_usage"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/execution/__init__.py",
+      "blob": "efec5ee0c4a550256699cf56d1704a98a693729e",
+      "lines": 28,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_EXPORT_AND_IMPORT_BODY",
+      "role": "Explicit canonical import/reexport surface and compatibility",
+      "finding": "Public types match ownership; no dynamic provider/Agent registry or new authority.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/execution/interaction_attempt.py",
+      "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+      "lines": 200,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/execution/interaction_attempt.py",
+          "blob": "2ab6a27322d1313157640efe7081f060b8f0cd9f",
+          "depth": "TARGETED_DEPENDENCY",
+          "scope": "Specialized attempt status/failed invocation/terminal observer contracts, separate occurrence identity."
+        }
+      ],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Specialized occurrence identity, four states, stages, reconstruction and single terminalization",
+      "finding": "Timestamp sampled before state mutation; failure preserves RUNNING. Backward wall completion expressly permitted. Object equality not durable-ID equality; cannot terminalize twice. Runtime may return known response even when terminalization/capture fails; existing evidence limitation.",
+      "functions_inspected": [
+        "new",
+        "parse",
+        "__str__",
+        "__init__",
+        "new",
+        "id",
+        "conversation_id",
+        "message_id",
+        "interaction_source",
+        "started_at",
+        "state",
+        "completed_at",
+        "succeed",
+        "fail",
+        "cancel",
+        "_complete",
+        "__eq__"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/execution/protocols.py",
+      "blob": "c91e52f8843cb157cf495c4ad95e82ae8433ec04",
+      "lines": 23,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_IMPLEMENTATION_BODY",
+      "role": "Synchronous started/finished observation protocol",
+      "finding": "Execution owns lifecycle, Observability owns factual capture. Admission callback differs from optional provider completion observation; OptionB must not suppress admission refusal.",
+      "functions_inspected": [
+        "attempt_started",
+        "attempt_finished"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "lines": 177,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "src/devtools/execution/runtime.py",
+          "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+          "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+          "scope": "Conversation serialization, provider response-source check, attempt lifecycle and contained terminal observer errors; not whole Runtime/Agents domain credit."
+        }
+      ],
+      "depth": "FULL_IMPLEMENTATION_BODY_WITH_MATCHING_PRIOR_REVALIDATION",
+      "role": "One retained-input/model/validation/output/continuation lifecycle and optional attempt callbacks",
+      "finding": "Matching prior full body reauthenticated and reread. Current-only Prompt and continuation forwarded; source validation before output; retained input survives error; continuation replacement fault can leave assistant plus old ref. Admission observer can refuse; terminal errors contained. No Tool authority, budgets, retries or Agent loop.",
+      "functions_inspected": [
+        "__init__",
+        "observer",
+        "send",
+        "_start_attempt",
+        "_validate_response_source",
+        "_finish_attempt"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SOURCE_REVIEW_AND_BOUNDED_PROBES"
+    },
+    {
+      "path": "tests/agents/__init__.py",
+      "blob": "e2fdba80bbe45991169c531c5badd68c14208fa5",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/__init__.py",
+      "blob": "89b7011fd0a5775ca009b2ee8520887bf5eb0320",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/history/__init__.py",
+      "blob": "b0f172a8900c36f3c0a9f1d4cd1d077d6f77d762",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/history/test_history.py",
+      "blob": "43bd2bbab38a6da01662318a39dac71b70070814",
+      "lines": 210,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Literal insertion order, tuple slices, identity preservation, value/hash equality, duplicates and immutable append",
+      "finding": "Independent local value oracles appropriate; helper content or value substitutes empty text, but Message tests independently cover empty content. No source observation or persistence claim.",
+      "functions_inspected": [
+        "_message",
+        "_messages",
+        "test_context_root_and_submodule_expose_the_same_history_type",
+        "test_history_supports_empty_and_direct_deterministic_construction",
+        "test_history_preserves_insertion_order_not_message_timestamps",
+        "test_history_provides_normal_sequence_length_iteration_and_membership",
+        "test_history_integer_indexing_supports_positive_and_negative_positions",
+        "test_history_slices_return_history_with_tuple_selection_semantics",
+        "test_history_append_returns_a_new_history_without_transforming_message",
+        "test_history_uses_ordered_immutable_value_and_hash_semantics",
+        "test_history_retains_duplicate_messages_as_distinct_transcript_positions",
+        "test_history_inherits_standard_sequence_conveniences"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/message/__init__.py",
+      "blob": "aa2e1c6449da5cb4619fc874606bd1a506524fc4",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/message/test_message.py",
+      "blob": "cab03612de7f88f6c645124206ffc2df6515355e",
+      "lines": 180,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "UUID factories/version/normalization, roles/source policy, exact content, timestamp and immutability",
+      "finding": "Literal assertions cover empty/Unicode/multiline values and canonical exports. Former Context wording is stale; current typed semantics not an untrusted-data parser.",
+      "functions_inspected": [
+        "_message",
+        "test_context_root_reexports_the_canonical_message_types",
+        "test_message_id_is_a_public_immutable_semantic_identity",
+        "test_message_id_parse_preserves_non_v4_identity_versions",
+        "test_message_role_values_are_stable_strings",
+        "test_message_source_is_immutable_and_uses_exact_nonblank_identifiers",
+        "test_message_source_preserves_case",
+        "test_message_source_rejects_each_surrounding_whitespace_boundary",
+        "test_message_preserves_uninterpreted_content_exactly",
+        "test_message_supports_deterministic_immutable_value_semantics",
+        "test_message_new_generates_identity_and_timestamp_without_mutating_inputs"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/test_live.py",
+      "blob": "9d96894009561d0625a50da4495b5e4e942ef584",
+      "lines": 142,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Opt-in caller-composed Codex retention and marker/write refusal assertions",
+      "finding": "Full body reviewed, never enabled. Direct caller owns turn/add/set. Historical live acceptance does not establish current live sandbox/model behavior; normal focused run skips.",
+      "functions_inspected": [
+        "_enabled",
+        "test_session_retains_a_read_only_codex_continuation",
+        "exercise"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SKIPPED_OPT_IN_LIVE"
+    },
+    {
+      "path": "tests/agents/conversation/test_session.py",
+      "blob": "9744393fcbc7ec8caf9c879e69ecf5a48656db8b",
+      "lines": 411,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Reconstruction, snapshots, source-keyed refs, object equality and complete cooperative turn schedules",
+      "finding": "Barriers independently test held/waiting cancellation, same/different/equal-ID object locks. No cross-process or automatic add locking claim; nonreentrancy added independent probe. No runtime source authority inferred.",
+      "functions_inspected": [
+        "_message",
+        "_ref",
+        "_session",
+        "test_session_new_has_fresh_lifecycle_identity_and_empty_state",
+        "test_session_direct_reconstruction_preserves_supplied_state",
+        "test_session_public_lifecycle_properties_cannot_be_reassigned",
+        "test_session_adds_all_message_roles_and_preserves_snapshots_and_duplicates",
+        "test_session_constructor_materializes_supported_conversation_iterables",
+        "test_session_rejects_duplicate_constructor_sources_by_value",
+        "test_session_conversations_are_live_read_only_source_keyed_state",
+        "test_session_replaces_current_conversation_for_one_source",
+        "test_sessions_use_object_identity_equality_and_are_unhashable",
+        "test_session_lifecycle_identity_and_creation_time_remain_stable",
+        "test_multiple_sessions_can_hold_the_same_provider_reference",
+        "test_session_turn_acquires_and_releases_normally",
+        "test_session_constructed_outside_a_loop_yields_no_turn_value",
+        "test_session_turn_releases_after_exception",
+        "test_session_turn_serializes_same_session_workers",
+        "test_session_turn_allows_different_sessions_to_proceed_concurrently",
+        "test_session_turns_do_not_share_locks_for_equal_session_ids",
+        "test_session_turn_cancellation_releases_coordination",
+        "test_session_turn_waiter_cancellation_does_not_acquire_coordination",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "first",
+        "second",
+        "hold",
+        "hold",
+        "hold",
+        "wait_for_turn"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/conversation/test_session_id.py",
+      "blob": "bff5fc3a9b01d8264b37afc6a23d5120a8282677",
+      "lines": 56,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Semantic ID value/hash/frozen behavior and canonical public imports",
+      "finding": "Core UUID wrapper reuse; mutable Conversation entity equality deliberately separate. Old session/context test names not alternate runtime APIs.",
+      "functions_inspected": [
+        "test_context_root_and_submodule_expose_the_same_session_types",
+        "test_session_id_is_an_immutable_semantic_identity",
+        "test_session_id_parsing_preserves_identity_version_and_canonical_text"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/integrations/__init__.py",
+      "blob": "e157db5e683f5df1b1c09d56e02adff1d0b93eed",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/integrations/codex/__init__.py",
+      "blob": "d7d5f5b6eb1ca5afbdd99694f4894a7e47dfe82a",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_agent.py",
+      "blob": "715604e58dfdcfc5b87f88c8c84ed5265d832242",
+      "lines": 291,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Recording managed executor, exact argv/cwd, role/source guard, failure/truncation, usage and executable resolution",
+      "finding": "Tests protect argv shape, not literal CLI interpretation; misses dash/sentinel input. Fakes do not prove current CLI sandbox effectiveness. Stale ModelResponse wording under B0006.",
+      "functions_inspected": [
+        "_user_message",
+        "_agent",
+        "test_agent_builds_fresh_read_only_jsonl_command_and_maps_turn",
+        "test_usage_survives_nonzero_exit_and_invalid_scientific_payload",
+        "test_agent_builds_resume_command_with_provider_thread_id",
+        "test_agent_rejects_non_user_message_without_executing",
+        "test_agent_rejects_foreign_conversation_without_executing",
+        "test_agent_rejects_unsuccessful_truncated_or_invalid_results",
+        "test_default_windows_executable_prefers_the_direct_cmd_launcher",
+        "test_default_windows_executable_falls_back_to_command_domain_lookup",
+        "test_explicit_executable_is_preserved_and_non_windows_keeps_codex",
+        "test_root_public_api_is_exact",
+        "test_agent_preserves_an_empty_prompt_as_one_argument",
+        "test_default_resolution_failure_preserves_command_domain_error",
+        "__init__",
+        "execute",
+        "execute"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_live.py",
+      "blob": "019b611d9b7ebfc3283b91fada1d4322f31d4ff7",
+      "lines": 84,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Opt-in real fresh/resume marker, stable thread and readonly write refusal",
+      "finding": "Full body reviewed but skipped. Current0.162.1 help and safe transport probes do not renew full0.147-era live acceptance.",
+      "functions_inspected": [
+        "_enabled",
+        "test_codex_resumes_a_read_only_conversation_in_an_isolated_git_repo",
+        "exercise"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "SKIPPED_OPT_IN_LIVE"
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_parsing.py",
+      "blob": "5ba61118099b0c84586f58aab3f735f78e513250",
+      "lines": 107,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Literal success/last message/reconnect and malformed/failed/missing event controls",
+      "finding": "Meaningful independent presence-based oracle; does not certify final-turn ordering or process acceptance. The extra-open-turn probe is a documented limitation.",
+      "functions_inspected": [
+        "test_parser_extracts_current_successful_jsonl_contract",
+        "test_parser_allows_recoverable_error_events_before_completion",
+        "test_parser_rejects_incomplete_or_invalid_protocol",
+        "test_parser_rejects_non_utf8_stdout"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/agents/integrations/codex/test_usage.py",
+      "blob": "677e20c15bcd3b682223bc0394ed1b0d4c0c372a",
+      "lines": 98,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Known/unknown five fields, duplicate stream/turn checks and optional capture failure",
+      "finding": "Unknown counts remain None; identical counts across distinct turns permitted; no inferred total. Existing OptionB-like separation for optional usage is demonstrated, not approval to change ModelInteraction.",
+      "functions_inspected": [
+        "test_all_categories_retained_without_overlapping_total",
+        "test_absence_is_unknown_and_turn_rejection_has_no_zero_report",
+        "test_invalid_or_duplicate_usage_fails",
+        "test_distinct_turns_remain_distinct",
+        "test_optional_usage_failure_does_not_erase_valid_response"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/execution/__init__.py",
+      "blob": "e5abadb0bd6a0847bb05115905f62d84ad7d5993",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "role": "Package discovery/docstring marker with no imports or independent behavioral body",
+      "finding": "No hidden algorithm or side effects; role authenticated.",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/execution/test_interaction_attempt.py",
+      "blob": "194232f241fa34ea9f16d2dd26707da7a462fdd0",
+      "lines": 391,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Identity, four states, exact exports, attribution, timestamp failure, retransition matrix and reconstruction",
+      "finding": "Independent lifecycle assertions including deliberately backward wall completion. No monotonic interval guarantee or generic Run/Tool Attempt inferred.",
+      "functions_inspected": [
+        "_timestamp",
+        "_attempt",
+        "test_root_and_submodule_expose_the_same_attempt_types",
+        "test_attempt_id_is_an_immutable_semantic_identity",
+        "test_attempt_id_accepts_non_v4_identity_text",
+        "test_attempt_state_has_exact_stable_members",
+        "test_attempt_new_creates_running_lifecycle_with_exact_attribution",
+        "test_attempt_properties_are_read_only",
+        "test_attempt_terminal_methods_complete_running_lifecycle",
+        "test_attempt_completion_timestamp_failure_preserves_running_lifecycle",
+        "test_attempt_rejects_all_terminal_retransitions",
+        "test_attempt_reconstruction_preserves_valid_lifecycle_state",
+        "test_attempt_rejects_invalid_reconstructed_lifecycle_state",
+        "test_attempt_reconstruction_allows_earlier_completion_wall_clock",
+        "test_attempts_use_object_identity_equality_and_are_unhashable",
+        "test_repeated_message_and_cross_session_attempts_are_valid",
+        "raise_timestamp_error"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    },
+    {
+      "path": "tests/execution/test_runtime.py",
+      "blob": "11526bb591531a9398becb63578e9482eef24e54",
+      "lines": 530,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "prior_matching_evidence": [
+        {
+          "path": "tests/execution/test_runtime.py",
+          "blob": "11526bb591531a9398becb63578e9482eef24e54",
+          "depth": "TARGETED_TEST_CONSUMER",
+          "scope": "Source mismatch, attempts and callback controls; executed not full-source review."
+        }
+      ],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "role": "Prompt/settings/continuation/source, failure/cancel/admission/terminal callbacks and serialized turns",
+      "finding": "Full body now reviewed rather than prior targeted test execution. Some private terminal guard tests are synthetic; independent actual send probes add failed-repeat, waiting cancellation and retention-fault stages. Model history not automatically replayed as Context.",
+      "functions_inspected": [
+        "_message",
+        "test_runtime_projects_conversation_message_and_materializes_response",
+        "test_runtime_forwards_an_explicit_output_bound_without_treating_it_as_budget",
+        "test_runtime_rejects_an_invalid_output_bound_before_interaction",
+        "test_runtime_forwards_explicit_thinking_control",
+        "test_runtime_rejects_malformed_thinking_control_before_interaction",
+        "test_runtime_hands_forward_and_replaces_provider_continuation",
+        "test_runtime_rejects_mismatched_model_source_before_retaining_output",
+        "test_runtime_observer_exposes_execution_lifecycle_without_evidence_dependency",
+        "test_runtime_records_provider_failure_and_preserves_primary_error",
+        "test_runtime_records_cancellation_without_retaining_response",
+        "test_runtime_without_observer_does_not_create_attempt",
+        "test_runtime_exposes_fixed_observer_configuration",
+        "test_runtime_preserves_observer_admission_failure_and_terminalizes_attempt",
+        "test_runtime_suppresses_secondary_terminalization_failures",
+        "test_runtime_preserves_admission_cancellation_when_observer_cancels",
+        "test_runtime_suppresses_terminalization_and_observer_cancellation",
+        "test_runtime_serializes_turns_for_one_conversation",
+        "send",
+        "attempt_started",
+        "attempt_finished",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "fail_new",
+        "exercise",
+        "exercise",
+        "exercise",
+        "exercise",
+        "cancel_terminalization",
+        "exercise",
+        "fail_terminalization",
+        "exercise",
+        "attempt_started",
+        "attempt_finished",
+        "attempt_started",
+        "attempt_finished",
+        "send"
+      ],
+      "remaining_functions": [],
+      "report": "docs/research/agents-conversation-and-runtime-audit.md",
+      "execution": "FOCUSED_OFFLINE_TESTS"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/observability/evidence/inspection.py",
+      "blob": "b6f032a71ed23aea3a2570d2af5cf8ad35317fd1",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "ExecutionInspector retains attempt/terminal Evidence before optional sink; Runtime contains terminal errors. Not generic durable capture."
+    },
+    {
+      "path": "src/devtools/observability/evidence/terminal.py",
+      "blob": "7c386fba479ee3bbad19b8fa32c894cb5f31a5e0",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Immutable terminal Evidence and domain IDs, observation-time sampling distinct from occurrence."
+    },
+    {
+      "path": "src/devtools/observability/evidence/protocols.py",
+      "blob": "5bc90e40f59b972ccf7202d860eac719a02e7b7b",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Sink takes terminal Evidence only, not capture-failure outcomes."
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "TARGETED_CAPTURE_POLICY_AND_ACTUAL_INSPECTOR_BODY",
+      "scope": "from_observation, privacy fields and first-wins completion Inspector. No capture-failure method or automatic durable consumer."
+    },
+    {
+      "path": "src/devtools/observability/usage/ingestion.py",
+      "blob": "88e9fd2e124162bbbfc11fdb588cdcc2465e1806",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "from_session actual metadata import projection; different response/turn granularity and known/unknown counts, not payload preservation."
+    },
+    {
+      "path": "src/devtools/models/interaction/observation.py",
+      "blob": "0c2a5ae328ed615a896a320619cb9a0c18dd8690",
+      "depth": "AUTHENTICATED_PRIOR_FULL_REVIEW_WITH_TARGETED_RETRACE",
+      "scope": "Existing observer protocol and ordered interval requirement; no implementation changed."
+    },
+    {
+      "path": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "blob": "b6b7e61a8636ee49081fb56d8ce57b43da7f4566",
+      "depth": "TARGETED_CURRENT_SUCCESS_OBSERVATION_SEQUENCE",
+      "scope": "Current committed provider send/_request_payload; five P2 corrections remain delivered."
+    },
+    {
+      "path": "src/devtools/models/interaction/models.py",
+      "blob": "f44938a918053b54a035bfec3beca916aec776c3",
+      "depth": "TARGETED_SHARED_VALUE_INVARIANTS",
+      "scope": "Opaque sources/continuations and immutable request; not external Agent conformance."
+    },
+    {
+      "path": "src/devtools/models/interaction/protocols.py",
+      "blob": "ca34b76bf61cb2bc5ee49190e12d3eab3bc18839",
+      "depth": "FULL_NARROW_PROTOCOL_BODY",
+      "scope": "Typed send request/response contract, not a runtime Agent router or permission check."
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "TARGETED_ACTUAL_NATIVE_CONSUMER",
+      "scope": "Current-only request assembly versus PromptMessage history, task limits, selected-source archive/Tool admission and cancellation disposition; no whole application review credit."
+    },
+    {
+      "path": "scripts/qwen/coding_worker.py",
+      "blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+      "depth": "TARGETED_ACTUAL_FACTORY",
+      "scope": "local_interaction service profile check returns unobserved Llama adapter, no Runtime/Conversation native default."
+    },
+    {
+      "path": "scripts/qwen/two_read_acceptance.py",
+      "blob": "819d2cce00a754b5bdd80cbfb08bd50723e50976",
+      "depth": "TARGETED_BOUNDED_ACCEPTANCE_CONSUMER",
+      "scope": "run_acceptance composes Conversation/Runtime into experiment, not native worker adoption or approved execution."
+    },
+    {
+      "path": "scripts/backlog/integration/local.py",
+      "blob": "6a617cd908529da7aa30623ca85e16491e77eb59",
+      "depth": "TARGETED_ACTUAL_REVIEW_BOUNDARY",
+      "scope": "Exact source-bound review record input labelled Codex, not invocation of CodexAgent; distinct validation/publication authority."
+    },
+    {
+      "path": "scripts/backlog/integration/authority.py",
+      "blob": "fef0f50d9588dab9d61176aa6b58ea06b2818391",
+      "depth": "TARGETED_AUTHORITY_BOUNDARY",
+      "scope": "Host-issued canonical root/policy/grant; Agent response/Conversation/Checkout not authority."
+    },
+    {
+      "path": "scripts/backlog/delegation.py",
+      "blob": "17d5e3f556677c597a8d399d531e886305f4080a",
+      "depth": "TARGETED_REVIEW_AND_GRANT_REFERENCES",
+      "scope": "Exact predispatch host supervision records, not evidence of automatic reviewer invocation."
+    },
+    {
+      "path": "scripts/usage.py",
+      "blob": "7d99dde50f24135990dcf005d8848b6e5b2ba07a",
+      "depth": "TARGETED_ACTUAL_USAGE_CONSUMER",
+      "scope": "collect imports exec metadata, catches unavailable/malformed cases and checks trusted thread lineage; metadata decoding occurs before normalized reporting."
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "depth": "TARGETED_ENCODE_DECODE_CONVERSATION_BOUNDARY",
+      "scope": "Strict semantic snapshot, historical session wire name preserved; identity values survive but reconstructed object/lock differs. No whole Persistence audit."
+    },
+    {
+      "path": "src/devtools/persistence/_snapshot.py",
+      "blob": "820476461db36e14093e2e1f208447d0a428bf2b",
+      "depth": "TARGETED_CAPTURE_RESTORE_BOUNDARY",
+      "scope": "Conversation/history/ref snapshot and reconstruction; not Run/attempt/capture storage. Remaining body belongs Persistence."
+    },
+    {
+      "path": "tests/observability/usage/test_sources.py",
+      "blob": "60a66d44ba37db9a70a0d361bdad19e738872c00",
+      "depth": "TARGETED_DECODING_ORACLE",
+      "scope": "Plain private-key spy and unknown shape controls miss equivalent escaped keys; full suite run not blanket source credit."
+    },
+    {
+      "path": "tests/persistence/test_sqlite.py",
+      "blob": "376d99d7c5c1f34efaefa526b8703f0d5953b90e",
+      "depth": "TARGETED_REAL_RUNTIME_ROUNDTRIP_TEST",
+      "scope": "Loaded Conversation passes continuation to Runtime and preserves replacements; whole module not rereviewed."
+    },
+    {
+      "path": "experiments/orchestration/workers/semantic.py",
+      "blob": "dd25ba01bb3c026cbc15411a90fbaeeb9b2b0d02",
+      "depth": "TARGETED_FROZEN_CONSUMER_NO_EXECUTION",
+      "scope": "Existing parser use after captured process plus stronger exactly-one-thread/completion and no-tools host checks. No new historical audit credit or scientific replay."
+    },
+    {
+      "path": "experiments/orchestration/workers/measurement.py",
+      "blob": "f436cbd435bdc949a2e3c5981864d272449aaed1",
+      "depth": "TARGETED_FROZEN_USAGE_CONSUMER_NO_EXECUTION",
+      "scope": "capture_codex_usage optional error and unknown measurement projection; no worker run or whole scientific review."
+    },
+    {
+      "path": "src/devtools/agents/conversation/docs/overview.md",
+      "blob": "339f27d8889d8885ee0c89f9ea7639f5ab804113",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    },
+    {
+      "path": "src/devtools/agents/conversation/docs/conversation.md",
+      "blob": "a4b2f03904336fbcf8806d7424b3c4208101f225",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    },
+    {
+      "path": "src/devtools/agents/conversation/docs/history.md",
+      "blob": "678f330ddbbfeffe42c63d43d4f91350b97a9009",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/docs/overview.md",
+      "blob": "6c58bf34bfb881eda293b05e950844e0b9e806cb",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    },
+    {
+      "path": "src/devtools/agents/integrations/codex/docs/cli.md",
+      "blob": "c751aefd8a7c10f12efa9b6e2ecba62108430834",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    },
+    {
+      "path": "src/devtools/execution/docs/overview.md",
+      "blob": "c183183b87b0720b8ff4d22bbf1e8b16a817e33b",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Current public ownership, state, failure and supported/live-compatibility claims; stale wording distinguished from implemented semantics."
+    }
+  ],
+  "focused": [
+    {
+      "command": "uv run pytest --no-cov tests/agents tests/execution -q",
+      "exit_code": 0,
+      "passed": 141,
+      "skipped": 2,
+      "seconds": 0.65,
+      "log_sha256": "ab7b8a788d735cbbf423764eac68f8bf5f34b3fe12369531bb0eb6d06d8c09c6",
+      "qualification": "Offline maintained tests; executed dependencies do not receive blanket full-body review."
+    },
+    {
+      "command": "uv run pytest --no-cov tests/observability/evidence tests/observability/usage/test_sources.py tests/persistence/test_json.py tests/persistence/test_sqlite.py tests/tools/test_runtime_integration.py tests/apps/qwen/test_coding_loop.py -q",
+      "exit_code": 0,
+      "passed": 125,
+      "skipped": 0,
+      "seconds": 62.76,
+      "log_sha256": "6e0a14358a8d0aedbc0cb3afbf1a25986ce7ab552d96777c0f97e2674ae26d29",
+      "qualification": "Offline maintained tests; executed dependencies do not receive blanket full-body review."
+    }
+  ],
+  "probe_cases": 33,
+  "contract_failures": 4,
+  "agreeing_controls": 29,
+  "findings": [
+    {
+      "key": "NEW_PROMPT_OPTION_BOUNDARY",
+      "title": "Preserve literal Codex prompts and continuation values across CLI option parsing",
+      "parent": "B-0043",
+      "resources": [
+        "src/devtools/agents/integrations/codex/agent.py",
+        "tests/agents/integrations/codex/test_agent.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md"
+      ],
+      "summary": "P2: CodexAgent.send accepts arbitrary user text, but appends it to fresh/resumed CLI argv without an option terminator. Literal --help reaches installed codex-cli0.162.1 as a help option, exits0 with CLI help and raises CodexOutputError instead of transporting prompt text. Both actual maintained public send paths reproduced using help-only calls in authored temporary directories; no model/task invocation, dangerous flag or authority bypass was executed. Direct argv prevents shell splitting, not CLI option interpretation. Existing fake-executor tests miss this boundary.",
+      "acceptance": "Independently protect leading-dash prompts, Unicode/multiline/empty controls and opaque continuation IDs from option parsing; explicitly handle the CLI dash/stdin sentinel. Prefer existing Command stdin mechanics or supported positional delimiting after inspecting current fresh/resume grammar, not a generic escaping framework. Preserve readonly/cwd/role/source/usage/error contracts and one invocation/no retry. Use deterministic executor/parser fakes and genuinely help-only CLI validation; do not rerun the baseline --help-through-adapter probe after correction where it might become a real model request.",
+      "proposal": "b8cf4f09-0b9b-4592-8bd3-4d42d5a1778d",
+      "duplicate_candidates": []
+    },
+    {
+      "key": "NEW_METADATA_ALLOWLIST",
+      "title": "Reject escaped unknown fields before decoding Codex metadata-only payloads",
+      "parent": "B-0023",
+      "resources": [
+        "src/devtools/agents/integrations/codex/sessions.py",
+        "tests/observability/usage/test_sources.py",
+        "src/devtools/observability/usage/ingestion.py",
+        "scripts/usage.py"
+      ],
+      "summary": "P2: read_session_usage/read_exec_usage promise metadata-only deserialization and reject unknown field shapes before json.loads. Regex _KEY only recognizes plain ASCII keys, so valid escaped unknown key priv\\u0061te is invisible to the allowlist. Instrumented loads observes an authored private sentinel being deserialized and both readers admit one usage row; plain private controls skip/refuse with zero decoding. This is a privacy/minimal-ingestion contract defect, not observed returned private payload, real personal log exposure or external exfiltration. from_session and scripts/usage.py are actual maintained consumers.",
+      "acceptance": "Before decoding a payload, fail closed on unknown/private keys including equivalent escaped JSON spellings and nested keys. Keep allowed metadata values, supported escaped value strings, stable identities/counts and unknown/skip/refusal semantics. Independently spy on decoding using authored sentinels, never personal logs; verify session and exec public readers plus actual ingestion/report consumer. Do not fix by decoding all content then filtering, broadening capture, creating another persistence store or replacing Intake/JSON architecture.",
+      "proposal": "f99678ae-c7d8-4574-a057-da582647d540",
+      "duplicate_candidates": []
+    }
+  ],
+  "duplicate_check": {
+    "chains_checked": 62,
+    "terms": [
+      "codex",
+      "metadata",
+      "privacy",
+      "argv",
+      "prompt",
+      "escape",
+      "allowlist"
+    ],
+    "candidates": [
+      {
+        "id": "0385a359-399f-40bb-aed4-caf5239c9fc8",
+        "title": "Qualify custody-aware cleanup and recovery of ignored execution artifacts"
+      },
+      {
+        "id": "038c927f-a59b-4010-89e8-becceabe991d",
+        "title": "Enforce hard byte-consumption bounds for filesystem reads"
+      },
+      {
+        "id": "06c3809b-f80c-461d-9585-2d4a973f8252",
+        "title": "Connect explicit task locators to existing native grounding and source acquisition"
+      },
+      {
+        "id": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+        "title": "Connect explicit Localization obligations and witness decisions to native coding Context"
+      },
+      {
+        "id": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+        "title": "Consume RepositorySnapshotDelta in authorized native Context refresh"
+      },
+      {
+        "id": "2c443f76-ad59-43c4-bb4c-c956ae7f5c28",
+        "title": "Support immutable per-command environment overrides"
+      },
+      {
+        "id": "30bd833e-f19d-4a4c-bbb6-465fd22db403",
+        "title": "Bind recovery confirmation to the exact displayed Checkout owner"
+      },
+      {
+        "id": "39c6663a-bab7-43ed-8166-82e780a75d05",
+        "title": "Review coding application module sizes against governed edit and closeout limits"
+      },
+      {
+        "id": "3b2f566b-8733-4b1d-a840-1e361612ebf8",
+        "title": "Refuse ignored dangling-link collisions before Checkout branch switching"
+      },
+      {
+        "id": "416658bd-8ab9-43c4-bbb3-98a18a88cd4d",
+        "title": "Correct physical-line source search spans"
+      },
+      {
+        "id": "4742b0a2-5e42-483d-95c5-09eac6efb0af",
+        "title": "Require actual entry evidence before reopening an ambiguous experimental operation"
+      },
+      {
+        "id": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+        "title": "Correct source physical spans contract"
+      },
+      {
+        "id": "5fa23957-703a-4de9-9619-316f8f7740ed",
+        "title": "Contract Graph3 metric validation separately from full report authentication"
+      },
+      {
+        "id": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+        "title": "Correct csv dialect contract"
+      },
+      {
+        "id": "796ac652-dbd7-488b-98bb-444f695bfa92",
+        "title": "Support immutable binary stdin in managed commands"
+      },
+      {
+        "id": "7cfa03bd-b1ee-4c95-9536-59772360fd40",
+        "title": "Reconcile official static-check scopes and isolate Ruff diagnostic renderer panic"
+      },
+      {
+        "id": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+        "title": "Qualify model-facing edit ergonomics while preserving exact atomic admission"
+      },
+      {
+        "id": "9c7dff72-ea91-4db3-a9a7-fb25971ec00a",
+        "title": "Keep required-resource reach partitions within the required population"
+      },
+      {
+        "id": "a823db65-08fd-43d1-91dd-5602ebb47b11",
+        "title": "Reject absent identity matches in dashboard proposal correlation"
+      },
+      {
+        "id": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+        "title": "Complete explicit binary filesystem codec and I/O"
+      },
+      {
+        "id": "b765fa8f-e0b7-4bc8-9869-156c6a7830cc",
+        "title": "Authenticate Case0003 implementation trace and declared report inputs in versioned future analysis"
+      },
+      {
+        "id": "bbba08b8-234e-4f31-bbef-972ac90189e2",
+        "title": "Scope usage identity aliases to their backend and provider"
+      },
+      {
+        "id": "bdcf3bbc-7d26-4826-bfef-f0171187b864",
+        "title": "Windows drive-relative resolution uses ambient CWD despite explicit base"
+      },
+      {
+        "id": "ca5a0aac-65b3-4d3c-b115-59a398a4087e",
+        "title": "Preserve compatible response usage independently of observation order"
+      },
+      {
+        "id": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+        "title": "Expose qualified direct-base RI through existing native source navigation"
+      },
+      {
+        "id": "d183d412-73c8-490c-8f02-a4dc8f3bb17d",
+        "title": "Count structural marginal unit gains by obligation-qualified evidence rather than new resource alone"
+      },
+      {
+        "id": "d9416198-66c7-40b9-b566-e2a8806a81b5",
+        "title": "Support explicit successful exit codes for managed developer commands"
+      },
+      {
+        "id": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+        "title": "Correct duration boundary contract"
+      },
+      {
+        "id": "edfb9e28-34fb-497f-8ff1-d3a4c7320eb0",
+        "title": "Handle missing witness completion throughout versioned U2 analysis"
+      },
+      {
+        "id": "f85c4e7f-b5a4-4187-b80d-8a85aa200369",
+        "title": "Correct experiment verification source-span physical lines and UTF-8 boundary validation"
+      }
+    ],
+    "conclusion": "Prior response-source/Tool-JSON/usage-aggregation/command-evidence repairs have different owners and delivered scope. No existing bounded argv interpretation or escaped metadata-key repair found. Observation policy stays B0011/B0046/ADR, no duplicate architectural proposal."
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "unchanged_executable_inputs": true,
+  "new_protected_gate": false,
+  "observation_decision": "Option B preferred in principle by maintainer, not authorized. Narrow opt-in provider-owned failure reporting plus existing Inspector/host consumption is feasible; correlation, secondary reporting failure and mandatory-evidence policy still need explicit approval. No ModelResponse wrapper, Run framework or persistence schema selected.",
+  "remaining": [
+    "Two bounded P2 fixes require separate authorization/permanent regressions/final committed protected gate.",
+    "Presence-only Codex parser and current live CLI/model sandbox compatibility remain explicitly qualified; no new full state-machine repair inferred.",
+    "Capture-failure reporting/correlation and mandatory host acceptance require explicit design approval under B0011/B0046/ADR; no implementation here.",
+    "Persistence next: semantic snapshots/durable conflicts/atomicity and actual consumers, reusing targeted evidence without full-domain credit.",
+    "RI93/93,606/606,188 historical exact obligations unchanged; A+C unapproved. Broader applications/tooling and cross-domain consolidation remain."
+  ],
+  "baseline_authority": [
+    {
+      "path": "AGENTS.md",
+      "blob": "663ef23460f86cda92cd2299e139b0bba2e7a36c",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/architecture/taxonomy.md",
+      "blob": "168a9bdc5cb9ff8951c51deb97a4fca679c0908a",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/architecture.md",
+      "blob": "60ac08200eea818f1b46c6b14b561116cb561402",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+      "blob": "81fce50378303a618f67416c667f2ce47cd3b130",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/comprehensive-code-audit.md",
+      "blob": "bd1deb57c527df3af4df0a8b0a1a422023158aa0",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/code-audit/README.md",
+      "blob": "911ff2ce32407992403bb16632944218a0d23816",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/documentation_map.md",
+      "blob": "490bb5f5085d5ecb05fa479eeee4efb237a5a09c",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/development/model-observation-policy-decision-brief.md",
+      "blob": "e6f39dc1492c4651f784fb2744081df036a1e14f",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/model-interaction-and-serving-audit.md",
+      "blob": "2d8d6dba8e2c662f1cd18c7d28b211556d93b2ae",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/evidence-usage-and-operator-audit.md",
+      "blob": "0f533aa7f14f2730d2fd40f915c2d6a03687700e",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/execution-ownership-and-recovery-audit.md",
+      "blob": "56d3121eff4591374b1ad04eb8094d0ef2bf67c2",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    },
+    {
+      "path": "docs/research/ri-fixture-closure-and-execution-audit.md",
+      "blob": "8224328ed02234c2a2976d8fcd8348fbdcadcd4a",
+      "depth": "GOVERNING_AUTHORITY_OR_TARGETED_PRIOR_FINDINGS_NOT_NEW_DOMAIN_CREDIT"
+    }
+  ]
+}

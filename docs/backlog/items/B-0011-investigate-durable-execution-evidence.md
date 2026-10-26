@@ -93,3 +93,7 @@ ModelInteraction/Serving audit on `a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1`: al
 ## ModelInteraction/Serving repair evidence — 2026-10-26
 
 Observer/capture-result and clock decision remains explicitly unapproved; normalized native Evidence ingestion/correlation is not delivered by these P2 corrections. [Delivered repair](../../development/model-serving-contract-repair.md), production `5125ab6a847ee1844913c006d801b01f5fea7cc4`, normal PR32, verified main `a602dae60b3a7c71bdd1c1231613143c309292c1`. No state/maturity/approval/parent closure or new authority. `repair:model-serving-contracts:5125ab6a:20261026`.
+
+## Agents/Conversation/Runtime audit — 2026-10-26
+
+Existing ExecutionInspector retains local terminal facts before optional sink; sink failure is contained and not automatically durable/operator-visible. ModelInteractionInspector has no capture-failure contract. Option B requires explicit provider-local failure reporting and real host/policy consumer, not ModelResponse metadata or a new store. Known response/usage must survive capture failure without fabricating Evidence/refunding unknown consumption. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
