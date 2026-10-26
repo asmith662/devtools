@@ -1,6 +1,6 @@
 {
   "baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
-  "status": "FULL_BODY_REVIEWED_WITH_PENDING_P2_REPAIRS",
+  "status": "FULL_BODY_REVIEWED_WITH_DELIVERED_MAINTENANCE",
   "flow": "Semantic path admission -> bounded resource IO -> managed process entry/output/cancellation -> externally observed effect and caller responsibility",
   "priority": "Next major framework domain after concrete P2 usage repair disposition; do not add another narrow operational audit by default.",
   "cohort": [
@@ -15,7 +15,16 @@
       "consumer": "Shared path callers in RI observation, ReadRepositoryFileTool, Qwen check inputs and Checkout. Those callers add their own containment/address/alias rules.",
       "disposition": "NEW_P2_PATH_POLICY",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "678327a2c520ffb43f49d14722b168956a128171",
+        "current_blob": "8ed6838eb59b9376c952239bbfeb371c345d8943",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "src/devtools/core/paths/models.py",
@@ -54,7 +63,16 @@
       "consumer": "Intake immutable JSON, Checkout owner checkpoints, usage snapshots, Qwen receipts and edits compose this owner with distinct admission/leases.",
       "disposition": "NEW_P2_DANGLING_ENTRY",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "14a24ca918d9eb820f954732ead8e41cff46a907",
+        "current_blob": "47f9341e5d6ea68c7b3041aba03161fcc4f028ff",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "src/devtools/resources/commands/execution.py",
@@ -67,7 +85,16 @@
       "consumer": "CommandTool/ToolRunner, Qwen fixed checks and backlog Git helper await actual results. No automatic authority/retry/rollback.",
       "disposition": "NEW_P2_COLLECTOR_CLEANUP",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "2b81abce1be791e0ec17f944870d8e15d4bc01c6",
+        "current_blob": "c26c2142b3f82b572da2c3ac88e33a3f57ec2e4a",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "src/devtools/resources/commands/handle.py",
@@ -93,7 +120,16 @@
       "consumer": "Protects thin delegation/local input contracts; no retained-source authenticity or authorization proof claimed.",
       "disposition": "NEW_P2_REGRESSION_REQUIRED",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "fe582fe2e5c84bb833e739d825ffab0d35153c6c",
+        "current_blob": "9b37b59e1c5d8810bfcc0b76ba897c1fcd589687",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "tests/resources/filesystem/test_writing.py",
@@ -106,7 +142,16 @@
       "consumer": "Actual filesystem roundtrips plus isolated injected error contracts; no full power-loss, ACL or immutable-journal integration proof.",
       "disposition": "NEW_P2_REGRESSION_REQUIRED",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "74a62a9e03b3f60ec48a9ceec59f6f37ebb01d3b",
+        "current_blob": "1ecdd930f9275694da39ed47fb17cb3f13dcccef",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "tests/resources/filesystem/test_bounded_read.py",
@@ -145,7 +190,16 @@
       "consumer": "Companion real blocked-input cancellation inspected; independent after-effect cancellation confirms reaping without rollback.",
       "disposition": "NEW_P2_REGRESSION_REQUIRED",
       "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure."
+      "remaining": "Bounded repair acceptance/platform gaps in report; no blanket subsystem closure.",
+      "maintenance_overlay": {
+        "original_review_blob": "229cd4fe5f4d14d91ea702513d6fa93bb11450fe",
+        "current_blob": "70ed4c19632b43c763b819e307754f215b3f41ef",
+        "production": "2240ae9f8dfa38cc598396bb2677059ceaa4534d",
+        "accepted_main": "ef0e3539a1afac20bfe65dfbac810456b5342804",
+        "pr": 23,
+        "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+        "report": "docs/development/core-resources-integrity-repair.md"
+      }
     },
     {
       "path": "tests/resources/commands/test_events.py",
@@ -165,5 +219,7 @@
   "review_baseline": "0e240ec102e9d54c92a3e85071586a9a8e74b308",
   "selection_baseline": "138adc07fa758032743cf5d79ff4b2fe0bb790cc",
   "report": "docs/research/core-paths-filesystem-and-commands-audit.md",
-  "assurance": "docs/research/code-audit/core-resources-assurance.json"
+  "assurance": "docs/research/code-audit/core-resources-assurance.json",
+  "prior_review_status": "FULL_BODY_REVIEWED_WITH_PENDING_P2_REPAIRS",
+  "maintenance_report": "docs/development/core-resources-integrity-repair.md"
 }

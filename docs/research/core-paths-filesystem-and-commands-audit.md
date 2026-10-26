@@ -1,5 +1,7 @@
 # Core paths, filesystem and managed Commands audit — 2026-10-25
 
+Delivered follow-through: [deterministic paths, filesystem entry custody and Commands collector cleanup](../development/core-resources-integrity-repair.md), production `2240ae9f8dfa38cc598396bb2677059ceaa4534d`, PR#23, verified main `ef0e3539a1afac20bfe65dfbac810456b5342804`. Final committed gate 2962 passed/2 opt-in live skips/100% configured production branch coverage;721 broad focused and594 post-main tests pass. Original bdcf3bbc/4cb7c397/37a647f2 retain implemented-and-merged evidence; do not schedule these bounded repairs again. Higher-layer authority/concurrency, broader B-0041/B-0006 and platform limits remain separate. All ten Core identity/time pins match main and remain unaudited; that is next. RI93/93,606/606,188 historical obligations and A+C-unapproved status are unchanged. Earlier notices below retain their dated meaning.
+
 Reviewed integrated main `0e240ec102e9d54c92a3e85071586a9a8e74b308`. All **twelve frozen source/test bodies**
 received full substantive review; [exact per-path dispositions and probes](code-audit/core-resources-assurance.json)
 separate them from targeted dependencies. **479 maintained focused tests pass**;

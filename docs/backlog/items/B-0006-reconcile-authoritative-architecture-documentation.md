@@ -59,3 +59,7 @@ remain unchanged; advisory research does not authorize implementation.
 ## Core/Resources audit evidence (2026-10-25)
 
 Core/Resources full-body review finds current filesystem package documentation still describes feature-only binary/bounded-read publication even though those owners are integrated. Reading implementation docstring also retains imprecise pre-bounded growth wording. New report supplies exact current-owner evidence; no source semantics or historical records were rewritten. See the [review and exact bounded scopes](../../research/core-paths-filesystem-and-commands-audit.md). Status, decision maturity and promotion authority remain unchanged.
+
+## Core/Resources repair evidence (2026-10-26)
+
+The bounded Core/Resources repair updates current path/I/O/Commands contracts and stale package I/O/roadmap adoption wording. Original scientific/engineering history is unchanged. Other documentation reconciliation, including older dated notes and remaining wording, remains separate. See the [delivered repair](../../development/core-resources-integrity-repair.md). Status, maturity and parent authority remain unchanged.

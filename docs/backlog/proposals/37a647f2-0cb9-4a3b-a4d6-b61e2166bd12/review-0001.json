@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "37a647f2-0cb9-4a3b-a4d6-b61e2166bd12",
+  "proposal_sha256": "144602c7215365e8119527f431c6f83a22980563b5b0192e969c5ebb981291fd",
+  "previous": null,
+  "at": "2026-10-26T12:06:25.909285+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/core-resources-integrity-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Owned Commands collector lifetime. Both collecting boundaries explicitly create/retain their tasks, cancel siblings in finally and await them with return_exceptions=True before terminal completion. This settles stdin/output orchestration and both stream readers while preserving the originating meaningful error. Deterministic three-channel schedules assert actual task.done and settled flags, one process entry, exact original exception on repeated awaits, no fabricated exit/result, and immediate-child kill/wait. Secondary cleanup exceptions do not mask original read/input failures. Normal, timeout and caller cancellation controls pass, including existing real OS-child tests and earlier external-effect persistence. No process retry, descendant management, new supervisor, universal deadline or rollback was added. Repeated/uncooperative cancellation, spawn ambiguity and broader control remain B-0041 concerns, not claimed solved by this bounded task-join repair. Production commits {'paths': 'e4194453f340c7bbf02f2bfc0888d9e13607e538', 'filesystem': '2c7d647094a5afa49d51a5cfd12b3cd81d4630f1', 'commands': '2240ae9f8dfa38cc598396bb2677059ceaa4534d'}; exact validated head 2240ae9f8dfa38cc598396bb2677059ceaa4534d; normal GitHub PR#23; independently accepted main ef0e3539a1afac20bfe65dfbac810456b5342804, tree e6104939b6c8a21748eb858a723814bbae16322c. Original bounded probes independently reproduced all three on initial main before edits. Permanent baseline negatives:9 intended failures/10 controls;721 focused tests pass. Final committed protected gate 2962 passed/2 opt-in live skips/100% configured production branch coverage, 1042.111s managed, exit0. Supported Ruff/format, strict mypy and documentation checks pass; 594 focused post-main tests pass on identical physical executable inputs. All13 forensic hashes preserved. The ten frozen identity/time blobs match accepted main and remain unaudited. Delivered scope must not be scheduled again; B-0041/B-0006 and earlier completed RI/worker/Checkout repairs remain distinct.",
+  "duplicates": [
+    {
+      "reference": "2c443f76-ad59-43c4-bb4c-c956ae7f5c28",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "796ac652-dbd7-488b-98bb-444f695bfa92",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same existing UUID, one append-only implemented-and-merged advisory. Intake has no delivered state; administrative PENDING_REVIEW is not an implementation schedule. No new proposal, approval, grant, B-number, parent closure or historical rewrite.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f5ba1df19fd61e4fd3c249fb0fd596250412867b22235c347fdb83e2bf872f7e"
+}

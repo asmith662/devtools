@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "4cb7c397-e664-4379-893c-c36d3a739cef",
+  "proposal_sha256": "b064b042b011b244875af996f24982e4bab90f35aafc4c686aa4141882cecd0b",
+  "previous": null,
+  "at": "2026-10-26T12:06:25.431471+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "docs/development/core-resources-integrity-repair.md",
+  "rationale": "IMPLEMENTED_AND_MERGED: Filesystem existing-entry refusal. The public writer uses lstat and treats only FileNotFoundError as absence. Existing regular files/directories and live/dangling file/directory symlinks refuse under overwrite=False; exact native link spelling, inode and referent bytes are preserved. Permission errors retain domain normalization; unclassifiable errors propagate before temporary preparation. Genuinely absent targets still write; overwrite=True still replaces file-link entries without modifying referents. Existing sibling temp/flush/fsync/replace/cleanup remains, with independent order assertion. This is admission only: external writers may still race the precheck; no atomic create-if-absent, lock, ACL preservation or power-loss transaction is claimed. Native Windows symlinks were available; junction variants were not separately constructed. Delivered Checkout collision prevention remains separate. Production commits {'paths': 'e4194453f340c7bbf02f2bfc0888d9e13607e538', 'filesystem': '2c7d647094a5afa49d51a5cfd12b3cd81d4630f1', 'commands': '2240ae9f8dfa38cc598396bb2677059ceaa4534d'}; exact validated head 2240ae9f8dfa38cc598396bb2677059ceaa4534d; normal GitHub PR#23; independently accepted main ef0e3539a1afac20bfe65dfbac810456b5342804, tree e6104939b6c8a21748eb858a723814bbae16322c. Original bounded probes independently reproduced all three on initial main before edits. Permanent baseline negatives:9 intended failures/10 controls;721 focused tests pass. Final committed protected gate 2962 passed/2 opt-in live skips/100% configured production branch coverage, 1042.111s managed, exit0. Supported Ruff/format, strict mypy and documentation checks pass; 594 focused post-main tests pass on identical physical executable inputs. All13 forensic hashes preserved. The ten frozen identity/time blobs match accepted main and remain unaudited. Delivered scope must not be scheduled again; B-0041/B-0006 and earlier completed RI/worker/Checkout repairs remain distinct.",
+  "duplicates": [
+    {
+      "reference": "b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same existing UUID, one append-only implemented-and-merged advisory. Intake has no delivered state; administrative PENDING_REVIEW is not an implementation schedule. No new proposal, approval, grant, B-number, parent closure or historical rewrite.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4760aae0923b2cafdb43f994ee7a05a489cbbcdd7f44730ee428b4fef487d4bc"
+}
