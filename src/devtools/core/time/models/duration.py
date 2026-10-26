@@ -29,13 +29,22 @@ class Duration:
             msg = "Duration cannot be negative."
             raise ValueError(msg)
 
+    @staticmethod
+    def _validate_factory_input(value: float) -> None:
+        """Reject negative finite inputs before rounding; retain conversion errors."""
+        if isinstance(value, int | float) and -float("inf") < value < 0:
+            msg = "Duration cannot be negative."
+            raise ValueError(msg)
+
     @classmethod
     def nanoseconds(cls, value: int) -> Duration:
         """Create a duration from nanoseconds.
 
         :param value: Number of nanoseconds.
         :returns: Duration representing the supplied nanoseconds.
+        :raises ValueError: If the finite numeric input is negative.
         """
+        cls._validate_factory_input(value)
         return cls(timedelta(microseconds=value / 1000))
 
     @classmethod
@@ -44,7 +53,9 @@ class Duration:
 
         :param value: Number of seconds.
         :returns: Duration representing the supplied seconds.
+        :raises ValueError: If the finite numeric input is negative.
         """
+        cls._validate_factory_input(value)
         return cls(timedelta(seconds=value))
 
     @classmethod
@@ -53,7 +64,9 @@ class Duration:
 
         :param value: Number of milliseconds.
         :returns: Duration representing the supplied milliseconds.
+        :raises ValueError: If the finite numeric input is negative.
         """
+        cls._validate_factory_input(value)
         return cls(timedelta(milliseconds=value))
 
     @classmethod
@@ -62,7 +75,9 @@ class Duration:
 
         :param value: Number of minutes.
         :returns: Duration representing the supplied minutes.
+        :raises ValueError: If the finite numeric input is negative.
         """
+        cls._validate_factory_input(value)
         return cls(timedelta(minutes=value))
 
     @classmethod
@@ -71,7 +86,9 @@ class Duration:
 
         :param value: Number of hours.
         :returns: Duration representing the supplied hours.
+        :raises ValueError: If the finite numeric input is negative.
         """
+        cls._validate_factory_input(value)
         return cls(timedelta(hours=value))
 
     @property

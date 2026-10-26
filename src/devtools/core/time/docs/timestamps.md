@@ -84,10 +84,22 @@ one raises `ValueError` instead of returning a signed value.
 are `nanoseconds()`, `milliseconds()`, `seconds()`, `minutes()`, and `hours()`.
 `total_seconds` and `total_milliseconds` expose numeric totals.
 
+Factories reject negative finite numeric inputs with `ValueError` before
+conversion can round them to zero. Zero, including negative floating zero, and
+nonnegative inputs retain standard-library conversion and rounding. Nonfinite,
+out-of-range and unsupported inputs retain their existing conversion errors:
+NaN raises `ValueError`, infinity and range overflow raise `OverflowError`, and
+unsupported operand types raise `TypeError`.
+
 Durations support addition, non-negative subtraction, multiplication by an
 `int` or `float`, reversed multiplication, and division by an `int` or `float`.
 Unsupported operands raise normal `TypeError`; division by zero raises normal
 `ZeroDivisionError`.
+
+Arithmetic retains represented-result semantics: its resulting `timedelta` must
+be nonnegative. Tiny negative multiplication/division results may round to zero,
+and zero scaled by a negative factor remains zero. Factory input admission does
+not impose a new raw-factor/divisor policy on arithmetic.
 
 ## Precision and errors
 

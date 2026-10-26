@@ -126,8 +126,17 @@ def test_executor_rejects_subprocesses_without_output_pipes(
         asyncio.run(CommandExecutor().execute(Command("missing-pipes-command")))
 
 
+@pytest.mark.parametrize(
+    ("timeout", "expected_seconds"),
+    [
+        (Duration.seconds(0.001), r"0\.001 seconds"),
+        (Duration.nanoseconds(1_500), "2e-06 seconds"),
+    ],
+)
 def test_executor_kills_and_drains_a_timed_out_process(
     monkeypatch: pytest.MonkeyPatch,
+    timeout: Duration,
+    expected_seconds: str,
 ) -> None:
     """A timeout kills the immediate process and awaits its final communication."""
     process = _TimedOutProcess()
@@ -143,10 +152,10 @@ def test_executor_kills_and_drains_a_timed_out_process(
         create_process,
     )
 
-    with pytest.raises(CommandTimeoutError, match=r"0\.001 seconds"):
+    with pytest.raises(CommandTimeoutError, match=expected_seconds):
         asyncio.run(
             CommandExecutor().execute(
-                Command("slow-command", timeout=Duration.seconds(0.001)),
+                Command("slow-command", timeout=timeout),
             ),
         )
 
