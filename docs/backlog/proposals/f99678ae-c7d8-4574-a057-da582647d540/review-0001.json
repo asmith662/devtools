@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "f99678ae-c7d8-4574-a057-da582647d540",
+  "proposal_sha256": "4f84cf3b7d1057eca7c4910a6b94397ee3d641200d61baea88933a95327f236d",
+  "previous": null,
+  "at": "2026-10-26T23:29:50.464019+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-authorized bounded repair evidence",
+  "decision_reference": "repair:codex-input-metadata:c39c1f0f:20261026:f99678ae",
+  "rationale": "Bounded P2 implemented and merged through normal PR35, production c39c1f0f61350ca57795dc06c8b97730918a0d99, independently accepted main 4189fffd79eaaa64debfc7b601bb729de92002de. Original audit PR34 merged at 1a74e04740a0955531a48c9a2dd2109d1c1a7001. Permanent baseline36 intended failures/26 controls/no harness errors. Decoded metadata key/duplicate admission, bounded candidate lines, safe context prefix and sanitized refusal correct original escaped-key bypass plus retained raw_json/nested attribution consequences. P2 retained after synthetic impact review. Original aspiration of predecode refusal qualified: bounded rejected candidates can be parsed transiently but are not returned/persisted/logged; known content events remain skipped. No external disclosure demonstrated. Final committed gate 3197 passed/2 optional live skips/100% production branch coverage; supported Ruff/format/strict mypy and post-main tests pass. docs/development/codex-input-and-metadata-repair.md; docs/research/code-audit/codex-input-metadata-repair-20261026.json. Administratively PENDING_REVIEW, bounded implementation delivered, no repeat implementation request, B-number, approval, grant or parent closure. Observer policy unchanged and unapproved.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing exact proposal; bounded implementation delivered. No duplicate proposal, approval or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "145e61a27e7628fbb2349ed8c3fb68bfedf3816ca38988e8db5dbc876d8114cb"
+}

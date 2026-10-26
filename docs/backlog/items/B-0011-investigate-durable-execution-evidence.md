@@ -97,3 +97,7 @@ Observer/capture-result and clock decision remains explicitly unapproved; normal
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 Existing ExecutionInspector retains local terminal facts before optional sink; sink failure is contained and not automatically durable/operator-visible. ModelInteractionInspector has no capture-failure contract. Option B requires explicit provider-local failure reporting and real host/policy consumer, not ModelResponse metadata or a new store. Known response/usage must survive capture failure without fabricating Evidence/refunding unknown consumption. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+## Codex contract repair evidence
+
+Both bounded Codex defects delivered. Optional capture policy remains unapproved: per-invocation correlation, secondary-report failure, privacy/retention and mandatory evidence admission remain explicit decisions. [Delivered correction](../../development/codex-input-and-metadata-repair.md), normal PR35 and verified main `4189fffd79eaaa64debfc7b601bb729de92002de`. No state, approval, grant or parent closure. `repair:codex-input-metadata:c39c1f0f:20261026`.

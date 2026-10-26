@@ -69,3 +69,7 @@ not a distinct verified defect or implementation authorization.
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 CodexAgent is external-agent adaptation, not ModelInteraction; no maintained native caller found beyond tests, while parser/usage helpers have retained experimental/usage consumers. New pending P2 literal-prompt transport owner in report. Runtime sends current message/continuation rather than full history; native Qwen owns its separate bounded Tool loop. No BaseAgent/Run/registry promotion follows. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+## Codex contract repair evidence
+
+Codex literal input P2 delivered for fresh/resumed stdin transport. No extra invocation or retry. This does not provide a native autonomous Codex loop, change Runtime, or close broader Agent semantics. [Delivered correction](../../development/codex-input-and-metadata-repair.md), normal PR35 and verified main `4189fffd79eaaa64debfc7b601bb729de92002de`. No state, approval, grant or parent closure. `repair:codex-input-metadata:c39c1f0f:20261026`.

@@ -128,3 +128,7 @@ See the [source, probes and consumer assessment](../../research/evidence-usage-a
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 Two public metadata-only readers deserialize an authored private sentinel under an escaped unknown field and admit one row; plain-key controls refuse before decoding. New bounded P2 proposal records actual ingestion/report consumers and independent privacy oracle. This does not demonstrate returned private payload or external exfiltration; broader Evidence/Trace/Telemetry and operator consumers remain open. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+## Codex contract repair evidence
+
+Escaped metadata P2 delivered. Synthetic evidence additionally established raw_json retention and nested false model attribution on the old source. These no longer reach corrected reader/ingestion output; severity remains P2 without demonstrated external disclosure. Bounded candidate parsing is transient; no new normalized lifecycle consumer or Evidence architecture. [Delivered correction](../../development/codex-input-and-metadata-repair.md), normal PR35 and verified main `4189fffd79eaaa64debfc7b601bb729de92002de`. No state, approval, grant or parent closure. `repair:codex-input-metadata:c39c1f0f:20261026`.

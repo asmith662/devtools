@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "b8cf4f09-0b9b-4592-8bd3-4d42d5a1778d",
+  "proposal_sha256": "1fd2de45e23fe578c0ba9ff3c066e00899287e1867ca824cd3a451a0c6c56079",
+  "previous": null,
+  "at": "2026-10-26T23:29:49.990793+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-authorized bounded repair evidence",
+  "decision_reference": "repair:codex-input-metadata:c39c1f0f:20261026:b8cf4f09",
+  "rationale": "Bounded P2 implemented and merged through normal PR35, production c39c1f0f61350ca57795dc06c8b97730918a0d99, independently accepted main 4189fffd79eaaa64debfc7b601bb729de92002de. Original audit PR34 merged at 1a74e04740a0955531a48c9a2dd2109d1c1a7001. Permanent baseline36 intended failures/26 controls/no harness errors. CodexAgent literal prompts use exact UTF8 stdin and explicit option terminator in fresh/resumed commands;18 real help-only checks, no live model. Final committed gate 3197 passed/2 optional live skips/100% production branch coverage; supported Ruff/format/strict mypy and post-main tests pass. docs/development/codex-input-and-metadata-repair.md; docs/research/code-audit/codex-input-metadata-repair-20261026.json. Administratively PENDING_REVIEW, bounded implementation delivered, no repeat implementation request, B-number, approval, grant or parent closure. Observer policy unchanged and unapproved.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing exact proposal; bounded implementation delivered. No duplicate proposal, approval or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "89df333d11c64085f96887a4801717a77ee702bec44ff0bff574a8d620d89766"
+}

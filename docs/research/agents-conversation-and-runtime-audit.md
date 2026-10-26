@@ -288,3 +288,7 @@ fabricated, and an open PR is not protected-main adoption. The ignored completio
 report records the actual containing commit/remote/PR state.
 
 `audit:agents-conversation-runtime:87f5b9d2:20261026`
+
+## Delivered bounded maintenance overlay
+
+Both P2 families are corrected through normal PR35, production `c39c1f0f61350ca57795dc06c8b97730918a0d99`, verified main `4189fffd79eaaa64debfc7b601bb729de92002de`. Original35-path body review and33 probes remain exact historical evidence; changed blobs are separately overlaid. [Correction, privacy qualification and limits](../development/codex-input-and-metadata-repair.md); [machine evidence](code-audit/codex-input-metadata-repair-20261026.json). Original predecode aspiration is explicitly qualified by bounded decoded admission; rejected content is not returned/retained. Observer policy and broader lifecycle/Agents/Evidence obligations remain open. `repair:codex-input-metadata:c39c1f0f:20261026`.
