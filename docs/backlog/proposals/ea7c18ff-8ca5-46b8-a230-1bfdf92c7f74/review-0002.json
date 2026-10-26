@@ -1,0 +1,16 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+  "proposal_sha256": "4d809899085c3d9625e52cf59affbaeedf7df52c2876dba3cda7f07b986da334",
+  "previous": "a3d859892141b1bed8563f489e5dc6fd9046506532a1044c056c274633dd8e2b",
+  "at": "2026-10-26T16:18:31.596732+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex",
+  "decision_reference": "repair:duration-factory:171699ac:20261026",
+  "rationale": "IMPLEMENTED_AND_MERGED: all five Duration factories reject negative finite raw numeric inputs before timedelta rounding. Private admission helper preserves standard conversion failures for nonfinite and unsupported values and nonnegative range overflow. Public signatures and arithmetic __mul__/__rmul__/__truediv__ remain unchanged; represented-result semantics are documented and tested, not a new raw-factor policy. Production 171699ac6de9ddb15f51b4cee440b8ee412646be, normal PR#26, independently accepted main 7bc03e9d22c919314103375934f4bf74cac5e27d, tree bf710e4bff7af1e1c6a53f55938206fa2ea16ee4. Audit PR#25 was normally integrated first at 510be32bc72c1b7646af04e4cea59a8e7c6dbad8. Six permanent assertions fail as intended on baseline (87 controls pass); exact final six tests also fail against the authenticated original Git-object class in memory with no copied checkout/source file. Final committed protected gate3035 passed/2 live skips/100% configured production branch coverage,415 focused and415 post-main tests pass; maintained Ruff, supported formatting and configured strict mypy pass.930 recorded source/test/app/script/config/package-doc input hashes match through publication. All13 original forensic files are preserved. Factory acceptance criteria are delivered and should not be scheduled again despite administrative PENDING_REVIEW. No proposal approval, B-number, grant, B-0009 closure, A+C decision, model invocation or scientific replay. Broader Core/Resources, clock-observation and historical RI work remain separate. See docs/development/duration-factory-input-repair.md and docs/research/code-audit/duration-factory-repair-20261026.json.",
+  "duplicates": [],
+  "duplicate_disposition": "Existing Duration proposal fulfilled for factory-input scope; preserve original audit/Qwen history. No duplicate work. Arithmetic raw-operand policy would require a separate explicit decision if later desired.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "f3493c32b809b91d1a5cc4988aabe08fb64aba1a64358c2d1bc51467256bee75"
+}

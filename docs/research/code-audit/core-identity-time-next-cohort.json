@@ -115,5 +115,24 @@
       }
     ],
     "selection_qualification": "Original baseline/status/priority are frozen selection history; three old P2s are delivered PR23. This overlay is the current review disposition."
+  },
+  "maintenance_overlay": {
+    "production": "171699ac6de9ddb15f51b4cee440b8ee412646be",
+    "accepted_main": "7bc03e9d22c919314103375934f4bf74cac5e27d",
+    "pr": 26,
+    "depth": "AUTHORED_MAINTENANCE_AND_PERMANENT_REGRESSION_DELTA",
+    "report": "docs/development/duration-factory-input-repair.md",
+    "paths": [
+      {
+        "path": "src/devtools/core/time/models/duration.py",
+        "original_review_blob": "2ad7166e890795ddbdef968fb3f0b75d80de4ab5",
+        "current_blob": "ec95afbd857f986a81bc02280f1076dfadf864e4"
+      },
+      {
+        "path": "tests/core/time/test_models.py",
+        "original_review_blob": "cf333d6ce8f64b9a7676bb28c098b2395ad3ac26",
+        "current_blob": "ea324ece164fc482ce9612b9fda6673f5873b1ab"
+      }
+    ]
   }
 }
