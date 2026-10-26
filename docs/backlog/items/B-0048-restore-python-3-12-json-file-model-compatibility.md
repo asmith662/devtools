@@ -53,3 +53,8 @@ unknown; preserve existing behavior and authority boundaries
 
 Backlog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.
 
+## Filesystem audit maintenance evidence — 2026-10-26
+
+On main `26bd8053ab8ad8323dd3273b4b0e986de05388e9`, existing CPython3.12.13 reproduces TypeError `super(type, obj): obj must be an instance or subtype of type` in JsonObjectFile, JsonListFile and CsvFile direct construction, their codecs, public object read and ToolRunner rich-object read (eight failures). Four scalar/Markdown/text/binary controls pass. All twelve corresponding3.14 calls pass. Existing3.12 has no pytest; this is bounded native behavioral evidence, not a complete supported-runtime matrix. Zero-argument super in these three slotted model post-init bodies is the common current failure boundary.
+
+Existing B-0048 and its already recorded list/CSV siblings remain sufficient; no new compatibility proposal or scope closure. A future bounded maintainer-authorized correction should cover all three model families, parsed/read and immutable-transform consumers, independent3.12/3.14 tests and full final committed production validation. The historical object-only accepted worker candidate/review is evidence, not current destination validation or publication authority. No grant or source change is issued here. Existing status/maturity/authorization fields remain unchanged. [Audit](../../research/filesystem-codecs-and-models-audit.md), [exact probes](../../research/code-audit/filesystem-codecs-models-probes.json). `audit:filesystem-codecs-models:26bd8053:20261026`.

@@ -1,0 +1,1114 @@
+{
+  "at": "2026-10-26T17:22:04.471250+00:00",
+  "baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+  "branch": "audit/filesystem-codecs-models-20261026",
+  "cohort": "docs/research/code-audit/filesystem-codecs-models-cohort.json",
+  "reviewed": [
+    {
+      "path": "src/devtools/resources/filesystem/__init__.py",
+      "blob": "dd22923c2e6ed02657d0887f15ec42c7d57a1941",
+      "lines": 79,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Explicit public import/reexport surface and __all__ dependency ownership",
+      "finding": "Imports remain within Core/Resources owners; no filesystem access or dynamic plugin registry. Model/codec exports match actual resolution and tests.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/__init__.py",
+      "blob": "8239e988d5d6d54c43afac5c5111f7bae4eafdfa",
+      "lines": 16,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Explicit public import/reexport surface and __all__ dependency ownership",
+      "finding": "Imports remain within Core/Resources owners; no filesystem access or dynamic plugin registry. Model/codec exports match actual resolution and tests.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/binary.py",
+      "blob": "4e67f00a67dc0b3e88b5ba71a71840178f71be9b",
+      "lines": 39,
+      "scope": "Reuse identical prior body review; inspect representation contract and supplement consumer/probe evidence without new body credit.",
+      "selection": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "prior_evidence": "docs/research/code-audit/core-resources-assurance.json",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "functions_inspected": [
+        "decode",
+        "encode"
+      ],
+      "remaining_functions": [],
+      "role": "Unchanged exact byte codec",
+      "finding": "Prior full-body review reused by identical Git blob; new literal byte probe supplements without duplicate credit.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/csv.py",
+      "blob": "b383442f462767003fbcd28dfdf3c08d64cb6ba9",
+      "lines": 174,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "_to_csv_quoting",
+        "_validate_headers",
+        "decode",
+        "parse",
+        "serialize",
+        "encode"
+      ],
+      "remaining_functions": [],
+      "role": "decode/parse/serialize/encode, native dialect projection, header/row refusal",
+      "finding": "Existing CSV P2 reproduced: QUOTE_NONNUMERIC causes float conversion followed by string-row refusal; numeric header leaks AttributeError. Serialization uses state; CR/LF reader versus serialized custom terminator is stdlib policy.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/json.py",
+      "blob": "cf6fc8c29dc07bbe94f1786489e02a422a41a74c",
+      "lines": 228,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "_reject_nonstandard_constant",
+        "_parse_finite_float",
+        "_format_parse_error",
+        "_get_value",
+        "decode",
+        "parse",
+        "serialize",
+        "encode"
+      ],
+      "remaining_functions": [],
+      "role": "strict finite JSON parse, root dispatch, serialization and encoding error boundaries",
+      "finding": "Nonfinite constants/float overflow refused. Duplicate keys last-win, numeric spelling/format not retained in current value, insertion order preserved. Repeated freeze exists; no measured performance claim.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/markdown.py",
+      "blob": "b48fc085bdb87e5663e4a5d11285621f177bb710",
+      "lines": 75,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "decode",
+        "encode"
+      ],
+      "remaining_functions": [],
+      "role": "Encoding/decoding exact authoritative Markdown content and metadata",
+      "finding": "Structural interpretation remains model-owned; no disk access or regeneration from headings.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/codecs/text.py",
+      "blob": "757825a9c1d26c7d491ce659b94c6ea4472f7372",
+      "lines": 70,
+      "scope": "Reuse identical prior body review; inspect representation contract and supplement consumer/probe evidence without new body credit.",
+      "selection": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "prior_evidence": "docs/research/code-audit/core-resources-assurance.json",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "AUTHENTICATED_PRIOR_FULL_BODY_REUSE",
+      "functions_inspected": [
+        "decode",
+        "encode"
+      ],
+      "remaining_functions": [],
+      "role": "Unchanged text encoding/decoding and normalized errors",
+      "finding": "Prior full-body review reused by identical Git blob; byte equivalence across all encoding/BOM choices is not promised.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/__init__.py",
+      "blob": "e85a46af2b48abb38b2336a28d8d000d1ef4767a",
+      "lines": 49,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Explicit public import/reexport surface and __all__ dependency ownership",
+      "finding": "Imports remain within Core/Resources owners; no filesystem access or dynamic plugin registry. Model/codec exports match actual resolution and tests.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/base.py",
+      "blob": "4e4f6c5457e90b1658815b6b99b42ee69be68f56",
+      "lines": 37,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "format"
+      ],
+      "remaining_functions": [],
+      "role": "FileFormat enum and frozen abstract File path/format boundary",
+      "finding": "Identity wrapper is a value, not access authority; no universal hashability guarantee.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/binary.py",
+      "blob": "e0187327636b757b8b651e1a11d3120ca14076db",
+      "lines": 36,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "format",
+        "size_bytes"
+      ],
+      "remaining_functions": [],
+      "role": "Immutable retained bytes, binary format and size metadata",
+      "finding": "Actual bytes are preserved; truncated describes retained content, not an atomic snapshot.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/csv.py",
+      "blob": "e977dae655d615bc572fe23ffe6caf0a21bbb98b",
+      "lines": 310,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "__post_init__",
+        "__post_init__",
+        "__getitem__",
+        "__getitem__",
+        "__getitem__",
+        "__getitem__",
+        "__iter__",
+        "__len__",
+        "__contains__",
+        "get",
+        "keys",
+        "values",
+        "items",
+        "as_dict",
+        "convert",
+        "__post_init__",
+        "format",
+        "__getitem__",
+        "__getitem__",
+        "__getitem__",
+        "__iter__",
+        "__len__",
+        "column",
+        "find",
+        "find_all",
+        "find_by",
+        "convert_rows",
+        "appended",
+        "extended",
+        "with_row",
+        "without_row",
+        "_validate_row_headers"
+      ],
+      "remaining_functions": [],
+      "role": "Dialect validation, immutable string rows, header lookup, conversion and immutable file transforms",
+      "finding": "CsvFile enforces nonempty unique headers and matching row headers; standalone rows only dimensions/string cells. Python3.12 constructor failure is existing B0048. No automatic numeric coercion is allowed.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/__init__.py",
+      "blob": "1e7c7a11594c48e7cd61f7d0818af68ec6297c6d",
+      "lines": 27,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Explicit public import/reexport surface and __all__ dependency ownership",
+      "finding": "Imports remain within Core/Resources owners; no filesystem access or dynamic plugin registry. Model/codec exports match actual resolution and tests.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/base.py",
+      "blob": "a2dcec59abf1e9b1251ff084accad0f0d0d72304",
+      "lines": 41,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "format"
+      ],
+      "remaining_functions": [],
+      "role": "Recursive JsonValue/JsonCompatible aliases and original TextFile provenance",
+      "finding": "Object/list/scalar variants separate current structured state from retained source. Type hints do not promise arbitrary cyclic/non-JSON inputs.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/conversion.py",
+      "blob": "608ab049736c2c2e140c5a07a22c6ed572e30e74",
+      "lines": 47,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "freeze_json",
+        "thaw_json"
+      ],
+      "remaining_functions": [],
+      "role": "Mapping/list/tuple recursive freeze and ordinary mutable thaw",
+      "finding": "Input alias isolation and conversion copies are real; no universal graph, cycle support or depth/CPU cap.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/list.py",
+      "blob": "771d64d06ed3b072265d7a20c80ff6d0c6f3c5e5",
+      "lines": 192,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "__post_init__",
+        "__getitem__",
+        "__getitem__",
+        "__getitem__",
+        "__iter__",
+        "__len__",
+        "find",
+        "find_all",
+        "convert_items",
+        "find_by",
+        "appended",
+        "extended",
+        "with_item",
+        "without_index"
+      ],
+      "remaining_functions": [],
+      "role": "Sequence/slices, predicates, find_by, conversion and immutable updates",
+      "finding": "NEW P2: get conflates missing member with null; unfrozen list/nested-array query mismatches frozen model. Existing scalar-only tests miss both. Python3.12 constructor failure stays B0048.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/object.py",
+      "blob": "7d1baf9f394d5f08837622353cf6e2f359aeb352",
+      "lines": 168,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "_thaw_object",
+        "__post_init__",
+        "__getitem__",
+        "__iter__",
+        "__len__",
+        "find",
+        "find_all",
+        "convert",
+        "with_items",
+        "with_item",
+        "without"
+      ],
+      "remaining_functions": [],
+      "role": "Mapping protocol, predicates, conversion, merge/replace/delete transformations",
+      "finding": "Recursive immutability and metadata preservation hold on3.14; slotted dataclass zero-argument super fails on existing3.12, B0048.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/json/scalar.py",
+      "blob": "8dd866adaf644854a083c3c623584490902b4e49",
+      "lines": 32,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "convert"
+      ],
+      "remaining_functions": [],
+      "role": "Scalar-root representation and canonical explicit conversion",
+      "finding": "Null/bool/string/int/finite float roots supported by codec; serialization rejects nonfinite values. No collection behavior.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/__init__.py",
+      "blob": "9c7a3d8f0d137cee9537c6dd9c59b89e23ff2dc1",
+      "lines": 12,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_PUBLIC_EXPORT_AND_IMPORT_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Explicit public import/reexport surface and __all__ dependency ownership",
+      "finding": "Imports remain within Core/Resources owners; no filesystem access or dynamic plugin registry. Model/codec exports match actual resolution and tests.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+      "blob": "64611ba0d53a7b64def3c1b8dc3da1f3cc83ed20",
+      "lines": 190,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "format",
+        "headings",
+        "sections",
+        "find_heading",
+        "find_section",
+        "_parse_headings",
+        "_build_section"
+      ],
+      "remaining_functions": [],
+      "role": "Fence-aware narrow ATX recognition, heading lookup and nested inclusive sections",
+      "finding": "Exact content preserved, derived section LF/logical-line normalization intentional. Not CommonMark or edit-source-coordinate API; fences already repaired, no reopen.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/heading.py",
+      "blob": "21e0fd331282515f9e6a2001e8c629cbd5e0c216",
+      "lines": 63,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "__post_init__",
+        "_validate",
+        "depth",
+        "marker",
+        "__str__"
+      ],
+      "remaining_functions": [],
+      "role": "Heading level/positive line invariant, text/depth/marker/string",
+      "finding": "Pure immutable structure; valid1..6 and1-based lines; no full Markdown parser promise.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/markdown/section.py",
+      "blob": "4b5fe56e4a7b9eb86d06a0ffcf630acbec76fa62",
+      "lines": 97,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "__post_init__",
+        "_validate",
+        "level",
+        "title",
+        "line_count",
+        "contains_line",
+        "__str__"
+      ],
+      "remaining_functions": [],
+      "role": "Heading-backed section range/title/level/body/logical lines",
+      "finding": "Inclusive logical ranges and normalized content are display facts, not retained byte spans.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "src/devtools/resources/filesystem/models/text.py",
+      "blob": "c1a23c0ead3b84752789d5a4c93d596bcc8ab37e",
+      "lines": 118,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_IMPLEMENTATION_BODY_REVIEW",
+      "functions_inspected": [
+        "__post_init__",
+        "_validate",
+        "format",
+        "character_count",
+        "lines",
+        "line_count",
+        "contains",
+        "search_regex",
+        "find_all_regex"
+      ],
+      "remaining_functions": [],
+      "role": "Encoding/size invariants, character/logical lines, literal and canonical regex calls",
+      "finding": "splitlines is deliberate logical text; byte_size is supplied metadata, not authenticated source; no iteration or universal source spans.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/__init__.py",
+      "blob": "b8577385349e210e55662942b618b5d18f2e5c16",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_MARKER_ONLY_ROLE_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Test package marker with no imports, reexports, executable initialization or independent algorithm",
+      "finding": "Package discovery/compatibility role authenticated; no independent behavioral body hidden.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/__init__.py",
+      "blob": "9a8ccc4a4c1c7cf2d11438050dd082dfed6d67e0",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_MARKER_ONLY_ROLE_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Test package marker with no imports, reexports, executable initialization or independent algorithm",
+      "finding": "Package discovery/compatibility role authenticated; no independent behavioral body hidden.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_csv.py",
+      "blob": "ccccbec7df2366c59330d6839bd08f63c577686b",
+      "lines": 173,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_decode_preserves_metadata_and_parses_quoted_csv",
+        "test_decode_supports_alternate_encodings_and_normalizes_errors",
+        "test_parse_rejects_invalid_header_based_source",
+        "test_parse_derives_source_size_and_supports_header_only_and_dialects",
+        "test_serialize_uses_current_state_and_explicit_dialect",
+        "test_serialize_wraps_invalid_quote_none_combinations",
+        "test_encode_uses_model_encoding_override_and_normalizes_errors"
+      ],
+      "remaining_functions": [],
+      "role": "Literal headers/rows, dialect/quoting encode-decode, source/state and malformed/encoding branches",
+      "finding": "NONNUMERIC round trips quote every string, concealing unquoted numeric spelling failures; add literal unquoted cells, numeric header normalization and decode cases in later repair.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_json.py",
+      "blob": "3a5915db5c972ea97deb443b62e7ff68951f1db7",
+      "lines": 291,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_decode_preserves_utf8_source_metadata_and_immutable_object",
+        "test_decode_supports_alternate_encodings_and_rejects_invalid_bytes",
+        "test_parse_selects_the_correct_concrete_root_model",
+        "test_parse_derives_byte_size_and_wraps_parse_and_encoding_errors",
+        "test_parse_rejects_an_unexpected_frozen_root_type",
+        "test_serialize_supports_current_values_and_formatting_policies",
+        "test_serialize_handles_array_scalar_and_defensive_base_models",
+        "test_serialize_rejects_non_finite_float_transformations",
+        "test_encode_uses_model_encoding_and_wraps_encoding_failures",
+        "test_transformations_preserve_source_provenance_and_serialize_current_state",
+        "test_codec_created_models_retain_source_and_structured_search_and_round_trip",
+        "test_strict_json_rejects_floating_point_overflow",
+        "test_strict_json_preserves_finite_numbers_large_integers_and_strings",
+        "test_json_float_conversion_failure_preserves_domain_cause",
+        "conversion_failure"
+      ],
+      "remaining_functions": [],
+      "role": "Literal object/list/scalar parsing, nonfinite/overflow/invalid input, formatting and encoding controls",
+      "finding": "Meaningful independent literal expectations; roundtrip alone is not representation fidelity. No absent-null/array-query lookup oracle here.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_markdown.py",
+      "blob": "7dd1954563ebb98c2895f9c2db934a38c9a58eff",
+      "lines": 88,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_decode_preserves_exact_markdown_source_and_metadata",
+        "test_markdown_codec_normalizes_decoding_failures",
+        "test_encode_uses_source_content_and_explicit_encoding_policy",
+        "test_markdown_codec_normalizes_encoding_failures"
+      ],
+      "remaining_functions": [],
+      "role": "Exact source decode/encode, metadata, encoding overrides and error causes",
+      "finding": "Real literal source assertions; structural parser is covered separately. No full CommonMark promise.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/codecs/test_text.py",
+      "blob": "0da69a0ddffbd636b1cb353e11145a1a9da55e6e",
+      "lines": 106,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_decode_preserves_exact_text_and_source_metadata",
+        "test_decode_normalizes_unknown_encodings_and_invalid_bytes",
+        "test_codec_created_text_files_retain_rich_source_operations",
+        "test_encode_uses_model_metadata_and_allows_an_override",
+        "test_encode_normalizes_unknown_and_unencodable_text"
+      ],
+      "remaining_functions": [],
+      "role": "Text byte/character metadata, explicit encoding and decode/encode failures",
+      "finding": "Independent exact literals and monkeypatched error branches are local valid contracts, not source authentication.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/__init__.py",
+      "blob": "98a1989bb5507eb173b3d6efd34034396c21c778",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_MARKER_ONLY_ROLE_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Test package marker with no imports, reexports, executable initialization or independent algorithm",
+      "finding": "Package discovery/compatibility role authenticated; no independent behavioral body hidden.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/__init__.py",
+      "blob": "307fd725907d07401fd473fce45612a70eefa05a",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_MARKER_ONLY_ROLE_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Test package marker with no imports, reexports, executable initialization or independent algorithm",
+      "finding": "Package discovery/compatibility role authenticated; no independent behavioral body hidden.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_dialect.py",
+      "blob": "798433f6e1dd8fea7b743fe003cb8114a4792b22",
+      "lines": 46,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_dialect_retains_immutable_default_and_explicit_policy",
+        "test_dialect_rejects_invalid_csv_control_characters"
+      ],
+      "remaining_functions": [],
+      "role": "Literal dialect defaults/options and invalid delimiters/markers/terminators",
+      "finding": "Valid arithmetic/string synthetic fixtures; does not test reader NONNUMERIC coercion or3.12 model construction.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_file.py",
+      "blob": "99d86a76725657d0e50b0f2bed4df97a8986b846",
+      "lines": 133,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "_file",
+        "test_file_is_a_sequence_with_columns_and_structured_search",
+        "test_file_transformations_preserve_source_provenance_and_original",
+        "test_file_rejects_ambiguous_headers_and_incompatible_rows",
+        "test_file_converts_rows_in_order_with_indexed_failures",
+        "fail_on_second"
+      ],
+      "remaining_functions": [],
+      "role": "File header/row invariants, query, explicit conversion and persistent transforms",
+      "finding": "Literal rows/metadata expectations valid; constructs CsvRow directly, so codec spelling defect is not exercised.3.14 only.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/csv/test_row.py",
+      "blob": "f85d72d5e0af1bffc678a17ffd86314d1216c98b",
+      "lines": 68,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_row_supports_positional_and_keyed_read_only_access",
+        "test_row_rejects_mismatched_header_and_value_widths",
+        "test_row_conversion_delegates_to_the_explicit_callable",
+        "fail"
+      ],
+      "remaining_functions": [],
+      "role": "Row dimensions, lookup/defaults, iteration/dictionary and converter errors",
+      "finding": "String cell preservation independently asserted; CsvFile owns unique-header contract, not standalone row validation.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/__init__.py",
+      "blob": "1de2d51d59fcfbd7b2390727f2176a9a8a7a2031",
+      "lines": 2,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_MARKER_ONLY_ROLE_REVIEW",
+      "functions_inspected": [],
+      "remaining_functions": [],
+      "role": "Test package marker with no imports, reexports, executable initialization or independent algorithm",
+      "finding": "Package discovery/compatibility role authenticated; no independent behavioral body hidden.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_file.py",
+      "blob": "386851eac8ab045406768c5864504bc930d205b2",
+      "lines": 201,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_atx_headings_ignore_non_headings_and_fenced_code",
+        "test_heading_and_section_properties_are_empty_without_atx_source",
+        "test_long_fences_require_an_equally_long_matching_closer",
+        "test_sections_follow_same_or_higher_heading_boundaries",
+        "test_sections_handle_adjacent_and_nested_level_changes",
+        "test_lookup_and_inherited_source_search_are_independent",
+        "test_section_content_is_normalized_logical_source",
+        "test_fence_closer_requires_matching_markers_and_no_text_suffix"
+      ],
+      "remaining_functions": [],
+      "role": "Literal heading positions, nested/duplicate sections, case policy, fences and source metadata",
+      "finding": "Fence refusals are real; a redundant self-equality assertion does not negate other independent oracles. Exact source sections/CommonMark unsupported.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_heading.py",
+      "blob": "85370f557556a36a7c53f7f797793625454b57eb",
+      "lines": 42,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_heading_exposes_level_depth_marker_and_normalized_text",
+        "test_heading_rejects_invalid_source_coordinates"
+      ],
+      "remaining_functions": [],
+      "role": "Valid levels/line numbers, marker/string and invalid bounds",
+      "finding": "Synthetic value tests appropriate; no filesystem admission claim.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/models/markdown/test_section.py",
+      "blob": "4ca27b2aa06e8e59abe9c97c722d31f703b9b6c3",
+      "lines": 52,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_section_exposes_boundaries_and_normalized_string_forms",
+        "test_section_rejects_invalid_boundaries"
+      ],
+      "remaining_functions": [],
+      "role": "Literal heading/range metadata, content and invalid range controls",
+      "finding": "Logical-line semantics protected; no byte-precise edit span claim.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_binary_io.py",
+      "blob": "65472e8bc2db66e479635132f810d7a90e5d18e6",
+      "lines": 88,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_exact_binary_round_trip_with_explicit_format",
+        "test_binary_format_is_never_inferred",
+        "test_binary_permission_failure_uses_shared_atomic_cleanup",
+        "denied"
+      ],
+      "remaining_functions": [],
+      "role": "Actual filesystem byte read/write, explicit dispatch, bounds and metadata",
+      "finding": "Public byte controls use literal arbitrary bytes; binary adoption already delivered, not a new implementation outcome.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_json_conversion.py",
+      "blob": "e1b5592a212de9ebef3f445a0d801e2da0286148",
+      "lines": 143,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_object_conversion_receives_thawed_mutable_data_and_preserves_source",
+        "test_object_conversion_normalizes_converter_errors",
+        "test_scalar_conversion_supports_every_json_scalar",
+        "test_list_conversion_thaws_all_json_item_shapes_in_order",
+        "test_list_conversion_is_fail_fast_and_reports_array_index",
+        "_parse_object",
+        "build",
+        "fail",
+        "fail_on_second"
+      ],
+      "remaining_functions": [],
+      "role": "Object/list/scalar explicit callable conversion, mutation isolation and failure causes",
+      "finding": "Canonical conversion owner used; helper-created frozen expected fixtures are supplemented by literal assertions and new independent alias/fail-fast controls.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_json_models.py",
+      "blob": "07707c48786d3e4f4a6e48ddd6a9cad1d81cfbed",
+      "lines": 185,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_json_object_behaves_as_a_mapping_and_preserves_source_search",
+        "test_json_objects_are_immutable_but_not_universally_hashable",
+        "test_json_object_transformations_freeze_insertions_and_preserve_original",
+        "test_json_list_behaves_as_a_sequence_and_preserves_source_search",
+        "test_json_list_transformations_are_immutable_and_freeze_insertions",
+        "test_json_scalar_files_represent_every_legal_scalar_root",
+        "test_json_models_reject_wrong_root_value_shapes",
+        "_object_value",
+        "_list_value"
+      ],
+      "remaining_functions": [],
+      "role": "Mapping/sequence/scalar behavior, transforms, defaults, predicates and immutability",
+      "finding": "find_by tests scalar numeric match/miss only; no missing-null, list query or nested-array query. Helpers are not independent codec authentication.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_models.py",
+      "blob": "52bd60804e46155602d2d01ea3e9fd989bf697b8",
+      "lines": 79,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_file_models_expose_their_format_and_value_semantics",
+        "test_text_file_rejects_invalid_metadata",
+        "test_text_file_exposes_explicit_line_literal_and_regex_operations"
+      ],
+      "remaining_functions": [],
+      "role": "Base/text/binary metadata and invariants, text logical lines and regex wrappers",
+      "finding": "Local value tests appropriate; no source trust or hashability guarantee inferred.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_reading.py",
+      "blob": "2cbd28de4253d5679800fc4c47cd095418d99aab",
+      "lines": 236,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_read_returns_the_concrete_json_root_model",
+        "test_read_allows_an_explicit_format_override_and_retains_json_behavior",
+        "test_read_returns_text_models_with_exact_source_behavior",
+        "test_read_allows_an_explicit_text_override",
+        "test_read_returns_rich_markdown_models",
+        "test_read_allows_an_explicit_markdown_override",
+        "test_read_returns_rich_csv_models",
+        "test_read_allows_an_explicit_csv_override",
+        "test_read_rejects_missing_paths_and_directories",
+        "test_read_enforces_configured_size_limits",
+        "test_read_supports_an_explicitly_unbounded_limit",
+        "test_read_rechecks_size_after_the_content_is_loaded",
+        "test_read_normalizes_permission_failures",
+        "test_read_reports_unsupported_inferred_suffixes",
+        "open_grown_content",
+        "deny_exists",
+        "deny_read"
+      ],
+      "remaining_functions": [],
+      "role": "Real file reading/inference, limits, permission/error doubles, race growth and unsupported suffix",
+      "finding": "Previously only targeted; now full function/helper/monkeypatch review. Actual size/growth controls meaningful; bounded bytes not atomic snapshot.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    },
+    {
+      "path": "tests/resources/filesystem/test_resolution.py",
+      "blob": "2bb992ae3a358a6da13e5aa9761a1b055662d7ad",
+      "lines": 67,
+      "scope": "Complete body/fixture/export review required; source identity is not completed assurance.",
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "review_baseline": "26bd8053ab8ad8323dd3273b4b0e986de05388e9",
+      "depth": "FULL_TEST_FIXTURE_HELPER_AND_ASSERTION_REVIEW",
+      "functions_inspected": [
+        "test_resolve_file_format_is_case_insensitive_for_supported_codecs",
+        "test_resolution_rejects_unsupported_formats",
+        "test_resolve_codec_returns_implemented_codecs"
+      ],
+      "remaining_functions": [],
+      "role": "Static suffix/format/codec mapping and unsupported format/refusal",
+      "finding": "Factory/export correspondence exercised, no dynamic registry or authorization implied.",
+      "report": "docs/research/filesystem-codecs-and-models-audit.md"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/core/conversion/conversion.py",
+      "blob": "a559a59a9d925db31ef4dac694696b1ab099fe94",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Explicit conversion and ordered fail-fast error chain; no registry."
+    },
+    {
+      "path": "src/devtools/core/conversion/errors.py",
+      "blob": "a4d294a274930b354064e44f1398c6869024cc49",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Conversion source type/index/cause contract."
+    },
+    {
+      "path": "src/devtools/core/conversion/__init__.py",
+      "blob": "9383cd9fe9482d8a218bfdf33b62a0e1e53d7691",
+      "depth": "FULL_EXPORT_BODY",
+      "scope": "Canonical conversion exports."
+    },
+    {
+      "path": "src/devtools/tools/filesystem.py",
+      "blob": "2f2754c0a3c7086b3f689272342e104b8487bad9",
+      "depth": "AUTHENTICATED_PRIOR_REVIEW_WITH_TARGETED_RETRACE",
+      "scope": "ReadRepositoryFileTool.validate/execute format dispatch and rich output; native authorization remains caller-owned."
+    },
+    {
+      "path": "src/devtools/tools/execution.py",
+      "blob": "ed0c1bd98ab78395c14ce8a77bb458d4b949b672",
+      "depth": "FULL_NARROW_DEPENDENCY_BODY",
+      "scope": "ToolRunner validates before execute; no mutation/model inference."
+    },
+    {
+      "path": "tests/tools/test_filesystem.py",
+      "blob": "1603aa66b6dbd66e3cd4bda17a1007e224bf0ad7",
+      "depth": "TARGETED_TEST_CONSUMER",
+      "scope": "Actual rich Markdown public Tool fixture and refusal family; suite run does not grant whole module new audit credit."
+    },
+    {
+      "path": "src/devtools/context/repository/observation.py",
+      "blob": "31bd21af30edf53639df663c237f0b48720fd1e6",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "Explicit TEXT native resource acquisition, confinement and ContentIdentity.from_text; structured codecs bypassed deliberately."
+    },
+    {
+      "path": "apps/qwen/patch_proposal_worker.py",
+      "blob": "2cc73e99d26842cd9f8de5ca07852f67594b383a",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "_read_text explicit TEXT boundary."
+    },
+    {
+      "path": "apps/qwen/change_checks.py",
+      "blob": "f8f659acb19be1182433b64b3117cab6882abb66",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "_load uses stdlib json.loads on canonical text for domain-owned evidence schema, not rich JsonFile."
+    },
+    {
+      "path": "apps/qwen/development_task.py",
+      "blob": "8d2fc7bda8e61fc9ff02607f88230969288848c3",
+      "depth": "TARGETED_AUTHORED_TASK_CONSUMER",
+      "scope": "MarkdownFile assertions in host-authored task oracle; not proof of actual model invocation."
+    },
+    {
+      "path": "apps/operator_dashboard/details.py",
+      "blob": "383c5c22ad6835e15ddc3276369fcc1570757c7d",
+      "depth": "TARGETED_ACTUAL_CONSUMER",
+      "scope": "backlog_detail bounded Markdown read and headings/section rationale projection."
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "depth": "TARGETED_DOMAIN_BOUNDARY",
+      "scope": "encode_conversation_json owns strict durable Conversation schema, not generic JsonCodec; no blanket persistence review credit."
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-01/csv-dialect.json",
+      "blob": "03bdf315c9a75b618c1ebf88c5cddcb081b95ab1",
+      "depth": "FULL_FROZEN_TASK_AND_LITERAL_ORACLE",
+      "scope": "Original expected string cells and source preservation; no replay."
+    },
+    {
+      "path": "apps/qwen/evaluation/native-cohort-01/results.json",
+      "blob": "b1ded9718d51a3a3e3a5fecfc754530f497d93d2",
+      "depth": "TARGETED_HISTORICAL_RESULT_ROWS",
+      "scope": "All three CSV results NOT_ACCEPTED, candidate_modified false; no controlled agent effectiveness or adoption claim."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/overview.md",
+      "blob": "7f58e90b37be9f9c37a588d424f78094f1af24f6",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/codecs.md",
+      "blob": "4ee96ece85316a9ddc51013d12c3c045e08ef4f9",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/models.md",
+      "blob": "c19421a445b65e64e4d6e4f6a2143d4d1827d2ff",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/json.md",
+      "blob": "9661b1bea8b11e30595d151779a23923231474ff",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/csv.md",
+      "blob": "87f1319a4c211a38856441d493cb5f3778ef6b35",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/markdown.md",
+      "blob": "cc327abe09a135948af22772c9b22107b499ad80",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    },
+    {
+      "path": "src/devtools/resources/filesystem/docs/roadmap.md",
+      "blob": "af7369b285b2650567b844ba48e0c26811f51ba0",
+      "depth": "FULL_PACKAGE_DOCUMENTATION_BODY",
+      "scope": "Implemented ownership/representation/non-goals; not architecture approval."
+    }
+  ],
+  "focused": {
+    "command": "uv run pytest --no-cov tests/resources/filesystem tests/core/conversion tests/tools/test_filesystem.py -q",
+    "exit_code": 0,
+    "passed": 228,
+    "seconds": 0.76,
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "log_sha256": "ef5ad76bd53d82f9350bf57cb1fa45b7d155d58c3d844c0f5eaad6e93c41625f",
+    "scope": "All filesystem tests including previously reviewed IO plus canonical conversion and public filesystem Tools; executed tests do not alone confer review depth."
+  },
+  "probes": "docs/research/code-audit/filesystem-codecs-models-probes.json",
+  "probe_cases": 61,
+  "new_protected_gate": false,
+  "unchanged_executable_inputs": true,
+  "findings": [
+    {
+      "severity": "P2",
+      "owner": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+      "status": "EXISTING_PENDING_REPAIR",
+      "contracts": "CSV string-valued NONNUMERIC parse/decode and normalized header failure"
+    },
+    {
+      "severity": "P2",
+      "owner": "B-0048",
+      "status": "EXISTING_UNDELIVERED_COMPATIBILITY",
+      "contracts": "Python3.12 object/list/CSV constructor and downstream parse/read/ToolRunner"
+    },
+    {
+      "severity": "P2",
+      "owner": "1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+      "status": "NEW_PENDING_REVIEW",
+      "contracts": "JSON top-level member presence and compatible nested-array equality"
+    }
+  ],
+  "intake": {
+    "new_proposals": 1,
+    "new_id": "1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+    "new_state": "PENDING_REVIEW",
+    "duplicates": [],
+    "csv_advisory": "74b63d2473acdb44a89ab326365da13ea617a70b98d9ef7b6e6681063af843f5",
+    "csv_state": "PENDING_REVIEW",
+    "b0048": "Approved canonical backlog item remains BACKLOG/DISCOVERED/execution_authorization NONE; append current evidence, no terminal-chain mutation."
+  },
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "remaining": [
+    "Separately authorize CSV spelling correction, JSON member lookup repair and complete B0048 supported-model compatibility with actual3.12 regressions; no restoration of stale object-only plan/grants.",
+    "Broader declared-interpreter matrix, oversized/deep structured-input CPU/memory behavior and exact-source formatting are not certified by this audit.",
+    "Next major source domain after bounded repairs: ModelInteraction/serving and real invocation/observation/error consumers; no new cohort executed.",
+    "RI original93/93 (augmented94), experiment606/606, remaining188 exact versions unchanged; A+C remains unapproved.",
+    "WorkCycle/Evidence consumers, d586 validation closure, broader application cohesion and cross-domain operational readiness remain separate."
+  ]
+}

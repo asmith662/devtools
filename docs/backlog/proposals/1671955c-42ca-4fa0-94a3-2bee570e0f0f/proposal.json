@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "1671955c-42ca-4fa0-94a3-2bee570e0f0f",
+  "created_at": "2026-10-26T17:17:23.884885+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct JSON list member lookup for missing/null and compatible array queries",
+    "summary": "P2 public JsonListFile.find_by returns an item with no requested member when querying None and fails compatible list/nested-array queries because stored arrays are frozen tuples. On main 26bd8053ab8ad8323dd3273b4b0e986de05388e9 parse [{\"tag\":\"missing\"},{\"tag\":\"present\",\"key\":null}] and query key=None: tag missing is returned, expected present. A key:[1,2] item queried using [1,2] incorrectly returns None. Repair actual member-presence and compatible JSON comparison within existing model ownership; retain first-match order, null semantics, immutability and source provenance.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:filesystem-codecs-models:26bd8053:20261026:literal public codec and ToolRunner rich-file probes"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/resources/filesystem/models/json/list.py",
+      "tests/resources/filesystem/test_json_models.py"
+    ],
+    "evidence": [
+      "docs/research/filesystem-codecs-and-models-audit.md",
+      "docs/research/code-audit/filesystem-codecs-models-probes.json"
+    ],
+    "benefit": "Reliable public structured lookup without falsely claiming absent JSON members match null or losing compatible array matches.",
+    "uncertainty": "No production autonomous coding action or existing native find_by caller was demonstrated. Generic Tool read returns the affected rich model; this is public API correctness, not authorization or SourceObservation failure.",
+    "dependencies": [
+      "B-0048: operational compatibility dependency for Python3.12 verification; equality defect separately reproduced on supported host3.14."
+    ]
+  },
+  "payload_sha256": "c2235227a653b18d982f78b61d058d198ee564b9c669f23bc12d1e2d242c3828"
+}

@@ -93,3 +93,7 @@ An advanced destination or changed source requires a new explicit plan/review;
 it must not overwrite this frozen plan. **JsonListFile and CsvFile Python 3.12
 defects remain unresolved**, so the planned completion disposition is
 `SLICE_ONLY`, with B-0048 left BACKLOG.
+
+## Current production maintenance overlay — 2026-10-26
+
+The plans and grants described above retain their original historical target/worker/interface bindings; they are not current main integration authority. Filesystem audit on `26bd8053ab8ad8323dd3273b4b0e986de05388e9` reproduces object, list and CSV failures on existing3.12.13, including public read and ToolRunner; all twelve compatibility calls pass on3.14. The old object-only candidate does not complete B-0048. A new bounded repair requires explicit maintainer scope and actual current destination validation; ordinary maintainer-authorized development and WorkCycle autonomous integration authority remain distinct. This audit does not authorize either implementation or promotion and does not require building new integration machinery. [Current evidence](../research/filesystem-codecs-and-models-audit.md). `audit:filesystem-codecs-models:26bd8053:20261026`.
