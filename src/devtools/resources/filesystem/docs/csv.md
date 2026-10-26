@@ -9,6 +9,11 @@ CSV is header-based and string-valued. It consists of `CsvQuoting`,
 `NONE`. `NONNUMERIC` is a CSV quoting policy; it does not coerce cells into
 numeric Python values.
 
+The reader uses standard-library minimal quoting semantics for `NONNUMERIC`
+to preserve unquoted strings such as `001`, `1.50`, `1e2`, and `-0`, including
+numeric-looking headers. The writer retains native `NONNUMERIC` quoting, so
+string fields are quoted. No numeric value is parsed and converted back to text.
+
 `CsvDialect` is immutable and defaults to comma delimiter, double quote marker,
 no escape character, doubled-quote escaping, no initial-space skipping, `"\n"`
 line termination, and minimal quoting. Delimiter and quote characters must be
