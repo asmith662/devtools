@@ -40,6 +40,141 @@ _PROVIDER_TOTAL_TOKENS = 99
 _MAXIMUM_OUTPUT_TOKENS = 64
 
 
+@pytest.mark.parametrize("status", [200, 500])
+def test_malformed_utf8_preserves_provider_error_boundary(
+    monkeypatch: pytest.MonkeyPatch,
+    status: int,
+) -> None:
+    """A well-framed invalid byte is not an incidental decoding exception."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return _reader(
+            f"HTTP/1.1 {status} Test\r\nContent-Length: 1\r\n\r\n".encode() + b"\xff",
+        ), writer
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    expected = LlamaCppResponseError if status != 500 else LlamaCppHttpError  # noqa: PLR2004 -- literal HTTP fixture
+    with pytest.raises(expected) as raised:
+        asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+    if isinstance(raised.value, LlamaCppHttpError):
+        assert raised.value.status == status
+    assert isinstance(raised.value.__cause__, UnicodeDecodeError)
+    assert writer.closed
+
+
+def test_finite_tool_request_passes_independent_strict_wire_parser(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The actual serialized provider request contains only standard JSON."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return _reader(
+            _response(
+                200,
+                {"choices": [{"message": {"role": "assistant", "content": "ok"}}]},
+            ),
+        ), writer
+
+    def reject(value: str) -> None:
+        raise AssertionError(value)
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    definition = ModelToolDefinition(
+        "read",
+        "Read.",
+        '{"type":"object","default":[null,1.5,-2,1e100]}',
+    )
+    request = ModelRequest(Prompt("question", "user"), tools=(definition,))
+    assert asyncio.run(_interaction().send(request)).content == "ok"
+    payload = json.loads(
+        writer.request.partition(b"\r\n\r\n")[2],
+        parse_constant=reject,
+    )
+    assert payload["tools"][0]["function"]["parameters"]["default"] == [
+        None,
+        1.5,
+        -2,
+        1e100,
+    ]
+    assert writer.request.count(b"POST ") == 1
+
+
+def test_valid_unicode_response_and_http_error_remain_supported(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Literal Unicode survives both normal and bounded error-detail decoding."""
+    responses = [
+        _response(
+            200,
+            {"choices": [{"message": {"role": "assistant", "content": "\u03c0"}}]},
+        ),
+        _response(500, {"error": {"message": "\u03c0 failure"}}),
+    ]
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return _reader(responses.pop(0)), _Writer()
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    assert (
+        asyncio.run(_interaction().send(_message(ConversationMessageRole.USER))).content
+        == "\u03c0"
+    )
+    with pytest.raises(LlamaCppHttpError, match="\u03c0 failure"):
+        asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+
+
+@pytest.mark.parametrize("constant", ["NaN", "Infinity", "-Infinity"])
+def test_native_tool_arguments_refuse_nonstandard_json_constants(
+    monkeypatch: pytest.MonkeyPatch,
+    constant: str,
+) -> None:
+    """The actual adapter cannot admit invalid nested Tool argument JSON."""
+    payload = {
+        "choices": [
+            {
+                "message": {
+                    "role": "assistant",
+                    "content": "",
+                    "tool_calls": [
+                        {
+                            "id": "call-1",
+                            "type": "function",
+                            "function": {
+                                "name": "read",
+                                "arguments": '{"nested":[' + constant + "]}",
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
+    }
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return _reader(_response(200, payload)), writer
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    with pytest.raises(LlamaCppResponseError, match="valid JSON") as raised:
+        asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+    assert isinstance(raised.value.__cause__, ValueError)
+    assert writer.closed
+
+
 def _reader(response: bytes) -> asyncio.StreamReader:
     """Create an EOF-delimited StreamReader for a deterministic response."""
     reader = asyncio.StreamReader()

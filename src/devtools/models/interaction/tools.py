@@ -5,19 +5,32 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import Never
+
+
+def _reject_nonstandard_constant(value: str) -> Never:
+    """Refuse Python JSON extensions without changing raw valid call spelling."""
+    msg = f"Nonstandard JSON constant: {value}."
+    raise ValueError(msg)
 
 
 def _canonical_schema(value: str, *, label: str) -> str:
     """Validate one provider-neutral JSON Schema object deterministically."""
     try:
-        decoded = json.loads(value)
-    except json.JSONDecodeError as error:
+        decoded = json.loads(value, parse_constant=_reject_nonstandard_constant)
+        encoded = json.dumps(
+            decoded,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+    except ValueError as error:
         msg = f"{label} input schema must be valid JSON."
         raise ValueError(msg) from error
     if not isinstance(decoded, dict):
         msg = f"{label} input schema must be a JSON object."
         raise TypeError(msg)
-    return json.dumps(decoded, sort_keys=True, separators=(",", ":"))
+    return encoded
 
 
 @dataclass(frozen=True, slots=True)
@@ -65,8 +78,11 @@ class ModelToolCall:
             msg = "Model Tool call provider ID cannot be blank when supplied."
             raise ValueError(msg)
         try:
-            arguments = json.loads(self.arguments_json)
-        except json.JSONDecodeError as error:
+            arguments = json.loads(
+                self.arguments_json,
+                parse_constant=_reject_nonstandard_constant,
+            )
+        except ValueError as error:
             msg = "Model Tool call arguments must be valid JSON."
             raise ValueError(msg) from error
         if not isinstance(arguments, dict):
