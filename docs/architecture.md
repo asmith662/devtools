@@ -1,5 +1,7 @@
 # Architecture
 
+Maintainer direction, 2026-10-27: `devtools` is reusable, model-independent software-engineering/developer infrastructure; Qwen is an operational consumer. The [framework/application decision package](development/framework-application-direction.md) maps actual substrate reuse, portable app coupling, Runtime alternatives and a first independent native Tool-composition migration. Proposed APIs/ownership migrations remain **unapproved and unimplemented**; current Runtime, authority and durable contracts are unchanged. Earlier Qwen-first updates and pending-repair notices below retain their dated context and do not set current framework priorities. [Exact source and probe evidence](research/code-audit/framework-application-direction-20261027.json). `design:framework-application-direction:e84b724c:20261027`.
+
 The existing Commands value/result boundary now supports explicit per-command
 successful exit codes. Command owns the immutable specification; CommandResult
 interprets the raw exit status. The executor, handle/events and CommandTool retain
