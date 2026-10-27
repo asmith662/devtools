@@ -1,0 +1,73 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+  "proposal_sha256": "dac3cfe3c194ebfc60fe11dab117139895c05f2c505bb2584f93131456a554cb",
+  "previous": "53bfe04b8b6675414ebaa910b7dc85e0fdfe6fdd2e2864e8f68f5144f5b46a86",
+  "at": "2026-10-27T18:48:32.619106+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-directed architecture reconciliation",
+  "decision_reference": "design:framework-application-direction:e84b724c:20261027",
+  "rationale": "Maintainer-directed architecture reconciliation/design only at e84b724c18512d1659b68c0510637262506385f5. Reaffirm devtools as reusable model-independent engineering infrastructure; Qwen is one consumer. PR45/46 application extraction remains delivered but is not framework promotion. Actual Runtime builds text requests without native Tool definitions; older text controllers really consume it, while native worker calls ModelInteraction directly. ADR0001 explicitly reserves Tool/model composition outside Tools and Models. Recommend first a small Agents-domain native Tool composition seam reusing ToolInvocation/ToolRunner/ModelRequest/Prompt, actual Qwen dispatcher adoption and an application-import-free non-Qwen host with real source/Tool/check behavior. Then neutral source/check services and a bounded portable coding Agent; no blanket loop move into Runtime or generic orchestration engine. Current independent controls establish existing substrate composition, Runtime contract and text-assembly refusal;90 focused tests pass. docs/development/framework-application-direction.md; docs/research/code-audit/framework-application-direction-20261027.json. This is a proposed API/migration decision package, not acceptance or implementation authorization; preserve task hashes/journals/grants/custody/protected validation and historical results. Existing B0035/B0043/B0044/B0042 and Evidence/recovery owners retain responsibilities. No duplicate proposal, new B-number, approval, grant, parent closure, inference or migration. Do not reschedule already delivered Qwen cohesion or prior repairs.",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "835a203f-8fd4-4bc2-ace8-8772137eaf2f",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "b0c02dbf-0eab-47fd-bcc6-5d503d7d65fd",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "d58697fd-bb03-4e98-bdac-fa29444fc6ff",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Reuse39c6663a cohesion pressure plus existing B0035/B0043/B0044/B0042 authority; no duplicate Task/Agent/orchestration proposal or automatic promotion.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "6aa1e55b88d98c915a5dd38d4ddb2ca0ffdd2bccfb8ed62db5c92bb5ab4d0037"
+}

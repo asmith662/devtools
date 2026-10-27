@@ -79,3 +79,7 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Framework/application direction design — 2026-10-27
+
+The source-grounded framework/application design identifies a concrete first reusable seam: native model/Tool composition under the existing Agents domain, using ToolInvocation/ToolRunner and model-native values. Current Qwen dispatchers and an independent application-import-free host must actually execute the same promoted code. Tools and Models must remain independent per ADR-0001; descriptor-only relocation or a registry does not establish the required operational adoption. Public API and admission/error semantics require explicit maintainer approval. [Decision package](../../development/framework-application-direction.md). Status, maturity, dependencies, original approvals and promotion triggers remain unchanged. `design:framework-application-direction:e84b724c:20261027`.
