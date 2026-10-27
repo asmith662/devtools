@@ -37,37 +37,37 @@ _REQUIRED_COLUMNS = {
     "session_messages": {"session_id", "position", "message_id"},
     "conversations": {"session_id", "source", "value"},
 }
-_SCHEMA = """
-CREATE TABLE sessions (
+_SCHEMA = (
+    """CREATE TABLE sessions (
     session_id TEXT PRIMARY KEY NOT NULL,
     created_at TEXT NOT NULL
-);
-CREATE TABLE messages (
+)""",
+    """CREATE TABLE messages (
     message_id TEXT PRIMARY KEY NOT NULL,
     created_at TEXT NOT NULL,
     content TEXT NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('user', 'assistant', 'system')),
     source TEXT NOT NULL
-);
-CREATE TABLE session_messages (
+)""",
+    """CREATE TABLE session_messages (
     session_id TEXT NOT NULL,
     position INTEGER NOT NULL CHECK (position >= 0),
     message_id TEXT NOT NULL,
     PRIMARY KEY (session_id, position),
     FOREIGN KEY (session_id) REFERENCES sessions(session_id) ON DELETE CASCADE,
     FOREIGN KEY (message_id) REFERENCES messages(message_id)
-);
-CREATE TABLE conversations (
+)""",
+    """CREATE TABLE conversations (
     session_id TEXT NOT NULL,
     source TEXT NOT NULL,
     value TEXT NOT NULL,
     PRIMARY KEY (session_id, source),
     FOREIGN KEY (session_id) REFERENCES sessions(session_id) ON DELETE CASCADE
-);
-CREATE INDEX idx_sessions_created_at ON sessions(created_at);
-CREATE INDEX idx_session_messages_message_id ON session_messages(message_id);
-CREATE INDEX idx_conversations_source ON conversations(source);
-"""
+)""",
+    "CREATE INDEX idx_sessions_created_at ON sessions(created_at)",
+    "CREATE INDEX idx_session_messages_message_id ON session_messages(message_id)",
+    "CREATE INDEX idx_conversations_source ON conversations(source)",
+)
 
 
 class SqliteConversationStore:
@@ -137,14 +137,20 @@ class SqliteConversationStore:
         """Initialize an empty database or validate the supported schema."""
         version = connection.execute("PRAGMA user_version").fetchone()[0]
         if version == 0:
-            tables = _user_tables(connection)
-            if tables:
-                msg = "SQLite database is not an empty persistence database."
-                raise PersistenceFormatError(msg)
+            # Serialize initial installation and recheck after waiting for a
+            # competing initializer. executescript would implicitly commit an
+            # existing legacy transaction; execute owned DDL statements instead.
             with connection:
-                connection.executescript(_SCHEMA)
-                connection.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
-            return
+                connection.execute("BEGIN IMMEDIATE")
+                version = connection.execute("PRAGMA user_version").fetchone()[0]
+                if version == 0:
+                    if _user_tables(connection):
+                        msg = "SQLite database is not an empty persistence database."
+                        raise PersistenceFormatError(msg)
+                    for statement in _SCHEMA:
+                        connection.execute(statement)
+                    connection.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
+                    return
         if version != _SCHEMA_VERSION:
             msg = f"Unsupported SQLite persistence schema version: {version}."
             raise PersistenceVersionError(msg)

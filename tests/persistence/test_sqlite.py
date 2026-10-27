@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import sqlite3
 import threading
 from concurrent.futures import ThreadPoolExecutor
@@ -550,6 +551,84 @@ def test_sqlite_wal_load_never_mixes_committed_snapshots(
     assert any(name.startswith("snapshot-reader") for name in closed)
 
 
+@pytest.mark.parametrize("stage", ["table", "index", "late-index", "version"])
+def test_sqlite_initialization_failure_rolls_back_and_retries(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    stage: str,
+) -> None:
+    """Every initial DDL/version stage belongs to the same transaction."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    original_connect = sqlite3.connect
+    closed: list[bool] = []
+
+    class Connection(sqlite3.Connection):
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def authorize(
+        action: int,
+        one: str | None,
+        two: str | None,
+        _db: str | None,
+        _trigger: str | None,
+    ) -> int:
+        denied = (
+            (
+                stage == "table"
+                and action == sqlite3.SQLITE_CREATE_TABLE
+                and one == "messages"
+            )
+            or (
+                stage == "index"
+                and action == sqlite3.SQLITE_CREATE_INDEX
+                and one == "idx_sessions_created_at"
+            )
+            or (
+                stage == "late-index"
+                and action == sqlite3.SQLITE_CREATE_INDEX
+                and one == "idx_conversations_source"
+            )
+            or (
+                stage == "version"
+                and action == sqlite3.SQLITE_PRAGMA
+                and one == "user_version"
+                and two is not None
+            )
+        )
+        return sqlite3.SQLITE_DENY if denied else sqlite3.SQLITE_OK
+
+    def connect(database: str) -> sqlite3.Connection:
+        connection = original_connect(database, factory=Connection)
+        connection.set_authorizer(authorize)
+        return connection
+
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized"):
+            store.save(first)
+    assert closed == [False]
+
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as connection:
+        tables = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'",
+        ).fetchall()
+        version = connection.execute("PRAGMA user_version").fetchone()
+    retry_error = None
+    try:
+        store.save(first)
+    except PersistenceFormatError as error:
+        retry_error = type(error).__name__
+    assert {"tables": tables, "version": version, "retry_error": retry_error} == {
+        "tables": [],
+        "version": (0,),
+        "retry_error": None,
+    }
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+
+
 def test_sqlite_default_journal_reader_and_waiting_writer(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -665,9 +744,78 @@ def test_sqlite_default_read_lock_refuses_impatient_commit_then_releases(
     assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
 
 
+def test_sqlite_concurrent_first_initializers_recheck_after_reservation(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Both observe v0; the waiting initializer rechecks installed v1."""
+    original_connect = sqlite3.connect
+    barrier = threading.Barrier(2)
+    seen: list[int] = []
+
+    class Cursor(sqlite3.Cursor):
+        first_version: bool = False
+
+        def fetchone(self) -> Any:  # noqa: ANN401 -- native row protocol
+            row = super().fetchone()
+            if self.first_version:
+                self.close()
+                seen.append(row[0])
+                barrier.wait(10)
+            return row
+
+    class Connection(sqlite3.Connection):
+        first_version: bool = True
+
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            cursor = self.cursor(factory=Cursor)
+            cursor.execute(sql, parameters)
+            if sql == "PRAGMA user_version" and self.first_version:
+                self.first_version = False
+                cursor.first_version = True
+            return cursor
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, factory=Connection)
+
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with ThreadPoolExecutor(max_workers=2) as workers:
+            futures = [workers.submit(store.load, first.id) for _ in range(2)]
+            assert [f.result(10) for f in futures] == [None, None]
+    assert seen == [0, 0]
+    store.save(first)
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as c:
+        assert c.execute("PRAGMA user_version").fetchone() == (1,)
+        assert c.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table'",
+        ).fetchone() == (4,)
+
+
+def test_sqlite_preexisting_partial_database_is_preserved(tmp_path: Path) -> None:
+    """Unknown v0 content is never reclaimed as a fresh installation."""
+    path = tmp_path / "sessions.sqlite"
+    with closing(sqlite3.connect(path)) as c, c:
+        c.execute("CREATE TABLE sessions(value TEXT)")
+        c.execute("INSERT INTO sessions VALUES ('unknown original content')")
+    before = hashlib.sha256(path.read_bytes()).hexdigest()
+    first, _ = _snapshot_pair()
+    with pytest.raises(PersistenceFormatError, match="not an empty"):
+        _store(tmp_path).load(first.id)
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+    with closing(sqlite3.connect(path)) as c:
+        assert c.execute("SELECT value FROM sessions").fetchall() == [
+            ("unknown original content",),
+        ]
+        assert c.execute("PRAGMA user_version").fetchone() == (0,)
+
+
 @pytest.mark.parametrize(
     "failure",
-    ["missing", "begin", "query", "commit"],
+    ["missing", "malformed", "begin", "query", "commit"],
 )
 def test_sqlite_read_transaction_always_settles_and_closes(
     tmp_path: Path,
