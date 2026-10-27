@@ -307,3 +307,7 @@ Future protocols must state a primary [failure class](taxonomy.md#retrieval-and-
 representation, vocabulary/semantic mismatch, relational relevance,
 ranking/discrimination, Context disclosure or information-need/obligation failure.
 These surfaces can coexist; the retrieval detour preserves the downstream work.
+
+## Native Qwen application adoption
+
+The trusted opt-in [native application consumer](../../apps/qwen/obligations/README.md) composes existing lexical, grounding, association, caller-resolution/promotion and readiness contracts. Actual current source ranges must remain in selected Context before required obligations permit an edit; helpful gaps remain nonblocking. This is not automatic semantic resolution, universal sufficiency, generic frontier/acquisition or the broader A+C decision. [Delivered validation and scope](../development/qwen-native-obligation-context.md), PR #43, main `7f4f0871d0689ec2ae565bdcad741d032845af9d`. Existing status rows retain their framework/automatic versus application distinction. `integration:native-obligation-context:b7790180:20261027`.

@@ -5883,6 +5883,108 @@
       "original_fields_preserved": true,
       "report": "docs/development/qwen-terminal-outcome-repair.md",
       "receipt": "docs/research/code-audit/qwen-terminal-repair-20261027.json"
+    },
+    {
+      "reference": "integration:native-obligation-context:b7790180:20261027",
+      "production": "b7790180629e840d63d1d5b6815eb12a5d39a5a4",
+      "accepted_main": "7f4f0871d0689ec2ae565bdcad741d032845af9d",
+      "pr": 43,
+      "changed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "baseline_blob": "b383d07c1030b46f9c96567abaa49e0e0d1536fd",
+          "current_blob": "6ee7f9671f88175b4643a949813dc92774d5541e",
+          "review_depth": "CHANGED_FUNCTION_OR_DOCUMENT_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/coding_loop.py",
+          "baseline_blob": "f47c6f9c601f34714783b7628d914bfb3ac2714f",
+          "current_blob": "b8cf7d06065f4834a03ae02028f2ffc489427550",
+          "review_depth": "CHANGED_FUNCTION_OR_DOCUMENT_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/obligations/README.md",
+          "baseline_blob": null,
+          "current_blob": "194fa5d1c5d8725b61c7022546aad68688395e68",
+          "review_depth": "CHANGED_FUNCTION_OR_DOCUMENT_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/obligations/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "6d77e881948821584214098b87e56bbad06ee197",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/obligations/assessment.py",
+          "baseline_blob": null,
+          "current_blob": "cee77673a4d814a6e81d2f21abf2890c1efcc368",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/obligations/frame.py",
+          "baseline_blob": null,
+          "current_blob": "8175a653be9e41956c45b8d21a21efc9caaa7132",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/obligations/native.py",
+          "baseline_blob": null,
+          "current_blob": "c7a038c4c5014abe5f66ede8cfe478d77ace28d6",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "scripts/qwen/coding_worker.py",
+          "baseline_blob": "814c7e47375dd58035875c1c120084b36bed88e0",
+          "current_blob": "36e039e046b60ff7293596741e5f18023da5dab6",
+          "review_depth": "CHANGED_FUNCTION_OR_DOCUMENT_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "dc72e921fba766118020c9bed6b085692d2cad66",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/test_cli.py",
+          "baseline_blob": null,
+          "current_blob": "d754cb7a16d3148ed90a940645f5705a07dfb463",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/test_frame.py",
+          "baseline_blob": null,
+          "current_blob": "aaa6b0b3efed014e8d54cf0932071babf2e088b1",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/test_lifecycle.py",
+          "baseline_blob": null,
+          "current_blob": "9f9f27301a2400512b4157f2b843dca7aabe5da4",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/test_native.py",
+          "baseline_blob": null,
+          "current_blob": "7c6919687817f9ca336caa07b62e922f4c0dcc37",
+          "review_depth": "NEW_APPLICATION_BODY_AND_REGRESSIONS",
+          "prior_frozen_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/qwen-native-obligation-context.md",
+      "receipt": "docs/research/code-audit/qwen-obligation-integration-20261027.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }
