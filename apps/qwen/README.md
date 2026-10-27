@@ -1,5 +1,17 @@
 # Bounded local coding worker
 
+## Opt-in obligation-driven Context
+
+The native worker can consume a trusted, task-bound `--obligation-frame` using
+existing Localization grounding, association, caller resolution, promotion and
+readiness. Exact current witness ranges must be present in active Context before
+mandatory requirements permit an edit. Helpful gaps remain visible without
+blocking; relevance and model claims do not establish support. Existing source
+admission, checks, limits, terminal outcomes and publication authority remain
+separate. Unframed task formats/digests and behavior are unchanged. See the
+[frame contract, CLI and limitations](obligations/README.md). This bounded consumer
+does not approve A+C, automatic semantic resolution or restart/replay.
+
 ## Command receipt custody
 
 CodingCommands reserves a journal name before command entry using atomic directory

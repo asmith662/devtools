@@ -45,6 +45,7 @@ from apps.qwen.edits import (
     observed_definition,
     transaction_definition,
 )
+from apps.qwen.obligations import NativeObligations, ReadinessRefusalError
 from apps.qwen.patch_proposal_worker import PatchProposalError, _read_text
 from apps.qwen.tasks import MARKDOWN, CodingTask
 from devtools.context import (
@@ -85,6 +86,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
 
+    from apps.qwen.obligations import ObligationFrame
     from devtools.context.retrieval.source import SourceSearchMode
     from devtools.models.interaction import ModelInteraction
 
@@ -412,6 +414,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     request_settings: LlamaCppRequestSettings | None = None,
     check_changes_before_completion: bool = False,
     commands: CodingCommands | None = None,
+    obligation_frame: ObligationFrame | None = None,
 ) -> None:
     measured_capacity = isinstance(interaction, LlamaCppInteraction)
     active_limit = (
@@ -429,6 +432,11 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     )
     commands = (
         commands if commands is not None else CodingCommands(workspace, folder, task)
+    )
+    obligations = (
+        NativeObligations(obligation_frame, tools)
+        if obligation_frame is not None and tools is not None
+        else None
     )
     report["context_preparation_seconds"] = time.perf_counter() - prepared_at
     active_prompt = task.prompt
@@ -558,6 +566,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             messages, omitted = select_messages(
                 history, source_path=task.source, maximum_bytes=active_bytes
             )
+            if obligations is not None:
+                messages = obligations.project(messages)
             if task.path_edits:
                 messages = present_sources(messages)
             model_prompt = Prompt("", role="messages", messages=messages)
@@ -639,6 +649,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         compact=True,
                         reacquire=reacquire,
                     )
+                    if obligations is not None:
+                        messages = obligations.project(messages)
                     if task.path_edits:
                         messages = present_sources(messages)
                     request = replace(
@@ -722,6 +734,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "messages_omitted_from_active_context": omitted,
         }
         report["turns"].append(stage)
+        if obligations is not None:
+            obligations.retain(stage, report)
         stage["request_sha256"] = _hash(turn / "request.json")
         _save(turn / "stage.json", stage)
         print(
@@ -974,6 +988,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         }
         plan: dict[str, Any] = {}
         try:
+            if obligations is not None:
+                obligations.admit(stage, report)
             if transaction:
                 if tools is None:
                     raise PatchProposalError(
@@ -1025,6 +1041,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 or "Unauthorized" in str(error)
                 or (
                     not transaction
+                    and not isinstance(error, ReadinessRefusalError)
                     and str(error)
                     not in {
                         "Old text must match exactly one source region",
@@ -1085,6 +1102,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "arrays or JSON closing syntax belong in old_text/new_text. "
                     "The entire batch was rejected. Preserve all task requirements."
                 )
+            if isinstance(error, ReadinessRefusalError):
+                result.update(error="CONTEXT_NOT_READY", instruction=str(error))
             history.extend(
                 PromptMessage(
                     "tool",
@@ -1347,6 +1366,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     reasoning_effort: str | None = None,
     request_settings: LlamaCppRequestSettings | None = None,
     check_changes_before_completion: bool = False,
+    obligation_frame: ObligationFrame | None = None,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -1358,6 +1378,8 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     """
     if type(thinking_enabled) is not bool:
         raise ValueError("thinking_enabled must be an explicit host boolean")
+    if obligation_frame is not None:
+        obligation_frame.validate(task)
     if type(check_changes_before_completion) is not bool or (
         check_changes_before_completion
         and (not task.command_tools or not task.quality_checks or not observed_edits)
@@ -1426,6 +1448,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     }
     workspace: Path | None = None
     validation_commands: CodingCommands | None = None
+    if obligation_frame is not None:
+        report["obligation_frame_sha256"] = obligation_frame.sha256
+        _save(folder / "obligation-frame.json", obligation_frame.to_dict())
     try:
         async with asyncio.timeout(task.wall_seconds):
             workspace = _prepare_workspace(root, folder, task)
@@ -1490,6 +1515,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 request_settings=request_settings,
                 check_changes_before_completion=check_changes_before_completion,
                 commands=validation_commands,
+                obligation_frame=obligation_frame,
             )
     except asyncio.CancelledError:
         report.update(
