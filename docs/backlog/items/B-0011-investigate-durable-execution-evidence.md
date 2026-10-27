@@ -101,3 +101,7 @@ Existing ExecutionInspector retains local terminal facts before optional sink; s
 ## Codex contract repair evidence
 
 Both bounded Codex defects delivered. Optional capture policy remains unapproved: per-invocation correlation, secondary-report failure, privacy/retention and mandatory evidence admission remain explicit decisions. [Delivered correction](../../development/codex-input-and-metadata-repair.md), normal PR35 and verified main `4189fffd79eaaa64debfc7b601bb729de92002de`. No state, approval, grant or parent closure. `repair:codex-input-metadata:c39c1f0f:20261026`.
+
+## Persistence/Recovery audit evidence
+
+Conversation storage has no Evidence/attempt/usage schema or automatic Runtime persistence. Model Inspector callback/local retention is not durability; ExecutionInspector sink accept does not specify flush/commit. OptionB can preserve primary response independently of storage, but durable correlated failure capture needs a real owner/consumer and approved privacy/retention contract. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.

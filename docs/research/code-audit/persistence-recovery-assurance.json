@@ -1,0 +1,1204 @@
+{
+  "at": "2026-10-27T00:01:36.803380+00:00",
+  "baseline": "206d58e271014e08cda8d18774b5fc86f406bf84",
+  "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+  "status": "FULL_SELECTED_REVIEW_COMPLETE_THREE_P2_REPAIRS_PENDING",
+  "reviewed": [
+    {
+      "path": "src/devtools/persistence/__init__.py",
+      "blob": "ba8979a0738fcd9a32173291f21368eaee88c77c",
+      "physical_sha256": "08d81dfcf7663b78b3e23ffe9aac862a2de540fa27e42b4014d47faba7987798",
+      "lines": 21,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_EXPORT_AND_IMPORT_BODY",
+      "assessment": "Seven explicit exports: four domain exceptions, JSON encode/decode and SQLite store. Imports define adapters without opening a database. No legacy runtime Session aliases.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "src/devtools/persistence/_snapshot.py",
+      "blob": "820476461db36e14093e2e1f208447d0a428bf2b",
+      "physical_sha256": "5806daaa5c6b0fc5d572c46413fa6307cf5c6009863803da4cd639ecc4c1f73e",
+      "lines": 125,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "capture_conversation",
+          "line": 66,
+          "end": 79
+        },
+        {
+          "name": "snapshot_from_values",
+          "line": 82,
+          "end": 96
+        },
+        {
+          "name": "restore_conversation",
+          "line": 99,
+          "end": 114
+        },
+        {
+          "name": "_validate_message_ids",
+          "line": 117,
+          "end": 125
+        },
+        {
+          "name": "from_message",
+          "line": 35,
+          "end": 43
+        },
+        {
+          "name": "to_message",
+          "line": 45,
+          "end": 53
+        }
+      ],
+      "depth": "FULL_SOURCE_METHOD_AND_FAILURE_BODY",
+      "assessment": "Frozen message/snapshot values, duplicate immutable-ID conflict checks, source-sorted refs and reconstructed duplicate-occurrence aliasing. Public capture is synchronous and explicitly requires cooperative caller turn coordination. It does not acquire a global/thread/process lock.",
+      "functions_reviewed": [
+        {
+          "name": "capture_conversation",
+          "line": 66,
+          "end": 79,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Copies immutable History values then current refs; explicit cooperative caller-lock requirement, not atomic global snapshot."
+        },
+        {
+          "name": "snapshot_from_values",
+          "line": 82,
+          "end": 96,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Checks conflicting duplicate message identity and deterministically sorts refs; trusted typed private seam."
+        },
+        {
+          "name": "restore_conversation",
+          "line": 99,
+          "end": 114,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Fresh Conversation/History/lock; equal repeated message IDs reuse one restored immutable object while positions remain duplicated."
+        },
+        {
+          "name": "_validate_message_ids",
+          "line": 117,
+          "end": 125,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Equal repeated values accepted, conflicting immutable values refused before encode/save effects."
+        },
+        {
+          "name": "from_message",
+          "line": 35,
+          "end": 43,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Frozen message/snapshot values, duplicate immutable-ID conflict checks, source-sorted refs and reconstructed duplicate-occurrence aliasing. Public capture is synchronous and explicitly requires cooperative caller turn coordination. It does not acquire a global/thread/process lock."
+        },
+        {
+          "name": "to_message",
+          "line": 45,
+          "end": 53,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Frozen message/snapshot values, duplicate immutable-ID conflict checks, source-sorted refs and reconstructed duplicate-occurrence aliasing. Public capture is synchronous and explicitly requires cooperative caller turn coordination. It does not acquire a global/thread/process lock."
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/persistence/docs/json.md",
+      "blob": "48b35ee86245c29351e039c6d5b585fb944270d6",
+      "physical_sha256": "78b164a9ce3a1cb662aa24a524a0ec3c46742875673f65e40bff9fa41199f287",
+      "lines": 10,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_PACKAGE_CONTRACT_BODY",
+      "assessment": "Pure text encoder/decoder explicitly do not open files. Resource composition remains caller-owned and was not silently credited as a JSON file-store implementation.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "src/devtools/persistence/docs/overview.md",
+      "blob": "bf1861354c854a49bbc657670b672a2192dd0f55",
+      "physical_sha256": "d26dd19172e409724057fffea74c00444ff9465ddb2c4c7099bbe2febe9b5c67",
+      "lines": 15,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_PACKAGE_CONTRACT_BODY",
+      "assessment": "Conversation durable state and fresh local coordination are explicit; Evidence/Memory/Run/authority remain outside. Historical schema labels are storage compatibility, not runtime aliases.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "src/devtools/persistence/docs/sqlite.md",
+      "blob": "d4779e06a921d75611b2566eca62dca567621cab",
+      "physical_sha256": "89c11cf7632aa3c1eaa10c0514195ee45453fa31025debf1ec5c5d8376e2cccd",
+      "lines": 11,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_PACKAGE_CONTRACT_BODY",
+      "assessment": "Atomic saving refers to replacement transaction, not automatic turn coordination, process ownership or exactly-once effects. Current load/initialization deficiencies are recorded without changing authoritative semantics during the audit.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "src/devtools/persistence/errors.py",
+      "blob": "9070f3fd73c21971f7ecd4cb9c1c97dd2f82953e",
+      "physical_sha256": "89220849e3f1270da34100efea682b6a86aefedfd04b3f1f424a893312abb5f1",
+      "lines": 18,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_EXCEPTION_HIERARCHY_BODY",
+      "assessment": "Conflict is separate from malformed/versioned representation; Version subclasses Format. This hierarchy does not promise normalization of every sqlite3 operational/storage exception.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "physical_sha256": "d45784a83dc0b5997f4167e00a0a09c4a28ed9804a4bbd24e6439e2df23553ae",
+      "lines": 224,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "encode_conversation_json",
+          "line": 35,
+          "end": 69
+        },
+        {
+          "name": "decode_conversation_json",
+          "line": 72,
+          "end": 123
+        },
+        {
+          "name": "_decode_message",
+          "line": 126,
+          "end": 146
+        },
+        {
+          "name": "_decode_conversation",
+          "line": 149,
+          "end": 158
+        },
+        {
+          "name": "_require_object",
+          "line": 161,
+          "end": 166
+        },
+        {
+          "name": "_require_list",
+          "line": 169,
+          "end": 174
+        },
+        {
+          "name": "_require_string",
+          "line": 177,
+          "end": 182
+        },
+        {
+          "name": "_require_fields",
+          "line": 185,
+          "end": 189
+        },
+        {
+          "name": "_validate_version",
+          "line": 192,
+          "end": 199
+        },
+        {
+          "name": "_reject_duplicate_keys",
+          "line": 202,
+          "end": 210
+        },
+        {
+          "name": "_reject_nonstandard_constant",
+          "line": 213,
+          "end": 216
+        },
+        {
+          "name": "_validate_conversation_sources",
+          "line": 219,
+          "end": 224
+        }
+      ],
+      "depth": "FULL_SOURCE_METHOD_AND_FAILURE_BODY",
+      "assessment": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema.",
+      "functions_reviewed": [
+        {
+          "name": "encode_conversation_json",
+          "line": 35,
+          "end": 69,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Deterministic text only; snapshot and serialization failure is not a durable file-save outcome."
+        },
+        {
+          "name": "decode_conversation_json",
+          "line": 72,
+          "end": 123,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict structure and semantic normalization; no storage, input byte cap or arbitrary runtime resource guarantee."
+        },
+        {
+          "name": "_decode_message",
+          "line": 126,
+          "end": 146,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_decode_conversation",
+          "line": 149,
+          "end": 158,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_require_object",
+          "line": 161,
+          "end": 166,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_require_list",
+          "line": 169,
+          "end": 174,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_require_string",
+          "line": 177,
+          "end": 182,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_require_fields",
+          "line": 185,
+          "end": 189,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_validate_version",
+          "line": 192,
+          "end": 199,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_reject_duplicate_keys",
+          "line": 202,
+          "end": 210,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_reject_nonstandard_constant",
+          "line": 213,
+          "end": 216,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        },
+        {
+          "name": "_validate_conversation_sources",
+          "line": 219,
+          "end": 224,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Strict v1 field sets, version bool refusal, duplicate decoded keys, constants, typed fields and semantic conflict/source checks. Deterministic UTF8-capable text, UTC value normalization, insertion order and current refs. No file I/O or autonomous persistence consumer. Existing encoder-derived test fixtures supplemented by literal independent schema."
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/persistence/sqlite.py",
+      "blob": "4cd07d7f64f46df0f5a2a6a87ab7fa86703070a6",
+      "physical_sha256": "b16a25c935dcd1549a2b576d685eb780af0bdb1ccd6044bfeb9b6d8ab4321d24",
+      "lines": 302,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_user_tables",
+          "line": 286,
+          "end": 292
+        },
+        {
+          "name": "_validate_required_columns",
+          "line": 295,
+          "end": 302
+        },
+        {
+          "name": "__init__",
+          "line": 78,
+          "end": 80
+        },
+        {
+          "name": "save",
+          "line": 82,
+          "end": 90
+        },
+        {
+          "name": "load",
+          "line": 92,
+          "end": 117
+        },
+        {
+          "name": "_open_connection",
+          "line": 119,
+          "end": 129
+        },
+        {
+          "name": "_ensure_schema",
+          "line": 131,
+          "end": 149
+        },
+        {
+          "name": "_save_snapshot",
+          "line": 151,
+          "end": 197
+        },
+        {
+          "name": "_save_message",
+          "line": 199,
+          "end": 226
+        },
+        {
+          "name": "_load_messages",
+          "line": 228,
+          "end": 270
+        },
+        {
+          "name": "_load_conversations",
+          "line": 272,
+          "end": 283
+        }
+      ],
+      "depth": "FULL_SOURCE_METHOD_AND_FAILURE_BODY",
+      "assessment": "Every connection, schema statement, SELECT/DML, context/finally and error branch inspected. Atomic replacement and immutable global messages are real; read coherence, initial DDL atomicity and text-class admission have separately reproduced P2s. Table/column validation is limited structural checking, not a full DDL/constraint fingerprint.",
+      "functions_reviewed": [
+        {
+          "name": "_user_tables",
+          "line": 286,
+          "end": 292,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Filters sqlite internal tables; not proof of schema authenticity."
+        },
+        {
+          "name": "_validate_required_columns",
+          "line": 295,
+          "end": 302,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Checks column presence only, not every constraint/type/index."
+        },
+        {
+          "name": "__init__",
+          "line": 78,
+          "end": 80,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Every connection, schema statement, SELECT/DML, context/finally and error branch inspected. Atomic replacement and immutable global messages are real; read coherence, initial DDL atomicity and text-class admission have separately reproduced P2s. Table/column validation is limited structural checking, not a full DDL/constraint fingerprint."
+        },
+        {
+          "name": "save",
+          "line": 82,
+          "end": 90,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Capture before connection; schema admission precedes replacement transaction; closure in finally."
+        },
+        {
+          "name": "load",
+          "line": 92,
+          "end": 117,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Confirmed cross-commit read P2; finally closes the connection but independent SELECTs lack one read snapshot."
+        },
+        {
+          "name": "_open_connection",
+          "line": 119,
+          "end": 129,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Short-lived SQLite ownership, foreign_keys ON; closes on admission errors; native operational errors remain native."
+        },
+        {
+          "name": "_ensure_schema",
+          "line": 131,
+          "end": 149,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Confirmed partial-install P2; version/table/required-column checks otherwise preserve unknown database refusal."
+        },
+        {
+          "name": "_save_snapshot",
+          "line": 151,
+          "end": 197,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Preserves session creation time/global immutable values and transactionally replaces current occurrences/refs; no revision/CAS policy."
+        },
+        {
+          "name": "_save_message",
+          "line": 199,
+          "end": 226,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Global immutable-ID row reuse or precise value conflict, not content deduplication or garbage collection."
+        },
+        {
+          "name": "_load_messages",
+          "line": 228,
+          "end": 270,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Contiguous position and dangling-row checks meaningful; missing text-class validation confirmed."
+        },
+        {
+          "name": "_load_conversations",
+          "line": 272,
+          "end": 283,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Source order and current refs reconstructed; BLOB source/value accepted incorrectly."
+        }
+      ]
+    },
+    {
+      "path": "tests/persistence/__init__.py",
+      "blob": "7e458bfdc8f53eaa58284a8888952f2a061a218d",
+      "physical_sha256": "1ddf89cd77237386b09e0a5e8d43a5efe8c94f83b0f0ce6325a783ca53744a89",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [],
+      "depth": "FULL_MARKER_ROLE_REVIEW",
+      "assessment": "Package discovery/docstring marker, no imports, exports, setup or independent behavioral algorithm. Role authenticated rather than shortness used as review credit.",
+      "functions_reviewed": []
+    },
+    {
+      "path": "tests/persistence/test_json.py",
+      "blob": "1940f0069d3b102b5812deadf45a4094e051cbec",
+      "physical_sha256": "475c968dec8eb9bb6304025aa2ff2c58bc5e1c2cd41b0ccc7f78e41c06105b23",
+      "lines": 208,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_timestamp",
+          "line": 33,
+          "end": 35
+        },
+        {
+          "name": "_message",
+          "line": 38,
+          "end": 52
+        },
+        {
+          "name": "_session",
+          "line": 55,
+          "end": 73
+        },
+        {
+          "name": "_value",
+          "line": 76,
+          "end": 80
+        },
+        {
+          "name": "test_json_round_trip_preserves_semantic_session_state_and_fresh_turn",
+          "line": 83,
+          "end": 104
+        },
+        {
+          "name": "test_json_empty_session_round_trip",
+          "line": 107,
+          "end": 119
+        },
+        {
+          "name": "test_json_rejects_invalid_schema_values",
+          "line": 159,
+          "end": 169
+        },
+        {
+          "name": "test_json_rejects_invalid_json_syntax_keys_and_constants",
+          "line": 181,
+          "end": 184
+        },
+        {
+          "name": "test_json_rejects_duplicate_conversation_source",
+          "line": 187,
+          "end": 195
+        },
+        {
+          "name": "test_json_rejects_conflicting_repeated_message_id",
+          "line": 198,
+          "end": 208
+        },
+        {
+          "name": "acquire",
+          "line": 100,
+          "end": 102
+        }
+      ],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "assessment": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful.",
+      "functions_reviewed": [
+        {
+          "name": "_timestamp",
+          "line": 33,
+          "end": 35,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "_message",
+          "line": 38,
+          "end": 52,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "_session",
+          "line": 55,
+          "end": 73,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "_value",
+          "line": 76,
+          "end": 80,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "Fixture uses the encoder as its schema producer; not an independent compatibility oracle."
+        },
+        {
+          "name": "test_json_round_trip_preserves_semantic_session_state_and_fresh_turn",
+          "line": 83,
+          "end": 104,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "test_json_empty_session_round_trip",
+          "line": 107,
+          "end": 119,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "test_json_rejects_invalid_schema_values",
+          "line": 159,
+          "end": 169,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "test_json_rejects_invalid_json_syntax_keys_and_constants",
+          "line": 181,
+          "end": 184,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "test_json_rejects_duplicate_conversation_source",
+          "line": 187,
+          "end": 195,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "test_json_rejects_conflicting_repeated_message_id",
+          "line": 198,
+          "end": 208,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        },
+        {
+          "name": "acquire",
+          "line": 100,
+          "end": 102,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All six test functions, deterministic factories, fourteen mutations/four syntax parameters and nested async lock helper read.22 selected cases. Most negatives mutate SUT-produced valid schema; independent literal compatibility tests were missing. Explicit duplicate-source/conflicting-message and key/version/type checks are meaningful."
+        }
+      ]
+    },
+    {
+      "path": "tests/persistence/test_sqlite.py",
+      "blob": "376d99d7c5c1f34efaefa526b8703f0d5953b90e",
+      "physical_sha256": "c6047456dc6b24af92f84f46c938cf908d9a518ce9e3199ff585771e105e2ce2",
+      "lines": 461,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_timestamp",
+          "line": 66,
+          "end": 69
+        },
+        {
+          "name": "_message",
+          "line": 72,
+          "end": 86
+        },
+        {
+          "name": "_store",
+          "line": 89,
+          "end": 91
+        },
+        {
+          "name": "_session",
+          "line": 94,
+          "end": 104
+        },
+        {
+          "name": "test_sqlite_initializes_normalized_schema_and_round_trips_empty_session",
+          "line": 107,
+          "end": 142
+        },
+        {
+          "name": "test_sqlite_round_trips_duplicates_order_and_fresh_turn",
+          "line": 145,
+          "end": 179
+        },
+        {
+          "name": "test_sqlite_replaces_snapshot_history_and_conversations",
+          "line": 182,
+          "end": 211
+        },
+        {
+          "name": "test_sqlite_reuses_global_message_row_across_sessions",
+          "line": 214,
+          "end": 238
+        },
+        {
+          "name": "test_sqlite_rejects_message_and_session_identity_conflicts_atomically",
+          "line": 241,
+          "end": 291
+        },
+        {
+          "name": "test_sqlite_rejects_unsupported_and_unrelated_databases",
+          "line": 294,
+          "end": 317
+        },
+        {
+          "name": "test_sqlite_rejects_missing_required_tables_and_invalid_positions",
+          "line": 320,
+          "end": 349
+        },
+        {
+          "name": "test_sqlite_rejects_version_one_schema_missing_required_column",
+          "line": 352,
+          "end": 384
+        },
+        {
+          "name": "test_sqlite_normalizes_corrupt_timestamp_rows",
+          "line": 387,
+          "end": 403
+        },
+        {
+          "name": "test_sqlite_rejects_missing_final_referenced_message_row",
+          "line": 406,
+          "end": 425
+        },
+        {
+          "name": "test_sqlite_loaded_session_works_directly_with_runtime",
+          "line": 428,
+          "end": 461
+        },
+        {
+          "name": "__init__",
+          "line": 46,
+          "end": 50
+        },
+        {
+          "name": "source",
+          "line": 53,
+          "end": 55
+        },
+        {
+          "name": "send",
+          "line": 57,
+          "end": 63
+        },
+        {
+          "name": "acquire",
+          "line": 166,
+          "end": 168
+        },
+        {
+          "name": "exercise",
+          "line": 450,
+          "end": 456
+        }
+      ],
+      "depth": "FULL_TEST_FIXTURE_HELPER_ASSERTION_BODY",
+      "assessment": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership.",
+      "functions_reviewed": [
+        {
+          "name": "_timestamp",
+          "line": 66,
+          "end": 69,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "_message",
+          "line": 72,
+          "end": 86,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "_store",
+          "line": 89,
+          "end": 91,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "_session",
+          "line": 94,
+          "end": 104,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_initializes_normalized_schema_and_round_trips_empty_session",
+          "line": 107,
+          "end": 142,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_round_trips_duplicates_order_and_fresh_turn",
+          "line": 145,
+          "end": 179,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_replaces_snapshot_history_and_conversations",
+          "line": 182,
+          "end": 211,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_reuses_global_message_row_across_sessions",
+          "line": 214,
+          "end": 238,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_rejects_message_and_session_identity_conflicts_atomically",
+          "line": 241,
+          "end": 291,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_rejects_unsupported_and_unrelated_databases",
+          "line": 294,
+          "end": 317,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_rejects_missing_required_tables_and_invalid_positions",
+          "line": 320,
+          "end": 349,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_rejects_version_one_schema_missing_required_column",
+          "line": 352,
+          "end": 384,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_normalizes_corrupt_timestamp_rows",
+          "line": 387,
+          "end": 403,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_rejects_missing_final_referenced_message_row",
+          "line": 406,
+          "end": 425,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "test_sqlite_loaded_session_works_directly_with_runtime",
+          "line": 428,
+          "end": 461,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "__init__",
+          "line": 46,
+          "end": 50,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "source",
+          "line": 53,
+          "end": 55,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "send",
+          "line": 57,
+          "end": 63,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "acquire",
+          "line": 166,
+          "end": 168,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        },
+        {
+          "name": "exercise",
+          "line": 450,
+          "end": 456,
+          "depth": "FULL_BODY_HELPERS_FIXTURES_ASSERTIONS_AND_FAILURE_PATHS",
+          "disposition": "All eleven tests, FakeInteraction methods and factories read. Real temp DBs protect replacement, global immutable messages, rollback, version/table/column/position/missing-row/timestamp refusal and restored Runtime ref use. No existing multi-SELECT interleaving, interrupted first schema install or BLOB-class negatives. Fresh-lock acquisition alone is not cross-process ownership."
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "depth": "FULL_MATCHING_DEPENDENCY_BODY_REVALIDATED",
+      "scope": "ID/object equality, immutable History replacement, live refs, cooperative turn and fresh reconstructed locks"
+    },
+    {
+      "path": "src/devtools/agents/conversation/history.py",
+      "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+      "depth": "FULL_MATCHING_DEPENDENCY_BODY_REVALIDATED",
+      "scope": "Tuple persistence/insertion order/duplicates"
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "depth": "FULL_MATCHING_DEPENDENCY_BODY_REVALIDATED",
+      "scope": "Frozen typed values; constructors trust type hints, not SQLite text-class validation"
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "depth": "FULL_MATCHING_DEPENDENCY_BODY_REVALIDATED",
+      "scope": "One request/continuation and response retention; no persistence hook"
+    },
+    {
+      "path": "src/devtools/models/interaction/models.py",
+      "blob": "f44938a918053b54a035bfec3beca916aec776c3",
+      "depth": "TARGETED_DEPENDENCY",
+      "scope": "InteractionSource/ConversationRef/ModelRequest type and continuation invariants"
+    },
+    {
+      "path": "src/devtools/observability/evidence/model_interaction.py",
+      "blob": "3a87b23ddae8884197200d381379558974a42f8c",
+      "depth": "TARGETED_DEPENDENCY",
+      "scope": "Process-local Inspector, capture policy and completed Evidence production"
+    },
+    {
+      "path": "src/devtools/observability/evidence/inspection.py",
+      "blob": "b6f032a71ed23aea3a2570d2af5cf8ad35317fd1",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Local attempt/Evidence retention then optional sink; not a durable save certificate"
+    },
+    {
+      "path": "src/devtools/observability/evidence/protocols.py",
+      "blob": "5bc90e40f59b972ccf7202d860eac719a02e7b7b",
+      "depth": "FULL_IMMEDIATE_DEPENDENCY_BODY",
+      "scope": "Synchronous EvidenceSink responsibility, no durability/flush contract"
+    },
+    {
+      "path": "apps/qwen/coding_loop.py",
+      "blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+      "depth": "TARGETED_CONSUMER",
+      "scope": "Imports/PromptMessage state, request/stage/result archival and bounded native run; no Persistence calls"
+    },
+    {
+      "path": "apps/qwen/development_task.py",
+      "blob": "8d2fc7bda8e61fc9ff02607f88230969288848c3",
+      "depth": "TARGETED_CONSUMER",
+      "scope": "_save composes TextFile/write for app JSON records; not Conversation JSON/SQLite storage"
+    }
+  ],
+  "findings": [
+    {
+      "key": "NEW_SQLITE_READ_COHERENCE",
+      "title": "Load one coherent committed SQLite Conversation snapshot",
+      "summary": "P2: SqliteConversationStore.load performs independent SELECTs without a read transaction under the tested CPython legacy transaction mode. Two real SQLite connections in WAL mode deterministically interleave a legitimate save between History and continuation reads. Public load returns History A with thread-B, a state never committed by either save; final DB is B/thread-B. This is not a claim of active native model harm: maintained non-test store consumers were not found.",
+      "acceptance": "A public load must return one complete committed snapshot, not cross-commit History/ref combinations. Add deterministic WAL and default-journal reader/writer regressions using independent expected pairs, including missing-record and failure/cleanup controls. Establish the read consistency boundary across all SELECTs while preserving atomic saves, schema compatibility, busy semantics and closure. Do not replace the store, add an ORM or claim power-loss/exactly-once guarantees.",
+      "proposal": "3e07840c-7021-4395-939e-b75a47c5374e",
+      "duplicate_candidates": []
+    },
+    {
+      "key": "NEW_SQLITE_INITIALIZATION",
+      "title": "Make initial SQLite Conversation schema installation atomic",
+      "summary": "P2: _ensure_schema wraps executescript in a connection context but the DDL script has no explicit transaction. A deterministic SQLite authorizer denial on the second CREATE TABLE occurs after sessions is durably installed at user_version0. The connection closes; ordinary save retry refuses this self-created nonempty v0 database as PersistenceFormatError. No data was deleted and fail-closed refusal after partial state is appropriate; partial installation is the defect.",
+      "acceptance": "Install fresh schema tables, indexes and user_version together or roll back to the original empty state on a controlled intermediate failure. Test failures during tables/index/version setup, connection closure, clean retry and successful save/load. Preserve byte/data custody and refusal for unrelated nonempty databases or preexisting unknown partial schemas; do not auto-delete/reinitialize them. Keep supported v1 schema unchanged and avoid a migration/recovery framework.",
+      "proposal": "77a31939-9c99-4a60-9016-622843cc10f3",
+      "duplicate_candidates": [
+        {
+          "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    },
+    {
+      "key": "NEW_SQLITE_TEXT_ADMISSION",
+      "title": "Reject non-text SQLite Conversation payload and continuation values",
+      "summary": "P2: a valid store-created v1 SQLite database permits BLOB storage classes in TEXT-affinity columns. Public load admits bytes in messages.content/source and conversations.source/value because the reconstructed dataclasses do not validate all string types. Four actual SQL updates reproduce invalid returned state; a fifth Runtime consumer probe forwards a bytes-valued continuation to its deterministic interaction. The strict JSON persistence path rejects wrong value types. No real provider or actual user database was exercised.",
+      "acceptance": "Validate persisted semantic text at the SQLite decoding boundary before constructing Message/InteractionSource/ConversationRef. Refuse unsupported storage classes as PersistenceFormatError with appropriate causes; do not lossy-decode/coerce bytes. Cover all four demonstrated columns, valid Unicode/empty content, existing timestamp/ID/role/ref failures, duplicate occurrences, shared message identity and Runtime restoration. Keep valid v1 wire/schema and source/identity semantics; no global Model/Conversation redesign.",
+      "proposal": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+      "duplicate_candidates": [
+        {
+          "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "77a31939-9c99-4a60-9016-622843cc10f3",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    }
+  ],
+  "commands": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/persistence",
+        "tests/agents/conversation",
+        "tests/execution",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:43:29.231227+00:00",
+      "finished_at": "2026-10-26T23:43:30.343148+00:00",
+      "seconds": 1.070238,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "f559df5f919c306e9a690553b74afd3227422f85ba9ec871b1fdf498b908e054",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "consumer-focused": {
+      "name": "consumer-focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/observability/evidence",
+        "tests/observability/usage/test_sources.py",
+        "tests/tools/test_runtime_integration.py",
+        "tests/apps/qwen/test_coding_loop.py",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:50:33.881388+00:00",
+      "finished_at": "2026-10-26T23:51:33.886113+00:00",
+      "seconds": 59.878487,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "fa60784f30612b51f1333bbb532c9a5b14c59b7092dd838ec86e80fa5967903d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cohort-collection": {
+      "name": "cohort-collection",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/persistence",
+        "--collect-only",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:53:02.035117+00:00",
+      "finished_at": "2026-10-26T23:53:02.646838+00:00",
+      "seconds": 0.577977,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "ec7d8394fff2b869f62781eb749b13759381834d28dfe089e1a37d13800ecde2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probes-recorded": {
+      "name": "probes-recorded",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        ".local/persistence-recovery-audit-20261026/probes.py"
+      ],
+      "started_at": "2026-10-26T23:56:18.090287+00:00",
+      "finished_at": "2026-10-26T23:56:19.627813+00:00",
+      "seconds": 1.497969,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "c3474623be8dd12a14a8eb1a943e466bf3a3507a3ef7ab8b21b0c0308b019e90",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout": {
+      "name": "layout",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-26T23:53:03.078457+00:00",
+      "finished_at": "2026-10-26T23:53:03.247483+00:00",
+      "seconds": 0.13407,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "selected_python_paths": 8,
+  "selected_document_paths": 3,
+  "selected_lines": 1397,
+  "maintained_persistence_tests": 33,
+  "focused_passed": 130,
+  "focused_live_skips": 1,
+  "consumer_passed": 129,
+  "probe_cases": 33,
+  "probe_violations": 7,
+  "probe_families": 3,
+  "agreeing_controls_and_limits": 26,
+  "remaining_selected_paths": [],
+  "forensics": [
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+      "bytes": 644,
+      "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+      "bytes": 708,
+      "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+      "bytes": 116092,
+      "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+      "bytes": 68440,
+      "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+      "bytes": 632,
+      "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+      "bytes": 696,
+      "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+      "bytes": 632,
+      "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    },
+    {
+      "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+      "bytes": 56636,
+      "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7",
+      "review": "PRESERVED_FORENSIC_NOT_NEW_SOURCE"
+    }
+  ],
+  "retained_gate": {
+    "head": "c39c1f0f61350ca57795dc06c8b97730918a0d99",
+    "tree": "84123e2482c63592904d7a2cf43bf0ad2453aa7b",
+    "passed": 3197,
+    "skipped": 2,
+    "pytest_seconds": 1146.93,
+    "elapsed_seconds": 1149.070901,
+    "exit_code": 0,
+    "branch_coverage": 100
+  },
+  "new_protected_gate": false,
+  "observer_policy_implemented": false,
+  "known_limits": [
+    "Caller-coordinated synchronous capture, not a thread/process snapshot lock",
+    "Current replacement, no compare-and-swap or historical timeline; orphan message retention",
+    "Raw SQLite operational/corruption errors remain outside PersistenceError",
+    "No universal input/resource/environment or power-loss assurance",
+    "Conversation only: no model usage/Tools/attempt/Evidence/task/source-authority durability",
+    "No maintained non-test Conversation JSON/SQLite persistence caller found"
+  ],
+  "consumer_search": "Exact API and persistence import searches across maintained src/apps/scripts/tests plus bounded experiment code excluding frozen runs; only package internals/tests matched direct save/load/encode/decode.",
+  "prior_full_body_reuse": [
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/agents/conversation/history.py",
+      "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY_WITH_MATCHING_PRIOR_REVALIDATION",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    }
+  ]
+}
