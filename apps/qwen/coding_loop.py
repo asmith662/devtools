@@ -16,6 +16,7 @@ import time
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
 
+from apps.qwen import validation as task_validation
 from apps.qwen.commands import (
     CodingCommands,
     command_definitions,
@@ -28,7 +29,6 @@ from apps.qwen.continuation import ACTIVE_BYTES
 from apps.qwen.development_task import (
     _command,
     _hash,
-    _runner_sources,
     _save,
     _structured_edit_definition,
 )
@@ -257,29 +257,10 @@ async def validate_workspace(
     task: CodingTask = MARKDOWN,
     commands: CodingCommands | None = None,
 ) -> dict[str, Any]:
-    """Use the shared frozen-input/check journal, retaining full host diagnostics."""
-    bound = commands if commands is not None else CodingCommands(root, folder, task)
-    bundle = await bound._check_bundle(bounded=False)  # noqa: SLF001 -- host adapter over the same application-owned validation
-    result = {
-        name: {
-            **row,
-            "failed": row["status"] != "PASS",
-            "exit_code": row.get("exit_code"),
-        }
-        for name, row in bundle["checks"].items()
-        if row["status"] != "NOT_APPLICABLE"
-    }
-    return {
-        **result,
-        "integrity": {
-            "failed": bundle["status"] == "BLOCKED",
-            "source_unchanged": bundle["source_unchanged"],
-            "plan_unchanged": bundle["plan_unchanged"],
-            "diagnostics": bundle["diagnostics"],
-            "evidence": bundle["evidence"],
-        },
-        "accepted": bundle["status"] == "PASS",
-    }
+    """Preserve the public worker signature and legacy report projection."""
+    return await task_validation.validate_task(
+        root, folder, task=task, commands=commands
+    )
 
 
 async def preflight_coding_task(
@@ -372,13 +353,8 @@ async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) ->
 
 
 def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) -> Path:
-    """Bind validation to the selected checkout; never copy a source tree."""
-    workspace = root
-    # Fixed pytest options and exact local imports. Repository conftest code is
-    # part of the pinned host-owned validation environment, not model authority.
-    for path, text in _runner_sources(root, folder, task).items():
-        write(TextFile(resolve_path(folder / path), text))
-    return workspace
+    """Preserve the existing import contract through the host policy adapter."""
+    return task_validation.prepare_task_validation(root, folder, task)
 
 
 async def _turns(  # noqa: PLR0913 -- one bounded worker loop

@@ -13,11 +13,11 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from typing import TYPE_CHECKING, Any
 
-from apps.qwen.development_task import _hash, _runner_sources, _save, _timed_command
 from apps.qwen.model_tool_composition import (
     OperationInvocation,
     normalize_tool_descriptor,
 )
+from apps.qwen.validation import _hash, _runner_sources, _save, _timed_command
 from devtools.agents import model_tools
 from devtools.core.paths import resolve_path
 from devtools.resources.commands import CommandError
@@ -201,6 +201,7 @@ def _bundle_state(
                 "commands.py",
                 "change_checks.py",
                 "development_task.py",
+                "validation.py",
                 "tasks.py",
             )
         },

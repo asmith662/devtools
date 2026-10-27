@@ -10,13 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
-from apps.qwen.coding_loop import _prepare_workspace, validate_workspace
-from apps.qwen.patch_proposal_worker import _read_text
+from apps.qwen.validation import prepare_task_validation, validate_task
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
-from devtools.resources.filesystem import TextFile, write
+from devtools.resources.filesystem import FileFormat, TextFile, read, write
 from scripts.backlog.checkout import Checkout
 from scripts.backlog.checkout import _paths as file_names
 from scripts.backlog.coordinator import git
@@ -78,7 +77,9 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     if push and not commit:
         raise PermissionError("Push requires explicit feature commit authority")
     result_path = evidence / "result.json"
-    result_text = _read_text(resolve_path(result_path)).content
+    result_text = cast(
+        "TextFile", read(resolve_path(result_path), file_format=FileFormat.TEXT)
+    ).content
     result_sha = hashlib.sha256(result_text.encode()).hexdigest()
     result = json.loads(result_text)
     if (
@@ -101,7 +102,9 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         file = resolve_path(candidate["evidence"], base_directory=evidence).value
         if file != raw or not file.is_relative_to(evidence):
             raise PermissionError("Candidate path alias is not admitted")
-        text = _read_text(resolve_path(file)).content
+        text = cast(
+            "TextFile", read(resolve_path(file), file_format=FileFormat.TEXT)
+        ).content
         if (
             not file.is_relative_to(evidence)
             or file.is_symlink()
@@ -140,7 +143,13 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         raw = root / path
         if resolve_path(raw).value != raw or not raw.parent.is_dir():
             raise PermissionError("Test addition aliases or has no maintained parent")
-        baseline[path] = _read_text(resolve_path(raw)).content if raw.exists() else None
+        baseline[path] = (
+            cast(
+                "TextFile", read(resolve_path(raw), file_format=FileFormat.TEXT)
+            ).content
+            if raw.exists()
+            else None
+        )
     installed = {f["path"]: f["text"] for f in files}
     receipt = evidence / "closeout.json"
     previous: dict[str, Any] = {}
@@ -277,7 +286,11 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         "validation_inputs": {
             p: hashlib.sha256(
                 (
-                    installed.get(p) or _read_text(resolve_path(root / p)).content
+                    installed.get(p)
+                    or cast(
+                        "TextFile",
+                        read(resolve_path(root / p), file_format=FileFormat.TEXT),
+                    ).content
                 ).encode()
             ).hexdigest()
             for p in task.tests
@@ -298,8 +311,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
             "closeout-validation-" + str(Timestamp.now()).replace(":", "-")
         )
         checks.mkdir()
-        _prepare_workspace(root, checks, task)
-        validation = await validate_workspace(root, checks, task=task)
+        prepare_task_validation(root, checks, task)
+        validation = await validate_task(root, checks, task=task)
         record["validation"] = validation
         if validation["accepted"] and (protected_validation or commit):
             plan = {

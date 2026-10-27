@@ -24,11 +24,8 @@ from devtools.agents import model_tools
 from devtools.context import (
     Repository,
     RepositoryResourceAddress,
-    materialize_disclosure_plan,
-    observe_repository_resources,
-    plan_disclosures,
 )
-from devtools.context.planning import SourceSearchDisclosureOption
+from devtools.context.planning import source as source_disclosure
 from devtools.context.python.modules.interpretation import (
     PythonModuleRoot,
     define_python_module_interpretation_universe,
@@ -46,6 +43,8 @@ from devtools.context.retrieval import (
 )
 from devtools.core.paths import resolve_path
 from devtools.tools import ToolDescriptor, ToolRunner
+from devtools.tools.errors import ToolInputError
+from devtools.tools.source import SourceScope
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -311,19 +310,15 @@ class ContextTools:
         )
 
     def _observe(self) -> RepositorySnapshot:
-        for address in self.addresses:
-            candidate = self.root / address.value
-            for path in (candidate, *candidate.parents):
-                if path == self.root:
-                    break
-                if path.is_symlink() or path.is_junction():
-                    raise ValueError("Context path aliases are not admitted")
-        return observe_repository_resources(
-            repository=self.repository,
-            root=resolve_path(self.root),
-            addresses=self.addresses,
-            maximum_resource_bytes=131072,
-        )
+        try:
+            return SourceScope.observe(
+                root=resolve_path(self.root),
+                repository=self.repository,
+                addresses=self.addresses,
+                maximum_resource_bytes=131072,
+            ).snapshot
+        except ToolInputError as error:
+            raise ValueError("Context path aliases are not admitted") from error
 
     def _index(self) -> None:
         self.navigation = None
@@ -784,16 +779,11 @@ class ContextTools:
                     "Use start < end within valid_range; read <=4096 bytes at a time."
                 ),
             }
-        # Existing Context materialization authenticates the unit and snapshot.
-        materialize_disclosure_plan(
-            plan=plan_disclosures(
-                purpose=self.task.objective,
-                snapshot=self.snapshot,
-                disclosures=(SourceSearchDisclosureOption(self.task.objective, unit),),
-            ),
-            snapshot=self.snapshot,
+        option = source_disclosure.SourceRangeDisclosureOption(
+            self.task.objective, unit, start, end, 4096
         )
-        text = unit.text[start:end].encode()[:4096].decode(errors="ignore")
+        disclosure = source_disclosure.materialize_source_range(self.snapshot, option)
+        text = disclosure.items[0].text
         result = {
             "path": str(unit.resource.address),
             "version": str(unit.resource.content_identity),

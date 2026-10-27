@@ -21,6 +21,21 @@ from apps.qwen.two_action_read_only_experiment import (
     _materialize_relative_path,
     _object_without_duplicate_keys,
 )
+from apps.qwen.validation import (
+    _command as _command,  # noqa: PLC0414 -- retained historical caller facade
+)
+from apps.qwen.validation import (
+    _hash as _hash,  # noqa: PLC0414 -- retained historical caller facade
+)
+from apps.qwen.validation import (
+    _runner_sources as _runner_sources,  # noqa: PLC0414 -- retained caller facade
+)
+from apps.qwen.validation import (
+    _save as _save,  # noqa: PLC0414 -- retained historical caller facade
+)
+from apps.qwen.validation import (
+    _timed_command as _timed_command,  # noqa: PLC0414 -- retained caller facade
+)
 from devtools.context import (
     Repository,
     RepositoryResourceAddress,
@@ -33,7 +48,7 @@ from devtools.context import (
     render_context_disclosure,
 )
 from devtools.core.paths import resolve_path
-from devtools.core.time import Duration, Timestamp
+from devtools.core.time import Timestamp
 from devtools.models.interaction import (
     ModelRequest,
     ModelSettings,
@@ -46,13 +61,11 @@ from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppHttpError,
     LlamaCppTransportError,
 )
-from devtools.resources.commands import Command, CommandExecutor
 from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 
 if TYPE_CHECKING:
-    from apps.qwen.tasks import CodingTask
     from devtools.core.paths import ResolvedPath
     from devtools.models.interaction import ModelInteraction
 
@@ -118,98 +131,6 @@ for marker in ("`", "~"):
     assert tuple(h.text for h in file.headings) == ("visible",)
 print("PASS: eight independent fence scenarios and hidden-section checks")
 """
-
-
-def _save(path: Path, value: object, *, overwrite: bool = False) -> None:
-    write(
-        TextFile(
-            resolve_path(path), json.dumps(value, indent=2, sort_keys=True) + "\n"
-        ),
-        overwrite=overwrite,
-    )
-
-
-def _hash(path: Path) -> str:
-    value = _read_text(resolve_path(path))
-    return hashlib.sha256(value.content.encode(value.encoding)).hexdigest()
-
-
-async def _command(root: Path, *args: str) -> dict[str, Any]:
-    result = await CommandExecutor().execute(
-        Command(args[0])
-        .args(*args[1:])
-        .cwd(resolve_path(root))
-        .with_timeout(Duration.minutes(2))
-    )
-    return {
-        "argv": args,
-        "exit_code": result.exit_code,
-        "stdout": result.stdout.decode(errors="replace"),
-        "stderr": result.stderr.decode(errors="replace"),
-        "failed": result.failed,
-        "stdout_truncated": result.stdout_truncated,
-        "stderr_truncated": result.stderr_truncated,
-    }
-
-
-async def _timed_command(root: Path, *args: str) -> dict[str, Any]:
-    """Retain stage timing for the one upfront-context experiment."""
-    started_at = str(Timestamp.now())
-    started = time.perf_counter()
-    result = await _command(root, *args)
-    result.update(started_at=started_at, elapsed_seconds=time.perf_counter() - started)
-    return result
-
-
-def _runner_sources(root: Path, folder: Path, task: CodingTask) -> dict[str, str]:
-    """Render the existing fixed host runners; no configurable execution plan."""
-    workspace = root
-    module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
-    prelude = (
-        "import sys\nfrom pathlib import Path\n"
-        f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
-        + (
-            f"sys.path.insert(0, {str(workspace)!r})\n"
-            if task.source.startswith("apps/")
-            else ""
-        )
-        + f"import {module_name} as module\n"
-        "assert Path(module.__file__).resolve() == "
-        f"Path({str(workspace / task.source)!r})\n"
-    )
-    oracle_text = prelude + task.oracle
-    test_arguments = [
-        *(str(workspace / test) for test in task.tests),
-        "-c",
-        str(folder / "pytest.ini"),
-        f"--confcutdir={workspace}",
-        "--no-cov",
-        "-q",
-    ]
-    tests_text = (
-        prelude
-        + "import json\nimport pytest\n"
-        # Capture primary facts before pytest's traceback formatting. Some
-        # tests deliberately forbid ast.parse, which formatters also use.
-        + "class PrimaryFailures:\n"
-        + "    @pytest.hookimpl(hookwrapper=True, tryfirst=True)\n"
-        + "    def pytest_runtest_makereport(self, item, call):\n"
-        + "        if call.excinfo is not None:\n"
-        + "            facts = dict(nodeid=item.nodeid, phase=call.when, "
-        + "exception=call.excinfo.type.__name__, "
-        + "message=str(call.excinfo.value)[:1000], "
-        + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
-        + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
-        + "file=sys.stderr, flush=True)\n"
-        + "        yield\n"
-        + f"arguments = {test_arguments!r}\n"
-        + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n"
-    )
-    return {
-        "oracle-runner.py": oracle_text,
-        "tests-runner.py": tests_text,
-        "pytest.ini": "[pytest]\n",
-    }
 
 
 def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
