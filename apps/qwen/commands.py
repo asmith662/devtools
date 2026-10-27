@@ -14,7 +14,11 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import TYPE_CHECKING, Any
 
 from apps.qwen.development_task import _hash, _runner_sources, _save, _timed_command
-from apps.qwen.model_tool_composition import normalize_tool_descriptor
+from apps.qwen.model_tool_composition import (
+    OperationInvocation,
+    normalize_tool_descriptor,
+)
+from devtools.agents import model_tools
 from devtools.core.paths import resolve_path
 from devtools.resources.commands import CommandError
 from devtools.resources.filesystem import TextFile, write
@@ -235,14 +239,21 @@ class CodingCommands:
             and plan["runners"] == plan["expected_runners"]
         )
 
-    def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
-        """Refuse unknown operations, paths and keys before execution."""
-        name, values = arguments
+    def _selected_operation(self, name: str) -> ModelToolDefinition:
+        """Select only an operation authorized by the trusted task definition."""
         descriptor = next(
             (d for d in command_definitions(self.task) if d.name == name), None
         )
-        if descriptor is None or not isinstance(values, dict):
+        if descriptor is None:
             raise ValueError("Coding operation is not task-authorized")
+        return descriptor
+
+    def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
+        """Refuse unknown operations, paths and keys before execution."""
+        name, values = arguments
+        descriptor = self._selected_operation(name)
+        if not isinstance(values, dict):
+            raise ValueError("Coding operation is not task-authorized")  # noqa: TRY004 -- preserve established public error
         props = json.loads(descriptor.input_schema_json)["properties"]
         if set(values) != set(props) or any(
             values[k] not in p["enum"]
@@ -254,8 +265,16 @@ class CodingCommands:
 
     async def dispatch(self, call: ModelToolCall) -> dict[str, Any]:
         """Materialize one native request through the canonical ToolRunner."""
-        return await ToolRunner().execute(
-            self, (call.name, json.loads(call.arguments_json))
+        invocation = OperationInvocation.selected(self._selected_operation(call.name))
+
+        async def admit(
+            selected: ModelToolCall, _arguments: tuple[str, dict[str, Any]]
+        ) -> None:
+            # A disclosed operation remains subject to the trusted task's selection.
+            self._selected_operation(selected.name)
+
+        return await model_tools.execute_model_tool_call(
+            call, invocation=invocation, tool=self, admit=admit, runner=ToolRunner()
         )
 
     def reserve_evidence(self, prefix: str = "coding-command") -> Path:

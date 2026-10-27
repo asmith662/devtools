@@ -16,8 +16,10 @@ import pytest
 
 from apps.qwen import commands
 from apps.qwen.development_task import _save
+from devtools.agents import model_tools
 from devtools.core.paths import resolve_path
 from devtools.core.time import Duration
+from devtools.models.interaction import ModelToolCall
 from devtools.resources.commands import (
     Command,
     CommandError,
@@ -54,6 +56,59 @@ def bundle(tmp_path: Path) -> commands.CodingCommands:
 
 def _invoke(tool: commands.CodingCommands) -> dict[str, Any]:
     return asyncio.run(ToolRunner().execute(tool, ("run_check", {"check": "all"})))
+
+
+def test_command_dispatch_enters_shared_composition_and_archives_real_result(
+    bundle: commands.CodingCommands, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Host-fixed real check enters shared composition and retains its receipt."""
+    original = model_tools.execute_model_tool_call
+    entries: list[str] = []
+
+    async def shared(selected: ModelToolCall, **kwargs: Any) -> Any:  # noqa: ANN401 -- transparent instrumentation of a generic operation
+        assert kwargs["tool"] is bundle
+        assert kwargs["invocation"].descriptor.name == "run_check"
+        assert kwargs["tool"].name != selected.name
+        entries.append(selected.provider_call_id or "missing")
+        return await original(selected, **kwargs)
+
+    monkeypatch.setattr(model_tools, "execute_model_tool_call", shared)
+    result = asyncio.run(
+        bundle.dispatch(ModelToolCall("run_check", '{"check":"tests"}', "check-native"))
+    )
+    assert entries == ["check-native"]
+    assert result["status"] == "PASS"
+    record = json.loads((bundle.folder / result["evidence"]).read_text())
+    assert record["status"] == "COMPLETED"
+    assert record["result"]["exit_code"] == 0
+
+
+def test_command_shared_failure_never_enters_command_or_reserves_result(
+    bundle: commands.CodingCommands, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Actual dispatcher cannot bypass a shared-boundary failure or retry it."""
+    error = OSError("composition unavailable")
+    entries: list[str] = []
+
+    async def refused(_call: ModelToolCall, **_kwargs: Any) -> Any:  # noqa: ANN401 -- generic boundary fault
+        entries.append("shared")
+        raise error
+
+    async def forbidden(_arguments: object) -> Any:  # noqa: ANN401 -- unreachable Tool fault target
+        pytest.fail("Command Tool bypassed shared composition")
+
+    before = set(bundle.folder.iterdir())
+    monkeypatch.setattr(model_tools, "execute_model_tool_call", refused)
+    monkeypatch.setattr(bundle, "execute", forbidden)
+    with pytest.raises(OSError, match="composition unavailable") as raised:
+        asyncio.run(
+            bundle.dispatch(
+                ModelToolCall("run_check", '{"check":"tests"}', "check-native")
+            )
+        )
+    assert raised.value is error
+    assert entries == ["shared"]
+    assert set(bundle.folder.iterdir()) == before
 
 
 def _success(*argv: str) -> dict[str, Any]:

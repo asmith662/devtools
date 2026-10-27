@@ -27,8 +27,12 @@ content still fails through the Filesystem text-decoding boundary.
 ToolRunner's scope is one Tool execution, not generic execution lifecycle,
 orchestration, observability, governance, or persistence.
 
-`ToolDescriptor` is an explicit disclosure value. The Qwen composition seam
-`experiments.qwen.model_tool_composition.normalize_tool_descriptor` crosses
+`ToolDescriptor` is an explicit disclosure value. The Agents composition seam
+`devtools.agents.model_tools.normalize_tool_descriptor` crosses
 from this tools-owned representation into the models-owned
 `ModelToolDefinition`; disclosure does not execute, validate, authorize, or
 implicitly expose a Tool.
+
+The same Agents owner composes one host-selected native call with an existing
+ToolInvocation, explicit host admission and ToolRunner. Tools and Models do not
+depend on each other. See the [composition contract](../../agents/docs/model_tools.md).

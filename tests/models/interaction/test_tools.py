@@ -6,7 +6,7 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from apps.qwen.model_tool_composition import normalize_tool_descriptor
+from devtools.agents.model_tools import normalize_tool_descriptor
 from devtools.models.interaction import (
     InteractionSource,
     ModelRequest,

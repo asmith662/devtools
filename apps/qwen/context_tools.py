@@ -16,7 +16,11 @@ from dataclasses import asdict
 from typing import TYPE_CHECKING, Any, cast
 
 from apps.qwen.api_contracts import inspect_contract
-from apps.qwen.model_tool_composition import normalize_tool_descriptor
+from apps.qwen.model_tool_composition import (
+    OperationInvocation,
+    normalize_tool_descriptor,
+)
+from devtools.agents import model_tools
 from devtools.context import (
     Repository,
     RepositoryResourceAddress,
@@ -517,9 +521,8 @@ class ContextTools:
         self._index()
         self.observations = retained
 
-    def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
-        """Validate keys/types/enums; schema disclosure grants no authority."""
-        name, values = arguments
+    def _selected_operation(self, name: str) -> ModelToolDefinition:
+        """Select only an operation disclosed by this host-bound task."""
         descriptor = next((d for d in self.definitions if d.name == name), None)
         if descriptor is None:
             if name in CONTEXT_TOOL_NAMES:
@@ -527,6 +530,12 @@ class ContextTools:
                     "SOURCE_OPERATION_UNAVAILABLE", "Use a disclosed Context operation"
                 )
             raise ValueError("Unknown or malformed Context Tool")
+        return descriptor
+
+    def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
+        """Validate keys/types/enums; schema disclosure grants no authority."""
+        name, values = arguments
+        descriptor = self._selected_operation(name)
         if not isinstance(values, dict):
             raise ContextRequestError(
                 "SOURCE_ARGUMENTS_REFUSED", "Arguments must be a JSON object"
@@ -559,8 +568,17 @@ class ContextTools:
 
     async def dispatch(self, call: ModelToolCall) -> dict[str, Any]:
         """Materialize native arguments and execute exactly once via ToolRunner."""
-        values = json.loads(call.arguments_json)
-        result = await ToolRunner().execute(self, (call.name, values))
+        invocation = OperationInvocation.selected(self._selected_operation(call.name))
+
+        async def admit(
+            selected: ModelToolCall, _arguments: tuple[str, dict[str, Any]]
+        ) -> None:
+            # Host selection is task-bound; semantic/source checks remain in validate.
+            self._selected_operation(selected.name)
+
+        result = await model_tools.execute_model_tool_call(
+            call, invocation=invocation, tool=self, admit=admit, runner=ToolRunner()
+        )
         if "text" in result:
             result["observation_call_id"] = call.provider_call_id
         result = {
