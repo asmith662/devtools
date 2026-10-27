@@ -2703,6 +2703,94 @@
       "report": "docs/development/qwen-native-obligation-context.md",
       "receipt": "docs/research/code-audit/qwen-obligation-integration-20261027.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "reference": "integration:qwen-turn-cohesion:cd0a8330:20261027",
+      "production": "cd0a8330282d9b074ccb6d5dbf80a0f8c963c6ff",
+      "accepted_main": "abe1ca13fbb5960f937383bb9e257ce05fe14f22",
+      "pr": 45,
+      "changed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "baseline_blob": "6ee7f9671f88175b4643a949813dc92774d5541e",
+          "current_blob": "d332c203f0ea0efbb531c282d9791626134eba1e",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/coding_loop.py",
+          "baseline_blob": "b8cf7d06065f4834a03ae02028f2ffc489427550",
+          "current_blob": "708c4ef6386e1604ab2ecc4fbec0fc44a374d97d",
+          "review_depth": "RETAINED_FUNCTION_AST_AND_DELEGATION_IMPORT_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/README.md",
+          "baseline_blob": null,
+          "current_blob": "31ba0c395a3ba03365bf830cc03f9e70877477ea",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "9ab5cf31f5fe7e53c8928481235d1c1084308083",
+          "review_depth": "FULL_EXTRACTED_APPLICATION_BODY",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/loop.py",
+          "baseline_blob": null,
+          "current_blob": "9b3f95c06d53044e28756fb8b265fa9a98b2262c",
+          "review_depth": "FULL_EXTRACTED_APPLICATION_BODY",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/prompt.py",
+          "baseline_blob": null,
+          "current_blob": "a516fb56c5f06c0818e66a33c564f3412ad8f5c7",
+          "review_depth": "FULL_EXTRACTED_APPLICATION_BODY",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/tools.py",
+          "baseline_blob": null,
+          "current_blob": "abeef8fb51d2aab24bdac6b6976e0f2c3e7d6cb4",
+          "review_depth": "FULL_EXTRACTED_APPLICATION_BODY",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/obligations/test_lifecycle.py",
+          "baseline_blob": "9f9f27301a2400512b4157f2b843dca7aabe5da4",
+          "current_blob": "ab47bd6498e635a9a77834b422c96e04247250ee",
+          "review_depth": "PRIVATE_FAULT_TARGET_DELTA_ONLY_ORIGINAL_ASSERTS_CHECKED",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_coding_loop.py",
+          "baseline_blob": "f244c589ecaa3422a8ccc41659421cd3014d2e97",
+          "current_blob": "cd83466c6d226a2b9c9bcf9864cdcba182e791c7",
+          "review_depth": "NEW_PUBLIC_CHARACTERIZATION_AND_PRIVATE_FAULT_TARGET_DELTA_ORIGINAL_ASSERTS_CHECKED",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_edits.py",
+          "baseline_blob": "966710489e4bb5c776afb2ed01cc48622f0f0a11",
+          "current_blob": "ebd725e4fd4249847c0ba0899739e528b5b0e0b7",
+          "review_depth": "PRIVATE_FAULT_TARGET_DELTA_ONLY_ORIGINAL_ASSERTS_CHECKED",
+          "prior_frozen_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_repair_feedback.py",
+          "baseline_blob": "824531fde5cac1a1f96dc513a70576f93f7b66a3",
+          "current_blob": "1249f8c3ddc1915dcdbffc2f85c00842b64f3623",
+          "review_depth": "PRIVATE_FAULT_TARGET_DELTA_ONLY_ORIGINAL_ASSERTS_CHECKED",
+          "prior_frozen_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/qwen-operational-turn-cohesion.md",
+      "receipt": "docs/research/code-audit/qwen-turn-cohesion-20261027.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }
