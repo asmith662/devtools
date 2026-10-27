@@ -105,3 +105,7 @@ Both bounded Codex defects delivered. Optional capture policy remains unapproved
 ## Persistence/Recovery audit evidence
 
 Conversation storage has no Evidence/attempt/usage schema or automatic Runtime persistence. Model Inspector callback/local retention is not durability; ExecutionInspector sink accept does not specify flush/commit. OptionB can preserve primary response independently of storage, but durable correlated failure capture needs a real owner/consumer and approved privacy/retention contract. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.
+
+## SQLite repair delivery evidence
+
+Conversation store correctness is improved; no EvidenceSink durability, normalized capture ingestion or automatic Runtime checkpoint is added. Four OptionB approval conditions remain unchanged. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.

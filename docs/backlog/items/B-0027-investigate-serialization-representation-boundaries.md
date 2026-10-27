@@ -43,3 +43,7 @@ Status, dependencies, decision maturity and promotion trigger remain unchanged.
 ## Persistence/Recovery audit evidence
 
 Literal JSON v1 compatibility is independently verified; JSON is conversion only and has strict field/type policy. SQLite text affinity is not semantic string validation: four BLOB columns and a Runtime continuation consumer reproduce a separately captured P2. Durable names remain compatible; no universal serializer or global model validation rewrite. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.
+
+## SQLite repair delivery evidence
+
+Bounded SQLite text-class admission is delivered; v1 SQLite catalog and JSON wire compatibility are preserved. Broader representation/privacy/runtime matrix pressure remains. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.

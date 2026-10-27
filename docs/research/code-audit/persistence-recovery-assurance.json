@@ -1200,5 +1200,359 @@
       "prior_depth": "FULL_IMPLEMENTATION_BODY_WITH_MATCHING_PRIOR_REVALIDATION",
       "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
     }
+  ],
+  "maintenance_overlays": [
+    {
+      "reference": "repair:persistence-sqlite:233b170e:20261026",
+      "production": "233b170eba86a596ff622cc0bd8ac5e170d2e6ca",
+      "accepted_main": "c6ca6a2f64d729a8192cde1109e68b4a1830c7d2",
+      "pr": 38,
+      "changed_reviewed_versions": [
+        {
+          "path": "src/devtools/persistence/docs/sqlite.md",
+          "original_blob": "d4779e06a921d75611b2566eca62dca567621cab",
+          "corrected_blob": "cf61337ad4d20b9e19e6ff49926e3cfcb1fbc3dc",
+          "production": "233b170eba86a596ff622cc0bd8ac5e170d2e6ca",
+          "depth": "FULL_CHANGED_PACKAGE_CONTRACT",
+          "functions": []
+        },
+        {
+          "path": "src/devtools/persistence/sqlite.py",
+          "original_blob": "4cd07d7f64f46df0f5a2a6a87ab7fa86703070a6",
+          "corrected_blob": "42a928228a1c2af5a1b5b4f63ce96154d7d6e56a",
+          "production": "233b170eba86a596ff622cc0bd8ac5e170d2e6ca",
+          "depth": "FULL_CHANGED_OWNER_OR_TEST_BODY",
+          "functions": [
+            {
+              "name": "_require_text",
+              "line": 303,
+              "end": 308
+            },
+            {
+              "name": "_user_tables",
+              "line": 311,
+              "end": 317
+            },
+            {
+              "name": "_validate_required_columns",
+              "line": 320,
+              "end": 327
+            },
+            {
+              "name": "__init__",
+              "line": 78,
+              "end": 80
+            },
+            {
+              "name": "save",
+              "line": 82,
+              "end": 90
+            },
+            {
+              "name": "load",
+              "line": 92,
+              "end": 122
+            },
+            {
+              "name": "_open_connection",
+              "line": 124,
+              "end": 134
+            },
+            {
+              "name": "_ensure_schema",
+              "line": 136,
+              "end": 160
+            },
+            {
+              "name": "_save_snapshot",
+              "line": 162,
+              "end": 208
+            },
+            {
+              "name": "_save_message",
+              "line": 210,
+              "end": 237
+            },
+            {
+              "name": "_load_messages",
+              "line": 239,
+              "end": 281
+            },
+            {
+              "name": "_load_conversations",
+              "line": 283,
+              "end": 300
+            }
+          ]
+        },
+        {
+          "path": "tests/persistence/test_sqlite.py",
+          "original_blob": "376d99d7c5c1f34efaefa526b8703f0d5953b90e",
+          "corrected_blob": "575e4a297819723f8425a6ff8b1974db995f8f51",
+          "production": "233b170eba86a596ff622cc0bd8ac5e170d2e6ca",
+          "depth": "FULL_CHANGED_OWNER_OR_TEST_BODY",
+          "functions": [
+            {
+              "name": "_timestamp",
+              "line": 74,
+              "end": 77
+            },
+            {
+              "name": "_message",
+              "line": 80,
+              "end": 94
+            },
+            {
+              "name": "_store",
+              "line": 97,
+              "end": 99
+            },
+            {
+              "name": "_session",
+              "line": 102,
+              "end": 112
+            },
+            {
+              "name": "test_sqlite_initializes_normalized_schema_and_round_trips_empty_session",
+              "line": 115,
+              "end": 150
+            },
+            {
+              "name": "test_sqlite_round_trips_duplicates_order_and_fresh_turn",
+              "line": 153,
+              "end": 187
+            },
+            {
+              "name": "test_sqlite_replaces_snapshot_history_and_conversations",
+              "line": 190,
+              "end": 219
+            },
+            {
+              "name": "test_sqlite_reuses_global_message_row_across_sessions",
+              "line": 222,
+              "end": 246
+            },
+            {
+              "name": "test_sqlite_rejects_message_and_session_identity_conflicts_atomically",
+              "line": 249,
+              "end": 299
+            },
+            {
+              "name": "test_sqlite_rejects_unsupported_and_unrelated_databases",
+              "line": 302,
+              "end": 325
+            },
+            {
+              "name": "test_sqlite_rejects_missing_required_tables_and_invalid_positions",
+              "line": 328,
+              "end": 357
+            },
+            {
+              "name": "test_sqlite_rejects_version_one_schema_missing_required_column",
+              "line": 360,
+              "end": 392
+            },
+            {
+              "name": "test_sqlite_normalizes_corrupt_timestamp_rows",
+              "line": 395,
+              "end": 411
+            },
+            {
+              "name": "test_sqlite_rejects_missing_final_referenced_message_row",
+              "line": 414,
+              "end": 433
+            },
+            {
+              "name": "test_sqlite_loaded_session_works_directly_with_runtime",
+              "line": 436,
+              "end": 469
+            },
+            {
+              "name": "_snapshot_pair",
+              "line": 472,
+              "end": 484
+            },
+            {
+              "name": "_pair_value",
+              "line": 487,
+              "end": 492
+            },
+            {
+              "name": "test_sqlite_wal_load_never_mixes_committed_snapshots",
+              "line": 495,
+              "end": 554
+            },
+            {
+              "name": "test_sqlite_initialization_failure_rolls_back_and_retries",
+              "line": 558,
+              "end": 632
+            },
+            {
+              "name": "test_sqlite_rejects_blob_in_semantic_text",
+              "line": 644,
+              "end": 669
+            },
+            {
+              "name": "test_sqlite_malformed_reference_refuses_before_runtime_entry",
+              "line": 672,
+              "end": 705
+            },
+            {
+              "name": "test_sqlite_valid_text_preserves_values_order_and_aliases",
+              "line": 708,
+              "end": 730
+            },
+            {
+              "name": "test_sqlite_default_journal_reader_and_waiting_writer",
+              "line": 733,
+              "end": 793
+            },
+            {
+              "name": "test_sqlite_default_read_lock_refuses_impatient_commit_then_releases",
+              "line": 796,
+              "end": 845
+            },
+            {
+              "name": "test_sqlite_concurrent_first_initializers_recheck_after_reservation",
+              "line": 848,
+              "end": 896
+            },
+            {
+              "name": "test_sqlite_preexisting_partial_database_is_preserved",
+              "line": 899,
+              "end": 914
+            },
+            {
+              "name": "test_sqlite_read_transaction_always_settles_and_closes",
+              "line": 921,
+              "end": 982
+            },
+            {
+              "name": "test_sqlite_and_literal_json_v1_correspond",
+              "line": 985,
+              "end": 1011
+            },
+            {
+              "name": "__init__",
+              "line": 54,
+              "end": 58
+            },
+            {
+              "name": "source",
+              "line": 61,
+              "end": 63
+            },
+            {
+              "name": "send",
+              "line": 65,
+              "end": 71
+            },
+            {
+              "name": "acquire",
+              "line": 174,
+              "end": 176
+            },
+            {
+              "name": "exercise",
+              "line": 458,
+              "end": 464
+            },
+            {
+              "name": "connect",
+              "line": 526,
+              "end": 527
+            },
+            {
+              "name": "authorize",
+              "line": 574,
+              "end": 604
+            },
+            {
+              "name": "connect",
+              "line": 606,
+              "end": 609
+            },
+            {
+              "name": "restore_and_send",
+              "line": 692,
+              "end": 695
+            },
+            {
+              "name": "connect",
+              "line": 763,
+              "end": 769
+            },
+            {
+              "name": "connect",
+              "line": 824,
+              "end": 825
+            },
+            {
+              "name": "connect",
+              "line": 879,
+              "end": 880
+            },
+            {
+              "name": "authorize",
+              "line": 941,
+              "end": 965
+            },
+            {
+              "name": "connect",
+              "line": 967,
+              "end": 970
+            },
+            {
+              "name": "execute",
+              "line": 512,
+              "end": 520
+            },
+            {
+              "name": "close",
+              "line": 522,
+              "end": 524
+            },
+            {
+              "name": "close",
+              "line": 570,
+              "end": 572
+            },
+            {
+              "name": "execute",
+              "line": 753,
+              "end": 761
+            },
+            {
+              "name": "execute",
+              "line": 810,
+              "end": 818
+            },
+            {
+              "name": "close",
+              "line": 820,
+              "end": 822
+            },
+            {
+              "name": "fetchone",
+              "line": 860,
+              "end": 866
+            },
+            {
+              "name": "execute",
+              "line": 871,
+              "end": 877
+            },
+            {
+              "name": "close",
+              "line": 937,
+              "end": 939
+            }
+          ]
+        }
+      ],
+      "original_fields_preserved": true,
+      "report": "docs/development/persistence-sqlite-contract-repair.md",
+      "receipt": "docs/research/code-audit/persistence-sqlite-repair-20261026.json"
+    }
   ]
 }

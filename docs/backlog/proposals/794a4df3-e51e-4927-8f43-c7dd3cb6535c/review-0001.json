@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+  "proposal_sha256": "0660bc8bcac784448357c890b97296be35f36f927d450e9fea67a1a1ad33c407",
+  "previous": null,
+  "at": "2026-10-27T12:25:58.416978+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-authorized implemented-and-merged evidence",
+  "decision_reference": "repair:persistence-sqlite:233b170e:20261026:794a4df3",
+  "rationale": "Implemented and merged strict stored text admission for the four demonstrated fields, safe Format/TypeError causality and Runtime refusal before provider entry. Production 233b170eba86a596ff622cc0bd8ac5e170d2e6ca, normal PR38, independently accepted main c6ca6a2f64d729a8192cde1109e68b4a1830c7d2. Baseline permanent regressions9 failures/34 controls/no setup errors; final Persistence54 passes; focused310/one live skip;16 isolated cases each on native3.12.13/3.14.3 (not a complete3.12 pytest matrix). Final committed gate 3218 passes/2 optional live skips/100% unchanged branch coverage; Ruff/format/strict mypy and bounded post-main checks pass. docs/development/persistence-sqlite-contract-repair.md; docs/research/code-audit/persistence-sqlite-repair-20261026.json. This is delivered bounded implementation while administrative state remains PENDING_REVIEW; do not schedule it again. No duplicate proposal, B-number, approval, grant or parent closure. B-0027/B-0028/B-0011/B-0034 broader stale-save/retention/Evidence/uncertain effect/coordination obligations and observer OptionB remain separate.",
+  "duplicates": [
+    {
+      "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "77a31939-9c99-4a60-9016-622843cc10f3",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing exact owner; three independently tested sibling contracts. No duplicate or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4e98e93bcd07a68b900c5c959d88b7d7c9f305c87b6a250d36ffa50c3cf6dd9c"
+}

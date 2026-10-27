@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "77a31939-9c99-4a60-9016-622843cc10f3",
+  "proposal_sha256": "eb8ea4e11cf3dafada2da7a8f760b2ddcbb8263cbf94fa43ae78f2115ff48954",
+  "previous": null,
+  "at": "2026-10-27T12:25:57.939438+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-authorized implemented-and-merged evidence",
+  "decision_reference": "repair:persistence-sqlite:233b170e:20261026:77a31939",
+  "rationale": "Implemented and merged atomic fresh tables/indexes/user_version installation with reserved transaction and version recheck; failed stages roll back without deleting unknown databases. Production 233b170eba86a596ff622cc0bd8ac5e170d2e6ca, normal PR38, independently accepted main c6ca6a2f64d729a8192cde1109e68b4a1830c7d2. Baseline permanent regressions9 failures/34 controls/no setup errors; final Persistence54 passes; focused310/one live skip;16 isolated cases each on native3.12.13/3.14.3 (not a complete3.12 pytest matrix). Final committed gate 3218 passes/2 optional live skips/100% unchanged branch coverage; Ruff/format/strict mypy and bounded post-main checks pass. docs/development/persistence-sqlite-contract-repair.md; docs/research/code-audit/persistence-sqlite-repair-20261026.json. This is delivered bounded implementation while administrative state remains PENDING_REVIEW; do not schedule it again. No duplicate proposal, B-number, approval, grant or parent closure. B-0027/B-0028/B-0011/B-0034 broader stale-save/retention/Evidence/uncertain effect/coordination obligations and observer OptionB remain separate.",
+  "duplicates": [
+    {
+      "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing exact owner; three independently tested sibling contracts. No duplicate or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "672a869d609a9d550a84b851f55f52e8449843691ff1761bda35cfa0f4dcc5a2"
+}
