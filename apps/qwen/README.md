@@ -1,5 +1,14 @@
 # Bounded local coding worker
 
+## Operational application ownership
+
+The public `coding_loop` entry point retains task preparation, validation adapters,
+candidate archiving, source restoration and terminal accounting. Its
+[turn implementation](turns/README.md) separates bounded turn sequencing,
+Prompt/input projection and authorized read/check dispatch. Existing task hashes,
+records, budgets, native obligations and public callers retain their contracts.
+This extraction adds no model capability or authority and raises no edit limit.
+
 ## Opt-in obligation-driven Context
 
 The native worker can consume a trusted, task-bound `--obligation-frame` using
