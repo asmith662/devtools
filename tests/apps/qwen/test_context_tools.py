@@ -16,6 +16,7 @@ from apps.qwen import coding_loop
 from apps.qwen.context_tools import ContextTools
 from apps.qwen.continuation import select_messages
 from apps.qwen.tasks import MARKDOWN, CodingTask
+from devtools.agents import model_tools
 from devtools.models.interaction import (
     ModelRequest,
     ModelResponse,
@@ -40,6 +41,55 @@ def dispatch(
 ) -> dict[str, Any]:
     """Use real materialization, ToolRunner validation and existing RI operations."""
     return asyncio.run(tools.dispatch(call(operation, **arguments)))
+
+
+def test_context_dispatch_enters_shared_composition_and_preserves_feedback(
+    tools: ContextTools, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Observe the actual shared boundary and real read, not an import alone."""
+    original = model_tools.execute_model_tool_call
+    entries: list[str] = []
+
+    async def shared(selected: ModelToolCall, **kwargs: Any) -> Any:  # noqa: ANN401 -- transparent instrumentation of a generic operation
+        assert kwargs["tool"] is tools
+        assert kwargs["invocation"].descriptor.name == selected.name
+        assert kwargs["tool"].name != selected.name
+        entries.append(selected.provider_call_id or "missing")
+        return await original(selected, **kwargs)
+
+    monkeypatch.setattr(model_tools, "execute_model_tool_call", shared)
+    version = str(tools.snapshot.resource_at(tools.addresses[0]).content_identity)
+    text = (tools.root / tools.task.source).read_text(encoding="utf-8")
+    result = dispatch(
+        tools,
+        "read_source",
+        path=tools.task.source,
+        version=version,
+        start=0,
+        end=len(text),
+    )
+    assert entries == ["fixture-call"]
+    assert result["text"] == text
+    assert result["observation_call_id"] == "fixture-call"
+
+
+def test_context_shared_boundary_failure_prevents_tool_effect(
+    tools: ContextTools, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A fault at the promoted boundary must reach the real dispatch caller."""
+    error = OSError("shared composition unavailable")
+
+    async def refused(_call: ModelToolCall, **_kwargs: Any) -> Any:  # noqa: ANN401 -- generic boundary fault
+        raise error
+
+    async def forbidden(_arguments: object) -> Any:  # noqa: ANN401 -- unreachable Tool fault target
+        pytest.fail("Tool execution bypassed the shared boundary")
+
+    monkeypatch.setattr(model_tools, "execute_model_tool_call", refused)
+    monkeypatch.setattr(tools, "execute", forbidden)
+    with pytest.raises(OSError, match="shared composition unavailable") as raised:
+        dispatch(tools, "lookup_symbol", name="helper")
+    assert raised.value is error
 
 
 @pytest.mark.parametrize(

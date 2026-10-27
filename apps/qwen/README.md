@@ -1,5 +1,17 @@
 # Bounded local coding worker
 
+## Framework-owned native model/Tool composition
+
+Both `ContextTools.dispatch` and `CodingCommands.dispatch` now delegate selected
+native calls through `devtools.agents.model_tools`, using the existing typed
+ToolInvocation and ToolRunner. The application retains trusted task operation
+selection, JSON tuple materialization, source admission/currentness, fixed
+commands, journals, budgets and result decoration. The previous descriptor
+normalizer remains a direct compatibility facade. This capability is also
+exercised by a non-Qwen host denied application imports and file access; it is
+not a promotion of the complete Qwen coding loop. See the
+[shared contract](../../src/devtools/agents/docs/model_tools.md).
+
 ## Operational application ownership
 
 The public `coding_loop` entry point retains task preparation, validation adapters,
