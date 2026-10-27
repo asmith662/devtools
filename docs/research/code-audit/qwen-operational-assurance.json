@@ -2893,6 +2893,164 @@
       "report": "docs/development/native-model-tool-composition.md",
       "receipt": "docs/research/code-audit/native-model-tools-20261027.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "reference": "integration:framework-source-checks:59ae70b0:20261027",
+      "production": "59ae70b07f7e2332db887bc61748fe5fd3373fae",
+      "accepted_main": "9078406b76635a81fdaf6e5b45fda2c8db6a3f4f",
+      "pr": 50,
+      "changed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "baseline_blob": "1508dec2ec1c1a16a6efceb54e56c60992f5e720",
+          "current_blob": "1f8af6de095e679ee9d3ea2e1c0751ecce648ef4",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/coding_loop.py",
+          "baseline_blob": "708c4ef6386e1604ab2ecc4fbec0fc44a374d97d",
+          "current_blob": "9cea09c8d40c2c1171893d478ae50d928c72e68c",
+          "review_depth": "TARGETED_IMPORT_AND_SCOPE_RANGE_VALIDATION_FACADE_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/commands.py",
+          "baseline_blob": "39224549cb1c717a8c0949125001322cbc9450a7",
+          "current_blob": "a2829e485b62d601bce74a59217ff41c8bc5289a",
+          "review_depth": "TARGETED_IMPORT_AND_SCOPE_RANGE_VALIDATION_FACADE_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/context_tools.py",
+          "baseline_blob": "3ef4ccd221bbda6684e953af1b9d2edc1e61b9a6",
+          "current_blob": "6acbf0b4fcd76d09d10dd55677bdd967a42d2e55",
+          "review_depth": "TARGETED_IMPORT_AND_SCOPE_RANGE_VALIDATION_FACADE_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/development_task.py",
+          "baseline_blob": "8d2fc7bda8e61fc9ff02607f88230969288848c3",
+          "current_blob": "dad7a510062ad1cd49c5ced63fc5e44538635897",
+          "review_depth": "TARGETED_IMPORT_AND_SCOPE_RANGE_VALIDATION_FACADE_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/validation.py",
+          "baseline_blob": null,
+          "current_blob": "b4539259515f83345e332d5fc5bb70d0278ef55a",
+          "review_depth": "FULL_LEGACY_POLICY_ADAPTER_BODY_AND_EXECUTION_DELEGATION",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "scripts/backlog/integration/local.py",
+          "baseline_blob": "6a617cd908529da7aa30623ca85e16491e77eb59",
+          "current_blob": "c28406b3a13cdb1b2f5ba9515806ba363c975837",
+          "review_depth": "TARGETED_IMPORT_AND_SCOPE_RANGE_VALIDATION_FACADE_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/context/planning/docs/overview.md",
+          "baseline_blob": "4e07fb266fe3603ddba0e9e06d1cba8c4fd17059",
+          "current_blob": "e7736415900bcc3589115df5b7f45cdad3287384",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/context/planning/source.py",
+          "baseline_blob": "362f7e525110082de0b49cf4ee1c389b9db5be7d",
+          "current_blob": "718d634154ff8745fbd6baaa1e48b45bc66912ea",
+          "review_depth": "FULL_NEW_SHARED_TOOL_OR_CONTEXT_RANGE_BODY_AND_BRANCHES",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/tools/checks.py",
+          "baseline_blob": null,
+          "current_blob": "0d890f1d6791078c9aec9a89b32f4f8eb55dff0c",
+          "review_depth": "FULL_NEW_SHARED_TOOL_OR_CONTEXT_RANGE_BODY_AND_BRANCHES",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/tools/docs/overview.md",
+          "baseline_blob": "6ddd774163a435e35b23cad1861c67608bc28b24",
+          "current_blob": "70581f6c0f8fce1628cace59d5be553a8cfd047f",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/tools/docs/source-checks.md",
+          "baseline_blob": null,
+          "current_blob": "080956302ab47755733c05ab6413c1acaa69b375",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/tools/source.py",
+          "baseline_blob": null,
+          "current_blob": "077c9d47256cd34532f34ac2aef98520ab26e43e",
+          "review_depth": "FULL_NEW_SHARED_TOOL_OR_CONTEXT_RANGE_BODY_AND_BRANCHES",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/scoped_check_host.py",
+          "baseline_blob": null,
+          "current_blob": "c633e25e576a8e54539c65f0b574bcc07a103abc",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/test_source_check_host.py",
+          "baseline_blob": null,
+          "current_blob": "0bdb42a7248cb5a5d3c3316bd9620c010259d0b7",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_portable_mechanics.py",
+          "baseline_blob": null,
+          "current_blob": "7da4504ce75403a886351952f0d302c6a9605100",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/context/planning/test_source_range.py",
+          "baseline_blob": null,
+          "current_blob": "7a1caa67862a626c9a54b29ff101d886634872a1",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/scripts/backlog/test_shared_validation.py",
+          "baseline_blob": null,
+          "current_blob": "a74326ecd9ba1d0bde3b646167efdaab5dd99a15",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/tools/source_fixture.py",
+          "baseline_blob": null,
+          "current_blob": "5ce323fe286f6cdf293658281d163e94d6701bcb",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/tools/test_checks.py",
+          "baseline_blob": null,
+          "current_blob": "54112370f010be3594722219d72bb9a32207ab35",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/tools/test_source.py",
+          "baseline_blob": null,
+          "current_blob": "3eb750e0da1046bdc8ffe414b00059a9b87a4f4f",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/framework-source-checks.md",
+      "receipt": "docs/research/code-audit/framework-source-checks-20261027.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }
