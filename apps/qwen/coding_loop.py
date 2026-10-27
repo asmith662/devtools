@@ -1352,7 +1352,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
 
     A trusted local development invocation supplies evaluation authority; it
     confers no production publication or WorkCycle authority. Reusing an output
-    directory is refused before any invocation.
+    directory is refused before any invocation. Terminal acceptance requires
+    successful worker completion, not just a validated candidate. A fatal error
+    revokes acceptance while preserving candidate/check facts and known effects.
     """
     if type(thinking_enabled) is not bool:
         raise ValueError("thinking_enabled must be an explicit host boolean")
@@ -1499,11 +1501,12 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         raise
     except TimeoutError:
         report.update(
+            accepted=False,
             disposition=(
                 "TIMEOUT_COMPLETION_UNKNOWN_NO_RETRY"
                 if report["turns"] and report["turns"][-1]["phase"] == "MODEL_REQUEST"
                 else "HOST_TIMEOUT"
-            )
+            ),
         )
     except Exception as error:  # noqa: BLE001 -- retain terminal failures without redispatch
         phase = report["turns"][-1]["phase"] if report["turns"] else "PREPARATION"
@@ -1514,7 +1517,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         }:
             phase = "CONTEXT_BUDGET"
         report.update(
-            disposition=phase + "_FAILED", error=f"{type(error).__name__}: {error}"
+            accepted=False,
+            disposition=phase + "_FAILED",
+            error=f"{type(error).__name__}: {error}",
         )
     finally:
         if workspace is not None:

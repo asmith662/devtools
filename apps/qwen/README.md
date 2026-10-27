@@ -14,6 +14,19 @@ exactly-once external-effect guarantee.
 
 ## Maintained worker acceptance integrity
 
+The terminal `accepted` flag means the worker completed successfully with its
+required candidate checks and final integrity conditions satisfied. It is the
+CLI/closeout success signal, not a standalone test verdict. Fatal worker errors
+and timeouts clear it even after shared checks established a valid candidate.
+Per-turn validation, `change_check` and its installed-currentness observation,
+candidate archives, completed effects, counters and error/disposition remain
+factual evidence; they are not rewritten as failed tests. Currentness recorded
+before restoration does not claim the restored working tree is that candidate.
+Failure while archiving/restoring or writing the final result propagates without
+returning success or retrying. Missing acknowledgment can remain ambiguous;
+neither an archived candidate nor a partial record licenses replay. Independent
+review/publication and Checkout finalization retain their separate contracts.
+
 Prepared and native coding validation use the same journaled fixed-check bundle.
 The worker binds its immutable validation plan before baseline checks, preserves
 complete host diagnostics, checks input/source correspondence between checks and

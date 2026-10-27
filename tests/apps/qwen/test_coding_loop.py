@@ -6,14 +6,14 @@ from __future__ import annotations
 
 import asyncio
 import json
-from dataclasses import replace
+from dataclasses import asdict, replace
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
 import pytest
 
 from apps.qwen import coding_loop as worker
-from apps.qwen.development_task import SOURCE, _hash
+from apps.qwen.development_task import SOURCE, _hash, _save, apply_source_patches
 from apps.qwen.tasks import MARKDOWN, CodingTask
 from devtools.context import Repository
 from devtools.core.paths import resolve_path
@@ -26,6 +26,7 @@ from devtools.models.interaction import (
     ModelUsage,
 )
 from devtools.resources.commands import Command, CommandExecutor
+from devtools.resources.filesystem import write
 from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_execution
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -791,4 +792,336 @@ def test_native_batch_components_consume_one_proposal(tmp_path: Path) -> None:
     assert (
         folder / "final-source.py"
     ).read_text() == "def value() -> int:\n    return 1\n"
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+
+
+_TINY_TYPED_GOOD = "def value() -> int:\n    return 1\n"
+
+
+class _SharedCompletion(_TinyScripted):
+    """Acquire, implement, and request real shared checks; never inference."""
+
+    async def send(self, request: ModelRequest) -> ModelResponse:
+        """Keep exact native calls and leave unavailable final usage unknown."""
+        if len(self.requests) != 2:
+            return await super().send(request)
+        self.requests.append(request)
+        return ModelResponse(
+            "Check the installed candidate.",
+            self.source,
+            termination=ModelTermination.TOOL_CALL,
+            tool_calls=(ModelToolCall("check_changes", "{}", "completion-check"),),
+        )
+
+
+def _terminal_cli_exit(
+    root: Path,
+    task: CodingTask,
+    result: dict[str, Any],
+    monkeypatch: pytest.MonkeyPatch,
+) -> int:
+    """Feed a genuine worker result to the maintained CLI return boundary."""
+    from scripts.qwen import coding_worker as cli  # noqa: PLC0415
+
+    definition = root / ".local/task.json"
+    definition.write_text(json.dumps(asdict(task)))
+
+    async def returned(*_args: Any, **kwargs: Any) -> dict[str, Any]:  # noqa: ANN401 -- actual returned worker result at the CLI consumer
+        assert kwargs["task"].definition_sha256 == task.definition_sha256
+        return result
+
+    monkeypatch.setattr(cli, "run_local_task", returned)
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "worker",
+            "--task-definition",
+            str(definition),
+            "--report-directory",
+            str(root / ".local/cli"),
+            "--observed-edits",
+            "--check-changes-before-completion",
+        ],
+    )
+    return asyncio.run(cli.main())
+
+
+def _refuse_terminal_closeout(root: Path, task: CodingTask, folder: Path) -> None:
+    """Refuse local candidate admission for an actual nonaccepted worker result."""
+    from scripts.backlog.coordinator import git  # noqa: PLC0415
+    from scripts.backlog.work import WorkCycle  # noqa: PLC0415
+
+    asyncio.run(git(root, "config", "devtools.backlogCoordinator", str(root)))
+    backlog = root / "docs/backlog"
+    backlog.mkdir(parents=True)
+    (backlog / "overview.md").write_text("# Authored fixture backlog\n")
+    with pytest.raises(PermissionError, match="Accepted exact task/oracle"):
+        asyncio.run(
+            WorkCycle(root).integration.closeout_local(
+                task,
+                folder,
+                branch="feat/terminal",
+                expected_head=task.baseline_revision,
+            )
+        )
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+    assert not (root / ".local/backlog/checkout-owner").exists()
+
+
+@pytest.mark.parametrize("failure", [None, OSError, TimeoutError])
+def test_terminal_failure_revokes_worker_success_but_preserves_candidate(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failure: type[OSError] | None,
+) -> None:
+    """Real validation/currentness survive a later fatal stage-record failure."""
+    from scripts.backlog.coordinator import git  # noqa: PLC0415
+
+    root = resolve_path(tmp_path / "task").value
+    task = replace(
+        asyncio.run(_tiny_task(root, native=True)),
+        maximum_calls=3,
+        maximum_proposals=1,
+        command_tools=True,
+        quality_checks=True,
+    )
+    asyncio.run(git(root, "branch", "-m", "feat/terminal"))
+    model = _SharedCompletion(task, ((_TINY_OLD, _TINY_TYPED_GOOD),))
+    folder = root / ".local/run"
+    original_turns, original_save = worker._turns, _save
+    observed: dict[str, Any] = {}
+
+    async def capture(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- inspect the actual public consumer's report, never seed acceptance
+        observed["report"] = args[3]
+        await original_turns(*args, **kwargs)
+
+    def save(path: Path, value: Any, *, overwrite: bool = False) -> None:  # noqa: ANN401 -- fault only the existing stage-write boundary
+        if (
+            path == folder / "turn-03/stage.json"
+            and value.get("disposition") == "CONTEXT_RETURNED"
+        ):
+            report = observed["report"]
+            assert report["accepted"]
+            assert report["change_check"]["ready_for_review"]
+            assert report["change_check_freshness"]["current"]
+            observed["accepted_before_write"] = True
+            if failure is not None:
+                message = "completion record unavailable"
+                raise failure(message)
+        original_save(path, value, overwrite=overwrite)
+
+    monkeypatch.setattr(worker, "_turns", capture)
+    monkeypatch.setattr(worker, "_save", save)
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            folder,
+            model,
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+            check_changes_before_completion=True,
+        )
+    )
+    assert observed["accepted_before_write"]
+    assert len(model.requests) == result["model_calls_attempted"] == 3
+    assert {
+        name: result[name]
+        for name in (
+            "proposals_attempted",
+            "proposals_admitted",
+            "context_actions_attempted",
+            "proposal_refusals",
+            "repair_cycles",
+        )
+    } == {
+        "proposals_attempted": 1,
+        "proposals_admitted": 1,
+        "context_actions_attempted": 2,
+        "proposal_refusals": 0,
+        "repair_cycles": 0,
+    }
+    assert result["turns"][1]["validation"]["accepted"]
+    assert all(r["status"] == "PASS" for r in result["change_check"]["checks"].values())
+    assert result["change_check_freshness"]["current"]
+    assert result["source_restored"]
+    assert result["original_unchanged"]
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+    assert (folder / "final-source.py").read_text() == _TINY_TYPED_GOOD
+    assert (folder / "turn-02/proposal.patch").is_file()
+    assert result["turns"][0]["usage"]["input_tokens"] == 11
+    assert all(value is None for value in result["usage_totals"].values())
+    assert json.loads((folder / "result.json").read_text()) == json.loads(
+        json.dumps(result)
+    )
+
+    expected = 0 if failure is None else 1
+    assert _terminal_cli_exit(root, task, result, monkeypatch) == expected, {
+        "accepted": result["accepted"],
+        "disposition": result["disposition"],
+    }
+    assert result["accepted"] is (failure is None)
+    if failure is None:
+        assert result["disposition"] == "ACCEPTED"
+        return
+    assert result["disposition"] == (
+        "HOST_TIMEOUT" if failure is TimeoutError else "CONTEXT_TOOL_EXECUTION_FAILED"
+    )
+    if failure is OSError:
+        assert result["error"] == "OSError: completion record unavailable"
+    _refuse_terminal_closeout(root, task, folder)
+
+
+@pytest.mark.parametrize("point", ["stage", "apply", "result", "restore"])
+def test_terminal_effects_are_preserved_without_retry(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, point: str
+) -> None:
+    """Acknowledge actual effects and retain candidates across terminal faults."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_TYPED_GOOD),))
+    folder = root / ".local/run"
+    original_apply = apply_source_patches
+    original_save, original_write = _save, write
+    failure = OSError("controlled terminal boundary")
+    applied: list[str] = []
+    faulted = False
+
+    async def apply(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- schedule after the real one-shot Git application
+        await original_apply(*args, **kwargs)
+        applied.append((root / _TINY_SOURCE).read_text())
+        if point == "apply":
+            raise failure
+
+    def save(path: Path, value: Any, *, overwrite: bool = False) -> None:  # noqa: ANN401 -- existing write interface
+        nonlocal faulted
+        if (
+            point == "stage"
+            and not faulted
+            and path == folder / "turn-01/stage.json"
+            and value.get("phase") == "VALIDATION"
+        ) or (point == "result" and path == folder / "result.json"):
+            faulted = True
+            raise failure
+        original_save(path, value, overwrite=overwrite)
+
+    def write_restoration(*args: Any, **kwargs: Any) -> Any:  # noqa: ANN401 -- preserve Resource overloads while failing only restoration
+        file = args[0]
+        if (
+            point == "restore"
+            and file.path.value == root / _TINY_SOURCE
+            and file.content == _TINY_OLD
+            and (folder / "final-source.py").exists()
+        ):
+            raise failure
+        return original_write(*args, **kwargs)
+
+    monkeypatch.setattr(worker, "apply_source_patches", apply)
+    monkeypatch.setattr(worker, "_save", save)
+    monkeypatch.setattr(worker, "write", write_restoration)
+    operation = worker.run_coding_task(root, folder, model, task=task)
+    if point in {"result", "restore"}:
+        with pytest.raises(OSError, match="controlled terminal boundary") as raised:
+            asyncio.run(operation)
+        assert raised.value is failure
+        assert not (folder / "result.json").exists()
+    else:
+        result = asyncio.run(operation)
+        assert not result["accepted"]
+        assert (
+            result["disposition"]
+            == {
+                "stage": "VALIDATION_FAILED",
+                "apply": "PATCH_APPLICATION_FAILED",
+            }[point]
+        )
+        assert result["proposals_admitted"] == 1
+        assert result["error"] == "OSError: controlled terminal boundary"
+    expected_source = _TINY_TYPED_GOOD if point == "restore" else _TINY_OLD
+    assert (root / _TINY_SOURCE).read_text() == expected_source
+    assert (folder / "final-source.py").read_text() == _TINY_TYPED_GOOD
+    assert applied == [_TINY_TYPED_GOOD]
+    assert len(model.requests) == 1
+
+
+def test_terminal_unknown_bytes_require_reconciliation(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Passing checks never permit overwriting later unknown source bytes."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_TYPED_GOOD),))
+    folder = root / ".local/run"
+    original = worker._turns
+
+    async def changed(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- controlled source change after genuine successful validation
+        await original(*args, **kwargs)
+        assert args[3]["accepted"]
+        (root / _TINY_SOURCE).write_text("UNKNOWN SOURCE\n")
+
+    monkeypatch.setattr(worker, "_turns", changed)
+    result = asyncio.run(worker.run_coding_task(root, folder, model, task=task))
+    assert not result["accepted"]
+    assert result["disposition"] == "CLEANUP_RECONCILIATION_REQUIRED"
+    assert result["turns"][0]["validation"]["accepted"]
+    assert not result["source_restored"]
+    assert (root / _TINY_SOURCE).read_text() == "UNKNOWN SOURCE\n"
+    assert (folder / "final-source.py").read_text() == "UNKNOWN SOURCE\n"
+    assert len(model.requests) == 1
+
+
+@pytest.mark.parametrize("point", ["admission", "validation", "provider"])
+def test_terminal_cancellation_and_unknown_entry_never_redispatch(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, point: str
+) -> None:
+    """Keep pre-entry, known edits and uncertain provider work distinct."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root))
+    folder = root / ".local/run"
+    original_authenticate = worker._authenticate_inputs
+    original_validate = worker.validate_workspace
+    validations: list[str] = []
+
+    async def authenticate(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401
+        if point == "admission":
+            raise asyncio.CancelledError
+        await original_authenticate(*args, **kwargs)
+
+    async def validate(*args: Any, **kwargs: Any) -> dict[str, Any]:  # noqa: ANN401
+        validations.append("entered")
+        if point == "validation" and len(validations) == 2:
+            raise asyncio.CancelledError
+        return await original_validate(*args, **kwargs)
+
+    class Interrupted(_TinyScripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            if point == "provider":
+                self.requests.append(request)
+                (folder / "possible-provider-effect.txt").write_text("entered\n")
+                message = "unknown external completion"
+                raise TimeoutError(message)
+            return await super().send(request)
+
+    model = Interrupted(task, ((_TINY_OLD, _TINY_TYPED_GOOD),))
+    monkeypatch.setattr(worker, "_authenticate_inputs", authenticate)
+    monkeypatch.setattr(worker, "validate_workspace", validate)
+    operation = worker.run_coding_task(root, folder, model, task=task)
+    if point == "provider":
+        result = asyncio.run(operation)
+        assert result["disposition"] == "TIMEOUT_COMPLETION_UNKNOWN_NO_RETRY"
+        assert (folder / "possible-provider-effect.txt").read_text() == "entered\n"
+        assert all(value is None for value in result["usage_totals"].values())
+    else:
+        with pytest.raises(asyncio.CancelledError):
+            asyncio.run(operation)
+        result = json.loads((folder / "result.json").read_text())
+        assert result["disposition"] == "HOST_CANCELLED"
+    assert not result["accepted"]
+    assert result["source_restored"]
+    assert (
+        result["model_calls_attempted"]
+        == len(model.requests)
+        == int(point != "admission")
+    )
+    assert result["proposals_admitted"] == int(point == "validation")
     assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
