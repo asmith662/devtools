@@ -79,3 +79,7 @@ Runtime and Codex errors do not prove nonentry. Usage can survive unsuccessful C
 ## Persistence/Recovery audit evidence
 
 Actual temporary child exits before SQLite commit restore A; after real commit/before return restore B despite no success receipt. Caller must inspect durable state before any authorized repetition; stale replay can overwrite a later snapshot. This is process-exit evidence, not power-loss testing or a new exactly-once/retry policy. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.
+
+## SQLite repair delivery evidence
+
+Atomic database transactions do not make an external request exactly once or a failed acknowledgment proof of rollback. Known before/after-commit boundaries remain separate; no retry/reconciliation policy is approved. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.

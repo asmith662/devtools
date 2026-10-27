@@ -72,3 +72,7 @@ remain unchanged; advisory research does not authorize implementation.
 ## Persistence/Recovery audit evidence
 
 All 11 Persistence paths now fully reviewed. Three exact P2 proposals own read coherence, initial schema atomicity and persisted text admission; no source correction in this checkpoint. Save replacement rollback/process restart controls pass; stale saves intentionally replace current state and unreferenced global message rows remain. Explicit checkpoint/custody/retention/consumer decisions remain broader than these repairs. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.
+
+## SQLite repair delivery evidence
+
+All three bounded SQLite defects are delivered. Automatic durable agent state, stale-save conflict policy, orphan/global row retention, Evidence/usage/Tool-effect persistence and cross-process execution recovery remain open. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.
