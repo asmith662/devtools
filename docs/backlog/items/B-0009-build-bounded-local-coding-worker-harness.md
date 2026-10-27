@@ -473,3 +473,7 @@ consumers. Four new bounded pending integration/reuse proposals are linked by th
 report. Existing source-span pending proposals receive24-case reproduction
 evidence. No old outcome, model result, parent status or publication authority
 is changed; no new inference is authorized by research.
+
+## Qwen operational application audit evidence
+
+The actual current coding_worker/native loop now has a complete bounded operational-core review: sixteen selected source/test bodies plus required CodingTask dependency, 471 focused passes and sixteen offline schedules. Useful historical autonomous implementation/repair is real but is not general viability. One new P2 835a203f-8fd4-4bc2-ace8-8772137eaf2f owns accepted=True with terminal failure after shared-check completion. Existing task-obligation, cohesive ownership, edit-ergonomics, Evidence/recovery pressures retain distinct owners. No live model, promotion, grant or parent closure. [Current capability/adoption/priority assessment](../../research/qwen-operational-lifecycle-audit.md). audit:qwen-operational:7a657dba:20261027.

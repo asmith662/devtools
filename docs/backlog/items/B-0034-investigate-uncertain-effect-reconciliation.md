@@ -83,3 +83,7 @@ Actual temporary child exits before SQLite commit restore A; after real commit/b
 ## SQLite repair delivery evidence
 
 Atomic database transactions do not make an external request exactly once or a failed acknowledgment proof of rollback. Known before/after-commit boundaries remain separate; no retry/reconciliation policy is approved. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.
+
+## Qwen operational application audit evidence
+
+Independent authored worker schedules retain one actual Git application then lost local acknowledgment, one actual fixed Git command exit0 then lost result (event REFUSED), model cancellation/unknown usage and final-report failure after restoration. No automatic retry occurred; entry and missing completion remain different facts. Directory reuse is refused, not a restart protocol. [Exact operational findings](../../research/qwen-operational-lifecycle-audit.md). No external-effect rollback, grant, generic reconciliation engine or status change. audit:qwen-operational:7a657dba:20261027.

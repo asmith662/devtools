@@ -1,0 +1,34 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "835a203f-8fd4-4bc2-ace8-8772137eaf2f",
+  "created_at": "2026-10-27T12:59:00.827455+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Reconcile Qwen terminal failure with already-set worker acceptance",
+    "summary": "P2 maintained worker outcome contract. On main7a657dba, a tiny real Git task uses native inspect_source, one exact edit, real tests/oracle/Ruff/format/mypy, model-invoked check_changes and host is_current. After accepted=True is set, a deterministic OSError at turn3 stage.json completion persistence is caught by run_coding_task, which changes disposition to CONTEXT_TOOL_EXECUTION_FAILED but leaves accepted=True. result.json is saved with both fields, original source restored, candidate and passing check evidence retained. Actual coding_worker.main fed that returned worker result exits0. Reproduced twice; valid shared-check control returns ACCEPTED. This is inconsistent task-level failure/acceptance reporting, not evidence that the candidate fails its checks or that protected publication is bypassed.",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/qwen-operational-lifecycle-audit.md; audit:qwen-operational:7a657dba:20261027"
+    },
+    "parent": "B-0003",
+    "resources": [
+      "apps/qwen/coding_loop.py",
+      "scripts/qwen/coding_worker.py",
+      "tests/apps/qwen/test_coding_loop.py",
+      "tests/scripts/qwen/test_coding_worker.py"
+    ],
+    "evidence": [
+      "docs/research/qwen-operational-lifecycle-audit.md",
+      "docs/research/code-audit/qwen-operational-probes.json",
+      "git:7a657dba031c43a30d33086808899498ee616052:apps/qwen/coding_loop.py"
+    ],
+    "benefit": "Within existing worker owners make fatal task exceptions and final accepted/disposition/CLI status consistent. Preserve known provider responses, candidate/check facts, unknown effects and conservative source restoration; do not retry or erase results. Acceptance: actual run_coding_task reaches real accepted native checks, then controlled completion-stage write failure, returning nonaccepted failure or a separately explicitly approved qualified outcome; CLI must not report unqualified success for fatal worker failure. Include normal shared completion, prepared mode, cancellation, before/after edit and final-result persistence errors. Full committed-tree production validation required only in a separately authorized repair. Do not implement the unapproved optional ModelInteraction observer policy to fix this application outcome defect.",
+    "uncertainty": "Fault injection targets a genuine owned filesystem save after validation; no real disk failure, live model, GitHub fault or production task was executed. Local closeout initially trusts accepted for candidate admission but independently revalidates source/review/protected publication. The current governed assignment-v1 does not enable this native shared-completion option. Delivered frozen-input/budget/source-provenance fixes remain separate and correct. B-0011/B-0034 broader durability and observer OptionB conditions remain unapproved.",
+    "dependencies": [
+      "B-0009",
+      "B-0011",
+      "B-0034"
+    ]
+  },
+  "payload_sha256": "b38f6fa67207ae3de02fe1e7e6b23bb9812ef25b644a53e092f7cbe17ba68c9c"
+}

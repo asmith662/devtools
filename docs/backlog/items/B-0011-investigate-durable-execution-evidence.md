@@ -109,3 +109,7 @@ Conversation storage has no Evidence/attempt/usage schema or automatic Runtime p
 ## SQLite repair delivery evidence
 
 Conversation store correctness is improved; no EvidenceSink durability, normalized capture ingestion or automatic Runtime checkpoint is added. Four OptionB approval conditions remain unchanged. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.
+
+## Qwen operational application audit evidence
+
+Native worker journals and nullable usage are actual application records, not automatic normalized framework Evidence/InvocationMeasurement or durable Conversation state. A final result write can fail after known application/restoration; a fixed command can exit before its result is lost. Sixteen offline probes distinguish these from no entry; optional capture still needs per-invocation correlation, reporter-failure policy, privacy/retention and host evidence admission. New task-outcome P2 is distinct from unapproved ModelInteraction OptionB. [Review](../../research/qwen-operational-lifecycle-audit.md). No new store, observer policy or status promotion. audit:qwen-operational:7a657dba:20261027.

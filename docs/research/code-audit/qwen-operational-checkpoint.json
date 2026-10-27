@@ -1,0 +1,107 @@
+{
+  "schema": "qwen-operational-checkpoint-v1",
+  "reference": "audit:qwen-operational:7a657dba:20261027",
+  "at": "2026-10-27T13:08:06.100018+00:00",
+  "baseline": "7a657dba031c43a30d33086808899498ee616052",
+  "baseline_tree": "3df5930a1ac79817d771eb97b8a4d9ec28523457",
+  "branch": "audit/qwen-operational-lifecycle-20261027",
+  "validated_paths": {
+    "docs/backlog/epics/B-0003-local-coding-worker-harness.md": "c4ae30e2a09f71f44ee9ad98be194be5bd97aadd",
+    "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md": "ec9886d8321f8c647ff92bdd3142240405a67b88",
+    "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md": "8d4be0d794a1c5d35e1b9a3289f4fec851840115",
+    "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md": "fed2380bf6eb5999cede3f4d1a42631632d935c9",
+    "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md": "f5c9e781105929d51348816e4fdc2ee0d4b13383",
+    "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md": "b37806ac4c92d6fab90b9bf75b437eb9d22b5e47",
+    "docs/backlog/overview.md": "e18fd57b0e88aa0ccbc671e2d63e944eb52c1300",
+    "docs/backlog/proposals/15bae0a6-b95d-417c-98fa-d75a8aff29d4/review-0012.json": "e48811190fea8f4fd62465929fdb4d75ca034a00",
+    "docs/backlog/proposals/39c6663a-bab7-43ed-8166-82e780a75d05/review-0019.json": "83ef51df900324c2fa7196dc88e7ce4ed7ed8b08",
+    "docs/backlog/proposals/835a203f-8fd4-4bc2-ace8-8772137eaf2f/proposal.json": "b4910741cf8c0940f6f2850da326ee64a11390ef",
+    "docs/backlog/proposals/88246171-d102-4b62-93d7-03c1e19f8a7b/review-0005.json": "b1e5a39e047657d4af45383fc9731b23ee4d1454",
+    "docs/documentation_map.md": "85606dc4575e36bdbcf61ad6f80429a6db22c032",
+    "docs/research/code-audit/README.md": "895a2df7cfa32b7d772642929a4ec18e3a8973a4",
+    "docs/research/code-audit/qwen-operational-assurance.json": "aa09818945867575e0ec4732ba5d31f184e12cdb",
+    "docs/research/code-audit/qwen-operational-cohort.json": "d8369261827247aa740b6fb46026085a676cd1c8",
+    "docs/research/code-audit/qwen-operational-probes.json": "826e2155e2e73d4e8e210bd2ab2e87ca7712baad",
+    "docs/research/comprehensive-code-audit.md": "eb3f65b8bf8fdcf7eb6c3e882d6e287342ca5d8c",
+    "docs/research/qwen-operational-lifecycle-audit.md": "2aab2876ea9adc45ea661e4210847c7b3b9f35be"
+  },
+  "self_identity": "Containing Git commit authenticates this checkpoint; no self-hash.",
+  "selected_reviewed": 16,
+  "full_dependency": 1,
+  "inventory_paths": 230,
+  "remaining_not_fully_inspected": 213,
+  "focused": {
+    "passed": 471,
+    "skipped": 0,
+    "exit_code": 0,
+    "pytest_seconds": 474.6,
+    "elapsed_seconds": 476.437891
+  },
+  "probes": {
+    "cases": 16,
+    "desired_contract_violations": 1,
+    "controls_or_qualified_limits": 15
+  },
+  "intake": {
+    "new_proposal": "835a203f-8fd4-4bc2-ace8-8772137eaf2f",
+    "severity": "P2",
+    "existing_proposals_checked": 67,
+    "advisories": [
+      {
+        "proposal": "39c6663a-bab7-43ed-8166-82e780a75d05",
+        "sha256": "2a5878f24ff124faa7e6032b800b023b06a943942bb7a480b93a327e25607fa4",
+        "reference": "audit:qwen-operational:7a657dba:20261027:39c6663a"
+      },
+      {
+        "proposal": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+        "sha256": "7de6635df868aeaa54c0a75e1add594459485b6a6b0a4b5023dfad2d84ff218f",
+        "reference": "audit:qwen-operational:7a657dba:20261027:15bae0a6"
+      },
+      {
+        "proposal": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+        "sha256": "56d312dffd71e62d5d571cad7f1016d77ea2cef5c3d40352a01d52b4e7b090a4",
+        "reference": "audit:qwen-operational:7a657dba:20261027:88246171"
+      }
+    ],
+    "chains": 68,
+    "grants": 0,
+    "approvals": 0,
+    "new_B_numbers": 0
+  },
+  "json_files_including_checkpoint": 8,
+  "local_file_link_targets": 712,
+  "links_scope": "Local file existence only; external URLs/anchors not certified.",
+  "RI_rows": 903,
+  "RI_ledgers": {
+    "docs/research/code-audit/ri-completion-experiments.jsonl": "f0137128a794750156d35881e9c2eb6247b98f1b",
+    "docs/research/code-audit/ri-completion-fixtures.jsonl": "77c4c85e5dea7081bd5d15acaa5a00e9cd13e84f",
+    "docs/research/code-audit/ri-followup-history.jsonl": "b68e57b2118ec9fc3bacfb3a1947a13c7cd79e64"
+  },
+  "forensics": 13,
+  "original_local_refs_preserved": 142,
+  "physical_inputs": 814,
+  "executable_unchanged": true,
+  "layout_command": "uv run python scripts/validate_layout.py",
+  "full_protected_gate": "Not rerun: documentation/Intake only; inherited exact executable tree remains unchanged.",
+  "source_identity": "All230 initial inventory physical SHA256 and Git blobs unchanged.",
+  "harness_failures": "Excluded and qualified in probe artifact",
+  "new_source_tests_configuration": false,
+  "layout": {
+    "name": "layout",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      "scripts/validate_layout.py"
+    ],
+    "started_at": "2026-10-27T13:06:47.867423+00:00",
+    "finished_at": "2026-10-27T13:06:48.035965+00:00",
+    "seconds": 0.133955,
+    "exit_code": 0,
+    "head": "7a657dba031c43a30d33086808899498ee616052",
+    "tree": "3df5930a1ac79817d771eb97b8a4d9ec28523457",
+    "inputs_unchanged": true,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

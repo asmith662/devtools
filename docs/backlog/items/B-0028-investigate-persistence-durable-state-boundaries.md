@@ -76,3 +76,7 @@ All 11 Persistence paths now fully reviewed. Three exact P2 proposals own read c
 ## SQLite repair delivery evidence
 
 All three bounded SQLite defects are delivered. Automatic durable agent state, stale-save conflict policy, orphan/global row retention, Evidence/usage/Tool-effect persistence and cross-process execution recovery remain open. [Verified implementation and limitations](../../development/persistence-sqlite-contract-repair.md), normal PR38, main `c6ca6a2f64d729a8192cde1109e68b4a1830c7d2`. Existing state, maturity, dependencies and parent scope unchanged. `repair:persistence-sqlite:233b170e:20261026`.
+
+## Qwen operational application audit evidence
+
+Current worker keeps native history/observations/budgets in process and archives requests/responses/candidates/checks. Reused output directories refuse; no authenticated task-state load/resume/replay protocol is implemented. Known post-apply failure restores recognized bytes without retry; unknown bytes remain for reconciliation. Conversation SQLite correctness does not implement this agent-state capability. [Current owner/decision assessment](../../research/qwen-operational-lifecycle-audit.md). No new backend, checkpoint protocol or parent closure approved. audit:qwen-operational:7a657dba:20261027.

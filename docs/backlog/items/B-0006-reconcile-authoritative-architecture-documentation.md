@@ -79,3 +79,7 @@ Current Serving Status and corrected package contracts now describe both concret
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 Codex root docstring still calls it a ModelInteraction provider; tests retain Context/Session/ModelResponse wording; CLI docs live command points to removed tests/interactions path and older0.147 live acceptance. Architecture page contains dated feature/B0048 claims despite merged corrections. Current notices and this audit qualify them; no semantic rename or reopening delivered scope. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+## Qwen operational application audit evidence
+
+The current Qwen source supports flags/optional map/check consumers beyond dated three-proposal/source-only/unintegrated-candidate paragraphs. New overlays identify historical claims; this audit does not rewrite frozen scientific evidence, accepted architecture or administrative statuses. Later current-operator documentation consolidation should distinguish present API, defaults and dated evaluation lineage. [Current reviewed contract](../../research/qwen-operational-lifecycle-audit.md). audit:qwen-operational:7a657dba:20261027.
