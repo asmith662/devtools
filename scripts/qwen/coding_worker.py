@@ -18,6 +18,7 @@ if str(_ROOT) not in sys.path:
 
 from apps.qwen.coding_loop import preflight_coding_task, run_coding_task
 from apps.qwen.development_task import _command
+from apps.qwen.obligations import ObligationFrame, validate_frame
 from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
@@ -123,6 +124,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     reasoning_effort: str | None = None,
     sampling_profile: str = "baseline",
     check_changes_before_completion: bool = False,
+    obligation_frame: ObligationFrame | None = None,
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -133,6 +135,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     if type(thinking_enabled) is not bool:
         message = "thinking_enabled must be an explicit host boolean"
         raise ValueError(message)
+    validate_frame(obligation_frame, task)
     if reasoning_effort is not None and not thinking_enabled:
         message = "Reasoning effort requires thinking enabled"
         raise ValueError(message)
@@ -208,6 +211,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                 reasoning_effort=reasoning_effort,
                 request_settings=selected_settings,
                 check_changes_before_completion=check_changes_before_completion,
+                obligation_frame=obligation_frame,
             )
         finally:
             for path, text in originals.items():
@@ -301,6 +305,11 @@ async def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- closed local run/clo
     )
     parser.add_argument("--reasoning-effort", choices=("low", "medium", "xhigh"))
     parser.add_argument(
+        "--obligation-frame",
+        type=Path,
+        help="Trusted host-authored native obligation JSON; never model-selected.",
+    )
+    parser.add_argument(
         "--check-changes-before-completion",
         action="store_true",
         help="Continue after accepted edits until the model checks the candidate.",
@@ -335,6 +344,24 @@ async def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- closed local run/clo
     ) as error:
         parser.error(f"Invalid host task definition: {error}")
     args.task = task.name
+    obligation_frame = None
+    if args.obligation_frame:
+        if args.closeout or args.preflight_only:
+            parser.error("Obligation frame applies only to native worker execution")
+        try:
+            obligation_frame = ObligationFrame.load(
+                resolve_path(args.obligation_frame, base_directory=Path.cwd()).value,
+            )
+            obligation_frame.validate(task)
+        except (
+            PathError,
+            ValueError,
+            TypeError,
+            KeyError,
+            FilesystemError,
+            OSError,
+        ) as error:
+            parser.error(f"Invalid host obligation frame: {error}")
     if args.closeout:
         if not args.expected_head or args.preflight_only:
             parser.error("Closeout requires --expected-head and excludes preflight")
@@ -384,6 +411,8 @@ async def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- closed local run/clo
             0 if result["disposition"] == "PREFLIGHT_CHECKS_PASS_REVIEW_REQUIRED" else 1
         )
     options: dict[str, Any] = {}
+    if obligation_frame is not None:
+        options["obligation_frame"] = obligation_frame
     if args.check_changes_before_completion:
         options["check_changes_before_completion"] = True
     if args.thinking == "enabled":
