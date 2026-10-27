@@ -247,7 +247,7 @@ def test_context_budget_refusal_is_not_reported_as_a_tool_failure(
         msg = "Context budget cannot retain current source and latest validation"
         raise ValueError(msg)
 
-    monkeypatch.setattr(coding_loop, "select_messages", refuse)
+    monkeypatch.setattr("apps.qwen.turns.loop.select_messages", refuse)
     root = captured_inputs(MARKDOWN)
     model = Investigating([])
     result = asyncio.run(

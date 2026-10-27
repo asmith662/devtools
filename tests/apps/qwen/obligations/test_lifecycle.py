@@ -292,7 +292,7 @@ def test_compacted_away_read_does_not_count_as_active_context(
     ) -> tuple[tuple[PromptMessage, ...], int]:
         return select_messages(history, **{**kwargs, "compact": True, "reacquire": 1})
 
-    monkeypatch.setattr(worker, "select_messages", compact)
+    monkeypatch.setattr("apps.qwen.turns.loop.select_messages", compact)
     model = Scripted([read(path), read(), EDIT])
     result = run(root, task, model, selected)
     assert not result["accepted"]

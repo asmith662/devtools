@@ -798,6 +798,62 @@ def test_native_batch_components_consume_one_proposal(tmp_path: Path) -> None:
 _TINY_TYPED_GOOD = "def value() -> int:\n    return 1\n"
 
 
+@pytest.mark.parametrize("native", [False, True])
+def test_public_worker_preserves_task_and_correlated_archives(
+    tmp_path: Path, *, native: bool
+) -> None:
+    """Characterize public receipts and actual disclosure, independently of layout."""
+    root = resolve_path(tmp_path / "task").value
+    task = asyncio.run(_tiny_task(root, native=native))
+    definition, digest = asdict(task), task.definition_sha256
+    model = _TinyScripted(task, ((_TINY_OLD, _TINY_TYPED_GOOD),))
+    folder = root / ".local/run"
+    result = asyncio.run(
+        worker.run_coding_task(
+            root,
+            folder,
+            model,
+            task=task,
+            coordinated_edits=native,
+            observed_edits=native,
+        )
+    )
+    assert result["schema"] == "qwen-coding-loop-v2"
+    assert result["accepted"]
+    assert result["disposition"] == "ACCEPTED"
+    assert result["task_definition"] == definition == asdict(task)
+    assert result["task_definition_sha256"] == digest == task.definition_sha256
+    assert "obligation_frame_sha256" not in result
+    assert result["edit_protocol"] == (
+        "observed-path-batch-v1" if native else "single-edit-legacy"
+    )
+    assert result["limits"]["model_calls"] == task.maximum_calls
+    assert result["limits"]["context_actions"] == (task.tool_actions if native else 0)
+    assert result["proposals_attempted"] == result["proposals_admitted"] == 1
+    assert result["model_calls_attempted"] == len(model.requests) == 1 + int(native)
+    assert result["context_actions_attempted"] == int(native)
+    assert result["source_restored"]
+    assert result["original_unchanged"]
+    assert (root / _TINY_SOURCE).read_text() == _TINY_OLD
+    assert (folder / "final-source.py").read_text() == _TINY_TYPED_GOOD
+    assert json.loads((folder / "result.json").read_text()) == json.loads(
+        json.dumps(result)
+    )
+    if native:
+        disclosed = json.loads((folder / "turn-01/tools.json").read_text())
+        assert len(disclosed) == 1
+        assert disclosed[0]["status"] == "RETURNED"
+        assert disclosed[0]["call"]["provider_call_id"] == "tiny-0"
+        feedback = [
+            message
+            for message in model.requests[1].prompt.messages
+            if message.role == "tool"
+        ]
+        assert len(feedback) == 1
+        assert feedback[0].tool_call_id == "tiny-0"
+        assert _TINY_OLD in feedback[0].content
+
+
 class _SharedCompletion(_TinyScripted):
     """Acquire, implement, and request real shared checks; never inference."""
 
@@ -869,7 +925,7 @@ def _refuse_terminal_closeout(root: Path, task: CodingTask, folder: Path) -> Non
 
 
 @pytest.mark.parametrize("failure", [None, OSError, TimeoutError])
-def test_terminal_failure_revokes_worker_success_but_preserves_candidate(
+def test_terminal_failure_revokes_worker_success_but_preserves_candidate(  # noqa: PLR0915 -- one real cross-owner terminal fault schedule
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     failure: type[OSError] | None,
@@ -912,6 +968,8 @@ def test_terminal_failure_revokes_worker_success_but_preserves_candidate(
 
     monkeypatch.setattr(worker, "_turns", capture)
     monkeypatch.setattr(worker, "_save", save)
+    monkeypatch.setattr("apps.qwen.turns.loop._save", save)
+    monkeypatch.setattr("apps.qwen.turns.tools._save", save)
     result = asyncio.run(
         worker.run_coding_task(
             root,
@@ -1016,8 +1074,10 @@ def test_terminal_effects_are_preserved_without_retry(
             raise failure
         return original_write(*args, **kwargs)
 
-    monkeypatch.setattr(worker, "apply_source_patches", apply)
+    monkeypatch.setattr("apps.qwen.turns.loop.apply_source_patches", apply)
     monkeypatch.setattr(worker, "_save", save)
+    monkeypatch.setattr("apps.qwen.turns.loop._save", save)
+    monkeypatch.setattr("apps.qwen.turns.tools._save", save)
     monkeypatch.setattr(worker, "write", write_restoration)
     operation = worker.run_coding_task(root, folder, model, task=task)
     if point in {"result", "restore"}:

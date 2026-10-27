@@ -478,7 +478,7 @@ def test_native_atomic_engineering_repair_restoration_and_interruption(
             await original(root, folder, patches)
             raise asyncio.CancelledError
 
-        monkeypatch.setattr(coding_loop, "apply_source_patches", interrupt)
+        monkeypatch.setattr("apps.qwen.turns.loop.apply_source_patches", interrupt)
     folder = tmp_path / "engineering"
     model = Engineering(exhausted=outcome == "exhausted", flat=flat)
     operation = coding_loop.run_coding_task(
