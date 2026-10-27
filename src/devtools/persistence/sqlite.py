@@ -273,9 +273,9 @@ class SqliteConversationStore:
             _MessageSnapshot(
                 id=MessageId.parse(row[2]),
                 created_at=Timestamp.from_isoformat(row[3]),
-                content=row[4],
+                content=_require_text(row[4], "messages.content"),
                 role=ConversationMessageRole(row[5]),
-                source=InteractionSource(row[6]),
+                source=InteractionSource(_require_text(row[6], "messages.source")),
             )
             for row in rows
         )
@@ -291,7 +291,21 @@ class SqliteConversationStore:
             "WHERE session_id = ? ORDER BY source",
             (str(conversation_id),),
         ).fetchall()
-        return tuple(ConversationRef(InteractionSource(row[0]), row[1]) for row in rows)
+        return tuple(
+            ConversationRef(
+                InteractionSource(_require_text(row[0], "conversations.source")),
+                _require_text(row[1], "conversations.value"),
+            )
+            for row in rows
+        )
+
+
+def _require_text(value: object, field: str) -> str:
+    """Admit semantic strings without coercing SQLite's other storage classes."""
+    if not isinstance(value, str):
+        msg = f"SQLite field {field} must be text."
+        raise TypeError(msg)
+    return value
 
 
 def _user_tables(connection: sqlite3.Connection) -> set[str]:

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import json
 import sqlite3
 import threading
 from concurrent.futures import ThreadPoolExecutor
@@ -38,6 +39,8 @@ from devtools.persistence import (
     PersistenceFormatError,
     PersistenceVersionError,
     SqliteConversationStore,
+    decode_conversation_json,
+    encode_conversation_json,
 )
 
 if TYPE_CHECKING:
@@ -629,6 +632,104 @@ def test_sqlite_initialization_failure_rolls_back_and_retries(
     assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
 
 
+@pytest.mark.parametrize(
+    ("table", "column"),
+    [
+        ("messages", "content"),
+        ("messages", "source"),
+        ("conversations", "source"),
+        ("conversations", "value"),
+    ],
+)
+def test_sqlite_rejects_blob_in_semantic_text(
+    tmp_path: Path,
+    table: str,
+    column: str,
+) -> None:
+    """TEXT affinity does not authenticate a semantic string storage class."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    with (
+        closing(sqlite3.connect(tmp_path / "sessions.sqlite")) as connection,
+        connection,
+    ):
+        queries = {
+            ("messages", "content"): "UPDATE messages SET content=?",
+            ("messages", "source"): "UPDATE messages SET source=?",
+            ("conversations", "source"): "UPDATE conversations SET source=?",
+            ("conversations", "value"): "UPDATE conversations SET value=?",
+        }
+        connection.execute(queries[table, column], (b"PRIVATE_PERSISTENCE_SENTINEL",))
+    with pytest.raises(PersistenceFormatError) as caught:
+        store.load(first.id)
+    assert isinstance(caught.value.__cause__, TypeError)
+    assert f"{table}.{column}" in str(caught.value.__cause__)
+    assert "PRIVATE_PERSISTENCE_SENTINEL" not in str(caught.value)
+    assert "PRIVATE_PERSISTENCE_SENTINEL" not in str(caught.value.__cause__)
+
+
+def test_sqlite_malformed_reference_refuses_before_runtime_entry(
+    tmp_path: Path,
+) -> None:
+    """The genuine load-to-Runtime caller never receives an invalid continuation."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    with (
+        closing(sqlite3.connect(tmp_path / "sessions.sqlite")) as connection,
+        connection,
+    ):
+        connection.execute(
+            "UPDATE conversations SET value=?",
+            (b"PRIVATE_PERSISTENCE_SENTINEL",),
+        )
+    fake = FakeInteraction(
+        InteractionSource("agent"),
+        ModelResponse("reply", InteractionSource("agent")),
+    )
+
+    async def restore_and_send() -> None:
+        loaded = store.load(first.id)
+        assert loaded is not None
+        await Runtime().send(conversation=loaded, interaction=fake, message=_message(3))
+
+    error_name = None
+    try:
+        asyncio.run(restore_and_send())
+    except PersistenceFormatError as error:
+        error_name = type(error).__name__
+    assert {"error": error_name, "provider_calls": len(fake.calls)} == {
+        "error": "PersistenceFormatError",
+        "provider_calls": 0,
+    }
+
+
+def test_sqlite_valid_text_preserves_values_order_and_aliases(tmp_path: Path) -> None:
+    """Native Unicode and empty content survive without coercion or lost identity."""
+    store = _store(tmp_path)
+    one = _message(1, content="雪π\x00\n  ")
+    empty = _message(2, content="")
+    original = _session(messages=(one, empty, one))
+    original.set_conversation(ConversationRef(InteractionSource("提供者"), "thread-π"))
+    store.save(original)
+    loaded = store.load(original.id)
+    assert loaded is not None
+    assert [m.content for m in loaded.history] == ["雪π\x00\n  ", "", "雪π\x00\n  "]
+    assert loaded.history[0] is loaded.history[2]
+    assert loaded.id == original.id
+    assert loaded.created_at == original.created_at
+    assert [str(source) for source in loaded.conversations] == [
+        "codex",
+        "qwen",
+        "提供者",
+    ]
+    assert loaded.conversation_for(InteractionSource("提供者")) == ConversationRef(
+        InteractionSource("提供者"),
+        "thread-π",
+    )
+
+
 def test_sqlite_default_journal_reader_and_waiting_writer(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -879,3 +980,32 @@ def test_sqlite_read_transaction_always_settles_and_closes(
         with pytest.raises(sqlite3.DatabaseError):
             store.load(first.id)
     assert closed == [False]
+
+
+def test_sqlite_and_literal_json_v1_correspond(tmp_path: Path) -> None:
+    """An authored historical wire record is the oracle for both public formats."""
+    literal = """{
+        "schema_version": 1,
+        "session": {
+            "id": "10000000-0000-4000-8000-000000000010",
+            "created_at": "2026-01-02T03:04:05.123456+00:00"
+        },
+        "history": [{
+            "id": "00000000-0000-4000-8000-000000000001",
+            "created_at": "2026-01-02T03:04:06+00:00",
+            "content": "雪π",
+            "role": "user",
+            "source": "caller"
+        }],
+        "conversations": [{"source": "agent", "value": "thread-a"}]
+    }"""
+    original = decode_conversation_json(literal)
+    store = _store(tmp_path)
+    store.save(original)
+    loaded = store.load(original.id)
+    assert loaded is not None
+    assert json.loads(encode_conversation_json(loaded)) == json.loads(literal)
+    assert loaded.history[0].content == "雪π"
+    assert loaded.created_at == Timestamp.from_isoformat(
+        "2026-01-02T03:04:05.123456Z",
+    )
