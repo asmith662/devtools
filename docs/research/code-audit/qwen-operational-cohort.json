@@ -6073,6 +6073,108 @@
       "report": "docs/development/qwen-operational-turn-cohesion.md",
       "receipt": "docs/research/code-audit/qwen-turn-cohesion-20261027.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "reference": "integration:native-model-tools:31627dca:20261027",
+      "production": "31627dcae17fa1e429fbc4c1f3d31941ef5803a7",
+      "accepted_main": "6a331e65ebb5f5c467a32eb694ca7a95056865a1",
+      "pr": 48,
+      "changed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "baseline_blob": "d332c203f0ea0efbb531c282d9791626134eba1e",
+          "current_blob": "1508dec2ec1c1a16a6efceb54e56c60992f5e720",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/commands.py",
+          "baseline_blob": "e2a7c83a4e3d0f6533398e06645c7bb78ad9d856",
+          "current_blob": "39224549cb1c717a8c0949125001322cbc9450a7",
+          "review_depth": "SELECTED_OPERATION_ADMISSION_DISPATCH_DELTA_AND_EXISTING_CONSUMER_CONTROLS",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/context_tools.py",
+          "baseline_blob": "e9c49e5f175512958584489f5ad22b5aaea75211",
+          "current_blob": "3ef4ccd221bbda6684e953af1b9d2edc1e61b9a6",
+          "review_depth": "SELECTED_OPERATION_ADMISSION_DISPATCH_DELTA_AND_EXISTING_CONSUMER_CONTROLS",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/model_tool_composition.py",
+          "baseline_blob": "620eb08347de86e58d438bba41aaa8d0ee10e604",
+          "current_blob": "1648eec231d950aa51189a0a71e17d99c3436e15",
+          "review_depth": "FULL_FACADE_AND_APPLICATION_MATERIALIZER_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/docs/model_tools.md",
+          "baseline_blob": null,
+          "current_blob": "345eddd954fe78cae33a1ee839e1fc7caeb60dc1",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/model_tools.py",
+          "baseline_blob": null,
+          "current_blob": "1eb86ab9d0416f13f3415c921418c71a142e4a63",
+          "review_depth": "FULL_NEW_COMPOSITION_BODY_AND_BRANCHES",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/tools/docs/overview.md",
+          "baseline_blob": "6a2e96e568df5957bc905339e44859542f034d0c",
+          "current_blob": "6ddd774163a435e35b23cad1861c67608bc28b24",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/native_tool_host.py",
+          "baseline_blob": null,
+          "current_blob": "d93fd053451db24f45827721d63f4d7dba2fa7a6",
+          "review_depth": "FULL_NEW_INDEPENDENT_TEST_OR_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/test_model_tool_host.py",
+          "baseline_blob": null,
+          "current_blob": "7b64aad2e7c689859809d0346b905b9e03258cf9",
+          "review_depth": "FULL_NEW_INDEPENDENT_TEST_OR_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/test_model_tools.py",
+          "baseline_blob": null,
+          "current_blob": "a5ce2e9d9e20f0f223d101c8824dd7b42ae019f1",
+          "review_depth": "FULL_NEW_INDEPENDENT_TEST_OR_HOST_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_check_bundle.py",
+          "baseline_blob": "256f91303fdadba6432c4399c5da054ad4f57b04",
+          "current_blob": "96622d81b5776b32c51fd335bfba277001236b91",
+          "review_depth": "NEW_REGRESSIONS_OR_IMPORT_DELTA_OLD_FUNCTION_ASTS_UNCHANGED",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_context_tools.py",
+          "baseline_blob": "858855cc887761cdf7d09d0f94d4fcb719319adc",
+          "current_blob": "5fdb667a662f8da9bf7739dc64226a096ff2c1e7",
+          "review_depth": "NEW_REGRESSIONS_OR_IMPORT_DELTA_OLD_FUNCTION_ASTS_UNCHANGED",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/models/interaction/test_tools.py",
+          "baseline_blob": "b1f6efe761d6191ea9d4011d3d05eab36f9a0914",
+          "current_blob": "d8f9d89da817503b391b7285399b6d9f4c3c9e34",
+          "review_depth": "NEW_REGRESSIONS_OR_IMPORT_DELTA_OLD_FUNCTION_ASTS_UNCHANGED",
+          "original_frozen_review_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/native-model-tool-composition.md",
+      "receipt": "docs/research/code-audit/native-model-tools-20261027.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }

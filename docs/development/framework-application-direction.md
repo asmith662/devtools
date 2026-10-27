@@ -383,3 +383,7 @@ The qualified 93/93 fixture and606/606 historical-path dispositions do not close
 the separate188 older-version obligations. Those obligations and unapproved A+C
 remain tracked; neither authorizes a new research run or indefinitely substitutes
 for the framework-independence acceptance above.
+
+## Delivered framework migration 1 - 2026-10-27
+
+The current explicit maintainer assignment authorized only the native model/Tool composition increment. Production `31627dcae17fa1e429fbc4c1f3d31941ef5803a7`, PR #48, accepted main `6a331e65ebb5f5c467a32eb694ca7a95056865a1` delivers a real Agents-owned operation used by both Qwen dispatchers and a non-Qwen host denied application imports and file reads. Existing ToolRunner, native model values, source/check Resources and host authority remain owners. [Contract, independent effects, validation and limits](native-model-tool-composition.md). Later source/check/coding-Agent migrations remain proposals requiring approval; this is not a whole-Agent promotion, parent closure or automatic status/maturity change. Original design/audit evidence and prior overlays retain their dates/blobs. `integration:native-model-tools:31627dca:20261027`.
