@@ -4,7 +4,12 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
+import json
 import sqlite3
+import threading
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 from datetime import UTC, datetime, timedelta
 from typing import TYPE_CHECKING
 
@@ -34,10 +39,13 @@ from devtools.persistence import (
     PersistenceFormatError,
     PersistenceVersionError,
     SqliteConversationStore,
+    decode_conversation_json,
+    encode_conversation_json,
 )
 
 if TYPE_CHECKING:
     from pathlib import Path
+    from typing import Any
 
 
 class FakeInteraction:
@@ -459,3 +467,545 @@ def test_sqlite_loaded_session_works_directly_with_runtime(tmp_path: Path) -> No
     assert isinstance(fake, FakeInteraction)
     assert fake.calls[0][1] == existing
     assert loaded.conversation_for(InteractionSource("agent")) == replacement
+
+
+def _snapshot_pair() -> tuple[Conversation, Conversation]:
+    """Two independently specified complete committed states of one entity."""
+    original = _session(messages=(_message(1, content="A"),))
+    first, second = (
+        Conversation(
+            id=original.id,
+            created_at=original.created_at,
+            history=History(messages=(_message(number, content=label),)),
+            conversations=(ConversationRef(InteractionSource("agent"), thread),),
+        )
+        for number, label, thread in [(1, "A", "thread-a"), (2, "B", "thread-b")]
+    )
+    return first, second
+
+
+def _pair_value(conversation: Conversation | None) -> tuple[list[str], str]:
+    """Observe public state without deriving expected values from the store."""
+    assert conversation is not None
+    reference = conversation.conversation_for(InteractionSource("agent"))
+    assert reference is not None
+    return [m.content for m in conversation.history], reference.value
+
+
+def test_sqlite_wal_load_never_mixes_committed_snapshots(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A real writer commits while an earlier reader retains one whole snapshot."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as connection:
+        assert connection.execute("PRAGMA journal_mode=WAL").fetchone() == ("wal",)
+    paused = threading.Event()
+    release = threading.Event()
+    scheduling_errors: list[str] = []
+    closed: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native SQLite parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("snapshot-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    scheduling_errors.append("reader release missing")
+            return super().execute(sql, parameters)
+
+        def close(self) -> None:
+            closed.append(threading.current_thread().name)
+            super().close()
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, factory=Connection)
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    with ThreadPoolExecutor(
+        max_workers=1,
+        thread_name_prefix="snapshot-reader",
+    ) as pool:
+        reader = pool.submit(store.load, first.id)
+        try:
+            assert paused.wait(10), "reader did not reach the scheduled query"
+            store.save(second)
+            # The save has returned; independent queries prove the intervening
+            # commit is visible before the reader may request its continuation.
+            with closing(original_connect(tmp_path / "sessions.sqlite")) as witness:
+                assert witness.execute(
+                    "SELECT content FROM messages "
+                    "JOIN session_messages USING(message_id)",
+                ).fetchall() == [("B",)]
+                assert witness.execute(
+                    "SELECT value FROM conversations",
+                ).fetchall() == [("thread-b",)]
+        finally:
+            release.set()
+        loaded = reader.result(10)
+    assert scheduling_errors == []
+    assert _pair_value(loaded) == (["A"], "thread-a")
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+    assert any(name.startswith("snapshot-reader") for name in closed)
+
+
+@pytest.mark.parametrize("stage", ["table", "index", "late-index", "version"])
+def test_sqlite_initialization_failure_rolls_back_and_retries(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    stage: str,
+) -> None:
+    """Every initial DDL/version stage belongs to the same transaction."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    original_connect = sqlite3.connect
+    closed: list[bool] = []
+
+    class Connection(sqlite3.Connection):
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def authorize(
+        action: int,
+        one: str | None,
+        two: str | None,
+        _db: str | None,
+        _trigger: str | None,
+    ) -> int:
+        denied = (
+            (
+                stage == "table"
+                and action == sqlite3.SQLITE_CREATE_TABLE
+                and one == "messages"
+            )
+            or (
+                stage == "index"
+                and action == sqlite3.SQLITE_CREATE_INDEX
+                and one == "idx_sessions_created_at"
+            )
+            or (
+                stage == "late-index"
+                and action == sqlite3.SQLITE_CREATE_INDEX
+                and one == "idx_conversations_source"
+            )
+            or (
+                stage == "version"
+                and action == sqlite3.SQLITE_PRAGMA
+                and one == "user_version"
+                and two is not None
+            )
+        )
+        return sqlite3.SQLITE_DENY if denied else sqlite3.SQLITE_OK
+
+    def connect(database: str) -> sqlite3.Connection:
+        connection = original_connect(database, factory=Connection)
+        connection.set_authorizer(authorize)
+        return connection
+
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized"):
+            store.save(first)
+    assert closed == [False]
+
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as connection:
+        tables = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'",
+        ).fetchall()
+        version = connection.execute("PRAGMA user_version").fetchone()
+    retry_error = None
+    try:
+        store.save(first)
+    except PersistenceFormatError as error:
+        retry_error = type(error).__name__
+    assert {"tables": tables, "version": version, "retry_error": retry_error} == {
+        "tables": [],
+        "version": (0,),
+        "retry_error": None,
+    }
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+
+
+@pytest.mark.parametrize(
+    ("table", "column"),
+    [
+        ("messages", "content"),
+        ("messages", "source"),
+        ("conversations", "source"),
+        ("conversations", "value"),
+    ],
+)
+def test_sqlite_rejects_blob_in_semantic_text(
+    tmp_path: Path,
+    table: str,
+    column: str,
+) -> None:
+    """TEXT affinity does not authenticate a semantic string storage class."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    with (
+        closing(sqlite3.connect(tmp_path / "sessions.sqlite")) as connection,
+        connection,
+    ):
+        queries = {
+            ("messages", "content"): "UPDATE messages SET content=?",
+            ("messages", "source"): "UPDATE messages SET source=?",
+            ("conversations", "source"): "UPDATE conversations SET source=?",
+            ("conversations", "value"): "UPDATE conversations SET value=?",
+        }
+        connection.execute(queries[table, column], (b"PRIVATE_PERSISTENCE_SENTINEL",))
+    with pytest.raises(PersistenceFormatError) as caught:
+        store.load(first.id)
+    assert isinstance(caught.value.__cause__, TypeError)
+    assert f"{table}.{column}" in str(caught.value.__cause__)
+    assert "PRIVATE_PERSISTENCE_SENTINEL" not in str(caught.value)
+    assert "PRIVATE_PERSISTENCE_SENTINEL" not in str(caught.value.__cause__)
+
+
+def test_sqlite_malformed_reference_refuses_before_runtime_entry(
+    tmp_path: Path,
+) -> None:
+    """The genuine load-to-Runtime caller never receives an invalid continuation."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    with (
+        closing(sqlite3.connect(tmp_path / "sessions.sqlite")) as connection,
+        connection,
+    ):
+        connection.execute(
+            "UPDATE conversations SET value=?",
+            (b"PRIVATE_PERSISTENCE_SENTINEL",),
+        )
+    fake = FakeInteraction(
+        InteractionSource("agent"),
+        ModelResponse("reply", InteractionSource("agent")),
+    )
+
+    async def restore_and_send() -> None:
+        loaded = store.load(first.id)
+        assert loaded is not None
+        await Runtime().send(conversation=loaded, interaction=fake, message=_message(3))
+
+    error_name = None
+    try:
+        asyncio.run(restore_and_send())
+    except PersistenceFormatError as error:
+        error_name = type(error).__name__
+    assert {"error": error_name, "provider_calls": len(fake.calls)} == {
+        "error": "PersistenceFormatError",
+        "provider_calls": 0,
+    }
+
+
+def test_sqlite_valid_text_preserves_values_order_and_aliases(tmp_path: Path) -> None:
+    """Native Unicode and empty content survive without coercion or lost identity."""
+    store = _store(tmp_path)
+    one = _message(1, content="雪π\x00\n  ")
+    empty = _message(2, content="")
+    original = _session(messages=(one, empty, one))
+    original.set_conversation(ConversationRef(InteractionSource("提供者"), "thread-π"))
+    store.save(original)
+    loaded = store.load(original.id)
+    assert loaded is not None
+    assert [m.content for m in loaded.history] == ["雪π\x00\n  ", "", "雪π\x00\n  "]
+    assert loaded.history[0] is loaded.history[2]
+    assert loaded.id == original.id
+    assert loaded.created_at == original.created_at
+    assert [str(source) for source in loaded.conversations] == [
+        "codex",
+        "qwen",
+        "提供者",
+    ]
+    assert loaded.conversation_for(InteractionSource("提供者")) == ConversationRef(
+        InteractionSource("提供者"),
+        "thread-π",
+    )
+
+
+def test_sqlite_default_journal_reader_and_waiting_writer(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Rollback journal may delay commit; one reader still retains a whole state."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as c:
+        assert c.execute("PRAGMA journal_mode").fetchone() == ("delete",)
+        assert c.execute("PRAGMA busy_timeout").fetchone() == (5000,)
+    paused, release, commit_entered = (
+        threading.Event(),
+        threading.Event(),
+        threading.Event(),
+    )
+    schedule_errors: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("rollback-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    schedule_errors.append("reader not released")
+            return super().execute(sql, parameters)
+
+    def connect(database: str) -> sqlite3.Connection:
+        c = original_connect(database, factory=Connection)
+        if threading.current_thread().name.startswith("rollback-writer"):
+            c.set_trace_callback(
+                lambda sql: commit_entered.set() if sql == "COMMIT" else None,
+            )
+        return c
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    with (
+        ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="rollback-reader",
+        ) as readers,
+        ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="rollback-writer",
+        ) as writers,
+    ):
+        reader = readers.submit(store.load, first.id)
+        assert paused.wait(10)
+        writer = writers.submit(store.save, second)
+        try:
+            assert commit_entered.wait(10), "writer did not attempt actual commit"
+        finally:
+            release.set()
+        loaded = reader.result(10)
+        assert writer.result(10) is None
+    assert schedule_errors == []
+    assert _pair_value(loaded) == (["A"], "thread-a")
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+
+
+def test_sqlite_default_read_lock_refuses_impatient_commit_then_releases(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test-only zero wait establishes locking, rollback and subsequent release."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    paused, release = threading.Event(), threading.Event()
+    closed: list[bool] = []
+    schedule_errors: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("held-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    schedule_errors.append("reader not released")
+            return super().execute(sql, parameters)
+
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, timeout=0, factory=Connection)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="held-reader",
+        ) as readers:
+            reader = readers.submit(store.load, first.id)
+            try:
+                assert paused.wait(10)
+                with pytest.raises(sqlite3.OperationalError, match="locked"):
+                    store.save(second)
+            finally:
+                release.set()
+            assert _pair_value(reader.result(10)) == (["A"], "thread-a")
+    assert schedule_errors == []
+    assert closed == [False, False]
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+    store.save(second)
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+
+
+def test_sqlite_concurrent_first_initializers_recheck_after_reservation(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Both observe v0; the waiting initializer rechecks installed v1."""
+    original_connect = sqlite3.connect
+    barrier = threading.Barrier(2)
+    seen: list[int] = []
+
+    class Cursor(sqlite3.Cursor):
+        first_version: bool = False
+
+        def fetchone(self) -> Any:  # noqa: ANN401 -- native row protocol
+            row = super().fetchone()
+            if self.first_version:
+                self.close()
+                seen.append(row[0])
+                barrier.wait(10)
+            return row
+
+    class Connection(sqlite3.Connection):
+        first_version: bool = True
+
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            cursor = self.cursor(factory=Cursor)
+            cursor.execute(sql, parameters)
+            if sql == "PRAGMA user_version" and self.first_version:
+                self.first_version = False
+                cursor.first_version = True
+            return cursor
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, factory=Connection)
+
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with ThreadPoolExecutor(max_workers=2) as workers:
+            futures = [workers.submit(store.load, first.id) for _ in range(2)]
+            assert [f.result(10) for f in futures] == [None, None]
+    assert seen == [0, 0]
+    store.save(first)
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as c:
+        assert c.execute("PRAGMA user_version").fetchone() == (1,)
+        assert c.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table'",
+        ).fetchone() == (4,)
+
+
+def test_sqlite_preexisting_partial_database_is_preserved(tmp_path: Path) -> None:
+    """Unknown v0 content is never reclaimed as a fresh installation."""
+    path = tmp_path / "sessions.sqlite"
+    with closing(sqlite3.connect(path)) as c, c:
+        c.execute("CREATE TABLE sessions(value TEXT)")
+        c.execute("INSERT INTO sessions VALUES ('unknown original content')")
+    before = hashlib.sha256(path.read_bytes()).hexdigest()
+    first, _ = _snapshot_pair()
+    with pytest.raises(PersistenceFormatError, match="not an empty"):
+        _store(tmp_path).load(first.id)
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+    with closing(sqlite3.connect(path)) as c:
+        assert c.execute("SELECT value FROM sessions").fetchall() == [
+            ("unknown original content",),
+        ]
+        assert c.execute("PRAGMA user_version").fetchone() == (0,)
+
+
+@pytest.mark.parametrize(
+    "failure",
+    ["missing", "malformed", "begin", "query", "commit"],
+)
+def test_sqlite_read_transaction_always_settles_and_closes(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failure: str,
+) -> None:
+    """Early return, decode refusal and native transaction errors close custody."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    if failure == "malformed":
+        with closing(original_connect(tmp_path / "sessions.sqlite")) as c, c:
+            c.execute("UPDATE conversations SET value=?", (b"PRIVATE_SENTINEL",))
+    closed: list[bool] = []
+
+    class Connection(sqlite3.Connection):
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def authorize(
+        action: int,
+        one: str | None,
+        _two: str | None,
+        _db: str | None,
+        _trigger: str | None,
+    ) -> int:
+        denied = (
+            (
+                failure == "begin"
+                and action == sqlite3.SQLITE_TRANSACTION
+                and one == "BEGIN"
+            )
+            or (
+                failure == "commit"
+                and action == sqlite3.SQLITE_TRANSACTION
+                and one == "COMMIT"
+            )
+            or (
+                failure == "query"
+                and action == sqlite3.SQLITE_READ
+                and one == "messages"
+            )
+        )
+        return sqlite3.SQLITE_DENY if denied else sqlite3.SQLITE_OK
+
+    def connect(database: str) -> sqlite3.Connection:
+        c = original_connect(database, factory=Connection)
+        c.set_authorizer(authorize)
+        return c
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    if failure == "missing":
+        missing = ConversationId.parse("10000000-0000-4000-8000-000000000999")
+        assert store.load(missing) is None
+    elif failure == "malformed":
+        with pytest.raises(PersistenceFormatError):
+            store.load(first.id)
+    else:
+        with pytest.raises(sqlite3.DatabaseError):
+            store.load(first.id)
+    assert closed == [False]
+
+
+def test_sqlite_and_literal_json_v1_correspond(tmp_path: Path) -> None:
+    """An authored historical wire record is the oracle for both public formats."""
+    literal = """{
+        "schema_version": 1,
+        "session": {
+            "id": "10000000-0000-4000-8000-000000000010",
+            "created_at": "2026-01-02T03:04:05.123456+00:00"
+        },
+        "history": [{
+            "id": "00000000-0000-4000-8000-000000000001",
+            "created_at": "2026-01-02T03:04:06+00:00",
+            "content": "雪π",
+            "role": "user",
+            "source": "caller"
+        }],
+        "conversations": [{"source": "agent", "value": "thread-a"}]
+    }"""
+    original = decode_conversation_json(literal)
+    store = _store(tmp_path)
+    store.save(original)
+    loaded = store.load(original.id)
+    assert loaded is not None
+    assert json.loads(encode_conversation_json(loaded)) == json.loads(literal)
+    assert loaded.history[0].content == "雪π"
+    assert loaded.created_at == Timestamp.from_isoformat(
+        "2026-01-02T03:04:05.123456Z",
+    )
