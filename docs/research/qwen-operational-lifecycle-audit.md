@@ -261,3 +261,8 @@ The existing P2 is delivered through normal PR #41, production `5e16b832429789ea
 ## Delivered native obligation consumer overlay
 
 The specifically authorized first opt-in host-frame consumer is delivered by PR #43, production `b7790180629e840d63d1d5b6815eb12a5d39a5a4`, verified main `7f4f0871d0689ec2ae565bdcad741d032845af9d`. [Contract and exact validation](../development/qwen-native-obligation-context.md); [machine receipt](code-audit/qwen-obligation-integration-20261027.json). Currentness-qualified actual active source disclosures, explicit caller decisions and existing Localization readiness now gate native source-changing proposals. The original17-body audit/probes and earlier maintenance stay historical; new/changed versions have separate overlays. Broader15bae0a6/A+C, automatic resolution, task-only evidence, restart/normalized Evidence, OptionB and39c6663a remain separate. `integration:native-obligation-context:b7790180:20261027`.
+
+
+## Delivered operational turn cohesion overlay
+
+Production `cd0a8330282d9b074ccb6d5dbf80a0f8c963c6ff`, PR #45, verified main `abe1ca13fbb5960f937383bb9e257ce05fe14f22` extracts application turn/prompt/fixed Tool dispatch ownership while retaining task lifecycle and terminal custody in coding_loop. [Contract and validation](../development/qwen-operational-turn-cohesion.md); [exact changed versions](code-audit/qwen-turn-cohesion-20261027.json). Original frozen17-body review and prior overlays retain their version/depth. Development_task/context_tools, recovery/Evidence, A+C and OptionB remain separate. `integration:qwen-turn-cohesion:cd0a8330:20261027`.
