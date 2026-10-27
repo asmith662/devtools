@@ -39,3 +39,7 @@ Codex27 closeout records source.py and representation.py physical CRLF SHA-256 v
 See the [source/evidence audit and priority crosswalk](../../research/development-lifecycle-observability-audit.md)
 and its [authenticated metadata](../../research/development-lifecycle-observability-evidence-20261023.json).
 Status, dependencies, decision maturity and promotion trigger remain unchanged.
+
+## Persistence/Recovery audit evidence
+
+Literal JSON v1 compatibility is independently verified; JSON is conversion only and has strict field/type policy. SQLite text affinity is not semantic string validation: four BLOB columns and a Runtime continuation consumer reproduce a separately captured P2. Durable names remain compatible; no universal serializer or global model validation rewrite. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.

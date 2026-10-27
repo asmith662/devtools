@@ -1,0 +1,425 @@
+{
+  "at": "2026-10-26T23:41:24.292704+00:00",
+  "baseline": "206d58e271014e08cda8d18774b5fc86f406bf84",
+  "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+  "status": "FROZEN_BEFORE_SUBSTANTIVE_REVIEW",
+  "cohort": [
+    {
+      "path": "src/devtools/persistence/__init__.py",
+      "blob": "ba8979a0738fcd9a32173291f21368eaee88c77c",
+      "physical_sha256": "08d81dfcf7663b78b3e23ffe9aac862a2de540fa27e42b4014d47faba7987798",
+      "lines": 21,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "src/devtools/persistence/_snapshot.py",
+      "blob": "820476461db36e14093e2e1f208447d0a428bf2b",
+      "physical_sha256": "5806daaa5c6b0fc5d572c46413fa6307cf5c6009863803da4cd639ecc4c1f73e",
+      "lines": 125,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "capture_conversation",
+          "line": 66,
+          "end": 79
+        },
+        {
+          "name": "snapshot_from_values",
+          "line": 82,
+          "end": 96
+        },
+        {
+          "name": "restore_conversation",
+          "line": 99,
+          "end": 114
+        },
+        {
+          "name": "_validate_message_ids",
+          "line": 117,
+          "end": 125
+        },
+        {
+          "name": "from_message",
+          "line": 35,
+          "end": 43
+        },
+        {
+          "name": "to_message",
+          "line": 45,
+          "end": 53
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/persistence/docs/json.md",
+      "blob": "48b35ee86245c29351e039c6d5b585fb944270d6",
+      "physical_sha256": "78b164a9ce3a1cb662aa24a524a0ec3c46742875673f65e40bff9fa41199f287",
+      "lines": 10,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "src/devtools/persistence/docs/overview.md",
+      "blob": "bf1861354c854a49bbc657670b672a2192dd0f55",
+      "physical_sha256": "d26dd19172e409724057fffea74c00444ff9465ddb2c4c7099bbe2febe9b5c67",
+      "lines": 15,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "src/devtools/persistence/docs/sqlite.md",
+      "blob": "d4779e06a921d75611b2566eca62dca567621cab",
+      "physical_sha256": "89c11cf7632aa3c1eaa10c0514195ee45453fa31025debf1ec5c5d8376e2cccd",
+      "lines": 11,
+      "selection": "FULL_PACKAGE_CONTRACT_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "src/devtools/persistence/errors.py",
+      "blob": "9070f3fd73c21971f7ecd4cb9c1c97dd2f82953e",
+      "physical_sha256": "89220849e3f1270da34100efea682b6a86aefedfd04b3f1f424a893312abb5f1",
+      "lines": 18,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "src/devtools/persistence/json.py",
+      "blob": "55e84e0d8d022baf0851de147591fb8fb329154f",
+      "physical_sha256": "d45784a83dc0b5997f4167e00a0a09c4a28ed9804a4bbd24e6439e2df23553ae",
+      "lines": 224,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "encode_conversation_json",
+          "line": 35,
+          "end": 69
+        },
+        {
+          "name": "decode_conversation_json",
+          "line": 72,
+          "end": 123
+        },
+        {
+          "name": "_decode_message",
+          "line": 126,
+          "end": 146
+        },
+        {
+          "name": "_decode_conversation",
+          "line": 149,
+          "end": 158
+        },
+        {
+          "name": "_require_object",
+          "line": 161,
+          "end": 166
+        },
+        {
+          "name": "_require_list",
+          "line": 169,
+          "end": 174
+        },
+        {
+          "name": "_require_string",
+          "line": 177,
+          "end": 182
+        },
+        {
+          "name": "_require_fields",
+          "line": 185,
+          "end": 189
+        },
+        {
+          "name": "_validate_version",
+          "line": 192,
+          "end": 199
+        },
+        {
+          "name": "_reject_duplicate_keys",
+          "line": 202,
+          "end": 210
+        },
+        {
+          "name": "_reject_nonstandard_constant",
+          "line": 213,
+          "end": 216
+        },
+        {
+          "name": "_validate_conversation_sources",
+          "line": 219,
+          "end": 224
+        }
+      ]
+    },
+    {
+      "path": "src/devtools/persistence/sqlite.py",
+      "blob": "4cd07d7f64f46df0f5a2a6a87ab7fa86703070a6",
+      "physical_sha256": "b16a25c935dcd1549a2b576d685eb780af0bdb1ccd6044bfeb9b6d8ab4321d24",
+      "lines": 302,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_user_tables",
+          "line": 286,
+          "end": 292
+        },
+        {
+          "name": "_validate_required_columns",
+          "line": 295,
+          "end": 302
+        },
+        {
+          "name": "__init__",
+          "line": 78,
+          "end": 80
+        },
+        {
+          "name": "save",
+          "line": 82,
+          "end": 90
+        },
+        {
+          "name": "load",
+          "line": 92,
+          "end": 117
+        },
+        {
+          "name": "_open_connection",
+          "line": 119,
+          "end": 129
+        },
+        {
+          "name": "_ensure_schema",
+          "line": 131,
+          "end": 149
+        },
+        {
+          "name": "_save_snapshot",
+          "line": 151,
+          "end": 197
+        },
+        {
+          "name": "_save_message",
+          "line": 199,
+          "end": 226
+        },
+        {
+          "name": "_load_messages",
+          "line": 228,
+          "end": 270
+        },
+        {
+          "name": "_load_conversations",
+          "line": 272,
+          "end": 283
+        }
+      ]
+    },
+    {
+      "path": "tests/persistence/__init__.py",
+      "blob": "7e458bfdc8f53eaa58284a8888952f2a061a218d",
+      "physical_sha256": "1ddf89cd77237386b09e0a5e8d43a5efe8c94f83b0f0ce6325a783ca53744a89",
+      "lines": 2,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": []
+    },
+    {
+      "path": "tests/persistence/test_json.py",
+      "blob": "1940f0069d3b102b5812deadf45a4094e051cbec",
+      "physical_sha256": "475c968dec8eb9bb6304025aa2ff2c58bc5e1c2cd41b0ccc7f78e41c06105b23",
+      "lines": 208,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_timestamp",
+          "line": 33,
+          "end": 35
+        },
+        {
+          "name": "_message",
+          "line": 38,
+          "end": 52
+        },
+        {
+          "name": "_session",
+          "line": 55,
+          "end": 73
+        },
+        {
+          "name": "_value",
+          "line": 76,
+          "end": 80
+        },
+        {
+          "name": "test_json_round_trip_preserves_semantic_session_state_and_fresh_turn",
+          "line": 83,
+          "end": 104
+        },
+        {
+          "name": "test_json_empty_session_round_trip",
+          "line": 107,
+          "end": 119
+        },
+        {
+          "name": "test_json_rejects_invalid_schema_values",
+          "line": 159,
+          "end": 169
+        },
+        {
+          "name": "test_json_rejects_invalid_json_syntax_keys_and_constants",
+          "line": 181,
+          "end": 184
+        },
+        {
+          "name": "test_json_rejects_duplicate_conversation_source",
+          "line": 187,
+          "end": 195
+        },
+        {
+          "name": "test_json_rejects_conflicting_repeated_message_id",
+          "line": 198,
+          "end": 208
+        },
+        {
+          "name": "acquire",
+          "line": 100,
+          "end": 102
+        }
+      ]
+    },
+    {
+      "path": "tests/persistence/test_sqlite.py",
+      "blob": "376d99d7c5c1f34efaefa526b8703f0d5953b90e",
+      "physical_sha256": "c6047456dc6b24af92f84f46c938cf908d9a518ce9e3199ff585771e105e2ce2",
+      "lines": 461,
+      "selection": "FULL_BODY_REVIEW_REQUIRED",
+      "functions": [
+        {
+          "name": "_timestamp",
+          "line": 66,
+          "end": 69
+        },
+        {
+          "name": "_message",
+          "line": 72,
+          "end": 86
+        },
+        {
+          "name": "_store",
+          "line": 89,
+          "end": 91
+        },
+        {
+          "name": "_session",
+          "line": 94,
+          "end": 104
+        },
+        {
+          "name": "test_sqlite_initializes_normalized_schema_and_round_trips_empty_session",
+          "line": 107,
+          "end": 142
+        },
+        {
+          "name": "test_sqlite_round_trips_duplicates_order_and_fresh_turn",
+          "line": 145,
+          "end": 179
+        },
+        {
+          "name": "test_sqlite_replaces_snapshot_history_and_conversations",
+          "line": 182,
+          "end": 211
+        },
+        {
+          "name": "test_sqlite_reuses_global_message_row_across_sessions",
+          "line": 214,
+          "end": 238
+        },
+        {
+          "name": "test_sqlite_rejects_message_and_session_identity_conflicts_atomically",
+          "line": 241,
+          "end": 291
+        },
+        {
+          "name": "test_sqlite_rejects_unsupported_and_unrelated_databases",
+          "line": 294,
+          "end": 317
+        },
+        {
+          "name": "test_sqlite_rejects_missing_required_tables_and_invalid_positions",
+          "line": 320,
+          "end": 349
+        },
+        {
+          "name": "test_sqlite_rejects_version_one_schema_missing_required_column",
+          "line": 352,
+          "end": 384
+        },
+        {
+          "name": "test_sqlite_normalizes_corrupt_timestamp_rows",
+          "line": 387,
+          "end": 403
+        },
+        {
+          "name": "test_sqlite_rejects_missing_final_referenced_message_row",
+          "line": 406,
+          "end": 425
+        },
+        {
+          "name": "test_sqlite_loaded_session_works_directly_with_runtime",
+          "line": 428,
+          "end": 461
+        },
+        {
+          "name": "__init__",
+          "line": 46,
+          "end": 50
+        },
+        {
+          "name": "source",
+          "line": 53,
+          "end": 55
+        },
+        {
+          "name": "send",
+          "line": 57,
+          "end": 63
+        },
+        {
+          "name": "acquire",
+          "line": 166,
+          "end": 168
+        },
+        {
+          "name": "exercise",
+          "line": 450,
+          "end": 456
+        }
+      ]
+    }
+  ],
+  "prior_depth": "Previous matching Persistence consumers/tests were targeted dependencies/executed tests, not completed domain full-body review.",
+  "remaining_selected_paths": [
+    "src/devtools/persistence/__init__.py",
+    "src/devtools/persistence/_snapshot.py",
+    "src/devtools/persistence/docs/json.md",
+    "src/devtools/persistence/docs/overview.md",
+    "src/devtools/persistence/docs/sqlite.md",
+    "src/devtools/persistence/errors.py",
+    "src/devtools/persistence/json.py",
+    "src/devtools/persistence/sqlite.py",
+    "tests/persistence/__init__.py",
+    "tests/persistence/test_json.py",
+    "tests/persistence/test_sqlite.py"
+  ],
+  "completion_overlay": {
+    "reference": "audit:persistence-recovery:206d58e2:20261026",
+    "at": "2026-10-27T00:01:36.803380+00:00",
+    "reviewed_paths": 11,
+    "full_python_bodies": 8,
+    "full_package_contracts": 3,
+    "remaining_selected_paths": [],
+    "assurance": "docs/research/code-audit/persistence-recovery-assurance.json",
+    "known_P2_count": 3
+  }
+}

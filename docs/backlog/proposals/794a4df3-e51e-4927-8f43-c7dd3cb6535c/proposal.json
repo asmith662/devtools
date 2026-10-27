@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+  "created_at": "2026-10-27T00:01:36.039184+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Reject non-text SQLite Conversation payload and continuation values",
+    "summary": "P2: a valid store-created v1 SQLite database permits BLOB storage classes in TEXT-affinity columns. Public load admits bytes in messages.content/source and conversations.source/value because the reconstructed dataclasses do not validate all string types. Four actual SQL updates reproduce invalid returned state; a fifth Runtime consumer probe forwards a bytes-valued continuation to its deterministic interaction. The strict JSON persistence path rejects wrong value types. No real provider or actual user database was exercised. Baseline 206d58e271014e08cda8d18774b5fc86f406bf84. Acceptance: Validate persisted semantic text at the SQLite decoding boundary before constructing Message/InteractionSource/ConversationRef. Refuse unsupported storage classes as PersistenceFormatError with appropriate causes; do not lossy-decode/coerce bytes. Cover all four demonstrated columns, valid Unicode/empty content, existing timestamp/ID/role/ref failures, duplicate occurrences, shared message identity and Runtime restoration. Keep valid v1 wire/schema and source/identity semantics; no global Model/Conversation redesign.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:persistence-recovery:206d58e2:20261026:NEW_SQLITE_TEXT_ADMISSION"
+    },
+    "parent": "B-0028",
+    "resources": [
+      "src/devtools/persistence/sqlite.py",
+      "tests/persistence/test_sqlite.py"
+    ],
+    "evidence": [
+      "docs/research/persistence-and-recovery-audit.md",
+      "docs/research/code-audit/persistence-recovery-probes.json"
+    ],
+    "benefit": "Repair the existing Conversation storage contract in its current owner without a new backend, ORM, transaction framework or Evidence store.",
+    "uncertainty": "Temporary authored databases, deterministic SQLite callbacks/threads and subprocess exits. No user data, live models, power-loss claim or actual autonomous-agent damage. No maintained native store caller beyond tests found.",
+    "dependencies": [
+      "Separate maintainer-authorized bounded implementation with permanent independent regressions and full unchanged protected gate.",
+      "B-0027/B-0028 retain broader representation, retention and consumer decisions. Three same-owner findings are independently testable siblings, not automatic duplicates."
+    ]
+  },
+  "payload_sha256": "09f3caf4c5362ba50eed6ee2235c6beaef86011f8e2d567dd84ccd95a05691f8"
+}

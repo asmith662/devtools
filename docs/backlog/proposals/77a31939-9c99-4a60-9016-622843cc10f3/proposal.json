@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "77a31939-9c99-4a60-9016-622843cc10f3",
+  "created_at": "2026-10-27T00:01:35.698011+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Make initial SQLite Conversation schema installation atomic",
+    "summary": "P2: _ensure_schema wraps executescript in a connection context but the DDL script has no explicit transaction. A deterministic SQLite authorizer denial on the second CREATE TABLE occurs after sessions is durably installed at user_version0. The connection closes; ordinary save retry refuses this self-created nonempty v0 database as PersistenceFormatError. No data was deleted and fail-closed refusal after partial state is appropriate; partial installation is the defect. Baseline 206d58e271014e08cda8d18774b5fc86f406bf84. Acceptance: Install fresh schema tables, indexes and user_version together or roll back to the original empty state on a controlled intermediate failure. Test failures during tables/index/version setup, connection closure, clean retry and successful save/load. Preserve byte/data custody and refusal for unrelated nonempty databases or preexisting unknown partial schemas; do not auto-delete/reinitialize them. Keep supported v1 schema unchanged and avoid a migration/recovery framework.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:persistence-recovery:206d58e2:20261026:NEW_SQLITE_INITIALIZATION"
+    },
+    "parent": "B-0028",
+    "resources": [
+      "src/devtools/persistence/sqlite.py",
+      "tests/persistence/test_sqlite.py"
+    ],
+    "evidence": [
+      "docs/research/persistence-and-recovery-audit.md",
+      "docs/research/code-audit/persistence-recovery-probes.json"
+    ],
+    "benefit": "Repair the existing Conversation storage contract in its current owner without a new backend, ORM, transaction framework or Evidence store.",
+    "uncertainty": "Temporary authored databases, deterministic SQLite callbacks/threads and subprocess exits. No user data, live models, power-loss claim or actual autonomous-agent damage. No maintained native store caller beyond tests found.",
+    "dependencies": [
+      "Separate maintainer-authorized bounded implementation with permanent independent regressions and full unchanged protected gate.",
+      "B-0027/B-0028 retain broader representation, retention and consumer decisions. Three same-owner findings are independently testable siblings, not automatic duplicates."
+    ]
+  },
+  "payload_sha256": "3ed69600cad7d431ae8250d632a4987d0cf91e2a6acd0a3da37114daa449a153"
+}

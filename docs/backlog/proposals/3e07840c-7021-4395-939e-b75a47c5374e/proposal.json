@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "3e07840c-7021-4395-939e-b75a47c5374e",
+  "created_at": "2026-10-27T00:01:35.362039+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Load one coherent committed SQLite Conversation snapshot",
+    "summary": "P2: SqliteConversationStore.load performs independent SELECTs without a read transaction under the tested CPython legacy transaction mode. Two real SQLite connections in WAL mode deterministically interleave a legitimate save between History and continuation reads. Public load returns History A with thread-B, a state never committed by either save; final DB is B/thread-B. This is not a claim of active native model harm: maintained non-test store consumers were not found. Baseline 206d58e271014e08cda8d18774b5fc86f406bf84. Acceptance: A public load must return one complete committed snapshot, not cross-commit History/ref combinations. Add deterministic WAL and default-journal reader/writer regressions using independent expected pairs, including missing-record and failure/cleanup controls. Establish the read consistency boundary across all SELECTs while preserving atomic saves, schema compatibility, busy semantics and closure. Do not replace the store, add an ORM or claim power-loss/exactly-once guarantees.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "audit:persistence-recovery:206d58e2:20261026:NEW_SQLITE_READ_COHERENCE"
+    },
+    "parent": "B-0028",
+    "resources": [
+      "src/devtools/persistence/sqlite.py",
+      "tests/persistence/test_sqlite.py"
+    ],
+    "evidence": [
+      "docs/research/persistence-and-recovery-audit.md",
+      "docs/research/code-audit/persistence-recovery-probes.json"
+    ],
+    "benefit": "Repair the existing Conversation storage contract in its current owner without a new backend, ORM, transaction framework or Evidence store.",
+    "uncertainty": "Temporary authored databases, deterministic SQLite callbacks/threads and subprocess exits. No user data, live models, power-loss claim or actual autonomous-agent damage. No maintained native store caller beyond tests found.",
+    "dependencies": [
+      "Separate maintainer-authorized bounded implementation with permanent independent regressions and full unchanged protected gate.",
+      "B-0027/B-0028 retain broader representation, retention and consumer decisions. Three same-owner findings are independently testable siblings, not automatic duplicates."
+    ]
+  },
+  "payload_sha256": "9ef357f0f9a081d50470213ee55f09a9cd64c4fc4a4596090a3d6171ae746d8b"
+}

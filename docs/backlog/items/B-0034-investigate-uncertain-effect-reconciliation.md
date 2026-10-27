@@ -75,3 +75,7 @@ ModelInteraction/Serving audit on `a7a49cc18f3b40a5bf4e3897ca30d9a5cddc30d1`: al
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 Runtime and Codex errors do not prove nonentry. Usage can survive unsuccessful CLI exit; cancellation/command-entry exceptions without CommandResult carry no complete usage result. Runtime explicit retry appends duplicate input and makes a second invocation; partial output/ref retention remains factual state. No automatic safe-retry, rollback or exactly-once claim added. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+## Persistence/Recovery audit evidence
+
+Actual temporary child exits before SQLite commit restore A; after real commit/before return restore B despite no success receipt. Caller must inspect durable state before any authorized repetition; stale replay can overwrite a later snapshot. This is process-exit evidence, not power-loss testing or a new exactly-once/retry policy. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.

@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-27T00:01:36.803380+00:00",
+  "original_chains": 64,
+  "current_chains": 67,
+  "findings": [
+    {
+      "key": "NEW_SQLITE_READ_COHERENCE",
+      "proposal": "3e07840c-7021-4395-939e-b75a47c5374e",
+      "state": "PENDING_REVIEW",
+      "duplicates": []
+    },
+    {
+      "key": "NEW_SQLITE_INITIALIZATION",
+      "proposal": "77a31939-9c99-4a60-9016-622843cc10f3",
+      "state": "PENDING_REVIEW",
+      "duplicates": [
+        {
+          "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    },
+    {
+      "key": "NEW_SQLITE_TEXT_ADMISSION",
+      "proposal": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+      "state": "PENDING_REVIEW",
+      "duplicates": [
+        {
+          "reference": "3e07840c-7021-4395-939e-b75a47c5374e",
+          "reason": "title overlap or shared resource"
+        },
+        {
+          "reference": "77a31939-9c99-4a60-9016-622843cc10f3",
+          "reason": "title overlap or shared resource"
+        }
+      ]
+    }
+  ],
+  "duplicate_check": {
+    "chains_before": 64,
+    "candidate_query": "SQLite/API or exact persistence resource; full canonical records screened",
+    "candidates": [],
+    "broader_owners": [
+      "B-0027",
+      "B-0028",
+      "B-0011",
+      "B-0034"
+    ],
+    "disposition": "No existing bounded SQLite implementation proposal found. Broader deferred investigations are parents/related pressure; shared resource among the three new exact contracts does not make them duplicates. No promotion/approval or B-number."
+  },
+  "original_proposals_and_histories_unchanged": true,
+  "approvals": 0,
+  "new_B_numbers": 0,
+  "implementation_authority": false
+}

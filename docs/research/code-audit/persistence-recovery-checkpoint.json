@@ -1,0 +1,213 @@
+{
+  "at": "2026-10-27T00:07:12.950358+00:00",
+  "baseline": "206d58e271014e08cda8d18774b5fc86f406bf84",
+  "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+  "selected_paths": 11,
+  "selected_lines": 1397,
+  "full_python_paths": 8,
+  "full_package_contracts": 3,
+  "per_function_review_count": 60,
+  "matching_prior_dependency_reviews": [
+    {
+      "path": "src/devtools/agents/conversation/conversation.py",
+      "blob": "c210ee3fa41bdc45f19fd089ef2f257ebc6fa8b4",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/agents/conversation/history.py",
+      "blob": "647c0bb5516df86f46b28ffcd69a088939feec90",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/agents/conversation/message.py",
+      "blob": "6e032141419d4fd9f5266cf9f6395846d967f896",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    },
+    {
+      "path": "src/devtools/execution/runtime.py",
+      "blob": "0a13e865745361223e70fdf03c604c00b2d3d312",
+      "prior_depth": "FULL_IMPLEMENTATION_BODY_WITH_MATCHING_PRIOR_REVALIDATION",
+      "prior_ledger": "docs/research/code-audit/agents-conversation-runtime-assurance.json"
+    }
+  ],
+  "probes": 33,
+  "violations": 7,
+  "new_P2_families": 3,
+  "focused": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/persistence",
+        "tests/agents/conversation",
+        "tests/execution",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:43:29.231227+00:00",
+      "finished_at": "2026-10-26T23:43:30.343148+00:00",
+      "seconds": 1.070238,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "f559df5f919c306e9a690553b74afd3227422f85ba9ec871b1fdf498b908e054",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "consumer-focused": {
+      "name": "consumer-focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/observability/evidence",
+        "tests/observability/usage/test_sources.py",
+        "tests/tools/test_runtime_integration.py",
+        "tests/apps/qwen/test_coding_loop.py",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:50:33.881388+00:00",
+      "finished_at": "2026-10-26T23:51:33.886113+00:00",
+      "seconds": 59.878487,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "fa60784f30612b51f1333bbb532c9a5b14c59b7092dd838ec86e80fa5967903d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cohort-collection": {
+      "name": "cohort-collection",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "tests/persistence",
+        "--collect-only",
+        "-q"
+      ],
+      "started_at": "2026-10-26T23:53:02.035117+00:00",
+      "finished_at": "2026-10-26T23:53:02.646838+00:00",
+      "seconds": 0.577977,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "ec7d8394fff2b869f62781eb749b13759381834d28dfe089e1a37d13800ecde2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probes-recorded": {
+      "name": "probes-recorded",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        ".local/persistence-recovery-audit-20261026/probes.py"
+      ],
+      "started_at": "2026-10-26T23:56:18.090287+00:00",
+      "finished_at": "2026-10-26T23:56:19.627813+00:00",
+      "seconds": 1.497969,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "c3474623be8dd12a14a8eb1a943e466bf3a3507a3ef7ab8b21b0c0308b019e90",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout": {
+      "name": "layout",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-26T23:53:03.078457+00:00",
+      "finished_at": "2026-10-26T23:53:03.247483+00:00",
+      "seconds": 0.13407,
+      "exit_code": 0,
+      "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+      "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "json_files": 8,
+  "local_link_targets": 655,
+  "link_limit": "File targets only, not external URLs/anchors.",
+  "intake_chains": 67,
+  "original_chains_unchanged": 64,
+  "new_pending_proposals": 3,
+  "new_reviews": 0,
+  "approvals": 0,
+  "new_B_numbers": 0,
+  "forensics": 13,
+  "RI_rows": 903,
+  "RI_ledger_blobs": {
+    "docs/research/code-audit/ri-completion-experiments.jsonl": "f0137128a794750156d35881e9c2eb6247b98f1b",
+    "docs/research/code-audit/ri-completion-fixtures.jsonl": "77c4c85e5dea7081bd5d15acaa5a00e9cd13e84f",
+    "docs/research/code-audit/ri-followup-history.jsonl": "b68e57b2118ec9fc3bacfb3a1947a13c7cd79e64"
+  },
+  "retained_gate": {
+    "head": "c39c1f0f61350ca57795dc06c8b97730918a0d99",
+    "tree": "84123e2482c63592904d7a2cf43bf0ad2453aa7b",
+    "passed": 3197,
+    "skipped": 2,
+    "pytest_seconds": 1146.93,
+    "elapsed_seconds": 1149.070901,
+    "exit_code": 0,
+    "branch_coverage": 100
+  },
+  "new_protected_gate": false,
+  "unchanged_executable_inputs": true,
+  "physical_profile_inputs": 814,
+  "cohort_original_fields_preserved": true,
+  "observer_policy_implemented": false,
+  "layout": {
+    "name": "layout",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      "scripts/validate_layout.py"
+    ],
+    "started_at": "2026-10-26T23:53:03.078457+00:00",
+    "finished_at": "2026-10-26T23:53:03.247483+00:00",
+    "seconds": 0.13407,
+    "exit_code": 0,
+    "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+    "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+    "inputs_unchanged": true,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "whitespace": "PASS",
+  "paths": {
+    "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md": "f62834abb611966c0fccf8acdd2f92bc302c0f55",
+    "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md": "fd045a7e761a0b70dbb1ff0e33b5531a9bb62231",
+    "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md": "aaeb44ab6266b2b37b07f44432e2344bba2bcaa3",
+    "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md": "e54424b56de80bc1a60ee347709c0e728e115357",
+    "docs/backlog/overview.md": "e7b1a6678bf0773e488b68f197753ec7fe6a77f7",
+    "docs/backlog/proposals/3e07840c-7021-4395-939e-b75a47c5374e/proposal.json": "e884845329799468fdcf4bf5b9618658b6e0c4a2",
+    "docs/backlog/proposals/77a31939-9c99-4a60-9016-622843cc10f3/proposal.json": "b0f51d6777ab98202f7f490431798af8f3250d4c",
+    "docs/backlog/proposals/794a4df3-e51e-4927-8f43-c7dd3cb6535c/proposal.json": "176cfec7660861e25bd9bf6b0d2b077b46634536",
+    "docs/development/model-observation-policy-decision-brief.md": "79e1a636c9e88d4234ca753f08cb710a379ac60f",
+    "docs/documentation_map.md": "2bd2947d77311e79acb2b776b307620804976232",
+    "docs/research/code-audit/README.md": "70a84edce4a844c59e5bc76e60e227966cb9f423",
+    "docs/research/code-audit/persistence-recovery-assurance.json": "fbdc8296700977807a1360f10afde42d2abfb182",
+    "docs/research/code-audit/persistence-recovery-cohort.json": "cb3f1dfee67051b9ac46f1f0c7e6274134014f24",
+    "docs/research/code-audit/persistence-recovery-intake.json": "144f2c0cb9b1521d739f7882bde34a5ccbde6682",
+    "docs/research/code-audit/persistence-recovery-probes.json": "015b13fc30e107ecd1beb936193ba710309a0efa",
+    "docs/research/comprehensive-code-audit.md": "bac34bae9eddb7b8dec8cd1fb6e0679b97508d44",
+    "docs/research/persistence-and-recovery-audit.md": "2d552a291d23ae048569c24944aa84c16ce51017"
+  },
+  "self_identity": "Containing Git commit authenticates this checkpoint; no recursive self hash."
+}

@@ -1,0 +1,727 @@
+{
+  "baseline": "206d58e271014e08cda8d18774b5fc86f406bf84",
+  "execution": {
+    "name": "probes-recorded",
+    "command": [
+      "uv",
+      "run",
+      "python",
+      ".local/persistence-recovery-audit-20261026/probes.py"
+    ],
+    "started_at": "2026-10-26T23:56:18.090287+00:00",
+    "finished_at": "2026-10-26T23:56:19.627813+00:00",
+    "seconds": 1.497969,
+    "exit_code": 0,
+    "head": "206d58e271014e08cda8d18774b5fc86f406bf84",
+    "tree": "28d902f698c42a66b240f63de32e5486d8913e91",
+    "inputs_unchanged": true,
+    "stdout_sha256": "c3474623be8dd12a14a8eb1a943e466bf3a3507a3ef7ab8b21b0c0308b019e90",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "reproducer_sha256": "c42039bde3a822cae7575aab015a69c4ee32032f4e666d33899e6ff61ae8e743",
+  "reproducer_source": "\"\"\"Independent literal Persistence probes; authored temporary data, no models.\"\"\"\nimport asyncio,json,sqlite3,sys,tempfile,threading,platform\nfrom concurrent.futures import ThreadPoolExecutor\nfrom contextlib import closing\nfrom pathlib import Path\nfrom unittest.mock import patch\nfrom devtools.agents.conversation import Conversation,ConversationId,ConversationMessage,ConversationMessageRole,History,MessageId\nfrom devtools.models.interaction import InteractionSource,ConversationRef,ModelResponse\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Timestamp,Duration\nfrom devtools.execution import Runtime\nfrom devtools.persistence import SqliteConversationStore,encode_conversation_json,decode_conversation_json\nfrom devtools.persistence._snapshot import capture_conversation,restore_conversation\nfrom devtools.resources.commands import Command,CommandExecutor\nO=Path(__file__).parent;ROWS=[]\nCID=ConversationId.parse('10000000-0000-4000-8000-000000000001')\nAT=Timestamp.from_isoformat('2026-10-26T10:34:56.123456Z');SOURCE=InteractionSource('agent')\nLITERAL='''{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}'''\ndef msg(n,text):return ConversationMessage(id=MessageId.parse(f'00000000-0000-4000-8000-{n:012d}'),created_at=AT,content=text,role=ConversationMessageRole.USER,source=InteractionSource('caller'))\ndef conv(label='A'):\n return Conversation(id=CID,created_at=AT,history=History(messages=(msg(1 if label=='A' else 2,label),)),conversations=(ConversationRef(SOURCE,'thread-'+label),))\ndef store(root,name):return SqliteConversationStore(database=resolve_path(root/(name+'.sqlite')))\ndef state(c):return dict(history=[m.content for m in c.history],reference=c.conversation_for(SOURCE).value)\ndef error(action):\n try:action()\n except Exception as exc:return dict(error=type(exc).__name__,cause=type(exc.__cause__).__name__ if exc.__cause__ else None)\n return dict(error=None,cause=None)\nasync def check(name,expected,action,kind='CONTROL',input=None):\n try:\n  value=action();observed=await value if hasattr(value,'__await__') else value\n except BaseException as exc:observed=dict(harness_error=type(exc).__name__,detail=str(exc))\n agrees=all(observed.get(k)==v for k,v in expected.items()) if isinstance(expected,dict) and isinstance(observed,dict) else observed==expected\n ROWS.append(dict(name=name,kind=kind,input=input,expected=expected,observed=observed,agrees=agrees))\ndef literal_case():\n c=decode_conversation_json(LITERAL);v=json.loads(encode_conversation_json(c))\n return dict(id=str(c.id),at=str(c.created_at),content=c.history[0].content,role=c.history[0].role.value,source=str(c.history[0].source),reference=c.conversation_for(SOURCE).value,version=v['schema_version'],trailing_newline=encode_conversation_json(c).endswith('\\n'))\ndef independence():\n c=conv();snapshot=capture_conversation(c);text=encode_conversation_json(c);one=restore_conversation(snapshot);two=decode_conversation_json(text)\n c.add(msg(3,'later'));c.set_conversation(ConversationRef(SOURCE,'later-thread'))\n one.add(msg(4,'only-one'))\n return dict(snapshot_history=[m.content for m in snapshot.messages],snapshot_reference=snapshot.conversations[0].value,one=state(one),two=state(two),same_identity=one.id==two.id,object_equal=one==two)\nasync def locks():\n one=decode_conversation_json(LITERAL);two=decode_conversation_json(LITERAL)\n async with one.turn():\n  async with two.turn():return dict(independent_locks=True,same_semantic_id=one.id==two.id)\ndef duplicate_message():\n value=json.loads(LITERAL);value['history']*=2\n c=decode_conversation_json(json.dumps(value));return dict(occurrences=len(c.history),same_object=c.history[0] is c.history[1])\ndef coherent_read(root):\n path=root/'coherent.sqlite';s=store(root,'coherent');s.save(conv());paused=threading.Event();release=threading.Event();events=[];original=sqlite3.connect\n with closing(original(path)) as c:c.execute('PRAGMA journal_mode=WAL')\n class Connection(sqlite3.Connection):\n  def execute(self,sql,*args,**kwargs):\n   if 'FROM conversations WHERE' in sql and threading.current_thread().name.startswith('audit-reader'):\n    events.append(dict(stage='after-history-before-refs',in_transaction=self.in_transaction));paused.set()\n    if not release.wait(8):raise AssertionError('Writer schedule did not complete')\n   return super().execute(sql,*args,**kwargs)\n def connect(*args,**kwargs):return original(*args,**kwargs,factory=Connection)\n with patch.object(sqlite3,'connect',connect),ThreadPoolExecutor(max_workers=1,thread_name_prefix='audit-reader') as pool:\n  future=pool.submit(s.load,CID)\n  assert paused.wait(8),'Reader did not reach maintained SELECT boundary'\n  try:s.save(conv('B'));events.append(dict(stage='writer-committed'))\n  finally:release.set()\n  loaded=future.result(8)\n final=s.load(CID);observed=state(loaded)\n return dict(coherent=observed in [dict(history=['A'],reference='thread-A'),dict(history=['B'],reference='thread-B')],loaded=observed,final=state(final),schedule=events,journal_mode='wal')\ndef init_failure(root):\n path=root/'initialization.sqlite';s=store(root,'initialization');original=sqlite3.connect;closed=[]\n class Connection(sqlite3.Connection):\n  def close(self):closed.append(True);return super().close()\n def connect(*args,**kwargs):\n  c=original(*args,**kwargs,factory=Connection)\n  c.set_authorizer(lambda action,one,two,db,trigger:sqlite3.SQLITE_DENY if action==sqlite3.SQLITE_CREATE_TABLE and one=='messages' else sqlite3.SQLITE_OK)\n  return c\n with patch.object(sqlite3,'connect',connect):first=error(lambda:s.save(conv()))\n with closing(original(path)) as c:\n  tables=[r[0] for r in c.execute(\"SELECT name FROM sqlite_master WHERE type='table'\")];version=c.execute('PRAGMA user_version').fetchone()[0]\n second=error(lambda:s.save(conv()))\n return dict(first_error=first['error'],closed=len(closed),tables=tables,version=version,retry_error=second['error'])\ndef text_admission(root,table,column):\n name='blob-'+table+'-'+column;s=store(root,name);s.save(conv());path=root/(name+'.sqlite')\n with closing(sqlite3.connect(path)) as c,c:c.execute('UPDATE '+table+' SET '+column+'=?',(b'AUDIT_BLOB',))\n try:c=s.load(CID)\n except Exception as exc:return dict(error=type(exc).__name__)\n m=c.history[0];ref=next(iter(c.conversations.values()))\n return dict(error=None,content_type=type(m.content).__name__,message_source_type=type(m.source.value).__name__,reference_source_type=type(ref.source.value).__name__,reference_value_type=type(ref.value).__name__)\ndef rollback(root):\n s=store(root,'rollback');s.save(conv());path=root/'rollback.sqlite'\n with closing(sqlite3.connect(path)) as c,c:c.executescript(\"CREATE TRIGGER fail_ref BEFORE INSERT ON conversations BEGIN SELECT RAISE(ABORT, 'controlled validation failure'); END;\")\n failed=error(lambda:s.save(conv('B')))\n with closing(sqlite3.connect(path)) as c:count=c.execute('SELECT COUNT(*) FROM messages').fetchone()[0]\n return dict(error=failed['error'],state=state(s.load(CID)),message_rows=count)\ndef stale_and_retained(root):\n s=store(root,'stale');a=conv();s.save(a);s.save(conv('B'));s.save(a)\n with closing(sqlite3.connect(root/'stale.sqlite')) as c:all_messages=[r[0] for r in c.execute('SELECT content FROM messages ORDER BY content')]\n return dict(state=state(s.load(CID)),retained_messages=all_messages)\ndef contention(root):\n s=store(root,'busy');s.save(conv());path=root/'busy.sqlite';original=sqlite3.connect;owner=original(path);owner.execute('BEGIN IMMEDIATE')\n def short(*args,**kwargs):return original(*args,**kwargs,timeout=0.01)\n try:\n  with patch.object(sqlite3,'connect',short):failure=error(lambda:s.save(conv('B')))\n finally:owner.rollback();owner.close()\n before=state(s.load(CID));s.save(conv('B'))\n return dict(error=failure['error'],before=before,after=state(s.load(CID)),qualification='Test-only10ms busy wait; production connect default is recorded separately.')\ndef bad_db(root):\n (root/'bad.sqlite').write_bytes(b'not a SQLite database')\n return error(lambda:store(root,'bad').load(CID))\ndef concurrent_writers(root):\n s=store(root,'writers');s.save(conv());ready=threading.Barrier(2);results=[]\n def save(label):\n  ready.wait(8)\n  try:s.save(conv(label));return None\n  except sqlite3.Error as exc:return type(exc).__name__\n with ThreadPoolExecutor(max_workers=2) as pool:\n  futures=[pool.submit(save,label) for label in ['A','B']]\n  results=[f.result(8) for f in futures]\n final=state(s.load(CID))\n return dict(both_succeeded=results==[None,None],coherent=final in [dict(history=['A'],reference='thread-A'),dict(history=['B'],reference='thread-B')],errors=results,final=final)\nasync def invalid_reference_consumer(root):\n s=store(root,'reference-consumer');s.save(conv())\n with closing(sqlite3.connect(root/'reference-consumer.sqlite')) as c,c:c.execute('UPDATE conversations SET value=?',(b'AUDIT_BLOB',))\n c=s.load(CID);seen=[]\n class Interaction:\n  source=SOURCE\n  async def send(self,request):seen.append(type(request.conversation.value).__name__);return ModelResponse('reply',SOURCE)\n await Runtime().send(conversation=c,interaction=Interaction(),message=msg(5,'question'))\n return dict(forwarded_continuation_value_types=seen,calls=len(seen))\nasync def restart(root,mode):\n path=root/('restart-'+mode+'.sqlite');s=store(root,'restart-'+mode);s.save(conv())\n code='''import os,sqlite3,sys\nfrom devtools.persistence import SqliteConversationStore\nfrom devtools.agents.conversation import Conversation,ConversationId,ConversationMessage,ConversationMessageRole,History,MessageId\nfrom devtools.models.interaction import InteractionSource,ConversationRef\nfrom devtools.core.time import Timestamp\nfrom devtools.core.paths import resolve_path\npath,mode=sys.argv[1:];original=sqlite3.connect\nclass Connection(sqlite3.Connection):\n def __exit__(self,*args):\n  result=super().__exit__(*args)\n  if mode=='after-commit':os._exit(72)\n  return result\ndef connect(*args,**kwargs):\n c=original(*args,**kwargs,factory=Connection)\n if mode=='before-commit':c.set_trace_callback(lambda sql:os._exit(71) if sql.startswith('INSERT INTO conversations') else None)\n return c\nsqlite3.connect=connect\ns=SqliteConversationStore(database=resolve_path(path));id=ConversationId.parse('10000000-0000-4000-8000-000000000001')\nif mode=='load':\n c=s.load(id);print(c.history[0].content+'|'+c.conversation_for(InteractionSource('agent')).value)\nelse:\n at=Timestamp.from_isoformat('2026-10-26T10:34:56.123456Z')\n m=ConversationMessage(id=MessageId.parse('00000000-0000-4000-8000-000000000002'),created_at=at,content='B',role=ConversationMessageRole.USER,source=InteractionSource('caller'))\n c=Conversation(id=id,created_at=at,history=History(messages=(m,)),conversations=(ConversationRef(InteractionSource('agent'),'thread-B'),))\n s.save(c)\n'''\n result=await CommandExecutor().execute(Command(sys.executable).args('-c',code,str(path),mode).with_timeout(Duration.seconds(10)))\n expected_code={'before-commit':71,'after-commit':72,'load':0}[mode]\n assert result.exit_code==expected_code,(result.exit_code,result.stderr)\n return dict(exit_code=result.exit_code,child_output=result.stdout.decode().strip(),recovered=state(s.load(CID)),qualification='Actual process termination and restart on a temporary local database; not a power-loss test.')\nasync def runtime_restore(root):\n s=store(root,'runtime');s.save(conv());c=s.load(CID);seen=[]\n class Interaction:\n  source=SOURCE\n  async def send(self,request):seen.append(request.conversation.value);return ModelResponse('reply',SOURCE,conversation=ConversationRef(SOURCE,'thread-B'))\n await Runtime().send(conversation=c,interaction=Interaction(),message=msg(4,'question'))\n before=state(s.load(CID));s.save(c);after=state(store(root,'runtime').load(CID))\n return dict(received=seen,in_memory=state(c),before_explicit_save=before,after_explicit_save=after)\nasync def pending_checkpoint(root):\n s=store(root,'pending');c=conv();entered=asyncio.Event();release=asyncio.Event();checkpoints=[]\n class Interaction:\n  source=SOURCE\n  async def send(self,request):entered.set();await release.wait();return ModelResponse('reply',SOURCE,conversation=ConversationRef(SOURCE,'thread-B'))\n task=asyncio.create_task(Runtime().send(conversation=c,interaction=Interaction(),message=msg(4,'question')));await entered.wait()\n s.save(c);during=state(s.load(CID))\n async def checkpoint():\n  async with c.turn():s.save(c);checkpoints.append(state(s.load(CID)))\n waiter=asyncio.create_task(checkpoint());await asyncio.sleep(0);blocked=not waiter.done();release.set();await task;await waiter\n return dict(uncoordinated=during,coordinated_waited=blocked,coordinated=checkpoints)\nasync def main():\n with tempfile.TemporaryDirectory(prefix='devtools-persistence-audit-') as tmp:\n  root=Path(tmp)\n  await check('literal-json-schema',dict(id=str(CID),at='2026-10-26T10:34:56.123456+00:00',content='雪\\n  ',role='user',source='caller',reference='thread-A',version=1,trailing_newline=True),literal_case,input=LITERAL)\n  await check('snapshot-independent-copy',dict(snapshot_history=['A'],snapshot_reference='thread-A',one=dict(history=['A','only-one'],reference='thread-A'),two=dict(history=['A'],reference='thread-A'),same_identity=True,object_equal=False),independence)\n  await check('restored-local-locks',dict(independent_locks=True,same_semantic_id=True),locks)\n  await check('identical-message-occurrences',dict(occurrences=2,same_object=True),duplicate_message)\n  invalid=[('{','PersistenceFormatError'),('[]','PersistenceFormatError'),(LITERAL.replace('\"schema_version\":1','\"schema_version\":2'),'PersistenceVersionError'),(LITERAL.replace('\"schema_version\":1','\"schema_version\":true'),'PersistenceFormatError'),(LITERAL.replace('\"schema_version\":1','\"schema_version\":1.0'),'PersistenceFormatError'),(LITERAL.replace('\"content\":\"雪\\\\n  \"','\"content\":null'),'PersistenceFormatError'),(LITERAL.replace('\"content\":\"雪\\\\n  \"','\"content\":[]'),'PersistenceFormatError'),(LITERAL.replace('\"content\":\"雪\\\\n  \"','\"content\":\"a\",\"cont\\\\u0065nt\":\"b\"'),'PersistenceFormatError'),(LITERAL.replace('\"schema_version\":1','\"schema_version\":NaN'),'PersistenceFormatError'),(LITERAL.replace('\"schema_version\":1','\"schema_version\":1,\"extra\":0'),'PersistenceFormatError'),(LITERAL.replace('thread-A',' '),'PersistenceFormatError')]\n  for i,(text,kind) in enumerate(invalid):\n   observed=error(lambda:decode_conversation_json(text))\n   await check('json-refusal-'+str(i),kind,lambda observed=observed:observed['error'],input=text)\n  await check('sqlite-coherent-public-load',dict(coherent=True,final=dict(history=['B'],reference='thread-B')),lambda:coherent_read(root),'NEW_SQLITE_READ_COHERENCE')\n  await check('sqlite-failed-initialization',dict(first_error='DatabaseError',closed=1,tables=[],version=0,retry_error=None),lambda:init_failure(root),'NEW_SQLITE_INITIALIZATION')\n  for table,column in [('messages','content'),('messages','source'),('conversations','source'),('conversations','value')]:\n   await check('sqlite-text-'+table+'-'+column,dict(error='PersistenceFormatError'),lambda table=table,column=column:text_admission(root,table,column),'NEW_SQLITE_TEXT_ADMISSION',input=dict(sql='UPDATE '+table+' SET '+column+'=?',bound_type='BLOB',bound_value='AUDIT_BLOB'))\n  await check('sqlite-transaction-rollback',dict(error='IntegrityError',state=dict(history=['A'],reference='thread-A'),message_rows=1),lambda:rollback(root))\n  await check('stale-save-and-retained-orphans',dict(state=dict(history=['A'],reference='thread-A'),retained_messages=['A','B']),lambda:stale_and_retained(root),'SUPPORTED_LIMITATION')\n  await check('sqlite-lock-contention',dict(error='OperationalError',before=dict(history=['A'],reference='thread-A'),after=dict(history=['B'],reference='thread-B'),qualification='Test-only10ms busy wait; production connect default is recorded separately.'),lambda:contention(root))\n  await check('corrupt-database-error',dict(error='DatabaseError',cause=None),lambda:bad_db(root),'SUPPORTED_LOW_LEVEL_ERROR')\n  await check('concurrent-current-snapshot-writers',dict(both_succeeded=True,coherent=True),lambda:concurrent_writers(root))\n  await check('runtime-wrong-storage-class-refusal',dict(forwarded_continuation_value_types=[],calls=0),lambda:invalid_reference_consumer(root),'NEW_SQLITE_TEXT_ADMISSION')\n  await check('json-deep-unsupported-root',dict(error='PersistenceFormatError',cause=None),lambda:error(lambda:decode_conversation_json('['*1500+'0'+']'*1500)),'SUPPORTED_SHAPE_REFUSAL')\n  for mode,code,label in [('load',0,'A'),('before-commit',71,'A'),('after-commit',72,'B')]:\n   await check('process-restart-'+mode,dict(exit_code=code,child_output='A|thread-A' if mode=='load' else '',recovered=dict(history=[label],reference='thread-'+label),qualification='Actual process termination and restart on a temporary local database; not a power-loss test.'),lambda mode=mode:restart(root,mode),'SUPPORTED_EFFECT_BOUNDARY')\n  await check('runtime-explicit-checkpoint',dict(received=['thread-A'],in_memory=dict(history=['A','question','reply'],reference='thread-B'),before_explicit_save=dict(history=['A'],reference='thread-A'),after_explicit_save=dict(history=['A','question','reply'],reference='thread-B')),lambda:runtime_restore(root))\n  await check('runtime-cooperative-checkpoint',dict(uncoordinated=dict(history=['A','question'],reference='thread-A'),coordinated_waited=True,coordinated=[dict(history=['A','question','reply'],reference='thread-B')]),lambda:pending_checkpoint(root),'SUPPORTED_CALLER_COORDINATION')\n  c=store(root,'configuration')._open_connection();metadata=dict(python=sys.version,platform=platform.platform(),sqlite=sqlite3.sqlite_version,journal_mode=c.execute('PRAGMA journal_mode').fetchone()[0],synchronous=c.execute('PRAGMA synchronous').fetchone()[0],busy_timeout=c.execute('PRAGMA busy_timeout').fetchone()[0],autocommit=c.autocommit,foreign_keys=c.execute('PRAGMA foreign_keys').fetchone()[0]);c.close()\n result=dict(at=str(Timestamp.now()),rows=ROWS,environment=metadata,harness_errors=[r['name'] for r in ROWS if isinstance(r['observed'],dict) and 'harness_error' in r['observed']],unexpected_controls=[r['name'] for r in ROWS if not r['agrees'] and not r['kind'].startswith('NEW_')],qualification='Authored temporary DBs, standard SQLite connection hooks and explicit deterministic scheduling. No production data, live models or power-loss simulation.')\n (O/'probes.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\\n',encoding='utf-8')\n print(json.dumps(dict(cases=len(ROWS),violations=[r['name'] for r in ROWS if not r['agrees']],harness_errors=result['harness_errors'],unexpected_controls=result['unexpected_controls']),indent=2))\n assert not result['harness_errors'] and not result['unexpected_controls']\nasyncio.run(main())\n",
+  "at": "2026-10-26T23:56:19.569932+00:00",
+  "rows": [
+    {
+      "name": "literal-json-schema",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": {
+        "id": "10000000-0000-4000-8000-000000000001",
+        "at": "2026-10-26T10:34:56.123456+00:00",
+        "content": "雪\n  ",
+        "role": "user",
+        "source": "caller",
+        "reference": "thread-A",
+        "version": 1,
+        "trailing_newline": true
+      },
+      "observed": {
+        "id": "10000000-0000-4000-8000-000000000001",
+        "at": "2026-10-26T10:34:56.123456+00:00",
+        "content": "雪\n  ",
+        "role": "user",
+        "source": "caller",
+        "reference": "thread-A",
+        "version": 1,
+        "trailing_newline": true
+      },
+      "agrees": true
+    },
+    {
+      "name": "snapshot-independent-copy",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "snapshot_history": [
+          "A"
+        ],
+        "snapshot_reference": "thread-A",
+        "one": {
+          "history": [
+            "A",
+            "only-one"
+          ],
+          "reference": "thread-A"
+        },
+        "two": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "same_identity": true,
+        "object_equal": false
+      },
+      "observed": {
+        "snapshot_history": [
+          "A"
+        ],
+        "snapshot_reference": "thread-A",
+        "one": {
+          "history": [
+            "A",
+            "only-one"
+          ],
+          "reference": "thread-A"
+        },
+        "two": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "same_identity": true,
+        "object_equal": false
+      },
+      "agrees": true
+    },
+    {
+      "name": "restored-local-locks",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "independent_locks": true,
+        "same_semantic_id": true
+      },
+      "observed": {
+        "independent_locks": true,
+        "same_semantic_id": true
+      },
+      "agrees": true
+    },
+    {
+      "name": "identical-message-occurrences",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "occurrences": 2,
+        "same_object": true
+      },
+      "observed": {
+        "occurrences": 2,
+        "same_object": true
+      },
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-0",
+      "kind": "CONTROL",
+      "input": "{",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-1",
+      "kind": "CONTROL",
+      "input": "[]",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-2",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":2,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceVersionError",
+      "observed": "PersistenceVersionError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-3",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":true,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-4",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1.0,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-5",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":null,\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-6",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":[],\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-7",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"a\",\"cont\\u0065nt\":\"b\",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-8",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":NaN,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-9",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"extra\":0,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\"thread-A\"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "json-refusal-10",
+      "kind": "CONTROL",
+      "input": "{\"schema_version\":1,\"session\":{\"id\":\"10000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T12:34:56.123456+02:00\"},\"history\":[{\"id\":\"00000000-0000-4000-8000-000000000001\",\"created_at\":\"2026-10-26T10:35:00Z\",\"content\":\"雪\\n  \",\"role\":\"user\",\"source\":\"caller\"}],\"conversations\":[{\"source\":\"agent\",\"value\":\" \"}]}",
+      "expected": "PersistenceFormatError",
+      "observed": "PersistenceFormatError",
+      "agrees": true
+    },
+    {
+      "name": "sqlite-coherent-public-load",
+      "kind": "NEW_SQLITE_READ_COHERENCE",
+      "input": null,
+      "expected": {
+        "coherent": true,
+        "final": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        }
+      },
+      "observed": {
+        "coherent": false,
+        "loaded": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-B"
+        },
+        "final": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        },
+        "schedule": [
+          {
+            "stage": "after-history-before-refs",
+            "in_transaction": false
+          },
+          {
+            "stage": "writer-committed"
+          }
+        ],
+        "journal_mode": "wal"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-failed-initialization",
+      "kind": "NEW_SQLITE_INITIALIZATION",
+      "input": null,
+      "expected": {
+        "first_error": "DatabaseError",
+        "closed": 1,
+        "tables": [],
+        "version": 0,
+        "retry_error": null
+      },
+      "observed": {
+        "first_error": "DatabaseError",
+        "closed": 1,
+        "tables": [
+          "sessions"
+        ],
+        "version": 0,
+        "retry_error": "PersistenceFormatError"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-text-messages-content",
+      "kind": "NEW_SQLITE_TEXT_ADMISSION",
+      "input": {
+        "sql": "UPDATE messages SET content=?",
+        "bound_type": "BLOB",
+        "bound_value": "AUDIT_BLOB"
+      },
+      "expected": {
+        "error": "PersistenceFormatError"
+      },
+      "observed": {
+        "error": null,
+        "content_type": "bytes",
+        "message_source_type": "str",
+        "reference_source_type": "str",
+        "reference_value_type": "str"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-text-messages-source",
+      "kind": "NEW_SQLITE_TEXT_ADMISSION",
+      "input": {
+        "sql": "UPDATE messages SET source=?",
+        "bound_type": "BLOB",
+        "bound_value": "AUDIT_BLOB"
+      },
+      "expected": {
+        "error": "PersistenceFormatError"
+      },
+      "observed": {
+        "error": null,
+        "content_type": "str",
+        "message_source_type": "bytes",
+        "reference_source_type": "str",
+        "reference_value_type": "str"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-text-conversations-source",
+      "kind": "NEW_SQLITE_TEXT_ADMISSION",
+      "input": {
+        "sql": "UPDATE conversations SET source=?",
+        "bound_type": "BLOB",
+        "bound_value": "AUDIT_BLOB"
+      },
+      "expected": {
+        "error": "PersistenceFormatError"
+      },
+      "observed": {
+        "error": null,
+        "content_type": "str",
+        "message_source_type": "str",
+        "reference_source_type": "bytes",
+        "reference_value_type": "str"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-text-conversations-value",
+      "kind": "NEW_SQLITE_TEXT_ADMISSION",
+      "input": {
+        "sql": "UPDATE conversations SET value=?",
+        "bound_type": "BLOB",
+        "bound_value": "AUDIT_BLOB"
+      },
+      "expected": {
+        "error": "PersistenceFormatError"
+      },
+      "observed": {
+        "error": null,
+        "content_type": "str",
+        "message_source_type": "str",
+        "reference_source_type": "str",
+        "reference_value_type": "bytes"
+      },
+      "agrees": false
+    },
+    {
+      "name": "sqlite-transaction-rollback",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "error": "IntegrityError",
+        "state": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "message_rows": 1
+      },
+      "observed": {
+        "error": "IntegrityError",
+        "state": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "message_rows": 1
+      },
+      "agrees": true
+    },
+    {
+      "name": "stale-save-and-retained-orphans",
+      "kind": "SUPPORTED_LIMITATION",
+      "input": null,
+      "expected": {
+        "state": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "retained_messages": [
+          "A",
+          "B"
+        ]
+      },
+      "observed": {
+        "state": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "retained_messages": [
+          "A",
+          "B"
+        ]
+      },
+      "agrees": true
+    },
+    {
+      "name": "sqlite-lock-contention",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "error": "OperationalError",
+        "before": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "after": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        },
+        "qualification": "Test-only10ms busy wait; production connect default is recorded separately."
+      },
+      "observed": {
+        "error": "OperationalError",
+        "before": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "after": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        },
+        "qualification": "Test-only10ms busy wait; production connect default is recorded separately."
+      },
+      "agrees": true
+    },
+    {
+      "name": "corrupt-database-error",
+      "kind": "SUPPORTED_LOW_LEVEL_ERROR",
+      "input": null,
+      "expected": {
+        "error": "DatabaseError",
+        "cause": null
+      },
+      "observed": {
+        "error": "DatabaseError",
+        "cause": null
+      },
+      "agrees": true
+    },
+    {
+      "name": "concurrent-current-snapshot-writers",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "both_succeeded": true,
+        "coherent": true
+      },
+      "observed": {
+        "both_succeeded": true,
+        "coherent": true,
+        "errors": [
+          null,
+          null
+        ],
+        "final": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "name": "runtime-wrong-storage-class-refusal",
+      "kind": "NEW_SQLITE_TEXT_ADMISSION",
+      "input": null,
+      "expected": {
+        "forwarded_continuation_value_types": [],
+        "calls": 0
+      },
+      "observed": {
+        "forwarded_continuation_value_types": [
+          "bytes"
+        ],
+        "calls": 1
+      },
+      "agrees": false
+    },
+    {
+      "name": "json-deep-unsupported-root",
+      "kind": "SUPPORTED_SHAPE_REFUSAL",
+      "input": null,
+      "expected": {
+        "error": "PersistenceFormatError",
+        "cause": null
+      },
+      "observed": {
+        "error": "PersistenceFormatError",
+        "cause": null
+      },
+      "agrees": true
+    },
+    {
+      "name": "process-restart-load",
+      "kind": "SUPPORTED_EFFECT_BOUNDARY",
+      "input": null,
+      "expected": {
+        "exit_code": 0,
+        "child_output": "A|thread-A",
+        "recovered": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "observed": {
+        "exit_code": 0,
+        "child_output": "A|thread-A",
+        "recovered": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "agrees": true
+    },
+    {
+      "name": "process-restart-before-commit",
+      "kind": "SUPPORTED_EFFECT_BOUNDARY",
+      "input": null,
+      "expected": {
+        "exit_code": 71,
+        "child_output": "",
+        "recovered": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "observed": {
+        "exit_code": 71,
+        "child_output": "",
+        "recovered": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "agrees": true
+    },
+    {
+      "name": "process-restart-after-commit",
+      "kind": "SUPPORTED_EFFECT_BOUNDARY",
+      "input": null,
+      "expected": {
+        "exit_code": 72,
+        "child_output": "",
+        "recovered": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "observed": {
+        "exit_code": 72,
+        "child_output": "",
+        "recovered": {
+          "history": [
+            "B"
+          ],
+          "reference": "thread-B"
+        },
+        "qualification": "Actual process termination and restart on a temporary local database; not a power-loss test."
+      },
+      "agrees": true
+    },
+    {
+      "name": "runtime-explicit-checkpoint",
+      "kind": "CONTROL",
+      "input": null,
+      "expected": {
+        "received": [
+          "thread-A"
+        ],
+        "in_memory": {
+          "history": [
+            "A",
+            "question",
+            "reply"
+          ],
+          "reference": "thread-B"
+        },
+        "before_explicit_save": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "after_explicit_save": {
+          "history": [
+            "A",
+            "question",
+            "reply"
+          ],
+          "reference": "thread-B"
+        }
+      },
+      "observed": {
+        "received": [
+          "thread-A"
+        ],
+        "in_memory": {
+          "history": [
+            "A",
+            "question",
+            "reply"
+          ],
+          "reference": "thread-B"
+        },
+        "before_explicit_save": {
+          "history": [
+            "A"
+          ],
+          "reference": "thread-A"
+        },
+        "after_explicit_save": {
+          "history": [
+            "A",
+            "question",
+            "reply"
+          ],
+          "reference": "thread-B"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "name": "runtime-cooperative-checkpoint",
+      "kind": "SUPPORTED_CALLER_COORDINATION",
+      "input": null,
+      "expected": {
+        "uncoordinated": {
+          "history": [
+            "A",
+            "question"
+          ],
+          "reference": "thread-A"
+        },
+        "coordinated_waited": true,
+        "coordinated": [
+          {
+            "history": [
+              "A",
+              "question",
+              "reply"
+            ],
+            "reference": "thread-B"
+          }
+        ]
+      },
+      "observed": {
+        "uncoordinated": {
+          "history": [
+            "A",
+            "question"
+          ],
+          "reference": "thread-A"
+        },
+        "coordinated_waited": true,
+        "coordinated": [
+          {
+            "history": [
+              "A",
+              "question",
+              "reply"
+            ],
+            "reference": "thread-B"
+          }
+        ]
+      },
+      "agrees": true
+    }
+  ],
+  "environment": {
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "sqlite": "3.50.4",
+    "journal_mode": "delete",
+    "synchronous": 2,
+    "busy_timeout": 5000,
+    "autocommit": -1,
+    "foreign_keys": 1
+  },
+  "harness_errors": [],
+  "unexpected_controls": [],
+  "qualification": "Authored temporary DBs, standard SQLite connection hooks and explicit deterministic scheduling. No production data, live models or power-loss simulation.",
+  "excluded": [
+    "First run failed Windows temp cleanup because the probe used connection context managers without explicit close; not a store leak or product finding.",
+    "A later extra probe expected RecursionError for1500 array levels. CPython3.14 parsed then correctly refused unsupported root as PersistenceFormatError; initial expectation disproved, not a product failure."
+  ]
+}

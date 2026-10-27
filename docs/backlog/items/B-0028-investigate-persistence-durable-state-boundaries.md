@@ -68,3 +68,7 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Persistence/Recovery audit evidence
+
+All 11 Persistence paths now fully reviewed. Three exact P2 proposals own read coherence, initial schema atomicity and persisted text admission; no source correction in this checkpoint. Save replacement rollback/process restart controls pass; stale saves intentionally replace current state and unreferenced global message rows remain. Explicit checkpoint/custody/retention/consumer decisions remain broader than these repairs. [Full review and independent evidence](../../research/persistence-and-recovery-audit.md). Existing status, decision maturity, dependencies and authority unchanged. `audit:persistence-recovery:206d58e2:20261026`.
