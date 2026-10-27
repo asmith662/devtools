@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "835a203f-8fd4-4bc2-ace8-8772137eaf2f",
+  "proposal_sha256": "90d6622d8a72f1cda6f337fb7c94e4386c57fd85cdfeb05c3a8ac666614066ba",
+  "previous": null,
+  "at": "2026-10-27T14:12:28.612495+00:00",
+  "decision": "ADVISORY",
+  "reviewer": "Codex maintainer-authorized implemented-and-merged evidence",
+  "decision_reference": "repair:qwen-terminal-outcome:5e16b832:20261027",
+  "rationale": "Implemented and merged the existing worker terminal-outcome P2. Production 5e16b832429789ea9dd63989476a163b376f20db, normal PR41, independently accepted main 9ea992f347c18b5206b50e1cd6c7ad89b2f564a8. Two existing fatal handlers clear accepted without changing passing candidate/check/currentness evidence, counters, unknown usage, archives, error/disposition or known effects; no retry or weaker closeout/publication admission. Permanent qualified baseline2 failures/9 passing controls/no setup errors;11 new cases pass,173 focused tests pass,16 offline original audit controls pass repair expectations. Final committed gate 3229 passes/2 optional live skips/100% unchanged production branch coverage; Ruff/format/strict mypy and post-main checks pass. docs/development/qwen-terminal-outcome-repair.md; docs/research/code-audit/qwen-terminal-repair-20261027.json. Delivered bounded implementation while administrative state remains PENDING_REVIEW; do not schedule it again. No duplicate proposal, approval, grant, B-number or parent closure. OptionB,15bae0a6/A+C,39c6663a and B-0028/B-0034/B-0011/B-0023 remain separate.",
+  "duplicates": [
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "41a497a8-54f1-461c-a5fe-2f63f22594d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "660900a1-fb47-4823-bd8c-f9d77205146b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "751451cb-8998-4778-bc89-43609323c7ea",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Existing sole exact P2 owner; no duplicate or parent closure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": null,
+  "sha256": "4d412e3b8b7ee155e3b6f86f42d4fc3c0d941773e0b983ca486fbe37779a52ef"
+}
