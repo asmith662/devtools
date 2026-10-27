@@ -14,6 +14,14 @@ snapshot/resource state and disclosing source pointers, exact spans and original
 text. Retrieval mode and rank do not select disclosure or establish sufficiency.
 The existing whole-resource option remains available for file expansion.
 
+`SourceRangeDisclosureOption` extends this same owner with caller-selected,
+bounded exact source ranges. `materialize_source_range` records/materializes a
+normal disclosure plan, retaining the original resource/content identity and
+the requested/actual half-open character spans. UTF-8 byte truncation remains
+explicit; this retained-state operation does not read the live filesystem.
+The [scoped source Tool](../../../tools/docs/source-checks.md) owns separate
+live source admission. No retrieval score establishes authority or readiness.
+
 ~~~text
 InformationNeed / caller purpose
           |

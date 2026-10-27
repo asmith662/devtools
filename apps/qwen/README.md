@@ -1,5 +1,22 @@
 # Bounded local coding worker
 
+## Framework-owned source acquisition and fixed checks
+
+ContextTools now delegates scope observation and exact bounded ranges to the
+existing RI/Context owners through `devtools.tools.source` and Context planning.
+CodingCommands uses `devtools.tools.checks` over the existing managed Commands;
+application task/oracle selection, journals, bundle currentness and acceptance
+remain local. [Framework contracts](../../src/devtools/tools/docs/source-checks.md).
+
+`apps.qwen.validation.prepare_task_validation` and `validate_task` preserve the
+legacy CodingTask runner/oracle/report policy for the worker and local closeout.
+The old coding-loop preparation/validation entry points remain narrow facades;
+the historical development-task helper imports are compatibility re-exports.
+There is one implementation of portable range materialization and fixed Command
+execution. An independent host requires neither this application nor its task,
+profile, prompt, records or private helpers. These capabilities do not implement
+a complete coding Agent, universal validation-input closure or publication.
+
 ## Framework-owned native model/Tool composition
 
 Both `ContextTools.dispatch` and `CodingCommands.dispatch` now delegate selected

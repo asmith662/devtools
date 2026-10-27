@@ -27,6 +27,11 @@ content still fails through the Filesystem text-decoding boundary.
 ToolRunner's scope is one Tool execution, not generic execution lifecycle,
 orchestration, observability, governance, or persistence.
 
+The [scoped-source and fixed-check adapters](source-checks.md) reuse canonical
+RI/Context observations/materialization and managed Commands. They retain exact
+source ranges and optional declared-input correspondence without importing
+application policy or conferring candidate/publication authority.
+
 `ToolDescriptor` is an explicit disclosure value. The Agents composition seam
 `devtools.agents.model_tools.normalize_tool_descriptor` crosses
 from this tools-owned representation into the models-owned
