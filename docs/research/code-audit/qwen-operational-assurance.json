@@ -2562,5 +2562,45 @@
   "remaining": "Not all Qwen tests, acceptance/service/legacy controllers, scientific fixtures or historical versions are audited; source/test execution depth remains separate.",
   "historical_RI_obligations": 188,
   "A_plus_C": "UNAPPROVED",
-  "observer_Option_B": "PREFERRED_IN_PRINCIPLE_UNAPPROVED_UNCHANGED"
+  "observer_Option_B": "PREFERRED_IN_PRINCIPLE_UNAPPROVED_UNCHANGED",
+  "maintenance_overlays": [
+    {
+      "reference": "repair:qwen-terminal-outcome:5e16b832:20261027",
+      "production": "5e16b832429789ea9dd63989476a163b376f20db",
+      "accepted_main": "9ea992f347c18b5206b50e1cd6c7ad89b2f564a8",
+      "pr": 41,
+      "changed_reviewed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "original_blob": "4436c913fc8ba4c13835b34c96bf32256e206ac4",
+          "corrected_blob": "b383d07c1030b46f9c96567abaa49e0e0d1536fd",
+          "production": "5e16b832429789ea9dd63989476a163b376f20db",
+          "original_review_depth": "TARGETED_PACKAGE_DOCUMENT",
+          "maintenance_depth": "CHANGED_PACKAGE_CONTRACT",
+          "original_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/coding_loop.py",
+          "original_blob": "0f08d35e57295d4fda46348ae52e2ee205562448",
+          "corrected_blob": "f47c6f9c601f34714783b7628d914bfb3ac2714f",
+          "production": "5e16b832429789ea9dd63989476a163b376f20db",
+          "original_review_depth": "FULL_BODY_AND_FAILURE_BRANCH_INSPECTION",
+          "maintenance_depth": "CHANGED_FUNCTION_OR_TEST_DELTA_AND_CONSUMERS",
+          "original_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_coding_loop.py",
+          "original_blob": "e4c835c6be2d9390d3a88da33485bd5cb27c4e23",
+          "corrected_blob": "f244c589ecaa3422a8ccc41659421cd3014d2e97",
+          "production": "5e16b832429789ea9dd63989476a163b376f20db",
+          "original_review_depth": "FULL_BODY_ASSERTIONS_AND_HELPERS",
+          "maintenance_depth": "CHANGED_FUNCTION_OR_TEST_DELTA_AND_CONSUMERS",
+          "original_review_credit_not_transferred": true
+        }
+      ],
+      "original_fields_preserved": true,
+      "report": "docs/development/qwen-terminal-outcome-repair.md",
+      "receipt": "docs/research/code-audit/qwen-terminal-repair-20261027.json"
+    }
+  ]
 }

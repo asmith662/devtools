@@ -253,3 +253,7 @@ remain a separate seven-family program with no new credit. A+C and observation
 Option B remain unapproved. No successor-session dossier was prepared.
 
 `audit:qwen-operational:7a657dba:20261027`.
+
+## Delivered terminal-outcome maintenance overlay
+
+The existing P2 is delivered through normal PR #41, production `5e16b832429789ea9dd63989476a163b376f20db`, verified main `9ea992f347c18b5206b50e1cd6c7ad89b2f564a8`. Original frozen17-body findings/probes remain historical; changed source/test/package-document versions have separate delta overlays. [Correction and remaining decisions](../development/qwen-terminal-outcome-repair.md); [exact committed validation](code-audit/qwen-terminal-repair-20261027.json). No Localization/A+C, application extraction, restart/Evidence protocol or observation policy was implemented. `repair:qwen-terminal-outcome:5e16b832:20261027`.
