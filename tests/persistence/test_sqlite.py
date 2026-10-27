@@ -5,6 +5,9 @@ from __future__ import annotations
 
 import asyncio
 import sqlite3
+import threading
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 from datetime import UTC, datetime, timedelta
 from typing import TYPE_CHECKING
 
@@ -38,6 +41,7 @@ from devtools.persistence import (
 
 if TYPE_CHECKING:
     from pathlib import Path
+    from typing import Any
 
 
 class FakeInteraction:
@@ -459,3 +463,271 @@ def test_sqlite_loaded_session_works_directly_with_runtime(tmp_path: Path) -> No
     assert isinstance(fake, FakeInteraction)
     assert fake.calls[0][1] == existing
     assert loaded.conversation_for(InteractionSource("agent")) == replacement
+
+
+def _snapshot_pair() -> tuple[Conversation, Conversation]:
+    """Two independently specified complete committed states of one entity."""
+    original = _session(messages=(_message(1, content="A"),))
+    first, second = (
+        Conversation(
+            id=original.id,
+            created_at=original.created_at,
+            history=History(messages=(_message(number, content=label),)),
+            conversations=(ConversationRef(InteractionSource("agent"), thread),),
+        )
+        for number, label, thread in [(1, "A", "thread-a"), (2, "B", "thread-b")]
+    )
+    return first, second
+
+
+def _pair_value(conversation: Conversation | None) -> tuple[list[str], str]:
+    """Observe public state without deriving expected values from the store."""
+    assert conversation is not None
+    reference = conversation.conversation_for(InteractionSource("agent"))
+    assert reference is not None
+    return [m.content for m in conversation.history], reference.value
+
+
+def test_sqlite_wal_load_never_mixes_committed_snapshots(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A real writer commits while an earlier reader retains one whole snapshot."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as connection:
+        assert connection.execute("PRAGMA journal_mode=WAL").fetchone() == ("wal",)
+    paused = threading.Event()
+    release = threading.Event()
+    scheduling_errors: list[str] = []
+    closed: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native SQLite parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("snapshot-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    scheduling_errors.append("reader release missing")
+            return super().execute(sql, parameters)
+
+        def close(self) -> None:
+            closed.append(threading.current_thread().name)
+            super().close()
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, factory=Connection)
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    with ThreadPoolExecutor(
+        max_workers=1,
+        thread_name_prefix="snapshot-reader",
+    ) as pool:
+        reader = pool.submit(store.load, first.id)
+        try:
+            assert paused.wait(10), "reader did not reach the scheduled query"
+            store.save(second)
+            # The save has returned; independent queries prove the intervening
+            # commit is visible before the reader may request its continuation.
+            with closing(original_connect(tmp_path / "sessions.sqlite")) as witness:
+                assert witness.execute(
+                    "SELECT content FROM messages "
+                    "JOIN session_messages USING(message_id)",
+                ).fetchall() == [("B",)]
+                assert witness.execute(
+                    "SELECT value FROM conversations",
+                ).fetchall() == [("thread-b",)]
+        finally:
+            release.set()
+        loaded = reader.result(10)
+    assert scheduling_errors == []
+    assert _pair_value(loaded) == (["A"], "thread-a")
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+    assert any(name.startswith("snapshot-reader") for name in closed)
+
+
+def test_sqlite_default_journal_reader_and_waiting_writer(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Rollback journal may delay commit; one reader still retains a whole state."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    with closing(original_connect(tmp_path / "sessions.sqlite")) as c:
+        assert c.execute("PRAGMA journal_mode").fetchone() == ("delete",)
+        assert c.execute("PRAGMA busy_timeout").fetchone() == (5000,)
+    paused, release, commit_entered = (
+        threading.Event(),
+        threading.Event(),
+        threading.Event(),
+    )
+    schedule_errors: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("rollback-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    schedule_errors.append("reader not released")
+            return super().execute(sql, parameters)
+
+    def connect(database: str) -> sqlite3.Connection:
+        c = original_connect(database, factory=Connection)
+        if threading.current_thread().name.startswith("rollback-writer"):
+            c.set_trace_callback(
+                lambda sql: commit_entered.set() if sql == "COMMIT" else None,
+            )
+        return c
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    with (
+        ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="rollback-reader",
+        ) as readers,
+        ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="rollback-writer",
+        ) as writers,
+    ):
+        reader = readers.submit(store.load, first.id)
+        assert paused.wait(10)
+        writer = writers.submit(store.save, second)
+        try:
+            assert commit_entered.wait(10), "writer did not attempt actual commit"
+        finally:
+            release.set()
+        loaded = reader.result(10)
+        assert writer.result(10) is None
+    assert schedule_errors == []
+    assert _pair_value(loaded) == (["A"], "thread-a")
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+
+
+def test_sqlite_default_read_lock_refuses_impatient_commit_then_releases(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test-only zero wait establishes locking, rollback and subsequent release."""
+    store = _store(tmp_path)
+    first, second = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    paused, release = threading.Event(), threading.Event()
+    closed: list[bool] = []
+    schedule_errors: list[str] = []
+
+    class Connection(sqlite3.Connection):
+        def execute(self, sql: str, parameters: Any = (), /) -> sqlite3.Cursor:  # noqa: ANN401 -- native parameter protocol
+            if (
+                "FROM conversations WHERE" in sql
+                and threading.current_thread().name.startswith("held-reader")
+            ):
+                paused.set()
+                if not release.wait(10):
+                    schedule_errors.append("reader not released")
+            return super().execute(sql, parameters)
+
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def connect(database: str) -> sqlite3.Connection:
+        return original_connect(database, timeout=0, factory=Connection)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(sqlite3, "connect", connect)
+        with ThreadPoolExecutor(
+            max_workers=1,
+            thread_name_prefix="held-reader",
+        ) as readers:
+            reader = readers.submit(store.load, first.id)
+            try:
+                assert paused.wait(10)
+                with pytest.raises(sqlite3.OperationalError, match="locked"):
+                    store.save(second)
+            finally:
+                release.set()
+            assert _pair_value(reader.result(10)) == (["A"], "thread-a")
+    assert schedule_errors == []
+    assert closed == [False, False]
+    assert _pair_value(store.load(first.id)) == (["A"], "thread-a")
+    store.save(second)
+    assert _pair_value(store.load(first.id)) == (["B"], "thread-b")
+
+
+@pytest.mark.parametrize(
+    "failure",
+    ["missing", "begin", "query", "commit"],
+)
+def test_sqlite_read_transaction_always_settles_and_closes(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failure: str,
+) -> None:
+    """Early return, decode refusal and native transaction errors close custody."""
+    store = _store(tmp_path)
+    first, _ = _snapshot_pair()
+    store.save(first)
+    original_connect = sqlite3.connect
+    if failure == "malformed":
+        with closing(original_connect(tmp_path / "sessions.sqlite")) as c, c:
+            c.execute("UPDATE conversations SET value=?", (b"PRIVATE_SENTINEL",))
+    closed: list[bool] = []
+
+    class Connection(sqlite3.Connection):
+        def close(self) -> None:
+            closed.append(self.in_transaction)
+            super().close()
+
+    def authorize(
+        action: int,
+        one: str | None,
+        _two: str | None,
+        _db: str | None,
+        _trigger: str | None,
+    ) -> int:
+        denied = (
+            (
+                failure == "begin"
+                and action == sqlite3.SQLITE_TRANSACTION
+                and one == "BEGIN"
+            )
+            or (
+                failure == "commit"
+                and action == sqlite3.SQLITE_TRANSACTION
+                and one == "COMMIT"
+            )
+            or (
+                failure == "query"
+                and action == sqlite3.SQLITE_READ
+                and one == "messages"
+            )
+        )
+        return sqlite3.SQLITE_DENY if denied else sqlite3.SQLITE_OK
+
+    def connect(database: str) -> sqlite3.Connection:
+        c = original_connect(database, factory=Connection)
+        c.set_authorizer(authorize)
+        return c
+
+    monkeypatch.setattr(sqlite3, "connect", connect)
+    if failure == "missing":
+        missing = ConversationId.parse("10000000-0000-4000-8000-000000000999")
+        assert store.load(missing) is None
+    elif failure == "malformed":
+        with pytest.raises(PersistenceFormatError):
+            store.load(first.id)
+    else:
+        with pytest.raises(sqlite3.DatabaseError):
+            store.load(first.id)
+    assert closed == [False]

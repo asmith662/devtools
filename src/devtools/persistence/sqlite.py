@@ -93,26 +93,31 @@ class SqliteConversationStore:
         """Load one persisted Conversation object, if present."""
         connection = self._open_connection()
         try:
-            row = connection.execute(
-                "SELECT created_at FROM sessions WHERE session_id = ?",
-                (str(conversation_id),),
-            ).fetchone()
-            if row is None:
-                return None
-            try:
-                snapshot = _ConversationSnapshot(
-                    id=conversation_id,
-                    created_at=Timestamp.from_isoformat(row[0]),
-                    messages=self._load_messages(connection, conversation_id),
-                    conversations=self._load_conversations(connection, conversation_id),
-                )
-                return restore_conversation(snapshot)
-            except (TimeError, TypeError, ValueError) as error:
-                msg = (
-                    "Invalid persisted Conversation state for ConversationId "
-                    f"{conversation_id}."
-                )
-                raise PersistenceFormatError(msg) from error
+            with connection:
+                connection.execute("BEGIN")
+                row = connection.execute(
+                    "SELECT created_at FROM sessions WHERE session_id = ?",
+                    (str(conversation_id),),
+                ).fetchone()
+                if row is None:
+                    return None
+                try:
+                    snapshot = _ConversationSnapshot(
+                        id=conversation_id,
+                        created_at=Timestamp.from_isoformat(row[0]),
+                        messages=self._load_messages(connection, conversation_id),
+                        conversations=self._load_conversations(
+                            connection,
+                            conversation_id,
+                        ),
+                    )
+                    return restore_conversation(snapshot)
+                except (TimeError, TypeError, ValueError) as error:
+                    msg = (
+                        "Invalid persisted Conversation state for ConversationId "
+                        f"{conversation_id}."
+                    )
+                    raise PersistenceFormatError(msg) from error
         finally:
             connection.close()
 
