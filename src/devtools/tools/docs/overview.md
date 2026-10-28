@@ -32,6 +32,12 @@ RI/Context observations/materialization and managed Commands. They retain exact
 source ranges and optional declared-input correspondence without importing
 application policy or conferring candidate/publication authority.
 
+The [repository inspection and change procedure](../repository/docs/overview.md)
+combines exact host-root Git observations with those fixed checks. It uses the
+same managed Command/ToolRunner owners, deterministic path-based selection and
+qualified command observations; it adds no arbitrary shell Tool, workflow engine
+or model-controlled command selection.
+
 `ToolDescriptor` is an explicit disclosure value. The Agents composition seam
 `devtools.agents.model_tools.normalize_tool_descriptor` crosses
 from this tools-owned representation into the models-owned

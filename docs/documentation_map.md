@@ -1,5 +1,11 @@
 # Documentation Map
 
+Current command-capability contracts: [typed operations and procedural use](development/command-capabilities.md),
+[repository Tools](../src/devtools/tools/repository/docs/overview.md),
+[safe command observations](../src/devtools/observability/commands/docs/overview.md),
+and the [routine direct-main development envelope](development/workflow.md).
+These do not replace governed WorkCycle branch, Checkout or publication rules.
+
 Delivered explicit framework-first migration 3: production `22c44a88fa20da8d580b1470441030c80835b7d0`, PR #52, verified source main `a23c081cefb7524471a26a8f539356fa2545a38e`. Agents now owns one bounded model-neutral coding process with actual prepared/native Qwen delegation and a guarded independent non-Qwen source/edit/check/repair application. Existing RI/Context/Tools/Resources remain owners; host retains admission/custody/journals/oracles/governance. Committed gate 3498 passed/2 optional live skips/100% configured branch coverage. [Delivery and limits](development/bounded-coding-agent-delivery.md); [exact receipt](research/code-audit/bounded-coding-agent-20261027.json). Broader Agent/application/Evidence/recovery work remains open; Runtime, observation Option B,A+C and migration4 are unchanged. Earlier notices retain dated meaning. `integration:bounded-coding-agent:22c44a88:20261027`.
 
 Delivered explicit framework-first migration 2: production `59ae70b07f7e2332db887bc61748fe5fd3373fae`, PR #50, verified source main `9078406b76635a81fdaf6e5b45fda2c8db6a3f4f`. Existing Context/RI, Tools and managed Commands now provide neutral exact scoped source acquisition and fixed checks; real Qwen and Codex-attributed local closeout delegate, while an application-import/file-isolated non-Qwen host exercises actual source/check effects. Committed gate 3376 passed/2 optional live skips/100% configured branch coverage. [Contract and validation](development/framework-source-checks.md); [exact receipt](research/code-audit/framework-source-checks-20261027.json). Legacy task/oracle/journal/edit/terminal/authority remain compatible. Broader coding-Agent migration requires explicit task/edit/outcome/custody approval; Runtime, A+C, Option B, restart and Evidence boundaries remain unchanged. Earlier notices retain dated meaning. `integration:framework-source-checks:59ae70b0:20261027`.

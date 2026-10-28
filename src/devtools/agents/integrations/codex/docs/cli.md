@@ -2,8 +2,28 @@
 
 `devtools.agents.integrations.codex` is a narrow adapter over the local Codex CLI, not a general
 Codex CLI manual. This contract was verified against `codex-cli 0.147.0`.
-Later CLI versions require compatibility verification before relying on the
-same details.
+The argv prompt examples and live procedure below describe that historical
+milestone. The maintained prompt transport was subsequently repaired; the
+current contract immediately below supersedes those examples.
+
+## Current maintained transport and optional command observations
+
+The delivered [literal-input repair](../../../../../../docs/development/codex-input-and-metadata-repair.md)
+uses UTF-8 stdin and the documented `-` prompt operand after `--`, for fresh and
+resumed calls. Current source/tests are authoritative. No shell interpolation or
+CLI option interpretation of prompt content occurs. This increment does not
+change those arguments, continuation, usage or result semantics.
+
+Installed CLI0.162.1 version/help inspection confirms `exec --json` JSONL output;
+no new live inference was run. `codex.commands.CodexCommandObserver` optionally
+projects available authored/authorized command_execution items into bounded,
+privacy-selected command observations. The default CodexAgent still returns
+its established final message/usage result and exposes no complete command feed.
+CLI reported completion is distinct from local process-entry evidence. Missing
+events imply neither zero commands nor known failure. See
+[command observation contracts](../../../../../../docs/development/command-capabilities.md).
+
+## Historical 0.147.0 milestone
 
 ## Executable resolution
 

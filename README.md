@@ -52,4 +52,6 @@ and other universal abstractions wait for concrete evidence.
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
 - [Documentation map](docs/documentation_map.md)
+- [Command capabilities and deterministic procedures](docs/development/command-capabilities.md)
+- [Routine development and bounded delegation](docs/development/workflow.md)
 - [Current reconciliation phase](docs/development/reconciliation.md#finite-architecture-and-research-reconciliation-2026-10-23)

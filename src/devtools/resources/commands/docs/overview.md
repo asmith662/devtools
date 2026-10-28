@@ -59,6 +59,12 @@ CommandExecution
 The dependency direction is `commands -> paths` and `commands -> time`.
 Commands has no higher-level runtime or session dependency.
 
+`commands.availability.discover_executable` performs native PATH/PATHEXT discovery
+without launching software, installing dependencies or granting permission.
+Typed repository operations and deterministic procedures belong to the higher
+[repository Tools](../../../tools/repository/docs/overview.md), not this process
+substrate. Existing imports and process semantics remain unchanged.
+
 It does not own orchestration, sessions, retries, scheduling, shell-language
 parsing, repository behavior, or runtime composition.
 
