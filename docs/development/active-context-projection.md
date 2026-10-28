@@ -182,3 +182,38 @@ timing, grounded reacquisition and model/operator requests using separately froz
 deterministic and real continuation assessments. Request fit alone does not prove
 coding effectiveness. Neither increment authorizes new providers, durable replay,
 an autonomous supervisor, broad A+C or observation Option B.
+
+## Committed-tree validation
+
+Implementation commit `75692067b3c7dc8b21a3be2eb5d794f650b11d87`, tree `6b701a6c4b879f68fe183b6aa090edf9522953fb`, is based on
+`c4ce821e24ca20cb7d2dd9ff97b13ff1581f6a95`. The full unchanged protected command was
+`uv run python scripts/validate_development.py`, started
+`2026-10-28T21:55:26.222414+00:00` and finished `2026-10-28T22:21:15.734704+00:00` in
+1549.302 seconds, exit 0. Its result: **3677 passed, 2 skipped in 1547.31s (0:25:47)**.
+Configured production line and branch coverage is 100%, with zero missing lines
+or branches; no selector, threshold, exclusion or scientific protocol changed.
+
+Baseline characterization passed 263 tests before production edits; its initial
+wall timestamp was not captured. The broad focused run passed 1,172 tests;
+124 final targeted tests include the last UTF-8 and actual failed-check controls.
+The committed full gate includes every final maintained regression. Strict mypy
+passes 586 files, supported formatting passes 709, and supported Ruff and layout
+pass. Windows Python 3.14.3, pytest 9.1.1, coverage 7.15.4, Ruff 0.16.2 and mypy
+2.3.0 were used; this does not certify other runtime/platform environments.
+
+The literal `ruff check .` discovery also scanned immutable scientific builders
+and failed on their retained style. It is recorded, not hidden or repaired by
+rewriting history. The established `src tests apps scripts` lint scope and
+formatter scope excluding retained experiment tests pass. Development fixture,
+format/type and diagnostic subset-coverage failures are separately qualified in
+the receipt; they were not original product failures or threshold exceptions.
+
+The [machine-readable receipt](../research/code-audit/active-context-projection-20261028.json)
+retains changed Git blobs, review depth, complete physical protected inputs,
+commands, timings, exact size/source selections, outcomes and limitations.
+Historical Qwen assurance and the research evidence JSON receive separate
+changed-version overlays; original fields and prior credit remain unchanged.
+All three cases, thirteen forensic files, 903 RI rows and historical references
+remain intact; 188 historical RI-version obligations and broader B-0002/B-0035/
+B-0043 remain open. Two preexisting B-0002 links to removed root scratch reports
+remain qualified; no new broken local links were introduced.
