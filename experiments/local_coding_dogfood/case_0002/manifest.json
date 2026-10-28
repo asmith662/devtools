@@ -1,0 +1,359 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "local_coding_dogfood.case_0002",
+  "status": "CLOSED",
+  "revision": "559ad49033e0d2389b68fa321cee870506e814aa",
+  "scope": "One frozen real local-model discovery/engineering task; no repair needed or forced. No aggregate effectiveness inference or Case0001 reinterpretation.",
+  "files": [
+    {
+      "path": "evidence/candidate/acceptance.py",
+      "sha256": "e6fdcc2e6c8831e3af81eb181c4425ceeb19b257cd0e671e19863fdac9fd9869",
+      "bytes": 292
+    },
+    {
+      "path": "evidence/candidate/docs/architecture.md",
+      "sha256": "e643994f69579ef161d04f460d152aad23299b2d70b20f2eacb83d7688f728c0",
+      "bytes": 536
+    },
+    {
+      "path": "evidence/candidate/pyproject.toml",
+      "sha256": "ce56588d3faf5abc5d5d4c36bbc7d18ff3e63355857d9ce8d31766616323d17f",
+      "bytes": 103
+    },
+    {
+      "path": "evidence/candidate/README.md",
+      "sha256": "1aa4aa2302d9094395f8c35bea42c62ebd34b65d6b39c78cbf55f4ef2f53e0ba",
+      "bytes": 1048
+    },
+    {
+      "path": "evidence/candidate/releasevault/__init__.py",
+      "sha256": "0f1f3fc08d7a3fa4526519f1d21099b0e07fb32039ab3d0e5b58f6ced9f65625",
+      "bytes": 150
+    },
+    {
+      "path": "evidence/candidate/releasevault/cache.py",
+      "sha256": "cf3cbe5027b3240de7fcbd60451768cfa07b8891f6a3c1e7e63fc5b200a674fe",
+      "bytes": 276
+    },
+    {
+      "path": "evidence/candidate/releasevault/catalog.py",
+      "sha256": "d9846837353645126c0abb20080b941d1d973589f5b463e0c511703a14b7ceb7",
+      "bytes": 812
+    },
+    {
+      "path": "evidence/candidate/releasevault/cli.py",
+      "sha256": "06efd93f9485b96a84b057f4ef8f68253fcacef9ddb75c605e03061f928e79a5",
+      "bytes": 500
+    },
+    {
+      "path": "evidence/candidate/releasevault/display.py",
+      "sha256": "1167e924bbef3a9bc5aab0914763fb570654ee468ac303108dd78e6caa47cf30",
+      "bytes": 374
+    },
+    {
+      "path": "evidence/candidate/releasevault/manifest.py",
+      "sha256": "ec6ad079ff872bb76ddafc54a42d15c0422803e293a754262d1653a1020f0eec",
+      "bytes": 446
+    },
+    {
+      "path": "evidence/candidate/releasevault/models.py",
+      "sha256": "3cfa4b0d4769b55cf3df4abbdf12f6eeb50390e3da564df1c4dd37a65391cd28",
+      "bytes": 379
+    },
+    {
+      "path": "evidence/candidate/releasevault/paths.py",
+      "sha256": "250e7da4fe0d36c4c419de1c30367a79d2ad606df093b0f72fffd3b1c5f92a0b",
+      "bytes": 461
+    },
+    {
+      "path": "evidence/candidate/releasevault/policy.py",
+      "sha256": "0f9008cac031498b529a67de808179d2ebfe6c587ff6df3e3781b56422625e08",
+      "bytes": 497
+    },
+    {
+      "path": "evidence/candidate/releasevault/selection.py",
+      "sha256": "c7979b085ec13503251f4ba73c33583806bdb601d4b03539537eedf93c2ef62f",
+      "bytes": 488
+    },
+    {
+      "path": "evidence/candidate/releasevault/versions.py",
+      "sha256": "21a762a751477d5aeb4b75b98eae6b11efa816c80a9daf9186bd7df51499d5ce",
+      "bytes": 1985
+    },
+    {
+      "path": "evidence/candidate/tests/__init__.py",
+      "sha256": "76869ca11828ed2ccedb6b3c0e1aad3dbe2be5e219166dcfdd8fdb785968335a",
+      "bytes": 45
+    },
+    {
+      "path": "evidence/candidate/tests/test_catalog.py",
+      "sha256": "5de39900741e1e10a24692d716b5f1b26e1dcd17e66dbccb5965f4747be5a232",
+      "bytes": 2065
+    },
+    {
+      "path": "evidence/candidate/tests/test_versions.py",
+      "sha256": "a1ca854ca63fc1e898024cc07c2b872b8bc06bce7ee3ea0d7a4f8236b9a8b2c5",
+      "bytes": 841
+    },
+    {
+      "path": "evidence/candidate-hashes.json",
+      "sha256": "a2cde29617bd0bad3cf2a335316973a0ad80d26a7f45e24c2958d01c9b033fa8",
+      "bytes": 1699
+    },
+    {
+      "path": "evidence/ENTERED.json",
+      "sha256": "93a4f3cbe4ce8c830ba6c56e71a657f93c63b3a3a9fffda5eec33a7578b8280e",
+      "bytes": 132
+    },
+    {
+      "path": "evidence/initial-prompt.json",
+      "sha256": "7493061c0d0917eb00c009af00491b41cd12524edff01a1df69150e0ddb4739f",
+      "bytes": 2282
+    },
+    {
+      "path": "evidence/launch-intent.json",
+      "sha256": "3e26b37c31690767452d28a3cbb853388aba42f30215d48901afe08e325e8023",
+      "bytes": 368
+    },
+    {
+      "path": "evidence/launch-result.json",
+      "sha256": "f65933c8546d2e38f457aee379feff0233da8088a0de51081f998260b9f5f6c1",
+      "bytes": 526
+    },
+    {
+      "path": "evidence/launch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/launch.stdout",
+      "sha256": "f15205a3548cbff8dcf42d2ec2e48f4127e21afec16c7053f50315f31cf7d6c7",
+      "bytes": 150
+    },
+    {
+      "path": "evidence/outcome.json",
+      "sha256": "8cdc1470be268a7600bca10311b4a243e195ae187a28a6e2fc326ae16be809c4",
+      "bytes": 23398
+    },
+    {
+      "path": "evidence/prepare-records.json",
+      "sha256": "a14acc1e1a16b8e426f690142285c122686cb22d35c466bd2c33230dd9a40423",
+      "bytes": 12486
+    },
+    {
+      "path": "evidence/request-1-entry.json",
+      "sha256": "ff49a3eac45b510732e97c2afd8897be39c63a7b3e0f61eb48006f08391bb250",
+      "bytes": 4921
+    },
+    {
+      "path": "evidence/request-1-outcome.json",
+      "sha256": "002ecc66afaef3e042f1777421f7671b439aa56af3bfecd2c110938740760b58",
+      "bytes": 5694
+    },
+    {
+      "path": "evidence/request-1.json",
+      "sha256": "06a4c6dbf6091fc473380ea7dd3491d773380b238cd39025212834fac26a1164",
+      "bytes": 4889
+    },
+    {
+      "path": "evidence/request-2-entry.json",
+      "sha256": "9634a062848a46085903e117e6203225c04cd1d6be749f487418567dc064e1b1",
+      "bytes": 8779
+    },
+    {
+      "path": "evidence/request-2-outcome.json",
+      "sha256": "a299f18bf46941226c78e853f6def4c5ad0e33deaae1300cc90630568d12bfd6",
+      "bytes": 9815
+    },
+    {
+      "path": "evidence/request-2.json",
+      "sha256": "b5170665362cf8b6d51e7ee97f7c2274e14990a621a3cdf3edff0e6cbf49a7dc",
+      "bytes": 8747
+    },
+    {
+      "path": "evidence/request-3-entry.json",
+      "sha256": "a3140c3b04d7f6f24f8c36f5b3c7ae8206be365be60c3b5ca0a1bd6d9e8fe3c7",
+      "bytes": 15420
+    },
+    {
+      "path": "evidence/request-3-outcome.json",
+      "sha256": "dc72dedb439e410b37e1ecbefeb86c08133148ebfb29840ac11ca434e2d138eb",
+      "bytes": 16860
+    },
+    {
+      "path": "evidence/request-3.json",
+      "sha256": "d2d283f303be7314fff82aa5115cd1998f7dd0767da49c4d80b01de29a123c1a",
+      "bytes": 15388
+    },
+    {
+      "path": "evidence/request-4-entry.json",
+      "sha256": "94b3e48a0ef00c79adbc95c28274a5ea77ac063c26502dec8be9cf3a4ab22695",
+      "bytes": 20844
+    },
+    {
+      "path": "evidence/request-4-outcome.json",
+      "sha256": "6e4d8b3851b7df337b5ea5a2bd8d33028fff8d3c56ec9616d21471eb99851103",
+      "bytes": 22064
+    },
+    {
+      "path": "evidence/request-4.json",
+      "sha256": "18dda0a2eadb94def828040de1781aed6784f1c5bc7e7c27f8818c1a8b05c27f",
+      "bytes": 20812
+    },
+    {
+      "path": "evidence/request-5-entry.json",
+      "sha256": "ebab8804ce703b635cc1f2804d91927f2d83f8c3ce094efe9eb15d0be2de0f13",
+      "bytes": 27105
+    },
+    {
+      "path": "evidence/request-5-outcome.json",
+      "sha256": "e6b6b063e00f536096956f22d62d00528c9d37920f7b801424116e62efe879f7",
+      "bytes": 29591
+    },
+    {
+      "path": "evidence/request-5.json",
+      "sha256": "29b25e1ca85dccb94cc009fc7c6838d64e4fad174d7a0d066e1ff7cb6530ccf1",
+      "bytes": 27073
+    },
+    {
+      "path": "evidence/worker-result.json",
+      "sha256": "67402de9949bb687a9dfff5cfad0f727474113aeb5a81a3ad9022734112edd66",
+      "bytes": 206885
+    },
+    {
+      "path": "fixture/acceptance.py",
+      "sha256": "e6fdcc2e6c8831e3af81eb181c4425ceeb19b257cd0e671e19863fdac9fd9869",
+      "bytes": 292
+    },
+    {
+      "path": "fixture/docs/architecture.md",
+      "sha256": "e643994f69579ef161d04f460d152aad23299b2d70b20f2eacb83d7688f728c0",
+      "bytes": 536
+    },
+    {
+      "path": "fixture/pyproject.toml",
+      "sha256": "ce56588d3faf5abc5d5d4c36bbc7d18ff3e63355857d9ce8d31766616323d17f",
+      "bytes": 103
+    },
+    {
+      "path": "fixture/README.md",
+      "sha256": "1aa4aa2302d9094395f8c35bea42c62ebd34b65d6b39c78cbf55f4ef2f53e0ba",
+      "bytes": 1048
+    },
+    {
+      "path": "fixture/releasevault/__init__.py",
+      "sha256": "0f1f3fc08d7a3fa4526519f1d21099b0e07fb32039ab3d0e5b58f6ced9f65625",
+      "bytes": 150
+    },
+    {
+      "path": "fixture/releasevault/cache.py",
+      "sha256": "cf3cbe5027b3240de7fcbd60451768cfa07b8891f6a3c1e7e63fc5b200a674fe",
+      "bytes": 276
+    },
+    {
+      "path": "fixture/releasevault/catalog.py",
+      "sha256": "d9846837353645126c0abb20080b941d1d973589f5b463e0c511703a14b7ceb7",
+      "bytes": 812
+    },
+    {
+      "path": "fixture/releasevault/cli.py",
+      "sha256": "06efd93f9485b96a84b057f4ef8f68253fcacef9ddb75c605e03061f928e79a5",
+      "bytes": 500
+    },
+    {
+      "path": "fixture/releasevault/display.py",
+      "sha256": "1167e924bbef3a9bc5aab0914763fb570654ee468ac303108dd78e6caa47cf30",
+      "bytes": 374
+    },
+    {
+      "path": "fixture/releasevault/manifest.py",
+      "sha256": "ec6ad079ff872bb76ddafc54a42d15c0422803e293a754262d1653a1020f0eec",
+      "bytes": 446
+    },
+    {
+      "path": "fixture/releasevault/models.py",
+      "sha256": "3cfa4b0d4769b55cf3df4abbdf12f6eeb50390e3da564df1c4dd37a65391cd28",
+      "bytes": 379
+    },
+    {
+      "path": "fixture/releasevault/paths.py",
+      "sha256": "250e7da4fe0d36c4c419de1c30367a79d2ad606df093b0f72fffd3b1c5f92a0b",
+      "bytes": 461
+    },
+    {
+      "path": "fixture/releasevault/policy.py",
+      "sha256": "0f9008cac031498b529a67de808179d2ebfe6c587ff6df3e3781b56422625e08",
+      "bytes": 497
+    },
+    {
+      "path": "fixture/releasevault/selection.py",
+      "sha256": "c7979b085ec13503251f4ba73c33583806bdb601d4b03539537eedf93c2ef62f",
+      "bytes": 488
+    },
+    {
+      "path": "fixture/releasevault/versions.py",
+      "sha256": "8056b456db21aada8fa2d664712b4f01f8a6a050ebcc54d67b98688910ea32fd",
+      "bytes": 1348
+    },
+    {
+      "path": "fixture/tests/__init__.py",
+      "sha256": "76869ca11828ed2ccedb6b3c0e1aad3dbe2be5e219166dcfdd8fdb785968335a",
+      "bytes": 45
+    },
+    {
+      "path": "fixture/tests/test_catalog.py",
+      "sha256": "5de39900741e1e10a24692d716b5f1b26e1dcd17e66dbccb5965f4747be5a232",
+      "bytes": 2065
+    },
+    {
+      "path": "fixture/tests/test_versions.py",
+      "sha256": "a1ca854ca63fc1e898024cc07c2b872b8bc06bce7ee3ea0d7a4f8236b9a8b2c5",
+      "bytes": 841
+    },
+    {
+      "path": "freeze.json",
+      "sha256": "536ed73e0c70578f71aa4c79de40659ab536c9c3fb30d2f0c93a68fe9517b714",
+      "bytes": 48782
+    },
+    {
+      "path": "host.py",
+      "sha256": "c9f64898dda2212bd5fa00075d0c3478ce55424db6b21fea1881b343e85bb259",
+      "bytes": 28240
+    },
+    {
+      "path": "objective.md",
+      "sha256": "cfc35625b5f690cec3c0b7166b942e31a890e4011bb350fe857686260dba4ead",
+      "bytes": 2229
+    },
+    {
+      "path": "oracle.py",
+      "sha256": "aada4aae842e1a0f0979f0ce85af451d3b91fd7e382e3e41434d37d0c13e6259",
+      "bytes": 8239
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "32a61453e4bcbd3c324e590256dcaa4bc006716fafbb1dc89c4119a65291a9ff",
+      "bytes": 10136
+    },
+    {
+      "path": "support.py",
+      "sha256": "40f54d65f20683041ab6a84b23f5b2bff171a4c1f60e9274e8f8ee56089bf548",
+      "bytes": 9238
+    },
+    {
+      "path": "verify.py",
+      "sha256": "b1100798c7bbeb6dddf3948a1d3d031bd518dfe28332422a1eb68d53462e475e",
+      "bytes": 8781
+    }
+  ],
+  "source_documents": [
+    "REPORT.md",
+    "freeze.json",
+    "objective.md"
+  ],
+  "primary_attempts": 1,
+  "inference_calls": 5,
+  "originals_retained": true,
+  "restoration": "Verify exact retained bytes. verify.py --grade invokes only frozen oracles. Inference needs separate linked-case authorization; do not delete entry markers or overwrite frozen results.",
+  "retention_reason": "Complete authored fixture, protocol, oracle/reference controls, model requests/responses, exact candidate, command/provenance observations and independent grade; no private conversations or environment analytics."
+}

@@ -1,0 +1,827 @@
+{
+  "schema": "local-coding-dogfood-freeze-v2",
+  "at": "2026-10-28T15:51:43.463681+00:00",
+  "canonical_main": "559ad49033e0d2389b68fa321cee870506e814aa",
+  "task_root": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-local-coding-case2-h7ftc8lq",
+  "task_revision": "38ea4c43f8f0633f6ccf3bcaea1ff937614121d1",
+  "repository_id": "9565453f-b103-487f-b476-660d04104c11",
+  "snapshot_id": "cc0e6aaa68428ff9bdfd1393e5e2b7596df63216bd2c1ceb0a01ee9735a5118c",
+  "source_snapshot": {
+    "id": {
+      "value": "cc0e6aaa68428ff9bdfd1393e5e2b7596df63216bd2c1ceb0a01ee9735a5118c"
+    },
+    "repository_id": {
+      "value": {
+        "value": "9565453f-b103-487f-b476-660d04104c11"
+      }
+    },
+    "resources": [
+      {
+        "address": {
+          "value": "README.md"
+        },
+        "content_identity": {
+          "value": "e151223e5d4b516dd4ccd0fe4ed782b8655d6a9716bc0d95cfa3ad3cb84895b5"
+        },
+        "content": "# Releasevault\n\nCatalogs preserve publication order and immutable Artifact identities. Catalog.choose\nselects the newest eligible artifact for an exact project and normalized platform.\nPreview inclusion is caller policy; disabled/invalid records are not eligible.\nCatalog.versions displays accepted version strings in ascending precedence.\n\nVersions use strict SemVer 2 syntax, not Python package-version syntax. Major,\nminor and patch compare numerically. Stable versions outrank prereleases at the\nsame core version. Prerelease identifiers compare left to right: numeric values\nnumerically, numeric identifiers below nonnumeric identifiers, other identifiers\nby ASCII lexical order; a matching shorter sequence precedes a longer one.\nBuild metadata is ignored for precedence. Equal-precedence records retain input\norder, and choose returns the first eligible original object among ties.\n\nRuntime is standard-library only. The catalog's strict syntax, public signatures,\neligibility, interchange and snapshot ownership remain supported contracts.\n",
+        "encoding": "utf-8",
+        "byte_size": 1048
+      },
+      {
+        "address": {
+          "value": "acceptance.py"
+        },
+        "content_identity": {
+          "value": "5b0d0c5d40abf96dfac4180f241e8d04337bc35c2cd835025d9403607f004f7d"
+        },
+        "content": "\"\"\"Host-fixed focused tests; this entry point is read-only to the model.\"\"\"\n\nimport unittest\n\nif __name__ == \"__main__\":\n    result = unittest.TextTestRunner(verbosity=2).run(\n        unittest.defaultTestLoader.discover(\"tests\")\n    )\n    raise SystemExit(0 if result.wasSuccessful() else 1)\n",
+        "encoding": "utf-8",
+        "byte_size": 292
+      },
+      {
+        "address": {
+          "value": "docs/architecture.md"
+        },
+        "content_identity": {
+          "value": "31d73876b7bb971171cf2db7251085ece6d6c17761e881322c44a1ef7f30a04d"
+        },
+        "content": "# Package contracts\n\nCatalog is the public facade. Manifest decoding and cache snapshots retain source\norder. Selection combines eligibility with shared version ordering. Presentation\nuses the same version semantics. Paths and CLI presentation have no network or\nfilesystem effects. Parsing accepts the catalog's strict language and rejects\nunsupported version forms. Sorting keys are process-local, not persisted schema.\n\nTests are fixed requirements. Do not change test, configuration or documentation\nfiles to make a candidate pass.\n",
+        "encoding": "utf-8",
+        "byte_size": 536
+      },
+      {
+        "address": {
+          "value": "pyproject.toml"
+        },
+        "content_identity": {
+          "value": "2917a1d06be32a3b3a6b5346196a69fecae5d95efd5d0f55c1865b3f2732de48"
+        },
+        "content": "[project]\nname = \"releasevault-fixture\"\nversion = \"0.1.0\"\nrequires-python = \">=3.12\"\ndependencies = []\n",
+        "encoding": "utf-8",
+        "byte_size": 103
+      },
+      {
+        "address": {
+          "value": "releasevault/__init__.py"
+        },
+        "content_identity": {
+          "value": "549649040050bba20bc82cb6f292e09910139087f1cd0cdcc8d5bc9d94ad5219"
+        },
+        "content": "\"\"\"Release catalog client and its immutable records.\"\"\"\n\nfrom .catalog import Catalog\nfrom .models import Artifact\n\n__all__ = [\"Artifact\", \"Catalog\"]\n",
+        "encoding": "utf-8",
+        "byte_size": 150
+      },
+      {
+        "address": {
+          "value": "releasevault/cache.py"
+        },
+        "content_identity": {
+          "value": "bfe9d3305887bfd8ad61a8bfcde9735619d0bc32494c56dac7924d639c40e087"
+        },
+        "content": "\"\"\"Immutable source-order snapshots; no release policy is applied here.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass CatalogSnapshot:\n    records: tuple\n\n    def projects(self):\n        return tuple(dict.fromkeys(row.project for row in self.records))\n",
+        "encoding": "utf-8",
+        "byte_size": 276
+      },
+      {
+        "address": {
+          "value": "releasevault/catalog.py"
+        },
+        "content_identity": {
+          "value": "d2887c65fd5b657a8e647c4e311927f0ffa999af1476807469d757961f05d681"
+        },
+        "content": "\"\"\"Public client API over a retained catalog snapshot.\"\"\"\n\nfrom .cache import CatalogSnapshot\nfrom .display import ordered_versions\nfrom .manifest import decode_manifest\nfrom .selection import choose_release\n\n\nclass Catalog:\n    def __init__(self, records):\n        self.snapshot = CatalogSnapshot(tuple(records))\n\n    @classmethod\n    def from_manifest(cls, text):\n        return cls(decode_manifest(text))\n\n    def choose(self, project, platform, *, include_previews=False):\n        return choose_release(\n            self.snapshot.records,\n            project=project,\n            platform=platform,\n            include_previews=include_previews,\n        )\n\n    def versions(self, project):\n        return ordered_versions(\n            row for row in self.snapshot.records if row.project == project\n        )\n",
+        "encoding": "utf-8",
+        "byte_size": 812
+      },
+      {
+        "address": {
+          "value": "releasevault/cli.py"
+        },
+        "content_identity": {
+          "value": "57d8e642074007177700d619acff2933bc187ed81e0246774b01c81e65382bfb"
+        },
+        "content": "\"\"\"A side-effect-free command projection used by an external UI.\"\"\"\n\nfrom .paths import artifact_filename\n\n\ndef selection_summary(catalog, project, platform, *, include_previews=False):\n    selected = catalog.choose(project, platform, include_previews=include_previews)\n    if selected is None:\n        return {\"status\": \"unavailable\"}\n    return {\n        \"status\": \"selected\",\n        \"version\": selected.version,\n        \"uri\": selected.uri,\n        \"filename\": artifact_filename(selected),\n    }\n",
+        "encoding": "utf-8",
+        "byte_size": 500
+      },
+      {
+        "address": {
+          "value": "releasevault/display.py"
+        },
+        "content_identity": {
+          "value": "8ef62e22262278d88e52241a805cd5f60999972dd7dfa02f90f50b59eac5321c"
+        },
+        "content": "\"\"\"Version display ordering shares catalog version semantics.\"\"\"\n\nfrom .versions import parse_version, version_order\n\n\ndef ordered_versions(records):\n    valid = []\n    for row in records:\n        try:\n            parse_version(row.version)\n        except ValueError:\n            continue\n        valid.append(row.version)\n    return tuple(sorted(valid, key=version_order))\n",
+        "encoding": "utf-8",
+        "byte_size": 374
+      },
+      {
+        "address": {
+          "value": "releasevault/manifest.py"
+        },
+        "content_identity": {
+          "value": "e6e9b12a515d0f02470b47bd132f73f6790b87d33637ef31510af98781605efb"
+        },
+        "content": "\"\"\"Catalog interchange; published record order is retained.\"\"\"\n\nimport json\nfrom dataclasses import asdict\n\nfrom .models import Artifact\n\n\ndef decode_manifest(text):\n    rows = json.loads(text)\n    if not isinstance(rows, list):\n        raise ValueError(\"manifest must contain an array\")\n    return tuple(Artifact(**row) for row in rows)\n\n\ndef encode_manifest(records):\n    return json.dumps([asdict(row) for row in records], ensure_ascii=False)\n",
+        "encoding": "utf-8",
+        "byte_size": 446
+      },
+      {
+        "address": {
+          "value": "releasevault/models.py"
+        },
+        "content_identity": {
+          "value": "ddabcf6641933dcddde698f418b9864d08c8cacc00d4d209e4045f1824f1602d"
+        },
+        "content": "\"\"\"Repository-independent catalog data.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass Artifact:\n    project: str\n    platform: str\n    version: str\n    uri: str\n    enabled: bool = True\n\n    def __post_init__(self):\n        if not self.project or not self.platform or not self.uri:\n            raise ValueError(\"artifact identity fields must be present\")\n",
+        "encoding": "utf-8",
+        "byte_size": 379
+      },
+      {
+        "address": {
+          "value": "releasevault/paths.py"
+        },
+        "content_identity": {
+          "value": "f8b7e762f65f3ccc3cf8ba36c7bbc15aedb25b652e165ac0a98b3c9dd3b331de"
+        },
+        "content": "\"\"\"Safe presentation names for a selected artifact; no download side effects.\"\"\"\n\nimport re\n\n\ndef artifact_filename(artifact):\n    if not re.fullmatch(r\"[A-Za-z0-9_-]+\", artifact.project):\n        raise ValueError(\"unsafe project filename\")\n    suffix = artifact.platform.strip().casefold()\n    if not re.fullmatch(r\"[A-Za-z0-9_-]+\", suffix):\n        raise ValueError(\"unsafe platform filename\")\n    return f\"{artifact.project}-{artifact.version}-{suffix}.pkg\"\n",
+        "encoding": "utf-8",
+        "byte_size": 461
+      },
+      {
+        "address": {
+          "value": "releasevault/policy.py"
+        },
+        "content_identity": {
+          "value": "1102457d1cf54ca33bd17e100508d96706495af88f866811ef94bdb7e1a255f1"
+        },
+        "content": "\"\"\"Eligibility is distinct from ordering eligible releases.\"\"\"\n\nfrom .versions import parse_version\n\n\ndef eligible(artifact, *, project, platform, include_previews):\n    if not artifact.enabled or artifact.project != project:\n        return False\n    if artifact.platform.strip().casefold() != platform.strip().casefold():\n        return False\n    try:\n        parts = parse_version(artifact.version)\n    except ValueError:\n        return False\n    return include_previews or not parts.prerelease\n",
+        "encoding": "utf-8",
+        "byte_size": 497
+      },
+      {
+        "address": {
+          "value": "releasevault/selection.py"
+        },
+        "content_identity": {
+          "value": "70fa2d3a2e49afc31c454da620d990a9d06f35751b788db3170020e8b83bc39e"
+        },
+        "content": "\"\"\"Select from catalog records without modifying their order or ownership.\"\"\"\n\nfrom .policy import eligible\nfrom .versions import version_order\n\n\ndef choose_release(records, *, project, platform, include_previews=False):\n    candidates = (\n        row\n        for row in records\n        if eligible(\n            row, project=project, platform=platform, include_previews=include_previews\n        )\n    )\n    return max(candidates, key=lambda row: version_order(row.version), default=None)\n",
+        "encoding": "utf-8",
+        "byte_size": 488
+      },
+      {
+        "address": {
+          "value": "releasevault/versions.py"
+        },
+        "content_identity": {
+          "value": "0cc46333726c679f6a78ce1f4a2ce7b028b9f8b7e5a24bbce832eb8f429d1e60"
+        },
+        "content": "\"\"\"Strict catalog version syntax and shared ordering values.\"\"\"\n\nimport re\nfrom dataclasses import dataclass\n\n_VERSION = re.compile(\n    r\"(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\"\n    r\"(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?\"\n    r\"(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?\"\n)\n\n\n@dataclass(frozen=True)\nclass VersionParts:\n    major: int\n    minor: int\n    patch: int\n    prerelease: tuple[str, ...]\n    build: tuple[str, ...]\n\n\ndef parse_version(text: str) -> VersionParts:\n    match = _VERSION.fullmatch(text)\n    if match is None:\n        raise ValueError(\"catalog versions require strict major.minor.patch syntax\")\n    major, minor, patch, preview, build = match.groups()\n    identifiers = tuple(preview.split(\".\")) if preview else ()\n    if any(\n        part.isdecimal() and len(part) > 1 and part.startswith(\"0\")\n        for part in identifiers\n    ):\n        raise ValueError(\"numeric prerelease identifiers cannot have leading zeroes\")\n    return VersionParts(\n        int(major),\n        int(minor),\n        int(patch),\n        identifiers,\n        tuple(build.split(\".\")) if build else (),\n    )\n\n\ndef version_order(text: str) -> tuple:\n    \"\"\"Return a sortable ordering key for one accepted catalog version.\"\"\"\n    parts = parse_version(text)\n    return parts.major, parts.minor, parts.patch, parts.prerelease, parts.build\n",
+        "encoding": "utf-8",
+        "byte_size": 1348
+      },
+      {
+        "address": {
+          "value": "tests/__init__.py"
+        },
+        "content_identity": {
+          "value": "5ec425e3f26daf345ae8965e3b341fce48810838574d1436a6913f58f6a1bcdc"
+        },
+        "content": "\"\"\"Fixed focused acceptance requirements.\"\"\"\n",
+        "encoding": "utf-8",
+        "byte_size": 45
+      },
+      {
+        "address": {
+          "value": "tests/test_catalog.py"
+        },
+        "content_identity": {
+          "value": "d2c216eb128de1dd574818bef535498bfcddc0a2d6993631358154a4099002be"
+        },
+        "content": "import unittest\n\nfrom releasevault import Artifact as A\nfrom releasevault import Catalog\nfrom releasevault.cli import selection_summary\nfrom releasevault.manifest import decode_manifest, encode_manifest\n\n\ndef row(version, uri=None, **kwargs):\n    return A(\n        kwargs.get(\"project\", \"paint\"),\n        kwargs.get(\"platform\", \"linux\"),\n        version,\n        uri or version,\n        kwargs.get(\"enabled\", True),\n    )\n\n\nclass CatalogTests(unittest.TestCase):\n    def test_stable_outranks_preview(self):\n        stable, preview = row(\"2.0.0\"), row(\"2.0.0-rc.9\")\n        self.assertIs(\n            Catalog([preview, stable]).choose(\"paint\", \"linux\", include_previews=True),\n            stable,\n        )\n\n    def test_numeric_preview_precedence(self):\n        earlier, later = row(\"2.0.0-rc.2\"), row(\"2.0.0-rc.10\")\n        self.assertIs(\n            Catalog([earlier, later]).choose(\"paint\", \"linux\", include_previews=True),\n            later,\n        )\n\n    def test_build_metadata_tie_preserves_first(self):\n        first, second = row(\"1.5.0+aaa\"), row(\"1.5.0+zzz\")\n        original = [first, second]\n        self.assertIs(Catalog(original).choose(\"paint\", \"linux\"), first)\n        self.assertEqual(original, [first, second])\n\n    def test_existing_eligibility(self):\n        good = row(\"1.2.0\")\n        rows = [\n            row(\"9.0.0\", enabled=False),\n            row(\"8.0.0\", project=\"other\"),\n            row(\"7.0.0\", platform=\"mac\"),\n            row(\"6.0.0-rc.1\"),\n            row(\"bad\"),\n            good,\n        ]\n        self.assertIs(Catalog(rows).choose(\"paint\", \" LINUX \"), good)\n\n    def test_interchange_and_ui(self):\n        original = (row(\"1.0.0\"), row(\"1.1.0\"))\n        catalog = Catalog.from_manifest(encode_manifest(original))\n        self.assertEqual(decode_manifest(encode_manifest(original)), original)\n        self.assertEqual(\n            selection_summary(catalog, \"paint\", \"linux\")[\"version\"], \"1.1.0\"\n        )\n        self.assertEqual(\n            selection_summary(catalog, \"absent\", \"linux\"), {\"status\": \"unavailable\"}\n        )\n",
+        "encoding": "utf-8",
+        "byte_size": 2065
+      },
+      {
+        "address": {
+          "value": "tests/test_versions.py"
+        },
+        "content_identity": {
+          "value": "1f4bd3b9027d8554eaabf5ae8c382354918426fee2804bbb6f73e592970be4a9"
+        },
+        "content": "import unittest\n\nfrom releasevault import Artifact, Catalog\nfrom releasevault.versions import parse_version, version_order\n\n\nclass VersionTests(unittest.TestCase):\n    def test_presentation_uses_shared_precedence(self):\n        versions = [\"1.0.0\", \"1.0.0-rc.10\", \"1.0.0-rc.2\"]\n        records = [Artifact(\"paint\", \"linux\", v, v) for v in versions]\n        self.assertEqual(\n            Catalog(records).versions(\"paint\"), (\"1.0.0-rc.2\", \"1.0.0-rc.10\", \"1.0.0\")\n        )\n\n    def test_strict_parser_and_core_numeric_order(self):\n        for invalid in (\"1.0\", \"01.0.0\", \"v1.0.0\", \"1.0.0-01\"):\n            with self.assertRaises(ValueError):\n                parse_version(invalid)\n            with self.assertRaises(ValueError):\n                version_order(invalid)\n        self.assertLess(version_order(\"1.9.0\"), version_order(\"1.10.0\"))\n",
+        "encoding": "utf-8",
+        "byte_size": 841
+      }
+    ]
+  },
+  "files": {
+    "fixture/acceptance.py": "e6fdcc2e6c8831e3af81eb181c4425ceeb19b257cd0e671e19863fdac9fd9869",
+    "fixture/docs/architecture.md": "e643994f69579ef161d04f460d152aad23299b2d70b20f2eacb83d7688f728c0",
+    "fixture/README.md": "1aa4aa2302d9094395f8c35bea42c62ebd34b65d6b39c78cbf55f4ef2f53e0ba",
+    "fixture/releasevault/__init__.py": "0f1f3fc08d7a3fa4526519f1d21099b0e07fb32039ab3d0e5b58f6ced9f65625",
+    "fixture/releasevault/cache.py": "cf3cbe5027b3240de7fcbd60451768cfa07b8891f6a3c1e7e63fc5b200a674fe",
+    "fixture/releasevault/catalog.py": "d9846837353645126c0abb20080b941d1d973589f5b463e0c511703a14b7ceb7",
+    "fixture/releasevault/cli.py": "06efd93f9485b96a84b057f4ef8f68253fcacef9ddb75c605e03061f928e79a5",
+    "fixture/releasevault/display.py": "1167e924bbef3a9bc5aab0914763fb570654ee468ac303108dd78e6caa47cf30",
+    "fixture/releasevault/manifest.py": "ec6ad079ff872bb76ddafc54a42d15c0422803e293a754262d1653a1020f0eec",
+    "fixture/releasevault/models.py": "3cfa4b0d4769b55cf3df4abbdf12f6eeb50390e3da564df1c4dd37a65391cd28",
+    "fixture/releasevault/paths.py": "250e7da4fe0d36c4c419de1c30367a79d2ad606df093b0f72fffd3b1c5f92a0b",
+    "fixture/releasevault/policy.py": "0f9008cac031498b529a67de808179d2ebfe6c587ff6df3e3781b56422625e08",
+    "fixture/releasevault/selection.py": "c7979b085ec13503251f4ba73c33583806bdb601d4b03539537eedf93c2ef62f",
+    "fixture/releasevault/versions.py": "8056b456db21aada8fa2d664712b4f01f8a6a050ebcc54d67b98688910ea32fd",
+    "fixture/tests/__init__.py": "76869ca11828ed2ccedb6b3c0e1aad3dbe2be5e219166dcfdd8fdb785968335a",
+    "fixture/tests/test_catalog.py": "5de39900741e1e10a24692d716b5f1b26e1dcd17e66dbccb5965f4747be5a232",
+    "fixture/tests/test_versions.py": "a1ca854ca63fc1e898024cc07c2b872b8bc06bce7ee3ea0d7a4f8236b9a8b2c5",
+    "host.py": "c9f64898dda2212bd5fa00075d0c3478ce55424db6b21fea1881b343e85bb259",
+    "objective.md": "cfc35625b5f690cec3c0b7166b942e31a890e4011bb350fe857686260dba4ead",
+    "oracle.py": "aada4aae842e1a0f0979f0ce85af451d3b91fd7e382e3e41434d37d0c13e6259",
+    "support.py": "40f54d65f20683041ab6a84b23f5b2bff171a4c1f60e9274e8f8ee56089bf548"
+  },
+  "task_files": {
+    ".gitignore": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+    "acceptance.py": "e6fdcc2e6c8831e3af81eb181c4425ceeb19b257cd0e671e19863fdac9fd9869",
+    "pyproject.toml": "ce56588d3faf5abc5d5d4c36bbc7d18ff3e63355857d9ce8d31766616323d17f",
+    "README.md": "1aa4aa2302d9094395f8c35bea42c62ebd34b65d6b39c78cbf55f4ef2f53e0ba",
+    "docs/architecture.md": "e643994f69579ef161d04f460d152aad23299b2d70b20f2eacb83d7688f728c0",
+    "releasevault/cache.py": "cf3cbe5027b3240de7fcbd60451768cfa07b8891f6a3c1e7e63fc5b200a674fe",
+    "releasevault/catalog.py": "d9846837353645126c0abb20080b941d1d973589f5b463e0c511703a14b7ceb7",
+    "releasevault/cli.py": "06efd93f9485b96a84b057f4ef8f68253fcacef9ddb75c605e03061f928e79a5",
+    "releasevault/display.py": "1167e924bbef3a9bc5aab0914763fb570654ee468ac303108dd78e6caa47cf30",
+    "releasevault/manifest.py": "ec6ad079ff872bb76ddafc54a42d15c0422803e293a754262d1653a1020f0eec",
+    "releasevault/models.py": "3cfa4b0d4769b55cf3df4abbdf12f6eeb50390e3da564df1c4dd37a65391cd28",
+    "releasevault/paths.py": "250e7da4fe0d36c4c419de1c30367a79d2ad606df093b0f72fffd3b1c5f92a0b",
+    "releasevault/policy.py": "0f9008cac031498b529a67de808179d2ebfe6c587ff6df3e3781b56422625e08",
+    "releasevault/selection.py": "c7979b085ec13503251f4ba73c33583806bdb601d4b03539537eedf93c2ef62f",
+    "releasevault/versions.py": "8056b456db21aada8fa2d664712b4f01f8a6a050ebcc54d67b98688910ea32fd",
+    "releasevault/__init__.py": "0f1f3fc08d7a3fa4526519f1d21099b0e07fb32039ab3d0e5b58f6ced9f65625",
+    "tests/test_catalog.py": "5de39900741e1e10a24692d716b5f1b26e1dcd17e66dbccb5965f4747be5a232",
+    "tests/test_versions.py": "a1ca854ca63fc1e898024cc07c2b872b8bc06bce7ee3ea0d7a4f8236b9a8b2c5",
+    "tests/__init__.py": "76869ca11828ed2ccedb6b3c0e1aad3dbe2be5e219166dcfdd8fdb785968335a"
+  },
+  "prompt_sha256": "7493061c0d0917eb00c009af00491b41cd12524edff01a1df69150e0ddb4739f",
+  "available_resources": [
+    "acceptance.py",
+    "docs/architecture.md",
+    "pyproject.toml",
+    "README.md",
+    "releasevault/__init__.py",
+    "releasevault/cache.py",
+    "releasevault/catalog.py",
+    "releasevault/cli.py",
+    "releasevault/display.py",
+    "releasevault/manifest.py",
+    "releasevault/models.py",
+    "releasevault/paths.py",
+    "releasevault/policy.py",
+    "releasevault/selection.py",
+    "releasevault/versions.py",
+    "tests/__init__.py",
+    "tests/test_catalog.py",
+    "tests/test_versions.py"
+  ],
+  "editable": [
+    "releasevault/__init__.py",
+    "releasevault/cache.py",
+    "releasevault/catalog.py",
+    "releasevault/cli.py",
+    "releasevault/display.py",
+    "releasevault/manifest.py",
+    "releasevault/models.py",
+    "releasevault/paths.py",
+    "releasevault/policy.py",
+    "releasevault/selection.py",
+    "releasevault/versions.py"
+  ],
+  "required_source_witnesses": null,
+  "service": {
+    "profile": {
+      "model": {
+        "repository": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+        "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+      },
+      "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "quant": "Unsloth Dynamic IQ4_XS",
+      "context_size": 32768,
+      "n_cpu_ffn": 0,
+      "gpu_layers": "all",
+      "flash_attention": "on",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "parallel_sequences": 1,
+      "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+    },
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "endpoint": "http://127.0.0.1:8080",
+    "served_model": "qwen38-local",
+    "available_models": [
+      "qwen38-local"
+    ],
+    "context": 32768,
+    "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+  },
+  "limits": {
+    "model_calls": 6,
+    "proposals": 3,
+    "repair_opportunities": 2,
+    "acquisition_actions": 16,
+    "call_seconds": 180,
+    "agent_wall_seconds": 1080,
+    "outer_wall_seconds": 1200,
+    "input_tokens": 28160,
+    "output_tokens": 4096,
+    "prompt_bytes": 32768,
+    "disclosure_bytes": 8192,
+    "source_bytes": 32768,
+    "region_bytes": 4096,
+    "aggregate_bytes": 8192,
+    "operations": 2
+  },
+  "settings": {
+    "thinking_enabled": false,
+    "maximum_output_tokens": 4096,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    }
+  },
+  "tools": [
+    "list_repository",
+    "search_source",
+    "read_source",
+    "replace_source",
+    "validate_candidate",
+    "inspect_and_validate_change"
+  ],
+  "baseline": {
+    "status": "failed",
+    "before": {
+      "root": {
+        "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-case2-h7ftc8lq"
+      },
+      "revision": "38ea4c43f8f0633f6ccf3bcaea1ff937614121d1",
+      "changes": [],
+      "stable": true
+    },
+    "after": {
+      "root": {
+        "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-case2-h7ftc8lq"
+      },
+      "revision": "38ea4c43f8f0633f6ccf3bcaea1ff937614121d1",
+      "changes": [],
+      "stable": true
+    },
+    "checks": [
+      {
+        "name": "focused-acceptance",
+        "status": "failed",
+        "result": {
+          "check": {
+            "name": "focused-acceptance",
+            "command": {
+              "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "arguments": [
+                "-B",
+                "acceptance.py"
+              ],
+              "working_directory": {
+                "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-case2-h7ftc8lq"
+              },
+              "timeout": {
+                "value": "0:00:30"
+              },
+              "stdin": null,
+              "environment": null,
+              "success_exit_codes": "frozenset({0})"
+            }
+          },
+          "command_result": {
+            "command": {
+              "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+              "arguments": [
+                "-B",
+                "acceptance.py"
+              ],
+              "working_directory": {
+                "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-case2-h7ftc8lq"
+              },
+              "timeout": {
+                "value": "0:00:30"
+              },
+              "stdin": null,
+              "environment": null,
+              "success_exit_codes": "frozenset({0})"
+            },
+            "exit_code": 1,
+            "stdout": "b''",
+            "stderr": "b'test_build_metadata_tie_preserves_first (test_catalog.CatalogTests.test_build_metadata_tie_preserves_first) ... FAIL\\r\\ntest_existing_eligibility (test_catalog.CatalogTests.test_existing_eligibility) ... ok\\r\\ntest_interchange_and_ui (test_catalog.CatalogTests.test_interchange_and_ui) ... ok\\r\\ntest_numeric_preview_precedence (test_catalog.CatalogTests.test_numeric_preview_precedence) ... FAIL\\r\\ntest_stable_outranks_preview (test_catalog.CatalogTests.test_stable_outranks_preview) ... FAIL\\r\\ntest_presentation_uses_shared_precedence (test_versions.VersionTests.test_presentation_uses_shared_precedence) ... FAIL\\r\\ntest_strict_parser_and_core_numeric_order (test_versions.VersionTests.test_strict_parser_and_core_numeric_order) ... ok\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_build_metadata_tie_preserves_first (test_catalog.CatalogTests.test_build_metadata_tie_preserves_first)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-case2-h7ftc8lq\\\\tests\\\\test_catalog.py\", line 37, in test_build_metadata_tie_preserves_first\\r\\n    self.assertIs(Catalog(original).choose(\"paint\", \"linux\"), first)\\r\\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\nAssertionError: Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'1.5.0+zzz\\', uri=\\'1.5.0+zzz\\', enabled=True) is not Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'1.5.0+aaa\\', uri=\\'1.5.0+aaa\\', enabled=True)\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_numeric_preview_precedence (test_catalog.CatalogTests.test_numeric_preview_precedence)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-case2-h7ftc8lq\\\\tests\\\\test_catalog.py\", line 29, in test_numeric_preview_precedence\\r\\n    self.assertIs(\\r\\n    ~~~~~~~~~~~~~^\\r\\n        Catalog([earlier, later]).choose(\"paint\", \"linux\", include_previews=True),\\r\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n        later,\\r\\n        ^^^^^^\\r\\n    )\\r\\n    ^\\r\\nAssertionError: Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'2.0.0-rc.2\\', uri=\\'2.0.0-rc.2\\', enabled=True) is not Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'2.0.0-rc.10\\', uri=\\'2.0.0-rc.10\\', enabled=True)\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_stable_outranks_preview (test_catalog.CatalogTests.test_stable_outranks_preview)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-case2-h7ftc8lq\\\\tests\\\\test_catalog.py\", line 22, in test_stable_outranks_preview\\r\\n    self.assertIs(\\r\\n    ~~~~~~~~~~~~~^\\r\\n        Catalog([preview, stable]).choose(\"paint\", \"linux\", include_previews=True),\\r\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n        stable,\\r\\n        ^^^^^^^\\r\\n    )\\r\\n    ^\\r\\nAssertionError: Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'2.0.0-rc.9\\', uri=\\'2.0.0-rc.9\\', enabled=True) is not Artifact(project=\\'paint\\', platform=\\'linux\\', version=\\'2.0.0\\', uri=\\'2.0.0\\', enabled=True)\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_presentation_uses_shared_precedence (test_versions.VersionTests.test_presentation_uses_shared_precedence)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-case2-h7ftc8lq\\\\tests\\\\test_versions.py\", line 11, in test_presentation_uses_shared_precedence\\r\\n    self.assertEqual(\\r\\n    ~~~~~~~~~~~~~~~~^\\r\\n        Catalog(records).versions(\"paint\"), (\"1.0.0-rc.2\", \"1.0.0-rc.10\", \"1.0.0\")\\r\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n    )\\r\\n    ^\\r\\nAssertionError: Tuples differ: (\\'1.0.0\\', \\'1.0.0-rc.10\\', \\'1.0.0-rc.2\\') != (\\'1.0.0-rc.2\\', \\'1.0.0-rc.10\\', \\'1.0.0\\')\\r\\n\\r\\nFirst differing element 0:\\r\\n\\'1.0.0\\'\\r\\n\\'1.0.0-rc.2\\'\\r\\n\\r\\n- (\\'1.0.0\\', \\'1.0.0-rc.10\\', \\'1.0.0-rc.2\\')\\r\\n?                                -----\\r\\n\\r\\n+ (\\'1.0.0-rc.2\\', \\'1.0.0-rc.10\\', \\'1.0.0\\')\\r\\n?        +++++\\r\\n\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 7 tests in 0.002s\\r\\n\\r\\nFAILED (failures=4)\\r\\n'",
+            "duration": {
+              "value": "0:00:00.124838"
+            },
+            "stdout_truncated": false,
+            "stderr_truncated": false,
+            "events_dropped": 0
+          },
+          "inputs_current": true,
+          "input_error": null
+        },
+        "error": null
+      }
+    ],
+    "observations": [
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-0"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "root",
+          "argument_roles": [
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.026058"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-1"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "revision",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.030923"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-2"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "status",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.028094"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-3"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "revision",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.031710"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-4"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "status",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.038052"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-5"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "root",
+          "argument_roles": [
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.025782"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-6"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "revision",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.023291"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-7"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "status",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.031344"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-8"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "revision",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.026078"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/git-9"
+        },
+        "pattern": {
+          "family": "git",
+          "operation": "status",
+          "argument_roles": [
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag",
+            "flag"
+          ],
+          "capabilities": [
+            "win32",
+            "git"
+          ],
+          "equivalent_tool": "tools.repository.GitInspectionTool"
+        },
+        "source": "framework-events",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": {
+          "value": "0:00:00.036181"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      {
+        "origin": {
+          "agent": "local-dogfood-host",
+          "task": "release-order",
+          "run": "primary-0002",
+          "call": "baseline-procedure/check-0"
+        },
+        "pattern": {
+          "family": "check",
+          "operation": "fixed",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [],
+          "equivalent_tool": "tools.checks.FixedCheckTool"
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "failed",
+        "exit_code": 1,
+        "duration": {
+          "value": "0:00:00.124838"
+        },
+        "events_dropped": 0,
+        "capture_incomplete": false
+      }
+    ],
+    "reason": null,
+    "error": null
+  },
+  "oracle_controls": [
+    {
+      "label": "baseline-heldout",
+      "exit_code": 1,
+      "seconds": 0.122914,
+      "stdout": "",
+      "stderr": "test_build_metadata_does_not_change_display_order (__main__.Heldout.test_build_metadata_does_not_change_display_order) ... FAIL\r\ntest_newer_core_beats_older_stable (__main__.Heldout.test_newer_core_beats_older_stable) ... ok\r\ntest_numeric_identifiers_precede_nonnumeric (__main__.Heldout.test_numeric_identifiers_precede_nonnumeric) ... ok\r\ntest_official_precedence_chain (__main__.Heldout.test_official_precedence_chain) ... FAIL\r\ntest_prerelease_build_ties_keep_first_object (__main__.Heldout.test_prerelease_build_ties_keep_first_object) ... FAIL\r\ntest_project_platform_status_and_invalid_records (__main__.Heldout.test_project_platform_status_and_invalid_records) ... ok\r\ntest_runtime_standard_library_only (__main__.Heldout.test_runtime_standard_library_only) ... ok\r\ntest_shorter_prerelease_prefix (__main__.Heldout.test_shorter_prerelease_prefix) ... ok\r\ntest_snapshot_input_ownership (__main__.Heldout.test_snapshot_input_ownership) ... ok\r\ntest_strict_key_and_parser_invalid_inputs (__main__.Heldout.test_strict_key_and_parser_invalid_inputs) ... ok\r\n\r\n======================================================================\r\nFAIL: test_build_metadata_does_not_change_display_order (__main__.Heldout.test_build_metadata_does_not_change_display_order)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0002\\oracle.py\", line 144, in test_build_metadata_does_not_change_display_order\r\n    self.assertEqual(\r\n    ~~~~~~~~~~~~~~~~^\r\n        self.Catalog(rows).versions(\"paint\"), (\"1.0.0+zzz\", \"1.0.0+aaa\", \"1.0.0\")\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    )\r\n    ^\r\nAssertionError: Tuples differ: ('1.0.0', '1.0.0+aaa', '1.0.0+zzz') != ('1.0.0+zzz', '1.0.0+aaa', '1.0.0')\r\n\r\nFirst differing element 0:\r\n'1.0.0'\r\n'1.0.0+zzz'\r\n\r\n- ('1.0.0', '1.0.0+aaa', '1.0.0+zzz')\r\n?                              ----\r\n\r\n+ ('1.0.0+zzz', '1.0.0+aaa', '1.0.0')\r\n?        ++++\r\n\r\n\r\n======================================================================\r\nFAIL: test_official_precedence_chain (__main__.Heldout.test_official_precedence_chain)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0002\\oracle.py\", line 122, in test_official_precedence_chain\r\n    self.assertEqual(actual, tuple(versions))\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Tuples differ: ('1.0.0', '1.0.0-1', '1.0.0-10', '1.0.0-11', '1.[158 chars]c.9') != ('1.0.0-1', '1.0.0-2', '1.0.0-10', '1.0.0-11', '[158 chars]0.0')\r\n\r\nFirst differing element 0:\r\n'1.0.0'\r\n'1.0.0-1'\r\n\r\n- ('1.0.0',\r\n-  '1.0.0-1',\r\n? ^\r\n\r\n+ ('1.0.0-1',\r\n? ^\r\n\r\n+  '1.0.0-2',\r\n   '1.0.0-10',\r\n   '1.0.0-11',\r\n-  '1.0.0-2',\r\n   '1.0.0-alpha',\r\n   '1.0.0-alpha.1',\r\n   '1.0.0-alpha.beta',\r\n   '1.0.0-beta',\r\n+  '1.0.0-beta.2',\r\n   '1.0.0-beta.11',\r\n-  '1.0.0-beta.2',\r\n   '1.0.0-rc.1',\r\n+  '1.0.0-rc.2',\r\n+  '1.0.0-rc.9',\r\n   '1.0.0-rc.10',\r\n-  '1.0.0-rc.2',\r\n-  '1.0.0-rc.9')\r\n?        -----\r\n\r\n+  '1.0.0')\r\n\r\n======================================================================\r\nFAIL: test_prerelease_build_ties_keep_first_object (__main__.Heldout.test_prerelease_build_ties_keep_first_object)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0002\\oracle.py\", line 150, in test_prerelease_build_ties_keep_first_object\r\n    self.assertIs(\r\n    ~~~~~~~~~~~~~^\r\n        self.Catalog([first, second]).choose(\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    ...<2 lines>...\r\n        first,\r\n        ^^^^^^\r\n    )\r\n    ^\r\nAssertionError: Artifact(project='paint', platform='linux', version='1.0.0-rc.2+z', uri='1.0.0-rc.2+z', enabled=True) is not Artifact(project='paint', platform='linux', version='1.0.0-rc.2+a', uri='1.0.0-rc.2+a', enabled=True)\r\n\r\n----------------------------------------------------------------------\r\nRan 10 tests in 0.004s\r\n\r\nFAILED (failures=3)\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "reference-focused",
+      "exit_code": 0,
+      "seconds": 0.118446,
+      "stdout": "",
+      "stderr": "test_build_metadata_tie_preserves_first (tests.test_catalog.CatalogTests.test_build_metadata_tie_preserves_first) ... ok\r\ntest_existing_eligibility (tests.test_catalog.CatalogTests.test_existing_eligibility) ... ok\r\ntest_interchange_and_ui (tests.test_catalog.CatalogTests.test_interchange_and_ui) ... ok\r\ntest_numeric_preview_precedence (tests.test_catalog.CatalogTests.test_numeric_preview_precedence) ... ok\r\ntest_stable_outranks_preview (tests.test_catalog.CatalogTests.test_stable_outranks_preview) ... ok\r\ntest_presentation_uses_shared_precedence (tests.test_versions.VersionTests.test_presentation_uses_shared_precedence) ... ok\r\ntest_strict_parser_and_core_numeric_order (tests.test_versions.VersionTests.test_strict_parser_and_core_numeric_order) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 7 tests in 0.001s\r\n\r\nOK\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "reference-heldout",
+      "exit_code": 0,
+      "seconds": 0.124364,
+      "stdout": "",
+      "stderr": "test_build_metadata_does_not_change_display_order (__main__.Heldout.test_build_metadata_does_not_change_display_order) ... ok\r\ntest_newer_core_beats_older_stable (__main__.Heldout.test_newer_core_beats_older_stable) ... ok\r\ntest_numeric_identifiers_precede_nonnumeric (__main__.Heldout.test_numeric_identifiers_precede_nonnumeric) ... ok\r\ntest_official_precedence_chain (__main__.Heldout.test_official_precedence_chain) ... ok\r\ntest_prerelease_build_ties_keep_first_object (__main__.Heldout.test_prerelease_build_ties_keep_first_object) ... ok\r\ntest_project_platform_status_and_invalid_records (__main__.Heldout.test_project_platform_status_and_invalid_records) ... ok\r\ntest_runtime_standard_library_only (__main__.Heldout.test_runtime_standard_library_only) ... ok\r\ntest_shorter_prerelease_prefix (__main__.Heldout.test_shorter_prerelease_prefix) ... ok\r\ntest_snapshot_input_ownership (__main__.Heldout.test_snapshot_input_ownership) ... ok\r\ntest_strict_key_and_parser_invalid_inputs (__main__.Heldout.test_strict_key_and_parser_invalid_inputs) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 10 tests in 0.002s\r\n\r\nOK\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "scoring": {
+    "worker_success": "CodingResult.accepted and known completed/restored custody",
+    "candidate_correct": "All frozen focused and heldout tests pass on exact archived candidate; no codex intervention",
+    "discovery": "Report separately listing/search results, chosen reads, actual source text consumed, and grounding of admitted targets; no mandatory target file",
+    "repair": "Only actual failed-check feedback consumed by a later inference and a corrective model edit counts; never force failure",
+    "incomplete": "Failure/limit/stopped/malformed/unknown outcomes remain qualified; heldout alone does not turn incomplete worker into success"
+  },
+  "privacy": "Authored synthetic source/tests only; no personal logs, secrets or raw environment analytics.",
+  "task_digest": "9ad37cffac6209a44e905c25a76e9c18afb65b36f52dcf88a1187f023e3df013"
+}

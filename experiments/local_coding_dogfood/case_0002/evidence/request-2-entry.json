@@ -1,0 +1,87 @@
+{
+  "number": 2,
+  "at": "2026-10-28T15:56:47.253098+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Repair the release catalog's semantic-version ordering. Users report that a final\nrelease can lose to its release candidate, numeric prerelease components are\nordered incorrectly, and build metadata changes which otherwise equal release\nis chosen. The same supported version precedence must be used by catalog\nselection and the public ascending version display.\n\nFollow the repository's documented strict SemVer 2 contract: numeric core fields;\nstable above prerelease at the same core; numeric prerelease identifiers below\nnonnumeric identifiers and compared numerically; other prerelease identifiers\ncompared lexically; matching shorter identifier sequences before longer ones;\nbuild metadata ignored. First eligible publication wins equal precedence.\n\nPreserve exact project/platform eligibility, default preview exclusion, disabled\nand malformed-record handling, immutable record identity, input order, manifest\nround trips, strict accepted version syntax and public signatures. Runtime must\nremain standard-library only. Do not solve this by editing tests, configuration\nor docs, duplicating a second ordering policy, or bypassing the catalog facade.\n\nThe host authorizes reads within this small repository and edits to all runtime\nPython files under releasevault/. No specific edit target or mandatory source\nwitness list is prescribed. Discover relevant owners and interacting contracts\nusing list_repository/search_source, then acquire actual source with read_source.\nSearch metadata is not source acquisition or edit authority. All exact edit\nanchors must be covered by current source actually read. Tests/docs/config are\nread-only; a separate frozen held-out oracle is not exposed.\n\nUse native Tools. Search operates over the authorized snapshot's existing\nfile/symbol/window index and returns metadata. read_source uses zero-based\ncharacter offsets with exclusive end; listing/search returns complete lengths.\nRead/search and edit batches must be separate. Fixed validation runs after each\nadmitted edit; consume real failure feedback if repair is needed. You may also\nrequest validate_candidate or inspect_and_validate_change. Neither accepts shell\ncommands. A model completion narrative is not candidate acceptance.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "I'll start by exploring the repository structure to understand the codebase.\n\n",
+          "tool_calls": [
+            {
+              "name": "list_repository",
+              "arguments_json": "{}",
+              "provider_call_id": "6KnoeBNT3Npem5TEN3AiT73cwtpdmlxc"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"snapshot\": \"cc0e6aaa68428ff9bdfd1393e5e2b7596df63216bd2c1ceb0a01ee9735a5118c\", \"source_acquired\": false, \"resources\": [{\"path\": \"README.md\", \"characters\": 1048, \"content_identity\": \"e151223e5d4b516dd4ccd0fe4ed782b8655d6a9716bc0d95cfa3ad3cb84895b5\", \"editable\": false}, {\"path\": \"acceptance.py\", \"characters\": 292, \"content_identity\": \"5b0d0c5d40abf96dfac4180f241e8d04337bc35c2cd835025d9403607f004f7d\", \"editable\": false}, {\"path\": \"docs/architecture.md\", \"characters\": 536, \"content_identity\": \"31d73876b7bb971171cf2db7251085ece6d6c17761e881322c44a1ef7f30a04d\", \"editable\": false}, {\"path\": \"pyproject.toml\", \"characters\": 103, \"content_identity\": \"2917a1d06be32a3b3a6b5346196a69fecae5d95efd5d0f55c1865b3f2732de48\", \"editable\": false}, {\"path\": \"releasevault/__init__.py\", \"characters\": 150, \"content_identity\": \"549649040050bba20bc82cb6f292e09910139087f1cd0cdcc8d5bc9d94ad5219\", \"editable\": true}, {\"path\": \"releasevault/cache.py\", \"characters\": 276, \"content_identity\": \"bfe9d3305887bfd8ad61a8bfcde9735619d0bc32494c56dac7924d639c40e087\", \"editable\": true}, {\"path\": \"releasevault/catalog.py\", \"characters\": 812, \"content_identity\": \"d2887c65fd5b657a8e647c4e311927f0ffa999af1476807469d757961f05d681\", \"editable\": true}, {\"path\": \"releasevault/cli.py\", \"characters\": 500, \"content_identity\": \"57d8e642074007177700d619acff2933bc187ed81e0246774b01c81e65382bfb\", \"editable\": true}, {\"path\": \"releasevault/display.py\", \"characters\": 374, \"content_identity\": \"8ef62e22262278d88e52241a805cd5f60999972dd7dfa02f90f50b59eac5321c\", \"editable\": true}, {\"path\": \"releasevault/manifest.py\", \"characters\": 446, \"content_identity\": \"e6e9b12a515d0f02470b47bd132f73f6790b87d33637ef31510af98781605efb\", \"editable\": true}, {\"path\": \"releasevault/models.py\", \"characters\": 379, \"content_identity\": \"ddabcf6641933dcddde698f418b9864d08c8cacc00d4d209e4045f1824f1602d\", \"editable\": true}, {\"path\": \"releasevault/paths.py\", \"characters\": 461, \"content_identity\": \"f8b7e762f65f3ccc3cf8ba36c7bbc15aedb25b652e165ac0a98b3c9dd3b331de\", \"editable\": true}, {\"path\": \"releasevault/policy.py\", \"characters\": 497, \"content_identity\": \"1102457d1cf54ca33bd17e100508d96706495af88f866811ef94bdb7e1a255f1\", \"editable\": true}, {\"path\": \"releasevault/selection.py\", \"characters\": 488, \"content_identity\": \"70fa2d3a2e49afc31c454da620d990a9d06f35751b788db3170020e8b83bc39e\", \"editable\": true}, {\"path\": \"releasevault/versions.py\", \"characters\": 1348, \"content_identity\": \"0cc46333726c679f6a78ce1f4a2ce7b028b9f8b7e5a24bbce832eb8f429d1e60\", \"editable\": true}, {\"path\": \"tests/__init__.py\", \"characters\": 45, \"content_identity\": \"5ec425e3f26daf345ae8965e3b341fce48810838574d1436a6913f58f6a1bcdc\", \"editable\": false}, {\"path\": \"tests/test_catalog.py\", \"characters\": 2065, \"content_identity\": \"d2c216eb128de1dd574818bef535498bfcddc0a2d6993631358154a4099002be\", \"editable\": false}, {\"path\": \"tests/test_versions.py\", \"characters\": 841, \"content_identity\": \"1f4bd3b9027d8554eaabf5ae8c382354918426fee2804bbb6f73e592970be4a9\", \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": "6KnoeBNT3Npem5TEN3AiT73cwtpdmlxc",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "list_repository",
+        "description": "List authorized snapshot resources, sizes and read/edit permissions. Metadata only, not acquired source.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "search_source",
+        "description": "Search existing file/symbol/window retrieval by query. Returns ranked metadata, not source. Read selected ranges separately; full file lengths are supplied.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":256,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed focused acceptance. No command/scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": true,
+  "measured_input_tokens": 2712
+}

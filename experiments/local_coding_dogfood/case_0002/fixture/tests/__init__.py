@@ -1,0 +1,1 @@
+"""Fixed focused acceptance requirements."""

@@ -1,0 +1,66 @@
+{
+  "number": 1,
+  "at": "2026-10-28T15:56:36.590519+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Repair the release catalog's semantic-version ordering. Users report that a final\nrelease can lose to its release candidate, numeric prerelease components are\nordered incorrectly, and build metadata changes which otherwise equal release\nis chosen. The same supported version precedence must be used by catalog\nselection and the public ascending version display.\n\nFollow the repository's documented strict SemVer 2 contract: numeric core fields;\nstable above prerelease at the same core; numeric prerelease identifiers below\nnonnumeric identifiers and compared numerically; other prerelease identifiers\ncompared lexically; matching shorter identifier sequences before longer ones;\nbuild metadata ignored. First eligible publication wins equal precedence.\n\nPreserve exact project/platform eligibility, default preview exclusion, disabled\nand malformed-record handling, immutable record identity, input order, manifest\nround trips, strict accepted version syntax and public signatures. Runtime must\nremain standard-library only. Do not solve this by editing tests, configuration\nor docs, duplicating a second ordering policy, or bypassing the catalog facade.\n\nThe host authorizes reads within this small repository and edits to all runtime\nPython files under releasevault/. No specific edit target or mandatory source\nwitness list is prescribed. Discover relevant owners and interacting contracts\nusing list_repository/search_source, then acquire actual source with read_source.\nSearch metadata is not source acquisition or edit authority. All exact edit\nanchors must be covered by current source actually read. Tests/docs/config are\nread-only; a separate frozen held-out oracle is not exposed.\n\nUse native Tools. Search operates over the authorized snapshot's existing\nfile/symbol/window index and returns metadata. read_source uses zero-based\ncharacter offsets with exclusive end; listing/search returns complete lengths.\nRead/search and edit batches must be separate. Fixed validation runs after each\nadmitted edit; consume real failure feedback if repair is needed. You may also\nrequest validate_candidate or inspect_and_validate_change. Neither accepts shell\ncommands. A model completion narrative is not candidate acceptance.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "list_repository",
+        "description": "List authorized snapshot resources, sizes and read/edit permissions. Metadata only, not acquired source.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "search_source",
+        "description": "Search existing file/symbol/window retrieval by query. Returns ranked metadata, not source. Read selected ranges separately; full file lengths are supplied.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":256,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed focused acceptance. No command/scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": false
+}
