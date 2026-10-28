@@ -1,5 +1,7 @@
 # Documentation Map
 
+One real local-model coding task is retained as [bounded dogfood evidence](research/local-coding-agent-dogfood.md), with frozen oracles, actual source/Tool correspondence and independent candidate grading. It is an experimental sample, not comprehensive-audit completion or general effectiveness evidence.
+
 Current command-capability contracts: [typed operations and procedural use](development/command-capabilities.md),
 [repository Tools](../src/devtools/tools/repository/docs/overview.md),
 [safe command observations](../src/devtools/observability/commands/docs/overview.md),

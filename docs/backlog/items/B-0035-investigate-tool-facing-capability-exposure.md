@@ -100,3 +100,8 @@ Explicit maintainer authorization delivered production `22c44a88fa20da8d580b1470
 ## Bounded command capability delivery — 2026-10-28
 
 Explicit maintainer authorization delivered `1181454f0ecac0e92338a0abddfde96748293e9f` by ordinary non-force main push after actual requirements and committed protected validation. Typed repository inspection/fixed-check composition and selected privacy-safe command observations/pattern candidates reuse existing Resources/Tools; no new executor, generic lifecycle, durable Evidence store, automatic recovery or promotion authority. [Exact delivery, real consumers and limits](../../development/command-capabilities-delivery.md). Existing status, maturity, dependencies, approvals, grants, broader obligations and parent scope remain unchanged. `integration:command-capabilities:1181454f:20261028`.
+
+
+## Real local-model coding dogfood — 2026-10-28
+
+One explicitly authorized fresh real Qwen3.8 IQ4_XS task completed through the shared coding process with three exact reads, one edit and successful frozen focused/held-out grading. Experimental checkpoint `bfd9aa35a0e0b181a12c203ed022d8bf6203b3bd` is accepted on main; [source/effect/usage evidence, setup diagnosis and limits](../../research/local-coding-agent-dogfood.md). The command procedure was host-triggered, not model-selected; no live repair or autonomous discovery was demonstrated. No production fix, new provider/loop/store, status/maturity/dependency change, approval, grant or parent closure. A+C, Option B, recovery and 188 historical RI obligations remain separate. `experiment:local-coding-dogfood:bfd9aa35:20261028`.
