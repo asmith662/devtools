@@ -1364,3 +1364,16 @@ summaries cannot satisfy authority or source-currentness requirements. Research
 direction is approved; implementation/API, summary policy and new evaluations
 remain pending. This is planning evidence only: no status, maturity, dependency,
 grant, approval, parent closure, broader A+C or historical result changes.
+
+## Authorized active-projection increment — 2026-10-28
+
+The explicit subsequent maintainer assignment authorizes the narrow opt-in
+[coding-host projection implementation](../../development/active-context-projection.md).
+It reuses Context range materialization and native Prompt validation, retains
+available historical facts and derives edit support from selected current source.
+The deterministic frozen Case 0003 reconstruction fits 24,070 bytes instead of
+36,640 without changing its 32,768-byte ceiling or replaying an operation.
+This is capacity/correlation evidence, not measured continuation effectiveness.
+Structured summaries and adaptive behavioral assessment remain follow-on work;
+status, maturity, dependencies, historical conclusions, broader A+C, grants and
+parent obligations remain unchanged.

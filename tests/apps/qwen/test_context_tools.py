@@ -439,6 +439,31 @@ def test_explicit_budget_selection_keeps_complete_recent_exchange() -> None:
         select_messages(history[:3], maximum_bytes=50)
 
 
+def test_qwen_selection_enters_shared_native_boundary(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The legacy projection delegates boundary validation, without a fallback."""
+    failure = ValueError("shared native boundary fault")
+
+    def fail(_messages: object) -> None:
+        raise failure
+
+    monkeypatch.setattr("apps.qwen.continuation.native_exchange_ranges", fail)
+    history = [PromptMessage("user", "objective")]
+    for number in range(3):
+        native = ModelToolCall("read_source", "{}", str(number))
+        history.extend(
+            (
+                PromptMessage("assistant", "intent", (native,)),
+                PromptMessage("tool", "x" * 1000, tool_call_id=str(number)),
+            )
+        )
+    with pytest.raises(ValueError, match="shared native boundary fault") as caught:
+        select_messages(history, maximum_bytes=2400)
+    assert caught.value is failure
+    assert len(history) == 7
+
+
 def test_context_eviction_retains_latest_actual_validation_feedback() -> None:
     """Later read activity cannot evict the latest host test failure/current edit."""
     history = [PromptMessage("user", "objective")]

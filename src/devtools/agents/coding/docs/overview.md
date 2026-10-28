@@ -11,6 +11,10 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
 - `repository.RepositoryCodingHost` composes real repository Context acquisition,
   exact current edit admission, fixed validation and feedback. Hosts explicitly
   supply authorization and application/archive/restoration collaborators.
+- `projection` selects valid complete native exchanges and affordable exact source
+  through existing Context materialization. The neutral host's optional
+  `ProjectionPolicy` separates retained original facts from active Prompt/edit
+  witnesses; default task and capacity behavior remain unchanged.
 - `edits.replace_exact_text` admits one unique bounded literal anchor without
   language/task or repository governance defaults.
 - `custody.SourceCustody` retains canonical known-source correspondence and
@@ -31,3 +35,6 @@ Completion effects remain bounded host responsibilities. Transient continuation
 and effect notes are not durable task restart or safe replay.
 
 See the [contract, consumers and limitations](../../../../../docs/development/bounded-coding-agent.md).
+The [active projection contract](../../../../../docs/development/active-context-projection.md)
+documents byte watermarks, complete-schema assembly, protected feedback,
+source-witness invalidation, qualified failures and future summary boundaries.

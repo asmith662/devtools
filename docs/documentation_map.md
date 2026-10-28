@@ -1,5 +1,12 @@
 # Documentation Map
 
+Context implementation increment 1, 2026-10-28:
+[budget-aware active projection](development/active-context-projection.md) documents
+the neutral coding-host contract, exact native boundaries, current source witnesses,
+failure semantics and deterministic frozen-history evidence. It supersedes only
+the earlier pending status of that first increment; summaries and live evaluation
+remain separately authorized future work.
+
 Context research, 2026-10-28: [budget-aware compaction and architecture reconciliation](research/agent-context-compaction.md)
 is the current research/decision package for deterministic reduction, optional
 summaries, exact recent history and grounded reacquisition. It preserves frozen

@@ -11,6 +11,7 @@ import sys
 from typing import TYPE_CHECKING, Any
 
 from devtools.agents.coding import CodingLimits, run_coding_agent
+from devtools.agents.coding.projection import ProjectionPolicy
 from devtools.agents.coding.repository import (
     CodingObjective,
     EditLimits,
@@ -124,7 +125,7 @@ class Model:
             assert evidence["sources"][0]["text"] == WRONG
             assert (
                 evidence["sources"][0]["version"]
-                != json.loads(request.prompt.messages[2].content)["version"]
+                != json.loads(self.requests[1].prompt.messages[2].content)["version"]
             )
         if self.scenario == "cancel-provider":
             message = "provider outcome unknown"
@@ -217,7 +218,12 @@ class Model:
         )
 
 
-async def scenario(root: Path, name: str) -> dict[str, Any]:
+async def scenario(
+    root: Path,
+    name: str,
+    *,
+    projection: bool = False,
+) -> dict[str, Any]:
     root = resolve_path(root).value
     path = resolve_path(root / "module.py")
     write(TextFile(path, SOURCE), overwrite=False)
@@ -352,6 +358,7 @@ async def scenario(root: Path, name: str) -> dict[str, Any]:
         archive=archive,
         restore=restore,
         readiness=readiness,
+        projection=ProjectionPolicy(1500, 1300) if projection else None,
     )
     feedback = host.feedback
 
@@ -442,4 +449,13 @@ async def scenario(root: Path, name: str) -> dict[str, Any]:
         "feedback_ids": [m.tool_call_id for m in host.messages if m.role == "tool"],
         "request_count": len(model.requests),
         "framework": run_coding_agent.__code__.co_filename,
+        "projections": [
+            {
+                "status": p.status,
+                "before": p.original_bytes,
+                "after": p.resulting_bytes,
+                "omitted": p.omitted_exchanges,
+            }
+            for p in host.projection_outcomes
+        ],
     }

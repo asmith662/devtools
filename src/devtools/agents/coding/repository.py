@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import json
-from dataclasses import asdict, dataclass, replace
+from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING, Literal, cast
 
 from devtools.agents.coding.custody import SourceCustody
@@ -15,6 +15,14 @@ from devtools.agents.coding.models import (
     CodingEffect,
     CodingProgress,
     CodingResult,
+)
+from devtools.agents.coding.projection import (
+    ProjectionCapacityError,
+    ProjectionOutcome,
+    ProjectionPolicy,
+    project_request,
+    request_bytes,
+    source_feedback,
 )
 from devtools.agents.model_tools import (
     execute_model_tool_call,
@@ -241,12 +249,17 @@ class RepositoryCodingHost:
         ]
         | None = None,
         settings: ModelSettings = _SETTINGS,
+        projection: ProjectionPolicy | None = None,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
             msg = "Coding corpus belongs to a foreign repository."
             raise ValueError(msg)
         self.objective, self.scope, self.corpus = objective, objective.scope, corpus
+        if projection is not None and projection.trigger_bytes > objective.prompt_bytes:
+            msg = "Projection watermarks exceed the host byte ceiling."
+            raise ValueError(msg)
+        self.projection = projection
         self.authorize, self.effect = authorize, apply_changes
         self.archive, self.restore, self.readiness, self.settings = (
             archive,
@@ -265,6 +278,12 @@ class RepositoryCodingHost:
         )
         self.messages = [PromptMessage("user", objective.text)]
         self.disclosures: list[SourceRangeDisclosureOption] = []
+        self.source_results: list[ContextDisclosure] = []
+        self.active_disclosures: tuple[SourceRangeDisclosureOption, ...] = ()
+        self.projection_outcomes: list[ProjectionOutcome] = []
+        self.projection_error: BaseException | None = None
+        self._source_messages: dict[int, tuple[SourceRangeDisclosureOption, ...]] = {}
+        self._check_feedback: set[int] = set()
         self.requests: list[ModelRequest] = []
         self.responses: list[ModelResponse] = []
         self.check_results: list[tuple[FixedCheckResult, ...]] = []
@@ -280,19 +299,55 @@ class RepositoryCodingHost:
             ),
         )
 
-    async def prepare(self, progress: CodingProgress) -> ModelRequest:
-        """Authenticate the active source and build a native complete-input Prompt."""
-        self.progress = progress
-        self.scope.check_current()
-        request = ModelRequest(
-            Prompt("", "messages", tuple(self.messages)),
+    def build_request(self, messages: tuple[PromptMessage, ...]) -> ModelRequest:
+        """Assemble all host-selected schemas before complete-input accounting.
+
+        Hosts exposing additional operations override this pure assembly seam,
+        not append schemas after preparation has checked its byte ceiling.
+        """
+        return ModelRequest(
+            Prompt("", "messages", messages),
             settings=self.settings,
             tools=tuple(normalize_tool_descriptor(d) for d in (_READ, _EDIT, _CHECK)),
         )
-        if (
-            len(json.dumps(asdict(request), ensure_ascii=False).encode())
-            > self.objective.prompt_bytes
-        ):
+
+    async def prepare(self, progress: CodingProgress) -> ModelRequest:
+        """Authenticate source and atomically install a valid active projection."""
+        self.progress = progress
+        self.scope.check_current()
+        request = self.build_request(tuple(self.messages))
+        if self.projection is not None:
+            try:
+                if any(not e.acknowledged for e in progress.effects):
+                    msg = "Unacknowledged effects require reconciliation."
+                    raise ValueError(msg)  # noqa: TRY301 -- retain original preparation failure
+                protected = frozenset(self._check_feedback) | (
+                    frozenset(
+                        i
+                        for i, values in self._source_messages.items()
+                        if any(o.snapshot_id == self.scope.snapshot.id for o in values)
+                    )
+                    if self.readiness is not None
+                    else frozenset()
+                )
+                outcome = project_request(
+                    request,
+                    policy=self.projection,
+                    hard_bytes=self.objective.prompt_bytes,
+                    snapshot=self.scope.snapshot,
+                    sources=self._source_messages,
+                    protected_indices=protected,
+                )
+                self.projection_outcomes.append(outcome)
+                if outcome.status == "insufficient":
+                    raise ProjectionCapacityError(outcome)  # noqa: TRY301 -- no partial active-state installation
+            except (Exception, asyncio.CancelledError) as error:
+                self.projection_error = error
+                raise
+            request = outcome.request
+            self.active_disclosures = outcome.active_sources
+            self.projection_error = None
+        elif request_bytes(request) > self.objective.prompt_bytes:
             msg = "Coding Prompt byte budget exceeded."
             raise ValueError(msg)
         self.requests.append(request)
@@ -345,7 +400,15 @@ class RepositoryCodingHost:
             self.objective.disclosure_bytes,
         )
 
-    def _feedback(self, call: ModelToolCall, value: object) -> None:
+    def _feedback(
+        self,
+        call: ModelToolCall,
+        value: object,
+        *,
+        sources: tuple[SourceRangeDisclosureOption, ...] = (),
+    ) -> None:
+        if sources:
+            self._source_messages[len(self.messages)] = sources
         self.messages.append(
             PromptMessage(
                 "tool",
@@ -381,17 +444,12 @@ class RepositoryCodingHost:
                     "SourceRangeDisclosureOption",
                     disclosure.items[0].native_provenance,
                 )
+                self.source_results.append(disclosure)
                 self.disclosures.append(option)
                 self._feedback(
                     call,
-                    {
-                        "text": disclosure.items[0].text,
-                        "path": str(option.unit.resource.address),
-                        "snapshot": str(option.snapshot_id),
-                        "version": str(option.unit.resource.content_identity),
-                        "span": option.span,
-                        "partial": option.truncated,
-                    },
+                    source_feedback(option, disclosure.items[0].text),
+                    sources=(option,),
                 )
             else:
                 _arguments(call.arguments_json, set())
@@ -399,6 +457,7 @@ class RepositoryCodingHost:
                 passed = await self.check(())
                 self.progress.candidate_validated = passed
                 ready = passed and self.progress.proposals > 0
+                self._check_feedback = {len(self.messages)}
                 self._feedback(call, {"passed": passed})
             effect.acknowledged = True
         return ready
@@ -408,8 +467,13 @@ class RepositoryCodingHost:
         self.pending_calls = response.tool_calls
         try:
             self.scope.check_current()
+            available = (
+                self.active_disclosures
+                if self.projection is not None
+                else tuple(self.disclosures)
+            )
             if self.readiness is not None:
-                self.readiness(self.scope.snapshot, tuple(self.disclosures))
+                self.readiness(self.scope.snapshot, available)
             if len(response.tool_calls) > self.objective.edits.operations:
                 msg = "Edit operation limit exceeded."
                 raise CodingEditError(msg)
@@ -435,11 +499,13 @@ class RepositoryCodingHost:
                 )
                 if not any(
                     o.unit.resource.address == address
+                    and o.snapshot_id == self.scope.snapshot.id
+                    and o.repository_id == self.scope.snapshot.repository_id
                     and o.unit.resource.content_identity
                     == ContentIdentity.from_text(before)
                     and o.span[0] <= start
                     and end <= o.span[1]
-                    for o in self.disclosures
+                    for o in available
                 ):
                     msg = "Exact current edit source was not acquired."
                     raise CodingEditError(msg)
@@ -517,6 +583,7 @@ class RepositoryCodingHost:
             msg = "Installed source differs from the admitted candidate."
             raise ValueError(msg)
         self.scope = observed
+        self.active_disclosures = ()
         self._index()
         self.disclosures = []
         for change in proposal:
@@ -533,13 +600,14 @@ class RepositoryCodingHost:
                 self.objective.disclosure_bytes,
             )
             # The exact after-image is already known; materialize it through Context.
-            await ToolRunner().execute(
+            disclosure = await ToolRunner().execute(
                 ScopedSourceTool(
                     self.scope,
                     maximum_bytes=self.objective.disclosure_bytes,
                 ),
                 option,
             )
+            self.source_results.append(disclosure)
             self.disclosures.append(option)
 
     async def check(self, proposal: tuple[SourceChange, ...]) -> bool:
@@ -588,8 +656,10 @@ class RepositoryCodingHost:
                 for o in self.disclosures
             ],
         }
+        self._check_feedback = set()
         for call in response.tool_calls:
-            self._feedback(call, value)
+            self._check_feedback.add(len(self.messages))
+            self._feedback(call, value, sources=tuple(self.disclosures))
 
     async def finish(self, result: CodingResult) -> CodingCompletion:
         """Archive and restore known source, retaining secondary failures."""

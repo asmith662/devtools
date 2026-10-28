@@ -624,3 +624,28 @@ historical refs and 188 outstanding historical RI-version obligations remain
 unchanged. No source/app/test/configuration edit, limit increase, local/paid
 inference, model-service operation, compaction implementation or full protected
 gate run belongs to this documentation checkpoint.
+
+## Subsequent implementation increment 1 — 2026-10-28
+
+The separately authorized [active Context projection implementation](../development/active-context-projection.md)
+uses the existing CodingHost preparation seam, native Prompt validation and
+Context source-range materialization. It retains original available history,
+projects complete exchanges, qualifies smaller source presentation and derives
+edit witnesses from selected current disclosures. It is opt-in; legacy Qwen
+selection shares native-boundary mechanics without adopting a second policy.
+
+The effect-free frozen Case 0003 regression reduces the original 36,640-byte
+base-host request to 24,070 bytes under the same 32,768 ceiling by omitting
+completed inventory/search exchanges. All three exact source ranges survive;
+the disjoint repository reads were not deduplicated. This is deterministic fit
+and correlation evidence, not live continuation effectiveness or a rewritten
+Case 0003 result. Original external research claims and confidence remain as
+recorded above; implementation evidence does not upgrade them.
+
+The hybrid roadmap remains explicit: increment 2 is optional, separately budgeted
+provider-independent structured summarization with constraints/obligations,
+progress, failed hypotheses, provenance, recent exact history and deterministic
+fallback. Increment 3 evaluates adaptive thresholds, strategy timing, grounded
+reacquisition and host/model/operator triggers through separately frozen
+deterministic and authorized live continuations. Neither is implemented here;
+no new provider, persistence system, broad A+C or observation Option B follows.

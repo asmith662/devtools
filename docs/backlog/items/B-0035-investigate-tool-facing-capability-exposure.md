@@ -127,3 +127,14 @@ would account for complete requests and synchronize exact witness availability;
 hybrid summarization remains separately designed and authorized. Existing
 status/maturity/dependencies, original experimental outcomes, grants and parent
 scope remain unchanged. No new proposal or implementation approval is implied.
+
+## Authorized active-projection increment — 2026-10-28
+
+The separately authorized [implementation](../../development/active-context-projection.md)
+adds opt-in complete-request projection to the neutral coding host, using actual
+source/Tool/Context contracts. Original native feedback remains retained; source
+omitted from active input loses edit-witness credit. Deterministic Case 0003
+reconstruction fits the unchanged ceiling without inference or source overlap
+claims. This does not implement the original first-request inventory obligation,
+close B-0035, upgrade model effectiveness or approve summary inference. Existing
+status, maturity, dependencies, grants and broader obligations remain unchanged.

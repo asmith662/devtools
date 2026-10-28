@@ -47,6 +47,12 @@ explicit disclosure/prompt/edit bounds. There is no Python, Qwen, 32K token or
 repository-layout default. Its Prompt limit is a serialized byte ceiling, not a
 provider token-capacity assertion.
 
+An optional host-selected `ProjectionPolicy` now separates retained native facts
+from active input. Complete exchange selection and bounded exact-source
+presentation reuse Context materialization; edit witnesses come from the
+successfully prepared current Prompt. Default behavior is unchanged. See
+[activation, ownership, failures and deterministic evidence](active-context-projection.md).
+
 This concrete profile supports bounded existing UTF-8 text repairs. The model
 can request `read_source`, `replace_source` and `validate_candidate`. It cannot
 select an arbitrary command or acquire an unoffered Tool. Scope and currentness

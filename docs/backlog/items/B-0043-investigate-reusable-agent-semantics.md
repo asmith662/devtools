@@ -116,3 +116,15 @@ summary budgets/privacy/fallback and rollout require subsequent authorization.
 The proposed deterministic first increment is not implemented. Status, maturity,
 dependencies, grants, parent obligations, observer Option B and durable recovery
 remain unchanged; no scientific result or historical review credit is rewritten.
+
+## Authorized active-projection increment — 2026-10-28
+
+The explicit subsequent assignment implements a narrow opt-in
+[Agents coding-input projection](../../development/active-context-projection.md)
+through the existing host preparation seam. No second coding loop, Runtime
+expansion, persistent memory, Tool executor or provider dependency is added.
+Guarded independent repair and Qwen native-boundary delegation exercise actual
+consumers. Historical facts, active Prompt, exact source authority and candidate
+completion remain distinct. Model-assisted summaries, adaptive assessment,
+Evidence durability, restart and observation Option B remain separate decisions.
+Status, maturity, dependencies, grants and parent obligations remain unchanged.

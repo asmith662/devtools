@@ -39,3 +39,35 @@ def test_guarded_independent_coding_application(tmp_path: Path, name: str) -> No
         assert value["apply_entries"] == ["apply", "apply"]
         assert [c[0]["exit"] for c in value["checks"]] == [1, 0]
         assert value["source"] == SOURCE
+
+
+def test_guarded_projected_repair_uses_real_source_checks_and_custody(
+    tmp_path: Path,
+) -> None:
+    result = asyncio.run(
+        CommandExecutor().execute(
+            Command(sys.executable)
+            .args(
+                "-B",
+                str(Path(__file__).with_name("independent_host.py")),
+                "repair",
+                "--projection",
+            )
+            .cwd(resolve_path(tmp_path))
+            .with_timeout(Duration.seconds(35)),
+        ),
+    )
+    assert result.exit_code == 0, result.stderr.decode()
+    value = json.loads(result.stdout)
+    assert value["denied"] == ["import:apps", "file:apps/qwen/tasks.py"]
+    assert value["accepted"]
+    assert value["restored"]
+    assert value["model_calls"] == 3
+    assert value["apply_entries"] == ["apply", "apply"]
+    assert value["feedback_ids"] == ["read-1", "edit-2", "repair-3"]
+    assert [c[0]["exit"] for c in value["checks"]] == [1, 0]
+    assert value["checks"][-1][0]["stdout"] == "checked:7\n"
+    assert value["source"] == SOURCE
+    assert value["usage"] == [None, None, None]
+    assert value["projections"][-1]["status"] == "reduced"
+    assert value["projections"][-1]["omitted"] == [[1, 3, "stale-source"]]

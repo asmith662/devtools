@@ -9,6 +9,7 @@ import json
 from dataclasses import asdict, replace
 from typing import Any
 
+from devtools.agents.coding.projection import native_exchange_ranges
 from devtools.models.interaction import PromptMessage
 
 # 24K estimated input tokens + 4K output + 2K schemas + 2K safety < 32K.
@@ -449,8 +450,7 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
         )
     omitted = 0
     while len(json.dumps([asdict(m) for m in selected]).encode()) > maximum_bytes:
-        boundaries = [i for i, m in enumerate(selected) if m.role == "assistant"]
-        ranges = list(zip(boundaries, [*boundaries[1:], len(selected)], strict=True))
+        ranges = list(native_exchange_ranges(tuple(selected)))
         validation = next(
             (
                 r

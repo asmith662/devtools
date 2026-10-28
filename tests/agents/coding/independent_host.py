@@ -89,7 +89,11 @@ async def main() -> None:
         pass
     else:
         raise AssertionError("File guard inactive")
-    value = await scenario(Path.cwd(), sys.argv[1])
+    value = await scenario(
+        Path.cwd(),
+        sys.argv[1],
+        projection="--projection" in sys.argv[2:],
+    )
     assert not any(
         n.split(".")[0] in {"apps", "scripts", "experiments"} for n in sys.modules
     )

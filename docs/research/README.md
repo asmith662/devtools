@@ -1,5 +1,10 @@
 # Research Evidence
 
+Subsequent Context implementation, 2026-10-28:
+[opt-in active projection and deterministic Case 0003 reconstruction](../development/active-context-projection.md).
+Complete historical facts remain retained; request fit is not live task success.
+Structured model-assisted compaction and adaptive assessment remain next increments.
+
 Context research, 2026-10-28: [hybrid budget-aware agent Context](agent-context-compaction.md)
 compares eight harnesses and five studies, pins selected upstream source, explains
 Case 0003's exact byte refusal, and proposes reuse of existing Context/Agents
