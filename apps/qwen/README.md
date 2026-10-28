@@ -883,3 +883,20 @@ exact task/Checkout state, not arbitrary future branch commits.
 Generated exact-source patches preserve an absent final line terminator using
 Git's standard no-final-newline marker. The patch store does not thereby grant
 normalization authority; proposed and installed bytes must still match exactly.
+
+## Framework-owned bounded coding process
+
+The operational prepared/native worker now delegates its model/edit/check/repair
+sequence to `devtools.agents.coding`. The phased adapter in `turns/loop.py` keeps
+legacy task hashes, prompt/capacity presentation, readiness, native names/IDs,
+source/Git/API admission, fixed oracles and journals. It has no separate model
+send or repair loop. The outer coordinator retains task preflight, archive/result
+schema and governed authority while using shared known-source custody mechanics.
+Terminal failure cannot erase known candidate validation or imply successful
+completion. No unknown effect is retried.
+
+The same framework process supports an independently authored non-Qwen source
+repair and real failing/passing checks under application import/file guards.
+See the [public contract and boundaries](../../docs/development/bounded-coding-agent.md).
+This migration does not change worker limits, experiments, observation policy,
+automatic restart, review or publication authorization.

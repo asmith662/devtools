@@ -24,10 +24,11 @@ if TYPE_CHECKING:
     from apps.qwen.commands import CodingCommands
     from apps.qwen.context_tools import ContextTools
     from apps.qwen.tasks import CodingTask
+    from devtools.agents.coding.models import CodingProgress
     from devtools.models.interaction import ModelToolCall
 
 
-async def dispatch_context_calls(  # noqa: C901, PLR0913 -- one admitted native batch
+async def dispatch_context_calls(  # noqa: C901, PLR0913, PLR0912, PLR0915 -- one admitted native batch
     calls: tuple[ModelToolCall, ...],
     *,
     task: CodingTask,
@@ -43,6 +44,7 @@ async def dispatch_context_calls(  # noqa: C901, PLR0913 -- one admitted native 
     proposals: int,
     started: float,
     check_changes_before_completion: bool,
+    progress: CodingProgress | None = None,
 ) -> int:
     """Dispatch once, retain known effects, and return the consumed action count.
 
@@ -99,6 +101,11 @@ async def dispatch_context_calls(  # noqa: C901, PLR0913 -- one admitted native 
         if context_actions >= task.tool_actions:
             raise PatchProposalError("Context action budget exhausted")
         context_actions += 1
+        effect = (
+            progress.claim_action(call.provider_call_id)
+            if progress is not None
+            else None
+        )
         event: dict[str, Any] = {
             "call": asdict(call),
             "status": "ATTEMPTED",
@@ -125,6 +132,8 @@ async def dispatch_context_calls(  # noqa: C901, PLR0913 -- one admitted native 
                 "REFUSED" if result.get("status") == "REFUSED" else "RETURNED"
             )
         event["result"] = result
+        if effect is not None:
+            effect.acknowledged = True
         event["elapsed_seconds"] = time.perf_counter() - acquisition_started
         limits = {
             "context_actions_remaining": task.tool_actions - context_actions,
@@ -162,6 +171,8 @@ async def dispatch_context_calls(  # noqa: C901, PLR0913 -- one admitted native 
         }
         if freshness["current"] and freshness["ready_for_review"]:
             report.update(accepted=True, disposition="ACCEPTED")
+            if progress is not None:
+                progress.candidate_validated = True
     stage.update(
         disposition="CONTEXT_RETURNED",
         finished_at=str(Timestamp.now()),
