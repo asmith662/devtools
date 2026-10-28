@@ -113,3 +113,8 @@ Conversation store correctness is improved; no EvidenceSink durability, normaliz
 ## Qwen operational application audit evidence
 
 Native worker journals and nullable usage are actual application records, not automatic normalized framework Evidence/InvocationMeasurement or durable Conversation state. A final result write can fail after known application/restoration; a fixed command can exit before its result is lost. Sixteen offline probes distinguish these from no entry; optional capture still needs per-invocation correlation, reporter-failure policy, privacy/retention and host evidence admission. New task-outcome P2 is distinct from unapproved ModelInteraction OptionB. [Review](../../research/qwen-operational-lifecycle-audit.md). No new store, observer policy or status promotion. audit:qwen-operational:7a657dba:20261027.
+
+
+## Bounded command capability delivery — 2026-10-28
+
+Explicit maintainer authorization delivered `1181454f0ecac0e92338a0abddfde96748293e9f` by ordinary non-force main push after actual requirements and committed protected validation. Typed repository inspection/fixed-check composition and selected privacy-safe command observations/pattern candidates reuse existing Resources/Tools; no new executor, generic lifecycle, durable Evidence store, automatic recovery or promotion authority. [Exact delivery, real consumers and limits](../../development/command-capabilities-delivery.md). Existing status, maturity, dependencies, approvals, grants, broader obligations and parent scope remain unchanged. `integration:command-capabilities:1181454f:20261028`.

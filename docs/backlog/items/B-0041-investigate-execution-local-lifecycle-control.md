@@ -43,3 +43,8 @@ Serving readiness writer custody is delivered. Known-handle cleanup versus ambig
 ## Agents/Conversation/Runtime audit — 2026-10-26
 
 Cooperative in-memory Conversation locking serializes participating Runtime turns, not direct mutators/other reconstructed objects/processes. Waiter cancellation causes no admission; provider cancellation retains input. Injected retention/replacement failures expose partial commits, not rollback or a demonstrated native dict failure. Explicit repeat is a second invocation; no generic retry supervisor authorized. [Exact source/probe/consumer evidence](../../research/agents-conversation-and-runtime-audit.md). No status, maturity, approval, dependency or parent closure changes. `audit:agents-conversation-runtime:87f5b9d2:20261026`.
+
+
+## Bounded command capability delivery — 2026-10-28
+
+Explicit maintainer authorization delivered `1181454f0ecac0e92338a0abddfde96748293e9f` by ordinary non-force main push after actual requirements and committed protected validation. Typed repository inspection/fixed-check composition and selected privacy-safe command observations/pattern candidates reuse existing Resources/Tools; no new executor, generic lifecycle, durable Evidence store, automatic recovery or promotion authority. [Exact delivery, real consumers and limits](../../development/command-capabilities-delivery.md). Existing status, maturity, dependencies, approvals, grants, broader obligations and parent scope remain unchanged. `integration:command-capabilities:1181454f:20261028`.
