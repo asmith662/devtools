@@ -264,8 +264,18 @@ research artifact, experiment record, or production implementation.
 
 ### Canonical checkout and layout
 
-Operate in `C:/Users/recoveryadmin/Workspace/tools/devtools`. Use ordinary Git
-branches in this checkout. Do not create additional Devtools worktrees, clones,
+Operate in `C:/Users/recoveryadmin/Workspace/tools/devtools`. Ordinary authorized
+single-owner development uses the canonical checkout directly on `main` when
+actual repository protections permit. Do not create a feature branch or PR by
+default. Use ordinary branches when risky isolation, parallel changes,
+experiments or an architecture decision requiring review warrants them. Validate
+the committed executable tree before an authorized ordinary push; never force
+publication or bypass protection/review requirements. See the
+[routine development workflow](docs/development/workflow.md).
+
+Governed WorkCycle/delegation/integration retain their separate ordinary-branch,
+exact-task, Checkout and publication contracts. This routine default does not
+rewrite existing grants or remove branch refs. Do not create additional Devtools worktrees, clones,
 backup repositories or independently maintained checkouts. Preserve branch refs
 and unique ignored evidence before removing obsolete checkout storage.
 Git lifecycle tests use tiny independently authored repositories and ordinary
