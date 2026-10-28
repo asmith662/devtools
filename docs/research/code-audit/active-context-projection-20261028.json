@@ -6,7 +6,31 @@
   "baseline_tree": "e4c4a5e21de092858d7ee3b503608fbbb217fcad",
   "implementation": "75692067b3c7dc8b21a3be2eb5d794f650b11d87",
   "implementation_tree": "6b701a6c4b879f68fe183b6aa090edf9522953fb",
-  "publication": "Pending ordinary main publication after this receipt commit; accepted ancestry must be independently verified",
+  "publication": {
+    "at": "2026-10-28T22:23:21.093630+00:00",
+    "main": "bf91842a6ba8c360bc694bfe45221154368cf1a2",
+    "tree": "fb5f2a22ce84eea233e35b668423223604b3aba7",
+    "previous_remote": "c4ce821e24ca20cb7d2dd9ff97b13ff1581f6a95",
+    "source": "75692067b3c7dc8b21a3be2eb5d794f650b11d87",
+    "source_tree": "6b701a6c4b879f68fe183b6aa090edf9522953fb",
+    "ordinary_fast_forward": true,
+    "push_acknowledgment": "",
+    "push_error_kind": null,
+    "acknowledgment_independently_verified": true,
+    "accepted_source_blobs": {
+      "apps/qwen/continuation.py": "aaaec8577ae17071bc02895f9489b871a7a73f23",
+      "src/devtools/agents/coding/docs/overview.md": "6d68349a638318fae2677c13e3cda8d53d678b71",
+      "src/devtools/agents/coding/projection.py": "0c4b7de6a757bc74c535a46d1353023081d97b61",
+      "src/devtools/agents/coding/repository.py": "d48e9148c733ea37a9cd6127daab3066b6355aed",
+      "tests/agents/coding/fixtures.py": "62a4ad35fa6874de4bbdac044fa6cc18f51f60d3",
+      "tests/agents/coding/independent_host.py": "c11f7f0522325c61739cedc30683c2d93ab6923d",
+      "tests/agents/coding/test_guarded.py": "480eca11a7a6ad80423296c0c3b7e188873e7519",
+      "tests/agents/coding/test_projection.py": "4ab68ec8c7a7e0458b06619292ac7a96d7df0fbb",
+      "tests/agents/coding/test_projection_history.py": "592c862375dc242b86ffe437efcb4c1f5edd373b",
+      "tests/apps/qwen/test_context_tools.py": "64bdea33c7ac67febd43c2d68d7c0c4038c82248"
+    },
+    "physical_inputs": 1045
+  },
   "ownership": {
     "agents": "CodingHost active Prompt assembly and selection",
     "context": "Existing SourceRangeDisclosureOption, plan_disclosures and materialize_source_range",
@@ -2665,5 +2689,100 @@
       "B-0043"
     ],
     "no_parent_closure": true
+  },
+  "closeout_validation": {
+    "command": "uv run python .local/context-projection/validate.py",
+    "started_at": "2026-10-28T22:23:28.547909+00:00",
+    "finished_at": "2026-10-28T22:23:32.935514+00:00",
+    "elapsed_seconds": 4.388,
+    "exit_code": 0,
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "baseline": "c4ce821e24ca20cb7d2dd9ff97b13ff1581f6a95",
+    "observed_head": "bf91842a6ba8c360bc694bfe45221154368cf1a2",
+    "allowed_paths": [
+      "apps/qwen/continuation.py",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/development/active-context-projection.md",
+      "docs/development/bounded-coding-agent.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-context-compaction-evidence-20261028.json",
+      "docs/research/agent-context-compaction.md",
+      "docs/research/code-audit/active-context-projection-20261028.json",
+      "docs/research/code-audit/qwen-operational-assurance.json",
+      "src/devtools/agents/coding/docs/overview.md",
+      "src/devtools/agents/coding/projection.py",
+      "src/devtools/agents/coding/repository.py",
+      "tests/agents/coding/fixtures.py",
+      "tests/agents/coding/independent_host.py",
+      "tests/agents/coding/test_guarded.py",
+      "tests/agents/coding/test_projection.py",
+      "tests/agents/coding/test_projection_history.py",
+      "tests/apps/qwen/test_context_tools.py"
+    ],
+    "changed_tracked_paths": [
+      "apps/qwen/continuation.py",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/development/active-context-projection.md",
+      "docs/development/bounded-coding-agent.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-context-compaction-evidence-20261028.json",
+      "docs/research/agent-context-compaction.md",
+      "docs/research/code-audit/active-context-projection-20261028.json",
+      "docs/research/code-audit/qwen-operational-assurance.json",
+      "src/devtools/agents/coding/docs/overview.md",
+      "src/devtools/agents/coding/projection.py",
+      "src/devtools/agents/coding/repository.py",
+      "tests/agents/coding/fixtures.py",
+      "tests/agents/coding/independent_host.py",
+      "tests/agents/coding/test_guarded.py",
+      "tests/agents/coding/test_projection.py",
+      "tests/agents/coding/test_projection_history.py",
+      "tests/apps/qwen/test_context_tools.py"
+    ],
+    "physical_files_unchanged": 1266,
+    "forensics_unchanged": 13,
+    "case_manifest_files": {
+      "case_0001": {
+        "kind": "frozen digest; all retained bytes also baseline-hashed",
+        "files": 9
+      },
+      "case_0002": {
+        "kind": "closed manifest",
+        "files": 68
+      },
+      "case_0003": {
+        "kind": "closed manifest",
+        "files": 47
+      }
+    },
+    "strict_json_records": 43172,
+    "intake_chains": 68,
+    "RI_rows": 903,
+    "RI_ledgers": {
+      "docs/research/code-audit/ri-completion-experiments.jsonl": "c123f9bca86b9d7d3de2067fa8913997cb9d87fbcabe8a0151ab42bb18047868",
+      "docs/research/code-audit/ri-completion-fixtures.jsonl": "8ffe436bbdcb457d1a32af5ae8816246b82415c5661b3f571b5b6d077a0887de",
+      "docs/research/code-audit/ri-followup-history.jsonl": "9feaf42f23ba72827ccedf67049f72b58b2b9c9ce2cb9ffeb727796a81b14c72"
+    },
+    "local_review_identities": 40,
+    "local_links": 465,
+    "anchor_checks": 40,
+    "preexisting_unresolved_links": [
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-admission-rule.json"
+      },
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-independent-validation.json"
+      }
+    ],
+    "new_broken_links": [],
+    "historic_refs_unchanged": 155
   }
 }

@@ -128,3 +128,14 @@ consumers. Historical facts, active Prompt, exact source authority and candidate
 completion remain distinct. Model-assisted summaries, adaptive assessment,
 Evidence durability, restart and observation Option B remain separate decisions.
 Status, maturity, dependencies, grants and parent obligations remain unchanged.
+
+## Active-projection delivered evidence — 2026-10-28
+
+Implementation `75692067b3c7dc8b21a3be2eb5d794f650b11d87` is verified on accepted main checkpoint
+`bf91842a6ba8c360bc694bfe45221154368cf1a2` after the unchanged committed protected gate and independent
+source/input checks. [Contract and measured validation](../../development/active-context-projection.md),
+[exact receipt](../../research/code-audit/active-context-projection-20261028.json).
+This delivers only opt-in deterministic active projection and native-boundary
+reuse. Original first-request inventory, structured summaries, adaptive/live
+assessment, Evidence durability, broader A+C and recovery remain separate.
+No status, maturity, dependency, grant, approval or parent closure is inferred.

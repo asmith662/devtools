@@ -138,3 +138,14 @@ reconstruction fits the unchanged ceiling without inference or source overlap
 claims. This does not implement the original first-request inventory obligation,
 close B-0035, upgrade model effectiveness or approve summary inference. Existing
 status, maturity, dependencies, grants and broader obligations remain unchanged.
+
+## Active-projection delivered evidence — 2026-10-28
+
+Implementation `75692067b3c7dc8b21a3be2eb5d794f650b11d87` is verified on accepted main checkpoint
+`bf91842a6ba8c360bc694bfe45221154368cf1a2` after the unchanged committed protected gate and independent
+source/input checks. [Contract and measured validation](../../development/active-context-projection.md),
+[exact receipt](../../research/code-audit/active-context-projection-20261028.json).
+This delivers only opt-in deterministic active projection and native-boundary
+reuse. Original first-request inventory, structured summaries, adaptive/live
+assessment, Evidence durability, broader A+C and recovery remain separate.
+No status, maturity, dependency, grant, approval or parent closure is inferred.

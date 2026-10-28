@@ -217,3 +217,14 @@ All three cases, thirteen forensic files, 903 RI rows and historical references
 remain intact; 188 historical RI-version obligations and broader B-0002/B-0035/
 B-0043 remain open. Two preexisting B-0002 links to removed root scratch reports
 remain qualified; no new broken local links were introduced.
+
+## Accepted-main verification
+
+Ordinary non-force publication accepted checkpoint `bf91842a6ba8c360bc694bfe45221154368cf1a2` on main,
+tree `fb5f2a22ce84eea233e35b668423223604b3aba7`, independently verified at `2026-10-28T22:23:21.093630+00:00` using GitHub and
+Git remote state. It contains implementation `75692067b3c7dc8b21a3be2eb5d794f650b11d87` with the same
+1045 physical protected-validation inputs and source/test blobs.
+Actual main requirements reported push permission, no branch protection and no
+additional rules/rulesets; no bypass, invented review or PR was used. Tracked
+worktree/index were clean and the existing forensic untracked files preserved.
+This subsequent documentation-only closeout does not change executable inputs.
