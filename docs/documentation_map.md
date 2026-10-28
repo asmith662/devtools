@@ -1,5 +1,12 @@
 # Documentation Map
 
+Context research, 2026-10-28: [budget-aware compaction and architecture reconciliation](research/agent-context-compaction.md)
+is the current research/decision package for deterministic reduction, optional
+summaries, exact recent history and grounded reacquisition. It preserves frozen
+Case 0003 facts and existing ownership; specific APIs/implementation remain
+pending. [Pinned sources and byte accounting](research/agent-context-compaction-evidence-20261028.json).
+Earlier notices below retain their dated meanings.
+
 [Real local-model maintenance Case 0003](research/local-coding-maintenance-case-0003.md) records a B-0035 attempt that stopped at the Prompt byte limit before editing. No production candidate, Codex fallback or repair success is claimed; both previous cases remain unchanged.
 
 [Local coding Case 0002](research/local-coding-agent-case-0002.md) records one real model-selected repository investigation and correct shared-owner edit. It preserves Case 0001, distinguishes retrieved metadata from actual disclosure, and establishes no live repair or aggregate effectiveness rate.

@@ -1352,3 +1352,15 @@ B-0008 pending1d0ed8bb (SnapshotDelta refresh) have concrete scope, acceptance,
 risks and sequencing in canonical Intake. Scientific ranking policies retain
 their original adverse/mixed/no-promotion conclusions. Epic status, architecture,
 parent obligations and promotion authority remain unchanged.
+
+
+## Context-compaction research reconciliation — 2026-10-28
+
+The [hybrid Context research and decision package](../../research/agent-context-compaction.md)
+records external source/documentation evidence, the frozen Case 0003 byte refusal,
+and existing Context/Localization/Agents ownership. Proposed active projection
+must preserve native correlation and invalidate removed exact-source witnesses;
+summaries cannot satisfy authority or source-currentness requirements. Research
+direction is approved; implementation/API, summary policy and new evaluations
+remain pending. This is planning evidence only: no status, maturity, dependency,
+grant, approval, parent closure, broader A+C or historical result changes.

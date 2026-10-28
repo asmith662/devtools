@@ -1,5 +1,12 @@
 # Research Evidence
 
+Context research, 2026-10-28: [hybrid budget-aware agent Context](agent-context-compaction.md)
+compares eight harnesses and five studies, pins selected upstream source, explains
+Case 0003's exact byte refusal, and proposes reuse of existing Context/Agents
+owners. Research direction approved; implementation and new evaluations pending.
+[Source identities and accounting](agent-context-compaction-evidence-20261028.json).
+Earlier dated audit/integration notices below retain their historical meaning.
+
 Latest integrated audit: [RI assurance and cohesion](ri-assurance-and-cohesion-audit.md). Twelve fixtures and seven exact older bodies reviewed; one new pending production binding bug,121 focused passes, eight advisories. Original fixtures57/93; historical170 unreviewed plus26 tip-only remain. Historical experiments606/606 is source-review scope only. Earlier integration/completion notices below are historical; both RI fixes are on main, not awaiting adoption.
 
 Production promotion completed: [normal GitHub PR #2 / accepted main](feature-branch-integration-20261024.md#protected-main-adoption-completed--2026-10-24). The exact validated source is adopted; remaining RI fixture/version and native-consumer work remains open.

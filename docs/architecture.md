@@ -1678,3 +1678,17 @@ graph/index/parser/execution authority is added. WorkCycle retains publication.
 Caller-scoped source search also filters explicitly selected admitted resources
 with original corpus/evidence and exact retained identity. This is caller selection,
 not a new ranking policy. See [native contract and measured adoption limits](../apps/qwen/evaluation/native-map-28/README.md).
+
+
+## Budget-aware Context research direction — 2026-10-28
+
+The maintainer approved research into hybrid deterministic reduction, optional
+structured summarization, recent exact exchanges and grounded reacquisition.
+The [source-backed decision package](research/agent-context-compaction.md)
+reconciles external mechanisms with existing Context/Agents/ModelInteraction
+owners and the frozen Case 0003 byte-limit failure. Active Context is a projection
+of retained captured facts; a summary is neither authority nor an exact source
+witness. Source availability, native correlation, custody and validation remain
+independent requirements. Specific APIs, package changes, summary policy, storage
+schemas and implementation are **pending**, not accepted by this research link.
+No implementation, inference, limit change or new architecture ADR is delivered.

@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-28",
+  "recorded_at": "2026-10-28T20:52:47.753095+00:00",
+  "baseline": {
+    "commit": "e5c332737d07e128ea03b9be859fba5bd3c2a3b5",
+    "tree": "d89604f55ad31f201f674c4ebd13b720ea4d4cbf"
+  },
+  "scope": "Documentation-only research verification and proposed architecture; no implementation or inference",
+  "confidence_labels": [
+    "DOC",
+    "SRC",
+    "PAPER",
+    "LOCAL",
+    "PROPOSAL",
+    "OPEN"
+  ],
+  "transcript_qualification": "Original ChatGPT transcript not supplied. This is independently checked synthesis of supplied topics/sources, not a verbatim archive.",
+  "upstream": {
+    "files": [
+      {
+        "repository": "QwenLM/qwen-code",
+        "branch": "main",
+        "revision": "ca204559a724a088071ea6fab025aa2efd740021",
+        "path": "packages/core/src/services/microcompaction/microcompact.ts",
+        "url": "https://raw.githubusercontent.com/QwenLM/qwen-code/ca204559a724a088071ea6fab025aa2efd740021/packages/core/src/services/microcompaction/microcompact.ts",
+        "sha256": "60bbd4319faf1cba31dbc006fff0cc778cb2e47565c484255882a8e6d9de6f31",
+        "bytes": 36689,
+        "git_blob": "3140a88c1fc5807f9be668453c371ec80dc307f2"
+      },
+      {
+        "repository": "QwenLM/qwen-code",
+        "branch": "main",
+        "revision": "ca204559a724a088071ea6fab025aa2efd740021",
+        "path": "packages/core/src/services/chatCompressionService.ts",
+        "url": "https://raw.githubusercontent.com/QwenLM/qwen-code/ca204559a724a088071ea6fab025aa2efd740021/packages/core/src/services/chatCompressionService.ts",
+        "sha256": "a91d93984da54fb54f7ef4de1b518368e3d7cd1aa7539638a1cff5414d5543e2",
+        "bytes": 68053,
+        "git_blob": "0b90129a8eb1aa3b5f7c3feff9112e8562282056"
+      },
+      {
+        "repository": "QwenLM/qwen-code",
+        "branch": "main",
+        "revision": "ca204559a724a088071ea6fab025aa2efd740021",
+        "path": "packages/core/src/services/postCompactAttachments.ts",
+        "url": "https://raw.githubusercontent.com/QwenLM/qwen-code/ca204559a724a088071ea6fab025aa2efd740021/packages/core/src/services/postCompactAttachments.ts",
+        "sha256": "5d54fdab99f23ca541b01f6be4add0457a379297dd1e468e567d42533ef0d886",
+        "bytes": 34933,
+        "git_blob": "547f4d530d7e19c11a57b107f2a0bb42d2190387"
+      },
+      {
+        "repository": "openai/codex",
+        "branch": "main",
+        "revision": "2f47f9779282e6b273ad14bd29bec4561627083e",
+        "path": "codex-rs/core/src/compact.rs",
+        "url": "https://raw.githubusercontent.com/openai/codex/2f47f9779282e6b273ad14bd29bec4561627083e/codex-rs/core/src/compact.rs",
+        "sha256": "37bd62ca576c1abd48672aef3641cae1853199a384077991aea56074b27a18ec",
+        "bytes": 33714,
+        "git_blob": "3c6642301fd5e76c3198cf8b7d8c6d8cf3dbfe93"
+      },
+      {
+        "repository": "OpenHands/software-agent-sdk",
+        "branch": "main",
+        "revision": "47bbc5e8392c4c75b7f77a1da38bed4a9f53d6a5",
+        "path": "openhands-sdk/openhands/sdk/context/condenser/base.py",
+        "url": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/47bbc5e8392c4c75b7f77a1da38bed4a9f53d6a5/openhands-sdk/openhands/sdk/context/condenser/base.py",
+        "sha256": "32e9e4c9baf3e796093302c8c35493c698107aaaf92720c54a8a58011756d0d9",
+        "bytes": 10196,
+        "git_blob": "451319624927b75fa388bbe81af529c7c83e0c61"
+      },
+      {
+        "repository": "OpenHands/software-agent-sdk",
+        "branch": "main",
+        "revision": "47bbc5e8392c4c75b7f77a1da38bed4a9f53d6a5",
+        "path": "openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py",
+        "url": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/47bbc5e8392c4c75b7f77a1da38bed4a9f53d6a5/openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py",
+        "sha256": "506805abd8f117f87a953181e0778ae55322a1734c3f124902bee6ae2f8b3899",
+        "bytes": 23439,
+        "git_blob": "08b586ec9c78915130aee51675992a61dd1c36df"
+      },
+      {
+        "repository": "earendil-works/pi",
+        "branch": "main",
+        "revision": "a87b742ff4ce262c07b7830a25c73c1442dab41b",
+        "path": "packages/coding-agent/docs/compaction.md",
+        "url": "https://raw.githubusercontent.com/earendil-works/pi/a87b742ff4ce262c07b7830a25c73c1442dab41b/packages/coding-agent/docs/compaction.md",
+        "sha256": "b5b23d10bb86d8ab32b67f80a7e57febd953222c6da6fd422ae91d232ef28faf",
+        "bytes": 24093,
+        "git_blob": "69c82e8898f54cf87bf12fa1f9fe931b5f3a8d56"
+      },
+      {
+        "repository": "earendil-works/pi",
+        "branch": "main",
+        "revision": "a87b742ff4ce262c07b7830a25c73c1442dab41b",
+        "path": "packages/coding-agent/src/core/compaction/compaction.ts",
+        "url": "https://raw.githubusercontent.com/earendil-works/pi/a87b742ff4ce262c07b7830a25c73c1442dab41b/packages/coding-agent/src/core/compaction/compaction.ts",
+        "sha256": "32714966eb644da31cd84e8eb172965256160626b3d26ae9752c3894300f2b0b",
+        "bytes": 35401,
+        "git_blob": "07a58ac6cf6e2141fc07133677583ab18bb97298"
+      },
+      {
+        "repository": "anomalyco/opencode",
+        "branch": "dev",
+        "revision": "651032bc279fa61de3b8261f4b5573a7d22a6472",
+        "path": "packages/core/src/session/compaction.ts",
+        "url": "https://raw.githubusercontent.com/anomalyco/opencode/651032bc279fa61de3b8261f4b5573a7d22a6472/packages/core/src/session/compaction.ts",
+        "sha256": "a21e040bdc9d41595b546562304b601d35bba86bcaa2b2600db80e7be7faf0a8",
+        "bytes": 59353,
+        "git_blob": "917d08819b2b39854e1638f411c2f484bc57d0b4"
+      },
+      {
+        "repository": "Aider-AI/aider",
+        "branch": "main",
+        "revision": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+        "path": "aider/history.py",
+        "url": "https://raw.githubusercontent.com/Aider-AI/aider/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/history.py",
+        "sha256": "5c9377875d6c9268ba16ec6cfd3cc30c7d3d8c23d42ffb2a5c3bc375aefc7e79",
+        "bytes": 4769,
+        "git_blob": "8d0bce7b35dfc4be2f87b7a1407ade0a64523674"
+      }
+    ],
+    "repositories": {
+      "QwenLM/qwen-code": {
+        "full_name": "QwenLM/qwen-code",
+        "html_url": "https://github.com/QwenLM/qwen-code",
+        "fork": false,
+        "description": "An open-source AI coding agent that lives in your terminal.",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "spdx_id": "Apache-2.0",
+          "url": "https://api.github.com/licenses/apache-2.0",
+          "node_id": "MDc6TGljZW5zZTI="
+        },
+        "revision": "ca204559a724a088071ea6fab025aa2efd740021"
+      },
+      "openai/codex": {
+        "full_name": "openai/codex",
+        "html_url": "https://github.com/openai/codex",
+        "fork": false,
+        "description": "Lightweight coding agent that runs in your terminal",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "spdx_id": "Apache-2.0",
+          "url": "https://api.github.com/licenses/apache-2.0",
+          "node_id": "MDc6TGljZW5zZTI="
+        },
+        "revision": "2f47f9779282e6b273ad14bd29bec4561627083e"
+      },
+      "OpenHands/software-agent-sdk": {
+        "full_name": "OpenHands/software-agent-sdk",
+        "html_url": "https://github.com/OpenHands/software-agent-sdk",
+        "fork": false,
+        "description": "A clean, modular SDK for building AI agents with OpenHands V1.",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "revision": "47bbc5e8392c4c75b7f77a1da38bed4a9f53d6a5"
+      },
+      "earendil-works/pi": {
+        "full_name": "earendil-works/pi",
+        "html_url": "https://github.com/earendil-works/pi",
+        "fork": false,
+        "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "revision": "a87b742ff4ce262c07b7830a25c73c1442dab41b",
+        "package": {
+          "name": "@earendil-works/pi-coding-agent",
+          "version": "1.4.0",
+          "license": "MIT"
+        }
+      },
+      "anomalyco/opencode": {
+        "full_name": "anomalyco/opencode",
+        "html_url": "https://github.com/anomalyco/opencode",
+        "fork": false,
+        "description": "The open source coding agent.",
+        "license": {
+          "key": "mit",
+          "name": "MIT License",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+          "node_id": "MDc6TGljZW5zZTEz"
+        },
+        "revision": "651032bc279fa61de3b8261f4b5573a7d22a6472"
+      },
+      "Aider-AI/aider": {
+        "full_name": "Aider-AI/aider",
+        "html_url": "https://github.com/Aider-AI/aider",
+        "fork": false,
+        "description": "aider is AI pair programming in your terminal",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "spdx_id": "Apache-2.0",
+          "url": "https://api.github.com/licenses/apache-2.0",
+          "node_id": "MDc6TGljZW5zZTI="
+        },
+        "revision": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c"
+      }
+    }
+  },
+  "upstream_verification": "GitHub branch resolution, raw bytes at exact revision, local git-blob calculation matched contents API sha; selected source inspection only; no upstream execution.",
+  "moving_sources": [
+    {
+      "url": "https://code.claude.com/docs/en/context-window",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/compaction",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://github.com/JetBrains-Research/the-complexity-trap",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://github.com/cai-jianfeng/compact-bench",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://huggingface.co/datasets/caijanfeng/compact-bench",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://openai.com/index/unrolling-the-codex-agent-loop/",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/compaction-keep-recent-turns",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/core-concepts/message-history/",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/harness/compaction/",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/harness/tool-output-limits/",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    },
+    {
+      "url": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+      "version": "moving page; no immutable revision established",
+      "inspection": "official documentation or linked repository/dataset overview; no execution"
+    }
+  ],
+  "papers": [
+    {
+      "arxiv_version": "2508.21433v2",
+      "kind": "authors empirical/preprint claims; not independently reproduced"
+    },
+    {
+      "arxiv_version": "2610.31710v1",
+      "kind": "authors empirical/preprint claims; not independently reproduced"
+    },
+    {
+      "arxiv_version": "2610.31778v1",
+      "kind": "authors empirical/preprint claims; not independently reproduced"
+    },
+    {
+      "arxiv_version": "2510.24699v1",
+      "kind": "authors empirical/preprint claims; not independently reproduced"
+    },
+    {
+      "arxiv_version": "2509.23586v2",
+      "kind": "authors empirical/preprint claims; not independently reproduced"
+    }
+  ],
+  "compact_bench_qualification": "v1 limitations say private payloads/cached states unavailable; current linked code/dataset card advertises redacted release. Pages inspected, payload/checksums not downloaded or verified; exact reproducibility unestablished.",
+  "local_review_inventory": [
+    {
+      "path": "src/devtools/models/interaction/prompt.py",
+      "git_blob": "b95d60c773eb5bdd69665573ee608038de1c7604",
+      "review_depth": "complete Prompt and PromptMessage bodies; native invariants",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "src/devtools/agents/coding/process.py",
+      "git_blob": "ff3a421f1a1c720a03846d15462fac1d5ae851c1",
+      "review_depth": "complete bounded process body; preparation and terminal sequencing",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "src/devtools/context/planning/plan.py",
+      "git_blob": "041b9fdd4bc1638e56f70f15048fac4df83f2007",
+      "review_depth": "complete plan representation and validation",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "src/devtools/context/planning/materialization.py",
+      "git_blob": "a81e4b724930e785dedd4c8b3f89664509edd3c4",
+      "review_depth": "complete materialized disclosure validation",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "src/devtools/context/planning/source.py",
+      "git_blob": "718d634154ff8745fbd6baaa1e48b45bc66912ea",
+      "review_depth": "complete source range materialization and UTF-8 bounds",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "src/devtools/context/planning/rendering.py",
+      "git_blob": "973273cd94c330cb8a37d7b4422ca22f956346b5",
+      "review_depth": "complete rendering/assembly and structured-input exclusion",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": true
+    },
+    {
+      "path": "apps/qwen/continuation.py",
+      "git_blob": "eff303cfc39c47ba6c7e8455addd318120750d93",
+      "review_depth": "targeted projection, eviction, protection, hashing and reacquisition branches; no comprehensive subsystem credit",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/agents/coding/repository.py",
+      "git_blob": "16b0576968c25a1b5544956c9cb78c2574538733",
+      "review_depth": "objective limits; prepare/receive/classify/acquire/propose/apply/check/feedback/finish and source availability",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/context/localization/readiness.py",
+      "git_blob": "3552350c73f4cb443abbb1d719a225294c84e291",
+      "review_depth": "assessment input matching, required/helpful witnesses and dispositions",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "apps/qwen/turns/prompt.py",
+      "git_blob": "a516fb56c5f06c0818e66a33c564f3412ad8f5c7",
+      "review_depth": "projection, actual provider measurement, reserves and fit/reacquisition policy",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "apps/qwen/obligations/native.py",
+      "git_blob": "c7a038c4c5014abe5f66ede8cfe478d77ace28d6",
+      "review_depth": "active-message projection, readiness and currentness admission",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/agents/coding/custody.py",
+      "git_blob": "7341276f5237f83e5d090c1abcd9a7e63b2adcc6",
+      "review_depth": "archive, known-source restoration and unknown-byte refusal",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/tools/source.py",
+      "git_blob": "077c9d47256cd34532f34ac2aef98520ab26e43e",
+      "review_depth": "scope/currentness admission and source materialization ownership",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/tools/checks.py",
+      "git_blob": "0d890f1d6791078c9aec9a89b32f4f8eb55dff0c",
+      "review_depth": "fixed-check ownership and execution result separation",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob": "63a6120aa220c9d94eb81a72fcdc93ed7f58b81e",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "README.md",
+      "git_blob": "07fdeff756a76f382f888f660ebafaa6d63cef54",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture.md",
+      "git_blob": "7158c7c59516ce0f6efb36280226a7d19f121ee1",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/taxonomy.md",
+      "git_blob": "168a9bdc5cb9ff8951c51deb97a4fca679c0908a",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/documentation_map.md",
+      "git_blob": "a224ad74c4dac8e0481e0c9cbd8a8ba97811f1ab",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/development/bounded-coding-agent.md",
+      "git_blob": "5bf8fca994b9648e20fbfb6d768746b680836b4c",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/research/agent-harness-mechanism-review.md",
+      "git_blob": "31422b6ee763891e49d284aff340f921c2ee334f",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "src/devtools/observability/evidence/docs/overview.md",
+      "git_blob": "f26bfcf22cfd9d0bbf11f5c368adf4ebd86903c7",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "git_blob": "c397002adad3fcf355bcf19d80ad3dec70789255",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "git_blob": "45dedb42d157dd2e3e3db292f17469086ed42878",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "git_blob": "929a09d9c58bf6ee3a3de909899c76ad99778e4e",
+      "review_depth": "authority/documentation relevant sections",
+      "credit_limit": "Research dependency inspection only; no transfer of comprehensive-audit credit.",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+      "git_blob": "81fce50378303a618f67416c667f2ce47cd3b130",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+      "git_blob": "ba15fa50bad217272b6421f05030e7b4500c205b",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+      "git_blob": "a7c863fefea376ab12a8843a3888eb3012ffe627",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+      "git_blob": "37a7d3d265659feb88700dda62ea1992da91d1cb",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md",
+      "git_blob": "3321783149932653e0cb57737775d15be9ce7e41",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0003/REPORT.md",
+      "git_blob": "9404ca34d31cc67214ffef98d97538423163d03c",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0003/evidence/diagnosis.json",
+      "git_blob": "ac0ded1c0d0e2e6fea3444ccf2fd46fd009030d7",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0003/evidence/worker-result.json",
+      "git_blob": "13a0ffeeaf4b749c98b91cae350d48ff789e76a6",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0003/freeze.json",
+      "git_blob": "5a56475e560cdfdf7e9c2808b486ab3d5dbfc0de",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0003/manifest.json",
+      "git_blob": "7f5b384c2374b8e9c9a40ceef34b5fdd384ba2ba",
+      "review_depth": "authority or retained local evidence relevant sections",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0001/REPORT.md",
+      "git_blob": "6e8d0637c599dd469d3acb609c7b25d31c593e3b",
+      "review_depth": "prior case provenance and reported outcomes; no rerun",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0001/freeze.json",
+      "git_blob": "51f6637ad2040f2b274a7c06abe52fd588a4859e",
+      "review_depth": "prior case provenance and reported outcomes; no rerun",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0002/REPORT.md",
+      "git_blob": "90b6eb34b2c0d3add1c5dbb2928c185f578c8fa5",
+      "review_depth": "prior case provenance and reported outcomes; no rerun",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0002/freeze.json",
+      "git_blob": "54e6f5912b7fc88419dab10011493845d0a16d9e",
+      "review_depth": "prior case provenance and reported outcomes; no rerun",
+      "full_body_inspected": false
+    },
+    {
+      "path": "experiments/local_coding_dogfood/case_0002/manifest.json",
+      "git_blob": "dea1ef46ad5cd4103c02555fdd8e4cbf90cf0846",
+      "review_depth": "prior case provenance and reported outcomes; no rerun",
+      "full_body_inspected": false
+    }
+  ],
+  "case0003_byte_accounting": {
+    "method": "json.dumps(dataclasses.asdict(ModelRequest), ensure_ascii=False).encode(); existing base host definitions; no provider call or projection change",
+    "parts": {
+      "total_bytes": 36640,
+      "message_objects_bytes": 35581,
+      "messages_array_bytes": 35605,
+      "prompt_object_bytes": 35654,
+      "tool_definitions_bytes": 842,
+      "settings_bytes": 58,
+      "remaining_request_framing_bytes": 86
+    },
+    "messages": [
+      {
+        "index": 0,
+        "role": "user",
+        "call_id": null,
+        "serialized_message_bytes": 2506,
+        "content_utf8_bytes": 2376
+      },
+      {
+        "index": 1,
+        "role": "assistant",
+        "call_id": null,
+        "serialized_message_bytes": 290,
+        "content_utf8_bytes": 78
+      },
+      {
+        "index": 2,
+        "role": "tool",
+        "call_id": "FSxvNhBpjwnGH4BolQ3K6HrGnueX8AoB",
+        "serialized_message_bytes": 3527,
+        "content_utf8_bytes": 3187,
+        "keys": [
+          "snapshot",
+          "source_acquired",
+          "resources"
+        ]
+      },
+      {
+        "index": 3,
+        "role": "assistant",
+        "call_id": null,
+        "serialized_message_bytes": 561,
+        "content_utf8_bytes": 85
+      },
+      {
+        "index": 4,
+        "role": "tool",
+        "call_id": "NK2uJZlrt7HFzWNUOJuuQKoJIFZNUupr",
+        "serialized_message_bytes": 4117,
+        "content_utf8_bytes": 3641,
+        "keys": [
+          "snapshot",
+          "source_acquired",
+          "query",
+          "mode",
+          "hits"
+        ]
+      },
+      {
+        "index": 5,
+        "role": "tool",
+        "call_id": "OEiKqLaIRaxwrvp9LbsnuTYU7hioxLb1",
+        "serialized_message_bytes": 4065,
+        "content_utf8_bytes": 3597,
+        "keys": [
+          "snapshot",
+          "source_acquired",
+          "query",
+          "mode",
+          "hits"
+        ]
+      },
+      {
+        "index": 6,
+        "role": "assistant",
+        "call_id": null,
+        "serialized_message_bytes": 390,
+        "content_utf8_bytes": 107
+      },
+      {
+        "index": 7,
+        "role": "tool",
+        "call_id": "QjHmJ84AMs4F8PWpihZZ6hVM6HUb8YZl",
+        "serialized_message_bytes": 7818,
+        "content_utf8_bytes": 7294,
+        "keys": [
+          "text",
+          "path",
+          "snapshot",
+          "version",
+          "span",
+          "partial"
+        ],
+        "source_text_bytes": 6754,
+        "path": "tests/agents/coding/test_inventory.py",
+        "span": [
+          1,
+          6754
+        ]
+      },
+      {
+        "index": 8,
+        "role": "assistant",
+        "call_id": null,
+        "serialized_message_bytes": 366,
+        "content_utf8_bytes": 75
+      },
+      {
+        "index": 9,
+        "role": "tool",
+        "call_id": "2bR1HTUsUDTUO1lyL5dnkYSFIP5aOYSB",
+        "serialized_message_bytes": 1504,
+        "content_utf8_bytes": 1278,
+        "keys": [
+          "text",
+          "path",
+          "snapshot",
+          "version",
+          "span",
+          "partial"
+        ],
+        "source_text_bytes": 950,
+        "path": "src/devtools/agents/coding/repository.py",
+        "span": [
+          10250,
+          11200
+        ]
+      },
+      {
+        "index": 10,
+        "role": "assistant",
+        "call_id": null,
+        "serialized_message_bytes": 352,
+        "content_utf8_bytes": 65
+      },
+      {
+        "index": 11,
+        "role": "tool",
+        "call_id": "jitvdjT8ucrwT2cpxFETzDTy5GAo8Qu1",
+        "serialized_message_bytes": 10085,
+        "content_utf8_bytes": 9101,
+        "keys": [
+          "text",
+          "path",
+          "snapshot",
+          "version",
+          "span",
+          "partial"
+        ],
+        "source_text_bytes": 8192,
+        "path": "src/devtools/agents/coding/repository.py",
+        "span": [
+          1,
+          8193
+        ]
+      }
+    ]
+  },
+  "case0003_facts": {
+    "provider_entries": 5,
+    "attempted_request": 6,
+    "attempted_request_entered": false,
+    "edit_proposals": 0,
+    "prompt_byte_limit": 32768,
+    "attempted_bytes": 36640,
+    "provider_input_tokens": [
+      1108,
+      2754,
+      6886,
+      8815,
+      9306
+    ],
+    "provider_output_tokens": [
+      29,
+      80,
+      79,
+      77,
+      72
+    ],
+    "input_token_ceiling": 28160,
+    "context_tokens": 32768,
+    "output_token_ceiling": 4096,
+    "repository_spans": [
+      [
+        10250,
+        11200
+      ],
+      [
+        1,
+        8193
+      ]
+    ],
+    "spans_overlap": false,
+    "final_partial_source_bytes": 8192,
+    "final_partial_consumed": false
+  },
+  "authorization": {
+    "research_direction": "approved hybrid budget-aware Context research",
+    "implementation": "none",
+    "public_api_schema_policy": "pending",
+    "new_evaluation": "none"
+  },
+  "validation": {
+    "command": "uv run python .local/context-research/validate.py",
+    "started_at": "2026-10-28T20:54:14.383405+00:00",
+    "finished_at": "2026-10-28T20:54:17.648102+00:00",
+    "elapsed_seconds": 3.265,
+    "exit_code": 0,
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "baseline": "e5c332737d07e128ea03b9be859fba5bd3c2a3b5",
+    "observed_head": "e5c332737d07e128ea03b9be859fba5bd3c2a3b5",
+    "allowed_paths": [
+      "docs/architecture.md",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-context-compaction-evidence-20261028.json",
+      "docs/research/agent-context-compaction.md",
+      "docs/research/agent-harness-mechanism-review.md"
+    ],
+    "changed_tracked_paths": [
+      "docs/architecture.md",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-harness-mechanism-review.md"
+    ],
+    "physical_files_unchanged": 1273,
+    "forensics_unchanged": 13,
+    "case_manifest_files": {
+      "case_0001": {
+        "kind": "frozen input map and task digest; all retained bytes also baseline-hashed",
+        "files": 9
+      },
+      "case_0002": {
+        "kind": "closed manifest",
+        "files": 68
+      },
+      "case_0003": {
+        "kind": "closed manifest",
+        "files": 47
+      }
+    },
+    "strict_json_records": 973,
+    "intake_chains": 68,
+    "RI_rows": 903,
+    "RI_ledgers": {
+      "docs/research/code-audit/ri-completion-experiments.jsonl": "c123f9bca86b9d7d3de2067fa8913997cb9d87fbcabe8a0151ab42bb18047868",
+      "docs/research/code-audit/ri-completion-fixtures.jsonl": "8ffe436bbdcb457d1a32af5ae8816246b82415c5661b3f571b5b6d077a0887de",
+      "docs/research/code-audit/ri-followup-history.jsonl": "9feaf42f23ba72827ccedf67049f72b58b2b9c9ce2cb9ffeb727796a81b14c72"
+    },
+    "local_review_identities": 40,
+    "local_links": 541,
+    "anchor_checks": 54,
+    "preexisting_unresolved_links": [
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-admission-rule.json"
+      },
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-independent-validation.json"
+      }
+    ],
+    "new_broken_links": [],
+    "previous_protected_inputs_unchanged": 923,
+    "historic_refs_unchanged": 155,
+    "executable_inputs_changed": false,
+    "full_protected_gate_rerun": false,
+    "status": "passed with two explicitly preexisting unavailable historical receipt links",
+    "layout": {
+      "command": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "scripts/validate_layout.py"
+      ],
+      "environment": "existing uv project environment",
+      "started_at": "2026-10-28T20:55:25.064218+00:00",
+      "finished_at": "2026-10-28T20:55:25.116253+00:00",
+      "elapsed_seconds": 0.052,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "method": "Read-only scoped SHA-256 comparison; baseline Git blobs and ancestry; strict JSON parsing; canonical Intake.queue; retained case digest/manifests; local Markdown path/heading targets; unchanged protected physical inputs; Git whitespace checks. No model or experiment execution.",
+    "setup_corrections": [
+      "Initial local helper named inspect.py shadowed stdlib; renamed before successful capture.",
+      "An overbroad physical hashing pass was interrupted and replaced by explicit scoped capture; no production changes.",
+      "All-tree Git metadata output exceeded existing bounded helper output; narrowed to selected paths.",
+      "Case 0001 uses freeze.files and task digest, not a closeout manifest; validator corrected to actual format."
+    ],
+    "qualification": "Local verification-helper setup failures are not production defects. No protected suite, Ruff, mypy or inference rerun for this documentation-only change."
+  },
+  "preservation": {
+    "baseline_physical_files": 1273,
+    "baseline_forensics": 13,
+    "expected_RI_rows": 903,
+    "outstanding_historical_RI_version_obligations": 188,
+    "physical_groups": {
+      "src/": {
+        "files": 326,
+        "sha256_of_sorted_path_hash_mapping": "56563df84938e55739874dd27c312a1747f51922d527a2cc24c47933b17d21f9"
+      },
+      "tests/": {
+        "files": 402,
+        "sha256_of_sorted_path_hash_mapping": "2ab7daca0ea9668e343bc4e7dcbe16c0d2190f8e492d1bed76b776ef71102a6f"
+      },
+      "apps/": {
+        "files": 241,
+        "sha256_of_sorted_path_hash_mapping": "fa53dcf928d724fab9eab011a1787ce0fccb67585f413fd0ca5bb59f5690b80b"
+      },
+      "scripts/": {
+        "files": 28,
+        "sha256_of_sorted_path_hash_mapping": "d40f030960b52cee84e255cbb477f2fbcda60a1d4a4d247d38272bf0a01db3b2"
+      },
+      "experiments/local_coding_dogfood/case_0001/": {
+        "files": 34,
+        "sha256_of_sorted_path_hash_mapping": "9371e72f023aa91c37744d72e944bbdc1325e34746ccc18ccf1b8cda58d3bdd8"
+      },
+      "experiments/local_coding_dogfood/case_0002/": {
+        "files": 69,
+        "sha256_of_sorted_path_hash_mapping": "c090249a88efa44b70302094f5428a68830db19409d36a829c705a253d43cb6b"
+      },
+      "experiments/local_coding_dogfood/case_0003/": {
+        "files": 48,
+        "sha256_of_sorted_path_hash_mapping": "f558fc7cb1db56fb4c04bfb81ea095c181e1c555a11077a65e07bee1be5b1a47"
+      }
+    },
+    "forensic_files": [
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json",
+        "sha256": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json",
+        "sha256": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json",
+        "sha256": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json",
+        "sha256": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json",
+        "sha256": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json",
+        "sha256": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json",
+        "sha256": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json",
+        "sha256": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json",
+        "sha256": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json",
+        "sha256": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json",
+        "sha256": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json",
+        "sha256": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a"
+      },
+      {
+        "path": "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json",
+        "sha256": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7"
+      }
+    ],
+    "historical_refs_policy": "All preexisting non-main refs compared exactly; only ordinary local/remote main advancement allowed; no deletion.",
+    "case_bytes_unchanged": true
+  },
+  "prohibited_actions_performed": [],
+  "publication_requirements_at_inspection": {
+    "at": "2026-10-28T20:53:52.356865+00:00",
+    "main": "e5c332737d07e128ea03b9be859fba5bd3c2a3b5",
+    "permissions": {
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
+      "pull": true
+    },
+    "protected": false,
+    "protection": {
+      "status": 404,
+      "value": {
+        "message": "Branch not protected",
+        "documentation_url": "https://docs.github.com/rest/branches/branch-protection#get-branch-protection",
+        "status": "404"
+      }
+    },
+    "rules": [],
+    "rulesets": []
+  },
+  "publication_note": "Receipt finalized before commit to avoid a self-referential commit hash. Commit ancestry and docs-only path inventory bind this evidence; accepted main is independently verified after ordinary push and recorded in the local completion handoff."
+}

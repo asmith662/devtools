@@ -114,3 +114,16 @@ One frozen real-model case selected a shared owner from 18 resources/11 permitte
 ## Real framework maintenance Case 0003 — 2026-10-28
 
 One explicitly authorized real Qwen3.8 maintenance attempt pursued the existing bounded first-request inventory follow-up. Five real requests located the neutral coding host; complete-input preparation then refused 36,640 bytes against the unchanged 32,768-byte cap. No edit proposal, validation/repair turn or production candidate occurred; canonical source was restored and no Codex patch or second attempt substituted. [Frozen evidence, independent verdict and exact limits](../../research/local-coding-maintenance-case-0003.md). This records Context-capacity/usability pressure, not a budget-guard defect or delivered implementation. B-0035 remains open; budget-aware active Context projection is the single next recommendation requiring separate authorization. Both prior cases, historical evidence, 188 RI obligations, A+C, Option B and recovery remain separate. No status/maturity/dependency, approval, grant or parent-closure change. `experiment:real-maintenance-case0003:e85de1a1:20261028`.
+
+
+## Context-compaction research reconciliation — 2026-10-28
+
+The [source-backed research and pending design](../../research/agent-context-compaction.md)
+reconstructs Case 0003: 36,640 serialized bytes versus 32,768, five provider
+requests, zero edits, disjoint host-source reads and final partial feedback never
+consumed. This does not deliver the original first-request inventory obligation
+or establish a guard defect. A proposed opt-in deterministic active projection
+would account for complete requests and synchronize exact witness availability;
+hybrid summarization remains separately designed and authorized. Existing
+status/maturity/dependencies, original experimental outcomes, grants and parent
+scope remain unchanged. No new proposal or implementation approval is implied.

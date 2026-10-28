@@ -610,3 +610,12 @@ prospective turn06 expansion was refused; no source was disclosed by that call.
 No external harness result, historical model outcome or accepted ADR changes.
 Next is local destination adoption/ownership/custody reconciliation, not another
 external install or tracing implementation.
+
+
+## Context-compaction follow-up — 2026-10-28
+
+The [budget-aware Context research reconciliation](agent-context-compaction.md)
+adds independently pinned current harness inspection, qualified empirical papers,
+the frozen Case 0003 request accounting and a proposed hybrid decision package.
+It does not replace this October 23 review's versions or historical conclusions.
+Only the research direction is approved; concrete implementation remains pending.
