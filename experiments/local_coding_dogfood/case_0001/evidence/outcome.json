@@ -1,0 +1,1378 @@
+{
+  "at": "2026-10-28T14:37:11.743694+00:00",
+  "task_digest": "f1720633ff5b1fc9f1592458e757f8c4aa8c7128ea85498d95c58d8ec0612605",
+  "worker_accepted": true,
+  "worker_disposition": "validated",
+  "candidate_validated": true,
+  "worker_completed": true,
+  "failure_phase": null,
+  "error_kind": null,
+  "error": null,
+  "model_requests": 2,
+  "inference_entries": 2,
+  "proposals": 1,
+  "tool_actions": 3,
+  "applied_batches": 1,
+  "seconds": 55.298485,
+  "heldout_exit": 0,
+  "focused_exit": 0,
+  "restored_git_status": "",
+  "procedures": [
+    {
+      "trigger": "deterministic-host-validation",
+      "report": {
+        "status": "passed",
+        "before": {
+          "root": {
+            "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+          },
+          "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+          "changes": [
+            {
+              "path": "stockroom/projection.py",
+              "index": " ",
+              "worktree": "M",
+              "original_path": null
+            }
+          ],
+          "stable": true
+        },
+        "after": {
+          "root": {
+            "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+          },
+          "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+          "changes": [
+            {
+              "path": "stockroom/projection.py",
+              "index": " ",
+              "worktree": "M",
+              "original_path": null
+            }
+          ],
+          "stable": true
+        },
+        "checks": [
+          {
+            "name": "focused-acceptance",
+            "status": "passed",
+            "result": {
+              "check": {
+                "name": "focused-acceptance",
+                "command": {
+                  "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                  "arguments": [
+                    "-B",
+                    "acceptance.py"
+                  ],
+                  "working_directory": {
+                    "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                  },
+                  "timeout": {
+                    "value": "0:00:30"
+                  },
+                  "stdin": null,
+                  "environment": null,
+                  "success_exit_codes": "frozenset({0})"
+                }
+              },
+              "command_result": {
+                "command": {
+                  "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                  "arguments": [
+                    "-B",
+                    "acceptance.py"
+                  ],
+                  "working_directory": {
+                    "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                  },
+                  "timeout": {
+                    "value": "0:00:30"
+                  },
+                  "stdin": null,
+                  "environment": null,
+                  "success_exit_codes": "frozenset({0})"
+                },
+                "exit_code": 0,
+                "stdout": "b''",
+                "stderr": "b'test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery) ... ok\\r\\ntest_generator_negative_and_zero (__main__.Acceptance.test_generator_negative_and_zero) ... ok\\r\\ntest_quantity_conflict (__main__.Acceptance.test_quantity_conflict) ... ok\\r\\ntest_same_id_in_distinct_warehouses (__main__.Acceptance.test_same_id_in_distinct_warehouses) ... ok\\r\\ntest_sku_conflict (__main__.Acceptance.test_sku_conflict) ... ok\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 5 tests in 0.000s\\r\\n\\r\\nOK\\r\\n'",
+                "duration": {
+                  "value": "0:00:00.128561"
+                },
+                "stdout_truncated": false,
+                "stderr_truncated": false,
+                "events_dropped": 0
+              },
+              "inputs_current": true,
+              "input_error": null
+            },
+            "error": null
+          }
+        ],
+        "observations": [
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-0"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "root",
+              "argument_roles": [
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.028558"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-1"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.034066"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-2"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.028426"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-3"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023573"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-4"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.022190"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-5"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "root",
+              "argument_roles": [
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.027344"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-6"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023297"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-7"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.033322"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-8"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023023"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-9"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.024787"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/check-0"
+            },
+            "pattern": {
+              "family": "check",
+              "operation": "fixed",
+              "argument_roles": [
+                "opaque"
+              ],
+              "capabilities": [],
+              "equivalent_tool": "tools.checks.FixedCheckTool"
+            },
+            "source": "framework-result",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.128561"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          }
+        ],
+        "reason": null,
+        "error": null
+      }
+    }
+  ],
+  "command_records": [
+    {
+      "label": "git-0",
+      "exit_code": 0,
+      "seconds": 0.038007,
+      "stdout": "e17f0ecd500f07a07b095193e56ba6399b08c90e\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "git-1",
+      "exit_code": 0,
+      "seconds": 0.027867,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "git-2",
+      "exit_code": 0,
+      "seconds": 0.023222,
+      "stdout": "8f1466ec0f7b71984a63cb6b0512d075b8e282a4\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "final-heldout",
+      "exit_code": 0,
+      "seconds": 0.10722,
+      "stdout": "",
+      "stderr": "test_conflict_after_other_effects_does_not_mutate_input (__main__.Heldout.test_conflict_after_other_effects_does_not_mutate_input) ... ok\r\ntest_empty_returns_independent_mapping (__main__.Heldout.test_empty_returns_independent_mapping) ... ok\r\ntest_interleaved_replays (__main__.Heldout.test_interleaved_replays) ... ok\r\ntest_opaque_case_sensitive_ids (__main__.Heldout.test_opaque_case_sensitive_ids) ... ok\r\ntest_opaque_space_ids (__main__.Heldout.test_opaque_space_ids) ... ok\r\ntest_separate_calls_do_not_share_replay_state (__main__.Heldout.test_separate_calls_do_not_share_replay_state) ... ok\r\ntest_unicode_canonical_duplicates (__main__.Heldout.test_unicode_canonical_duplicates) ... ok\r\ntest_zero_delta_replay_conflict (__main__.Heldout.test_zero_delta_replay_conflict) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.000s\r\n\r\nOK\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "final-focused",
+      "exit_code": 0,
+      "seconds": 0.119131,
+      "stdout": "",
+      "stderr": "test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery) ... ok\r\ntest_generator_negative_and_zero (__main__.Acceptance.test_generator_negative_and_zero) ... ok\r\ntest_quantity_conflict (__main__.Acceptance.test_quantity_conflict) ... ok\r\ntest_same_id_in_distinct_warehouses (__main__.Acceptance.test_same_id_in_distinct_warehouses) ... ok\r\ntest_sku_conflict (__main__.Acceptance.test_sku_conflict) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 5 tests in 0.000s\r\n\r\nOK\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "git-5",
+      "exit_code": 0,
+      "seconds": 0.02675,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "command_observations": [
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "git-0"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-0",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.037814"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "git-1"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-1",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.027744"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "git-2"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-2",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.023112"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-0"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "root",
+        "argument_roles": [
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.028558"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-1"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "revision",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.034066"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-2"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "status",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.028426"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-3"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "revision",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.023573"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-4"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "status",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.022190"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-5"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "root",
+        "argument_roles": [
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.027344"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-6"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "revision",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.023297"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-7"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "status",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.033322"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-8"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "revision",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.023023"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/git-9"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "status",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "source": "framework-events",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.024787"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "host-check-0/check-0"
+      },
+      "pattern": {
+        "family": "check",
+        "operation": "fixed",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [],
+        "equivalent_tool": "tools.checks.FixedCheckTool"
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.128561"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "final-heldout"
+      },
+      "pattern": {
+        "family": "python.exe",
+        "operation": "final-heldout",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.107071"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "final-focused"
+      },
+      "pattern": {
+        "family": "python.exe",
+        "operation": "final-focused",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.118999"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "stock-replay",
+        "run": "primary-0001",
+        "call": "git-5"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-5",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.026638"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": {
+        "family": "check",
+        "operation": "fixed",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [],
+        "equivalent_tool": "tools.checks.FixedCheckTool"
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-0",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-1",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-2",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-5",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "revision",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "frequency": 4,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "root",
+        "argument_roles": [
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "frequency": 2,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 2,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:status",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "status",
+        "argument_roles": [
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag",
+          "flag"
+        ],
+        "capabilities": [
+          "win32",
+          "git"
+        ],
+        "equivalent_tool": "tools.repository.GitInspectionTool"
+      },
+      "frequency": 4,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "python.exe:final-focused",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "python.exe",
+        "operation": "final-focused",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-heldout"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "python.exe",
+        "operation": "final-heldout",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "check:fixed",
+        "git:git-0",
+        "git:git-1",
+        "git:git-2",
+        "git:git-5",
+        "git:revision",
+        "git:root",
+        "git:status",
+        "python.exe:final-focused"
+      ],
+      "co_occurrence_truncated": false
+    }
+  ]
+}

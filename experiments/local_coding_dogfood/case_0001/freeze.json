@@ -1,0 +1,589 @@
+{
+  "schema": "local-coding-dogfood-freeze-v1",
+  "at": "2026-10-28T14:35:13.489674+00:00",
+  "canonical_main": "8f1466ec0f7b71984a63cb6b0512d075b8e282a4",
+  "task_root": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1",
+  "task_revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+  "repository_id": "35b412d6-e4ba-46a4-a422-7efcfee2612d",
+  "snapshot_id": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9",
+  "source_snapshot": {
+    "id": {
+      "value": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9"
+    },
+    "repository_id": {
+      "value": {
+        "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+      }
+    },
+    "resources": [
+      {
+        "address": {
+          "value": "stockroom/events.py"
+        },
+        "content_identity": {
+          "value": "934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8"
+        },
+        "content": "\"\"\"Domain inputs supplied by the ingestion boundary.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass StockEvent:\n    warehouse: str\n    sku: str\n    event_id: str\n    delta: int\n\n    def __post_init__(self):\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\n            raise ValueError(\"event identifiers cannot be empty\")\n        if type(self.delta) is not int:\n            raise ValueError(\"delta must be an integer\")\n",
+        "encoding": "utf-8",
+        "byte_size": 477
+      },
+      {
+        "address": {
+          "value": "stockroom/keys.py"
+        },
+        "content_identity": {
+          "value": "6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2"
+        },
+        "content": "\"\"\"Canonical resource keys; event IDs deliberately have no normalization.\"\"\"\n\n\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\n    return warehouse.strip().casefold(), sku.strip().upper()\n",
+        "encoding": "utf-8",
+        "byte_size": 200
+      },
+      {
+        "address": {
+          "value": "stockroom/projection.py"
+        },
+        "content_identity": {
+          "value": "339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d"
+        },
+        "content": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\"\"\"\n    result = dict(initial)\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        result[key] = result.get(key, 0) + event.delta\n    return result\n",
+        "encoding": "utf-8",
+        "byte_size": 563
+      },
+      {
+        "address": {
+          "value": "stockroom/reports.py"
+        },
+        "content_identity": {
+          "value": "43b9544a4e971d3cfacb44aeedfd30dce3b14828781da42a288a68daafee7eec"
+        },
+        "content": "\"\"\"Human-facing reporting, independently maintained from delivery projection.\"\"\"\n\n\ndef format_stock_rows(balances):\n    return [\n        f\"{warehouse}/{sku}: {count:+d}\"\n        for (warehouse, sku), count in sorted(balances.items())\n    ]\n",
+        "encoding": "utf-8",
+        "byte_size": 240
+      }
+    ]
+  },
+  "files": {
+    "fixture/acceptance.py": "68d3065d94c5d219a5d1fb92e67defe25e8101cd17c9289d7af6ab56e9d3f598",
+    "fixture/stockroom/__init__.py": "7501a95623eba3e799dfdea1e421bff6e14b3e5102f9b6e2d578a46c646e4505",
+    "fixture/stockroom/events.py": "1a795cf7bbe89018463a6de068236d2fbc538c46476238e115761f4129f1d00e",
+    "fixture/stockroom/keys.py": "a4ac8e5eebe7977344ca04e5775a61f73f04a8e96b2ad93f39d18ee7e1044fd8",
+    "fixture/stockroom/projection.py": "8aab2129bce43e09cc26d6c97c356f13bf495df29d0a8c73e0d8bd70789ad75b",
+    "fixture/stockroom/reports.py": "271b48a8565b79ed6ba5bafcdeca203144a4f62e9486ea3e5ab3f859f63d2ff8",
+    "heldout.py": "a12c753ea73154f16c4f42e143ca034064e5412e45d3668fcd372375d90f46dd",
+    "host.py": "292e561439388c42a5293fefa946600a5e9eb0f468b987edd8b31665bda4c6c9",
+    "objective.md": "16b7412470fa98385fecaac5c8461958ca508069dec6445bec1ca0ffbbf3808a"
+  },
+  "task_files": {
+    ".gitignore": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+    "acceptance.py": "68d3065d94c5d219a5d1fb92e67defe25e8101cd17c9289d7af6ab56e9d3f598",
+    "stockroom/events.py": "1a795cf7bbe89018463a6de068236d2fbc538c46476238e115761f4129f1d00e",
+    "stockroom/keys.py": "a4ac8e5eebe7977344ca04e5775a61f73f04a8e96b2ad93f39d18ee7e1044fd8",
+    "stockroom/projection.py": "8aab2129bce43e09cc26d6c97c356f13bf495df29d0a8c73e0d8bd70789ad75b",
+    "stockroom/reports.py": "271b48a8565b79ed6ba5bafcdeca203144a4f62e9486ea3e5ab3f859f63d2ff8",
+    "stockroom/__init__.py": "7501a95623eba3e799dfdea1e421bff6e14b3e5102f9b6e2d578a46c646e4505"
+  },
+  "prompt_sha256": "1b1f9135c08593caadb51b29d71cc0bcda167158dfc4847039321c34b2efc8f1",
+  "service": {
+    "profile": {
+      "model": {
+        "repository": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+        "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+      },
+      "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "quant": "Unsloth Dynamic IQ4_XS",
+      "context_size": 32768,
+      "n_cpu_ffn": 0,
+      "gpu_layers": "all",
+      "flash_attention": "on",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "parallel_sequences": 1,
+      "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+    },
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "endpoint": "http://127.0.0.1:8080",
+    "served_model": "qwen38-local",
+    "available_models": [
+      "qwen38-local"
+    ],
+    "context": 32768,
+    "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+  },
+  "limits": {
+    "model_calls": 5,
+    "proposals": 2,
+    "tool_actions": 8,
+    "call_seconds": 180,
+    "wall_seconds": 900,
+    "input_tokens": 28160,
+    "output_tokens": 4096,
+    "context_tokens": 32768,
+    "prompt_bytes": 32768,
+    "disclosure_bytes": 8192,
+    "region_bytes": 4096,
+    "source_bytes": 32768,
+    "aggregate_bytes": 8192,
+    "operations": 2
+  },
+  "settings": {
+    "thinking_enabled": false,
+    "maximum_output_tokens": 4096,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    }
+  },
+  "required_witnesses": [
+    "stockroom/events.py",
+    "stockroom/keys.py",
+    "stockroom/projection.py"
+  ],
+  "edit_scope": [
+    "stockroom/projection.py"
+  ],
+  "baseline": {
+    "procedure": {
+      "status": "failed",
+      "before": {
+        "root": {
+          "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+        },
+        "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+        "changes": [],
+        "stable": true
+      },
+      "after": {
+        "root": {
+          "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+        },
+        "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+        "changes": [],
+        "stable": true
+      },
+      "checks": [
+        {
+          "name": "focused-acceptance",
+          "status": "failed",
+          "result": {
+            "check": {
+              "name": "focused-acceptance",
+              "command": {
+                "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                "arguments": [
+                  "-B",
+                  "acceptance.py"
+                ],
+                "working_directory": {
+                  "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                },
+                "timeout": {
+                  "value": "0:00:30"
+                },
+                "stdin": null,
+                "environment": null,
+                "success_exit_codes": "frozenset({0})"
+              }
+            },
+            "command_result": {
+              "command": {
+                "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                "arguments": [
+                  "-B",
+                  "acceptance.py"
+                ],
+                "working_directory": {
+                  "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                },
+                "timeout": {
+                  "value": "0:00:30"
+                },
+                "stdin": null,
+                "environment": null,
+                "success_exit_codes": "frozenset({0})"
+              },
+              "exit_code": 1,
+              "stdout": "b''",
+              "stderr": "b'test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery) ... FAIL\\r\\ntest_generator_negative_and_zero (__main__.Acceptance.test_generator_negative_and_zero) ... ok\\r\\ntest_quantity_conflict (__main__.Acceptance.test_quantity_conflict) ... FAIL\\r\\ntest_same_id_in_distinct_warehouses (__main__.Acceptance.test_same_id_in_distinct_warehouses) ... ok\\r\\ntest_sku_conflict (__main__.Acceptance.test_sku_conflict) ... FAIL\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-l0v88yz1\\\\acceptance.py\", line 13, in test_canonical_repeated_delivery\\r\\n    self.assertEqual(\\r\\n    ~~~~~~~~~~~~~~~~^\\r\\n        project_stock(initial, events), {(\"north\", \"BOLT\"): 8, (\"south\", \"NUT\"): 8}\\r\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n    )\\r\\n    ^\\r\\nAssertionError: {(\\'north\\', \\'BOLT\\'): 11, (\\'south\\', \\'NUT\\'): 8} != {(\\'north\\', \\'BOLT\\'): 8, (\\'south\\', \\'NUT\\'): 8}\\r\\n- {(\\'north\\', \\'BOLT\\'): 11, (\\'south\\', \\'NUT\\'): 8}\\r\\n?                     ^^\\r\\n\\r\\n+ {(\\'north\\', \\'BOLT\\'): 8, (\\'south\\', \\'NUT\\'): 8}\\r\\n?                     ^\\r\\n\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_quantity_conflict (__main__.Acceptance.test_quantity_conflict)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-l0v88yz1\\\\acceptance.py\", line 26, in test_quantity_conflict\\r\\n    with self.assertRaises(ValueError):\\r\\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\\r\\nAssertionError: ValueError not raised\\r\\n\\r\\n======================================================================\\r\\nFAIL: test_sku_conflict (__main__.Acceptance.test_sku_conflict)\\r\\n----------------------------------------------------------------------\\r\\nTraceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\AppData\\\\Local\\\\Temp\\\\devtools-local-coding-l0v88yz1\\\\acceptance.py\", line 31, in test_sku_conflict\\r\\n    with self.assertRaises(ValueError):\\r\\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\\r\\nAssertionError: ValueError not raised\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 5 tests in 0.002s\\r\\n\\r\\nFAILED (failures=3)\\r\\n'",
+              "duration": {
+                "value": "0:00:00.253645"
+              },
+              "stdout_truncated": false,
+              "stderr_truncated": false,
+              "events_dropped": 0
+            },
+            "inputs_current": true,
+            "input_error": null
+          },
+          "error": null
+        }
+      ],
+      "observations": [
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-0"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "root",
+            "argument_roles": [
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.025804"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-1"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "revision",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.028505"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-2"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "status",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.033023"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-3"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "revision",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.023258"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-4"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "status",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.028217"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-5"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "root",
+            "argument_roles": [
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.036517"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-6"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "revision",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.031070"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-7"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "status",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.031421"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-8"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "revision",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.025707"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/git-9"
+          },
+          "pattern": {
+            "family": "git",
+            "operation": "status",
+            "argument_roles": [
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag",
+              "flag"
+            ],
+            "capabilities": [
+              "win32",
+              "git"
+            ],
+            "equivalent_tool": "tools.repository.GitInspectionTool"
+          },
+          "source": "framework-events",
+          "entered": true,
+          "outcome": "succeeded",
+          "exit_code": 0,
+          "duration": {
+            "value": "0:00:00.032383"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        },
+        {
+          "origin": {
+            "agent": "local-dogfood-host",
+            "task": "stock-replay",
+            "run": "primary-0001",
+            "call": "baseline-procedure/check-0"
+          },
+          "pattern": {
+            "family": "check",
+            "operation": "fixed",
+            "argument_roles": [
+              "opaque"
+            ],
+            "capabilities": [],
+            "equivalent_tool": "tools.checks.FixedCheckTool"
+          },
+          "source": "framework-result",
+          "entered": true,
+          "outcome": "failed",
+          "exit_code": 1,
+          "duration": {
+            "value": "0:00:00.253645"
+          },
+          "events_dropped": 0,
+          "capture_incomplete": false
+        }
+      ],
+      "reason": null,
+      "error": null
+    },
+    "heldout": {
+      "label": "baseline-heldout",
+      "exit_code": 1,
+      "seconds": 0.113777,
+      "stdout": "",
+      "stderr": "test_conflict_after_other_effects_does_not_mutate_input (__main__.Heldout.test_conflict_after_other_effects_does_not_mutate_input) ... FAIL\r\ntest_empty_returns_independent_mapping (__main__.Heldout.test_empty_returns_independent_mapping) ... ok\r\ntest_interleaved_replays (__main__.Heldout.test_interleaved_replays) ... FAIL\r\ntest_opaque_case_sensitive_ids (__main__.Heldout.test_opaque_case_sensitive_ids) ... ok\r\ntest_opaque_space_ids (__main__.Heldout.test_opaque_space_ids) ... ok\r\ntest_separate_calls_do_not_share_replay_state (__main__.Heldout.test_separate_calls_do_not_share_replay_state) ... FAIL\r\ntest_unicode_canonical_duplicates (__main__.Heldout.test_unicode_canonical_duplicates) ... FAIL\r\ntest_zero_delta_replay_conflict (__main__.Heldout.test_zero_delta_replay_conflict) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_conflict_after_other_effects_does_not_mutate_input (__main__.Heldout.test_conflict_after_other_effects_does_not_mutate_input)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 47, in test_conflict_after_other_effects_does_not_mutate_input\r\n    with self.assertRaises(ValueError):\r\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: ValueError not raised\r\n\r\n======================================================================\r\nFAIL: test_interleaved_replays (__main__.Heldout.test_interleaved_replays)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 20, in test_interleaved_replays\r\n    self.assertEqual(\r\n    ~~~~~~~~~~~~~~~~^\r\n        project_stock({(\"other\", \"KEEP\"): 9}, events),\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n        {(\"other\", \"KEEP\"): 9, (\"a\", \"X\"): 3, (\"b\", \"X\"): 7},\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    )\r\n    ^\r\nAssertionError: {('other', 'KEEP'): 9, ('a', 'X'): 7, ('b', 'X'): 14} != {('other', 'KEEP'): 9, ('a', 'X'): 3, ('b', 'X'): 7}\r\n- {('a', 'X'): 7, ('b', 'X'): 14, ('other', 'KEEP'): 9}\r\n?              ^              ^^\r\n\r\n+ {('a', 'X'): 3, ('b', 'X'): 7, ('other', 'KEEP'): 9}\r\n?              ^              ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_separate_calls_do_not_share_replay_state (__main__.Heldout.test_separate_calls_do_not_share_replay_state)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 68, in test_separate_calls_do_not_share_replay_state\r\n    self.assertEqual(project_stock({}, events), {(\"a\", \"X\"): 2})\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: {('a', 'X'): 4} != {('a', 'X'): 2}\r\n- {('a', 'X'): 4}\r\n?              ^\r\n\r\n+ {('a', 'X'): 2}\r\n?              ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_unicode_canonical_duplicates (__main__.Heldout.test_unicode_canonical_duplicates)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 38, in test_unicode_canonical_duplicates\r\n    self.assertEqual(\r\n    ~~~~~~~~~~~~~~~~^\r\n        project_stock(\r\n        ^^^^^^^^^^^^^^\r\n    ...<2 lines>...\r\n        {(\"strasse\", \"\ufffd\"): -3},\r\n        ^^^^^^^^^^^^^^^^^^^^^^^\r\n    )\r\n    ^\r\nAssertionError: {('strasse', '\ufffd'): -6} != {('strasse', '\ufffd'): -3}\r\n- {('strasse', '\ufffd'): -6}\r\n?                     ^\r\n\r\n+ {('strasse', '\ufffd'): -3}\r\n?                     ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_zero_delta_replay_conflict (__main__.Heldout.test_zero_delta_replay_conflict)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 72, in test_zero_delta_replay_conflict\r\n    with self.assertRaises(ValueError):\r\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: ValueError not raised\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.004s\r\n\r\nFAILED (failures=5)\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  },
+  "privacy": "Only authored synthetic task source, normalized responses and bounded fixed-test diagnostics; no personal logs/environment/credentials. Command analytics omit payloads.",
+  "task_digest": "f1720633ff5b1fc9f1592458e757f8c4aa8c7128ea85498d95c58d8ec0612605"
+}

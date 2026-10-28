@@ -1,0 +1,101 @@
+{
+  "number": 2,
+  "at": "2026-10-28T14:36:54.832193+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\":\"stockroom/events.py\",\"start\":0,\"end\":477}",
+              "provider_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W"
+            },
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\":\"stockroom/keys.py\",\"start\":0,\"end\":200}",
+              "provider_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY"
+            },
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\":\"stockroom/projection.py\",\"start\":0,\"end\":563}",
+              "provider_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \"\\\"\\\"\\\"Domain inputs supplied by the ingestion boundary.\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass(frozen=True)\\nclass StockEvent:\\n    warehouse: str\\n    sku: str\\n    event_id: str\\n    delta: int\\n\\n    def __post_init__(self):\\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\\n            raise ValueError(\\\"event identifiers cannot be empty\\\")\\n        if type(self.delta) is not int:\\n            raise ValueError(\\\"delta must be an integer\\\")\\n\", \"path\": \"stockroom/events.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8\", \"span\": [0, 477], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W",
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \"\\\"\\\"\\\"Canonical resource keys; event IDs deliberately have no normalization.\\\"\\\"\\\"\\n\\n\\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\\n    return warehouse.strip().casefold(), sku.strip().upper()\\n\", \"path\": \"stockroom/keys.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2\", \"span\": [0, 200], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY",
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \"\\\"\\\"\\\"Fold delivery events into an independently owned stock projection.\\\"\\\"\\\"\\n\\nfrom collections.abc import Iterable, Mapping\\n\\nfrom stockroom.events import StockEvent\\nfrom stockroom.keys import stock_key\\n\\n\\ndef project_stock(\\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\\n) -> dict[tuple[str, str], int]:\\n    \\\"\\\"\\\"Return stock after processing this delivery batch.\\\"\\\"\\\"\\n    result = dict(initial)\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        result[key] = result.get(key, 0) + event.delta\\n    return result\\n\", \"path\": \"stockroom/projection.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d\", \"span\": [0, 563], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized repository changes and run the fixed focused acceptance check.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": true,
+  "measured_input_tokens": 1884
+}

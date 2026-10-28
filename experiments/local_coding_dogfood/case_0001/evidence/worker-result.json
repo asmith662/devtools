@@ -1,0 +1,1158 @@
+{
+  "at": "2026-10-28T14:37:11.487704+00:00",
+  "result": {
+    "disposition": "validated",
+    "candidate_validated": true,
+    "completed": true,
+    "progress": {
+      "limits": {
+        "model_calls": 5,
+        "proposals": 2,
+        "tool_actions": 8,
+        "call_timeout": {
+          "value": "0:03:00"
+        },
+        "wall_timeout": {
+          "value": "0:15:00"
+        },
+        "completion_check": false
+      },
+      "number": 2,
+      "model_calls": 2,
+      "proposals": 1,
+      "actions": 3,
+      "phase": "completion",
+      "candidate_validated": true,
+      "effects": [
+        {
+          "kind": "tool",
+          "native_call_ids": [
+            "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W"
+          ],
+          "acknowledged": true,
+          "check_name": null
+        },
+        {
+          "kind": "tool",
+          "native_call_ids": [
+            "efbGbabnq3se29h22W5GmiWYbkVotjCY"
+          ],
+          "acknowledged": true,
+          "check_name": null
+        },
+        {
+          "kind": "tool",
+          "native_call_ids": [
+            "lloth1uofWT1bY6N34VFrCFb5FS97jcI"
+          ],
+          "acknowledged": true,
+          "check_name": null
+        },
+        {
+          "kind": "edit",
+          "native_call_ids": [
+            "KySnv8GiFdFckmqqbwM57UYjLmsDuves"
+          ],
+          "acknowledged": true,
+          "check_name": null
+        },
+        {
+          "kind": "check",
+          "native_call_ids": [],
+          "acknowledged": true,
+          "check_name": "focused-acceptance"
+        }
+      ],
+      "usage": [
+        {
+          "input_tokens": 913,
+          "output_tokens": 158,
+          "total_tokens": 1071,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        },
+        {
+          "input_tokens": 1884,
+          "output_tokens": 363,
+          "total_tokens": 2247,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        }
+      ]
+    },
+    "error": null,
+    "completion_error": null,
+    "custody": {
+      "restored": true,
+      "reconciliation_required": false,
+      "error": null
+    },
+    "failure_phase": null
+  },
+  "accepted": true,
+  "seconds": 55.298485,
+  "admissions": [
+    {
+      "call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W",
+      "name": "read_source",
+      "arguments": {
+        "purpose": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+        "unit": {
+          "id": {
+            "value": "2a751999c1c2458d85da6fcf928e142c7ba9391241e143b225e5b4f75160fe25"
+          },
+          "repository_id": {
+            "value": {
+              "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+            }
+          },
+          "resource": {
+            "address": {
+              "value": "stockroom/events.py"
+            },
+            "content_identity": {
+              "value": "934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8"
+            },
+            "content": "\"\"\"Domain inputs supplied by the ingestion boundary.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass StockEvent:\n    warehouse: str\n    sku: str\n    event_id: str\n    delta: int\n\n    def __post_init__(self):\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\n            raise ValueError(\"event identifiers cannot be empty\")\n        if type(self.delta) is not int:\n            raise ValueError(\"delta must be an integer\")\n",
+            "encoding": "utf-8",
+            "byte_size": 477
+          },
+          "snapshot_id": {
+            "value": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9"
+          },
+          "kind": "file",
+          "start": 0,
+          "end": 477,
+          "qualified_name": null,
+          "symbol_kind": null,
+          "occurrence": null,
+          "declaration": null,
+          "parent_symbol_id": null
+        },
+        "start": 0,
+        "end": 477,
+        "maximum_bytes": 8192
+      }
+    },
+    {
+      "call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY",
+      "name": "read_source",
+      "arguments": {
+        "purpose": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+        "unit": {
+          "id": {
+            "value": "9f0f54054d2c5368f6fb203fb638cfecff15aea41acb06d98f77c5f64d378f4a"
+          },
+          "repository_id": {
+            "value": {
+              "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+            }
+          },
+          "resource": {
+            "address": {
+              "value": "stockroom/keys.py"
+            },
+            "content_identity": {
+              "value": "6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2"
+            },
+            "content": "\"\"\"Canonical resource keys; event IDs deliberately have no normalization.\"\"\"\n\n\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\n    return warehouse.strip().casefold(), sku.strip().upper()\n",
+            "encoding": "utf-8",
+            "byte_size": 200
+          },
+          "snapshot_id": {
+            "value": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9"
+          },
+          "kind": "file",
+          "start": 0,
+          "end": 200,
+          "qualified_name": null,
+          "symbol_kind": null,
+          "occurrence": null,
+          "declaration": null,
+          "parent_symbol_id": null
+        },
+        "start": 0,
+        "end": 200,
+        "maximum_bytes": 8192
+      }
+    },
+    {
+      "call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI",
+      "name": "read_source",
+      "arguments": {
+        "purpose": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+        "unit": {
+          "id": {
+            "value": "9a11defe1e36e8bb9482f2e6fd2a5120b377528a6c62ae418b37d21ad1d98457"
+          },
+          "repository_id": {
+            "value": {
+              "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+            }
+          },
+          "resource": {
+            "address": {
+              "value": "stockroom/projection.py"
+            },
+            "content_identity": {
+              "value": "339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d"
+            },
+            "content": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\"\"\"\n    result = dict(initial)\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        result[key] = result.get(key, 0) + event.delta\n    return result\n",
+            "encoding": "utf-8",
+            "byte_size": 563
+          },
+          "snapshot_id": {
+            "value": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9"
+          },
+          "kind": "file",
+          "start": 0,
+          "end": 563,
+          "qualified_name": null,
+          "symbol_kind": null,
+          "occurrence": null,
+          "declaration": null,
+          "parent_symbol_id": null
+        },
+        "start": 0,
+        "end": 563,
+        "maximum_bytes": 8192
+      }
+    },
+    {
+      "call_id": "KySnv8GiFdFckmqqbwM57UYjLmsDuves",
+      "name": "replace_source",
+      "arguments": [
+        {
+          "address": {
+            "value": "stockroom/projection.py"
+          },
+          "before": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\"\"\"\n    result = dict(initial)\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        result[key] = result.get(key, 0) + event.delta\n    return result\n",
+          "after": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\n\n    A delivery identity is (canonical warehouse, exact opaque event_id).\n    An identical repeated delivery contributes its delta only once.\n    The same identity with a different canonical SKU or delta conflicts.\n    \"\"\"\n    result = dict(initial)\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        identity = (key[0], event.event_id)\n        if identity in seen:\n            prior_key, prior_delta = seen[identity]\n            if key != prior_key or event.delta != prior_delta:\n                raise ValueError(\n                    \"conflicting delivery for event_id \"\n                    f\"{event.event_id!r} in warehouse {key[0]!r}\"\n                )\n        else:\n            seen[identity] = (key, event.delta)\n            result[key] = result.get(key, 0) + event.delta\n    return result\n",
+          "start": 0,
+          "end": 563
+        }
+      ]
+    }
+  ],
+  "applied": [
+    [
+      {
+        "address": {
+          "value": "stockroom/projection.py"
+        },
+        "before": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\"\"\"\n    result = dict(initial)\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        result[key] = result.get(key, 0) + event.delta\n    return result\n",
+        "after": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\n\n    A delivery identity is (canonical warehouse, exact opaque event_id).\n    An identical repeated delivery contributes its delta only once.\n    The same identity with a different canonical SKU or delta conflicts.\n    \"\"\"\n    result = dict(initial)\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        identity = (key[0], event.event_id)\n        if identity in seen:\n            prior_key, prior_delta = seen[identity]\n            if key != prior_key or event.delta != prior_delta:\n                raise ValueError(\n                    \"conflicting delivery for event_id \"\n                    f\"{event.event_id!r} in warehouse {key[0]!r}\"\n                )\n        else:\n            seen[identity] = (key, event.delta)\n            result[key] = result.get(key, 0) + event.delta\n    return result\n",
+        "start": 0,
+        "end": 563
+      }
+    ]
+  ],
+  "procedures": [
+    {
+      "trigger": "deterministic-host-validation",
+      "report": {
+        "status": "passed",
+        "before": {
+          "root": {
+            "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+          },
+          "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+          "changes": [
+            {
+              "path": "stockroom/projection.py",
+              "index": " ",
+              "worktree": "M",
+              "original_path": null
+            }
+          ],
+          "stable": true
+        },
+        "after": {
+          "root": {
+            "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+          },
+          "revision": "e17f0ecd500f07a07b095193e56ba6399b08c90e",
+          "changes": [
+            {
+              "path": "stockroom/projection.py",
+              "index": " ",
+              "worktree": "M",
+              "original_path": null
+            }
+          ],
+          "stable": true
+        },
+        "checks": [
+          {
+            "name": "focused-acceptance",
+            "status": "passed",
+            "result": {
+              "check": {
+                "name": "focused-acceptance",
+                "command": {
+                  "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                  "arguments": [
+                    "-B",
+                    "acceptance.py"
+                  ],
+                  "working_directory": {
+                    "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                  },
+                  "timeout": {
+                    "value": "0:00:30"
+                  },
+                  "stdin": null,
+                  "environment": null,
+                  "success_exit_codes": "frozenset({0})"
+                }
+              },
+              "command_result": {
+                "command": {
+                  "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                  "arguments": [
+                    "-B",
+                    "acceptance.py"
+                  ],
+                  "working_directory": {
+                    "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+                  },
+                  "timeout": {
+                    "value": "0:00:30"
+                  },
+                  "stdin": null,
+                  "environment": null,
+                  "success_exit_codes": "frozenset({0})"
+                },
+                "exit_code": 0,
+                "stdout": "b''",
+                "stderr": "b'test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery) ... ok\\r\\ntest_generator_negative_and_zero (__main__.Acceptance.test_generator_negative_and_zero) ... ok\\r\\ntest_quantity_conflict (__main__.Acceptance.test_quantity_conflict) ... ok\\r\\ntest_same_id_in_distinct_warehouses (__main__.Acceptance.test_same_id_in_distinct_warehouses) ... ok\\r\\ntest_sku_conflict (__main__.Acceptance.test_sku_conflict) ... ok\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 5 tests in 0.000s\\r\\n\\r\\nOK\\r\\n'",
+                "duration": {
+                  "value": "0:00:00.128561"
+                },
+                "stdout_truncated": false,
+                "stderr_truncated": false,
+                "events_dropped": 0
+              },
+              "inputs_current": true,
+              "input_error": null
+            },
+            "error": null
+          }
+        ],
+        "observations": [
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-0"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "root",
+              "argument_roles": [
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.028558"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-1"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.034066"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-2"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.028426"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-3"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023573"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-4"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.022190"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-5"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "root",
+              "argument_roles": [
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.027344"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-6"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023297"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-7"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.033322"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-8"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "revision",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.023023"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/git-9"
+            },
+            "pattern": {
+              "family": "git",
+              "operation": "status",
+              "argument_roles": [
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag",
+                "flag"
+              ],
+              "capabilities": [
+                "win32",
+                "git"
+              ],
+              "equivalent_tool": "tools.repository.GitInspectionTool"
+            },
+            "source": "framework-events",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.024787"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          },
+          {
+            "origin": {
+              "agent": "local-dogfood-host",
+              "task": "stock-replay",
+              "run": "primary-0001",
+              "call": "host-check-0/check-0"
+            },
+            "pattern": {
+              "family": "check",
+              "operation": "fixed",
+              "argument_roles": [
+                "opaque"
+              ],
+              "capabilities": [],
+              "equivalent_tool": "tools.checks.FixedCheckTool"
+            },
+            "source": "framework-result",
+            "entered": true,
+            "outcome": "succeeded",
+            "exit_code": 0,
+            "duration": {
+              "value": "0:00:00.128561"
+            },
+            "events_dropped": 0,
+            "capture_incomplete": false
+          }
+        ],
+        "reason": null,
+        "error": null
+      }
+    }
+  ],
+  "requests": [
+    {
+      "number": 1,
+      "at": "2026-10-28T14:36:16.190701+00:00",
+      "request": {
+        "prompt": {
+          "content": "",
+          "role": "messages",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+              "tool_calls": [],
+              "tool_call_id": null,
+              "reasoning_content": null
+            }
+          ]
+        },
+        "settings": {
+          "maximum_output_tokens": 4096,
+          "thinking_enabled": false
+        },
+        "conversation": null,
+        "provider_settings": {
+          "provider": "llama.cpp",
+          "reasoning_effort": null,
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "presence_penalty": 1.5
+        },
+        "tools": [
+          {
+            "name": "read_source",
+            "description": "Read an admitted exact current source region.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "replace_source",
+            "description": "Propose an exact unique observed replacement; host admission is required.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "validate_candidate",
+            "description": "Request the host-fixed candidate checks.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          },
+          {
+            "name": "inspect_and_validate_change",
+            "description": "Inspect authorized repository changes and run the fixed focused acceptance check.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          }
+        ]
+      },
+      "inference_entered": true,
+      "measured_input_tokens": 913,
+      "response": {
+        "content": "",
+        "source": {
+          "value": "local-dogfood-qwen38-iq4xs"
+        },
+        "conversation": null,
+        "usage": {
+          "input_tokens": 913,
+          "output_tokens": 158,
+          "total_tokens": 1071,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        },
+        "termination": "tool_call",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "name": "read_source",
+            "arguments_json": "{\"path\":\"stockroom/events.py\",\"start\":0,\"end\":477}",
+            "provider_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W"
+          },
+          {
+            "name": "read_source",
+            "arguments_json": "{\"path\":\"stockroom/keys.py\",\"start\":0,\"end\":200}",
+            "provider_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY"
+          },
+          {
+            "name": "read_source",
+            "arguments_json": "{\"path\":\"stockroom/projection.py\",\"start\":0,\"end\":563}",
+            "provider_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI"
+          }
+        ]
+      },
+      "outcome": "normalized-response",
+      "seconds": 38.185245,
+      "completed_at": "2026-10-28T14:36:54.822909+00:00"
+    },
+    {
+      "number": 2,
+      "at": "2026-10-28T14:36:54.832193+00:00",
+      "request": {
+        "prompt": {
+          "content": "",
+          "role": "messages",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+              "tool_calls": [],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\":\"stockroom/events.py\",\"start\":0,\"end\":477}",
+                  "provider_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W"
+                },
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\":\"stockroom/keys.py\",\"start\":0,\"end\":200}",
+                  "provider_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY"
+                },
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\":\"stockroom/projection.py\",\"start\":0,\"end\":563}",
+                  "provider_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Domain inputs supplied by the ingestion boundary.\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass(frozen=True)\\nclass StockEvent:\\n    warehouse: str\\n    sku: str\\n    event_id: str\\n    delta: int\\n\\n    def __post_init__(self):\\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\\n            raise ValueError(\\\"event identifiers cannot be empty\\\")\\n        if type(self.delta) is not int:\\n            raise ValueError(\\\"delta must be an integer\\\")\\n\", \"path\": \"stockroom/events.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8\", \"span\": [0, 477], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W",
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Canonical resource keys; event IDs deliberately have no normalization.\\\"\\\"\\\"\\n\\n\\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\\n    return warehouse.strip().casefold(), sku.strip().upper()\\n\", \"path\": \"stockroom/keys.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2\", \"span\": [0, 200], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY",
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Fold delivery events into an independently owned stock projection.\\\"\\\"\\\"\\n\\nfrom collections.abc import Iterable, Mapping\\n\\nfrom stockroom.events import StockEvent\\nfrom stockroom.keys import stock_key\\n\\n\\ndef project_stock(\\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\\n) -> dict[tuple[str, str], int]:\\n    \\\"\\\"\\\"Return stock after processing this delivery batch.\\\"\\\"\\\"\\n    result = dict(initial)\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        result[key] = result.get(key, 0) + event.delta\\n    return result\\n\", \"path\": \"stockroom/projection.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d\", \"span\": [0, 563], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI",
+              "reasoning_content": null
+            }
+          ]
+        },
+        "settings": {
+          "maximum_output_tokens": 4096,
+          "thinking_enabled": false
+        },
+        "conversation": null,
+        "provider_settings": {
+          "provider": "llama.cpp",
+          "reasoning_effort": null,
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "top_k": 20,
+          "min_p": 0.0,
+          "presence_penalty": 1.5
+        },
+        "tools": [
+          {
+            "name": "read_source",
+            "description": "Read an admitted exact current source region.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "replace_source",
+            "description": "Propose an exact unique observed replacement; host admission is required.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "validate_candidate",
+            "description": "Request the host-fixed candidate checks.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          },
+          {
+            "name": "inspect_and_validate_change",
+            "description": "Inspect authorized repository changes and run the fixed focused acceptance check.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          }
+        ]
+      },
+      "inference_entered": true,
+      "measured_input_tokens": 1884,
+      "response": {
+        "content": "I have all three modules. Now I'll replace the projection logic with deduplication by (canonical warehouse, exact event_id).\n\n",
+        "source": {
+          "value": "local-dogfood-qwen38-iq4xs"
+        },
+        "conversation": null,
+        "usage": {
+          "input_tokens": 1884,
+          "output_tokens": 363,
+          "total_tokens": 2247,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        },
+        "termination": "tool_call",
+        "reasoning_content": null,
+        "tool_calls": [
+          {
+            "name": "replace_source",
+            "arguments_json": "{\"path\":\"stockroom/projection.py\",\"old_text\":\"    \\\"\\\"\\\"Return stock after processing this delivery batch.\\\"\\\"\\\"\\n    result = dict(initial)\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        result[key] = result.get(key, 0) + event.delta\\n    return result\",\"new_text\":\"    \\\"\\\"\\\"Return stock after processing this delivery batch.\\n\\n    A delivery identity is (canonical warehouse, exact opaque event_id).\\n    An identical repeated delivery contributes its delta only once.\\n    The same identity with a different canonical SKU or delta conflicts.\\n    \\\"\\\"\\\"\\n    result = dict(initial)\\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        identity = (key[0], event.event_id)\\n        if identity in seen:\\n            prior_key, prior_delta = seen[identity]\\n            if key != prior_key or event.delta != prior_delta:\\n                raise ValueError(\\n                    \\\"conflicting delivery for event_id \\\"\\n                    f\\\"{event.event_id!r} in warehouse {key[0]!r}\\\"\\n                )\\n        else:\\n            seen[identity] = (key, event.delta)\\n            result[key] = result.get(key, 0) + event.delta\\n    return result\"}",
+            "provider_call_id": "KySnv8GiFdFckmqqbwM57UYjLmsDuves"
+          }
+        ]
+      },
+      "outcome": "normalized-response",
+      "seconds": 16.10357,
+      "completed_at": "2026-10-28T14:37:11.019408+00:00"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+      "tool_calls": [],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"stockroom/events.py\",\"start\":0,\"end\":477}",
+          "provider_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W"
+        },
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"stockroom/keys.py\",\"start\":0,\"end\":200}",
+          "provider_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY"
+        },
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"stockroom/projection.py\",\"start\":0,\"end\":563}",
+          "provider_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Domain inputs supplied by the ingestion boundary.\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass(frozen=True)\\nclass StockEvent:\\n    warehouse: str\\n    sku: str\\n    event_id: str\\n    delta: int\\n\\n    def __post_init__(self):\\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\\n            raise ValueError(\\\"event identifiers cannot be empty\\\")\\n        if type(self.delta) is not int:\\n            raise ValueError(\\\"delta must be an integer\\\")\\n\", \"path\": \"stockroom/events.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8\", \"span\": [0, 477], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "HsmlyMVlahgJNnSQVXXrg1AUY4ujdy6W",
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Canonical resource keys; event IDs deliberately have no normalization.\\\"\\\"\\\"\\n\\n\\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\\n    return warehouse.strip().casefold(), sku.strip().upper()\\n\", \"path\": \"stockroom/keys.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2\", \"span\": [0, 200], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "efbGbabnq3se29h22W5GmiWYbkVotjCY",
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Fold delivery events into an independently owned stock projection.\\\"\\\"\\\"\\n\\nfrom collections.abc import Iterable, Mapping\\n\\nfrom stockroom.events import StockEvent\\nfrom stockroom.keys import stock_key\\n\\n\\ndef project_stock(\\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\\n) -> dict[tuple[str, str], int]:\\n    \\\"\\\"\\\"Return stock after processing this delivery batch.\\\"\\\"\\\"\\n    result = dict(initial)\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        result[key] = result.get(key, 0) + event.delta\\n    return result\\n\", \"path\": \"stockroom/projection.py\", \"snapshot\": \"70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9\", \"version\": \"339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d\", \"span\": [0, 563], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "lloth1uofWT1bY6N34VFrCFb5FS97jcI",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "I have all three modules. Now I'll replace the projection logic with deduplication by (canonical warehouse, exact event_id).\n\n",
+      "tool_calls": [
+        {
+          "name": "replace_source",
+          "arguments_json": "{\"path\":\"stockroom/projection.py\",\"old_text\":\"    \\\"\\\"\\\"Return stock after processing this delivery batch.\\\"\\\"\\\"\\n    result = dict(initial)\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        result[key] = result.get(key, 0) + event.delta\\n    return result\",\"new_text\":\"    \\\"\\\"\\\"Return stock after processing this delivery batch.\\n\\n    A delivery identity is (canonical warehouse, exact opaque event_id).\\n    An identical repeated delivery contributes its delta only once.\\n    The same identity with a different canonical SKU or delta conflicts.\\n    \\\"\\\"\\\"\\n    result = dict(initial)\\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        identity = (key[0], event.event_id)\\n        if identity in seen:\\n            prior_key, prior_delta = seen[identity]\\n            if key != prior_key or event.delta != prior_delta:\\n                raise ValueError(\\n                    \\\"conflicting delivery for event_id \\\"\\n                    f\\\"{event.event_id!r} in warehouse {key[0]!r}\\\"\\n                )\\n        else:\\n            seen[identity] = (key, event.delta)\\n            result[key] = result.get(key, 0) + event.delta\\n    return result\"}",
+          "provider_call_id": "KySnv8GiFdFckmqqbwM57UYjLmsDuves"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"passed\": true, \"checks\": [{\"name\": \"focused-acceptance\", \"exit_code\": 0, \"stdout\": \"\", \"stderr\": \"test_canonical_repeated_delivery (__main__.Acceptance.test_canonical_repeated_delivery) ... ok\\r\\ntest_generator_negative_and_zero (__main__.Acceptance.test_generator_negative_and_zero) ... ok\\r\\ntest_quantity_conflict (__main__.Acceptance.test_quantity_conflict) ... ok\\r\\ntest_same_id_in_distinct_warehouses (__main__.Acceptance.test_same_id_in_distinct_warehouses) ... ok\\r\\ntest_sku_conflict (__main__.Acceptance.test_sku_conflict) ... ok\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 5 tests in 0.000s\\r\\n\\r\\nOK\\r\\n\", \"current\": true}], \"sources\": [{\"path\": \"stockroom/projection.py\", \"text\": \"\\\"\\\"\\\"Fold delivery events into an independently owned stock projection.\\\"\\\"\\\"\\n\\nfrom collections.abc import Iterable, Mapping\\n\\nfrom stockroom.events import StockEvent\\nfrom stockroom.keys import stock_key\\n\\n\\ndef project_stock(\\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\\n) -> dict[tuple[str, str], int]:\\n    \\\"\\\"\\\"Return stock after processing this delivery batch.\\n\\n    A delivery identity is (canonical warehouse, exact opaque event_id).\\n    An identical repeated delivery contributes its delta only once.\\n    The same identity with a different canonical SKU or delta conflicts.\\n    \\\"\\\"\\\"\\n    result = dict(initial)\\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\\n    for event in events:\\n        key = stock_key(event.warehouse, event.sku)\\n        identity = (key[0], event.event_id)\\n        if identity in seen:\\n            prior_key, prior_delta = seen[identity]\\n            if key != prior_key or event.delta != prior_delta:\\n                raise ValueError(\\n                    \\\"conflicting delivery for event_id \\\"\\n                    f\\\"{event.event_id!r} in warehouse {key[0]!r}\\\"\\n                )\\n        else:\\n            seen[identity] = (key, event.delta)\\n            result[key] = result.get(key, 0) + event.delta\\n    return result\\n\", \"span\": [0, 1278], \"version\": \"a6e9cb8ff55c969cacb6a10bd7861914314617a5ff77ad3884c56cb5ed8b83fb\"}]}",
+      "tool_calls": [],
+      "tool_call_id": "KySnv8GiFdFckmqqbwM57UYjLmsDuves",
+      "reasoning_content": null
+    }
+  ],
+  "source_disclosures": [
+    {
+      "purpose": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+      "unit": {
+        "id": {
+          "value": "832da48b8d787adba33939dc6f201d8d38d780b61264df1d9db76f3a7e2f8372"
+        },
+        "repository_id": {
+          "value": {
+            "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+          }
+        },
+        "resource": {
+          "address": {
+            "value": "stockroom/projection.py"
+          },
+          "content_identity": {
+            "value": "a6e9cb8ff55c969cacb6a10bd7861914314617a5ff77ad3884c56cb5ed8b83fb"
+          },
+          "content": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\n\n    A delivery identity is (canonical warehouse, exact opaque event_id).\n    An identical repeated delivery contributes its delta only once.\n    The same identity with a different canonical SKU or delta conflicts.\n    \"\"\"\n    result = dict(initial)\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        identity = (key[0], event.event_id)\n        if identity in seen:\n            prior_key, prior_delta = seen[identity]\n            if key != prior_key or event.delta != prior_delta:\n                raise ValueError(\n                    \"conflicting delivery for event_id \"\n                    f\"{event.event_id!r} in warehouse {key[0]!r}\"\n                )\n        else:\n            seen[identity] = (key, event.delta)\n            result[key] = result.get(key, 0) + event.delta\n    return result\n",
+          "encoding": "utf-8",
+          "byte_size": 1278
+        },
+        "snapshot_id": {
+          "value": "0df570f3ae1df566b48a484d4c021557b2bf931bfca78ec89d84d9f0bf163027"
+        },
+        "kind": "file",
+        "start": 0,
+        "end": 1278,
+        "qualified_name": null,
+        "symbol_kind": null,
+        "occurrence": null,
+        "declaration": null,
+        "parent_symbol_id": null
+      },
+      "start": 0,
+      "end": 1278,
+      "maximum_bytes": 8192
+    }
+  ],
+  "original_scope": {
+    "root": {
+      "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+    },
+    "snapshot": {
+      "id": {
+        "value": "70b559e66aab2c237cd2e67d40cda54f44193bdf9d3778e51bc6a354f84073b9"
+      },
+      "repository_id": {
+        "value": {
+          "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+        }
+      },
+      "resources": [
+        {
+          "address": {
+            "value": "stockroom/events.py"
+          },
+          "content_identity": {
+            "value": "934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8"
+          },
+          "content": "\"\"\"Domain inputs supplied by the ingestion boundary.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass StockEvent:\n    warehouse: str\n    sku: str\n    event_id: str\n    delta: int\n\n    def __post_init__(self):\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\n            raise ValueError(\"event identifiers cannot be empty\")\n        if type(self.delta) is not int:\n            raise ValueError(\"delta must be an integer\")\n",
+          "encoding": "utf-8",
+          "byte_size": 477
+        },
+        {
+          "address": {
+            "value": "stockroom/keys.py"
+          },
+          "content_identity": {
+            "value": "6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2"
+          },
+          "content": "\"\"\"Canonical resource keys; event IDs deliberately have no normalization.\"\"\"\n\n\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\n    return warehouse.strip().casefold(), sku.strip().upper()\n",
+          "encoding": "utf-8",
+          "byte_size": 200
+        },
+        {
+          "address": {
+            "value": "stockroom/projection.py"
+          },
+          "content_identity": {
+            "value": "339bf38988205c316529da27a21aea169445775dd2b6ae98536bca01c5ff2a7d"
+          },
+          "content": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\"\"\"\n    result = dict(initial)\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        result[key] = result.get(key, 0) + event.delta\n    return result\n",
+          "encoding": "utf-8",
+          "byte_size": 563
+        },
+        {
+          "address": {
+            "value": "stockroom/reports.py"
+          },
+          "content_identity": {
+            "value": "43b9544a4e971d3cfacb44aeedfd30dce3b14828781da42a288a68daafee7eec"
+          },
+          "content": "\"\"\"Human-facing reporting, independently maintained from delivery projection.\"\"\"\n\n\ndef format_stock_rows(balances):\n    return [\n        f\"{warehouse}/{sku}: {count:+d}\"\n        for (warehouse, sku), count in sorted(balances.items())\n    ]\n",
+          "encoding": "utf-8",
+          "byte_size": 240
+        }
+      ]
+    },
+    "maximum_resource_bytes": 32768
+  },
+  "final_scope": {
+    "root": {
+      "value": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-local-coding-l0v88yz1"
+    },
+    "snapshot": {
+      "id": {
+        "value": "0df570f3ae1df566b48a484d4c021557b2bf931bfca78ec89d84d9f0bf163027"
+      },
+      "repository_id": {
+        "value": {
+          "value": "35b412d6-e4ba-46a4-a422-7efcfee2612d"
+        }
+      },
+      "resources": [
+        {
+          "address": {
+            "value": "stockroom/events.py"
+          },
+          "content_identity": {
+            "value": "934f44642fb2d513db5b5239fbc3c2ae97a51d8c16b01d8cbf8c9699bda0fae8"
+          },
+          "content": "\"\"\"Domain inputs supplied by the ingestion boundary.\"\"\"\n\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass StockEvent:\n    warehouse: str\n    sku: str\n    event_id: str\n    delta: int\n\n    def __post_init__(self):\n        if not self.warehouse.strip() or not self.sku.strip() or not self.event_id:\n            raise ValueError(\"event identifiers cannot be empty\")\n        if type(self.delta) is not int:\n            raise ValueError(\"delta must be an integer\")\n",
+          "encoding": "utf-8",
+          "byte_size": 477
+        },
+        {
+          "address": {
+            "value": "stockroom/keys.py"
+          },
+          "content_identity": {
+            "value": "6820f02af08f855aa83f914156d5193c059ef9fbc3b1aeb314e9c13fab2ab8f2"
+          },
+          "content": "\"\"\"Canonical resource keys; event IDs deliberately have no normalization.\"\"\"\n\n\ndef stock_key(warehouse: str, sku: str) -> tuple[str, str]:\n    return warehouse.strip().casefold(), sku.strip().upper()\n",
+          "encoding": "utf-8",
+          "byte_size": 200
+        },
+        {
+          "address": {
+            "value": "stockroom/projection.py"
+          },
+          "content_identity": {
+            "value": "a6e9cb8ff55c969cacb6a10bd7861914314617a5ff77ad3884c56cb5ed8b83fb"
+          },
+          "content": "\"\"\"Fold delivery events into an independently owned stock projection.\"\"\"\n\nfrom collections.abc import Iterable, Mapping\n\nfrom stockroom.events import StockEvent\nfrom stockroom.keys import stock_key\n\n\ndef project_stock(\n    initial: Mapping[tuple[str, str], int], events: Iterable[StockEvent]\n) -> dict[tuple[str, str], int]:\n    \"\"\"Return stock after processing this delivery batch.\n\n    A delivery identity is (canonical warehouse, exact opaque event_id).\n    An identical repeated delivery contributes its delta only once.\n    The same identity with a different canonical SKU or delta conflicts.\n    \"\"\"\n    result = dict(initial)\n    seen: dict[tuple[str, str], tuple[tuple[str, str], int]] = {}\n    for event in events:\n        key = stock_key(event.warehouse, event.sku)\n        identity = (key[0], event.event_id)\n        if identity in seen:\n            prior_key, prior_delta = seen[identity]\n            if key != prior_key or event.delta != prior_delta:\n                raise ValueError(\n                    \"conflicting delivery for event_id \"\n                    f\"{event.event_id!r} in warehouse {key[0]!r}\"\n                )\n        else:\n            seen[identity] = (key, event.delta)\n            result[key] = result.get(key, 0) + event.delta\n    return result\n",
+          "encoding": "utf-8",
+          "byte_size": 1278
+        },
+        {
+          "address": {
+            "value": "stockroom/reports.py"
+          },
+          "content_identity": {
+            "value": "43b9544a4e971d3cfacb44aeedfd30dce3b14828781da42a288a68daafee7eec"
+          },
+          "content": "\"\"\"Human-facing reporting, independently maintained from delivery projection.\"\"\"\n\n\ndef format_stock_rows(balances):\n    return [\n        f\"{warehouse}/{sku}: {count:+d}\"\n        for (warehouse, sku), count in sorted(balances.items())\n    ]\n",
+          "encoding": "utf-8",
+          "byte_size": 240
+        }
+      ]
+    },
+    "maximum_resource_bytes": 32768
+  }
+}

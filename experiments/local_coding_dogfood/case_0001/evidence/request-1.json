@@ -1,0 +1,56 @@
+{
+  "number": 1,
+  "at": "2026-10-28T14:36:16.190701+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Fix `stockroom.projection.project_stock` for retried event delivery.\n\nRequired behavior:\n- Preserve the public signature and use the package's canonical warehouse/SKU semantics.\n- Within one call, a delivery identity is (canonical warehouse, exact opaque event_id).\n- An identical repeated delivery contributes its delta only once, including differently spelled equivalent warehouse/SKU keys.\n- The same delivery identity with a different canonical SKU or delta raises ValueError.\n- Identical IDs in different warehouses are independent. Event IDs are case-sensitive and whitespace-sensitive opaque strings.\n- Accept a one-pass iterable; preserve unrelated initial entries, zero entries and legitimate negative quantities/balances.\n- Return an independent dict and never mutate the input mapping, including when a later event conflicts. Replay state is local to the call.\n\nOnly `stockroom/projection.py` is editable. Read the admitted source modules before proposing an exact replacement. Do not edit tests, other files, branches or Git state. Focused checks are immutable; a separate frozen held-out oracle grades the archived candidate after completion.\n\nUse native tools, not fenced-code patches or shell commands. `read_source` ranges use zero-based Python character offsets with exclusive end. Read the complete events.py, keys.py and projection.py modules to satisfy host readiness. The file manifest supplies exact lengths. `replace_source` requires a unique old_text anchor actually acquired from current source. Read and edit calls belong in separate batches. `validate_candidate` and `inspect_and_validate_change` run host-fixed checks; neither accepts a command. The latter also inspects repository changes and scope. You may request it when useful. Ordinary check results are returned automatically after an admitted edit, with one bounded repair opportunity. A final prose claim is not acceptance evidence.\n\nAdmitted source manifest (character lengths):\n{\"stockroom/events.py\": 477, \"stockroom/keys.py\": 200, \"stockroom/projection.py\": 563, \"stockroom/reports.py\": 240}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized repository changes and run the fixed focused acceptance check.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": false
+}

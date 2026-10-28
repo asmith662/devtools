@@ -1,0 +1,110 @@
+[
+  {
+    "label": "git-0",
+    "exit_code": 0,
+    "seconds": 0.038767,
+    "stdout": "8f1466ec0f7b71984a63cb6b0512d075b8e282a4\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-1",
+    "exit_code": 0,
+    "seconds": 0.037127,
+    "stdout": "",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-2",
+    "exit_code": 0,
+    "seconds": 0.032577,
+    "stdout": "",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-config",
+    "exit_code": 0,
+    "seconds": 0.059888,
+    "stdout": null,
+    "stderr": null,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-profile",
+    "exit_code": 0,
+    "seconds": 0.07067,
+    "stdout": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-image",
+    "exit_code": 0,
+    "seconds": 0.101065,
+    "stdout": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-mount",
+    "exit_code": 0,
+    "seconds": 0.075841,
+    "stdout": null,
+    "stderr": null,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-7",
+    "exit_code": 0,
+    "seconds": 0.047643,
+    "stdout": "Initialized empty Git repository in C:/Users/recoveryadmin/AppData/Local/Temp/devtools-local-coding-l0v88yz1/.git/\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-8",
+    "exit_code": 0,
+    "seconds": 0.047569,
+    "stdout": "",
+    "stderr": "warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'acceptance.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'stockroom/__init__.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'stockroom/events.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'stockroom/keys.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'stockroom/projection.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'stockroom/reports.py', LF will be replaced by CRLF the next time Git touches it\n",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-9",
+    "exit_code": 0,
+    "seconds": 0.06785,
+    "stdout": "[master (root-commit) e17f0ec] Freeze authored stock replay task baseline\n 7 files changed, 90 insertions(+)\n create mode 100644 .gitignore\n create mode 100644 acceptance.py\n create mode 100644 stockroom/__init__.py\n create mode 100644 stockroom/events.py\n create mode 100644 stockroom/keys.py\n create mode 100644 stockroom/projection.py\n create mode 100644 stockroom/reports.py\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-10",
+    "exit_code": 0,
+    "seconds": 0.029216,
+    "stdout": "e17f0ecd500f07a07b095193e56ba6399b08c90e\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "baseline-heldout",
+    "exit_code": 1,
+    "seconds": 0.113777,
+    "stdout": "",
+    "stderr": "test_conflict_after_other_effects_does_not_mutate_input (__main__.Heldout.test_conflict_after_other_effects_does_not_mutate_input) ... FAIL\r\ntest_empty_returns_independent_mapping (__main__.Heldout.test_empty_returns_independent_mapping) ... ok\r\ntest_interleaved_replays (__main__.Heldout.test_interleaved_replays) ... FAIL\r\ntest_opaque_case_sensitive_ids (__main__.Heldout.test_opaque_case_sensitive_ids) ... ok\r\ntest_opaque_space_ids (__main__.Heldout.test_opaque_space_ids) ... ok\r\ntest_separate_calls_do_not_share_replay_state (__main__.Heldout.test_separate_calls_do_not_share_replay_state) ... FAIL\r\ntest_unicode_canonical_duplicates (__main__.Heldout.test_unicode_canonical_duplicates) ... FAIL\r\ntest_zero_delta_replay_conflict (__main__.Heldout.test_zero_delta_replay_conflict) ... FAIL\r\n\r\n======================================================================\r\nFAIL: test_conflict_after_other_effects_does_not_mutate_input (__main__.Heldout.test_conflict_after_other_effects_does_not_mutate_input)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 47, in test_conflict_after_other_effects_does_not_mutate_input\r\n    with self.assertRaises(ValueError):\r\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: ValueError not raised\r\n\r\n======================================================================\r\nFAIL: test_interleaved_replays (__main__.Heldout.test_interleaved_replays)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 20, in test_interleaved_replays\r\n    self.assertEqual(\r\n    ~~~~~~~~~~~~~~~~^\r\n        project_stock({(\"other\", \"KEEP\"): 9}, events),\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n        {(\"other\", \"KEEP\"): 9, (\"a\", \"X\"): 3, (\"b\", \"X\"): 7},\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    )\r\n    ^\r\nAssertionError: {('other', 'KEEP'): 9, ('a', 'X'): 7, ('b', 'X'): 14} != {('other', 'KEEP'): 9, ('a', 'X'): 3, ('b', 'X'): 7}\r\n- {('a', 'X'): 7, ('b', 'X'): 14, ('other', 'KEEP'): 9}\r\n?              ^              ^^\r\n\r\n+ {('a', 'X'): 3, ('b', 'X'): 7, ('other', 'KEEP'): 9}\r\n?              ^              ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_separate_calls_do_not_share_replay_state (__main__.Heldout.test_separate_calls_do_not_share_replay_state)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 68, in test_separate_calls_do_not_share_replay_state\r\n    self.assertEqual(project_stock({}, events), {(\"a\", \"X\"): 2})\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: {('a', 'X'): 4} != {('a', 'X'): 2}\r\n- {('a', 'X'): 4}\r\n?              ^\r\n\r\n+ {('a', 'X'): 2}\r\n?              ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_unicode_canonical_duplicates (__main__.Heldout.test_unicode_canonical_duplicates)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 38, in test_unicode_canonical_duplicates\r\n    self.assertEqual(\r\n    ~~~~~~~~~~~~~~~~^\r\n        project_stock(\r\n        ^^^^^^^^^^^^^^\r\n    ...<2 lines>...\r\n        {(\"strasse\", \"\ufffd\"): -3},\r\n        ^^^^^^^^^^^^^^^^^^^^^^^\r\n    )\r\n    ^\r\nAssertionError: {('strasse', '\ufffd'): -6} != {('strasse', '\ufffd'): -3}\r\n- {('strasse', '\ufffd'): -6}\r\n?                     ^\r\n\r\n+ {('strasse', '\ufffd'): -3}\r\n?                     ^\r\n\r\n\r\n======================================================================\r\nFAIL: test_zero_delta_replay_conflict (__main__.Heldout.test_zero_delta_replay_conflict)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_coding_dogfood\\case_0001\\heldout.py\", line 72, in test_zero_delta_replay_conflict\r\n    with self.assertRaises(ValueError):\r\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\r\nAssertionError: ValueError not raised\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.004s\r\n\r\nFAILED (failures=5)\r\n",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  }
+]
