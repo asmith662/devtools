@@ -39,6 +39,7 @@ from apps.qwen.edits import (
 from apps.qwen.patch_proposal_worker import _read_text
 from apps.qwen.tasks import MARKDOWN, CodingTask
 from apps.qwen.turns import run_turns
+from devtools.agents.coding.custody import SourceCustody
 from devtools.context import (
     Repository,
     RepositoryResourceAddress,
@@ -454,6 +455,20 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         for p in task.sources
     }
     original_hashes.update(dict.fromkeys(task.new_paths))
+    custody = SourceCustody(
+        resolve_path(root),
+        {
+            RepositoryResourceAddress(path): text
+            for path, text in original_sources.items()
+        },
+        maximum_bytes=16 * 1024 * 1024,
+    )
+
+    def expect_source(path: str, text: str) -> None:
+        if admit_edit is not None:
+            admit_edit(path, text)
+        custody.expect(RepositoryResourceAddress(path), text)
+
     folder = resolve_path(folder).value
     await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -554,7 +569,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 report,
                 maximum_calls=maximum_calls,
                 task=task,
-                admit_edit=admit_edit,
+                admit_edit=expect_source,
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
                 observed_edits=observed_edits,
@@ -597,13 +612,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     finally:
         if workspace is not None:
             candidates = []
-            restorable = True
+            captured = custody.capture()
             for path in task.sources:
-                current = (
-                    _read_text(resolve_path(root / path)).content
-                    if (root / path).exists()
-                    else ""
-                )
+                current = captured[RepositoryResourceAddress(path)] or ""
                 target = (
                     folder / "final-source.py"
                     if path == task.source
@@ -620,26 +631,18 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                         else None,
                     }
                 )
-                known = {original_hashes[path]}
-                for stage in report["turns"]:
-                    for key in ("sources_after", "proposed_sources"):
-                        if path in stage.get(key, {}):
-                            known.add(stage[key][path])
-                    if path == task.source and "source_after" in stage:
-                        known.add(stage["source_after"])
-                restorable = (
-                    restorable
-                    and (_hash(root / path) if (root / path).exists() else None)
-                    in known
-                )
             report["candidates"] = candidates
-            if restorable:
-                for path, text in original_sources.items():
-                    if text is None:
-                        (root / path).unlink(missing_ok=True)
-                    else:
-                        write(TextFile(resolve_path(root / path), text))
-            else:
+
+            def restore_source(
+                address: RepositoryResourceAddress, text: str | None
+            ) -> None:
+                if text is None:
+                    (root / address.value).unlink(missing_ok=True)
+                else:
+                    write(TextFile(resolve_path(root / address.value), text))
+
+            completion = custody.restore_known(captured, restore_source)
+            if completion.reconciliation_required:
                 report.update(
                     accepted=False, disposition="CLEANUP_RECONCILIATION_REQUIRED"
                 )

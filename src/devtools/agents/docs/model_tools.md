@@ -56,8 +56,8 @@ application imports and checkout data access outside framework/dependencies.
 It requires no Qwen task, profile, prompt, journal or application implementation.
 Its optional fixture-only effect tests uncertainty; it is not a reusable editor.
 
-This increment does not promote Qwen's exact source acquisition, fixed validation
-plans, edit engine or complete goal-directed coding lifecycle. It does not expand
-Runtime, implement observation policy, change Codex's external-Agent semantics or
-introduce general orchestration. Later framework migration requires its own
-approved contracts and independent consumers.
+This composition operation does not itself own source acquisition, fixed checks
+or the goal-directed coding lifecycle. Subsequent authorized migrations provide
+scoped source/fixed-check Tools and the [bounded coding Agent](../coding/docs/overview.md)
+above it. Runtime, observation policy and Codex's external-Agent semantics remain
+unchanged; no general orchestration owner is introduced.
