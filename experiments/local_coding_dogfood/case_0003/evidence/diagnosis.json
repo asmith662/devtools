@@ -1,0 +1,137 @@
+{
+  "requests": [
+    {
+      "number": 1,
+      "input_tokens": 1108,
+      "output_tokens": 29,
+      "seconds": 17.86757,
+      "measured_input_tokens": 1108,
+      "calls": [
+        {
+          "name": "list_repository",
+          "arguments_json": "{}",
+          "provider_call_id": "FSxvNhBpjwnGH4BolQ3K6HrGnueX8AoB"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "input_tokens": 2754,
+      "output_tokens": 80,
+      "seconds": 5.338226,
+      "measured_input_tokens": 2754,
+      "calls": [
+        {
+          "name": "search_source",
+          "arguments_json": "{\"query\":\"first request repository discoverability prepare messages system prompt\"}",
+          "provider_call_id": "NK2uJZlrt7HFzWNUOJuuQKoJIFZNUupr"
+        },
+        {
+          "name": "search_source",
+          "arguments_json": "{\"query\":\"metadata resources snapshot source_acquired content_identity\"}",
+          "provider_call_id": "OEiKqLaIRaxwrvp9LbsnuTYU7hioxLb1"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "input_tokens": 6886,
+      "output_tokens": 79,
+      "seconds": 7.696363,
+      "measured_input_tokens": 6886,
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"tests/agents/coding/test_inventory.py\",\"start\":1,\"end\":6754}",
+          "provider_call_id": "QjHmJ84AMs4F8PWpihZZ6hVM6HUb8YZl"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "input_tokens": 8815,
+      "output_tokens": 77,
+      "seconds": 5.441068,
+      "measured_input_tokens": 8815,
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":10250,\"end\":11200}",
+          "provider_call_id": "2bR1HTUsUDTUO1lyL5dnkYSFIP5aOYSB"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "input_tokens": 9306,
+      "output_tokens": 72,
+      "seconds": 3.852002,
+      "measured_input_tokens": 9306,
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":1,\"end\":24675}",
+          "provider_call_id": "jitvdjT8ucrwT2cpxFETzDTy5GAo8Qu1"
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "call_id": "QjHmJ84AMs4F8PWpihZZ6hVM6HUb8YZl",
+      "arguments": "{\"path\":\"tests/agents/coding/test_inventory.py\",\"start\":1,\"end\":6754}",
+      "path": "tests/agents/coding/test_inventory.py",
+      "span": [
+        1,
+        6754
+      ],
+      "partial": false,
+      "text_bytes": 6754,
+      "text_chars": 6753,
+      "snapshot": "0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d",
+      "version": "881f77a472904863746b1d27d937662a06fb5e4330a09c70fcf0651a03c44dac"
+    },
+    {
+      "call_id": "2bR1HTUsUDTUO1lyL5dnkYSFIP5aOYSB",
+      "arguments": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":10250,\"end\":11200}",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        10250,
+        11200
+      ],
+      "partial": false,
+      "text_bytes": 950,
+      "text_chars": 950,
+      "snapshot": "0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d",
+      "version": "d41b81f7b4dbe9de75b5b2f8dfc3223b538c728b33d262d16f8d95f97f7b5b59"
+    },
+    {
+      "call_id": "jitvdjT8ucrwT2cpxFETzDTy5GAo8Qu1",
+      "arguments": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":1,\"end\":24675}",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        1,
+        8193
+      ],
+      "partial": true,
+      "text_bytes": 8192,
+      "text_chars": 8192,
+      "snapshot": "0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d",
+      "version": "d41b81f7b4dbe9de75b5b2f8dfc3223b538c728b33d262d16f8d95f97f7b5b59"
+    }
+  ],
+  "next_request_bytes": 36640,
+  "byte_limit": 32768,
+  "next_inference_entered": false,
+  "next_token_count": null,
+  "total_input": 28869,
+  "total_output": 337,
+  "provider_seconds": 40.195229,
+  "candidate_changes": [],
+  "archived_baseline_files": 6,
+  "no_model_proposals": true,
+  "all_effects_acknowledged": true,
+  "failure": "Existing complete-input Prompt byte guard refused preparation after real source acquisition, before any sixth inference or edit.",
+  "attribution": "Harness/Context capacity and continuation usability; not an incorrect model patch, transport failure, exhausted request budget, or failed validation/repair. Model requested a large source region which was bounded by partial disclosure; acquired metadata/source then exceeded the separate serialized Prompt limit.",
+  "review": "No implementation candidate exists to approve. Do not integrate the unchanged archived baseline as a repair. Preserve task open and do not rerun or substitute Codex implementation."
+}

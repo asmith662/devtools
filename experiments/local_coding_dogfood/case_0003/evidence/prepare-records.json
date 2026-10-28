@@ -1,0 +1,245 @@
+[
+  {
+    "label": "git-0",
+    "exit_code": 0,
+    "seconds": 0.032204,
+    "stdout": "721978cb9f88833a3dc3ecadc80e84aa2c6d4735\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-1",
+    "exit_code": 0,
+    "seconds": 0.038306,
+    "stdout": "",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-2",
+    "exit_code": 0,
+    "seconds": 0.030202,
+    "stdout": "",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-config",
+    "exit_code": 0,
+    "seconds": 0.059788,
+    "stdout": null,
+    "stderr": null,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-profile",
+    "exit_code": 0,
+    "seconds": 0.069404,
+    "stdout": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-image",
+    "exit_code": 0,
+    "seconds": 0.074087,
+    "stdout": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "service-mount",
+    "exit_code": 0,
+    "seconds": 0.067631,
+    "stdout": null,
+    "stderr": null,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "baseline-focused",
+    "exit_code": 1,
+    "seconds": 1.085883,
+    "stdout": "FFF......................                                                [100%]\r\n================================== FAILURES ===================================\r\n_____________________ test_first_request_scoped_inventory _____________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10165/test_first_request_scoped_inve0')\r\n\r\n    def test_first_request_scoped_inventory(tmp_path: Path) -> None:\r\n        host = make_host(tmp_path)\r\n        request = asyncio.run(host.prepare(progress()))\r\n>       data = inventory(request)\r\n               ^^^^^^^^^^^^^^^^^^\r\n\r\ntests\\agents\\coding\\test_inventory.py:124: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nrequest = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{\"maxProperties\":0,\"type\":\"object\"}')))\r\n\r\n    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\r\n        entries = []\r\n        for message in request.prompt.messages:\r\n            try:\r\n                value = json.loads(message.content)\r\n            except json.JSONDecodeError:\r\n                continue\r\n            if isinstance(value, dict) and \"resources\" in value:\r\n                entries.append(value)\r\n>       assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE       AssertionError: Exactly one scoped metadata inventory is required\r\nE       assert 0 == 1\r\nE        +  where 0 = len([])\r\n\r\ntests\\agents\\coding\\test_inventory.py:117: AssertionError\r\n__________________ test_inventory_not_duplicated_on_prepare ___________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10165/test_inventory_not_duplicated_0')\r\n\r\n    def test_inventory_not_duplicated_on_prepare(tmp_path: Path) -> None:\r\n        host = make_host(tmp_path)\r\n        first = asyncio.run(host.prepare(progress()))\r\n        second = asyncio.run(host.prepare(progress()))\r\n>       assert inventory(first) == inventory(second)\r\n               ^^^^^^^^^^^^^^^^\r\n\r\ntests\\agents\\coding\\test_inventory.py:156: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nrequest = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{\"maxProperties\":0,\"type\":\"object\"}')))\r\n\r\n    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\r\n        entries = []\r\n        for message in request.prompt.messages:\r\n            try:\r\n                value = json.loads(message.content)\r\n            except json.JSONDecodeError:\r\n                continue\r\n            if isinstance(value, dict) and \"resources\" in value:\r\n                entries.append(value)\r\n>       assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE       AssertionError: Exactly one scoped metadata inventory is required\r\nE       assert 0 == 1\r\nE        +  where 0 = len([])\r\n\r\ntests\\agents\\coding\\test_inventory.py:117: AssertionError\r\n___________________ test_inventory_charged_to_prompt_budget ___________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10165/test_inventory_charged_to_prom0')\r\n\r\n    def test_inventory_charged_to_prompt_budget(tmp_path: Path) -> None:\r\n        host = make_host(tmp_path)\r\n        request = asyncio.run(host.prepare(progress()))\r\n        # A bound that fits the old objective-only request must not silently omit metadata.\r\n        from dataclasses import asdict  # noqa: PLC0415 -- literal byte boundary\r\n    \r\n        from devtools.models.interaction import Prompt  # noqa: PLC0415\r\n    \r\n        objective_only = replace(\r\n            request,\r\n            prompt=Prompt(\"\", \"messages\", (request.prompt.messages[0],)),\r\n        )\r\n        maximum = len(json.dumps(asdict(objective_only), ensure_ascii=False).encode()) + 1\r\n        bounded = make_host(tmp_path / \"bounded\", prompt_bytes=maximum)\r\n>       with pytest.raises(ValueError, match=\"budget\"):\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE       Failed: DID NOT RAISE ValueError\r\n\r\ntests\\agents\\coding\\test_inventory.py:177: Failed\r\n=========================== short test summary info ===========================\r\nFAILED tests/agents/coding/test_inventory.py::test_first_request_scoped_inventory\r\nFAILED tests/agents/coding/test_inventory.py::test_inventory_not_duplicated_on_prepare\r\nFAILED tests/agents/coding/test_inventory.py::test_inventory_charged_to_prompt_budget\r\n3 failed, 22 passed in 0.53s\r\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "baseline-heldout",
+    "exit_code": 1,
+    "seconds": 0.795635,
+    "stdout": "FF.F                                                                     [100%]\r\n================================== FAILURES ===================================\r\n___________________________ test_refreshed_metadata ___________________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10166/test_refreshed_metadata0')\r\n\r\n    def test_refreshed_metadata(tmp_path):\r\n        host=make_host(tmp_path)\r\n>       before=inventory(asyncio.run(host.prepare(progress())))\r\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n\r\nexperiments\\local_coding_dogfood\\case_0003\\oracle.py:21: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nrequest = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{\"maxProperties\":0,\"type\":\"object\"}')))\r\n\r\n    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\r\n        entries = []\r\n        for message in request.prompt.messages:\r\n            try:\r\n                value = json.loads(message.content)\r\n            except json.JSONDecodeError:\r\n                continue\r\n            if isinstance(value, dict) and \"resources\" in value:\r\n                entries.append(value)\r\n>       assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE       AssertionError: Exactly one scoped metadata inventory is required\r\nE       assert 0 == 1\r\nE        +  where 0 = len([])\r\n\r\ntests\\agents\\coding\\test_inventory.py:117: AssertionError\r\n________________________ test_native_feedback_retained ________________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10166/test_native_feedback_retained0')\r\n\r\n    def test_native_feedback_retained(tmp_path):\r\n        host=make_host(tmp_path)\r\n        state=progress();asyncio.run(host.prepare(state))\r\n        call=ModelToolCall('read_source',json.dumps({'path':'package/source.py','start':0,'end':7}), 'independent-native-id')\r\n        response=ModelResponse('',source=InteractionSource('independent-host'),tool_calls=(call,))\r\n        assert host.classify(response)=='acquire'\r\n        asyncio.run(host.acquire(response))\r\n        request=asyncio.run(host.prepare(state))\r\n>       assert inventory(request)['source_acquired'] is False\r\n               ^^^^^^^^^^^^^^^^^^\r\n\r\nexperiments\\local_coding_dogfood\\case_0003\\oracle.py:39: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nrequest = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{\"maxProperties\":0,\"type\":\"object\"}')))\r\n\r\n    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\r\n        entries = []\r\n        for message in request.prompt.messages:\r\n            try:\r\n                value = json.loads(message.content)\r\n            except json.JSONDecodeError:\r\n                continue\r\n            if isinstance(value, dict) and \"resources\" in value:\r\n                entries.append(value)\r\n>       assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE       AssertionError: Exactly one scoped metadata inventory is required\r\nE       assert 0 == 1\r\nE        +  where 0 = len([])\r\n\r\ntests\\agents\\coding\\test_inventory.py:117: AssertionError\r\n___________________ test_escaped_address_and_utf8_metadata ____________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10166/test_escaped_address_and_utf8_0')\r\n\r\n    def test_escaped_address_and_utf8_metadata(tmp_path):\r\n        host=make_host(tmp_path)\r\n        address=RepositoryResourceAddress('package/na\ufffdve [part].py')\r\n        text='private-unicode-\\u03bb\\\\n';write(TextFile(resolve_path(tmp_path/address.value),text))\r\n        host.scope=SourceScope.observe(root=host.scope.root,repository=__import__('devtools.context',fromlist=['Repository']).Repository(host.scope.snapshot.repository_id),addresses=tuple(r.address for r in host.scope.snapshot.resources)+(address,))\r\n>       request=asyncio.run(host.prepare(progress()));data=inventory(request)\r\n                                                           ^^^^^^^^^^^^^^^^^^\r\n\r\nexperiments\\local_coding_dogfood\\case_0003\\oracle.py:58: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nrequest = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{\"maxProperties\":0,\"type\":\"object\"}')))\r\n\r\n    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\r\n        entries = []\r\n        for message in request.prompt.messages:\r\n            try:\r\n                value = json.loads(message.content)\r\n            except json.JSONDecodeError:\r\n                continue\r\n            if isinstance(value, dict) and \"resources\" in value:\r\n                entries.append(value)\r\n>       assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE       AssertionError: Exactly one scoped metadata inventory is required\r\nE       assert 0 == 1\r\nE        +  where 0 = len([])\r\n\r\ntests\\agents\\coding\\test_inventory.py:117: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_refreshed_metadata\r\nFAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_native_feedback_retained\r\nFAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_escaped_address_and_utf8_metadata\r\n3 failed, 1 passed in 0.33s\r\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-9",
+    "exit_code": 0,
+    "seconds": 0.124018,
+    "stdout": "experiments/local_coding_dogfood/case_0003/composition.py\u0000experiments/local_coding_dogfood/case_0003/host.py\u0000experiments/local_coding_dogfood/case_0003/objective.md\u0000experiments/local_coding_dogfood/case_0003/oracle.py\u0000experiments/local_coding_dogfood/case_0003/support.py\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json\u0000experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json\u0000experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json\u0000tests/agents/coding/test_inventory.py\u0000",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-10",
+    "exit_code": 0,
+    "seconds": 0.03194,
+    "stdout": "4b8cfd8bc9e792c107dcbc9d86801ecb20d2b270\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-11",
+    "exit_code": 0,
+    "seconds": 0.031526,
+    "stdout": "7341276f5237f83e5d090c1abcd9a7e63b2adcc6\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-12",
+    "exit_code": 0,
+    "seconds": 0.031021,
+    "stdout": "e05dfc75b51fd850209bc80987fb8472743672c1\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-13",
+    "exit_code": 0,
+    "seconds": 0.029989,
+    "stdout": "d4ea5e5b5c6bf5ed65360a87e91059e7dd293303\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-14",
+    "exit_code": 0,
+    "seconds": 0.029328,
+    "stdout": "ff3a421f1a1c720a03846d15462fac1d5ae851c1\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-15",
+    "exit_code": 0,
+    "seconds": 0.141584,
+    "stdout": "16b0576968c25a1b5544956c9cb78c2574538733\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-16",
+    "exit_code": 0,
+    "seconds": 0.032468,
+    "stdout": "1eb86ab9d0416f13f3415c921418c71a142e4a63\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-17",
+    "exit_code": 0,
+    "seconds": 0.025494,
+    "stdout": "077c9d47256cd34532f34ac2aef98520ab26e43e\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-18",
+    "exit_code": 0,
+    "seconds": 0.028819,
+    "stdout": "0d890f1d6791078c9aec9a89b32f4f8eb55dff0c\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-19",
+    "exit_code": 0,
+    "seconds": 0.030099,
+    "stdout": "9a35913360a6c3ba454e4f3e0afba130fe1176f6\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-20",
+    "exit_code": 0,
+    "seconds": 0.029519,
+    "stdout": "6485796073d6ed095648b3a54f40c512fbc41545\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-21",
+    "exit_code": 0,
+    "seconds": 0.025925,
+    "stdout": "b95d60c773eb5bdd69665573ee608038de1c7604\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-22",
+    "exit_code": 0,
+    "seconds": 0.027575,
+    "stdout": "20bb56332402d6b124c089ab6d5437062e153349\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-23",
+    "exit_code": 0,
+    "seconds": 0.029734,
+    "stdout": "284982cf6572d9659e99697984860fcf462f8ab4\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-24",
+    "exit_code": 0,
+    "seconds": 0.026421,
+    "stdout": "c55454b4d405102c75b50af8bf4e678994622c81\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-25",
+    "exit_code": 0,
+    "seconds": 0.029036,
+    "stdout": "5bf8fca994b9648e20fbfb6d768746b680836b4c\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "label": "git-26",
+    "exit_code": 0,
+    "seconds": 0.027647,
+    "stdout": "81fce50378303a618f67416c667f2ce47cd3b130\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  }
+]

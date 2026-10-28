@@ -1,0 +1,416 @@
+{
+  "at": "2026-10-28T16:47:46.971683+00:00",
+  "task_digest": "e85de1a17fa58c0eab3e6dd1ce736028a9307ae47d86b229c40512031ed2eff2",
+  "accepted": false,
+  "disposition": "failed",
+  "candidate_validated": false,
+  "completed": false,
+  "failure_phase": "preparation",
+  "model_calls": 5,
+  "proposals": 0,
+  "actions": 6,
+  "seconds": 40.782078,
+  "restored": true,
+  "command_records": [
+    {
+      "label": "git-0",
+      "exit_code": 0,
+      "seconds": 0.03116,
+      "stdout": "721978cb9f88833a3dc3ecadc80e84aa2c6d4735\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "service-config",
+      "exit_code": 0,
+      "seconds": 0.063148,
+      "stdout": null,
+      "stderr": null,
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "service-profile",
+      "exit_code": 0,
+      "seconds": 0.066302,
+      "stdout": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "service-image",
+      "exit_code": 0,
+      "seconds": 0.065074,
+      "stdout": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "service-mount",
+      "exit_code": 0,
+      "seconds": 0.065519,
+      "stdout": null,
+      "stderr": null,
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "git-5",
+      "exit_code": 0,
+      "seconds": 0.0342,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "command_observations": [
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "git-0"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-0",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.030978"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "service-config"
+      },
+      "pattern": {
+        "family": "docker",
+        "operation": "service-config",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.063058"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "service-profile"
+      },
+      "pattern": {
+        "family": "docker",
+        "operation": "service-profile",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.066176"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "service-image"
+      },
+      "pattern": {
+        "family": "docker",
+        "operation": "service-image",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.064954"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "service-mount"
+      },
+      "pattern": {
+        "family": "docker",
+        "operation": "service-mount",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.065389"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "primary-0003",
+        "call": "git-5"
+      },
+      "pattern": {
+        "family": "git",
+        "operation": "git-5",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.034078"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": {
+        "family": "docker",
+        "operation": "service-config",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-image",
+        "docker:service-mount",
+        "docker:service-profile",
+        "git:git-0",
+        "git:git-5"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "docker",
+        "operation": "service-image",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-config",
+        "docker:service-mount",
+        "docker:service-profile",
+        "git:git-0",
+        "git:git-5"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "docker",
+        "operation": "service-mount",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-config",
+        "docker:service-image",
+        "docker:service-profile",
+        "git:git-0",
+        "git:git-5"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "docker",
+        "operation": "service-profile",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-config",
+        "docker:service-image",
+        "docker:service-mount",
+        "git:git-0",
+        "git:git-5"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-0",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-config",
+        "docker:service-image",
+        "docker:service-mount",
+        "docker:service-profile",
+        "git:git-5"
+      ],
+      "co_occurrence_truncated": false
+    },
+    {
+      "pattern": {
+        "family": "git",
+        "operation": "git-5",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "frequency": 1,
+      "distinct_tasks": 1,
+      "distinct_agents": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "unknown": 0,
+      "conflicting": 0,
+      "co_occurring_operations": [
+        "docker:service-config",
+        "docker:service-image",
+        "docker:service-mount",
+        "docker:service-profile",
+        "git:git-0"
+      ],
+      "co_occurrence_truncated": false
+    }
+  ]
+}

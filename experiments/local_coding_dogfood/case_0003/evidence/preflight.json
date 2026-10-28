@@ -1,0 +1,39 @@
+{
+  "ready": true,
+  "tools": [
+    {
+      "name": "read_source",
+      "description": "Read an admitted exact current source region.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+    },
+    {
+      "name": "replace_source",
+      "description": "Propose an exact unique observed replacement; host admission is required.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+    },
+    {
+      "name": "validate_candidate",
+      "description": "Request the host-fixed candidate checks.",
+      "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+    },
+    {
+      "name": "list_repository",
+      "description": "List authorized snapshot resources, sizes and read/edit permissions. Metadata only, not acquired source.",
+      "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+    },
+    {
+      "name": "search_source",
+      "description": "Search existing file/symbol/window retrieval by query. Returns ranked metadata, not source. Read selected ranges separately; full file lengths are supplied.",
+      "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":256,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\"}"
+    },
+    {
+      "name": "inspect_and_validate_change",
+      "description": "Inspect authorized changes and execute host-fixed focused acceptance. No command/scope arguments.",
+      "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+    }
+  ],
+  "resources": 17,
+  "hits": 6,
+  "inference_calls": 0,
+  "files_unchanged": true
+}

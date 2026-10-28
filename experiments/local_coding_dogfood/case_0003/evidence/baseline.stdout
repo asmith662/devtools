@@ -1,0 +1,190 @@
+FFF......................FF.F                                            [100%]
+================================== FAILURES ===================================
+_____________________ test_first_request_scoped_inventory _____________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_first_request_scoped_inve0')
+
+    def test_first_request_scoped_inventory(tmp_path: Path) -> None:
+        host = make_host(tmp_path)
+        request = asyncio.run(host.prepare(progress()))
+>       data = inventory(request)
+               ^^^^^^^^^^^^^^^^^^
+
+tests\agents\coding\test_inventory.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{"maxProperties":0,"type":"object"}')))
+
+    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values
+        entries = []
+        for message in request.prompt.messages:
+            try:
+                value = json.loads(message.content)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict) and "resources" in value:
+                entries.append(value)
+>       assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E       AssertionError: Exactly one scoped metadata inventory is required
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\agents\coding\test_inventory.py:117: AssertionError
+__________________ test_inventory_not_duplicated_on_prepare ___________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_inventory_not_duplicated_0')
+
+    def test_inventory_not_duplicated_on_prepare(tmp_path: Path) -> None:
+        host = make_host(tmp_path)
+        first = asyncio.run(host.prepare(progress()))
+        second = asyncio.run(host.prepare(progress()))
+>       assert inventory(first) == inventory(second)
+               ^^^^^^^^^^^^^^^^
+
+tests\agents\coding\test_inventory.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{"maxProperties":0,"type":"object"}')))
+
+    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values
+        entries = []
+        for message in request.prompt.messages:
+            try:
+                value = json.loads(message.content)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict) and "resources" in value:
+                entries.append(value)
+>       assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E       AssertionError: Exactly one scoped metadata inventory is required
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\agents\coding\test_inventory.py:117: AssertionError
+___________________ test_inventory_charged_to_prompt_budget ___________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_inventory_charged_to_prom0')
+
+    def test_inventory_charged_to_prompt_budget(tmp_path: Path) -> None:
+        host = make_host(tmp_path)
+        request = asyncio.run(host.prepare(progress()))
+        # A bound that fits the old objective-only request must not silently omit metadata.
+        from dataclasses import asdict  # noqa: PLC0415 -- literal byte boundary
+    
+        from devtools.models.interaction import Prompt  # noqa: PLC0415
+    
+        objective_only = replace(
+            request,
+            prompt=Prompt("", "messages", (request.prompt.messages[0],)),
+        )
+        maximum = len(json.dumps(asdict(objective_only), ensure_ascii=False).encode()) + 1
+        bounded = make_host(tmp_path / "bounded", prompt_bytes=maximum)
+>       with pytest.raises(ValueError, match="budget"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\agents\coding\test_inventory.py:177: Failed
+___________________________ test_refreshed_metadata ___________________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_refreshed_metadata0')
+
+    def test_refreshed_metadata(tmp_path):
+        host=make_host(tmp_path)
+>       before=inventory(asyncio.run(host.prepare(progress())))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+experiments\local_coding_dogfood\case_0003\oracle.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{"maxProperties":0,"type":"object"}')))
+
+    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values
+        entries = []
+        for message in request.prompt.messages:
+            try:
+                value = json.loads(message.content)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict) and "resources" in value:
+                entries.append(value)
+>       assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E       AssertionError: Exactly one scoped metadata inventory is required
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\agents\coding\test_inventory.py:117: AssertionError
+________________________ test_native_feedback_retained ________________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_native_feedback_retained0')
+
+    def test_native_feedback_retained(tmp_path):
+        host=make_host(tmp_path)
+        state=progress();asyncio.run(host.prepare(state))
+        call=ModelToolCall('read_source',json.dumps({'path':'package/source.py','start':0,'end':7}), 'independent-native-id')
+        response=ModelResponse('',source=InteractionSource('independent-host'),tool_calls=(call,))
+        assert host.classify(response)=='acquire'
+        asyncio.run(host.acquire(response))
+        request=asyncio.run(host.prepare(state))
+>       assert inventory(request)['source_acquired'] is False
+               ^^^^^^^^^^^^^^^^^^
+
+experiments\local_coding_dogfood\case_0003\oracle.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{"maxProperties":0,"type":"object"}')))
+
+    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values
+        entries = []
+        for message in request.prompt.messages:
+            try:
+                value = json.loads(message.content)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict) and "resources" in value:
+                entries.append(value)
+>       assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E       AssertionError: Exactly one scoped metadata inventory is required
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\agents\coding\test_inventory.py:117: AssertionError
+___________________ test_escaped_address_and_utf8_metadata ____________________
+
+tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-10164/test_escaped_address_and_utf8_0')
+
+    def test_escaped_address_and_utf8_metadata(tmp_path):
+        host=make_host(tmp_path)
+        address=RepositoryResourceAddress('package/naïve [part].py')
+        text='private-unicode-\u03bb\\n';write(TextFile(resolve_path(tmp_path/address.value),text))
+        host.scope=SourceScope.observe(root=host.scope.root,repository=__import__('devtools.context',fromlist=['Repository']).Repository(host.scope.snapshot.repository_id),addresses=tuple(r.address for r in host.scope.snapshot.resources)+(address,))
+>       request=asyncio.run(host.prepare(progress()));data=inventory(request)
+                                                           ^^^^^^^^^^^^^^^^^^
+
+experiments\local_coding_dogfood\case_0003\oracle.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+request = ModelRequest(prompt=Prompt(content='', role='messages', messages=(PromptMessage(role='user', content='Inspect the auth...te', description='Request the host-fixed candidate checks.', input_schema_json='{"maxProperties":0,"type":"object"}')))
+
+    def inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values
+        entries = []
+        for message in request.prompt.messages:
+            try:
+                value = json.loads(message.content)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict) and "resources" in value:
+                entries.append(value)
+>       assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E       AssertionError: Exactly one scoped metadata inventory is required
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\agents\coding\test_inventory.py:117: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/agents/coding/test_inventory.py::test_first_request_scoped_inventory
+FAILED tests/agents/coding/test_inventory.py::test_inventory_not_duplicated_on_prepare
+FAILED tests/agents/coding/test_inventory.py::test_inventory_charged_to_prompt_budget
+FAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_refreshed_metadata
+FAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_native_feedback_retained
+FAILED experiments/local_coding_dogfood/case_0003/oracle.py::test_escaped_address_and_utf8_metadata
+6 failed, 23 passed in 0.56s

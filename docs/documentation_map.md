@@ -1,5 +1,7 @@
 # Documentation Map
 
+[Real local-model maintenance Case 0003](research/local-coding-maintenance-case-0003.md) records a B-0035 attempt that stopped at the Prompt byte limit before editing. No production candidate, Codex fallback or repair success is claimed; both previous cases remain unchanged.
+
 [Local coding Case 0002](research/local-coding-agent-case-0002.md) records one real model-selected repository investigation and correct shared-owner edit. It preserves Case 0001, distinguishes retrieved metadata from actual disclosure, and establishes no live repair or aggregate effectiveness rate.
 
 One real local-model coding task is retained as [bounded dogfood evidence](research/local-coding-agent-dogfood.md), with frozen oracles, actual source/Tool correspondence and independent candidate grading. It is an experimental sample, not comprehensive-audit completion or general effectiveness evidence.

@@ -1,0 +1,138 @@
+{
+  "number": 4,
+  "at": "2026-10-28T16:47:34.534987+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: first-request repository discoverability\n\nMaintain the existing neutral repository coding host so a newly invoked coding\nmodel can discover the complete host-authorized source surface without a separate\nlisting-only inference round. This is the concrete follow-up recorded in canonical\nB-0035 after local coding Case 0002. Keep all existing public signatures and Tools.\n\nPreserve the original objective as the first message. Include exactly one\nJSON-encoded metadata message, with repository_id, snapshot_id, source_acquired\n(false), and resources. Each resource has address, content_identity, byte_size and\neditable (a boolean from the host's editable subset). Values correspond to the\ncurrent authenticated source scope, including UTF-8 sizes. Include every scoped\nresource and no others. This is a transient model-facing projection, not a new\ndurable schema or source identity. Do not disclose resource content or absolute\nhost paths. Metadata does not acquire source, satisfy readiness or authorize edits.\n\nRepeated preparation and complete-input continuation must not accumulate copies.\nPreparation after admitted source refresh must describe the current snapshot.\nCharge the complete metadata and existing Tools/continuation to the existing\nPrompt byte bound; refuse over-budget requests rather than silently truncate or\nomit resources. Preserve stale-source refusal, native call correlation, actual\nsource disclosure before edits, host admission, fixed checks, restoration,\ncandidate/terminal outcomes and all existing limits. No new registry, executor,\nprovider, file-search engine, generic type or Qwen-specific dependency is needed.\n\nInspect source with the authorized Tools, then submit grounded exact edits.\nTests, docs, configuration and experiment evidence are read-only. Only existing\nAgents coding Python modules are editable. Do not change tests or checks, expand\nscope, choose commands, publish, or implement other backlog work. Failed checks\nwill produce real bounded feedback; you may repair within the frozen limits.\n\nNative tools: list_repository/search_source return scoped metadata, read_source discloses exact character spans. Read before grounded replace_source. Budget: eight requests/three proposals, twenty acquisition actions; no arbitrary commands. Use small exact anchors within acquired ranges. Tests and fixed checks are immutable.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "I'll start by exploring the repository structure to understand the codebase.\n\n",
+          "tool_calls": [
+            {
+              "name": "list_repository",
+              "arguments_json": "{}",
+              "provider_call_id": "FSxvNhBpjwnGH4BolQ3K6HrGnueX8AoB"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"snapshot\": \"0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d\", \"source_acquired\": false, \"resources\": [{\"path\": \"docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md\", \"characters\": 14697, \"content_identity\": \"2935cbacf89cc156bc772348ba4ce0d13cba849fd6fc0650e57c64582a8048e5\", \"editable\": false}, {\"path\": \"docs/development/bounded-coding-agent.md\", \"characters\": 9475, \"content_identity\": \"046ffbfdab8638f0ee6ca1e5822b6d646bfa3bfd7a167fa3015fae3bf003aa9f\", \"editable\": false}, {\"path\": \"src/devtools/agents/coding/__init__.py\", \"characters\": 394, \"content_identity\": \"a0de735340eaefe646aa8a9defc9ad43c6b9cbc50daef50779d01e041d7fefcd\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/custody.py\", \"characters\": 4246, \"content_identity\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/docs/overview.md\", \"characters\": 2124, \"content_identity\": \"207296010be60b7b2cfd4fa92041cafeab8d51684d8cbe071bebd37ba5d15a7a\", \"editable\": false}, {\"path\": \"src/devtools/agents/coding/edits.py\", \"characters\": 4550, \"content_identity\": \"3ce686fa4a72d50079c286ce5f08bd8ab9deb4f27f467253b40ac96f03cdc5b7\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/models.py\", \"characters\": 3750, \"content_identity\": \"f8fcf7745622423a985349b49942e4e75cd3577ad048f1ff7106afec7717391e\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/process.py\", \"characters\": 8619, \"content_identity\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/repository.py\", \"characters\": 24675, \"content_identity\": \"d41b81f7b4dbe9de75b5b2f8dfc3223b538c728b33d262d16f8d95f97f7b5b59\", \"editable\": true}, {\"path\": \"src/devtools/agents/model_tools.py\", \"characters\": 2689, \"content_identity\": \"e7c4d41bac426f184caeb2c2faa7515dbb0725f740f1b67eea99b23e14cf70b8\", \"editable\": false}, {\"path\": \"src/devtools/context/repository/resource.py\", \"characters\": 3328, \"content_identity\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"editable\": false}, {\"path\": \"src/devtools/context/repository/snapshot.py\", \"characters\": 2018, \"content_identity\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"editable\": false}, {\"path\": \"src/devtools/models/interaction/prompt.py\", \"characters\": 4176, \"content_identity\": \"bb56c1f77a04c7584d12a52b32a852aad7ccbf39ed13c3529696ef29a00e2305\", \"editable\": false}, {\"path\": \"src/devtools/tools/checks.py\", \"characters\": 5003, \"content_identity\": \"540c237f4641bb3a9ddd133b8ee9fed711db1f62fcf2ff4d3ba831cb09216cc9\", \"editable\": false}, {\"path\": \"src/devtools/tools/source.py\", \"characters\": 4323, \"content_identity\": \"272b35ab8e8b91a26ea67c8d6823b54a8f7730741f3204ce4ea2809c422de216\", \"editable\": false}, {\"path\": \"tests/agents/coding/test_inventory.py\", \"characters\": 6754, \"content_identity\": \"881f77a472904863746b1d27d937662a06fb5e4330a09c70fcf0651a03c44dac\", \"editable\": false}, {\"path\": \"tests/agents/coding/test_repository.py\", \"characters\": 10818, \"content_identity\": \"aebde46536e0a0562bd32ecad1b38d32cfdec5f8b08c73d90d066d186fa21d91\", \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": "FSxvNhBpjwnGH4BolQ3K6HrGnueX8AoB",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "Let me search for the relevant code around message preparation and discoverability.\n\n",
+          "tool_calls": [
+            {
+              "name": "search_source",
+              "arguments_json": "{\"query\":\"first request repository discoverability prepare messages system prompt\"}",
+              "provider_call_id": "NK2uJZlrt7HFzWNUOJuuQKoJIFZNUupr"
+            },
+            {
+              "name": "search_source",
+              "arguments_json": "{\"query\":\"metadata resources snapshot source_acquired content_identity\"}",
+              "provider_call_id": "OEiKqLaIRaxwrvp9LbsnuTYU7hioxLb1"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"snapshot\": \"0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d\", \"source_acquired\": false, \"query\": \"first request repository discoverability prepare messages system prompt\", \"mode\": \"mixed\", \"hits\": [{\"path\": \"tests/agents/coding/test_inventory.py\", \"unit\": \"5aad5baaedef9bdd75c204374b4c76cf1fededa3dd60c8705d096847b3edd282\", \"kind\": \"symbol\", \"qualified_name\": \"test_inventory_not_duplicated_on_prepare\", \"span\": [5169, 5566], \"file_characters\": 6754, \"content_identity\": \"881f77a472904863746b1d27d937662a06fb5e4330a09c70fcf0651a03c44dac\", \"rank\": 1, \"score\": 0.04918032786885246, \"evidence\": [{\"view\": \"symbol\", \"rank\": 1, \"score\": 17.415619874296006}, {\"view\": \"window\", \"rank\": 1, \"score\": 14.62911930147089}, {\"view\": \"file\", \"rank\": 1, \"score\": 12.579074155886559}]}, {\"path\": \"src/devtools/agents/coding/repository.py\", \"unit\": \"1221c00fcd2e0146f6a49a70ca499346bc2b47069fb19f63c39d9907cda61744\", \"kind\": \"symbol\", \"qualified_name\": \"RepositoryCodingHost.prepare\", \"span\": [10334, 11085], \"file_characters\": 24675, \"content_identity\": \"d41b81f7b4dbe9de75b5b2f8dfc3223b538c728b33d262d16f8d95f97f7b5b59\", \"rank\": 2, \"score\": 0.04787506400409626, \"evidence\": [{\"view\": \"symbol\", \"rank\": 3, \"score\": 14.926676984573271}, {\"view\": \"window\", \"rank\": 2, \"score\": 10.224083165570248}, {\"view\": \"file\", \"rank\": 3, \"score\": 7.267818661582458}]}, {\"path\": \"src/devtools/models/interaction/prompt.py\", \"unit\": \"e9d97a141289eb5cdb38f1851fb8631831f630d9fce797f01dc92b4b89139bc3\", \"kind\": \"symbol\", \"qualified_name\": \"PromptMessage.__post_init__\", \"span\": [482, 1957], \"file_characters\": 4176, \"content_identity\": \"bb56c1f77a04c7584d12a52b32a852aad7ccbf39ed13c3529696ef29a00e2305\", \"rank\": 3, \"score\": 0.04692742126540875, \"evidence\": [{\"view\": \"symbol\", \"rank\": 7, \"score\": 8.54499162989109}, {\"view\": \"window\", \"rank\": 3, \"score\": 9.412921676925473}, {\"view\": \"file\", \"rank\": 2, \"score\": 7.748324396821717}]}, {\"path\": \"tests/agents/coding/test_repository.py\", \"unit\": \"f39ee8f1956003711d1bee67d7417c51b11eab5624eb76716c3dcbf3fe7652d4\", \"kind\": \"symbol\", \"qualified_name\": \"test_foreign_corpus_refused\", \"span\": [5661, 6146], \"file_characters\": 10818, \"content_identity\": \"aebde46536e0a0562bd32ecad1b38d32cfdec5f8b08c73d90d066d186fa21d91\", \"rank\": 4, \"score\": 0.04616113053613054, \"evidence\": [{\"view\": \"symbol\", \"rank\": 6, \"score\": 8.879637304089155}, {\"view\": \"window\", \"rank\": 5, \"score\": 7.162004516518833}, {\"view\": \"window\", \"rank\": 6, \"score\": 6.398404546405}, {\"view\": \"file\", \"rank\": 4, \"score\": 6.216199437027455}]}, {\"path\": \"src/devtools/agents/coding/process.py\", \"unit\": \"894860c532542f9e83b427225eb1534f0920668fd1139ba668b423c4cdd7a25d\", \"kind\": \"symbol\", \"qualified_name\": \"CodingHost.prepare\", \"span\": [1044, 1191], \"file_characters\": 8619, \"content_identity\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"rank\": 5, \"score\": 0.04089833805958579, \"evidence\": [{\"view\": \"symbol\", \"rank\": 13, \"score\": 4.014838973093069}, {\"view\": \"window\", \"rank\": 23, \"score\": 2.2176698419955168}, {\"view\": \"file\", \"rank\": 6, \"score\": 3.729078429228977}]}, {\"path\": \"src/devtools/tools/source.py\", \"unit\": \"5afc896d325cc4af912c4f2863f82e015e346b095d24ffef53a090bb421c42f7\", \"kind\": \"symbol\", \"qualified_name\": \"ScopedSourceTool.validate\", \"span\": [3433, 4036], \"file_characters\": 4323, \"content_identity\": \"272b35ab8e8b91a26ea67c8d6823b54a8f7730741f3204ce4ea2809c422de216\", \"rank\": 6, \"score\": 0.039721517124673505, \"evidence\": [{\"view\": \"symbol\", \"rank\": 22, \"score\": 3.0773644779335365}, {\"view\": \"window\", \"rank\": 18, \"score\": 2.67476008836781}, {\"view\": \"file\", \"rank\": 8, \"score\": 2.285322646148193}]}]}",
+          "tool_calls": [],
+          "tool_call_id": "NK2uJZlrt7HFzWNUOJuuQKoJIFZNUupr",
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"snapshot\": \"0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d\", \"source_acquired\": false, \"query\": \"metadata resources snapshot source_acquired content_identity\", \"mode\": \"mixed\", \"hits\": [{\"path\": \"tests/agents/coding/test_inventory.py\", \"unit\": \"720d64f8bfd0eba9b9f089700efb9a852e1fb1d5d71adf9a9a44acb3d2246f95\", \"kind\": \"symbol\", \"qualified_name\": \"test_first_request_scoped_inventory\", \"span\": [3874, 5166], \"file_characters\": 6754, \"content_identity\": \"881f77a472904863746b1d27d937662a06fb5e4330a09c70fcf0651a03c44dac\", \"rank\": 1, \"score\": 0.04891591750396616, \"evidence\": [{\"view\": \"symbol\", \"rank\": 1, \"score\": 12.666542554396477}, {\"view\": \"window\", \"rank\": 2, \"score\": 10.686071817714474}, {\"view\": \"file\", \"rank\": 1, \"score\": 10.655269723095037}]}, {\"path\": \"src/devtools/context/repository/snapshot.py\", \"unit\": \"5c9c7e388a38ca7a4942bdf5730c58fffb51bd2a76986f052a622429a06ce242\", \"kind\": \"symbol\", \"qualified_name\": \"RepositorySnapshot\", \"span\": [906, 2017], \"file_characters\": 2018, \"content_identity\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"rank\": 2, \"score\": 0.04787506400409626, \"evidence\": [{\"view\": \"symbol\", \"rank\": 2, \"score\": 6.765731113368846}, {\"view\": \"window\", \"rank\": 3, \"score\": 5.105019963252123}, {\"view\": \"file\", \"rank\": 3, \"score\": 3.6590604088214627}]}, {\"path\": \"src/devtools/tools/source.py\", \"unit\": \"5afc896d325cc4af912c4f2863f82e015e346b095d24ffef53a090bb421c42f7\", \"kind\": \"symbol\", \"qualified_name\": \"ScopedSourceTool.validate\", \"span\": [3433, 4036], \"file_characters\": 4323, \"content_identity\": \"272b35ab8e8b91a26ea67c8d6823b54a8f7730741f3204ce4ea2809c422de216\", \"rank\": 3, \"score\": 0.04616113053613054, \"evidence\": [{\"view\": \"symbol\", \"rank\": 5, \"score\": 6.185080366574434}, {\"view\": \"window\", \"rank\": 6, \"score\": 4.080455052778913}, {\"view\": \"file\", \"rank\": 4, \"score\": 2.895368506033819}]}, {\"path\": \"src/devtools/agents/coding/repository.py\", \"unit\": \"25e48b5cbbe83a6d3671198c95a82bd3ca9e818d41bc4644dd58ec174ca0b6a1\", \"kind\": \"symbol\", \"qualified_name\": \"RepositoryCodingHost.apply\", \"span\": [19411, 21936], \"file_characters\": 24675, \"content_identity\": \"d41b81f7b4dbe9de75b5b2f8dfc3223b538c728b33d262d16f8d95f97f7b5b59\", \"rank\": 4, \"score\": 0.045547159015581276, \"evidence\": [{\"view\": \"symbol\", \"rank\": 9, \"score\": 5.086556472062018}, {\"view\": \"window\", \"rank\": 7, \"score\": 3.570115495430797}, {\"view\": \"file\", \"rank\": 2, \"score\": 4.210269476149633}]}, {\"path\": \"src/devtools/context/repository/resource.py\", \"unit\": \"62af40824cd7bc2e45af47072882571f143edbd14af45ee091ebe6da8dbba9ca\", \"kind\": \"symbol\", \"qualified_name\": \"RepositoryResourceOccurrence\", \"span\": [2547, 2843], \"file_characters\": 3328, \"content_identity\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"rank\": 5, \"score\": 0.042934652330754976, \"evidence\": [{\"view\": \"symbol\", \"rank\": 13, \"score\": 4.329494232178708}, {\"view\": \"window\", \"rank\": 11, \"score\": 2.3814211063102793}, {\"view\": \"file\", \"rank\": 6, \"score\": 2.041346130008663}]}, {\"path\": \"tests/agents/coding/test_repository.py\", \"unit\": \"912ad8323bc5dde92c9faaca62d9df20110f05011d7aa36f9686c9f8dbb29a45\", \"kind\": \"symbol\", \"qualified_name\": \"test_invalid_objective_refused_before_model\", \"span\": [4544, 5658], \"file_characters\": 10818, \"content_identity\": \"aebde46536e0a0562bd32ecad1b38d32cfdec5f8b08c73d90d066d186fa21d91\", \"rank\": 6, \"score\": 0.03948836288719153, \"evidence\": [{\"view\": \"symbol\", \"rank\": 24, \"score\": 2.8964049130807177}, {\"view\": \"window\", \"rank\": 19, \"score\": 1.7239358305713843}, {\"view\": \"file\", \"rank\": 7, \"score\": 2.0241031755814545}]}]}",
+          "tool_calls": [],
+          "tool_call_id": "OEiKqLaIRaxwrvp9LbsnuTYU7hioxLb1",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "Let me read the key files: the tests that define expected behavior, and the repository.py prepare method.\n\n",
+          "tool_calls": [
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\":\"tests/agents/coding/test_inventory.py\",\"start\":1,\"end\":6754}",
+              "provider_call_id": "QjHmJ84AMs4F8PWpihZZ6hVM6HUb8YZl"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \" Copyright (c) 2026\\n# ruff: noqa: D103 -- independently specified first-request metadata contract\\n\\\"\\\"\\\"A neutral host exposes scoped metadata without acquiring source or authority.\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport asyncio\\nimport json\\nimport sys\\nfrom dataclasses import replace\\nfrom typing import TYPE_CHECKING, Any\\n\\nimport pytest\\n\\nfrom devtools.agents.coding.models import CodingLimits, CodingProgress\\nfrom devtools.agents.coding.repository import (\\n    CodingObjective,\\n    EditLimits,\\n    RepositoryCodingHost,\\n)\\nfrom devtools.context import Repository, RepositoryResourceAddress\\nfrom devtools.context.repository.corpus import define_repository_text_corpus\\nfrom devtools.context.repository.discovery import discover_repository_resource_addresses\\nfrom devtools.core.paths import resolve_path\\nfrom devtools.core.time import Duration\\nfrom devtools.resources.commands import Command\\nfrom devtools.resources.filesystem import TextFile, write\\nfrom devtools.tools.checks import FixedCheck, FixedCheckPlan\\nfrom devtools.tools.errors import ToolInputError\\nfrom devtools.tools.source import SourceScope\\n\\nif TYPE_CHECKING:\\n    from pathlib import Path\\n\\n    from devtools.models.interaction import ModelToolCall\\n\\n\\ndef make_host(root: Path, *, prompt_bytes: int = 32768) -> RepositoryCodingHost:\\n    files = {\\n        \\\"package/source.py\\\": \\\"# private-source-marker\\\\nvalue = '\u00e9'\\\\n\\\",\\n        \\\"README.md\\\": \\\"read-only-secret\\\\n\\\",\\n    }\\n    for name, content in files.items():\\n        (root / name).parent.mkdir(parents=True, exist_ok=True)\\n        write(TextFile(resolve_path(root / name), content))\\n    write(TextFile(resolve_path(root / \\\"outside.py\\\"), \\\"outside-private-marker\\\"))\\n    repo = Repository.new()\\n    addresses = tuple(RepositoryResourceAddress(n) for n in files)\\n    scope = SourceScope.observe(\\n        root=resolve_path(root),\\n        repository=repo,\\n        addresses=addresses,\\n    )\\n    corpus = define_repository_text_corpus(\\n        discovery=discover_repository_resource_addresses(\\n            repository=repo,\\n            root=scope.root,\\n            requested_addresses=addresses,\\n            maximum_resource_count=4,\\n            maximum_traversal_entry_count=32,\\n        ),\\n        selected_addresses=addresses,\\n    )\\n    objective = CodingObjective(\\n        \\\"Inspect the authorized project before proposing work.\\\",\\n        scope,\\n        addresses[:1],\\n        FixedCheckPlan(\\n            scope.root,\\n            (\\n                FixedCheck(\\n                    \\\"never-entered\\\",\\n                    Command(sys.executable)\\n                    .args(\\\"-I\\\", \\\"-c\\\", \\\"pass\\\")\\n                    .cwd(scope.root)\\n                    .with_timeout(Duration.seconds(5)),\\n                ),\\n            ),\\n            scope,\\n        ),\\n        EditLimits(4096, 32768, 8192, 2),\\n        8192,\\n        prompt_bytes,\\n    )\\n\\n    async def authorize(_call: ModelToolCall, _value: object) -> None:\\n        return\\n\\n    async def effect(_changes: object) -> None:\\n        pytest.fail(\\\"Metadata preparation must not execute an edit\\\")\\n\\n    return RepositoryCodingHost(\\n        objective,\\n        corpus=corpus,\\n        authorize=authorize,\\n        apply_changes=effect,\\n        archive=lambda _: None,\\n        restore=lambda _path, _text: None,\\n    )\\n\\n\\ndef progress() -> CodingProgress:\\n    return CodingProgress(\\n        CodingLimits(2, 1, 4, Duration.seconds(5), Duration.seconds(20)),\\n    )\\n\\n\\ndef inventory(request: Any) -> dict[str, Any]:  # noqa: ANN401 -- inspect public wire values\\n    entries = []\\n    for message in request.prompt.messages:\\n        try:\\n            value = json.loads(message.content)\\n        except json.JSONDecodeError:\\n            continue\\n        if isinstance(value, dict) and \\\"resources\\\" in value:\\n            entries.append(value)\\n    assert len(entries) == 1, \\\"Exactly one scoped metadata inventory is required\\\"\\n    return entries[0]\\n\\n\\ndef test_first_request_scoped_inventory(tmp_path: Path) -> None:\\n    host = make_host(tmp_path)\\n    request = asyncio.run(host.prepare(progress()))\\n    data = inventory(request)\\n    assert data[\\\"repository_id\\\"] == str(host.scope.snapshot.repository_id)\\n    assert data[\\\"snapshot_id\\\"] == str(host.scope.snapshot.id)\\n    assert data[\\\"source_acquired\\\"] is False\\n    rows = {row[\\\"address\\\"]: row for row in data[\\\"resources\\\"]}\\n    assert set(rows) == {\\\"package/source.py\\\", \\\"README.md\\\"}\\n    assert rows[\\\"package/source.py\\\"][\\\"editable\\\"] is True\\n    assert rows[\\\"README.md\\\"][\\\"editable\\\"] is False\\n    for resource in host.scope.snapshot.resources:\\n        row = rows[resource.address.value]\\n        assert row[\\\"content_identity\\\"] == str(resource.content_identity)\\n        assert row[\\\"byte_size\\\"] == len(resource.content.encode(\\\"utf-8\\\"))\\n    content = \\\"\\\\n\\\".join(m.content for m in request.prompt.messages)\\n    assert host.objective.text in content\\n    assert not any(\\n        s in content\\n        for s in (\\n            \\\"private-source-marker\\\",\\n            \\\"read-only-secret\\\",\\n            \\\"outside.py\\\",\\n            \\\"outside-private-marker\\\",\\n            str(tmp_path),\\n        )\\n    )\\n    assert not host.disclosures\\n    assert not host.custody.capture()[host.objective.editable[0]].startswith(\\\"changed\\\")\\n\\n\\ndef test_inventory_not_duplicated_on_prepare(tmp_path: Path) -> None:\\n    host = make_host(tmp_path)\\n    first = asyncio.run(host.prepare(progress()))\\n    second = asyncio.run(host.prepare(progress()))\\n    assert inventory(first) == inventory(second)\\n    assert [m.content for m in first.prompt.messages] == [\\n        m.content for m in second.prompt.messages\\n    ]\\n    assert not host.disclosures\\n\\n\\ndef test_inventory_charged_to_prompt_budget(tmp_path: Path) -> None:\\n    host = make_host(tmp_path)\\n    request = asyncio.run(host.prepare(progress()))\\n    # A bound that fits the old objective-only request must not silently omit metadata.\\n    from dataclasses import asdict  # noqa: PLC0415 -- literal byte boundary\\n\\n    from devtools.models.interaction import Prompt  # noqa: PLC0415\\n\\n    objective_only = replace(\\n        request,\\n        prompt=Prompt(\\\"\\\", \\\"messages\\\", (request.prompt.messages[0],)),\\n    )\\n    maximum = len(json.dumps(asdict(objective_only), ensure_ascii=False).encode()) + 1\\n    bounded = make_host(tmp_path / \\\"bounded\\\", prompt_bytes=maximum)\\n    with pytest.raises(ValueError, match=\\\"budget\\\"):\\n        asyncio.run(bounded.prepare(progress()))\\n    assert not bounded.requests\\n    assert not bounded.disclosures\\n\\n\\ndef test_inventory_does_not_bypass_currentness(tmp_path: Path) -> None:\\n    host = make_host(tmp_path)\\n    write(\\n        TextFile(resolve_path(tmp_path / \\\"package/source.py\\\"), \\\"changed externally\\\\n\\\"),\\n    )\\n    with pytest.raises(ToolInputError, match=\\\"no longer current\\\"):\\n        asyncio.run(host.prepare(progress()))\\n    assert not host.requests\\n\", \"path\": \"tests/agents/coding/test_inventory.py\", \"snapshot\": \"0a5eebdafa24195be954efcdf3d1597ad2cc96964e25750e29d0334d9ea3923d\", \"version\": \"881f77a472904863746b1d27d937662a06fb5e4330a09c70fcf0651a03c44dac\", \"span\": [1, 6754], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "QjHmJ84AMs4F8PWpihZZ6hVM6HUb8YZl",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "list_repository",
+        "description": "List authorized snapshot resources, sizes and read/edit permissions. Metadata only, not acquired source.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "search_source",
+        "description": "Search existing file/symbol/window retrieval by query. Returns ranked metadata, not source. Read selected ranges separately; full file lengths are supplied.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":256,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed focused acceptance. No command/scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": false
+}

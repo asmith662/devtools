@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-28T16:47:02.916848+00:00",
+  "task_digest": "e85de1a17fa58c0eab3e6dd1ce736028a9307ae47d86b229c40512031ed2eff2",
+  "checkout_owner": {
+    "schema": "backlog-checkout-owner-v1",
+    "generation": "05ad2a7fe12c6f39047e9d33ea35adaa6c0f1ef3f88f7cd2709028aead74e4a8",
+    "operation": "local-maintenance-case0003",
+    "pid": 4252,
+    "at": "2026-10-28T16:47:02.108971+00:00",
+    "root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+    "return_branch": "main",
+    "return_head": "721978cb9f88833a3dc3ecadc80e84aa2c6d4735",
+    "branch": "main",
+    "revision": "721978cb9f88833a3dc3ecadc80e84aa2c6d4735",
+    "object_format": "sha1",
+    "commit_allowed": false,
+    "untracked": {
+      "tests/agents/coding/test_inventory.py": "20bb56332402d6b124c089ab6d5437062e153349",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json": "a91468108a5c9ea9bcaf88876046cf885b73de51",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json": "8b08c96992c3fbd7c75b1a39bef3def0b8bf6d14",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json": "03a7414cd8f2b2545e5b14af544be5223120cc62",
+      "experiments/local_coding_dogfood/case_0003/composition.py": "16a025606f2a6b2dbb6ad15602ad17aec09ff6ca",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json": "5b125a29ac9b7a94418985ef683bb060f0ae51a6",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json": "05011ee8cc328b498e120ae208a7e6b4acb5a4ac",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json": "28eb7c617bbc624348bdaae641347203fc345324",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json": "1adbf9114dc821343c0f13f571ea97bd17fcd0c0",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json": "4a993b0bd8f31173b5918806d761c4b6c7237dfd",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json": "e73281d2ebad694434ca90518a6dc1e207ce3b66",
+      "experiments/local_coding_dogfood/case_0003/host.py": "3bab338fe7cb0f2321329bcf1e35c941dbcf2867",
+      "experiments/local_coding_dogfood/case_0003/support.py": "d53ad9fe8499ca7f2945cb425c027619ac7aa2be",
+      "experiments/local_coding_dogfood/case_0003/oracle.py": "27bdf43770b1410f8f2c5eda14db9518e62fbf04",
+      "experiments/local_coding_dogfood/case_0003/objective.md": "2926e9a67b411e5eb20580285ecec92076b411b6",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json": "f55f087e9d1f43ef8433f1157e4f368624892993",
+      "experiments/local_coding_dogfood/case_0003/freeze.json": "5a56475e560cdfdf7e9c2808b486ab3d5dbfc0de",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json": "87213902cb04e1667b94d6f7fceb243abd367463",
+      "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json": "ec59a6a5a4bf989b0e99618e6ade87f84bd360b2",
+      "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json": "6d23bceaf5aaeec0dfd80ecce88403a230149ef5"
+    },
+    "files": [
+      {
+        "path": "src/devtools/agents/coding/__init__.py",
+        "expected": [
+          "4b8cfd8bc9e792c107dcbc9d86801ecb20d2b270"
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/custody.py",
+        "expected": [
+          "7341276f5237f83e5d090c1abcd9a7e63b2adcc6"
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/edits.py",
+        "expected": [
+          "e05dfc75b51fd850209bc80987fb8472743672c1"
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/models.py",
+        "expected": [
+          "d4ea5e5b5c6bf5ed65360a87e91059e7dd293303"
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/process.py",
+        "expected": [
+          "ff3a421f1a1c720a03846d15462fac1d5ae851c1"
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/repository.py",
+        "expected": [
+          "16b0576968c25a1b5544956c9cb78c2574538733"
+        ]
+      }
+    ],
+    "activated": true
+  }
+}
