@@ -6333,6 +6333,338 @@
       "report": "docs/development/framework-source-checks.md",
       "receipt": "docs/research/code-audit/framework-source-checks-20261027.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "reference": "integration:bounded-coding-agent:22c44a88:20261027",
+      "production": "22c44a88fa20da8d580b1470441030c80835b7d0",
+      "accepted_main": "a23c081cefb7524471a26a8f539356fa2545a38e",
+      "pr": 52,
+      "changed_versions": [
+        {
+          "path": "apps/qwen/README.md",
+          "baseline_blob": "1f8af6de095e679ee9d3ea2e1c0751ecce648ef4",
+          "current_blob": "927b685f2ce26147f2e4ef63e229c283c16718fa",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/coding_loop.py",
+          "baseline_blob": "9cea09c8d40c2c1171893d478ae50d928c72e68c",
+          "current_blob": "3a6b184aafdda73c2d81e412ff6f6d623adf3c63",
+          "review_depth": "TARGETED_EDIT_CUSTODY_TERMINAL_OR_TOOL_ACCOUNTING_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "functions": [
+            "_validation_feedback",
+            "acquire_context",
+            "validate_workspace",
+            "preflight_coding_task",
+            "_authenticate_inputs",
+            "_prepare_workspace",
+            "_turns",
+            "run_coding_task",
+            "expect_source",
+            "restore_source"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/development_task.py",
+          "baseline_blob": "dad7a510062ad1cd49c5ced63fc5e44538635897",
+          "current_blob": "f7596007b1742b60837bfd9ffcc25567a50724b5",
+          "review_depth": "TARGETED_EDIT_CUSTODY_TERMINAL_OR_TOOL_ACCOUNTING_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "functions": [
+            "_context",
+            "_upfront_context",
+            "_structured_edit_definition",
+            "_structured_edit_patch",
+            "_source_patch",
+            "_structured_edit_patch_from_calls",
+            "freeze_upfront_context_task",
+            "run_upfront_context_task",
+            "freeze_structured_edit_task",
+            "run_structured_edit_task",
+            "freeze_markdown_task",
+            "apply_markdown_patch",
+            "apply_source_patches",
+            "_validate_patch_envelope",
+            "_store_patch",
+            "run_markdown_task",
+            "__init__",
+            "descriptor",
+            "materialize"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/loop.py",
+          "baseline_blob": "9b3f95c06d53044e28756fb8b265fa9a98b2262c",
+          "current_blob": "2d9b6e3d201ae61941a5a47feba5f5d8e2bd1e47",
+          "review_depth": "FULL_CHANGED_PHASED_COMPATIBILITY_ADAPTER_AND_SHARED_PROCESS_ENTRY_NO_NEW_DOMAIN_AUDIT_CREDIT",
+          "functions": [
+            "run_turns",
+            "__init__",
+            "prepare",
+            "receive",
+            "classify",
+            "acquire",
+            "propose",
+            "apply",
+            "check",
+            "feedback",
+            "finish"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "apps/qwen/turns/tools.py",
+          "baseline_blob": "abeef8fb51d2aab24bdac6b6976e0f2c3e7d6cb4",
+          "current_blob": "3d7e9f4cf7b087100e5c1eb46928bc0cf61702d9",
+          "review_depth": "TARGETED_EDIT_CUSTODY_TERMINAL_OR_TOOL_ACCOUNTING_DELTA_NO_FULL_SUBSYSTEM_CREDIT",
+          "functions": [
+            "dispatch_context_calls"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/development/bounded-coding-agent.md",
+          "baseline_blob": null,
+          "current_blob": "5bf8fca994b9648e20fbfb6d768746b680836b4c",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "4b8cfd8bc9e792c107dcbc9d86801ecb20d2b270",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/custody.py",
+          "baseline_blob": null,
+          "current_blob": "7341276f5237f83e5d090c1abcd9a7e63b2adcc6",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [
+            "__init__",
+            "_identity",
+            "expect",
+            "capture",
+            "restore_known"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/docs/overview.md",
+          "baseline_blob": null,
+          "current_blob": "c55454b4d405102c75b50af8bf4e678994622c81",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/edits.py",
+          "baseline_blob": null,
+          "current_blob": "e05dfc75b51fd850209bc80987fb8472743672c1",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [
+            "replace_exact_text",
+            "__init__"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/models.py",
+          "baseline_blob": null,
+          "current_blob": "d4ea5e5b5c6bf5ed65360a87e91059e7dd293303",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [
+            "__post_init__",
+            "claim_action",
+            "accepted"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/process.py",
+          "baseline_blob": null,
+          "current_blob": "ff3a421f1a1c720a03846d15462fac1d5ae851c1",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [
+            "run_coding_agent",
+            "prepare",
+            "receive",
+            "classify",
+            "acquire",
+            "propose",
+            "apply",
+            "check",
+            "feedback",
+            "finish"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "baseline_blob": null,
+          "current_blob": "16b0576968c25a1b5544956c9cb78c2574538733",
+          "review_depth": "FULL_NEW_CODING_IMPLEMENTATION_AND_BRANCHES_SELF_REVIEW_WITH_INDEPENDENT_CONSUMER_TESTS",
+          "functions": [
+            "write_source_changes",
+            "_arguments",
+            "__post_init__",
+            "__post_init__",
+            "materialize",
+            "__init__",
+            "validate",
+            "execute",
+            "pairs",
+            "__init__",
+            "_index",
+            "prepare",
+            "receive",
+            "classify",
+            "_read",
+            "_feedback",
+            "acquire",
+            "propose",
+            "apply",
+            "check",
+            "feedback",
+            "finish",
+            "admit",
+            "selected"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/docs/model_tools.md",
+          "baseline_blob": "345eddd954fe78cae33a1ee839e1fc7caeb60dc1",
+          "current_blob": "7f8dc3b15a53681353d313bda850c6d4d5fd5ffc",
+          "review_depth": "CURRENT_DOCUMENTATION_DELTA",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "6709e0615c30626ff824331c97ca0c7ecc858a94",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/fixtures.py",
+          "baseline_blob": null,
+          "current_blob": "440cc5c15841781ccc9e3f9fcd833e3a4b7dcda8",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "scenario",
+            "__init__",
+            "send",
+            "authorize",
+            "apply",
+            "archive",
+            "restore",
+            "readiness",
+            "report",
+            "terminal",
+            "interrupted_check"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/independent_host.py",
+          "baseline_blob": null,
+          "current_blob": "c66df24b1be587ba8a875a5cf0297fe6c4ec321e",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "guard_files",
+            "main",
+            "find_spec"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/test_custody.py",
+          "baseline_blob": null,
+          "current_blob": "e491a21a02e05533bd302ee6842a44fcaaae4a85",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "test_invalid_budget_refused_before_invocation",
+            "test_action_limit_charged_before_effect_and_not_refunded",
+            "test_empty_or_unbounded_custody_refused",
+            "test_absent_slot_and_unknown_capture_refusal",
+            "test_failed_host_restoration_is_not_success",
+            "test_canonical_custody_change_refused",
+            "test_exact_edit_refusals_do_not_modify_source",
+            "test_exact_crlf_and_explicit_deletion"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/test_guarded.py",
+          "baseline_blob": null,
+          "current_blob": "74a8ade730d6435f215a98400e66077159d0b054",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "test_guarded_independent_coding_application"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/test_independent.py",
+          "baseline_blob": null,
+          "current_blob": "1d5c927daa011424f6c0acde2a1c2aa325d31505",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "test_complete_framework_coding_workflow"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "baseline_blob": null,
+          "current_blob": "284982cf6572d9659e99697984860fcf462f8ab4",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "host_at",
+            "call",
+            "test_nonpositive_edit_policy_refused",
+            "test_invalid_objective_refused_before_model",
+            "test_foreign_corpus_refused",
+            "test_request_and_native_admission",
+            "test_entire_edit_batch_admitted_before_any_effect",
+            "test_composition_detects_corruption_before_effect",
+            "admit",
+            "apply",
+            "restore",
+            "__init__",
+            "send",
+            "boundary",
+            "execute"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/apps/qwen/test_coding_agent.py",
+          "baseline_blob": null,
+          "current_blob": "85b0ced5c61c75ee77eb1348abcefe8a4f262505",
+          "review_depth": "FULL_NEW_CHARACTERIZATION_REGRESSION_OR_INDEPENDENT_HOST_BODY",
+          "functions": [
+            "test_real_qwen_modes_use_framework_process_and_known_custody",
+            "test_framework_boundary_failure_cannot_fall_back_to_app_loop",
+            "shared",
+            "custody",
+            "failed"
+          ],
+          "original_frozen_review_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/bounded-coding-agent-delivery.md",
+      "receipt": "docs/research/code-audit/bounded-coding-agent-20261027.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }
