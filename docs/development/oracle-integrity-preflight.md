@@ -68,3 +68,19 @@ change Case 0003 or Reliability-0001. Source, proposal and Context limits remain
 unchanged. In particular, the existing 32,648-byte repository owner has only
 120 bytes of margin under the 32,768-byte resulting-source ceiling; this is a
 recorded feasibility constraint, not authorization to raise the limit.
+
+## Observed maintenance result
+
+The [frozen follow-up](../../experiments/local_maintenance_feedback/REPORT.md)
+passed its independent oracle preflight, then made eight real local-model
+requests and two proposals. Both were refused for resulting-source size;
+no application or worker validation occurred. Independent grading of the exact
+unchanged archive retained the original inventory failures. No model-authored
+production repair was integrated and no supervisor patch replaced it.
+
+This delivers a reusable finite preflight comparison plus an actual supervised
+consumer; it does not demonstrate successful local maintenance or effective
+validation-feedback repair. Source-owner self-editability is the next measured
+constraint. Original cases, limits, adaptive policy, effect authority and
+historical outcomes remain unchanged. The complete protected validation receipt
+will identify the committed implementation and physical inputs separately.

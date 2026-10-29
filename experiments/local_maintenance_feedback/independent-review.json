@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-29T14:25:10.007310+00:00",
+  "verdict": "Rejected: no admitted implementation; archived bytes equal baseline and still fail B-0035.",
+  "focused": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "experiments/local_maintenance_feedback/focused.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervisor-feedback\\final-focused.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 1,
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_charged_to_prompt_budget",
+      "test_inventory_not_duplicated_on_prepare"
+    ],
+    "errors": 0,
+    "xml_sha256": "4419a9e3b95199692f84588cf5790e123fb9a4e8484bf8414eec6b8c4b32b357",
+    "stdout": "FFF.                                                                     [100%]\r\n================================== FAILURES ===================================\r\n_____________________ test_first_request_scoped_inventory _____________________\r\nexperiments\\local_maintenance_feedback\\focused.py:124: in test_first_request_scoped_inventory\r\n    data = inventory(request)\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n__________________ test_inventory_not_duplicated_on_prepare ___________________\r\nexperiments\\local_maintenance_feedback\\focused.py:151: in test_inventory_not_duplicated_on_prepare\r\n    assert inventory(first) == inventory(second)\r\n           ^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n___________________ test_inventory_charged_to_prompt_budget ___________________\r\nexperiments\\local_maintenance_feedback\\focused.py:172: in test_inventory_charged_to_prompt_budget\r\n    with pytest.raises(ValueError, match=\"budget\"):\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE   Failed: DID NOT RAISE ValueError\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_feedback/focused.py::test_first_request_scoped_inventory\r\nFAILED experiments/local_maintenance_feedback/focused.py::test_inventory_not_duplicated_on_prepare\r\nFAILED experiments/local_maintenance_feedback/focused.py::test_inventory_charged_to_prompt_budget\r\n3 failed, 1 passed in 0.40s\r\n",
+    "stderr": ""
+  },
+  "heldout": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "experiments/local_maintenance_feedback/heldout.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervisor-feedback\\final-heldout.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 1,
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_empty_resource_unicode_and_readonly",
+      "test_native_correlation_and_metadata_coexist",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": 0,
+    "xml_sha256": "ee28aa6e0d4dbbf9d313c54d19be9d71e67015db942900bc5ae7d26f7f5e3b90",
+    "stdout": "F.FFFF                                                                   [100%]\r\n================================== FAILURES ===================================\r\n______________________ test_current_snapshot_not_cached _______________________\r\nexperiments\\local_maintenance_feedback\\heldout.py:20: in test_current_snapshot_not_cached\r\n    first=inventory(asyncio.run(host.prepare(progress())))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_native_correlation_and_metadata_coexist _________________\r\nexperiments\\local_maintenance_feedback\\heldout.py:45: in test_native_correlation_and_metadata_coexist\r\n    assert inventory(request)['source_acquired'] is False\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n__________________ test_empty_resource_unicode_and_readonly ___________________\r\nexperiments\\local_maintenance_feedback\\heldout.py:57: in test_empty_resource_unicode_and_readonly\r\n    data=inventory(asyncio.run(host.prepare(progress())))\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n______________ test_projection_preserves_metadata_and_objective _______________\r\nexperiments\\local_maintenance_feedback\\heldout.py:66: in test_projection_preserves_metadata_and_objective\r\n    assert len(inventory(request)['resources'])==2\r\n               ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n_________________ test_utf8_size_differs_from_character_count _________________\r\nexperiments\\local_maintenance_feedback\\heldout.py:72: in test_utf8_size_differs_from_character_count\r\n    row=next(r for r in inventory(asyncio.run(host.prepare(progress())))['resources'] if r['address']=='package/source.py')\r\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_feedback\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_feedback/heldout.py::test_current_snapshot_not_cached\r\nFAILED experiments/local_maintenance_feedback/heldout.py::test_native_correlation_and_metadata_coexist\r\nFAILED experiments/local_maintenance_feedback/heldout.py::test_empty_resource_unicode_and_readonly\r\nFAILED experiments/local_maintenance_feedback/heldout.py::test_projection_preserves_metadata_and_objective\r\nFAILED experiments/local_maintenance_feedback/heldout.py::test_utf8_size_differs_from_character_count\r\n5 failed, 1 passed in 0.39s\r\n",
+    "stderr": ""
+  },
+  "candidate_hashes": {
+    "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+    "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+    "src/devtools/agents/coding/edits.py": "fbcccfd7f769f190e8cfc8f411ad3c58fd779e5d46080f7f6116717c69273307",
+    "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+    "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+    "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+    "src/devtools/agents/coding/repository.py": "9b195f5ee7fee3c91166ca3e13c83a3130e0bff224c65b8ed1f6a9bbdecb3ea3"
+  },
+  "all_archived_bytes_equal_baseline": true,
+  "application_count": 0,
+  "worker_checks": 0,
+  "supervisory_grade_distinct": true,
+  "proposal_sizes": [
+    {
+      "id": "27kMXYOPh5BYXGhWhBtFlAk0E1iKbgiF",
+      "before_bytes": 32648,
+      "proposed_bytes": 32990,
+      "ceiling": 32768,
+      "anchor_span": [
+        10841,
+        10970
+      ]
+    },
+    {
+      "id": "QUiJZTF5zFSEUWbnrOClxBogCZRktZOp",
+      "before_bytes": 32648,
+      "proposed_bytes": 33568,
+      "ceiling": 32768,
+      "anchor_span": [
+        11896,
+        11977
+      ]
+    }
+  ],
+  "supervisor_repair": false,
+  "remaining": "First-request inventory remains open. Cohesive module extraction/self-editability is a demonstrated prerequisite for ordinary additive repair of this owner; do not raise limits or retrofit this frozen trial."
+}

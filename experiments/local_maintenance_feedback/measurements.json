@@ -1,0 +1,911 @@
+{
+  "model_calls": 8,
+  "auxiliary_calls": 0,
+  "proposals": 2,
+  "admitted_proposals": 0,
+  "actions": 8,
+  "model_seconds": 114.149613,
+  "coding_seconds": 115.151166,
+  "input_tokens": 46979,
+  "output_tokens": 1326,
+  "source_reads": [
+    {
+      "kind": "source",
+      "call_id": "cXktkczkMkvv0eQYUlzWI4aYhFJ3YqAd",
+      "name": "read_source",
+      "arguments": "{\"path\":\"src/devtools/agents/coding/projection.py\",\"start\":0,\"end\":7500}",
+      "result": {
+        "source_length": 14095,
+        "valid_range": [
+          0,
+          14095
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 7500,
+        "remaining_range": [
+          7500,
+          14095
+        ],
+        "text": "# Copyright (c) 2026\n\"\"\"Deterministic coding-input selection over retained native facts and Context.\"\"\"\n\nfrom __future__ import annotations\n\nimport hashlib\nimport json\nfrom dataclasses import asdict, dataclass, replace\nfrom typing import TYPE_CHECKING, Literal\n\nfrom devtools.context.planning.source import (\n    SourceRangeDisclosureOption,\n    materialize_source_range,\n)\nfrom devtools.models.interaction import ModelRequest, Prompt, PromptMessage\nfrom devtools.tools.source import source_read_bounds\n\nif TYPE_CHECKING:\n    from collections.abc import Mapping\n\n    from devtools.context.repository.snapshot import RepositorySnapshot\n\n\ndef request_bytes(request: ModelRequest) -> int:\n    \"\"\"Count complete host serialization, not provider tokens or HTTP bytes.\"\"\"\n    return len(json.dumps(asdict(request), ensure_ascii=False).encode())\n\n\ndef native_exchange_ranges(\n    messages: tuple[PromptMessage, ...],\n) -> tuple[tuple[int, int], ...]:\n    \"\"\"Validate Prompt and locate indivisible assistant/result blocks.\n\n    User/system instructions are never included in an evictable range. This\n    operation neither selects content nor invokes an operation from history.\n    \"\"\"\n    Prompt(\"\", \"messages\", messages)\n    ranges = []\n    for index, message in enumerate(messages):\n        if message.role == \"assistant\":\n            end = index + 1\n            while end < len(messages) and messages[end].role == \"tool\":\n                end += 1\n            ranges.append((index, end))\n    return tuple(ranges)\n\n\n@dataclass(frozen=True, slots=True)\nclass ProjectionPolicy:\n    \"\"\"Host-selected byte watermarks and known metadata-only operation names.\n\n    Operation names permit presentation omission, never execution. Unknown\n    operations and non-Tool assistant text remain protected.\n    \"\"\"\n\n    trigger_bytes: int\n    target_bytes: int\n    metadata_operations: frozenset[str] = frozenset()\n\n    def __post_init__(self) -> None:\n        \"\"\"Require explicit bounded watermarks and immutable host classification.\"\"\"\n        if (\n            type(self.trigger_bytes) is not int\n            or type(self.target_bytes) is not int\n            or not 0 < self.target_bytes <= self.trigger_bytes\n            or not isinstance(self.metadata_operations, frozenset)\n            or any(\n                not isinstance(n, str) or not n.strip()\n                for n in self.metadata_operations\n            )\n        ):\n            msg = \"Invalid active Context projection policy.\"\n            raise ValueError(msg)\n\n\n@dataclass(frozen=True, slots=True)\nclass ProjectionOutcome:\n    \"\"\"Transient projection facts; not a task result or durable execution receipt.\"\"\"\n\n    request: ModelRequest\n    status: Literal[\"unchanged\", \"reduced\", \"insufficient\"]\n    triggered: bool\n    original_bytes: int\n    resulting_bytes: int\n    target_bytes: int\n    hard_bytes: int\n    selected_indices: tuple[int, ...]\n    omitted_exchanges: tuple[tuple[int, int, str], ...]\n    shortened_indices: tuple[int, ...]\n    active_sources: tuple[SourceRangeDisclosureOption, ...]\n    invalidated_source_identities: tuple[str, ...]\n\n    @property\n    def target_reached(self) -> bool:\n        \"\"\"Distinguish usable headroom from merely fitting the hard ceiling.\"\"\"\n        return self.resulting_bytes <= self.target_bytes\n\n\nclass ProjectionCapacityError(ValueError):\n    \"\"\"No permitted active representation fits; original facts remain retained.\"\"\"\n\n    def __init__(self, outcome: ProjectionOutcome) -> None:\n        \"\"\"Retain the qualified decision without exposing private Tool payloads.\"\"\"\n        self.outcome = outcome\n        super().__init__(\n            f\"Active Context cannot fit protected input: \"\n            f\"{outcome.resulting_bytes} bytes > {outcome.hard_bytes}.\",\n        )\n\n\ndef source_feedback(\n    option: SourceRangeDisclosureOption,\n    text: str,\n) -> dict[str, object]:\n    \"\"\"Project one already materialized exact range into the neutral native format.\"\"\"\n    bounds = source_read_bounds(option)\n    # The native descriptor defines coordinates; do not repeat that prose in\n    # every disclosure, especially a capacity-limited partial projection.\n    del bounds[\"coordinate_convention\"]\n    return {\n        **bounds,\n        \"continuation_start\": option.start + len(text),\n        \"remaining_range\": [option.start + len(text), option.unit.end],\n        \"text\": text,\n        \"path\": str(option.unit.resource.address),\n        \"snapshot\": str(option.snapshot_id),\n        \"version\": str(option.unit.resource.content_identity),\n        \"span\": option.span,\n        \"partial\": option.truncated,\n    }\n\n\ndef _current_sources(\n    messages: tuple[PromptMessage, ...],\n    sources: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],\n    snapshot: RepositorySnapshot,\n) -> dict[int, tuple[SourceRangeDisclosureOption, ...]]:\n    \"\"\"Authenticate host bindings against actually presented text and Context.\"\"\"\n    current = {}\n    for index, options in sources.items():\n        value = json.loads(messages[index].content)\n        presented = value.get(\"sources\", [value])\n        selected = []\n        for option in options:\n            if (\n                option.snapshot_id != snapshot.id\n                or option.repository_id != snapshot.repository_id\n            ):\n                continue\n            materialized = materialize_source_range(snapshot, option).items[0]\n            expected = {\n                \"text\": materialized.text,\n                \"path\": str(option.unit.resource.address),\n                \"version\": str(option.unit.resource.content_identity),\n                \"span\": list(option.span),\n            }\n            if not any(\n                all(v.get(k) == item for k, item in expected.items())\n                and v.get(\"snapshot\", str(snapshot.id)) == str(snapshot.id)\n                for v in presented\n            ):\n                msg = \"Source binding does not match presented Context.\"\n                raise ValueError(msg)\n            selected.append(option)\n        current[index] = tuple(selected)\n    return current\n\n\ndef project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered selection, no effect execution\n    request: ModelRequest,\n    *,\n    policy: ProjectionPolicy,\n    hard_bytes: int,\n    snapshot: RepositorySnapshot,\n    sources: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],\n    protected_indices: frozenset[int] = frozenset(),\n    summarized_indices: frozenset[int] = frozenset(),\n    summary: PromptMessage | None = None,\n) -> ProjectionOutcome:\n    \"\"\"Select complete exchanges and affordable exact source without editing history.\n\n    Cheap reductions target the lower watermark. Distinct current source is\n    sacrificed only under hard pressure. Newest feedback cannot be dropped;\n    a plain source result may instead be explicitly presented as a partial range.\n    Protected source/check messages cannot be shortened. Unclassified exchanges\n    are retained, including all effectful operations and unknown outcomes.\n    \"\"\"\n    if not 0 < policy.target_bytes <= policy.trigger_bytes <= hard_bytes:\n        msg = \"Projection watermarks exceed the host byte ceiling.\"\n        raise ValueError(msg)\n    messages = request.prompt.messages\n    ranges = native_exchange_ranges(messages)\n    ids = [c.provider_call_id for m in messages for c in m.tool_calls]\n    if len(ids) != len(set(ids)):\n        msg = \"Active native history repeats a Tool call ID.\"\n        raise ValueError(msg)\n    current = _current_sources(messages, sour",
+        "path": "src/devtools/agents/coding/projection.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+        "span": [
+          0,
+          7500
+        ],
+        "partial": false
+      }
+    },
+    {
+      "kind": "source",
+      "call_id": "nsHxj8zylvET8awcBZvOkyYFuoX2dH5J",
+      "name": "read_source",
+      "arguments": "{\"path\":\"experiments/local_maintenance_feedback/focused.py\",\"start\":4459,\"end\":5140}",
+      "result": {
+        "source_length": 6728,
+        "valid_range": [
+          0,
+          6728
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 5140,
+        "remaining_range": [
+          5140,
+          6728
+        ],
+        "text": "def assert_metadata(data, host):\n    assert data[\"repository_id\"] == str(host.scope.snapshot.repository_id)\n    assert data[\"snapshot_id\"] == str(host.scope.snapshot.id)\n    assert data[\"source_acquired\"] is False\n    rows = {row[\"address\"]: row for row in data[\"resources\"]}\n    assert set(rows) == {\"package/source.py\", \"README.md\"}\n    assert rows[\"package/source.py\"][\"editable\"] is True\n    assert rows[\"README.md\"][\"editable\"] is False\n    for resource in host.scope.snapshot.resources:\n        row = rows[resource.address.value]\n        assert row[\"content_identity\"] == str(resource.content_identity)\n        assert row[\"byte_size\"] == len(resource.content.encode(\"utf-8\"))",
+        "path": "experiments/local_maintenance_feedback/focused.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "beaf5fa6c59e21c79769ccbd4947c4f416225c394f9c07de3c30c28e0574c65a",
+        "span": [
+          4459,
+          5140
+        ],
+        "partial": false
+      }
+    },
+    {
+      "kind": "source",
+      "call_id": "7PzgY8LbEGkIGTvB7qhBMd1RHYmHQSPP",
+      "name": "read_source",
+      "arguments": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":0,\"end\":8192}",
+      "result": {
+        "source_length": 32648,
+        "valid_range": [
+          0,
+          32648
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 8192,
+        "remaining_range": [
+          8192,
+          32648
+        ],
+        "text": "# Copyright (c) 2026\r\n\"\"\"A neutral repository coding host, not an application-specific task schema.\"\"\"\r\n\r\nfrom __future__ import annotations\r\n\r\nimport asyncio\r\nimport json\r\nfrom dataclasses import dataclass, replace\r\nfrom typing import TYPE_CHECKING, Literal, cast\r\n\r\nfrom devtools.agents.coding.compaction.operation import SemanticCompactor\r\nfrom devtools.agents.coding.custody import SourceCustody\r\nfrom devtools.agents.coding.edits import CodingEditError, replace_exact_text\r\nfrom devtools.agents.coding.models import (\r\n    CodingCompletion,\r\n    CodingEffect,\r\n    CodingProgress,\r\n    CodingResult,\r\n)\r\nfrom devtools.agents.coding.projection import (\r\n    ProjectionCapacityError,\r\n    ProjectionOutcome,\r\n    ProjectionPolicy,\r\n    project_request,\r\n    request_bytes,\r\n    source_feedback,\r\n)\r\nfrom devtools.agents.model_tools import (\r\n    execute_model_tool_call,\r\n    normalize_tool_descriptor,\r\n)\r\nfrom devtools.context import Repository, RepositoryResourceAddress\r\nfrom devtools.context.planning.source import SourceRangeDisclosureOption\r\nfrom devtools.context.repository.corpus import realize_repository_text_corpus\r\nfrom devtools.context.repository.resource import ContentIdentity\r\nfrom devtools.context.retrieval import build_source_search_index\r\nfrom devtools.core.paths import resolve_path\r\nfrom devtools.models.interaction import (\r\n    ModelRequest,\r\n    ModelResponse,\r\n    ModelSettings,\r\n    ModelToolCall,\r\n    Prompt,\r\n    PromptMessage,\r\n)\r\nfrom devtools.resources.filesystem import TextFile, write\r\nfrom devtools.tools import ToolDescriptor, ToolRunner\r\nfrom devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool\r\nfrom devtools.tools.source import (\r\n    ScopedSourceTool,\r\n    SourceReadRefusal,\r\n    SourceReadRequest,\r\n    SourceScope,\r\n    source_read_bounds,\r\n)\r\n\r\nif TYPE_CHECKING:\r\n    from collections.abc import Awaitable, Callable, Mapping\r\n\r\n    from devtools.agents.coding.compaction import SummaryCompaction\r\n    from devtools.context.planning.materialization import ContextDisclosure\r\n    from devtools.context.repository.corpus import RepositoryTextCorpusDefinition\r\n    from devtools.context.repository.snapshot import RepositorySnapshot\r\n    from devtools.core.paths import ResolvedPath\r\n    from devtools.tools import Tool\r\n\r\n_SETTINGS = ModelSettings()\r\n_READ = ToolDescriptor(\r\n    \"read_source\",\r\n    \"Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.\",\r\n    (\r\n        '{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"},'\r\n        '\"start\":{\"type\":\"integer\"},\"end\":{\"type\":\"integer\"}},'\r\n        '\"required\":[\"path\",\"start\"],\"additionalProperties\":'\r\n        \"false}\"\r\n    ),\r\n)\r\n_EDIT = ToolDescriptor(\r\n    \"replace_source\",\r\n    (\"Propose an exact unique observed replacement; host admission is required.\"),\r\n    (\r\n        '{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"},'\r\n        '\"old_text\":{\"type\":\"string\"},\"new_text\":{\"type\":\"string\"}},'\r\n        '\"required\":[\"path\",\"old_text\",\"new_text\"],'\r\n        '\"additionalProperties\":false}'\r\n    ),\r\n)\r\n_CHECK = ToolDescriptor(\r\n    \"validate_candidate\",\r\n    \"Request the host-fixed candidate checks.\",\r\n    '{\"type\":\"object\",\"maxProperties\":0}',\r\n)\r\n\r\n\r\n@dataclass(frozen=True, slots=True)\r\nclass EditLimits:\r\n    \"\"\"Host-selected region/source/transaction ceilings, without Qwen defaults.\"\"\"\r\n\r\n    region_bytes: int\r\n    source_bytes: int\r\n    aggregate_bytes: int\r\n    operations: int\r\n\r\n    def __post_init__(self) -> None:\r\n        \"\"\"Refuse unbounded admission before effects.\"\"\"\r\n        if (\r\n            min(\r\n                self.region_bytes,\r\n                self.source_bytes,\r\n                self.aggregate_bytes,\r\n                self.operations,\r\n            )\r\n            <= 0\r\n        ):\r\n            msg = \"Edit limits must be positive.\"\r\n            raise ValueError(msg)\r\n\r\n\r\n@dataclass(frozen=True, slots=True)\r\nclass CodingObjective:\r\n    \"\"\"One bounded existing-text repair, with explicit host scope and checks.\r\n\r\n    This concrete profile does not mandate Python, repository layout, provider,\r\n    task JSON, public API oracle language, evidence storage or publication.\r\n    \"\"\"\r\n\r\n    text: str\r\n    scope: SourceScope\r\n    editable: tuple[RepositoryResourceAddress, ...]\r\n    checks: FixedCheckPlan\r\n    edits: EditLimits\r\n    disclosure_bytes: int\r\n    prompt_bytes: int\r\n\r\n    def __post_init__(self) -> None:\r\n        \"\"\"Require a finite editable subset of the authenticated host frame.\"\"\"\r\n        addresses = {r.address for r in self.scope.snapshot.resources}\r\n        if (\r\n            not self.text.strip()\r\n            or not isinstance(self.editable, tuple)\r\n            or not self.editable\r\n            or len(set(self.editable)) != len(self.editable)\r\n            or not set(self.editable) <= addresses\r\n            or min(self.disclosure_bytes, self.prompt_bytes) <= 0\r\n            or self.checks.root != self.scope.root\r\n            or (\r\n                self.checks.source_scope is not None\r\n                and self.checks.source_scope != self.scope\r\n            )\r\n        ):\r\n            msg = \"Coding objective has an invalid or foreign source/check scope.\"\r\n            raise ValueError(msg)\r\n\r\n\r\n@dataclass(frozen=True, slots=True)\r\nclass SourceChange:\r\n    \"\"\"Admitted whole after-image with its original addressed source and span.\"\"\"\r\n\r\n    address: RepositoryResourceAddress\r\n    before: str\r\n    after: str\r\n    start: int\r\n    end: int\r\n\r\n\r\ndef write_source_changes(root: ResolvedPath, changes: tuple[SourceChange, ...]) -> None:\r\n    \"\"\"Host-selectable effect using existing atomic Resource writes, not a transaction.\r\n\r\n    Call only with an admitted batch. Earlier per-file effects may survive a\r\n    later failure. Checkout serialization and permission belong to the host.\r\n    \"\"\"\r\n    for change in changes:\r\n        write(\r\n            TextFile(\r\n                resolve_path(change.address.value, base_directory=root.value),\r\n                change.after,\r\n            ),\r\n        )\r\n\r\n\r\n@dataclass(frozen=True, slots=True)\r\nclass _Invocation[Input]:\r\n    \"\"\"One explicitly selected native operation, not a Tool registry.\"\"\"\r\n\r\n    descriptor: ToolDescriptor\r\n    decode: Callable[[str], Input]\r\n\r\n    def materialize(self, serialized_arguments: str) -> Input:\r\n        \"\"\"Delegate effect-free materialization to the selected host operation.\"\"\"\r\n        return self.decode(serialized_arguments)\r\n\r\n\r\nclass _ChangeTool:\r\n    \"\"\"Execute an already admitted source batch once through a host effect owner.\"\"\"\r\n\r\n    name = \"apply_admitted_source\"\r\n    description = \"Apply one host-admitted exact source batch.\"\r\n\r\n    def __init__(\r\n        self,\r\n        scope: SourceScope,\r\n        changes: tuple[SourceChange, ...],\r\n        effect: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\r\n    ) -> None:\r\n        self.scope, self.changes, self.effect = scope, changes, effect\r\n\r\n    def validate(self, arguments: tuple[SourceChange, ...]) -> None:\r\n        \"\"\"Recheck admitted identities before invoking the host, never grant scope.\"\"\"\r\n        if arguments is not self.changes:\r\n            msg = \"Source batch is not the admitted proposal.\"\r\n            raise ValueError(msg)\r\n        self.scope.check_current()\r\n\r\n    async def execute(self, arguments: tuple[SourceChange, ...]) -> None:\r\n        \"\"\"Invoke once; any exception can follow a completed external effect.\"\"\"\r\n        await self.effect(arguments)\r\n\r\n\r\ndef _arguments(\r\n    serialized: str,\r\n    fields: set[str],\r\n    *,\r\n    optional: frozenset[str] = frozenset(),\r\n) -> dict[str, object]:\r\n    \"\"\"Validate this host's small native argument object, not arbitrary JSON Schema.\"\"\"\r\n\r\n    def pairs(items: list[tuple[str, object]]) -> dict[str, object]:\r\n        value = dict(items)\r\n        if len(value) != len(items):\r\n            msg = \"Duplicate coding argument member.\"\r\n            raise ValueError(msg)\r\n        return value\r\n\r\n    value = json.loads(serialized, object_pairs_hook=pairs)\r\n    if not isinstance(value, dict) or not fields <= set(value) <= fields | optional:\r\n        msg = \"Coding arguments do not match the admitted operation.\"\r\n        raise ValueError(msg)\r\n    return",
+        "path": "src/devtools/agents/coding/repository.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966",
+        "span": [
+          0,
+          8192
+        ],
+        "partial": false
+      }
+    },
+    {
+      "kind": "source",
+      "call_id": "KVi78CeeUPLgHFmqlTsfJc0VbZaUdX9c",
+      "name": "read_source",
+      "arguments": "{\"path\":\"tests/agents/coding/test_repository.py\",\"start\":0,\"end\":8192}",
+      "result": {
+        "source_length": 11114,
+        "valid_range": [
+          0,
+          11114
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 8192,
+        "remaining_range": [
+          8192,
+          11114
+        ],
+        "text": "# Copyright (c) 2026\n# ruff: noqa: D103 -- explicit public admission and effect-boundary controls\n\"\"\"Literal scope, budget and typed execution faults on the real repository host.\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nimport json\nimport sys\nfrom dataclasses import replace\nfrom typing import TYPE_CHECKING, Any\n\nimport pytest\n\nfrom devtools.agents.coding import CodingLimits, run_coding_agent\nfrom devtools.agents.coding import repository as owner\nfrom devtools.agents.coding.repository import (\n    CodingObjective,\n    EditLimits,\n    RepositoryCodingHost,\n    write_source_changes,\n)\nfrom devtools.agents.model_tools import execute_model_tool_call\nfrom devtools.context import Repository, RepositoryResourceAddress\nfrom devtools.context.repository.corpus import define_repository_text_corpus\nfrom devtools.context.repository.discovery import discover_repository_resource_addresses\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nfrom devtools.models.interaction import InteractionSource, ModelResponse, ModelToolCall\nfrom devtools.resources.commands import Command\nfrom devtools.resources.filesystem import TextFile, write\nfrom devtools.tools import ToolRunner\nfrom devtools.tools.checks import FixedCheck, FixedCheckPlan\nfrom devtools.tools.source import SourceScope\nfrom tests.agents.coding.fixtures import GOOD, SOURCE\n\nif TYPE_CHECKING:\n    from pathlib import Path\n\n\ndef host_at(root: Path) -> RepositoryCodingHost:\n    address = RepositoryResourceAddress(\"module.py\")\n    write(TextFile(resolve_path(root / address.value), SOURCE))\n    repo = Repository.new()\n    scope = SourceScope.observe(\n        root=resolve_path(root),\n        repository=repo,\n        addresses=(address,),\n    )\n    corpus = define_repository_text_corpus(\n        discovery=discover_repository_resource_addresses(\n            repository=repo,\n            root=scope.root,\n            requested_addresses=(address,),\n            maximum_resource_count=4,\n            maximum_traversal_entry_count=128,\n        ),\n        selected_addresses=(address,),\n    )\n    plan = FixedCheckPlan(\n        scope.root,\n        (\n            FixedCheck(\n                \"fixed\",\n                Command(sys.executable)\n                .args(\"-I\", \"-c\", \"pass\")\n                .cwd(scope.root)\n                .with_timeout(Duration.seconds(5)),\n            ),\n        ),\n        scope,\n    )\n    objective = CodingObjective(\n        \"Return 7\",\n        scope,\n        (address,),\n        plan,\n        EditLimits(1024, 1024, 2048, 4),\n        1024,\n        32768,\n    )\n\n    async def admit(_call: object, _arguments: object) -> None:\n        return\n\n    async def apply(changes: Any) -> None:  # noqa: ANN401 -- explicit admitted Tool boundary\n        write_source_changes(scope.root, changes)\n\n    def restore(selected: RepositoryResourceAddress, text: str | None) -> None:\n        assert text is not None\n        write(TextFile(resolve_path(root / selected.value), text))\n\n    return RepositoryCodingHost(\n        objective,\n        corpus=corpus,\n        authorize=admit,\n        apply_changes=apply,\n        archive=lambda _: None,\n        restore=restore,\n    )\n\n\ndef call(name: str, values: object, identity: str) -> ModelToolCall:\n    return ModelToolCall(name, json.dumps(values), identity)\n\n\nREAD = call(\n    \"read_source\",\n    {\"path\": \"module.py\", \"start\": 0, \"end\": len(SOURCE)},\n    \"read\",\n)\nEDIT = call(\n    \"replace_source\",\n    {\"path\": \"module.py\", \"old_text\": \"return 6\", \"new_text\": \"return 7\"},\n    \"edit\",\n)\nLIMITS = CodingLimits(4, 1, 4, Duration.seconds(5), Duration.seconds(20))\n\n\nclass Script:\n    \"\"\"Fixed native responses, with actual provider entry counts.\"\"\"\n\n    source = InteractionSource(\"independent-admission-controls\")\n\n    def __init__(self, calls: list[tuple[ModelToolCall, ...]]) -> None:\n        \"\"\"Retain a finite independently authored schedule.\"\"\"\n        self.calls = calls\n        self.entries = 0\n\n    async def send(self, _request: object) -> ModelResponse:\n        \"\"\"Return one normalized response without executing any Tool or edit.\"\"\"\n        selected = self.calls[self.entries]\n        self.entries += 1\n        return ModelResponse(\"literal\", self.source, tool_calls=selected)\n\n\n@pytest.mark.parametrize(\n    \"field\",\n    [\"region_bytes\", \"source_bytes\", \"aggregate_bytes\", \"operations\"],\n)\ndef test_nonpositive_edit_policy_refused(field: str) -> None:\n    with pytest.raises(ValueError, match=\"positive\"):\n        replace(EditLimits(10, 100, 100, 2), **{field: 0})\n\n\n@pytest.mark.parametrize(\n    \"fault\",\n    [\"empty\", \"duplicate\", \"foreign\", \"budget\", \"check-scope\"],\n)\ndef test_invalid_objective_refused_before_model(tmp_path: Path, fault: str) -> None:\n    host = host_at(tmp_path)\n    value = host.objective\n    changed: dict[str, Any] = (\n        {\"text\": \" \"}\n        if fault == \"empty\"\n        else (\n            {\"editable\": value.editable * 2}\n            if fault == \"duplicate\"\n            else {\"editable\": (RepositoryResourceAddress(\"other.py\"),)}\n            if fault == \"foreign\"\n            else {\"prompt_bytes\": 0}\n            if fault == \"budget\"\n            else {\n                \"checks\": replace(\n                    value.checks,\n                    source_scope=replace(\n                        value.scope,\n                        snapshot=replace(\n                            value.scope.snapshot,\n                            id=type(value.scope.snapshot.id)(\"0\" * 64),\n                        ),\n                    ),\n                ),\n            }\n        )\n    )\n    with pytest.raises(ValueError, match=\"scope\"):\n        replace(value, **changed)\n\n\ndef test_foreign_corpus_refused(tmp_path: Path) -> None:\n    a, b = tmp_path / \"a\", tmp_path / \"b\"\n    a.mkdir()\n    b.mkdir()\n    first, second = host_at(a), host_at(b)\n    with pytest.raises(ValueError, match=\"foreign repository\"):\n        RepositoryCodingHost(\n            first.objective,\n            corpus=second.corpus,\n            authorize=first.authorize,\n            apply_changes=first.effect,\n            archive=first.archive,\n            restore=first.restore,\n        )\n\n\n@pytest.mark.parametrize(\n    \"fault\",\n    [\"prompt\", \"stop\", \"operation\", \"mixed\", \"members\", \"range\"],\n)\ndef test_request_and_native_admission(tmp_path: Path, fault: str) -> None:\n    host = host_at(tmp_path)\n    values = {\n        \"prompt\": (READ,),\n        \"stop\": (),\n        \"operation\": (call(\"arbitrary_shell\", {}, \"unadmitted\"),),\n        \"mixed\": (READ, EDIT),\n        \"members\": (call(\"read_source\", {\"path\": \"module.py\"}, \"members\"),),\n        \"range\": (\n            call(\n                \"read_source\",\n                {\"path\": \"module.py\", \"start\": -1, \"end\": 100},\n                \"range\",\n            ),\n        ),\n    }\n    if fault == \"prompt\":\n        host.objective = replace(host.objective, prompt_bytes=1)\n    model = Script([values[fault], ()] if fault == \"range\" else [values[fault]])\n    result = asyncio.run(run_coding_agent(model, limits=LIMITS, host=host))\n    assert not result.accepted\n    assert result.progress.proposals == 0\n    if fault == \"range\":\n        assert result.progress.effects[0].acknowledged\n        assert '\"SOURCE_RANGE_OUT_OF_BOUNDS\"' in host.messages[-2].content\n        assert not host.disclosures\n    else:\n        assert result.progress.effects == [] or all(\n            not e.acknowledged for e in result.progress.effects\n        )\n    assert result.disposition == (\"stopped\" if fault in {\"stop\", \"range\"} else \"failed\")\n    assert model.entries == (0 if fault == \"prompt\" else 2 if fault == \"range\" else 1)\n    assert (tmp_path / \"module.py\").read_text(encoding=\"utf-8\") == SOURCE\n\n\n@pytest.mark.parametrize(\"fault\", [\"operations\", \"aggregate\", \"combined\"])\ndef test_entire_edit_batch_admitted_before_any_effect(\n    tmp_path: Path,\n    fault: str,\n) -> None:\n    host = host_at(tmp_path)\n    calls = (\n        EDIT,\n        call(\n            \"replace_source\",\n            {\n                \"path\": \"module.py\",\n                \"old_text\": \"# \\u03c0\",\n                \"new_text\": \"# longer comment\",\n            },\n            \"comment\",\n        ),\n    )\n    policy = replace(\n        hos",
+        "path": "tests/agents/coding/test_repository.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a",
+        "span": [
+          0,
+          8192
+        ],
+        "partial": false
+      }
+    },
+    {
+      "kind": "source",
+      "call_id": "PvslruNh7hWQvST1s9JQmdEFnMJxKRMM",
+      "name": "read_source",
+      "arguments": "{\"path\":\"tests/agents/coding/test_repository.py\",\"start\":8192}",
+      "result": {
+        "source_length": 11114,
+        "valid_range": [
+          0,
+          11114
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 11114,
+        "remaining_range": [
+          11114,
+          11114
+        ],
+        "text": "t.objective.edits,\n        **(\n            {\"operations\": 1}\n            if fault == \"operations\"\n            else {\"aggregate_bytes\": 1}\n            if fault == \"aggregate\"\n            else {\"source_bytes\": len(GOOD.encode()) + 10}\n        ),\n    )\n    # Individual replacements fit; only the combined after-image exceeds the cap.\n    if fault == \"combined\":\n        calls = (\n            call(\n                \"replace_source\",\n                {\n                    \"path\": \"module.py\",\n                    \"old_text\": \"return 6\",\n                    \"new_text\": \"return 77777777\",\n                },\n                \"edit\",\n            ),\n            call(\n                \"replace_source\",\n                {\"path\": \"module.py\", \"old_text\": \"# \\u03c0\", \"new_text\": \"# longer\"},\n                \"comment\",\n            ),\n        )\n    host.objective = replace(host.objective, edits=policy)\n    result = asyncio.run(\n        run_coding_agent(Script([(READ,), calls]), limits=LIMITS, host=host),\n    )\n    assert result.disposition == \"proposal_limit\"\n    assert result.error is None\n    assert len(result.progress.effects) == 1  # the acquired source, no edit dispatch\n    reason = json.loads(host.messages[-1].content)[\"reason\"]\n    assert {\n        \"operations\": \"operation\",\n        \"aggregate\": \"Aggregate\",\n        \"combined\": \"Combined\",\n    }[fault] in reason\n    assert (tmp_path / \"module.py\").read_text(encoding=\"utf-8\") == SOURCE\n\n\n@pytest.mark.parametrize(\"fault\", [\"arguments\", \"typed-payload\"])\ndef test_composition_detects_corruption_before_effect(\n    tmp_path: Path,\n    monkeypatch: pytest.MonkeyPatch,\n    fault: str,\n) -> None:\n    host = host_at(tmp_path)\n    actual = execute_model_tool_call\n\n    class CorruptRunner(ToolRunner):\n        async def execute(self, tool: Any, arguments: Any) -> Any:  # noqa: ANN401 -- controlled ToolRunner boundary fault\n            copied = tuple(list(arguments))  # noqa: C414 -- deliberately different tuple identity\n            return await super().execute(tool, copied)\n\n    async def boundary(selected: ModelToolCall, **kwargs: Any) -> Any:  # noqa: ANN401 -- transparent shared composition fault\n        if selected.name == \"replace_source\":\n            if fault == \"arguments\":\n                selected = replace(selected, arguments_json=\"{}\")\n            else:\n                kwargs[\"runner\"] = CorruptRunner()\n        return await actual(selected, **kwargs)\n\n    monkeypatch.setattr(owner, \"execute_model_tool_call\", boundary)\n    result = asyncio.run(\n        run_coding_agent(Script([(READ,), (EDIT,)]), limits=LIMITS, host=host),\n    )\n    assert result.disposition == \"failed\"\n    assert result.failure_phase == \"application\"\n    assert isinstance(result.error, ValueError)\n    assert \"admitted\" in str(result.error)\n    assert result.progress.effects[-1].acknowledged is False\n    assert (tmp_path / \"module.py\").read_text(encoding=\"utf-8\") == SOURCE\n",
+        "path": "tests/agents/coding/test_repository.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a",
+        "span": [
+          8192,
+          11114
+        ],
+        "partial": false
+      }
+    },
+    {
+      "kind": "source",
+      "call_id": "UxN0MfYelgg5ffZRiPRmKPMiYdMhfjPp",
+      "name": "read_source",
+      "arguments": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":8192,\"end\":16384}",
+      "result": {
+        "source_length": 32648,
+        "valid_range": [
+          0,
+          32648
+        ],
+        "maximum_bytes": 8192,
+        "continuation_start": 16384,
+        "remaining_range": [
+          16384,
+          32648
+        ],
+        "text": " value\r\n\r\n\r\nclass RepositoryCodingHost:\r\n    \"\"\"Operational source/edit/check host for the shared bounded coding process.\r\n\r\n    Native continuation is transient, not a restart checkpoint. Required host\r\n    callbacks supply effect authority, application/archive and restoration;\r\n    readiness may reuse existing Localization without mandating one frame form.\r\n    \"\"\"\r\n\r\n    native_feedback = True\r\n\r\n    def __init__(  # noqa: PLR0913 -- explicit scope, effects and custody collaborators\r\n        self,\r\n        objective: CodingObjective,\r\n        *,\r\n        corpus: RepositoryTextCorpusDefinition,\r\n        authorize: Callable[[ModelToolCall, object], Awaitable[None]],\r\n        apply_changes: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\r\n        archive: Callable[[Mapping[RepositoryResourceAddress, str | None]], None],\r\n        restore: Callable[[RepositoryResourceAddress, str | None], None],\r\n        readiness: Callable[\r\n            [RepositorySnapshot, tuple[SourceRangeDisclosureOption, ...]],\r\n            None,\r\n        ]\r\n        | None = None,\r\n        settings: ModelSettings = _SETTINGS,\r\n        projection: ProjectionPolicy | None = None,\r\n        summary: SummaryCompaction | None = None,\r\n    ) -> None:\r\n        \"\"\"Bind host authority and the existing Context/Tool/Resource substrates.\"\"\"\r\n        if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:\r\n            msg = \"Coding corpus belongs to a foreign repository.\"\r\n            raise ValueError(msg)\r\n        self.objective, self.scope, self.corpus = objective, objective.scope, corpus\r\n        if projection is not None and projection.trigger_bytes > objective.prompt_bytes:\r\n            msg = \"Projection watermarks exceed the host byte ceiling.\"\r\n            raise ValueError(msg)\r\n        self.projection = projection\r\n        if summary is not None and projection is None:\r\n            msg = \"Semantic compaction requires active Context projection.\"\r\n            raise ValueError(msg)\r\n        self.compaction = SemanticCompactor(summary) if summary is not None else None\r\n        self.authorize, self.effect = authorize, apply_changes\r\n        self.archive, self.restore, self.readiness, self.settings = (\r\n            archive,\r\n            restore,\r\n            readiness,\r\n            settings,\r\n        )\r\n        self.custody = SourceCustody(\r\n            self.scope.root,\r\n            {\r\n                r.address: r.content\r\n                for r in self.scope.snapshot.resources\r\n                if r.address in objective.editable\r\n            },\r\n            maximum_bytes=self.scope.maximum_resource_bytes,\r\n        )\r\n        self.messages = [PromptMessage(\"user\", objective.text)]\r\n        self.disclosures: list[SourceRangeDisclosureOption] = []\r\n        self.source_results: list[ContextDisclosure] = []\r\n        self.active_disclosures: tuple[SourceRangeDisclosureOption, ...] = ()\r\n        self.projection_outcomes: list[ProjectionOutcome] = []\r\n        self.projection_error: BaseException | None = None\r\n        self._source_messages: dict[int, tuple[SourceRangeDisclosureOption, ...]] = {}\r\n        self._check_feedback: set[int] = set()\r\n        self.requests: list[ModelRequest] = []\r\n        self.responses: list[ModelResponse] = []\r\n        self.check_results: list[tuple[FixedCheckResult, ...]] = []\r\n        self.last_completion = CodingCompletion()\r\n        self._index()\r\n\r\n    def _index(self) -> None:\r\n        self.index = build_source_search_index(\r\n            self.scope.snapshot,\r\n            corpus=realize_repository_text_corpus(\r\n                definition=self.corpus,\r\n                snapshot=self.scope.snapshot,\r\n            ),\r\n        )\r\n\r\n    def build_request(self, messages: tuple[PromptMessage, ...]) -> ModelRequest:\r\n        \"\"\"Assemble all host-selected schemas before complete-input accounting.\r\n\r\n        Hosts exposing additional operations override this pure assembly seam,\r\n        not append schemas after preparation has checked its byte ceiling.\r\n        \"\"\"\r\n        return ModelRequest(\r\n            Prompt(\"\", \"messages\", messages),\r\n            settings=self.settings,\r\n            tools=tuple(normalize_tool_descriptor(d) for d in (_READ, _EDIT, _CHECK)),\r\n        )\r\n\r\n    async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards\r\n        \"\"\"Authenticate source and atomically install a valid active projection.\"\"\"\r\n        self.progress = progress\r\n        self.scope.check_current()\r\n        request = self.build_request(tuple(self.messages))\r\n        if self.projection is not None:\r\n            policy = self.projection\r\n            try:\r\n                if any(not e.acknowledged for e in progress.effects):\r\n                    msg = \"Unacknowledged effects require reconciliation.\"\r\n                    raise ValueError(msg)  # noqa: TRY301 -- retain original preparation failure\r\n                protected = frozenset(self._check_feedback) | (\r\n                    frozenset(\r\n                        i\r\n                        for i, values in self._source_messages.items()\r\n                        if any(o.snapshot_id == self.scope.snapshot.id for o in values)\r\n                    )\r\n                    if self.readiness is not None\r\n                    else frozenset()\r\n                )\r\n                if self.compaction is not None:\r\n                    protected |= self.compaction.protect(request.prompt.messages)\r\n                outcome = project_request(\r\n                    request,\r\n                    policy=self.projection,\r\n                    hard_bytes=self.objective.prompt_bytes,\r\n                    snapshot=self.scope.snapshot,\r\n                    sources=self._source_messages,\r\n                    protected_indices=protected,\r\n                )\r\n                self.projection_outcomes.append(outcome)\r\n                if self.compaction is not None:\r\n\r\n                    def summarized(\r\n                        indices: frozenset[int],\r\n                        note: PromptMessage,\r\n                    ) -> ProjectionOutcome:\r\n                        self.scope.check_current()\r\n                        if tuple(self.messages) != request.prompt.messages:\r\n                            msg = \"Original history changed during semantic compaction.\"\r\n                            raise ValueError(msg)  # noqa: TRY301 -- no stale projection\r\n                        return project_request(\r\n                            request,\r\n                            policy=policy,\r\n                            hard_bytes=self.objective.prompt_bytes,\r\n                            snapshot=self.scope.snapshot,\r\n                            sources=self._source_messages,\r\n                            protected_indices=protected,\r\n                            summarized_indices=indices,\r\n                            summary=note,\r\n                        )\r\n\r\n                    selected = await self.compaction.project(\r\n                        request,\r\n                        outcome,\r\n                        protected=protected,\r\n                        sources=self._source_messages,\r\n                        snapshot=str(self.scope.snapshot.id),\r\n                        project=summarized,\r\n                    )\r\n                    # Also recheck after optional failure: a fallback is not safe\r\n                    # if an external actor changed source during the await.\r\n                    self.scope.check_current()\r\n                    if tuple(self.messages) != request.prompt.messages:\r\n                        msg = \"Original history changed during semantic compaction.\"\r\n                        raise ValueError(msg)  # noqa: TRY301 -- no stale fallback installation\r\n                    if selected is not outcome:\r\n                        self.projection_outcomes.append(selected)\r\n                    outcome = selected\r\n                if outcome.status == \"insufficient\":\r\n                    raise ProjectionCapacityError(outcome)  # noqa: TRY301 -- no partial active-state installation\r\n            except (Exception, asyncio.CancelledError) as error:\r\n                self.projecti",
+        "path": "src/devtools/agents/coding/repository.py",
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "version": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966",
+        "span": [
+          8192,
+          16384
+        ],
+        "partial": false
+      }
+    }
+  ],
+  "discovery": [
+    {
+      "kind": "inventory",
+      "call_id": "McbUzIGhwInmkHx2JbhP17zzhKAAjdUY",
+      "name": "list_repository",
+      "arguments": "{}",
+      "result": {
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "source_acquired": false,
+        "resources": [
+          {
+            "path": "experiments/local_maintenance_feedback/focused.py",
+            "characters": 6728,
+            "content_identity": "beaf5fa6c59e21c79769ccbd4947c4f416225c394f9c07de3c30c28e0574c65a",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/agents/coding/__init__.py",
+            "characters": 394,
+            "content_identity": "a0de735340eaefe646aa8a9defc9ad43c6b9cbc50daef50779d01e041d7fefcd",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/custody.py",
+            "characters": 4246,
+            "content_identity": "b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/docs/overview.md",
+            "characters": 3870,
+            "content_identity": "0e8b4902a716e5aa2799c80e395b84820750fe91f1b43bdae7670c0aa40862c4",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/agents/coding/edits.py",
+            "characters": 4550,
+            "content_identity": "3ce686fa4a72d50079c286ce5f08bd8ab9deb4f27f467253b40ac96f03cdc5b7",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/models.py",
+            "characters": 3750,
+            "content_identity": "f8fcf7745622423a985349b49942e4e75cd3577ad048f1ff7106afec7717391e",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/process.py",
+            "characters": 8619,
+            "content_identity": "6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/projection.py",
+            "characters": 14095,
+            "content_identity": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "characters": 32648,
+            "content_identity": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966",
+            "editable": true
+          },
+          {
+            "path": "src/devtools/agents/model_tools.py",
+            "characters": 2689,
+            "content_identity": "e7c4d41bac426f184caeb2c2faa7515dbb0725f740f1b67eea99b23e14cf70b8",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/context/repository/resource.py",
+            "characters": 3328,
+            "content_identity": "5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/context/repository/snapshot.py",
+            "characters": 2018,
+            "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/models/interaction/prompt.py",
+            "characters": 4176,
+            "content_identity": "bb56c1f77a04c7584d12a52b32a852aad7ccbf39ed13c3529696ef29a00e2305",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/tools/checks.py",
+            "characters": 5003,
+            "content_identity": "540c237f4641bb3a9ddd133b8ee9fed711db1f62fcf2ff4d3ba831cb09216cc9",
+            "editable": false
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "characters": 7230,
+            "content_identity": "cd271a7edfda7625bf63b5e8d339ec6109a7f6bfbb83db3f73a1d46275df0022",
+            "editable": false
+          },
+          {
+            "path": "tests/agents/coding/test_repository.py",
+            "characters": 11114,
+            "content_identity": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a",
+            "editable": false
+          }
+        ]
+      }
+    },
+    {
+      "kind": "retrieval",
+      "call_id": "UozAj3DRRlbQgvYefwPYsDpfe1HkSSNP",
+      "name": "search_source",
+      "arguments": "{\"query\":\"repository metadata resources snapshot source_acquired discoverability\"}",
+      "result": {
+        "snapshot": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354",
+        "source_acquired": false,
+        "query": "repository metadata resources snapshot source_acquired discoverability",
+        "mode": "mixed",
+        "hits": [
+          {
+            "path": "experiments/local_maintenance_feedback/focused.py",
+            "unit": "fcbb280bab78112278f14b4988dd0b43968a14a9d21cfd44f81e310a248e27d6",
+            "kind": "symbol",
+            "qualified_name": "assert_metadata",
+            "span": [
+              4459,
+              5140
+            ],
+            "file_characters": 6728,
+            "content_identity": "beaf5fa6c59e21c79769ccbd4947c4f416225c394f9c07de3c30c28e0574c65a",
+            "rank": 1,
+            "score": 0.04891591750396616,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 1,
+                "score": 10.85439270127135
+              },
+              {
+                "view": "window",
+                "rank": 2,
+                "score": 7.390360557535074
+              },
+              {
+                "view": "file",
+                "rank": 1,
+                "score": 9.595627958166883
+              }
+            ]
+          },
+          {
+            "path": "src/devtools/context/repository/snapshot.py",
+            "unit": "697608c3e39c9327f707c4ccf662bac0f15acc176b7a1a146c3fe3bd621603b0",
+            "kind": "symbol",
+            "qualified_name": "RepositorySnapshot",
+            "span": [
+              906,
+              2017
+            ],
+            "file_characters": 2018,
+            "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+            "rank": 2,
+            "score": 0.04788306451612903,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 2,
+                "score": 9.616538632402529
+              },
+              {
+                "view": "window",
+                "rank": 4,
+                "score": 6.364759035227238
+              },
+              {
+                "view": "file",
+                "rank": 2,
+                "score": 5.007295191371689
+              }
+            ]
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "unit": "b5cc66f6a5d5f9fdfc973a36d556dbacec7bd6c7ef4ea831f8f0a0adff010bbb",
+            "kind": "symbol",
+            "qualified_name": "SourceScope.check_current",
+            "span": [
+              2423,
+              2949
+            ],
+            "file_characters": 7230,
+            "content_identity": "cd271a7edfda7625bf63b5e8d339ec6109a7f6bfbb83db3f73a1d46275df0022",
+            "rank": 3,
+            "score": 0.04616113053613054,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 4,
+                "score": 9.18891391772463
+              },
+              {
+                "view": "window",
+                "rank": 6,
+                "score": 4.6577110619156095
+              },
+              {
+                "view": "window",
+                "rank": 10,
+                "score": 4.0250365917023565
+              },
+              {
+                "view": "file",
+                "rank": 5,
+                "score": 4.128829712131885
+              }
+            ]
+          },
+          {
+            "path": "src/devtools/context/repository/resource.py",
+            "unit": "9cee1e5eba2a8fc1567dfa91b1fca38f41058f12adaefa5e683e25659ac0dace",
+            "kind": "symbol",
+            "qualified_name": "RepositoryResourceAddress",
+            "span": [
+              284,
+              1626
+            ],
+            "file_characters": 3328,
+            "content_identity": "5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c",
+            "rank": 4,
+            "score": 0.039650981471289676,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 20,
+                "score": 3.5052068092432833
+              },
+              {
+                "view": "window",
+                "rank": 19,
+                "score": 2.0990068477513804
+              },
+              {
+                "view": "file",
+                "rank": 9,
+                "score": 1.1807272675692209
+              }
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/projection.py",
+            "unit": "69a9dd181d2628aa29667f56b0d60eb19914a340591a975eb92e3f765ad728fc",
+            "kind": "symbol",
+            "qualified_name": "_current_sources",
+            "span": [
+              4590,
+              6042
+            ],
+            "file_characters": 14095,
+            "content_identity": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+            "rank": 5,
+            "score": 0.03954248366013072,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 24,
+                "score": 3.147634276567179
+              },
+              {
+                "view": "window",
+                "rank": 25,
+                "score": 1.5229053715122784
+              },
+              {
+                "view": "file",
+                "rank": 3,
+                "score": 4.255581738751568
+              }
+            ]
+          },
+          {
+            "path": "tests/agents/coding/test_repository.py",
+            "unit": "8955901ea683012f4096c9d50db92b569a2b5ff5dd89a66522f741dc07d0296f",
+            "kind": "symbol",
+            "qualified_name": "test_invalid_objective_refused_before_model",
+            "span": [
+              4544,
+              5658
+            ],
+            "file_characters": 11114,
+            "content_identity": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a",
+            "rank": 6,
+            "score": 0.03924963924963925,
+            "evidence": [
+              {
+                "view": "symbol",
+                "rank": 30,
+                "score": 2.8207920606900925
+              },
+              {
+                "view": "window",
+                "rank": 17,
+                "score": 2.4286561946203338
+              },
+              {
+                "view": "file",
+                "rank": 6,
+                "score": 3.2971991737953874
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "projections": [
+    {
+      "status": "unchanged",
+      "original_bytes": 4653,
+      "resulting_bytes": 4653,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": []
+    },
+    {
+      "status": "unchanged",
+      "original_bytes": 12600,
+      "resulting_bytes": 12600,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": []
+    },
+    {
+      "status": "unchanged",
+      "original_bytes": 23514,
+      "resulting_bytes": 23514,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344"
+          },
+          "span": [
+            0,
+            7500
+          ]
+        },
+        {
+          "path": "experiments/local_maintenance_feedback/focused.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "beaf5fa6c59e21c79769ccbd4947c4f416225c394f9c07de3c30c28e0574c65a"
+          },
+          "span": [
+            4459,
+            5140
+          ]
+        }
+      ]
+    },
+    {
+      "status": "reduced",
+      "original_bytes": 34250,
+      "resulting_bytes": 26303,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          4,
+          "host-classified-metadata"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344"
+          },
+          "span": [
+            0,
+            7500
+          ]
+        },
+        {
+          "path": "experiments/local_maintenance_feedback/focused.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "beaf5fa6c59e21c79769ccbd4947c4f416225c394f9c07de3c30c28e0574c65a"
+          },
+          "span": [
+            4459,
+            5140
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        }
+      ]
+    },
+    {
+      "status": "reduced",
+      "original_bytes": 44687,
+      "resulting_bytes": 25826,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        7,
+        8,
+        9,
+        10
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          4,
+          "host-classified-metadata"
+        ],
+        [
+          4,
+          7,
+          "source-capacity"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        }
+      ]
+    },
+    {
+      "status": "reduced",
+      "original_bytes": 48979,
+      "resulting_bytes": 30118,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          4,
+          "host-classified-metadata"
+        ],
+        [
+          4,
+          7,
+          "source-capacity"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            8192,
+            11114
+          ]
+        }
+      ]
+    },
+    {
+      "status": "reduced",
+      "original_bytes": 58946,
+      "resulting_bytes": 29349,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          4,
+          "host-classified-metadata"
+        ],
+        [
+          4,
+          7,
+          "source-capacity"
+        ],
+        [
+          7,
+          9,
+          "source-capacity"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            8192,
+            11114
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966"
+          },
+          "span": [
+            8192,
+            16384
+          ]
+        }
+      ]
+    },
+    {
+      "status": "reduced",
+      "original_bytes": 61134,
+      "resulting_bytes": 31537,
+      "target_bytes": 20000,
+      "selected_indices": [
+        0,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          4,
+          "host-classified-metadata"
+        ],
+        [
+          4,
+          7,
+          "source-capacity"
+        ],
+        [
+          7,
+          9,
+          "source-capacity"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            0,
+            8192
+          ]
+        },
+        {
+          "path": "tests/agents/coding/test_repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a"
+          },
+          "span": [
+            8192,
+            11114
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": {
+            "value": "9a065bcd63f1b4aedb0d71a4e81b9f843aace5c8d9fc048795c99bb0bb808354"
+          },
+          "version": {
+            "value": "5d16f78e2e6889afb4c4a753b7165ea9c30995dc44a27544b4d041fff35ca966"
+          },
+          "span": [
+            8192,
+            16384
+          ]
+        }
+      ]
+    }
+  ],
+  "procedures": 0,
+  "accepted": false,
+  "restored": true,
+  "disposition": "model_limit",
+  "proposed_anchors_covered_by_current_active_source": true
+}
