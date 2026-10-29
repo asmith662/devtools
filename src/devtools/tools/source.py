@@ -8,13 +8,18 @@ from typing import TYPE_CHECKING, cast, overload
 
 from devtools.context import Repository, observe_repository_resources
 from devtools.context.planning import source
+from devtools.context.retrieval import search_repository_source
 from devtools.core.paths import resolve_path
 from devtools.tools.errors import ToolInputError
+
+_MAXIMUM_QUERY_CHARACTERS = 256
 
 if TYPE_CHECKING:
     from devtools.context import RepositoryResourceAddress, RepositorySnapshot
     from devtools.context.planning.materialization import ContextDisclosure
     from devtools.context.retrieval.source import RepositorySourceUnit
+    from devtools.context.retrieval.source.index import SourceSearchIndex
+    from devtools.context.retrieval.source.representation import SourceSearchMode
     from devtools.core.paths import ResolvedPath
 
 
@@ -110,6 +115,83 @@ class SourceReadRefusal:
     """A recognized invalid range; source disclosure was never entered."""
 
     request: SourceReadRequest
+
+
+@dataclass(frozen=True, slots=True)
+class SourceNavigationRequest:
+    """Select existing indexed metadata, never acquire source or edit authority."""
+
+    query: str = ""
+    path: RepositoryResourceAddress | None = None
+    mode: SourceSearchMode = "symbol"
+    offset: int = 0
+
+
+class ScopedSourceNavigationTool:
+    """Page or search a host-selected current index using existing retrieval."""
+
+    name = "navigate_scoped_source"
+    description = "Select bounded file/symbol/window candidates; metadata only."
+
+    def __init__(
+        self,
+        scope: SourceScope,
+        index: SourceSearchIndex,
+        *,
+        maximum_results: int = 8,
+    ) -> None:
+        """Bind existing source authority and a finite result count."""
+        if maximum_results <= 0:
+            msg = "Source navigation requires a positive result bound."
+            raise ValueError(msg)
+        self.scope, self.index, self.maximum_results = scope, index, maximum_results
+
+    def validate(self, arguments: SourceNavigationRequest) -> None:
+        """Reject foreign/stale scope and malformed selection before execution."""
+        if (
+            self.index.snapshot != self.scope.snapshot
+            or not isinstance(arguments.query, str)
+            or len(arguments.query) > _MAXIMUM_QUERY_CHARACTERS
+            or arguments.mode not in {"file", "symbol", "window", "mixed"}
+            or type(arguments.offset) is not int
+            or not 0 <= arguments.offset <= sum(len(v.units) for v in self.index.views)
+            or (
+                arguments.path is not None
+                and arguments.path
+                not in {u.resource.address for u in self.index.views[0].units}
+            )
+        ):
+            msg = "Source navigation is outside the admitted index or bounds."
+            raise ToolInputError(msg)
+        self.scope.check_current()
+
+    async def execute(
+        self,
+        arguments: SourceNavigationRequest,
+    ) -> tuple[RepositorySourceUnit, ...]:
+        """Reuse ranking or enumerate existing representations without new parsing."""
+        if arguments.query.strip():
+            result = search_repository_source(
+                self.index,
+                query=arguments.query,
+                mode=arguments.mode,
+                maximum_results=arguments.offset + self.maximum_results,
+                resource_addresses=(arguments.path,)
+                if arguments.path is not None
+                else None,
+            )
+            units = tuple(h.unit for h in result.hits)
+        else:
+            units = tuple(
+                {
+                    u.id: u
+                    for v in self.index.views
+                    if arguments.mode in {"mixed", v.kind}
+                    for u in v.units
+                    if arguments.path is None or u.resource.address == arguments.path
+                }.values(),
+            )
+        return units[arguments.offset : arguments.offset + self.maximum_results]
 
 
 def select_source_read(

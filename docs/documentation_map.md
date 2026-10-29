@@ -989,3 +989,10 @@ with maintained imports and unchanged limits. The separately identified
 passed oracle preflight but exhausted ten model requests without proposing an
 edit. The validated production extraction and unsuccessful model maintenance
 are separate outcomes; source selection/retention is the next observed pressure.
+
+## Precise source navigation and working-set continuity
+
+[Contract and deterministic comparison](development/source-navigation-continuity.md)
+connect existing RI representations to the neutral coding host.
+[Prospective maintenance protocol](../experiments/local_maintenance_navigation/protocol.md)
+separates framework validation from the one separately frozen live attempt.

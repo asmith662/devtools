@@ -314,3 +314,15 @@ No model-authored implementation, supervisor replacement, grant, approval,
 proposal/status transition or parent closure is implied. General large-file
 editing policy, Context working-set pressure and existing broader obligations
 remain open. No next increment is begun.
+
+## Authorized source-navigation increment - 2026-10-29
+
+The [bounded implementation](../../development/source-navigation-continuity.md)
+connects existing scoped file/symbol/window search to exact native unit acquisition.
+It reuses current projection rather than adding unbounded pinning. Frozen trace
+reconstruction finds that all broad reads cannot fit; scripted precise selections
+retain three exact methods and permit an independent fixture edit/check. This is
+not B-0035 inventory delivery or evidence of autonomous source-selection success.
+The [new protocol](../../../experiments/local_maintenance_navigation/protocol.md)
+separately preflights a single maintenance opportunity. Broader obligations stay
+open; no proposal, grant, approval, status transition or parent closure is created.

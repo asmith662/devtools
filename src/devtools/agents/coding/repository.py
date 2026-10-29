@@ -26,6 +26,13 @@ from devtools.agents.coding.models import (
     CodingProgress,
     CodingResult,
 )
+from devtools.agents.coding.navigation import (
+    FIND,
+    READ_UNIT,
+    navigation_feedback,
+    navigation_request,
+    unit_read_request,
+)
 from devtools.agents.coding.projection import (
     ProjectionCapacityError,
     ProjectionOutcome,
@@ -55,7 +62,9 @@ from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool
 from devtools.tools.source import (
+    ScopedSourceNavigationTool,
     ScopedSourceTool,
+    SourceNavigationRequest,
     SourceReadRefusal,
     SourceReadRequest,
     SourceScope,
@@ -238,6 +247,7 @@ class RepositoryCodingHost:
         settings: ModelSettings = _SETTINGS,
         projection: ProjectionPolicy | None = None,
         summary: SummaryCompaction | None = None,
+        navigation: bool = False,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
@@ -248,6 +258,7 @@ class RepositoryCodingHost:
             msg = "Projection watermarks exceed the host byte ceiling."
             raise ValueError(msg)
         self.projection = projection
+        self.navigation = navigation
         if summary is not None and projection is None:
             msg = "Semantic compaction requires active Context projection."
             raise ValueError(msg)
@@ -300,7 +311,15 @@ class RepositoryCodingHost:
         return ModelRequest(
             Prompt("", "messages", messages),
             settings=self.settings,
-            tools=tuple(normalize_tool_descriptor(d) for d in (_READ, _EDIT, _CHECK)),
+            tools=tuple(
+                normalize_tool_descriptor(d)
+                for d in (
+                    _READ,
+                    _EDIT,
+                    _CHECK,
+                    *((FIND, READ_UNIT) if self.navigation else ()),
+                )
+            ),
         )
 
     async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards
@@ -416,7 +435,11 @@ class RepositoryCodingHost:
         )
         if not response.tool_calls:
             return "stop"
-        if all(c.name in {_READ.name, _CHECK.name} for c in response.tool_calls):
+        if all(
+            c.name in {_READ.name, _CHECK.name}
+            or (self.navigation and c.name in {FIND.name, READ_UNIT.name})
+            for c in response.tool_calls
+        ):
             return "acquire"
         if all(c.name == _EDIT.name for c in response.tool_calls):
             return "edit"
@@ -442,6 +465,14 @@ class RepositoryCodingHost:
             cast("int", values["start"]),
             cast("int | None", values.get("end", unit.end)),
             self.objective.disclosure_bytes,
+        )
+
+    def _read_unit(self, serialized: str) -> SourceReadRequest:
+        return unit_read_request(
+            self.index,
+            _arguments(serialized, {"unit_id", "snapshot_id"}),
+            purpose=self.objective.text,
+            maximum_bytes=self.objective.disclosure_bytes,
         )
 
     def _feedback(
@@ -473,7 +504,38 @@ class RepositoryCodingHost:
             return False
         for call in response.tool_calls:
             effect = self.progress.claim_action(call.provider_call_id)
-            if call.name == _READ.name:
+            if self.navigation and call.name == FIND.name:
+                selection = navigation_request(
+                    _arguments(
+                        call.arguments_json,
+                        set(),
+                        optional=frozenset({"path", "query", "mode", "offset"}),
+                    ),
+                )
+
+                def selected_navigation(
+                    _: str,
+                    selected: SourceNavigationRequest = selection,
+                ) -> SourceNavigationRequest:
+                    return selected
+
+                units = await execute_model_tool_call(
+                    call,
+                    invocation=_Invocation(FIND, selected_navigation),
+                    tool=ScopedSourceNavigationTool(self.scope, self.index),
+                    admit=self.authorize,
+                    runner=ToolRunner(),
+                )
+                self._feedback(
+                    call,
+                    navigation_feedback(
+                        units,
+                        self.index,
+                        offset=selection.offset,
+                        maximum_bytes=self.objective.disclosure_bytes,
+                    ),
+                )
+            elif call.name in {_READ.name, READ_UNIT.name}:
                 tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
                     ScopedSourceTool(
                         self.scope,
@@ -482,7 +544,10 @@ class RepositoryCodingHost:
                 )
                 disclosure = await execute_model_tool_call(
                     call,
-                    invocation=_Invocation[SourceReadRequest](_READ, self._read),
+                    invocation=_Invocation[SourceReadRequest](
+                        READ_UNIT if call.name == READ_UNIT.name else _READ,
+                        self._read_unit if call.name == READ_UNIT.name else self._read,
+                    ),
                     tool=tool,
                     admit=self.authorize,
                     runner=ToolRunner(),

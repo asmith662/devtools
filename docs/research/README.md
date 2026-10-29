@@ -264,3 +264,11 @@ retains a separate identity and oracle preflight; earlier maintenance outcomes
 remain frozen. The protected extraction passed; ten real model requests ended
 without an edit after repeated source acquisition. B-0035 remains open.
 Production refactoring and local-model task acceptance are separate claims.
+
+## Source navigation and working-set continuity
+
+[Implementation contract](../development/source-navigation-continuity.md) records
+the immutable cohesion trace reconstruction, exact-unit integration and scripted
+comparison. [New maintenance protocol](../../experiments/local_maintenance_navigation/protocol.md)
+requires protected implementation validation and oracle preflight before inference.
+It does not rewrite the prior cohesion result or establish live effectiveness.

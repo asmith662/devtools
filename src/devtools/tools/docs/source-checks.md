@@ -90,3 +90,19 @@ result policy; local closeout invokes that public compatibility adapter instead
 of private coding-loop helpers. It still requires the legacy task/candidate
 contract. Framework-only tests exercise real source/check behavior with all
 application imports and checkout application file access denied.
+
+## Scoped navigation
+
+`ScopedSourceNavigationTool(scope, index, maximum_results=8)` consumes a typed
+`SourceNavigationRequest` over a host-selected existing `SourceSearchIndex`.
+It checks scope/snapshot correspondence and currentness before returning bounded
+existing source units. A query uses the maintained source search; an empty query
+pages file, symbol, window or mixed views, optionally restricted to one admitted
+path. It creates neither another index nor source disclosure. Units retain their
+resource and span identity; callers must project only authorized bounded metadata
+for model presentation, rather than serializing the internal resource content.
+
+Agents' neutral coding host supplies the native metadata projection and resolves
+an exact current unit selection into `SourceReadRequest`. Actual acquisition
+still uses `ScopedSourceTool` and Context materialization. See the
+[contract and consumer evidence](../../../../docs/development/source-navigation-continuity.md).

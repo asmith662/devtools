@@ -62,3 +62,11 @@ the policy remains optional and does not claim measured continuation improvement
 The [host-cohesion and edit-size analysis](../../../../../docs/development/coding-host-cohesion.md)
 separates pure source admission from lifecycle coordination and explains why
 resulting-file, region, disclosure and Prompt byte budgets are independent.
+
+The [source-navigation contract](../../../../../docs/development/source-navigation-continuity.md)
+adds opt-in `navigation=True` to the neutral repository host. Native `find_source`
+pages/searches existing scoped file/symbol/window metadata; `read_source_unit`
+binds a current unit and snapshot to the existing exact source Tool. Metadata
+does not grant source or edit credit. Generic range reads and existing projection,
+semantic/adaptive compaction and custody remain authoritative. The default
+native surface and legacy Qwen application policy remain unchanged.
