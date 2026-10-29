@@ -177,3 +177,16 @@ This is a bounded mechanism and qualified assessment, not validated universal
 strategy selection or completion of reusable-agent architecture. Qwen legacy
 adapter migration, recovery/Evidence, Option B and broader A+C remain separate.
 No status, grant, approval or parent closure is inferred before delivery evidence.
+
+## Adaptive Context delivered evidence — 2026-10-29 UTC
+
+Implementation `7cf1eb79dc638dece63ae80971d3de342758f71b` is verified on accepted main
+`f558d4b9acd83e565604aa158f8917f56e6591fb` after the unchanged committed protected gate and exact physical-input,
+source-blob and ancestry checks. [Contract](../../development/adaptive-context-compaction.md)
+and [receipt](../../research/code-audit/adaptive-context-compaction-20261029.json)
+record the bounded opt-in policy and the real comparison's format refusals,
+deterministic fallback and unestablished semantic benefit. No universal threshold,
+legacy Qwen adapter migration, durable recovery, Evidence store, observation
+Option B, broader A+C, grant or parent closure is implied. Existing statuses,
+dependencies and outstanding historical obligations remain unchanged.
+`integration:adaptive-context:7cf1eb79:20261029`.

@@ -127,3 +127,12 @@ records, original local cases and historical refs are preserved. JSON/JSONL,
 new links, layout and whitespace pass; two old B-0002 scratch links remain
 qualified. Existing B-0002/B-0035/B-0043 stay open, as do the 188 historical
 RI-version obligations and separate recovery/Evidence/Option B/A+C decisions.
+
+## Accepted-main verification
+
+Ordinary non-force publication accepted `f558d4b9acd83e565604aa158f8917f56e6591fb`, tree `69bafcccd932fe27e5ae14b0e89b3a050f437ced`,
+independently verified through GitHub and Git remote state at `2026-10-29T02:00:58.001736+00:00`.
+It contains implementation `7cf1eb79dc638dece63ae80971d3de342758f71b` with identical source/test blobs and
+1054 physical protected-validation inputs. Observed main rules
+permitted direct publication; no bypass, fabricated review or PR was used.
+This subsequent documentation-only closeout changes no executable input.
