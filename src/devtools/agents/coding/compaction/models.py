@@ -66,6 +66,7 @@ class SummaryCompaction:
     retain_payloads: bool = False
     adaptive: AdaptiveCompaction | None = None
     provider_settings: ProviderRequestSettings | None = None
+    allow_json_fence: bool = False
 
     def __post_init__(self) -> None:
         """Require explicit finite bounds; never invent a tokenizer or capacity."""
@@ -78,6 +79,7 @@ class SummaryCompaction:
         )
         if (
             any(type(v) is not int or v <= 0 for v in bounds)
+            or type(self.allow_json_fence) is not bool
             or self.timeout.total_seconds <= 0
             or (self.input_tokens is None) != (self.measure_input is None)
             or (
@@ -102,6 +104,7 @@ class SummaryAttempt:
     response_received: bool = False
     validated: bool = False
     adopted: bool = False
+    normalized_json_fence: bool = False
     input_indices: tuple[int, ...] = ()
     replaced_indices: tuple[int, ...] = ()
     partial_coverage: bool = True

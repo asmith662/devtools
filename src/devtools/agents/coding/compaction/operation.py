@@ -16,7 +16,7 @@ from devtools.models.interaction import (
     PromptMessage,
 )
 
-from .format import INSTRUCTIONS, digest, record, validate_summary
+from .format import INSTRUCTIONS, digest, record, summary_payload, validate_summary
 from .models import SummaryAttempt, SummaryCompaction
 
 if TYPE_CHECKING:
@@ -147,7 +147,11 @@ class SemanticCompactor:
                 msg = "Summary response is foreign, incomplete or outside its envelope."
                 raise ValueError(msg)  # noqa: TRY301 -- retain strategy failure
             attempt.response_digest = digest(response.content)
-            summary = validate_summary(response.content, refs, replacements, catalog)
+            payload, attempt.normalized_json_fence = summary_payload(
+                response.content,
+                allow_json_fence=self.config.allow_json_fence,
+            )
+            summary = validate_summary(payload, refs, replacements, catalog)
             attempt.validated = True
             result = project(replacements, summary)
             attempt.resulting_bytes = result.resulting_bytes

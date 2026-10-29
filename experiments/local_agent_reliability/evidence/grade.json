@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_agent_reliability\\oracle.py",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\reliability\\evaluation\\grade"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_agent_reliability\\oracle.py\", line 21, in <module>\r\n    assert module.occupied_minutes(intervals, window) == expected\r\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\reliability\\evaluation\\grade\\occupancy.py\", line 19, in occupied_minutes\r\n    current_start, current_end = intervals[0]\r\n                                 ~~~~~~~~~^^^\r\nIndexError: list index out of range\r\n"
+}

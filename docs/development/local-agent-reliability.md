@@ -57,7 +57,7 @@ select `LlamaCppRequestSettings(response_format="json_object")`. This emits
 the documented `response_format` object on the existing provider request path;
 the same payload builder remains authoritative for token measurement. Default
 requests do not acquire this setting. The acting request is independently
-configured. No new provider, hidden call, fence stripping or JSON repair exists.
+configured. No new provider, hidden call or JSON repair exists.
 
 The installed b10868 release resolves to
 `304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3`; its
@@ -66,6 +66,20 @@ documents JSON-constrained output. We select plain JSON-object generation and
 retain the existing exact application-schema validation. This does not claim
 portable JSON-schema enforcement by every provider or support for every
 structured-output/native-Tool combination.
+
+The one fresh live response still returned fenced JSON with that setting. This
+is a measured interoperability limitation; the server/template root cause is
+not established. After that frozen attempt, the authorized narrow alternative
+was implemented: `SummaryCompaction(allow_json_fence=True)`. It accepts plain JSON
+or exactly one lowercase `json` fence with LF/CRLF delimiters and ASCII outer
+whitespace. Other tags, surrounding prose, nested/multiple fences, malformed or
+multiple JSON documents and trailing data fail. It never repairs JSON or calls
+a model. The ordinary raw-output byte and termination checks occur first; the
+complete inner document then passes the unchanged schema/provenance validator.
+`SummaryAttempt.normalized_json_fence` records normalization separately from
+validation and adoption. Raw response content/digest remain original. The default
+is strict JSON. The frozen live attempt used that default and was not replayed;
+offline admission of its retained response is separate evidence.
 
 Raw returned text remains unchanged. Termination, output size, exact record
 digests, replacement coverage and source references still pass the existing

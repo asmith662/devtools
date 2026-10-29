@@ -59,6 +59,24 @@ def _pairs(items: list[tuple[str, object]]) -> dict[str, object]:
     return value
 
 
+def summary_payload(text: str, *, allow_json_fence: bool) -> tuple[str, bool]:
+    """Optionally unwrap exactly one lowercase json fence, never salvage JSON.
+
+    Only ASCII outer whitespace and LF/CRLF delimiters are admitted. Prose,
+    nested/multiple fences and other tags fail. The complete inner document
+    still requires ordinary strict schema/provenance validation.
+    """
+    stripped = text.strip(" \t\r\n")
+    if not allow_json_fence or not stripped.startswith("```"):
+        return text, False
+    header, _, rest = stripped.partition("\n")
+    payload, _, footer = rest.rpartition("\n")
+    if header.removesuffix("\r") != "```json" or footer != "```" or "```" in payload:
+        msg = "Unsupported summary JSON envelope."
+        raise ValueError(msg)
+    return payload, True
+
+
 def validate_summary(
     text: str,
     references: Mapping[int, str],
