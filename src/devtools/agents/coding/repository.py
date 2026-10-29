@@ -368,6 +368,7 @@ class RepositoryCodingHost:
                     snapshot=self.scope.snapshot,
                     sources=self._source_messages,
                     protected_indices=protected,
+                    previous_sources=self.active_disclosures,
                 )
                 self.projection_outcomes.append(outcome)
                 if self.compaction is not None:
@@ -387,6 +388,7 @@ class RepositoryCodingHost:
                             snapshot=self.scope.snapshot,
                             sources=self._source_messages,
                             protected_indices=protected,
+                            previous_sources=self.active_disclosures,
                             summarized_indices=indices,
                             summary=note,
                         )

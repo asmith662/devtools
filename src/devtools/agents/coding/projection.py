@@ -51,11 +51,14 @@ class ProjectionPolicy:
 
     Operation names permit presentation omission, never execution. Unknown
     operations and non-Tool assistant text remain protected.
+    Optional source status is a bounded host annotation charged to the same
+    complete-request budget; it never becomes retained history or a witness.
     """
 
     trigger_bytes: int
     target_bytes: int
     metadata_operations: frozenset[str] = frozenset()
+    report_source_state: bool = False
 
     def __post_init__(self) -> None:
         """Require explicit bounded watermarks and immutable host classification."""
@@ -64,6 +67,7 @@ class ProjectionPolicy:
             or type(self.target_bytes) is not int
             or not 0 < self.target_bytes <= self.trigger_bytes
             or not isinstance(self.metadata_operations, frozenset)
+            or type(self.report_source_state) is not bool
             or any(
                 not isinstance(n, str) or not n.strip()
                 for n in self.metadata_operations
@@ -166,6 +170,81 @@ def _current_sources(
     return current
 
 
+def _source_state(
+    selected: Mapping[int, PromptMessage],
+    current: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],
+    sources: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],
+    previous: tuple[SourceRangeDisclosureOption, ...],
+) -> PromptMessage:
+    """Describe available source facts, not inferred intent or new authority."""
+    active = {o.identity: o for i in selected for o in current.get(i, ())}
+    records = [i for i, values in current.items() if values]
+    latest = max(records) if records else None
+    acquisition: dict[str, object] | None = None
+    if latest is not None:
+        observed = next(
+            o
+            for o in sources[latest]
+            if o.unit == current[latest][0].unit and o.start == current[latest][0].start
+        )
+
+        def same_source(other: SourceRangeDisclosureOption) -> bool:
+            return (
+                other.repository_id == observed.repository_id
+                and other.snapshot_id == observed.snapshot_id
+                and other.unit.resource == observed.unit.resource
+            )
+
+        acquisition = {
+            "path": str(observed.unit.resource.address),
+            "span": observed.span,
+            "earlier_same_range_disclosures": sum(
+                same_source(o) and o.span == observed.span
+                for i in records
+                if i < latest
+                for o in sources[i]
+            ),
+            "covered_by_one_previous_disclosure": any(
+                same_source(o)
+                and o.span[0] <= observed.span[0] <= observed.span[1] <= o.span[1]
+                for o in previous
+            ),
+        }
+    return PromptMessage(
+        "user",
+        json.dumps(
+            {
+                "kind": "active_source_status",
+                "scope": "current repository/snapshot; metadata is not source",
+                "coordinates": "half-open Unicode offsets",
+                "active_ranges": [
+                    {
+                        "path": str(o.unit.resource.address),
+                        "snapshot": str(o.snapshot_id),
+                        "version": str(o.unit.resource.content_identity),
+                        "span": o.span,
+                    }
+                    for o in list(active.values())[-4:]
+                ],
+                "active_list_partial": len(active) > 4,  # noqa: PLR2004 -- bounded status rows
+                "omitted_current_disclosure_records": sum(
+                    i not in selected for i in records
+                ),
+                "latest_current_disclosure": acquisition,
+                "instruction": (
+                    "Only exact source presented here can ground edits. Historical "
+                    "acquisition is not active evidence. Continuation offsets are "
+                    "optional, not a requirement to read whole files. Select missing "
+                    "methods/windows, propose a grounded edit or request an authorized "
+                    "check when ready, or stop with a specific blocker. Repeating "
+                    "an identical active range adds no source information."
+                ),
+            },
+            ensure_ascii=False,
+        ),
+    )
+
+
 def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered selection, no effect execution
     request: ModelRequest,
     *,
@@ -174,6 +253,7 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     snapshot: RepositorySnapshot,
     sources: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],
     protected_indices: frozenset[int] = frozenset(),
+    previous_sources: tuple[SourceRangeDisclosureOption, ...] = (),
     summarized_indices: frozenset[int] = frozenset(),
     summary: PromptMessage | None = None,
 ) -> ProjectionOutcome:
@@ -235,6 +315,8 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
         active = tuple(selected.values())
         if summary is not None:
             active += (summary,)
+        if policy.report_source_state:
+            active += (_source_state(selected, current, sources, previous_sources),)
         return replace(request, prompt=Prompt("", "messages", active))
 
     def size() -> int:
@@ -278,7 +360,7 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
         else:
             priority, reason = 1, "host-classified-metadata"
         candidates.append((priority, first, end, reason))
-    triggered = original > policy.trigger_bytes
+    triggered = size() > policy.trigger_bytes
     if triggered:
         for priority, first, end, reason in sorted(candidates):
             if size() <= policy.target_bytes:
@@ -324,6 +406,7 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
                     original_message,
                     content=json.dumps(value, ensure_ascii=False),
                 )
+                current[index] = (smaller,)
                 return smaller
 
             minimum = len(option.text[0].encode())
@@ -334,6 +417,7 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
             )
             if size() > target:
                 selected[index] = original_message
+                current[index] = (option,)
                 continue
             low, high = minimum, maximum
             while low < high:

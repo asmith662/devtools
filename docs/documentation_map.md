@@ -1003,3 +1003,10 @@ separates framework validation from the one separately frozen live attempt.
 describe objective-derived candidates and host-bounded outline exploration.
 The new [maintenance protocol](../experiments/local_maintenance_task_navigation/protocol.md)
 keeps candidate metadata, B-0035 inventory, source reads and acceptance distinct.
+
+## Investigation-to-implementation transition
+
+[Diagnosis and opt-in source-status contract](development/investigation-transition.md)
+separate active exact source from retained disclosure history. The
+[read-only diagnostic protocol](../experiments/coding_transition/protocol.md)
+allows at most four real calls, without a full maintenance attempt.

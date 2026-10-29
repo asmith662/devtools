@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-29T22:22:14.610229+00:00",
+  "status": "passed",
+  "qualification": "Read-only source/interaction feasibility, not an oracle certifying B-0035 implementation.",
+  "complete_bytes": 27684,
+  "host_disclosures": [
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "assert_metadata",
+      "path": "experiments/local_maintenance_task_navigation/focused.py",
+      "span": [
+        4591,
+        5283
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+      "bytes": 692,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "test_inventory_charged_to_prompt_budget",
+      "path": "experiments/local_maintenance_task_navigation/focused.py",
+      "span": [
+        5700,
+        6549
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+      "bytes": 849,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "RepositoryCodingHost.__init__",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        8142,
+        11506
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+      "bytes": 3364,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "RepositoryCodingHost.build_request",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        11797,
+        12680
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+      "bytes": 883,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "RepositoryCodingHost.prepare",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        12688,
+        17325
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+      "bytes": 4637,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "RepositoryCodingHost.apply",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        26535,
+        29163
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+      "bytes": 2628,
+      "partial": false
+    },
+    {
+      "trigger": "host",
+      "tool": "ScopedSourceTool",
+      "name": "SourceScope",
+      "path": "src/devtools/tools/source.py",
+      "span": [
+        990,
+        3212
+      ],
+      "snapshot": "4bb834af513acfcc65c285346f76e7fad2c3fa765b6587125442348f5e9262d0",
+      "content_identity": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+      "bytes": 2222,
+      "partial": false
+    }
+  ],
+  "active_sources": 7,
+  "hidden_oracle_disclosed": false,
+  "live_model_calls": 0,
+  "scripted_preflight_calls": 1,
+  "edits": 0,
+  "checks": 0
+}

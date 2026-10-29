@@ -76,3 +76,9 @@ documents optional `NavigationPolicy`, bounded initial objective-derived candida
 explicit outlines and correlated allowance refusals. It composes existing search,
 native Tools and exact source witnesses. Candidate metadata is incomplete and does
 not implement the complete initial resource inventory obligation.
+
+The [investigation-transition contract](../../../../../docs/development/investigation-transition.md)
+adds opt-in `ProjectionPolicy.report_source_state`. Active ranges and repeated
+disclosures are projected from existing authenticated bindings and previous
+active availability. The bounded host annotation confers no source witness or
+Tool authority, changes no model choice, and consumes the same request budget.

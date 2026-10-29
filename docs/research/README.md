@@ -279,3 +279,11 @@ It does not rewrite the prior cohesion result or establish live effectiveness.
 interface diagnosis and immutable-history comparison. A [new protocol](../../experiments/local_maintenance_task_navigation/protocol.md)
 preflights one genuine B-0035 attempt after protected validation, without altering
 the previous failed result or its authorized recovery/unknown receipt qualification.
+
+## Investigation-to-implementation diagnostic
+
+[Source-grounded diagnosis](../development/investigation-transition.md) compares
+provider choice, working-set eviction, precise units and task difficulty. The
+[controlled protocol](../../experiments/coding_transition/protocol.md) tests a
+host-selected coherent source set; it cannot establish autonomous discovery or
+completed B-0035 maintenance. Earlier frozen attempts remain unchanged.

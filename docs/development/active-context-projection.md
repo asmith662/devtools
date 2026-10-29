@@ -237,3 +237,11 @@ same projection lifecycle. The original delivery evidence above remains frozen.
 Deterministic-only behavior remains the default; native boundaries and exact
 active source witnesses remain authoritative. Adaptive policy and live behavioral
 assessment are still separate work.
+
+## Optional active-source status
+
+The [investigation-transition contract](investigation-transition.md) documents
+`ProjectionPolicy.report_source_state`. Its bounded, ephemeral host annotation
+reports current selected ranges, omitted disclosure records and exact repeated
+disclosures. It is charged to complete-request capacity, never source evidence
+or retained native history. Default behavior and inference settings are unchanged.
