@@ -326,3 +326,14 @@ No model-authored inventory implementation, new grant, status transition or
 parent closure is implied. B-0035 and broader task-directed navigation remain
 open. The separate grading owner was released only after explicit human consent
 through default-No recovery; missing grading exit receipts remain unknown.
+
+## Verified publication - 2026-10-29
+
+Ordinary non-force publication was independently verified at
+`75d511694bf2971645c7fca3f3fb2134514f19b0`, containing protected implementation
+`e3be8f8e7890ede763ba5770c7ac08621c57d294`. All 1,189 physical gate inputs and
+accepted source/test blobs still match. The explicit human-authorized default-No
+recovery released the grading owner without redispatch or authority transfer.
+The failed evaluation remains unchanged: ten metadata pages, zero source reads,
+proposals, edits or worker checks. Missing grading-wrapper exit receipts remain
+unknown. No model-authored code, B-0035 closure or next increment is implied.
