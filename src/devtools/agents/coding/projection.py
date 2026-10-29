@@ -360,7 +360,9 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
         else:
             priority, reason = 1, "host-classified-metadata"
         candidates.append((priority, first, end, reason))
-    triggered = size() > policy.trigger_bytes
+    triggered = (
+        size() if policy.report_source_state else original
+    ) > policy.trigger_bytes
     if triggered:
         for priority, first, end, reason in sorted(candidates):
             if size() <= policy.target_bytes:

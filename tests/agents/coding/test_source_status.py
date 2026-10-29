@@ -16,15 +16,21 @@ from devtools.agents.coding.models import CodingProgress
 from devtools.agents.coding.projection import (
     ProjectionCapacityError,
     ProjectionPolicy,
+    project_request,
     request_bytes,
 )
 from devtools.context import Repository, RepositoryResourceAddress
 from devtools.core.paths import resolve_path
 from devtools.core.time import Duration
-from devtools.models.interaction import InteractionSource, ModelRequest, ModelResponse
+from devtools.models.interaction import (
+    InteractionSource,
+    ModelRequest,
+    ModelResponse,
+    PromptMessage,
+)
 from devtools.resources.filesystem import TextFile, write
 from tests.agents.coding.test_navigation import navigation_host
-from tests.agents.coding.test_projection import acquire, configured
+from tests.agents.coding.test_projection import acquire, configured, metadata
 from tests.agents.coding.test_repository import call
 
 if TYPE_CHECKING:
@@ -222,6 +228,29 @@ def test_protected_minimum_includes_status_and_failure_keeps_history(
 def test_invalid_status_policy_is_not_truthy_coerced() -> None:
     with pytest.raises(ValueError, match="policy"):
         ProjectionPolicy(1000, 900, report_source_state=1)  # type: ignore[arg-type]
+
+
+def test_disabled_status_preserves_existing_semantic_trigger(tmp_path: Path) -> None:
+    async def run() -> None:
+        host = configured(tmp_path)
+        metadata(host, "old", "known metadata")
+        await acquire(host)
+        request = host.build_request(tuple(host.messages))
+        before = request_bytes(request)
+        result = project_request(
+            request,
+            policy=ProjectionPolicy(before + 1, before),
+            hard_bytes=before + 3000,
+            snapshot=host.scope.snapshot,
+            sources=host._source_messages,  # noqa: SLF001 -- original host bindings
+            summarized_indices=frozenset({1, 2}),
+            summary=PromptMessage("assistant", "qualified notes " * 1000),
+        )
+        assert not result.triggered
+        assert result.status == "insufficient"
+        assert result.omitted_exchanges == ((1, 3, "semantic-summary"),)
+
+    asyncio.run(run())
 
 
 def test_status_tracks_partial_text_and_changed_snapshot_without_witness_credit(
