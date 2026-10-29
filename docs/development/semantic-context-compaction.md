@@ -269,3 +269,10 @@ reported push permission, no protected main rule and no additional rules/ruleset
 No PR, bypass, fabricated approval or review was used. Tracked worktree/index were
 clean, existing forensic untracked files retained, and historical remote refs
 preserved. This subsequent documentation-only closeout changes no executable input.
+## Subsequent adaptive increment
+
+Implementation 3 now supplies an optional [host-owned adaptive policy](adaptive-context-compaction.md)
+over this operation. Explicit requests remain supported; default configuration
+still spends no auxiliary call. The [real comparison](../../experiments/context_compaction/REPORT.md)
+observed two format refusals and safe fallback, not useful summary consumption.
+The Implementation 2 claims and validation below retain their historical scope.

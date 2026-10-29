@@ -1414,3 +1414,14 @@ repair consumption and safe deterministic fallback. Adaptive policy, real summar
 fidelity, first-request inventory, Evidence durability, restart, broader A+C and
 observation Option B remain separate. No status, maturity, dependency, grant,
 approval or parent closure is inferred. `integration:semantic-context-compaction:dfe62a3e:20261028`.
+## Adaptive Context assessment checkpoint — 2026-10-29
+
+[Existing projection and semantic mechanisms](../../development/adaptive-context-compaction.md)
+now have an opt-in conservative host policy; Context continues to own source
+representation and exact availability. The [local comparison](../../../experiments/context_compaction/REPORT.md)
+fit the same 40,010-byte history into 4,306 bytes, but neither real auxiliary
+summary passed the format contract. No summary conferred source evidence,
+permissions or task completion. Threshold optimality and semantic continuation
+benefit remain open. All 188 historical RI-version obligations, sealed evaluations,
+source-grounding and broader A+C decisions retain their original ownership.
+This checkpoint changes no maturity, dependency, approval or parent status.

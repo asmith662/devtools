@@ -668,3 +668,24 @@ research confidence above nor rescues Case 0003. Increment 3's adaptive strategy
 thresholds, timing and separately authorized behavioral/live assessment remain
 pending. No provider-native opaque state, new persistence or observation-policy
 change is implied.
+## Adaptive implementation and real continuation assessment (2026-10-29 UTC)
+
+The [adaptive contract](../development/adaptive-context-compaction.md) extends
+the existing coding-host projection and semantic operation with an opt-in,
+host-valued omission policy. It retains the established ownership and invariants;
+there is no new Context representation, inference provider, history store or loop.
+
+The [frozen local assessment](../../experiments/context_compaction/REPORT.md)
+compared three treatments on one authored pressure/working-state history.
+Deterministic projection reduced 40,010 to 4,306 bytes. Both real summaries used
+Markdown fences and were refused by the strict JSON contract. Their principal
+claims were supported by the supplied records, but neither was adopted or consumed.
+One deterministic-fallback continuation passed focused and held-out checks; two
+stopped on invalid source ranges. No semantic outcome advantage is established.
+
+This is new local evidence, not a revision of the upstream research claims or
+original Cases 0001–0003. Threshold values remain explicit host choices without
+empirical optimality. No live retry, hidden normalization, replacement summary or
+Codex repair improved the reported treatments. Structured-output compliance and
+source-range usability are concrete next decisions; general adaptive efficacy,
+durable recovery, Evidence integration and provider-native compaction remain open.

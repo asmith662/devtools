@@ -81,7 +81,12 @@ and 5 held-out cases; two treatments stopped on invalid source ranges. No live
 repair was needed or demonstrated. Threshold optimality and semantic benefit
 remain unestablished. Keep the policy opt-in, with no universal threshold defaults.
 
-Qwen's application adapter continues to use its original continuation projection
+Qwen's `apps/qwen/turns/loop.py::_LegacyHost` continues to call
+`apps/qwen/continuation.py::select_messages` and the shared coding process through
+its original task/journal representation. Adopting neutral `RepositoryCodingHost`
+projection would require reconciling those message/source bindings and legacy
+prompt projection in `apps/qwen/turns/prompt.py`; it is not just passing a new
+configuration value. The application adapter continues to use its original continuation projection
 while sharing the coding process; this change does not alter task hashes or claim
 full adapter adoption. The new live consumer is the neutral repository host with
 the existing local ModelInteraction. Deterministic maintained tests exercise
@@ -92,3 +97,33 @@ argument feedback. Summary format compliance deserves a separate bounded decisio
 before another semantic-continuation comparison. No additional live trial, parser
 relaxation, provider change, durable recovery, broad Evidence integration or
 observation Option B was introduced to improve this result.
+
+## Committed validation
+
+Implementation `7cf1eb79dc638dece63ae80971d3de342758f71b`, tree `d89481534a3bd849ba1e3562f9f820e8498dd311`, passed the unchanged command
+`uv run python scripts/validate_development.py`: **================ 3769 passed, 2 skipped in 1514.92s (0:25:14) =================**.
+Started `2026-10-29T01:32:00.717422+00:00`, finished `2026-10-29T01:57:18.034117+00:00`, elapsed
+1517.038 seconds, exit 0. Configured production line/branch coverage is
+100%, with 0 missing lines and 0 missing
+branches. All 1054 physical validation inputs remained unchanged.
+Supported Ruff/formatting, strict mypy (595 files) and layout passed on that same
+committed tree. No selector, coverage threshold, exclusion or configuration changed.
+
+Before implementation, 251 baseline tests passed. The broad focused suite passed
+1,264 tests; its capture correctly flagged a package-document update during the
+run, so it is not claimed as immutable-input evidence. The final protected gate
+supersedes that limitation. The final semantic/adaptive diagnostic suite passed
+91 tests and covered all compaction branches; its subset naturally failed the
+unchanged whole-production coverage threshold, which was never lowered.
+
+Windows Python 3.14.3, pytest 9.1.1, coverage 7.15.4, Ruff 0.16.2, mypy 2.3.0,
+uv 0.12.2 and Git 2.53.0.windows.2 were recorded. This is not cross-platform
+certification or general live-model effectiveness. Exact commands, versions,
+source/test blobs, physical hashes, times, outcomes and preservation qualifications
+are in the [receipt](../research/code-audit/adaptive-context-compaction-20261029.json).
+
+Canonical Intake remains at 68 valid chains; 903 RI rows, thirteen forensic
+records, original local cases and historical refs are preserved. JSON/JSONL,
+new links, layout and whitespace pass; two old B-0002 scratch links remain
+qualified. Existing B-0002/B-0035/B-0043 stay open, as do the 188 historical
+RI-version obligations and separate recovery/Evidence/Option B/A+C decisions.

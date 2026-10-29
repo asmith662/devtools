@@ -175,3 +175,15 @@ repair consumption and safe deterministic fallback. Adaptive policy, real summar
 fidelity, first-request inventory, Evidence durability, restart, broader A+C and
 observation Option B remain separate. No status, maturity, dependency, grant,
 approval or parent closure is inferred. `integration:semantic-context-compaction:dfe62a3e:20261028`.
+## Adaptive Context assessment checkpoint — 2026-10-29
+
+The authorized [policy increment](../../development/adaptive-context-compaction.md)
+and [frozen comparison](../../../experiments/context_compaction/REPORT.md) retain
+one real fallback coding success and two source-range refusals. Both auxiliary
+summaries were format-rejected; no semantic continuation benefit is established.
+The concrete next usability pressure is exact file/range discovery and qualified
+pre-effect invalid-argument feedback. This is compatible with the existing initial
+inventory owner, not a new grant or duplicate proposal. Summary format compliance
+is a separate bounded contract question. Broader Tool exposure, first-request
+inventory, authority and protected-validation obligations stay open. Publication
+evidence will identify the accepted checkpoint separately; this entry grants none.

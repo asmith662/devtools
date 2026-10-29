@@ -232,3 +232,8 @@ and Graph3 capture recovery/adverse ranking. Original evidence is authenticated
 without historical replay. One new pending missing-witness analysis bug and
 eight advisory updates retain canonical Intake. Next is the exact101-path
 Cases0011/0014/0015 cohort;354 experimental paths remain, not RI completion.
+## Adaptive Context assessment
+
+[The frozen local comparison](../../experiments/context_compaction/REPORT.md)
+and [implemented policy](../development/adaptive-context-compaction.md) distinguish
+safe deterministic fallback from unestablished semantic continuation benefit.

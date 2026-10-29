@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-29T01:59:43.794539+00:00",
+  "qualification": "Post-run independent Git verification: singleton initial commits retained; frozen source hashes and clean A/B/C fixture states agree. The initial oracle produced an untracked __pycache__ in freeze-task; it is retained and not a model edit. Not a contemporaneous pre-inference Git receipt.",
+  "repositories": {
+    "freeze-task": {
+      "head": "eb47ffcc2c274c65f6d1ada72cf8400f86cfb849",
+      "tree": "3e952660d7ca44503970e965e0e70d7aeb43c0e1",
+      "commits": "1",
+      "status": "?? __pycache__/",
+      "source_hashes": {
+        "focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+        "reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+        "rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+      }
+    },
+    "A": {
+      "head": "0e30a1baa8f5d9b2df3e6e77da4bff8c731b83c7",
+      "tree": "3e952660d7ca44503970e965e0e70d7aeb43c0e1",
+      "commits": "1",
+      "status": "",
+      "source_hashes": {
+        "focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+        "reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+        "rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+      }
+    },
+    "B": {
+      "head": "84ace0546181347e43b2d3a2c644731937926f69",
+      "tree": "3e952660d7ca44503970e965e0e70d7aeb43c0e1",
+      "commits": "1",
+      "status": "",
+      "source_hashes": {
+        "focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+        "reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+        "rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+      }
+    },
+    "C": {
+      "head": "06c0dc1a5a8d72da2a5fdf8694189a06f951a6d0",
+      "tree": "3e952660d7ca44503970e965e0e70d7aeb43c0e1",
+      "commits": "1",
+      "status": "",
+      "source_hashes": {
+        "focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+        "reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+        "rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+      }
+    }
+  }
+}

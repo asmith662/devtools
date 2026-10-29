@@ -956,3 +956,10 @@ and [cross-branch review ledger](research/code-audit/README.md) distinguish
 inventory, exact-version source inspection, tests, consumer tracing, original
 agent use and remaining depth. These are dated research evidence, not competing
 architecture/source/backlog authorities. Other domain audits remain scheduled.
+## Adaptive Context continuation checkpoint
+
+[Adaptive policy contract](development/adaptive-context-compaction.md): opt-in
+host-valued omission, independent auxiliary budgets and safe fallback.
+[Real local comparison](../experiments/context_compaction/REPORT.md): two raw
+summaries refused, one successful deterministic fallback, no measured semantic
+benefit. Original research and frozen historical cases retain their authority.

@@ -48,6 +48,13 @@ These are provider-reported counts, separate from serialized host bytes and
 measured input counts. Cache/reasoning counts are unavailable, not inferred zero.
 No monetary-cost estimate or hardware throughput generalization is made.
 
+The neutral host's 4,306-byte first request becomes 4,439 bytes after the
+experiment adapter binds the unchanged provider sampling settings. The adapter
+independently enforces the same 32,768-byte hard ceiling on that effective
+ModelRequest before entry. Both auxiliary effective requests are 18,030 bytes
+and measure 3,992 input tokens; all initial acting inputs measure 1,236 tokens.
+These are serialized ModelRequest sizes, not HTTP wire or tokenizer equivalences.
+
 Deterministic projection omitted both authored metadata exchanges, keeping exact
 objective/restrictions, current failed-check result and source disclosures.
 It reclaimed 35,704 bytes (89.24%). No execution was repeated to reconstruct
@@ -75,6 +82,11 @@ to a continuation, and no corrected summary or model retry was substituted.
 Semantic fidelity here is a manual, limited adjudication of two outputs from one
 source history, not a general accuracy result. The acting models had **no** chance
 to use these notes, so H2 is only partially informed and H3 remains untested.
+
+C's opening note associates event-ID suppression with record 3, which only says
+"Retained authored investigation". The paired record 4 supplies that topic; the
+single cited record does not support the full paraphrase alone. This is a concrete
+attribution weakness despite valid digest membership, not an invented execution.
 
 ## Continuation and independent review
 
@@ -111,12 +123,19 @@ automatic auxiliary call bought no demonstrated continuation value and added
 36.6 seconds. Keep adaptive summarization explicitly opt-in; these observations
 do not justify universal thresholds or enabling it on every request.
 
+The host's value label is also a limitation: several facts in the rejected probe
+were redundant with the protected objective. Even an adopted summary might add
+little beyond those exact instructions and source. The policy detects omission
+of host-valued records, not semantic novelty or proven usefulness. Future hosts
+should reserve that label for distinct prior progress; this study cannot justify
+automatic inference merely because omitted text contains a decision or failure.
+
 The highest-leverage next local-agent improvement is bounded source-read usability:
 present exact resource lengths/available next ranges and return recoverable,
 qualified invalid-range feedback before any effect, without widening scope or
 retrying uncertain operations. Two treatments stopped at this boundary. Separately,
-summary format compliance needs a small governed contract evaluation (for example,
-existing provider structured-output support versus a strictly specified envelope),
+summary format compliance needs a small governed contract evaluation (inspect
+provider-boundary structured-output support versus a strictly specified envelope),
 not silent parser relaxation or an extra hidden summary call.
 
 The neutral RepositoryCodingHost consumed the adaptive policy through the existing

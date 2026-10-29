@@ -165,3 +165,15 @@ repair consumption and safe deterministic fallback. Adaptive policy, real summar
 fidelity, first-request inventory, Evidence durability, restart, broader A+C and
 observation Option B remain separate. No status, maturity, dependency, grant,
 approval or parent closure is inferred. `integration:semantic-context-compaction:dfe62a3e:20261028`.
+## Adaptive Context assessment checkpoint — 2026-10-29
+
+The authorized [adaptive compaction increment](../../development/adaptive-context-compaction.md)
+uses the existing neutral coding host and semantic operation. Host-valued omitted
+records, explicit pressure/reserve, auxiliary ceilings, cache validity and failure
+suppression are now implemented locally in `7cf1eb79`. The
+[real comparison](../../../experiments/context_compaction/REPORT.md) did not adopt
+either generated summary; one fallback candidate passed independent checks.
+This is a bounded mechanism and qualified assessment, not validated universal
+strategy selection or completion of reusable-agent architecture. Qwen legacy
+adapter migration, recovery/Evidence, Option B and broader A+C remain separate.
+No status, grant, approval or parent closure is inferred before delivery evidence.

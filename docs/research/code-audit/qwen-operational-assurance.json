@@ -4063,6 +4063,81 @@
       "report": "docs/development/semantic-context-compaction.md",
       "receipt": "docs/research/code-audit/semantic-context-compaction-20261028.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "id": "adaptive-context-7cf1eb79",
+      "source": "7cf1eb79dc638dece63ae80971d3de342758f71b",
+      "receipt": "docs/research/code-audit/adaptive-context-compaction-20261029.json",
+      "scope": "Neutral host adaptive policy and frozen local comparison; Qwen legacy adapter compatibility only; no original review credit transferred",
+      "changed_files": [
+        {
+          "path": "src/devtools/agents/coding/compaction/__init__.py",
+          "blob": "ab9d93e41d6b5a33dfd0c061a0517ada41412a25",
+          "sha256": "df4499dd9f0e293d6f671d414c38bb5294a95ee06574032607b30a67cd304343",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": []
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/adaptive.py",
+          "blob": "f50a030ece874b5b659614379784f7aaa12413ae",
+          "sha256": "b3b64c590a6651187225fd7151d39f654c7758b47b67e5b3f57c81ca6c6214c1",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": [
+            "__post_init__",
+            "assess"
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/models.py",
+          "blob": "886991c88f4d74e89901a09cbffce67841b375c5",
+          "sha256": "cf7c4583edf5d00a1e446b8f4dd0ed2c90f625a4ec99aac1d597605e3deedf99",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": [
+            "__post_init__",
+            "__post_init__"
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/operation.py",
+          "blob": "080df6712631c7c912eb4892db7897bfd25ca43b",
+          "sha256": "cbd9822689bbf0c7d73ec10221f601689722fd1bf575e0c58e205c9cea892c44",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": [
+            "__init__",
+            "protect",
+            "project",
+            "_automatic",
+            "_reuse",
+            "_input",
+            "build"
+          ]
+        },
+        {
+          "path": "src/devtools/agents/coding/docs/overview.md",
+          "blob": "2663de61ee5904a532e0c911345b7e4b09ea41af",
+          "sha256": "e6c774c4c0ae196ac4e4300194201e960c09f99655bd826522e6a891e451c914",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": []
+        },
+        {
+          "path": "tests/agents/coding/compaction/test_adaptive.py",
+          "blob": "1c78cc0ce3a1bf5b3c6ad75c1e4fe1b56526aeb4",
+          "sha256": "79167051c2c58457a60b7bf070eb8c38cdacf109698b5b0547062e59b9ac764a",
+          "review": "complete changed body and actual callers; prior frozen credit retained separately",
+          "functions": [
+            "test_thresholds",
+            "test_automatic_real_host_cache_and_history",
+            "test_avoids_unnecessary_inference",
+            "test_invalid_host_value_preserves_fallback",
+            "test_failed_strategy_not_automatically_repeated",
+            "test_budget_and_protected_overflow",
+            "test_changed_prefix_reassessed_without_mutating_original",
+            "test_disabled_permission_and_unaffordable_input",
+            "test_independent_coding_process_consumes_automatic_notes",
+            "send"
+          ]
+        }
+      ]
     }
   ]
 }
