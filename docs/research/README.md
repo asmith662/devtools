@@ -245,3 +245,12 @@ safe deterministic fallback from unestablished semantic continuation benefit.
 [receipt](code-audit/local-agent-reliability-20261029.json) record the bounded
 source-read and summary-envelope corrections, including negative live evidence
 and the supervisor-authored oracle limitation. No earlier result is rewritten.
+
+## Trustworthy supervisor feedback — 2026-10-29
+
+[Preflight contract](../development/oracle-integrity-preflight.md) and
+[frozen maintenance report](../../experiments/local_maintenance_feedback/REPORT.md)
+separate the corrected supervisory process from an unsuccessful real worker
+attempt. Original Reliability-0001 remains unchanged; independent oracle
+verification, atomic overlap characterization and source-size refusals are
+distinct evidence. No new compaction or editing mechanism is inferred.

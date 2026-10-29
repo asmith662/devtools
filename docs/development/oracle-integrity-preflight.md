@@ -83,4 +83,30 @@ consumer; it does not demonstrate successful local maintenance or effective
 validation-feedback repair. Source-owner self-editability is the next measured
 constraint. Original cases, limits, adaptive policy, effect authority and
 historical outcomes remain unchanged. The complete protected validation receipt
-will identify the committed implementation and physical inputs separately.
+identifies the committed implementation and physical inputs separately.
+
+## Committed validation
+
+The unchanged `uv run python scripts/validate_development.py` gate passed
+**3830 tests, 2 optional skips**, with configured **100% production
+line/branch coverage**, on committed implementation
+`9aae92ca8ac176c3a15940028b7a64a671da1ba1` (tree
+`18236317f4086eb21c0bc53f606ca362e912841d`). The captured command ran from
+`2026-10-29T14:37:13.759031+00:00` to `2026-10-29T14:59:38.148761+00:00`,
+elapsed 1344.156475 seconds, exit 0. Physical input hashes remained
+unchanged. The [machine-readable receipt](../research/code-audit/supervisor-feedback-20261029.json)
+records exact commands, versions, source/test blobs, input identities and outcomes.
+
+The focused suite passed 439 tests. Ruff, supported formatter checks, strict
+mypy and repository layout passed on the same committed executable inputs.
+The independent retained-attempt verifier passed without inference or effect
+replay. JSON/JSONL, canonical Intake, local links, whitespace, original-case,
+forensic and historical-reference checks are recorded separately. Python 3.14.3
+on Windows was tested; no new comprehensive Python 3.12 compatibility result is
+claimed. Retained experiment tests were hashed for preservation but remained
+excluded from protected collection under the unchanged profile.
+
+These checks establish the supported preflight implementation and existing
+repair semantics, not successful B-0035 maintenance. Documentation-only closeout
+preserves the validated executable inputs; actual accepted-main publication is
+independently recorded in the receipt after ordinary Git integration.

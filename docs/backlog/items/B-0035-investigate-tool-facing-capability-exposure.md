@@ -228,3 +228,21 @@ Its focused oracle defect is preserved and repair conclusions remain qualified.
 Post-hoc offline normalization and scripted non-Qwen consumption are separately
 identified. Context fidelity, truthful repair feedback, Evidence/recovery and
 broader reusable-agent obligations remain open.
+
+## Supervised maintenance checkpoint — 2026-10-29
+
+The authorized [oracle-integrity increment](../../development/oracle-integrity-preflight.md)
+provides finite independently cross-checked expectations and required preflight
+controls. The [one frozen B-0035 attempt](../../../experiments/local_maintenance_feedback/REPORT.md)
+made eight real requests and two source-grounded proposals. Both were refused
+at the unchanged 32,768-byte resulting-source ceiling: the existing owner was
+32,648 bytes, and proposals were 32,990/33,568 bytes. No source change, candidate
+validation, effective repair or model-authored integration occurred. The original
+inventory obligation stays open; no Codex substitute was supplied.
+
+Existing cohesion/self-editability pressure now has direct operational evidence
+in the reusable host. Recommend a separately authorized coherent extraction,
+not higher limits or another compaction policy. B-0035/B-0043, existing cohesion,
+Evidence/recovery and historical RI obligations remain open. This checkpoint
+creates no proposal, grant, approval, status change or parent closure. Delivery
+of the preflight implementation will be recorded after accepted-main validation.

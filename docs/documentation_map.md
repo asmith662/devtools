@@ -971,3 +971,11 @@ known range-refusal feedback and explicit structured generation/envelope policy.
 [Fresh verification](../experiments/local_agent_reliability/REPORT.md) retains
 strict summary rejection, usable source reads and the disclosed focused-oracle
 error. Offline normalization is separate from the unchanged primary attempt.
+
+## Oracle integrity and supervised maintenance
+
+[Oracle preflight](development/oracle-integrity-preflight.md) describes the
+finite Evaluation comparison, required independent controls and live-entry gate.
+[Maintenance-feedback-0001](../experiments/local_maintenance_feedback/REPORT.md)
+records a trustworthy but unsuccessful real B-0035 attempt. Two oversized
+proposals were refused; no model-authored production change was integrated.
