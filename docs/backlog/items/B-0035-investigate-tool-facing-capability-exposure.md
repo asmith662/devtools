@@ -347,3 +347,13 @@ recovery released the grading owner without redispatch or authority transfer.
 The failed evaluation remains unchanged: ten metadata pages, zero source reads,
 proposals, edits or worker checks. Missing grading-wrapper exit receipts remain
 unknown. No model-authored code, B-0035 closure or next increment is implied.
+
+## Authorized task-directed navigation increment - 2026-10-29
+
+The [bounded host integration](../../development/task-directed-navigation.md)
+reuses existing file/symbol search for initial task candidates and makes global
+outline browsing explicit under a finite host allowance. This is incomplete
+metadata and does not implement B-0035's complete inventory. A separately
+preflighted [maintenance protocol](../../../experiments/local_maintenance_task_navigation/protocol.md)
+will record actual model use if protected validation permits entry. No grant,
+proposal/status transition, parent closure or model success is implied.

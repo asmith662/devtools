@@ -29,8 +29,12 @@ from devtools.agents.coding.models import (
 from devtools.agents.coding.navigation import (
     FIND,
     READ_UNIT,
-    navigation_feedback,
+    TASK_FIND,
+    NavigationPolicy,
+    acquire_candidates,
     navigation_request,
+    prepare_navigation,
+    task_selection,
     unit_read_request,
 )
 from devtools.agents.coding.projection import (
@@ -62,9 +66,7 @@ from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool
 from devtools.tools.source import (
-    ScopedSourceNavigationTool,
     ScopedSourceTool,
-    SourceNavigationRequest,
     SourceReadRefusal,
     SourceReadRequest,
     SourceScope,
@@ -248,6 +250,7 @@ class RepositoryCodingHost:
         projection: ProjectionPolicy | None = None,
         summary: SummaryCompaction | None = None,
         navigation: bool = False,
+        navigation_policy: NavigationPolicy | None = None,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
@@ -259,6 +262,10 @@ class RepositoryCodingHost:
             raise ValueError(msg)
         self.projection = projection
         self.navigation = navigation
+        if navigation_policy is not None and not navigation:
+            msg = "Task navigation policy requires native navigation."
+            raise ValueError(msg)
+        self.navigation_policy = navigation_policy
         if summary is not None and projection is None:
             msg = "Semantic compaction requires active Context projection."
             raise ValueError(msg)
@@ -317,7 +324,11 @@ class RepositoryCodingHost:
                     _READ,
                     _EDIT,
                     _CHECK,
-                    *((FIND, READ_UNIT) if self.navigation else ()),
+                    *(
+                        (TASK_FIND if self.navigation_policy else FIND, READ_UNIT)
+                        if self.navigation
+                        else ()
+                    ),
                 )
             ),
         )
@@ -326,6 +337,12 @@ class RepositoryCodingHost:
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
+        prepare_navigation(
+            self.messages,
+            self.index,
+            self.objective.text,
+            self.navigation_policy,
+        )
         request = self.build_request(tuple(self.messages))
         if self.projection is not None:
             policy = self.projection
@@ -505,36 +522,32 @@ class RepositoryCodingHost:
         for call in response.tool_calls:
             effect = self.progress.claim_action(call.provider_call_id)
             if self.navigation and call.name == FIND.name:
-                selection = navigation_request(
-                    _arguments(
-                        call.arguments_json,
-                        set(),
-                        optional=frozenset({"path", "query", "mode", "offset"}),
+                values = _arguments(
+                    call.arguments_json,
+                    set(),
+                    optional=frozenset({"path", "query", "mode", "offset"})
+                    | (
+                        frozenset({"browse"}) if self.navigation_policy else frozenset()
                     ),
                 )
-
-                def selected_navigation(
-                    _: str,
-                    selected: SourceNavigationRequest = selection,
-                ) -> SourceNavigationRequest:
-                    return selected
-
-                units = await execute_model_tool_call(
+                policy = self.navigation_policy
+                selection = (
+                    task_selection(values, self.objective.text)
+                    if policy
+                    else navigation_request(values)
+                )
+                result = await acquire_candidates(
                     call,
-                    invocation=_Invocation(FIND, selected_navigation),
-                    tool=ScopedSourceNavigationTool(self.scope, self.index),
+                    selection=selection,
+                    index=self.index,
+                    scope=self.scope,
                     admit=self.authorize,
-                    runner=ToolRunner(),
+                    maximum_bytes=self.objective.disclosure_bytes,
+                    policy=policy,
+                    messages=self.messages,
+                    progress=self.progress,
                 )
-                self._feedback(
-                    call,
-                    navigation_feedback(
-                        units,
-                        self.index,
-                        offset=selection.offset,
-                        maximum_bytes=self.objective.disclosure_bytes,
-                    ),
-                )
+                self._feedback(call, result)
             elif call.name in {_READ.name, READ_UNIT.name}:
                 tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
                     ScopedSourceTool(

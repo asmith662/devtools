@@ -106,3 +106,8 @@ Agents' neutral coding host supplies the native metadata projection and resolves
 an exact current unit selection into `SourceReadRequest`. Actual acquisition
 still uses `ScopedSourceTool` and Context materialization. See the
 [contract and consumer evidence](../../../../docs/development/source-navigation-continuity.md).
+
+`MAXIMUM_NAVIGATION_QUERY_CHARACTERS` exposes the existing scoped query bound
+to higher composition layers. Agents can select a bounded task query and supply
+its own finite outline policy; neither source Tool owns task planning or grants
+source/edit authority from navigation metadata.

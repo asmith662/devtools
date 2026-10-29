@@ -70,3 +70,9 @@ binds a current unit and snapshot to the existing exact source Tool. Metadata
 does not grant source or edit credit. Generic range reads and existing projection,
 semantic/adaptive compaction and custody remain authoritative. The default
 native surface and legacy Qwen application policy remain unchanged.
+
+The [task-directed navigation contract](../../../../../docs/development/task-directed-navigation.md)
+documents optional `NavigationPolicy`, bounded initial objective-derived candidates,
+explicit outlines and correlated allowance refusals. It composes existing search,
+native Tools and exact source witnesses. Candidate metadata is incomplete and does
+not implement the complete initial resource inventory obligation.

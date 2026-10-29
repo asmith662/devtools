@@ -12,7 +12,7 @@ from devtools.context.retrieval import search_repository_source
 from devtools.core.paths import resolve_path
 from devtools.tools.errors import ToolInputError
 
-_MAXIMUM_QUERY_CHARACTERS = 256
+MAXIMUM_NAVIGATION_QUERY_CHARACTERS = 256
 
 if TYPE_CHECKING:
     from devtools.context import RepositoryResourceAddress, RepositorySnapshot
@@ -151,7 +151,7 @@ class ScopedSourceNavigationTool:
         if (
             self.index.snapshot != self.scope.snapshot
             or not isinstance(arguments.query, str)
-            or len(arguments.query) > _MAXIMUM_QUERY_CHARACTERS
+            or len(arguments.query) > MAXIMUM_NAVIGATION_QUERY_CHARACTERS
             or arguments.mode not in {"file", "symbol", "window", "mixed"}
             or type(arguments.offset) is not int
             or not 0 <= arguments.offset <= sum(len(v.units) for v in self.index.views)

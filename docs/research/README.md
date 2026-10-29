@@ -272,3 +272,10 @@ the immutable cohesion trace reconstruction, exact-unit integration and scripted
 comparison. [New maintenance protocol](../../experiments/local_maintenance_navigation/protocol.md)
 requires protected implementation validation and oracle preflight before inference.
 It does not rewrite the prior cohesion result or establish live effectiveness.
+
+## Task-directed navigation assessment
+
+[Framework contract](../development/task-directed-navigation.md) records the
+interface diagnosis and immutable-history comparison. A [new protocol](../../experiments/local_maintenance_task_navigation/protocol.md)
+preflights one genuine B-0035 attempt after protected validation, without altering
+the previous failed result or its authorized recovery/unknown receipt qualification.

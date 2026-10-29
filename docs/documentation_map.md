@@ -996,3 +996,10 @@ are separate outcomes; source selection/retention is the next observed pressure.
 connect existing RI representations to the neutral coding host.
 [Prospective maintenance protocol](../experiments/local_maintenance_navigation/protocol.md)
 separates framework validation from the one separately frozen live attempt.
+
+## Task-directed navigation
+
+[Contract and independent measurements](development/task-directed-navigation.md)
+describe objective-derived candidates and host-bounded outline exploration.
+The new [maintenance protocol](../experiments/local_maintenance_task_navigation/protocol.md)
+keeps candidate metadata, B-0035 inventory, source reads and acceptance distinct.
