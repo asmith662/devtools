@@ -254,3 +254,12 @@ separate the corrected supervisory process from an unsuccessful real worker
 attempt. Original Reliability-0001 remains unchanged; independent oracle
 verification, atomic overlap characterization and source-size refusals are
 distinct evidence. No new compaction or editing mechanism is inferred.
+
+## Coding-host cohesion and fresh maintenance — 2026-10-29
+
+[Extraction and edit-size analysis](../development/coding-host-cohesion.md)
+distinguishes maintainable source ownership from general large-file editing
+policy. The [new evaluation](../../experiments/local_maintenance_cohesion/README.md)
+retains a separate identity and oracle preflight; earlier maintenance outcomes
+remain frozen. Production refactoring and local-model task acceptance are
+separate claims.

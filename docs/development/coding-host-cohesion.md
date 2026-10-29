@@ -132,5 +132,14 @@ The separately prepared [new evaluation](../../experiments/local_maintenance_coh
 has passed ten reference checks and the same three focused/five withheld baseline
 assertion failures. Its private feasibility review records a localized existing
 host composition seam, more than 2 KiB file margin, and unchanged region/aggregate
-bounds. It supplies no patch and guarantees no model success. Live entry remains
-blocked until committed extraction validation and input freezing complete.
+bounds. It supplies no patch and guarantees no model success.
+
+The committed extraction `11945801c1f42e2adfc1614f672fc96d3ae400eb`
+passed the unchanged protected development gate on October 29: 3,836 passed,
+two optional skips, 100% configured production line/branch coverage. The command
+took 1,506.195 seconds; its physical inputs stayed unchanged. Supported Ruff,
+formatting, strict mypy and layout checks also passed on that commit. Exact
+commands, identities, timing and physical inputs are in the
+[delivery receipt](../research/code-audit/coding-host-cohesion-20261029.json).
+The maintenance attempt is separately frozen and graded; the extraction does
+not implement B-0035 or establish local-model success.

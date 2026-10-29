@@ -979,3 +979,11 @@ finite Evaluation comparison, required independent controls and live-entry gate.
 [Maintenance-feedback-0001](../experiments/local_maintenance_feedback/REPORT.md)
 records a trustworthy but unsuccessful real B-0035 attempt. Two oversized
 proposals were refused; no model-authored production change was integrated.
+
+## Coding-host cohesion and edit feasibility
+
+[Ownership and size-policy analysis](development/coding-host-cohesion.md)
+separates pure source-batch admission from the repository lifecycle coordinator,
+with maintained imports and unchanged limits. The separately identified
+[maintenance evaluation](../experiments/local_maintenance_cohesion/README.md)
+requires its own preflight, freeze and independent candidate grading.
