@@ -62,6 +62,23 @@ Deterministic tests can establish boundary behavior, not real summary fidelity.
 
 ## Host contract and operational path
 
+```mermaid
+flowchart LR
+    H[Original retained acting facts] --> D[Host-authorized bounded disclosure]
+    D --> M[Separate ModelInteraction]
+    M --> V[Structure and provenance checks]
+    V --> N[Fallible derived notes]
+    H --> P[Existing active projection]
+    N --> P
+    E[Exact policy, recent exchanges and current evidence] --> P
+    P --> Q[Validated affordable Prompt]
+    P --> S[Exact active source witnesses]
+    C[Independent effects and custody] --> E
+```
+
+There is no edge from generated notes to execution authority, source identity,
+check success or custody. Failed optional compaction leaves a valid fallback.
+
 Supply `SummaryCompaction` through `RepositoryCodingHost(summary=..., projection=...)`.
 The configuration contains the selected interaction, a trusted `select(messages)`
 callback returning `SummarySelection(disclose, replace)`, maximum auxiliary calls,
@@ -126,6 +143,15 @@ actual available usage, and the original exception. Strategy outcomes distinguis
 adoption, no eligible input, call-budget exhaustion, prior entry not replayed,
 failure, cancellation and insufficient reduction. `ProjectionOutcome` remains the
 owner of complete request selection, omissions and active source information.
+`partial_coverage` measures coverage of retained message indices by the quoted
+input records. It does not certify full semantic coverage or inclusion of excluded
+provider reasoning; digests identify the exact disclosed record projection.
+Here `entered` means the selected `ModelInteraction.send` was dispatched; it does
+not prove a remote provider accepted or completed inference. The selected source
+identity is bound before entry, including when the interaction later changes its
+reported identity. Summaries with irrelevant or invented references are refused;
+semantic irrelevance or hallucination despite valid citations cannot be certified
+away by schema validation.
 
 Accepted notes may be reused without another model call while their original
 prefix, snapshot and replacement authorization remain valid. The current exact
@@ -141,9 +167,11 @@ acting-model entry. Source currentness and unchanged history are checked again
 after auxiliary await, including on fallback. No partially installed active
 availability, effect replay, budget reset or publication permission is introduced.
 
-Raw auxiliary request/response retention is disabled by default; hashes and
-qualified stage facts remain available. Explicit `retain_payloads=True` retains
-those payloads locally. Original acting history and selected active notes still
+Dedicated raw auxiliary request/response fields are disabled by default; hashes
+and qualified stage facts remain available. Explicit `retain_payloads=True`
+retains those payloads locally. This is not an erasure guarantee: retained original
+exceptions can themselves contain payloads (for example, a JSON decoding error),
+and an interaction may have its own capture policy. Original acting history and selected active notes still
 follow the existing host retention contract. This is not durable Evidence storage,
 a redaction guarantee for arbitrary model output, or a safe export policy for
 exception strings. Hosts control onward retention and must handle sensitive data
@@ -183,3 +211,50 @@ real continuation assessment with frozen local tasks. Provider-native opaque
 compaction, durable restart, broad Evidence storage, observation Option B and
 broader A+C are not delivered. Scripted tests establish boundaries and integration;
 they do not measure real summarizer fidelity or improved coding effectiveness.
+
+## Committed validation and measured evidence
+
+Implementation `dfe62a3ed2ff353ee62e186fdaf31f4d04695bc1`, tree `44dfc06cb590a354f8bfd1d49728a9cc26c7d159`, starts from
+`915d3cd6d3e6029b921fd67cc1d918b9f7217a71`. The unchanged protected command,
+`uv run python scripts/validate_development.py`, ran from `2026-10-29T00:09:03.075583+00:00`
+to `2026-10-29T00:32:19.698062+00:00` in 1396.398 seconds, exit 0:
+**3749 passed, 2 skipped in 1394.21s (0:23:14)**. Configured production coverage is 100%,
+with zero missing lines or branches. No threshold, exclusion, selector,
+scientific protocol or model setting was changed.
+
+Before implementation, 299 baseline tests passed. Broad focused validation then
+passed 846 tests, including Qwen native/prepared/readiness/CLI and closeout;
+144 final targeted tests cover the additional source-binding guard and semantic
+capacity recovery. The final committed gate includes all maintained tests.
+Committed supported Ruff and formatting pass; strict mypy passes 593 files;
+layout passes. Windows Python 3.14.3, pytest 9.1.1, coverage 7.15.4, Ruff 0.16.2,
+mypy 2.3.0, uv 0.12.2 and Git 2.53.0.windows.2 were observed. This is not
+cross-platform or live-provider certification.
+
+The authored projection measurement is 9,320 bytes originally, 1,268 after
+deterministic omission, and 2,098 with cited notes preserving the rejected
+hypothesis. The complete auxiliary input is 9,593 bytes. Its scripted known usage
+is 10 input/20 output tokens, total usage unknown; it is separate from acting
+usage. The guarded actual repair workflow projects 10,418 to 4,150 bytes while
+keeping exact failed-check/current-source feedback. Its three acting calls and
+one auxiliary call all have unknown usage; two real applications and checks
+produce exits 1 then 0 with `checked:7`, then known-source restoration.
+No effectiveness or token-compression claim is inferred from these fixtures.
+
+The [machine-readable receipt](../research/code-audit/semantic-context-compaction-20261028.json)
+retains exact source/test blobs, review depth, 1052 physical protected inputs,
+command timings/exits, request/summary provenance, measured selections, branch
+coverage and qualified failures. Full original-history hashes match. Diagnostic
+subset coverage was used only to locate missing tests; the full gate is unchanged.
+Initial fixture assumptions about refusal feedback/error types and one temporary
+directory rejected by the file-access guard were corrected without weakening
+the production contracts. A trailing-comma lint failure was corrected before
+committed static checks. No failure is reclassified as a product defect.
+
+All three frozen cases, thirteen forensic records, 903 historical RI rows and
+155 historical local refs remain intact. Canonical Intake has 68 valid chains;
+188 historical RI-version obligations remain. JSON/JSONL, changed-document
+links, source identities and whitespace pass. Two preexisting B-0002 links to
+removed root scratch reports remain qualified; no new broken links are added.
+Research and Qwen assurance receive append-only changed-version overlays, with
+no transfer of frozen review credit or broader backlog closure.

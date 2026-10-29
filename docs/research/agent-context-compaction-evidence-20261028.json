@@ -1328,6 +1328,340 @@
       "report": "docs/development/active-context-projection.md",
       "receipt": "docs/research/code-audit/active-context-projection-20261028.json",
       "original_fields_and_prior_overlays_preserved": true
+    },
+    {
+      "reference": "implementation:semantic-context-compaction:dfe62a3e:20261028",
+      "baseline": "915d3cd6d3e6029b921fd67cc1d918b9f7217a71",
+      "implementation": "dfe62a3ed2ff353ee62e186fdaf31f4d04695bc1",
+      "tree": "44dfc06cb590a354f8bfd1d49728a9cc26c7d159",
+      "reviewed": [
+        {
+          "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "baseline_blob": "703c0be877676a9bba9fc06e117ee9d4b79f7418",
+          "current_blob": "9c4490f82da31111a052d48dbc487a64c6d24e31",
+          "physical_sha256": "737d0951c019dabfcea381a09ec2eccdc2378b4e7e736d699dc42e2b5e42f0c3",
+          "bytes": 94554,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+          "baseline_blob": "4e55adc443b5ef67d60994bd3b2eb2750009f851",
+          "current_blob": "1e757d4fd76308a1a6c78b94a3d35e234045cab9",
+          "physical_sha256": "fac9574b84202860a5e38c4dc1adeb4954470ec7dcf46597092bc9f780f3be12",
+          "bytes": 15548,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+          "baseline_blob": "d36d46d81ac9ab7292fdd53481e72664fdac728f",
+          "current_blob": "f2c7667d00e4147938103c834c174171650bd34f",
+          "physical_sha256": "e092d3addb98e0846c51e93e6ccd7ecc549098c641b6b3edfd3dc65e2a950fe7",
+          "bytes": 14561,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/development/active-context-projection.md",
+          "baseline_blob": "4774c2ab7df6e8c4137e0dbe506acebfc91f134c",
+          "current_blob": "34f6838013ba8f4a3d86cfa1143726dde2694778",
+          "physical_sha256": "041acd80c1634af398bda81dc4dadc6096e6aabc3f6f911ea137600285dd3210",
+          "bytes": 15541,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/development/semantic-context-compaction.md",
+          "baseline_blob": null,
+          "current_blob": "5cc48c1ffd7212258de3ebade6bffa416e04562c",
+          "physical_sha256": "bb838ae71b2f8b7d9ca44bc881e17dcabebbbe667f8cbf52eabcc7f86b4bb213",
+          "bytes": 11962,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/documentation_map.md",
+          "baseline_blob": "1db1c344bece08f8c3b2548b2046b8e974584196",
+          "current_blob": "e344cf7762d5fa25077a813e5b1493a7eef55cee",
+          "physical_sha256": "6e112c8a5430008daf8a93e0045c3fe6e0c5a886a4777e5d5a64b2ca894c09ed",
+          "bytes": 92883,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/research/README.md",
+          "baseline_blob": "f3eec7bdb0bdbfb8afb4ec32c0e7530a42b0d454",
+          "current_blob": "f15688f61e8fabfb90b6364f998d1a8c63fe599f",
+          "physical_sha256": "ed6b1d0100af576c2bf85bfcfe0ea33b8fde010ce5cf26158e80b56f9fc2e921",
+          "bytes": 25953,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "docs/research/agent-context-compaction.md",
+          "baseline_blob": "372638443be57c39527ede00d9b7cc68aa764a94",
+          "current_blob": "c366d1e01582f99788442eabd84de1571dce9354",
+          "physical_sha256": "902ad25801ee091080ff51a96b5aab35005facfc5397039fe6fd3ae00071e9a4",
+          "bytes": 54584,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "21cb086d0856f2a800ffd2d54a04d0003b83c971",
+          "physical_sha256": "1960ec224e2c9c0273341a48f76e2ab73f2aea1bf8b3681f9b7d7cf05b598718",
+          "bytes": 238,
+          "functions": [],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/format.py",
+          "baseline_blob": null,
+          "current_blob": "06390b3bd083287ff5fe1681ffde0a2c2e800a6b",
+          "physical_sha256": "32ae6265b427d8a7a938e66e3e48425d2207601892e5cb6eee0f38fa8e80a65b",
+          "bytes": 4827,
+          "functions": [
+            "digest",
+            "record",
+            "_pairs",
+            "validate_summary"
+          ],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/models.py",
+          "baseline_blob": null,
+          "current_blob": "7ff61b7f9932da59d803ac59012672e168374e96",
+          "physical_sha256": "5c29af2051da8d1171e5f2fafe7294c6725c3f13aa42a80920b5fa69ab6c28cc",
+          "bytes": 3767,
+          "functions": [
+            "__post_init__",
+            "__post_init__"
+          ],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/compaction/operation.py",
+          "baseline_blob": null,
+          "current_blob": "7014f6b2e7c448d0bb2c4c82c2deb2f090911e65",
+          "physical_sha256": "c755629f44928e75238f10f76bc53a4a154379848a16c7f6d0617b3228be7b40",
+          "bytes": 11648,
+          "functions": [
+            "__init__",
+            "protect",
+            "project",
+            "_reuse",
+            "_input",
+            "build"
+          ],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/docs/overview.md",
+          "baseline_blob": "6d68349a638318fae2677c13e3cda8d53d678b71",
+          "current_blob": "05fe9679cb1377b650af6af29a0a6817be88028d",
+          "physical_sha256": "5a0ab8143885b8347b0e242d67295a974017a7adc08473bb4c11877c7eeee01b",
+          "bytes": 3464,
+          "functions": [],
+          "review_depth": "DOCUMENTATION_IMPACT_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "baseline_blob": "0c4b7de6a757bc74c535a46d1353023081d97b61",
+          "current_blob": "712a377d1ff2fc667379dbe51403354ce9326afe",
+          "physical_sha256": "00622c2c87aeef674f30845323af00513afa543ca5bcdb081196a20353190f5c",
+          "bytes": 13665,
+          "functions": [
+            "request_bytes",
+            "native_exchange_ranges",
+            "source_feedback",
+            "_current_sources",
+            "project_request",
+            "__post_init__",
+            "target_reached",
+            "__init__",
+            "assembled",
+            "size",
+            "partial"
+          ],
+          "review_depth": "CHANGED_BODY_AND_DIRECT_CONSUMER_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "baseline_blob": "d48e9148c733ea37a9cd6127daab3066b6355aed",
+          "current_blob": "f31c14ab9bbef0762ebaaa96c30fa5cd33a58fe1",
+          "physical_sha256": "ffdf62da098de846638cda308818c55abdbcab1283ec6aafdf91a09321425292",
+          "bytes": 31168,
+          "functions": [
+            "write_source_changes",
+            "_arguments",
+            "__post_init__",
+            "__post_init__",
+            "materialize",
+            "__init__",
+            "validate",
+            "execute",
+            "pairs",
+            "__init__",
+            "_index",
+            "build_request",
+            "prepare",
+            "request_compaction",
+            "receive",
+            "classify",
+            "_read",
+            "_feedback",
+            "acquire",
+            "propose",
+            "apply",
+            "check",
+            "feedback",
+            "finish",
+            "admit",
+            "selected",
+            "summarized"
+          ],
+          "review_depth": "CHANGED_BODY_AND_DIRECT_CONSUMER_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/compaction/__init__.py",
+          "baseline_blob": null,
+          "current_blob": "563b97714a3a37b7fdbd49fc9724eb672bed17f8",
+          "physical_sha256": "5c594fddc1c0df106aee8061eda39469a5a181b15922e01b33a17621628d7ff2",
+          "bytes": 85,
+          "functions": [],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/compaction/fixture.py",
+          "baseline_blob": null,
+          "current_blob": "962a204ce7ff0d3e593ba1f0d79c69ef0cb867d7",
+          "physical_sha256": "04b377fd94d1ec6f1befff484d272b3032512a90591d5d7bc8d24f2423b989da",
+          "bytes": 2698,
+          "functions": [
+            "configuration",
+            "__init__",
+            "send"
+          ],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/compaction/test_semantic.py",
+          "baseline_blob": null,
+          "current_blob": "8ed8ffe854a3d380f5a71bc516350e35c711e143",
+          "physical_sha256": "af32362fa962730eac0e677b3f406de4aa530a6b200f61ae38107a3b2980d7a3",
+          "bytes": 24473,
+          "functions": [
+            "configuration",
+            "setup",
+            "latest",
+            "prepare",
+            "test_explicit_adoption_history_native_and_separate_usage",
+            "test_optional_failure_preserves_exact_valid_fallback",
+            "test_cancellation_propagates_without_projection_installation",
+            "test_bounded_input_never_enters_with_unavailable_material",
+            "test_provider_measurement_explicit_and_separate",
+            "test_protected_partial_and_foreign_replacements_refused",
+            "test_privacy_selection_excludes_unselected_policy_and_reasoning",
+            "test_source_references_cannot_supply_active_witness",
+            "test_missing_configuration_and_constructor_boundary",
+            "test_invalid_envelopes",
+            "test_invalid_selections",
+            "test_structural_and_provenance_refusals",
+            "test_summary_of_acquired_source_does_not_authorize_edit",
+            "test_cached_notes_revalidated_without_auxiliary_replay",
+            "test_multiple_compactions_original_provenance_and_call_budget",
+            "test_changes_and_observation_failure_during_auxiliary_entry",
+            "test_no_strategy_fits_preserves_original_history",
+            "test_partial_input_coverage_and_disjoint_source_catalog",
+            "test_unacknowledged_effect_prevents_auxiliary_entry",
+            "test_disclosure_permission_does_not_imply_replacement_permission",
+            "test_projection_itself_refuses_invalid_semantic_replacement",
+            "test_summary_can_fit_when_deterministic_omission_cannot",
+            "test_summarizer_source_bound_before_entry",
+            "__init__",
+            "send",
+            "measure",
+            "fail",
+            "send",
+            "send"
+          ],
+          "review_depth": "FULL_NEW_BODY",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/fixtures.py",
+          "baseline_blob": "62a4ad35fa6874de4bbdac044fa6cc18f51f60d3",
+          "current_blob": "81152844c88a209ac45c01f2ca25127a82ba0bbf",
+          "physical_sha256": "14c324920ea21abc0c384d844a86f1f4bf5df847baeaa2c4c04e2602d51884d9",
+          "bytes": 18655,
+          "functions": [
+            "scenario",
+            "__init__",
+            "send",
+            "authorize",
+            "apply",
+            "archive",
+            "restore",
+            "readiness",
+            "report",
+            "terminal",
+            "interrupted_check"
+          ],
+          "review_depth": "CHANGED_BODY_AND_DIRECT_CONSUMER_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/independent_host.py",
+          "baseline_blob": "c11f7f0522325c61739cedc30683c2d93ab6923d",
+          "current_blob": "ad67b6884666f1d1737072de28604acb512f36ba",
+          "physical_sha256": "381e16b256b16ee175f0868cedc363d5e5dceead594cb2cbd729c816a6795c8c",
+          "bytes": 3433,
+          "functions": [
+            "guard_files",
+            "main",
+            "find_spec"
+          ],
+          "review_depth": "CHANGED_BODY_AND_DIRECT_CONSUMER_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        },
+        {
+          "path": "tests/agents/coding/test_guarded.py",
+          "baseline_blob": "480eca11a7a6ad80423296c0c3b7e188873e7519",
+          "current_blob": "e3dc1dfac1d205579fc4bd4f7e0f39c27962c4e7",
+          "physical_sha256": "6376a8624fb812d2f5eb70b39d1e7e40c781f511cfc5b4d52c3e3acb34a5d79e",
+          "bytes": 4202,
+          "functions": [
+            "test_guarded_independent_coding_application",
+            "test_guarded_projected_repair_uses_real_source_checks_and_custody",
+            "test_guarded_semantic_repair_consumes_notes_and_exact_failed_check"
+          ],
+          "review_depth": "CHANGED_BODY_AND_DIRECT_CONSUMER_REVIEW",
+          "original_frozen_review_credit_not_transferred": true
+        }
+      ],
+      "report": "docs/development/semantic-context-compaction.md",
+      "receipt": "docs/research/code-audit/semantic-context-compaction-20261028.json",
+      "original_fields_and_prior_overlays_preserved": true
     }
   ]
 }
