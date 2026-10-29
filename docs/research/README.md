@@ -259,7 +259,8 @@ distinct evidence. No new compaction or editing mechanism is inferred.
 
 [Extraction and edit-size analysis](../development/coding-host-cohesion.md)
 distinguishes maintainable source ownership from general large-file editing
-policy. The [new evaluation](../../experiments/local_maintenance_cohesion/README.md)
+policy. The [new evaluation](../../experiments/local_maintenance_cohesion/REPORT.md)
 retains a separate identity and oracle preflight; earlier maintenance outcomes
-remain frozen. Production refactoring and local-model task acceptance are
-separate claims.
+remain frozen. The protected extraction passed; ten real model requests ended
+without an edit after repeated source acquisition. B-0035 remains open.
+Production refactoring and local-model task acceptance are separate claims.

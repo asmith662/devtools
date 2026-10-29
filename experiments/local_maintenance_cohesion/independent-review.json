@@ -1,0 +1,141 @@
+{
+  "at": "2026-10-29T16:12:48.699408+00:00",
+  "candidate_hashes": {
+    "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+    "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+    "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+    "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+    "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+    "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+    "src/devtools/agents/coding/repository.py": "07aa3398cc32ffe507a910a060e32817596340cce8f5e917eb39c12c3a6caea6"
+  },
+  "source_review": {
+    "at": "2026-10-29T16:11:51.674787+00:00",
+    "candidate_hashes": {
+      "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+      "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+      "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+      "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+      "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+      "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+      "src/devtools/agents/coding/repository.py": "07aa3398cc32ffe507a910a060e32817596340cce8f5e917eb39c12c3a6caea6"
+    },
+    "safe_for_fixed_grading": true,
+    "reviewer": "Codex supervisory review under the user task authorization",
+    "rationale": "Every archived source byte equals the frozen validated extraction baseline. There is no model patch, proposal or unrecognized effect. Running the two frozen oracle suites is safe and establishes unchanged missing behavior; it is not model success or human approval.",
+    "candidate_changed": false
+  },
+  "focused": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_cohesion\\focused.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\host-cohesion\\grade-focused.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": [
+      "test_inventory_does_not_bypass_currentness"
+    ],
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_not_duplicated_on_prepare",
+      "test_inventory_charged_to_prompt_budget"
+    ],
+    "errors": [],
+    "skipped": [],
+    "stdout": "FFF.                                                                     [100%]\r\n================================== FAILURES ===================================\r\n_____________________ test_first_request_scoped_inventory _____________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:124: in test_first_request_scoped_inventory\r\n    data = inventory(request)\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n__________________ test_inventory_not_duplicated_on_prepare ___________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:151: in test_inventory_not_duplicated_on_prepare\r\n    assert inventory(first) == inventory(second)\r\n           ^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n___________________ test_inventory_charged_to_prompt_budget ___________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:172: in test_inventory_charged_to_prompt_budget\r\n    with pytest.raises(ValueError, match=\"budget\"):\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE   Failed: DID NOT RAISE ValueError\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_first_request_scoped_inventory\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_inventory_not_duplicated_on_prepare\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_inventory_charged_to_prompt_budget\r\n3 failed, 1 passed in 39.67s\r\n",
+    "stderr": "",
+    "capture_complete": true,
+    "xml_present": true,
+    "valid_pass": false,
+    "junit_suite": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "3",
+      "skipped": "0",
+      "tests": "4",
+      "time": "0.307",
+      "timestamp": "2026-10-29T12:12:01.236541-04:00",
+      "hostname": "asmith"
+    },
+    "timing_qualification": "JUnit suite duration/timestamp and pytest duration retained; external command wall duration was not persisted by the grading helper and is unknown. No execution repeated to fill that capture gap."
+  },
+  "heldout": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_cohesion\\heldout.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\host-cohesion\\grade-heldout.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": [
+      "test_metadata_cannot_authorize_edit"
+    ],
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_native_correlation_and_metadata_coexist",
+      "test_empty_resource_unicode_and_readonly",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": [],
+    "skipped": [],
+    "stdout": "F.FFFF                                                                   [100%]\r\n================================== FAILURES ===================================\r\n______________________ test_current_snapshot_not_cached _______________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:20: in test_current_snapshot_not_cached\r\n    first=inventory(asyncio.run(host.prepare(progress())))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_native_correlation_and_metadata_coexist _________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:45: in test_native_correlation_and_metadata_coexist\r\n    assert inventory(request)['source_acquired'] is False\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n__________________ test_empty_resource_unicode_and_readonly ___________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:57: in test_empty_resource_unicode_and_readonly\r\n    data=inventory(asyncio.run(host.prepare(progress())))\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n______________ test_projection_preserves_metadata_and_objective _______________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:66: in test_projection_preserves_metadata_and_objective\r\n    assert len(inventory(request)['resources'])==2\r\n               ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n_________________ test_utf8_size_differs_from_character_count _________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:72: in test_utf8_size_differs_from_character_count\r\n    row=next(r for r in inventory(asyncio.run(host.prepare(progress())))['resources'] if r['address']=='package/source.py')\r\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_current_snapshot_not_cached\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_native_correlation_and_metadata_coexist\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_empty_resource_unicode_and_readonly\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_projection_preserves_metadata_and_objective\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_utf8_size_differs_from_character_count\r\n5 failed, 1 passed in 0.50s\r\n",
+    "stderr": "",
+    "capture_complete": true,
+    "xml_present": true,
+    "valid_pass": false,
+    "junit_suite": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "5",
+      "skipped": "0",
+      "tests": "6",
+      "time": "0.388",
+      "timestamp": "2026-10-29T12:12:41.533640-04:00",
+      "hostname": "asmith"
+    },
+    "timing_qualification": "JUnit suite duration/timestamp and pytest duration retained; external command wall duration was not persisted by the grading helper and is unknown. No execution repeated to fill that capture gap."
+  },
+  "passes_frozen_behavior": false,
+  "restored": true,
+  "supervisor_repair": false,
+  "known_exact_candidate_only": true,
+  "qualification": "Independent grading of exact archived candidate under canonical Checkout/SourceCustody; acceptance also requires review, supported quality checks and committed protected validation."
+}

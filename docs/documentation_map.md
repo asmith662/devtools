@@ -985,5 +985,7 @@ proposals were refused; no model-authored production change was integrated.
 [Ownership and size-policy analysis](development/coding-host-cohesion.md)
 separates pure source-batch admission from the repository lifecycle coordinator,
 with maintained imports and unchanged limits. The separately identified
-[maintenance evaluation](../experiments/local_maintenance_cohesion/README.md)
-requires its own preflight, freeze and independent candidate grading.
+[maintenance evaluation](../experiments/local_maintenance_cohesion/REPORT.md)
+passed oracle preflight but exhausted ten model requests without proposing an
+edit. The validated production extraction and unsuccessful model maintenance
+are separate outcomes; source selection/retention is the next observed pressure.

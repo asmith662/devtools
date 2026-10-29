@@ -143,3 +143,19 @@ commands, identities, timing and physical inputs are in the
 [delivery receipt](../research/code-audit/coding-host-cohesion-20261029.json).
 The maintenance attempt is separately frozen and graded; the extraction does
 not implement B-0035 or establish local-model success.
+
+## Separately frozen maintenance outcome
+
+[Maintenance-cohesion-0001](../../experiments/local_maintenance_cohesion/REPORT.md)
+used ten real local-model requests, one inventory, two searches and eight source
+reads. It produced no proposal and stopped at the model-call limit. Three source
+ranges were reread after prior exact disclosures were omitted from active input.
+The final read was retained but not consumed. All archived bytes equal baseline;
+three focused and five withheld behavior assertions still fail. No model-authored
+implementation was integrated, and no supervisor replacement was supplied.
+
+The extraction improves admission ownership and practical edit headroom. This
+evaluation does not test a resulting candidate's size because no edit was
+proposed. The next evidence-led boundary is task-relevant source working-set
+selection/retention, using existing retrieval, range and projection mechanisms.
+Neither larger limits nor a new loop follows from this result.

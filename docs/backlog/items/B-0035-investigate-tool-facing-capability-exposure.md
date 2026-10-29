@@ -278,3 +278,21 @@ legitimate edit in a larger file. A future coordinated finite materialization/
 growth profile deserves review under this existing owner; it must preserve
 SourceScope/custody bounds and exact witnessed edits. No limit is raised and no
 general large-file editing contract, new proposal, grant or parent closure follows.
+
+## Post-extraction maintenance observation - 2026-10-29
+
+The separately frozen [Maintenance-cohesion-0001](../../../experiments/local_maintenance_cohesion/REPORT.md)
+ran after the committed extraction passed 3,836 protected tests, two optional
+skips and 100% configured coverage. Ten acting requests acquired five distinct
+source spans and repeated three after active omission. No proposal, edit, worker
+check, repair, semantic summary or model-authored integration occurred. The
+unchanged archive still fails the pre-frozen inventory obligations. B-0035 and
+the broader coding/Context work remain open.
+
+The extraction fixes one ownership pressure and restores practical host edit
+headroom without raising limits. The next observed constraint is task-relevant
+source selection/retention under bounded continuation, not a demonstrated new
+edit-size rejection. Use existing symbol/window retrieval, exact ranges and
+projection to investigate it in separately authorized work. This advisory adds
+no proposal, grant, approval, status transition or parent closure; ordinary
+publication evidence follows only after accepted-main verification.

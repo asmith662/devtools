@@ -9,3 +9,8 @@ no old model attempt is replayed or historical artifact modified.
 The framework owns the actual coding loop, Context, Tool execution and custody.
 The experiment selects the fixed task, local profile, scope, checks and recording.
 The private reference and withheld acceptance are excluded from model scope.
+
+The attempt is now closed. See [report](REPORT.md), [summary](SUMMARY.md),
+[freeze](freeze.json) and [independent verification](verification.json).
+Production extraction succeeded; the model exhausted its request budget without
+editing. B-0035 remains open. No automatic rerun is authorized.

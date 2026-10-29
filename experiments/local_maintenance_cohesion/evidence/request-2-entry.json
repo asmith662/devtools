@@ -1,0 +1,88 @@
+{
+  "number": 2,
+  "at": "2026-10-29T16:09:58.499630+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: first-request repository discoverability\n\nMaintain the existing neutral repository coding host so a newly invoked coding\nmodel can discover the complete host-authorized source surface without a separate\nlisting-only inference round. This is the concrete follow-up recorded in canonical\nB-0035 after local coding Case 0002. Keep all existing public signatures and Tools.\n\nPreserve the original objective as the first message. Include exactly one\nJSON-encoded metadata message, with repository_id, snapshot_id, source_acquired\n(false), and resources. Each resource has address, content_identity, byte_size and\neditable (a boolean from the host's editable subset). Values correspond to the\ncurrent authenticated source scope, including UTF-8 sizes. Include every scoped\nresource and no others. This is a transient model-facing projection, not a new\ndurable schema or source identity. Do not disclose resource content or absolute\nhost paths. Metadata does not acquire source, satisfy readiness or authorize edits.\n\nRepeated preparation and complete-input continuation must not accumulate copies.\nPreparation after admitted source refresh must describe the current snapshot.\nCharge the complete metadata and existing Tools/continuation to the existing\nPrompt byte bound; refuse over-budget requests rather than silently truncate or\nomit resources. Preserve stale-source refusal, native call correlation, actual\nsource disclosure before edits, host admission, fixed checks, restoration,\ncandidate/terminal outcomes and all existing limits. No new registry, executor,\nprovider, file-search engine, generic type or Qwen-specific dependency is needed.\n\nInspect source with the authorized Tools, then submit grounded exact edits.\nTests, docs, configuration and experiment evidence are read-only. Only existing\nAgents coding Python modules are editable. Do not change tests or checks, expand\nscope, choose commands, publish, or implement other backlog work. Failed checks\nwill produce real bounded feedback; you may repair within the frozen limits.\n\nUse list_repository/search_source to discover authorized files; read_source uses Unicode offsets and supports omitted end. Acquire current exact source before edits. Limits: ten requests, four proposals, at most three applied candidates (two validation-feedback repairs), twenty acquisition actions. The resulting-source ceiling remains 32768 bytes per file. No source/edit limits may be increased.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "I'll start by discovering the authorized repository surface and understanding the existing structure.\n\n",
+          "tool_calls": [
+            {
+              "name": "list_repository",
+              "arguments_json": "{}",
+              "provider_call_id": "hTjSmc3hvIwxflEy9peTQpvBylJLgUd6"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"snapshot\": \"af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76\", \"source_acquired\": false, \"resources\": [{\"path\": \"experiments/local_maintenance_cohesion/focused.py\", \"characters\": 6913, \"content_identity\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"editable\": false}, {\"path\": \"src/devtools/agents/coding/__init__.py\", \"characters\": 394, \"content_identity\": \"a0de735340eaefe646aa8a9defc9ad43c6b9cbc50daef50779d01e041d7fefcd\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/custody.py\", \"characters\": 4246, \"content_identity\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/docs/overview.md\", \"characters\": 4452, \"content_identity\": \"0a2363641a94718c8aa9211a33324c5e36ddc7fcce97fc9fa3d86940028dd64a\", \"editable\": false}, {\"path\": \"src/devtools/agents/coding/edits.py\", \"characters\": 9149, \"content_identity\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/models.py\", \"characters\": 3750, \"content_identity\": \"f8fcf7745622423a985349b49942e4e75cd3577ad048f1ff7106afec7717391e\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/process.py\", \"characters\": 8619, \"content_identity\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/projection.py\", \"characters\": 14095, \"content_identity\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"editable\": true}, {\"path\": \"src/devtools/agents/coding/repository.py\", \"characters\": 29038, \"content_identity\": \"23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f\", \"editable\": true}, {\"path\": \"src/devtools/agents/model_tools.py\", \"characters\": 2689, \"content_identity\": \"e7c4d41bac426f184caeb2c2faa7515dbb0725f740f1b67eea99b23e14cf70b8\", \"editable\": false}, {\"path\": \"src/devtools/context/repository/resource.py\", \"characters\": 3328, \"content_identity\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"editable\": false}, {\"path\": \"src/devtools/context/repository/snapshot.py\", \"characters\": 2018, \"content_identity\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"editable\": false}, {\"path\": \"src/devtools/models/interaction/prompt.py\", \"characters\": 4176, \"content_identity\": \"bb56c1f77a04c7584d12a52b32a852aad7ccbf39ed13c3529696ef29a00e2305\", \"editable\": false}, {\"path\": \"src/devtools/tools/checks.py\", \"characters\": 5003, \"content_identity\": \"540c237f4641bb3a9ddd133b8ee9fed711db1f62fcf2ff4d3ba831cb09216cc9\", \"editable\": false}, {\"path\": \"src/devtools/tools/source.py\", \"characters\": 7230, \"content_identity\": \"cd271a7edfda7625bf63b5e8d339ec6109a7f6bfbb83db3f73a1d46275df0022\", \"editable\": false}, {\"path\": \"tests/agents/coding/test_repository.py\", \"characters\": 11114, \"content_identity\": \"335763211aebf24ec22cc11c2b5f23ed189da7ba35f6ba0c524909d0c8344e5a\", \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": "hTjSmc3hvIwxflEy9peTQpvBylJLgUd6",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "list_repository",
+        "description": "List authorized snapshot resources, sizes and read/edit permissions. Metadata only, not acquired source.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "search_source",
+        "description": "Search existing file/symbol/window retrieval by query. Returns ranked metadata, not source. Read selected ranges separately; full file lengths are supplied.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"query\":{\"maxLength\":256,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"query\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed focused acceptance. No command/scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": true,
+  "measured_input_tokens": 2690
+}

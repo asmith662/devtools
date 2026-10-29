@@ -1,0 +1,901 @@
+{
+  "at": "2026-10-29T16:15:28.162667+00:00",
+  "status": "passed",
+  "freeze": "b5dee8e8cf296070a8c2eb64b51aed078317410ceb8ae24fa3eff09fe6d3c19d",
+  "model_requests": 10,
+  "native_calls": 11,
+  "source_reads": 8,
+  "unique_source_spans": 5,
+  "repeated_reads": 3,
+  "unconsumed_feedback": [
+    "MU2KE2AQaKsL2fy89xH4SmvtCsHO2LBS"
+  ],
+  "rows": [
+    {
+      "request": 1,
+      "original_bytes": 4625,
+      "active_bytes": 4625,
+      "status": "unchanged",
+      "input_tokens": 1131,
+      "output_tokens": 30,
+      "seconds": 12.849824,
+      "active_sources": [],
+      "omitted_exchanges": [],
+      "calls": [
+        {
+          "id": "hTjSmc3hvIwxflEy9peTQpvBylJLgUd6",
+          "name": "list_repository",
+          "arguments": {}
+        }
+      ]
+    },
+    {
+      "request": 2,
+      "original_bytes": 8254,
+      "active_bytes": 8254,
+      "status": "unchanged",
+      "input_tokens": 2690,
+      "output_tokens": 84,
+      "seconds": 5.341244,
+      "active_sources": [],
+      "omitted_exchanges": [],
+      "calls": [
+        {
+          "id": "HAF2Rn45RJur2rCHyOptev5VbwL9e1vb",
+          "name": "search_source",
+          "arguments": {
+            "query": "list_repository discoverability metadata projection first message"
+          }
+        },
+        {
+          "id": "XHS6UnSeajZcRtrUjgfGVfUXrQH1s4LU",
+          "name": "search_source",
+          "arguments": {
+            "query": "prompt byte bound budget refuse over-budget truncate resources"
+          }
+        }
+      ]
+    },
+    {
+      "request": 3,
+      "original_bytes": 17126,
+      "active_bytes": 17126,
+      "status": "unchanged",
+      "input_tokens": 6928,
+      "output_tokens": 76,
+      "seconds": 7.753236,
+      "active_sources": [],
+      "omitted_exchanges": [],
+      "calls": [
+        {
+          "id": "imAqbKT3hbEzIryNRDPScvzFJdj14taH",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/projection.py",
+            "start": 0
+          },
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true,
+          "repeat_of_request": null,
+          "requested_span": [
+            0,
+            14095
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 4,
+      "original_bytes": 27098,
+      "active_bytes": 14597,
+      "status": "reduced",
+      "input_tokens": 3390,
+      "output_tokens": 48,
+      "seconds": 14.373185,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            0,
+            14095
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "gqmYNkzRVq7Z8KUxHNHQKpFyL02rtcLR",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/projection.py",
+            "start": 8192
+          },
+          "span": [
+            8192,
+            14095
+          ],
+          "bytes": 5903,
+          "partial": false,
+          "repeat_of_request": null,
+          "requested_span": [
+            8192,
+            14095
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 5,
+      "original_bytes": 34269,
+      "active_bytes": 21768,
+      "status": "reduced",
+      "input_tokens": 5004,
+      "output_tokens": 44,
+      "seconds": 4.372216,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            0,
+            14095
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true
+        },
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            8192,
+            14095
+          ],
+          "span": [
+            8192,
+            14095
+          ],
+          "bytes": 5903,
+          "partial": false
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "w1mkK4uyqjsmVzE6fgM3TezhyrLttO6Z",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 0
+          },
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true,
+          "repeat_of_request": null,
+          "requested_span": [
+            0,
+            29038
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 6,
+      "original_bytes": 44697,
+      "active_bytes": 32196,
+      "status": "reduced",
+      "input_tokens": 7460,
+      "output_tokens": 62,
+      "seconds": 5.767966,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            0,
+            14095
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true
+        },
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            8192,
+            14095
+          ],
+          "span": [
+            8192,
+            14095
+          ],
+          "bytes": 5903,
+          "partial": false
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            0,
+            29038
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "pPTX6nBScAiWKPJbIn9D9XlTQvtOixxH",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 8192,
+            "end": 16384
+          },
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "partial": false,
+          "repeat_of_request": null,
+          "requested_span": [
+            8192,
+            16384
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 7,
+      "original_bytes": 54522,
+      "active_bytes": 32049,
+      "status": "reduced",
+      "input_tokens": 7256,
+      "output_tokens": 63,
+      "seconds": 13.203294,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/projection.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344",
+          "requested_span": [
+            8192,
+            14095
+          ],
+          "span": [
+            8192,
+            14095
+          ],
+          "bytes": 5903,
+          "partial": false
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            0,
+            29038
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": true
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            8192,
+            16384
+          ],
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "partial": false
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ],
+        [
+          6,
+          8,
+          "source-capacity"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "sM7ElwptDDZZLJAu7xHWftSoZEfcRDWB",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 16384,
+            "end": 24576
+          },
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "partial": false,
+          "repeat_of_request": null,
+          "requested_span": [
+            16384,
+            24576
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 8,
+      "original_bytes": 64711,
+      "active_bytes": 24639,
+      "status": "reduced",
+      "input_tokens": 5377,
+      "output_tokens": 58,
+      "seconds": 10.090783,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            8192,
+            16384
+          ],
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "partial": false
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            16384,
+            24576
+          ],
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "partial": false
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ],
+        [
+          6,
+          8,
+          "source-capacity"
+        ],
+        [
+          8,
+          10,
+          "source-capacity"
+        ],
+        [
+          10,
+          12,
+          "source-capacity"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "dCdOudjQ8LJmWwEkCuWKNbmpIQqtlqTI",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 0,
+            "end": 8192
+          },
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": false,
+          "repeat_of_request": 5,
+          "requested_span": [
+            0,
+            8192
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 9,
+      "original_bytes": 75153,
+      "active_bytes": 25256,
+      "status": "reduced",
+      "input_tokens": 5792,
+      "output_tokens": 62,
+      "seconds": 10.217184,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            16384,
+            24576
+          ],
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "partial": false
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            0,
+            8192
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": false
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          10,
+          12,
+          "duplicate-current-source"
+        ],
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ],
+        [
+          6,
+          8,
+          "source-capacity"
+        ],
+        [
+          8,
+          10,
+          "source-capacity"
+        ],
+        [
+          12,
+          14,
+          "source-capacity"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "sh7zKnJXwT8KwSZsq9mtIoTNPJ21pjAa",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 8192,
+            "end": 16384
+          },
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "partial": false,
+          "repeat_of_request": 6,
+          "requested_span": [
+            8192,
+            16384
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    },
+    {
+      "request": 10,
+      "original_bytes": 84978,
+      "active_bytes": 24892,
+      "status": "reduced",
+      "input_tokens": 5656,
+      "output_tokens": 63,
+      "seconds": 7.859821,
+      "active_sources": [
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            0,
+            8192
+          ],
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "partial": false
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "snapshot": "af41a49e4a4f38084d35af2f27377a4b2f0596f8810c11dffa7f1ab8a0b80a76",
+          "version": "23fd4c3d47ed4323dbc67388244275ed7648eda732f308f4fcadf4488ae9fa3f",
+          "requested_span": [
+            8192,
+            16384
+          ],
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "partial": false
+        }
+      ],
+      "omitted_exchanges": [
+        [
+          10,
+          12,
+          "duplicate-current-source"
+        ],
+        [
+          12,
+          14,
+          "duplicate-current-source"
+        ],
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          6,
+          "host-classified-metadata"
+        ],
+        [
+          6,
+          8,
+          "source-capacity"
+        ],
+        [
+          8,
+          10,
+          "source-capacity"
+        ],
+        [
+          14,
+          16,
+          "source-capacity"
+        ]
+      ],
+      "calls": [
+        {
+          "id": "MU2KE2AQaKsL2fy89xH4SmvtCsHO2LBS",
+          "name": "read_source",
+          "arguments": {
+            "path": "src/devtools/agents/coding/repository.py",
+            "start": 16384,
+            "end": 24576
+          },
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "partial": false,
+          "repeat_of_request": 7,
+          "requested_span": [
+            16384,
+            24576
+          ],
+          "previous_same_span_active_before_call": false
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "request": 3,
+      "id": "imAqbKT3hbEzIryNRDPScvzFJdj14taH",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/projection.py",
+        "start": 0
+      },
+      "span": [
+        0,
+        8192
+      ],
+      "bytes": 8192,
+      "partial": true,
+      "repeat_of_request": null,
+      "requested_span": [
+        0,
+        14095
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 4,
+      "id": "gqmYNkzRVq7Z8KUxHNHQKpFyL02rtcLR",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/projection.py",
+        "start": 8192
+      },
+      "span": [
+        8192,
+        14095
+      ],
+      "bytes": 5903,
+      "partial": false,
+      "repeat_of_request": null,
+      "requested_span": [
+        8192,
+        14095
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 5,
+      "id": "w1mkK4uyqjsmVzE6fgM3TezhyrLttO6Z",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 0
+      },
+      "span": [
+        0,
+        8192
+      ],
+      "bytes": 8192,
+      "partial": true,
+      "repeat_of_request": null,
+      "requested_span": [
+        0,
+        29038
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 6,
+      "id": "pPTX6nBScAiWKPJbIn9D9XlTQvtOixxH",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 8192,
+        "end": 16384
+      },
+      "span": [
+        8192,
+        16384
+      ],
+      "bytes": 8192,
+      "partial": false,
+      "repeat_of_request": null,
+      "requested_span": [
+        8192,
+        16384
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 7,
+      "id": "sM7ElwptDDZZLJAu7xHWftSoZEfcRDWB",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 16384,
+        "end": 24576
+      },
+      "span": [
+        16384,
+        24576
+      ],
+      "bytes": 8192,
+      "partial": false,
+      "repeat_of_request": null,
+      "requested_span": [
+        16384,
+        24576
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 8,
+      "id": "dCdOudjQ8LJmWwEkCuWKNbmpIQqtlqTI",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 0,
+        "end": 8192
+      },
+      "span": [
+        0,
+        8192
+      ],
+      "bytes": 8192,
+      "partial": false,
+      "repeat_of_request": 5,
+      "requested_span": [
+        0,
+        8192
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 9,
+      "id": "sh7zKnJXwT8KwSZsq9mtIoTNPJ21pjAa",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 8192,
+        "end": 16384
+      },
+      "span": [
+        8192,
+        16384
+      ],
+      "bytes": 8192,
+      "partial": false,
+      "repeat_of_request": 6,
+      "requested_span": [
+        8192,
+        16384
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": true
+    },
+    {
+      "request": 10,
+      "id": "MU2KE2AQaKsL2fy89xH4SmvtCsHO2LBS",
+      "name": "read_source",
+      "arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 16384,
+        "end": 24576
+      },
+      "span": [
+        16384,
+        24576
+      ],
+      "bytes": 8192,
+      "partial": false,
+      "repeat_of_request": 7,
+      "requested_span": [
+        16384,
+        24576
+      ],
+      "previous_same_span_active_before_call": false,
+      "feedback_consumed_later": false
+    }
+  ],
+  "source_unchanged": true,
+  "native_correlation_valid": true,
+  "source_correspondence_valid": true,
+  "checks_repeated": false,
+  "automatic_model_or_tool_reexecution": false,
+  "heldout_result": "Five intended behavioral failures, one authority control pass; no errors/skips",
+  "qualification": "Effect-free evidence reconstruction. Repeated reads were independently model-selected native calls, not harness replay. This does not infer model reasoning or prove a counterfactual strategy would succeed.",
+  "verification_command": [
+    "uv",
+    "run",
+    "python",
+    ".local/host-cohesion/verify_case.py"
+  ],
+  "verification_program": "\"\"\"Read-only retained-case verification; never re-enters a model or Tool.\"\"\"\nimport hashlib,json\nfrom pathlib import Path\nfrom devtools.core.time import Timestamp\nfrom devtools.models.interaction import ModelToolCall,Prompt,PromptMessage\nE=Path('experiments/local_maintenance_cohesion');D=E/'evidence'\ndef load(p):return json.loads(p.read_text(encoding='utf-8'))\nf=load(E/'freeze.json');r=load(D/'result.json');m=load(E/'measurements.json')\nv=dict(f);digest=v.pop('digest');assert hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':')).encode()).hexdigest()==digest\nfor name,h in f['files'].items():assert hashlib.sha256((E/name).read_bytes()).hexdigest()==h,name\nfor path,h in f['source_sha256'].items():assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==h,path\nhist=r['messages'];all_calls={c['provider_call_id']:c for q in r['requests'] for c in q['response']['tool_calls']}\nall_feedback={x['tool_call_id']:x for x in hist if x['role']=='tool'}\nassert len(all_calls)==len(all_feedback)==11 and set(all_calls)==set(all_feedback)\ndef prompt(messages):\n return Prompt('', 'messages', tuple(PromptMessage(x['role'],x['content'],tuple(ModelToolCall(**c) for c in x['tool_calls']),x['tool_call_id'],x.get('reasoning_content')) for x in messages))\nprompt(hist)\nrows=[];consumed=set();seen={};reads=[]\nfor i,q in enumerate(r['requests'],1):\n sent=load(D/f'request-{i}.json');req=sent['request'];messages=req['prompt']['messages'];prompt(messages)\n p=r['projections'][i-1];assert req==p['request']\n size=len(json.dumps(req,ensure_ascii=False).encode());assert size==p['resulting_bytes']<=32768\n assert messages[0]['content']==f['objective']\n feedback={x['tool_call_id']:x for x in messages if x['role']=='tool'};consumed.update(feedback)\n for identity,msg in feedback.items():assert msg==all_feedback[identity]\n active=[]\n for option in p['active_sources']:\n  resource=option['unit']['resource'];path=resource['address']['value']\n  matches=[json.loads(x['content']) for x in feedback.values() if json.loads(x['content']).get('path')==path and json.loads(x['content']).get('span',[None])[0]==option['start']]\n  text=resource['content'][option['start']:option['end']].encode()[:option['maximum_bytes']].decode('utf-8',errors='ignore')\n  exact=[x for x in matches if x.get('text')==text and x.get('version')==resource['content_identity']['value'] and x.get('snapshot')==option['unit']['snapshot_id']['value']]\n  assert exact and list(exact[0]['span'])==[option['start'],option['start']+len(text)]\n  active.append(dict(path=path,snapshot=option['unit']['snapshot_id']['value'],version=resource['content_identity']['value'],requested_span=[option['start'],option['end']],span=exact[0]['span'],bytes=len(text.encode()),partial=exact[0]['partial']))\n m['projections'][i-1]['active_sources']=active\n calls=[]\n for c in q['response']['tool_calls']:\n  args=json.loads(c['arguments_json']);entry=dict(id=c['provider_call_id'],name=c['name'],arguments=args)\n  if c['name']=='read_source':\n   result=json.loads(all_feedback[c['provider_call_id']]['content']);path=args['path'];span=result['span'];text=result['text']\n   original=next(x for x in f['source_snapshot']['resources'] if x['address']['value']==path)['content']\n   assert original[span[0]:span[1]]==text and len(text.encode())<=8192\n   key=(path,*span);prior=seen.get(key);seen[key]=i\n   entry.update(span=span,bytes=len(text.encode()),partial=result['partial'],repeat_of_request=prior,requested_span=[args['start'],args.get('end',len(original))])\n   entry['previous_same_span_active_before_call']=any(x['path']==path and x['span']==span for x in active)\n   reads.append(dict(request=i,**entry))\n  calls.append(entry)\n rows.append(dict(request=i,original_bytes=p['original_bytes'],active_bytes=size,status=p['status'],input_tokens=q['response']['usage']['input_tokens'],output_tokens=q['response']['usage']['output_tokens'],seconds=q['seconds'],active_sources=active,omitted_exchanges=p['omitted_exchanges'],calls=calls))\nfor read in reads:read['feedback_consumed_later']=read['id'] in consumed\nassert not r['proposals'] and not r['applied'] and not r['procedures']\nassert r['result']['disposition']=='model_limit' and not r['accepted'] and r['result']['custody']['restored']\nassert all(e['acknowledged'] for e in r['result']['progress']['effects'])\ncandidate=load(D/'candidate.json');assert set(candidate)==set(f['editable'])\nfor p,a in candidate.items():assert a['content_utf8'].encode()==bytes.fromhex(f['baseline_raw'][p]) and a['unchanged']\nreview=load(E/'independent-review.json');assert not review['passes_frozen_behavior'] and review['restored']\nassert len(review['focused']['failed'])==3 and len(review['heldout']['failed'])==5\nm['measurement_qualification']='Active source span is the actually presented UTF-8-bounded Context disclosure, not SourceRangeDisclosureOption.end (the requested end). Requested and actual spans are recorded separately. Original evidence is unchanged.'\n(E/'measurements.json').write_text(json.dumps(m,indent=2)+'\\n')\nout=dict(at=str(Timestamp.now()),status='passed',freeze=digest,model_requests=10,native_calls=11,source_reads=len(reads),unique_source_spans=len(seen),repeated_reads=sum(x['repeat_of_request'] is not None for x in reads),unconsumed_feedback=sorted(set(all_feedback)-consumed),rows=rows,reads=reads,source_unchanged=True,native_correlation_valid=True,source_correspondence_valid=True,checks_repeated=False,automatic_model_or_tool_reexecution=False,heldout_result='Five intended behavioral failures, one authority control pass; no errors/skips',qualification='Effect-free evidence reconstruction. Repeated reads were independently model-selected native calls, not harness replay. This does not infer model reasoning or prove a counterfactual strategy would succeed.',verification_command=['uv','run','python','.local/host-cohesion/verify_case.py'],verification_program=Path(__file__).read_text(encoding='utf-8'),verification_program_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())\n(E/'verification.json').write_text(json.dumps(out,indent=2)+'\\n')\nprint(json.dumps({k:v for k,v in out.items() if k not in ('rows','reads')},indent=2))\nfor row in rows:print(row['request'],row['original_bytes'],row['active_bytes'],[(a['path'].split('/')[-1],a['span']) for a in row['active_sources']])\n",
+  "verification_program_sha256": "813f9241c31df3efd237bac7e319271eeb0264e49535433df2babd76a8baf0f1"
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="4" time="0.307" timestamp="2026-10-29T12:12:01.236541-04:00" hostname="asmith"><testcase classname="experiments.local_maintenance_cohesion.focused" name="test_first_request_scoped_inventory" time="0.013"><failure message="AssertionError: Exactly one scoped metadata inventory is required&#10;assert 0 == 1&#10; +  where 0 = len([])">experiments\local_maintenance_cohesion\focused.py:124: in test_first_request_scoped_inventory
+    data = inventory(request)
+           ^^^^^^^^^^^^^^^^^^
+experiments\local_maintenance_cohesion\focused.py:117: in inventory
+    assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E   AssertionError: Exactly one scoped metadata inventory is required
+E   assert 0 == 1
+E    +  where 0 = len([])</failure></testcase><testcase classname="experiments.local_maintenance_cohesion.focused" name="test_inventory_not_duplicated_on_prepare" time="0.010"><failure message="AssertionError: Exactly one scoped metadata inventory is required&#10;assert 0 == 1&#10; +  where 0 = len([])">experiments\local_maintenance_cohesion\focused.py:151: in test_inventory_not_duplicated_on_prepare
+    assert inventory(first) == inventory(second)
+           ^^^^^^^^^^^^^^^^
+experiments\local_maintenance_cohesion\focused.py:117: in inventory
+    assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+E   AssertionError: Exactly one scoped metadata inventory is required
+E   assert 0 == 1
+E    +  where 0 = len([])</failure></testcase><testcase classname="experiments.local_maintenance_cohesion.focused" name="test_inventory_charged_to_prompt_budget" time="0.016"><failure message="Failed: DID NOT RAISE ValueError">experiments\local_maintenance_cohesion\focused.py:172: in test_inventory_charged_to_prompt_budget
+    with pytest.raises(ValueError, match="budget"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE ValueError</failure></testcase><testcase classname="experiments.local_maintenance_cohesion.focused" name="test_inventory_does_not_bypass_currentness" time="0.010" /></testsuite></testsuites>
