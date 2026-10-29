@@ -452,9 +452,6 @@ class RepositoryCodingHost:
 
     def _read(self, serialized: str) -> SourceReadRequest:
         values = _arguments(serialized, {"path", "start"}, optional=frozenset({"end"}))
-        if "end" in values and values["end"] is None:
-            msg = "An explicit source end must be an integer."
-            raise ValueError(msg)
         unit = next(
             (
                 u
@@ -470,7 +467,7 @@ class RepositoryCodingHost:
             self.objective.text,
             unit,
             cast("int", values["start"]),
-            cast("int | None", values.get("end")),
+            cast("int | None", values.get("end", unit.end)),
             self.objective.disclosure_bytes,
         )
 

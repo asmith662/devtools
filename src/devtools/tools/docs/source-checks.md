@@ -35,8 +35,9 @@ against a later external writer. Access to other files is not authorized by
 constructing a semantic path. Callers recheck correspondence before later effects.
 
 For untrusted literal coordinates, use `SourceReadRequest(purpose, unit, start,
-end, maximum_bytes)`. An omitted end (`None`) requests the remaining unit under
-the same byte bound. After ordinary scope/currentness validation the Tool either
+end, maximum_bytes)`. The native host may select the observed unit end for an
+omitted field; an explicit null is an invalid literal. After ordinary
+scope/currentness validation the Tool either
 returns the canonical disclosure or `SourceReadRefusal`. The latter means the
 requested interval was rejected before source materialization; it grants no
 witness. `select_source_read` is the effect-free shared range decision and

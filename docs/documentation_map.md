@@ -963,3 +963,11 @@ host-valued omission, independent auxiliary budgets and safe fallback.
 [Real local comparison](../experiments/context_compaction/REPORT.md): two raw
 summaries refused, one successful deterministic fallback, no measured semantic
 benefit. Original research and frozen historical cases retain their authority.
+
+## Local agent reliability checkpoint
+
+[Source and summary contract](development/local-agent-reliability.md) owns
+known range-refusal feedback and explicit structured generation/envelope policy.
+[Fresh verification](../experiments/local_agent_reliability/REPORT.md) retains
+strict summary rejection, usable source reads and the disclosed focused-oracle
+error. Offline normalization is separate from the unchanged primary attempt.

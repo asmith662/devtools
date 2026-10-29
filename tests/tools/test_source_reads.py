@@ -72,7 +72,7 @@ def test_optional_end_utf8_and_crlf_are_truthful(
     root = tmp_path / "source space π"
     root.mkdir()
     scope, index = source_fixture(root, text)
-    request = SourceReadRequest("inspect", index.views[0].units[0], 0, None, limit)
+    request = SourceReadRequest("inspect", index.views[0].units[0], 0, len(text), limit)
     result = asyncio.run(ToolRunner().execute(read_tool(scope), request))
     assert isinstance(result, ContextDisclosure)
     assert result.items[0].text == expected

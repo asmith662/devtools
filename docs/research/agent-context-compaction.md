@@ -689,3 +689,15 @@ empirical optimality. No live retry, hidden normalization, replacement summary o
 Codex repair improved the reported treatments. Structured-output compliance and
 source-range usability are concrete next decisions; general adaptive efficacy,
 durable recovery, Evidence integration and provider-native compaction remain open.
+
+## Reliability follow-up — 2026-10-29
+
+The [bounded reliability increment](../development/local-agent-reliability.md)
+adds source-range refusal feedback and deliberate summary formatting. The
+[fresh live verification](../../experiments/local_agent_reliability/REPORT.md)
+requested provider JSON mode but received fenced JSON; strict fallback remained
+safe. Subsequent explicit single-fence normalization was verified offline and
+in independent scripted continuation, not a repeated live attempt. Its fixed
+focused oracle contained an incorrect expectation, disclosed without changing
+the freeze. No semantic-compaction benefit or adaptive threshold improvement
+is inferred. Original research confidence and historical experiments stand.

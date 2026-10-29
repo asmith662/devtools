@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, overload
+from typing import TYPE_CHECKING, cast, overload
 
 from devtools.context import Repository, observe_repository_resources
 from devtools.context.planning import source
@@ -82,8 +82,9 @@ class SourceScope:
 class SourceReadRequest:
     """Literal requested coordinates, not an admitted Context disclosure.
 
-    Bounds are absolute decoded Unicode offsets. An omitted end requests the
-    rest of the selected unit, still subject to the host's UTF-8 byte ceiling.
+    Bounds are absolute decoded Unicode offsets. A null end is a literal invalid
+    coordinate, not permission to substitute a bound. A host can select the
+    observed unit end when its native operation explicitly permits omission.
     Scope/currentness must be checked before exposing bounds or materializing.
     """
 
@@ -124,7 +125,7 @@ def select_source_read(
             request.purpose,
             request.unit,
             request.start,
-            request.unit.end if request.end is None else request.end,
+            cast("int", request.end),
             request.maximum_bytes,
         )
     except ValueError:

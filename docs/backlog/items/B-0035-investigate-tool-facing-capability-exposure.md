@@ -200,3 +200,15 @@ legacy Qwen adapter migration, durable recovery, Evidence store, observation
 Option B, broader A+C, grant or parent closure is implied. Existing statuses,
 dependencies and outstanding historical obligations remain unchanged.
 `integration:adaptive-context:7cf1eb79:20261029`.
+
+## Local agent reliability checkpoint — 2026-10-29
+
+The authorized [bounded correction](../../development/local-agent-reliability.md)
+and [retained verification](../../../experiments/local_agent_reliability/REPORT.md)
+address known source-range argument feedback and structured summary admission.
+The live JSON setting still yielded a fence; explicit envelope handling was
+subsequently verified without rerunning the model. Source usability worked,
+but a frozen focused expectation was incorrect and repair quality is confounded.
+This is bounded evidence under existing owners, not a new grant, proposal,
+parent closure or approval of broader autonomy/Context/Evidence work. Accepted
+publication will be recorded separately after final protected validation.

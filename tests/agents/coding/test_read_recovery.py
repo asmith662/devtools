@@ -74,11 +74,14 @@ def test_explicit_null_is_not_omitted_end(tmp_path: Path) -> None:
                     "null",
                 ),
             ),
+            (),
         ],
     )
     result = asyncio.run(run_coding_agent(worker, limits=LIMITS, host=host))
-    assert isinstance(result.error, ValueError)
-    assert "explicit source end" in str(result.error)
+    assert result.error is None
+    assert result.disposition == "stopped"
+    assert result.progress.effects[0].acknowledged
+    assert json.loads(host.messages[2].content)["source_disclosure_entered"] is False
     assert host.source_results == []
 
 

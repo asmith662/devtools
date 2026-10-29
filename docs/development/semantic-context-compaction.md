@@ -276,3 +276,13 @@ over this operation. Explicit requests remain supported; default configuration
 still spends no auxiliary call. The [real comparison](../../experiments/context_compaction/REPORT.md)
 observed two format refusals and safe fallback, not useful summary consumption.
 The Implementation 2 claims and validation below retain their historical scope.
+
+## Explicit structured output and envelope policy
+
+The [reliability contract](local-agent-reliability.md) adds host-selected provider
+settings and optional `allow_json_fence=True`. The latter unwraps only one exact
+lowercase JSON fence, records normalization, and retains all existing raw-size,
+termination, schema, digest, source, budget and adoption checks. Defaults remain
+strict; no hidden retry or semantic truth certification is introduced. The
+[fresh live attempt](../../experiments/local_agent_reliability/REPORT.md) preceded
+that opt-in correction and remains a strict rejection, with no live adoption.

@@ -237,3 +237,11 @@ Cases0011/0014/0015 cohort;354 experimental paths remain, not RI completion.
 [The frozen local comparison](../../experiments/context_compaction/REPORT.md)
 and [implemented policy](../development/adaptive-context-compaction.md) distinguish
 safe deterministic fallback from unestablished semantic continuation benefit.
+
+## Local agent reliability verification
+
+[Contract](../development/local-agent-reliability.md),
+[experiment](../../experiments/local_agent_reliability/REPORT.md) and
+[receipt](code-audit/local-agent-reliability-20261029.json) record the bounded
+source-read and summary-envelope corrections, including negative live evidence
+and the supervisor-authored oracle limitation. No earlier result is rewritten.
