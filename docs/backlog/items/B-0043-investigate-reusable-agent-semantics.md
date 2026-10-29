@@ -286,3 +286,21 @@ edit-size rejection. Use existing symbol/window retrieval, exact ranges and
 projection to investigate it in separately authorized work. This advisory adds
 no proposal, grant, approval, status transition or parent closure; ordinary
 publication evidence follows only after accepted-main verification.
+
+## Delivered cohesion and maintenance evidence - 2026-10-29
+
+Ordinary direct-main publication was independently verified at
+`195035b99f97081e63fffade3313d4a481839a2f`, containing protected executable commit
+`11945801c1f42e2adfc1614f672fc96d3ae400eb`. All 1,185 recorded physical validation inputs
+and the accepted source/test blobs match the committed gate. The
+[delivery receipt](../../research/code-audit/coding-host-cohesion-20261029.json)
+records GitHub requirements, ordinary fast-forward publication, 3,836 passed/two
+optional skips, 100% configured coverage, preservation and independent grading.
+
+Delivered: cohesive pure batch-admission ownership and host edit headroom under
+unchanged limits. Not delivered: B-0035 inventory behavior. The one real model
+attempt stopped after ten requests without a proposal; its archive is unchanged.
+No model-authored implementation, supervisor replacement, grant, approval,
+proposal/status transition or parent closure is implied. General large-file
+editing policy, Context working-set pressure and existing broader obligations
+remain open. No next increment is begun.

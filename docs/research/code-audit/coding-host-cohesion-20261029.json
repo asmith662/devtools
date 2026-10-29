@@ -502,7 +502,25 @@
     "verification": "experiments/local_maintenance_cohesion/verification.json",
     "remaining": "Task-relevant source selection/retention; B-0035 open"
   },
-  "publication": "Pending ordinary authorized publication",
+  "publication": {
+    "at": "2026-10-29T16:22:33.359129+00:00",
+    "main": "195035b99f97081e63fffade3313d4a481839a2f",
+    "tree": "66c1db169be2ef5d465c505297aec6de9530f0d5",
+    "source": "11945801c1f42e2adfc1614f672fc96d3ae400eb",
+    "source_tree": "2322a875ea20556ea3c181281184cba917f7c891",
+    "physical_inputs": 1185,
+    "accepted_source_blobs": {
+      "src/devtools/agents/coding/docs/overview.md": "aa750ef4a59dcc75ed556b4503d68f28c97032ef",
+      "src/devtools/agents/coding/edits.py": "74709855178a47a5b95c1c6ba3c6a41b87c9523e",
+      "src/devtools/agents/coding/repository.py": "8e3b09caf40ffe362b09049e0fc4ac156b6c4d12",
+      "tests/agents/coding/test_admission_cohesion.py": "8ec06b412963249b4ec2ddf9e7e1b45a7fa71a0c"
+    },
+    "ordinary_fast_forward": true,
+    "acknowledgment": "",
+    "push_error": null,
+    "remote_verified": true,
+    "tracked_clean": true
+  },
   "remaining": [
     "B-0035 not implemented by extraction",
     "General large-file edit profile remains host-selected future policy",
@@ -1762,12 +1780,12 @@
   "protected_tail": "tem\\models\\markdown\\__init__.py                 4      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\file.py                    69      0     24      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\heading.py                 26      0      4      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\section.py                 36      0      8      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\text.py                             37      0      4      0   100%\nsrc\\devtools\\resources\\filesystem\\reading.py                                 56      0     18      0   100%\nsrc\\devtools\\resources\\filesystem\\resolution.py                              21      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\writing.py                                 56      0     14      0   100%\nsrc\\devtools\\tools\\__init__.py                                                5      0      0      0   100%\nsrc\\devtools\\tools\\checks.py                                                 67      0     16      0   100%\nsrc\\devtools\\tools\\command.py                                                17      0      0      0   100%\nsrc\\devtools\\tools\\disclosure.py                                             33      0      6      0   100%\nsrc\\devtools\\tools\\errors.py                                                  1      0      0      0   100%\nsrc\\devtools\\tools\\execution.py                                               6      0      0      0   100%\nsrc\\devtools\\tools\\filesystem.py                                             92      0     16      0   100%\nsrc\\devtools\\tools\\protocols.py                                               9      0      0      0   100%\nsrc\\devtools\\tools\\repository\\__init__.py                                     0      0      0      0   100%\nsrc\\devtools\\tools\\repository\\git.py                                        116      0     24      0   100%\nsrc\\devtools\\tools\\repository\\validation.py                                 109      0     26      0   100%\nsrc\\devtools\\tools\\source.py                                                 72      0     20      0   100%\n---------------------------------------------------------------------------------------------------------------------\nTOTAL                                                                     13888      0   3550      0   100%\nRequired test coverage of 100% reached. Total coverage: 100.00%\n================ 3836 passed, 2 skipped in 1504.07s (0:25:04) =================\n",
   "independent_review": "experiments/local_maintenance_cohesion/independent-review.json",
   "documentation_validation": {
-    "at": "2026-10-29T16:20:53.034338+00:00",
-    "finished_at": "2026-10-29T16:21:06.514378+00:00",
-    "seconds": 13.480057700071484,
+    "at": "2026-10-29T16:23:39.438368+00:00",
+    "finished_at": "2026-10-29T16:23:52.715140+00:00",
+    "seconds": 13.2768025000114,
     "exit_code": 0,
     "base": "a5d58f5ed5ad0611fdeec21dd1cdfc2742a779a8",
-    "head": "bb137d1da7f1758e927b8e7dde65ffd8858d525f",
+    "head": "195035b99f97081e63fffade3313d4a481839a2f",
     "changed": [
       "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
       "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
@@ -1842,11 +1860,35 @@
     "original_cases_unchanged": true,
     "historical_refs_preserved": true,
     "json_records": 42245,
-    "links": 454,
+    "links": 456,
     "broken_links": [],
     "manifest_files": 54
   },
   "post_run_executable_inputs_unchanged": true,
   "physical_input_count": 1185,
-  "new_case_manifest": "experiments/local_maintenance_cohesion/manifest.json"
+  "new_case_manifest": "experiments/local_maintenance_cohesion/manifest.json",
+  "publication_requirements": {
+    "at": "2026-10-29T16:22:25.803077+00:00",
+    "remote_main": "a5d58f5ed5ad0611fdeec21dd1cdfc2742a779a8",
+    "protected": false,
+    "permissions": {
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
+      "pull": true
+    },
+    "protection": {
+      "status": 404,
+      "value": {
+        "message": "Branch not protected",
+        "documentation_url": "https://docs.github.com/rest/branches/branch-protection#get-branch-protection",
+        "status": "404"
+      }
+    },
+    "rules": [],
+    "rulesets": [],
+    "authorization": "Explicit Coding Host Cohesion assignment: existing-owner extraction, unchanged admission limits, independently frozen B-0035 attempt and reviewed ordinary direct-main publication. No permission expansion, later increment or forced publication."
+  },
+  "broader_obligations_closed": false
 }

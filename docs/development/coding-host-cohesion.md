@@ -159,3 +159,12 @@ evaluation does not test a resulting candidate's size because no edit was
 proposed. The next evidence-led boundary is task-relevant source working-set
 selection/retention, using existing retrieval, range and projection mechanisms.
 Neither larger limits nor a new loop follows from this result.
+
+## Accepted publication
+
+Accepted main `195035b99f97081e63fffade3313d4a481839a2f` includes the protected extraction
+`11945801c1f42e2adfc1614f672fc96d3ae400eb` with matching source/test blobs and all 1,185
+physical validation inputs. Publication used an authorized ordinary non-force
+push after observing repository requirements. The new experiment is closed;
+only extraction/support code was accepted, not a model-authored B-0035 patch.
+Documentation-only closeout retains those executable identities.
