@@ -137,3 +137,15 @@ host file/class and package documentation, but also the less relevant
 lexical limitation, not model understanding. Physical `repository.py` size is
 31897 bytes in this checkout (871 bytes below the unchanged resulting-source
 bound); the existing navigation owner is 13044 bytes.
+
+## Frozen live outcome
+
+[Maintenance-task-navigation-0001](../../experiments/local_maintenance_task_navigation/REPORT.md)
+used the initial file candidate immediately, then repeated three broad source
+regions. Ten requests yielded ten reads (seven repeats), no task query, no proposal
+or worker check. Independent grading rejected the unchanged archive. The entry
+was operational, but a file/class shortlist did not induce economical method-level
+selection or B-0035 completion. Exact source remained truthful under projection;
+no live use of the outline allowance or semantic compaction was demonstrated.
+The next bounded question is method-sized working-set selection through existing
+Context capabilities, without larger limits or another navigation engine.

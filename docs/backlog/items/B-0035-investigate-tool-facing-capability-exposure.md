@@ -357,3 +357,13 @@ metadata and does not implement B-0035's complete inventory. A separately
 preflighted [maintenance protocol](../../../experiments/local_maintenance_task_navigation/protocol.md)
 will record actual model use if protected validation permits entry. No grant,
 proposal/status transition, parent closure or model success is implied.
+
+## Task-directed navigation evidence - 2026-10-29
+
+The [shared entry](../../development/task-directed-navigation.md) passed protected
+validation; [Maintenance-task-navigation-0001](../../../experiments/local_maintenance_task_navigation/REPORT.md)
+selected relevant source immediately but exhausted ten requests rereading broad
+regions, without any edit or worker check. Independent focused/withheld grading
+rejected the unchanged archive. Complete authorized inventory is still missing;
+no model-authored work, grant, approval, status transition or parent closure is
+implied. Method-sized working-set selection remains concrete unresolved pressure.

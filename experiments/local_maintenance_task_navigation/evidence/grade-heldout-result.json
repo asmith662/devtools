@@ -1,0 +1,44 @@
+{
+  "command": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "arguments": [
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "--tb=short",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_task_navigation\\heldout.py",
+      "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\task-navigation\\grade-heldout.xml"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:02:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 1,
+  "passed": [
+    "test_metadata_cannot_authorize_edit"
+  ],
+  "failed": [
+    "test_current_snapshot_not_cached",
+    "test_native_correlation_and_metadata_coexist",
+    "test_empty_resource_unicode_and_readonly",
+    "test_projection_preserves_metadata_and_objective",
+    "test_utf8_size_differs_from_character_count"
+  ],
+  "errors": [],
+  "skipped": [],
+  "stdout": "F.FFFF                                                                   [100%]\r\n================================== FAILURES ===================================\r\n______________________ test_current_snapshot_not_cached _______________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:20: in test_current_snapshot_not_cached\r\n    first=inventory(asyncio.run(host.prepare(progress())))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_native_correlation_and_metadata_coexist _________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:45: in test_native_correlation_and_metadata_coexist\r\n    assert inventory(request)['source_acquired'] is False\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n__________________ test_empty_resource_unicode_and_readonly ___________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:57: in test_empty_resource_unicode_and_readonly\r\n    data=inventory(asyncio.run(host.prepare(progress())))\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n______________ test_projection_preserves_metadata_and_objective _______________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:66: in test_projection_preserves_metadata_and_objective\r\n    assert len(inventory(request)['resources'])==2\r\n               ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n_________________ test_utf8_size_differs_from_character_count _________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:72: in test_utf8_size_differs_from_character_count\r\n    row=next(r for r in inventory(asyncio.run(host.prepare(progress())))['resources'] if r['address']=='package/source.py')\r\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_current_snapshot_not_cached\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_native_correlation_and_metadata_coexist\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_empty_resource_unicode_and_readonly\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_projection_preserves_metadata_and_objective\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_utf8_size_differs_from_character_count\r\n5 failed, 1 passed in 0.41s\r\n",
+  "stderr": "",
+  "capture_complete": true,
+  "xml_present": true,
+  "valid_pass": false
+}

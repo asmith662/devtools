@@ -1,5 +1,7 @@
 # Maintenance-task-navigation-0001
 
-Prospective single B-0035 attempt after protected validation of task-entry navigation.
-See [protocol](protocol.md), [objective](objective.md) and preflight.
-Earlier cases, recovery receipt and unknown grading-exit qualification remain frozen.
+Closed failed B-0035 attempt: ten source reads, seven repeated regions, no edit.
+See [report](REPORT.md), [freeze](freeze.json), [protocol](protocol.md),
+[preflight](preflight.json), [independent review](independent-review.json) and
+[manifest](manifest.json). No model-authored implementation was integrated.
+Prior frozen cases and their unknown receipt qualifications remain unchanged.

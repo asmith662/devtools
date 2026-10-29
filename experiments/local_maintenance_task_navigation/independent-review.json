@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-29T21:21:47.523014+00:00",
+  "candidate_hashes": {
+    "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+    "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+    "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+    "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+    "src/devtools/agents/coding/navigation.py": "6e358dd440c79abbfc27ca3f092c3bdb804c70d3cd1f10a9447b1382d052c786",
+    "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+    "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+    "src/devtools/agents/coding/repository.py": "e012dfd28da268a7854e28d46a764ddb03588af092b36f8fa93268dd6bbb688d"
+  },
+  "source_review": {
+    "at": "2026-10-29T21:20:55.566126+00:00",
+    "candidate_hashes": {
+      "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+      "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+      "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+      "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+      "src/devtools/agents/coding/navigation.py": "6e358dd440c79abbfc27ca3f092c3bdb804c70d3cd1f10a9447b1382d052c786",
+      "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+      "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+      "src/devtools/agents/coding/repository.py": "e012dfd28da268a7854e28d46a764ddb03588af092b36f8fa93268dd6bbb688d"
+    },
+    "safe_for_fixed_grading": true,
+    "verdict": "No model-authored implementation: every archived editable byte equals the frozen baseline.",
+    "basis": "Independently inspected all ten normalized native responses, zero proposals/application/checks, exact archive hashes and restored canonical bytes.",
+    "authority": "Supervisor execution of the already authorized frozen independent checks, not acceptance or publication of model-authored code.",
+    "supervisor_patch": false
+  },
+  "focused": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_task_navigation\\focused.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\task-navigation\\grade-focused.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": [
+      "test_inventory_does_not_bypass_currentness"
+    ],
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_not_duplicated_on_prepare",
+      "test_inventory_charged_to_prompt_budget"
+    ],
+    "errors": [],
+    "skipped": [],
+    "stdout": "FFF.                                                                     [100%]\r\n================================== FAILURES ===================================\r\n_____________________ test_first_request_scoped_inventory _____________________\r\nexperiments\\local_maintenance_task_navigation\\focused.py:124: in test_first_request_scoped_inventory\r\n    data = inventory(request)\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n__________________ test_inventory_not_duplicated_on_prepare ___________________\r\nexperiments\\local_maintenance_task_navigation\\focused.py:151: in test_inventory_not_duplicated_on_prepare\r\n    assert inventory(first) == inventory(second)\r\n           ^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n___________________ test_inventory_charged_to_prompt_budget ___________________\r\nexperiments\\local_maintenance_task_navigation\\focused.py:172: in test_inventory_charged_to_prompt_budget\r\n    with pytest.raises(ValueError, match=\"budget\"):\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE   Failed: DID NOT RAISE ValueError\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_task_navigation/focused.py::test_first_request_scoped_inventory\r\nFAILED experiments/local_maintenance_task_navigation/focused.py::test_inventory_not_duplicated_on_prepare\r\nFAILED experiments/local_maintenance_task_navigation/focused.py::test_inventory_charged_to_prompt_budget\r\n3 failed, 1 passed in 37.35s\r\n",
+    "stderr": "",
+    "capture_complete": true,
+    "xml_present": true,
+    "valid_pass": false
+  },
+  "heldout": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_task_navigation\\heldout.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\task-navigation\\grade-heldout.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": [
+      "test_metadata_cannot_authorize_edit"
+    ],
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_native_correlation_and_metadata_coexist",
+      "test_empty_resource_unicode_and_readonly",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": [],
+    "skipped": [],
+    "stdout": "F.FFFF                                                                   [100%]\r\n================================== FAILURES ===================================\r\n______________________ test_current_snapshot_not_cached _______________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:20: in test_current_snapshot_not_cached\r\n    first=inventory(asyncio.run(host.prepare(progress())))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_native_correlation_and_metadata_coexist _________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:45: in test_native_correlation_and_metadata_coexist\r\n    assert inventory(request)['source_acquired'] is False\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n__________________ test_empty_resource_unicode_and_readonly ___________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:57: in test_empty_resource_unicode_and_readonly\r\n    data=inventory(asyncio.run(host.prepare(progress())))\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n______________ test_projection_preserves_metadata_and_objective _______________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:66: in test_projection_preserves_metadata_and_objective\r\n    assert len(inventory(request)['resources'])==2\r\n               ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n_________________ test_utf8_size_differs_from_character_count _________________\r\nexperiments\\local_maintenance_task_navigation\\heldout.py:72: in test_utf8_size_differs_from_character_count\r\n    row=next(r for r in inventory(asyncio.run(host.prepare(progress())))['resources'] if r['address']=='package/source.py')\r\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_current_snapshot_not_cached\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_native_correlation_and_metadata_coexist\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_empty_resource_unicode_and_readonly\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_projection_preserves_metadata_and_objective\r\nFAILED experiments/local_maintenance_task_navigation/heldout.py::test_utf8_size_differs_from_character_count\r\n5 failed, 1 passed in 0.41s\r\n",
+    "stderr": "",
+    "capture_complete": true,
+    "xml_present": true,
+    "valid_pass": false
+  },
+  "passes_frozen_behavior": false,
+  "restored": true,
+  "supervisor_repair": false,
+  "known_exact_candidate_only": true,
+  "qualification": "Independent grading of exact archived candidate under canonical Checkout/SourceCustody; acceptance also requires review, supported quality checks and committed protected validation."
+}

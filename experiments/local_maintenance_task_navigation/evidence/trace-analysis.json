@@ -1,0 +1,593 @@
+{
+  "rows": [
+    {
+      "request": 1,
+      "native_id": "CaoTN8YUHbsz5YzgpMoXmiQUwrtzDDYz",
+      "operation": "read_source_unit",
+      "requested_arguments": {
+        "snapshot_id": "2c4551f77f6bd29e1db7611689c1fc49c313c4457ef55722f71c3ac4581fdbf7",
+        "unit_id": "dd01120a7dd185061b4c099079dbc312047b3d8a5c9d73bc7beeb3df440e748e"
+      },
+      "active_exact": [],
+      "original_bytes": 9345,
+      "active_bytes": 9345,
+      "status": "unchanged",
+      "omitted": [],
+      "acquired_span": [
+        0,
+        8192
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": false,
+      "repeated_span_still_active": false,
+      "input_tokens": 2991,
+      "output_tokens": 198,
+      "seconds": 18.677832
+    },
+    {
+      "request": 2,
+      "native_id": "FXJ1dJ7Q59sY21n7nFqKnNdk7C6aNtB5",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 8192,
+        "end": 16384
+      },
+      "active_exact": [
+        {
+          "call_id": "CaoTN8YUHbsz5YzgpMoXmiQUwrtzDDYz",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 20166,
+      "active_bytes": 20166,
+      "status": "unchanged",
+      "omitted": [],
+      "acquired_span": [
+        8192,
+        16384
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": false,
+      "repeated_span_still_active": false,
+      "input_tokens": 5617,
+      "output_tokens": 94,
+      "seconds": 6.658622
+    },
+    {
+      "request": 3,
+      "native_id": "quofNpfJ4HPy6wR88cab0CA4cljbWg5i",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 16384,
+        "end": 24576
+      },
+      "active_exact": [
+        {
+          "call_id": "CaoTN8YUHbsz5YzgpMoXmiQUwrtzDDYz",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "FXJ1dJ7Q59sY21n7nFqKnNdk7C6aNtB5",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 30158,
+      "active_bytes": 30158,
+      "status": "unchanged",
+      "omitted": [],
+      "acquired_span": [
+        16384,
+        24576
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": false,
+      "repeated_span_still_active": false,
+      "input_tokens": 7708,
+      "output_tokens": 63,
+      "seconds": 4.981773
+    },
+    {
+      "request": 4,
+      "native_id": "vnRMA1Cn3a66drUEI0VMFRpenGv991T3",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 0,
+        "end": 8192
+      },
+      "active_exact": [
+        {
+          "call_id": "FXJ1dJ7Q59sY21n7nFqKnNdk7C6aNtB5",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "quofNpfJ4HPy6wR88cab0CA4cljbWg5i",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 40312,
+      "active_bytes": 29491,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        0,
+        8192
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7213,
+      "output_tokens": 58,
+      "seconds": 15.645578
+    },
+    {
+      "request": 5,
+      "native_id": "4RozFRnMICR8WwaJhupTLm8LBg8ZdhQb",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 8192,
+        "end": 16384
+      },
+      "active_exact": [
+        {
+          "call_id": "quofNpfJ4HPy6wR88cab0CA4cljbWg5i",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "vnRMA1Cn3a66drUEI0VMFRpenGv991T3",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 50774,
+      "active_bytes": 29961,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        8192,
+        16384
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7608,
+      "output_tokens": 62,
+      "seconds": 8.507867
+    },
+    {
+      "request": 6,
+      "native_id": "aaXCIi2C0AyIEitf2PNw3GFRK4e4Ccz4",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 16384,
+        "end": 24576
+      },
+      "active_exact": [
+        {
+          "call_id": "vnRMA1Cn3a66drUEI0VMFRpenGv991T3",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "4RozFRnMICR8WwaJhupTLm8LBg8ZdhQb",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 60624,
+      "active_bytes": 29657,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "duplicate-current-source"
+        ],
+        [
+          6,
+          8,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        16384,
+        24576
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7536,
+      "output_tokens": 63,
+      "seconds": 10.732795
+    },
+    {
+      "request": 7,
+      "native_id": "8BnJjcs2MTEeMNDydtRSLpxl9gyRFqku",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 0,
+        "end": 8192
+      },
+      "active_exact": [
+        {
+          "call_id": "4RozFRnMICR8WwaJhupTLm8LBg8ZdhQb",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "aaXCIi2C0AyIEitf2PNw3GFRK4e4Ccz4",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 70778,
+      "active_bytes": 29349,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "duplicate-current-source"
+        ],
+        [
+          6,
+          8,
+          "duplicate-current-source"
+        ],
+        [
+          8,
+          10,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        0,
+        8192
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7181,
+      "output_tokens": 58,
+      "seconds": 12.663809
+    },
+    {
+      "request": 8,
+      "native_id": "NpT2YPVmJDml1Teof7XcL1mFUQ5zIMx0",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 8192,
+        "end": 16384
+      },
+      "active_exact": [
+        {
+          "call_id": "aaXCIi2C0AyIEitf2PNw3GFRK4e4Ccz4",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "8BnJjcs2MTEeMNDydtRSLpxl9gyRFqku",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 81240,
+      "active_bytes": 29961,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "duplicate-current-source"
+        ],
+        [
+          6,
+          8,
+          "duplicate-current-source"
+        ],
+        [
+          8,
+          10,
+          "duplicate-current-source"
+        ],
+        [
+          10,
+          12,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        8192,
+        16384
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7608,
+      "output_tokens": 62,
+      "seconds": 6.575742
+    },
+    {
+      "request": 9,
+      "native_id": "Puokw3aRnJHJreWCQYEBqWfFKF5r1qLf",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 16384,
+        "end": 24576
+      },
+      "active_exact": [
+        {
+          "call_id": "8BnJjcs2MTEeMNDydtRSLpxl9gyRFqku",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            0,
+            8192
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "NpT2YPVmJDml1Teof7XcL1mFUQ5zIMx0",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 91090,
+      "active_bytes": 29657,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "duplicate-current-source"
+        ],
+        [
+          6,
+          8,
+          "duplicate-current-source"
+        ],
+        [
+          8,
+          10,
+          "duplicate-current-source"
+        ],
+        [
+          10,
+          12,
+          "duplicate-current-source"
+        ],
+        [
+          12,
+          14,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        16384,
+        24576
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7536,
+      "output_tokens": 63,
+      "seconds": 4.095394
+    },
+    {
+      "request": 10,
+      "native_id": "jGGildVZKNScFLn6yfEgE1m2LVPhyZm9",
+      "operation": "read_source",
+      "requested_arguments": {
+        "path": "src/devtools/agents/coding/repository.py",
+        "start": 0,
+        "end": 8192
+      },
+      "active_exact": [
+        {
+          "call_id": "NpT2YPVmJDml1Teof7XcL1mFUQ5zIMx0",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8192,
+            16384
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        },
+        {
+          "call_id": "Puokw3aRnJHJreWCQYEBqWfFKF5r1qLf",
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            16384,
+            24576
+          ],
+          "bytes": 8192,
+          "version": "318e4723a400456ca08cb3578cd0af098308ab173ae1f4c16825d3034b0f003f"
+        }
+      ],
+      "original_bytes": 101244,
+      "active_bytes": 29349,
+      "status": "reduced",
+      "omitted": [
+        [
+          2,
+          4,
+          "duplicate-current-source"
+        ],
+        [
+          4,
+          6,
+          "duplicate-current-source"
+        ],
+        [
+          6,
+          8,
+          "duplicate-current-source"
+        ],
+        [
+          8,
+          10,
+          "duplicate-current-source"
+        ],
+        [
+          10,
+          12,
+          "duplicate-current-source"
+        ],
+        [
+          12,
+          14,
+          "duplicate-current-source"
+        ],
+        [
+          14,
+          16,
+          "source-capacity"
+        ]
+      ],
+      "acquired_span": [
+        0,
+        8192
+      ],
+      "disclosed_bytes": 8192,
+      "repeat": true,
+      "repeated_span_still_active": false,
+      "input_tokens": 7181,
+      "output_tokens": 58,
+      "seconds": 3.597593
+    }
+  ],
+  "source_disclosed_bytes": 81920,
+  "unique_exact_bytes": 24576,
+  "repeated_reads": 7,
+  "known_input_tokens": 68179,
+  "known_output_tokens": 779,
+  "model_seconds": 92.137005,
+  "host_seconds": 93.256725,
+  "last_feedback_consumed": false,
+  "native_correlations_valid": true,
+  "objective_preserved": true,
+  "source_matches_frozen_snapshot": true,
+  "all_effects_acknowledged": true,
+  "raw_result_sha256": "4e80641d7f338d410a2facf681e3a3504e263dc5e5e59868181c9c659907fdc0",
+  "qualification": "Temporal projection/read sequence is observed; it does not prove a private intention or a counterfactual causal effect."
+}
