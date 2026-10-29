@@ -18,3 +18,12 @@ rationale requirements, sampling policy, metrics, artifact freezing, and
 experiment protocols. This neutral primitive can support future assessment
 domains without knowing what their outcomes mean. It does not define an
 assessment framework or prescribe whether a non-exact report is fatal.
+
+[`preflight.py`](../preflight.py) compares a supervisor's finite oracle
+expectations with independently derived observations. It reuses identity
+coverage, requires named normal/boundary/empty cases and records explicit
+blockers. It executes no oracle or Command and cannot certify semantic truth or
+independence. The [evaluation preflight](../../../../docs/development/oracle-integrity-preflight.md)
+also requires executable positive/negative controls, baseline assertion failures,
+environment qualification, separation of focused/withheld tests and an immutable
+freeze before live entry. Task hosts retain those responsibilities.
