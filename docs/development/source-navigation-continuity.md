@@ -127,3 +127,42 @@ disclosure, cancellation, missing navigation acknowledgment and impossible
 protected Context. No limit, test selector, coverage threshold or exclusion was
 changed. The separately preflighted live protocol is
 [Maintenance-navigation-0001](../../experiments/local_maintenance_navigation/protocol.md).
+
+## Frozen ten-request trace
+
+`P` denotes projection.py and `R` repository.py in the coding package.
+Ranges are actually disclosed half-open Unicode offsets, not requested ends.
+The receipt retains native IDs, content/snapshot identities and marginal serialized
+exchange costs. The source versions did not change during the original run.
+
+| Request | Complete input bytes | Active exact ranges before response | Next selected acquisition |
+|---|---:|---|---|
+| 1 | 4,625 | none | list_repository |
+| 2 | 8,254 | none | search_source, search_source |
+| 3 | 17,126 | none | P[0, 8192] |
+| 4 | 14,597 | P[0, 8192] | P[8192, 14095] |
+| 5 | 21,768 | P[0, 8192], P[8192, 14095] | R[0, 8192] |
+| 6 | 32,196 | P[0, 8192], P[8192, 14095], R[0, 8192] | R[8192, 16384] |
+| 7 | 32,049 | P[8192, 14095], R[0, 8192], R[8192, 16384] | R[16384, 24576] |
+| 8 | 24,639 | R[8192, 16384], R[16384, 24576] | R[0, 8192] |
+| 9 | 25,256 | R[16384, 24576], R[0, 8192] | R[8192, 16384] |
+| 10 | 24,892 | R[0, 8192], R[8192, 16384] | R[16384, 24576] |
+
+Metadata exchanges were omitted at request four. Source-capacity eviction began
+at request seven; repeated/superseded exchanges were later eligible as recorded
+in the receipt. Requests eight through ten reread R ranges that were absent from
+their active inputs. That correspondence is observable; the model's motivation
+is not. Search had supplied a precise request-assembly symbol, but the worker
+selected broad ranges. The final acquired range was not consumed by another
+request because the original ten-request envelope ended.
+
+## Protected implementation validation
+
+Committed executable tree `e3be8f8e7890ede763ba5770c7ac08621c57d294` passed 3866 tests,
+2 optional live skips, and 100% configured production line/branch coverage.
+The unchanged command was `uv run python scripts/validate_development.py`;
+recorded wall duration was 1592.236 seconds. Ruff, supported formatter,
+strict mypy and layout also passed against the same 1189 physical
+inputs. [Machine-readable receipt](../research/code-audit/source-navigation-continuity-20261029.json)
+retains commands, timestamps, versions, identities, trace and preservation.
+No live effectiveness follows from this gate.
