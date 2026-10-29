@@ -4,6 +4,18 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, cast
+
+from devtools.context import RepositoryResourceAddress
+from devtools.context.repository.resource import ContentIdentity
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable, Mapping
+
+    from devtools.context.planning.source import SourceRangeDisclosureOption
+    from devtools.context.repository.snapshot import RepositorySnapshot
+
 
 class CodingEditError(ValueError):
     """A proposal was refused before source mutation, with bounded diagnostics."""
@@ -120,3 +132,114 @@ def replace_exact_text(  # noqa: PLR0913 -- explicit independent host limits/del
             },
         )
     return (updated, source.index(old_text), source.index(old_text) + len(old_text))
+
+
+@dataclass(frozen=True, slots=True)
+class EditLimits:
+    """Host-selected region/source/transaction ceilings, without Qwen defaults."""
+
+    region_bytes: int
+    source_bytes: int
+    aggregate_bytes: int
+    operations: int
+
+    def __post_init__(self) -> None:
+        """Refuse unbounded admission before effects."""
+        if (
+            min(
+                self.region_bytes,
+                self.source_bytes,
+                self.aggregate_bytes,
+                self.operations,
+            )
+            <= 0
+        ):
+            msg = "Edit limits must be positive."
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True, slots=True)
+class SourceChange:
+    """Admitted whole after-image with its original addressed source and span."""
+
+    address: RepositoryResourceAddress
+    before: str
+    after: str
+    start: int
+    end: int
+
+
+def admit_source_batch(
+    arguments: Iterable[Mapping[str, object]],
+    *,
+    snapshot: RepositorySnapshot,
+    editable: tuple[RepositoryResourceAddress, ...],
+    available: tuple[SourceRangeDisclosureOption, ...],
+    limits: EditLimits,
+) -> tuple[SourceChange, ...]:
+    """Plan exact current, bounded, nonoverlapping replacements without effects.
+
+    The host checks source currentness, readiness and the native operation count
+    before entering. Arguments are decoded lazily so a later malformed operation
+    cannot hide an earlier admission refusal. No partial plan escapes on error.
+    Scope membership and exact disclosed witnesses are checked here; model/Tool
+    correlation, authorization, effect entry and custody remain host-owned.
+    """
+    changes: list[SourceChange] = []
+    total = 0
+    for values in arguments:
+        address = RepositoryResourceAddress(cast("str", values["path"]))
+        if address not in editable:
+            msg = "Edit path is outside the admitted editing surface."
+            raise CodingEditError(msg)
+        before = snapshot.resource_at(address).content
+        after, start, end = replace_exact_text(
+            before,
+            values["old_text"],
+            values["new_text"],
+            region_bytes=limits.region_bytes,
+            source_bytes=limits.source_bytes,
+            allow_empty_new=True,
+        )
+        if not any(
+            o.unit.resource.address == address
+            and o.snapshot_id == snapshot.id
+            and o.repository_id == snapshot.repository_id
+            and o.unit.resource.content_identity == ContentIdentity.from_text(before)
+            and o.span[0] <= start
+            and end <= o.span[1]
+            for o in available
+        ):
+            msg = "Exact current edit source was not acquired."
+            raise CodingEditError(msg)
+        if any(
+            c.address == address and start < c.end and c.start < end for c in changes
+        ):
+            msg = "Edit anchors overlap."
+            raise CodingEditError(msg)
+        total += len(before[start:end].encode()) + len(
+            cast("str", values["new_text"]).encode(),
+        )
+        if total > limits.aggregate_bytes:
+            msg = "Aggregate edit byte limit exceeded."
+            raise CodingEditError(msg)
+        changes.append(SourceChange(address, before, after, start, end))
+    # Combine admitted same-file anchors against the one original version.
+    combined = []
+    for address in dict.fromkeys(c.address for c in changes):
+        original = snapshot.resource_at(address).content
+        after = original
+        for c in sorted(
+            (c for c in changes if c.address == address),
+            key=lambda c: c.start,
+            reverse=True,
+        ):
+            inserted = c.after[c.start : len(c.after) - (len(c.before) - c.end)]
+            after = after[: c.start] + inserted + after[c.end :]
+        if len(after.encode()) > limits.source_bytes:
+            msg = "Combined source byte limit exceeded."
+            raise CodingEditError(msg)
+        combined.append(
+            SourceChange(address, original, after, 0, len(original)),
+        )
+    return tuple(combined)

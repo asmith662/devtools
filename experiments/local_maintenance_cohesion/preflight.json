@@ -1,0 +1,366 @@
+{
+  "at": "2026-10-29T15:30:37.886704+00:00",
+  "status": "passed",
+  "feasibility": {
+    "passed": true,
+    "sizes": {
+      "custody.py": 4246,
+      "edits.py": 9149,
+      "models.py": 3750,
+      "process.py": 8619,
+      "projection.py": 14095,
+      "repository.py": 29038,
+      "__init__.py": 394
+    },
+    "source_limit": 32768,
+    "repository_margin": 3730,
+    "region_limit": 4096,
+    "aggregate_limit": 8192,
+    "operations": 2,
+    "assessment": "Existing host offers bounded initial/prepare composition seams; the metadata obligation can be expressed with localized additions and refresh handling, without new files, a framework or limit changes. More than 2 KiB of whole-file margin and independent 4 KiB region / 8 KiB aggregate limits remain. This is a feasibility assessment, not a reference patch or guarantee of model success."
+  },
+  "comparisons": [
+    {
+      "name": "inventory-addresses",
+      "obligation": "inventory",
+      "category": "normal",
+      "expected": 2,
+      "independently_derived": 2,
+      "derivation": "independent permitted-address set"
+    },
+    {
+      "name": "utf8-boundary",
+      "obligation": "inventory",
+      "category": "boundary",
+      "expected": 1,
+      "independently_derived": 1,
+      "derivation": "UTF-8 encoding specification and raw file byte controls"
+    },
+    {
+      "name": "empty-resource",
+      "obligation": "inventory",
+      "category": "empty",
+      "expected": 0,
+      "independently_derived": 0,
+      "derivation": "empty byte sequence"
+    },
+    {
+      "name": "interval-review",
+      "obligation": "review",
+      "category": "boundary",
+      "expected": 2,
+      "independently_derived": 2,
+      "derivation": "independent occupied-unit-cell enumeration"
+    }
+  ],
+  "issues": [],
+  "reference": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "experiments/local_maintenance_cohesion/reference_checks.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\host-cohesion\\positive-reference.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 0,
+    "passed": 10,
+    "failed": [],
+    "errors": 0,
+    "xml_sha256": "d44aa20fa30537c3b048a6d5581c0ec5308c41591ff53eabe03a44e893f26ed1",
+    "stdout": "..........                                                               [100%]\r\n10 passed in 1.47s\r\n",
+    "stderr": ""
+  },
+  "focused": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "experiments/local_maintenance_cohesion/focused.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\host-cohesion\\focused-baseline.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 1,
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_charged_to_prompt_budget",
+      "test_inventory_not_duplicated_on_prepare"
+    ],
+    "errors": 0,
+    "xml_sha256": "3383d308e7d81c54fcf90a3a2f10d4f4de5b2b4ea889ab01cd2e799e1c967e41",
+    "stdout": "FFF.                                                                     [100%]\r\n================================== FAILURES ===================================\r\n_____________________ test_first_request_scoped_inventory _____________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:124: in test_first_request_scoped_inventory\r\n    data = inventory(request)\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n__________________ test_inventory_not_duplicated_on_prepare ___________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:151: in test_inventory_not_duplicated_on_prepare\r\n    assert inventory(first) == inventory(second)\r\n           ^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\nE   assert 0 == 1\r\nE    +  where 0 = len([])\r\n___________________ test_inventory_charged_to_prompt_budget ___________________\r\nexperiments\\local_maintenance_cohesion\\focused.py:172: in test_inventory_charged_to_prompt_budget\r\n    with pytest.raises(ValueError, match=\"budget\"):\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE   Failed: DID NOT RAISE ValueError\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_first_request_scoped_inventory\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_inventory_not_duplicated_on_prepare\r\nFAILED experiments/local_maintenance_cohesion/focused.py::test_inventory_charged_to_prompt_budget\r\n3 failed, 1 passed in 0.37s\r\n",
+    "stderr": ""
+  },
+  "heldout": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "experiments/local_maintenance_cohesion/heldout.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\host-cohesion\\heldout-baseline.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:02:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 1,
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_empty_resource_unicode_and_readonly",
+      "test_native_correlation_and_metadata_coexist",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": 0,
+    "xml_sha256": "43ca39f30fd790f9e4f82ef09bb66b254b9a92462f6e5fdd5dceda449bb75f3f",
+    "stdout": "F.FFFF                                                                   [100%]\r\n================================== FAILURES ===================================\r\n______________________ test_current_snapshot_not_cached _______________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:20: in test_current_snapshot_not_cached\r\n    first=inventory(asyncio.run(host.prepare(progress())))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_native_correlation_and_metadata_coexist _________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:45: in test_native_correlation_and_metadata_coexist\r\n    assert inventory(request)['source_acquired'] is False\r\n           ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n__________________ test_empty_resource_unicode_and_readonly ___________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:57: in test_empty_resource_unicode_and_readonly\r\n    data=inventory(asyncio.run(host.prepare(progress())))\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n______________ test_projection_preserves_metadata_and_objective _______________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:66: in test_projection_preserves_metadata_and_objective\r\n    assert len(inventory(request)['resources'])==2\r\n               ^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n_________________ test_utf8_size_differs_from_character_count _________________\r\nexperiments\\local_maintenance_cohesion\\heldout.py:72: in test_utf8_size_differs_from_character_count\r\n    row=next(r for r in inventory(asyncio.run(host.prepare(progress())))['resources'] if r['address']=='package/source.py')\r\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_cohesion\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_current_snapshot_not_cached\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_native_correlation_and_metadata_coexist\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_empty_resource_unicode_and_readonly\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_projection_preserves_metadata_and_objective\r\nFAILED experiments/local_maintenance_cohesion/heldout.py::test_utf8_size_differs_from_character_count\r\n5 failed, 1 passed in 0.40s\r\n",
+    "stderr": ""
+  },
+  "historical_review": {
+    "interval": {
+      "reservations": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "window": [
+        2,
+        6
+      ],
+      "frozen_expected": 3,
+      "clipped": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "unit_cells": [
+        2,
+        5
+      ],
+      "independent_expected": 2
+    },
+    "overlap": {
+      "spans": [
+        {
+          "call_id": "YhhyJMqnUmMpkJrpZ3kgKFCAxZOaCOul",
+          "path": "occupancy.py",
+          "start": 224,
+          "end": 491
+        },
+        {
+          "call_id": "NQW38ZMDPZMtsUJWs8oqgjSGKcdZfWNi",
+          "path": "occupancy.py",
+          "start": 411,
+          "end": 782
+        }
+      ],
+      "intersection": [
+        411,
+        491
+      ],
+      "shared_text": "    intervals.sort()\n    total = 0\n    current_start, current_end = intervals[0]",
+      "feedback": [
+        {
+          "role": "tool",
+          "content": "{\"status\": \"REFUSED\", \"reason\": \"Edit anchors overlap.\"}",
+          "tool_calls": [],
+          "tool_call_id": "YhhyJMqnUmMpkJrpZ3kgKFCAxZOaCOul",
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"status\": \"REFUSED\", \"reason\": \"Edit anchors overlap.\"}",
+          "tool_calls": [],
+          "tool_call_id": "NQW38ZMDPZMtsUJWs8oqgjSGKcdZfWNi",
+          "reasoning_content": null
+        }
+      ],
+      "disposition": "proposal_limit",
+      "progress": {
+        "limits": {
+          "model_calls": 6,
+          "proposals": 2,
+          "tool_actions": 16,
+          "call_timeout": {
+            "value": "0:04:00"
+          },
+          "wall_timeout": {
+            "value": "0:20:00"
+          },
+          "completion_check": false
+        },
+        "number": 5,
+        "model_calls": 5,
+        "proposals": 2,
+        "actions": 6,
+        "phase": "completion",
+        "candidate_validated": false,
+        "effects": [
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "qoaYYzBOXIDzUYNQURk9gmaHt5jbG3Ca"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "1RGf3f4KTeIiIKaPsPxZOhd6TAykAqMG"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "tUI9KO1filSQs2jVEDaHqpTQCwImzKDh"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "edit",
+            "native_call_ids": [
+              "eqaMP4czo1aXGIO48Uybe1xR5nFYU7wC"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "check",
+            "native_call_ids": [],
+            "acknowledged": true,
+            "check_name": "focused"
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "RCBuish0Sv8bYTP5PjRE8Wn23RcyvRPi"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "WoRVrUqogpRXqG3fNvOmLRxxUDDQxhgM"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "OvJNPu18BV4mwxjKC3HY5Nkwq94XHQxQ"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          }
+        ],
+        "usage": [
+          {
+            "input_tokens": 578,
+            "output_tokens": 113,
+            "total_tokens": 691,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 1692,
+            "output_tokens": 314,
+            "total_tokens": 2006,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 1354,
+            "output_tokens": 74,
+            "total_tokens": 1428,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 2098,
+            "output_tokens": 38,
+            "total_tokens": 2136,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 2560,
+            "output_tokens": 447,
+            "total_tokens": 3007,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        ]
+      }
+    },
+    "conclusion": "Atomic refusal was correct. The second of two authorized proposals exhausted the run. Existing feedback identifies overlap; original exact calls identify the two conflicting anchors. No edit-engine change is justified for this case."
+  },
+  "qualification": "Finite empirical cross-checks and private reference observations; not proof of all behavior. Reference/heldout code is excluded from model read scope. Baseline failures are exact assertions, not runtime or collection errors."
+}

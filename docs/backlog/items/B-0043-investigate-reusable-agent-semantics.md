@@ -252,3 +252,19 @@ candidate was accepted or substituted by Codex. No worker validation or effectiv
 repair occurred. Existing B-0035/B-0043, cohesion, Evidence/recovery and historical
 RI obligations remain open. This append-only advisory creates no grant,
 approval, proposal, status transition or parent closure.
+
+
+## Coding-host cohesion and edit feasibility - 2026-10-29
+
+The explicitly authorized [host extraction](../../development/coding-host-cohesion.md)
+moves pure source-batch geometry into the existing Agents editing owner while
+retaining host readiness/currentness, native decoding, effects and custody.
+The first-request inventory obligation remains unimplemented by the supervisor.
+A separate preflighted local attempt will determine maintenance outcome.
+
+The 32,768 resulting-source setting is host policy, separate from Prompt bytes,
+edit-region and aggregate limits. Whole-file materialization can reject a small
+legitimate edit in a larger file. A future coordinated finite materialization/
+growth profile deserves review under this existing owner; it must preserve
+SourceScope/custody bounds and exact witnessed edits. No limit is raised and no
+general large-file editing contract, new proposal, grant or parent closure follows.

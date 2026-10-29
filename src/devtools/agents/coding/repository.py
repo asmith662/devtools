@@ -10,7 +10,16 @@ from typing import TYPE_CHECKING, Literal, cast
 
 from devtools.agents.coding.compaction.operation import SemanticCompactor
 from devtools.agents.coding.custody import SourceCustody
-from devtools.agents.coding.edits import CodingEditError, replace_exact_text
+from devtools.agents.coding.edits import (
+    CodingEditError,
+    admit_source_batch,
+)
+from devtools.agents.coding.edits import (
+    EditLimits as EditLimits,  # noqa: PLC0414 -- maintained import facade
+)
+from devtools.agents.coding.edits import (
+    SourceChange as SourceChange,  # noqa: PLC0414 -- maintained import facade
+)
 from devtools.agents.coding.models import (
     CodingCompletion,
     CodingEffect,
@@ -32,7 +41,6 @@ from devtools.agents.model_tools import (
 from devtools.context import Repository, RepositoryResourceAddress
 from devtools.context.planning.source import SourceRangeDisclosureOption
 from devtools.context.repository.corpus import realize_repository_text_corpus
-from devtools.context.repository.resource import ContentIdentity
 from devtools.context.retrieval import build_source_search_index
 from devtools.core.paths import resolve_path
 from devtools.models.interaction import (
@@ -93,30 +101,6 @@ _CHECK = ToolDescriptor(
 
 
 @dataclass(frozen=True, slots=True)
-class EditLimits:
-    """Host-selected region/source/transaction ceilings, without Qwen defaults."""
-
-    region_bytes: int
-    source_bytes: int
-    aggregate_bytes: int
-    operations: int
-
-    def __post_init__(self) -> None:
-        """Refuse unbounded admission before effects."""
-        if (
-            min(
-                self.region_bytes,
-                self.source_bytes,
-                self.aggregate_bytes,
-                self.operations,
-            )
-            <= 0
-        ):
-            msg = "Edit limits must be positive."
-            raise ValueError(msg)
-
-
-@dataclass(frozen=True, slots=True)
 class CodingObjective:
     """One bounded existing-text repair, with explicit host scope and checks.
 
@@ -150,17 +134,6 @@ class CodingObjective:
         ):
             msg = "Coding objective has an invalid or foreign source/check scope."
             raise ValueError(msg)
-
-
-@dataclass(frozen=True, slots=True)
-class SourceChange:
-    """Admitted whole after-image with its original addressed source and span."""
-
-    address: RepositoryResourceAddress
-    before: str
-    after: str
-    start: int
-    end: int
 
 
 def write_source_changes(root: ResolvedPath, changes: tuple[SourceChange, ...]) -> None:
@@ -557,7 +530,7 @@ class RepositoryCodingHost:
             effect.acknowledged = True
         return ready
 
-    async def propose(self, response: ModelResponse) -> tuple[SourceChange, ...] | None:  # noqa: C901 -- admit every component before effects
+    async def propose(self, response: ModelResponse) -> tuple[SourceChange, ...] | None:
         """Admit all exact, observed, current, nonoverlapping source anchors first."""
         self.pending_calls = response.tool_calls
         try:
@@ -572,70 +545,16 @@ class RepositoryCodingHost:
             if len(response.tool_calls) > self.objective.edits.operations:
                 msg = "Edit operation limit exceeded."
                 raise CodingEditError(msg)
-            changes: list[SourceChange] = []
-            total = 0
-            for call in response.tool_calls:
-                values = _arguments(
-                    call.arguments_json,
-                    {"path", "old_text", "new_text"},
-                )
-                address = RepositoryResourceAddress(cast("str", values["path"]))
-                if address not in self.objective.editable:
-                    msg = "Edit path is outside the admitted editing surface."
-                    raise CodingEditError(msg)
-                before = self.scope.snapshot.resource_at(address).content
-                after, start, end = replace_exact_text(
-                    before,
-                    values["old_text"],
-                    values["new_text"],
-                    region_bytes=self.objective.edits.region_bytes,
-                    source_bytes=self.objective.edits.source_bytes,
-                    allow_empty_new=True,
-                )
-                if not any(
-                    o.unit.resource.address == address
-                    and o.snapshot_id == self.scope.snapshot.id
-                    and o.repository_id == self.scope.snapshot.repository_id
-                    and o.unit.resource.content_identity
-                    == ContentIdentity.from_text(before)
-                    and o.span[0] <= start
-                    and end <= o.span[1]
-                    for o in available
-                ):
-                    msg = "Exact current edit source was not acquired."
-                    raise CodingEditError(msg)
-                if any(
-                    c.address == address and start < c.end and c.start < end
-                    for c in changes
-                ):
-                    msg = "Edit anchors overlap."
-                    raise CodingEditError(msg)
-                total += len(before[start:end].encode()) + len(
-                    cast("str", values["new_text"]).encode(),
-                )
-                if total > self.objective.edits.aggregate_bytes:
-                    msg = "Aggregate edit byte limit exceeded."
-                    raise CodingEditError(msg)
-                changes.append(SourceChange(address, before, after, start, end))
-            # Combine admitted same-file anchors against the one original version.
-            combined = []
-            for address in dict.fromkeys(c.address for c in changes):
-                original = self.scope.snapshot.resource_at(address).content
-                after = original
-                for c in sorted(
-                    (c for c in changes if c.address == address),
-                    key=lambda c: c.start,
-                    reverse=True,
-                ):
-                    inserted = c.after[c.start : len(c.after) - (len(c.before) - c.end)]
-                    after = after[: c.start] + inserted + after[c.end :]
-                if len(after.encode()) > self.objective.edits.source_bytes:
-                    msg = "Combined source byte limit exceeded."
-                    raise CodingEditError(msg)
-                combined.append(
-                    SourceChange(address, original, after, 0, len(original)),
-                )
-            return tuple(combined)
+            return admit_source_batch(
+                (
+                    _arguments(call.arguments_json, {"path", "old_text", "new_text"})
+                    for call in response.tool_calls
+                ),
+                snapshot=self.scope.snapshot,
+                editable=self.objective.editable,
+                available=available,
+                limits=self.objective.edits,
+            )
         except (ValueError, TypeError) as error:
             for call in response.tool_calls:
                 self._feedback(call, {"status": "REFUSED", "reason": str(error)})

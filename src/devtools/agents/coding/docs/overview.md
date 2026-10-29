@@ -23,6 +23,10 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
   remain authoritative; generated notes never certify effects or acceptance.
 - `edits.replace_exact_text` admits one unique bounded literal anchor without
   language/task or repository governance defaults.
+  The same owner now composes exact witnessed, nonoverlapping replacements into
+  whole admitted after-images through `admit_source_batch`. The repository host
+  retains native decoding/count limits, readiness/currentness, feedback, authority
+  and effects; its `EditLimits`/`SourceChange` imports remain compatibility facades.
 - `custody.SourceCustody` retains canonical known-source correspondence and
   refuses unknown-byte restoration. It is not Checkout, a transaction or store.
 
@@ -54,3 +58,7 @@ The [adaptive policy contract](../../../../../docs/development/adaptive-context-
 defines opt-in pressure/value/reserve selection, cached reuse and suppression
 after failed auxiliary attempts. Real assessment found no adopted semantic notes;
 the policy remains optional and does not claim measured continuation improvement.
+
+The [host-cohesion and edit-size analysis](../../../../../docs/development/coding-host-cohesion.md)
+separates pure source admission from lifecycle coordination and explains why
+resulting-file, region, disclosure and Prompt byte budgets are independent.
