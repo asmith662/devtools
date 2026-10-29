@@ -13485,9 +13485,9 @@
   "physical_validation_input_count": 1057,
   "protected_stdout_tail": "       14      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\json\\conversion.py                  16      0      8      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\json\\list.py                        50      0     10      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\json\\object.py                      48      0      8      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\json\\scalar.py                      10      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\__init__.py                 4      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\file.py                    69      0     24      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\heading.py                 26      0      4      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\markdown\\section.py                 36      0      8      0   100%\nsrc\\devtools\\resources\\filesystem\\models\\text.py                             37      0      4      0   100%\nsrc\\devtools\\resources\\filesystem\\reading.py                                 56      0     18      0   100%\nsrc\\devtools\\resources\\filesystem\\resolution.py                              21      0      0      0   100%\nsrc\\devtools\\resources\\filesystem\\writing.py                                 56      0     14      0   100%\nsrc\\devtools\\tools\\__init__.py                                                5      0      0      0   100%\nsrc\\devtools\\tools\\checks.py                                                 67      0     16      0   100%\nsrc\\devtools\\tools\\command.py                                                17      0      0      0   100%\nsrc\\devtools\\tools\\disclosure.py                                             33      0      6      0   100%\nsrc\\devtools\\tools\\errors.py                                                  1      0      0      0   100%\nsrc\\devtools\\tools\\execution.py                                               6      0      0      0   100%\nsrc\\devtools\\tools\\filesystem.py                                             92      0     16      0   100%\nsrc\\devtools\\tools\\protocols.py                                               9      0      0      0   100%\nsrc\\devtools\\tools\\repository\\__init__.py                                     0      0      0      0   100%\nsrc\\devtools\\tools\\repository\\git.py                                        116      0     24      0   100%\nsrc\\devtools\\tools\\repository\\validation.py                                 109      0     26      0   100%\nsrc\\devtools\\tools\\source.py                                                 72      0     20      0   100%\n---------------------------------------------------------------------------------------------------------------------\nTOTAL                                                                     13851      0   3536      0   100%\nRequired test coverage of 100% reached. Total coverage: 100.00%\n================ 3821 passed, 2 skipped in 1337.89s (0:22:17) =================\n",
   "documentation_integrity": {
-    "at": "2026-10-29T13:34:24.398448+00:00",
-    "finished_at": "2026-10-29T13:36:47.732168+00:00",
-    "seconds": 143.3337354999967,
+    "at": "2026-10-29T13:37:25.940997+00:00",
+    "finished_at": "2026-10-29T13:37:31.933689+00:00",
+    "seconds": 5.992708399891853,
     "exit_code": 0,
     "base": "968e6f7c5cdf39660d2f3def156ee4834de49280",
     "head": "9593d8f541a3cf58478f77052accb80b5a99e681",
@@ -13560,7 +13560,7 @@
     },
     "historical_refs_preserved": true,
     "json_records": 42289,
-    "links": 462,
+    "links": 463,
     "anchors": 36,
     "preexisting_broken_links": [],
     "new_broken_links": [],
@@ -15750,5 +15750,37 @@
     }
   },
   "repository_reconciliation": "experiments/local_agent_reliability/repository-reconciliation.json",
-  "publication": "Pending ordinary publication after documentation and preservation validation; accepted identity recorded separately."
+  "publication": {
+    "at": "2026-10-29T13:38:16.210807+00:00",
+    "main": "f4ddecff8dea2c00f5ef86f461f890a866e6352b",
+    "tree": "cccdf9e857e90799c17cfbe1b7f449f364d490f3",
+    "source": "9593d8f541a3cf58478f77052accb80b5a99e681",
+    "source_tree": "9bd9e523bd1987388b7cdb3fef62953ea7fafe96",
+    "physical_inputs": 1057,
+    "accepted_source_blobs": {
+      "apps/qwen/context_tools.py": "a4ce9867943501a092b2c07f24f80cf5130a5bec",
+      "src/devtools/agents/coding/compaction/format.py": "ee238b450211946d43a0d19f5f7c1fd0eae7fe3e",
+      "src/devtools/agents/coding/compaction/models.py": "f136c060351b10654ecf2588491df8734f8192ac",
+      "src/devtools/agents/coding/compaction/operation.py": "24a034dc4b186454166d95ef12662a5d7457946e",
+      "src/devtools/agents/coding/projection.py": "ebc721ff982126e0fa4e07ddb213911a2f353d61",
+      "src/devtools/agents/coding/repository.py": "2ebbce81bb0a128d9aec17462ea015e23d095016",
+      "src/devtools/models/interaction/providers/llama_cpp.py": "ec5e4b50af19dc15cba78253108a877853563386",
+      "src/devtools/models/interaction/providers/llama_cpp_request_settings.py": "01ed579f5572a859a9fdd9c19410cdf4014392ea",
+      "src/devtools/tools/docs/source-checks.md": "c7827a5e62f37fe022cd7f9e1a836e9047163b31",
+      "src/devtools/tools/source.py": "f17bee6407469448e5174a0466e2ec270e59764b",
+      "tests/agents/coding/compaction/test_structured_output.py": "04c83d355e0dfede654416e9f9ed2662a4d6df49",
+      "tests/agents/coding/test_projection.py": "58e3f9b4d3a3183d8cb63aec50ae4a760b79cf8b",
+      "tests/agents/coding/test_read_recovery.py": "a3e1e7a9d9e5df434e2083ea8befc753e5e3300a",
+      "tests/agents/coding/test_repository.py": "4b612e0e17feef3bce3fa06c93da28ad8fd34205",
+      "tests/apps/qwen/test_context_tools.py": "78a4f2739e2044dd02092996ff1170d10d03b103",
+      "tests/models/interaction/providers/test_llama_cpp.py": "c8b2ad993aee84c3dda9c1056e499e9614b1e770",
+      "tests/tools/test_source_reads.py": "0eba40e2ce5395773b5e8f26dcac8e1beef3744f"
+    },
+    "ordinary_fast_forward": true,
+    "acknowledgment": "",
+    "push_error": null,
+    "remote_verified": true,
+    "tracked_clean": true
+  },
+  "delivery_recorded_at": "2026-10-29T13:38:25.525010+00:00"
 }

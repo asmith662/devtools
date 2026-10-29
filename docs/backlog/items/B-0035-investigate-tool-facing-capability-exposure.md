@@ -212,3 +212,19 @@ but a frozen focused expectation was incorrect and repair quality is confounded.
 This is bounded evidence under existing owners, not a new grant, proposal,
 parent closure or approval of broader autonomy/Context/Evidence work. Accepted
 publication will be recorded separately after final protected validation.
+
+## Delivered reliability evidence — 2026-10-29
+
+Ordinary direct-main publication was independently verified at `f4ddecff8dea2c00f5ef86f461f890a866e6352b`,
+including protected implementation `9593d8f541a3cf58478f77052accb80b5a99e681` and matching physical
+validation inputs. The [delivery receipt](../../research/code-audit/local-agent-reliability-20261029.json)
+records typed source-range refusals, bounded source metadata, explicit auxiliary
+JSON settings and optional single-fence normalization. This is append-only
+evidence under this existing owner; no new grant or parent closure is implied.
+
+The [one frozen live verification](../../../experiments/local_agent_reliability/REPORT.md)
+had usable source reads but no live summary adoption or accepted candidate.
+Its focused oracle defect is preserved and repair conclusions remain qualified.
+Post-hoc offline normalization and scripted non-Qwen consumption are separately
+identified. Context fidelity, truthful repair feedback, Evidence/recovery and
+broader reusable-agent obligations remain open.
