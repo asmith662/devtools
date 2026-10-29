@@ -112,3 +112,28 @@ turning a legitimate future complete-inventory frame into false failure feedback
 Exact source, boundedness and native correlation expectations remain. Production
 source and B-0035 oracles are unchanged. The final test revision is separately
 committed and receives the full unchanged protected gate before inference.
+
+## Protected implementation validation
+
+Committed executable tree `4d5ad371dd4d43cb677ad2c7d9ac40549a3fd573` passed 3889 tests,
+2 optional live skips, and 100% configured production line/branch coverage.
+The unchanged command was `uv run python scripts/validate_development.py`;
+recorded wall duration was 1454.869 seconds. Ruff, supported formatter,
+strict mypy and layout also passed against the same 1191 physical
+inputs. [Machine-readable receipt](../research/code-audit/task-directed-navigation-20261029.json)
+retains commands, timestamps, versions, identities, trace and preservation.
+No live effectiveness follows from this gate.
+
+The Codex server restart interrupted an earlier invocation of this final gate;
+its missing process exit remains unknown and is not counted as a pass. Process
+inspection found no remaining validation process before the successful rerun.
+No model or grading attempt had entered. The previously completed first-tree
+gate remains separately identified in the receipt.
+
+The effect-free prospective first-request inspection measured 9345 complete
+serialized bytes, including 3394 candidate-view bytes. It selected the coding
+host file/class and package documentation, but also the less relevant
+`request_compaction` method. This demonstrates accessible candidates and a
+lexical limitation, not model understanding. Physical `repository.py` size is
+31897 bytes in this checkout (871 bytes below the unchanged resulting-source
+bound); the existing navigation owner is 13044 bytes.
