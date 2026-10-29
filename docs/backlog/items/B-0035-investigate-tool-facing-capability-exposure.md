@@ -246,3 +246,19 @@ not higher limits or another compaction policy. B-0035/B-0043, existing cohesion
 Evidence/recovery and historical RI obligations remain open. This checkpoint
 creates no proposal, grant, approval, status change or parent closure. Delivery
 of the preflight implementation will be recorded after accepted-main validation.
+
+## Delivered supervisor-feedback evidence - 2026-10-29
+
+Ordinary direct-main publication was independently verified at
+`3712af8db1e0757fd429b4ac99473eb84366d913`, including protected implementation
+`9aae92ca8ac176c3a15940028b7a64a671da1ba1` with matching executable blobs and physical validation
+inputs. The [delivery receipt](../../research/code-audit/supervisor-feedback-20261029.json)
+records the reusable finite oracle-preflight comparison, atomic-repair
+characterization and the independently graded real maintenance attempt.
+
+This delivers supervisor reliability support, not the B-0035 inventory change.
+The local model's two oversized proposals were refused; no model-authored
+candidate was accepted or substituted by Codex. No worker validation or effective
+repair occurred. Existing B-0035/B-0043, cohesion, Evidence/recovery and historical
+RI obligations remain open. This append-only advisory creates no grant,
+approval, proposal, status transition or parent closure.
