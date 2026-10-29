@@ -1,0 +1,128 @@
+{
+  "number": 4,
+  "at": "2026-10-29T17:42:11.074020+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: first-request repository discoverability\n\nMaintain the existing neutral repository coding host so a newly invoked coding\nmodel can discover the complete host-authorized source surface without a separate\nlisting-only inference round. This is the concrete follow-up recorded in canonical\nB-0035 after local coding Case 0002. Keep all existing public signatures and Tools.\n\nPreserve the original objective as the first message. Include exactly one\nJSON-encoded metadata message, with repository_id, snapshot_id, source_acquired\n(false), and resources. Each resource has address, content_identity, byte_size and\neditable (a boolean from the host's editable subset). Values correspond to the\ncurrent authenticated source scope, including UTF-8 sizes. Include every scoped\nresource and no others. This is a transient model-facing projection, not a new\ndurable schema or source identity. Do not disclose resource content or absolute\nhost paths. Metadata does not acquire source, satisfy readiness or authorize edits.\n\nRepeated preparation and complete-input continuation must not accumulate copies.\nPreparation after admitted source refresh must describe the current snapshot.\nCharge the complete metadata and existing Tools/continuation to the existing\nPrompt byte bound; refuse over-budget requests rather than silently truncate or\nomit resources. Preserve stale-source refusal, native call correlation, actual\nsource disclosure before edits, host admission, fixed checks, restoration,\ncandidate/terminal outcomes and all existing limits. No new registry, executor,\nprovider, file-search engine, generic type or Qwen-specific dependency is needed.\n\nInspect source with the authorized Tools, then submit grounded exact edits.\nTests, docs, configuration and experiment evidence are read-only. Only existing\nAgents coding Python modules are editable. Do not change tests or checks, expand\nscope, choose commands, publish, or implement other backlog work. Failed checks\nwill produce real bounded feedback; you may repair within the frozen limits.\n\nUse find_source for scoped symbol/window search or paged outlines, then read_source_unit with the returned unit_id and snapshot_id. Prefer small relevant named regions to broad file chunks. read_source remains available for adjacent Unicode ranges or generic resources. Metadata is not source; acquire exact current source before edits. Limits: ten requests, four proposals, at most three applied candidates (two validation-feedback repairs), twenty acquisition actions. The resulting-source ceiling remains 32768 bytes per file. No source/edit limits may be increased.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{}",
+              "provider_call_id": "Pac57UBvcxyqqMTbkutCyB28rHBXnkmO"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"d73437b529e15a026741d876be3b7851b2003ef5e6a7b6aacec9908fec4cecd8\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"make_host\", \"span\": [1254, 3352], \"lines\": [38, 99], \"bytes\": 2099, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"4291ce6d39df228a253080fc38100b98167f15aa19972e90aa826c549a39f208\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"make_host.authorize\", \"span\": [2924, 3006], \"lines\": [86, 87], \"bytes\": 82, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": \"d73437b529e15a026741d876be3b7851b2003ef5e6a7b6aacec9908fec4cecd8\", \"symbol_fallback\": null}, {\"unit_id\": \"ac2206f177f3ae25f1bee24050023f7770ca6917d84e9a0768fbf0ef6de24348\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"make_host.effect\", \"span\": [3014, 3127], \"lines\": [89, 90], \"bytes\": 113, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": \"d73437b529e15a026741d876be3b7851b2003ef5e6a7b6aacec9908fec4cecd8\", \"symbol_fallback\": null}, {\"unit_id\": \"ff45ebaf1df72f0ebad644df5eb1d7ccb73e15fb83720430eeef9be65b95568c\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"progress\", \"span\": [3358, 3501], \"lines\": [102, 105], \"bytes\": 143, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"a9e5e5f46f183be2425416ab0e88bd32ee4f957e31a09e2c37ae44624f2ea135\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"inventory\", \"span\": [3507, 3988], \"lines\": [108, 118], \"bytes\": 481, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"e9f4d54776633af9be8e36ee6b17d23b4efaa61168a00ccd77362fe62df124c4\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"test_first_request_scoped_inventory\", \"span\": [3994, 4585], \"lines\": [121, 130], \"bytes\": 591, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"520f22005e5cb1b71bec9eca04b967d6032579e391c95ee7ab7a1b8e900799c4\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"assert_metadata\", \"span\": [4591, 5283], \"lines\": [133, 144], \"bytes\": 692, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"f11650e37a8151c540b7d942422aff4f4a4f0d80a1f2c0ca3b557d165cd94b03\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"test_inventory_not_duplicated_on_prepare\", \"span\": [5289, 5694], \"lines\": [147, 155], \"bytes\": 405, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}], \"next_offset\": 8, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "Pac57UBvcxyqqMTbkutCyB28rHBXnkmO",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":8}",
+              "provider_call_id": "HEwpOs2O8WcApqsVXbLKESWgbuKC13xf"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"cfd362356411e0d8d321cb8c70d1f3df045964d540ad1b2d6ba9c82288ae4b93\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"test_inventory_charged_to_prompt_budget\", \"span\": [5700, 6549], \"lines\": [158, 175], \"bytes\": 849, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"95ff9533863c371fc7bc392f23d183cf75cf8116d0da5add7d9e019a6a76ec82\", \"path\": \"experiments/local_maintenance_navigation/focused.py\", \"version\": \"7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800\", \"kind\": \"symbol\", \"name\": \"test_inventory_does_not_bypass_currentness\", \"span\": [6555, 6911], \"lines\": [178, 185], \"bytes\": 356, \"file_id\": \"fd93ba57514cf554c7381caa8cddb6089a252bc0dddbbcac16ff560334db9f80\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"a07dbf086e528ba1fc3fac1fe4fc73a5ac8f599aee6fe81791223af7dcb1e1eb\", \"path\": \"src/devtools/agents/coding/__init__.py\", \"version\": \"a0de735340eaefe646aa8a9defc9ad43c6b9cbc50daef50779d01e041d7fefcd\", \"kind\": \"file\", \"name\": null, \"span\": [0, 394], \"lines\": [1, 14], \"bytes\": 394, \"file_id\": \"a07dbf086e528ba1fc3fac1fe4fc73a5ac8f599aee6fe81791223af7dcb1e1eb\", \"parent_id\": null, \"symbol_fallback\": \"no-python-declarations\"}, {\"unit_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody\", \"span\": [659, 4244], \"lines\": [21, 103], \"bytes\": 3585, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"1cbdb462eeeded822a2bb15c90c63beca9e4cbc0a96e2c986ca17dc637539c9a\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody.__init__\", \"span\": [943, 1584], \"lines\": [28, 41], \"bytes\": 641, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"symbol_fallback\": null}, {\"unit_id\": \"2ad58703c024f0dcecac548c88b4b007484d7a1834d2db86ca57f107e8c70885\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody._identity\", \"span\": [1592, 1827], \"lines\": [43, 46], \"bytes\": 235, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"symbol_fallback\": null}, {\"unit_id\": \"0e6c5315f8afba86b8423a25bfff20e4de1ac4df62802d90d3cad316f6e00955\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody.expect\", \"span\": [1835, 2174], \"lines\": [48, 53], \"bytes\": 339, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"symbol_fallback\": null}, {\"unit_id\": \"1dcd5b8ac33ba19341232cac6fca192dac1a97b4c82fbcc5d1524ca55b5b3b23\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody.capture\", \"span\": [2182, 3192], \"lines\": [55, 79], \"bytes\": 1010, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"symbol_fallback\": null}], \"next_offset\": 16, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "HEwpOs2O8WcApqsVXbLKESWgbuKC13xf",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":16}",
+              "provider_call_id": "H78bqeN5P5NNoNgwTvE9epXRVKuB5wPv"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"32a4985879b54a3103b875ab33941aac57619280abb9ea367d1d4cee717ab7d5\", \"path\": \"src/devtools/agents/coding/custody.py\", \"version\": \"b910c6f60d7f6153635d759fd45e5ad641aebc06ba7041218c062dabeadb1dea\", \"kind\": \"symbol\", \"name\": \"SourceCustody.restore_known\", \"span\": [3200, 4244], \"lines\": [81, 103], \"bytes\": 1044, \"file_id\": \"83fa68d003ac4d3dee90d86f3a6b9939e8fb808bd9493a56acb7d0bca296c0d2\", \"parent_id\": \"05152c3302dfecf81155c787ced14e4bd0679d476aa14b739076b14a453fc059\", \"symbol_fallback\": null}, {\"unit_id\": \"eec0a43d0471fdb5304287a2ba8ae6bee1a8a8379f4e23b49ca882116f62b01a\", \"path\": \"src/devtools/agents/coding/docs/overview.md\", \"version\": \"b466853cf1b6e69ad10165bd1d8421b32dd160e9cf941fd2e1bca8c0f403ec4b\", \"kind\": \"file\", \"name\": null, \"span\": [0, 5017], \"lines\": [1, 72], \"bytes\": 5017, \"file_id\": \"eec0a43d0471fdb5304287a2ba8ae6bee1a8a8379f4e23b49ca882116f62b01a\", \"parent_id\": null, \"symbol_fallback\": \"unsupported-language\"}, {\"unit_id\": \"689f5ad2591d660c80ceae29ea4c32ec2f836e53b969144cede0933302d9b30f\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"CodingEditError\", \"span\": [651, 1066], \"lines\": [20, 31], \"bytes\": 415, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"66d8cc8fb85bb716d1ebba97ecb2b4b1b2ee5e0ec6a80a61fba137da174f8a55\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"CodingEditError.__init__\", \"span\": [777, 1066], \"lines\": [23, 31], \"bytes\": 289, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": \"689f5ad2591d660c80ceae29ea4c32ec2f836e53b969144cede0933302d9b30f\", \"symbol_fallback\": null}, {\"unit_id\": \"c53c053a05a312aaa6689dea587ece7b84b1a69c2714a357e294fa57e65817f4\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"replace_exact_text\", \"span\": [1072, 4974], \"lines\": [34, 134], \"bytes\": 3902, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"6c3cc3f45729a7d8fa1092c2dcc62b7273371782f3249bd5d65fc6d8f759875e\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"EditLimits\", \"span\": [4980, 5619], \"lines\": [137, 158], \"bytes\": 639, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"8e9853199750585800933b7ad3510eb88c40cbd29361c6c00f18d533f18b7c4f\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"EditLimits.__post_init__\", \"span\": [5221, 5619], \"lines\": [146, 158], \"bytes\": 398, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": \"6c3cc3f45729a7d8fa1092c2dcc62b7273371782f3249bd5d65fc6d8f759875e\", \"symbol_fallback\": null}, {\"unit_id\": \"b27d41dffd439367e51b98f02cae1f2c4f2456756baafd46e0311d99e2849c4f\", \"path\": \"src/devtools/agents/coding/edits.py\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"kind\": \"symbol\", \"name\": \"SourceChange\", \"span\": [5625, 5869], \"lines\": [161, 169], \"bytes\": 244, \"file_id\": \"cf85d87788c38a472d48ceef4b38875696de73161a49dcadadb23f5c9c460b66\", \"parent_id\": null, \"symbol_fallback\": null}], \"next_offset\": 24, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "H78bqeN5P5NNoNgwTvE9epXRVKuB5wPv",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results; path narrows scope.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed checks. No command or scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": true,
+  "measured_input_tokens": 8536
+}

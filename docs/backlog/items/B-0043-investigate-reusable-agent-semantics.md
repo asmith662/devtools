@@ -316,3 +316,13 @@ not B-0035 inventory delivery or evidence of autonomous source-selection success
 The [new protocol](../../../experiments/local_maintenance_navigation/protocol.md)
 separately preflights a single maintenance opportunity. Broader obligations stay
 open; no proposal, grant, approval, status transition or parent closure is created.
+
+## Source-navigation maintenance outcome - 2026-10-29
+
+[Maintenance-navigation-0001](../../../experiments/local_maintenance_navigation/REPORT.md)
+exhausted ten requests paging metadata, with no source read, edit or validation.
+Its unchanged archive fails the same three focused/five withheld obligations.
+No model-authored inventory implementation, new grant, status transition or
+parent closure is implied. B-0035 and broader task-directed navigation remain
+open. The separate grading owner was released only after explicit human consent
+through default-No recovery; missing grading exit receipts remain unknown.

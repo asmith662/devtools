@@ -1,0 +1,65 @@
+{
+  "candidate_hashes": {
+    "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+    "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+    "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+    "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+    "src/devtools/agents/coding/navigation.py": "608db5446235e59f08a809d81e22685025696d39df2774473133dc4843be87bb",
+    "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+    "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+    "src/devtools/agents/coding/repository.py": "c74f4c984f66bd2da907b9912e821c80ca96c231a015255d337028d28b6f68cb"
+  },
+  "focused": {
+    "xml_sha256": "cd4eecd90baa6ad626b8a2c283eda372fbfbc041959abca8b11b7141c6816048",
+    "passed": [
+      "test_inventory_does_not_bypass_currentness"
+    ],
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_not_duplicated_on_prepare",
+      "test_inventory_charged_to_prompt_budget"
+    ],
+    "errors": [],
+    "process_exit_code": null,
+    "qualification": "Both XML results were retained before grading closeout refused the new untracked evidence. Process exit receipts were not written; their exit codes remain unavailable. No check replay."
+  },
+  "heldout": {
+    "xml_sha256": "156ae8d4942112b996ed5bdf9ccb3c3ae1448838c1051ec4221f46770a82d59c",
+    "passed": [
+      "test_metadata_cannot_authorize_edit"
+    ],
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_native_correlation_and_metadata_coexist",
+      "test_empty_resource_unicode_and_readonly",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": [],
+    "process_exit_code": null,
+    "qualification": "Both XML results were retained before grading closeout refused the new untracked evidence. Process exit receipts were not written; their exit codes remain unavailable. No check replay."
+  },
+  "source_unchanged": true,
+  "passes_frozen_behavior": false,
+  "implementation_accepted": false,
+  "supervisor_patch": false,
+  "grading_closeout": "Refused added untracked evidence; recovery separately required; no check replay",
+  "source_review": {
+    "at": "2026-10-29T17:44:12.377806+00:00",
+    "candidate_hashes": {
+      "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+      "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+      "src/devtools/agents/coding/edits.py": "1a9ee92aac6c7764ce445d695ff483ad920088f60f389d4337fb7f6b11bc49e8",
+      "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+      "src/devtools/agents/coding/navigation.py": "608db5446235e59f08a809d81e22685025696d39df2774473133dc4843be87bb",
+      "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+      "src/devtools/agents/coding/projection.py": "e4fab20aa5ef13882bc9c6625eb70eafd7188d7997e77a97dc6025d5fee6c603",
+      "src/devtools/agents/coding/repository.py": "c74f4c984f66bd2da907b9912e821c80ca96c231a015255d337028d28b6f68cb"
+    },
+    "safe_for_fixed_grading": true,
+    "reviewer": "Codex supervisory review under the current user assignment",
+    "basis": "Exact archive equals every frozen baseline file. Ten acknowledged metadata-only operations; no source disclosure, edit proposal, application or candidate check. No changed implementation to approve. Run the pre-frozen focused/withheld tests against the unchanged archive.",
+    "implementation_accepted": false,
+    "supervisor_patch": false
+  }
+}

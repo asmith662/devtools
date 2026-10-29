@@ -1,0 +1,490 @@
+{
+  "at": "2026-10-29T17:48:09.942052+00:00",
+  "freeze_digest": "fe0d91966f94c7359305389d20b48aafc3cf0c7156d11b726b70e49ab9b318cb",
+  "source_identity_verified": true,
+  "native_prompts_verified": true,
+  "retained_calls": 10,
+  "provider_entries": 10,
+  "metadata_units_returned": 80,
+  "metadata_units_consumed": 72,
+  "exact_source_bytes": 0,
+  "source_reads": 0,
+  "proposals": 0,
+  "applied": 0,
+  "worker_checks": 0,
+  "repair": false,
+  "summary": false,
+  "task_complete": false,
+  "accepted_model_code": false,
+  "archive_unchanged": true,
+  "rows": [
+    {
+      "request": 1,
+      "offset": 0,
+      "input_bytes": 5224,
+      "unreduced_bytes": 5224,
+      "provider_input": 1268,
+      "output": 14,
+      "seconds": 7.893168,
+      "call_id": "Pac57UBvcxyqqMTbkutCyB28rHBXnkmO",
+      "next_offset": 8,
+      "names": [
+        "make_host",
+        "make_host.authorize",
+        "make_host.effect",
+        "progress",
+        "inventory",
+        "test_first_request_scoped_inventory",
+        "assert_metadata",
+        "test_inventory_not_duplicated_on_prepare"
+      ],
+      "paths": [
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py"
+      ],
+      "consumed": true,
+      "omissions": []
+    },
+    {
+      "request": 2,
+      "offset": 8,
+      "input_bytes": 9873,
+      "unreduced_bytes": 9873,
+      "provider_input": 3582,
+      "output": 26,
+      "seconds": 3.699533,
+      "call_id": "HEwpOs2O8WcApqsVXbLKESWgbuKC13xf",
+      "next_offset": 16,
+      "names": [
+        "test_inventory_charged_to_prompt_budget",
+        "test_inventory_does_not_bypass_currentness",
+        null,
+        "SourceCustody",
+        "SourceCustody.__init__",
+        "SourceCustody._identity",
+        "SourceCustody.expect",
+        "SourceCustody.capture"
+      ],
+      "paths": [
+        "experiments/local_maintenance_navigation/focused.py",
+        "experiments/local_maintenance_navigation/focused.py",
+        "src/devtools/agents/coding/__init__.py",
+        "src/devtools/agents/coding/custody.py",
+        "src/devtools/agents/coding/custody.py",
+        "src/devtools/agents/coding/custody.py",
+        "src/devtools/agents/coding/custody.py",
+        "src/devtools/agents/coding/custody.py"
+      ],
+      "consumed": true,
+      "omissions": []
+    },
+    {
+      "request": 3,
+      "offset": 16,
+      "input_bytes": 14619,
+      "unreduced_bytes": 14619,
+      "provider_input": 6060,
+      "output": 27,
+      "seconds": 3.831909,
+      "call_id": "H78bqeN5P5NNoNgwTvE9epXRVKuB5wPv",
+      "next_offset": 24,
+      "names": [
+        "SourceCustody.restore_known",
+        null,
+        "CodingEditError",
+        "CodingEditError.__init__",
+        "replace_exact_text",
+        "EditLimits",
+        "EditLimits.__post_init__",
+        "SourceChange"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/custody.py",
+        "src/devtools/agents/coding/docs/overview.md",
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/edits.py"
+      ],
+      "consumed": true,
+      "omissions": []
+    },
+    {
+      "request": 4,
+      "offset": 24,
+      "input_bytes": 19220,
+      "unreduced_bytes": 19220,
+      "provider_input": 8536,
+      "output": 27,
+      "seconds": 4.051795,
+      "call_id": "kyhprQUNDs8ihbbq4OumEfLt51VwaLT0",
+      "next_offset": 32,
+      "names": [
+        "admit_source_batch",
+        "CodingLimitError",
+        "CodingLimits",
+        "CodingLimits.__post_init__",
+        "CodingEffect",
+        "CodingProgress",
+        "CodingProgress.claim_action",
+        "CodingCompletion"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/edits.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py"
+      ],
+      "consumed": true,
+      "omissions": []
+    },
+    {
+      "request": 5,
+      "offset": 32,
+      "input_bytes": 23740,
+      "unreduced_bytes": 23740,
+      "provider_input": 10927,
+      "output": 27,
+      "seconds": 3.984793,
+      "call_id": "K6j4rkIjEuKWgufMmmVobNsYHBFULtnr",
+      "next_offset": 40,
+      "names": [
+        "CodingResult",
+        "CodingResult.accepted",
+        "navigation_request",
+        "unit_read_request",
+        "navigation_feedback",
+        "CodingHost",
+        "CodingHost.prepare",
+        "CodingHost.receive"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/models.py",
+        "src/devtools/agents/coding/navigation.py",
+        "src/devtools/agents/coding/navigation.py",
+        "src/devtools/agents/coding/navigation.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py"
+      ],
+      "consumed": true,
+      "omissions": []
+    },
+    {
+      "request": 6,
+      "offset": 40,
+      "input_bytes": 18944,
+      "unreduced_bytes": 28339,
+      "provider_input": 8612,
+      "output": 27,
+      "seconds": 16.757821,
+      "call_id": "3ibzBb20HPdXAa9VfsOd9wa9SVfh7JZf",
+      "next_offset": 48,
+      "names": [
+        "CodingHost.classify",
+        "CodingHost.acquire",
+        "CodingHost.propose",
+        "CodingHost.apply",
+        "CodingHost.check",
+        "CodingHost.feedback",
+        "CodingHost.finish",
+        "run_coding_agent"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py",
+        "src/devtools/agents/coding/process.py"
+      ],
+      "consumed": true,
+      "omissions": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ]
+      ]
+    },
+    {
+      "request": 7,
+      "offset": 48,
+      "input_bytes": 19194,
+      "unreduced_bytes": 33190,
+      "provider_input": 8916,
+      "output": 27,
+      "seconds": 9.636266,
+      "call_id": "VvcbzKa0WTk9Yf3ScPI5KvZndjL3AjSz",
+      "next_offset": 56,
+      "names": [
+        "request_bytes",
+        "native_exchange_ranges",
+        "ProjectionPolicy",
+        "ProjectionPolicy.__post_init__",
+        "ProjectionOutcome",
+        "ProjectionOutcome.target_reached",
+        "ProjectionCapacityError",
+        "ProjectionCapacityError.__init__"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py"
+      ],
+      "consumed": true,
+      "omissions": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ],
+        [
+          5,
+          7,
+          "host-classified-metadata"
+        ]
+      ]
+    },
+    {
+      "request": 8,
+      "offset": 56,
+      "input_bytes": 19337,
+      "unreduced_bytes": 37853,
+      "provider_input": 9027,
+      "output": 27,
+      "seconds": 13.290064,
+      "call_id": "VKyp3AZH0cV18mRmrgKYwVzBeHPOa1CX",
+      "next_offset": 64,
+      "names": [
+        "source_feedback",
+        "_current_sources",
+        "project_request",
+        "project_request.assembled",
+        "project_request.size",
+        "project_request.partial",
+        "CodingObjective",
+        "CodingObjective.__post_init__"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/projection.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py"
+      ],
+      "consumed": true,
+      "omissions": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ],
+        [
+          5,
+          7,
+          "host-classified-metadata"
+        ],
+        [
+          7,
+          9,
+          "host-classified-metadata"
+        ]
+      ]
+    },
+    {
+      "request": 9,
+      "offset": 64,
+      "input_bytes": 19460,
+      "unreduced_bytes": 42575,
+      "provider_input": 9123,
+      "output": 27,
+      "seconds": 11.840497,
+      "call_id": "ZD4JNlnlBp2bd70Mvj2CkjgRcjxVQ1cb",
+      "next_offset": 72,
+      "names": [
+        "write_source_changes",
+        "_Invocation",
+        "_Invocation.materialize",
+        "_ChangeTool",
+        "_ChangeTool.__init__",
+        "_ChangeTool.validate",
+        "_ChangeTool.execute",
+        "_arguments"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py"
+      ],
+      "consumed": true,
+      "omissions": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ],
+        [
+          5,
+          7,
+          "host-classified-metadata"
+        ],
+        [
+          7,
+          9,
+          "host-classified-metadata"
+        ],
+        [
+          9,
+          11,
+          "host-classified-metadata"
+        ]
+      ]
+    },
+    {
+      "request": 10,
+      "offset": 72,
+      "input_bytes": 19302,
+      "unreduced_bytes": 47268,
+      "provider_input": 8908,
+      "output": 27,
+      "seconds": 11.495234,
+      "call_id": "EO1DQn5VknVDRcvAA6HjXQGI5Nj3SvWG",
+      "next_offset": 80,
+      "names": [
+        "_arguments.pairs",
+        "RepositoryCodingHost",
+        "RepositoryCodingHost.__init__",
+        "RepositoryCodingHost._index",
+        "RepositoryCodingHost.build_request",
+        "RepositoryCodingHost.prepare",
+        "RepositoryCodingHost.prepare.summarized",
+        "RepositoryCodingHost.request_compaction"
+      ],
+      "paths": [
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py",
+        "src/devtools/agents/coding/repository.py"
+      ],
+      "consumed": false,
+      "omissions": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ],
+        [
+          5,
+          7,
+          "host-classified-metadata"
+        ],
+        [
+          7,
+          9,
+          "host-classified-metadata"
+        ],
+        [
+          9,
+          11,
+          "host-classified-metadata"
+        ],
+        [
+          11,
+          13,
+          "host-classified-metadata"
+        ]
+      ]
+    }
+  ],
+  "focused": {
+    "xml_sha256": "cd4eecd90baa6ad626b8a2c283eda372fbfbc041959abca8b11b7141c6816048",
+    "passed": [
+      "test_inventory_does_not_bypass_currentness"
+    ],
+    "failed": [
+      "test_first_request_scoped_inventory",
+      "test_inventory_not_duplicated_on_prepare",
+      "test_inventory_charged_to_prompt_budget"
+    ],
+    "errors": [],
+    "process_exit_code": null,
+    "qualification": "Both XML results were retained before grading closeout refused the new untracked evidence. Process exit receipts were not written; their exit codes remain unavailable. No check replay."
+  },
+  "heldout": {
+    "xml_sha256": "156ae8d4942112b996ed5bdf9ccb3c3ae1448838c1051ec4221f46770a82d59c",
+    "passed": [
+      "test_metadata_cannot_authorize_edit"
+    ],
+    "failed": [
+      "test_current_snapshot_not_cached",
+      "test_native_correlation_and_metadata_coexist",
+      "test_empty_resource_unicode_and_readonly",
+      "test_projection_preserves_metadata_and_objective",
+      "test_utf8_size_differs_from_character_count"
+    ],
+    "errors": [],
+    "process_exit_code": null,
+    "qualification": "Both XML results were retained before grading closeout refused the new untracked evidence. Process exit receipts were not written; their exit codes remain unavailable. No check replay."
+  },
+  "preservation": "Original cases were read only; no inference or Tool effect replay in verification.",
+  "next_improvement": "Task-directed navigation entry and stopping: avoid default exhaustive global symbol pagination consuming the entire request envelope. Reuse existing query/path/mode selection and compact authorized file metadata; do not add a planner or raise budgets.",
+  "qualification": "One failed attempt. Fewer source reads here means zero investigation of source, not improved efficiency. Exact relevant host method metadata appeared only in the final unconsumed page."
+}

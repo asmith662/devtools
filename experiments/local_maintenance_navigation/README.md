@@ -1,8 +1,8 @@
-# Maintenance-navigation-0001
+# Local maintenance navigation
 
-One separately authorized B-0035 attempt using the shared host's opt-in precise
-source navigation and unchanged deterministic projection. The [protocol](protocol.md)
-and [objective](objective.md) bind the same useful inventory obligation. Oracles
-derive from the earlier independently preflighted case; original cases are
-unchanged. Native find/unit-read operations replace the experiment's private
-mixed-search implementation. No second coding loop or reference patch is used.
+One separately frozen, completed real B-0035 maintenance attempt.
+The local model exhausted ten calls paging metadata and never read source.
+See [report](REPORT.md), [protocol](protocol.md), [freeze](freeze.json),
+[preflight](preflight.json), [verification](verification.json),
+[manifest](manifest.json) and [summary](SUMMARY.md).
+No rerun or next task is authorized. Original cases remain immutable.

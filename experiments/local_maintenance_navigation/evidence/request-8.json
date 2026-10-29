@@ -1,0 +1,127 @@
+{
+  "number": 8,
+  "at": "2026-10-29T17:42:45.786599+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: first-request repository discoverability\n\nMaintain the existing neutral repository coding host so a newly invoked coding\nmodel can discover the complete host-authorized source surface without a separate\nlisting-only inference round. This is the concrete follow-up recorded in canonical\nB-0035 after local coding Case 0002. Keep all existing public signatures and Tools.\n\nPreserve the original objective as the first message. Include exactly one\nJSON-encoded metadata message, with repository_id, snapshot_id, source_acquired\n(false), and resources. Each resource has address, content_identity, byte_size and\neditable (a boolean from the host's editable subset). Values correspond to the\ncurrent authenticated source scope, including UTF-8 sizes. Include every scoped\nresource and no others. This is a transient model-facing projection, not a new\ndurable schema or source identity. Do not disclose resource content or absolute\nhost paths. Metadata does not acquire source, satisfy readiness or authorize edits.\n\nRepeated preparation and complete-input continuation must not accumulate copies.\nPreparation after admitted source refresh must describe the current snapshot.\nCharge the complete metadata and existing Tools/continuation to the existing\nPrompt byte bound; refuse over-budget requests rather than silently truncate or\nomit resources. Preserve stale-source refusal, native call correlation, actual\nsource disclosure before edits, host admission, fixed checks, restoration,\ncandidate/terminal outcomes and all existing limits. No new registry, executor,\nprovider, file-search engine, generic type or Qwen-specific dependency is needed.\n\nInspect source with the authorized Tools, then submit grounded exact edits.\nTests, docs, configuration and experiment evidence are read-only. Only existing\nAgents coding Python modules are editable. Do not change tests or checks, expand\nscope, choose commands, publish, or implement other backlog work. Failed checks\nwill produce real bounded feedback; you may repair within the frozen limits.\n\nUse find_source for scoped symbol/window search or paged outlines, then read_source_unit with the returned unit_id and snapshot_id. Prefer small relevant named regions to broad file chunks. read_source remains available for adjacent Unicode ranges or generic resources. Metadata is not source; acquire exact current source before edits. Limits: ten requests, four proposals, at most three applied candidates (two validation-feedback repairs), twenty acquisition actions. The resulting-source ceiling remains 32768 bytes per file. No source/edit limits may be increased.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":32}",
+              "provider_call_id": "K6j4rkIjEuKWgufMmmVobNsYHBFULtnr"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"e1d998fa1d61b0d63411b6e13f71c49a8fe7e23257a89c1d2fbcdd5b3a16b005\", \"path\": \"src/devtools/agents/coding/models.py\", \"version\": \"f8fcf7745622423a985349b49942e4e75cd3577ad048f1ff7106afec7717391e\", \"kind\": \"symbol\", \"name\": \"CodingResult\", \"span\": [2916, 3748], \"lines\": [98, 120], \"bytes\": 832, \"file_id\": \"0c2bb70eb85409d8d9c961f916f840aa11aefe7fa7d73fef5dbf1476bb64552b\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"a9891022bf039de4dab399864b6f9bcc2dbb2137ee03dc6970db692d8f8be85e\", \"path\": \"src/devtools/agents/coding/models.py\", \"version\": \"f8fcf7745622423a985349b49942e4e75cd3577ad048f1ff7106afec7717391e\", \"kind\": \"symbol\", \"name\": \"CodingResult.accepted\", \"span\": [3364, 3748], \"lines\": [111, 120], \"bytes\": 384, \"file_id\": \"0c2bb70eb85409d8d9c961f916f840aa11aefe7fa7d73fef5dbf1476bb64552b\", \"parent_id\": \"e1d998fa1d61b0d63411b6e13f71c49a8fe7e23257a89c1d2fbcdd5b3a16b005\", \"symbol_fallback\": null}, {\"unit_id\": \"c3e9e271cabf12759c22ce72f336bf6bafcc4b2bcc408ec9869bf8f0f948cac1\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"c432c15b62fe0e79fb37dd6913f561f385cb1a3fc53d2d37defb94ba5948780e\", \"kind\": \"symbol\", \"name\": \"navigation_request\", \"span\": [1670, 2128], \"lines\": [40, 49], \"bytes\": 458, \"file_id\": \"7a9a495fe90e402a53f4bf6f1fefaff6e7eb5e994df2f2b94f4df89a9a49e242\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"42a4272ec1c6a34ffd38229e469421963e4b151f5cabb2e40ec3c91d503b8a70\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"c432c15b62fe0e79fb37dd6913f561f385cb1a3fc53d2d37defb94ba5948780e\", \"kind\": \"symbol\", \"name\": \"unit_read_request\", \"span\": [2131, 2758], \"lines\": [52, 67], \"bytes\": 627, \"file_id\": \"7a9a495fe90e402a53f4bf6f1fefaff6e7eb5e994df2f2b94f4df89a9a49e242\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"893e0cbe709ee9bde1c2dc06814082529a77cfb9760ee2726ced79ad01418eaa\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"c432c15b62fe0e79fb37dd6913f561f385cb1a3fc53d2d37defb94ba5948780e\", \"kind\": \"symbol\", \"name\": \"navigation_feedback\", \"span\": [2761, 4805], \"lines\": [70, 119], \"bytes\": 2044, \"file_id\": \"7a9a495fe90e402a53f4bf6f1fefaff6e7eb5e994df2f2b94f4df89a9a49e242\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost\", \"span\": [640, 2493], \"lines\": [29, 70], \"bytes\": 1853, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"eddc00dd0a9dbf5f30f3452d8ac5f9933c646d5e4614305a122ed382df802d4e\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.prepare\", \"span\": [1044, 1191], \"lines\": [39, 40], \"bytes\": 147, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"5853075f0bd7312abd47c75e4f1bf9043cc13766319838d4f30535803442d503\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.receive\", \"span\": [1199, 1327], \"lines\": [42, 43], \"bytes\": 128, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}], \"next_offset\": 40, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "K6j4rkIjEuKWgufMmmVobNsYHBFULtnr",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":40}",
+              "provider_call_id": "3ibzBb20HPdXAa9VfsOd9wa9SVfh7JZf"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"f18ed9e7e10324b7ec20c8237a23a54b91c0c1f6241d0a29be33ca14ca60f9d6\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.classify\", \"span\": [1335, 1501], \"lines\": [45, 46], \"bytes\": 166, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"36178bdbf6cfedf0c6eab0c3229f2e26e13633381133d607c04eea0a2cba969f\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.acquire\", \"span\": [1509, 1652], \"lines\": [48, 49], \"bytes\": 143, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"5f6749e1bd10fded4d72040272136d86578b0d3159d510e6bc7703714d3d8186\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.propose\", \"span\": [1660, 1815], \"lines\": [51, 52], \"bytes\": 155, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"3376f2a26ab768b490aeacbaa560725b07fae4fb9960c2f2b57693d60501fc10\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.apply\", \"span\": [1823, 1955], \"lines\": [54, 55], \"bytes\": 132, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"9a39d949e7020380897d8fab05712239dd394a8c3b48e848f9145eb77fcd6a3f\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.check\", \"span\": [1963, 2101], \"lines\": [57, 58], \"bytes\": 138, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"6d764dee2a59ad4a351809c017b651356850430989e8e87f1c530dae3ef06fc9\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.feedback\", \"span\": [2109, 2337], \"lines\": [60, 67], \"bytes\": 228, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"3a0090881d19e36b2e1d45f8330889ad40c78d0720408e1bdab6f418b7c62a4c\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"CodingHost.finish\", \"span\": [2345, 2493], \"lines\": [69, 70], \"bytes\": 148, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": \"cb6342165575a642b8390075ece589677a09c0c1f250285e8f4978752ec8ac2d\", \"symbol_fallback\": null}, {\"unit_id\": \"734c986cc75bab54e521ee6543a9689905a1ec7efc42c68e1f3416d968f9ab38\", \"path\": \"src/devtools/agents/coding/process.py\", \"version\": \"6a8d3c2636ae041c55e3142510ba3cf6f40e89a11d581a984d6081959b0dbd9f\", \"kind\": \"symbol\", \"name\": \"run_coding_agent\", \"span\": [2499, 8617], \"lines\": [73, 203], \"bytes\": 6118, \"file_id\": \"f28d328904b74146f996b62548e68e5338990107a97840fd8c0369f1cc8b28d5\", \"parent_id\": null, \"symbol_fallback\": null}], \"next_offset\": 48, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "3ibzBb20HPdXAa9VfsOd9wa9SVfh7JZf",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":48}",
+              "provider_call_id": "VvcbzKa0WTk9Yf3ScPI5KvZndjL3AjSz"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"96280a58017c55981aec5d8a8f35886378034b403f45b640e74c94312f1a507a\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"request_bytes\", \"span\": [637, 838], \"lines\": [24, 26], \"bytes\": 201, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"ff60e21e9ab8f9907ba556da6f63591de3723da5ad36711b1866091e5e033844\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"native_exchange_ranges\", \"span\": [841, 1506], \"lines\": [29, 45], \"bytes\": 665, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"0c5a6e678cb43eb3781791dcd4ceb55b9fe976e886e692afc42192c996983ef0\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionPolicy\", \"span\": [1509, 2502], \"lines\": [48, 73], \"bytes\": 993, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"41c823e394b036c470ca303167415eb93e30d31eced989f16038e8c4af828a7c\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionPolicy.__post_init__\", \"span\": [1897, 2502], \"lines\": [60, 73], \"bytes\": 605, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"0c5a6e678cb43eb3781791dcd4ceb55b9fe976e886e692afc42192c996983ef0\", \"symbol_fallback\": null}, {\"unit_id\": \"8f3325ca209741f1e86a67adae5241a5067570bf600027525ade6e58e603f561\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionOutcome\", \"span\": [2505, 3283], \"lines\": [76, 96], \"bytes\": 778, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"1aa8ff8ffcf2259500a19cb0bf5cb5315f63c2f8c53535360a1f5ebf12aed688\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionOutcome.target_reached\", \"span\": [3099, 3283], \"lines\": [93, 96], \"bytes\": 184, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"8f3325ca209741f1e86a67adae5241a5067570bf600027525ade6e58e603f561\", \"symbol_fallback\": null}, {\"unit_id\": \"af9ea191fc89a3d74b7843ab5a9dc0822d7e431fe7809bbce460abbe437347a7\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionCapacityError\", \"span\": [3286, 3754], \"lines\": [99, 108], \"bytes\": 468, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"c772c233e34d77e8cc1df6f08b22ad139b0335ee58fe7e422d258599a962d46c\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionCapacityError.__init__\", \"span\": [3417, 3754], \"lines\": [102, 108], \"bytes\": 337, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"af9ea191fc89a3d74b7843ab5a9dc0822d7e431fe7809bbce460abbe437347a7\", \"symbol_fallback\": null}], \"next_offset\": 56, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "VvcbzKa0WTk9Yf3ScPI5KvZndjL3AjSz",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results; path narrows scope.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed checks. No command or scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": false
+}

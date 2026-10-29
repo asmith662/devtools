@@ -1,0 +1,128 @@
+{
+  "number": 10,
+  "at": "2026-10-29T17:43:11.062186+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: first-request repository discoverability\n\nMaintain the existing neutral repository coding host so a newly invoked coding\nmodel can discover the complete host-authorized source surface without a separate\nlisting-only inference round. This is the concrete follow-up recorded in canonical\nB-0035 after local coding Case 0002. Keep all existing public signatures and Tools.\n\nPreserve the original objective as the first message. Include exactly one\nJSON-encoded metadata message, with repository_id, snapshot_id, source_acquired\n(false), and resources. Each resource has address, content_identity, byte_size and\neditable (a boolean from the host's editable subset). Values correspond to the\ncurrent authenticated source scope, including UTF-8 sizes. Include every scoped\nresource and no others. This is a transient model-facing projection, not a new\ndurable schema or source identity. Do not disclose resource content or absolute\nhost paths. Metadata does not acquire source, satisfy readiness or authorize edits.\n\nRepeated preparation and complete-input continuation must not accumulate copies.\nPreparation after admitted source refresh must describe the current snapshot.\nCharge the complete metadata and existing Tools/continuation to the existing\nPrompt byte bound; refuse over-budget requests rather than silently truncate or\nomit resources. Preserve stale-source refusal, native call correlation, actual\nsource disclosure before edits, host admission, fixed checks, restoration,\ncandidate/terminal outcomes and all existing limits. No new registry, executor,\nprovider, file-search engine, generic type or Qwen-specific dependency is needed.\n\nInspect source with the authorized Tools, then submit grounded exact edits.\nTests, docs, configuration and experiment evidence are read-only. Only existing\nAgents coding Python modules are editable. Do not change tests or checks, expand\nscope, choose commands, publish, or implement other backlog work. Failed checks\nwill produce real bounded feedback; you may repair within the frozen limits.\n\nUse find_source for scoped symbol/window search or paged outlines, then read_source_unit with the returned unit_id and snapshot_id. Prefer small relevant named regions to broad file chunks. read_source remains available for adjacent Unicode ranges or generic resources. Metadata is not source; acquire exact current source before edits. Limits: ten requests, four proposals, at most three applied candidates (two validation-feedback repairs), twenty acquisition actions. The resulting-source ceiling remains 32768 bytes per file. No source/edit limits may be increased.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":48}",
+              "provider_call_id": "VvcbzKa0WTk9Yf3ScPI5KvZndjL3AjSz"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"96280a58017c55981aec5d8a8f35886378034b403f45b640e74c94312f1a507a\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"request_bytes\", \"span\": [637, 838], \"lines\": [24, 26], \"bytes\": 201, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"ff60e21e9ab8f9907ba556da6f63591de3723da5ad36711b1866091e5e033844\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"native_exchange_ranges\", \"span\": [841, 1506], \"lines\": [29, 45], \"bytes\": 665, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"0c5a6e678cb43eb3781791dcd4ceb55b9fe976e886e692afc42192c996983ef0\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionPolicy\", \"span\": [1509, 2502], \"lines\": [48, 73], \"bytes\": 993, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"41c823e394b036c470ca303167415eb93e30d31eced989f16038e8c4af828a7c\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionPolicy.__post_init__\", \"span\": [1897, 2502], \"lines\": [60, 73], \"bytes\": 605, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"0c5a6e678cb43eb3781791dcd4ceb55b9fe976e886e692afc42192c996983ef0\", \"symbol_fallback\": null}, {\"unit_id\": \"8f3325ca209741f1e86a67adae5241a5067570bf600027525ade6e58e603f561\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionOutcome\", \"span\": [2505, 3283], \"lines\": [76, 96], \"bytes\": 778, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"1aa8ff8ffcf2259500a19cb0bf5cb5315f63c2f8c53535360a1f5ebf12aed688\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionOutcome.target_reached\", \"span\": [3099, 3283], \"lines\": [93, 96], \"bytes\": 184, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"8f3325ca209741f1e86a67adae5241a5067570bf600027525ade6e58e603f561\", \"symbol_fallback\": null}, {\"unit_id\": \"af9ea191fc89a3d74b7843ab5a9dc0822d7e431fe7809bbce460abbe437347a7\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionCapacityError\", \"span\": [3286, 3754], \"lines\": [99, 108], \"bytes\": 468, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"c772c233e34d77e8cc1df6f08b22ad139b0335ee58fe7e422d258599a962d46c\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"ProjectionCapacityError.__init__\", \"span\": [3417, 3754], \"lines\": [102, 108], \"bytes\": 337, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"af9ea191fc89a3d74b7843ab5a9dc0822d7e431fe7809bbce460abbe437347a7\", \"symbol_fallback\": null}], \"next_offset\": 56, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "VvcbzKa0WTk9Yf3ScPI5KvZndjL3AjSz",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":56}",
+              "provider_call_id": "VKyp3AZH0cV18mRmrgKYwVzBeHPOa1CX"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"cb41772a2b9bd6cded00a3b2993f46fba5acaae18f89ae305d0b29e558782047\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"source_feedback\", \"span\": [3757, 4587], \"lines\": [111, 130], \"bytes\": 830, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"bdcd2f6cf8d113c6e3f9b6d5e81d2111f4d27f96e7c4e38ec85d5894ee04a26d\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"_current_sources\", \"span\": [4590, 6042], \"lines\": [133, 166], \"bytes\": 1452, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"f9ec74e8e6bed9e3916e4fd58dc3c9d21a1cc0a529fcfc3c89868dd6ddab6cdf\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"project_request\", \"span\": [6045, 14094], \"lines\": [169, 376], \"bytes\": 8049, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"3547a562185e479488f3b0fa4dbcd1e3a6fb3c49d597bb470b693efa4f018376\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"project_request.assembled\", \"span\": [8887, 9097], \"lines\": [234, 238], \"bytes\": 210, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"f9ec74e8e6bed9e3916e4fd58dc3c9d21a1cc0a529fcfc3c89868dd6ddab6cdf\", \"symbol_fallback\": null}, {\"unit_id\": \"dc551e2ca3b22861dc7d0e1fa9d54b597942c218eae9f2eba764331275d5015e\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"project_request.size\", \"span\": [9103, 9163], \"lines\": [240, 241], \"bytes\": 60, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"f9ec74e8e6bed9e3916e4fd58dc3c9d21a1cc0a529fcfc3c89868dd6ddab6cdf\", \"symbol_fallback\": null}, {\"unit_id\": \"a62802e1150d1c6c476e764599d5f86eeb41ebf4317ee843a70522d123b7155d\", \"path\": \"src/devtools/agents/coding/projection.py\", \"version\": \"56f83c9c8835adff8447906e2f9f0826159c4a281205f676dfb3d10906434344\", \"kind\": \"symbol\", \"name\": \"project_request.partial\", \"span\": [11529, 12580], \"lines\": [305, 327], \"bytes\": 1051, \"file_id\": \"8b6da6fcfdcd2a7cb88e13eb8945a410560b255225c719f679a29152a7cb8052\", \"parent_id\": \"f9ec74e8e6bed9e3916e4fd58dc3c9d21a1cc0a529fcfc3c89868dd6ddab6cdf\", \"symbol_fallback\": null}, {\"unit_id\": \"4f8352f27f787e02f873248f90b5fabe93b05396ed806046847610275ee63524\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"CodingObjective\", \"span\": [3641, 4983], \"lines\": [112, 145], \"bytes\": 1342, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"3bb821f94f772f3b441a4127324bd7513663a9c8d083dd659a51cd776177993b\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"CodingObjective.__post_init__\", \"span\": [4151, 4983], \"lines\": [128, 145], \"bytes\": 832, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": \"4f8352f27f787e02f873248f90b5fabe93b05396ed806046847610275ee63524\", \"symbol_fallback\": null}], \"next_offset\": 64, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "VKyp3AZH0cV18mRmrgKYwVzBeHPOa1CX",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "find_source",
+              "arguments_json": "{\"offset\":64}",
+              "provider_call_id": "ZD4JNlnlBp2bd70Mvj2CkjgRcjxVQ1cb"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"repository_id\": \"21b47727-bfe5-49d1-841d-179353905a69\", \"snapshot_id\": \"6300d3faeac903096664845691cc350cb547522b130547bbc33f65a6f82e26f8\", \"source_acquired\": false, \"coordinates\": \"half-open Unicode offsets; one-based physical lines\", \"units\": [{\"unit_id\": \"32b8e15fd98ea01620daa276cd0dc261a0016b62d334a0ad7e175031c3626a68\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"write_source_changes\", \"span\": [4989, 5538], \"lines\": [148, 160], \"bytes\": 549, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"b6ed43a942ff31aa6c2141e2c16dce47b6bb2ff99a99f81ec8a28fa67ffe6f11\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_Invocation\", \"span\": [5544, 5950], \"lines\": [163, 172], \"bytes\": 406, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"f32e967de9b8dbe0455d7065dd6ea91f7cebcd0b6e05f87b3676c0fdea2d4f95\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_Invocation.materialize\", \"span\": [5758, 5950], \"lines\": [170, 172], \"bytes\": 192, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": \"b6ed43a942ff31aa6c2141e2c16dce47b6bb2ff99a99f81ec8a28fa67ffe6f11\", \"symbol_fallback\": null}, {\"unit_id\": \"7bcbbb9bcc968140493a19cf405f6811cc6a191beebb69538f80e500e6387d8f\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_ChangeTool\", \"span\": [5956, 6967], \"lines\": [175, 198], \"bytes\": 1011, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": null, \"symbol_fallback\": null}, {\"unit_id\": \"3acb0685663981fc82dbbb9d659a14d355fba58ed6bfad382985ce7b86565432\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_ChangeTool.__init__\", \"span\": [6171, 6432], \"lines\": [181, 187], \"bytes\": 261, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": \"7bcbbb9bcc968140493a19cf405f6811cc6a191beebb69538f80e500e6387d8f\", \"symbol_fallback\": null}, {\"unit_id\": \"8c0ea7e4cb9e67a72c1fe57c6bcb2fddbbd9a3eb86e0b38657b5db0aed085e19\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_ChangeTool.validate\", \"span\": [6440, 6770], \"lines\": [189, 194], \"bytes\": 330, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": \"7bcbbb9bcc968140493a19cf405f6811cc6a191beebb69538f80e500e6387d8f\", \"symbol_fallback\": null}, {\"unit_id\": \"894e148d54b90687048d61a1dc7629db0b53059f15c1add79e641ab71111a643\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_ChangeTool.execute\", \"span\": [6778, 6967], \"lines\": [196, 198], \"bytes\": 189, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": \"7bcbbb9bcc968140493a19cf405f6811cc6a191beebb69538f80e500e6387d8f\", \"symbol_fallback\": null}, {\"unit_id\": \"ba1ac152c2c3c25754e5d05ee570fa8f538b1c85500a6ff77b4a5d0c3e9a257b\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"4fd011cc5b10c17086db47cf1bd2531222f186b8683c59c085d01d29c837f625\", \"kind\": \"symbol\", \"name\": \"_arguments\", \"span\": [6973, 7720], \"lines\": [201, 220], \"bytes\": 747, \"file_id\": \"a7b5715f0d157b94b2e4434e2b23e950853e70e49ede64921f7e235c6863a079\", \"parent_id\": null, \"symbol_fallback\": null}], \"next_offset\": 72, \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "ZD4JNlnlBp2bd70Mvj2CkjgRcjxVQ1cb",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results; path narrows scope.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "inspect_and_validate_change",
+        "description": "Inspect authorized changes and execute host-fixed checks. No command or scope arguments.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "inference_entered": true,
+  "measured_input_tokens": 8908
+}

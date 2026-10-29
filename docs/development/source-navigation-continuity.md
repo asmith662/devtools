@@ -166,3 +166,13 @@ strict mypy and layout also passed against the same 1189 physical
 inputs. [Machine-readable receipt](../research/code-audit/source-navigation-continuity-20261029.json)
 retains commands, timestamps, versions, identities, trace and preservation.
 No live effectiveness follows from this gate.
+
+## Real maintenance outcome
+
+[Maintenance-navigation-0001](../../experiments/local_maintenance_navigation/REPORT.md)
+failed B-0035: ten global metadata pages, zero source reads/proposals/edits/checks.
+Eighty units returned, 72 consumed; relevant host methods arrived only in the
+final unconsumed page. Smaller active input did not yield coding progress.
+The unchanged archive reproduces the preflight failure sets. No model-authored
+implementation was accepted. Task-directed navigation entry/stopping is the
+next observed pressure; no redesign or new inference is begun here.
