@@ -94,8 +94,35 @@ Independent semantic assessment is required for claims of summary fidelity.
 
 ## Verification scope
 
+The neutral host's existing authorization callback now receives the literal
+`SourceReadRequest`, before range selection, so it can authorize scope without
+confusing input construction with successful disclosure. Construction is not
+authority or evidence. Direct callers of the existing Context disclosure option
+remain compatible. The Qwen adapter retains its public input/result presentation
+and delegates the range decision; its legacy continuation policy is unchanged.
+
 See the separately frozen [live verification](../../experiments/local_agent_reliability/REPORT.md).
 Its summary format, adoption, actual consumption, source usability and candidate
 correctness are independent outcomes. No Adaptive-0001 result is revised and no
 adaptive threshold is retuned. Durable recovery, observation Option B and broader
 Context policy remain outside this increment.
+
+## Committed implementation validation
+
+Implementation `9593d8f541a3cf58478f77052accb80b5a99e681`, tree
+`9bd9e523bd1987388b7cdb3fef62953ea7fafe96`, passed the unchanged protected
+development gate: **3,821 passed, two optional skips**, with all 13,851 configured
+production statements and 3,536 branches covered. The gate ran from
+2026-10-29 13:14:34 to 13:36:55 UTC (1,340.008 seconds including capture).
+Ruff, supported formatting, strict mypy and layout passed on that same committed
+implementation. All 1,057 captured physical validation inputs remained unchanged.
+These results use Windows/Python 3.14.3; no additional-runtime claim is made.
+
+The [machine-readable receipt](../research/code-audit/local-agent-reliability-20261029.json)
+retains original/final blobs, commands, versions, timings, input hashes, earlier
+test corrections and two deliberately interrupted gate attempts. Neither
+interrupted attempt is counted as a pass. Independent evidence verification
+checked the five actual acting requests, six correlated source reads, unchanged
+freeze, restoration, strict summary rejection and separately qualified offline
+normalization without inference or effect replay. Documentation-only delivery
+records preserve the tested executable inputs through publication.
