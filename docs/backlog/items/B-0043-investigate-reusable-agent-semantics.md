@@ -153,3 +153,15 @@ This planning entry is not delivery evidence or a new approval/grant. Adaptive
 policy, live assessment, initial inventory, broad A+C, observation Option B,
 Evidence durability and autonomous recovery remain separate. Status, maturity,
 dependencies and broader parent obligations remain unchanged.
+
+## Semantic-compaction delivered evidence — 2026-10-28
+
+Implementation `dfe62a3ed2ff353ee62e186fdaf31f4d04695bc1` is verified on accepted main checkpoint
+`37a4797099c3ff3be4c57b573a5d5d0e593b20d5` after the unchanged committed protected gate and exact
+source/input/ancestry checks. [Contract and measured limits](../../development/semantic-context-compaction.md),
+[receipt](../../research/code-audit/semantic-context-compaction-20261028.json).
+This delivers only optional bounded semantic working-state notes, independent
+repair consumption and safe deterministic fallback. Adaptive policy, real summary
+fidelity, first-request inventory, Evidence durability, restart, broader A+C and
+observation Option B remain separate. No status, maturity, dependency, grant,
+approval or parent closure is inferred. `integration:semantic-context-compaction:dfe62a3e:20261028`.

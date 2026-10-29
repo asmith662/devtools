@@ -258,3 +258,14 @@ links, source identities and whitespace pass. Two preexisting B-0002 links to
 removed root scratch reports remain qualified; no new broken links are added.
 Research and Qwen assurance receive append-only changed-version overlays, with
 no transfer of frozen review credit or broader backlog closure.
+
+## Accepted-main verification
+
+Ordinary non-force main publication accepted `37a4797099c3ff3be4c57b573a5d5d0e593b20d5`, tree `afa6622ee017f96ba5456fdc55600b9a98175aa7`,
+independently verified at `2026-10-29T00:33:41.016913+00:00` through GitHub and Git remote state. It
+contains implementation `dfe62a3ed2ff353ee62e186fdaf31f4d04695bc1` with the same 1052 physical
+protected-validation inputs and source/test blobs. Actual repository requirements
+reported push permission, no protected main rule and no additional rules/rulesets.
+No PR, bypass, fabricated approval or review was used. Tracked worktree/index were
+clean, existing forensic untracked files retained, and historical remote refs
+preserved. This subsequent documentation-only closeout changes no executable input.

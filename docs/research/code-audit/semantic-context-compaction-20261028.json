@@ -2846,5 +2846,134 @@
     ],
     "new_broken_links": [],
     "historic_refs_unchanged": 155
+  },
+  "accepted_main_verification": {
+    "at": "2026-10-29T00:33:41.016913+00:00",
+    "main": "37a4797099c3ff3be4c57b573a5d5d0e593b20d5",
+    "tree": "afa6622ee017f96ba5456fdc55600b9a98175aa7",
+    "previous_remote": "915d3cd6d3e6029b921fd67cc1d918b9f7217a71",
+    "source": "dfe62a3ed2ff353ee62e186fdaf31f4d04695bc1",
+    "source_tree": "44dfc06cb590a354f8bfd1d49728a9cc26c7d159",
+    "ordinary_fast_forward": true,
+    "push_acknowledgment": "",
+    "push_error_kind": null,
+    "acknowledgment_independently_verified": true,
+    "accepted_source_blobs": {
+      "src/devtools/agents/coding/compaction/__init__.py": "21cb086d0856f2a800ffd2d54a04d0003b83c971",
+      "src/devtools/agents/coding/compaction/format.py": "06390b3bd083287ff5fe1681ffde0a2c2e800a6b",
+      "src/devtools/agents/coding/compaction/models.py": "7ff61b7f9932da59d803ac59012672e168374e96",
+      "src/devtools/agents/coding/compaction/operation.py": "7014f6b2e7c448d0bb2c4c82c2deb2f090911e65",
+      "src/devtools/agents/coding/docs/overview.md": "05fe9679cb1377b650af6af29a0a6817be88028d",
+      "src/devtools/agents/coding/projection.py": "712a377d1ff2fc667379dbe51403354ce9326afe",
+      "src/devtools/agents/coding/repository.py": "f31c14ab9bbef0762ebaaa96c30fa5cd33a58fe1",
+      "tests/agents/coding/compaction/__init__.py": "563b97714a3a37b7fdbd49fc9724eb672bed17f8",
+      "tests/agents/coding/compaction/fixture.py": "962a204ce7ff0d3e593ba1f0d79c69ef0cb867d7",
+      "tests/agents/coding/compaction/test_semantic.py": "8ed8ffe854a3d380f5a71bc516350e35c711e143",
+      "tests/agents/coding/fixtures.py": "81152844c88a209ac45c01f2ca25127a82ba0bbf",
+      "tests/agents/coding/independent_host.py": "ad67b6884666f1d1737072de28604acb512f36ba",
+      "tests/agents/coding/test_guarded.py": "e3dc1dfac1d205579fc4bd4f7e0f39c27962c4e7"
+    },
+    "physical_inputs": 1052
+  },
+  "delivered_documentation_validation": {
+    "command": "uv run python .local/semantic-compaction/validate.py",
+    "started_at": "2026-10-29T00:33:50.340620+00:00",
+    "finished_at": "2026-10-29T00:33:53.093820+00:00",
+    "elapsed_seconds": 2.753,
+    "exit_code": 0,
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "baseline": "915d3cd6d3e6029b921fd67cc1d918b9f7217a71",
+    "observed_head": "37a4797099c3ff3be4c57b573a5d5d0e593b20d5",
+    "allowed_paths": [
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/development/active-context-projection.md",
+      "docs/development/semantic-context-compaction.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-context-compaction-evidence-20261028.json",
+      "docs/research/agent-context-compaction.md",
+      "docs/research/code-audit/qwen-operational-assurance.json",
+      "docs/research/code-audit/semantic-context-compaction-20261028.json",
+      "src/devtools/agents/coding/compaction/__init__.py",
+      "src/devtools/agents/coding/compaction/format.py",
+      "src/devtools/agents/coding/compaction/models.py",
+      "src/devtools/agents/coding/compaction/operation.py",
+      "src/devtools/agents/coding/docs/overview.md",
+      "src/devtools/agents/coding/projection.py",
+      "src/devtools/agents/coding/repository.py",
+      "tests/agents/coding/compaction/__init__.py",
+      "tests/agents/coding/compaction/fixture.py",
+      "tests/agents/coding/compaction/test_semantic.py",
+      "tests/agents/coding/fixtures.py",
+      "tests/agents/coding/independent_host.py",
+      "tests/agents/coding/test_guarded.py"
+    ],
+    "changed_tracked_paths": [
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/development/active-context-projection.md",
+      "docs/development/semantic-context-compaction.md",
+      "docs/documentation_map.md",
+      "docs/research/README.md",
+      "docs/research/agent-context-compaction-evidence-20261028.json",
+      "docs/research/agent-context-compaction.md",
+      "docs/research/code-audit/qwen-operational-assurance.json",
+      "docs/research/code-audit/semantic-context-compaction-20261028.json",
+      "src/devtools/agents/coding/compaction/__init__.py",
+      "src/devtools/agents/coding/compaction/format.py",
+      "src/devtools/agents/coding/compaction/models.py",
+      "src/devtools/agents/coding/compaction/operation.py",
+      "src/devtools/agents/coding/docs/overview.md",
+      "src/devtools/agents/coding/projection.py",
+      "src/devtools/agents/coding/repository.py",
+      "tests/agents/coding/compaction/__init__.py",
+      "tests/agents/coding/compaction/fixture.py",
+      "tests/agents/coding/compaction/test_semantic.py",
+      "tests/agents/coding/fixtures.py",
+      "tests/agents/coding/independent_host.py",
+      "tests/agents/coding/test_guarded.py"
+    ],
+    "physical_files_unchanged": 1270,
+    "forensics_unchanged": 13,
+    "case_manifest_files": {
+      "case_0001": {
+        "kind": "frozen digest; all retained bytes also baseline-hashed",
+        "files": 9
+      },
+      "case_0002": {
+        "kind": "closed manifest",
+        "files": 68
+      },
+      "case_0003": {
+        "kind": "closed manifest",
+        "files": 47
+      }
+    },
+    "strict_json_records": 43173,
+    "intake_chains": 68,
+    "RI_rows": 903,
+    "RI_ledgers": {
+      "docs/research/code-audit/ri-completion-experiments.jsonl": "c123f9bca86b9d7d3de2067fa8913997cb9d87fbcabe8a0151ab42bb18047868",
+      "docs/research/code-audit/ri-completion-fixtures.jsonl": "8ffe436bbdcb457d1a32af5ae8816246b82415c5661b3f571b5b6d077a0887de",
+      "docs/research/code-audit/ri-followup-history.jsonl": "9feaf42f23ba72827ccedf67049f72b58b2b9c9ce2cb9ffeb727796a81b14c72"
+    },
+    "local_review_identities": 40,
+    "local_links": 480,
+    "anchor_checks": 40,
+    "preexisting_unresolved_links": [
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-admission-rule.json"
+      },
+      {
+        "path": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "target": "../../../.b0002-purpose-relative-independent-validation.json"
+      }
+    ],
+    "new_broken_links": [],
+    "historic_refs_unchanged": 155
   }
 }
