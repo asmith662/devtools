@@ -149,3 +149,12 @@ selection or B-0035 completion. Exact source remained truthful under projection;
 no live use of the outline allowance or semantic compaction was demonstrated.
 The next bounded question is method-sized working-set selection through existing
 Context capabilities, without larger limits or another navigation engine.
+
+## Verified publication - 2026-10-29
+
+Ordinary non-force publication was independently verified at
+`faa7bd3d04fdfaaecd9499d01faaaa3e1afb7231`. Its source/test blobs and all 1191 physical
+protected inputs match committed executable tree `4d5ad371dd4d43cb677ad2c7d9ac40549a3fd573`.
+Checkout is released, tracked state is clean, and prior forensic files, experiments
+and refs are preserved. The live attempt remains a failed B-0035 result with no
+model-authored implementation; no status transition or additional authority follows.
