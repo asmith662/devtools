@@ -166,6 +166,8 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     snapshot: RepositorySnapshot,
     sources: Mapping[int, tuple[SourceRangeDisclosureOption, ...]],
     protected_indices: frozenset[int] = frozenset(),
+    summarized_indices: frozenset[int] = frozenset(),
+    summary: PromptMessage | None = None,
 ) -> ProjectionOutcome:
     """Select complete exchanges and affordable exact source without editing history.
 
@@ -189,6 +191,31 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     original = request_bytes(request)
     omitted: list[tuple[int, int, str]] = []
     shortened: list[int] = []
+    if summarized_indices or summary is not None:
+        eligible = {
+            i
+            for first, end in ranges[:-1]
+            if not protected_indices.intersection(range(first, end))
+            and set(range(first, end)) <= summarized_indices
+            for i in range(first, end)
+        }
+        if (
+            not summarized_indices
+            or eligible != summarized_indices
+            or summary is None
+            or summary.role != "assistant"
+            or not summary.content.strip()
+            or summary.tool_calls
+            or summary.tool_call_id is not None
+            or summary.reasoning_content is not None
+        ):
+            msg = "Semantic projection must replace whole unprotected exchanges."
+            raise ValueError(msg)
+        for first, end in ranges:
+            if first in summarized_indices:
+                omitted.append((first, end, "semantic-summary"))
+        for i in summarized_indices:
+            del selected[i]
     # Only bound plain source results can be shortened or classified as reads.
     plain = {
         i
@@ -197,7 +224,10 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     }
 
     def assembled() -> ModelRequest:
-        return replace(request, prompt=Prompt("", "messages", tuple(selected.values())))
+        active = tuple(selected.values())
+        if summary is not None:
+            active += (summary,)
+        return replace(request, prompt=Prompt("", "messages", active))
 
     def size() -> int:
         return request_bytes(assembled())
@@ -206,7 +236,8 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     for first, end in ranges:
         block = messages[first:end]
         if (
-            (first, end) == ranges[-1]
+            first not in selected
+            or (first, end) == ranges[-1]
             or any(i in protected_indices for i in range(first, end))
             or not block[0].tool_calls
             or any(

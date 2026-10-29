@@ -649,3 +649,22 @@ fallback. Increment 3 evaluates adaptive thresholds, strategy timing, grounded
 reacquisition and host/model/operator triggers through separately frozen
 deterministic and authorized live continuations. Neither is implemented here;
 no new provider, persistence system, broad A+C or observation Option B follows.
+
+## Subsequent implementation increment 2 — 2026-10-28
+
+The separately authorized [structured semantic compaction](../development/semantic-context-compaction.md)
+extends the same neutral active-projection lifecycle. Explicit host disclosure
+and replacement selections, an independent bounded ModelInteraction, structured
+notes with exact record citations, recent exact native exchanges and qualified
+deterministic fallback are implemented. Generated text remains fallible derived
+information; it cannot establish source witnesses, execution receipts, permission
+or candidate acceptance. Original histories and all frozen cases remain unchanged.
+
+A guarded independent scripted coding workflow consumes the summary and actual
+failed-check feedback before a corrective edit and real fixed-check success.
+This demonstrates operational integration and safety contracts, not real model
+summary fidelity or coding effectiveness. It neither upgrades the external
+research confidence above nor rescues Case 0003. Increment 3's adaptive strategy,
+thresholds, timing and separately authorized behavioral/live assessment remain
+pending. No provider-native opaque state, new persistence or observation-policy
+change is implied.

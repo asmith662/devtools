@@ -15,6 +15,11 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
   through existing Context materialization. The neutral host's optional
   `ProjectionPolicy` separates retained original facts from active Prompt/edit
   witnesses; default task and capacity behavior remain unchanged.
+- `compaction` optionally obtains bounded, cited working-state notes through a
+  separately selected ModelInteraction. A trusted host explicitly requests it
+  and independently selects outbound disclosure and eligible replacement.
+  Original history, exact recent/check evidence, source witnesses and custody
+  remain authoritative; generated notes never certify effects or acceptance.
 - `edits.replace_exact_text` admits one unique bounded literal anchor without
   language/task or repository governance defaults.
 - `custody.SourceCustody` retains canonical known-source correspondence and
@@ -38,3 +43,8 @@ See the [contract, consumers and limitations](../../../../../docs/development/bo
 The [active projection contract](../../../../../docs/development/active-context-projection.md)
 documents byte watermarks, complete-schema assembly, protected feedback,
 source-witness invalidation, qualified failures and future summary boundaries.
+The [semantic compaction contract](../../../../../docs/development/semantic-context-compaction.md)
+defines auxiliary budgets, provenance validation, privacy, exact-context
+preservation and deterministic fallback. It requires neither a Qwen consumer nor
+a live/provider-specific summarizer. Qwen's existing continuation policy remains
+separate; the shared coding process and legacy outputs remain unchanged.

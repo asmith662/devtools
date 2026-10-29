@@ -228,3 +228,12 @@ Actual main requirements reported push permission, no branch protection and no
 additional rules/rulesets; no bypass, invented review or PR was used. Tracked
 worktree/index were clean and the existing forensic untracked files preserved.
 This subsequent documentation-only closeout does not change executable inputs.
+
+## Subsequent semantic extension
+
+[Implementation 2](semantic-context-compaction.md) adds an optional host-requested,
+separately budgeted ModelInteraction and qualified derived notes through this
+same projection lifecycle. The original delivery evidence above remains frozen.
+Deterministic-only behavior remains the default; native boundaries and exact
+active source witnesses remain authoritative. Adaptive policy and live behavioral
+assessment are still separate work.

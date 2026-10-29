@@ -1,11 +1,17 @@
 # Documentation Map
 
+Context implementation increment 2, 2026-10-28:
+[structured semantic working-state compaction](development/semantic-context-compaction.md)
+documents the separately bounded optional interaction, cited fallible notes,
+exact working evidence, independent repair consumer and deterministic fallback.
+Adaptive policy and real-model assessment remain separately authorized work.
+
 Context implementation increment 1, 2026-10-28:
 [budget-aware active projection](development/active-context-projection.md) documents
 the neutral coding-host contract, exact native boundaries, current source witnesses,
 failure semantics and deterministic frozen-history evidence. It supersedes only
-the earlier pending status of that first increment; summaries and live evaluation
-remain separately authorized future work.
+the earlier pending status of that first increment; the subsequent summary
+implementation is linked above without changing its historical evidence.
 
 Context research, 2026-10-28: [budget-aware compaction and architecture reconciliation](research/agent-context-compaction.md)
 is the current research/decision package for deterministic reduction, optional

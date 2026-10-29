@@ -149,3 +149,17 @@ This delivers only opt-in deterministic active projection and native-boundary
 reuse. Original first-request inventory, structured summaries, adaptive/live
 assessment, Evidence durability, broader A+C and recovery remain separate.
 No status, maturity, dependency, grant, approval or parent closure is inferred.
+
+## Authorized semantic-compaction increment — 2026-10-28
+
+The explicit Implementation 2 assignment authorizes the bounded
+[structured working-state extension](../../development/semantic-context-compaction.md)
+to the existing neutral active-projection lifecycle. Host-selected outbound
+disclosure and replacement, a separately bounded optional ModelInteraction,
+cited fallible notes, exact recent/check evidence and deterministic fallback
+reuse existing Context/Prompt/source/custody contracts. Guarded scripted repair
+demonstrates an independent consumer; no real summary effectiveness is claimed.
+This planning entry is not delivery evidence or a new approval/grant. Adaptive
+policy, live assessment, initial inventory, broad A+C, observation Option B,
+Evidence durability and autonomous recovery remain separate. Status, maturity,
+dependencies and broader parent obligations remain unchanged.

@@ -8,6 +8,7 @@ import json
 from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING, Literal, cast
 
+from devtools.agents.coding.compaction.operation import SemanticCompactor
 from devtools.agents.coding.custody import SourceCustody
 from devtools.agents.coding.edits import CodingEditError, replace_exact_text
 from devtools.agents.coding.models import (
@@ -50,6 +51,7 @@ from devtools.tools.source import ScopedSourceTool, SourceScope
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable, Mapping
 
+    from devtools.agents.coding.compaction import SummaryCompaction
     from devtools.context.planning.materialization import ContextDisclosure
     from devtools.context.repository.corpus import RepositoryTextCorpusDefinition
     from devtools.context.repository.snapshot import RepositorySnapshot
@@ -250,6 +252,7 @@ class RepositoryCodingHost:
         | None = None,
         settings: ModelSettings = _SETTINGS,
         projection: ProjectionPolicy | None = None,
+        summary: SummaryCompaction | None = None,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
@@ -260,6 +263,10 @@ class RepositoryCodingHost:
             msg = "Projection watermarks exceed the host byte ceiling."
             raise ValueError(msg)
         self.projection = projection
+        if summary is not None and projection is None:
+            msg = "Semantic compaction requires active Context projection."
+            raise ValueError(msg)
+        self.compaction = SemanticCompactor(summary) if summary is not None else None
         self.authorize, self.effect = authorize, apply_changes
         self.archive, self.restore, self.readiness, self.settings = (
             archive,
@@ -311,12 +318,13 @@ class RepositoryCodingHost:
             tools=tuple(normalize_tool_descriptor(d) for d in (_READ, _EDIT, _CHECK)),
         )
 
-    async def prepare(self, progress: CodingProgress) -> ModelRequest:
+    async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
         request = self.build_request(tuple(self.messages))
         if self.projection is not None:
+            policy = self.projection
             try:
                 if any(not e.acknowledged for e in progress.effects):
                     msg = "Unacknowledged effects require reconciliation."
@@ -330,6 +338,8 @@ class RepositoryCodingHost:
                     if self.readiness is not None
                     else frozenset()
                 )
+                if self.compaction is not None:
+                    protected |= self.compaction.protect(request.prompt.messages)
                 outcome = project_request(
                     request,
                     policy=self.projection,
@@ -339,6 +349,44 @@ class RepositoryCodingHost:
                     protected_indices=protected,
                 )
                 self.projection_outcomes.append(outcome)
+                if self.compaction is not None:
+
+                    def summarized(
+                        indices: frozenset[int],
+                        note: PromptMessage,
+                    ) -> ProjectionOutcome:
+                        self.scope.check_current()
+                        if tuple(self.messages) != request.prompt.messages:
+                            msg = "Original history changed during semantic compaction."
+                            raise ValueError(msg)  # noqa: TRY301 -- no stale projection
+                        return project_request(
+                            request,
+                            policy=policy,
+                            hard_bytes=self.objective.prompt_bytes,
+                            snapshot=self.scope.snapshot,
+                            sources=self._source_messages,
+                            protected_indices=protected,
+                            summarized_indices=indices,
+                            summary=note,
+                        )
+
+                    selected = await self.compaction.project(
+                        request,
+                        outcome,
+                        protected=protected,
+                        sources=self._source_messages,
+                        snapshot=str(self.scope.snapshot.id),
+                        project=summarized,
+                    )
+                    # Also recheck after optional failure: a fallback is not safe
+                    # if an external actor changed source during the await.
+                    self.scope.check_current()
+                    if tuple(self.messages) != request.prompt.messages:
+                        msg = "Original history changed during semantic compaction."
+                        raise ValueError(msg)  # noqa: TRY301 -- no stale fallback installation
+                    if selected is not outcome:
+                        self.projection_outcomes.append(selected)
+                    outcome = selected
                 if outcome.status == "insufficient":
                     raise ProjectionCapacityError(outcome)  # noqa: TRY301 -- no partial active-state installation
             except (Exception, asyncio.CancelledError) as error:
@@ -352,6 +400,17 @@ class RepositoryCodingHost:
             raise ValueError(msg)
         self.requests.append(request)
         return request
+
+    def request_compaction(self) -> None:
+        """Request one host-authorized auxiliary strategy at the next preparation.
+
+        This is not a model Tool, a budget reset, or permission to disclose all
+        history. The configured selector and finite envelope remain authoritative.
+        """
+        if self.compaction is None:
+            msg = "No semantic compaction interaction is authorized."
+            raise ValueError(msg)
+        self.compaction.pending = True
 
     async def receive(self, response: ModelResponse) -> None:
         """Retain normalized response facts; the shared process authenticates source."""

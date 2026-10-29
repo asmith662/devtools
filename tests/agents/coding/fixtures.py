@@ -93,10 +93,11 @@ class Model:
 
     source = InteractionSource("independent-bounded-coding")
 
-    def __init__(self, root: Path, scenario: str) -> None:
+    def __init__(self, root: Path, scenario: str, *, semantic: bool = False) -> None:
         """Retain an explicit literal schedule and actual invocation inputs."""
         self.root, self.scenario = root, scenario
         self.requests: list[ModelRequest] = []
+        self.semantic = semantic
 
     async def send(self, request: ModelRequest) -> ModelResponse:
         """Return predeclared native requests, including controlled unknown entry."""
@@ -117,7 +118,18 @@ class Model:
             assert disclosed["snapshot"]
             assert disclosed["version"]
         if number == 3 and self.scenario == "repair":
-            last = request.prompt.messages[-1]
+            if self.semantic:
+                assert (
+                    "Return 8 failed the fixed check"
+                    in request.prompt.messages[-1].content
+                )
+                assert request.prompt.messages[-1].role == "assistant"
+                assert (
+                    "Make answer return integer 7" in request.prompt.messages[0].content
+                )
+                last = request.prompt.messages[-2]
+            else:
+                last = request.prompt.messages[-1]
             assert last.tool_call_id == "edit-2"
             evidence = json.loads(last.content)
             assert evidence["passed"] is False
@@ -207,7 +219,10 @@ class Model:
                     ),
                 )
         return ModelResponse(
-            "literal requested coding step",
+            "Hypothesis: return 8; inspect exact implementation. "
+            + "Old navigation metadata. " * 300
+            if self.semantic and number == 1
+            else "literal requested coding step",
             InteractionSource("foreign")
             if self.scenario == "foreign-model"
             else self.source,
@@ -223,6 +238,7 @@ async def scenario(
     name: str,
     *,
     projection: bool = False,
+    semantic: bool = False,
 ) -> dict[str, Any]:
     root = resolve_path(root).value
     path = resolve_path(root / "module.py")
@@ -350,6 +366,12 @@ async def scenario(
             message = "Required host obligation remains unresolved"
             raise ValueError(message)
 
+    from tests.agents.coding.compaction.fixture import (  # noqa: PLC0415
+        RepairSummary,
+        configuration,
+    )
+
+    summary_model = RepairSummary()
     host = RepositoryCodingHost(
         objective,
         corpus=corpus,
@@ -359,11 +381,14 @@ async def scenario(
         restore=restore,
         readiness=readiness,
         projection=ProjectionPolicy(1500, 1300) if projection else None,
+        summary=configuration(summary_model) if semantic else None,
     )
     feedback = host.feedback
 
     async def report(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401 -- controlled post-validation reporting fault
         await feedback(*args, **kwargs)
+        if semantic and not kwargs["passed"]:
+            host.request_compaction()
         if name == "unknown-after-check":
             write(TextFile(path, UNKNOWN))
         if name == "feedback-failed":
@@ -392,7 +417,7 @@ async def scenario(
 
     if name in {"cancel-check", "lost-check-ack"}:
         host.check = interrupted_check  # type: ignore[method-assign]
-    model = Model(root, name)
+    model = Model(root, name, semantic=semantic)
     one_proposal = name not in {"repair", "completion-check"}
     limits = CodingLimits(
         1 if name in {"call-limit", "action-limit", "batch-overflow"} else 4,
@@ -448,6 +473,20 @@ async def scenario(
         ],
         "feedback_ids": [m.tool_call_id for m in host.messages if m.role == "tool"],
         "request_count": len(model.requests),
+        "summary_requests": len(summary_model.requests),
+        "summaries": []
+        if host.compaction is None
+        else [
+            {
+                "status": a.status,
+                "entered": a.entered,
+                "adopted": a.adopted,
+                "before": a.original_bytes,
+                "after": a.resulting_bytes,
+                "usage": None if a.usage is None else "known",
+            }
+            for a in host.compaction.attempts
+        ],
         "framework": run_coding_agent.__code__.co_filename,
         "projections": [
             {
