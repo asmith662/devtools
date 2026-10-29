@@ -20,6 +20,8 @@ if TYPE_CHECKING:
         PromptMessage,
     )
 
+    from .adaptive import AdaptiveCompaction
+
 
 @dataclass(frozen=True, slots=True)
 class SummarySelection:
@@ -46,7 +48,8 @@ class SummaryCompaction:
 
     Selection is trusted host policy over ORIGINAL messages. It grants outbound
     disclosure to this interaction, not execution authority. Provider reasoning
-    is never disclosed. No request is made until the host asks for compaction.
+    is never disclosed. Entry needs an explicit host request or opt-in adaptive
+    policy; configuration without either still makes no auxiliary request.
     """
 
     interaction: ModelInteraction
@@ -60,6 +63,7 @@ class SummaryCompaction:
     input_tokens: int | None = None
     measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None
     retain_payloads: bool = False
+    adaptive: AdaptiveCompaction | None = None
 
     def __post_init__(self) -> None:
         """Require explicit finite bounds; never invent a tokenizer or capacity."""

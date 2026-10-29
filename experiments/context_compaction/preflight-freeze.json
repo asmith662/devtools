@@ -1,0 +1,70 @@
+{
+  "at": "2026-10-29T01:17:25.735097+00:00",
+  "baseline": "d5d18b589948f19f457a29161b8811da8f7cf0ee",
+  "files": {
+    "assessment.py": "59afdd1e29709ac6f0c8e4eb7c795ddfe168f33571399ff0f4901ec2318b02fe",
+    "history.json": "f020727cf2ab2c563a962a57ef996d6b8269213a8dcf3af67aaab0041c02d699",
+    "objective.md": "1bde09b1e5e60c5fdc7f5f9521fd34a298e4ad5b0c4e5bca0df4b9b4fabc5332",
+    "oracle.py": "4e4623f83f37324e05e0785b1a4bd96171ad96c6b3fed584f3191654fc227ba5",
+    "probe.json": "4e3d6cd63d814f0ef00886929611cd495066fe5632a8d3fe2b79e5cf8eb71d57",
+    "protocol.md": "0ba08c58fc8ca51b80bf133fd0b2a4e8d00f3e2fd7e3cb5222afa07d0cc13e2e",
+    "README.md": "f4b069f79d92a3a48d3247ed2039d21d359d642deacd8e7ec19840842ab26117",
+    "fixture/focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+    "fixture/reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+    "fixture/rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+  },
+  "source_hashes": {
+    "focused.py": "234fc21e77523477a66b0630ba5aae8ea1bc288620133d8a5af62dcdf6857f91",
+    "reducer.py": "5dfa66e63eda0e169d2a6520e3b746ee8401385d40f76d41a8dc98777c1ae257",
+    "rules.py": "78c2224189063080327e439f127f83bbe0170580709c796dda052dcf3cb1c3a8"
+  },
+  "original_bytes": 40010,
+  "profile": {
+    "model": {
+      "repository": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+      "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+    },
+    "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "quant": "Unsloth Dynamic IQ4_XS",
+    "context_size": 32768,
+    "n_cpu_ffn": 0,
+    "gpu_layers": "all",
+    "flash_attention": "on",
+    "cache_type_k": "q4_0",
+    "cache_type_v": "q4_0",
+    "parallel_sequences": 1,
+    "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+  },
+  "sampling": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5
+  },
+  "baseline_oracle": {
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\freeze-task"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py\", line 28, in <module>\r\n    print(grade(Path(sys.argv[1]).resolve()))\r\n          ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py\", line 23, in grade\r\n    assert observed == [expected for _, expected in cases], observed\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: [{'\\u03bb': 0}, {'a': 4}, {}, {'a': 2, 'b': -1}, {}]\r\n"
+  },
+  "framework": {
+    "src/devtools/agents/coding/custody.py": "79f3949af48aa68111f8dd07e6cfe96fa86509ae6ee356964fae11212fe45ba9",
+    "src/devtools/agents/coding/edits.py": "fbcccfd7f769f190e8cfc8f411ad3c58fd779e5d46080f7f6116717c69273307",
+    "src/devtools/agents/coding/models.py": "5de6ecba84a03021155a9467642b12a54819c6eabddaf3768fa194ac5f0f3690",
+    "src/devtools/agents/coding/process.py": "5e5718823d311977dbdf9ff34762c323f4774914b77985fa5ac894e9bcec49ef",
+    "src/devtools/agents/coding/projection.py": "00622c2c87aeef674f30845323af00513afa543ca5bcdb081196a20353190f5c",
+    "src/devtools/agents/coding/repository.py": "ffdf62da098de846638cda308818c55abdbcab1283ec6aafdf91a09321425292",
+    "src/devtools/agents/coding/__init__.py": "fa782fb1124a03318d1b49b39bc6f04a67da0b8d517db55ab796ea447e0e737d",
+    "src/devtools/agents/coding/compaction/adaptive.py": "b3b64c590a6651187225fd7151d39f654c7758b47b67e5b3f57c81ca6c6214c1",
+    "src/devtools/agents/coding/compaction/format.py": "32ae6265b427d8a7a938e66e3e48425d2207601892e5cb6eee0f38fa8e80a65b",
+    "src/devtools/agents/coding/compaction/models.py": "cccba09e332b8b68f3778dd600ae60bae7e1cfb51875288d540e6c4c2dfa8e94",
+    "src/devtools/agents/coding/compaction/operation.py": "cbd9822689bbf0c7d73ec10221f601689722fd1bf575e0c58e205c9cea892c44",
+    "src/devtools/agents/coding/compaction/__init__.py": "df4499dd9f0e293d6f671d414c38bb5294a95ee06574032607b30a67cd304343"
+  }
+}

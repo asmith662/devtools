@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\A-grade"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py\", line 28, in <module>\r\n    print(grade(Path(sys.argv[1]).resolve()))\r\n          ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\context_compaction\\oracle.py\", line 23, in grade\r\n    assert observed == [expected for _, expected in cases], observed\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: [{'λ': 0}, {'a': 4}, {}, {'a': 2, 'b': -1}, {}]\r\n"
+}

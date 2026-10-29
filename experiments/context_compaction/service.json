@@ -1,0 +1,29 @@
+{
+  "profile": {
+    "model": {
+      "repository": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+      "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+    },
+    "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "quant": "Unsloth Dynamic IQ4_XS",
+    "context_size": 32768,
+    "n_cpu_ffn": 0,
+    "gpu_layers": "all",
+    "flash_attention": "on",
+    "cache_type_k": "q4_0",
+    "cache_type_v": "q4_0",
+    "parallel_sequences": 1,
+    "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+  },
+  "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+  "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+  "endpoint": "http://127.0.0.1:8080",
+  "served_model": "qwen38-local",
+  "available_models": [
+    "qwen38-local"
+  ],
+  "context": 32768,
+  "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+}

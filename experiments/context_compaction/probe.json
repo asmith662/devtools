@@ -1,0 +1,14 @@
+{
+  "rejected_hypothesis": "Global event ID suppression",
+  "observed": {
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-c",
+      "events=[('a','x',3),('b','x',7)]; seen=set(); actual={};\nfor s,i,d in events:\n if i not in seen: actual[s]=actual.get(s,0)+d; seen.add(i)\nprint(actual); assert actual == {'a':3,'b':7}"
+    ],
+    "exit_code": 1,
+    "stdout": "{'a': 3}\r\n",
+    "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 4, in <module>\r\n    print(actual); assert actual == {'a':3,'b':7}\r\n                          ^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError\r\n"
+  },
+  "conclusion": "Distinct streams may reuse an event ID. Current implementation still fails; no edits made. Rejected events must not reserve an ID."
+}

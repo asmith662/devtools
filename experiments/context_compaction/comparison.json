@@ -1,0 +1,418 @@
+[
+  {
+    "treatment": "A",
+    "acting_calls": 2,
+    "auxiliary_calls": 0,
+    "acting_seconds": 29.347891999999998,
+    "auxiliary_seconds": 0,
+    "total_seconds": 30.026113,
+    "acting_usage": [
+      {
+        "input_tokens": 1236,
+        "output_tokens": 50,
+        "total_tokens": 1286,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 1620,
+        "output_tokens": 52,
+        "total_tokens": 1672,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "auxiliary_usage": [],
+    "original_bytes": 40010,
+    "projected_bytes": [
+      4306,
+      5525
+    ],
+    "decisions": [],
+    "attempts": [],
+    "candidate": {
+      "reducer.py": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n"
+    },
+    "result": {
+      "disposition": "failed",
+      "candidate_validated": false,
+      "completed": false,
+      "progress": {
+        "limits": {
+          "model_calls": 6,
+          "proposals": 2,
+          "tool_actions": 16,
+          "call_timeout": {
+            "value": "0:04:00"
+          },
+          "wall_timeout": {
+            "value": "0:20:00"
+          },
+          "completion_check": false
+        },
+        "number": 2,
+        "model_calls": 2,
+        "proposals": 0,
+        "actions": 2,
+        "phase": "completion",
+        "candidate_validated": false,
+        "effects": [
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "ZKbwkxhIeODKxG4yzFRk4hd5e1DEJkrx"
+            ],
+            "acknowledged": false,
+            "check_name": null
+          }
+        ],
+        "usage": [
+          {
+            "input_tokens": 1236,
+            "output_tokens": 50,
+            "total_tokens": 1286,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 1620,
+            "output_tokens": 52,
+            "total_tokens": 1672,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        ]
+      },
+      "error": {
+        "type": "ValueError",
+        "message": "Source range or byte budget is invalid."
+      },
+      "completion_error": null,
+      "custody": {
+        "restored": true,
+        "reconciliation_required": false,
+        "error": null
+      },
+      "failure_phase": "acquisition"
+    },
+    "grade_exit": 1,
+    "history_prefix_unchanged": true,
+    "calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":439}",
+        "provider_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"focused.py\",\"start\":439,\"end\":878}",
+        "provider_call_id": "ZKbwkxhIeODKxG4yzFRk4hd5e1DEJkrx"
+      }
+    ]
+  },
+  {
+    "treatment": "B",
+    "acting_calls": 3,
+    "auxiliary_calls": 1,
+    "acting_seconds": 15.689878,
+    "auxiliary_seconds": 34.594697,
+    "total_seconds": 50.6304,
+    "acting_usage": [
+      {
+        "input_tokens": 1236,
+        "output_tokens": 50,
+        "total_tokens": 1286,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 1667,
+        "output_tokens": 52,
+        "total_tokens": 1719,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 1898,
+        "output_tokens": 226,
+        "total_tokens": 2124,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "auxiliary_usage": [
+      {
+        "input_tokens": 3992,
+        "output_tokens": 610,
+        "total_tokens": 4602,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "original_bytes": 40010,
+    "projected_bytes": [
+      4306,
+      5700,
+      6378
+    ],
+    "decisions": [],
+    "attempts": [
+      {
+        "status": "failed",
+        "entered": true,
+        "response_received": true,
+        "validated": false,
+        "adopted": false,
+        "error": {
+          "type": "JSONDecodeError",
+          "message": "Expecting value: line 1 column 1 (char 0)"
+        }
+      }
+    ],
+    "candidate": {
+      "reducer.py": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        if not accepted(event):\n            continue\n        key = (event[\"stream\"], event[\"id\"])\n        if key in seen:\n            continue\n        seen.add(key)\n        stream = event[\"stream\"]\n        result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n"
+    },
+    "result": {
+      "disposition": "validated",
+      "candidate_validated": true,
+      "completed": true,
+      "progress": {
+        "limits": {
+          "model_calls": 6,
+          "proposals": 2,
+          "tool_actions": 16,
+          "call_timeout": {
+            "value": "0:04:00"
+          },
+          "wall_timeout": {
+            "value": "0:20:00"
+          },
+          "completion_check": false
+        },
+        "number": 3,
+        "model_calls": 3,
+        "proposals": 1,
+        "actions": 2,
+        "phase": "completion",
+        "candidate_validated": true,
+        "effects": [
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "xIbLpeEGzUUZmzhbPLp0E31rvB67uuC0"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "P0dNenFYFQBnrufW11niIcKNxoEB8vMV"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "edit",
+            "native_call_ids": [
+              "seKsMoTPzPXkFUcoteBhsxN21v9oo4o7"
+            ],
+            "acknowledged": true,
+            "check_name": null
+          },
+          {
+            "kind": "check",
+            "native_call_ids": [],
+            "acknowledged": true,
+            "check_name": "focused"
+          }
+        ],
+        "usage": [
+          {
+            "input_tokens": 1236,
+            "output_tokens": 50,
+            "total_tokens": 1286,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 1667,
+            "output_tokens": 52,
+            "total_tokens": 1719,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          },
+          {
+            "input_tokens": 1898,
+            "output_tokens": 226,
+            "total_tokens": 2124,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        ]
+      },
+      "error": null,
+      "completion_error": null,
+      "custody": {
+        "restored": true,
+        "reconciliation_required": false,
+        "error": null
+      },
+      "failure_phase": null
+    },
+    "grade_exit": 0,
+    "history_prefix_unchanged": true,
+    "calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":598}",
+        "provider_call_id": "xIbLpeEGzUUZmzhbPLp0E31rvB67uuC0"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"focused.py\",\"start\":560,\"end\":598}",
+        "provider_call_id": "P0dNenFYFQBnrufW11niIcKNxoEB8vMV"
+      },
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"path\":\"reducer.py\",\"old_text\":\"def totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\",\"new_text\":\"def totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        if not accepted(event):\\n            continue\\n        key = (event[\\\"stream\\\"], event[\\\"id\\\"])\\n        if key in seen:\\n            continue\\n        seen.add(key)\\n        stream = event[\\\"stream\\\"]\\n        result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\"}",
+        "provider_call_id": "seKsMoTPzPXkFUcoteBhsxN21v9oo4o7"
+      }
+    ]
+  },
+  {
+    "treatment": "C",
+    "acting_calls": 1,
+    "auxiliary_calls": 1,
+    "acting_seconds": 2.770348,
+    "auxiliary_seconds": 36.583264,
+    "total_seconds": 39.434394,
+    "acting_usage": [
+      {
+        "input_tokens": 1236,
+        "output_tokens": 51,
+        "total_tokens": 1287,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "auxiliary_usage": [
+      {
+        "input_tokens": 3992,
+        "output_tokens": 820,
+        "total_tokens": 4812,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "original_bytes": 40010,
+    "projected_bytes": [
+      4306
+    ],
+    "decisions": [
+      "semantic-requested"
+    ],
+    "attempts": [
+      {
+        "status": "failed",
+        "entered": true,
+        "response_received": true,
+        "validated": false,
+        "adopted": false,
+        "error": {
+          "type": "JSONDecodeError",
+          "message": "Expecting value: line 1 column 1 (char 0)"
+        }
+      }
+    ],
+    "candidate": {
+      "reducer.py": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n"
+    },
+    "result": {
+      "disposition": "failed",
+      "candidate_validated": false,
+      "completed": false,
+      "progress": {
+        "limits": {
+          "model_calls": 6,
+          "proposals": 2,
+          "tool_actions": 16,
+          "call_timeout": {
+            "value": "0:04:00"
+          },
+          "wall_timeout": {
+            "value": "0:20:00"
+          },
+          "completion_check": false
+        },
+        "number": 1,
+        "model_calls": 1,
+        "proposals": 0,
+        "actions": 1,
+        "phase": "completion",
+        "candidate_validated": false,
+        "effects": [
+          {
+            "kind": "tool",
+            "native_call_ids": [
+              "nuZn3tVJo4s1xef76klE1PNNZE9v8luA"
+            ],
+            "acknowledged": false,
+            "check_name": null
+          }
+        ],
+        "usage": [
+          {
+            "input_tokens": 1236,
+            "output_tokens": 51,
+            "total_tokens": 1287,
+            "cached_input_tokens": null,
+            "cache_write_tokens": null,
+            "reasoning_tokens": null
+          }
+        ]
+      },
+      "error": {
+        "type": "ValueError",
+        "message": "Source range or byte budget is invalid."
+      },
+      "completion_error": null,
+      "custody": {
+        "restored": true,
+        "reconciliation_required": false,
+        "error": null
+      },
+      "failure_phase": "acquisition"
+    },
+    "grade_exit": 1,
+    "history_prefix_unchanged": true,
+    "calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":1536}",
+        "provider_call_id": "nuZn3tVJo4s1xef76klE1PNNZE9v8luA"
+      }
+    ]
+  }
+]

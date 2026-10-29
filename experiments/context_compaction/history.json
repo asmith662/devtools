@@ -1,0 +1,320 @@
+{
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "Retained authored investigation",
+          "tool_calls": [
+            {
+              "name": "list_repository",
+              "arguments_json": "{}",
+              "provider_call_id": "seed-inventory"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"fixture_authored\": true, \"catalog\": [{\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}]}",
+          "tool_calls": [],
+          "tool_call_id": "seed-inventory",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "Retained authored investigation",
+          "tool_calls": [
+            {
+              "name": "search_source",
+              "arguments_json": "{}",
+              "provider_call_id": "seed-search"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"fixture_authored\": true, \"probe\": {\"rejected_hypothesis\": \"Global event ID suppression\", \"observed\": {\"argv\": [\"C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\.venv\\\\Scripts\\\\python.exe\", \"-c\", \"events=[('a','x',3),('b','x',7)]; seen=set(); actual={};\\nfor s,i,d in events:\\n if i not in seen: actual[s]=actual.get(s,0)+d; seen.add(i)\\nprint(actual); assert actual == {'a':3,'b':7}\"], \"exit_code\": 1, \"stdout\": \"{'a': 3}\\r\\n\", \"stderr\": \"Traceback (most recent call last):\\r\\n  File \\\"<string>\\\", line 4, in <module>\\r\\n    print(actual); assert actual == {'a':3,'b':7}\\r\\n                          ^^^^^^^^^^^^^^^^^^^^^^^\\r\\nAssertionError\\r\\n\"}, \"conclusion\": \"Distinct streams may reuse an event ID. Current implementation still fails; no edits made. Rejected events must not reserve an ID.\"}, \"ranked_metadata\": [{\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": "seed-search",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "validate_candidate",
+              "arguments_json": "{}",
+              "provider_call_id": "seed-check"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"passed\": false}",
+          "tool_calls": [],
+          "tool_call_id": "seed-check",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+              "provider_call_id": "seed-read-reducer.py"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "seed-read-reducer.py",
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+              "provider_call_id": "seed-read-rules.py"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+          "tool_calls": [],
+          "tool_call_id": "seed-read-rules.py",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": null,
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read an admitted exact current source region.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      }
+    ]
+  },
+  "snapshot": {
+    "id": {
+      "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+    },
+    "repository_id": {
+      "value": "adaptive-0001-events"
+    },
+    "resources": [
+      {
+        "address": {
+          "value": "focused.py"
+        },
+        "content_identity": {
+          "value": "749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147"
+        },
+        "content": "\"\"\"Visible fixed acceptance examples, not a reference implementation.\"\"\"\n\nfrom reducer import totals\n\n\ndef event(stream, identity, delta, status=\"accepted\"):\n    return dict(stream=stream, id=identity, delta=delta, status=status)\n\n\ncases = [\n    ([], {}),\n    ([event(\"a\", \"x\", 3), event(\"a\", \"x\", 99)], {\"a\": 3}),\n    ([event(\"a\", \"x\", 3), event(\"b\", \"x\", 7)], {\"a\": 3, \"b\": 7}),\n    ([event(\"a\", \"x\", 99, \"rejected\"), event(\"a\", \"x\", 4)], {\"a\": 4}),\n]\nfor index, (events, expected) in enumerate(cases):\n    actual = totals(events)\n    print(index, actual, expected, flush=True)\n    assert actual == expected, (index, actual, expected)\nprint(\"FOCUSED:4 passed\")\n",
+        "encoding": "utf-8",
+        "byte_size": 663
+      },
+      {
+        "address": {
+          "value": "reducer.py"
+        },
+        "content_identity": {
+          "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+        },
+        "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+        "encoding": "utf-8",
+        "byte_size": 439
+      },
+      {
+        "address": {
+          "value": "rules.py"
+        },
+        "content_identity": {
+          "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+        },
+        "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+        "encoding": "utf-8",
+        "byte_size": 121
+      }
+    ]
+  },
+  "source_bindings": {
+    "8": [
+      {
+        "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+        "unit": {
+          "id": {
+            "value": "6000eec6e40f30f527a051c4ad53915da847004c15f1c04b03139b1cf737a027"
+          },
+          "repository_id": {
+            "value": "adaptive-0001-events"
+          },
+          "resource": {
+            "address": {
+              "value": "reducer.py"
+            },
+            "content_identity": {
+              "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+            },
+            "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+            "encoding": "utf-8",
+            "byte_size": 439
+          },
+          "snapshot_id": {
+            "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+          },
+          "kind": "file",
+          "start": 0,
+          "end": 439,
+          "qualified_name": null,
+          "symbol_kind": null,
+          "occurrence": null,
+          "declaration": null,
+          "parent_symbol_id": null
+        },
+        "start": 0,
+        "end": 439,
+        "maximum_bytes": 8192
+      }
+    ],
+    "10": [
+      {
+        "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+        "unit": {
+          "id": {
+            "value": "50b93a30a907539bb444a81c09bdc1e405b5589ed33fb36dd1ba87788076bf5e"
+          },
+          "repository_id": {
+            "value": "adaptive-0001-events"
+          },
+          "resource": {
+            "address": {
+              "value": "rules.py"
+            },
+            "content_identity": {
+              "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+            },
+            "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+            "encoding": "utf-8",
+            "byte_size": 121
+          },
+          "snapshot_id": {
+            "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+          },
+          "kind": "file",
+          "start": 0,
+          "end": 121,
+          "qualified_name": null,
+          "symbol_kind": null,
+          "occurrence": null,
+          "declaration": null,
+          "parent_symbol_id": null
+        },
+        "start": 0,
+        "end": 121,
+        "maximum_bytes": 8192
+      }
+    ]
+  },
+  "check_results": [
+    [
+      {
+        "check": {
+          "name": "focused",
+          "command": {
+            "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "arguments": [
+              "-B",
+              "focused.py"
+            ],
+            "working_directory": {
+              "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\freeze-task"
+            },
+            "timeout": {
+              "value": "0:00:20"
+            },
+            "stdin": null,
+            "environment": null,
+            "success_exit_codes": [
+              0
+            ]
+          }
+        },
+        "command_result": {
+          "command": {
+            "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "arguments": [
+              "-B",
+              "focused.py"
+            ],
+            "working_directory": {
+              "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\freeze-task"
+            },
+            "timeout": {
+              "value": "0:00:20"
+            },
+            "stdin": null,
+            "environment": null,
+            "success_exit_codes": [
+              0
+            ]
+          },
+          "exit_code": 1,
+          "stdout": "b\"0 {} {}\\r\\n1 {'a': 3} {'a': 3}\\r\\n2 {'a': 3} {'a': 3, 'b': 7}\\r\\n\"",
+          "stderr": "b'Traceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\.local\\\\adaptive-compaction\\\\evaluation\\\\freeze-task\\\\focused.py\", line 19, in <module>\\r\\n    assert actual == expected, (index, actual, expected)\\r\\n           ^^^^^^^^^^^^^^^^^^\\r\\nAssertionError: (2, {\\'a\\': 3}, {\\'a\\': 3, \\'b\\': 7})\\r\\n'",
+          "duration": {
+            "value": "0:00:00.064695"
+          },
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        },
+        "inputs_current": true,
+        "input_error": null
+      }
+    ]
+  ],
+  "original_bytes": 40010
+}

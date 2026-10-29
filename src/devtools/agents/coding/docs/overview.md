@@ -17,6 +17,7 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
   witnesses; default task and capacity behavior remain unchanged.
 - `compaction` optionally obtains bounded, cited working-state notes through a
   separately selected ModelInteraction. A trusted host explicitly requests it
+  or enables the conservative omission/value-based adaptive policy,
   and independently selects outbound disclosure and eligible replacement.
   Original history, exact recent/check evidence, source witnesses and custody
   remain authoritative; generated notes never certify effects or acceptance.
@@ -48,3 +49,8 @@ defines auxiliary budgets, provenance validation, privacy, exact-context
 preservation and deterministic fallback. It requires neither a Qwen consumer nor
 a live/provider-specific summarizer. Qwen's existing continuation policy remains
 separate; the shared coding process and legacy outputs remain unchanged.
+
+The [adaptive policy contract](../../../../../docs/development/adaptive-context-compaction.md)
+defines opt-in pressure/value/reserve selection, cached reuse and suppression
+after failed auxiliary attempts. Real assessment found no adopted semantic notes;
+the policy remains optional and does not claim measured continuation improvement.

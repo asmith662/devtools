@@ -1,0 +1,3 @@
+{
+  "reducer.py": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        if not accepted(event):\n            continue\n        key = (event[\"stream\"], event[\"id\"])\n        if key in seen:\n            continue\n        seen.add(key)\n        stream = event[\"stream\"]\n        result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n"
+}

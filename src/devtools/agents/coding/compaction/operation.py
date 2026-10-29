@@ -25,6 +25,8 @@ if TYPE_CHECKING:
     from devtools.agents.coding.projection import ProjectionOutcome
     from devtools.context.planning.source import SourceRangeDisclosureOption
 
+    from .adaptive import AdaptiveCompaction
+
 
 @dataclass(frozen=True, slots=True)
 class _Accepted:
@@ -43,6 +45,7 @@ class SemanticCompactor:
         self.attempts: list[SummaryAttempt] = []
         self.pending = False
         self._accepted: _Accepted | None = None
+        self.decisions: list[str] = []
 
     def protect(self, messages: tuple[PromptMessage, ...]) -> frozenset[int]:
         """Keep the configured recent exact window, including complete Tool blocks."""
@@ -54,7 +57,7 @@ class SemanticCompactor:
             for i in range(first, end)
         )
 
-    async def project(  # noqa: C901, PLR0911, PLR0913, PLR0915 -- bounded auxiliary stages and explicit fallback
+    async def project(  # noqa: C901, PLR0911, PLR0912, PLR0913, PLR0915 -- bounded auxiliary stages and explicit fallback
         self,
         original: ModelRequest,
         fallback: ProjectionOutcome,
@@ -77,6 +80,8 @@ class SemanticCompactor:
             project,
             fallback=fallback,
         )
+        if not self.pending and self.config.adaptive is not None:
+            self._automatic(self.config.adaptive, messages, fallback)
         if not self.pending:
             return fallback
 
@@ -161,6 +166,28 @@ class SemanticCompactor:
         except Exception as error:  # noqa: BLE001 -- retain original optional strategy failure
             attempt.status, attempt.error = "failed", error
             return fallback
+
+    def _automatic(
+        self,
+        policy: AdaptiveCompaction,
+        messages: tuple[PromptMessage, ...],
+        fallback: ProjectionOutcome,
+    ) -> None:
+        """Schedule at most one bounded strategy; failures never create retry loops."""
+        try:
+            if self._accepted is not None:
+                decision = "cached-summary"
+            elif sum(a.entered for a in self.attempts) >= self.config.maximum_calls:
+                decision = "auxiliary-budget-exhausted"
+            elif any(a.status != "adopted" for a in self.attempts):
+                decision = "prior-strategy-failure"
+            else:
+                decision = policy.assess(messages, fallback)
+        except Exception as error:  # noqa: BLE001 -- optional host policy preserves fallback
+            self.attempts.append(SummaryAttempt(status="policy-failed", error=error))
+            decision = "policy-failed"
+        self.decisions.append(decision)
+        self.pending = decision == "semantic-requested"
 
     def _reuse(  # noqa: PLR0913 -- revalidate existing derived state against current authority
         self,

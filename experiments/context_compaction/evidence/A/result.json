@@ -1,0 +1,1273 @@
+{
+  "result": {
+    "disposition": "failed",
+    "candidate_validated": false,
+    "completed": false,
+    "progress": {
+      "limits": {
+        "model_calls": 6,
+        "proposals": 2,
+        "tool_actions": 16,
+        "call_timeout": {
+          "value": "0:04:00"
+        },
+        "wall_timeout": {
+          "value": "0:20:00"
+        },
+        "completion_check": false
+      },
+      "number": 2,
+      "model_calls": 2,
+      "proposals": 0,
+      "actions": 2,
+      "phase": "completion",
+      "candidate_validated": false,
+      "effects": [
+        {
+          "kind": "tool",
+          "native_call_ids": [
+            "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+          ],
+          "acknowledged": true,
+          "check_name": null
+        },
+        {
+          "kind": "tool",
+          "native_call_ids": [
+            "ZKbwkxhIeODKxG4yzFRk4hd5e1DEJkrx"
+          ],
+          "acknowledged": false,
+          "check_name": null
+        }
+      ],
+      "usage": [
+        {
+          "input_tokens": 1236,
+          "output_tokens": 50,
+          "total_tokens": 1286,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        },
+        {
+          "input_tokens": 1620,
+          "output_tokens": 52,
+          "total_tokens": 1672,
+          "cached_input_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null
+        }
+      ]
+    },
+    "error": {
+      "type": "ValueError",
+      "message": "Source range or byte budget is invalid."
+    },
+    "completion_error": null,
+    "custody": {
+      "restored": true,
+      "reconciliation_required": false,
+      "error": null
+    },
+    "failure_phase": "acquisition"
+  },
+  "seconds": 30.026113,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+      "tool_calls": [],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "Retained authored investigation",
+      "tool_calls": [
+        {
+          "name": "list_repository",
+          "arguments_json": "{}",
+          "provider_call_id": "seed-inventory"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"fixture_authored\": true, \"catalog\": [{\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}, {\"path\": \"reducer.py\", \"kind\": \"python\", \"purpose\": \"event accounting\"}]}",
+      "tool_calls": [],
+      "tool_call_id": "seed-inventory",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "Retained authored investigation",
+      "tool_calls": [
+        {
+          "name": "search_source",
+          "arguments_json": "{}",
+          "provider_call_id": "seed-search"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"fixture_authored\": true, \"probe\": {\"rejected_hypothesis\": \"Global event ID suppression\", \"observed\": {\"argv\": [\"C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\.venv\\\\Scripts\\\\python.exe\", \"-c\", \"events=[('a','x',3),('b','x',7)]; seen=set(); actual={};\\nfor s,i,d in events:\\n if i not in seen: actual[s]=actual.get(s,0)+d; seen.add(i)\\nprint(actual); assert actual == {'a':3,'b':7}\"], \"exit_code\": 1, \"stdout\": \"{'a': 3}\\r\\n\", \"stderr\": \"Traceback (most recent call last):\\r\\n  File \\\"<string>\\\", line 4, in <module>\\r\\n    print(actual); assert actual == {'a':3,'b':7}\\r\\n                          ^^^^^^^^^^^^^^^^^^^^^^^\\r\\nAssertionError\\r\\n\"}, \"conclusion\": \"Distinct streams may reuse an event ID. Current implementation still fails; no edits made. Rejected events must not reserve an ID.\"}, \"ranked_metadata\": [{\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}, {\"path\": \"reducer.py\", \"term\": \"identity\", \"source_acquired\": false}]}",
+      "tool_calls": [],
+      "tool_call_id": "seed-search",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "validate_candidate",
+          "arguments_json": "{}",
+          "provider_call_id": "seed-check"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"passed\": false}",
+      "tool_calls": [],
+      "tool_call_id": "seed-check",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+          "provider_call_id": "seed-read-reducer.py"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "seed-read-reducer.py",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+          "provider_call_id": "seed-read-rules.py"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "seed-read-rules.py",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":439}",
+          "provider_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    },
+    {
+      "role": "tool",
+      "content": "{\"text\": \"\\\"\\\"\\\"Visible fixed acceptance examples, not a reference implementation.\\\"\\\"\\\"\\n\\nfrom reducer import totals\\n\\n\\ndef event(stream, identity, delta, status=\\\"accepted\\\"):\\n    return dict(stream=stream, id=identity, delta=delta, status=status)\\n\\n\\ncases = [\\n    ([], {}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"a\\\", \\\"x\\\", 99)], {\\\"a\\\": 3}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"b\\\", \\\"x\\\", 7)], {\\\"a\\\": 3, \\\"b\\\": 7}),\\n    ([event(\\\"a\\\", \\\"x\\\", 99, \\\"rejected\\\"), event(\\\"a\\\", \\\"x\\\", 4)]\", \"path\": \"focused.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147\", \"span\": [0, 439], \"partial\": false}",
+      "tool_calls": [],
+      "tool_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO",
+      "reasoning_content": null
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"focused.py\",\"start\":439,\"end\":878}",
+          "provider_call_id": "ZKbwkxhIeODKxG4yzFRk4hd5e1DEJkrx"
+        }
+      ],
+      "tool_call_id": null,
+      "reasoning_content": null
+    }
+  ],
+  "requests": [
+    {
+      "prompt": {
+        "content": "",
+        "role": "messages",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "validate_candidate",
+                "arguments_json": "{}",
+                "provider_call_id": "seed-check"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"passed\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-check",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+                "provider_call_id": "seed-read-reducer.py"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-read-reducer.py",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+                "provider_call_id": "seed-read-rules.py"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-read-rules.py",
+            "reasoning_content": null
+          }
+        ]
+      },
+      "settings": {
+        "maximum_output_tokens": 4096,
+        "thinking_enabled": false
+      },
+      "conversation": null,
+      "provider_settings": null,
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read an admitted exact current source region.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        }
+      ]
+    },
+    {
+      "prompt": {
+        "content": "",
+        "role": "messages",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "validate_candidate",
+                "arguments_json": "{}",
+                "provider_call_id": "seed-check"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"passed\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-check",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+                "provider_call_id": "seed-read-reducer.py"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-read-reducer.py",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+                "provider_call_id": "seed-read-rules.py"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "seed-read-rules.py",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":439}",
+                "provider_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"text\": \"\\\"\\\"\\\"Visible fixed acceptance examples, not a reference implementation.\\\"\\\"\\\"\\n\\nfrom reducer import totals\\n\\n\\ndef event(stream, identity, delta, status=\\\"accepted\\\"):\\n    return dict(stream=stream, id=identity, delta=delta, status=status)\\n\\n\\ncases = [\\n    ([], {}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"a\\\", \\\"x\\\", 99)], {\\\"a\\\": 3}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"b\\\", \\\"x\\\", 7)], {\\\"a\\\": 3, \\\"b\\\": 7}),\\n    ([event(\\\"a\\\", \\\"x\\\", 99, \\\"rejected\\\"), event(\\\"a\\\", \\\"x\\\", 4)]\", \"path\": \"focused.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147\", \"span\": [0, 439], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO",
+            "reasoning_content": null
+          }
+        ]
+      },
+      "settings": {
+        "maximum_output_tokens": 4096,
+        "thinking_enabled": false
+      },
+      "conversation": null,
+      "provider_settings": null,
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read an admitted exact current source region.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "request": {
+        "prompt": {
+          "content": "",
+          "role": "messages",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+              "tool_calls": [],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "validate_candidate",
+                  "arguments_json": "{}",
+                  "provider_call_id": "seed-check"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"passed\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-check",
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+                  "provider_call_id": "seed-read-reducer.py"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-read-reducer.py",
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+                  "provider_call_id": "seed-read-rules.py"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-read-rules.py",
+              "reasoning_content": null
+            }
+          ]
+        },
+        "settings": {
+          "maximum_output_tokens": 4096,
+          "thinking_enabled": false
+        },
+        "conversation": null,
+        "provider_settings": null,
+        "tools": [
+          {
+            "name": "read_source",
+            "description": "Read an admitted exact current source region.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "replace_source",
+            "description": "Propose an exact unique observed replacement; host admission is required.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "validate_candidate",
+            "description": "Request the host-fixed candidate checks.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          }
+        ]
+      },
+      "status": "reduced",
+      "triggered": true,
+      "original_bytes": 40010,
+      "resulting_bytes": 4306,
+      "target_bytes": 12000,
+      "hard_bytes": 32768,
+      "selected_indices": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "unit": {
+            "id": {
+              "value": "6000eec6e40f30f527a051c4ad53915da847004c15f1c04b03139b1cf737a027"
+            },
+            "repository_id": {
+              "value": "adaptive-0001-events"
+            },
+            "resource": {
+              "address": {
+                "value": "reducer.py"
+              },
+              "content_identity": {
+                "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+              },
+              "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+              "encoding": "utf-8",
+              "byte_size": 439
+            },
+            "snapshot_id": {
+              "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+            },
+            "kind": "file",
+            "start": 0,
+            "end": 439,
+            "qualified_name": null,
+            "symbol_kind": null,
+            "occurrence": null,
+            "declaration": null,
+            "parent_symbol_id": null
+          },
+          "start": 0,
+          "end": 439,
+          "maximum_bytes": 8192
+        },
+        {
+          "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "unit": {
+            "id": {
+              "value": "50b93a30a907539bb444a81c09bdc1e405b5589ed33fb36dd1ba87788076bf5e"
+            },
+            "repository_id": {
+              "value": "adaptive-0001-events"
+            },
+            "resource": {
+              "address": {
+                "value": "rules.py"
+              },
+              "content_identity": {
+                "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+              },
+              "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+              "encoding": "utf-8",
+              "byte_size": 121
+            },
+            "snapshot_id": {
+              "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+            },
+            "kind": "file",
+            "start": 0,
+            "end": 121,
+            "qualified_name": null,
+            "symbol_kind": null,
+            "occurrence": null,
+            "declaration": null,
+            "parent_symbol_id": null
+          },
+          "start": 0,
+          "end": 121,
+          "maximum_bytes": 8192
+        }
+      ],
+      "invalidated_source_identities": []
+    },
+    {
+      "request": {
+        "prompt": {
+          "content": "",
+          "role": "messages",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+              "tool_calls": [],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "validate_candidate",
+                  "arguments_json": "{}",
+                  "provider_call_id": "seed-check"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"passed\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-check",
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\": \"reducer.py\", \"start\": 0, \"end\": 439}",
+                  "provider_call_id": "seed-read-reducer.py"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Aggregate accepted event deltas by stream with retry suppression.\\\"\\\"\\\"\\n\\nfrom rules import accepted\\n\\n\\ndef totals(events):\\n    seen = set()\\n    result = {}\\n    for event in events:\\n        identity = event[\\\"id\\\"]\\n        if identity in seen:\\n            continue\\n        seen.add(identity)\\n        if accepted(event):\\n            stream = event[\\\"stream\\\"]\\n            result[stream] = result.get(stream, 0) + event[\\\"delta\\\"]\\n    return result\\n\", \"path\": \"reducer.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59\", \"span\": [0, 439], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-read-reducer.py",
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\": \"rules.py\", \"start\": 0, \"end\": 121}",
+                  "provider_call_id": "seed-read-rules.py"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Transport status is independent of event identity.\\\"\\\"\\\"\\n\\n\\ndef accepted(event):\\n    return event[\\\"status\\\"] == \\\"accepted\\\"\\n\", \"path\": \"rules.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a\", \"span\": [0, 121], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "seed-read-rules.py",
+              "reasoning_content": null
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "name": "read_source",
+                  "arguments_json": "{\"path\":\"focused.py\",\"start\":0,\"end\":439}",
+                  "provider_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO"
+                }
+              ],
+              "tool_call_id": null,
+              "reasoning_content": null
+            },
+            {
+              "role": "tool",
+              "content": "{\"text\": \"\\\"\\\"\\\"Visible fixed acceptance examples, not a reference implementation.\\\"\\\"\\\"\\n\\nfrom reducer import totals\\n\\n\\ndef event(stream, identity, delta, status=\\\"accepted\\\"):\\n    return dict(stream=stream, id=identity, delta=delta, status=status)\\n\\n\\ncases = [\\n    ([], {}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"a\\\", \\\"x\\\", 99)], {\\\"a\\\": 3}),\\n    ([event(\\\"a\\\", \\\"x\\\", 3), event(\\\"b\\\", \\\"x\\\", 7)], {\\\"a\\\": 3, \\\"b\\\": 7}),\\n    ([event(\\\"a\\\", \\\"x\\\", 99, \\\"rejected\\\"), event(\\\"a\\\", \\\"x\\\", 4)]\", \"path\": \"focused.py\", \"snapshot\": \"0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66\", \"version\": \"749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147\", \"span\": [0, 439], \"partial\": false}",
+              "tool_calls": [],
+              "tool_call_id": "xkRPtdXLIAvTS3KX9lsIyg3Qv6kwe0mO",
+              "reasoning_content": null
+            }
+          ]
+        },
+        "settings": {
+          "maximum_output_tokens": 4096,
+          "thinking_enabled": false
+        },
+        "conversation": null,
+        "provider_settings": null,
+        "tools": [
+          {
+            "name": "read_source",
+            "description": "Read an admitted exact current source region.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\",\"end\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "replace_source",
+            "description": "Propose an exact unique observed replacement; host admission is required.",
+            "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+          },
+          {
+            "name": "validate_candidate",
+            "description": "Request the host-fixed candidate checks.",
+            "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+          }
+        ]
+      },
+      "status": "reduced",
+      "triggered": true,
+      "original_bytes": 41229,
+      "resulting_bytes": 5525,
+      "target_bytes": 12000,
+      "hard_bytes": 32768,
+      "selected_indices": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "omitted_exchanges": [
+        [
+          1,
+          3,
+          "host-classified-metadata"
+        ],
+        [
+          3,
+          5,
+          "host-classified-metadata"
+        ]
+      ],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "unit": {
+            "id": {
+              "value": "6000eec6e40f30f527a051c4ad53915da847004c15f1c04b03139b1cf737a027"
+            },
+            "repository_id": {
+              "value": "adaptive-0001-events"
+            },
+            "resource": {
+              "address": {
+                "value": "reducer.py"
+              },
+              "content_identity": {
+                "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+              },
+              "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+              "encoding": "utf-8",
+              "byte_size": 439
+            },
+            "snapshot_id": {
+              "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+            },
+            "kind": "file",
+            "start": 0,
+            "end": 439,
+            "qualified_name": null,
+            "symbol_kind": null,
+            "occurrence": null,
+            "declaration": null,
+            "parent_symbol_id": null
+          },
+          "start": 0,
+          "end": 439,
+          "maximum_bytes": 8192
+        },
+        {
+          "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "unit": {
+            "id": {
+              "value": "50b93a30a907539bb444a81c09bdc1e405b5589ed33fb36dd1ba87788076bf5e"
+            },
+            "repository_id": {
+              "value": "adaptive-0001-events"
+            },
+            "resource": {
+              "address": {
+                "value": "rules.py"
+              },
+              "content_identity": {
+                "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+              },
+              "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+              "encoding": "utf-8",
+              "byte_size": 121
+            },
+            "snapshot_id": {
+              "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+            },
+            "kind": "file",
+            "start": 0,
+            "end": 121,
+            "qualified_name": null,
+            "symbol_kind": null,
+            "occurrence": null,
+            "declaration": null,
+            "parent_symbol_id": null
+          },
+          "start": 0,
+          "end": 121,
+          "maximum_bytes": 8192
+        },
+        {
+          "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+          "unit": {
+            "id": {
+              "value": "6289e3fd942380a661f854e459aa52712ec9c41288ae6fbc659a36cffd60fa39"
+            },
+            "repository_id": {
+              "value": "adaptive-0001-events"
+            },
+            "resource": {
+              "address": {
+                "value": "focused.py"
+              },
+              "content_identity": {
+                "value": "749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147"
+              },
+              "content": "\"\"\"Visible fixed acceptance examples, not a reference implementation.\"\"\"\n\nfrom reducer import totals\n\n\ndef event(stream, identity, delta, status=\"accepted\"):\n    return dict(stream=stream, id=identity, delta=delta, status=status)\n\n\ncases = [\n    ([], {}),\n    ([event(\"a\", \"x\", 3), event(\"a\", \"x\", 99)], {\"a\": 3}),\n    ([event(\"a\", \"x\", 3), event(\"b\", \"x\", 7)], {\"a\": 3, \"b\": 7}),\n    ([event(\"a\", \"x\", 99, \"rejected\"), event(\"a\", \"x\", 4)], {\"a\": 4}),\n]\nfor index, (events, expected) in enumerate(cases):\n    actual = totals(events)\n    print(index, actual, expected, flush=True)\n    assert actual == expected, (index, actual, expected)\nprint(\"FOCUSED:4 passed\")\n",
+              "encoding": "utf-8",
+              "byte_size": 663
+            },
+            "snapshot_id": {
+              "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+            },
+            "kind": "file",
+            "start": 0,
+            "end": 663,
+            "qualified_name": null,
+            "symbol_kind": null,
+            "occurrence": null,
+            "declaration": null,
+            "parent_symbol_id": null
+          },
+          "start": 0,
+          "end": 439,
+          "maximum_bytes": 8192
+        }
+      ],
+      "invalidated_source_identities": []
+    }
+  ],
+  "attempts": [],
+  "decisions": [],
+  "checks": [
+    [
+      {
+        "check": {
+          "name": "focused",
+          "command": {
+            "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "arguments": [
+              "-B",
+              "focused.py"
+            ],
+            "working_directory": {
+              "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\A"
+            },
+            "timeout": {
+              "value": "0:00:20"
+            },
+            "stdin": null,
+            "environment": null,
+            "success_exit_codes": [
+              0
+            ]
+          }
+        },
+        "command_result": {
+          "command": {
+            "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "arguments": [
+              "-B",
+              "focused.py"
+            ],
+            "working_directory": {
+              "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\adaptive-compaction\\evaluation\\A"
+            },
+            "timeout": {
+              "value": "0:00:20"
+            },
+            "stdin": null,
+            "environment": null,
+            "success_exit_codes": [
+              0
+            ]
+          },
+          "exit_code": 1,
+          "stdout": "b\"0 {} {}\\r\\n1 {'a': 3} {'a': 3}\\r\\n2 {'a': 3} {'a': 3, 'b': 7}\\r\\n\"",
+          "stderr": "b'Traceback (most recent call last):\\r\\n  File \"C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\.local\\\\adaptive-compaction\\\\evaluation\\\\A\\\\focused.py\", line 19, in <module>\\r\\n    assert actual == expected, (index, actual, expected)\\r\\n           ^^^^^^^^^^^^^^^^^^\\r\\nAssertionError: (2, {\\'a\\': 3}, {\\'a\\': 3, \\'b\\': 7})\\r\\n'",
+          "duration": {
+            "value": "0:00:00.064969"
+          },
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        },
+        "inputs_current": true,
+        "input_error": null
+      }
+    ]
+  ],
+  "source_results": [
+    {
+      "plan": {
+        "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+        "snapshot_id": {
+          "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+        },
+        "repository_id": {
+          "value": "adaptive-0001-events"
+        },
+        "disclosures": [
+          {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "6000eec6e40f30f527a051c4ad53915da847004c15f1c04b03139b1cf737a027"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "reducer.py"
+                },
+                "content_identity": {
+                  "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+                },
+                "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+                "encoding": "utf-8",
+                "byte_size": 439
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 439,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 439,
+            "maximum_bytes": 8192
+          }
+        ],
+        "preceding_plan_identity": null
+      },
+      "items": [
+        {
+          "option_identity": "28a5e54114352a0a9c1bfb600ff0100dd9d25ea641413e0d15328b7bdb759190",
+          "representation": "exact-source-character-range-v1",
+          "resource_addresses": [
+            {
+              "value": "reducer.py"
+            }
+          ],
+          "content_identities": [
+            {
+              "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+            }
+          ],
+          "text": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+          "native_provenance": {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "6000eec6e40f30f527a051c4ad53915da847004c15f1c04b03139b1cf737a027"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "reducer.py"
+                },
+                "content_identity": {
+                  "value": "e58804cc06751925a661acb9b3d82baf52cd7eb9d165ef57dbc223f0b872da59"
+                },
+                "content": "\"\"\"Aggregate accepted event deltas by stream with retry suppression.\"\"\"\n\nfrom rules import accepted\n\n\ndef totals(events):\n    seen = set()\n    result = {}\n    for event in events:\n        identity = event[\"id\"]\n        if identity in seen:\n            continue\n        seen.add(identity)\n        if accepted(event):\n            stream = event[\"stream\"]\n            result[stream] = result.get(stream, 0) + event[\"delta\"]\n    return result\n",
+                "encoding": "utf-8",
+                "byte_size": 439
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 439,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 439,
+            "maximum_bytes": 8192
+          }
+        }
+      ]
+    },
+    {
+      "plan": {
+        "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+        "snapshot_id": {
+          "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+        },
+        "repository_id": {
+          "value": "adaptive-0001-events"
+        },
+        "disclosures": [
+          {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "50b93a30a907539bb444a81c09bdc1e405b5589ed33fb36dd1ba87788076bf5e"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "rules.py"
+                },
+                "content_identity": {
+                  "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+                },
+                "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+                "encoding": "utf-8",
+                "byte_size": 121
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 121,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 121,
+            "maximum_bytes": 8192
+          }
+        ],
+        "preceding_plan_identity": null
+      },
+      "items": [
+        {
+          "option_identity": "5d2d4075974b648e0e1884f50fccdf576275b057157c9fa16e4b44c1563668b6",
+          "representation": "exact-source-character-range-v1",
+          "resource_addresses": [
+            {
+              "value": "rules.py"
+            }
+          ],
+          "content_identities": [
+            {
+              "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+            }
+          ],
+          "text": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+          "native_provenance": {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "50b93a30a907539bb444a81c09bdc1e405b5589ed33fb36dd1ba87788076bf5e"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "rules.py"
+                },
+                "content_identity": {
+                  "value": "430cc352a7285d4eb02becd6d2e1b6c64f459ed4fb9e2c39d2ca29e0d61d599a"
+                },
+                "content": "\"\"\"Transport status is independent of event identity.\"\"\"\n\n\ndef accepted(event):\n    return event[\"status\"] == \"accepted\"\n",
+                "encoding": "utf-8",
+                "byte_size": 121
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 121,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 121,
+            "maximum_bytes": 8192
+          }
+        }
+      ]
+    },
+    {
+      "plan": {
+        "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+        "snapshot_id": {
+          "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+        },
+        "repository_id": {
+          "value": "adaptive-0001-events"
+        },
+        "disclosures": [
+          {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "6289e3fd942380a661f854e459aa52712ec9c41288ae6fbc659a36cffd60fa39"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "focused.py"
+                },
+                "content_identity": {
+                  "value": "749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147"
+                },
+                "content": "\"\"\"Visible fixed acceptance examples, not a reference implementation.\"\"\"\n\nfrom reducer import totals\n\n\ndef event(stream, identity, delta, status=\"accepted\"):\n    return dict(stream=stream, id=identity, delta=delta, status=status)\n\n\ncases = [\n    ([], {}),\n    ([event(\"a\", \"x\", 3), event(\"a\", \"x\", 99)], {\"a\": 3}),\n    ([event(\"a\", \"x\", 3), event(\"b\", \"x\", 7)], {\"a\": 3, \"b\": 7}),\n    ([event(\"a\", \"x\", 99, \"rejected\"), event(\"a\", \"x\", 4)], {\"a\": 4}),\n]\nfor index, (events, expected) in enumerate(cases):\n    actual = totals(events)\n    print(index, actual, expected, flush=True)\n    assert actual == expected, (index, actual, expected)\nprint(\"FOCUSED:4 passed\")\n",
+                "encoding": "utf-8",
+                "byte_size": 663
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 663,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 439,
+            "maximum_bytes": 8192
+          }
+        ],
+        "preceding_plan_identity": null
+      },
+      "items": [
+        {
+          "option_identity": "df8b02b4ce5b5ebc5c8d6012942029f249963973ece3ce2fa2efbada5f7e31fe",
+          "representation": "exact-source-character-range-v1",
+          "resource_addresses": [
+            {
+              "value": "focused.py"
+            }
+          ],
+          "content_identities": [
+            {
+              "value": "749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147"
+            }
+          ],
+          "text": "\"\"\"Visible fixed acceptance examples, not a reference implementation.\"\"\"\n\nfrom reducer import totals\n\n\ndef event(stream, identity, delta, status=\"accepted\"):\n    return dict(stream=stream, id=identity, delta=delta, status=status)\n\n\ncases = [\n    ([], {}),\n    ([event(\"a\", \"x\", 3), event(\"a\", \"x\", 99)], {\"a\": 3}),\n    ([event(\"a\", \"x\", 3), event(\"b\", \"x\", 7)], {\"a\": 3, \"b\": 7}),\n    ([event(\"a\", \"x\", 99, \"rejected\"), event(\"a\", \"x\", 4)]",
+          "native_provenance": {
+            "purpose": "Repair event accounting in this small repository. Accepted events contribute\ntheir delta once per stream and event ID; IDs may be reused in another stream.\nOnly status 'accepted' contributes or reserves identity. The first accepted\nevent wins against later retries. Preserve zero and negative deltas, empty input\nand existing function interfaces. rules.py owns acceptance classification and\nmust not change. Inspect current source before proposing an exact replacement.\n\nOnly reducer.py may change. Available source reads are reducer.py, rules.py and\nfocused.py. Native ranges are zero-based character half-open offsets. The host\nruns the fixed focused acceptance after admitted edits; tests are not editable.\nNo shell commands, new files, publication, new permissions or task expansion.\nOlder investigation is evidence about an authored prior probe, not permission\nor proof that the task is done. Use actual checks and current source witnesses.\n",
+            "unit": {
+              "id": {
+                "value": "6289e3fd942380a661f854e459aa52712ec9c41288ae6fbc659a36cffd60fa39"
+              },
+              "repository_id": {
+                "value": "adaptive-0001-events"
+              },
+              "resource": {
+                "address": {
+                  "value": "focused.py"
+                },
+                "content_identity": {
+                  "value": "749b198658746d3a8c8cc896005eff5fa06e5634c250bb825c7b8c23d1130147"
+                },
+                "content": "\"\"\"Visible fixed acceptance examples, not a reference implementation.\"\"\"\n\nfrom reducer import totals\n\n\ndef event(stream, identity, delta, status=\"accepted\"):\n    return dict(stream=stream, id=identity, delta=delta, status=status)\n\n\ncases = [\n    ([], {}),\n    ([event(\"a\", \"x\", 3), event(\"a\", \"x\", 99)], {\"a\": 3}),\n    ([event(\"a\", \"x\", 3), event(\"b\", \"x\", 7)], {\"a\": 3, \"b\": 7}),\n    ([event(\"a\", \"x\", 99, \"rejected\"), event(\"a\", \"x\", 4)], {\"a\": 4}),\n]\nfor index, (events, expected) in enumerate(cases):\n    actual = totals(events)\n    print(index, actual, expected, flush=True)\n    assert actual == expected, (index, actual, expected)\nprint(\"FOCUSED:4 passed\")\n",
+                "encoding": "utf-8",
+                "byte_size": 663
+              },
+              "snapshot_id": {
+                "value": "0b8acbb9fc44f56451761abaabd075ff7e24d05e00d8b91a81461f1aa026bf66"
+              },
+              "kind": "file",
+              "start": 0,
+              "end": 663,
+              "qualified_name": null,
+              "symbol_kind": null,
+              "occurrence": null,
+              "declaration": null,
+              "parent_symbol_id": null
+            },
+            "start": 0,
+            "end": 439,
+            "maximum_bytes": 8192
+          }
+        }
+      ]
+    }
+  ],
+  "history_prefix_unchanged": true
+}
