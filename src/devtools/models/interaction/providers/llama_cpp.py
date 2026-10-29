@@ -128,6 +128,8 @@ class LlamaCppInteraction:
         if request.settings.maximum_output_tokens is not None:
             payload["max_tokens"] = request.settings.maximum_output_tokens
         if provider_settings is not None:
+            if provider_settings.response_format is not None:
+                payload["response_format"] = {"type": provider_settings.response_format}
             payload.update(
                 {
                     name: value

@@ -40,6 +40,42 @@ _PROVIDER_TOTAL_TOKENS = 99
 _MAXIMUM_OUTPUT_TOKENS = 64
 
 
+def test_explicit_json_generation_uses_existing_provider_payload(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Constrain generation without rewriting raw responses or adding calls."""
+    payloads: list[dict[str, object]] = []
+
+    async def send(_endpoint: object, payload: dict[str, object]) -> dict[str, object]:
+        payloads.append(payload)
+        return {
+            "choices": [
+                {
+                    "message": {"role": "assistant", "content": '{"notes":[]}'},
+                    "finish_reason": "stop",
+                },
+            ],
+        }
+
+    monkeypatch.setattr(llama_cpp, "_post_chat_completion", send)
+    request = ModelRequest(
+        Prompt("Return JSON", "user"),
+        provider_settings=LlamaCppRequestSettings(response_format="json_object"),
+    )
+    response = asyncio.run(_interaction().send(request))
+    assert response.content == '{"notes":[]}'
+    assert len(payloads) == 1
+    assert payloads[0]["response_format"] == {"type": "json_object"}
+    assert response.usage is None
+
+
+@pytest.mark.parametrize("value", ["json_schema", "JSON", True, {}, 1])
+def test_unsupported_json_generation_setting_refused(value: object) -> None:
+    """The seam is deliberately narrower than arbitrary provider payloads."""
+    with pytest.raises(ValueError, match="response format"):
+        LlamaCppRequestSettings(response_format=value)  # type: ignore[arg-type]
+
+
 @pytest.mark.parametrize("status", [200, 500])
 def test_malformed_utf8_preserves_provider_error_boundary(
     monkeypatch: pytest.MonkeyPatch,

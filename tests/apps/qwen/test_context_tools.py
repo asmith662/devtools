@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from apps.qwen import coding_loop
+from apps.qwen import context_tools as context_owner
 from apps.qwen.context_tools import ContextTools
 from apps.qwen.continuation import select_messages
 from apps.qwen.tasks import MARKDOWN, CodingTask
@@ -24,16 +25,51 @@ from devtools.models.interaction import (
     Prompt,
     PromptMessage,
 )
+from devtools.tools.source import (
+    SourceReadRefusal,
+    SourceReadRequest,
+    select_source_read,
+)
 from tests.apps.qwen.test_coding_loop import GOOD, OLD, Scripted, proposal
 
 if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
 
+    from devtools.context.planning.source import SourceRangeDisclosureOption
+
 
 def call(operation: str, **arguments: object) -> ModelToolCall:
     """Return a native provider call with untrusted serialized arguments."""
     return ModelToolCall(operation, json.dumps(arguments), "fixture-call")
+
+
+def test_legacy_read_enters_shared_range_selection(
+    tools: ContextTools, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Observe genuine delegation while retaining the existing Qwen wire result."""
+    entries = []
+
+    def selected(
+        request: SourceReadRequest,
+    ) -> SourceRangeDisclosureOption | SourceReadRefusal:
+        entries.append(request)
+        return select_source_read(request)
+
+    monkeypatch.setattr(context_owner, "select_source_read", selected)
+    version = str(tools.snapshot.resource_at(tools.addresses[0]).content_identity)
+    result = dispatch(
+        tools,
+        "read_source",
+        path=tools.task.source,
+        version=version,
+        start=0,
+        end=999999,
+    )
+    assert result["status"] == "REFUSED"
+    assert result["error"] == "SOURCE_RANGE_OUT_OF_BOUNDS"
+    assert len(entries) == 1
+    assert tools.observations == []
 
 
 def dispatch(

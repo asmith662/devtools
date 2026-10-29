@@ -13,6 +13,7 @@ from devtools.context.planning.source import (
     materialize_source_range,
 )
 from devtools.models.interaction import ModelRequest, Prompt, PromptMessage
+from devtools.tools.source import source_read_bounds
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -112,7 +113,14 @@ def source_feedback(
     text: str,
 ) -> dict[str, object]:
     """Project one already materialized exact range into the neutral native format."""
+    bounds = source_read_bounds(option)
+    # The native descriptor defines coordinates; do not repeat that prose in
+    # every disclosure, especially a capacity-limited partial projection.
+    del bounds["coordinate_convention"]
     return {
+        **bounds,
+        "continuation_start": option.start + len(text),
+        "remaining_range": [option.start + len(text), option.unit.end],
         "text": text,
         "path": str(option.unit.resource.address),
         "snapshot": str(option.snapshot_id),

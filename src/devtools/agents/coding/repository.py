@@ -46,7 +46,13 @@ from devtools.models.interaction import (
 from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool
-from devtools.tools.source import ScopedSourceTool, SourceScope
+from devtools.tools.source import (
+    ScopedSourceTool,
+    SourceReadRefusal,
+    SourceReadRequest,
+    SourceScope,
+    source_read_bounds,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable, Mapping
@@ -56,15 +62,16 @@ if TYPE_CHECKING:
     from devtools.context.repository.corpus import RepositoryTextCorpusDefinition
     from devtools.context.repository.snapshot import RepositorySnapshot
     from devtools.core.paths import ResolvedPath
+    from devtools.tools import Tool
 
 _SETTINGS = ModelSettings()
 _READ = ToolDescriptor(
     "read_source",
-    "Read an admitted exact current source region.",
+    "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
     (
         '{"type":"object","properties":{"path":{"type":"string"},'
         '"start":{"type":"integer"},"end":{"type":"integer"}},'
-        '"required":["path","start","end"],"additionalProperties":'
+        '"required":["path","start"],"additionalProperties":'
         "false}"
     ),
 )
@@ -209,7 +216,12 @@ class _ChangeTool:
         await self.effect(arguments)
 
 
-def _arguments(serialized: str, fields: set[str]) -> dict[str, object]:
+def _arguments(
+    serialized: str,
+    fields: set[str],
+    *,
+    optional: frozenset[str] = frozenset(),
+) -> dict[str, object]:
     """Validate this host's small native argument object, not arbitrary JSON Schema."""
 
     def pairs(items: list[tuple[str, object]]) -> dict[str, object]:
@@ -220,7 +232,7 @@ def _arguments(serialized: str, fields: set[str]) -> dict[str, object]:
         return value
 
     value = json.loads(serialized, object_pairs_hook=pairs)
-    if not isinstance(value, dict) or set(value) != fields:
+    if not isinstance(value, dict) or not fields <= set(value) <= fields | optional:
         msg = "Coding arguments do not match the admitted operation."
         raise ValueError(msg)
     return value
@@ -438,8 +450,11 @@ class RepositoryCodingHost:
         msg = "Coding response contains an unadmitted or mixed operation."
         raise ValueError(msg)
 
-    def _read(self, serialized: str) -> SourceRangeDisclosureOption:
-        values = _arguments(serialized, {"path", "start", "end"})
+    def _read(self, serialized: str) -> SourceReadRequest:
+        values = _arguments(serialized, {"path", "start"}, optional=frozenset({"end"}))
+        if "end" in values and values["end"] is None:
+            msg = "An explicit source end must be an integer."
+            raise ValueError(msg)
         unit = next(
             (
                 u
@@ -451,11 +466,11 @@ class RepositoryCodingHost:
         if unit is None:
             msg = "Source path is outside the admitted corpus."
             raise ValueError(msg)
-        return SourceRangeDisclosureOption(
+        return SourceReadRequest(
             self.objective.text,
             unit,
             cast("int", values["start"]),
-            cast("int", values["end"]),
+            cast("int | None", values.get("end")),
             self.objective.disclosure_bytes,
         )
 
@@ -489,16 +504,40 @@ class RepositoryCodingHost:
         for call in response.tool_calls:
             effect = self.progress.claim_action(call.provider_call_id)
             if call.name == _READ.name:
-                disclosure: ContextDisclosure = await execute_model_tool_call(
-                    call,
-                    invocation=_Invocation(_READ, self._read),
-                    tool=ScopedSourceTool(
+                tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
+                    ScopedSourceTool(
                         self.scope,
                         maximum_bytes=self.objective.disclosure_bytes,
-                    ),
+                    )
+                )
+                disclosure = await execute_model_tool_call(
+                    call,
+                    invocation=_Invocation[SourceReadRequest](_READ, self._read),
+                    tool=tool,
                     admit=self.authorize,
                     runner=ToolRunner(),
                 )
+                if isinstance(disclosure, SourceReadRefusal):
+                    self._feedback(
+                        call,
+                        {
+                            "status": "REFUSED",
+                            "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
+                            "source_disclosure_entered": False,
+                            "path": str(disclosure.request.unit.resource.address),
+                            "snapshot": str(disclosure.request.unit.snapshot_id),
+                            "version": str(
+                                disclosure.request.unit.resource.content_identity,
+                            ),
+                            **source_read_bounds(disclosure.request),
+                            "instruction": (
+                                "Select a new valid interval; "
+                                "this call disclosed no source."
+                            ),
+                        },
+                    )
+                    effect.acknowledged = True
+                    continue
                 option = cast(
                     "SourceRangeDisclosureOption",
                     disclosure.items[0].native_provenance,

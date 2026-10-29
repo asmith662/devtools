@@ -3,6 +3,7 @@
 
 import math
 from dataclasses import dataclass, field
+from typing import Literal
 
 from devtools.models.interaction import ProviderRequestSettings
 
@@ -20,10 +21,14 @@ class LlamaCppRequestSettings(ProviderRequestSettings):
     top_k: int | None = None
     min_p: float | None = None
     presence_penalty: float | None = None
+    response_format: Literal["json_object"] | None = None
 
     def __post_init__(self) -> None:
         """Reject unsupported template settings before dispatch."""
         super(LlamaCppRequestSettings, self).__post_init__()
+        if self.response_format not in (None, "json_object"):
+            msg = "llama.cpp response format must be json_object or None."
+            raise ValueError(msg)
         if self.reasoning_effort not in {None, "low", "medium", "xhigh"}:
             msg = "llama.cpp reasoning effort must be low, medium, xhigh or None."
             raise ValueError(msg)

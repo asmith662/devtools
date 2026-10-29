@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-c",
+    "from occupancy import occupied_minutes; intervals=[(2,10),(4,6)]; actual=occupied_minutes(sorted(intervals,key=lambda x:x[1]),(0,12)); print({'hypothesis':'sorting by end before additive accounting','nested_intervals':intervals,'observed':actual,'expected':8}); assert actual == 8"
+  ],
+  "exit_code": 1,
+  "stdout": "{'hypothesis': 'sorting by end before additive accounting', 'nested_intervals': [(2, 10), (4, 6)], 'observed': 10, 'expected': 8}\r\n",
+  "stderr": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n    from occupancy import occupied_minutes; intervals=[(2,10),(4,6)]; actual=occupied_minutes(sorted(intervals,key=lambda x:x[1]),(0,12)); print({'hypothesis':'sorting by end before additive accounting','nested_intervals':intervals,'observed':actual,'expected':8}); assert actual == 8\r\n                                                                                                                                                                                                                                                                                 ^^^^^^^^^^^\r\nAssertionError\r\n"
+}

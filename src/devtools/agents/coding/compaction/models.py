@@ -18,6 +18,7 @@ if TYPE_CHECKING:
         ModelSettings,
         ModelUsage,
         PromptMessage,
+        ProviderRequestSettings,
     )
 
     from .adaptive import AdaptiveCompaction
@@ -64,6 +65,7 @@ class SummaryCompaction:
     measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None
     retain_payloads: bool = False
     adaptive: AdaptiveCompaction | None = None
+    provider_settings: ProviderRequestSettings | None = None
 
     def __post_init__(self) -> None:
         """Require explicit finite bounds; never invent a tokenizer or capacity."""

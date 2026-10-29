@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, overload
 
 from devtools.context import Repository, observe_repository_resources
 from devtools.context.planning import source
@@ -14,6 +14,7 @@ from devtools.tools.errors import ToolInputError
 if TYPE_CHECKING:
     from devtools.context import RepositoryResourceAddress, RepositorySnapshot
     from devtools.context.planning.materialization import ContextDisclosure
+    from devtools.context.retrieval.source import RepositorySourceUnit
     from devtools.core.paths import ResolvedPath
 
 
@@ -77,6 +78,71 @@ class SourceScope:
             raise ToolInputError(msg)
 
 
+@dataclass(frozen=True, slots=True)
+class SourceReadRequest:
+    """Literal requested coordinates, not an admitted Context disclosure.
+
+    Bounds are absolute decoded Unicode offsets. An omitted end requests the
+    rest of the selected unit, still subject to the host's UTF-8 byte ceiling.
+    Scope/currentness must be checked before exposing bounds or materializing.
+    """
+
+    purpose: str
+    unit: RepositorySourceUnit
+    start: int
+    end: int | None
+    maximum_bytes: int
+
+    def __post_init__(self) -> None:
+        """Reject malformed host configuration separately from literal ranges."""
+        if (
+            not self.purpose.strip()
+            or type(self.maximum_bytes) is not int
+            or self.maximum_bytes <= 0
+        ):
+            msg = "Source read requires a purpose and positive byte bound."
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True, slots=True)
+class SourceReadRefusal:
+    """A recognized invalid range; source disclosure was never entered."""
+
+    request: SourceReadRequest
+
+
+def select_source_read(
+    request: SourceReadRequest,
+) -> source.SourceRangeDisclosureOption | SourceReadRefusal:
+    """Validate literal coordinates using Context, without reading or effects.
+
+    Only this effect-free construction is caught. Materialization, authorization
+    and operational exceptions are deliberately outside this boundary.
+    """
+    try:
+        return source.SourceRangeDisclosureOption(
+            request.purpose,
+            request.unit,
+            request.start,
+            request.unit.end if request.end is None else request.end,
+            request.maximum_bytes,
+        )
+    except ValueError:
+        return SourceReadRefusal(request)
+
+
+def source_read_bounds(
+    request: SourceReadRequest | source.SourceRangeDisclosureOption,
+) -> dict[str, object]:
+    """Project authorized observed bounds, not a durable freshness guarantee."""
+    return {
+        "source_length": len(request.unit.resource.content),
+        "valid_range": [request.unit.start, request.unit.end],
+        "coordinate_convention": "half-open Unicode character offsets",
+        "maximum_bytes": request.maximum_bytes,
+    }
+
+
 class ScopedSourceTool:
     """Materialize a selected file/symbol/window range within host scope."""
 
@@ -91,7 +157,10 @@ class ScopedSourceTool:
         self.scope = scope
         self.maximum_bytes = maximum_bytes
 
-    def validate(self, arguments: source.SourceRangeDisclosureOption) -> None:
+    def validate(
+        self,
+        arguments: source.SourceRangeDisclosureOption | SourceReadRequest,
+    ) -> None:
         """Refuse foreign resources, excessive disclosure and stale inputs."""
         unit = arguments.unit
         if (
@@ -104,9 +173,26 @@ class ScopedSourceTool:
             raise ToolInputError(msg)
         self.scope.check_current()
 
+    @overload
     async def execute(
         self,
         arguments: source.SourceRangeDisclosureOption,
-    ) -> ContextDisclosure:
+    ) -> ContextDisclosure: ...
+
+    @overload
+    async def execute(
+        self,
+        arguments: SourceReadRequest,
+    ) -> ContextDisclosure | SourceReadRefusal: ...
+
+    async def execute(
+        self,
+        arguments: source.SourceRangeDisclosureOption | SourceReadRequest,
+    ) -> ContextDisclosure | SourceReadRefusal:
         """Use Context's existing plan/materialization operation, without ranking."""
+        if isinstance(arguments, SourceReadRequest):
+            selected = select_source_read(arguments)
+            if isinstance(selected, SourceReadRefusal):
+                return selected
+            arguments = selected
         return source.materialize_source_range(self.scope.snapshot, arguments)

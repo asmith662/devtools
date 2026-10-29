@@ -20,7 +20,7 @@ from devtools.agents.coding.projection import (
     native_exchange_ranges,
     request_bytes,
 )
-from devtools.agents.coding.repository import _CHECK, _EDIT, _READ, RepositoryCodingHost
+from devtools.agents.coding.repository import _CHECK, _EDIT, RepositoryCodingHost
 from devtools.agents.model_tools import normalize_tool_descriptor
 from devtools.context import Repository, RepositoryResourceAddress
 from devtools.core.paths import resolve_path
@@ -36,6 +36,7 @@ from devtools.models.interaction import (
 )
 from devtools.resources.commands import Command
 from devtools.resources.filesystem import TextFile, write
+from devtools.tools import ToolDescriptor
 from devtools.tools.errors import ToolInputError
 from tests.agents.coding.fixtures import SOURCE
 from tests.agents.coding.test_repository import EDIT, LIMITS, host_at
@@ -57,10 +58,20 @@ def frozen_request() -> ModelRequest:
         )
         for message in original["messages"]
     )
+    # The historical request used this exact descriptor, not today's live API.
+    original_read = ToolDescriptor(
+        "read_source",
+        "Read an admitted exact current source region.",
+        '{"type":"object","properties":{"path":{"type":"string"},'
+        '"start":{"type":"integer"},"end":{"type":"integer"}},'
+        '"required":["path","start","end"],"additionalProperties":false}',
+    )
     return ModelRequest(
         Prompt("", "messages", messages),
         settings=ModelSettings(maximum_output_tokens=4096, thinking_enabled=False),
-        tools=tuple(normalize_tool_descriptor(d) for d in (_READ, _EDIT, _CHECK)),
+        tools=tuple(
+            normalize_tool_descriptor(d) for d in (original_read, _EDIT, _CHECK)
+        ),
     )
 
 

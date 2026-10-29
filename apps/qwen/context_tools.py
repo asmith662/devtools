@@ -44,7 +44,12 @@ from devtools.context.retrieval import (
 from devtools.core.paths import resolve_path
 from devtools.tools import ToolDescriptor, ToolRunner
 from devtools.tools.errors import ToolInputError
-from devtools.tools.source import SourceScope
+from devtools.tools.source import (
+    SourceReadRefusal,
+    SourceReadRequest,
+    SourceScope,
+    select_source_read,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -763,9 +768,10 @@ class ContextTools:
             if u.resource.address.value == values["path"]
         )
         start, end = values["start"], values["end"]
-        if not (
-            0 <= start < end <= len(unit.text) or start == end == len(unit.text) == 0
-        ):
+        option = select_source_read(
+            SourceReadRequest(self.task.objective, unit, start, end, 4096)
+        )
+        if isinstance(option, SourceReadRefusal):
             return {
                 "status": "REFUSED",
                 "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
@@ -779,9 +785,6 @@ class ContextTools:
                     "Use start < end within valid_range; read <=4096 bytes at a time."
                 ),
             }
-        option = source_disclosure.SourceRangeDisclosureOption(
-            self.task.objective, unit, start, end, 4096
-        )
         disclosure = source_disclosure.materialize_source_range(self.snapshot, option)
         text = disclosure.items[0].text
         result = {

@@ -263,6 +263,7 @@ class SemanticCompactor:
                     ),
                 ),
                 settings=self.config.settings,
+                provider_settings=self.config.provider_settings,
             )
 
         # Original order; native blocks stay whole. Oversized groups are excluded,

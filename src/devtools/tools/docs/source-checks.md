@@ -34,6 +34,18 @@ canonical path checks are not an atomic snapshot, filesystem sandbox or lock
 against a later external writer. Access to other files is not authorized by
 constructing a semantic path. Callers recheck correspondence before later effects.
 
+For untrusted literal coordinates, use `SourceReadRequest(purpose, unit, start,
+end, maximum_bytes)`. An omitted end (`None`) requests the remaining unit under
+the same byte bound. After ordinary scope/currentness validation the Tool either
+returns the canonical disclosure or `SourceReadRefusal`. The latter means the
+requested interval was rejected before source materialization; it grants no
+witness. `select_source_read` is the effect-free shared range decision and
+`source_read_bounds` projects authorized observed length/valid range/byte bounds.
+Neither helper grants scope. Operational/materialization exceptions are not
+converted into refusals. A caller may return correlated refusal feedback and
+let the model choose a new call; no automatic retry is implied. See the
+[reliability contract](../../../../docs/development/local-agent-reliability.md).
+
 ## Fixed checks
 
 The trusted host constructs immutable `FixedCheck(name, command)` values and a

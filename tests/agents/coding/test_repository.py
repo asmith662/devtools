@@ -216,15 +216,20 @@ def test_request_and_native_admission(tmp_path: Path, fault: str) -> None:
     }
     if fault == "prompt":
         host.objective = replace(host.objective, prompt_bytes=1)
-    model = Script([values[fault]])
+    model = Script([values[fault], ()] if fault == "range" else [values[fault]])
     result = asyncio.run(run_coding_agent(model, limits=LIMITS, host=host))
     assert not result.accepted
     assert result.progress.proposals == 0
-    assert result.progress.effects == [] or all(
-        not e.acknowledged for e in result.progress.effects
-    )
-    assert result.disposition == ("stopped" if fault == "stop" else "failed")
-    assert model.entries == (0 if fault == "prompt" else 1)
+    if fault == "range":
+        assert result.progress.effects[0].acknowledged
+        assert '"SOURCE_RANGE_OUT_OF_BOUNDS"' in host.messages[-2].content
+        assert not host.disclosures
+    else:
+        assert result.progress.effects == [] or all(
+            not e.acknowledged for e in result.progress.effects
+        )
+    assert result.disposition == ("stopped" if fault in {"stop", "range"} else "failed")
+    assert model.entries == (0 if fault == "prompt" else 2 if fault == "range" else 1)
     assert (tmp_path / "module.py").read_text(encoding="utf-8") == SOURCE
 
 
