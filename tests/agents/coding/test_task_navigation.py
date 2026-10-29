@@ -22,6 +22,7 @@ from tests.agents.coding.test_repository import call
 
 if TYPE_CHECKING:
     from pathlib import Path
+    from typing import Any
 
     from devtools.models.interaction import ModelRequest
 
@@ -30,6 +31,20 @@ from devtools.core.time import Duration
 
 def limits() -> CodingLimits:
     return CodingLimits(7, 2, 8, Duration.seconds(10), Duration.seconds(60))
+
+
+def candidate_view(request: ModelRequest) -> dict[str, Any]:
+    """Locate the candidate view without reserving other host metadata slots."""
+    entries = []
+    for message in request.prompt.messages:
+        try:
+            value = json.loads(message.content)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(value, dict) and value.get("kind") == "task_candidates":
+            entries.append(value)
+    assert len(entries) == 1
+    return entries[0]
 
 
 class Worker:
@@ -47,7 +62,7 @@ class Worker:
         """Consume candidate metadata and return a separately selected native call."""
         self.requests.append(request)
         n = len(self.requests)
-        entry = json.loads(request.prompt.messages[1].content)
+        entry = candidate_view(request)
         assert entry["kind"] == "task_candidates"
         assert entry["complete_inventory"] is False
         assert entry["source_acquired"] is False
@@ -126,8 +141,8 @@ def test_task_entry_to_exact_edit_and_real_check(
         tmp_path / "candidate-module.py"
     ).read_text() == "def answer():\n    return 7\n"
     first = worker.requests[0]
-    assert len(first.prompt.messages) == 2  # no invented assistant/Tool exchanges
-    entry = json.loads(first.prompt.messages[1].content)
+    assert all(m.role == "user" for m in first.prompt.messages)
+    entry = candidate_view(first)
     assert any(u["retrieval"][0]["terms"] for u in entry["units"])
     assert not any("return 6" in m.content for m in first.prompt.messages)
     assert all(e.acknowledged for e in result.progress.effects)
@@ -155,7 +170,7 @@ def test_generic_and_unmatched_candidate_view(tmp_path: Path, objective: str) ->
     first = asyncio.run(host.prepare(CodingProgress(limits())))
     second = asyncio.run(host.prepare(CodingProgress(limits())))
     assert first == second
-    entry = json.loads(first.prompt.messages[1].content)
+    entry = candidate_view(first)
     assert not host.disclosures
     if objective == "zzqxunmatched":
         assert entry["units"] == []
@@ -190,7 +205,7 @@ def test_long_objective_query_is_explicitly_bounded(tmp_path: Path) -> None:
     host.navigation_policy = NavigationPolicy()
     host.objective = replace(host.objective, text="answer " * 80)
     request = asyncio.run(host.prepare(CodingProgress(limits())))
-    data = json.loads(request.prompt.messages[1].content)
+    data = candidate_view(request)
     assert data["query_partial"]
     assert data["query"] == host.objective.text[:256]
     assert len(task_selection({}, host.objective.text).query) == 256
@@ -244,7 +259,7 @@ def test_task_candidate_read_keeps_existing_source_authority(
 
     async def scenario() -> None:
         initial = await host.prepare(state)
-        view = json.loads(initial.prompt.messages[1].content)
+        view = candidate_view(initial)
         unit = next(u for u in view["units"] if u["name"] == "answer")
         args = {"unit_id": unit["unit_id"], "snapshot_id": view["snapshot_id"]}
         if fault == "foreign":

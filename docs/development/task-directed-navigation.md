@@ -101,3 +101,14 @@ A separately frozen [maintenance protocol](../../experiments/local_maintenance_t
 requires the committed protected gate and independent oracle preflight before
 the one possible real attempt. A shortlist is not the complete authorized
 inventory: B-0035 remains unimplemented by this increment.
+
+## Pre-inference test review
+
+The first committed implementation passed 3889 protected tests, two optional
+skips and 100% configured coverage. Before model entry, a fixture assumption was
+corrected: candidate metadata is located by its declared kind, rather than
+reserving message slot 1 or forbidding another host metadata frame. This avoids
+turning a legitimate future complete-inventory frame into false failure feedback.
+Exact source, boundedness and native correlation expectations remain. Production
+source and B-0035 oracles are unchanged. The final test revision is separately
+committed and receives the full unchanged protected gate before inference.
