@@ -151,3 +151,8 @@ and ability to finish validation/repair under the same finite envelope. The smal
 stable handoff should be retained. Do not add another generic Context/navigation
 layer or silently finish this candidate with Codex. No comparison or follow-on
 development is started by this report.
+
+[Publication receipt](publication.json): ordinary non-force main publication was
+verified at `260162248fa3882e88c1ed1f369277cdae974552`. All 69 experiment blobs
+matched physical artifact bytes; all 1,191 protected inputs remained unchanged.
+The following receipt-only closeout adds no implementation or execution authority.
