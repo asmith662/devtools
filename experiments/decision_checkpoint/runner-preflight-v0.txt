@@ -1,0 +1,111 @@
+"""Bounded diagnostic composition; no production implementation or Tool dispatch."""
+import asyncio, hashlib, json, sys, tempfile
+from pathlib import Path
+from dataclasses import replace
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/decision_checkpoint';BASE='be8c973813104a65989ae106030a1c1b1d186034'
+sys.path.insert(0,str(R));sys.path.insert(0,str(R/'experiments/coding_transition'))
+import support as s
+import host as prior
+from devtools.models.interaction import ModelRequest,ModelSettings,ModelToolDefinition,Prompt,PromptMessage,InteractionSource
+from devtools.models.interaction.providers import llama_cpp as provider
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.planning.source import SourceRangeDisclosureOption,materialize_source_range
+from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding.projection import request_bytes,source_feedback
+from devtools.agents.coding.edits import admit_source_batch,CodingEditError,EditLimits
+from devtools.core.time import Timestamp,Stopwatch
+from scripts.backlog.coordinator import git
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+s.STATE=O/'staging';C.mkdir(exist_ok=True)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):s.save(p,v,fresh=True)
+def decode(v):
+ return ModelRequest(Prompt('', 'messages',tuple(PromptMessage(**{**m,'tool_calls':()}) for m in v['prompt']['messages'])),
+  settings=ModelSettings(**v['settings']),tools=tuple(ModelToolDefinition(**x) for x in v['tools']),
+  provider_settings=s.LlamaCppRequestSettings(**{k:v for k,v in v['provider_settings'].items() if k!='provider'}))
+async def freeze():
+ assert await git(R,'rev-parse','HEAD')==BASE== (await git(R,'ls-remote','origin','refs/heads/main')).split()[0]
+ assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only') and not (R/'.local/backlog/checkout-owner').exists()
+ for ancestor in ['c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa','6fbd7d1a87307c9b585c9bce558259d7440d7182']:await git(R,'merge-base','--is-ancestor',ancestor,BASE)
+ assert not await git(R,'diff','c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa',BASE,'--','src','tests','apps','scripts','pyproject.toml','uv.lock')
+ gate=json.loads((R/'.local/implementation-transition/protected.json').read_text())
+ for p,h in gate['inputs'].items():assert sha(R/p)==h,p
+ tracked=(await git(R,'ls-files','-z',trim=False)).split('\0');tracked={p:sha(R/p) for p in tracked if p}
+ untracked=(await git(R,'ls-files','--others','--exclude-standard','-z',trim=False)).split('\0');untracked={p:sha(R/p) for p in untracked if p};assert len(untracked)==13
+ scope,corpus=prior.observe(Repository.new());h=prior.host_for(scope,corpus)
+ objective=(R/'experiments/local_maintenance_task_navigation/objective.md').read_text().split('Inspect source with')[0]
+ decision='\nRead-only engineering decision checkpoint. Identify a concrete source-supported next code change or implementation hypothesis, or a specific genuinely missing contract/evidence. Cite provided methods and constraints. Distinguish complete authorized inventory from a task shortlist, and metadata from exact edit witnesses. Do not claim implementation, validation or permission you do not have. Any advertised search/read Tools are optional; a request is retained as your selected next action and will not be dispatched in this single-response assessment. A concise plain-text decision is permitted.\n'
+ h.objective=replace(h.objective,text=objective+decision);await prior.preload(h)
+ main=await h.prepare(CodingProgress(prior.LIMITS))
+ # Smaller real maintenance characterization: atomic overlapping-edit admission.
+ units=[u for u in h.index.views[1].units if u.qualified_name in {'admit_source_batch','replace_exact_text'} and u.resource.address.value.endswith('/edits.py')]
+ assert len(units)==2
+ control_text='Characterize the existing Devtools edit-admission/repair contract for supervisor feedback. Baseline source is ASCII abcdef. One proposal requests abcd -> Q and def -> R in that same version; all source witnesses, scope and byte limits are valid. Decide whether the host should apply either change, refuse the batch, or require other evidence; cite actual source and state a defensible next worker action after refusal. Do not implement code or claim tests ran. Any advertised search/read Tools are optional; requested Tools will be retained but not dispatched in this single-response assessment. A concise plain-text decision is permitted.'
+ messages=[PromptMessage('user',control_text)]
+ for u in units:
+  option=SourceRangeDisclosureOption('Existing atomic edit contract',u,u.start,u.end,8192);assert not option.truncated
+  text=materialize_source_range(scope.snapshot,option).items[0].text
+  messages.append(PromptMessage('user',json.dumps({**source_feedback(option,text),'host_selected_unit':u.qualified_name})))
+ control=replace(main,prompt=Prompt('', 'messages',tuple(messages)))
+ # Independent literal interval proof and actual pure admission control.
+ assert max(0,3)<min(4,6) and set(range(4))&set(range(3,6))=={3}
+ from tests.agents.coding.test_repository import host_at
+ with tempfile.TemporaryDirectory(prefix='decision-oracle-') as d:
+  fixture=host_at(Path(d));u=fixture.index.views[0].units[0];option=SourceRangeDisclosureOption('preflight',u,0,u.end,8192)
+  original=(Path(d)/'module.py').read_bytes()
+  try:admit_source_batch(({'path':'module.py','old_text':'return 6','new_text':'return 7'},{'path':'module.py','old_text':'6','new_text':'8'}),snapshot=fixture.scope.snapshot,editable=fixture.objective.editable,available=(option,),limits=fixture.objective.edits)
+  except CodingEditError as e:assert str(e)=='Edit anchors overlap.'
+  else:raise AssertionError('Oracle did not refuse overlap')
+  assert (Path(d)/'module.py').read_bytes()==original
+ requests={}
+ for task,q in [('B0035',main),('control',control)]:
+  for treatment in ['A','B']:
+   request=replace(q,tools=q.tools if treatment=='A' else ())
+   assert request_bytes(request)<=32768
+   requests[task+'-'+treatment]=s.plain(request)
+  assert requests[task+'-A']['prompt']==requests[task+'-B']['prompt']
+ model=await s.service_identity();assert model['context']==32768
+ value=dict(schema='decision-checkpoint-0001',at=str(Timestamp.now()),base=BASE,model=model,requests=requests,
+  source_snapshot=s.plain(scope.snapshot),source_hashes={a.value:sha(R/a.value) for a in prior.READ},
+  order=list(requests),limits=dict(interactions=4,call_seconds=90,total_seconds=480,input_tokens=28160,output_tokens=4096,request_bytes=32768,tool_dispatch=0,mutation=0),
+  criteria=dict(correct='Concrete implementable action or justified missing evidence, grounded in provided source; no unsupported authority/outcomes. B0035 must distinguish complete inventory and current snapshot, metadata-only/no-witness, budget/idempotence.',partial='Relevant concrete subset but omits material obligations; no fatal contradictory recommendation.',uncertain='Specific missing evidence actually absent and required for proposed action.',unsupported='Fluent claim contradicts source, invents result/authority, or calls evidence missing when provided.',invalid='Malformed/empty response or unadmitted native call.',incomplete='Serving/capacity/transport failure or output truncation prevents a decision.',tool='Retain first action; evaluate its relevance and whether genuinely missing evidence was selected; no fabricated feedback.'),
+  control_crosscheck=dict(intervals=[[0,4],[3,6]],intersection=[3],expected='Refuse whole overlapping batch before effects; next worker action must be a new nonoverlapping proposal under remaining host budget.',pure_admission_preflight='exact overlap refusal and unchanged authored fixture'),
+  preserved=tracked,forensics=untracked,refs=await git(R,'show-ref'),protected_ancestor=gate['head'],protected_inputs=gate['inputs'],runner_sha256=sha(Path(__file__)),
+  qualifications=['One unseeded sample per cell; fixed order may affect cache latency.','No generated answers shared between stateless requests.','No Tool dispatch, edits, checks or engineering-success claim.','Tools absent in B; no provider-neutral tool_choice=none field exists, so valid tools=() is used.'])
+ save(C/'freeze.json',value);(C/'runner.txt').write_bytes(Path(__file__).read_bytes())
+ print(json.dumps(dict(bytes={k:request_bytes(decode(v)) for k,v in requests.items()},oracle='passed',model=model['served_model'])))
+async def run():
+ f=json.loads((C/'freeze.json').read_text());assert sha(Path(__file__))==f['runner_sha256'];assert not (O/'staging/ENTERED.json').exists()
+ assert await s.service_identity()==f['model']
+ head=await git(R,'rev-parse','HEAD');await git(R,'merge-base','--is-ancestor',BASE,head)
+ for p,h in f['source_hashes'].items():assert sha(R/p)==h
+ async with Checkout(WorkCycle(R),'decision-checkpoint-0001','main',head) as owner:
+  save(O/'staging/ENTERED.json',dict(at=str(Timestamp.now()),owner=owner.record))
+  original=provider._read_http_response;active=None
+  async def capture(reader):
+   status,body=await original(reader)
+   if active is not None:
+    path=O/'staging'/f'{active}-provider-body.bin';assert not path.exists();path.write_bytes(body)
+   return status,body
+  provider._read_http_response=capture
+  try:
+   async with asyncio.timeout(480):
+    for name in f['order']:
+     q=decode(f['requests'][name]);adapter=s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('decision-checkpoint-'+name))
+     payload=adapter._request_payload(q);assert ('tools' in payload)==name.endswith('A') and 'tool_choice' not in payload
+     count=await asyncio.wait_for(adapter.count_input_tokens(q),20);assert count<=28160
+     save(O/'staging'/f'{name}-entry.json',dict(at=str(Timestamp.now()),request=s.plain(q),payload=payload,input_tokens_measured=count,request_bytes=request_bytes(q)))
+     active=name;timer=Stopwatch()
+     try:
+      response=await asyncio.wait_for(adapter.send(q),90);out=dict(response=s.plain(response),outcome='normalized')
+     except BaseException as e:out=dict(error=type(e).__name__,detail=str(e),outcome='unknown');raise
+     finally:
+      timer.stop();active=None;save(O/'staging'/f'{name}-outcome.json',dict(at=str(Timestamp.now()),seconds=timer.elapsed.total_seconds,**out))
+  finally:provider._read_http_response=original
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ for p,h in f['preserved'].items():assert sha(R/p)==h,p
+ for p,h in f['forensics'].items():assert sha(R/p)==h,p
+ save(O/'staging/terminal.json',dict(at=str(Timestamp.now()),owner_released=True,source_unchanged=True,interactions=4))
+ print('Four independent interactions complete; no Tools dispatched.')
+asyncio.run({'freeze':freeze,'run':run}[sys.argv[1]]())
