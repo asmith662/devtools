@@ -119,3 +119,19 @@ source admission into an OS sandbox or broaden the production objective contract
 Host-preloaded source is recorded as host disclosure through `ScopedSourceTool`,
 never as a model-selected native call. Public focused assertions are in scope;
 withheld acceptance and reference implementations are not.
+
+## Protected implementation evidence
+
+Final executable commit `c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa` passed **3899 tests**,
+2 optional skips and 100% configured production line/branch coverage through
+`uv run python scripts/validate_development.py` in 1427.358 seconds.
+All 1188 captured physical inputs were unchanged. Supported Ruff,
+formatter, strict mypy and layout checks passed on that commit. Baseline focused
+characterization passed 1,896 tests; broader changed-consumer validation passed
+1,905; the final narrow compatibility suite passed 153. A superseded gate was
+explicitly stopped before a disabled-semantic-trigger compatibility correction;
+its exit 1 is retained, not reported as a passing gate or test assertion failure.
+[Machine-readable evidence](../research/code-audit/investigation-transition-20261029.json)
+records identities, commands, timing, versions and physical inputs. Final physical
+repository.py is 32,031 bytes, leaving 737 bytes under the unchanged source ceiling.
+That small margin remains a separate maintenance risk.
