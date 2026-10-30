@@ -1,0 +1,53 @@
+{
+  "name": "focused-preflight",
+  "command": [
+    "uv",
+    "run",
+    "pytest",
+    "--no-cov",
+    "-q",
+    "tests/models/interaction/providers/test_llama_cpp.py",
+    "tests/models/interaction/test_prompt.py",
+    "tests/agents/coding",
+    "tests/evaluation"
+  ],
+  "started_at": "2026-10-30T17:28:38.760434+00:00",
+  "finished_at": "2026-10-30T17:29:26.608658+00:00",
+  "seconds": 47.57625,
+  "exit_code": 0,
+  "head": "5d026524d3a5b0ddea352bb966e736c9d225a765",
+  "tree": "a52d337d2a5413a12ee8b85f9ce155fb78a8441c",
+  "inputs_unchanged": true,
+  "stdout_sha256": "2f6e442ead8881f4b884c7c4d43cd1b4ffbd9082cf38ca377f0d19d4c157d185",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "events_dropped": 0,
+  "safe_command_observation": {
+    "origin": {
+      "agent": "codex-development-host",
+      "task": "b0035-thinking",
+      "run": "verification-20261029",
+      "call": "focused-preflight"
+    },
+    "pattern": {
+      "family": "uv",
+      "operation": "tests",
+      "argument_roles": [
+        "opaque"
+      ],
+      "capabilities": [
+        "win32"
+      ],
+      "equivalent_tool": null
+    },
+    "source": "framework-result",
+    "entered": true,
+    "outcome": "succeeded",
+    "exit_code": 0,
+    "duration": 47.386562,
+    "events_dropped": 0,
+    "capture_incomplete": false
+  },
+  "physical_input_count": 1190
+}

@@ -1,0 +1,71 @@
+{
+  "build": "b10868-304665fe7",
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "template_caps": {
+    "supports_object_arguments": true,
+    "supports_parallel_tool_calls": true,
+    "supports_preserve_reasoning": true,
+    "supports_reasoning_effort": true,
+    "supports_string_content": true,
+    "supports_system_role": true,
+    "supports_tool_calls": true,
+    "supports_tools": true,
+    "supports_typed_content": true
+  },
+  "context": 32768,
+  "service": {
+    "profile": {
+      "model": {
+        "repository": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+        "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+      },
+      "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "quant": "Unsloth Dynamic IQ4_XS",
+      "context_size": 32768,
+      "n_cpu_ffn": 0,
+      "gpu_layers": "all",
+      "flash_attention": "on",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "parallel_sequences": 1,
+      "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+    },
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "endpoint": "http://127.0.0.1:8080",
+    "served_model": "qwen38-local",
+    "available_models": [
+      "qwen38-local"
+    ],
+    "context": 32768,
+    "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+  },
+  "sources": [
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3/tools/server/server-context.cpp",
+      "sha256": "6abaa516f75cc284503f1d694603eb350696b50054e5512f852e9295e8b172bd",
+      "bytes": 226094
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3/tools/server/server-common.cpp",
+      "sha256": "bbece72259e2aaab94ac0f31ba404b4a3f2868848cce1fe19a255009a60c6eb1",
+      "bytes": 65676
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3/tools/server/README.md",
+      "sha256": "4f7b99bd793bda6d44413f8b5fe192b00b0e02cd26ead1f3678efa9996b4bf6b",
+      "bytes": 106749
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3/common/chat.cpp",
+      "sha256": "6f44a3773cd3b71b0908d4ad56011d8bbf6dae3ddd716d22fda00014f7133015",
+      "bytes": 63645
+    }
+  ],
+  "mechanism": "Pinned template resolves enable_thinking; on defaults to xhigh instructions and open think prefix, off inserts closed empty think prefix. Native parser receives thinking flag and tool definitions. Provider retains separate reasoning/content/calls. n_predict uses total generated count, so reasoning shares output ceiling; category subtotal remains unknown.",
+  "difference": "Boolean only in normalized request and payload; native template adds mode-specific instructions/prefix. Same explicit sampling; no reasoning_effort override.",
+  "historical_native_evidence": "native-cohort-03 improved-on turns 1/2 normalize tool_call with separate reasoning; turn 3 output_limit at 4096. Supplementary support, not a prospective treatment.",
+  "qualification": "props default_generation_settings describes raw completion defaults, not proof of chat reasoning_format. Actual rendered chat template and historical native normalization establish compatibility; new responses will be checked."
+}
