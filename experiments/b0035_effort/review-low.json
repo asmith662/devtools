@@ -1,0 +1,64 @@
+{
+  "reviewer": "Codex supervisor, separate from worker; not a second independent model",
+  "usable": true,
+  "selected_profile": "low",
+  "criteria": "Relevant valid native requests for genuinely missing authorized source",
+  "complete_normalized_response": true,
+  "termination": "tool_call",
+  "seconds": 59.877131,
+  "input_tokens": 7986,
+  "output_tokens": 1065,
+  "separate_reasoning_tokens": null,
+  "final_text_empty": true,
+  "tool_calls": [
+    {
+      "path": "experiments/local_maintenance_task_navigation/focused.py",
+      "requested": [
+        0,
+        4591
+      ],
+      "active_before": [
+        [
+          4591,
+          5283
+        ]
+      ],
+      "source_characters": 6913,
+      "bytes": 4592,
+      "valid": true,
+      "justification": "Public fixture and initial metadata extraction/ordering tests absent from supplied assert_metadata unit"
+    },
+    {
+      "path": "src/devtools/agents/coding/navigation.py",
+      "requested": [
+        0,
+        3625
+      ],
+      "active_before": [
+        [
+          6149,
+          6625
+        ],
+        [
+          3625,
+          3827
+        ],
+        [
+          10999,
+          12595
+        ]
+      ],
+      "source_characters": 14643,
+      "bytes": 3625,
+      "valid": true,
+      "justification": "Leading imports, candidate types and metadata helpers absent from current source packet"
+    }
+  ],
+  "tool_dispatches": 0,
+  "patch": false,
+  "implementation_success": false,
+  "qualification": "Reasoning discusses supported assembly/lifecycle concerns and design alternatives, but only completed native calls count as the calibration action; no implementation correctness is established.",
+  "medium_run": false,
+  "medium_reason": "Low passed; conditional authorization excludes curiosity sampling",
+  "next": "One independently frozen fresh coding episode; no calibration exchange replay"
+}

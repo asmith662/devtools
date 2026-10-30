@@ -1,0 +1,93 @@
+"""Fresh conditional coding episode using existing neutral process only."""
+import asyncio,json,sys,hashlib
+from pathlib import Path
+from dataclasses import replace
+import runner as e
+R=e.R;O=e.O;C=e.C;b=e.b;r=e.r;d=e.d
+from devtools.agents.coding import CodingLimits,run_coding_agent
+from devtools.agents.coding.models import CodingProgress
+from devtools.models.interaction import ModelSettings,InteractionSource
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from experiments.joint_context.capture import save_result,projection_record,error_record,result_record
+EDIT=e.EDIT;READ=e.READ;LIMITS=e.LIMITS;OUTPUT=e.OUTPUT;INPUT=e.INPUT
+sha=e.sha;save=e.save;configure=e.configure;host=e.host;starting=e.starting
+class Measured(d.Measured):
+ def __init__(self,mode):
+  super().__init__();self.delegate=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('b0035-effort-0001-coding-'+mode))
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=10;prefix=f'coding-{n}'
+  rec=dict(at=str(Timestamp.now()),request=r.s.plain(q),payload=self.delegate._request_payload(q),bytes=r.request_bytes(q),entered=False)
+  self.records.append(rec);save(d.O/'staging'/f'{prefix}-prepared.json',rec)
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);assert count<=INPUT and r.request_bytes(q)<=32768
+  rec.update(measured_input_tokens=count,entered=True);save(d.O/'staging'/f'{prefix}-entry.json',rec)
+  original=r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=d.O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  r.provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),220);rec.update(response=r.s.plain(response),outcome='normalized');return response
+  except BaseException as error:rec.update(error=error_record(error),outcome='unknown');raise
+  finally:
+   r.provider._read_http_response=original;timer.stop();rec['seconds']=timer.elapsed.total_seconds;save(d.O/'staging'/f'{prefix}-outcome.json',rec)
+async def prepare():
+ selection=json.loads((C/'selection.json').read_text());assert selection['selected']=='low' and selection['coding_authorized_condition_met']
+ mode=selection['selected'];prior,baseline,initial=starting();configure('coding-preparation')
+ calibration=json.loads((C/'freeze-low.json').read_text());assert await r.s.service_identity()==calibration['model']
+ for p,v in calibration['oracles'].items():assert sha(R/p)==v
+ owner=Checkout(WorkCycle(R),'b0035-effort-0001-coding-preparation','main',await git(R,'rev-parse','HEAD'),files=[dict(path=p,text=v.decode()) for p,v in baseline.items()])
+ async with owner:
+  for p,raw in initial.items():owner.expect(p,raw.decode());write(BinaryFile(resolve_path(R/p),raw))
+  try:
+   scope,corpus=r.observe(r.Repository(r.RepositoryId.parse(calibration['repository_id'])))
+   h=host(scope,corpus,mode);records=await b.preload(h);q=await h.prepare(CodingProgress(LIMITS))
+   assert r.s.plain(q)==calibration['request'] and not h.projection_outcomes[-1].shortened_indices
+   prospective=b.continuity(h)
+   interaction=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('coding-preparation'))
+   rendered=await r.provider._post_json(interaction._endpoint,'/apply-template',interaction._request_payload(q))
+   assert rendered==json.loads((C/'preflight-artifacts/low-template.json').read_text())
+   tokens=await interaction.count_input_tokens(q);assert tokens<=INPUT
+   freeze=dict(calibration)
+   freeze.update(episode='B0035-Effort-0001-coding',at=str(Timestamp.now()),base=await git(R,'rev-parse','HEAD'),calibration_calls=0,tool_effects_authorized=True,runner_sha256=sha(Path(__file__)),calibration_runner_sha256=sha(O/'runner.py'),preflight_sha256=sha(C/'preflight.json'),selection_sha256=sha(C/'selection.json'),calibration_response_not_in_history=True,outer_seconds=1200,host_process_seconds=1140,transport_timeout=220,model_call_timeout=240,model_calls=10,acquisitions=6,proposals=4,applications=3,repairs=2,auxiliary_calls=0,prospective=prospective,input_tokens_measured=tokens)
+  finally:
+   for p,raw in baseline.items():write(BinaryFile(resolve_path(R/p),raw))
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ save(C/'freeze-coding.json',freeze);(C/'coding-runner.txt').write_bytes(Path(__file__).read_bytes())
+ print(json.dumps(dict(bytes=freeze['request_bytes'],tokens=tokens,profile=mode,calibration_response_not_in_history=True)))
+async def live(mode):
+ assert mode=='low';stage=configure('coding');f=json.loads((C/'freeze-coding.json').read_text());prior,baseline,initial=starting()
+ assert sha(Path(__file__))==f['runner_sha256'] and sha(C/'task.md')==f['task_sha256']
+ assert sha(O/'runner.py')==f['calibration_runner_sha256'] and sha(C/'selection.json')==f['selection_sha256'] and sha(C/'preflight.json')==f['preflight_sha256']
+ for p,v in f['source_hashes'].items():assert (hashlib.sha256(initial[p]).hexdigest() if p in initial else sha(R/p))==v
+ for p,v in f['oracles'].items():assert sha(R/p)==v
+ assert await r.s.service_identity()==f['model']
+ owner=Checkout(WorkCycle(R),'b0035-effort-0001-coding-'+mode,'main',await git(R,'rev-parse','HEAD'),files=[dict(path=p,text=v.decode()) for p,v in baseline.items()]);applied=[]
+ async with owner:
+  for p,raw in initial.items():owner.expect(p,raw.decode());write(BinaryFile(resolve_path(R/p),raw))
+  try:
+   scope,corpus=r.observe(r.Repository(r.RepositoryId.parse(f['repository_id'])))
+   async def effect(changes):
+    assert len(applied)<3
+    for c in changes:owner.expect(c.address.value,c.after)
+    applied.append(r.s.plain(changes));save(stage/'staging'/f'applied-{len(applied)}.json',r.s.plain(changes));r.write_source_changes(scope.root,changes)
+   def archive(values):
+    for addr,t in values.items():
+     raw=(R/addr.value).read_bytes();assert raw.decode()==t;p=stage/'staging/candidate'/addr.value;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+   def restore(addr,t):
+    raw=initial[addr.value];assert raw.decode()==t;write(BinaryFile(resolve_path(R/addr.value),raw))
+   h=host(scope,corpus,mode,effect=effect,archive=archive,restore=restore);await b.preload(h);q=await h.prepare(CodingProgress(LIMITS));assert r.s.plain(q)==f['request']
+   h.requests.clear();h.projection_outcomes.clear();h.active_disclosures=()
+   assert not (stage/'staging/entry.json').exists();save(stage/'staging/entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+   async with asyncio.timeout(1200):result=await run_coding_agent(Measured(mode),limits=LIMITS,host=h)
+   captured=save_result(stage/'staging/result.json',result)
+   save(stage/'staging/history.json',dict(messages=r.s.plain(h.messages),responses=r.s.plain(h.responses),requests=r.s.plain(h.requests),projections=[projection_record(v) for v in h.projection_outcomes],projection_error=error_record(h.projection_error),sources=r.s.plain(h.source_results),proposals=h.proposals,applied=applied,checks=[[dict(name=v.check.name,result=r.s.plain(v.command_result),inputs_current=v.inputs_current,input_error=error_record(v.input_error)) for v in row] for row in h.check_results]))
+   assert result.custody.restored and not result.custody.reconciliation_required
+  finally:
+   for p,raw in baseline.items():write(BinaryFile(resolve_path(R/p),raw))
+ assert not (R/'.local/backlog/checkout-owner').exists() and all((R/p).read_bytes()==raw for p,raw in baseline.items())
+ save(stage/'staging/terminal.json',dict(at=str(Timestamp.now()),released=True,production_restored=True,captured=captured));print(json.dumps(result_record(result),indent=2))
+if __name__=='__main__':asyncio.run(prepare() if sys.argv[1]=='prepare' else live('low'))
