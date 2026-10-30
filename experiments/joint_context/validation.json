@@ -6248,5 +6248,5 @@
   "protected_inputs_unchanged": true,
   "preflight": "evidence/preflight.json",
   "qualification": "Archived candidate source files are data-only unchanged baseline, not accepted production changes. No withheld grading run was necessary for a nonexistent changed candidate.",
-  "closeout_qualification": "An initial staged whitespace check reported doubled CR in the new SUMMARY and the shell continued to commit. A following evidence-only commit normalizes that new summary and explicitly preserves all case artifact bytes before publication. Frozen requests/responses and measured results are unchanged."
+  "closeout_qualification": "An initial staged whitespace check reported doubled CR in the new SUMMARY and the shell continued to commit. A following evidence-only commit normalizes that new summary and explicitly preserves all case artifact bytes before publication. Frozen requests/responses and measured results are unchanged. A manifest enumeration also included an ignored Python cache reference (the cache itself was never committed); closeout removes that reference and verifies tracked artifact blobs only."
 }

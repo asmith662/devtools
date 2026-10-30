@@ -165,3 +165,9 @@ justify another retrieval engine, automatic budget increase, or repeated full tr
 with unchanged broad-source behavior. A controlled model/profile comparison remains
 an alternative if a sufficiently small stable task handoff still cannot produce an
 engineering action. Neither follow-up is implemented or launched here.
+
+[Publication receipt](publication.json): ordinary non-force main publication at
+`53787ae594cb85efdd6db922d3a86f5d0c23ec96` was independently verified. All 1,191
+protected source/test blobs and physical inputs match the validated implementation.
+The following receipt-only closeout corrects a manifest cache reference; no cache
+was committed and no executable input or frozen model result changes.
