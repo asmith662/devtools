@@ -434,3 +434,15 @@ pressure and a separate experimental result-capture failure. No edit or worker
 check occurred; B-0035 remains open. Pure reconstruction identifies existing
 projection behavior under simultaneous reduction pressure, not a new execution
 receipt. No grant, status transition, model success or new framework is implied.
+
+## Joint Context reliability and bounded continuation ? 2026-10-30
+
+The [new linked evaluation](../../../experiments/joint_context/REPORT.md) corrects
+joint source-reduction selection and experimental exception capture without changing
+source authority or limits. Committed implementation passed 3,906 protected tests,
+two optional skips and 100% configured production line/branch coverage. The fresh
+Qwen worker completed ten affordable requests and acknowledged reads, but no edit,
+worker check or repair; the full result and normal custody release survived. B-0035
+remains open. Repeated broad acquisition under active eviction still prevents a
+useful maintenance outcome in this sample. No grant, status transition, model-authored
+implementation or broader parent closure is implied.

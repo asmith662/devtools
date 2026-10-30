@@ -1,0 +1,349 @@
+{
+  "at": "2026-10-30T14:47:55.576724+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: complete authorized inventory in the first coding request\n\nImplement the missing complete metadata inventory for RepositoryCodingHost. Its first model-facing request must preserve the objective as its first message and contain exactly one JSON metadata message with repository_id, snapshot_id, source_acquired=false, and resources. Every host-authorized scope resource appears exactly once with address, content_identity, UTF-8 byte_size and boolean editable. Use current authenticated scope values; never include unauthorized paths, source text or absolute host paths. Metadata never supplies an exact source/edit witness.\n\nRepeated preparation must not accumulate inventories. After an admitted source change, the next request must describe the current snapshot and content identities. Account for the complete request including all Tools and continuation; refuse insufficient capacity instead of omitting inventory resources. Preserve currentness refusal, native call/result correspondence, projection, source-grounded edit admission, fixed validation and custody. Existing task_candidates is an incomplete ranked suggestion, not this complete inventory; preserve that optional navigation behavior. Do not create another source identity, index, registry or execution loop. Preserve public signatures and existing budgets.\n\nOnly repository.py and navigation.py in src/devtools/agents/coding/ are editable. They own host lifecycle/Prompt assembly and native repository metadata presentation. Sizes: 32031 and 13044 bytes; resulting-source ceiling: 32768 per file. Choose a cohesive bounded change, not unrelated extraction. Tests/settings/docs/other files are read-only. No shell or Git authority.\n\nPublic diagnostics: experiments/local_maintenance_task_navigation/focused.py. Assertions specify requirements, not implemented behavior. Hidden acceptance is not disclosed.\n\nThe supplied exact source is host-selected Context, not model-requested reads. The supervisor separately supplies an authentic historical decision as handoff. This fresh phase authorizes the bounded implementation described above; choose additional source, edits, validation or a specific blocker. Do not claim unobserved effects.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def __init__(  # noqa: PLR0913 -- explicit scope, effects and custody collaborators\\r\\n        self,\\r\\n        objective: CodingObjective,\\r\\n        *,\\r\\n        corpus: RepositoryTextCorpusDefinition,\\r\\n        authorize: Callable[[ModelToolCall, object], Awaitable[None]],\\r\\n        apply_changes: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\\r\\n        archive: Callable[[Mapping[RepositoryResourceAddress, str | None]], None],\\r\\n        restore: Callable[[RepositoryResourceAddress, str | None], None],\\r\\n        readiness: Callable[\\r\\n            [RepositorySnapshot, tuple[SourceRangeDisclosureOption, ...]],\\r\\n            None,\\r\\n        ]\\r\\n        | None = None,\\r\\n        settings: ModelSettings = _SETTINGS,\\r\\n        projection: ProjectionPolicy | None = None,\\r\\n        summary: SummaryCompaction | None = None,\\r\\n        navigation: bool = False,\\r\\n        navigation_policy: NavigationPolicy | None = None,\\r\\n    ) -> None:\\r\\n        \\\"\\\"\\\"Bind host authority and the existing Context/Tool/Resource substrates.\\\"\\\"\\\"\\r\\n        if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:\\r\\n            msg = \\\"Coding corpus belongs to a foreign repository.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.objective, self.scope, self.corpus = objective, objective.scope, corpus\\r\\n        if projection is not None and projection.trigger_bytes > objective.prompt_bytes:\\r\\n            msg = \\\"Projection watermarks exceed the host byte ceiling.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.projection = projection\\r\\n        self.navigation = navigation\\r\\n        if navigation_policy is not None and not navigation:\\r\\n            msg = \\\"Task navigation policy requires native navigation.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.navigation_policy = navigation_policy\\r\\n        if summary is not None and projection is None:\\r\\n         \", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [8142, 9992], \"name\": \"RepositoryCodingHost.__init__\", \"source_length\": 32031, \"valid_range\": [8142, 11506], \"maximum_bytes\": 1850, \"continuation_start\": 9992, \"remaining_range\": [9992, 11506], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"d49c5483cf85ecf60cd6d3f8fd6995541de780633df66f1ec235d0deeebf979f\", \"acquired_span\": [8142, 11506], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def _index(self) -> None:\\r\\n        self.index = build_source_search_index(\\r\\n            self.scope.snapshot,\\r\\n            corpus=realize_repository_text_corpus(\\r\\n                definition=self.corpus,\\r\\n                snapshot=self.scope.snapshot,\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11514, 11789], \"name\": \"RepositoryCodingHost._index\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def build_request(self, messages: tuple[PromptMessage, ...]) -> ModelRequest:\\r\\n        \\\"\\\"\\\"Assemble all host-selected schemas before complete-input accounting.\\r\\n\\r\\n        Hosts exposing additional operations override this pure assembly seam,\\r\\n        not append schemas after preparation has checked its byte ceiling.\\r\\n        \\\"\\\"\\\"\\r\\n        return ModelRequest(\\r\\n            Prompt(\\\"\\\", \\\"messages\\\", messages),\\r\\n            settings=self.settings,\\r\\n            tools=tuple(\\r\\n                normalize_tool_descriptor(d)\\r\\n                for d in (\\r\\n                    _READ,\\r\\n                    _EDIT,\\r\\n                    _CHECK,\\r\\n                    *(\\r\\n                        (TASK_FIND if self.navigation_policy else FIND, READ_UNIT)\\r\\n                        if self.navigation\\r\\n                        else ()\\r\\n                    ),\\r\\n                )\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11797, 12680], \"name\": \"RepositoryCodingHost.build_request\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards\\r\\n        \\\"\\\"\\\"Authenticate source and atomically install a valid active projection.\\\"\\\"\\\"\\r\\n        self.progress = progress\\r\\n        self.scope.check_current()\\r\\n        prepare_navigation(\\r\\n            self.messages,\\r\\n            self.index,\\r\\n            self.objective.text,\\r\\n            self.navigation_policy,\\r\\n        )\\r\\n        request = self.build_request(tuple(self.messages))\\r\\n        if self.projection is not None:\\r\\n            policy = self.projection\\r\\n            try:\\r\\n                if any(not e.acknowledged for e in progress.effects):\\r\\n                    msg = \\\"Unacknowledged effects require reconciliation.\\\"\\r\\n                    raise ValueError(msg)  # noqa: TRY301 -- retain original preparation failure\\r\\n                protected = frozenset(self._check_feedback) | (\\r\\n                    frozenset(\\r\\n                        i\\r\\n                        for i, values in self._source_messages.items()\\r\\n                        if any(o.snapshot_id == self.scope.snapshot.id for o in values)\\r\\n                    )\\r\\n                    if self.readiness is not None\\r\\n                    else frozenset()\\r\\n                )\\r\\n                if self.compaction is not None:\\r\\n                    protected |= self.compaction.protect(request.prompt.messages)\\r\\n                outcome = project_request(\\r\\n                    request,\\r\\n                    policy=self.projection,\\r\\n                    hard_bytes=self.objective.prompt_bytes,\\r\\n                    snapshot=self.scope.snapshot,\\r\\n                    sources=self._source_messages,\\r\\n                    protected_indices=protected,\\r\\n                    previous_sources=self.active_disclosures,\\r\\n                )\\r\\n                self.projection_outcomes.append(outcome)\\r\\n                if self.compaction is not None:\\r\\n\\r\\n                    def summarized(\\r\\n                        indices: frozenset[int],\\r\\n                        note: PromptMessage,\\r\\n                    ) -> ProjectionOutcome:\\r\\n                        self.scope.check_current()\\r\\n                        if tuple(self.messages) != request.prompt.messages:\\r\\n                            msg = \\\"Original history changed during semantic compaction.\\\"\\r\\n                            raise ValueError(msg)  # noqa: TRY301 -- no stale projection\\r\\n                        return project_request(\\r\\n                            request,\\r\\n                            policy=policy,\\r\\n                            hard_bytes=self.objective.prompt_bytes,\\r\\n                            snapshot=self.scope.snapshot,\\r\\n                            sources=self._source_messages,\\r\\n                            protected_indices=protected,\\r\\n                            previous_sources=self.active_disclosures,\\r\\n                            summarized_indices=indices,\\r\\n                            summary=note,\\r\\n                        )\\r\\n\\r\\n                    selected = await self.compaction.project(\\r\\n                        request,\\r\\n                        outcome,\\r\\n                        protected=protected,\\r\\n                        sources=self._source_messages,\\r\\n                        snapshot=str(self.scope.snapshot.id),\\r\\n                        project=summarized,\\r\\n                    )\\r\\n                    # Also recheck after optional failure: a fallback is not safe\\r\\n                    # if an external actor changed source during the await.\\r\\n                    self.scope.check_current()\\r\\n                    if tuple(self.messages) != request.prompt.messages:\\r\\n                        msg = \\\"Original history changed during semantic compaction.\\\"\\r\\n                        raise ValueError(msg)  # noqa: TRY301 -- no stale fallback installation\\r\\n                    if selected is not outcome:\\r\\n                        self.projection_outcomes.append(selected)\\r\\n                    outcome = selected\\r\\n                if outcome.status == \\\"insufficient\\\":\\r\\n                    raise ProjectionCapacityError(outcome)  # noqa: TRY301 -- no partial active-state installation\\r\\n            except (Exception, asyncio.CancelledError) as error:\\r\\n                self.projection_error = error\\r\\n                raise\\r\\n            request = outcome.request\\r\\n            self.active_disclosures = outcome.active_sources\\r\\n            self.projection_error = None\\r\\n        elif request_bytes(request) > self.objective.prompt_bytes:\\r\\n            msg = \\\"Coding Prompt byte budget exceeded.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.requests.append(request)\\r\\n        return request\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [12688, 17325], \"name\": \"RepositoryCodingHost.prepare\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"async def apply(self, proposal: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Record expected source before effects and verify installed bytes.\\\"\\\"\\\"\\r\\n        call = self.pending_calls[0]\\r\\n\\r\\n        async def admit(\\r\\n            selected_call: ModelToolCall,\\r\\n            changes: tuple[SourceChange, ...],\\r\\n        ) -> None:\\r\\n            await self.authorize(selected_call, changes)\\r\\n            for change in changes:\\r\\n                self.custody.expect(change.address, change.after)\\r\\n\\r\\n        def selected(serialized: str) -> tuple[SourceChange, ...]:\\r\\n            if serialized != call.arguments_json:\\r\\n                msg = \\\"Edit call differs from admitted arguments.\\\"\\r\\n                raise ValueError(msg)\\r\\n            return proposal\\r\\n\\r\\n        await execute_model_tool_call(\\r\\n            call,\\r\\n            invocation=_Invocation(_EDIT, selected),\\r\\n            tool=_ChangeTool(self.scope, proposal, self.effect),\\r\\n            admit=admit,\\r\\n            runner=ToolRunner(),\\r\\n        )\\r\\n        observed = SourceScope.observe(\\r\\n            root=self.scope.root,\\r\\n            repository=Repository(self.scope.snapshot.repository_id),\\r\\n            addresses=tuple(r.address for r in self.scope.snapshot.resources),\\r\\n            maximum_resource_bytes=self.scope.maximum_resource_bytes,\\r\\n        )\\r\\n        expected = {r.address: r.content for r in self.scope.snapshot.resources}\\r\\n        expected.update({c.address: c.after for c in proposal})\\r\\n        if {r.address: r.content for r in observed.snapshot.resources} != expected:\\r\\n            msg = \\\"Installed source differs from the admitted candidate.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.scope = observed\\r\\n        self.active_disclosures = ()\\r\\n        self._index()\\r\\n        self.disclosures = []\\r\\n        for change in proposal:\\r\\n            unit = next(\\r\\n                u\\r\\n                for u in self.index.views[0].units\\r\\n                if u.resource.address == change.address\\r\\n            )\\r\\n            option = SourceRangeDisclosureOption(\\r\\n                self.objective.text,\\r\\n                unit,\\r\\n                0,\\r\\n                unit.end,\\r\\n                self.objective.disclosure_bytes,\\r\\n            )\\r\\n            # The exact after-image is already known; materialize it through Context.\\r\\n            disclosure = await ToolRunner().execute(\\r\\n                ScopedSourceTool(\\r\\n                    self.scope,\\r\\n                    maximum_bytes=self.objective.disclosure_bytes,\\r\\n                ),\\r\\n                option,\\r\\n            )\\r\\n            self.source_results.append(disclosure)\\r\\n            self.disclosures.append(option)\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [26535, 29163], \"name\": \"RepositoryCodingHost.apply\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def prepare_navigation(\\n    messages: list[PromptMessage],\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy | None,\\n) -> None:\\n    \\\"\\\"\\\"Retain one host-selected initial view, without inventing native actions.\\\"\\\"\\\"\\n    if policy is not None and len(messages) == 1:\\n        messages.append(\\n            PromptMessage(\\n                \\\"user\\\",\\n                json.dumps(task_entry(index, objective, policy), ensure_ascii=False),\\n            ),\\n        )\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [6149, 6625], \"name\": \"prepare_navigation\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def task_entry(\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Select file-first lexical candidates, not complete inventory or source.\\\"\\\"\\\"\\n    files = search_repository_source(\\n        index,\\n        query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n        mode=\\\"file\\\",\\n        maximum_results=2,\\n    )\\n    hits = list(files.hits)\\n    for hit in files.hits:\\n        hits.extend(\\n            search_repository_source(\\n                index,\\n                query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n                mode=\\\"symbol\\\",\\n                maximum_results=2,\\n                resource_addresses=(hit.unit.resource.address,),\\n            ).hits,\\n        )\\n    unique = {hit.unit.id: hit for hit in hits}\\n    selected = list(unique.values())[: policy.maximum_candidates]\\n    while True:\\n        view = navigation_feedback(\\n            tuple(h.unit for h in selected),\\n            index,\\n            offset=0,\\n            maximum_bytes=policy.maximum_bytes,\\n        )\\n        rows = cast(\\\"list[dict[str, object]]\\\", view[\\\"units\\\"])\\n        for row, hit in zip(rows, selected, strict=False):\\n            row[\\\"retrieval\\\"] = [\\n                {\\n                    \\\"view\\\": e.view,\\n                    \\\"rank\\\": e.rank,\\n                    \\\"score\\\": e.match.score,\\n                    \\\"terms\\\": [t.normalized_term for t in e.match.term_contributions][\\n                        :8\\n                    ],\\n                }\\n                for e in hit.evidence\\n            ]\\n        view.update(\\n            kind=\\\"task_candidates\\\",\\n            complete_inventory=False,\\n            partial=len(rows) < len(unique),\\n            next_offset=None,\\n            selection=\\\"objective lexical file search, then scoped symbol search\\\",\\n            query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n            query_partial=len(objective) > MAXIMUM_NAVIGATION_QUERY_CHARACTERS,\\n            instruction=(\\n                \\\"Candidates may be irrelevant. Choose read_source_unit using unit_id \\\"\\n                \\\"and snapshot_id for exact source; refine find_source query/path/mode \\\"\\n                \\\"or explicitly browse if inadequate. No source acquired.\\\"\\n            ),\\n        )\\n        if len(json.dumps(view, ensure_ascii=False).encode()) <= policy.maximum_bytes:\\n            return view\\n        if not selected:\\n            msg = \\\"Task candidate metadata cannot fit the host presentation budget.\\\"\\n            raise ValueError(msg)\\n        selected.pop()\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [3625, 6146], \"name\": \"task_entry\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def navigation_feedback(\\n    units: tuple[RepositorySourceUnit, ...],\\n    index: SourceSearchIndex,\\n    *,\\n    offset: int,\\n    maximum_bytes: int,\\n    page_size: int = 8,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Bound metadata presentation without pretending it disclosed any source.\\\"\\\"\\\"\\n    rows: list[dict[str, object]] = []\\n    result: dict[str, object] = {\\n        \\\"repository_id\\\": str(index.snapshot.repository_id),\\n        \\\"snapshot_id\\\": str(index.snapshot.id),\\n        \\\"source_acquired\\\": False,\\n        \\\"coordinates\\\": \\\"half-open Unicode offsets; one-based physical lines\\\",\\n        \\\"units\\\": rows,\\n        \\\"next_offset\\\": None,\\n        \\\"partial\\\": False,\\n    }\\n    for unit in units:\\n        row: dict[str, object] = {\\n            \\\"unit_id\\\": str(unit.id),\\n            \\\"path\\\": str(unit.resource.address),\\n            \\\"version\\\": str(unit.resource.content_identity),\\n            \\\"kind\\\": unit.kind,\\n            \\\"name\\\": unit.qualified_name,\\n            \\\"span\\\": [unit.start, unit.end],\\n            \\\"lines\\\": [unit.start_line, unit.end_line],\\n            \\\"bytes\\\": len(unit.text.encode()),\\n            \\\"file_id\\\": str(index.expand(unit).id),\\n            \\\"parent_id\\\": str(unit.parent_symbol_id) if unit.parent_symbol_id else None,\\n            \\\"symbol_fallback\\\": dict(index.views[1].fallbacks).get(\\n                unit.resource.address,\\n            ),\\n        }\\n        rows.append(row)\\n        # Reserve the bounded pagination fields before checking the next row.\\n        result[\\\"next_offset\\\"] = offset + len(rows)\\n        result[\\\"partial\\\"] = True\\n        if len(json.dumps(result, ensure_ascii=False).encode()) > maximum_bytes:\\n            rows.pop()\\n            break\\n    result[\\\"partial\\\"] = len(rows) < len(units) or len(units) == page_size\\n    result[\\\"next_offset\\\"] = offset + len(rows) if result[\\\"partial\\\"] else None\\n    if (units and not rows) or len(\\n        json.dumps(result, ensure_ascii=False).encode(),\\n    ) > maximum_bytes:\\n        msg = \\\"Source navigation metadata cannot fit its disclosure bound.\\\"\\n        raise ValueError(msg)\\n    return result\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [10999, 13043], \"name\": \"navigation_feedback\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass SourceScope:\\n    \\\"\\\"\\\"Explicit host permission for exactly one bounded observed collection.\\n\\n    Constructing this value is a host decision, not model authority. Live\\n    correspondence is rechecked separately; observations are sequential, not\\n    an atomic filesystem snapshot or a lock against external writers.\\n    \\\"\\\"\\\"\\n\\n    root: ResolvedPath\\n    snapshot: RepositorySnapshot\\n    maximum_resource_bytes: int = 131072\\n\\n    @classmethod\\n    def observe(\\n        cls,\\n        *,\\n        root: ResolvedPath,\\n        repository: Repository,\\n        addresses: tuple[RepositoryResourceAddress, ...],\\n        maximum_resource_bytes: int = 131072,\\n    ) -> SourceScope:\\n        \\\"\\\"\\\"Admit unaliased entries and reuse the existing RI observation owner.\\\"\\\"\\\"\\n        if resolve_path(root.value) != root:\\n            msg = \\\"Source root aliases are not admitted.\\\"\\n            raise ToolInputError(msg)\\n        for address in addresses:\\n            candidate = root.value / address.value\\n            for path in (candidate, *candidate.parents):\\n                if (\\n                    path != root.value\\n                    and path.is_relative_to(root.value)\\n                    and (path.is_symlink() or path.is_junction())\\n                ):\\n                    msg = \\\"Source path aliases are not admitted.\\\"\\n                    raise ToolInputError(msg)\\n        return cls(\\n            root,\\n            observe_repository_resources(\\n                repository=repository,\\n                root=root,\\n                addresses=addresses,\\n                maximum_resource_bytes=maximum_resource_bytes,\\n            ),\\n            maximum_resource_bytes,\\n        )\\n\\n    def check_current(self) -> None:\\n        \\\"\\\"\\\"Refuse a stale or foreign snapshot without replacing its identity.\\\"\\\"\\\"\\n        current = self.observe(\\n            root=self.root,\\n            repository=Repository(self.snapshot.repository_id),\\n            addresses=tuple(r.address for r in self.snapshot.resources),\\n            maximum_resource_bytes=self.maximum_resource_bytes,\\n        )\\n        if current.snapshot != self.snapshot:\\n            msg = \\\"Source snapshot is no longer current.\\\"\\n            raise ToolInputError(msg)\", \"path\": \"src/devtools/tools/source.py\", \"version\": \"f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [990, 3212], \"name\": \"SourceScope\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\r\\nclass RepositoryResourceOccurrence:\\r\\n    \\\"\\\"\\\"Retain one addressed text occurrence and its independent content identity.\\\"\\\"\\\"\\r\\n\\r\\n    address: RepositoryResourceAddress\\r\\n    content_identity: ContentIdentity\\r\\n    content: str\\r\\n    encoding: str\\r\\n    byte_size: int\", \"path\": \"src/devtools/context/repository/resource.py\", \"version\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [2547, 2843], \"name\": \"RepositoryResourceOccurrence\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass RepositorySnapshot:\\n    \\\"\\\"\\\"Represent complete state for an explicit required resource collection.\\\"\\\"\\\"\\n\\n    OBSERVATION_SEMANTICS: ClassVar[str] = \\\"explicit-required-text-resources-sha256-v1\\\"\\n\\n    id: RepositorySnapshotId\\n    repository_id: RepositoryId\\n    resources: tuple[RepositoryResourceOccurrence, ...]\\n\\n    @property\\n    def resource(self) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the sole occurrence for compatible single-resource consumers.\\\"\\\"\\\"\\n        if len(self.resources) != 1:\\n            msg = \\\"Repository snapshot does not contain exactly one resource.\\\"\\n            raise ValueError(msg)\\n        return self.resources[0]\\n\\n    def resource_at(\\n        self,\\n        address: RepositoryResourceAddress,\\n    ) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the observed occurrence at one exact requested address.\\\"\\\"\\\"\\n        for resource in self.resources:\\n            if resource.address == address:\\n                return resource\\n        msg = f\\\"Repository snapshot does not contain resource address: {address}.\\\"\\n        raise ValueError(msg)\", \"path\": \"src/devtools/context/repository/snapshot.py\", \"version\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [906, 2017], \"name\": \"RepositorySnapshot\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "Trusted supervisor handoff of historical model-authored decision from Throughput-B0035-0001. This is not a fresh response or source witness, and no coding effects occurred in that run. Independent review accepted its direction, not a patch. Exact original response follows:\nCurrent behavior: `prepare` assembles the model request using `build_request`, which includes only the objective text and optional navigation candidates (`task_candidates`). It lacks a complete inventory message. `navigation.py` explicitly marks its output as incomplete (`complete_inventory=False`). The host currently does not serialize the full scope resources into a JSON metadata block containing `repository_id`, `snapshot_id`, `source_acquired=false`, and per-resource details (address, content_identity, byte_size, editable).\n\nRequired change: Modify `repository.py` to inject a complete inventory message immediately after the objective in the first request. This requires iterating `self.scope.snapshot.resources` and mapping them to the required JSON schema, ensuring `editable` is derived from `objective.editable`. It must handle capacity checks before appending. `navigation.py` remains responsible for the optional ranked candidates but must not interfere with this new complete inventory.\n\nResponsible owner: `repository.py` (assembly) and `navigation.py` (potential refactoring if shared helpers are needed, though likely minimal).\n\nBlocker/Qualification: Capacity is a genuine constraint. The complete inventory may exceed `objective.prompt_bytes`. The implementation must refuse the request (raise `ProjectionCapacityError` or similar) rather than omitting resources. No source text is included, only metadata, which helps fit within budgets. Currentness is handled by existing `check_current` in `prepare`, but the inventory must reflect the *current* snapshot at assembly time.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "Now implement the frozen B-0035 obligation. Choose authorized source or grounded edits. Earlier exact source may be partially projected; only presented current ranges ground edits. Reacquire missing source if needed. No tests, limits or permissions may be changed.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"browse\":{\"type\":\"boolean\"},\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "payload": {
+    "model": "qwen38-local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "# B-0035: complete authorized inventory in the first coding request\n\nImplement the missing complete metadata inventory for RepositoryCodingHost. Its first model-facing request must preserve the objective as its first message and contain exactly one JSON metadata message with repository_id, snapshot_id, source_acquired=false, and resources. Every host-authorized scope resource appears exactly once with address, content_identity, UTF-8 byte_size and boolean editable. Use current authenticated scope values; never include unauthorized paths, source text or absolute host paths. Metadata never supplies an exact source/edit witness.\n\nRepeated preparation must not accumulate inventories. After an admitted source change, the next request must describe the current snapshot and content identities. Account for the complete request including all Tools and continuation; refuse insufficient capacity instead of omitting inventory resources. Preserve currentness refusal, native call/result correspondence, projection, source-grounded edit admission, fixed validation and custody. Existing task_candidates is an incomplete ranked suggestion, not this complete inventory; preserve that optional navigation behavior. Do not create another source identity, index, registry or execution loop. Preserve public signatures and existing budgets.\n\nOnly repository.py and navigation.py in src/devtools/agents/coding/ are editable. They own host lifecycle/Prompt assembly and native repository metadata presentation. Sizes: 32031 and 13044 bytes; resulting-source ceiling: 32768 per file. Choose a cohesive bounded change, not unrelated extraction. Tests/settings/docs/other files are read-only. No shell or Git authority.\n\nPublic diagnostics: experiments/local_maintenance_task_navigation/focused.py. Assertions specify requirements, not implemented behavior. Hidden acceptance is not disclosed.\n\nThe supplied exact source is host-selected Context, not model-requested reads. The supervisor separately supplies an authentic historical decision as handoff. This fresh phase authorizes the bounded implementation described above; choose additional source, edits, validation or a specific blocker. Do not claim unobserved effects.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def __init__(  # noqa: PLR0913 -- explicit scope, effects and custody collaborators\\r\\n        self,\\r\\n        objective: CodingObjective,\\r\\n        *,\\r\\n        corpus: RepositoryTextCorpusDefinition,\\r\\n        authorize: Callable[[ModelToolCall, object], Awaitable[None]],\\r\\n        apply_changes: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\\r\\n        archive: Callable[[Mapping[RepositoryResourceAddress, str | None]], None],\\r\\n        restore: Callable[[RepositoryResourceAddress, str | None], None],\\r\\n        readiness: Callable[\\r\\n            [RepositorySnapshot, tuple[SourceRangeDisclosureOption, ...]],\\r\\n            None,\\r\\n        ]\\r\\n        | None = None,\\r\\n        settings: ModelSettings = _SETTINGS,\\r\\n        projection: ProjectionPolicy | None = None,\\r\\n        summary: SummaryCompaction | None = None,\\r\\n        navigation: bool = False,\\r\\n        navigation_policy: NavigationPolicy | None = None,\\r\\n    ) -> None:\\r\\n        \\\"\\\"\\\"Bind host authority and the existing Context/Tool/Resource substrates.\\\"\\\"\\\"\\r\\n        if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:\\r\\n            msg = \\\"Coding corpus belongs to a foreign repository.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.objective, self.scope, self.corpus = objective, objective.scope, corpus\\r\\n        if projection is not None and projection.trigger_bytes > objective.prompt_bytes:\\r\\n            msg = \\\"Projection watermarks exceed the host byte ceiling.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.projection = projection\\r\\n        self.navigation = navigation\\r\\n        if navigation_policy is not None and not navigation:\\r\\n            msg = \\\"Task navigation policy requires native navigation.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.navigation_policy = navigation_policy\\r\\n        if summary is not None and projection is None:\\r\\n         \", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [8142, 9992], \"name\": \"RepositoryCodingHost.__init__\", \"source_length\": 32031, \"valid_range\": [8142, 11506], \"maximum_bytes\": 1850, \"continuation_start\": 9992, \"remaining_range\": [9992, 11506], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"d49c5483cf85ecf60cd6d3f8fd6995541de780633df66f1ec235d0deeebf979f\", \"acquired_span\": [8142, 11506], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def _index(self) -> None:\\r\\n        self.index = build_source_search_index(\\r\\n            self.scope.snapshot,\\r\\n            corpus=realize_repository_text_corpus(\\r\\n                definition=self.corpus,\\r\\n                snapshot=self.scope.snapshot,\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11514, 11789], \"name\": \"RepositoryCodingHost._index\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def build_request(self, messages: tuple[PromptMessage, ...]) -> ModelRequest:\\r\\n        \\\"\\\"\\\"Assemble all host-selected schemas before complete-input accounting.\\r\\n\\r\\n        Hosts exposing additional operations override this pure assembly seam,\\r\\n        not append schemas after preparation has checked its byte ceiling.\\r\\n        \\\"\\\"\\\"\\r\\n        return ModelRequest(\\r\\n            Prompt(\\\"\\\", \\\"messages\\\", messages),\\r\\n            settings=self.settings,\\r\\n            tools=tuple(\\r\\n                normalize_tool_descriptor(d)\\r\\n                for d in (\\r\\n                    _READ,\\r\\n                    _EDIT,\\r\\n                    _CHECK,\\r\\n                    *(\\r\\n                        (TASK_FIND if self.navigation_policy else FIND, READ_UNIT)\\r\\n                        if self.navigation\\r\\n                        else ()\\r\\n                    ),\\r\\n                )\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11797, 12680], \"name\": \"RepositoryCodingHost.build_request\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards\\r\\n        \\\"\\\"\\\"Authenticate source and atomically install a valid active projection.\\\"\\\"\\\"\\r\\n        self.progress = progress\\r\\n        self.scope.check_current()\\r\\n        prepare_navigation(\\r\\n            self.messages,\\r\\n            self.index,\\r\\n            self.objective.text,\\r\\n            self.navigation_policy,\\r\\n        )\\r\\n        request = self.build_request(tuple(self.messages))\\r\\n        if self.projection is not None:\\r\\n            policy = self.projection\\r\\n            try:\\r\\n                if any(not e.acknowledged for e in progress.effects):\\r\\n                    msg = \\\"Unacknowledged effects require reconciliation.\\\"\\r\\n                    raise ValueError(msg)  # noqa: TRY301 -- retain original preparation failure\\r\\n                protected = frozenset(self._check_feedback) | (\\r\\n                    frozenset(\\r\\n                        i\\r\\n                        for i, values in self._source_messages.items()\\r\\n                        if any(o.snapshot_id == self.scope.snapshot.id for o in values)\\r\\n                    )\\r\\n                    if self.readiness is not None\\r\\n                    else frozenset()\\r\\n                )\\r\\n                if self.compaction is not None:\\r\\n                    protected |= self.compaction.protect(request.prompt.messages)\\r\\n                outcome = project_request(\\r\\n                    request,\\r\\n                    policy=self.projection,\\r\\n                    hard_bytes=self.objective.prompt_bytes,\\r\\n                    snapshot=self.scope.snapshot,\\r\\n                    sources=self._source_messages,\\r\\n                    protected_indices=protected,\\r\\n                    previous_sources=self.active_disclosures,\\r\\n                )\\r\\n                self.projection_outcomes.append(outcome)\\r\\n                if self.compaction is not None:\\r\\n\\r\\n                    def summarized(\\r\\n                        indices: frozenset[int],\\r\\n                        note: PromptMessage,\\r\\n                    ) -> ProjectionOutcome:\\r\\n                        self.scope.check_current()\\r\\n                        if tuple(self.messages) != request.prompt.messages:\\r\\n                            msg = \\\"Original history changed during semantic compaction.\\\"\\r\\n                            raise ValueError(msg)  # noqa: TRY301 -- no stale projection\\r\\n                        return project_request(\\r\\n                            request,\\r\\n                            policy=policy,\\r\\n                            hard_bytes=self.objective.prompt_bytes,\\r\\n                            snapshot=self.scope.snapshot,\\r\\n                            sources=self._source_messages,\\r\\n                            protected_indices=protected,\\r\\n                            previous_sources=self.active_disclosures,\\r\\n                            summarized_indices=indices,\\r\\n                            summary=note,\\r\\n                        )\\r\\n\\r\\n                    selected = await self.compaction.project(\\r\\n                        request,\\r\\n                        outcome,\\r\\n                        protected=protected,\\r\\n                        sources=self._source_messages,\\r\\n                        snapshot=str(self.scope.snapshot.id),\\r\\n                        project=summarized,\\r\\n                    )\\r\\n                    # Also recheck after optional failure: a fallback is not safe\\r\\n                    # if an external actor changed source during the await.\\r\\n                    self.scope.check_current()\\r\\n                    if tuple(self.messages) != request.prompt.messages:\\r\\n                        msg = \\\"Original history changed during semantic compaction.\\\"\\r\\n                        raise ValueError(msg)  # noqa: TRY301 -- no stale fallback installation\\r\\n                    if selected is not outcome:\\r\\n                        self.projection_outcomes.append(selected)\\r\\n                    outcome = selected\\r\\n                if outcome.status == \\\"insufficient\\\":\\r\\n                    raise ProjectionCapacityError(outcome)  # noqa: TRY301 -- no partial active-state installation\\r\\n            except (Exception, asyncio.CancelledError) as error:\\r\\n                self.projection_error = error\\r\\n                raise\\r\\n            request = outcome.request\\r\\n            self.active_disclosures = outcome.active_sources\\r\\n            self.projection_error = None\\r\\n        elif request_bytes(request) > self.objective.prompt_bytes:\\r\\n            msg = \\\"Coding Prompt byte budget exceeded.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.requests.append(request)\\r\\n        return request\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [12688, 17325], \"name\": \"RepositoryCodingHost.prepare\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"async def apply(self, proposal: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Record expected source before effects and verify installed bytes.\\\"\\\"\\\"\\r\\n        call = self.pending_calls[0]\\r\\n\\r\\n        async def admit(\\r\\n            selected_call: ModelToolCall,\\r\\n            changes: tuple[SourceChange, ...],\\r\\n        ) -> None:\\r\\n            await self.authorize(selected_call, changes)\\r\\n            for change in changes:\\r\\n                self.custody.expect(change.address, change.after)\\r\\n\\r\\n        def selected(serialized: str) -> tuple[SourceChange, ...]:\\r\\n            if serialized != call.arguments_json:\\r\\n                msg = \\\"Edit call differs from admitted arguments.\\\"\\r\\n                raise ValueError(msg)\\r\\n            return proposal\\r\\n\\r\\n        await execute_model_tool_call(\\r\\n            call,\\r\\n            invocation=_Invocation(_EDIT, selected),\\r\\n            tool=_ChangeTool(self.scope, proposal, self.effect),\\r\\n            admit=admit,\\r\\n            runner=ToolRunner(),\\r\\n        )\\r\\n        observed = SourceScope.observe(\\r\\n            root=self.scope.root,\\r\\n            repository=Repository(self.scope.snapshot.repository_id),\\r\\n            addresses=tuple(r.address for r in self.scope.snapshot.resources),\\r\\n            maximum_resource_bytes=self.scope.maximum_resource_bytes,\\r\\n        )\\r\\n        expected = {r.address: r.content for r in self.scope.snapshot.resources}\\r\\n        expected.update({c.address: c.after for c in proposal})\\r\\n        if {r.address: r.content for r in observed.snapshot.resources} != expected:\\r\\n            msg = \\\"Installed source differs from the admitted candidate.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.scope = observed\\r\\n        self.active_disclosures = ()\\r\\n        self._index()\\r\\n        self.disclosures = []\\r\\n        for change in proposal:\\r\\n            unit = next(\\r\\n                u\\r\\n                for u in self.index.views[0].units\\r\\n                if u.resource.address == change.address\\r\\n            )\\r\\n            option = SourceRangeDisclosureOption(\\r\\n                self.objective.text,\\r\\n                unit,\\r\\n                0,\\r\\n                unit.end,\\r\\n                self.objective.disclosure_bytes,\\r\\n            )\\r\\n            # The exact after-image is already known; materialize it through Context.\\r\\n            disclosure = await ToolRunner().execute(\\r\\n                ScopedSourceTool(\\r\\n                    self.scope,\\r\\n                    maximum_bytes=self.objective.disclosure_bytes,\\r\\n                ),\\r\\n                option,\\r\\n            )\\r\\n            self.source_results.append(disclosure)\\r\\n            self.disclosures.append(option)\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [26535, 29163], \"name\": \"RepositoryCodingHost.apply\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def prepare_navigation(\\n    messages: list[PromptMessage],\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy | None,\\n) -> None:\\n    \\\"\\\"\\\"Retain one host-selected initial view, without inventing native actions.\\\"\\\"\\\"\\n    if policy is not None and len(messages) == 1:\\n        messages.append(\\n            PromptMessage(\\n                \\\"user\\\",\\n                json.dumps(task_entry(index, objective, policy), ensure_ascii=False),\\n            ),\\n        )\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [6149, 6625], \"name\": \"prepare_navigation\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def task_entry(\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Select file-first lexical candidates, not complete inventory or source.\\\"\\\"\\\"\\n    files = search_repository_source(\\n        index,\\n        query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n        mode=\\\"file\\\",\\n        maximum_results=2,\\n    )\\n    hits = list(files.hits)\\n    for hit in files.hits:\\n        hits.extend(\\n            search_repository_source(\\n                index,\\n                query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n                mode=\\\"symbol\\\",\\n                maximum_results=2,\\n                resource_addresses=(hit.unit.resource.address,),\\n            ).hits,\\n        )\\n    unique = {hit.unit.id: hit for hit in hits}\\n    selected = list(unique.values())[: policy.maximum_candidates]\\n    while True:\\n        view = navigation_feedback(\\n            tuple(h.unit for h in selected),\\n            index,\\n            offset=0,\\n            maximum_bytes=policy.maximum_bytes,\\n        )\\n        rows = cast(\\\"list[dict[str, object]]\\\", view[\\\"units\\\"])\\n        for row, hit in zip(rows, selected, strict=False):\\n            row[\\\"retrieval\\\"] = [\\n                {\\n                    \\\"view\\\": e.view,\\n                    \\\"rank\\\": e.rank,\\n                    \\\"score\\\": e.match.score,\\n                    \\\"terms\\\": [t.normalized_term for t in e.match.term_contributions][\\n                        :8\\n                    ],\\n                }\\n                for e in hit.evidence\\n            ]\\n        view.update(\\n            kind=\\\"task_candidates\\\",\\n            complete_inventory=False,\\n            partial=len(rows) < len(unique),\\n            next_offset=None,\\n            selection=\\\"objective lexical file search, then scoped symbol search\\\",\\n            query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n            query_partial=len(objective) > MAXIMUM_NAVIGATION_QUERY_CHARACTERS,\\n            instruction=(\\n                \\\"Candidates may be irrelevant. Choose read_source_unit using unit_id \\\"\\n                \\\"and snapshot_id for exact source; refine find_source query/path/mode \\\"\\n                \\\"or explicitly browse if inadequate. No source acquired.\\\"\\n            ),\\n        )\\n        if len(json.dumps(view, ensure_ascii=False).encode()) <= policy.maximum_bytes:\\n            return view\\n        if not selected:\\n            msg = \\\"Task candidate metadata cannot fit the host presentation budget.\\\"\\n            raise ValueError(msg)\\n        selected.pop()\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [3625, 6146], \"name\": \"task_entry\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def navigation_feedback(\\n    units: tuple[RepositorySourceUnit, ...],\\n    index: SourceSearchIndex,\\n    *,\\n    offset: int,\\n    maximum_bytes: int,\\n    page_size: int = 8,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Bound metadata presentation without pretending it disclosed any source.\\\"\\\"\\\"\\n    rows: list[dict[str, object]] = []\\n    result: dict[str, object] = {\\n        \\\"repository_id\\\": str(index.snapshot.repository_id),\\n        \\\"snapshot_id\\\": str(index.snapshot.id),\\n        \\\"source_acquired\\\": False,\\n        \\\"coordinates\\\": \\\"half-open Unicode offsets; one-based physical lines\\\",\\n        \\\"units\\\": rows,\\n        \\\"next_offset\\\": None,\\n        \\\"partial\\\": False,\\n    }\\n    for unit in units:\\n        row: dict[str, object] = {\\n            \\\"unit_id\\\": str(unit.id),\\n            \\\"path\\\": str(unit.resource.address),\\n            \\\"version\\\": str(unit.resource.content_identity),\\n            \\\"kind\\\": unit.kind,\\n            \\\"name\\\": unit.qualified_name,\\n            \\\"span\\\": [unit.start, unit.end],\\n            \\\"lines\\\": [unit.start_line, unit.end_line],\\n            \\\"bytes\\\": len(unit.text.encode()),\\n            \\\"file_id\\\": str(index.expand(unit).id),\\n            \\\"parent_id\\\": str(unit.parent_symbol_id) if unit.parent_symbol_id else None,\\n            \\\"symbol_fallback\\\": dict(index.views[1].fallbacks).get(\\n                unit.resource.address,\\n            ),\\n        }\\n        rows.append(row)\\n        # Reserve the bounded pagination fields before checking the next row.\\n        result[\\\"next_offset\\\"] = offset + len(rows)\\n        result[\\\"partial\\\"] = True\\n        if len(json.dumps(result, ensure_ascii=False).encode()) > maximum_bytes:\\n            rows.pop()\\n            break\\n    result[\\\"partial\\\"] = len(rows) < len(units) or len(units) == page_size\\n    result[\\\"next_offset\\\"] = offset + len(rows) if result[\\\"partial\\\"] else None\\n    if (units and not rows) or len(\\n        json.dumps(result, ensure_ascii=False).encode(),\\n    ) > maximum_bytes:\\n        msg = \\\"Source navigation metadata cannot fit its disclosure bound.\\\"\\n        raise ValueError(msg)\\n    return result\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [10999, 13043], \"name\": \"navigation_feedback\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass SourceScope:\\n    \\\"\\\"\\\"Explicit host permission for exactly one bounded observed collection.\\n\\n    Constructing this value is a host decision, not model authority. Live\\n    correspondence is rechecked separately; observations are sequential, not\\n    an atomic filesystem snapshot or a lock against external writers.\\n    \\\"\\\"\\\"\\n\\n    root: ResolvedPath\\n    snapshot: RepositorySnapshot\\n    maximum_resource_bytes: int = 131072\\n\\n    @classmethod\\n    def observe(\\n        cls,\\n        *,\\n        root: ResolvedPath,\\n        repository: Repository,\\n        addresses: tuple[RepositoryResourceAddress, ...],\\n        maximum_resource_bytes: int = 131072,\\n    ) -> SourceScope:\\n        \\\"\\\"\\\"Admit unaliased entries and reuse the existing RI observation owner.\\\"\\\"\\\"\\n        if resolve_path(root.value) != root:\\n            msg = \\\"Source root aliases are not admitted.\\\"\\n            raise ToolInputError(msg)\\n        for address in addresses:\\n            candidate = root.value / address.value\\n            for path in (candidate, *candidate.parents):\\n                if (\\n                    path != root.value\\n                    and path.is_relative_to(root.value)\\n                    and (path.is_symlink() or path.is_junction())\\n                ):\\n                    msg = \\\"Source path aliases are not admitted.\\\"\\n                    raise ToolInputError(msg)\\n        return cls(\\n            root,\\n            observe_repository_resources(\\n                repository=repository,\\n                root=root,\\n                addresses=addresses,\\n                maximum_resource_bytes=maximum_resource_bytes,\\n            ),\\n            maximum_resource_bytes,\\n        )\\n\\n    def check_current(self) -> None:\\n        \\\"\\\"\\\"Refuse a stale or foreign snapshot without replacing its identity.\\\"\\\"\\\"\\n        current = self.observe(\\n            root=self.root,\\n            repository=Repository(self.snapshot.repository_id),\\n            addresses=tuple(r.address for r in self.snapshot.resources),\\n            maximum_resource_bytes=self.maximum_resource_bytes,\\n        )\\n        if current.snapshot != self.snapshot:\\n            msg = \\\"Source snapshot is no longer current.\\\"\\n            raise ToolInputError(msg)\", \"path\": \"src/devtools/tools/source.py\", \"version\": \"f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [990, 3212], \"name\": \"SourceScope\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\r\\nclass RepositoryResourceOccurrence:\\r\\n    \\\"\\\"\\\"Retain one addressed text occurrence and its independent content identity.\\\"\\\"\\\"\\r\\n\\r\\n    address: RepositoryResourceAddress\\r\\n    content_identity: ContentIdentity\\r\\n    content: str\\r\\n    encoding: str\\r\\n    byte_size: int\", \"path\": \"src/devtools/context/repository/resource.py\", \"version\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [2547, 2843], \"name\": \"RepositoryResourceOccurrence\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass RepositorySnapshot:\\n    \\\"\\\"\\\"Represent complete state for an explicit required resource collection.\\\"\\\"\\\"\\n\\n    OBSERVATION_SEMANTICS: ClassVar[str] = \\\"explicit-required-text-resources-sha256-v1\\\"\\n\\n    id: RepositorySnapshotId\\n    repository_id: RepositoryId\\n    resources: tuple[RepositoryResourceOccurrence, ...]\\n\\n    @property\\n    def resource(self) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the sole occurrence for compatible single-resource consumers.\\\"\\\"\\\"\\n        if len(self.resources) != 1:\\n            msg = \\\"Repository snapshot does not contain exactly one resource.\\\"\\n            raise ValueError(msg)\\n        return self.resources[0]\\n\\n    def resource_at(\\n        self,\\n        address: RepositoryResourceAddress,\\n    ) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the observed occurrence at one exact requested address.\\\"\\\"\\\"\\n        for resource in self.resources:\\n            if resource.address == address:\\n                return resource\\n        msg = f\\\"Repository snapshot does not contain resource address: {address}.\\\"\\n        raise ValueError(msg)\", \"path\": \"src/devtools/context/repository/snapshot.py\", \"version\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [906, 2017], \"name\": \"RepositorySnapshot\"}"
+      },
+      {
+        "role": "user",
+        "content": "Trusted supervisor handoff of historical model-authored decision from Throughput-B0035-0001. This is not a fresh response or source witness, and no coding effects occurred in that run. Independent review accepted its direction, not a patch. Exact original response follows:\nCurrent behavior: `prepare` assembles the model request using `build_request`, which includes only the objective text and optional navigation candidates (`task_candidates`). It lacks a complete inventory message. `navigation.py` explicitly marks its output as incomplete (`complete_inventory=False`). The host currently does not serialize the full scope resources into a JSON metadata block containing `repository_id`, `snapshot_id`, `source_acquired=false`, and per-resource details (address, content_identity, byte_size, editable).\n\nRequired change: Modify `repository.py` to inject a complete inventory message immediately after the objective in the first request. This requires iterating `self.scope.snapshot.resources` and mapping them to the required JSON schema, ensuring `editable` is derived from `objective.editable`. It must handle capacity checks before appending. `navigation.py` remains responsible for the optional ranked candidates but must not interfere with this new complete inventory.\n\nResponsible owner: `repository.py` (assembly) and `navigation.py` (potential refactoring if shared helpers are needed, though likely minimal).\n\nBlocker/Qualification: Capacity is a genuine constraint. The complete inventory may exceed `objective.prompt_bytes`. The implementation must refuse the request (raise `ProjectionCapacityError` or similar) rather than omitting resources. No source text is included, only metadata, which helps fit within budgets. Currentness is handled by existing `check_current` in `prepare`, but the inventory must reflect the *current* snapshot at assembly time."
+      },
+      {
+        "role": "user",
+        "content": "Now implement the frozen B-0035 obligation. Choose authorized source or grounded edits. Earlier exact source may be partially projected; only presented current ranges ground edits. Reacquire missing source if needed. No tests, limits or permissions may be changed."
+      }
+    ],
+    "stream": false,
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "start": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "path",
+              "start"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "new_text": {
+                "type": "string"
+              },
+              "old_text": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "old_text",
+              "new_text"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "parameters": {
+            "maxProperties": 0,
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "find_source",
+          "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "browse": {
+                "type": "boolean"
+              },
+              "mode": {
+                "enum": [
+                  "file",
+                  "symbol",
+                  "window",
+                  "mixed"
+                ]
+              },
+              "offset": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "query": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "snapshot_id": {
+                "type": "string"
+              },
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id",
+              "snapshot_id"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    ]
+  },
+  "bytes": 32768,
+  "entered": true,
+  "measured_input_tokens": 7806
+}

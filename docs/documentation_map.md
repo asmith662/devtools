@@ -1030,3 +1030,5 @@ production implementation occurred; B-0035 remains open.
 
 [Retained B-0035 assessment](../experiments/throughput_b0035/REPORT.md): supported
 decision, then coding capacity/capture failure before edits. No production change.
+
+Joint Context reliability, 2026-10-30: [delivery and real continuation](../experiments/joint_context/REPORT.md) records protected joint source reduction, exception-safe experimental capture and a ten-read/no-edit B-0035 outcome. The [active projection contract](development/active-context-projection.md#joint-disclosure-affordability--2026-10-30) distinguishes bounded affordability from working-set usefulness.

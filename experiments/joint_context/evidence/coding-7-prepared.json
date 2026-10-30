@@ -1,0 +1,387 @@
+{
+  "at": "2026-10-30T14:49:01.315428+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "# B-0035: complete authorized inventory in the first coding request\n\nImplement the missing complete metadata inventory for RepositoryCodingHost. Its first model-facing request must preserve the objective as its first message and contain exactly one JSON metadata message with repository_id, snapshot_id, source_acquired=false, and resources. Every host-authorized scope resource appears exactly once with address, content_identity, UTF-8 byte_size and boolean editable. Use current authenticated scope values; never include unauthorized paths, source text or absolute host paths. Metadata never supplies an exact source/edit witness.\n\nRepeated preparation must not accumulate inventories. After an admitted source change, the next request must describe the current snapshot and content identities. Account for the complete request including all Tools and continuation; refuse insufficient capacity instead of omitting inventory resources. Preserve currentness refusal, native call/result correspondence, projection, source-grounded edit admission, fixed validation and custody. Existing task_candidates is an incomplete ranked suggestion, not this complete inventory; preserve that optional navigation behavior. Do not create another source identity, index, registry or execution loop. Preserve public signatures and existing budgets.\n\nOnly repository.py and navigation.py in src/devtools/agents/coding/ are editable. They own host lifecycle/Prompt assembly and native repository metadata presentation. Sizes: 32031 and 13044 bytes; resulting-source ceiling: 32768 per file. Choose a cohesive bounded change, not unrelated extraction. Tests/settings/docs/other files are read-only. No shell or Git authority.\n\nPublic diagnostics: experiments/local_maintenance_task_navigation/focused.py. Assertions specify requirements, not implemented behavior. Hidden acceptance is not disclosed.\n\nThe supplied exact source is host-selected Context, not model-requested reads. The supervisor separately supplies an authentic historical decision as handoff. This fresh phase authorizes the bounded implementation described above; choose additional source, edits, validation or a specific blocker. Do not claim unobserved effects.\n",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [8142, 8143], \"name\": \"RepositoryCodingHost.__init__\", \"source_length\": 32031, \"valid_range\": [8142, 11506], \"maximum_bytes\": 1, \"continuation_start\": 8143, \"remaining_range\": [8143, 11506], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"d49c5483cf85ecf60cd6d3f8fd6995541de780633df66f1ec235d0deeebf979f\", \"acquired_span\": [8142, 11506], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def _index(self) -> None:\\r\\n        self.index = build_source_search_index(\\r\\n            self.scope.snapshot,\\r\\n            corpus=realize_repository_text_corpus(\\r\\n                definition=self.corpus,\\r\\n                snapshot=self.scope.snapshot,\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11514, 11789], \"name\": \"RepositoryCodingHost._index\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11797, 11798], \"name\": \"RepositoryCodingHost.build_request\", \"source_length\": 32031, \"valid_range\": [11797, 12680], \"maximum_bytes\": 1, \"continuation_start\": 11798, \"remaining_range\": [11798, 12680], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"36e3fac4c5eb40983cfd09c2e5459136d7869554a940f946bef295f18425af74\", \"acquired_span\": [11797, 12680], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"a\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [12688, 12689], \"name\": \"RepositoryCodingHost.prepare\", \"source_length\": 32031, \"valid_range\": [12688, 17325], \"maximum_bytes\": 1, \"continuation_start\": 12689, \"remaining_range\": [12689, 17325], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"95a3a7e3f9a2706fae3e8e7f80889f448cb5cb812bb0d0d6e45fd7f34dd04877\", \"acquired_span\": [12688, 17325], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"a\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [26535, 26536], \"name\": \"RepositoryCodingHost.apply\", \"source_length\": 32031, \"valid_range\": [26535, 29163], \"maximum_bytes\": 1, \"continuation_start\": 26536, \"remaining_range\": [26536, 29163], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"5d60589639aba222e0a830b2ccefd8f6b1a2e7c3662e4474e1a4e448d04ce122\", \"acquired_span\": [26535, 29163], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [6149, 6150], \"name\": \"prepare_navigation\", \"source_length\": 13044, \"valid_range\": [6149, 6625], \"maximum_bytes\": 1, \"continuation_start\": 6150, \"remaining_range\": [6150, 6625], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"2237bcd18a716bfa091866cc64931c59c25e35d4afbc05c7ab8f02aa80deaea2\", \"acquired_span\": [6149, 6625], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def task_entry(\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Select file-first lexical candidates, not complete inventory or source.\\\"\\\"\\\"\\n    files = search_repository_source(\\n        index,\\n        query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n        mode=\\\"file\\\",\\n        maximum_results=2,\\n    )\\n    hits = list(files.hits)\\n    for hit in files.hits:\\n        hits.extend(\\n            search_repository_source(\\n                index,\\n                query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n                mode=\\\"symbol\\\",\\n                maximum_results=2,\\n                resource_addresses=(hit.unit.resource.address,),\\n            ).hits,\\n        )\\n    unique = {hit.unit.id: hit for hit in hits}\\n    selected = list(unique.values())[: policy.maximum_candidates]\\n    while True:\\n        view = navigation_feedback(\\n            tuple(h.unit for h in selected),\\n            index,\\n            offset=0,\\n            maximum_bytes=policy.maximum_bytes,\\n        )\\n        rows = cast(\\\"list[dict[str, object]]\\\", view[\\\"units\\\"])\\n        for row, hit in zip(rows, selected, strict=False):\\n            row[\\\"retrieval\\\"] = [\\n                {\\n                    \\\"view\\\": e.view,\\n                    \\\"rank\\\": e.rank,\\n                    \\\"score\\\": e.match.score,\\n                    \\\"terms\\\": [t.normalized_term for t in e.match.term_contributions][\\n                        :8\\n                    ],\\n                }\\n                for e in hit.evidence\\n            ]\\n        view.update(\\n            kind=\\\"task_candidates\\\",\\n            complete_inventory=False,\\n            partial=len(rows) \", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [3625, 5295], \"name\": \"task_entry\", \"source_length\": 13044, \"valid_range\": [3625, 6146], \"maximum_bytes\": 1670, \"continuation_start\": 5295, \"remaining_range\": [5295, 6146], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"ddef02f0eb333eb94baef213069f3aabcc326f13b6c610196677ac6333419aab\", \"acquired_span\": [3625, 6146], \"acquired_partial\": false}}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"def navigation_feedback(\\n    units: tuple[RepositorySourceUnit, ...],\\n    index: SourceSearchIndex,\\n    *,\\n    offset: int,\\n    maximum_bytes: int,\\n    page_size: int = 8,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Bound metadata presentation without pretending it disclosed any source.\\\"\\\"\\\"\\n    rows: list[dict[str, object]] = []\\n    result: dict[str, object] = {\\n        \\\"repository_id\\\": str(index.snapshot.repository_id),\\n        \\\"snapshot_id\\\": str(index.snapshot.id),\\n        \\\"source_acquired\\\": False,\\n        \\\"coordinates\\\": \\\"half-open Unicode offsets; one-based physical lines\\\",\\n        \\\"units\\\": rows,\\n        \\\"next_offset\\\": None,\\n        \\\"partial\\\": False,\\n    }\\n    for unit in units:\\n        row: dict[str, object] = {\\n            \\\"unit_id\\\": str(unit.id),\\n            \\\"path\\\": str(unit.resource.address),\\n            \\\"version\\\": str(unit.resource.content_identity),\\n            \\\"kind\\\": unit.kind,\\n            \\\"name\\\": unit.qualified_name,\\n            \\\"span\\\": [unit.start, unit.end],\\n            \\\"lines\\\": [unit.start_line, unit.end_line],\\n            \\\"bytes\\\": len(unit.text.encode()),\\n            \\\"file_id\\\": str(index.expand(unit).id),\\n            \\\"parent_id\\\": str(unit.parent_symbol_id) if unit.parent_symbol_id else None,\\n            \\\"symbol_fallback\\\": dict(index.views[1].fallbacks).get(\\n                unit.resource.address,\\n            ),\\n        }\\n        rows.append(row)\\n        # Reserve the bounded pagination fields before checking the next row.\\n        result[\\\"next_offset\\\"] = offset + len(rows)\\n        result[\\\"partial\\\"] = True\\n        if len(json.dumps(result, ensure_ascii=False).encode()) > maximum_bytes:\\n            rows.pop()\\n            break\\n    result[\\\"partial\\\"] = len(rows) < len(units) or len(units) == page_size\\n    result[\\\"next_offset\\\"] = offset + len(rows) if result[\\\"partial\\\"] else None\\n    if (units and not rows) or len(\\n        json.dumps(result, ensure_ascii=False).encode(),\\n    ) > maximum_bytes:\\n        msg = \\\"Source navigation metadata cannot fit its disclosure bound.\\\"\\n        raise ValueError(msg)\\n    return result\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [10999, 13043], \"name\": \"navigation_feedback\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass SourceScope:\\n    \\\"\\\"\\\"Explicit host permission for exactly one bounded observed collection.\\n\\n    Constructing this value is a host decision, not model authority. Live\\n    correspondence is rechecked separately; observations are sequential, not\\n    an atomic filesystem snapshot or a lock against external writers.\\n    \\\"\\\"\\\"\\n\\n    root: ResolvedPath\\n    snapshot: RepositorySnapshot\\n    maximum_resource_bytes: int = 131072\\n\\n    @classmethod\\n    def observe(\\n        cls,\\n        *,\\n        root: ResolvedPath,\\n        repository: Repository,\\n        addresses: tuple[RepositoryResourceAddress, ...],\\n        maximum_resource_bytes: int = 131072,\\n    ) -> SourceScope:\\n        \\\"\\\"\\\"Admit unaliased entries and reuse the existing RI observation owner.\\\"\\\"\\\"\\n        if resolve_path(root.value) != root:\\n            msg = \\\"Source root aliases are not admitted.\\\"\\n            raise ToolInputError(msg)\\n        for address in addresses:\\n            candidate = root.value / address.value\\n            for path in (candidate, *candidate.parents):\\n                if (\\n                    path != root.value\\n                    and path.is_relative_to(root.value)\\n                    and (path.is_symlink() or path.is_junction())\\n                ):\\n                    msg = \\\"Source path aliases are not admitted.\\\"\\n                    raise ToolInputError(msg)\\n        return cls(\\n            root,\\n            observe_repository_resources(\\n                repository=repository,\\n                root=root,\\n                addresses=addresses,\\n                maximum_resource_bytes=maximum_resource_bytes,\\n            ),\\n            maximum_resource_bytes,\\n        )\\n\\n    def check_current(self) -> None:\\n        \\\"\\\"\\\"Refuse a stale or foreign snapshot without replacing its identity.\\\"\\\"\\\"\\n        current = self.observe(\\n            root=self.root,\\n            repository=Repository(self.snapshot.repository_id),\\n            addresses=tuple(r.address for r in self.snapshot.resources),\\n            maximum_resource_bytes=self.maximum_resource_bytes,\\n        )\\n        if current.snapshot != self.snapshot:\\n            msg = \\\"Source snapshot is no longer current.\\\"\\n            raise ToolInputError(msg)\", \"path\": \"src/devtools/tools/source.py\", \"version\": \"f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [990, 3212], \"name\": \"SourceScope\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\r\\nclass RepositoryResourceOccurrence:\\r\\n    \\\"\\\"\\\"Retain one addressed text occurrence and its independent content identity.\\\"\\\"\\\"\\r\\n\\r\\n    address: RepositoryResourceAddress\\r\\n    content_identity: ContentIdentity\\r\\n    content: str\\r\\n    encoding: str\\r\\n    byte_size: int\", \"path\": \"src/devtools/context/repository/resource.py\", \"version\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [2547, 2843], \"name\": \"RepositoryResourceOccurrence\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass RepositorySnapshot:\\n    \\\"\\\"\\\"Represent complete state for an explicit required resource collection.\\\"\\\"\\\"\\n\\n    OBSERVATION_SEMANTICS: ClassVar[str] = \\\"explicit-required-text-resources-sha256-v1\\\"\\n\\n    id: RepositorySnapshotId\\n    repository_id: RepositoryId\\n    resources: tuple[RepositoryResourceOccurrence, ...]\\n\\n    @property\\n    def resource(self) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the sole occurrence for compatible single-resource consumers.\\\"\\\"\\\"\\n        if len(self.resources) != 1:\\n            msg = \\\"Repository snapshot does not contain exactly one resource.\\\"\\n            raise ValueError(msg)\\n        return self.resources[0]\\n\\n    def resource_at(\\n        self,\\n        address: RepositoryResourceAddress,\\n    ) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the observed occurrence at one exact requested address.\\\"\\\"\\\"\\n        for resource in self.resources:\\n            if resource.address == address:\\n                return resource\\n        msg = f\\\"Repository snapshot does not contain resource address: {address}.\\\"\\n        raise ValueError(msg)\", \"path\": \"src/devtools/context/repository/snapshot.py\", \"version\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [906, 2017], \"name\": \"RepositorySnapshot\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "Trusted supervisor handoff of historical model-authored decision from Throughput-B0035-0001. This is not a fresh response or source witness, and no coding effects occurred in that run. Independent review accepted its direction, not a patch. Exact original response follows:\nCurrent behavior: `prepare` assembles the model request using `build_request`, which includes only the objective text and optional navigation candidates (`task_candidates`). It lacks a complete inventory message. `navigation.py` explicitly marks its output as incomplete (`complete_inventory=False`). The host currently does not serialize the full scope resources into a JSON metadata block containing `repository_id`, `snapshot_id`, `source_acquired=false`, and per-resource details (address, content_identity, byte_size, editable).\n\nRequired change: Modify `repository.py` to inject a complete inventory message immediately after the objective in the first request. This requires iterating `self.scope.snapshot.resources` and mapping them to the required JSON schema, ensuring `editable` is derived from `objective.editable`. It must handle capacity checks before appending. `navigation.py` remains responsible for the optional ranked candidates but must not interfere with this new complete inventory.\n\nResponsible owner: `repository.py` (assembly) and `navigation.py` (potential refactoring if shared helpers are needed, though likely minimal).\n\nBlocker/Qualification: Capacity is a genuine constraint. The complete inventory may exceed `objective.prompt_bytes`. The implementation must refuse the request (raise `ProjectionCapacityError` or similar) rather than omitting resources. No source text is included, only metadata, which helps fit within budgets. Currentness is handled by existing `check_current` in `prepare`, but the inventory must reflect the *current* snapshot at assembly time.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "Now implement the frozen B-0035 obligation. Choose authorized source or grounded edits. Earlier exact source may be partially projected; only presented current ranges ground edits. Reacquire missing source if needed. No tests, limits or permissions may be changed.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_source",
+              "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":0,\"end\":16334}",
+              "provider_call_id": "KUVzOuQOQnHVT8NPs94ZVcG60jaVvIqn"
+            }
+          ],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "tool",
+          "content": "{\"source_length\": 32031, \"valid_range\": [0, 32031], \"maximum_bytes\": 8192, \"continuation_start\": 8192, \"remaining_range\": [8192, 32031], \"text\": \"# Copyright (c) 2026\\r\\n\\\"\\\"\\\"A neutral repository coding host, not an application-specific task schema.\\\"\\\"\\\"\\r\\n\\r\\nfrom __future__ import annotations\\r\\n\\r\\nimport asyncio\\r\\nimport json\\r\\nfrom dataclasses import dataclass, replace\\r\\nfrom typing import TYPE_CHECKING, Literal, cast\\r\\n\\r\\nfrom devtools.agents.coding.compaction.operation import SemanticCompactor\\r\\nfrom devtools.agents.coding.custody import SourceCustody\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    CodingEditError,\\r\\n    admit_source_batch,\\r\\n)\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    EditLimits as EditLimits,  # noqa: PLC0414 -- maintained import facade\\r\\n)\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    SourceChange as SourceChange,  # noqa: PLC0414 -- maintained import facade\\r\\n)\\r\\nfrom devtools.agents.coding.models import (\\r\\n    CodingCompletion,\\r\\n    CodingEffect,\\r\\n    CodingProgress,\\r\\n    CodingResult,\\r\\n)\\r\\nfrom devtools.agents.coding.navigation import (\\r\\n    FIND,\\r\\n    READ_UNIT,\\r\\n    TASK_FIND,\\r\\n    NavigationPolicy,\\r\\n    acquire_candidates,\\r\\n    navigation_request,\\r\\n    prepare_navigation,\\r\\n    task_selection,\\r\\n    unit_read_request,\\r\\n)\\r\\nfrom devtools.agents.coding.projection import (\\r\\n    ProjectionCapacityError,\\r\\n    ProjectionOutcome,\\r\\n    ProjectionPolicy,\\r\\n    project_request,\\r\\n    request_bytes,\\r\\n    source_feedback,\\r\\n)\\r\\nfrom devtools.agents.model_tools import (\\r\\n    execute_model_tool_call,\\r\\n    normalize_tool_descriptor,\\r\\n)\\r\\nfrom devtools.context import Repository, RepositoryResourceAddress\\r\\nfrom devtools.context.planning.source import SourceRangeDisclosureOption\\r\\nfrom devtools.context.repository.corpus import realize_repository_text_corpus\\r\\nfrom devtools.context.retrieval import build_source_search_index\\r\\nfrom devtools.core.paths import resolve_path\\r\\nfrom devtools.models.interaction import (\\r\\n    ModelRequest,\\r\\n    ModelResponse,\\r\\n    ModelSettings,\\r\\n    ModelToolCall,\\r\\n    Prompt,\\r\\n    PromptMessage,\\r\\n)\\r\\nfrom devtools.resources.filesystem import TextFile, write\\r\\nfrom devtools.tools import ToolDescriptor, ToolRunner\\r\\nfrom devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool\\r\\nfrom devtools.tools.source import (\\r\\n    ScopedSourceTool,\\r\\n    SourceReadRefusal,\\r\\n    SourceReadRequest,\\r\\n    SourceScope,\\r\\n    source_read_bounds,\\r\\n)\\r\\n\\r\\nif TYPE_CHECKING:\\r\\n    from collections.abc import Awaitable, Callable, Mapping\\r\\n\\r\\n    from devtools.agents.coding.compaction import SummaryCompaction\\r\\n    from devtools.context.planning.materialization import ContextDisclosure\\r\\n    from devtools.context.repository.corpus import RepositoryTextCorpusDefinition\\r\\n    from devtools.context.repository.snapshot import RepositorySnapshot\\r\\n    from devtools.core.paths import ResolvedPath\\r\\n    from devtools.tools import Tool\\r\\n\\r\\n_SETTINGS = ModelSettings()\\r\\n_READ = ToolDescriptor(\\r\\n    \\\"read_source\\\",\\r\\n    \\\"Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.\\\",\\r\\n    (\\r\\n        '{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"path\\\":{\\\"type\\\":\\\"string\\\"},'\\r\\n        '\\\"start\\\":{\\\"type\\\":\\\"integer\\\"},\\\"end\\\":{\\\"type\\\":\\\"integer\\\"}},'\\r\\n        '\\\"required\\\":[\\\"path\\\",\\\"start\\\"],\\\"additionalProperties\\\":'\\r\\n        \\\"false}\\\"\\r\\n    ),\\r\\n)\\r\\n_EDIT = ToolDescriptor(\\r\\n    \\\"replace_source\\\",\\r\\n    (\\\"Propose an exact unique observed replacement; host admission is required.\\\"),\\r\\n    (\\r\\n        '{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"path\\\":{\\\"type\\\":\\\"string\\\"},'\\r\\n        '\\\"old_text\\\":{\\\"type\\\":\\\"string\\\"},\\\"new_text\\\":{\\\"type\\\":\\\"string\\\"}},'\\r\\n        '\\\"required\\\":[\\\"path\\\",\\\"old_text\\\",\\\"new_text\\\"],'\\r\\n        '\\\"additionalProperties\\\":false}'\\r\\n    ),\\r\\n)\\r\\n_CHECK = ToolDescriptor(\\r\\n    \\\"validate_candidate\\\",\\r\\n    \\\"Request the host-fixed candidate checks.\\\",\\r\\n    '{\\\"type\\\":\\\"object\\\",\\\"maxProperties\\\":0}',\\r\\n)\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass CodingObjective:\\r\\n    \\\"\\\"\\\"One bounded existing-text repair, with explicit host scope and checks.\\r\\n\\r\\n    This concrete profile does not mandate Python, repository layout, provider,\\r\\n    task JSON, public API oracle language, evidence storage or publication.\\r\\n    \\\"\\\"\\\"\\r\\n\\r\\n    text: str\\r\\n    scope: SourceScope\\r\\n    editable: tuple[RepositoryResourceAddress, ...]\\r\\n    checks: FixedCheckPlan\\r\\n    edits: EditLimits\\r\\n    disclosure_bytes: int\\r\\n    prompt_bytes: int\\r\\n\\r\\n    def __post_init__(self) -> None:\\r\\n        \\\"\\\"\\\"Require a finite editable subset of the authenticated host frame.\\\"\\\"\\\"\\r\\n        addresses = {r.address for r in self.scope.snapshot.resources}\\r\\n        if (\\r\\n            not self.text.strip()\\r\\n            or not isinstance(self.editable, tuple)\\r\\n            or not self.editable\\r\\n            or len(set(self.editable)) != len(self.editable)\\r\\n            or not set(self.editable) <= addresses\\r\\n            or min(self.disclosure_bytes, self.prompt_bytes) <= 0\\r\\n            or self.checks.root != self.scope.root\\r\\n            or (\\r\\n                self.checks.source_scope is not None\\r\\n                and self.checks.source_scope != self.scope\\r\\n            )\\r\\n        ):\\r\\n            msg = \\\"Coding objective has an invalid or foreign source/check scope.\\\"\\r\\n            raise ValueError(msg)\\r\\n\\r\\n\\r\\ndef write_source_changes(root: ResolvedPath, changes: tuple[SourceChange, ...]) -> None:\\r\\n    \\\"\\\"\\\"Host-selectable effect using existing atomic Resource writes, not a transaction.\\r\\n\\r\\n    Call only with an admitted batch. Earlier per-file effects may survive a\\r\\n    later failure. Checkout serialization and permission belong to the host.\\r\\n    \\\"\\\"\\\"\\r\\n    for change in changes:\\r\\n        write(\\r\\n            TextFile(\\r\\n                resolve_path(change.address.value, base_directory=root.value),\\r\\n                change.after,\\r\\n            ),\\r\\n        )\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass _Invocation[Input]:\\r\\n    \\\"\\\"\\\"One explicitly selected native operation, not a Tool registry.\\\"\\\"\\\"\\r\\n\\r\\n    descriptor: ToolDescriptor\\r\\n    decode: Callable[[str], Input]\\r\\n\\r\\n    def materialize(self, serialized_arguments: str) -> Input:\\r\\n        \\\"\\\"\\\"Delegate effect-free materialization to the selected host operation.\\\"\\\"\\\"\\r\\n        return self.decode(serialized_arguments)\\r\\n\\r\\n\\r\\nclass _ChangeTool:\\r\\n    \\\"\\\"\\\"Execute an already admitted source batch once through a host effect owner.\\\"\\\"\\\"\\r\\n\\r\\n    name = \\\"apply_admitted_source\\\"\\r\\n    description = \\\"Apply one host-admitted exact source batch.\\\"\\r\\n\\r\\n    def __init__(\\r\\n        self,\\r\\n        scope: SourceScope,\\r\\n        changes: tuple[SourceChange, ...],\\r\\n        effect: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\\r\\n    ) -> None:\\r\\n        self.scope, self.changes, self.effect = scope, changes, effect\\r\\n\\r\\n    def validate(self, arguments: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Recheck admitted identities before invoking the host, never grant scope.\\\"\\\"\\\"\\r\\n        if arguments is not self.changes:\\r\\n            msg = \\\"Source batch is not the admitted proposal.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.scope.check_current()\\r\\n\\r\\n    async def execute(self, arguments: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Invoke once; any exception can follow a completed external effect.\\\"\\\"\\\"\\r\\n        await self.effect(arguments)\\r\\n\\r\\n\\r\\ndef _arguments(\\r\\n    serialized: str,\\r\\n    fields: set[str],\\r\\n    *,\\r\\n    optional: frozenset[str] = frozenset(),\\r\\n) -> dict[str, object]:\\r\\n    \\\"\\\"\\\"Validate this host's small native argument object, not arbitrary JSON Schema.\\\"\\\"\\\"\\r\\n\\r\\n    def pairs(items: list[tuple[str, object]]) -> dict[str, object]:\\r\\n        value = dict(items)\\r\\n        if len(value) != len(items):\\r\\n            msg = \\\"Duplicate coding argument member.\\\"\\r\\n            raise ValueError(msg)\\r\\n        return value\\r\\n\\r\\n    value = json.loads(serialized, object_pairs_hook=pairs)\\r\\n    if not isinstance(value, dict) or not fields <= set(value) <= fields | optional:\\r\\n        msg = \\\"Coding arguments do not match the admitted operation.\\\"\\r\\n        raise ValueError(msg)\\r\\n    return value\\r\\n\\r\\n\\r\\nclass RepositoryCodingHost:\\r\\n    \\\"\\\"\\\"Operational source/edit/check host for the shared bounded coding process.\\r\\n\\r\\n    Native continuation is transient, not a restart checkpoint. Required host\\r\\n    callbacks supply effect authority, application/archive and restoration;\\r\\n    readiness may reuse existing Localization without mandating one frame form.\\r\\n    \\\"\\\"\\\"\\r\\n\\r\\n    native_feedback = True\\r\\n\\r\\n    def __init__(  # noqa: PLR0913 -- explicit scope, \", \"path\": \"src/devtools/agents/coding/repository.py\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"span\": [0, 8192], \"partial\": true}",
+          "tool_calls": [],
+          "tool_call_id": "KUVzOuQOQnHVT8NPs94ZVcG60jaVvIqn",
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"browse\":{\"type\":\"boolean\"},\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "payload": {
+    "model": "qwen38-local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "# B-0035: complete authorized inventory in the first coding request\n\nImplement the missing complete metadata inventory for RepositoryCodingHost. Its first model-facing request must preserve the objective as its first message and contain exactly one JSON metadata message with repository_id, snapshot_id, source_acquired=false, and resources. Every host-authorized scope resource appears exactly once with address, content_identity, UTF-8 byte_size and boolean editable. Use current authenticated scope values; never include unauthorized paths, source text or absolute host paths. Metadata never supplies an exact source/edit witness.\n\nRepeated preparation must not accumulate inventories. After an admitted source change, the next request must describe the current snapshot and content identities. Account for the complete request including all Tools and continuation; refuse insufficient capacity instead of omitting inventory resources. Preserve currentness refusal, native call/result correspondence, projection, source-grounded edit admission, fixed validation and custody. Existing task_candidates is an incomplete ranked suggestion, not this complete inventory; preserve that optional navigation behavior. Do not create another source identity, index, registry or execution loop. Preserve public signatures and existing budgets.\n\nOnly repository.py and navigation.py in src/devtools/agents/coding/ are editable. They own host lifecycle/Prompt assembly and native repository metadata presentation. Sizes: 32031 and 13044 bytes; resulting-source ceiling: 32768 per file. Choose a cohesive bounded change, not unrelated extraction. Tests/settings/docs/other files are read-only. No shell or Git authority.\n\nPublic diagnostics: experiments/local_maintenance_task_navigation/focused.py. Assertions specify requirements, not implemented behavior. Hidden acceptance is not disclosed.\n\nThe supplied exact source is host-selected Context, not model-requested reads. The supervisor separately supplies an authentic historical decision as handoff. This fresh phase authorizes the bounded implementation described above; choose additional source, edits, validation or a specific blocker. Do not claim unobserved effects.\n"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [8142, 8143], \"name\": \"RepositoryCodingHost.__init__\", \"source_length\": 32031, \"valid_range\": [8142, 11506], \"maximum_bytes\": 1, \"continuation_start\": 8143, \"remaining_range\": [8143, 11506], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"d49c5483cf85ecf60cd6d3f8fd6995541de780633df66f1ec235d0deeebf979f\", \"acquired_span\": [8142, 11506], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def _index(self) -> None:\\r\\n        self.index = build_source_search_index(\\r\\n            self.scope.snapshot,\\r\\n            corpus=realize_repository_text_corpus(\\r\\n                definition=self.corpus,\\r\\n                snapshot=self.scope.snapshot,\\r\\n            ),\\r\\n        )\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11514, 11789], \"name\": \"RepositoryCodingHost._index\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [11797, 11798], \"name\": \"RepositoryCodingHost.build_request\", \"source_length\": 32031, \"valid_range\": [11797, 12680], \"maximum_bytes\": 1, \"continuation_start\": 11798, \"remaining_range\": [11798, 12680], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"36e3fac4c5eb40983cfd09c2e5459136d7869554a940f946bef295f18425af74\", \"acquired_span\": [11797, 12680], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"a\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [12688, 12689], \"name\": \"RepositoryCodingHost.prepare\", \"source_length\": 32031, \"valid_range\": [12688, 17325], \"maximum_bytes\": 1, \"continuation_start\": 12689, \"remaining_range\": [12689, 17325], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"95a3a7e3f9a2706fae3e8e7f80889f448cb5cb812bb0d0d6e45fd7f34dd04877\", \"acquired_span\": [12688, 17325], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"a\", \"path\": \"src/devtools/agents/coding/repository.py\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [26535, 26536], \"name\": \"RepositoryCodingHost.apply\", \"source_length\": 32031, \"valid_range\": [26535, 29163], \"maximum_bytes\": 1, \"continuation_start\": 26536, \"remaining_range\": [26536, 29163], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"5d60589639aba222e0a830b2ccefd8f6b1a2e7c3662e4474e1a4e448d04ce122\", \"acquired_span\": [26535, 29163], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"d\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [6149, 6150], \"name\": \"prepare_navigation\", \"source_length\": 13044, \"valid_range\": [6149, 6625], \"maximum_bytes\": 1, \"continuation_start\": 6150, \"remaining_range\": [6150, 6625], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"2237bcd18a716bfa091866cc64931c59c25e35d4afbc05c7ab8f02aa80deaea2\", \"acquired_span\": [6149, 6625], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def task_entry(\\n    index: SourceSearchIndex,\\n    objective: str,\\n    policy: NavigationPolicy,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Select file-first lexical candidates, not complete inventory or source.\\\"\\\"\\\"\\n    files = search_repository_source(\\n        index,\\n        query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n        mode=\\\"file\\\",\\n        maximum_results=2,\\n    )\\n    hits = list(files.hits)\\n    for hit in files.hits:\\n        hits.extend(\\n            search_repository_source(\\n                index,\\n                query=objective[:MAXIMUM_NAVIGATION_QUERY_CHARACTERS],\\n                mode=\\\"symbol\\\",\\n                maximum_results=2,\\n                resource_addresses=(hit.unit.resource.address,),\\n            ).hits,\\n        )\\n    unique = {hit.unit.id: hit for hit in hits}\\n    selected = list(unique.values())[: policy.maximum_candidates]\\n    while True:\\n        view = navigation_feedback(\\n            tuple(h.unit for h in selected),\\n            index,\\n            offset=0,\\n            maximum_bytes=policy.maximum_bytes,\\n        )\\n        rows = cast(\\\"list[dict[str, object]]\\\", view[\\\"units\\\"])\\n        for row, hit in zip(rows, selected, strict=False):\\n            row[\\\"retrieval\\\"] = [\\n                {\\n                    \\\"view\\\": e.view,\\n                    \\\"rank\\\": e.rank,\\n                    \\\"score\\\": e.match.score,\\n                    \\\"terms\\\": [t.normalized_term for t in e.match.term_contributions][\\n                        :8\\n                    ],\\n                }\\n                for e in hit.evidence\\n            ]\\n        view.update(\\n            kind=\\\"task_candidates\\\",\\n            complete_inventory=False,\\n            partial=len(rows) \", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [3625, 5295], \"name\": \"task_entry\", \"source_length\": 13044, \"valid_range\": [3625, 6146], \"maximum_bytes\": 1670, \"continuation_start\": 5295, \"remaining_range\": [5295, 6146], \"partial\": true, \"presentation\": {\"reason\": \"active-context-capacity\", \"original_message_sha256\": \"ddef02f0eb333eb94baef213069f3aabcc326f13b6c610196677ac6333419aab\", \"acquired_span\": [3625, 6146], \"acquired_partial\": false}}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"def navigation_feedback(\\n    units: tuple[RepositorySourceUnit, ...],\\n    index: SourceSearchIndex,\\n    *,\\n    offset: int,\\n    maximum_bytes: int,\\n    page_size: int = 8,\\n) -> dict[str, object]:\\n    \\\"\\\"\\\"Bound metadata presentation without pretending it disclosed any source.\\\"\\\"\\\"\\n    rows: list[dict[str, object]] = []\\n    result: dict[str, object] = {\\n        \\\"repository_id\\\": str(index.snapshot.repository_id),\\n        \\\"snapshot_id\\\": str(index.snapshot.id),\\n        \\\"source_acquired\\\": False,\\n        \\\"coordinates\\\": \\\"half-open Unicode offsets; one-based physical lines\\\",\\n        \\\"units\\\": rows,\\n        \\\"next_offset\\\": None,\\n        \\\"partial\\\": False,\\n    }\\n    for unit in units:\\n        row: dict[str, object] = {\\n            \\\"unit_id\\\": str(unit.id),\\n            \\\"path\\\": str(unit.resource.address),\\n            \\\"version\\\": str(unit.resource.content_identity),\\n            \\\"kind\\\": unit.kind,\\n            \\\"name\\\": unit.qualified_name,\\n            \\\"span\\\": [unit.start, unit.end],\\n            \\\"lines\\\": [unit.start_line, unit.end_line],\\n            \\\"bytes\\\": len(unit.text.encode()),\\n            \\\"file_id\\\": str(index.expand(unit).id),\\n            \\\"parent_id\\\": str(unit.parent_symbol_id) if unit.parent_symbol_id else None,\\n            \\\"symbol_fallback\\\": dict(index.views[1].fallbacks).get(\\n                unit.resource.address,\\n            ),\\n        }\\n        rows.append(row)\\n        # Reserve the bounded pagination fields before checking the next row.\\n        result[\\\"next_offset\\\"] = offset + len(rows)\\n        result[\\\"partial\\\"] = True\\n        if len(json.dumps(result, ensure_ascii=False).encode()) > maximum_bytes:\\n            rows.pop()\\n            break\\n    result[\\\"partial\\\"] = len(rows) < len(units) or len(units) == page_size\\n    result[\\\"next_offset\\\"] = offset + len(rows) if result[\\\"partial\\\"] else None\\n    if (units and not rows) or len(\\n        json.dumps(result, ensure_ascii=False).encode(),\\n    ) > maximum_bytes:\\n        msg = \\\"Source navigation metadata cannot fit its disclosure bound.\\\"\\n        raise ValueError(msg)\\n    return result\", \"path\": \"src/devtools/agents/coding/navigation.py\", \"version\": \"cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [10999, 13043], \"name\": \"navigation_feedback\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass SourceScope:\\n    \\\"\\\"\\\"Explicit host permission for exactly one bounded observed collection.\\n\\n    Constructing this value is a host decision, not model authority. Live\\n    correspondence is rechecked separately; observations are sequential, not\\n    an atomic filesystem snapshot or a lock against external writers.\\n    \\\"\\\"\\\"\\n\\n    root: ResolvedPath\\n    snapshot: RepositorySnapshot\\n    maximum_resource_bytes: int = 131072\\n\\n    @classmethod\\n    def observe(\\n        cls,\\n        *,\\n        root: ResolvedPath,\\n        repository: Repository,\\n        addresses: tuple[RepositoryResourceAddress, ...],\\n        maximum_resource_bytes: int = 131072,\\n    ) -> SourceScope:\\n        \\\"\\\"\\\"Admit unaliased entries and reuse the existing RI observation owner.\\\"\\\"\\\"\\n        if resolve_path(root.value) != root:\\n            msg = \\\"Source root aliases are not admitted.\\\"\\n            raise ToolInputError(msg)\\n        for address in addresses:\\n            candidate = root.value / address.value\\n            for path in (candidate, *candidate.parents):\\n                if (\\n                    path != root.value\\n                    and path.is_relative_to(root.value)\\n                    and (path.is_symlink() or path.is_junction())\\n                ):\\n                    msg = \\\"Source path aliases are not admitted.\\\"\\n                    raise ToolInputError(msg)\\n        return cls(\\n            root,\\n            observe_repository_resources(\\n                repository=repository,\\n                root=root,\\n                addresses=addresses,\\n                maximum_resource_bytes=maximum_resource_bytes,\\n            ),\\n            maximum_resource_bytes,\\n        )\\n\\n    def check_current(self) -> None:\\n        \\\"\\\"\\\"Refuse a stale or foreign snapshot without replacing its identity.\\\"\\\"\\\"\\n        current = self.observe(\\n            root=self.root,\\n            repository=Repository(self.snapshot.repository_id),\\n            addresses=tuple(r.address for r in self.snapshot.resources),\\n            maximum_resource_bytes=self.maximum_resource_bytes,\\n        )\\n        if current.snapshot != self.snapshot:\\n            msg = \\\"Source snapshot is no longer current.\\\"\\n            raise ToolInputError(msg)\", \"path\": \"src/devtools/tools/source.py\", \"version\": \"f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [990, 3212], \"name\": \"SourceScope\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\r\\nclass RepositoryResourceOccurrence:\\r\\n    \\\"\\\"\\\"Retain one addressed text occurrence and its independent content identity.\\\"\\\"\\\"\\r\\n\\r\\n    address: RepositoryResourceAddress\\r\\n    content_identity: ContentIdentity\\r\\n    content: str\\r\\n    encoding: str\\r\\n    byte_size: int\", \"path\": \"src/devtools/context/repository/resource.py\", \"version\": \"5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [2547, 2843], \"name\": \"RepositoryResourceOccurrence\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"text\": \"@dataclass(frozen=True, slots=True)\\nclass RepositorySnapshot:\\n    \\\"\\\"\\\"Represent complete state for an explicit required resource collection.\\\"\\\"\\\"\\n\\n    OBSERVATION_SEMANTICS: ClassVar[str] = \\\"explicit-required-text-resources-sha256-v1\\\"\\n\\n    id: RepositorySnapshotId\\n    repository_id: RepositoryId\\n    resources: tuple[RepositoryResourceOccurrence, ...]\\n\\n    @property\\n    def resource(self) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the sole occurrence for compatible single-resource consumers.\\\"\\\"\\\"\\n        if len(self.resources) != 1:\\n            msg = \\\"Repository snapshot does not contain exactly one resource.\\\"\\n            raise ValueError(msg)\\n        return self.resources[0]\\n\\n    def resource_at(\\n        self,\\n        address: RepositoryResourceAddress,\\n    ) -> RepositoryResourceOccurrence:\\n        \\\"\\\"\\\"Return the observed occurrence at one exact requested address.\\\"\\\"\\\"\\n        for resource in self.resources:\\n            if resource.address == address:\\n                return resource\\n        msg = f\\\"Repository snapshot does not contain resource address: {address}.\\\"\\n        raise ValueError(msg)\", \"path\": \"src/devtools/context/repository/snapshot.py\", \"version\": \"492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"span\": [906, 2017], \"name\": \"RepositorySnapshot\"}"
+      },
+      {
+        "role": "user",
+        "content": "Trusted supervisor handoff of historical model-authored decision from Throughput-B0035-0001. This is not a fresh response or source witness, and no coding effects occurred in that run. Independent review accepted its direction, not a patch. Exact original response follows:\nCurrent behavior: `prepare` assembles the model request using `build_request`, which includes only the objective text and optional navigation candidates (`task_candidates`). It lacks a complete inventory message. `navigation.py` explicitly marks its output as incomplete (`complete_inventory=False`). The host currently does not serialize the full scope resources into a JSON metadata block containing `repository_id`, `snapshot_id`, `source_acquired=false`, and per-resource details (address, content_identity, byte_size, editable).\n\nRequired change: Modify `repository.py` to inject a complete inventory message immediately after the objective in the first request. This requires iterating `self.scope.snapshot.resources` and mapping them to the required JSON schema, ensuring `editable` is derived from `objective.editable`. It must handle capacity checks before appending. `navigation.py` remains responsible for the optional ranked candidates but must not interfere with this new complete inventory.\n\nResponsible owner: `repository.py` (assembly) and `navigation.py` (potential refactoring if shared helpers are needed, though likely minimal).\n\nBlocker/Qualification: Capacity is a genuine constraint. The complete inventory may exceed `objective.prompt_bytes`. The implementation must refuse the request (raise `ProjectionCapacityError` or similar) rather than omitting resources. No source text is included, only metadata, which helps fit within budgets. Currentness is handled by existing `check_current` in `prepare`, but the inventory must reflect the *current* snapshot at assembly time."
+      },
+      {
+        "role": "user",
+        "content": "Now implement the frozen B-0035 obligation. Choose authorized source or grounded edits. Earlier exact source may be partially projected; only presented current ranges ground edits. Reacquire missing source if needed. No tests, limits or permissions may be changed."
+      },
+      {
+        "role": "assistant",
+        "content": "",
+        "tool_calls": [
+          {
+            "id": "KUVzOuQOQnHVT8NPs94ZVcG60jaVvIqn",
+            "type": "function",
+            "function": {
+              "name": "read_source",
+              "arguments": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":0,\"end\":16334}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "content": "{\"source_length\": 32031, \"valid_range\": [0, 32031], \"maximum_bytes\": 8192, \"continuation_start\": 8192, \"remaining_range\": [8192, 32031], \"text\": \"# Copyright (c) 2026\\r\\n\\\"\\\"\\\"A neutral repository coding host, not an application-specific task schema.\\\"\\\"\\\"\\r\\n\\r\\nfrom __future__ import annotations\\r\\n\\r\\nimport asyncio\\r\\nimport json\\r\\nfrom dataclasses import dataclass, replace\\r\\nfrom typing import TYPE_CHECKING, Literal, cast\\r\\n\\r\\nfrom devtools.agents.coding.compaction.operation import SemanticCompactor\\r\\nfrom devtools.agents.coding.custody import SourceCustody\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    CodingEditError,\\r\\n    admit_source_batch,\\r\\n)\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    EditLimits as EditLimits,  # noqa: PLC0414 -- maintained import facade\\r\\n)\\r\\nfrom devtools.agents.coding.edits import (\\r\\n    SourceChange as SourceChange,  # noqa: PLC0414 -- maintained import facade\\r\\n)\\r\\nfrom devtools.agents.coding.models import (\\r\\n    CodingCompletion,\\r\\n    CodingEffect,\\r\\n    CodingProgress,\\r\\n    CodingResult,\\r\\n)\\r\\nfrom devtools.agents.coding.navigation import (\\r\\n    FIND,\\r\\n    READ_UNIT,\\r\\n    TASK_FIND,\\r\\n    NavigationPolicy,\\r\\n    acquire_candidates,\\r\\n    navigation_request,\\r\\n    prepare_navigation,\\r\\n    task_selection,\\r\\n    unit_read_request,\\r\\n)\\r\\nfrom devtools.agents.coding.projection import (\\r\\n    ProjectionCapacityError,\\r\\n    ProjectionOutcome,\\r\\n    ProjectionPolicy,\\r\\n    project_request,\\r\\n    request_bytes,\\r\\n    source_feedback,\\r\\n)\\r\\nfrom devtools.agents.model_tools import (\\r\\n    execute_model_tool_call,\\r\\n    normalize_tool_descriptor,\\r\\n)\\r\\nfrom devtools.context import Repository, RepositoryResourceAddress\\r\\nfrom devtools.context.planning.source import SourceRangeDisclosureOption\\r\\nfrom devtools.context.repository.corpus import realize_repository_text_corpus\\r\\nfrom devtools.context.retrieval import build_source_search_index\\r\\nfrom devtools.core.paths import resolve_path\\r\\nfrom devtools.models.interaction import (\\r\\n    ModelRequest,\\r\\n    ModelResponse,\\r\\n    ModelSettings,\\r\\n    ModelToolCall,\\r\\n    Prompt,\\r\\n    PromptMessage,\\r\\n)\\r\\nfrom devtools.resources.filesystem import TextFile, write\\r\\nfrom devtools.tools import ToolDescriptor, ToolRunner\\r\\nfrom devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool\\r\\nfrom devtools.tools.source import (\\r\\n    ScopedSourceTool,\\r\\n    SourceReadRefusal,\\r\\n    SourceReadRequest,\\r\\n    SourceScope,\\r\\n    source_read_bounds,\\r\\n)\\r\\n\\r\\nif TYPE_CHECKING:\\r\\n    from collections.abc import Awaitable, Callable, Mapping\\r\\n\\r\\n    from devtools.agents.coding.compaction import SummaryCompaction\\r\\n    from devtools.context.planning.materialization import ContextDisclosure\\r\\n    from devtools.context.repository.corpus import RepositoryTextCorpusDefinition\\r\\n    from devtools.context.repository.snapshot import RepositorySnapshot\\r\\n    from devtools.core.paths import ResolvedPath\\r\\n    from devtools.tools import Tool\\r\\n\\r\\n_SETTINGS = ModelSettings()\\r\\n_READ = ToolDescriptor(\\r\\n    \\\"read_source\\\",\\r\\n    \\\"Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.\\\",\\r\\n    (\\r\\n        '{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"path\\\":{\\\"type\\\":\\\"string\\\"},'\\r\\n        '\\\"start\\\":{\\\"type\\\":\\\"integer\\\"},\\\"end\\\":{\\\"type\\\":\\\"integer\\\"}},'\\r\\n        '\\\"required\\\":[\\\"path\\\",\\\"start\\\"],\\\"additionalProperties\\\":'\\r\\n        \\\"false}\\\"\\r\\n    ),\\r\\n)\\r\\n_EDIT = ToolDescriptor(\\r\\n    \\\"replace_source\\\",\\r\\n    (\\\"Propose an exact unique observed replacement; host admission is required.\\\"),\\r\\n    (\\r\\n        '{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"path\\\":{\\\"type\\\":\\\"string\\\"},'\\r\\n        '\\\"old_text\\\":{\\\"type\\\":\\\"string\\\"},\\\"new_text\\\":{\\\"type\\\":\\\"string\\\"}},'\\r\\n        '\\\"required\\\":[\\\"path\\\",\\\"old_text\\\",\\\"new_text\\\"],'\\r\\n        '\\\"additionalProperties\\\":false}'\\r\\n    ),\\r\\n)\\r\\n_CHECK = ToolDescriptor(\\r\\n    \\\"validate_candidate\\\",\\r\\n    \\\"Request the host-fixed candidate checks.\\\",\\r\\n    '{\\\"type\\\":\\\"object\\\",\\\"maxProperties\\\":0}',\\r\\n)\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass CodingObjective:\\r\\n    \\\"\\\"\\\"One bounded existing-text repair, with explicit host scope and checks.\\r\\n\\r\\n    This concrete profile does not mandate Python, repository layout, provider,\\r\\n    task JSON, public API oracle language, evidence storage or publication.\\r\\n    \\\"\\\"\\\"\\r\\n\\r\\n    text: str\\r\\n    scope: SourceScope\\r\\n    editable: tuple[RepositoryResourceAddress, ...]\\r\\n    checks: FixedCheckPlan\\r\\n    edits: EditLimits\\r\\n    disclosure_bytes: int\\r\\n    prompt_bytes: int\\r\\n\\r\\n    def __post_init__(self) -> None:\\r\\n        \\\"\\\"\\\"Require a finite editable subset of the authenticated host frame.\\\"\\\"\\\"\\r\\n        addresses = {r.address for r in self.scope.snapshot.resources}\\r\\n        if (\\r\\n            not self.text.strip()\\r\\n            or not isinstance(self.editable, tuple)\\r\\n            or not self.editable\\r\\n            or len(set(self.editable)) != len(self.editable)\\r\\n            or not set(self.editable) <= addresses\\r\\n            or min(self.disclosure_bytes, self.prompt_bytes) <= 0\\r\\n            or self.checks.root != self.scope.root\\r\\n            or (\\r\\n                self.checks.source_scope is not None\\r\\n                and self.checks.source_scope != self.scope\\r\\n            )\\r\\n        ):\\r\\n            msg = \\\"Coding objective has an invalid or foreign source/check scope.\\\"\\r\\n            raise ValueError(msg)\\r\\n\\r\\n\\r\\ndef write_source_changes(root: ResolvedPath, changes: tuple[SourceChange, ...]) -> None:\\r\\n    \\\"\\\"\\\"Host-selectable effect using existing atomic Resource writes, not a transaction.\\r\\n\\r\\n    Call only with an admitted batch. Earlier per-file effects may survive a\\r\\n    later failure. Checkout serialization and permission belong to the host.\\r\\n    \\\"\\\"\\\"\\r\\n    for change in changes:\\r\\n        write(\\r\\n            TextFile(\\r\\n                resolve_path(change.address.value, base_directory=root.value),\\r\\n                change.after,\\r\\n            ),\\r\\n        )\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass _Invocation[Input]:\\r\\n    \\\"\\\"\\\"One explicitly selected native operation, not a Tool registry.\\\"\\\"\\\"\\r\\n\\r\\n    descriptor: ToolDescriptor\\r\\n    decode: Callable[[str], Input]\\r\\n\\r\\n    def materialize(self, serialized_arguments: str) -> Input:\\r\\n        \\\"\\\"\\\"Delegate effect-free materialization to the selected host operation.\\\"\\\"\\\"\\r\\n        return self.decode(serialized_arguments)\\r\\n\\r\\n\\r\\nclass _ChangeTool:\\r\\n    \\\"\\\"\\\"Execute an already admitted source batch once through a host effect owner.\\\"\\\"\\\"\\r\\n\\r\\n    name = \\\"apply_admitted_source\\\"\\r\\n    description = \\\"Apply one host-admitted exact source batch.\\\"\\r\\n\\r\\n    def __init__(\\r\\n        self,\\r\\n        scope: SourceScope,\\r\\n        changes: tuple[SourceChange, ...],\\r\\n        effect: Callable[[tuple[SourceChange, ...]], Awaitable[None]],\\r\\n    ) -> None:\\r\\n        self.scope, self.changes, self.effect = scope, changes, effect\\r\\n\\r\\n    def validate(self, arguments: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Recheck admitted identities before invoking the host, never grant scope.\\\"\\\"\\\"\\r\\n        if arguments is not self.changes:\\r\\n            msg = \\\"Source batch is not the admitted proposal.\\\"\\r\\n            raise ValueError(msg)\\r\\n        self.scope.check_current()\\r\\n\\r\\n    async def execute(self, arguments: tuple[SourceChange, ...]) -> None:\\r\\n        \\\"\\\"\\\"Invoke once; any exception can follow a completed external effect.\\\"\\\"\\\"\\r\\n        await self.effect(arguments)\\r\\n\\r\\n\\r\\ndef _arguments(\\r\\n    serialized: str,\\r\\n    fields: set[str],\\r\\n    *,\\r\\n    optional: frozenset[str] = frozenset(),\\r\\n) -> dict[str, object]:\\r\\n    \\\"\\\"\\\"Validate this host's small native argument object, not arbitrary JSON Schema.\\\"\\\"\\\"\\r\\n\\r\\n    def pairs(items: list[tuple[str, object]]) -> dict[str, object]:\\r\\n        value = dict(items)\\r\\n        if len(value) != len(items):\\r\\n            msg = \\\"Duplicate coding argument member.\\\"\\r\\n            raise ValueError(msg)\\r\\n        return value\\r\\n\\r\\n    value = json.loads(serialized, object_pairs_hook=pairs)\\r\\n    if not isinstance(value, dict) or not fields <= set(value) <= fields | optional:\\r\\n        msg = \\\"Coding arguments do not match the admitted operation.\\\"\\r\\n        raise ValueError(msg)\\r\\n    return value\\r\\n\\r\\n\\r\\nclass RepositoryCodingHost:\\r\\n    \\\"\\\"\\\"Operational source/edit/check host for the shared bounded coding process.\\r\\n\\r\\n    Native continuation is transient, not a restart checkpoint. Required host\\r\\n    callbacks supply effect authority, application/archive and restoration;\\r\\n    readiness may reuse existing Localization without mandating one frame form.\\r\\n    \\\"\\\"\\\"\\r\\n\\r\\n    native_feedback = True\\r\\n\\r\\n    def __init__(  # noqa: PLR0913 -- explicit scope, \", \"path\": \"src/devtools/agents/coding/repository.py\", \"snapshot\": \"c798932b850b176f1a4c0e83d76df63f63d8a1a8966b3ddd8874f2691cd871be\", \"version\": \"2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a\", \"span\": [0, 8192], \"partial\": true}",
+        "tool_call_id": "KUVzOuQOQnHVT8NPs94ZVcG60jaVvIqn"
+      }
+    ],
+    "stream": false,
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "start": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "path",
+              "start"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "new_text": {
+                "type": "string"
+              },
+              "old_text": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "old_text",
+              "new_text"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "parameters": {
+            "maxProperties": 0,
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "find_source",
+          "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "browse": {
+                "type": "boolean"
+              },
+              "mode": {
+                "enum": [
+                  "file",
+                  "symbol",
+                  "window",
+                  "mixed"
+                ]
+              },
+              "offset": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "query": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "snapshot_id": {
+                "type": "string"
+              },
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id",
+              "snapshot_id"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    ]
+  },
+  "bytes": 32768,
+  "entered": false
+}

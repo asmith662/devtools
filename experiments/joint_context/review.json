@@ -1,0 +1,549 @@
+{
+  "at": "2026-10-30T14:51:47.694428+00:00",
+  "outcome": "model_limit; no candidate",
+  "framework_projection": "All ten active requests fit; no capacity failure. Multiple host reductions and native omission occurred.",
+  "capture": "Full known terminal result, native history and custody retained; no recorder failure",
+  "calls": [
+    {
+      "call": 1,
+      "native_id": "V1qcqDRw5QA8YCmLLBaaZLyjBaQNb0DB",
+      "request_bytes": 32768,
+      "input_tokens": 7806,
+      "output_tokens": 58,
+      "seconds": 14.00833,
+      "request_range": [
+        0,
+        8142
+      ],
+      "actual_span": [
+        0,
+        8142
+      ],
+      "partial": false,
+      "disclosed_bytes": 8142,
+      "newly_acquired_codepoints": 8142,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 34028,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1
+      ],
+      "omitted_exchanges": [],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 2,
+      "native_id": "hDirtkUOC1dvmHj8OKxMFeXzamfSucUH",
+      "request_bytes": 32768,
+      "input_tokens": 8747,
+      "output_tokens": 62,
+      "seconds": 15.277868,
+      "request_range": [
+        8142,
+        17325
+      ],
+      "actual_span": [
+        8142,
+        16334
+      ],
+      "partial": true,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 8192,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 44440,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "omitted_exchanges": [],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 3,
+      "native_id": "ZpviOeCSAANHGyDUC5b1Wgk60v2OZMIT",
+      "request_bytes": 32766,
+      "input_tokens": 8360,
+      "output_tokens": 58,
+      "seconds": 13.930771,
+      "request_range": [
+        0,
+        8142
+      ],
+      "actual_span": [
+        0,
+        8142
+      ],
+      "partial": false,
+      "disclosed_bytes": 8142,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 54283,
+      "projection_resulting_bytes": 32766,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 4,
+      "native_id": "d0l58t2ut3YLQI1HX89xMfDOwoxNT3gl",
+      "request_bytes": 32768,
+      "input_tokens": 8747,
+      "output_tokens": 62,
+      "seconds": 7.361109,
+      "request_range": [
+        8142,
+        17325
+      ],
+      "actual_span": [
+        8142,
+        16334
+      ],
+      "partial": true,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 64695,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 5,
+      "native_id": "6h8dWcOL66Ux1NTNmpJmYTMCqMK0p7iN",
+      "request_bytes": 32766,
+      "input_tokens": 8360,
+      "output_tokens": 63,
+      "seconds": 3.396748,
+      "request_range": [
+        16334,
+        29163
+      ],
+      "actual_span": [
+        16334,
+        24526
+      ],
+      "partial": true,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 8192,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 74538,
+      "projection_resulting_bytes": 32766,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 6,
+      "native_id": "KUVzOuQOQnHVT8NPs94ZVcG60jaVvIqn",
+      "request_bytes": 32768,
+      "input_tokens": 8456,
+      "output_tokens": 59,
+      "seconds": 11.052614,
+      "request_range": [
+        0,
+        16334
+      ],
+      "actual_span": [
+        0,
+        8192
+      ],
+      "partial": true,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 84685,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "source-capacity"
+        ],
+        [
+          20,
+          22,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 7,
+      "native_id": "9aD5CfhVM3NvpqqDEvaJ2sSRbUuLFF3S",
+      "request_bytes": 32768,
+      "input_tokens": 8754,
+      "output_tokens": 62,
+      "seconds": 11.33854,
+      "request_range": [
+        8192,
+        16334
+      ],
+      "actual_span": [
+        8192,
+        16334
+      ],
+      "partial": false,
+      "disclosed_bytes": 8142,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 95147,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "duplicate-current-source"
+        ],
+        [
+          20,
+          22,
+          "source-capacity"
+        ],
+        [
+          22,
+          24,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 8,
+      "native_id": "1jUBeEW1f5qC2bUxBYk6OwT1BFzwgEqu",
+      "request_bytes": 32768,
+      "input_tokens": 8273,
+      "output_tokens": 58,
+      "seconds": 18.97136,
+      "request_range": [
+        0,
+        8192
+      ],
+      "actual_span": [
+        0,
+        8192
+      ],
+      "partial": false,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 104941,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "duplicate-current-source"
+        ],
+        [
+          20,
+          22,
+          "source-capacity"
+        ],
+        [
+          22,
+          24,
+          "source-capacity"
+        ],
+        [
+          24,
+          26,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 9,
+      "native_id": "gd7xBXVvlAWbVIjC0edAaIf9tMbYUPCB",
+      "request_bytes": 32768,
+      "input_tokens": 8753,
+      "output_tokens": 62,
+      "seconds": 8.889123,
+      "request_range": [
+        8142,
+        17325
+      ],
+      "actual_span": [
+        8142,
+        16334
+      ],
+      "partial": true,
+      "disclosed_bytes": 8192,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 115403,
+      "projection_resulting_bytes": 32768,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "duplicate-current-source"
+        ],
+        [
+          24,
+          26,
+          "duplicate-current-source"
+        ],
+        [
+          20,
+          22,
+          "source-capacity"
+        ],
+        [
+          22,
+          24,
+          "source-capacity"
+        ],
+        [
+          26,
+          28,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": true
+    },
+    {
+      "call": 10,
+      "native_id": "d7w1rKEuf0CsqI594NAdheXJolxl9pCo",
+      "request_bytes": 32766,
+      "input_tokens": 8360,
+      "output_tokens": 58,
+      "seconds": 3.351422,
+      "request_range": [
+        0,
+        8142
+      ],
+      "actual_span": [
+        0,
+        8142
+      ],
+      "partial": false,
+      "disclosed_bytes": 8142,
+      "newly_acquired_codepoints": 0,
+      "requested_range_fully_active_before": false,
+      "actual_disclosed_range_fully_active_before": false,
+      "projection_original_bytes": 125246,
+      "projection_resulting_bytes": 32766,
+      "shortened_indices": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "omitted_exchanges": [
+        [
+          14,
+          16,
+          "duplicate-current-source"
+        ],
+        [
+          16,
+          18,
+          "duplicate-current-source"
+        ],
+        [
+          18,
+          20,
+          "duplicate-current-source"
+        ],
+        [
+          20,
+          22,
+          "duplicate-current-source"
+        ],
+        [
+          24,
+          26,
+          "duplicate-current-source"
+        ],
+        [
+          26,
+          28,
+          "duplicate-current-source"
+        ],
+        [
+          22,
+          24,
+          "source-capacity"
+        ],
+        [
+          28,
+          30,
+          "source-capacity"
+        ]
+      ],
+      "feedback_consumed_by_later_model": false
+    }
+  ],
+  "totals": {
+    "model_calls": 10,
+    "input_tokens": 84616,
+    "output_tokens": 602,
+    "model_seconds": 107.577885,
+    "auxiliary_calls": 0,
+    "model_requested_reads": 10,
+    "acknowledged_reads": 10,
+    "disclosed_source_bytes": 81720,
+    "unique_new_read_codepoints": 24526,
+    "source_feedback_bytes_consumed": 73578,
+    "proposals": 0,
+    "applications": 0,
+    "checks": 0,
+    "repairs": 0,
+    "unique_new_read_utf8_bytes": 24526,
+    "repeated_acquisition_bytes": 57194,
+    "historically_repeated_reads": 7,
+    "checkout_phase_seconds": 110.979383
+  },
+  "independent_acceptance": "No changed candidate to grade; three extra positive predicates unexercised",
+  "candidate_unchanged": true,
+  "B0035": "open",
+  "worker_code_integrated": false,
+  "limitations": [
+    "One sample; no inferred private reasoning or causal attribution from ordering.",
+    "Last read is retained but not consumed by a subsequent model request.",
+    "Historical decision is genuine prior evidence, not a fresh response.",
+    "No failed patch, failed test or missing effect acknowledgment in this new attempt.",
+    "Greedy source reduction is safe but does not optimize semantic working-set continuity."
+  ],
+  "next": "Before another full maintenance trial, use a bounded supervisor-decomposed implementation handoff with a small coherent active edit/contract working set through existing host selection. Repeated broad acquisition under eviction persists; no new retrieval engine or automatic budget increase is justified.",
+  "interpretation": "Seven requests disclosed no new source relative to historical acquisitions, but none of the requested/disclosed ranges was wholly active before that request. Reacquisition was source-authority legitimate; this correlation does not establish model intent or that eviction alone caused rereads. Joint affordability succeeded; economical working-set continuity and investigation-to-edit transition remain unestablished."
+}

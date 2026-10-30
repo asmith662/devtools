@@ -1,0 +1,571 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\recoveryadmin\Workspace\tools\devtools
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collected 3908 items
+
+tests\agents\coding\compaction\test_adaptive.py ....................     [  0%]
+tests\agents\coding\compaction\test_semantic.py ........................ [  1%]
+...............................................                          [  2%]
+tests\agents\coding\compaction\test_structured_output.py ............... [  2%]
+....                                                                     [  2%]
+tests\agents\coding\test_admission_cohesion.py ......                    [  2%]
+tests\agents\coding\test_custody.py ..........................           [  3%]
+tests\agents\coding\test_guarded.py .................................... [  4%]
+..                                                                       [  4%]
+tests\agents\coding\test_independent.py ................................ [  5%]
+....                                                                     [  5%]
+tests\agents\coding\test_joint_projection.py .....                       [  5%]
+tests\agents\coding\test_navigation.py .........                         [  5%]
+tests\agents\coding\test_navigation_history.py ....                      [  5%]
+tests\agents\coding\test_projection.py ................................. [  6%]
+                                                                         [  6%]
+tests\agents\coding\test_projection_history.py ..                        [  6%]
+tests\agents\coding\test_read_recovery.py ...........                    [  7%]
+tests\agents\coding\test_repair_feedback.py ..                           [  7%]
+tests\agents\coding\test_repository.py .....................             [  7%]
+tests\agents\coding\test_source_status.py .........                      [  7%]
+tests\agents\coding\test_task_navigation.py ......................       [  8%]
+tests\agents\coding\test_task_navigation_history.py .                    [  8%]
+tests\agents\coding\test_transition_history.py .                         [  8%]
+tests\agents\conversation\history\test_history.py ..........             [  8%]
+tests\agents\conversation\message\test_message.py ...............        [  9%]
+tests\agents\conversation\test_live.py s                                 [  9%]
+tests\agents\conversation\test_session.py .....................          [  9%]
+tests\agents\conversation\test_session_id.py ...                         [  9%]
+tests\agents\integrations\codex\test_agent.py .......................... [ 10%]
+.......                                                                  [ 10%]
+tests\agents\integrations\codex\test_commands.py ....................... [ 11%]
+..................                                                       [ 11%]
+tests\agents\integrations\codex\test_live.py s                           [ 11%]
+tests\agents\integrations\codex\test_parsing.py ...............          [ 12%]
+tests\agents\integrations\codex\test_usage.py ..............             [ 12%]
+tests\agents\test_model_tool_host.py .............                       [ 12%]
+tests\agents\test_model_tools.py ..............                          [ 13%]
+tests\agents\test_repository_procedure.py ..                             [ 13%]
+tests\agents\test_source_check_host.py ............                      [ 13%]
+tests\apps\operator_dashboard\test_native_history.py .........           [ 13%]
+tests\apps\operator_dashboard\test_projection.py ...                     [ 13%]
+tests\apps\operator_dashboard\test_server.py ..........                  [ 14%]
+tests\apps\qwen\obligations\test_cli.py ..                               [ 14%]
+tests\apps\qwen\obligations\test_frame.py .......................        [ 14%]
+tests\apps\qwen\obligations\test_lifecycle.py ..................         [ 15%]
+tests\apps\qwen\obligations\test_native.py ..........                    [ 15%]
+tests\apps\qwen\test_application_scope.py ......                         [ 15%]
+tests\apps\qwen\test_change_checks.py .................................. [ 16%]
+.......                                                                  [ 16%]
+tests\apps\qwen\test_check_bundle.py ................................... [ 17%]
+....                                                                     [ 17%]
+tests\apps\qwen\test_coding_agent.py ...                                 [ 17%]
+tests\apps\qwen\test_coding_loop.py .................................... [ 18%]
+.....................                                                    [ 19%]
+tests\apps\qwen\test_context_tools.py .................................. [ 20%]
+...................                                                      [ 20%]
+tests\apps\qwen\test_development_task.py ............................... [ 21%]
+..............................................                           [ 22%]
+tests\apps\qwen\test_edit_diagnostics.py ..........................      [ 23%]
+tests\apps\qwen\test_edits.py ........................                   [ 23%]
+tests\apps\qwen\test_environment.py ....................                 [ 24%]
+tests\apps\qwen\test_grounding.py .......................                [ 24%]
+tests\apps\qwen\test_live_change_checks.py .....                         [ 25%]
+tests\apps\qwen\test_navigation.py ............                          [ 25%]
+tests\apps\qwen\test_new_file_feedback.py ..                             [ 25%]
+tests\apps\qwen\test_observed_edits.py ................................. [ 26%]
+..                                                                       [ 26%]
+tests\apps\qwen\test_portable_mechanics.py ......                        [ 26%]
+tests\apps\qwen\test_repair_feedback.py ............                     [ 26%]
+tests\apps\qwen\test_task_selection.py ..................                [ 27%]
+tests\context\localization\association\test_hypothesis.py .............. [ 27%]
+............                                                             [ 27%]
+tests\context\localization\generation\test_branching.py ................ [ 28%]
+...........                                                              [ 28%]
+tests\context\localization\generation\test_generation.py .........       [ 28%]
+tests\context\localization\generation\test_imports.py .................. [ 29%]
+............................                                             [ 30%]
+tests\context\localization\generation\test_references.py ............... [ 30%]
+.............................                                            [ 31%]
+tests\context\localization\grounding\test_grounding.py ...............   [ 31%]
+tests\context\localization\resolution\test_resolution.py .........       [ 31%]
+tests\context\localization\roles\test_configuration.py ..........        [ 32%]
+tests\context\localization\roles\test_dependency_groups.py ............. [ 32%]
+....                                                                     [ 32%]
+tests\context\localization\roles\test_evidence.py ...                    [ 32%]
+tests\context\localization\roles\test_inputs.py ......                   [ 32%]
+tests\context\localization\routing\test_routing.py .........             [ 32%]
+tests\context\localization\test_kernel.py .............................. [ 33%]
+                                                                         [ 33%]
+tests\context\localization\test_lexical.py ...........                   [ 33%]
+tests\context\planning\test_map_source.py .......................        [ 34%]
+tests\context\planning\test_plan.py .......                              [ 34%]
+tests\context\planning\test_repository_map.py ..................         [ 35%]
+tests\context\planning\test_source_range.py ..........                   [ 35%]
+tests\context\python\classes\test_bases.py ...........................   [ 36%]
+tests\context\python\classes\test_declarations.py ......                 [ 36%]
+tests\context\python\function\test_candidates.py ......                  [ 36%]
+tests\context\python\function\test_containment.py ....                   [ 36%]
+tests\context\python\function\test_cross_resource_pipeline.py ...        [ 36%]
+tests\context\python\function\test_declaration_aggregation.py .....      [ 36%]
+tests\context\python\function\test_declarations.py ...........           [ 37%]
+tests\context\python\function\test_disclosure.py ...                     [ 37%]
+tests\context\python\function\test_materialization.py .................. [ 37%]
+................................................                         [ 38%]
+tests\context\python\function\test_materialization_integrity.py ........ [ 38%]
+...........                                                              [ 39%]
+tests\context\python\function\test_qualified_reference.py ...........    [ 39%]
+tests\context\python\function\test_rendering.py ...                      [ 39%]
+tests\context\python\function\test_request_assembly.py ...               [ 39%]
+tests\context\python\function\test_resource_selection.py ....            [ 39%]
+tests\context\python\function\test_retrieval.py ....                     [ 39%]
+tests\context\python\imports\test_declarations.py ...                    [ 39%]
+tests\context\python\imports\test_members.py ........................... [ 40%]
+...........................                                              [ 41%]
+tests\context\python\imports\test_relations.py .....                     [ 41%]
+tests\context\python\imports\test_resolution.py ......                   [ 41%]
+tests\context\python\modules\test_interpretation.py ......               [ 41%]
+tests\context\python\modules\test_membership.py .......                  [ 41%]
+tests\context\python\modules\test_selection.py .................         [ 42%]
+tests\context\python\project_configuration\test_configuration.py ....... [ 42%]
+..........................................                               [ 43%]
+tests\context\python\project_configuration\test_dependency_groups.py ... [ 43%]
+......................                                                   [ 44%]
+tests\context\python\project_configuration\test_obstructions.py ........ [ 44%]
+................................................                         [ 45%]
+tests\context\python\project_configuration\test_settings.py ............ [ 46%]
+.........                                                                [ 46%]
+tests\context\python\references\declarations\test_analysis.py .......... [ 46%]
+..........................................................               [ 48%]
+tests\context\python\references\declarations\test_bindings.py .....      [ 48%]
+tests\context\python\test_mirrored_paths.py .....                        [ 48%]
+tests\context\python\test_source_candidacy.py ....                       [ 48%]
+tests\context\repository\test_changes.py .......                         [ 48%]
+tests\context\repository\test_corpus.py .............                    [ 48%]
+tests\context\repository\test_discovery.py ................              [ 49%]
+tests\context\repository\test_document.py .......                        [ 49%]
+tests\context\repository\test_intrinsic_paths.py ..                      [ 49%]
+tests\context\repository\test_observation.py ........................... [ 50%]
+...                                                                      [ 50%]
+tests\context\retrieval\graph\test_ranking.py ............               [ 50%]
+tests\context\retrieval\graph\test_typed.py .....                        [ 50%]
+tests\context\retrieval\lexical\test_analysis.py ......                  [ 50%]
+tests\context\retrieval\lexical\test_bm25.py ...........                 [ 51%]
+tests\context\retrieval\lexical\test_evaluation.py .......               [ 51%]
+tests\context\retrieval\lexical\test_filename.py ....                    [ 51%]
+tests\context\retrieval\lexical\test_index.py .......                    [ 51%]
+tests\context\retrieval\lexical\test_statistics.py ....                  [ 51%]
+tests\context\retrieval\repository_map\test_ranking.py ......            [ 51%]
+tests\context\retrieval\source\test_physical_lines.py .................. [ 52%]
+...............................................................          [ 53%]
+tests\context\retrieval\source\test_scope.py ................            [ 54%]
+tests\context\retrieval\source\test_search.py .............              [ 54%]
+tests\context\retrieval\test_composition.py ......                       [ 54%]
+tests\context\retrieval\test_structural.py .....                         [ 54%]
+tests\core\conversion\test_conversion.py ........                        [ 55%]
+tests\core\identity\test_models.py ....                                  [ 55%]
+tests\core\identity\test_uuid_invariant.py ..............                [ 55%]
+tests\core\paths\test_errors.py .                                        [ 55%]
+tests\core\paths\test_resolution.py ....................                 [ 56%]
+tests\core\paths\test_resolved_path.py ......                            [ 56%]
+tests\core\regex\test_models.py ...                                      [ 56%]
+tests\core\regex\test_search.py ....                                     [ 56%]
+tests\core\regex\test_splitting.py ..........                            [ 56%]
+tests\core\system\test_bsd.py ..........                                 [ 57%]
+tests\core\system\test_detection.py .....                                [ 57%]
+tests\core\system\test_models.py .....                                   [ 57%]
+tests\core\time\test_models.py ......................................... [ 58%]
+........................................                                 [ 59%]
+tests\core\time\test_parsing.py ...................                      [ 59%]
+tests\core\time\test_timing.py ...                                       [ 59%]
+tests\evaluation\test_coding_capture.py ..                               [ 59%]
+tests\evaluation\test_coverage.py .....                                  [ 60%]
+tests\evaluation\test_preflight.py .......                               [ 60%]
+tests\execution\test_interaction_attempt.py ............................ [ 61%]
+..                                                                       [ 61%]
+tests\execution\test_runtime.py ..................                       [ 61%]
+tests\models\benchmarks\test_models.py .............                     [ 61%]
+tests\models\benchmarks\test_runner.py ................................. [ 62%]
+                                                                         [ 62%]
+tests\models\benchmarks\test_storage.py .........................        [ 63%]
+tests\models\interaction\providers\test_llama_cpp.py ................... [ 63%]
+........................................................................ [ 65%]
+.............................................                            [ 66%]
+tests\models\interaction\test_models.py ................................ [ 67%]
+.......................                                                  [ 68%]
+tests\models\interaction\test_prompt.py ........................         [ 68%]
+tests\models\interaction\test_protocols.py ..                            [ 68%]
+tests\models\interaction\test_tools.py ............................      [ 69%]
+tests\models\serving\test_huggingface.py ............................    [ 70%]
+tests\models\serving\test_llama_cpp.py ................................. [ 71%]
+....                                                                     [ 71%]
+tests\models\serving\test_vllm.py ...................................... [ 72%]
+............................................                             [ 73%]
+tests\observability\commands\test_inspection.py ........................ [ 73%]
+.                                                                        [ 74%]
+tests\observability\evidence\test_inspection.py ...                      [ 74%]
+tests\observability\evidence\test_invocation.py ........                 [ 74%]
+tests\observability\evidence\test_model_interaction.py ................. [ 74%]
+........                                                                 [ 74%]
+tests\observability\evidence\test_protocols.py .                         [ 74%]
+tests\observability\evidence\test_terminal.py .                          [ 74%]
+tests\observability\usage\test_sources.py .............................. [ 75%]
+.............                                                            [ 76%]
+tests\observability\usage\test_usage.py ..............................   [ 76%]
+tests\persistence\test_json.py ......................                    [ 77%]
+tests\persistence\test_sqlite.py ................................        [ 78%]
+tests\resources\commands\test_composition.py ..                          [ 78%]
+tests\resources\commands\test_decoded_output.py ....                     [ 78%]
+tests\resources\commands\test_environment.py ...............             [ 78%]
+tests\resources\commands\test_errors.py .                                [ 78%]
+tests\resources\commands\test_events.py .                                [ 78%]
+tests\resources\commands\test_execution.py ............                  [ 79%]
+tests\resources\commands\test_handle.py ..................               [ 79%]
+tests\resources\commands\test_models.py ....................             [ 80%]
+tests\resources\commands\test_output_policy.py ......................... [ 80%]
+...................................                                      [ 81%]
+tests\resources\commands\test_stdin.py .................                 [ 82%]
+tests\resources\commands\test_success_exit_codes.py .................... [ 82%]
+........                                                                 [ 82%]
+tests\resources\filesystem\codecs\test_csv.py .......................... [ 83%]
+........                                                                 [ 83%]
+tests\resources\filesystem\codecs\test_json.py ......................... [ 84%]
+.......                                                                  [ 84%]
+tests\resources\filesystem\codecs\test_markdown.py ......                [ 84%]
+tests\resources\filesystem\codecs\test_text.py ........                  [ 84%]
+tests\resources\filesystem\models\csv\test_dialect.py .....              [ 84%]
+tests\resources\filesystem\models\csv\test_file.py .......               [ 85%]
+tests\resources\filesystem\models\csv\test_row.py ...                    [ 85%]
+tests\resources\filesystem\models\markdown\test_file.py ...............  [ 85%]
+tests\resources\filesystem\models\markdown\test_heading.py .........     [ 85%]
+tests\resources\filesystem\models\markdown\test_section.py ....          [ 85%]
+tests\resources\filesystem\test_binary_io.py ......                      [ 86%]
+tests\resources\filesystem\test_bounded_read.py .........                [ 86%]
+tests\resources\filesystem\test_json_conversion.py .........             [ 86%]
+tests\resources\filesystem\test_json_models.py .......................   [ 87%]
+tests\resources\filesystem\test_models.py ....                           [ 87%]
+tests\resources\filesystem\test_reading.py .................             [ 87%]
+tests\resources\filesystem\test_resolution.py .......                    [ 87%]
+tests\resources\filesystem\test_structured_compatibility.py ........     [ 88%]
+tests\resources\filesystem\test_writing.py ............................. [ 88%]
+                                                                         [ 88%]
+tests\scripts\backlog\test_checkout.py ................................. [ 89%]
+.                                                                        [ 89%]
+tests\scripts\backlog\test_delegation.py ........................        [ 90%]
+tests\scripts\backlog\test_intake.py ..................................  [ 91%]
+tests\scripts\backlog\test_integration.py .............................. [ 91%]
+...                                                                      [ 91%]
+tests\scripts\backlog\test_integration_validation.py ...                 [ 92%]
+tests\scripts\backlog\test_local_closeout.py ...............             [ 92%]
+tests\scripts\backlog\test_shared_validation.py .                        [ 92%]
+tests\scripts\backlog\test_work.py ...................                   [ 92%]
+tests\scripts\qwen\test_coding_worker.py ................                [ 93%]
+tests\scripts\qwen\test_llama_cpp_profile.py .                           [ 93%]
+tests\scripts\qwen\test_llama_cpp_service.py ..........................  [ 94%]
+tests\scripts\qwen\test_patch_proposal_worker_acceptance.py ............ [ 94%]
+.                                                                        [ 94%]
+tests\scripts\qwen\test_python_function_context_acceptance.py ....       [ 94%]
+tests\scripts\qwen\test_two_action_read_only_acceptance.py ......        [ 94%]
+tests\scripts\qwen\test_two_read_acceptance.py .............             [ 94%]
+tests\scripts\test_command_capabilities.py ..............                [ 95%]
+tests\scripts\test_retrieval_bm25_baseline.py ...                        [ 95%]
+tests\scripts\test_usage.py .                                            [ 95%]
+tests\scripts\test_validate_development.py ..                            [ 95%]
+tests\scripts\test_validate_layout.py ..                                 [ 95%]
+tests\scripts\test_vllm_benchmark_driver.py .........                    [ 95%]
+tests\tools\repository\test_git.py ...............................       [ 96%]
+tests\tools\repository\test_host.py ...                                  [ 96%]
+tests\tools\repository\test_validation.py ..........................     [ 97%]
+tests\tools\test_checks.py ....................                          [ 97%]
+tests\tools\test_command.py .....                                        [ 97%]
+tests\tools\test_execution.py .....                                      [ 98%]
+tests\tools\test_filesystem.py ...........................               [ 98%]
+tests\tools\test_runtime_integration.py ....                             [ 98%]
+tests\tools\test_source.py ............                                  [ 99%]
+tests\tools\test_source_navigation.py .................                  [ 99%]
+tests\tools\test_source_reads.py ...............                         [100%]
+
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.14.3-final-0 _______________
+
+Name                                                                      Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------------------------------------------
+src\devtools\__init__.py                                                      0      0      0      0   100%
+src\devtools\agents\__init__.py                                               0      0      0      0   100%
+src\devtools\agents\coding\__init__.py                                        3      0      0      0   100%
+src\devtools\agents\coding\compaction\__init__.py                             3      0      0      0   100%
+src\devtools\agents\coding\compaction\adaptive.py                            27      0     12      0   100%
+src\devtools\agents\coding\compaction\format.py                              53      0     18      0   100%
+src\devtools\agents\coding\compaction\models.py                              54      0      4      0   100%
+src\devtools\agents\coding\compaction\operation.py                          150      0     50      0   100%
+src\devtools\agents\coding\custody.py                                        43      0     14      0   100%
+src\devtools\agents\coding\edits.py                                          86      0     36      0   100%
+src\devtools\agents\coding\models.py                                         60      0      4      0   100%
+src\devtools\agents\coding\navigation.py                                     92      0     26      0   100%
+src\devtools\agents\coding\process.py                                        99      0     30      0   100%
+src\devtools\agents\coding\projection.py                                    183      0     70      0   100%
+src\devtools\agents\coding\repository.py                                    300      0     78      0   100%
+src\devtools\agents\conversation\__init__.py                                  5      0      0      0   100%
+src\devtools\agents\conversation\conversation.py                             63      0      4      0   100%
+src\devtools\agents\conversation\history.py                                  18      0      2      0   100%
+src\devtools\agents\conversation\message.py                                  33      0      0      0   100%
+src\devtools\agents\integrations\__init__.py                                  0      0      0      0   100%
+src\devtools\agents\integrations\codex\__init__.py                            4      0      0      0   100%
+src\devtools\agents\integrations\codex\agent.py                              58      0     14      0   100%
+src\devtools\agents\integrations\codex\commands.py                          113      0     42      0   100%
+src\devtools\agents\integrations\codex\errors.py                             10      0      0      0   100%
+src\devtools\agents\integrations\codex\models.py                             15      0      0      0   100%
+src\devtools\agents\integrations\codex\parsing.py                            86      0     32      0   100%
+src\devtools\agents\integrations\codex\sessions.py                          153      0     62      0   100%
+src\devtools\agents\integrations\codex\usage.py                              55      0     22      0   100%
+src\devtools\agents\model_tools.py                                           21      0      4      0   100%
+src\devtools\context\__init__.py                                              6      0      0      0   100%
+src\devtools\context\localization\__init__.py                                 7      0      0      0   100%
+src\devtools\context\localization\assessment.py                              72      0     12      0   100%
+src\devtools\context\localization\association\__init__.py                     5      0      0      0   100%
+src\devtools\context\localization\association\hypothesis.py                 171      0     62      0   100%
+src\devtools\context\localization\association\imports.py                    100      0     36      0   100%
+src\devtools\context\localization\association\references.py                  86      0     28      0   100%
+src\devtools\context\localization\association\structural.py                  57      0     20      0   100%
+src\devtools\context\localization\generation\__init__.py                      3      0      0      0   100%
+src\devtools\context\localization\generation\contract.py                    207      0     40      0   100%
+src\devtools\context\localization\generation\generate.py                    156      0     68      0   100%
+src\devtools\context\localization\generation\imports.py                      19      0      8      0   100%
+src\devtools\context\localization\generation\references.py                   17      0      8      0   100%
+src\devtools\context\localization\grounding\__init__.py                       4      0      0      0   100%
+src\devtools\context\localization\grounding\contract.py                      95      0     20      0   100%
+src\devtools\context\localization\grounding\resolve.py                       97      0     30      0   100%
+src\devtools\context\localization\grounding\view.py                          57      0     12      0   100%
+src\devtools\context\localization\identity.py                                56      0     12      0   100%
+src\devtools\context\localization\lexical.py                                 59      0     12      0   100%
+src\devtools\context\localization\obligation.py                              57      0     16      0   100%
+src\devtools\context\localization\readiness.py                              135      0     42      0   100%
+src\devtools\context\localization\resolution\__init__.py                      4      0      0      0   100%
+src\devtools\context\localization\resolution\contract.py                     98      0     28      0   100%
+src\devtools\context\localization\resolution\promotion.py                    27      0      4      0   100%
+src\devtools\context\localization\resolution\view.py                         73      0     16      0   100%
+src\devtools\context\localization\roles\__init__.py                           3      0      0      0   100%
+src\devtools\context\localization\roles\configuration.py                     83      0     46      0   100%
+src\devtools\context\localization\roles\derivation.py                        51      0     20      0   100%
+src\devtools\context\localization\roles\inputs.py                            54      0     20      0   100%
+src\devtools\context\localization\roles\models.py                            91      0      2      0   100%
+src\devtools\context\localization\routing\__init__.py                         3      0      0      0   100%
+src\devtools\context\localization\routing\derive.py                          89      0     36      0   100%
+src\devtools\context\localization\routing\models.py                          45      0      6      0   100%
+src\devtools\context\localization\task.py                                    34      0     10      0   100%
+src\devtools\context\planning\__init__.py                                     7      0      0      0   100%
+src\devtools\context\planning\materialization.py                             36      0      8      0   100%
+src\devtools\context\planning\plan.py                                        48      0     10      0   100%
+src\devtools\context\planning\rendering.py                                   20      0      4      0   100%
+src\devtools\context\planning\repository_map.py                             105      0     24      0   100%
+src\devtools\context\planning\resource.py                                    34      0      6      0   100%
+src\devtools\context\planning\source.py                                      67      0      6      0   100%
+src\devtools\context\python\__init__.py                                       3      0      0      0   100%
+src\devtools\context\python\classes\__init__.py                               4      0      0      0   100%
+src\devtools\context\python\classes\bases.py                                169      0     58      0   100%
+src\devtools\context\python\classes\containment.py                           79      0     38      0   100%
+src\devtools\context\python\classes\declarations.py                         186      0     20      0   100%
+src\devtools\context\python\function\__init__.py                             11      0      0      0   100%
+src\devtools\context\python\function\candidates.py                           55      0      8      0   100%
+src\devtools\context\python\function\containment.py                          52      0     24      0   100%
+src\devtools\context\python\function\declarations.py                        148      0     12      0   100%
+src\devtools\context\python\function\disclosure.py                           33      0      2      0   100%
+src\devtools\context\python\function\materialization.py                      85      0     20      0   100%
+src\devtools\context\python\function\planned_reference.py                    28      0      0      0   100%
+src\devtools\context\python\function\qualified_reference.py                 113      0     28      0   100%
+src\devtools\context\python\function\rendering.py                            22      0      4      0   100%
+src\devtools\context\python\function\request_assembly.py                     11      0      2      0   100%
+src\devtools\context\python\function\retrieval.py                            43      0      4      0   100%
+src\devtools\context\python\imports\__init__.py                               5      0      0      0   100%
+src\devtools\context\python\imports\declarations.py                          66      0     12      0   100%
+src\devtools\context\python\imports\members.py                              179      0     60      0   100%
+src\devtools\context\python\imports\relations.py                             51      0     10      0   100%
+src\devtools\context\python\imports\resolution.py                            78      0     26      0   100%
+src\devtools\context\python\mirrored_paths.py                                71      0      8      0   100%
+src\devtools\context\python\modules\__init__.py                               4      0      0      0   100%
+src\devtools\context\python\modules\bindings.py                              19      0     10      0   100%
+src\devtools\context\python\modules\declarations.py                          91      0     50      0   100%
+src\devtools\context\python\modules\interpretation.py                       111      0     26      0   100%
+src\devtools\context\python\modules\lookup.py                                 4      0      0      0   100%
+src\devtools\context\python\modules\membership.py                           117      0     30      0   100%
+src\devtools\context\python\modules\selection.py                             33      0      6      0   100%
+src\devtools\context\python\project_configuration\__init__.py                 4      0      0      0   100%
+src\devtools\context\python\project_configuration\declarations.py            48      0     18      0   100%
+src\devtools\context\python\project_configuration\models.py                 101      0      2      0   100%
+src\devtools\context\python\project_configuration\resolution.py              86      0     38      0   100%
+src\devtools\context\python\project_configuration\settings.py                92      0     48      0   100%
+src\devtools\context\python\references\__init__.py                            2      0      0      0   100%
+src\devtools\context\python\references\analysis.py                           69      0      2      0   100%
+src\devtools\context\python\references\declarations\__init__.py               3      0      0      0   100%
+src\devtools\context\python\references\declarations\analysis.py              47      0     10      0   100%
+src\devtools\context\python\references\declarations\bindings.py              98      0     56      0   100%
+src\devtools\context\python\references\declarations\model.py                 82      0      2      0   100%
+src\devtools\context\python\references\declarations\resolution.py           121      0     68      0   100%
+src\devtools\context\python\source_candidacy.py                              22      0      0      0   100%
+src\devtools\context\repository\__init__.py                                   9      0      0      0   100%
+src\devtools\context\repository\changes.py                                   22      0      4      0   100%
+src\devtools\context\repository\corpus.py                                    66      0     16      0   100%
+src\devtools\context\repository\discovery.py                                108      0     34      0   100%
+src\devtools\context\repository\document.py                                  36      0      2      0   100%
+src\devtools\context\repository\identity.py                                  20      0      0      0   100%
+src\devtools\context\repository\observation.py                               40      0      8      0   100%
+src\devtools\context\repository\resource.py                                  59      0     14      0   100%
+src\devtools\context\repository\snapshot.py                                  29      0      6      0   100%
+src\devtools\context\retrieval\__init__.py                                    7      0      0      0   100%
+src\devtools\context\retrieval\composition.py                                84      0     34      0   100%
+src\devtools\context\retrieval\fusion.py                                     67      0      8      0   100%
+src\devtools\context\retrieval\graph\__init__.py                              3      0      0      0   100%
+src\devtools\context\retrieval\graph\pagerank.py                            117      0     36      0   100%
+src\devtools\context\retrieval\graph\view.py                                194      0     66      0   100%
+src\devtools\context\retrieval\graph\walk.py                                 24      0     12      0   100%
+src\devtools\context\retrieval\lexical\__init__.py                            7      0      0      0   100%
+src\devtools\context\retrieval\lexical\analysis.py                           30      0      2      0   100%
+src\devtools\context\retrieval\lexical\bm25.py                              110      0     18      0   100%
+src\devtools\context\retrieval\lexical\evaluation.py                         70      0     16      0   100%
+src\devtools\context\retrieval\lexical\filename.py                           87      0     12      0   100%
+src\devtools\context\retrieval\lexical\index.py                              27      0      4      0   100%
+src\devtools\context\retrieval\lexical\scoring.py                             9      0      0      0   100%
+src\devtools\context\retrieval\lexical\statistics.py                         43      0      6      0   100%
+src\devtools\context\retrieval\repository_map\__init__.py                     4      0      0      0   100%
+src\devtools\context\retrieval\repository_map\importance.py                  30      0      6      0   100%
+src\devtools\context\retrieval\repository_map\ranking.py                     57      0     10      0   100%
+src\devtools\context\retrieval\repository_map\relevance.py                   27      0      4      0   100%
+src\devtools\context\retrieval\repository_map\view.py                        56      0     18      0   100%
+src\devtools\context\retrieval\source\__init__.py                             4      0      0      0   100%
+src\devtools\context\retrieval\source\index.py                               61      0     18      0   100%
+src\devtools\context\retrieval\source\representation.py                      97      0     18      0   100%
+src\devtools\context\retrieval\source\search.py                              85      0     30      0   100%
+src\devtools\context\retrieval\structural.py                                 90      0     36      0   100%
+src\devtools\core\__init__.py                                                 0      0      0      0   100%
+src\devtools\core\conversion\__init__.py                                      3      0      0      0   100%
+src\devtools\core\conversion\conversion.py                                   19      0      2      0   100%
+src\devtools\core\conversion\errors.py                                        7      0      0      0   100%
+src\devtools\core\identity\__init__.py                                        2      0      0      0   100%
+src\devtools\core\identity\models.py                                         22      0      2      0   100%
+src\devtools\core\paths\__init__.py                                           4      0      0      0   100%
+src\devtools\core\paths\errors.py                                             3      0      0      0   100%
+src\devtools\core\paths\models.py                                            39      0      2      0   100%
+src\devtools\core\paths\resolution.py                                        57      0     20      0   100%
+src\devtools\core\regex\__init__.py                                           4      0      0      0   100%
+src\devtools\core\regex\models.py                                            28      0      4      0   100%
+src\devtools\core\regex\search.py                                            28      0      8      0   100%
+src\devtools\core\regex\splitting.py                                          8      0      0      0   100%
+src\devtools\core\system\__init__.py                                          3      0      0      0   100%
+src\devtools\core\system\detection.py                                        13      0      8      0   100%
+src\devtools\core\system\models.py                                           19      0      0      0   100%
+src\devtools\core\time\__init__.py                                            4      0      0      0   100%
+src\devtools\core\time\errors.py                                              2      0      0      0   100%
+src\devtools\core\time\models\__init__.py                                     4      0      0      0   100%
+src\devtools\core\time\models\duration.py                                    63      0     12      0   100%
+src\devtools\core\time\models\stopwatch.py                                   30      0      2      0   100%
+src\devtools\core\time\models\timestamp.py                                   47      0     12      0   100%
+src\devtools\core\time\parsing.py                                            45      0     18      0   100%
+src\devtools\evaluation\__init__.py                                           2      0      0      0   100%
+src\devtools\evaluation\coverage.py                                          30      0      4      0   100%
+src\devtools\evaluation\preflight.py                                         31      0     14      0   100%
+src\devtools\execution\__init__.py                                            4      0      0      0   100%
+src\devtools\execution\interaction_attempt.py                                94      0      6      0   100%
+src\devtools\execution\protocols.py                                           5      0      0      0   100%
+src\devtools\execution\runtime.py                                            75      0      8      0   100%
+src\devtools\governance\__init__.py                                           0      0      0      0   100%
+src\devtools\governance\usage.py                                             42      0     10      0   100%
+src\devtools\models\__init__.py                                               0      0      0      0   100%
+src\devtools\models\benchmarks\__init__.py                                    1      0      0      0   100%
+src\devtools\models\benchmarks\models.py                                     71      0     16      0   100%
+src\devtools\models\benchmarks\runner.py                                    190      0     74      0   100%
+src\devtools\models\benchmarks\storage.py                                    83      0     14      0   100%
+src\devtools\models\interaction\__init__.py                                   9      0      0      0   100%
+src\devtools\models\interaction\models.py                                    82      0     32      0   100%
+src\devtools\models\interaction\observation.py                               35      0      4      0   100%
+src\devtools\models\interaction\prompt.py                                    59      0     34      0   100%
+src\devtools\models\interaction\protocols.py                                  6      0      0      0   100%
+src\devtools\models\interaction\providers\__init__.py                         4      0      0      0   100%
+src\devtools\models\interaction\providers\llama_cpp.py                      378      0    136      0   100%
+src\devtools\models\interaction\providers\llama_cpp_errors.py                10      0      0      0   100%
+src\devtools\models\interaction\providers\llama_cpp_request_settings.py      30      0     10      0   100%
+src\devtools\models\interaction\response.py                                  19      0      4      0   100%
+src\devtools\models\interaction\termination.py                                5      0      0      0   100%
+src\devtools\models\interaction\tools.py                                     51      0     12      0   100%
+src\devtools\models\interaction\usage.py                                     17      0      6      0   100%
+src\devtools\models\serving\__init__.py                                       2      0      0      0   100%
+src\devtools\models\serving\errors.py                                        23      0      4      0   100%
+src\devtools\models\serving\huggingface.py                                   65      0     18      0   100%
+src\devtools\models\serving\identity.py                                      32      0      8      0   100%
+src\devtools\models\serving\llama_cpp.py                                    251      0     72      0   100%
+src\devtools\models\serving\vllm.py                                         357      0    110      0   100%
+src\devtools\observability\__init__.py                                        0      0      0      0   100%
+src\devtools\observability\commands\__init__.py                               0      0      0      0   100%
+src\devtools\observability\commands\inspection.py                            26      0      4      0   100%
+src\devtools\observability\commands\models.py                                47      0      8      0   100%
+src\devtools\observability\commands\patterns.py                              35      0     10      0   100%
+src\devtools\observability\evidence\__init__.py                               5      0      0      0   100%
+src\devtools\observability\evidence\inspection.py                            32      0      4      0   100%
+src\devtools\observability\evidence\invocation.py                            67      0     10      0   100%
+src\devtools\observability\evidence\model_interaction.py                    152      0     18      0   100%
+src\devtools\observability\evidence\protocols.py                              4      0      0      0   100%
+src\devtools\observability\evidence\terminal.py                              26      0      0      0   100%
+src\devtools\observability\usage\__init__.py                                  4      0      0      0   100%
+src\devtools\observability\usage\collection.py                              108      0     38      0   100%
+src\devtools\observability\usage\forecast.py                                 44      0      6      0   100%
+src\devtools\observability\usage\ingestion.py                                30      0      6      0   100%
+src\devtools\observability\usage\models.py                                   85      0     12      0   100%
+src\devtools\observability\usage\report.py                                   86      0     26      0   100%
+src\devtools\observability\usage\storage.py                                  34      0      4      0   100%
+src\devtools\observability\usage\windows.py                                  34      0      8      0   100%
+src\devtools\orchestration\__init__.py                                        0      0      0      0   100%
+src\devtools\persistence\__init__.py                                          4      0      0      0   100%
+src\devtools\persistence\_snapshot.py                                        48      0      8      0   100%
+src\devtools\persistence\errors.py                                            4      0      0      0   100%
+src\devtools\persistence\json.py                                             93      0     18      0   100%
+src\devtools\persistence\sqlite.py                                          122      0     36      0   100%
+src\devtools\resources\__init__.py                                            0      0      0      0   100%
+src\devtools\resources\commands\__init__.py                                   6      0      0      0   100%
+src\devtools\resources\commands\availability.py                              16      0      2      0   100%
+src\devtools\resources\commands\errors.py                                     3      0      0      0   100%
+src\devtools\resources\commands\events.py                                    17      0      0      0   100%
+src\devtools\resources\commands\execution.py                                116      0     22      0   100%
+src\devtools\resources\commands\handle.py                                    49      0      4      0   100%
+src\devtools\resources\commands\models\__init__.py                            4      0      0      0   100%
+src\devtools\resources\commands\models\command.py                           120      0     46      0   100%
+src\devtools\resources\commands\models\output.py                             26      0     10      0   100%
+src\devtools\resources\commands\models\result.py                             23      0      0      0   100%
+src\devtools\resources\filesystem\__init__.py                                 7      0      0      0   100%
+src\devtools\resources\filesystem\codecs\__init__.py                          6      0      0      0   100%
+src\devtools\resources\filesystem\codecs\binary.py                            8      0      0      0   100%
+src\devtools\resources\filesystem\codecs\csv.py                              75      0      8      0   100%
+src\devtools\resources\filesystem\codecs\json.py                             77      0     14      0   100%
+src\devtools\resources\filesystem\codecs\markdown.py                         19      0      0      0   100%
+src\devtools\resources\filesystem\codecs\text.py                             19      0      0      0   100%
+src\devtools\resources\filesystem\errors.py                                   8      0      0      0   100%
+src\devtools\resources\filesystem\models\__init__.py                          7      0      0      0   100%
+src\devtools\resources\filesystem\models\base.py                             17      0      0      0   100%
+src\devtools\resources\filesystem\models\binary.py                           13      0      0      0   100%
+src\devtools\resources\filesystem\models\csv.py                             145      0     36      0   100%
+src\devtools\resources\filesystem\models\json\__init__.py                     6      0      0      0   100%
+src\devtools\resources\filesystem\models\json\base.py                        14      0      0      0   100%
+src\devtools\resources\filesystem\models\json\conversion.py                  16      0      8      0   100%
+src\devtools\resources\filesystem\models\json\list.py                        50      0     10      0   100%
+src\devtools\resources\filesystem\models\json\object.py                      48      0      8      0   100%
+src\devtools\resources\filesystem\models\json\scalar.py                      10      0      0      0   100%
+src\devtools\resources\filesystem\models\markdown\__init__.py                 4      0      0      0   100%
+src\devtools\resources\filesystem\models\markdown\file.py                    69      0     24      0   100%
+src\devtools\resources\filesystem\models\markdown\heading.py                 26      0      4      0   100%
+src\devtools\resources\filesystem\models\markdown\section.py                 36      0      8      0   100%
+src\devtools\resources\filesystem\models\text.py                             37      0      4      0   100%
+src\devtools\resources\filesystem\reading.py                                 56      0     18      0   100%
+src\devtools\resources\filesystem\resolution.py                              21      0      0      0   100%
+src\devtools\resources\filesystem\writing.py                                 56      0     14      0   100%
+src\devtools\tools\__init__.py                                                5      0      0      0   100%
+src\devtools\tools\checks.py                                                 67      0     16      0   100%
+src\devtools\tools\command.py                                                17      0      0      0   100%
+src\devtools\tools\disclosure.py                                             33      0      6      0   100%
+src\devtools\tools\errors.py                                                  1      0      0      0   100%
+src\devtools\tools\execution.py                                               6      0      0      0   100%
+src\devtools\tools\filesystem.py                                             92      0     16      0   100%
+src\devtools\tools\protocols.py                                               9      0      0      0   100%
+src\devtools\tools\repository\__init__.py                                     0      0      0      0   100%
+src\devtools\tools\repository\git.py                                        116      0     24      0   100%
+src\devtools\tools\repository\validation.py                                 109      0     26      0   100%
+src\devtools\tools\source.py                                                 99      0     26      0   100%
+---------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                     14041      0   3592      0   100%
+Required test coverage of 100% reached. Total coverage: 100.00%
+================ 3906 passed, 2 skipped in 1417.91s (0:23:37) =================
