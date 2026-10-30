@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-30T19:23:07.117631+00:00",
+  "selected": "gpt-oss-20b MXFP4",
+  "candidates": [
+    {
+      "repo": "ggml-org/gpt-oss-20b-GGUF",
+      "revision": "15dcfc7e7c608c6161507211ed43c5b590801b4b",
+      "license": "apache-2.0",
+      "files": [
+        {
+          "rfilename": "gpt-oss-20b-MXFP4.gguf",
+          "blobId": "deda3c25c5da45a23db1c5d52a49e6c509da659b",
+          "size": 12109566624,
+          "lfs": {
+            "sha256": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+            "size": 12109566624,
+            "pointerSize": 136
+          }
+        }
+      ]
+    },
+    {
+      "repo": "unsloth/Devstral-Small-2-24B-Instruct-2512-GGUF",
+      "revision": "6e458b8add42681bfd023de5eab93637694aaf82",
+      "license": "other",
+      "files": [
+        {
+          "rfilename": "Devstral-Small-2-24B-Instruct-2512-IQ4_XS.gguf",
+          "blobId": "df34f90a59ba91754f9cf7b45fb5db6f1c487b82",
+          "size": 12780424352,
+          "lfs": {
+            "sha256": "6b8270a839e7a1263f34a799c18fb9eb0ca6f1d039cdbfa4a11f9ac9552a118a",
+            "size": 12780424352,
+            "pointerSize": 136
+          }
+        },
+        {
+          "rfilename": "Devstral-Small-2-24B-Instruct-2512-Q3_K_M.gguf",
+          "blobId": "300d92823f273aa43eee12f25130623383ec511b",
+          "size": 11474619552,
+          "lfs": {
+            "sha256": "53466aa3e486e6f0068c2593d12aeb15fb079c1dfe443ab922c468c39761bd16",
+            "size": 11474619552,
+            "pointerSize": 136
+          }
+        },
+        {
+          "rfilename": "Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf",
+          "blobId": "bac810d96105f8617c5b09f0b7690b4a901c3950",
+          "size": 14334446752,
+          "lfs": {
+            "sha256": "d14ba9edee1bb4c4996a726deb81e49ae81800a3216f0774634238c380aee496",
+            "size": 14334446752,
+            "pointerSize": 136
+          }
+        }
+      ]
+    },
+    {
+      "repo": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+      "license": "apache-2.0",
+      "files": [
+        {
+          "rfilename": "Qwen3-Coder-30B-A3B-Instruct-IQ4_XS.gguf",
+          "blobId": "90aad69b4a9954eab5fb114d8e7e0689c5fce937",
+          "size": 16378076320,
+          "lfs": {
+            "sha256": "26cd4fef3ada9de84c6c59c4b93f9bc5df4d69a71e18cfe8a17369c2f8374ce7",
+            "size": 16378076320,
+            "pointerSize": 136
+          }
+        },
+        {
+          "rfilename": "Qwen3-Coder-30B-A3B-Instruct-Q3_K_M.gguf",
+          "blobId": "086ed6c7599fbbac7c85d19058263140f24fb79c",
+          "size": 14711850144,
+          "lfs": {
+            "sha256": "30c83da425db2324444b6a6cecaf4c410038a2ec73a78de2436879dc0316a371",
+            "size": 14711850144,
+            "pointerSize": 136
+          }
+        },
+        {
+          "rfilename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+          "blobId": "bcb6e049df36a193357fc3974eb6fac2e4e94361",
+          "size": 18556689568,
+          "lfs": {
+            "sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad",
+            "size": 18556689568,
+            "pointerSize": 136
+          }
+        }
+      ]
+    }
+  ],
+  "reason": "Native quantization, smallest selected weight footprint, low active parameter count and existing llama.cpp support; practical qualification still required",
+  "authorization": "User explicitly +Authorize after exact single-artifact download and temporary service-switch request",
+  "hardware": {
+    "vram_mib": 16376,
+    "ram_kib": 33271672,
+    "initial_free_ram_kib": 5335780,
+    "disk_free_bytes": 143722131456
+  },
+  "memory_estimate": {
+    "weights_gib": 11.277912765741348,
+    "kv_all_layers_f16_32k_gib": 1.5,
+    "runtime_buffers": "Unmeasured; reserve approximately 1-2 GiB",
+    "qualification": "Conservative all-layer KV estimate ignores sliding-window savings; fit unproven"
+  },
+  "model_fit_observed": true,
+  "model_requests": 2,
+  "compatibility_passed": true,
+  "coding_entered": false,
+  "observed_gpu_used_mib": 12124,
+  "observed_gpu_free_mib": 3927
+}

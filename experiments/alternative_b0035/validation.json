@@ -1,0 +1,260 @@
+{
+  "production_changes": false,
+  "model_requests": 0,
+  "full_gate_rerun": false,
+  "protected_ancestor": "72379015cf4f34f74a9282661aac8aa0362c9977",
+  "checks": {
+    "focused": {
+      "name": "focused",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/models/interaction/providers/test_llama_cpp.py",
+        "tests/models/serving/test_llama_cpp.py",
+        "tests/agents/coding/test_repository.py"
+      ],
+      "started_at": "2026-10-30T19:25:29.884639+00:00",
+      "finished_at": "2026-10-30T19:25:32.072879+00:00",
+      "seconds": 2.124765,
+      "exit_code": 0,
+      "head": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
+      "tree": "7ee06ca3d368a3d9fb734ef3cc2f29820c854e8b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "1796899175799f8ade30ef6f9a2ecd08c504fe868c1ce34bbe52d84692b707cb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "alternative-b0035",
+          "run": "verification-20261029",
+          "call": "focused"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "tests",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 2.062642,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "ruff": {
+      "name": "ruff",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "started_at": "2026-10-30T19:25:31.135694+00:00",
+      "finished_at": "2026-10-30T19:25:31.457283+00:00",
+      "seconds": 0.256804,
+      "exit_code": 0,
+      "head": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
+      "tree": "7ee06ca3d368a3d9fb734ef3cc2f29820c854e8b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "alternative-b0035",
+          "run": "verification-20261029",
+          "call": "ruff"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "lint",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.191735,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "format": {
+      "name": "format",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "apps",
+        "scripts",
+        "tests/agents/coding"
+      ],
+      "started_at": "2026-10-30T19:25:26.113563+00:00",
+      "finished_at": "2026-10-30T19:25:26.553214+00:00",
+      "seconds": 0.322897,
+      "exit_code": 0,
+      "head": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
+      "tree": "7ee06ca3d368a3d9fb734ef3cc2f29820c854e8b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "b1b962f4743fc9be05665ad5efff989e051837dfb2206046e1f74c3999b0ba43",
+      "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "alternative-b0035",
+          "run": "verification-20261029",
+          "call": "format"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "format",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.2453,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "typing": {
+      "name": "typing",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "started_at": "2026-10-30T19:25:28.376187+00:00",
+      "finished_at": "2026-10-30T19:25:29.876072+00:00",
+      "seconds": 1.4036,
+      "exit_code": 0,
+      "head": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
+      "tree": "7ee06ca3d368a3d9fb734ef3cc2f29820c854e8b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "2dd531de6e6860d5749d9f661c32aad13e0f4b4f164b096c1be299b6ec7f8f5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "alternative-b0035",
+          "run": "verification-20261029",
+          "call": "typing"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "typing",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 1.34104,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "layout": {
+      "name": "layout",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-30T19:25:27.747406+00:00",
+      "finished_at": "2026-10-30T19:25:27.974257+00:00",
+      "seconds": 0.158654,
+      "exit_code": 0,
+      "head": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
+      "tree": "7ee06ca3d368a3d9fb734ef3cc2f29820c854e8b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "alternative-b0035",
+          "run": "verification-20261029",
+          "call": "layout"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "layout",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.093371,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    }
+  }
+}

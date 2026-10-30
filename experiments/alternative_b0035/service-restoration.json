@@ -1,0 +1,23 @@
+{
+  "identity": {
+    "exit_code": 0,
+    "stdout": "61a6a7f977910ce5f7c03e6f1d33f19c51e6e7ea1cc1ae065941183cced85348|true|ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e|[{\"Destination\":\"/models/Qwen3.8-27B-UD-IQ4_XS.gguf\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":false,\"Source\":\"C:\\\\Users\\\\recoveryadmin\\\\.cache\\\\huggingface\\\\hub\\\\models--unsloth--Qwen3.8-27B-GGUF\\\\blobs\\\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199\",\"Type\":\"bind\"}]\n",
+    "stderr": ""
+  },
+  "logs": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "0.00.505.975 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655\n0.00.505.975 W srv  llama_server: -----------------\n0.00.507.521 I srv    load_model: loading model '/models/Qwen3.8-27B-UD-IQ4_XS.gguf'\n0.03.793.455 W model has unused tensor blk.64.attn_norm.weight (size = 20480 bytes) -- ignoring\n0.03.793.473 W model has unused tensor blk.64.post_attention_norm.weight (size = 20480 bytes) -- ignoring\n0.03.793.479 W model has unused tensor blk.64.attn_q.weight (size = 51609600 bytes) -- ignoring\n0.03.793.481 W model has unused tensor blk.64.attn_k.weight (size = 5570560 bytes) -- ignoring\n0.03.793.482 W model has unused tensor blk.64.attn_v.weight (size = 5570560 bytes) -- ignoring\n0.03.793.488 W model has unused tensor blk.64.attn_output.weight (size = 25804800 bytes) -- ignoring\n0.03.793.490 W model has unused tensor blk.64.attn_q_norm.weight (size = 1024 bytes) -- ignoring\n0.03.793.492 W model has unused tensor blk.64.attn_k_norm.weight (size = 1024 bytes) -- ignoring\n0.03.793.494 W model has unused tensor blk.64.ffn_gate.weight (size = 73113600 bytes) -- ignoring\n0.03.793.496 W model has unused tensor blk.64.ffn_down.weight (size = 73113600 bytes) -- ignoring\n0.03.793.497 W model has unused tensor blk.64.ffn_up.weight (size = 73113600 bytes) -- ignoring\n0.03.793.500 W model has unused tensor blk.64.nextn.eh_proj.weight (size = 43008000 bytes) -- ignoring\n0.03.793.502 W model has unused tensor blk.64.nextn.enorm.weight (size = 20480 bytes) -- ignoring\n0.03.793.504 W model has unused tensor blk.64.nextn.hnorm.weight (size = 20480 bytes) -- ignoring\n0.03.793.509 W model has unused tensor blk.64.nextn.shared_head_norm.weight (size = 20480 bytes) -- ignoring\n4.42.824.277 I cmn          init: llama threadpool init, n_threads = 16\n4.43.094.709 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'\n4.43.110.239 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)\n4.43.110.941 I srv  llama_server: model loaded\n4.43.110.975 I srv  llama_server: listening on http://0.0.0.0:8080\n4.43.110.985 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release\n4.43.110.997 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508\n"
+  },
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "memory.used [MiB], memory.free [MiB]\r\n13978 MiB, 2073 MiB\r\n",
+    "stderr": ""
+  },
+  "at": "2026-10-30T19:26:14.148135+00:00",
+  "health_code": 200,
+  "health_body": "{\"status\":\"ok\"}",
+  "same_original_container": true,
+  "healthy": true,
+  "alternative_cleanup_observed": true
+}

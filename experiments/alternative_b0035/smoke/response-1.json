@@ -1,0 +1,27 @@
+{
+  "response": {
+    "content": "",
+    "source": {
+      "value": "alternative-b0035-0001-compatibility"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 381,
+      "output_tokens": 58,
+      "total_tokens": 439,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": "We need to call read_source function with path and start 0 end 512.",
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":0,\"end\":512}",
+        "provider_call_id": "Rs865hTpmT9Ku59cqTo6IuJDGwhq4zyi"
+      }
+    ]
+  },
+  "seconds": 1.109165
+}

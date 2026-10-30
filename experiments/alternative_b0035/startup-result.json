@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-30T19:23:07.119576+00:00",
+  "readiness_seconds": 240,
+  "exception_class": "ServingReadinessTimeoutError",
+  "exception_message": "llama.cpp container did not become ready within the configured timeout.",
+  "wrapper_exit_code": 1,
+  "alternative_container": "11675e44adb0",
+  "managed_cleanup": true,
+  "model_requests": 0,
+  "tool_dispatches": 0,
+  "edits": 0,
+  "checks": 0,
+  "oom_reported": false,
+  "oom_qualification": "Last pre-cleanup inspect OOMKilled=false; not proof of fit",
+  "gpu_observation_mib": 236,
+  "container_memory_observation": "353.3 MiB / 15.48 GiB",
+  "last_observed_log": "Metadata/token attribute warnings; no later observed loader progress",
+  "log_capture_qualification": "Capture raced normal cleanup and returned No such container. Earlier bounded Docker tool outputs are observations, not a surviving full log file.",
+  "qwen_restart": "Same original container running; readiness not yet verified",
+  "provider_defect_established": false,
+  "coding_failure": false
+}

@@ -1,0 +1,42 @@
+﻿import asyncio,json,sys,hashlib
+from pathlib import Path
+from dataclasses import replace
+import runner as x
+from devtools.models.interaction import ModelSettings,InteractionSource
+from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding import CodingLimits
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from experiments.joint_context.capture import error_record
+O=Path(__file__).parent;S=O/'smoke';S.mkdir(exist_ok=True)
+def save(name,v):
+ p=S/name;assert not p.exists();p.write_text(json.dumps(v,indent=2)+'\n')
+async def main():
+ scope,corpus=x.r.observe(x.r.Repository.new());h=x.host(scope,corpus,'gptoss')
+ h.objective=replace(h.objective,text='Compatibility task only: use read_source to read src/devtools/agents/coding/repository.py characters [0,512). Then report its module docstring and one import supported by that read. No edits or checks are authorized. Do not claim any unexecuted effect.')
+ h.messages=[replace(h.messages[0],content=h.objective.text)]
+ h.settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=True)
+ progress=CodingProgress(CodingLimits(2,1,1,Duration.seconds(130),Duration.seconds(300)))
+ interaction=x.r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8081',model='alternative-local',source=InteractionSource('alternative-b0035-0001-compatibility'))
+ async def call(n):
+  q=await h.prepare(progress);payload=interaction._request_payload(q);tokens=await interaction.count_input_tokens(q)
+  rendered=await x.r.provider._post_json(interaction._endpoint,'/apply-template',payload)
+  save(f'request-{n}.json',dict(at=str(Timestamp.now()),request=x.r.s.plain(q),payload=payload,bytes=x.r.request_bytes(q),tokens=tokens,rendered=rendered,source_hashes={a.value:hashlib.sha256((x.R/a.value).read_bytes()).hexdigest() for a in x.READ}))
+  original=x.r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=S/f'body-{n}.bin';assert not p.exists();p.write_bytes(body);return status,body
+  x.r.provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(interaction.send(q),120)
+   save(f'response-{n}.json',dict(response=x.r.s.plain(response),seconds=timer.elapsed.total_seconds));return response
+  finally:x.r.provider._read_http_response=original
+ try:
+  response=await call(1);assert response.termination.value=='tool_call'
+  assert len(response.tool_calls)==1
+  c=response.tool_calls[0];a=json.loads(c.arguments_json);assert c.name=='read_source' and a==dict(path='src/devtools/agents/coding/repository.py',start=0,end=512)
+  await h.receive(response);assert h.classify(response)=='acquire';await h.acquire(response)
+  save('tool-feedback.json',dict(messages=x.r.s.plain(h.messages),disclosures=x.r.s.plain(h.disclosures)))
+  response=await call(2);assert not response.tool_calls and response.content.strip()
+  save('result.json',dict(protocol_passed=True,semantic_review_required=True,source_current=True,edits=0,checks=0));print(json.dumps(x.r.s.plain(response)))
+ except BaseException as error:
+  save('failure.json',error_record(error));raise
+asyncio.run(main())

@@ -1,0 +1,12 @@
+﻿import asyncio,hashlib,json
+from pathlib import Path
+from devtools.models.serving.huggingface import HuggingFaceGGUFRef,acquire_huggingface_gguf
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+async def main():
+ ref=HuggingFaceGGUFRef('ggml-org/gpt-oss-20b-GGUF','15dcfc7e7c608c6161507211ed43c5b590801b4b','gpt-oss-20b-MXFP4.gguf')
+ a=await acquire_huggingface_gguf(model=ref,cache_root=resolve_path('C:/Users/recoveryadmin/.cache/huggingface/hub'))
+ p=a.path.value;h=hashlib.file_digest(p.open('rb'),'sha256').hexdigest();assert h=='27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901'
+ v=dict(at=str(Timestamp.now()),path=str(p),sha256=h,bytes=p.stat().st_size,repo=ref.repository,revision=ref.revision,filename=ref.filename)
+ Path('.local/alternative-worker/acquired.json').write_text(json.dumps(v,indent=2));print(json.dumps(v))
+asyncio.run(main())

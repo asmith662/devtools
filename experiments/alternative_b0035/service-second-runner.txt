@@ -1,0 +1,33 @@
+﻿import asyncio,json,sys
+from pathlib import Path
+from devtools.models.serving.llama_cpp import LlamaCppServer,LlamaCppServingConfig,GGUFModel
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.core.paths import resolve_path,ResolvedPath
+from devtools.core.time import Duration,Timestamp
+O=Path(__file__).parent
+IMAGE='ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e'
+async def main():
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1048576,max_stderr_bytes=1048576))
+ async def cmd(*args):
+  v=await ex.execute(Command('docker',args).with_timeout(Duration.seconds(180)));assert v.exit_code==0,v.stderr;return v.stdout.decode().strip()
+ a=json.loads((O/'acquired.json').read_text());config=LlamaCppServingConfig(GGUFModel(ResolvedPath(Path(a['path']))),IMAGE,8081,'alternative-local',32768,'all',flash_attention='on',cache_type_k='f16',cache_type_v='f16',parallel_sequences=1)
+ if sys.argv[1]=='start':
+  before=await cmd('inspect','devtools-qwen38-llama-cpp','--format','{{.Id}}|{{.State.Running}}|{{.Config.Image}}')
+  assert '|true|' in before and IMAGE in before
+  (O/'service-before-second.json').write_text(json.dumps(dict(at=str(Timestamp.now()),qwen=before),indent=2))
+  await cmd('stop','devtools-qwen38-llama-cpp')
+  try:
+   server=await LlamaCppServer.start(config=config,executor=ex,readiness_timeout=Duration.seconds(600))
+   (O/'service.json').write_text(json.dumps(dict(id=server.container_id,endpoint=server.endpoint,started=str(server.started_at)),indent=2))
+   logs=await cmd('logs',server.container_id);(O/'server-stdout.txt').write_text(logs)
+   print(json.dumps(dict(id=server.container_id,endpoint=server.endpoint)))
+  except BaseException:
+   await cmd('start','devtools-qwen38-llama-cpp');raise
+ else:
+  v=json.loads((O/'service.json').read_text());ins=await cmd('inspect',v['id'],'--format','{{.Name}}|{{json .Mounts}}|{{.Config.Image}}')
+  assert a['sha256'] in ins and IMAGE in ins
+  server=LlamaCppServer(config=config,container_id=v['id'],container_name='retained-owned-service',executor=ex,started_at=Timestamp.now())
+  logs=await ex.execute(Command('docker',('logs',v['id'])).with_timeout(Duration.seconds(30)));(O/'server-final.stdout').write_bytes(logs.stdout);(O/'server-final.stderr').write_bytes(logs.stderr)
+  await server.stop();await cmd('start','devtools-qwen38-llama-cpp')
+  (O/'service-restored.json').write_text(json.dumps(dict(at=str(Timestamp.now()),qwen=await cmd('inspect','devtools-qwen38-llama-cpp','--format','{{.Id}}|{{.State.Running}}'),alternative_removed=True),indent=2));print('Alternative stopped; original Qwen restarted')
+asyncio.run(main())

@@ -494,3 +494,12 @@ B-0035 and B-0043 remain open. Historical repetition was not fully active source
 No grant or closure follows. The next bounded recommendation is another locally
 feasible coding model under the same delegated task/oracle, not another Qwen effort
 sweep or generic Context infrastructure increment.
+
+## Alternative-worker qualification - 2026-10-30
+
+The [new selection/preflight checkpoint](../../../experiments/alternative_b0035/REPORT.md)
+acquired one pinned gpt-oss-20b MXFP4 artifact under explicit authority. The first
+cold start timed out; a final 600-second serving preflight became ready and passed
+a real native source/feedback compatibility smoke. One conditional Stage B coding
+episode remains pending its source/request freeze. No edit or integration is yet
+established; B-0035 remains open. No grant or framework change follows.
