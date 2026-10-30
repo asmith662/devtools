@@ -245,3 +245,41 @@ The [investigation-transition contract](investigation-transition.md) documents
 reports current selected ranges, omitted disclosure records and exact repeated
 disclosures. It is charged to complete-request capacity, never source evidence
 or retained native history. Default behavior and inference settings are unchanged.
+
+## Joint disclosure affordability — 2026-10-30
+
+The Throughput-B0035-0001 interruption exposed a bounded-selection defect:
+each individually insufficient source reduction was restored, even when several
+reductions together could fit. The shared projection now retains each strictly
+size-reducing partial disclosure while advancing through eligible disclosures in
+original message order. Older host-selected source yields before later source.
+Once a fit is possible, binary search expands the last prefix to the target (or
+hard limit when the target is infeasible). Complete serialized requests remain
+the measurement, including native schemas and presentation overhead.
+
+This is a finite greedy policy, not optimal working-set selection: at most one
+minimum-size trial per eligible disclosure and one logarithmic prefix search
+once a fit exists. Each measurement/materialization still incurs its ordinary
+input-size cost. Earlier prefixes can be very small; callers must not infer that
+the original method contract remains available. No Prompt/source limit changed.
+
+The existing host `_source_messages` bindings explicitly identify disclosed
+source and authenticate its exact text, range, repository, snapshot and content.
+An unbound user message is never shortened. For a bound plain-source message,
+only source-feedback fields are projected; other fields, including accompanying
+instructions, remain present. `protected_indices`, readiness requirements and
+compound check feedback retain their existing protection. This permits partial
+host-supplied user-role source without equating user instructions with source.
+
+Original messages and materializations remain unchanged. Only projected exact
+ranges become active edit witnesses; omitted suffixes require a new authorized
+read. Each useful reduction is reported even if the final outcome is insufficient.
+The host refuses that outcome before model entry and installs no partial state.
+Native call/result identities and semantic/adaptive fallback remain unchanged.
+
+The new [experiment capture](../../experiments/joint_context/capture.py) explicitly
+records known coding-result/error fields, with capacity details but no arbitrary
+exception internals, deepcopy or unvetted exception messages. It preserves unknown
+usage/effect/custody values and writes a separate minimal failure receipt if full
+capture fails. Storage failure can still prevent that receipt; this is not durable
+recovery. Frozen historical runners and lost acknowledgments remain unchanged.

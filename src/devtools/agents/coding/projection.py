@@ -262,7 +262,10 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
     Cheap reductions target the lower watermark. Distinct current source is
     sacrificed only under hard pressure. Newest feedback cannot be dropped;
     a plain source result may instead be explicitly presented as a partial range.
-    Protected source/check messages cannot be shortened. Unclassified exchanges
+    Source bindings, not native roles, distinguish host disclosures from user
+    instructions. Only their exact source fields are replaced; other fields
+    remain verbatim. Protected source/check messages cannot be shortened.
+    Unclassified exchanges
     are retained, including all effectful operations and unknown outcomes.
     """
     if not 0 < policy.target_bytes <= policy.trigger_bytes <= hard_bytes:
@@ -372,7 +375,10 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
             for i in range(first, end):
                 del selected[i]
             omitted.append((first, end, reason))
-        for index in sorted(plain, reverse=True):
+        # Older bound disclosures yield first, including host-selected user
+        # source. Retain savings across disclosures: a single reduction need
+        # not make the whole request affordable. No subset search is needed.
+        for index in sorted(plain):
             if size() <= hard_bytes:
                 break
             if (
@@ -385,6 +391,7 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
             if not option.text:
                 continue
             original_message = selected[index]
+            before = size()
 
             def partial(
                 budget: int,
@@ -395,7 +402,10 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
             ) -> SourceRangeDisclosureOption:
                 smaller = replace(option, maximum_bytes=budget)
                 text = materialize_source_range(snapshot, smaller).items[0].text
-                value = source_feedback(smaller, text)
+                value = {
+                    **json.loads(original_message.content),
+                    **source_feedback(smaller, text),
+                }
                 value["presentation"] = {
                     "reason": "active-context-capacity",
                     "original_message_sha256": hashlib.sha256(
@@ -414,12 +424,17 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
             minimum = len(option.text[0].encode())
             maximum = len(option.text.encode())
             partial(minimum)
+            if size() >= before:
+                selected[index] = original_message
+                current[index] = (option,)
+                continue
+            shortened.append(index)
             target = (
                 policy.target_bytes if size() <= policy.target_bytes else hard_bytes
             )
             if size() > target:
-                selected[index] = original_message
-                current[index] = (option,)
+                # Keep this useful reduction while trying the next disclosure.
+                # An insufficient final outcome is never installed by the host.
                 continue
             low, high = minimum, maximum
             while low < high:
@@ -430,7 +445,6 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
                 else:
                     high = middle - 1
             current[index] = (partial(low),)
-            shortened.append(index)
     active = tuple(o for i in selected for o in current.get(i, ()))
     active_ids = {o.identity for o in active}
     projected = assembled()
