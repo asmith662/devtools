@@ -1,0 +1,102 @@
+"""Fresh candidate repair composition; shared coding process owns execution."""
+import asyncio,json,sys,hashlib,importlib.util
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/b0035_repair';OLD=R/'experiments/delegated_b0035'
+sys.path.insert(0,str(R))
+spec=importlib.util.spec_from_file_location('delegated',R/'.local/delegated-b0035/run.py');d=importlib.util.module_from_spec(spec);spec.loader.exec_module(d)
+r=d.r;d.O=O/'a';d.C=C;r.O=d.O;r.C=C;r.s.STATE=d.O/'staging'
+from devtools.agents.coding import CodingLimits,run_coding_agent
+from devtools.agents.coding.models import CodingProgress
+from devtools.models.interaction import PromptMessage,ModelSettings,InteractionSource
+from devtools.core.time import Duration,Timestamp
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from experiments.joint_context.capture import save_result,projection_record,error_record,result_record
+BASE='12bdd34a38f23a75bcfe561f95dc1b060a4fb365'
+PATH='src/devtools/agents/coding/navigation.py'
+ARCHIVE=OLD/'evidence/candidate'/ (PATH+'.txt')
+LIMITS=CodingLimits(3,2,6,Duration.seconds(180),Duration.seconds(540))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):r.save(p,v)
+def checks(scope):
+ specs=[('focused',sys.executable,('-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',str(OLD/'focused.py')),120),('lint','uv',('run','ruff','check',PATH),30),('format','uv',('run','ruff','format','--check',PATH),30)]
+ return r.FixedCheckPlan(scope.root,tuple(r.FixedCheck(n,r.Command(exe).args(*args).cwd(scope.root).with_timeout(Duration.seconds(t))) for n,exe,args,t in specs),scope,r.CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=4096))
+def host(scope,corpus,**callbacks):
+ # Existing experimental host supplies unchanged provider settings; no production API.
+ async def authorize(call,value):
+  if call.name not in {'read_source','read_source_unit','find_source','replace_source','validate_candidate'}:raise PermissionError('Outside repair authority')
+ async def denied(changes):raise PermissionError('Preparation is read-only')
+ h=r.Host(r.CodingObjective((C/'task-a.md').read_text(),scope,(r.RepositoryResourceAddress(PATH),),checks(scope),r.EditLimits(4096,32768,8192,2),8192,32768),corpus=corpus,authorize=authorize,apply_changes=callbacks.get('effect',denied),archive=callbacks.get('archive',lambda _:None),restore=callbacks.get('restore',lambda a,t:None),settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=False),navigation=True,projection=r.ProjectionPolicy(24576,20000,frozenset({'find_source'})))
+ h.proposals=[];return h
+async def preload(h):
+ prior=json.loads((OLD/'evidence/history.json').read_text());feedback=json.loads(prior['messages'][-1]['content'])
+ h.messages.append(PromptMessage('user','Historical observed managed checks from closed Delegated-B0035-0001; not fresh execution or permission:\n'+json.dumps(dict(passed=feedback['passed'],checks=feedback['checks']),ensure_ascii=False)))
+ unit=next(u for u in h.index.views[0].units if u.resource.address.value==PATH)
+ selections=[('historical candidate freshly observed: first range',unit,0,8192),('historical candidate freshly observed: final range',unit,8192,unit.end)]
+ u=next(u for u in h.index.views[1].units if u.qualified_name=='SourceScope');selections.append(('current scope contract',u,u.start,u.end))
+ records=[]
+ for name,unit,start,end in selections:
+  option=r.SourceRangeDisclosureOption('New repair exact source',unit,start,end,8192)
+  material=await r.ToolRunner().execute(r.ScopedSourceTool(h.scope,maximum_bytes=8192),option);assert not option.truncated
+  h.disclosures.append(option);h.source_results.append(material);h._source_messages[len(h.messages)]=(option,)
+  row=d.source_feedback(option,material.items[0].text);row['host_selected_unit']=name
+  h.messages.append(PromptMessage('user',json.dumps(row,ensure_ascii=False)))
+  records.append(dict(name=name,path=unit.resource.address.value,span=option.span,bytes=len(option.text.encode()),version=str(unit.resource.content_identity),snapshot=str(option.snapshot_id)))
+ return records
+class Measured(d.Measured):
+ def __init__(self):
+  super().__init__();self.delegate=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('b0035-repair-0001-stage-a'))
+ async def send(self,q):
+  assert len(self.records)<3
+  return await super().send(q)
+async def episode(prepare):
+ old=json.loads((OLD/'freeze.json').read_text());assert sha(ARCHIVE)=='cb2f9b18800efe302c271b2cf385646457d0a8daa3c205fa8c67b0b1b5670282'
+ candidate=ARCHIVE.read_bytes();baseline=bytes.fromhex(old['baseline_raw'][PATH]);assert (R/PATH).read_bytes()==baseline
+ assert json.loads((OLD/'evidence/applied-1.json').read_text())[0]['after'].encode()==candidate
+ assert json.loads((OLD/'evidence/result.json').read_text())['accepted'] is False
+ model=await r.s.service_identity();assert model==old['model']
+ stage=O/'a';stage.mkdir(parents=True,exist_ok=True)
+ f=None if prepare else json.loads((C/'freeze-a.json').read_text())
+ if f:
+  assert sha(Path(__file__))==f['runner_sha256']
+  for p,v in f['oracles'].items():assert sha(R/p)==v,p
+ repo=r.Repository.new() if prepare else r.Repository(r.RepositoryId.parse(f['repository_id']))
+ owner=Checkout(WorkCycle(R),'b0035-repair-0001-a-'+('preparation' if prepare else 'live'),'main',await git(R,'rev-parse','HEAD'),files=[dict(path=PATH,text=baseline.decode())]);applied=[]
+ async with owner:
+  owner.expect(PATH,candidate.decode());write(BinaryFile(resolve_path(R/PATH),candidate))
+  try:
+   scope,corpus=r.observe(repo)
+   async def effect(changes):
+    assert len(applied)<2
+    for c in changes:owner.expect(c.address.value,c.after)
+    applied.append(r.s.plain(changes));save(stage/'staging'/f'applied-{len(applied)}.json',r.s.plain(changes));r.write_source_changes(scope.root,changes)
+   def archive(values):
+    for a,t in values.items():
+     raw=(R/a.value).read_bytes();assert raw.decode()==t;p=stage/'staging/candidate'/a.value;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+   def restore(a,t):
+    assert t==candidate.decode();write(BinaryFile(resolve_path(R/a.value),candidate))
+   h=host(scope,corpus,effect=effect,archive=archive,restore=restore);records=await preload(h);q=await h.prepare(CodingProgress(LIMITS));assert not h.projection_outcomes[-1].shortened_indices
+   if prepare:
+    controls=await r.suite('oracle-controls',[str(OLD/'oracle_controls.py')],())
+    focused=await r.suite('candidate-focused',[str(OLD/'focused.py')],())
+    tracked={p:sha(R/p) for p in (await git(R,'ls-files','-z',trim=False)).split('\0') if p};tracked[PATH]=hashlib.sha256(baseline).hexdigest()
+    value=dict(schema='b0035-repair-0001-stage-a',at=str(Timestamp.now()),base=BASE,repository_id=str(scope.snapshot.repository_id),snapshot_id=str(scope.snapshot.id),source_hashes={a.value:sha(R/a.value) for a in r.READ},production_baseline={PATH:baseline.hex()},starting_candidate_sha256=sha(ARCHIVE),starting_candidate_path=str(ARCHIVE.relative_to(R)),historical_feedback_path='experiments/delegated_b0035/evidence/history.json',historical_feedback_sha256=sha(OLD/'evidence/history.json'),request=r.s.plain(q),request_bytes=r.request_bytes(q),host_disclosures=records,projection=projection_record(h.projection_outcomes[-1]),model=model,sampling=r.s.QWEN38_INSTRUCT_SAMPLING,limits=r.s.plain(LIMITS),output_tokens=2048,input_tokens=28160,outer_seconds=600,auxiliary_calls=0,checks=r.s.plain(h.objective.checks),controls=controls,focused_preflight=focused,oracles={str(p.relative_to(R)):sha(p) for p in (OLD/'focused.py',OLD/'heldout.py',OLD/'oracle_controls.py')},runner_sha256=sha(Path(__file__)),task_sha256=sha(C/'task-a.md'),forensics=old['forensics'],preserved=tracked,refs=await git(R,'show-ref'),protected_ancestor=old['protected_ancestor'],protected_inputs=old['protected_inputs'],criteria='Changed model repair must pass original behavioral and engineering quality checks, independent withheld/compatibility/typing review. A accepted candidate is not publication. B only after accepted A; no Codex repair or rule relaxation.')
+    save(stage/'freeze.json',value)
+   else:
+    assert r.s.plain(q)==f['request'] and str(scope.snapshot.id)==f['snapshot_id']
+    h.requests.clear();h.projection_outcomes.clear();h.active_disclosures=()
+    assert not (stage/'staging/entry.json').exists();save(stage/'staging/entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+    async with asyncio.timeout(600):result=await run_coding_agent(Measured(),limits=LIMITS,host=h)
+    captured=save_result(stage/'staging/result.json',result)
+    save(stage/'staging/history.json',dict(messages=r.s.plain(h.messages),responses=r.s.plain(h.responses),requests=r.s.plain(h.requests),projections=[projection_record(v) for v in h.projection_outcomes],projection_error=error_record(h.projection_error),sources=r.s.plain(h.source_results),proposals=h.proposals,applied=applied,checks=[[dict(name=v.check.name,result=r.s.plain(v.command_result),inputs_current=v.inputs_current,input_error=error_record(v.input_error)) for v in row] for row in h.check_results]))
+    assert result.custody.restored and not result.custody.reconciliation_required
+  finally:write(BinaryFile(resolve_path(R/PATH),baseline))
+ assert not (R/'.local/backlog/checkout-owner').exists() and (R/PATH).read_bytes()==baseline
+ if prepare:
+  save(C/'freeze-a.json',value);(C/'runner-a.txt').write_bytes(Path(__file__).read_bytes());print(json.dumps(dict(bytes=value['request_bytes'],source_bytes=sum(x['bytes'] for x in records))))
+ else:
+  save(stage/'staging/terminal.json',dict(at=str(Timestamp.now()),released=True,production_restored=True,captured=captured));print(json.dumps(result_record(result),indent=2))
+if __name__=='__main__':asyncio.run(episode(sys.argv[1]=='prepare'))
