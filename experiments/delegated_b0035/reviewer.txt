@@ -1,0 +1,34 @@
+"""Read-only independent evidence accounting; no inference/effect replay."""
+import json,hashlib,difflib
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/delegated_b0035';S=O/'staging'
+f=json.loads((C/'freeze.json').read_text());h=json.loads((S/'history.json').read_text());result=json.loads((S/'result.json').read_text())
+records=[json.loads((S/f'coding-{i}-outcome.json').read_text()) for i in range(1,9)]
+baseline=bytes.fromhex(f['baseline_raw']['src/devtools/agents/coding/navigation.py']);candidate=(S/'candidate/src/devtools/agents/coding/navigation.py').read_bytes()
+assert (R/'src/devtools/agents/coding/navigation.py').read_bytes()==baseline
+initial={(x['path'],tuple(x['span'])) for x in f['host_disclosures']}
+seen={};reads=[];requests=[]
+for name,span in initial:seen.setdefault(name,set()).update(range(*span))
+total=0;new=0
+for i,rec in enumerate(records):
+ projection=h['projections'][i];active=projection['active_sources']
+ requests.append(dict(number=i+1,bytes=rec['bytes'],original_bytes=projection['original_bytes'],input_tokens=rec['response']['usage']['input_tokens'],output_tokens=rec['response']['usage']['output_tokens'],seconds=rec['seconds'],termination=rec['response']['termination'],initial_units_exact=sum(any(a['path']==p and a['span'][0]<=span[0] and span[1]<=a['span'][1] for a in active) for p,span in initial),active=active,omitted=projection['omitted_exchanges'],shortened=projection['shortened_indices']))
+ for call in rec['response']['tool_calls']:
+  feedback=next(m for m in h['messages'] if m.get('tool_call_id')==call['provider_call_id'])
+  payload=json.loads(feedback['content'])
+  if call['name']!='read_source':continue
+  args=json.loads(call['arguments_json']);path=args['path'];span=payload['span'];text=payload['text']
+  # Literal transport escaping is not source size; use authenticated exact source.
+  text=(R/path).read_bytes().decode()[span[0]:span[1]]
+  offsets=set(range(*span));prior=seen.setdefault(path,set());fresh=offsets-prior
+  resource=(R/path).read_bytes().decode();nb=sum(len(resource[n].encode()) for n in fresh)
+  amount=len(text.encode());total+=amount;new+=nb
+  fully_active=any(a['path']==path and a['span'][0]<=span[0] and span[1]<=a['span'][1] for a in active)
+  reads.append(dict(request=i+1,native_call_id=call['provider_call_id'],path=path,requested=[args['start'],args.get('end')],disclosed=span,bytes=amount,new_bytes_relative_to_host_and_prior=nb,historically_repeated_bytes=amount-nb,fully_active_before=fully_active))
+  prior.update(offsets)
+assert all(v['initial_units_exact']==6 for v in requests)
+assert len(reads)==7 and result['progress']['proposals']==1 and len(h['applied'])==1
+delta=''.join(difflib.unified_diff(baseline.decode().splitlines(True),candidate.decode().splitlines(True),fromfile='baseline/navigation.py',tofile='model/navigation.py'))
+(O/'candidate.diff').write_bytes(delta.encode())
+value=dict(schema='delegated-b0035-independent-review-v1',requests=requests,reads=reads,initial_source_bytes=f['preflight']['source_bytes'],additional_read_bytes=total,new_source_bytes=new,repeated_bytes=total-new,input_tokens=sum(r['response']['usage']['input_tokens'] for r in records),output_tokens=sum(r['response']['usage']['output_tokens'] for r in records),model_seconds=sum(r['seconds'] for r in records),calls_before_first_proposal=7,proposals=1,admitted=1,applied=1,natural_repairs=0,auxiliary_calls=0,baseline_sha256=hashlib.sha256(baseline).hexdigest(),candidate_sha256=hashlib.sha256(candidate).hexdigest(),baseline_bytes=len(baseline),candidate_bytes=len(candidate),worker_disposition=result['disposition'],focused_passed=4,withheld_passed=3,compatibility_passed=34,typing_files=612,lint_failure='E501: navigation.py:315, 95 columns > 88',format_passed=True,feedback_consumed=False,accepted=False,stage_b_entered=False,production_integrated=False,b0035_complete=False,review='Source-supported representation meets the frozen behavioral assertions and reuses SourceScope/current observation. One out-of-style line violates the frozen managed checks; proposal on last call left no feedback-consuming repair. Exact candidate retained without Codex repair. No production or stage-B acceptance. This is a real implementation transition, not a clean maintenance completion.',next='Stop this assignment at stage A. Compare reasoning-enabled Qwen or another locally feasible worker on this same narrow task/oracle before more harness changes; assess earlier implementation and remaining repair capacity. No new comparison authorized or started.')
+(O/'review.json').write_bytes((json.dumps(value,indent=2)+'\n').encode());print(json.dumps({k:v for k,v in value.items() if k not in ('requests','reads')},indent=2))

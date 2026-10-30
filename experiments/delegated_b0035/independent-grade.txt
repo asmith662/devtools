@@ -1,0 +1,25 @@
+"""Independently grade exact archived bytes; never repair the candidate."""
+import asyncio,json,sys,hashlib
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).parent))
+import run as d
+async def main():
+ f=d.frozen();p=d.EDIT[0];baseline=bytes.fromhex(f['baseline_raw'][p]);candidate=(d.O/'staging/candidate'/p).read_bytes()
+ assert (d.R/p).read_bytes()==baseline and candidate!=baseline
+ owner=d.Checkout(d.WorkCycle(d.R),'delegated-b0035-0001-independent-grade','main',await d.git(d.R,'rev-parse','HEAD'),files=[dict(path=p,text=baseline.decode())])
+ results=[]
+ async with owner:
+  d.save(d.O/'staging/grade-entry.json',dict(at=str(d.Timestamp.now()),owner=owner.record,candidate_sha256=hashlib.sha256(candidate).hexdigest()))
+  owner.expect(p,candidate.decode());d.write(d.BinaryFile(d.resolve_path(d.R/p),candidate))
+  try:
+   for label,args in [('withheld', [sys.executable,'-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',str(d.C/'heldout.py'),'--junitxml='+str(d.O/'staging/withheld.xml')]),('compatibility',[sys.executable,'-B','-X','utf8','-m','pytest','--no-cov','-q','tests/agents/coding/test_navigation.py','tests/agents/coding/test_navigation_history.py','tests/agents/coding/test_repository.py','--junitxml='+str(d.O/'staging/compatibility.xml')]),('typing',['uv','run','mypy'])]:
+    command=d.r.Command(args[0]).args(*args[1:]).cwd(d.resolve_path(d.R)).with_timeout(d.Duration.seconds(180))
+    timer=d.Stopwatch();result=await d.r.s.managed(command,'independent-'+label);timer.stop()
+    v=dict(label=label,command=d.r.s.plain(command),exit_code=result.exit_code,seconds=timer.elapsed.total_seconds,stdout=result.stdout.decode(errors='replace'),stderr=result.stderr.decode(errors='replace'),capture_incomplete=result.stdout_truncated or result.stderr_truncated or result.events_dropped,candidate_sha256=hashlib.sha256((d.R/p).read_bytes()).hexdigest())
+    assert (d.R/p).read_bytes()==candidate
+    results.append(v);d.save(d.O/'staging'/('grade-'+label+'.json'),v)
+  finally:d.write(d.BinaryFile(d.resolve_path(d.R/p),baseline))
+ assert (d.R/p).read_bytes()==baseline and not (d.R/'.local/backlog/checkout-owner').exists()
+ d.save(d.O/'staging/grade-terminal.json',dict(at=str(d.Timestamp.now()),source_restored=True,owner_released=True,results=results,accepted=False,reason='Frozen managed lint rejected E501; no remaining model call consumed feedback. No supervisor repair.'))
+ print(json.dumps([dict(label=v['label'],exit_code=v['exit_code'],stdout=v['stdout'][-800:]) for v in results],indent=2))
+asyncio.run(main())

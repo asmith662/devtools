@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.264" timestamp="2026-10-30T11:43:51.681465-04:00" hostname="asmith"><testcase classname="experiments.delegated_b0035.heldout" name="test_many_complete_resources_and_utf8" time="0.039"><failure message="AssertionError: Complete authorized inventory representation is missing">experiments\delegated_b0035\heldout.py:25: in test_many_complete_resources_and_utf8
+    result = implementation()(scope, editable + editable, 20000)
+             ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+           ^^^^^^^^^^^^^^^
+E   AssertionError: Complete authorized inventory representation is missing</failure></testcase><testcase classname="experiments.delegated_b0035.heldout" name="test_updated_observation_changes_identity" time="0.003"><failure message="AssertionError: Complete authorized inventory representation is missing">experiments\delegated_b0035\heldout.py:45: in test_updated_observation_changes_identity
+    old = implementation()(first, (), 4096)
+          ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+           ^^^^^^^^^^^^^^^
+E   AssertionError: Complete authorized inventory representation is missing</failure></testcase><testcase classname="experiments.delegated_b0035.heldout" name="test_canonical_order_not_input_order" time="0.005"><failure message="AssertionError: Complete authorized inventory representation is missing">experiments\delegated_b0035\heldout.py:66: in test_canonical_order_not_input_order
+    implementation()(unordered, (), 4096)
+    ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+           ^^^^^^^^^^^^^^^
+E   AssertionError: Complete authorized inventory representation is missing</failure></testcase></testsuite></testsuites>

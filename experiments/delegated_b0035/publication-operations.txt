@@ -1,0 +1,64 @@
+import asyncio,json,sys,hashlib,re
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/delegated_b0035';sys.path.insert(0,str(R));sys.path.insert(0,str(R/'.local/command-capabilities-20261027'))
+from scripts.backlog.coordinator import git
+from scripts.backlog.intake import Intake
+from devtools.core.time import Timestamp
+from github import credentials,get,PREFIX
+BASE='231c3933340afe8361a2121505da84cd67918cf0'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+async def verify():
+ a=json.loads((C/'freeze.json').read_text());assert not (R/'.local/backlog/checkout-owner').exists()
+ changed=set((await git(R,'diff',BASE,'--name-only')).splitlines())
+ extra=set(filter(None,(await git(R,'ls-files','--others','--exclude-standard','-z',trim=False)).split('\0')))-set(a['forensics'])
+ allowed=('experiments/delegated_b0035/','docs/documentation_map.md','docs/backlog/items/B-0035','docs/backlog/items/B-0043')
+ assert all(p.startswith(allowed) for p in changed|extra),changed|extra
+ for p,h in a['forensics'].items():assert sha(R/p)==h,p
+ for p,h in a['preserved'].items():
+  if p not in changed:assert sha(R/p)==h,p
+ for row in json.loads((R/'experiments/throughput_b0035/manifest.json').read_text())['files']:assert sha(R/'experiments/throughput_b0035'/row['path'])==row['sha256']
+ gate=json.loads((R/'.local/joint-context/protected.json').read_text())
+ if gate:
+  assert gate['exit_code']==0 and gate['inputs_unchanged']
+  for p,h in gate['inputs'].items():assert sha(R/p)==h,p
+ q=Intake(R).queue();assert not q['errors'] and len(q['proposals'])==68
+ rows=0
+ for name in ['ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl']:
+  rows+=len([json.loads(v) for v in (R/'docs/research/code-audit'/name).read_text().splitlines() if v.strip()])
+ assert rows==903
+ refs={v.split()[1]:v.split()[0] for v in (await git(R,'show-ref')).splitlines()}
+ for line in a['refs'].splitlines():
+  h,p=line.split()
+  if p not in ('refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD'):assert refs[p]==h,p
+ for p in C.rglob('*.json'):json.loads(p.read_text())
+ links=0
+ for name in changed|extra:
+  p=R/name
+  if p.suffix!='.md':continue
+  for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+   if ':' in target.split('#')[0]:continue
+   rel=target.split('#')[0];assert (p.parent/rel).exists(),(name,target);links+=1
+ if (C/'manifest.json').exists():
+  for row in json.loads((C/'manifest.json').read_text())['files']:assert sha(C/row['path'])==row['sha256']
+ await git(R,'diff','--check');await git(R,'diff','--cached','--check')
+ v=dict(at=str(Timestamp.now()),head=await git(R,'rev-parse','HEAD'),base=BASE,changed=sorted(changed|extra),forensics=13,ri_rows=903,intake_chains=68,prior_hashes_preserved=sum(p not in changed for p in a['preserved']),historical_refs_preserved=True,links=links,protected_inputs=len(gate['inputs']) if gate else None)
+ (O/'verification.json').write_text(json.dumps(v,indent=2)+'\n');return v
+async def main():
+ v=await verify();action=sys.argv[1]
+ if action=='verify':print(json.dumps({k:x for k,x in v.items() if k!='changed'}));return
+ if action=='commit':
+  assert not await git(R,'diff','--cached','--name-only')
+  a=json.loads((C/'freeze.json').read_text());names=sorted(set((await git(R,'diff','--name-only')).splitlines())|(set(filter(None,(await git(R,'ls-files','--others','--exclude-standard','-z',trim=False)).split('\0')))-set(a['forensics'])))
+  assert names;await git(R,'add','--',*names);await git(R,'diff','--cached','--check');print(await git(R,'commit','-m',sys.argv[2]));print(await git(R,'rev-parse','HEAD'));return
+ if action=='push':
+  auth=await credentials();repo=get(auth,PREFIX);b=get(auth,PREFIX+'/branches/main');rules=get(auth,PREFIX+'/rules/branches/main');sets=get(auth,PREFIX+'/rulesets?includes_parents=true')
+  assert repo['permissions']['push'] and not b['protected'] and not rules and not sets
+  expected=json.loads((O/'accepted.json').read_text())['main'] if (O/'accepted.json').exists() else BASE
+  assert b['commit']['sha']==expected==(await git(R,'ls-remote','origin','refs/heads/main')).split()[0]
+  assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+  head=await git(R,'rev-parse','HEAD');await git(R,'merge-base','--is-ancestor',expected,head)
+  await git(R,'push','origin','HEAD:refs/heads/main')
+  assert (await git(R,'ls-remote','origin','refs/heads/main')).split()[0]==head==get(auth,PREFIX+'/branches/main')['commit']['sha']
+  await git(R,'fetch','origin','main');assert await git(R,'rev-parse','origin/main')==head
+  value=dict(at=str(Timestamp.now()),main=head,remote_verified=True,non_force=True,prior_remote=expected);(O/'accepted.json').write_text(json.dumps(value,indent=2)+'\n');print(json.dumps(value))
+asyncio.run(main())

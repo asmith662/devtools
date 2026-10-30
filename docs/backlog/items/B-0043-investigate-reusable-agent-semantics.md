@@ -436,3 +436,15 @@ worker check or repair; the full result and normal custody release survived. B-0
 remains open. Repeated broad acquisition under active eviction still prevents a
 useful maintenance outcome in this sample. No grant, status transition, model-authored
 implementation or broader parent closure is implied.
+
+## Supervisor-delegated inventory responsibility - 2026-10-30
+
+The [new bounded assessment](../../../experiments/delegated_b0035/REPORT.md)
+kept six initial source units exact across eight real Qwen calls. The worker
+submitted one admitted representation implementation on its last call: four
+focused and three withheld behavioral checks, 34 compatibility tests and strict
+typing passed. A frozen Ruff line-length failure remained, with no subsequent
+call consuming feedback. No Codex repair, second stage, production integration,
+grant, status transition or B-0035 completion follows. Preserve the exact candidate
+and stop this assignment; a controlled model/profile comparison under the same
+narrow task/oracle is preferable to another generic Context infrastructure change.

@@ -1,0 +1,36 @@
+"""Capture bounded development-command identity, timing and exact output."""
+import asyncio,hashlib,json,sys,platform
+from dataclasses import asdict
+from devtools.observability.commands.inspection import completed_observation
+from devtools.observability.commands.models import CommandOrigin,CommandPattern
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy,CommandStdout,CommandStderr
+from scripts.backlog.coordinator import git
+R=Path.cwd();O=Path(__file__).parent
+async def main():
+ name=sys.argv[1];args=sys.argv[2:];assert args
+ tracked=await git(R,'ls-files','-z',trim=False)
+ untracked=await git(R,'ls-files','--others','--exclude-standard','-z',trim=False)
+ paths=sorted(set((tracked+'\0'+untracked).split('\0'))-{''})
+ selected=[p for p in paths if (p.startswith(('src/','tests/','apps/','scripts/','experiments/local_coding_dogfood/')) or (p.startswith(('experiments/coding_transition/', 'experiments/delegated_b0035/')) and p.endswith('.py')) and not p.startswith('tests/experiments/')) or p in ['pyproject.toml','uv.lock','.python-version','AGENTS.md','.gitignore','.gitattributes']]
+ before={p:hashlib.sha256((R/p).read_bytes()).hexdigest() for p in selected}
+ started=str(Timestamp.now());timer=Stopwatch()
+ (O/(name+'-intent.json')).write_text(json.dumps(dict(name=name,command=args,started_at=started,head=await git(R,'rev-parse','HEAD'),tree=await git(R,'rev-parse','HEAD^{tree}'),inputs=before),indent=2)+'\n',encoding='utf-8')
+ execution=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=16<<20,max_stderr_bytes=4<<20)).start(Command(args[0]).args(*args[1:]).cwd(resolve_path(R)))
+ with (O/(name+'.live')).open('wb') as live:
+  async for event in execution.events():
+   if isinstance(event,(CommandStdout,CommandStderr)):live.write(event.data);live.flush()
+ result=await execution
+ timer.stop();after={p:hashlib.sha256((R/p).read_bytes()).hexdigest() for p in selected}
+ (O/(name+'.stdout')).write_bytes(result.stdout);(O/(name+'.stderr')).write_bytes(result.stderr)
+ value=dict(name=name,command=args,started_at=started,finished_at=str(Timestamp.now()),seconds=timer.elapsed.total_seconds,exit_code=result.exit_code,head=await git(R,'rev-parse','HEAD'),tree=await git(R,'rev-parse','HEAD^{tree}'),inputs=before,inputs_unchanged=before==after,stdout_sha256=hashlib.sha256(result.stdout).hexdigest(),stderr_sha256=hashlib.sha256(result.stderr).hexdigest(),stdout_truncated=result.stdout_truncated,stderr_truncated=result.stderr_truncated,events_dropped=result.events_dropped)
+ operation='typing' if name.startswith('typing') else 'format' if name.startswith('format') else 'lint' if name.startswith('ruff') else 'layout' if 'layout' in name else 'protected-tests' if name=='protected' else 'tests' if 'test' in name or 'focused' in name or name.startswith('post') else 'verification'
+ observation=completed_observation(result,origin=CommandOrigin('codex-development-host','delegated-b0035','verification-20261029',name),pattern=CommandPattern(args[0],operation,('opaque',),(sys.platform,)))
+ value['safe_command_observation']=asdict(observation)
+ value['safe_command_observation']['duration']=None if observation.duration is None else observation.duration.total_seconds
+ (O/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n');assert before==after
+ print(json.dumps({k:v for k,v in value.items() if k!='inputs'},indent=2));print(result.stdout.decode(errors='replace')[-2200:]);print(result.stderr.decode(errors='replace')[-1000:])
+asyncio.run(main())

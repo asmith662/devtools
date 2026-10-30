@@ -1,0 +1,446 @@
+{
+  "at": "2026-10-30T15:43:53.043228+00:00",
+  "status": "passed",
+  "request_bytes": 19640,
+  "source_bytes": 10151,
+  "units": [
+    {
+      "name": "navigation imports",
+      "path": "src/devtools/agents/coding/navigation.py",
+      "span": [
+        0,
+        1178
+      ],
+      "bytes": 1178,
+      "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    },
+    {
+      "name": "navigation_feedback",
+      "path": "src/devtools/agents/coding/navigation.py",
+      "span": [
+        10999,
+        13043
+      ],
+      "bytes": 2044,
+      "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    },
+    {
+      "name": "SourceScope",
+      "path": "src/devtools/tools/source.py",
+      "span": [
+        990,
+        3212
+      ],
+      "bytes": 2222,
+      "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    },
+    {
+      "name": "RepositoryResourceOccurrence",
+      "path": "src/devtools/context/repository/resource.py",
+      "span": [
+        2547,
+        2843
+      ],
+      "bytes": 296,
+      "version": "5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    },
+    {
+      "name": "RepositorySnapshot",
+      "path": "src/devtools/context/repository/snapshot.py",
+      "span": [
+        906,
+        2017
+      ],
+      "bytes": 1111,
+      "version": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    },
+    {
+      "name": "public diagnostics",
+      "path": "experiments/delegated_b0035/focused.py",
+      "span": [
+        0,
+        3300
+      ],
+      "bytes": 3300,
+      "version": "34b210855fccb97029a6d24cbcb21ab7d5b2d75fb100d070afa1a3ab6b730480",
+      "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c"
+    }
+  ],
+  "continuity": [
+    {
+      "status": "unchanged",
+      "triggered": false,
+      "original_bytes": 22860,
+      "resulting_bytes": 22860,
+      "target_bytes": 20000,
+      "hard_bytes": 32768,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "identity": "bb108bc2cbdb5d05373ef4c7ed456a1daa211611e1d8707cc389a84afd59bcef",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            0,
+            1178
+          ]
+        },
+        {
+          "identity": "aa8aef6fe65edd1c857b2009f36894ce691445f8a154d221e2da14e655187f5a",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            10999,
+            13043
+          ]
+        },
+        {
+          "identity": "2db85ac67298af7fa403794fcbf1b239af8ad739df839c55f52eb20e3af3e5a8",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ]
+        },
+        {
+          "identity": "66e65c2ff911481344cd969b89dfe289714ccbe3f31cd72a7b02e2c54679ad1c",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c",
+          "path": "src/devtools/context/repository/resource.py",
+          "span": [
+            2547,
+            2843
+          ]
+        },
+        {
+          "identity": "aad7d2d8efd1b601747023e4a9107fad2299bbec59cea24a243055cdfb3b7693",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+          "path": "src/devtools/context/repository/snapshot.py",
+          "span": [
+            906,
+            2017
+          ]
+        },
+        {
+          "identity": "04bb8e91798d00ce11d11a9e678279f55f941f833471f59b7a3f937dd4c33df1",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "34b210855fccb97029a6d24cbcb21ab7d5b2d75fb100d070afa1a3ab6b730480",
+          "path": "experiments/delegated_b0035/focused.py",
+          "span": [
+            0,
+            3300
+          ]
+        },
+        {
+          "identity": "aa8aef6fe65edd1c857b2009f36894ce691445f8a154d221e2da14e655187f5a",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            10999,
+            13043
+          ]
+        }
+      ],
+      "invalidated_source_identities": []
+    },
+    {
+      "status": "unchanged",
+      "triggered": true,
+      "original_bytes": 26157,
+      "resulting_bytes": 26157,
+      "target_bytes": 20000,
+      "hard_bytes": 32768,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "identity": "bb108bc2cbdb5d05373ef4c7ed456a1daa211611e1d8707cc389a84afd59bcef",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            0,
+            1178
+          ]
+        },
+        {
+          "identity": "aa8aef6fe65edd1c857b2009f36894ce691445f8a154d221e2da14e655187f5a",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            10999,
+            13043
+          ]
+        },
+        {
+          "identity": "2db85ac67298af7fa403794fcbf1b239af8ad739df839c55f52eb20e3af3e5a8",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ]
+        },
+        {
+          "identity": "66e65c2ff911481344cd969b89dfe289714ccbe3f31cd72a7b02e2c54679ad1c",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "5765dd859ff4d20758100a03ece1384b74a5027ae13cbed0254d826cac673f0c",
+          "path": "src/devtools/context/repository/resource.py",
+          "span": [
+            2547,
+            2843
+          ]
+        },
+        {
+          "identity": "aad7d2d8efd1b601747023e4a9107fad2299bbec59cea24a243055cdfb3b7693",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+          "path": "src/devtools/context/repository/snapshot.py",
+          "span": [
+            906,
+            2017
+          ]
+        },
+        {
+          "identity": "04bb8e91798d00ce11d11a9e678279f55f941f833471f59b7a3f937dd4c33df1",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "34b210855fccb97029a6d24cbcb21ab7d5b2d75fb100d070afa1a3ab6b730480",
+          "path": "experiments/delegated_b0035/focused.py",
+          "span": [
+            0,
+            3300
+          ]
+        },
+        {
+          "identity": "aa8aef6fe65edd1c857b2009f36894ce691445f8a154d221e2da14e655187f5a",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "cc78eeed5b52d47c139806dae5252e12b61415a8a5a708d6a5dc52959a025a7c",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            10999,
+            13043
+          ]
+        },
+        {
+          "identity": "2db85ac67298af7fa403794fcbf1b239af8ad739df839c55f52eb20e3af3e5a8",
+          "snapshot": "44f8c0f3735e13e6a44e0bf720969320549ef87d416c9f80301c3270bb2ef16c",
+          "repository": "8167c2d9-a01f-44e2-86f5-0ca69139a478",
+          "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ]
+        }
+      ],
+      "invalidated_source_identities": []
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "normal-addresses",
+      "obligation": "complete metadata",
+      "category": "normal",
+      "expected": [
+        "read me.txt",
+        "z.py"
+      ],
+      "independently_derived": [
+        "read me.txt",
+        "z.py"
+      ],
+      "derivation": "independent finite authorized-set ordering"
+    },
+    {
+      "name": "utf8-accent",
+      "obligation": "byte sizes",
+      "category": "boundary",
+      "expected": 3,
+      "independently_derived": 3,
+      "derivation": "UTF-8 U+00E9 C3 A9 plus newline 0A"
+    },
+    {
+      "name": "utf8-crlf",
+      "obligation": "byte sizes",
+      "category": "boundary",
+      "expected": 108,
+      "independently_derived": 108,
+      "derivation": "UTF-8 U+1F600 four octets plus CR LF two octets"
+    },
+    {
+      "name": "empty",
+      "obligation": "complete metadata",
+      "category": "empty",
+      "expected": [],
+      "independently_derived": [],
+      "derivation": "empty authorized set contains no rows"
+    }
+  ],
+  "focused": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\focused.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\delegated-b0035\\focused-ready.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:03:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 0,
+    "failed": [
+      "test_budget_and_foreign_editability",
+      "test_complete_metadata",
+      "test_empty_scope",
+      "test_stale_scope_refused"
+    ],
+    "xml_sha256": "697540f5731e3c985134c155235d8ef4b1805531b6520c7af98d70beb986f156",
+    "stdout": "FFFF                                                                     [100%]\r\n================================== FAILURES ===================================\r\n___________________________ test_complete_metadata ____________________________\r\nexperiments\\delegated_b0035\\focused.py:40: in test_complete_metadata\r\n    value = implementation()(scope, (RepositoryResourceAddress(\"z.py\"),), 4096)\r\n            ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\nE   AssertionError: Complete authorized inventory representation is missing\r\nE   assert False\r\nE    +  where False = callable(None)\r\n______________________________ test_empty_scope _______________________________\r\nexperiments\\delegated_b0035\\focused.py:59: in test_empty_scope\r\n    value = implementation()(scope, (), 4096)\r\n            ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\nE   AssertionError: Complete authorized inventory representation is missing\r\nE   assert False\r\nE    +  where False = callable(None)\r\n_____________________ test_budget_and_foreign_editability _____________________\r\nexperiments\\delegated_b0035\\focused.py:66: in test_budget_and_foreign_editability\r\n    fn = implementation()\r\n         ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\nE   AssertionError: Complete authorized inventory representation is missing\r\nE   assert False\r\nE    +  where False = callable(None)\r\n__________________________ test_stale_scope_refused ___________________________\r\nexperiments\\delegated_b0035\\focused.py:81: in test_stale_scope_refused\r\n    fn = implementation()\r\n         ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\nE   AssertionError: Complete authorized inventory representation is missing\r\nE   assert False\r\nE    +  where False = callable(None)\r\n=========================== short test summary info ===========================\r\nFAILED experiments/delegated_b0035/focused.py::test_complete_metadata - Asser...\r\nFAILED experiments/delegated_b0035/focused.py::test_empty_scope - AssertionEr...\r\nFAILED experiments/delegated_b0035/focused.py::test_budget_and_foreign_editability\r\nFAILED experiments/delegated_b0035/focused.py::test_stale_scope_refused - Ass...\r\n4 failed in 0.36s\r\n",
+    "stderr": ""
+  },
+  "heldout": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\heldout.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\delegated-b0035\\withheld-ready.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:03:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 1,
+    "passed": 0,
+    "failed": [
+      "test_canonical_order_not_input_order",
+      "test_many_complete_resources_and_utf8",
+      "test_updated_observation_changes_identity"
+    ],
+    "xml_sha256": "124972993dc81d46bcd3c814813dd8dbaa2b0a8cf0a24a1116a5234ad558b102",
+    "stdout": "FFF                                                                      [100%]\r\n================================== FAILURES ===================================\r\n____________________ test_many_complete_resources_and_utf8 ____________________\r\nexperiments\\delegated_b0035\\heldout.py:25: in test_many_complete_resources_and_utf8\r\n    result = implementation()(scope, editable + editable, 20000)\r\n             ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\n           ^^^^^^^^^^^^^^^\r\nE   AssertionError: Complete authorized inventory representation is missing\r\n__________________ test_updated_observation_changes_identity __________________\r\nexperiments\\delegated_b0035\\heldout.py:45: in test_updated_observation_changes_identity\r\n    old = implementation()(first, (), 4096)\r\n          ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\n           ^^^^^^^^^^^^^^^\r\nE   AssertionError: Complete authorized inventory representation is missing\r\n____________________ test_canonical_order_not_input_order _____________________\r\nexperiments\\delegated_b0035\\heldout.py:66: in test_canonical_order_not_input_order\r\n    implementation()(unordered, (), 4096)\r\n    ^^^^^^^^^^^^^^^^\r\nexperiments\\delegated_b0035\\focused.py:33: in implementation\r\n    assert callable(value), \"Complete authorized inventory representation is missing\"\r\n           ^^^^^^^^^^^^^^^\r\nE   AssertionError: Complete authorized inventory representation is missing\r\n=========================== short test summary info ===========================\r\nFAILED experiments/delegated_b0035/heldout.py::test_many_complete_resources_and_utf8\r\nFAILED experiments/delegated_b0035/heldout.py::test_updated_observation_changes_identity\r\nFAILED experiments/delegated_b0035/heldout.py::test_canonical_order_not_input_order\r\n3 failed in 0.41s\r\n",
+    "stderr": ""
+  },
+  "controls": {
+    "command": {
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "arguments": [
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "--tb=short",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\oracle_controls.py",
+        "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\delegated-b0035\\oracle-controls-ready.xml"
+      ],
+      "working_directory": {
+        "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+      },
+      "timeout": {
+        "value": "0:03:00"
+      },
+      "stdin": null,
+      "environment": null,
+      "success_exit_codes": "frozenset({0})"
+    },
+    "exit_code": 0,
+    "passed": 11,
+    "failed": [],
+    "xml_sha256": "d3966447e85f38ae28ed5ec4cbbc6b904727db3a9f70f72baa485ca915811121",
+    "stdout": "...........                                                              [100%]\r\n11 passed in 0.43s\r\n",
+    "stderr": ""
+  },
+  "feasibility": {
+    "src/devtools/agents/coding/navigation.py": {
+      "bytes": 13044,
+      "headroom": 19724
+    },
+    "src/devtools/agents/coding/repository.py": {
+      "bytes": 32031,
+      "headroom": 737
+    }
+  }
+}

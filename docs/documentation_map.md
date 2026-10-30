@@ -1032,3 +1032,5 @@ production implementation occurred; B-0035 remains open.
 decision, then coding capacity/capture failure before edits. No production change.
 
 Joint Context reliability, 2026-10-30: [delivery and real continuation](../experiments/joint_context/REPORT.md) records protected joint source reduction, exception-safe experimental capture and a ten-read/no-edit B-0035 outcome. The [active projection contract](development/active-context-projection.md#joint-disclosure-affordability--2026-10-30) distinguishes bounded affordability from working-set usefulness.
+
+Supervisor-delegated B-0035, 2026-10-30: [stable working-set assessment](../experiments/delegated_b0035/REPORT.md) records one real model-authored representation passing behavioral acceptance but failing a frozen lint check on its last call. No repair, second stage, production integration or B-0035 completion is claimed.

@@ -1,0 +1,44 @@
+--- baseline/navigation.py
++++ model/navigation.py
+@@ -298,0 +299,41 @@
++
++
++def complete_inventory(
++    scope: SourceScope,
++    editable: tuple[RepositoryResourceAddress, ...],
++    maximum_bytes: int,
++) -> dict[str, object]:
++    """Represent every authorized resource as bounded metadata only."""
++    if type(maximum_bytes) is not int or maximum_bytes <= 0:
++        msg = "Inventory presentation bound must be a positive integer."
++        raise ValueError(msg)
++    scope.check_current()
++    addresses = frozenset(r.address for r in scope.snapshot.resources)
++    editable_addresses = frozenset(editable)
++    foreign = editable_addresses - addresses
++    if foreign:
++        msg = f"Editable address is outside the authorized scope: {sorted(map(str, foreign))}."
++        raise ValueError(msg)
++    resources = [
++        {
++            "address": str(resource.address),
++            "content_identity": str(resource.content_identity),
++            "byte_size": resource.byte_size,
++            "editable": resource.address in editable_addresses,
++        }
++        for resource in sorted(
++            scope.snapshot.resources,
++            key=lambda r: str(r.address),
++        )
++    ]
++    result: dict[str, object] = {
++        "repository_id": str(scope.snapshot.repository_id),
++        "snapshot_id": str(scope.snapshot.id),
++        "source_acquired": False,
++        "complete_inventory": True,
++        "resources": resources,
++    }
++    if len(json.dumps(result, ensure_ascii=False).encode("utf-8")) > maximum_bytes:
++        msg = "Complete inventory metadata cannot fit its disclosure budget."
++        raise ValueError(msg)
++    return result

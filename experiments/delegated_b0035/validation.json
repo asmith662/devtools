@@ -1,0 +1,339 @@
+{
+  "at": "2026-10-30T16:05:23.491274+00:00",
+  "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+  "protected_ancestor": "72379015cf4f34f74a9282661aac8aa0362c9977",
+  "protected_blob_and_physical_matches": 1191,
+  "native_requests_validated": 8,
+  "native_ids_per_request": [
+    0,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3
+  ],
+  "retained_history_valid": true,
+  "provider_usage_correlated": true,
+  "oracle_scope_separated": true,
+  "acknowledgments_complete": true,
+  "owner_released": true,
+  "production_unchanged": true,
+  "full_gate_rerun": false,
+  "checks": {
+    "setup-static": {
+      "name": "setup-static",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "experiments/delegated_b0035"
+      ],
+      "started_at": "2026-10-30T15:45:48.447230+00:00",
+      "finished_at": "2026-10-30T15:45:48.642954+00:00",
+      "seconds": 0.143318,
+      "exit_code": 0,
+      "head": "231c3933340afe8361a2121505da84cd67918cf0",
+      "tree": "1c1b06e2ff36f22a432626a2d952100fc1c0c6bc",
+      "inputs_unchanged": true,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "setup-static"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "verification",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.079916,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    },
+    "ruff-final": {
+      "name": "ruff-final",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "experiments/delegated_b0035/focused.py",
+        "experiments/delegated_b0035/heldout.py",
+        "experiments/delegated_b0035/oracle_controls.py"
+      ],
+      "started_at": "2026-10-30T15:53:00.210427+00:00",
+      "finished_at": "2026-10-30T15:53:00.407452+00:00",
+      "seconds": 0.14799,
+      "exit_code": 0,
+      "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+      "tree": "4c1d9ca68dad3a5e5438713a931373b966feef22",
+      "inputs_unchanged": true,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "ruff-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "lint",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.088122,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    },
+    "format-final": {
+      "name": "format-final",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "experiments/delegated_b0035/focused.py",
+        "experiments/delegated_b0035/heldout.py",
+        "experiments/delegated_b0035/oracle_controls.py"
+      ],
+      "started_at": "2026-10-30T15:53:02.028509+00:00",
+      "finished_at": "2026-10-30T15:53:02.233847+00:00",
+      "seconds": 0.15751,
+      "exit_code": 1,
+      "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+      "tree": "4c1d9ca68dad3a5e5438713a931373b966feef22",
+      "inputs_unchanged": true,
+      "stdout_sha256": "c56b9d86be2c0b1f6ca8bea8de50d6dcdd880709f0d09de444cf8ab0726015ad",
+      "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "format-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "format",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "failed",
+        "exit_code": 1,
+        "duration": 0.097662,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    },
+    "format-supported": {
+      "name": "format-supported",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "apps",
+        "scripts",
+        "tests/agents/coding",
+        "tests/evaluation",
+        "experiments/delegated_b0035/focused.py",
+        "experiments/delegated_b0035/heldout.py",
+        "experiments/delegated_b0035/oracle_controls.py"
+      ],
+      "started_at": "2026-10-30T16:01:31.856927+00:00",
+      "finished_at": "2026-10-30T16:01:32.031477+00:00",
+      "seconds": 0.126456,
+      "exit_code": 0,
+      "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+      "tree": "4c1d9ca68dad3a5e5438713a931373b966feef22",
+      "inputs_unchanged": true,
+      "stdout_sha256": "c7aa1a08134bd00f822994263fcb97f98ec8349667fc9d66cdd769062387ca81",
+      "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "format-supported"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "format",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.067023,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    },
+    "typing-final": {
+      "name": "typing-final",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "started_at": "2026-10-30T16:02:01.620228+00:00",
+      "finished_at": "2026-10-30T16:02:02.335591+00:00",
+      "seconds": 0.660315,
+      "exit_code": 0,
+      "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+      "tree": "4c1d9ca68dad3a5e5438713a931373b966feef22",
+      "inputs_unchanged": true,
+      "stdout_sha256": "2dd531de6e6860d5749d9f661c32aad13e0f4b4f164b096c1be299b6ec7f8f5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "typing-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "typing",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.5973,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    },
+    "layout-final": {
+      "name": "layout-final",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-30T15:53:01.371219+00:00",
+      "finished_at": "2026-10-30T15:53:01.571406+00:00",
+      "seconds": 0.149635,
+      "exit_code": 0,
+      "head": "7f48da63048ac5de1437af6e0ba565dfa71537ae",
+      "tree": "4c1d9ca68dad3a5e5438713a931373b966feef22",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "delegated-b0035",
+          "run": "verification-20261029",
+          "call": "layout-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "layout",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.087181,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1193
+    }
+  },
+  "qualification": "Broad formatter found 28 pre-existing historical test files; supported scope passes. Initial sandbox pytest setup failed before test bodies; final authorized preflight passed. No production repair or full-gate claim for rejected candidate."
+}

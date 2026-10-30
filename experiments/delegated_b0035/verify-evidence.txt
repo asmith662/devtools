@@ -1,0 +1,37 @@
+"""Independent native/evidence/blob checks without repeating execution."""
+import asyncio,json,hashlib,ast,sys
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/delegated_b0035'
+sys.path.insert(0,str(R))
+from devtools.models.interaction import Prompt,PromptMessage,ModelToolCall
+from scripts.backlog.coordinator import git
+from devtools.core.time import Timestamp
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def prompt(value):
+ messages=tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in value)
+ Prompt('', 'messages',messages)
+ ids=[c.provider_call_id for m in messages for c in m.tool_calls];assert len(ids)==len(set(ids))
+ return len(ids)
+async def main():
+ f=json.loads((C/'freeze.json').read_text());h=json.loads((C/'evidence/history.json').read_text());counts=[]
+ for i in range(1,9):
+  q=json.loads((C/f'evidence/coding-{i}-outcome.json').read_text());counts.append(prompt(q['request']['prompt']['messages']))
+  assert q['bytes']==len(json.dumps(q['request'],ensure_ascii=False).encode())
+  raw=json.loads((C/f'evidence/coding-{i}-provider-body.bin').read_bytes());assert raw['usage']['prompt_tokens']==q['response']['usage']['input_tokens']
+  assert raw['usage']['completion_tokens']==q['response']['usage']['output_tokens']
+  assert len(raw['choices'][0]['message']['tool_calls'])==len(q['response']['tool_calls'])
+  assert all(x not in json.dumps(q['request']) for x in ('def reference(', 'def test_positive_controls(', 'def test_many_complete_resources_and_utf8('))
+ prompt(h['messages']);assert all(e['acknowledged'] for e in json.loads((C/'evidence/result.json').read_text())['progress']['effects'])
+ for row in json.loads((C/'reconciliation.json').read_text())['exact_bytes']:assert sha(C/row['published'])==row['sha256']
+ def entries(raw):
+  return {v.split('\t',1)[1]:v.split('\t',1)[0].split()[2] for v in raw.split('\0') if v}
+ paths=('src','tests','apps','scripts','experiments/local_coding_dogfood','experiments/coding_transition','experiments/joint_context','pyproject.toml','uv.lock','.python-version','AGENTS.md','.gitignore','.gitattributes')
+ original=entries(await git(R,'ls-tree','-r','-z',f['protected_ancestor'],'--',*paths,trim=False));current=entries(await git(R,'ls-tree','-r','-z','HEAD','--',*paths,trim=False))
+ for p,digest in f['protected_inputs'].items():assert original[p]==current[p] and sha(R/p)==digest,p
+ assert not (R/'.local/backlog/checkout-owner').exists() and not await git(R,'diff','--name-only','--','src','tests','apps','scripts')
+ checks={}
+ for name in ('setup-static','ruff-final','format-final','format-supported','typing-final','layout-final'):
+  value=json.loads((O/(name+'.json')).read_text());value.pop('inputs');value['physical_input_count']=len(json.loads((O/(name+'.json')).read_text())['inputs']);checks[name]=value
+ value=dict(at=str(Timestamp.now()),head=await git(R,'rev-parse','HEAD'),protected_ancestor=f['protected_ancestor'],protected_blob_and_physical_matches=len(f['protected_inputs']),native_requests_validated=8,native_ids_per_request=counts,retained_history_valid=True,provider_usage_correlated=True,oracle_scope_separated=True,acknowledgments_complete=True,owner_released=True,production_unchanged=True,full_gate_rerun=False,checks=checks,qualification='Broad formatter found 28 pre-existing historical test files; supported scope passes. Initial sandbox pytest setup failed before test bodies; final authorized preflight passed. No production repair or full-gate claim for rejected candidate.')
+ (C/'validation.json').write_bytes((json.dumps(value,indent=2)+'\n').encode());print(json.dumps({k:v for k,v in value.items() if k!='checks'},indent=2))
+asyncio.run(main())

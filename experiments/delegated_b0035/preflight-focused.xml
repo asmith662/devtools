@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="4" time="0.243" timestamp="2026-10-30T11:43:50.858537-04:00" hostname="asmith"><testcase classname="experiments.delegated_b0035.focused" name="test_complete_metadata" time="0.010"><failure message="AssertionError: Complete authorized inventory representation is missing&#10;assert False&#10; +  where False = callable(None)">experiments\delegated_b0035\focused.py:40: in test_complete_metadata
+    value = implementation()(scope, (RepositoryResourceAddress("z.py"),), 4096)
+            ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+E   AssertionError: Complete authorized inventory representation is missing
+E   assert False
+E    +  where False = callable(None)</failure></testcase><testcase classname="experiments.delegated_b0035.focused" name="test_empty_scope" time="0.002"><failure message="AssertionError: Complete authorized inventory representation is missing&#10;assert False&#10; +  where False = callable(None)">experiments\delegated_b0035\focused.py:59: in test_empty_scope
+    value = implementation()(scope, (), 4096)
+            ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+E   AssertionError: Complete authorized inventory representation is missing
+E   assert False
+E    +  where False = callable(None)</failure></testcase><testcase classname="experiments.delegated_b0035.focused" name="test_budget_and_foreign_editability" time="0.003"><failure message="AssertionError: Complete authorized inventory representation is missing&#10;assert False&#10; +  where False = callable(None)">experiments\delegated_b0035\focused.py:66: in test_budget_and_foreign_editability
+    fn = implementation()
+         ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+E   AssertionError: Complete authorized inventory representation is missing
+E   assert False
+E    +  where False = callable(None)</failure></testcase><testcase classname="experiments.delegated_b0035.focused" name="test_stale_scope_refused" time="0.004"><failure message="AssertionError: Complete authorized inventory representation is missing&#10;assert False&#10; +  where False = callable(None)">experiments\delegated_b0035\focused.py:81: in test_stale_scope_refused
+    fn = implementation()
+         ^^^^^^^^^^^^^^^^
+experiments\delegated_b0035\focused.py:33: in implementation
+    assert callable(value), "Complete authorized inventory representation is missing"
+E   AssertionError: Complete authorized inventory representation is missing
+E   assert False
+E    +  where False = callable(None)</failure></testcase></testsuite></testsuites>
