@@ -136,3 +136,5 @@ historical RI-version obligations are preserved. B-0035 and B-0043 stay open.
 The [manifest](manifest.json) records exact bytes under scoped artifact attributes.
 The retained runner.txt is the exact probe source, not an installed production
 command or authorization to rerun this closed four-call assessment.
+
+[Verified publication and exact artifact blobs](publication.json) record ordinary main publication at `189d5f98ada13ceee905e588ab2c203cc0226a8b`; subsequent receipt closeout changes no executable input or model result.
