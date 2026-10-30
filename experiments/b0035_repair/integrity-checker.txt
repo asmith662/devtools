@@ -1,0 +1,47 @@
+"""Read-only retained evidence verification; no inference or effect replay."""
+import asyncio,json,hashlib,sys
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/b0035_repair'
+sys.path.insert(0,str(R))
+from devtools.models.interaction import Prompt,PromptMessage,ModelToolCall
+from scripts.backlog.coordinator import git
+from devtools.core.time import Timestamp
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def prompt(value):
+ messages=tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in value)
+ Prompt('', 'messages',messages)
+ ids=[c.provider_call_id for m in messages for c in m.tool_calls]
+ assert len(ids)==len(set(ids));return len(ids)
+async def main():
+ f=json.loads((C/'freeze-a.json').read_text());counts={}
+ for episode,total in [('a',1),('b',10)]:
+  counts[episode]=[]
+  for i in range(1,total+1):
+   q=json.loads((C/f'{episode}/coding-{i}-outcome.json').read_text())
+   counts[episode].append(prompt(q['request']['prompt']['messages']))
+   assert q['bytes']==len(json.dumps(q['request'],ensure_ascii=False).encode())<=32768
+   raw=json.loads((C/f'{episode}/coding-{i}-provider-body.bin').read_bytes())
+   assert raw['usage']['prompt_tokens']==q['response']['usage']['input_tokens']
+   assert raw['usage']['completion_tokens']==q['response']['usage']['output_tokens']
+   assert len(raw['choices'][0]['message']['tool_calls'])==len(q['response']['tool_calls'])
+   assert all(x not in json.dumps(q['request']) for x in ('def reference(', 'def test_positive_controls(', 'def test_many_complete_resources_and_utf8('))
+  h=json.loads((C/f'{episode}/history.json').read_text());prompt(h['messages'])
+  result=json.loads((C/f'{episode}/result.json').read_text())
+  assert all(e['acknowledged'] for e in result['progress']['effects'])
+  assert len(result['progress']['effects'])==dict(a=4,b=6)[episode]
+ for row in json.loads((C/'reconciliation.json').read_text())['exact_artifacts']:
+  assert sha(C/row['artifact'])==row['sha256']==sha(R/row['source'])
+ def entries(raw):return {v.split('\t',1)[1]:v.split('\t',1)[0].split()[2] for v in raw.split('\0') if v}
+ paths=('src','tests','apps','scripts','experiments/local_coding_dogfood','experiments/coding_transition','experiments/joint_context','pyproject.toml','uv.lock','.python-version','AGENTS.md','.gitignore','.gitattributes')
+ original=entries(await git(R,'ls-tree','-r','-z',f['protected_ancestor'],'--',*paths,trim=False))
+ current=entries(await git(R,'ls-tree','-r','-z','HEAD','--',*paths,trim=False))
+ for p,digest in f['protected_inputs'].items():assert original[p]==current[p] and sha(R/p)==digest,p
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ assert not await git(R,'diff','--name-only','--','src','tests','apps','scripts')
+ checks={}
+ for name in ('ruff-final','format-final','typing-final','layout-final'):
+  value=json.loads((O/(name+'.json')).read_text());value['physical_input_count']=len(value.pop('inputs'))
+  assert value['exit_code']==0 and value['inputs_unchanged'];checks[name]=value
+ v=dict(at=str(Timestamp.now()),head=await git(R,'rev-parse','HEAD'),protected_ancestor=f['protected_ancestor'],protected_blob_and_physical_matches=len(f['protected_inputs']),native_requests_validated=11,native_ids_per_request=counts,retained_history_valid=True,provider_usage_correlated=True,oracle_scope_separated=True,acknowledgments_complete=True,stage_b_refusals_not_effects=4,owner_released=True,production_unchanged=True,full_gate_rerun=False,checks=checks,qualification='A accepted only for conditional integration. B unchanged and not accepted; no full integration positive paths or new protected-gate execution claimed.')
+ (C/'validation.json').write_bytes((json.dumps(v,indent=2)+'\n').encode());print(json.dumps({k:v for k,v in v.items() if k!='checks'}))
+asyncio.run(main())

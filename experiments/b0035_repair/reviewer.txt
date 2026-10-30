@@ -1,0 +1,35 @@
+"""Independent accounting of two closed episodes; no inference or effect replay."""
+import json,hashlib,ast,difflib
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/b0035_repair'
+assert not (R/'.local/backlog/checkout-owner').exists()
+def digest(raw):return hashlib.sha256(raw).hexdigest()
+rows={}
+for stage in ('a','b'):
+ S=O/stage/'staging';f=json.loads((C/f'freeze-{stage}.json').read_text());h=json.loads((S/'history.json').read_text());result=json.loads((S/'result.json').read_text())
+ records=[json.loads(p.read_text()) for p in sorted(S.glob('coding-*-outcome.json'),key=lambda p:int(p.name.split('-')[1]))]
+ initial={(v['path'],tuple(v['span'])) for v in f['host_disclosures']};seen={}
+ for p,span in initial:seen.setdefault(p,set()).update(range(*span))
+ requests=[];calls=[];total=new=0
+ for i,record in enumerate(records):
+  projection=h['projections'][i];active=projection['active_sources']
+  requests.append(dict(number=i+1,bytes=record['bytes'],original_bytes=projection['original_bytes'],input_tokens=record['response']['usage']['input_tokens'],output_tokens=record['response']['usage']['output_tokens'],seconds=record['seconds'],initial_units_exact=sum(any(v['path']==p and v['span'][0]<=span[0] and span[1]<=v['span'][1] for v in active) for p,span in initial),active=active,omitted=projection['omitted_exchanges'],shortened=projection['shortened_indices']))
+  for call in record['response']['tool_calls']:
+   feedback=next(m for m in h['messages'] if m.get('tool_call_id')==call['provider_call_id']);v=json.loads(feedback['content']);entry=dict(request=i+1,native_call_id=call['provider_call_id'],name=call['name'],arguments_json=call['arguments_json'],refused=v.get('status')=='REFUSED',refusal_reason=v.get('reason'))
+   if call['name']=='read_source' and 'text' in v:
+    p=v['path'];span=v['span'];text=(R/p).read_bytes().decode();offsets=set(range(*span));prior=seen.setdefault(p,set());fresh=offsets-prior
+    nb=sum(len(text[n].encode()) for n in fresh);amount=len(text[span[0]:span[1]].encode());total+=amount;new+=nb
+    entry.update(path=p,span=span,bytes=amount,new_bytes_relative_to_host_and_history=nb,fully_active_before=any(x['path']==p and x['span'][0]<=span[0] and span[1]<=x['span'][1] for x in active));prior.update(offsets)
+   calls.append(entry)
+ rows[stage]=dict(requests=requests,calls=calls,model_calls=len(records),input_tokens=sum(x['input_tokens'] for x in requests),output_tokens=sum(x['output_tokens'] for x in requests),model_seconds=sum(x['seconds'] for x in requests),read_bytes=total,new_read_bytes=new,repeated_read_bytes=total-new,result=result)
+nav='src/devtools/agents/coding/navigation.py';repo='src/devtools/agents/coding/repository.py';original=(R/'experiments/delegated_b0035/evidence/candidate'/(nav+'.txt')).read_bytes();repaired=(O/'a/staging/candidate'/nav).read_bytes()
+assert digest(original)=='cb2f9b18800efe302c271b2cf385646457d0a8daa3c205fa8c67b0b1b5670282'
+assert ast.dump(ast.parse(original))==ast.dump(ast.parse(repaired))
+f=json.loads((C/'freeze-b.json').read_text())
+for p,raw in f['starting_candidates'].items():assert (O/'b/staging/candidate'/p).read_bytes()==bytes.fromhex(raw)
+for p,raw in f['production_baseline'].items():assert (R/p).read_bytes()==bytes.fromhex(raw)
+review=dict(schema='b0035-repair-independent-review-v1',episodes=rows,original_candidate_sha256=digest(original),repaired_candidate_sha256=digest(repaired),original_candidate_bytes=len(original),repaired_candidate_bytes=len(repaired),stage_a_accepted=True,stage_b_entered=True,stage_b_changed=False,stage_b_accepted=False,production_integrated=False,b0035_complete=False,original_experiment_reclassified=False,qualification='New A repair consumed historical failed-check feedback and passed independent acceptance. B exhausted acquisition allowance and then model calls, with no edit, worker check or repair. B candidate equals its starting accepted-A-plus-original-host state. Do not claim full B-0035 oracle positive paths or production gate execution.',next='Stop this continuation. Prefer a separately authorized reasoning-enabled/local-model comparison under the same Stage B task and oracle; no third stage or generic harness increment.')
+(O/'review.json').write_bytes((json.dumps(review,indent=2)+'\n').encode())
+(O/'repair.diff').write_bytes(''.join(difflib.unified_diff(original.decode().splitlines(True),repaired.decode().splitlines(True),fromfile='historical-Qwen/navigation.py',tofile='new-Qwen-repair/navigation.py',n=0)).encode())
+print(json.dumps({k:{x:v for x,v in row.items() if x not in ('requests','calls','result')} for k,row in rows.items()},indent=2))
+for k,row in rows.items():print(k,[(v['number'],v['bytes'],v['initial_units_exact'],v['shortened']) for v in row['requests']])

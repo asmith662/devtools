@@ -448,3 +448,15 @@ call consuming feedback. No Codex repair, second stage, production integration,
 grant, status transition or B-0035 completion follows. Preserve the exact candidate
 and stop this assignment; a controlled model/profile comparison under the same
 narrow task/oracle is preferable to another generic Context infrastructure change.
+
+## Candidate repair and conditional integration - 2026-10-30
+
+The [new repair assessment](../../../experiments/b0035_repair/REPORT.md) accepted
+a genuine one-call Qwen correction of the historical inventory candidate: focused,
+withheld, compatibility, Ruff, formatting and typing checks passed. Conditional
+Stage B made ten calls, six acknowledged reads and four action-budget refusals,
+with no edit or worker validation. The helper has no completed production consumer
+and was not integrated. B-0035 and broader B-0043 remain open; no grant or closure
+is implied. The original delegation remains not accepted. Stop this continuation;
+a separately authorized model/profile comparison is preferable to another generic
+framework increment, while retaining source eviction as a confounding condition.

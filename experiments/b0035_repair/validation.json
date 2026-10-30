@@ -1,0 +1,236 @@
+{
+  "at": "2026-10-30T17:06:34.066369+00:00",
+  "head": "5ac4bbe000a842610ba5067ff030ea414beabd61",
+  "protected_ancestor": "72379015cf4f34f74a9282661aac8aa0362c9977",
+  "protected_blob_and_physical_matches": 1191,
+  "native_requests_validated": 11,
+  "native_ids_per_request": {
+    "a": [
+      0
+    ],
+    "b": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  "retained_history_valid": true,
+  "provider_usage_correlated": true,
+  "oracle_scope_separated": true,
+  "acknowledgments_complete": true,
+  "stage_b_refusals_not_effects": 4,
+  "owner_released": true,
+  "production_unchanged": true,
+  "full_gate_rerun": false,
+  "checks": {
+    "ruff-final": {
+      "name": "ruff-final",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "started_at": "2026-10-30T17:00:31.315007+00:00",
+      "finished_at": "2026-10-30T17:00:31.724398+00:00",
+      "seconds": 0.350122,
+      "exit_code": 0,
+      "head": "5ac4bbe000a842610ba5067ff030ea414beabd61",
+      "tree": "71d7e49bd8161e40a1dc23921df88851d434b0db",
+      "inputs_unchanged": true,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-repair",
+          "run": "verification-20261029",
+          "call": "ruff-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "lint",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.289757,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "format-final": {
+      "name": "format-final",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "apps",
+        "scripts",
+        "tests/agents/coding",
+        "tests/evaluation"
+      ],
+      "started_at": "2026-10-30T17:00:33.265258+00:00",
+      "finished_at": "2026-10-30T17:00:33.474517+00:00",
+      "seconds": 0.160229,
+      "exit_code": 0,
+      "head": "5ac4bbe000a842610ba5067ff030ea414beabd61",
+      "tree": "71d7e49bd8161e40a1dc23921df88851d434b0db",
+      "inputs_unchanged": true,
+      "stdout_sha256": "8c719dbf8d21e4a81354073a755b808299dc585789291c93f432d450a72657b0",
+      "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-repair",
+          "run": "verification-20261029",
+          "call": "format-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "format",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.093734,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "typing-final": {
+      "name": "typing-final",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "started_at": "2026-10-30T17:00:32.599950+00:00",
+      "finished_at": "2026-10-30T17:00:34.205410+00:00",
+      "seconds": 1.555487,
+      "exit_code": 0,
+      "head": "5ac4bbe000a842610ba5067ff030ea414beabd61",
+      "tree": "71d7e49bd8161e40a1dc23921df88851d434b0db",
+      "inputs_unchanged": true,
+      "stdout_sha256": "2dd531de6e6860d5749d9f661c32aad13e0f4b4f164b096c1be299b6ec7f8f5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-repair",
+          "run": "verification-20261029",
+          "call": "typing-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "typing",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 1.360162,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "layout-final": {
+      "name": "layout-final",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-30T17:00:32.093966+00:00",
+      "finished_at": "2026-10-30T17:00:32.295823+00:00",
+      "seconds": 0.148113,
+      "exit_code": 0,
+      "head": "5ac4bbe000a842610ba5067ff030ea414beabd61",
+      "tree": "71d7e49bd8161e40a1dc23921df88851d434b0db",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-repair",
+          "run": "verification-20261029",
+          "call": "layout-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "layout",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.088281,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    }
+  },
+  "qualification": "A accepted only for conditional integration. B unchanged and not accepted; no full integration positive paths or new protected-gate execution claimed."
+}

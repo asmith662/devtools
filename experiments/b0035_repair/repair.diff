@@ -1,0 +1,8 @@
+--- historical-Qwen/navigation.py
++++ new-Qwen-repair/navigation.py
+@@ -315 +315,4 @@
+-        msg = f"Editable address is outside the authorized scope: {sorted(map(str, foreign))}."
++        msg = (
++            "Editable address is outside the authorized scope: "
++            f"{sorted(map(str, foreign))}."
++        )
