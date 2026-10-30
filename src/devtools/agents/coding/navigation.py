@@ -11,7 +11,7 @@ from devtools.agents.model_tools import execute_model_tool_call
 from devtools.context import RepositoryResourceAddress
 from devtools.context.retrieval.source.search import search_repository_source
 from devtools.models.interaction import PromptMessage
-from devtools.tools import ToolDescriptor, ToolRunner
+from devtools.tools import ToolDescriptor, ToolInputError, ToolRunner
 from devtools.tools.source import (
     MAXIMUM_NAVIGATION_QUERY_CHARACTERS,
     ScopedSourceNavigationTool,
@@ -33,7 +33,9 @@ FIND = ToolDescriptor(
     "find_source",
     "Search scoped file/symbol/window metadata. Without query, page the outline. "
     "Prefer small named units; read_source_unit acquires their exact source. "
-    "Metadata is not a source witness. offset pages results; path narrows scope.",
+    "Metadata is not a source witness. offset pages results. A supplied path must "
+    "be an exact authorized file-resource address, never a directory or prefix. "
+    "Omit path to search authorized resources under the existing result limits.",
     '{"type":"object","properties":{"query":{"type":"string","maxLength":256},'
     '"path":{"type":"string"},"mode":{"enum":["file","symbol","window","mixed"]},'
     '"offset":{"type":"integer","minimum":0}},"additionalProperties":false}',
@@ -55,7 +57,9 @@ TASK_FIND = replace(
         "objective. Read a relevant unit with read_source_unit before editing. "
         "Refine query/path/mode when results are poor. browse=true explicitly pages "
         "an outline under the host allowance; next_offset is optional exploration, "
-        "not an instruction to traverse every page. Metadata is not source."
+        "not an instruction to traverse every page. Metadata is not source. "
+        "A supplied path must be an exact authorized file-resource address, never "
+        "a directory or prefix. Omit path to search the authorized resource set."
     ),
     input_schema_json=FIND.input_schema_json.replace(
         '"properties":{',
@@ -231,10 +235,16 @@ async def acquire_candidates(  # noqa: PLR0913 -- explicit host composition inpu
             "outline_limit": policy.outline_actions,
             "instruction": "Use a task query/path/mode or read a current unit.",
         }
+    tool = ScopedSourceNavigationTool(scope, index)
+    scope.check_current()
+    try:
+        tool.validate_selection(selection)
+    except ToolInputError as error:
+        return navigation_refusal(str(error))
     units = await execute_model_tool_call(
         call,
         invocation=_SelectedNavigation(TASK_FIND if policy else FIND, selection),
-        tool=ScopedSourceNavigationTool(scope, index),
+        tool=tool,
         admit=admit,
         runner=ToolRunner(),
     )
@@ -254,6 +264,27 @@ async def acquire_candidates(  # noqa: PLR0913 -- explicit host composition inpu
             ),
         )
     return result
+
+
+def navigation_refusal(
+    constraint: str = "Arguments must match the documented navigation schema.",
+) -> dict[str, object]:
+    """Describe only a recognized rejection before native navigation dispatch."""
+    return {
+        "status": "REFUSED",
+        "reason": "invalid_navigation_arguments",
+        "constraint": constraint,
+        "navigation_entered": False,
+        "tool_operation_entered": False,
+        "source_acquired": False,
+        "edit_witness_granted": False,
+        "instruction": (
+            "Use a string query (at most 256 characters), a supported mode, and a "
+            "bounded nonnegative integer offset. Supply an exact authorized file "
+            "address, not a directory/prefix, or omit path to search authorized "
+            "resources. Use either query or explicit browse, with documented keys."
+        ),
+    }
 
 
 @dataclass(frozen=True, slots=True)

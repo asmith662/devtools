@@ -32,6 +32,7 @@ from devtools.agents.coding.navigation import (
     TASK_FIND,
     NavigationPolicy,
     acquire_candidates,
+    navigation_refusal,
     navigation_request,
     prepare_navigation,
     task_selection,
@@ -524,20 +525,27 @@ class RepositoryCodingHost:
         for call in response.tool_calls:
             effect = self.progress.claim_action(call.provider_call_id)
             if self.navigation and call.name == FIND.name:
-                values = _arguments(
-                    call.arguments_json,
-                    set(),
-                    optional=frozenset({"path", "query", "mode", "offset"})
-                    | (
-                        frozenset({"browse"}) if self.navigation_policy else frozenset()
-                    ),
-                )
-                policy = self.navigation_policy
-                selection = (
-                    task_selection(values, self.objective.text)
-                    if policy
-                    else navigation_request(values)
-                )
+                try:
+                    values = _arguments(
+                        call.arguments_json,
+                        set(),
+                        optional=frozenset({"path", "query", "mode", "offset"})
+                        | (
+                            frozenset({"browse"})
+                            if self.navigation_policy
+                            else frozenset()
+                        ),
+                    )
+                    policy = self.navigation_policy
+                    selection = (
+                        task_selection(values, self.objective.text)
+                        if policy
+                        else navigation_request(values)
+                    )
+                except (TypeError, ValueError):
+                    self._feedback(call, navigation_refusal())
+                    effect.acknowledged = True
+                    continue
                 result = await acquire_candidates(
                     call,
                     selection=selection,

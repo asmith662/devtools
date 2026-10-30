@@ -353,3 +353,210 @@ def test_changed_source_between_metadata_and_read_is_not_disclosed(
         assert (tmp_path / "module.py").read_text() == "unexpected bytes"
 
     asyncio.run(changed())
+
+
+@pytest.mark.parametrize(
+    "values",
+    [
+        {"path": "src"},
+        {"path": "private.py"},
+        {"path": []},
+        {"path": "../outside"},
+        {"query": []},
+        {"mode": []},
+        {"offset": True},
+        {"unexpected": "field"},
+    ],
+)
+def test_native_navigation_argument_refusal_is_bounded_and_preexecution(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    values: dict[str, object],
+) -> None:
+    host = navigation_host(tmp_path, {"module.py": "def answer(): return 6"})
+    entered: list[object] = []
+
+    async def forbidden(_self: object, arguments: object) -> object:
+        entered.append(arguments)
+        raise AssertionError
+
+    monkeypatch.setattr(ScopedSourceNavigationTool, "execute", forbidden)
+
+    class RepeatingModel:
+        source = InteractionSource("neutral-invalid-navigation")
+
+        async def send(self, _request: ModelRequest) -> ModelResponse:
+            return ModelResponse(
+                "",
+                self.source,
+                tool_calls=(call("find_source", values, str(len(host.responses))),),
+            )
+
+    result = asyncio.run(
+        run_coding_agent(
+            RepeatingModel(),
+            host=host,
+            limits=CodingLimits(3, 1, 2, Duration.seconds(5), Duration.seconds(20)),
+        ),
+    )
+    feedback = [json.loads(m.content) for m in host.messages if m.role == "tool"]
+    assert len(feedback) == 3
+    assert feedback[-1]["reason"] == "action_budget"
+    assert result.progress.actions == 2
+    assert all(e.acknowledged for e in result.progress.effects)
+    assert result.progress.model_calls == 3
+    assert not entered
+    assert not host.disclosures
+    assert not host.source_results
+    assert not host.active_disclosures
+    assert result.custody.restored
+    for row in feedback[:2]:
+        assert row["status"] == "REFUSED"
+        assert row["tool_operation_entered"] is False
+        assert row["source_acquired"] is False
+        assert row["edit_witness_granted"] is False
+        assert "omit path" in row["instruction"]
+    assert [m.tool_call_id for m in host.messages if m.role == "tool"] == [
+        "0",
+        "1",
+        "2",
+    ]
+
+
+def test_real_neutral_process_corrects_search_then_reads_edits_checks(
+    tmp_path: Path,
+) -> None:
+    original = "# \u03c0\ndef answer():\n    return 6\n"
+    host = navigation_host(tmp_path, {"module.py": original})
+
+    class CorrectingModel:
+        source = NativeModel.source
+
+        def __init__(self) -> None:
+            self.delegate = NativeModel()
+            self.requests: list[ModelRequest] = []
+
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            if len(self.requests) == 1:
+                return ModelResponse(
+                    "",
+                    self.source,
+                    tool_calls=(
+                        call(
+                            "find_source",
+                            {"query": "answer", "path": "src"},
+                            "invalid",
+                        ),
+                    ),
+                )
+            if len(self.requests) == 2:
+                message = request.prompt.messages[-1]
+                assert message.tool_call_id == "invalid"
+                assert json.loads(message.content)["tool_operation_entered"] is False
+            return await self.delegate.send(request)
+
+    model = CorrectingModel()
+    result = asyncio.run(
+        run_coding_agent(
+            model,
+            host=host,
+            limits=CodingLimits(4, 1, 3, Duration.seconds(10), Duration.seconds(40)),
+        ),
+    )
+    assert result.accepted
+    assert result.custody.restored
+    assert len(model.requests) == 4
+    assert result.progress.actions == 3
+    assert all(e.acknowledged for e in result.progress.effects)
+    assert host.check_results[0][0].command_result.exit_code == 0
+    assert (tmp_path / "module.py").read_text(encoding="utf-8") == original
+    assert "return 7" in (tmp_path / "candidate-module.py").read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("error", [ToolInputError, PermissionError])
+def test_postentry_or_authorization_errors_are_not_refusals(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    error: type[Exception],
+) -> None:
+    host = navigation_host(tmp_path, {"module.py": "def answer(): return 6"})
+    entered: list[object] = []
+
+    async def fail(_self: object, arguments: object) -> object:
+        entered.append(arguments)
+        message = "after possible entry"
+        raise error(message)
+
+    monkeypatch.setattr(ScopedSourceNavigationTool, "execute", fail)
+    result = asyncio.run(
+        run_coding_agent(
+            NativeModel(),
+            host=host,
+            limits=CodingLimits(3, 1, 3, Duration.seconds(5), Duration.seconds(20)),
+        ),
+    )
+    assert len(entered) == result.progress.model_calls == 1
+    assert isinstance(result.error, error)
+    assert not result.progress.effects[0].acknowledged
+    assert not any(m.role == "tool" for m in host.messages)
+    assert result.custody.restored
+
+
+def test_native_batch_refusal_then_scopewide_search(tmp_path: Path) -> None:
+    host = navigation_host(tmp_path, {"module.py": "def answer(): return 6"})
+
+    async def run() -> None:
+        await host.prepare(
+            CodingProgress(
+                CodingLimits(
+                    2,
+                    1,
+                    2,
+                    Duration.seconds(5),
+                    Duration.seconds(20),
+                ),
+            ),
+        )
+        response = ModelResponse(
+            "",
+            InteractionSource("neutral-batch"),
+            tool_calls=(
+                call("find_source", {"path": "src"}, "bad"),
+                call("find_source", {"query": "answer"}, "corrected"),
+            ),
+        )
+        host.classify(response)
+        await host.acquire(response)
+        assert [m.tool_call_id for m in host.messages[-2:]] == ["bad", "corrected"]
+        assert json.loads(host.messages[-2].content)["status"] == "REFUSED"
+        assert json.loads(host.messages[-1].content)["units"]
+        assert host.progress.actions == 2
+        assert all(e.acknowledged for e in host.progress.effects)
+        assert not host.disclosures
+
+    asyncio.run(run())
+
+
+def test_navigation_admission_failure_is_not_argument_feedback(tmp_path: Path) -> None:
+    host = navigation_host(tmp_path, {"module.py": "def answer(): return 6"})
+    admissions: list[object] = []
+
+    async def denied(selected: ModelToolCall, _arguments: object) -> None:
+        admissions.append(selected)
+        message = "host authorization refused"
+        raise ToolInputError(message)
+
+    host.authorize = denied
+    result = asyncio.run(
+        run_coding_agent(
+            NativeModel(),
+            host=host,
+            limits=CodingLimits(2, 1, 2, Duration.seconds(5), Duration.seconds(20)),
+        ),
+    )
+    assert len(admissions) == 1
+    assert isinstance(result.error, ToolInputError)
+    assert not result.progress.effects[0].acknowledged
+    assert not any(m.role == "tool" for m in host.messages)
+    assert not host.disclosures

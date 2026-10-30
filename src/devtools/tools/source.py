@@ -148,22 +148,31 @@ class ScopedSourceNavigationTool:
 
     def validate(self, arguments: SourceNavigationRequest) -> None:
         """Reject foreign/stale scope and malformed selection before execution."""
+        self.validate_selection(arguments)
+        self.scope.check_current()
+
+    def validate_selection(self, arguments: SourceNavigationRequest) -> None:
+        """Check selection semantics without currentness reads or Tool execution."""
+        if arguments.path is not None and arguments.path not in {
+            u.resource.address for u in self.index.views[0].units
+        }:
+            msg = (
+                "Source navigation path must be an exact authorized file address, "
+                "not a directory or prefix; omit path to search authorized resources. "
+                "Selection is outside the admitted index or bounds."
+            )
+            raise ToolInputError(msg)
         if (
             self.index.snapshot != self.scope.snapshot
             or not isinstance(arguments.query, str)
             or len(arguments.query) > MAXIMUM_NAVIGATION_QUERY_CHARACTERS
+            or not isinstance(arguments.mode, str)
             or arguments.mode not in {"file", "symbol", "window", "mixed"}
             or type(arguments.offset) is not int
             or not 0 <= arguments.offset <= sum(len(v.units) for v in self.index.views)
-            or (
-                arguments.path is not None
-                and arguments.path
-                not in {u.resource.address for u in self.index.views[0].units}
-            )
         ):
             msg = "Source navigation is outside the admitted index or bounds."
             raise ToolInputError(msg)
-        self.scope.check_current()
 
     async def execute(
         self,

@@ -1044,3 +1044,5 @@ Qwen effort calibration, 2026-10-30: [verified low/medium template control, usab
 Alternative local-worker qualification, 2026-10-30: [selection, authenticated acquisition and real native compatibility](../experiments/alternative_b0035/REPORT.md). Stage B coding is a separately frozen conditional continuation.
 
 Alternative-worker outcome: the qualified gpt-oss worker entered two coding calls; an invalid directory-valued search path terminated acquisition before edit/repair. See the linked report for exact native evidence and narrow feedback recommendation.
+
+Native navigation correction: [file-only search paths and correlated pre-execution refusal](development/native-navigation-refusals.md). Existing scope/effect/budget contracts remain authoritative.
