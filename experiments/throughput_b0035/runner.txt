@@ -1,0 +1,90 @@
+"""One frozen task composition reusing prior preparation and the shared coding process."""
+import asyncio,json,sys,hashlib,importlib.util
+from pathlib import Path
+from dataclasses import replace
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/throughput_b0035';BASE='d7fd131d1f0b56f1e54e3ea7536635f7caa5882e'
+spec=importlib.util.spec_from_file_location('prepared',R/'.local/supervised-b0035/runner.py');r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
+r.O=O;r.C=C;r.BASE=BASE;r.s.STATE=O/'staging'
+from devtools.models.interaction import ModelSettings,PromptMessage,Prompt,InteractionSource
+from devtools.core.time import Timestamp,Stopwatch,Duration
+from scripts.backlog.coordinator import git
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+from devtools.agents.coding import run_coding_agent,CodingLimits
+from devtools.agents.coding.models import CodingProgress
+from devtools.context import Repository
+from devtools.context.repository.identity import RepositoryId
+def save(p,v):r.save(p,v)
+def sha(p):return r.sha(p)
+def frozen():return json.loads((C/'decision-freeze.json').read_text())
+class Measured(r.Measured):
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=self.limit;prefix=f'{self.phase}-{n}'
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);assert count<=28160 and r.request_bytes(q)<=32768
+  rec=dict(at=str(Timestamp.now()),request=r.s.plain(q),payload=self.delegate._request_payload(q),bytes=r.request_bytes(q),measured_input_tokens=count,entered=True);self.records.append(rec);save(O/'staging'/f'{prefix}-entry.json',rec)
+  original=r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  r.provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),120 if self.phase=='decision' else 180);rec.update(response=r.s.plain(response),outcome='normalized');return response
+  except BaseException as e:rec.update(error=type(e).__name__,detail=str(e),outcome='unknown');raise
+  finally:
+   r.provider._read_http_response=original;timer.stop();rec['seconds']=timer.elapsed.total_seconds;save(O/'staging'/f'{prefix}-outcome.json',rec)
+async def freeze():
+ prior=json.loads((R/'experiments/supervised_b0035/decision-freeze.json').read_text())
+ assert await git(R,'rev-parse','HEAD')==BASE==(await git(R,'ls-remote','origin','refs/heads/main')).split()[0]
+ assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only') and not (R/'.local/backlog/checkout-owner').exists()
+ for p,h in prior['source_hashes'].items():assert sha(R/p)==h,p
+ for p,h in prior['protected_inputs'].items():assert sha(R/p)==h,p
+ for p,h in prior['forensics'].items():assert sha(R/p)==h,p
+ for row in json.loads((R/'experiments/supervised_b0035/manifest.json').read_text())['files']:assert sha(R/'experiments/supervised_b0035'/row['path'])==row['sha256']
+ model=await r.s.service_identity();assert model==prior['model']
+ q=r.decode(prior['request']);messages=list(q.prompt.messages);messages[0]=replace(messages[0],content=messages[0].content+'\nDECISION CHECKPOINT: Reply in at most 150 words: current behavior; next engineering action and supporting source; any genuine blocker/currentness/capacity qualification. Do not write a patch now.');q=replace(q,prompt=Prompt('','messages',tuple(messages)),settings=ModelSettings(maximum_output_tokens=768,thinking_enabled=False))
+ p=dict(prior['preserved'])
+ for name in (await git(R,'diff',prior['base'],BASE,'--name-only')).splitlines():p[name]=sha(R/name)
+ v={**prior,'schema':'throughput-b0035-0001','at':str(Timestamp.now()),'base':BASE,'preserved':p,'refs':await git(R,'show-ref'),'request':r.s.plain(q),'request_bytes':r.request_bytes(q),'model':model,'runner_sha256':sha(Path(__file__)),'prepared_runner_sha256':sha(R/'.local/supervised-b0035/runner.py'),'prior_freeze_sha256':sha(R/'experiments/supervised_b0035/decision-freeze.json'),'oracle_links':{'focused':r.OLD+'/focused.py','withheld':r.OLD+'/heldout.py','extra':'experiments/supervised_b0035/withheld-checks.txt','extra_sha256':sha(R/'.local/supervised-b0035/test_extra.py')},'limits':dict(decision_calls=2,decision_output=768,decision_seconds=120,decision_outer_seconds=160,coding_calls=10,coding_output=2048,coding_seconds=180,coding_wall_seconds=1140,coding_outer_seconds=1200,proposals=4,applied_candidates=3,repairs=2,tool_actions=20,auxiliary_calls=0,input_tokens=28160,prompt_bytes=32768,source_bytes=32768,region_bytes=4096,aggregate_bytes=8192,operations=2),'throughput_preflight':dict(observed_tokens_per_second=[22,23],decision_generation_at_22=768/22,coding_generation_at_22=2048/22,overhead_allowance_seconds=40,decision_estimate=768/22+40,coding_estimate=2048/22+40,qualification='Operational margin using prior observed throughput and overhead, not a latency guarantee.'),'coding_handoff':'Only after independent supported-decision approval. Exact source is rematerialized with same repository identity; append actual decision as assistant, then implementation instruction. Existing projection may shorten source; only active exact witnesses admit edits. Source/edit/check scope unchanged. At most three applications; no replay after uncertain outcome.','criteria':{'decision':'Current behavior and missing complete inventory responsibility correctly identified, plausible source-supported direction or genuine dependency. OUTPUT_LIMIT may pass only if semantic answer is complete. No retry of timeout/rejected answer.','candidate':'All focused, old withheld, three new integration predicates and independent review; accepted exact worker bytes require static and full committed protected validation. No Codex repair.'}}
+ C.mkdir(exist_ok=True);save(C/'decision-freeze.json',v);(C/'runner.txt').write_bytes(Path(__file__).read_bytes());(C/'.gitattributes').write_text('* -text whitespace=cr-at-eol\n');(O/'task.md').write_bytes((R/'experiments/supervised_b0035/task.md').read_bytes());print(json.dumps(dict(bytes=v['request_bytes'],throughput=v['throughput_preflight'])))
+async def decision():
+ f=frozen();assert sha(Path(__file__))==f['runner_sha256'] and await r.s.service_identity()==f['model']
+ for p,h in f['source_hashes'].items():assert sha(R/p)==h,p
+ head=await git(R,'rev-parse','HEAD');assert not (O/'staging/decision-entry.json').exists()
+ async with Checkout(WorkCycle(R),'throughput-b0035-decision-0001','main',head) as owner:
+  save(O/'staging/decision-entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+  async with asyncio.timeout(160):
+   m=Measured('decision',1);response=await m.send(r.decode(f['request']));assert response.source==m.source
+ save(O/'staging/decision-terminal.json',dict(at=str(Timestamp.now()),released=True,termination=r.s.plain(response.termination)))
+ print(response.content)
+async def coding():
+ f=frozen();approval=json.loads((C/'decision-review.json').read_text());assert approval['pass'] is True
+ assert await r.s.service_identity()==f['model']
+ for p,h in f['source_hashes'].items():assert sha(R/p)==h,p
+ scope,corpus=r.observe(Repository(RepositoryId.parse(f['repository_id'])));assert str(scope.snapshot.id)==f['snapshot_id']
+ head=await git(R,'rev-parse','HEAD');owner=Checkout(WorkCycle(R),'throughput-b0035-coding-0001','main',head,files=[dict(path=p,text=bytes.fromhex(f['baseline_raw'][p]).decode()) for p in r.EDIT])
+ applied=[]
+ async def effect(changes):
+  if len(applied)>=3:raise ValueError('Two repair opportunities exhausted')
+  for change in changes:owner.expect(change.address.value,change.after)
+  applied.append(r.s.plain(changes));save(O/'staging'/f'applied-{len(applied)}.json',r.s.plain(changes));r.write_source_changes(scope.root,changes)
+ def archive(values):
+  for a,t in values.items():
+   raw=(R/a.value).read_bytes();assert raw.decode()==t;p=O/'staging/candidate'/a.value;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+ def restore(a,t):
+  raw=bytes.fromhex(f['baseline_raw'][a.value]);assert raw.decode()==t;write(BinaryFile(resolve_path(R/a.value),raw))
+ h=r.make_host(scope,corpus,effect=effect,archive=archive,restore=restore);h.settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=False)
+ await r.preload(h);d=json.loads((O/'staging/decision-1-outcome.json').read_text())['response']
+ h.messages.append(PromptMessage('assistant',d['content']));h.messages.append(PromptMessage('user','Checkpoint accepted as a plausible direction, not validation. Now implement B-0035 under the frozen scope. Choose additional source or grounded native edits as needed. Plain text may report a specific blocker. No tests or limits may be changed.'))
+ limits=CodingLimits(10,4,20,Duration.seconds(180),Duration.seconds(1140));q=await h.prepare(CodingProgress(limits));save(C/'coding-entry-freeze.json',dict(at=str(Timestamp.now()),request=r.s.plain(q),bytes=r.request_bytes(q),limits=r.s.plain(limits),authority_freeze_sha256=sha(C/'decision-freeze.json'),decision_review_sha256=sha(C/'decision-review.json')))
+ # This artifact is created before custody. It becomes part of original untracked inventory.
+ h.requests.clear();h.projection_outcomes.clear();h.active_disclosures=()
+ async with owner:
+  save(O/'staging/coding-entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+  async with asyncio.timeout(1200):result=await run_coding_agent(Measured('coding',10),limits=limits,host=h)
+  save(O/'staging/result.json',dict(result=r.s.plain(result),messages=r.s.plain(h.messages),projections=r.s.plain(h.projection_outcomes),proposals=h.proposals,applied=applied,checks=r.s.plain(h.check_results)))
+  assert result.custody.restored and not result.custody.reconciliation_required
+ save(O/'staging/coding-terminal.json',dict(at=str(Timestamp.now()),released=True,accepted=result.accepted,disposition=result.disposition))
+ print(result.disposition,result.accepted)
+async def main():await {'freeze':freeze,'decision':decision,'coding':coding}[sys.argv[1]]()
+if __name__=='__main__':asyncio.run(main())
