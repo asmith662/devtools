@@ -180,6 +180,9 @@ def task_selection(
     objective: str,
 ) -> SourceNavigationRequest:
     """Default to task search; browsing requires explicit, unambiguous selection."""
+    if not isinstance(values.get("query", ""), str):
+        msg = "Source navigation query must be text."
+        raise TypeError(msg)
     browse = values.get("browse", False)
     if type(browse) is not bool or (browse and values.get("query")):
         msg = "Select either a search query or explicit browse."

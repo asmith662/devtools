@@ -14,6 +14,7 @@ import pytest
 
 from devtools.agents.coding import CodingLimits, run_coding_agent
 from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding.navigation import NavigationPolicy
 from devtools.agents.coding.projection import ProjectionPolicy
 from devtools.agents.coding.repository import (
     CodingObjective,
@@ -559,4 +560,36 @@ def test_navigation_admission_failure_is_not_argument_feedback(tmp_path: Path) -
     assert isinstance(result.error, ToolInputError)
     assert not result.progress.effects[0].acknowledged
     assert not any(m.role == "tool" for m in host.messages)
+    assert not host.disclosures
+
+
+@pytest.mark.parametrize("query", [None, [], 0])
+def test_task_navigation_never_substitutes_for_invalid_query(
+    tmp_path: Path,
+    query: object,
+) -> None:
+    host = navigation_host(tmp_path, {"module.py": "def answer(): return 6"})
+    host.navigation_policy = NavigationPolicy()
+
+    class InvalidQueryModel:
+        source = InteractionSource("typed-query-control")
+
+        async def send(self, _request: ModelRequest) -> ModelResponse:
+            return ModelResponse(
+                "",
+                self.source,
+                tool_calls=(call("find_source", {"query": query}, "invalid-query"),),
+            )
+
+    result = asyncio.run(
+        run_coding_agent(
+            InvalidQueryModel(),
+            host=host,
+            limits=CodingLimits(1, 1, 1, Duration.seconds(5), Duration.seconds(20)),
+        ),
+    )
+    assert result.error is None
+    assert result.progress.effects[0].acknowledged
+    assert host.messages[-1].tool_call_id == "invalid-query"
+    assert json.loads(host.messages[-1].content)["status"] == "REFUSED"
     assert not host.disclosures
