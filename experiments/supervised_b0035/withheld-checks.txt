@@ -1,0 +1,49 @@
+"""Withheld independently specified integration obligations, not worker Context."""
+import asyncio,json,sys
+from pathlib import Path
+from dataclasses import replace
+import pytest
+sys.path.insert(0,str(Path.cwd()/'experiments/local_maintenance_task_navigation'))
+from focused import make_host,inventory,progress
+from devtools.agents.coding.navigation import NavigationPolicy
+from devtools.agents.coding.projection import ProjectionPolicy,request_bytes
+from devtools.agents.coding.repository import write_source_changes
+from devtools.models.interaction import ModelResponse,ModelToolCall,InteractionSource
+
+def test_candidates_and_complete_inventory_coexist(tmp_path):
+ h=make_host(tmp_path);h.navigation=True;h.navigation_policy=NavigationPolicy()
+ q=asyncio.run(h.prepare(progress()));data=inventory(q)
+ candidates=[json.loads(m.content) for m in q.prompt.messages[1:] if m.content.startswith('{') and json.loads(m.content).get('kind')=='task_candidates']
+ assert len(candidates)==1 and candidates[0]['complete_inventory'] is False
+ assert len(data['resources'])==2 and not h.disclosures and not h.active_disclosures
+ assert q==asyncio.run(h.prepare(progress()))
+
+def test_admitted_refresh_preserves_native_and_current_inventory(tmp_path):
+ async def run():
+  h=make_host(tmp_path);state=progress();h.projection=ProjectionPolicy(10000,8000)
+  first=inventory(await h.prepare(state))
+  async def apply(changes):write_source_changes(h.scope.root,changes)
+  h.effect=apply
+  r=ModelResponse('',InteractionSource('oracle'),tool_calls=(ModelToolCall('read_source',json.dumps(dict(path='package/source.py',start=0)),'read'),))
+  assert h.classify(r)=='acquire';await h.acquire(r);await h.prepare(state)
+  r=ModelResponse('',InteractionSource('oracle'),tool_calls=(ModelToolCall('replace_source',json.dumps(dict(path='package/source.py',old_text='value =',new_text='changed =')),'edit'),))
+  assert h.classify(r)=='edit';proposal=await h.propose(r);assert proposal
+  await h.apply(proposal)
+  # Actual fixed check and normal correlated feedback, no synthetic receipt.
+  passed=await h.check(proposal);assert passed
+  await h.feedback(r,proposal,passed=passed)
+  q=await h.prepare(state);current=inventory(q)
+  assert current['snapshot_id']==str(h.scope.snapshot.id)!=first['snapshot_id']
+  rows={x['address']:x for x in current['resources']}
+  raw=(tmp_path/'package/source.py').read_bytes()
+  assert rows['package/source.py']['byte_size']==len(raw)
+  assert rows['package/source.py']['content_identity']==str(h.scope.snapshot.resource_at(h.objective.editable[0]).content_identity)
+  assert [m.tool_call_id for m in q.prompt.messages if m.role=='tool']==['read','edit']
+  assert request_bytes(q)<=h.objective.prompt_bytes
+ asyncio.run(run())
+
+def test_projection_cannot_drop_inventory_to_fit(tmp_path):
+ h=make_host(tmp_path);q=asyncio.run(h.prepare(progress()));data=inventory(q)
+ assert len(data['resources'])==2
+ cap=request_bytes(q)-1;h.objective=replace(h.objective,prompt_bytes=cap);h.projection=ProjectionPolicy(cap,cap)
+ with pytest.raises(ValueError):asyncio.run(h.prepare(progress()))

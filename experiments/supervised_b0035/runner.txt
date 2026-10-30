@@ -1,0 +1,138 @@
+"""Task-local supervisory composition. Shared framework owns all coding phases."""
+import asyncio,json,sys,hashlib,xml.etree.ElementTree as ET,tempfile
+from pathlib import Path
+from dataclasses import replace,asdict
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/supervised_b0035';BASE='eeed3aca9998f1103812928e5dd368883a046b49'
+sys.path.insert(0,str(R));sys.path.insert(0,str(R/'experiments/coding_transition'))
+import support as s
+from devtools.agents.coding import run_coding_agent,CodingLimits
+from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding.repository import RepositoryCodingHost,CodingObjective,EditLimits,write_source_changes
+from devtools.agents.coding.navigation import NavigationPolicy
+from devtools.agents.coding.projection import ProjectionPolicy,request_bytes
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.context.repository.corpus import define_repository_text_corpus
+from devtools.context.repository.discovery import discover_repository_resource_addresses
+from devtools.context.planning.source import SourceRangeDisclosureOption
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration,Stopwatch
+from devtools.models.interaction import ModelSettings,ModelRequest,Prompt,PromptMessage,InteractionSource,ModelTermination
+from devtools.models.interaction.providers import llama_cpp as provider
+from devtools.tools import ToolRunner
+from devtools.tools.source import SourceScope,ScopedSourceTool
+from devtools.tools.checks import FixedCheckPlan,FixedCheckTool,FixedCheck
+from devtools.resources.commands import Command,CommandOutputPolicy
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.evaluation.preflight import OracleComparison,check_oracle_expectations
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+s.STATE=O/'staging'
+OLD='experiments/local_maintenance_task_navigation'
+EDIT=('src/devtools/agents/coding/repository.py','src/devtools/agents/coding/navigation.py')
+READ=tuple(RepositoryResourceAddress(p) for p in (*EDIT,'src/devtools/agents/coding/projection.py','src/devtools/agents/coding/edits.py','src/devtools/agents/coding/process.py','src/devtools/agents/coding/models.py','src/devtools/tools/source.py','src/devtools/tools/checks.py','src/devtools/context/repository/snapshot.py','src/devtools/context/repository/resource.py','src/devtools/models/interaction/prompt.py','tests/agents/coding/test_repository.py','src/devtools/agents/coding/docs/overview.md',OLD+'/focused.py'))
+NAMES=('RepositoryCodingHost.__init__','RepositoryCodingHost._index','RepositoryCodingHost.build_request','RepositoryCodingHost.prepare','RepositoryCodingHost.apply','prepare_navigation','task_entry','navigation_feedback','SourceScope','RepositoryResourceOccurrence','RepositorySnapshot')
+LIMITS=CodingLimits(10,4,20,Duration.seconds(150),Duration.seconds(1080))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):s.save(p,v,fresh=True)
+def observe(repository):
+ scope=SourceScope.observe(root=resolve_path(R),repository=repository,addresses=READ,maximum_resource_bytes=32768)
+ corpus=define_repository_text_corpus(discovery=discover_repository_resource_addresses(repository=repository,root=scope.root,requested_addresses=READ,maximum_resource_count=32,maximum_traversal_entry_count=256),selected_addresses=READ)
+ return scope,corpus
+def checks(scope):
+ specs=[('focused',sys.executable,('-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',OLD+'/focused.py','tests/agents/coding/test_repository.py'),120),('lint','uv',('run','ruff','check',*EDIT),30),('format','uv',('run','ruff','format','--check',*EDIT),30),('typing','uv',('run','mypy'),90)]
+ return FixedCheckPlan(scope.root,tuple(FixedCheck(n,Command(exe).args(*args).cwd(scope.root).with_timeout(Duration.seconds(t))) for n,exe,args,t in specs),scope,CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=4096))
+class Host(RepositoryCodingHost):
+ def build_request(self,messages):return replace(super().build_request(messages),provider_settings=s.LlamaCppRequestSettings(**s.QWEN38_INSTRUCT_SAMPLING))
+ async def propose(self,response):
+  result=await super().propose(response)
+  self.proposals.append(dict(calls=s.plain(response.tool_calls),admitted=result is not None,changes=s.plain(result),active=s.plain(self.active_disclosures),feedback=s.plain(self.messages[-len(response.tool_calls):])))
+  return result
+def make_host(scope,corpus,*,effect=None,archive=None,restore=None):
+ async def authorize(call,value):
+  if call.name not in {'read_source','read_source_unit','find_source','replace_source','validate_candidate'}:raise PermissionError('Outside task authority')
+ async def no_effect(changes):raise PermissionError('Decision checkpoint has no edit authority')
+ h=Host(CodingObjective((O/'task.md').read_text(),scope,tuple(RepositoryResourceAddress(p) for p in EDIT),checks(scope),EditLimits(4096,32768,8192,2),8192,32768),corpus=corpus,authorize=authorize,apply_changes=effect or no_effect,archive=archive or (lambda _:None),restore=restore or (lambda a,t:None),settings=ModelSettings(maximum_output_tokens=4096,thinking_enabled=False),navigation=True,navigation_policy=NavigationPolicy(6,6144,2),projection=ProjectionPolicy(24576,20000,frozenset({'find_source'})))
+ h.proposals=[];return h
+async def preload(h):
+ records=[]
+ for name in NAMES:
+  unit=next(u for u in h.index.views[1].units if u.qualified_name==name)
+  option=SourceRangeDisclosureOption('Supervisor-selected initialization/request source closure',unit,unit.start,unit.end,8192)
+  material=await ToolRunner().execute(ScopedSourceTool(h.scope,maximum_bytes=8192),option);assert not option.truncated
+  h.disclosures.append(option);h.source_results.append(material);h._source_messages[len(h.messages)]=(option,)
+  row=dict(text=material.items[0].text,path=unit.resource.address.value,version=str(unit.resource.content_identity),snapshot=str(option.snapshot_id),span=option.span,name=name)
+  h.messages.append(PromptMessage('user',json.dumps(row,ensure_ascii=False)));records.append(dict(trigger='host',name=name,path=row['path'],span=row['span'],bytes=len(row['text'].encode()),version=row['version'],snapshot=row['snapshot']))
+ return records
+async def suite(label,paths,failures):
+ xml=O/(label+'.xml');assert not xml.exists()
+ cmd=Command(sys.executable).args('-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',*paths,'--junitxml='+str(xml)).cwd(resolve_path(R)).with_timeout(Duration.seconds(180))
+ result=await s.managed(cmd,label);root=ET.parse(xml).getroot();cases=root.findall('.//testcase')
+ failed={c.attrib['name'] for c in cases if c.find('failure') is not None}
+ assert not root.findall('.//error') and not root.findall('.//skipped')
+ assert failed==set(failures) and result.exit_code==(1 if failures else 0),(label,failed,result.exit_code)
+ return dict(command=s.plain(cmd),exit_code=result.exit_code,passed=len(cases)-len(failed),failed=sorted(failed),xml_sha256=sha(xml),stdout=result.stdout.decode(errors='replace'),stderr=result.stderr.decode(errors='replace'))
+async def preflight():
+ assert await git(R,'rev-parse','HEAD')==BASE
+ assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ scope,corpus=observe(Repository.new());h=make_host(scope,corpus);records=await preload(h)
+ q=await h.prepare(CodingProgress(LIMITS));print('projection',h.projection_outcomes[-1].original_bytes,request_bytes(q),h.projection_outcomes[-1].shortened_indices,flush=True);assert len(h.active_disclosures)==len(NAMES) and not h.projection_outcomes[-1].shortened_indices
+ comparisons=(OracleComparison('scope','inventory','normal',2,len({'package/source.py','README.md'}),'independent authorized-address set'),OracleComparison('utf8','inventory','boundary',2,len('é'.encode('utf8')),'UTF-8 encoding of U+00E9'),OracleComparison('empty','inventory','empty',0,len(b''),'empty byte sequence'))
+ assert not check_oracle_expectations(obligations=('inventory',),comparisons=comparisons)
+ reference=await suite('reference',[OLD+'/reference_checks.py'],())
+ focused=await suite('focused-baseline',[OLD+'/focused.py'],('test_first_request_scoped_inventory','test_inventory_not_duplicated_on_prepare','test_inventory_charged_to_prompt_budget'))
+ held=await suite('heldout-baseline',[OLD+'/heldout.py'],('test_current_snapshot_not_cached','test_native_correlation_and_metadata_coexist','test_empty_resource_unicode_and_readonly','test_projection_preserves_metadata_and_objective','test_utf8_size_differs_from_character_count'))
+ extra=await suite('extra-baseline',[str(O/'test_extra.py')],('test_candidates_and_complete_inventory_coexist','test_admitted_refresh_preserves_native_and_current_inventory','test_projection_cannot_drop_inventory_to_fit'))
+ save(O/'preflight.json',dict(at=str(Timestamp.now()),status='passed',request_bytes=request_bytes(q),decision_bytes=request_bytes(replace(q,tools=())),sources=records,comparisons=s.plain(comparisons),reference=reference,focused=focused,heldout=held,extra=extra,feasibility=dict(sizes={p:(R/p).stat().st_size for p in EDIT},source_limit=32768,assessment='Existing metadata-presentation owner navigation has 19724 bytes headroom; repository lifecycle has 737 bytes for localized integration. Existing bounded replacements and two-file batches can express a cohesive implementation without a new file or limit change. No implementation supplied or guaranteed.')))
+ print(json.dumps(dict(bytes=request_bytes(q),source_bytes=sum(r['bytes'] for r in records),units=len(records))))
+async def freeze():
+ assert (await git(R,'ls-remote','origin','refs/heads/main')).split()[0]==BASE==await git(R,'rev-parse','HEAD')
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ pre=json.loads((O/'preflight.json').read_text());assert pre['status']=='passed'
+ gate=json.loads((R/'.local/implementation-transition/protected.json').read_text())
+ for p,h in gate['inputs'].items():assert sha(R/p)==h,p
+ scope,corpus=observe(Repository.new());h=make_host(scope,corpus);records=await preload(h);q=await h.prepare(CodingProgress(LIMITS));q=replace(q,tools=())
+ tracked={p:sha(R/p) for p in (await git(R,'ls-files','-z',trim=False)).split('\0') if p}
+ untracked={p:sha(R/p) for p in (await git(R,'ls-files','--others','--exclude-standard','-z',trim=False)).split('\0') if p and not p.startswith('experiments/supervised_b0035/')};assert len(untracked)==13
+ model=await s.service_identity();assert model['context']==32768
+ value=dict(schema='supervised-b0035-0001-decision',at=str(Timestamp.now()),base=BASE,repository_id=str(scope.snapshot.repository_id),snapshot_id=str(scope.snapshot.id),source_snapshot=s.plain(scope.snapshot),source_hashes={a.value:sha(R/a.value) for a in READ},baseline_raw={p:(R/p).read_bytes().hex() for p in EDIT},request=s.plain(q),request_bytes=request_bytes(q),host_disclosures=records,model=model,sampling=s.QWEN38_INSTRUCT_SAMPLING,preflight=pre,runner_sha256=sha(Path(__file__)),task_sha256=sha(O/'task.md'),extra_sha256=sha(O/'test_extra.py'),preserved=tracked,forensics=untracked,refs=await git(R,'show-ref'),protected_inputs=gate['inputs'],protected_ancestor=gate['head'],limits=dict(decision_calls=2,decision_call_seconds=150,decision_total_seconds=360,coding_calls=10,proposals=4,applied_candidates=3,repairs=2,tool_actions=20,coding_call_seconds=150,coding_wall_seconds=1080,outer_seconds=1200,input_tokens=28160,output_tokens=4096,prompt_bytes=32768,disclosure_bytes=8192,region_bytes=4096,source_bytes=32768,aggregate_bytes=8192,operations=2,auxiliary_calls=0),criteria=dict(decision='Source-supported actionable hypothesis covering complete inventory versus candidates, metadata-only authority, currentness, repetition and capacity; or a precise genuine missing dependency for one bounded revised checkpoint. No plan invented by supervisor.',coding='Separate post-checkpoint freeze only after independent credible-decision review. Worker chooses source/patch; focused plus withheld tests and source review precede acceptance. No Codex correction.',failure='No credible action/uncertainty after two checkpoints, inadmissible/incomplete candidate, failed oracle or unrecognized effect => retain failure, no substituted patch.'),disclosure='Only explicit READ scope; no hidden/reference oracle or credentials. Host disclosures are not model requests; metadata not witnesses.')
+ C.mkdir(exist_ok=True);save(C/'decision-freeze.json',value)
+ for name,target in [('runner.py','runner.txt'),('task.md','task.md'),('test_extra.py','withheld-checks.txt')]: (C/target).write_bytes((O/name).read_bytes())
+ (C/'.gitattributes').write_text('* -text whitespace=cr-at-eol\n');print(json.dumps(dict(request_bytes=value['request_bytes'],units=len(records))))
+def decode(v):return ModelRequest(Prompt('', 'messages',tuple(PromptMessage(**{**m,'tool_calls':()}) for m in v['prompt']['messages'])),settings=ModelSettings(**v['settings']),tools=(),provider_settings=s.LlamaCppRequestSettings(**{k:v for k,v in v['provider_settings'].items() if k!='provider'}))
+class Measured:
+ def __init__(self,phase,limit):self.phase=phase;self.limit=limit;self.records=[];self.delegate=s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('supervised-b0035-'+phase))
+ @property
+ def source(self):return self.delegate.source
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=self.limit
+  prefix=f'{self.phase}-{n}';record=dict(at=str(Timestamp.now()),request=s.plain(q),bytes=request_bytes(q),payload=self.delegate._request_payload(q),entered=False);self.records.append(record)
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);record['measured_input_tokens']=count
+  assert count<=28160 and request_bytes(q)<=32768
+  record['entered']=True;save(O/'staging'/f'{prefix}-entry.json',record)
+  original=provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),150);record.update(response=s.plain(response),outcome='normalized');return response
+  except BaseException as e:record.update(error=type(e).__name__,detail=str(e),outcome='unknown');raise
+  finally:
+   provider._read_http_response=original;timer.stop();record['seconds']=timer.elapsed.total_seconds;save(O/'staging'/f'{prefix}-outcome.json',record)
+async def decision():
+ f=json.loads((C/'decision-freeze.json').read_text());assert sha(Path(__file__))==f['runner_sha256']
+ assert await s.service_identity()==f['model']
+ for p,h in f['source_hashes'].items():assert sha(R/p)==h,p
+ assert not (O/'staging/decision-ENTERED.json').exists()
+ head=await git(R,'rev-parse','HEAD');await git(R,'merge-base','--is-ancestor',BASE,head)
+ async with Checkout(WorkCycle(R),'supervised-b0035-decision-0001','main',head) as owner:
+  save(O/'staging/decision-ENTERED.json',dict(at=str(Timestamp.now()),owner=owner.record))
+  async with asyncio.timeout(360):
+   model=Measured('decision',1);response=await model.send(decode(f['request']))
+   assert response.source==model.source
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ save(O/'staging/decision-terminal.json',dict(at=str(Timestamp.now()),owner_released=True,calls=1,termination=s.plain(response.termination),source_unchanged=all(sha(R/p)==h for p,h in f['source_hashes'].items())))
+ print(response.content)
+async def main():await {'preflight':preflight,'freeze':freeze,'decision':decision}[sys.argv[1]]()
+if __name__=='__main__':asyncio.run(main())

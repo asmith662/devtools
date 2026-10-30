@@ -1,0 +1,11 @@
+# B-0035: complete authorized inventory in the first coding request
+
+Implement the missing complete metadata inventory for RepositoryCodingHost. Its first model-facing request must preserve the objective as its first message and contain exactly one JSON metadata message with repository_id, snapshot_id, source_acquired=false, and resources. Every host-authorized scope resource appears exactly once with address, content_identity, UTF-8 byte_size and boolean editable. Use current authenticated scope values; never include unauthorized paths, source text or absolute host paths. Metadata never supplies an exact source/edit witness.
+
+Repeated preparation must not accumulate inventories. After an admitted source change, the next request must describe the current snapshot and content identities. Account for the complete request including all Tools and continuation; refuse insufficient capacity instead of omitting inventory resources. Preserve currentness refusal, native call/result correspondence, projection, source-grounded edit admission, fixed validation and custody. Existing task_candidates is an incomplete ranked suggestion, not this complete inventory; preserve that optional navigation behavior. Do not create another source identity, index, registry or execution loop. Preserve public signatures and existing budgets.
+
+Only repository.py and navigation.py in src/devtools/agents/coding/ are editable. They own host lifecycle/Prompt assembly and native repository metadata presentation. Sizes: 32031 and 13044 bytes; resulting-source ceiling: 32768 per file. Choose a cohesive bounded change, not unrelated extraction. Tests/settings/docs/other files are read-only. No shell or Git authority.
+
+Public diagnostics: experiments/local_maintenance_task_navigation/focused.py. Assertions specify requirements, not implemented behavior. Hidden acceptance is not disclosed.
+
+The supplied exact source is host-selected Context, not model-requested reads. Before implementation, explain current behavior, required change, responsible owner and specific unresolved source dependencies. Give a concise actionable hypothesis or justified missing evidence. Do not claim edits/tests occurred. This checkpoint grants no effects.
