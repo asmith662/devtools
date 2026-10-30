@@ -1,0 +1,64 @@
+{
+  "grader": "Independent Codex source review after frozen single samples",
+  "cells": {
+    "B0035-A": {
+      "grade": "tool-request",
+      "engineering_decision": false,
+      "supported": "Task-relevant mixed metadata query using the declared schema.",
+      "limitation": "Does not specify an implementation hypothesis or genuinely missing contract; repeats terms of already supplied prepare/build_request source. Not proof the investigation was irrational."
+    },
+    "B0035-B": {
+      "grade": "partially-correct-qualified-uncertainty",
+      "engineering_decision": "partial",
+      "supported": [
+        "Correctly cites constructor initialization of objective-only messages.",
+        "Correctly identifies complete scope.snapshot.resources and public metadata fields/no content or absolute paths.",
+        "Requests _index, an invoked but undisclosed callee; inspecting it is a legitimate bounded uncertainty check."
+      ],
+      "unsupported": [
+        "Acceptance assertions do not prove current implementation includes inventory.",
+        "No observed _build_metadata, _metadata_message or _build_discovery_payload helper supports those speculative names.",
+        "Suggested range 17325..20000 is not _index; offset near 11506 is relevant."
+      ],
+      "missing": [
+        "No concrete implementation recommendation resolving freshness, idempotence and complete-request budgeting.",
+        "Does not explicitly distinguish existing task_candidates generation from complete inventory."
+      ]
+    },
+    "control-A": {
+      "grade": "correct-core-with-minor-caveats",
+      "engineering_decision": true,
+      "supported": "Cites both exact functions and overlap predicate; computes [0,4) intersect [3,6) at d; refuses both operations and requests a new coherent proposal.",
+      "caveats": [
+        "Brief c/d slip is corrected within response.",
+        "Dominant-newline wording is inaccurate: implementation selects CRLF if present, not by frequency.",
+        "Rereading is not universally required when exact current witnesses remain valid; no replay is authorized."
+      ]
+    },
+    "control-B": {
+      "grade": "correct-core-with-repair-caveats",
+      "engineering_decision": true,
+      "supported": "Correct predicate, exact overlap and whole-batch refusal; final recommendation is a new unified proposal for the intended target.",
+      "caveats": [
+        "Early uniqueness hypothesis is corrected before conclusion.",
+        "QR is only a hypothetical target; actual intended final bytes are not specified.",
+        "Sequential edits require fresh admission and cannot assume def survives the first replacement. The answer qualifies updated source and host support; it grants no execution authority."
+      ]
+    }
+  },
+  "recommendation": {
+    "option": "B: working-set revision using existing owners",
+    "action": "Complete the small initialization/request-construction callee closure, especially _index and prepare_navigation/task_entry, before another decision checkpoint. Provide existing exact source, not a reference solution. No new navigation mechanism or production API.",
+    "why": "The response-only answer exposes a real undisclosed callee and a missing-versus-already-implemented confusion. Controls show source-grounded reasoning with and without Tools, so automatic tool forcing and broad model incapability are not established.",
+    "owner": "Trusted host task/source selection in Agents, using existing Context/RI materialization. ModelInteraction remains a single invocation boundary; no Runtime change.",
+    "next_gate": "Require a grounded implementation hypothesis or justified remaining uncertainty with that closure before another full maintenance trial."
+  },
+  "limitations": [
+    "One unseeded sample per cell, fixed order, no causal estimate or success rate.",
+    "All four calls stateless; no answers shared.",
+    "No native Tools dispatched, no edits, checks or repair competence tested.",
+    "No output-limit termination or normalization discrepancy observed.",
+    "Actual source was identical within pairs and never evicted during these single requests.",
+    "No blanket production decision-phase requirement is justified by this sample."
+  ]
+}

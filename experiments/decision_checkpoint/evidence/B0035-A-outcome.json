@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-30T12:11:48.143461+00:00",
+  "seconds": 16.093334,
+  "response": {
+    "content": "",
+    "source": {
+      "value": "decision-checkpoint-B0035-A"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 6859,
+      "output_tokens": 48,
+      "total_tokens": 6907,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "find_source",
+        "arguments_json": "{\"query\":\"prepare repository metadata resources content_identity byte_size editable prompt message objective\",\"mode\":\"mixed\"}",
+        "provider_call_id": "sMJp1k80PAGZJyTtntKJKvEcQ8NqOGjk"
+      }
+    ]
+  },
+  "outcome": "normalized"
+}

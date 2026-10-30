@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-30T12:19:55.977769+00:00",
+  "head": "f86eb0dba93d2d1367bdd9507451b805b9dcaf2d",
+  "paired_messages_settings_source_identical": true,
+  "only_payload_difference": "tools",
+  "raw_normalized_match": true,
+  "completed_cells": 4,
+  "tool_dispatches": 0,
+  "source_unchanged": true,
+  "preserved_gate": "c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa",
+  "physical_inputs": 1188,
+  "links": 13,
+  "focused": {
+    "command": [
+      "uv",
+      "run",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "tests/models/interaction",
+      "tests/agents/coding/test_admission_cohesion.py",
+      "tests/agents/coding/test_repair_feedback.py"
+    ],
+    "passed": 253,
+    "seconds": 49.85,
+    "exit_code": 0
+  },
+  "no_full_gate": "Production executable/configuration inputs unchanged; evidence-only scope. Probe composition retained as text, no production/controller framework added."
+}

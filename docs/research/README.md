@@ -292,3 +292,7 @@ The [closed transition diagnostic](../../experiments/coding_transition/REPORT.md
 recorded task-directed search but no implementation decision in four real calls.
 Its source-status annotation remains opt-in; no live causal improvement, B-0035
 completion or model-authored implementation is claimed.
+
+## Decision checkpoint
+
+[Four-cell local-model diagnostic](../../experiments/decision_checkpoint/REPORT.md) separates Tool choice, partial B-0035 understanding and correct smaller contract decisions.

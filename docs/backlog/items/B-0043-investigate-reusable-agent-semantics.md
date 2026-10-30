@@ -392,3 +392,14 @@ Checkout released normally, tracked state was clean, and original experiments,
 forensic files, RI ledgers and historical refs were preserved. The read-only
 four-call diagnostic remains a failed transition with no candidate or B-0035
 completion. Documentation-only receipt closeout adds no execution authority.
+
+## Decision checkpoint - 2026-10-30
+
+The [paired assessment](../../../experiments/decision_checkpoint/REPORT.md)
+compared identical source/task messages with and without source Tools. B-0035
+produced a relevant Tool query versus partial prose with a real undisclosed-callee
+question and unsupported assumptions. Both smaller edit-contract controls reached
+correct core decisions, including with Tools available. Recommend completing the
+small initialization/message-construction source closure through existing Context
+selection before another full trial; no new phase framework, model success, grant,
+status transition or B-0035 delivery follows. Production inputs remain unchanged.

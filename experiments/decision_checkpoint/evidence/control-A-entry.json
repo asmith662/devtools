@@ -1,0 +1,179 @@
+{
+  "at": "2026-10-30T12:12:25.069903+00:00",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Characterize the existing Devtools edit-admission/repair contract for supervisor feedback. Baseline source is ASCII abcdef. One proposal requests abcd -> Q and def -> R in that same version; all source witnesses, scope and byte limits are valid. Decide whether the host should apply either change, refuse the batch, or require other evidence; cite actual source and state a defensible next worker action after refusal. Do not implement code or claim tests ran. Any advertised search/read Tools are optional; requested Tools will be retained but not dispatched in this single-response assessment. A concise plain-text decision is permitted.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"source_length\": 9149, \"valid_range\": [1072, 4974], \"maximum_bytes\": 8192, \"continuation_start\": 4974, \"remaining_range\": [4974, 4974], \"text\": \"def replace_exact_text(  # noqa: PLR0913 -- explicit independent host limits/deletion policy\\r\\n    source: str,\\r\\n    old_text: object,\\r\\n    new_text: object,\\r\\n    *,\\r\\n    region_bytes: int,\\r\\n    source_bytes: int,\\r\\n    allow_empty_new: bool = False,\\r\\n) -> tuple[str, int, int]:\\r\\n    \\\"\\\"\\\"Admit one exact unique anchor using caller limits and original line endings.\\\"\\\"\\\"\\r\\n    if not isinstance(old_text, str) or not isinstance(new_text, str):\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit text values must be strings\\\",\\r\\n            details={\\\"code\\\": \\\"INVALID_TEXT_TYPE\\\"},\\r\\n        )\\r\\n    if (\\r\\n        not old_text\\r\\n        or (not new_text and (not allow_empty_new))\\r\\n        or \\\"\\\\x00\\\" in old_text\\r\\n        or (\\\"\\\\x00\\\" in new_text)\\r\\n        or (len(old_text.encode()) > region_bytes)\\r\\n        or (len(new_text.encode()) > region_bytes)\\r\\n        or (old_text == new_text)\\r\\n    ):\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit text is empty, unchanged or oversized\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"EMPTY_TEXT\\\"\\r\\n                if not old_text or (not new_text and (not allow_empty_new))\\r\\n                else \\\"NUL_TEXT\\\"\\r\\n                if \\\"\\\\x00\\\" in old_text or \\\"\\\\x00\\\" in new_text\\r\\n                else \\\"REGION_BYTE_LIMIT\\\"\\r\\n                if max(len(old_text.encode()), len(new_text.encode())) > region_bytes\\r\\n                else \\\"NO_OP\\\",\\r\\n                \\\"old_bytes\\\": len(old_text.encode()),\\r\\n                \\\"new_bytes\\\": len(new_text.encode()),\\r\\n                \\\"region_limit_bytes\\\": region_bytes,\\r\\n            },\\r\\n        )\\r\\n    for text in (source, old_text, new_text):\\r\\n        without_crlf = text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\")\\r\\n        if (\\r\\n            \\\"\\\\r\\\" in without_crlf\\r\\n            or (\\\"\\\\r\\\\n\\\" in text and \\\"\\\\n\\\" in without_crlf)\\r\\n            or any(\\r\\n                marker in text\\r\\n                for marker in (\\r\\n                    \\\"\\\\x0b\\\",\\r\\n                    \\\"\\\\x0c\\\",\\r\\n                    \\\"\\\\x1c\\\",\\r\\n                    \\\"\\\\x1d\\\",\\r\\n                    \\\"\\\\x1e\\\",\\r\\n                    \\\"\\\\x85\\\",\\r\\n                    \\\"\\\\u2028\\\",\\r\\n                    \\\"\\\\u2029\\\",\\r\\n                )\\r\\n            )\\r\\n        ):\\r\\n            raise CodingEditError(\\r\\n                \\\"Mixed or unsupported structured edit line endings\\\",\\r\\n                details={\\\"code\\\": \\\"UNSUPPORTED_LINE_ENDINGS\\\"},\\r\\n            )\\r\\n    newline = \\\"\\\\r\\\\n\\\" if \\\"\\\\r\\\\n\\\" in source else \\\"\\\\n\\\"\\r\\n    old_text = old_text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\\n\\\").replace(\\\"\\\\n\\\", newline)\\r\\n    new_text = new_text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\\n\\\").replace(\\\"\\\\n\\\", newline)\\r\\n    if (\\r\\n        old_text == new_text\\r\\n        or max(len(old_text.encode()), len(new_text.encode())) > region_bytes\\r\\n    ):\\r\\n        raise CodingEditError(\\r\\n            \\\"Adapted structured edit is unchanged or oversized\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"NO_OP\\\" if old_text == new_text else \\\"REGION_BYTE_LIMIT\\\",\\r\\n                \\\"adapted_old_bytes\\\": len(old_text.encode()),\\r\\n                \\\"adapted_new_bytes\\\": len(new_text.encode()),\\r\\n                \\\"region_limit_bytes\\\": region_bytes,\\r\\n            },\\r\\n        )\\r\\n    matches = 0\\r\\n    offset = 0\\r\\n    while (found := source.find(old_text, offset)) >= 0:\\r\\n        matches += 1\\r\\n        offset = found + 1\\r\\n        if matches > 1:\\r\\n            break\\r\\n    if matches != 1:\\r\\n        raise CodingEditError(\\r\\n            \\\"Old text must match exactly one source region\\\",\\r\\n            details={\\\"code\\\": \\\"OLD_TEXT_NOT_UNIQUE\\\"},\\r\\n        )\\r\\n    updated = source.replace(old_text, new_text, 1)\\r\\n    if len(updated.encode()) > source_bytes:\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit exceeds the bounded source size\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"SOURCE_BYTE_LIMIT\\\",\\r\\n                \\\"source_bytes\\\": len(updated.encode()),\\r\\n                \\\"source_limit_bytes\\\": source_bytes,\\r\\n            },\\r\\n        )\\r\\n    return (updated, source.index(old_text), source.index(old_text) + len(old_text))\", \"path\": \"src/devtools/agents/coding/edits.py\", \"snapshot\": \"cd6dd1dfc96b6114f1893f27de11e69be36ab62a1e1711a72a2eaeb07231c595\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"span\": [1072, 4974], \"partial\": false, \"host_selected_unit\": \"replace_exact_text\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"source_length\": 9149, \"valid_range\": [5875, 9147], \"maximum_bytes\": 8192, \"continuation_start\": 9147, \"remaining_range\": [9147, 9147], \"text\": \"def admit_source_batch(\\r\\n    arguments: Iterable[Mapping[str, object]],\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    editable: tuple[RepositoryResourceAddress, ...],\\r\\n    available: tuple[SourceRangeDisclosureOption, ...],\\r\\n    limits: EditLimits,\\r\\n) -> tuple[SourceChange, ...]:\\r\\n    \\\"\\\"\\\"Plan exact current, bounded, nonoverlapping replacements without effects.\\r\\n\\r\\n    The host checks source currentness, readiness and the native operation count\\r\\n    before entering. Arguments are decoded lazily so a later malformed operation\\r\\n    cannot hide an earlier admission refusal. No partial plan escapes on error.\\r\\n    Scope membership and exact disclosed witnesses are checked here; model/Tool\\r\\n    correlation, authorization, effect entry and custody remain host-owned.\\r\\n    \\\"\\\"\\\"\\r\\n    changes: list[SourceChange] = []\\r\\n    total = 0\\r\\n    for values in arguments:\\r\\n        address = RepositoryResourceAddress(cast(\\\"str\\\", values[\\\"path\\\"]))\\r\\n        if address not in editable:\\r\\n            msg = \\\"Edit path is outside the admitted editing surface.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        before = snapshot.resource_at(address).content\\r\\n        after, start, end = replace_exact_text(\\r\\n            before,\\r\\n            values[\\\"old_text\\\"],\\r\\n            values[\\\"new_text\\\"],\\r\\n            region_bytes=limits.region_bytes,\\r\\n            source_bytes=limits.source_bytes,\\r\\n            allow_empty_new=True,\\r\\n        )\\r\\n        if not any(\\r\\n            o.unit.resource.address == address\\r\\n            and o.snapshot_id == snapshot.id\\r\\n            and o.repository_id == snapshot.repository_id\\r\\n            and o.unit.resource.content_identity == ContentIdentity.from_text(before)\\r\\n            and o.span[0] <= start\\r\\n            and end <= o.span[1]\\r\\n            for o in available\\r\\n        ):\\r\\n            msg = \\\"Exact current edit source was not acquired.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        if any(\\r\\n            c.address == address and start < c.end and c.start < end for c in changes\\r\\n        ):\\r\\n            msg = \\\"Edit anchors overlap.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        total += len(before[start:end].encode()) + len(\\r\\n            cast(\\\"str\\\", values[\\\"new_text\\\"]).encode(),\\r\\n        )\\r\\n        if total > limits.aggregate_bytes:\\r\\n            msg = \\\"Aggregate edit byte limit exceeded.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        changes.append(SourceChange(address, before, after, start, end))\\r\\n    # Combine admitted same-file anchors against the one original version.\\r\\n    combined = []\\r\\n    for address in dict.fromkeys(c.address for c in changes):\\r\\n        original = snapshot.resource_at(address).content\\r\\n        after = original\\r\\n        for c in sorted(\\r\\n            (c for c in changes if c.address == address),\\r\\n            key=lambda c: c.start,\\r\\n            reverse=True,\\r\\n        ):\\r\\n            inserted = c.after[c.start : len(c.after) - (len(c.before) - c.end)]\\r\\n            after = after[: c.start] + inserted + after[c.end :]\\r\\n        if len(after.encode()) > limits.source_bytes:\\r\\n            msg = \\\"Combined source byte limit exceeded.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        combined.append(\\r\\n            SourceChange(address, original, after, 0, len(original)),\\r\\n        )\\r\\n    return tuple(combined)\", \"path\": \"src/devtools/agents/coding/edits.py\", \"snapshot\": \"cd6dd1dfc96b6114f1893f27de11e69be36ab62a1e1711a72a2eaeb07231c595\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"span\": [5875, 9147], \"partial\": false, \"host_selected_unit\": \"admit_source_batch\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 4096,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": {
+      "provider": "llama.cpp",
+      "reasoning_effort": null,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "response_format": null
+    },
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"browse\":{\"type\":\"boolean\"},\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "payload": {
+    "model": "qwen38-local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Characterize the existing Devtools edit-admission/repair contract for supervisor feedback. Baseline source is ASCII abcdef. One proposal requests abcd -> Q and def -> R in that same version; all source witnesses, scope and byte limits are valid. Decide whether the host should apply either change, refuse the batch, or require other evidence; cite actual source and state a defensible next worker action after refusal. Do not implement code or claim tests ran. Any advertised search/read Tools are optional; requested Tools will be retained but not dispatched in this single-response assessment. A concise plain-text decision is permitted."
+      },
+      {
+        "role": "user",
+        "content": "{\"source_length\": 9149, \"valid_range\": [1072, 4974], \"maximum_bytes\": 8192, \"continuation_start\": 4974, \"remaining_range\": [4974, 4974], \"text\": \"def replace_exact_text(  # noqa: PLR0913 -- explicit independent host limits/deletion policy\\r\\n    source: str,\\r\\n    old_text: object,\\r\\n    new_text: object,\\r\\n    *,\\r\\n    region_bytes: int,\\r\\n    source_bytes: int,\\r\\n    allow_empty_new: bool = False,\\r\\n) -> tuple[str, int, int]:\\r\\n    \\\"\\\"\\\"Admit one exact unique anchor using caller limits and original line endings.\\\"\\\"\\\"\\r\\n    if not isinstance(old_text, str) or not isinstance(new_text, str):\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit text values must be strings\\\",\\r\\n            details={\\\"code\\\": \\\"INVALID_TEXT_TYPE\\\"},\\r\\n        )\\r\\n    if (\\r\\n        not old_text\\r\\n        or (not new_text and (not allow_empty_new))\\r\\n        or \\\"\\\\x00\\\" in old_text\\r\\n        or (\\\"\\\\x00\\\" in new_text)\\r\\n        or (len(old_text.encode()) > region_bytes)\\r\\n        or (len(new_text.encode()) > region_bytes)\\r\\n        or (old_text == new_text)\\r\\n    ):\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit text is empty, unchanged or oversized\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"EMPTY_TEXT\\\"\\r\\n                if not old_text or (not new_text and (not allow_empty_new))\\r\\n                else \\\"NUL_TEXT\\\"\\r\\n                if \\\"\\\\x00\\\" in old_text or \\\"\\\\x00\\\" in new_text\\r\\n                else \\\"REGION_BYTE_LIMIT\\\"\\r\\n                if max(len(old_text.encode()), len(new_text.encode())) > region_bytes\\r\\n                else \\\"NO_OP\\\",\\r\\n                \\\"old_bytes\\\": len(old_text.encode()),\\r\\n                \\\"new_bytes\\\": len(new_text.encode()),\\r\\n                \\\"region_limit_bytes\\\": region_bytes,\\r\\n            },\\r\\n        )\\r\\n    for text in (source, old_text, new_text):\\r\\n        without_crlf = text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\")\\r\\n        if (\\r\\n            \\\"\\\\r\\\" in without_crlf\\r\\n            or (\\\"\\\\r\\\\n\\\" in text and \\\"\\\\n\\\" in without_crlf)\\r\\n            or any(\\r\\n                marker in text\\r\\n                for marker in (\\r\\n                    \\\"\\\\x0b\\\",\\r\\n                    \\\"\\\\x0c\\\",\\r\\n                    \\\"\\\\x1c\\\",\\r\\n                    \\\"\\\\x1d\\\",\\r\\n                    \\\"\\\\x1e\\\",\\r\\n                    \\\"\\\\x85\\\",\\r\\n                    \\\"\\\\u2028\\\",\\r\\n                    \\\"\\\\u2029\\\",\\r\\n                )\\r\\n            )\\r\\n        ):\\r\\n            raise CodingEditError(\\r\\n                \\\"Mixed or unsupported structured edit line endings\\\",\\r\\n                details={\\\"code\\\": \\\"UNSUPPORTED_LINE_ENDINGS\\\"},\\r\\n            )\\r\\n    newline = \\\"\\\\r\\\\n\\\" if \\\"\\\\r\\\\n\\\" in source else \\\"\\\\n\\\"\\r\\n    old_text = old_text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\\n\\\").replace(\\\"\\\\n\\\", newline)\\r\\n    new_text = new_text.replace(\\\"\\\\r\\\\n\\\", \\\"\\\\n\\\").replace(\\\"\\\\n\\\", newline)\\r\\n    if (\\r\\n        old_text == new_text\\r\\n        or max(len(old_text.encode()), len(new_text.encode())) > region_bytes\\r\\n    ):\\r\\n        raise CodingEditError(\\r\\n            \\\"Adapted structured edit is unchanged or oversized\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"NO_OP\\\" if old_text == new_text else \\\"REGION_BYTE_LIMIT\\\",\\r\\n                \\\"adapted_old_bytes\\\": len(old_text.encode()),\\r\\n                \\\"adapted_new_bytes\\\": len(new_text.encode()),\\r\\n                \\\"region_limit_bytes\\\": region_bytes,\\r\\n            },\\r\\n        )\\r\\n    matches = 0\\r\\n    offset = 0\\r\\n    while (found := source.find(old_text, offset)) >= 0:\\r\\n        matches += 1\\r\\n        offset = found + 1\\r\\n        if matches > 1:\\r\\n            break\\r\\n    if matches != 1:\\r\\n        raise CodingEditError(\\r\\n            \\\"Old text must match exactly one source region\\\",\\r\\n            details={\\\"code\\\": \\\"OLD_TEXT_NOT_UNIQUE\\\"},\\r\\n        )\\r\\n    updated = source.replace(old_text, new_text, 1)\\r\\n    if len(updated.encode()) > source_bytes:\\r\\n        raise CodingEditError(\\r\\n            \\\"Structured edit exceeds the bounded source size\\\",\\r\\n            details={\\r\\n                \\\"code\\\": \\\"SOURCE_BYTE_LIMIT\\\",\\r\\n                \\\"source_bytes\\\": len(updated.encode()),\\r\\n                \\\"source_limit_bytes\\\": source_bytes,\\r\\n            },\\r\\n        )\\r\\n    return (updated, source.index(old_text), source.index(old_text) + len(old_text))\", \"path\": \"src/devtools/agents/coding/edits.py\", \"snapshot\": \"cd6dd1dfc96b6114f1893f27de11e69be36ab62a1e1711a72a2eaeb07231c595\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"span\": [1072, 4974], \"partial\": false, \"host_selected_unit\": \"replace_exact_text\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"source_length\": 9149, \"valid_range\": [5875, 9147], \"maximum_bytes\": 8192, \"continuation_start\": 9147, \"remaining_range\": [9147, 9147], \"text\": \"def admit_source_batch(\\r\\n    arguments: Iterable[Mapping[str, object]],\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    editable: tuple[RepositoryResourceAddress, ...],\\r\\n    available: tuple[SourceRangeDisclosureOption, ...],\\r\\n    limits: EditLimits,\\r\\n) -> tuple[SourceChange, ...]:\\r\\n    \\\"\\\"\\\"Plan exact current, bounded, nonoverlapping replacements without effects.\\r\\n\\r\\n    The host checks source currentness, readiness and the native operation count\\r\\n    before entering. Arguments are decoded lazily so a later malformed operation\\r\\n    cannot hide an earlier admission refusal. No partial plan escapes on error.\\r\\n    Scope membership and exact disclosed witnesses are checked here; model/Tool\\r\\n    correlation, authorization, effect entry and custody remain host-owned.\\r\\n    \\\"\\\"\\\"\\r\\n    changes: list[SourceChange] = []\\r\\n    total = 0\\r\\n    for values in arguments:\\r\\n        address = RepositoryResourceAddress(cast(\\\"str\\\", values[\\\"path\\\"]))\\r\\n        if address not in editable:\\r\\n            msg = \\\"Edit path is outside the admitted editing surface.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        before = snapshot.resource_at(address).content\\r\\n        after, start, end = replace_exact_text(\\r\\n            before,\\r\\n            values[\\\"old_text\\\"],\\r\\n            values[\\\"new_text\\\"],\\r\\n            region_bytes=limits.region_bytes,\\r\\n            source_bytes=limits.source_bytes,\\r\\n            allow_empty_new=True,\\r\\n        )\\r\\n        if not any(\\r\\n            o.unit.resource.address == address\\r\\n            and o.snapshot_id == snapshot.id\\r\\n            and o.repository_id == snapshot.repository_id\\r\\n            and o.unit.resource.content_identity == ContentIdentity.from_text(before)\\r\\n            and o.span[0] <= start\\r\\n            and end <= o.span[1]\\r\\n            for o in available\\r\\n        ):\\r\\n            msg = \\\"Exact current edit source was not acquired.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        if any(\\r\\n            c.address == address and start < c.end and c.start < end for c in changes\\r\\n        ):\\r\\n            msg = \\\"Edit anchors overlap.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        total += len(before[start:end].encode()) + len(\\r\\n            cast(\\\"str\\\", values[\\\"new_text\\\"]).encode(),\\r\\n        )\\r\\n        if total > limits.aggregate_bytes:\\r\\n            msg = \\\"Aggregate edit byte limit exceeded.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        changes.append(SourceChange(address, before, after, start, end))\\r\\n    # Combine admitted same-file anchors against the one original version.\\r\\n    combined = []\\r\\n    for address in dict.fromkeys(c.address for c in changes):\\r\\n        original = snapshot.resource_at(address).content\\r\\n        after = original\\r\\n        for c in sorted(\\r\\n            (c for c in changes if c.address == address),\\r\\n            key=lambda c: c.start,\\r\\n            reverse=True,\\r\\n        ):\\r\\n            inserted = c.after[c.start : len(c.after) - (len(c.before) - c.end)]\\r\\n            after = after[: c.start] + inserted + after[c.end :]\\r\\n        if len(after.encode()) > limits.source_bytes:\\r\\n            msg = \\\"Combined source byte limit exceeded.\\\"\\r\\n            raise CodingEditError(msg)\\r\\n        combined.append(\\r\\n            SourceChange(address, original, after, 0, len(original)),\\r\\n        )\\r\\n    return tuple(combined)\", \"path\": \"src/devtools/agents/coding/edits.py\", \"snapshot\": \"cd6dd1dfc96b6114f1893f27de11e69be36ab62a1e1711a72a2eaeb07231c595\", \"version\": \"e489e91d657a955cc488faa35cc75b7a76f46fb7decf671289439b844a27880a\", \"span\": [5875, 9147], \"partial\": false, \"host_selected_unit\": \"admit_source_batch\"}"
+      }
+    ],
+    "stream": false,
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "end": {
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "start": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "path",
+              "start"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "find_source",
+          "description": "Search authorized source candidates for the task; omitted query uses the objective. Read a relevant unit with read_source_unit before editing. Refine query/path/mode when results are poor. browse=true explicitly pages an outline under the host allowance; next_offset is optional exploration, not an instruction to traverse every page. Metadata is not source.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "browse": {
+                "type": "boolean"
+              },
+              "mode": {
+                "enum": [
+                  "file",
+                  "symbol",
+                  "window",
+                  "mixed"
+                ]
+              },
+              "offset": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "query": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "snapshot_id": {
+                "type": "string"
+              },
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id",
+              "snapshot_id"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    ]
+  },
+  "input_tokens_measured": 3140,
+  "request_bytes": 12186
+}
