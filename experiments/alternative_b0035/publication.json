@@ -1,8 +1,22 @@
 {
-  "status": "Pending final evidence-only publication",
+  "status": "Published evidence; remote main independently verified",
   "base": "6e57ad0c17b93ea0d1983797593b0e62e567536c",
   "production_changes": false,
   "selection_compatibility_checkpoint": "72444145",
   "coding_freeze": "b63129438b2c6cd115e12bc5fd3fdea7f27f4f38",
-  "original_service_healthy": true
+  "original_service_healthy": true,
+  "accepted_evidence_main": "e593a117a11cb617aaee76b60717c9cc2f3c87f3",
+  "non_force": true,
+  "remote_verification": {
+    "at": "2026-10-30T19:55:22.779517+00:00",
+    "main": "e593a117a11cb617aaee76b60717c9cc2f3c87f3",
+    "remote_verified": true,
+    "non_force": true,
+    "prior_remote": "6e57ad0c17b93ea0d1983797593b0e62e567536c"
+  },
+  "protected_ancestor": "72379015cf4f34f74a9282661aac8aa0362c9977",
+  "protected_inputs": 1191,
+  "original_qwen_healthy": true,
+  "checkout_released": true,
+  "receipt_qualification": "Final receipt-only descendant identity is verified after publication and recorded in ignored completion handoff; no new model invocation or executable change."
 }
