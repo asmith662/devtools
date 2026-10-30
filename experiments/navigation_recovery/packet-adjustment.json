@@ -1,0 +1,19 @@
+{
+  "reason": "Corrected descriptor and current source accounting required a smaller common import excerpt before inference; all thirteen source selections retained.",
+  "change": "First source region starts at repository navigation imports rather than file header. No method or scope contract removed; source remains reacquirable.",
+  "source_bytes": 14337,
+  "initial_bytes": 29323,
+  "prospective": [
+    {
+      "original": 30795,
+      "projected": 30795,
+      "shortened": []
+    },
+    {
+      "original": 33612,
+      "projected": 32140,
+      "shortened": []
+    }
+  ],
+  "transport": "Archived Stage A function LF converted to current CRLF; AST and normalized function text unchanged."
+}

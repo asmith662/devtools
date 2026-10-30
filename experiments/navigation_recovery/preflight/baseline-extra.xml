@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.405" timestamp="2026-10-30T19:36:04.756748-04:00" hostname="asmith"><testcase classname=".local.supervised-b0035.test_extra" name="test_candidates_and_complete_inventory_coexist" time="0.013"><failure message="AssertionError: Exactly one scoped metadata inventory is required">.local\supervised-b0035\test_extra.py:15: in test_candidates_and_complete_inventory_coexist
+    q=asyncio.run(h.prepare(progress()));data=inventory(q)
+                                              ^^^^^^^^^^^^
+experiments\local_maintenance_task_navigation\focused.py:117: in inventory
+    assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+           ^^^^^^^^^^^^^^^^^
+E   AssertionError: Exactly one scoped metadata inventory is required</failure></testcase><testcase classname=".local.supervised-b0035.test_extra" name="test_admitted_refresh_preserves_native_and_current_inventory" time="0.010"><failure message="AssertionError: Exactly one scoped metadata inventory is required">.local\supervised-b0035\test_extra.py:43: in test_admitted_refresh_preserves_native_and_current_inventory
+    asyncio.run(run())
+C:\Python314\Lib\asyncio\runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Python314\Lib\asyncio\runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\asyncio\base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.local\supervised-b0035\test_extra.py:24: in run
+    first=inventory(await h.prepare(state))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\local_maintenance_task_navigation\focused.py:117: in inventory
+    assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+           ^^^^^^^^^^^^^^^^^
+E   AssertionError: Exactly one scoped metadata inventory is required</failure></testcase><testcase classname=".local.supervised-b0035.test_extra" name="test_projection_cannot_drop_inventory_to_fit" time="0.011"><failure message="AssertionError: Exactly one scoped metadata inventory is required">.local\supervised-b0035\test_extra.py:46: in test_projection_cannot_drop_inventory_to_fit
+    h=make_host(tmp_path);q=asyncio.run(h.prepare(progress()));data=inventory(q)
+                                                                    ^^^^^^^^^^^^
+experiments\local_maintenance_task_navigation\focused.py:117: in inventory
+    assert len(entries) == 1, "Exactly one scoped metadata inventory is required"
+           ^^^^^^^^^^^^^^^^^
+E   AssertionError: Exactly one scoped metadata inventory is required</failure></testcase></testsuite></testsuites>

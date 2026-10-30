@@ -1,0 +1,31 @@
+{
+  "command": {
+    "executable": "uv",
+    "arguments": [
+      "run",
+      "ruff",
+      "format",
+      "--check",
+      "src/devtools/agents/coding/repository.py",
+      "src/devtools/agents/coding/navigation.py"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:03:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 0,
+  "stdout": "b'2 files already formatted\\n'",
+  "stderr": "b'warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\\n'",
+  "duration": {
+    "value": "0:00:00.309599"
+  },
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "events_dropped": 0
+}

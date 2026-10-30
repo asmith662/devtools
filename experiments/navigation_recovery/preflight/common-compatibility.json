@@ -1,0 +1,32 @@
+{
+  "command": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "arguments": [
+      "-m",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "tests/agents/coding/test_navigation.py",
+      "tests/agents/coding/test_navigation_history.py",
+      "tests/agents/coding/test_repository.py"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:03:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 0,
+  "stdout": "b'..................................................                       [100%]\\r\\n50 passed in 1.20s\\r\\n'",
+  "stderr": "b''",
+  "duration": {
+    "value": "0:00:01.913430"
+  },
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "events_dropped": 0
+}
