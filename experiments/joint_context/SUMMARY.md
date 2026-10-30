@@ -7,4 +7,4 @@ its model budget. B-0035 remains open. No model-authored production code was acc
 
 Original facts remain immutable. Reopening requires a separately authorized identity;
 no retry, additional inference or broader framework work follows automatically.
-See [report](REPORT.md), [protocol](protocol.md) and [review](review.json).
+See [report](REPORT.md), [protocol](protocol.md) and [review](review.json).
