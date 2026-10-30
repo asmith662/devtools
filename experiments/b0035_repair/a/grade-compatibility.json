@@ -1,0 +1,32 @@
+{
+  "label": "compatibility",
+  "command": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "arguments": [
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "tests/agents/coding/test_navigation.py",
+      "tests/agents/coding/test_navigation_history.py",
+      "tests/agents/coding/test_repository.py",
+      "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\b0035-repair\\a\\staging\\compatibility.xml"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:03:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 0,
+  "stdout": "..................................                                       [100%]\r\n34 passed in 1.08s\r\n",
+  "stderr": "",
+  "capture_incomplete": 0
+}

@@ -1,0 +1,136 @@
+"""Conditional integration composition; no alternative coding loop."""
+import asyncio,json,sys,hashlib,importlib.util
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/b0035_repair'
+sys.path.insert(0,str(R));sys.path.insert(0,str(O));import run as a
+d=a.d;r=a.r;d.O=O/'b';r.O=d.O;r.s.STATE=d.O/'staging'
+from devtools.agents.coding import CodingLimits,run_coding_agent
+from devtools.agents.coding.models import CodingProgress
+from devtools.models.interaction import PromptMessage,ModelSettings,InteractionSource,ModelToolCall
+from devtools.core.time import Duration,Timestamp
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from experiments.joint_context.capture import save_result,projection_record,error_record,result_record
+EDIT=('src/devtools/agents/coding/repository.py','src/devtools/agents/coding/navigation.py')
+PUBLIC=R/'experiments/local_maintenance_task_navigation'
+READ=tuple(r.RepositoryResourceAddress(p) for p in (*EDIT,'src/devtools/agents/coding/projection.py','src/devtools/tools/source.py','src/devtools/context/repository/resource.py','src/devtools/context/repository/snapshot.py','experiments/local_maintenance_task_navigation/focused.py'))
+r.READ=READ;r.EDIT=EDIT
+LIMITS=CodingLimits(10,4,6,Duration.seconds(180),Duration.seconds(1140))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):r.save(p,v)
+def checks(scope):
+ specs=[('focused',sys.executable,('-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',str(PUBLIC/'focused.py'),str(a.OLD/'focused.py')),120),('lint','uv',('run','ruff','check',*EDIT),30),('format','uv',('run','ruff','format','--check',*EDIT),30)]
+ return r.FixedCheckPlan(scope.root,tuple(r.FixedCheck(n,r.Command(exe).args(*args).cwd(scope.root).with_timeout(Duration.seconds(t))) for n,exe,args,t in specs),scope,r.CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=4096))
+def host(scope,corpus,**callbacks):
+ async def authorize(call,value):
+  if call.name not in {'read_source','read_source_unit','find_source','replace_source','validate_candidate'}:raise PermissionError('Outside integration authority')
+ async def denied(changes):raise PermissionError('Preparation is read-only')
+ h=r.Host(r.CodingObjective((C/'task-b.md').read_text(),scope,tuple(r.RepositoryResourceAddress(p) for p in EDIT),checks(scope),r.EditLimits(4096,32768,8192,2),8192,32768),corpus=corpus,authorize=authorize,apply_changes=callbacks.get('effect',denied),archive=callbacks.get('archive',lambda _:None),restore=callbacks.get('restore',lambda a,t:None),settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=False),navigation=True,projection=r.ProjectionPolicy(24576,20000,frozenset({'find_source'})))
+ h.proposals=[];return h
+async def preload(h):
+ selections=[]
+ names=('RepositoryCodingHost._index','RepositoryCodingHost.build_request','RepositoryCodingHost.prepare','RepositoryCodingHost.apply','prepare_navigation','task_entry','complete_inventory','SourceScope')
+ for name in names:
+  u=next(u for u in h.index.views[1].units if u.qualified_name==name)
+  end=u.resource.content.index('    files =',u.start,u.end) if name=='task_entry' else u.end
+  if name=='RepositoryCodingHost.prepare':
+   end=u.resource.content.index('                if self.compaction is not None:',u.resource.content.index('self.projection_outcomes.append(outcome)',u.start,u.end),u.end)
+   tail=u.resource.content.index('                if outcome.status ==',end,u.end)
+   selections.append(('prepare affordability and active-state installation',u,tail,u.end))
+  selections.append((name,u,u.start,end))
+ u=next(u for u in h.index.views[1].units if u.qualified_name=='assert_metadata');selections.append(('public metadata assertions',u,u.start,u.end))
+ u=next(u for u in h.index.views[0].units if u.resource.address.value==EDIT[0]);end=u.text.index('_READ =');selections.insert(0,('repository imports',u,0,end))
+ u=next(u for u in h.index.views[1].units if u.qualified_name=='RepositoryCodingHost.__init__');start=u.resource.content.index('        self.messages =',u.start,u.end);selections.insert(1,('host initial history and state',u,start,u.end))
+ start=u.resource.content.index('        self.objective, self.scope, self.corpus =',u.start,u.end);end=u.resource.content.index('\n',start);selections.insert(1,('host scope binding',u,start,end))
+ records=[]
+ for name,u,start,end in selections:
+  option=r.SourceRangeDisclosureOption('Stage B integration working set',u,start,end,8192)
+  material=await r.ToolRunner().execute(r.ScopedSourceTool(h.scope,maximum_bytes=8192),option);assert not option.truncated
+  h.disclosures.append(option);h.source_results.append(material);h._source_messages[len(h.messages)]=(option,)
+  row=d.source_feedback(option,material.items[0].text);row['host_selected_unit']=name
+  h.messages.append(PromptMessage('user',json.dumps(row,ensure_ascii=False)))
+  records.append(dict(name=name,path=u.resource.address.value,span=option.span,bytes=len(option.text.encode()),version=str(u.resource.content_identity),snapshot=str(option.snapshot_id)))
+ return records
+def continuity(h):
+ messages=list(h.messages);sources=dict(h._source_messages);out=[]
+ for n,name in enumerate(('prepare_navigation','complete_inventory'),1):
+  o=next(o for o in h.disclosures if o.unit.qualified_name==name)
+  call=ModelToolCall('read_source_unit',json.dumps(dict(unit_id=str(o.unit.id),snapshot_id=str(o.snapshot_id))),f'prospective-b-{n}')
+  messages.append(PromptMessage('assistant','',tool_calls=(call,)));sources[len(messages)]=(o,)
+  messages.append(PromptMessage('tool',json.dumps(d.source_feedback(o,o.text),ensure_ascii=False),tool_call_id=call.provider_call_id))
+  v=d.project_request(h.build_request(tuple(messages)),policy=h.projection,hard_bytes=32768,snapshot=h.scope.snapshot,sources=sources)
+  print('prospective',n,v.original_bytes,v.resulting_bytes,v.shortened_indices,flush=True)
+  assert v.status!='insufficient' and not v.shortened_indices
+  assert all(o.identity in {x.identity for x in v.active_sources} for o in h.disclosures)
+  out.append(projection_record(v))
+ return out
+class Measured(d.Measured):
+ def __init__(self):
+  super().__init__();self.delegate=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('b0035-repair-0001-stage-b'))
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=10;prefix=f'coding-{n}'
+  rec=dict(at=str(Timestamp.now()),request=r.s.plain(q),payload=self.delegate._request_payload(q),bytes=r.request_bytes(q),entered=False)
+  self.records.append(rec);save(d.O/'staging'/f'{prefix}-prepared.json',rec)
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);assert count<=28160 and r.request_bytes(q)<=32768
+  rec.update(measured_input_tokens=count,entered=True);save(d.O/'staging'/f'{prefix}-entry.json',rec)
+  original=r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=d.O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  r.provider._read_http_response=capture;timer=r.Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),180);rec.update(response=r.s.plain(response),outcome='normalized');return response
+  except BaseException as error:rec.update(error=error_record(error),outcome='unknown');raise
+  finally:
+   r.provider._read_http_response=original;timer.stop();rec['seconds']=timer.elapsed.total_seconds;save(d.O/'staging'/f'{prefix}-outcome.json',rec)
+async def episode(prepare):
+ accept=json.loads((O/'a/acceptance.json').read_text());assert accept['accepted']
+ initial={p:(R/p).read_bytes() for p in EDIT};initial[EDIT[1]]=(O/'a/staging/candidate'/EDIT[1]).read_bytes();assert hashlib.sha256(initial[EDIT[1]]).hexdigest()==accept['candidate_sha256']
+ baseline={p:(R/p).read_bytes() for p in EDIT};old=json.loads((C/'freeze-a.json').read_text())
+ for p in EDIT:assert hashlib.sha256(baseline[p]).hexdigest()==old['protected_inputs'][p]
+ stage=O/'b';stage.mkdir(parents=True,exist_ok=True);f=None if prepare else json.loads((C/'freeze-b.json').read_text())
+ model=await r.s.service_identity();assert model==old['model']
+ if f:
+  assert sha(Path(__file__))==f['runner_sha256']
+  for p,v in f['oracles'].items():assert sha(R/p)==v,p
+ repo=r.Repository.new() if prepare else r.Repository(r.RepositoryId.parse(f['repository_id']))
+ owner=Checkout(WorkCycle(R),'b0035-repair-0001-b-'+('preparation' if prepare else 'live'),'main',await git(R,'rev-parse','HEAD'),files=[dict(path=p,text=baseline[p].decode()) for p in EDIT]);applied=[]
+ async with owner:
+  for p,raw in initial.items():owner.expect(p,raw.decode());write(BinaryFile(resolve_path(R/p),raw))
+  try:
+   scope,corpus=r.observe(repo)
+   async def effect(changes):
+    assert len(applied)<3
+    for c in changes:owner.expect(c.address.value,c.after)
+    applied.append(r.s.plain(changes));save(stage/'staging'/f'applied-{len(applied)}.json',r.s.plain(changes));r.write_source_changes(scope.root,changes)
+   def archive(values):
+    for addr,t in values.items():
+     raw=(R/addr.value).read_bytes();assert raw.decode()==t;p=stage/'staging/candidate'/addr.value;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+   def restore(addr,t):
+    raw=initial[addr.value];assert raw.decode()==t;write(BinaryFile(resolve_path(R/addr.value),raw))
+   h=host(scope,corpus,effect=effect,archive=archive,restore=restore);records=await preload(h);q=await h.prepare(CodingProgress(LIMITS));print('initial',r.request_bytes(q),[(x['name'],x['bytes']) for x in records],flush=True);assert not h.projection_outcomes[-1].shortened_indices
+   if prepare:
+    prospective=continuity(h)
+    reference=await r.suite('oracle-reference',[str(PUBLIC/'reference_checks.py')],())
+    focused=await r.suite('baseline-focused',[str(PUBLIC/'focused.py')],('test_first_request_scoped_inventory','test_inventory_not_duplicated_on_prepare','test_inventory_charged_to_prompt_budget'))
+    held=await r.suite('baseline-heldout',[str(PUBLIC/'heldout.py')],('test_current_snapshot_not_cached','test_native_correlation_and_metadata_coexist','test_empty_resource_unicode_and_readonly','test_projection_preserves_metadata_and_objective','test_utf8_size_differs_from_character_count'))
+    extra=await r.suite('baseline-extra',[str(R/'.local/supervised-b0035/test_extra.py')],('test_candidates_and_complete_inventory_coexist','test_admitted_refresh_preserves_native_and_current_inventory','test_projection_cannot_drop_inventory_to_fit'))
+    value=dict(schema='b0035-repair-0001-stage-b',at=str(Timestamp.now()),base=await git(R,'rev-parse','HEAD'),accepted_a=accept,repository_id=str(scope.snapshot.repository_id),snapshot_id=str(scope.snapshot.id),source_hashes={x.value:sha(R/x.value) for x in READ},production_baseline={p:raw.hex() for p,raw in baseline.items()},starting_candidates={p:raw.hex() for p,raw in initial.items()},request=r.s.plain(q),request_bytes=r.request_bytes(q),host_disclosures=records,projection=projection_record(h.projection_outcomes[-1]),prospective=prospective,model=model,sampling=r.s.QWEN38_INSTRUCT_SAMPLING,limits=r.s.plain(LIMITS),recorder_call_limit=10,output_tokens=2048,input_tokens=28160,outer_seconds=1200,applications=3,repairs=2,auxiliary_calls=0,checks=r.s.plain(h.objective.checks),preflight=dict(reference=reference,focused=focused,heldout=held,extra=extra),oracles={str(p.relative_to(R)):sha(p) for p in (PUBLIC/'focused.py',PUBLIC/'heldout.py',PUBLIC/'reference_checks.py',R/'.local/supervised-b0035/test_extra.py',a.OLD/'focused.py')},runner_sha256=sha(Path(__file__)),task_sha256=sha(C/'task-b.md'),criteria='Full B-0035 behavior, unchanged oracles including extra integration predicates, independent review, static quality and protected gate before publication. No Codex repair, third stage or orphan-helper integration.')
+    save(stage/'freeze.json',value)
+   else:
+    assert r.s.plain(q)==f['request'] and str(scope.snapshot.id)==f['snapshot_id'];h.requests.clear();h.projection_outcomes.clear();h.active_disclosures=()
+    assert not (stage/'staging/entry.json').exists();save(stage/'staging/entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+    async with asyncio.timeout(1200):result=await run_coding_agent(Measured(),limits=LIMITS,host=h)
+    captured=save_result(stage/'staging/result.json',result)
+    save(stage/'staging/history.json',dict(messages=r.s.plain(h.messages),responses=r.s.plain(h.responses),requests=r.s.plain(h.requests),projections=[projection_record(v) for v in h.projection_outcomes],projection_error=error_record(h.projection_error),sources=r.s.plain(h.source_results),proposals=h.proposals,applied=applied,checks=[[dict(name=v.check.name,result=r.s.plain(v.command_result),inputs_current=v.inputs_current,input_error=error_record(v.input_error)) for v in row] for row in h.check_results]))
+    assert result.custody.restored and not result.custody.reconciliation_required
+  finally:
+   for p,raw in baseline.items():write(BinaryFile(resolve_path(R/p),raw))
+ assert not (R/'.local/backlog/checkout-owner').exists() and all((R/p).read_bytes()==raw for p,raw in baseline.items())
+ if prepare:
+  save(C/'freeze-b.json',value);(C/'runner-b.txt').write_bytes(Path(__file__).read_bytes());print(json.dumps(dict(bytes=value['request_bytes'],source_bytes=sum(x['bytes'] for x in records),continuations=[x['resulting_bytes'] for x in prospective])))
+ else:
+  save(stage/'staging/terminal.json',dict(at=str(Timestamp.now()),released=True,production_restored=True,captured=captured));print(json.dumps(result_record(result),indent=2))
+if __name__=='__main__':asyncio.run(episode(sys.argv[1]=='prepare'))

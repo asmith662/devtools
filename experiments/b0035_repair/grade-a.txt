@@ -1,0 +1,21 @@
+"""Independent acceptance of newly model-repaired bytes, without modification."""
+import asyncio,ast,json,hashlib,sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).parent));import run as d
+async def main():
+ f=json.loads((d.C/'freeze-a.json').read_text());p=d.PATH;baseline=bytes.fromhex(f['production_baseline'][p]);candidate=(d.O/'a/staging/candidate'/p).read_bytes();original=d.ARCHIVE.read_bytes()
+ assert candidate!=original and ast.dump(ast.parse(candidate))==ast.dump(ast.parse(original))
+ assert json.loads((d.O/'a/staging/result.json').read_text())['accepted']
+ owner=d.Checkout(d.WorkCycle(d.R),'b0035-repair-0001-a-independent','main',await d.git(d.R,'rev-parse','HEAD'),files=[dict(path=p,text=baseline.decode())]);results=[]
+ async with owner:
+  d.save(d.O/'a/staging/grade-entry.json',dict(at=str(d.Timestamp.now()),owner=owner.record));owner.expect(p,candidate.decode());d.write(d.BinaryFile(d.resolve_path(d.R/p),candidate))
+  try:
+   for label,args in [('withheld',[sys.executable,'-B','-X','utf8','-m','pytest','--no-cov','-q',str(d.OLD/'heldout.py'),'--junitxml='+str(d.O/'a/staging/withheld.xml')]),('compatibility',[sys.executable,'-B','-X','utf8','-m','pytest','--no-cov','-q','tests/agents/coding/test_navigation.py','tests/agents/coding/test_navigation_history.py','tests/agents/coding/test_repository.py','--junitxml='+str(d.O/'a/staging/compatibility.xml')]),('typing',['uv','run','mypy'])]:
+    command=d.r.Command(args[0]).args(*args[1:]).cwd(d.resolve_path(d.R)).with_timeout(d.Duration.seconds(180));result=await d.r.s.managed(command,'a-independent-'+label)
+    v=dict(label=label,command=d.r.s.plain(command),exit_code=result.exit_code,stdout=result.stdout.decode(errors='replace'),stderr=result.stderr.decode(errors='replace'),capture_incomplete=result.stdout_truncated or result.stderr_truncated or result.events_dropped)
+    results.append(v);d.save(d.O/'a/staging'/('grade-'+label+'.json'),v);assert (d.R/p).read_bytes()==candidate
+  finally:d.write(d.BinaryFile(d.resolve_path(d.R/p),baseline))
+ assert all(v['exit_code']==0 and not v['capture_incomplete'] for v in results)
+ d.save(d.O/'a/acceptance.json',dict(at=str(d.Timestamp.now()),accepted=True,publication_authorized=False,consumer='Conditional Stage B repository-host integration; no orphan publication',candidate_sha256=hashlib.sha256(candidate).hexdigest(),original_candidate_sha256=hashlib.sha256(original).hexdigest(),ast_equivalent_ignoring_locations=True,production_restored=True,owner_released=True,checks=results,review='New Qwen repair only reformulates the same error string expression. Frozen focused/lint/format and withheld/compatibility/typing all pass. Original experiment remains not accepted.'))
+ print(json.dumps(dict(accepted=True,candidate_sha256=hashlib.sha256(candidate).hexdigest(),checks=[(v['label'],v['exit_code']) for v in results])))
+asyncio.run(main())

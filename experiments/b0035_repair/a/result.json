@@ -1,0 +1,69 @@
+{
+  "disposition": "validated",
+  "accepted": true,
+  "candidate_validated": true,
+  "completed": true,
+  "failure_phase": null,
+  "error": null,
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 3,
+      "proposals": 2,
+      "tool_actions": 6,
+      "call_timeout_seconds": 180.0,
+      "wall_timeout_seconds": 540.0,
+      "completion_check": false
+    },
+    "number": 1,
+    "model_calls": 1,
+    "proposals": 1,
+    "actions": 0,
+    "phase": "completion",
+    "candidate_validated": true,
+    "effects": [
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "PbIQ2GJQkz5JHVbWhnUUl1oibBhwXKkt"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "focused"
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "lint"
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "format"
+      }
+    ],
+    "usage": [
+      {
+        "input_tokens": 6204,
+        "output_tokens": 148,
+        "total_tokens": 6352,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

@@ -1,0 +1,99 @@
+{
+  "at": "2026-10-30T16:45:23.666403+00:00",
+  "accepted": true,
+  "publication_authorized": false,
+  "consumer": "Conditional Stage B repository-host integration; no orphan publication",
+  "candidate_sha256": "3a3aba918649eaf9240fede6efb15289fcbbb93999ac6fa9b2649020776c936c",
+  "original_candidate_sha256": "cb2f9b18800efe302c271b2cf385646457d0a8daa3c205fa8c67b0b1b5670282",
+  "ast_equivalent_ignoring_locations": true,
+  "production_restored": true,
+  "owner_released": true,
+  "checks": [
+    {
+      "label": "withheld",
+      "command": {
+        "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "arguments": [
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\heldout.py",
+          "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\b0035-repair\\a\\staging\\withheld.xml"
+        ],
+        "working_directory": {
+          "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+        },
+        "timeout": {
+          "value": "0:03:00"
+        },
+        "stdin": null,
+        "environment": null,
+        "success_exit_codes": "frozenset({0})"
+      },
+      "exit_code": 0,
+      "stdout": "...                                                                      [100%]\r\n3 passed in 0.42s\r\n",
+      "stderr": "",
+      "capture_incomplete": 0
+    },
+    {
+      "label": "compatibility",
+      "command": {
+        "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "arguments": [
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "tests/agents/coding/test_navigation.py",
+          "tests/agents/coding/test_navigation_history.py",
+          "tests/agents/coding/test_repository.py",
+          "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\b0035-repair\\a\\staging\\compatibility.xml"
+        ],
+        "working_directory": {
+          "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+        },
+        "timeout": {
+          "value": "0:03:00"
+        },
+        "stdin": null,
+        "environment": null,
+        "success_exit_codes": "frozenset({0})"
+      },
+      "exit_code": 0,
+      "stdout": "..................................                                       [100%]\r\n34 passed in 1.08s\r\n",
+      "stderr": "",
+      "capture_incomplete": 0
+    },
+    {
+      "label": "typing",
+      "command": {
+        "executable": "uv",
+        "arguments": [
+          "run",
+          "mypy"
+        ],
+        "working_directory": {
+          "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+        },
+        "timeout": {
+          "value": "0:03:00"
+        },
+        "stdin": null,
+        "environment": null,
+        "success_exit_codes": "frozenset({0})"
+      },
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 612 source files\r\n",
+      "stderr": "",
+      "capture_incomplete": 0
+    }
+  ],
+  "review": "New Qwen repair only reformulates the same error string expression. Frozen focused/lint/format and withheld/compatibility/typing all pass. Original experiment remains not accepted."
+}
