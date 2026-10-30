@@ -503,3 +503,10 @@ cold start timed out; a final 600-second serving preflight became ready and pass
 a real native source/feedback compatibility smoke. One conditional Stage B coding
 episode remains pending its source/request freeze. No edit or integration is yet
 established; B-0035 remains open. No grant or framework change follows.
+
+The same assessment subsequently passed a real two-call source/feedback smoke and
+entered its separately frozen coding episode. Both requests retained all thirteen
+exact units. Call two selected directory path `src` for find_source, failing the
+exact-resource validation and ending without correlated refusal feedback. No edit
+or worker check occurred. This exposes a narrow navigation argument/feedback
+boundary; it does not establish model coding incapability or B-0035 completion.

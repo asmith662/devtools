@@ -1042,3 +1042,5 @@ Prospective Qwen thinking-mode comparison, 2026-10-30: [paired B-0035 Stage B as
 Qwen effort calibration, 2026-10-30: [verified low/medium template control, usable low action and failed fresh B-0035 coding episode](../experiments/b0035_effort/REPORT.md). No production change or B-0035 completion; medium not invoked.
 
 Alternative local-worker qualification, 2026-10-30: [selection, authenticated acquisition and real native compatibility](../experiments/alternative_b0035/REPORT.md). Stage B coding is a separately frozen conditional continuation.
+
+Alternative-worker outcome: the qualified gpt-oss worker entered two coding calls; an invalid directory-valued search path terminated acquisition before edit/repair. See the linked report for exact native evidence and narrow feedback recommendation.

@@ -1,0 +1,33 @@
+﻿import asyncio,json,hashlib,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from scripts.backlog.coordinator import git
+from devtools.models.interaction import Prompt,PromptMessage,ModelToolCall
+from devtools.core.time import Timestamp
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/alternative_b0035'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def valid(q):
+ messages=tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in q['prompt']['messages']);Prompt('','messages',messages)
+ ids=[c.provider_call_id for m in messages for c in m.tool_calls];assert len(ids)==len(set(ids));return len(ids)
+def response(raw,v):
+ m=raw['choices'][0]['message'];assert (m.get('content') or '')==v['content'] and m.get('reasoning_content')==v['reasoning_content']
+ assert raw['usage']['prompt_tokens']==v['usage']['input_tokens'] and raw['usage']['completion_tokens']==v['usage']['output_tokens']
+ for a,b in zip(m.get('tool_calls',[]),v['tool_calls'],strict=True):assert a['id']==b['provider_call_id'] and a['function']['name']==b['name'] and a['function']['arguments']==b['arguments_json']
+async def main():
+ assert not (R/'.local/backlog/checkout-owner').exists();n=0
+ for i in (1,2):
+  v=json.loads((C/f'smoke/request-{i}.json').read_text());valid(v['request']);r=json.loads((C/f'smoke/response-{i}.json').read_text())['response'];response(json.loads((C/f'smoke/body-{i}.bin').read_bytes()),r);n+=1
+ for p in (C/'gptoss').glob('coding-*-outcome.json'):
+  v=json.loads(p.read_text());valid(v['request']);assert v['bytes']==len(json.dumps(v['request'],ensure_ascii=False).encode())<=32768
+  response(json.loads(p.with_name(p.name.replace('-outcome.json','-provider-body.bin')).read_bytes()),v['response']);n+=1
+ f=json.loads((C/'freeze-gptoss.json').read_text());result=json.loads((C/'gptoss/result.json').read_text());assert [e['acknowledged'] for e in result['progress']['effects']]==[True,False] and result['custody']['restored']
+ for p,t in f['production_baseline'].items():assert (R/p).read_bytes()==bytes.fromhex(t)
+ for p,t in f['starting_candidates'].items():assert (C/'gptoss/candidate'/p).with_suffix('.py.txt').read_bytes()==bytes.fromhex(t)
+ for row in json.loads((C/'reconciliation.json').read_text())['exact_artifacts']:assert sha(C/row['artifact'])==row['sha256']==sha(R/row['source'])
+ old=json.loads((C/'preservation-freeze.json').read_text());paths=('src','tests','apps','scripts','experiments/local_coding_dogfood','experiments/coding_transition','experiments/joint_context','pyproject.toml','uv.lock','.python-version','AGENTS.md','.gitignore','.gitattributes')
+ def entries(v):return {x.split('\t',1)[1]:x.split('\t',1)[0].split()[2] for x in v.split('\0') if x}
+ a=entries(await git(R,'ls-tree','-r','-z',old['protected_ancestor'],'--',*paths,trim=False));b=entries(await git(R,'ls-tree','-r','-z','HEAD','--',*paths,trim=False))
+ for p,h in old['protected_inputs'].items():assert sha(R/p)==h and a[p]==b[p]
+ v=json.loads((C/'validation.json').read_text());v.update(at=str(Timestamp.now()),normalized_real_responses=n,native_prompts_valid=True,raw_reasoning_final_calls_usage_match=True,original_unacknowledged_action_preserved=True,unchanged_candidate_verified=True,protected_inputs=len(old['protected_inputs']),protected_blobs_unchanged=True,owner_released=True,model_source_witness_authority_preserved=True)
+ (C/'validation.json').write_text(json.dumps(v,indent=2)+'\n');print('Verified',n,'real responses and',len(old['protected_inputs']),'unchanged protected inputs')
+asyncio.run(main())
