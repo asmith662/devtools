@@ -1,0 +1,91 @@
+{
+  "disposition": "stopped",
+  "accepted": false,
+  "candidate_validated": false,
+  "completed": true,
+  "failure_phase": null,
+  "error": null,
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 10,
+      "proposals": 4,
+      "tool_actions": 6,
+      "call_timeout_seconds": 240.0,
+      "wall_timeout_seconds": 1140.0,
+      "completion_check": false
+    },
+    "number": 4,
+    "model_calls": 4,
+    "proposals": 0,
+    "actions": 3,
+    "phase": "completion",
+    "candidate_validated": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "IsKqsvnAnEpk3Su6XSCookj8hrGWRlOn"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "aUHk6IZQWMLIdLiqOgaWh6dc0HXQafS6"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "cS08XtZCWjS49lv72lYkQuj7ZBKmg6i0"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      }
+    ],
+    "usage": [
+      {
+        "input_tokens": 6712,
+        "output_tokens": 59,
+        "total_tokens": 6771,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 7285,
+        "output_tokens": 118,
+        "total_tokens": 7403,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 6993,
+        "output_tokens": 46,
+        "total_tokens": 7039,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 6921,
+        "output_tokens": 159,
+        "total_tokens": 7080,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

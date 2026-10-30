@@ -1,0 +1,908 @@
+{
+  "schema": "alternative-b0035-comparison-v1",
+  "treatments": {
+    "gptoss": {
+      "requests": [
+        {
+          "number": 1,
+          "entered": true,
+          "bytes": 29323,
+          "original_bytes": 29323,
+          "input_tokens": 6712,
+          "output_tokens": 59,
+          "reasoning_tokens": null,
+          "reasoning_characters": 139,
+          "seconds": 3.307199,
+          "termination": "tool_call",
+          "error": null,
+          "active": [
+            {
+              "identity": "be920d40ffd9f85f93687e049cd0f15d50afa07085772fe65b0207505fbbffa1",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                875,
+                2787
+              ]
+            },
+            {
+              "identity": "c2735d9bc191eef5aa7559050e784fcc71381723f2215596f2fe508a152b206b",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                9371,
+                9456
+              ]
+            },
+            {
+              "identity": "810459f666ff02c00051b5d6c9b5bc4d7b7a17d1b06ba3100e975666e97dce74",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                10763,
+                11531
+              ]
+            },
+            {
+              "identity": "2a884ed1365cea560573e802942c7f2e26c04eed0be622f091b8d99a802c3520",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11539,
+                11814
+              ]
+            },
+            {
+              "identity": "a597ac83253f34d93fca5d24acf8b41f2f78e3ac0bd6d50f5256966e7cf6b819",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11822,
+                12705
+              ]
+            },
+            {
+              "identity": "f12e2126f01b731f4811bff338eeb8b1b94cfda356154d9f721c837ef9656593",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                16680,
+                17350
+              ]
+            },
+            {
+              "identity": "2f0dbc5c325145678c7a1dc3bb7092355ea06618b0a9f1f5ba6c49df41c9b21e",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                12713,
+                14581
+              ]
+            },
+            {
+              "identity": "ddbbf30f201ab7238fd9706b64d9317c28eec37b533148f1d05d8e5dd8af5933",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                26887,
+                29515
+              ]
+            },
+            {
+              "identity": "dbd6a85c6df1ecbbf0ab1b54f003f8f3504ef0352e01fec3dcb2446ee44dd86f",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                6658,
+                7147
+              ]
+            },
+            {
+              "identity": "a8ab569c7150ae8b471adebec2b6516746774d9510d0fcf2984159d9c049e052",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                4067,
+                4275
+              ]
+            },
+            {
+              "identity": "402ebc1b36339a332f34636b737f5bf5dd78a94151e315ec5b30f6835eedf7f8",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                12857,
+                14494
+              ]
+            },
+            {
+              "identity": "daba430d4fad9dbfdef4af1b56f7fe7a840f893bb3cdc46172d9344f7bb89ef0",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "4defa371e85b443d333a2032acf7b32e844de1c85bd51175de2980c77bd225a8",
+              "path": "src/devtools/tools/source.py",
+              "span": [
+                990,
+                3212
+              ]
+            },
+            {
+              "identity": "8da97ce15267ac32410f3440c9ddec3d7d6be6b492764847b9cbc87bbe8f75cf",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+              "path": "experiments/local_maintenance_task_navigation/focused.py",
+              "span": [
+                4591,
+                5283
+              ]
+            }
+          ],
+          "initial_units_exact": 13,
+          "omitted": [],
+          "shortened": []
+        },
+        {
+          "number": 2,
+          "entered": true,
+          "bytes": 31133,
+          "original_bytes": 31133,
+          "input_tokens": 7285,
+          "output_tokens": 118,
+          "reasoning_tokens": null,
+          "reasoning_characters": 507,
+          "seconds": 1.453984,
+          "termination": "tool_call",
+          "error": null,
+          "active": [
+            {
+              "identity": "be920d40ffd9f85f93687e049cd0f15d50afa07085772fe65b0207505fbbffa1",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                875,
+                2787
+              ]
+            },
+            {
+              "identity": "c2735d9bc191eef5aa7559050e784fcc71381723f2215596f2fe508a152b206b",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                9371,
+                9456
+              ]
+            },
+            {
+              "identity": "810459f666ff02c00051b5d6c9b5bc4d7b7a17d1b06ba3100e975666e97dce74",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                10763,
+                11531
+              ]
+            },
+            {
+              "identity": "2a884ed1365cea560573e802942c7f2e26c04eed0be622f091b8d99a802c3520",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11539,
+                11814
+              ]
+            },
+            {
+              "identity": "a597ac83253f34d93fca5d24acf8b41f2f78e3ac0bd6d50f5256966e7cf6b819",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11822,
+                12705
+              ]
+            },
+            {
+              "identity": "f12e2126f01b731f4811bff338eeb8b1b94cfda356154d9f721c837ef9656593",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                16680,
+                17350
+              ]
+            },
+            {
+              "identity": "2f0dbc5c325145678c7a1dc3bb7092355ea06618b0a9f1f5ba6c49df41c9b21e",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                12713,
+                14581
+              ]
+            },
+            {
+              "identity": "ddbbf30f201ab7238fd9706b64d9317c28eec37b533148f1d05d8e5dd8af5933",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                26887,
+                29515
+              ]
+            },
+            {
+              "identity": "dbd6a85c6df1ecbbf0ab1b54f003f8f3504ef0352e01fec3dcb2446ee44dd86f",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                6658,
+                7147
+              ]
+            },
+            {
+              "identity": "a8ab569c7150ae8b471adebec2b6516746774d9510d0fcf2984159d9c049e052",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                4067,
+                4275
+              ]
+            },
+            {
+              "identity": "402ebc1b36339a332f34636b737f5bf5dd78a94151e315ec5b30f6835eedf7f8",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                12857,
+                14494
+              ]
+            },
+            {
+              "identity": "daba430d4fad9dbfdef4af1b56f7fe7a840f893bb3cdc46172d9344f7bb89ef0",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "4defa371e85b443d333a2032acf7b32e844de1c85bd51175de2980c77bd225a8",
+              "path": "src/devtools/tools/source.py",
+              "span": [
+                990,
+                3212
+              ]
+            },
+            {
+              "identity": "8da97ce15267ac32410f3440c9ddec3d7d6be6b492764847b9cbc87bbe8f75cf",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+              "path": "experiments/local_maintenance_task_navigation/focused.py",
+              "span": [
+                4591,
+                5283
+              ]
+            }
+          ],
+          "initial_units_exact": 13,
+          "omitted": [],
+          "shortened": []
+        },
+        {
+          "number": 3,
+          "entered": true,
+          "bytes": 30906,
+          "original_bytes": 32716,
+          "input_tokens": 6993,
+          "output_tokens": 46,
+          "reasoning_tokens": null,
+          "reasoning_characters": 80,
+          "seconds": 0.61928,
+          "termination": "tool_call",
+          "error": null,
+          "active": [
+            {
+              "identity": "be920d40ffd9f85f93687e049cd0f15d50afa07085772fe65b0207505fbbffa1",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                875,
+                2787
+              ]
+            },
+            {
+              "identity": "c2735d9bc191eef5aa7559050e784fcc71381723f2215596f2fe508a152b206b",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                9371,
+                9456
+              ]
+            },
+            {
+              "identity": "810459f666ff02c00051b5d6c9b5bc4d7b7a17d1b06ba3100e975666e97dce74",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                10763,
+                11531
+              ]
+            },
+            {
+              "identity": "2a884ed1365cea560573e802942c7f2e26c04eed0be622f091b8d99a802c3520",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11539,
+                11814
+              ]
+            },
+            {
+              "identity": "a597ac83253f34d93fca5d24acf8b41f2f78e3ac0bd6d50f5256966e7cf6b819",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11822,
+                12705
+              ]
+            },
+            {
+              "identity": "f12e2126f01b731f4811bff338eeb8b1b94cfda356154d9f721c837ef9656593",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                16680,
+                17350
+              ]
+            },
+            {
+              "identity": "2f0dbc5c325145678c7a1dc3bb7092355ea06618b0a9f1f5ba6c49df41c9b21e",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                12713,
+                14581
+              ]
+            },
+            {
+              "identity": "ddbbf30f201ab7238fd9706b64d9317c28eec37b533148f1d05d8e5dd8af5933",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                26887,
+                29515
+              ]
+            },
+            {
+              "identity": "dbd6a85c6df1ecbbf0ab1b54f003f8f3504ef0352e01fec3dcb2446ee44dd86f",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                6658,
+                7147
+              ]
+            },
+            {
+              "identity": "a8ab569c7150ae8b471adebec2b6516746774d9510d0fcf2984159d9c049e052",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                4067,
+                4275
+              ]
+            },
+            {
+              "identity": "402ebc1b36339a332f34636b737f5bf5dd78a94151e315ec5b30f6835eedf7f8",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                12857,
+                14494
+              ]
+            },
+            {
+              "identity": "daba430d4fad9dbfdef4af1b56f7fe7a840f893bb3cdc46172d9344f7bb89ef0",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "4defa371e85b443d333a2032acf7b32e844de1c85bd51175de2980c77bd225a8",
+              "path": "src/devtools/tools/source.py",
+              "span": [
+                990,
+                3212
+              ]
+            },
+            {
+              "identity": "8da97ce15267ac32410f3440c9ddec3d7d6be6b492764847b9cbc87bbe8f75cf",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+              "path": "experiments/local_maintenance_task_navigation/focused.py",
+              "span": [
+                4591,
+                5283
+              ]
+            }
+          ],
+          "initial_units_exact": 13,
+          "omitted": [
+            [
+              14,
+              16,
+              "host-classified-metadata"
+            ]
+          ],
+          "shortened": []
+        },
+        {
+          "number": 4,
+          "entered": true,
+          "bytes": 30488,
+          "original_bytes": 33881,
+          "input_tokens": 6921,
+          "output_tokens": 159,
+          "reasoning_tokens": null,
+          "reasoning_characters": 31,
+          "seconds": 1.77749,
+          "termination": "normal_stop",
+          "error": null,
+          "active": [
+            {
+              "identity": "be920d40ffd9f85f93687e049cd0f15d50afa07085772fe65b0207505fbbffa1",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                875,
+                2787
+              ]
+            },
+            {
+              "identity": "c2735d9bc191eef5aa7559050e784fcc71381723f2215596f2fe508a152b206b",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                9371,
+                9456
+              ]
+            },
+            {
+              "identity": "810459f666ff02c00051b5d6c9b5bc4d7b7a17d1b06ba3100e975666e97dce74",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                10763,
+                11531
+              ]
+            },
+            {
+              "identity": "2a884ed1365cea560573e802942c7f2e26c04eed0be622f091b8d99a802c3520",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11539,
+                11814
+              ]
+            },
+            {
+              "identity": "a597ac83253f34d93fca5d24acf8b41f2f78e3ac0bd6d50f5256966e7cf6b819",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                11822,
+                12705
+              ]
+            },
+            {
+              "identity": "f12e2126f01b731f4811bff338eeb8b1b94cfda356154d9f721c837ef9656593",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                16680,
+                17350
+              ]
+            },
+            {
+              "identity": "2f0dbc5c325145678c7a1dc3bb7092355ea06618b0a9f1f5ba6c49df41c9b21e",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                12713,
+                14581
+              ]
+            },
+            {
+              "identity": "ddbbf30f201ab7238fd9706b64d9317c28eec37b533148f1d05d8e5dd8af5933",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "dbbb656d9f7bf8cbfd54bb47264bc250562e110363e6c649d752f7f222a2b9d7",
+              "path": "src/devtools/agents/coding/repository.py",
+              "span": [
+                26887,
+                29515
+              ]
+            },
+            {
+              "identity": "dbd6a85c6df1ecbbf0ab1b54f003f8f3504ef0352e01fec3dcb2446ee44dd86f",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                6658,
+                7147
+              ]
+            },
+            {
+              "identity": "a8ab569c7150ae8b471adebec2b6516746774d9510d0fcf2984159d9c049e052",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                4067,
+                4275
+              ]
+            },
+            {
+              "identity": "402ebc1b36339a332f34636b737f5bf5dd78a94151e315ec5b30f6835eedf7f8",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "b04c03d0aebd5044b5d4400f66ae10445cb3276ee0662acb6a9ebb80e2a1546d",
+              "path": "src/devtools/agents/coding/navigation.py",
+              "span": [
+                12857,
+                14494
+              ]
+            },
+            {
+              "identity": "daba430d4fad9dbfdef4af1b56f7fe7a840f893bb3cdc46172d9344f7bb89ef0",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "4defa371e85b443d333a2032acf7b32e844de1c85bd51175de2980c77bd225a8",
+              "path": "src/devtools/tools/source.py",
+              "span": [
+                990,
+                3212
+              ]
+            },
+            {
+              "identity": "8da97ce15267ac32410f3440c9ddec3d7d6be6b492764847b9cbc87bbe8f75cf",
+              "snapshot": "7dec3f1b2774ffe6e48e1f324b25a7dcbedae86d7f71f09bd43fd7c5a43a5874",
+              "repository": "c2e7ae59-8625-4e96-aa52-95ba60c2ba87",
+              "version": "7e8422889dd6b1022e5adb9edde82480e7e0ef0ba1daadd198f13672f0b01800",
+              "path": "experiments/local_maintenance_task_navigation/focused.py",
+              "span": [
+                4591,
+                5283
+              ]
+            }
+          ],
+          "initial_units_exact": 13,
+          "omitted": [
+            [
+              14,
+              16,
+              "host-classified-metadata"
+            ],
+            [
+              16,
+              18,
+              "host-classified-metadata"
+            ]
+          ],
+          "shortened": []
+        }
+      ],
+      "calls": [
+        {
+          "request": 1,
+          "native_call_id": "IsKqsvnAnEpk3Su6XSCookj8hrGWRlOn",
+          "name": "find_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/navigation.py\",\"query\":\"complete_inventory\"}",
+          "feedback_present": true,
+          "refused": false,
+          "reason": null
+        },
+        {
+          "request": 2,
+          "native_call_id": "aUHk6IZQWMLIdLiqOgaWh6dc0HXQafS6",
+          "name": "find_source",
+          "arguments_json": "{\"path\":\"src\",\"query\":\"inventory\"}",
+          "feedback_present": true,
+          "refused": true,
+          "reason": "invalid_navigation_arguments"
+        },
+        {
+          "request": 3,
+          "native_call_id": "cS08XtZCWjS49lv72lYkQuj7ZBKmg6i0",
+          "name": "find_source",
+          "arguments_json": "{\"path\":\"src\",\"query\":\"COMPLETE_INVENTORY\"}",
+          "feedback_present": true,
+          "refused": true,
+          "reason": "invalid_navigation_arguments"
+        }
+      ],
+      "provider_timings": [
+        {
+          "request": 1,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 6712,
+            "prompt_ms": 2573.331,
+            "prompt_per_token_ms": 0.3833925804529202,
+            "prompt_per_second": 2608.2925204724925,
+            "predicted_n": 59,
+            "predicted_ms": 629.321,
+            "predicted_per_token_ms": 10.850362068965518,
+            "predicted_per_second": 92.16282310617315
+          },
+          "raw_usage": {
+            "completion_tokens": 59,
+            "prompt_tokens": 6712,
+            "total_tokens": 6771,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "provider_id": "chatcmpl-fyg5cXkKqq35mHGHqSoSYVhUDI33LTI4",
+          "system_fingerprint": "b10868-304665fe7"
+        },
+        {
+          "request": 2,
+          "timings": {
+            "cache_n": 6740,
+            "prompt_n": 545,
+            "prompt_ms": 206.702,
+            "prompt_per_token_ms": 0.3792697247706422,
+            "prompt_per_second": 2636.645992781879,
+            "predicted_n": 118,
+            "predicted_ms": 1200.915,
+            "predicted_per_token_ms": 10.26423076923077,
+            "predicted_per_second": 97.42571289391839
+          },
+          "raw_usage": {
+            "completion_tokens": 118,
+            "prompt_tokens": 7285,
+            "total_tokens": 7403,
+            "prompt_tokens_details": {
+              "cached_tokens": 6740
+            }
+          },
+          "provider_id": "chatcmpl-hsaZuIIuQVWB9XKgkEAGtqQatVXc5eox",
+          "system_fingerprint": "b10868-304665fe7"
+        },
+        {
+          "request": 3,
+          "timings": {
+            "cache_n": 6707,
+            "prompt_n": 286,
+            "prompt_ms": 118.351,
+            "prompt_per_token_ms": 0.4138146853146853,
+            "prompt_per_second": 2416.540629145508,
+            "predicted_n": 46,
+            "predicted_ms": 453.517,
+            "predicted_per_token_ms": 10.078155555555556,
+            "predicted_per_second": 99.22450536584076
+          },
+          "raw_usage": {
+            "completion_tokens": 46,
+            "prompt_tokens": 6993,
+            "total_tokens": 7039,
+            "prompt_tokens_details": {
+              "cached_tokens": 6707
+            }
+          },
+          "provider_id": "chatcmpl-to3iDrkHLUQHcL0AewxIpdCGqKp1DaMT",
+          "system_fingerprint": "b10868-304665fe7"
+        },
+        {
+          "request": 4,
+          "timings": {
+            "cache_n": 6715,
+            "prompt_n": 206,
+            "prompt_ms": 118.004,
+            "prompt_per_token_ms": 0.5728349514563107,
+            "prompt_per_second": 1745.7035354733737,
+            "predicted_n": 159,
+            "predicted_ms": 1616.312,
+            "predicted_per_token_ms": 10.229822784810127,
+            "predicted_per_second": 97.75340404575354
+          },
+          "raw_usage": {
+            "completion_tokens": 159,
+            "prompt_tokens": 6921,
+            "total_tokens": 7080,
+            "prompt_tokens_details": {
+              "cached_tokens": 6715
+            }
+          },
+          "provider_id": "chatcmpl-0SkmTLuYIqEp6mYKtb0S2CPtrEUJH3mL",
+          "system_fingerprint": "b10868-304665fe7"
+        }
+      ],
+      "model_calls": 4,
+      "known_input_tokens": 27911,
+      "known_output_tokens": 382,
+      "usage_complete": true,
+      "model_seconds": 7.157953,
+      "worker_wall_seconds": 10.133398,
+      "first_proposal_call": null,
+      "read_bytes": 0,
+      "new_read_bytes": 0,
+      "repeated_read_bytes": 0,
+      "changed": [],
+      "candidate_sha256": {
+        "src/devtools/agents/coding/repository.py": "9818fe1419599b817410a034444797ee719c9c10a7c51dfb03124f120793fd3e",
+        "src/devtools/agents/coding/navigation.py": "92c6600a8996eb3747850335aa986f3ad34fc407cf43b02bc3325b12f13dfa0b"
+      },
+      "proposals": [],
+      "managed_checks": [],
+      "result": {
+        "disposition": "stopped",
+        "accepted": false,
+        "candidate_validated": false,
+        "completed": true,
+        "failure_phase": null,
+        "error": null,
+        "completion_error": null,
+        "progress": {
+          "limits": {
+            "model_calls": 10,
+            "proposals": 4,
+            "tool_actions": 6,
+            "call_timeout_seconds": 240.0,
+            "wall_timeout_seconds": 1140.0,
+            "completion_check": false
+          },
+          "number": 4,
+          "model_calls": 4,
+          "proposals": 0,
+          "actions": 3,
+          "phase": "completion",
+          "candidate_validated": false,
+          "effects": [
+            {
+              "kind": "tool",
+              "native_call_ids": [
+                "IsKqsvnAnEpk3Su6XSCookj8hrGWRlOn"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            },
+            {
+              "kind": "tool",
+              "native_call_ids": [
+                "aUHk6IZQWMLIdLiqOgaWh6dc0HXQafS6"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            },
+            {
+              "kind": "tool",
+              "native_call_ids": [
+                "cS08XtZCWjS49lv72lYkQuj7ZBKmg6i0"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            }
+          ],
+          "usage": [
+            {
+              "input_tokens": 6712,
+              "output_tokens": 59,
+              "total_tokens": 6771,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            {
+              "input_tokens": 7285,
+              "output_tokens": 118,
+              "total_tokens": 7403,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            {
+              "input_tokens": 6993,
+              "output_tokens": 46,
+              "total_tokens": 7039,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            },
+            {
+              "input_tokens": 6921,
+              "output_tokens": 159,
+              "total_tokens": 7080,
+              "cached_input_tokens": null,
+              "cache_write_tokens": null,
+              "reasoning_tokens": null
+            }
+          ]
+        },
+        "custody": {
+          "restored": true,
+          "reconciliation_required": false,
+          "error": null
+        },
+        "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+      }
+    }
+  },
+  "paired_initial_source_equal": true,
+  "source_authority_not_inferred_from_reasoning": true,
+  "independent_interpretation": "review.json"
+}

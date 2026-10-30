@@ -500,3 +500,18 @@ exact units. Call two selected directory path `src` for find_source, failing the
 exact-resource validation and ending without correlated refusal feedback. No edit
 or worker check occurred. This exposes a narrow navigation argument/feedback
 boundary; it does not establish model coding incapability or B-0035 completion.
+
+## Recoverable navigation arguments and bounded alternative continuation - 2026-10-30
+
+The [new assessment](../../../experiments/navigation_recovery/REPORT.md) corrected
+proven pre-execution selection/parsing refusals through existing Tools/Agents
+owners, preserving exact-file scope, finite acquisition accounting, native
+correlation and unknown effects. The final protected executable passed 3,922 tests,
+two optional skips and 100% configured production line/branch coverage.
+
+The fresh gpt-oss episode made four calls: one authorized metadata search, two
+correlated directory-path refusals and a normal text blocker. All thirteen initial
+source units stayed exact. No edit, worker check, natural repair or changed
+candidate occurred. No model-authored B-0035 code was integrated; Stage A remains
+conditionally accepted and unintegrated. B-0035 and B-0043 remain open. This does
+not close broader Context/Evidence/autonomy work or authorize another campaign.

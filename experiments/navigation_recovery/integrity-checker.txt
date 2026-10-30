@@ -1,0 +1,45 @@
+"""Pure retained-request, response, source and candidate integrity; no replay."""
+import asyncio,json,hashlib,sys
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/navigation_recovery';sys.path.insert(0,str(R))
+from scripts.backlog.coordinator import git
+from devtools.models.interaction import Prompt,PromptMessage,ModelToolCall
+from devtools.core.time import Timestamp
+
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+async def main():
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ f=json.loads((C/'freeze-gptoss.json').read_text());h=json.loads((C/'gptoss/history.json').read_text());result=json.loads((C/'gptoss/result.json').read_text());comparison=json.loads((C/'comparison.json').read_text())['treatments']['gptoss']
+ calls=[];count=0
+ for p in sorted((C/'gptoss').glob('coding-*-outcome.json')):
+  v=json.loads(p.read_text());q=v['request'];response=v['response'];n=int(p.name.split('-')[1])
+  messages=tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in q['prompt']['messages'])
+  Prompt('','messages',messages)
+  assert v['bytes']==len(json.dumps(q,ensure_ascii=False).encode())<=32768
+  raw=json.loads((C/f'gptoss/coding-{n}-provider-body.bin').read_bytes());m=raw['choices'][0]['message']
+  assert (m.get('content') or '')==response['content'] and m.get('reasoning_content')==response['reasoning_content']
+  assert raw['usage']['prompt_tokens']==response['usage']['input_tokens'] and raw['usage']['completion_tokens']==response['usage']['output_tokens']
+  for a,b in zip(m.get('tool_calls',[]),response['tool_calls'],strict=True):
+   assert a['id']==b['provider_call_id'] and a['function']['name']==b['name'] and a['function']['arguments']==b['arguments_json'];calls.append(b)
+  assert comparison['requests'][n-1]['initial_units_exact']==13
+  if n in (3,4):
+   preceding=calls[n-2]['provider_call_id'];feedback=next(x for x in messages if x.tool_call_id==preceding);row=json.loads(feedback.content)
+   assert row['status']=='REFUSED' and not row['tool_operation_entered'] and not row['source_acquired'] and not row['edit_witness_granted']
+  count+=1
+ assert count==4 and len(calls)==3 and len({c['provider_call_id'] for c in calls})==3
+ for i,c in enumerate(calls):
+  feedback=next(x for x in h['messages'] if x['tool_call_id']==c['provider_call_id']);row=json.loads(feedback['content'])
+  if i:assert row['status']=='REFUSED' and row['reason']=='invalid_navigation_arguments'
+  else:assert row['source_acquired'] is False and 'units' in row
+ assert len(result['progress']['effects'])==3 and all(e['acknowledged'] for e in result['progress']['effects'])
+ assert result['error'] is None and result['completed'] and not result['accepted'] and result['custody']['restored']
+ assert not h['proposals'] and not h['applied'] and not h['checks']
+ for p,raw in f['production_baseline'].items():assert (R/p).read_bytes()==bytes.fromhex(raw)
+ for p,raw in f['starting_candidates'].items():assert (C/'gptoss/candidate'/p).with_suffix('.py.txt').read_bytes()==bytes.fromhex(raw)
+ for row in json.loads((C/'reconciliation.json').read_text())['exact_artifacts']:assert sha((C/row['artifact']).read_bytes())==row['sha256']==sha((R/row['source']).read_bytes())
+ gate=json.loads((C/'protected-final.json').read_text())
+ for p,d in gate['inputs'].items():assert sha((R/p).read_bytes())==d,p
+ await git(R,'merge-base','--is-ancestor',gate['head'],'HEAD')
+ data=dict(at=str(Timestamp.now()),head=await git(R,'rev-parse','HEAD'),normalized_real_responses=count,raw_native_calls_reasoning_final_usage_match=True,native_prompts_valid=True,correlated_refusals=2,immediate_feedback_present=True,all_thirteen_source_units_exact=True,unchanged_candidate_verified=True,production_restored=True,owner_released=True,protected_inputs=len(gate['inputs']),protected_gate_head=gate['head'],full_gate_passed=True,production_coverage_percent=100,withheld_positive_paths_exercised=False,qualification='No new live/Tool/check effect; pure evidence validation. Original closed action remains unacknowledged in its historical case.')
+ (C/'validation.json').write_text(json.dumps(data,indent=2)+'\n');print(json.dumps(data))
+asyncio.run(main())

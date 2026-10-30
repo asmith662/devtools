@@ -1,0 +1,36 @@
+"""Pure retrospective accounting; no model, Tool or validation execution."""
+import json,hashlib
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/navigation_recovery'
+assert not (R/'.local/backlog/checkout-owner').exists()
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+rows={}
+for mode in ('gptoss',):
+ S=O/mode/'staging';f=json.loads((C/f'freeze-{mode}.json').read_text());h=json.loads((S/'history.json').read_text());result=json.loads((S/'result.json').read_text());seen={}
+ for v in f['host_disclosures']:seen.setdefault((v['path'],v['version']),set()).update(range(*v['span']))
+ records=[json.loads(p.read_text()) for p in sorted(S.glob('coding-*-outcome.json'),key=lambda p:int(p.name.split('-')[1]))]
+ requests=[];calls=[];total=fresh=0;provider_timings=[]
+ for i,rec in enumerate(records):
+  response=rec.get('response');proj=h['projections'][i];active=proj['active_sources'];usage=response.get('usage') if response else None
+  raw_path=S/f'coding-{i+1}-provider-body.bin'
+  if raw_path.exists():
+   raw=json.loads(raw_path.read_bytes());provider_timings.append(dict(request=i+1,timings=raw.get('timings'),raw_usage=raw.get('usage'),provider_id=raw.get('id'),system_fingerprint=raw.get('system_fingerprint')))
+  requests.append(dict(number=i+1,entered=rec['entered'],bytes=rec['bytes'],original_bytes=proj['original_bytes'],input_tokens=usage['input_tokens'] if usage else None,output_tokens=usage['output_tokens'] if usage else None,reasoning_tokens=usage['reasoning_tokens'] if usage else None,reasoning_characters=len(response.get('reasoning_content') or '') if response else None,seconds=rec['seconds'],termination=response.get('termination') if response else None,error=rec.get('error'),active=active,initial_units_exact=sum(any(v['path']==x['path'] and v['version']==x['version'] and v['span'][0]<=x['span'][0] and x['span'][1]<=v['span'][1] for v in active) for x in f['host_disclosures']),omitted=proj['omitted_exchanges'],shortened=proj['shortened_indices']))
+  for call in (response or {}).get('tool_calls',[]):
+   message=next((m for m in h['messages'] if m.get('tool_call_id')==call['provider_call_id']),None)
+   feedback=json.loads(message['content']) if message else None
+   row=dict(request=i+1,native_call_id=call['provider_call_id'],name=call['name'],arguments_json=call['arguments_json'],feedback_present=message is not None,refused=feedback.get('status')=='REFUSED' if feedback else None,reason=feedback.get('reason') if feedback else None)
+   if feedback and 'text' in feedback and 'span' in feedback:
+    p=feedback['path'];version=feedback['version'];span=feedback['span'];text=feedback['text'];prior=seen.setdefault((p,version),set());amount=len(text.encode());new=sum(len(ch.encode()) for offset,ch in enumerate(text,span[0]) if offset not in prior)
+    total+=amount;fresh+=new;prior.update(range(*span));row.update(path=p,version=version,span=span,bytes=amount,new_bytes_relative_to_host_and_history=new,fully_active_before=any(v['path']==p and v['version']==version and v['span'][0]<=span[0] and span[1]<=v['span'][1] for v in active))
+   calls.append(row)
+ candidate={p:(S/'candidate'/p).read_bytes() for p in f['starting_candidates']};changed=[p for p,v in candidate.items() if v!=bytes.fromhex(f['starting_candidates'][p])]
+ for p,v in f['production_baseline'].items():assert (R/p).read_bytes()==bytes.fromhex(v)
+ entry=json.loads((S/'entry.json').read_text());terminal=json.loads((S/'terminal.json').read_text())
+ from datetime import datetime
+ # Parsing retained external timestamp strings, not constructing framework time.
+ wall=(datetime.fromisoformat(terminal['at'])-datetime.fromisoformat(entry['at'])).total_seconds()
+ rows[mode]=dict(requests=requests,calls=calls,provider_timings=provider_timings,model_calls=len(records),known_input_tokens=sum(x['input_tokens'] or 0 for x in requests),known_output_tokens=sum(x['output_tokens'] or 0 for x in requests),usage_complete=all(x['input_tokens'] is not None and x['output_tokens'] is not None for x in requests),model_seconds=sum(x['seconds'] for x in requests),worker_wall_seconds=wall,first_proposal_call=next((v['request'] for v in calls if v['name']=='replace_source'),None),read_bytes=total,new_read_bytes=fresh,repeated_read_bytes=total-fresh,changed=changed,candidate_sha256={p:sha(v) for p,v in candidate.items()},proposals=h['proposals'],managed_checks=h['checks'],result=result)
+value=dict(schema='alternative-b0035-comparison-v1',treatments=rows,paired_initial_source_equal=True,source_authority_not_inferred_from_reasoning=True,independent_interpretation='review.json')
+(O/'comparison.json').write_bytes((json.dumps(value,indent=2)+'\n').encode())
+print(json.dumps({k:{n:v for n,v in row.items() if n not in ('requests','calls','provider_timings','proposals','managed_checks','result')} for k,row in rows.items()},indent=2))

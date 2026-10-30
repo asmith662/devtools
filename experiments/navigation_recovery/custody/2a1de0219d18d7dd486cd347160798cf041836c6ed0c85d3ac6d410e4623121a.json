@@ -1,0 +1,62 @@
+{
+  "schema": "backlog-checkout-owner-v1",
+  "generation": "2b53ba07cf4565eb2d2d97c570ea33122fa0918650cf90763ce0f3e5fc6691f6",
+  "operation": "navigation-recovery-0001-common-preparation",
+  "pid": 148052,
+  "at": "2026-10-30T23:22:45.119575+00:00",
+  "root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+  "return_branch": "main",
+  "return_head": "6ab614c60a20418e779355e178ee3d113634101c",
+  "branch": "main",
+  "revision": "6ab614c60a20418e779355e178ee3d113634101c",
+  "object_format": "sha1",
+  "commit_allowed": false,
+  "untracked": {
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json": "03a7414cd8f2b2545e5b14af544be5223120cc62",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json": "a91468108a5c9ea9bcaf88876046cf885b73de51",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json": "1adbf9114dc821343c0f13f571ea97bd17fcd0c0",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json": "ec59a6a5a4bf989b0e99618e6ade87f84bd360b2",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json": "e73281d2ebad694434ca90518a6dc1e207ce3b66",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json": "5b125a29ac9b7a94418985ef683bb060f0ae51a6",
+    "experiments/navigation_recovery/protected.summary.txt": "3e058c1eeff52a730c8cd77a7877ab547af4fe05",
+    "experiments/navigation_recovery/protected.json": "b545dfccf5f9f9a82a93a169c50867d1e9e262d3",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json": "05011ee8cc328b498e120ae208a7e6b4acb5a4ac",
+    "experiments/navigation_recovery/README.md": "ba67ba0c405c947496c58f14a251a5fa813a470d",
+    "experiments/navigation_recovery/layout.json": "a3fa29c61d0ffa4d57393952e330120ff21e5092",
+    "experiments/navigation_recovery/stage-a-reconciliation.json": "76735f210144c0cbc1ccdbebbf903b9974e2fe86",
+    "experiments/navigation_recovery/protected-final.json": "55da59f9bdcfd868c5e34f9f458055b741c3e9ae",
+    "experiments/navigation_recovery/task.md": "44201682ff653931df02d07e2cdf7587112d47cb",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json": "f55f087e9d1f43ef8433f1157e4f368624892993",
+    "experiments/navigation_recovery/protected-final.summary.txt": "823b1971d027eac29f818d2b8f81820ae2061091",
+    "experiments/navigation_recovery/typing-final.json": "4edfc8de97b0564ef26d3b19607c1310f737290e",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json": "8b08c96992c3fbd7c75b1a39bef3def0b8bf6d14",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json": "87213902cb04e1667b94d6f7fceb243abd367463",
+    "experiments/navigation_recovery/ruff-final.json": "3598ada134d6300d5ab65a20c66c510c600b7d45",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json": "4a993b0bd8f31173b5918806d761c4b6c7237dfd",
+    "experiments/navigation_recovery/format-final.json": "ad6b5a6c8cc134c2d347368b7c5e7d7692a57b12",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json": "6d23bceaf5aaeec0dfd80ecce88403a230149ef5",
+    "experiments/navigation_recovery/.gitattributes": "883436c6dc977dbc31ddf7d778ef43b4e79f37e1",
+    "experiments/navigation_recovery/service-authority.json": "ea6ddc5449cb0d4bfc64f12dc87d56bc838ff524",
+    "experiments/navigation_recovery/protocol.md": "9a196db118cd5011c247f62f841255a99e83e224",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json": "28eb7c617bbc624348bdaae641347203fc345324"
+  },
+  "files": [
+    {
+      "path": "src/devtools/agents/coding/repository.py",
+      "expected": [
+        "c8d3a947eac1b4dd3f4a4f5bf1d6b73128bcc8c7"
+      ]
+    },
+    {
+      "path": "src/devtools/agents/coding/navigation.py",
+      "expected": [
+        "0a35ffeb12f62cb943d06f1cd004101591df519d",
+        "94e4537ba8400499c0058449c9ce1b350340a2cc"
+      ]
+    }
+  ],
+  "activated": true,
+  "finished_at": "2026-10-30T23:24:01.253121+00:00",
+  "final_head": "6ab614c60a20418e779355e178ee3d113634101c",
+  "sha256": "2a1de0219d18d7dd486cd347160798cf041836c6ed0c85d3ac6d410e4623121a"
+}

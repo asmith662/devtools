@@ -1046,3 +1046,7 @@ Alternative local-worker qualification, 2026-10-30: [selection, authenticated ac
 Alternative-worker outcome: the qualified gpt-oss worker entered two coding calls; an invalid directory-valued search path terminated acquisition before edit/repair. See the linked report for exact native evidence and narrow feedback recommendation.
 
 Native navigation correction: [file-only search paths and correlated pre-execution refusal](development/native-navigation-refusals.md). Existing scope/effect/budget contracts remain authoritative.
+
+- [Navigation-Recovery-0001](../experiments/navigation_recovery/REPORT.md): protected
+  argument-refusal delivery and separately frozen gpt-oss continuation; no B-0035
+  implementation accepted.

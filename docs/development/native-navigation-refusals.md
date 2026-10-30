@@ -35,3 +35,8 @@ continuation is framework evidence, not model engineering competence.
 The motivating [alternative-worker episode](../../experiments/alternative_b0035/REPORT.md)
 remains closed with its original unacknowledged action. This correction does not
 manufacture its missing result or resume its historical invocation.
+
+The [fresh bounded real-worker assessment](../../experiments/navigation_recovery/REPORT.md)
+received two correlated argument refusals and continued to a normal text stop.
+The model did not correct its argument or submit an edit. Framework recovery
+worked; useful B-0035 implementation was not established.
