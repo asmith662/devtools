@@ -1038,3 +1038,5 @@ Supervisor-delegated B-0035, 2026-10-30: [stable working-set assessment](../expe
 B-0035 repair and conditional integration, 2026-10-30: [assessment](../experiments/b0035_repair/REPORT.md) records independently accepted Qwen-authored Stage A repair, followed by a ten-call Stage B with no edit. No production integration or B-0035 completion.
 
 Prospective Qwen thinking-mode comparison, 2026-10-30: [paired B-0035 Stage B assessment](../experiments/b0035_thinking/REPORT.md) records equal bounded envelopes, ten-call/no-edit disabled behavior and one output-limited enabled response. Neither completed integration; no production change or general performance claim.
+
+Qwen effort calibration, 2026-10-30: [verified low/medium template control, usable low action and failed fresh B-0035 coding episode](../experiments/b0035_effort/REPORT.md). No production change or B-0035 completion; medium not invoked.

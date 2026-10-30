@@ -1,0 +1,30 @@
+"""Independent candidate assessment, no source correction or worker continuation."""
+import asyncio,json,sys,hashlib
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).parent));import coding as x
+async def main(mode):
+ stage=x.configure(mode);f=json.loads((x.C/f'freeze-{mode}.json').read_text());_,baseline,initial=x.starting()
+ terminal=json.loads((stage/'staging/terminal.json').read_text());assert terminal['released'] and terminal['production_restored']
+ candidate={p:(stage/'staging/candidate'/p).read_bytes() for p in x.EDIT}
+ changed=[p for p in x.EDIT if candidate[p]!=initial[p]]
+ if not changed:
+  x.save(stage/'assessment.json',dict(mode=mode,changed=[],accepted=False,checks=[],reason='No changed Stage B implementation; baseline integration deficiency remains. No positive integration claim.'))
+  print(mode,'no changed candidate');return
+ owner=x.Checkout(x.WorkCycle(x.R),'b0035-effort-0001-'+mode+'-independent','main',await x.git(x.R,'rev-parse','HEAD'),files=[dict(path=p,text=v.decode()) for p,v in baseline.items()]);checks=[]
+ async with owner:
+  x.save(stage/'staging/grade-entry.json',dict(at=str(x.Timestamp.now()),owner=owner.record))
+  for p,v in candidate.items():owner.expect(p,v.decode());x.write(x.BinaryFile(x.resolve_path(x.R/p),v))
+  try:
+   tests=[('focused',[str(x.b.PUBLIC/'focused.py'),str(x.b.a.OLD/'focused.py')]),('withheld',[str(x.b.PUBLIC/'heldout.py'),str(x.b.a.OLD/'heldout.py'),str(x.R/'.local/supervised-b0035/test_extra.py')]),('compatibility',['tests/agents/coding','tests/tools/test_source.py','tests/tools/test_source_navigation.py','tests/tools/test_source_reads.py'])]
+   specs=[(name,[sys.executable,'-B','-X','utf8','-m','pytest','--no-cov','-q','--tb=short',*paths,'--junitxml='+str(stage/'staging'/('grade-'+name+'.xml'))]) for name,paths in tests]
+   specs += [('lint',['uv','run','ruff','check',*x.EDIT]),('format',['uv','run','ruff','format','--check',*x.EDIT]),('typing',['uv','run','mypy'])]
+   for name,args in specs:
+    cmd=x.r.Command(args[0]).args(*args[1:]).cwd(x.resolve_path(x.R)).with_timeout(x.Duration.seconds(240));result=await x.r.s.managed(cmd,'grade-'+name)
+    row=dict(name=name,command=x.r.s.plain(cmd),exit_code=result.exit_code,stdout=result.stdout.decode(errors='replace'),stderr=result.stderr.decode(errors='replace'),capture_incomplete=result.stdout_truncated or result.stderr_truncated or result.events_dropped)
+    checks.append(row);x.save(stage/'staging'/('grade-'+name+'.json'),row)
+    assert all((x.R/p).read_bytes()==v for p,v in candidate.items())
+  finally:
+   for p,v in baseline.items():x.write(x.BinaryFile(x.resolve_path(x.R/p),v))
+ x.save(stage/'assessment.json',dict(mode=mode,changed=changed,checks_passed=all(v['exit_code']==0 and not v['capture_incomplete'] for v in checks),accepted=None,review_required=True,checks=checks,candidate_sha256={p:hashlib.sha256(v).hexdigest() for p,v in candidate.items()},production_restored=True,owner_released=True))
+ print(mode,[(v['name'],v['exit_code']) for v in checks])
+asyncio.run(main(sys.argv[1]))

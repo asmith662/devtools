@@ -1,0 +1,88 @@
+"""Pure retained evidence validation; no inference or Tool replay."""
+import asyncio
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+R = Path.cwd()
+O = Path(__file__).parent
+C = R / 'experiments/b0035_effort'
+sys.path.insert(0, str(R))
+from devtools.models.interaction import Prompt, PromptMessage, ModelToolCall
+from devtools.core.time import Timestamp
+from scripts.backlog.coordinator import git
+
+def sha(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+async def main():
+    assert not (R / '.local/backlog/checkout-owner').exists()
+    frozen = json.loads((C / 'freeze-low.json').read_text())
+    coding = json.loads((C / 'freeze-coding.json').read_text())
+    assert frozen['request'] == coding['request']
+    assert frozen['starting_candidates'] == coding['starting_candidates']
+    for row in json.loads((C / 'composition-bindings.json').read_text())['preserved_helpers']:
+        assert sha(R / row['local']) == row['sha256'] == sha(R / row['durable'])
+    for p, digest in coding['oracles'].items():
+        assert sha(R / p) == digest
+    counts = {}
+    normalized = unknown = 0
+    for mode in ('low', 'coding'):
+        counts[mode] = []
+        for p in sorted((C / mode).glob('coding-*-outcome.json')):
+            record = json.loads(p.read_text())
+            request = record['request']
+            messages = tuple(PromptMessage(**{**m, 'tool_calls': tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in request['prompt']['messages'])
+            Prompt('', 'messages', messages)
+            ids = [c.provider_call_id for m in messages for c in m.tool_calls]
+            assert len(ids) == len(set(ids))
+            counts[mode].append(len(ids))
+            assert record['bytes'] == len(json.dumps(request, ensure_ascii=False).encode()) <= 32768
+            assert record['measured_input_tokens'] <= 28160
+            assert request['provider_settings']['reasoning_effort'] == 'low'
+            assert record['payload']['chat_template_kwargs'] == dict(enable_thinking=True, reasoning_effort='low')
+            assert record['payload']['max_tokens'] == 4096
+            assert all(text not in json.dumps(request) for text in ('def reference(', 'def test_positive_controls(', 'def test_many_complete_resources_and_utf8('))
+            response = record.get('response')
+            if response is None:
+                unknown += 1
+                continue
+            normalized += 1
+            raw = json.loads(p.with_name(p.name.replace('-outcome.json', '-provider-body.bin')).read_bytes())
+            message = raw['choices'][0]['message']
+            assert message['content'] == response['content']
+            assert message.get('reasoning_content') == response['reasoning_content']
+            assert raw['usage']['prompt_tokens'] == response['usage']['input_tokens']
+            assert raw['usage']['completion_tokens'] == response['usage']['output_tokens']
+            for native, call in zip(message.get('tool_calls', []), response['tool_calls'], strict=True):
+                assert native['id'] == call['provider_call_id']
+                assert native['function']['name'] == call['name']
+                assert native['function']['arguments'] == call['arguments_json']
+        terminal = json.loads((C / mode / 'terminal.json').read_text())
+        assert terminal['released'] and terminal['production_restored']
+    assert json.loads((C / 'low/result.json').read_text())['tool_dispatches'] == 0
+    result = json.loads((C / 'coding/result.json').read_text())
+    assert result['custody']['restored']
+    assert not (C / 'medium').exists()
+    for row in json.loads((C / 'reconciliation.json').read_text())['exact_artifacts']:
+        assert sha(C / row['artifact']) == row['sha256'] == sha(R / row['source'])
+    f = json.loads((C / 'preservation-freeze.json').read_text())
+    paths = ('src', 'tests', 'apps', 'scripts', 'experiments/local_coding_dogfood', 'experiments/coding_transition', 'experiments/joint_context', 'pyproject.toml', 'uv.lock', '.python-version', 'AGENTS.md', '.gitignore', '.gitattributes')
+    def entries(raw):
+        return {v.split('\t', 1)[1]: v.split('\t', 1)[0].split()[2] for v in raw.split('\0') if v}
+    old = entries(await git(R, 'ls-tree', '-r', '-z', f['protected_ancestor'], '--', *paths, trim=False))
+    current = entries(await git(R, 'ls-tree', '-r', '-z', 'HEAD', '--', *paths, trim=False))
+    for p, digest in f['protected_inputs'].items():
+        assert old[p] == current[p] and sha(R / p) == digest, p
+    checks = {}
+    for name in ('focused-authorized', 'ruff-supported', 'format-final', 'typing-final', 'layout-final'):
+        v = json.loads((O / (name + '.json')).read_text())
+        v['physical_input_count'] = len(v.pop('inputs'))
+        assert v['exit_code'] == 0 and v['inputs_unchanged']
+        checks[name] = v
+    value = dict(at=str(Timestamp.now()), head=await git(R, 'rev-parse', 'HEAD'), protected_ancestor=f['protected_ancestor'], protected_inputs=len(f['protected_inputs']), protected_blobs_and_physical_bytes_unchanged=True, calibration_and_coding_initial_request_equal=True, normalized_responses=normalized, unknown_responses=unknown, native_ids_per_sent_prompt=counts, raw_reasoning_content_calls_usage_match=True, oracle_scope_separated=True, owner_released=True, production_unchanged=True, full_gate_rerun=False, checks=checks)
+    (C / 'validation.json').write_text(json.dumps(value, indent=2) + '\n')
+    print(json.dumps({k: v for k, v in value.items() if k != 'checks'}))
+
+asyncio.run(main())

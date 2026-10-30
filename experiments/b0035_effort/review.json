@@ -1,0 +1,29 @@
+{
+  "reviewer": "Codex supervisor; not an independent second model",
+  "calibration_usable": true,
+  "selected_effort": "low",
+  "medium_entered": false,
+  "coding_entered": true,
+  "coding_result": "response-phase failure after normalized output_limit",
+  "coding_calls": 5,
+  "source_effects_acknowledged": 6,
+  "acquisition_refusals": 1,
+  "proposals": 0,
+  "applied": 0,
+  "worker_checks": 0,
+  "repairs": 0,
+  "changed_candidate": false,
+  "withheld_positive_paths_exercised": false,
+  "independently_accepted": false,
+  "production_integrated": false,
+  "b0035_complete": false,
+  "provider_defect_established": false,
+  "limitations": [
+    "One unseeded calibration and fresh episode",
+    "Common instruct sampling not independently optimized",
+    "Active-source shortening and omitted acquisitions",
+    "Final output-limit censoring",
+    "Cache reuse differs across calls"
+  ],
+  "next_action": "Separately authorized alternative locally feasible coding model on the same delegated Stage B task and oracle; no further Qwen-only calibration or generic harness change"
+}

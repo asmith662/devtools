@@ -1,0 +1,36 @@
+"""Reconcile known calibration artifacts only after normal Checkout release."""
+import hashlib
+import json
+from pathlib import Path
+
+R = Path.cwd()
+O = Path(__file__).parent
+C = R / 'experiments/b0035_effort'
+assert not (R / '.local/backlog/checkout-owner').exists()
+rows = []
+
+def copy(source, target):
+    raw = source.read_bytes()
+    if target.exists():
+        assert target.read_bytes() == raw
+    else:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+    rows.append(dict(source=source.relative_to(R).as_posix(), artifact=target.relative_to(C).as_posix(), sha256=hashlib.sha256(raw).hexdigest()))
+
+for mode in ('low', 'medium', 'coding'):
+    stage = O / mode / 'staging'
+    if not stage.exists():
+        continue
+    assert json.loads((stage / 'terminal.json').read_text())['released']
+    for p in sorted(stage.rglob('*')):
+        if p.is_file():
+            target=C / mode / p.relative_to(stage)
+            if target.suffix=='.py':target=target.with_suffix('.py.txt')
+            copy(p, target)
+    if (O/mode/'assessment.json').exists():copy(O/mode/'assessment.json',C/mode/'assessment.json')
+for p in (R / '.local/backlog/checkout-history').glob('*.json'):
+    if json.loads(p.read_text()).get('operation', '').startswith('b0035-effort-0001-'):
+        copy(p, C / 'custody' / p.name)
+(C / 'reconciliation.json').write_text(json.dumps(dict(owner_released=True, exact_artifacts=rows), indent=2) + '\n')
+print(len(rows), 'exact artifacts reconciled')

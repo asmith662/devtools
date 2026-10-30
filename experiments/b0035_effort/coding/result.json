@@ -1,0 +1,129 @@
+{
+  "disposition": "failed",
+  "accepted": false,
+  "candidate_validated": false,
+  "completed": false,
+  "failure_phase": "response",
+  "error": {
+    "class": "ValueError",
+    "message": "Unclassified exception; message withheld.",
+    "message_policy": "known-capacity-only",
+    "projection": null,
+    "other_details": "not captured; no exception internals or traceback locals"
+  },
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 10,
+      "proposals": 4,
+      "tool_actions": 6,
+      "call_timeout_seconds": 240.0,
+      "wall_timeout_seconds": 1140.0,
+      "completion_check": false
+    },
+    "number": 5,
+    "model_calls": 5,
+    "proposals": 0,
+    "actions": 6,
+    "phase": "completion",
+    "candidate_validated": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "hmORsACJLn5UdX22iEVoZ6VYbTaihCEK"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "EregFFu7BASJls8vRhUglMUg9hqgYq0R"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "LefX1DTEEdOdZFVpGhQziyZUCewDCGOW"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "XVXZZanepwtbsj3fGN9kCPNai1ZJBN3S"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "xLenA5K0xe8gTgQhPb11rkd0QcXQ0T8x"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "AHFfOXxrGJ0YwccPxxo5YFSQLJWAWumH"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      }
+    ],
+    "usage": [
+      {
+        "input_tokens": 7986,
+        "output_tokens": 3094,
+        "total_tokens": 11080,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 9663,
+        "output_tokens": 235,
+        "total_tokens": 9898,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 9175,
+        "output_tokens": 252,
+        "total_tokens": 9427,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 8870,
+        "output_tokens": 192,
+        "total_tokens": 9062,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 8207,
+        "output_tokens": 4096,
+        "total_tokens": 12303,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

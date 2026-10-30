@@ -1,0 +1,282 @@
+{
+  "at": "2026-10-30T18:44:17.824486+00:00",
+  "head": "c772b5e5f8f49afaaf421258c1fdbd5604b8f284",
+  "protected_ancestor": "72379015cf4f34f74a9282661aac8aa0362c9977",
+  "protected_inputs": 1191,
+  "protected_blobs_and_physical_bytes_unchanged": true,
+  "calibration_and_coding_initial_request_equal": true,
+  "normalized_responses": 6,
+  "unknown_responses": 0,
+  "native_ids_per_sent_prompt": {
+    "low": [
+      0
+    ],
+    "coding": [
+      0,
+      2,
+      2,
+      2,
+      1
+    ]
+  },
+  "raw_reasoning_content_calls_usage_match": true,
+  "oracle_scope_separated": true,
+  "owner_released": true,
+  "production_unchanged": true,
+  "full_gate_rerun": false,
+  "checks": {
+    "focused-authorized": {
+      "name": "focused-authorized",
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/models/interaction",
+        "tests/agents/coding",
+        "tests/evaluation"
+      ],
+      "started_at": "2026-10-30T18:17:39.773536+00:00",
+      "finished_at": "2026-10-30T18:18:28.356489+00:00",
+      "seconds": 48.333741,
+      "exit_code": 0,
+      "head": "2e6a6d6681b3baa2867e6db3130adbae897f1439",
+      "tree": "60ef8edd3e61d94d7722afc44570a92810ad1871",
+      "inputs_unchanged": true,
+      "stdout_sha256": "f2d60421919ba7b5e347010cd53612d1bbaa47e0f0f0f40b27ec5f01b68d010b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-effort",
+          "run": "verification-20261029",
+          "call": "focused-authorized"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "tests",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 48.2754,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "ruff-supported": {
+      "name": "ruff-supported",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts"
+      ],
+      "started_at": "2026-10-30T18:41:34.699163+00:00",
+      "finished_at": "2026-10-30T18:41:34.873960+00:00",
+      "seconds": 0.12613,
+      "exit_code": 0,
+      "head": "c772b5e5f8f49afaaf421258c1fdbd5604b8f284",
+      "tree": "4427b665096dec011940e3ef35cf1110f09b7b0b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-effort",
+          "run": "verification-20261029",
+          "call": "ruff-supported"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "lint",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.06089,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "format-final": {
+      "name": "format-final",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "apps",
+        "scripts",
+        "tests/agents/coding",
+        "tests/evaluation"
+      ],
+      "started_at": "2026-10-30T18:41:37.462062+00:00",
+      "finished_at": "2026-10-30T18:41:37.633377+00:00",
+      "seconds": 0.123562,
+      "exit_code": 0,
+      "head": "c772b5e5f8f49afaaf421258c1fdbd5604b8f284",
+      "tree": "4427b665096dec011940e3ef35cf1110f09b7b0b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "8c719dbf8d21e4a81354073a755b808299dc585789291c93f432d450a72657b0",
+      "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-effort",
+          "run": "verification-20261029",
+          "call": "format-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "format",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.065381,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "typing-final": {
+      "name": "typing-final",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "started_at": "2026-10-30T18:41:35.751929+00:00",
+      "finished_at": "2026-10-30T18:41:36.885961+00:00",
+      "seconds": 1.081014,
+      "exit_code": 0,
+      "head": "c772b5e5f8f49afaaf421258c1fdbd5604b8f284",
+      "tree": "4427b665096dec011940e3ef35cf1110f09b7b0b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "2dd531de6e6860d5749d9f661c32aad13e0f4b4f164b096c1be299b6ec7f8f5e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-effort",
+          "run": "verification-20261029",
+          "call": "typing-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "typing",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 1.013732,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    },
+    "layout-final": {
+      "name": "layout-final",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "started_at": "2026-10-30T18:41:35.266644+00:00",
+      "finished_at": "2026-10-30T18:41:35.480610+00:00",
+      "seconds": 0.162927,
+      "exit_code": 0,
+      "head": "c772b5e5f8f49afaaf421258c1fdbd5604b8f284",
+      "tree": "4427b665096dec011940e3ef35cf1110f09b7b0b",
+      "inputs_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0,
+      "safe_command_observation": {
+        "origin": {
+          "agent": "codex-development-host",
+          "task": "b0035-effort",
+          "run": "verification-20261029",
+          "call": "layout-final"
+        },
+        "pattern": {
+          "family": "uv",
+          "operation": "layout",
+          "argument_roles": [
+            "opaque"
+          ],
+          "capabilities": [
+            "win32"
+          ],
+          "equivalent_tool": null
+        },
+        "source": "framework-result",
+        "entered": true,
+        "outcome": "succeeded",
+        "exit_code": 0,
+        "duration": 0.095472,
+        "events_dropped": 0,
+        "capture_incomplete": false
+      },
+      "physical_input_count": 1190
+    }
+  }
+}

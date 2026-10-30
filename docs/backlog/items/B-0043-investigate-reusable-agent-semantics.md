@@ -471,3 +471,16 @@ Neither candidate changed or completed B-0035. Mode control/normalization worked
 no new production implementation, grant or closure follows. Equal ceilings did
 not imply equal consumption or uncensored outcomes. A separately authorized lower
 reasoning-effort calibration is the next recommendation; no new harness layer.
+
+## Bounded low-effort calibration and fresh coding - 2026-10-30
+
+The [new calibrated assessment](../../../experiments/b0035_effort/REPORT.md)
+verified per-request low/medium template rendering without provider changes. Low
+returned valid requests for absent source in 59.9 seconds; medium was not run.
+The separately frozen coding episode acknowledged six reads, then returned an
+output-limited fifth response without an edit. No candidate changed, worker check
+ran, or integration passed. Stage A remains conditionally accepted but unintegrated;
+B-0035 and B-0043 remain open. Historical repetition was not fully active source.
+No grant or closure follows. The next bounded recommendation is another locally
+feasible coding model under the same delegated task/oracle, not another Qwen effort
+sweep or generic Context infrastructure increment.
