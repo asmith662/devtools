@@ -163,3 +163,15 @@ ModelInteraction, requiring a source-supported action or uncertainty statement.
 Budget annotation cost and explicitly protect required continuously available
 source contracts. Do not implement another retrieval layer or launch a full trial
 automatically. B-0035 remains unimplemented.
+
+## Verified publication - 2026-10-29 local / 2026-10-30 UTC
+
+Ordinary non-force main publication was independently verified at
+`6fbd7d1a87307c9b585c9bce558259d7440d7182`, containing protected executable commit
+`c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa`. All 1188 physical protected inputs and
+source/test blobs match. Diagnostic JSON blobs preserve exact measured bytes
+under scoped data-only attributes; executable input bytes did not change.
+Checkout released normally, tracked state was clean, and original experiments,
+forensic files, RI ledgers and historical refs were preserved. The read-only
+four-call diagnostic remains a failed transition with no candidate or B-0035
+completion. Documentation-only receipt closeout adds no execution authority.

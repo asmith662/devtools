@@ -11247,12 +11247,12 @@
     "authorization": "Explicit investigation-to-implementation assignment: diagnosis, one bounded shared correction, at most four live diagnostic calls, validation and ordinary publication. No full maintenance trial or permission expansion."
   },
   "preservation": {
-    "at": "2026-10-30T01:28:02.750839+00:00",
-    "finished_at": "2026-10-30T01:28:17.466196+00:00",
-    "seconds": 14.71537460014224,
+    "at": "2026-10-30T01:36:29.530142+00:00",
+    "finished_at": "2026-10-30T01:36:38.690500+00:00",
+    "seconds": 9.160376000218093,
     "exit_code": 0,
     "base": "8d56601c680a245bb4d1ce6f0ef8675ff8ee1903",
-    "head": "27d7d14a1c318b58ce4b2aeb72dd3e5926d7802d",
+    "head": "6fbd7d1a87307c9b585c9bce558259d7440d7182",
     "changed": [
       "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
       "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
@@ -11261,6 +11261,7 @@
       "docs/documentation_map.md",
       "docs/research/README.md",
       "docs/research/code-audit/investigation-transition-20261029.json",
+      "experiments/coding_transition/.gitattributes",
       "experiments/coding_transition/.gitignore",
       "experiments/coding_transition/README.md",
       "experiments/coding_transition/REPORT.md",
@@ -11306,7 +11307,7 @@
     "json_records": 42230,
     "links": 487,
     "broken_links": [],
-    "manifest_files": 29
+    "manifest_files": 30
   },
   "source_state": {
     "activation": "ProjectionPolicy.report_source_state=True",
@@ -13270,5 +13271,169 @@
     "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
   },
   "experiment": "experiments/coding_transition/REPORT.md",
-  "review_qualification": "The first review calculation assumed all seven host source units stayed complete. That assertion failed; review was corrected to join actual path/span disclosures, recording partial SourceScope on request two. Raw evidence, frozen scoring and outcome were not changed."
+  "review_qualification": "The first review calculation assumed all seven host source units stayed complete. That assertion failed; review was corrected to join actual path/span disclosures, recording partial SourceScope on request two. Raw evidence, frozen scoring and outcome were not changed.",
+  "publication": {
+    "at": "2026-10-30T01:37:12.760823+00:00",
+    "main": "6fbd7d1a87307c9b585c9bce558259d7440d7182",
+    "tree": "6e45cdd87e7cb3d77722f2cadb5267f2d3fcb236",
+    "source": "c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa",
+    "source_tree": "b144b356641bc0efdf553738de90e3ad2c811217",
+    "physical_inputs": 1188,
+    "accepted_source_blobs": {
+      "src/devtools/agents/coding/docs/overview.md": "c8e827ada4b2a44449b932bc3d796c66a1ee2be0",
+      "src/devtools/agents/coding/projection.py": "4495d956563c3feb6ffbf9f5d0fc4567f553e335",
+      "src/devtools/agents/coding/repository.py": "3458b1ed3d641916ab6d965f108a006c68c63a81",
+      "tests/agents/coding/test_source_status.py": "fff6725b147b0de13625bcebda36ff39c4ba015b",
+      "tests/agents/coding/test_transition_history.py": "0ffebf81d0e4cc7b083baf53f05c47cff10d37b8"
+    },
+    "ordinary_fast_forward": true,
+    "acknowledgment": "",
+    "push_error": null,
+    "remote_verified": true,
+    "tracked_clean": true
+  },
+  "artifact_blobs": {
+    "head": "6fbd7d1a87307c9b585c9bce558259d7440d7182",
+    "records": [
+      {
+        "path": "experiments/coding_transition/analysis/original-trace.json",
+        "physical_blob": "eab8f23ea88b6d9a3f0898eb092fe887931a3873",
+        "committed_blob": "eab8f23ea88b6d9a3f0898eb092fe887931a3873",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/analysis/preflight.json",
+        "physical_blob": "73367a6d177590185fe4ecf36ffb03ca66ee8535",
+        "committed_blob": "73367a6d177590185fe4ecf36ffb03ca66ee8535",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/analysis/trace-table.json",
+        "physical_blob": "31b90cdb285551c159c96a15c99271fe68de1ba3",
+        "committed_blob": "31b90cdb285551c159c96a15c99271fe68de1ba3",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/checkout-release.json",
+        "physical_blob": "e8f2015022f7c0a88ffab3084743e115911d7db0",
+        "committed_blob": "e8f2015022f7c0a88ffab3084743e115911d7db0",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/ENTERED.json",
+        "physical_blob": "fcdc4be70e342724f19c047c39b2fd49775b0ece",
+        "committed_blob": "fcdc4be70e342724f19c047c39b2fd49775b0ece",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-1-entry.json",
+        "physical_blob": "59128d859746220d2d99c308dbadc946c0c19960",
+        "committed_blob": "59128d859746220d2d99c308dbadc946c0c19960",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-1-outcome.json",
+        "physical_blob": "bb210fa3a2b1866bc9ba3755f50662d713ac3298",
+        "committed_blob": "bb210fa3a2b1866bc9ba3755f50662d713ac3298",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-1.json",
+        "physical_blob": "07a5133cbf925811dac8603e826346fe16ed25b4",
+        "committed_blob": "07a5133cbf925811dac8603e826346fe16ed25b4",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-2-entry.json",
+        "physical_blob": "9b13395c002df89ba8ab8f9405a456d48f6df3f5",
+        "committed_blob": "9b13395c002df89ba8ab8f9405a456d48f6df3f5",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-2-outcome.json",
+        "physical_blob": "40b5992cbb2e3c499ca51c118159111bb807c8d5",
+        "committed_blob": "40b5992cbb2e3c499ca51c118159111bb807c8d5",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-2.json",
+        "physical_blob": "c0d5e7be5e576b12bc027e88779e1e37f97833bb",
+        "committed_blob": "c0d5e7be5e576b12bc027e88779e1e37f97833bb",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-3-entry.json",
+        "physical_blob": "ce8999b7a3f1f996c8d69a7753b90307e56f254a",
+        "committed_blob": "ce8999b7a3f1f996c8d69a7753b90307e56f254a",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-3-outcome.json",
+        "physical_blob": "0e049009020f7fea25e8e9488f09a0345f7385b9",
+        "committed_blob": "0e049009020f7fea25e8e9488f09a0345f7385b9",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-3.json",
+        "physical_blob": "5044a5379ad7dbd0158a921b5e7a6486156139e3",
+        "committed_blob": "5044a5379ad7dbd0158a921b5e7a6486156139e3",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-4-entry.json",
+        "physical_blob": "ed5a77833aa3f7b9192cd594abfea006bcfd63aa",
+        "committed_blob": "ed5a77833aa3f7b9192cd594abfea006bcfd63aa",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-4-outcome.json",
+        "physical_blob": "5f8133e85f6ee89f17d9e85504e1900b131b20a9",
+        "committed_blob": "5f8133e85f6ee89f17d9e85504e1900b131b20a9",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/request-4.json",
+        "physical_blob": "0d0686992c74c8028efe56e5852772cc0e562c2a",
+        "committed_blob": "0d0686992c74c8028efe56e5852772cc0e562c2a",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/result.json",
+        "physical_blob": "dae46ac828ecd71f09205f2217d5ef530d847b4f",
+        "committed_blob": "dae46ac828ecd71f09205f2217d5ef530d847b4f",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/terminal.json",
+        "physical_blob": "0cd0021c73a4a1151cbe55477a73d2590566aadc",
+        "committed_blob": "0cd0021c73a4a1151cbe55477a73d2590566aadc",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/evidence/wrapper.json",
+        "physical_blob": "bf04a3b8a0322c83ffebc5f99ddb22e146f1a65e",
+        "committed_blob": "bf04a3b8a0322c83ffebc5f99ddb22e146f1a65e",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/freeze.json",
+        "physical_blob": "a9692ae6bada5f0e3f2cb07a973b543350edb898",
+        "committed_blob": "a9692ae6bada5f0e3f2cb07a973b543350edb898",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/manifest.json",
+        "physical_blob": "d566c667f8232e2246c10d00981d6325bba27ccd",
+        "committed_blob": "d566c667f8232e2246c10d00981d6325bba27ccd",
+        "equal": true
+      },
+      {
+        "path": "experiments/coding_transition/review.json",
+        "physical_blob": "9027199d0dd126e38ee9dc193abdb35f3e1a01f1",
+        "committed_blob": "9027199d0dd126e38ee9dc193abdb35f3e1a01f1",
+        "equal": true
+      }
+    ],
+    "all_exact": true
+  }
 }

@@ -390,3 +390,15 @@ all core host methods stayed exact. No B-0035 code, candidate, worker check, gra
 status transition or parent closure follows. Before another full attempt, test a
 bounded decision checkpoint and continuously required source selection, accounting
 for annotation overhead; this records pressure, not new execution authority.
+
+## Verified publication - 2026-10-29 local / 2026-10-30 UTC
+
+Ordinary non-force main publication was independently verified at
+`6fbd7d1a87307c9b585c9bce558259d7440d7182`, containing protected executable commit
+`c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa`. All 1188 physical protected inputs and
+source/test blobs match. Diagnostic JSON blobs preserve exact measured bytes
+under scoped data-only attributes; executable input bytes did not change.
+Checkout released normally, tracked state was clean, and original experiments,
+forensic files, RI ledgers and historical refs were preserved. The read-only
+four-call diagnostic remains a failed transition with no candidate or B-0035
+completion. Documentation-only receipt closeout adds no execution authority.
