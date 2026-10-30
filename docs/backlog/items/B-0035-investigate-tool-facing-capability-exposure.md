@@ -470,3 +470,14 @@ and was not integrated. B-0035 and broader B-0043 remain open; no grant or closu
 is implied. The original delegation remains not accepted. Stop this continuation;
 a separately authorized model/profile comparison is preferable to another generic
 framework increment, while retaining source eviction as a confounding condition.
+
+## Prospective thinking-mode comparison - 2026-10-30
+
+The [paired Stage B assessment](../../../experiments/b0035_thinking/REPORT.md)
+started both modes from the same independently accepted Stage A bytes, task,
+oracle and source packet. Thinking off made ten calls without an edit; thinking
+on returned 8,192 tokens of incomplete reasoning without a Tool call or patch.
+Neither candidate changed or completed B-0035. Mode control/normalization worked;
+no new production implementation, grant or closure follows. Equal ceilings did
+not imply equal consumption or uncensored outcomes. A separately authorized lower
+reasoning-effort calibration is the next recommendation; no new harness layer.

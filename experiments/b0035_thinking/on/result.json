@@ -1,0 +1,48 @@
+{
+  "disposition": "failed",
+  "accepted": false,
+  "candidate_validated": false,
+  "completed": false,
+  "failure_phase": "response",
+  "error": {
+    "class": "ValueError",
+    "message": "Unclassified exception; message withheld.",
+    "message_policy": "known-capacity-only",
+    "projection": null,
+    "other_details": "not captured; no exception internals or traceback locals"
+  },
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 10,
+      "proposals": 4,
+      "tool_actions": 6,
+      "call_timeout_seconds": 450.0,
+      "wall_timeout_seconds": 1140.0,
+      "completion_check": false
+    },
+    "number": 1,
+    "model_calls": 1,
+    "proposals": 0,
+    "actions": 0,
+    "phase": "completion",
+    "candidate_validated": false,
+    "effects": [],
+    "usage": [
+      {
+        "input_tokens": 8024,
+        "output_tokens": 8192,
+        "total_tokens": 16216,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

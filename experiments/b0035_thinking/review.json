@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-30T17:47:50.492851+00:00",
+  "reviewer": "Codex supervising agent; not a second independent model",
+  "review_separate_from_worker": true,
+  "mode_support": "Pinned template, provider bodies and source support explicit mode control; new enabled native Tool behavior remains unobserved because no call returned.",
+  "configuration_difference": "Only thinking_enabled; enabled template defaults xhigh and inserts mode-specific instruction/prefix. Sampling unchanged.",
+  "resource_assessment": "Equal finite allowances. 8192-token response completed before 430-second timeout; insufficient for this default-xhigh completion, not a transport failure. No retuning/retry.",
+  "off": {
+    "accepted": false,
+    "changed": false,
+    "reason": "model_limit, no proposal; six source effects and seven refusal results"
+  },
+  "on": {
+    "accepted": false,
+    "changed": false,
+    "reason": "output_limit after one normalized response; no final content, native call, proposal or effect"
+  },
+  "repair_observed": false,
+  "full_integration_positive_paths_exercised": false,
+  "production_integrated": false,
+  "b0035_complete": false,
+  "limitations": [
+    "One unseeded sequential pair",
+    "Common instruct sampling is not optimized thinking sampling",
+    "Off source eviction and acquisition bound",
+    "On default-xhigh output truncation",
+    "Cache exposure differs"
+  ],
+  "next_action": "Separately authorized lower-reasoning-effort profile calibration on same task/oracle, not another framework increment.",
+  "additional_treatments_authorized": false
+}

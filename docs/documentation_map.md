@@ -1036,3 +1036,5 @@ Joint Context reliability, 2026-10-30: [delivery and real continuation](../exper
 Supervisor-delegated B-0035, 2026-10-30: [stable working-set assessment](../experiments/delegated_b0035/REPORT.md) records one real model-authored representation passing behavioral acceptance but failing a frozen lint check on its last call. No repair, second stage, production integration or B-0035 completion is claimed.
 
 B-0035 repair and conditional integration, 2026-10-30: [assessment](../experiments/b0035_repair/REPORT.md) records independently accepted Qwen-authored Stage A repair, followed by a ten-call Stage B with no edit. No production integration or B-0035 completion.
+
+Prospective Qwen thinking-mode comparison, 2026-10-30: [paired B-0035 Stage B assessment](../experiments/b0035_thinking/REPORT.md) records equal bounded envelopes, ten-call/no-edit disabled behavior and one output-limited enabled response. Neither completed integration; no production change or general performance claim.
