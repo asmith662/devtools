@@ -171,3 +171,5 @@ thirteen forensic files, 903 RI ledger rows, historical refs and 188 outstanding
 RI-version obligations remain preserved. Canonical backlog evidence is append-only;
 neither B-0035 nor B-0043 is closed. Actual ordinary publication identity is recorded
 separately after remote verification.
+
+[Publication receipt](publication.json): ordinary non-force main publication at `c35e5c8f83e063cda9da76346180fa6fb117a886` was independently verified. Exact artifact blobs match physical bytes. The following receipt-only closeout changes no executable input or evaluation result.

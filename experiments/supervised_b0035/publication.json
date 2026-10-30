@@ -1,0 +1,161 @@
+{
+  "accepted": {
+    "at": "2026-10-30T13:31:26.022555+00:00",
+    "main": "c35e5c8f83e063cda9da76346180fa6fb117a886",
+    "remote_verified": true,
+    "non_force": true
+  },
+  "unchanged_executable_ancestor": "c2bc06f4f604c6ccb87279f6315bfa87b59ce6fa",
+  "exact_artifact_blobs": [
+    {
+      "path": "experiments/supervised_b0035/.gitattributes",
+      "blob": "883436c6dc977dbc31ddf7d778ef43b4e79f37e1"
+    },
+    {
+      "path": "experiments/supervised_b0035/decision-freeze.json",
+      "blob": "35b1b932b5c66693a8ab8afb1ad026b10d39e84b"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/checkout-release.json",
+      "blob": "ca4ce134a5f3a8ed541cf61d5d2eb69231e0f86d"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/decision-1-entry.json",
+      "blob": "dfa31a6b593d07714b4a39c840fb795b5d71df41"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/decision-1-outcome.json",
+      "blob": "e69c954fc37d8f5dee4e589b32809fda52487d58"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/decision-ENTERED.json",
+      "blob": "970b3258763e818828b3d18272f91f38e65423f4"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/extra-baseline.xml",
+      "blob": "60347012b16522e51b167d1a2ebe89f825c03f89"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/focused-baseline.xml",
+      "blob": "690c463bb3deb4139d75b068ac2e2d04793286a4"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/focused-maintained.xml",
+      "blob": "5c03a7756c561f6ff0cb9886565d287593bb3ecd"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/heldout-baseline.xml",
+      "blob": "8df4be226e2bdaf4a7e1ef5a0628fd9efd99f32d"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/historical-preservation.json",
+      "blob": "e29dbaa70cb988ec748e9d8519f8d86c09ab5689"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/preflight.json",
+      "blob": "4d7ea921794bc61f90b11fcd60fb01bc0a853cd5"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/reconciliation.json",
+      "blob": "453090b3e6b2674c612af48438234ec9418d1e81"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/reference-sandbox-error.xml",
+      "blob": "1e49fbe47e74e327dbb6b8da1b225ca11d30035e"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/reference.xml",
+      "blob": "56b01d631f167bea84ed6ab6ce255bca574871cb"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/serving-log.txt",
+      "blob": "b4325a7ee00222829dc635e4b78acd9d2c0771f6"
+    },
+    {
+      "path": "experiments/supervised_b0035/evidence/validation-commands.json",
+      "blob": "b5447cc20ab38d5f6e6659a475e67633a6a1b914"
+    },
+    {
+      "path": "experiments/supervised_b0035/manifest.json",
+      "blob": "34521f0870b5fa2e1bd8dfe3818baa3154267da1"
+    },
+    {
+      "path": "experiments/supervised_b0035/protocol.md",
+      "blob": "585c7d09217a225664e735a701d0bea40c4845f0"
+    },
+    {
+      "path": "experiments/supervised_b0035/README.md",
+      "blob": "1d3ada429da601a9ed626a94d35e8fc7b4b94a20"
+    },
+    {
+      "path": "experiments/supervised_b0035/REPORT.md",
+      "blob": "60393cec340f97f5f632c04597d3fd884f8ea609"
+    },
+    {
+      "path": "experiments/supervised_b0035/review.json",
+      "blob": "209d087431b3bdfff51c3e764ddec0a8d21dc454"
+    },
+    {
+      "path": "experiments/supervised_b0035/runner.txt",
+      "blob": "c11da32c230870678147ea266846fc53fcd75377"
+    },
+    {
+      "path": "experiments/supervised_b0035/SUMMARY.md",
+      "blob": "33404b3b3e61c7daf420231d9ae63b0151eca216"
+    },
+    {
+      "path": "experiments/supervised_b0035/task.md",
+      "blob": "c50b2514e833894f676626158dab0ecc26fe8504"
+    },
+    {
+      "path": "experiments/supervised_b0035/validation.json",
+      "blob": "25db90b41d3a45df3f006a68a8d00f613fe740e2"
+    },
+    {
+      "path": "experiments/supervised_b0035/withheld-checks.txt",
+      "blob": "7bca9af59b4a7f1049cafeab70ebda440686fc65"
+    }
+  ],
+  "preservation": {
+    "at": "2026-10-30T13:31:18.785925+00:00",
+    "head": "c35e5c8f83e063cda9da76346180fa6fb117a886",
+    "protected_inputs": 1188,
+    "forensics": 13,
+    "ri_rows": 903,
+    "intake_chains": 68,
+    "changed": [
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/development/supervised-b0035.md",
+      "docs/documentation_map.md",
+      "experiments/supervised_b0035/.gitattributes",
+      "experiments/supervised_b0035/README.md",
+      "experiments/supervised_b0035/REPORT.md",
+      "experiments/supervised_b0035/SUMMARY.md",
+      "experiments/supervised_b0035/decision-freeze.json",
+      "experiments/supervised_b0035/evidence/checkout-release.json",
+      "experiments/supervised_b0035/evidence/decision-1-entry.json",
+      "experiments/supervised_b0035/evidence/decision-1-outcome.json",
+      "experiments/supervised_b0035/evidence/decision-ENTERED.json",
+      "experiments/supervised_b0035/evidence/extra-baseline.xml",
+      "experiments/supervised_b0035/evidence/focused-baseline.xml",
+      "experiments/supervised_b0035/evidence/focused-maintained.xml",
+      "experiments/supervised_b0035/evidence/heldout-baseline.xml",
+      "experiments/supervised_b0035/evidence/historical-preservation.json",
+      "experiments/supervised_b0035/evidence/preflight.json",
+      "experiments/supervised_b0035/evidence/reconciliation.json",
+      "experiments/supervised_b0035/evidence/reference-sandbox-error.xml",
+      "experiments/supervised_b0035/evidence/reference.xml",
+      "experiments/supervised_b0035/evidence/serving-log.txt",
+      "experiments/supervised_b0035/evidence/validation-commands.json",
+      "experiments/supervised_b0035/manifest.json",
+      "experiments/supervised_b0035/protocol.md",
+      "experiments/supervised_b0035/review.json",
+      "experiments/supervised_b0035/runner.txt",
+      "experiments/supervised_b0035/task.md",
+      "experiments/supervised_b0035/validation.json",
+      "experiments/supervised_b0035/withheld-checks.txt"
+    ]
+  },
+  "final_receipt_qualification": "A subsequent evidence-only receipt commit may follow; final accepted main is independently verified in the ignored handoff. No new inference or executable inputs."
+}
