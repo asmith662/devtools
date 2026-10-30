@@ -1,4 +1,4 @@
-# Alternative-B0035-0001: compatibility qualified, coding pending
+# Alternative-B0035-0001: compatibility qualified, coding frozen
 
 Starting accepted main: `6e57ad0c17b93ea0d1983797593b0e62e567536c`.
 
@@ -22,8 +22,14 @@ The [protocol](protocol.md) conditionally authorizes one fresh Stage B episode,
 using the accepted Stage A bytes and unchanged B-0035 oracle. Coding preparation
 first refused a dirty tracked documentation state before acquiring Checkout or
 changing source. This checkpoint commits those documentation/evidence changes;
-preparation and the coding request freeze follow from a clean tree. No coding
+the fresh coding request is now frozen from a clean checkpoint. No coding
 model request has entered yet. B-0035 remains open.
 
 [Validation](validation.json), [preservation](preservation.json),
 [manifest](manifest.json), [publication](publication.json).
+
+Coding freeze: 29,959 complete-request bytes, 6,720 measured provider input tokens,
+13 exact units/15,127 source bytes. Two prospective feedback continuations retain
+the packet at 31,392/32,653 bytes. Independent preflight passes 18 Stage A tests,
+10 reference controls, 34 compatibility tests and quality checks. Stage B baseline
+failures match the original focused/withheld/extra integration assertions.
