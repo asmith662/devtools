@@ -140,3 +140,5 @@ prior result remains 3,899 passed, two optional skips and 100% configured covera
 Layout, JSON/JSONL, Intake, local links, whitespace, ancestry and artifact hashes
 are checked at closeout. [Manifest](manifest.json) and publication receipt preserve
 the exact delivered inventory and accepted main separately.
+
+[Publication receipt](publication.json): ordinary non-force main publication at `4324818c693912109f79fce4ba12146b7376f837` was independently verified. Exact artifact blobs match physical bytes. The following receipt-only closeout changes no executable input or evaluation result.
