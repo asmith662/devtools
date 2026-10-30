@@ -1,0 +1,140 @@
+"""One prospective paired composition of existing host and model contracts."""
+import asyncio,json,sys,hashlib,importlib.util
+from pathlib import Path
+from dataclasses import replace
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/b0035_effort'
+sys.path.insert(0,str(R));sys.path.insert(0,str(R/'.local/b0035-repair'))
+spec=importlib.util.spec_from_file_location('prior_b',R/'.local/b0035-repair/run-b.py');b=importlib.util.module_from_spec(spec);spec.loader.exec_module(b)
+r=b.r;d=b.d
+from devtools.agents.coding import CodingLimits,run_coding_agent
+from devtools.agents.coding.models import CodingProgress
+from devtools.models.interaction import ModelSettings,InteractionSource
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from experiments.joint_context.capture import save_result,projection_record,error_record,result_record
+BASE='2e6a6d6681b3baa2867e6db3130adbae897f1439'
+EDIT=b.EDIT;READ=b.READ;LIMITS=CodingLimits(10,4,6,Duration.seconds(240),Duration.seconds(1140))
+OUTPUT=4096;INPUT=28160
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):r.save(p,v)
+def configure(mode):
+ stage=O/mode;stage.mkdir(parents=True,exist_ok=True);r.O=stage;r.s.STATE=stage/'staging';d.O=stage
+ return stage
+class EffortHost(r.Host):
+ def build_request(self,messages):
+  q=super().build_request(messages)
+  return replace(q,provider_settings=r.s.LlamaCppRequestSettings(**r.s.QWEN38_INSTRUCT_SAMPLING,reasoning_effort=self.effort))
+r.Host=EffortHost
+def host(scope,corpus,mode,**callbacks):
+ h=b.host(scope,corpus,**callbacks)
+ h.effort=mode
+ # Prior task bytes are deliberately identical to this experiment's task.
+ assert (C/'task.md').read_bytes()==(b.C/'task-b.md').read_bytes()
+ h.settings=ModelSettings(maximum_output_tokens=OUTPUT,thinking_enabled=True)
+ return h
+class Measured(d.Measured):
+ def __init__(self,mode):
+  super().__init__();self.delegate=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('b0035-effort-0001-'+mode))
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=1;prefix=f'coding-{n}'
+  rec=dict(at=str(Timestamp.now()),request=r.s.plain(q),payload=self.delegate._request_payload(q),bytes=r.request_bytes(q),entered=False)
+  self.records.append(rec);save(d.O/'staging'/f'{prefix}-prepared.json',rec)
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);assert count<=INPUT and r.request_bytes(q)<=32768
+  rec.update(measured_input_tokens=count,entered=True);save(d.O/'staging'/f'{prefix}-entry.json',rec)
+  original=r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=d.O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  r.provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),220);rec.update(response=r.s.plain(response),outcome='normalized');return response
+  except BaseException as error:rec.update(error=error_record(error),outcome='unknown');raise
+  finally:
+   r.provider._read_http_response=original;timer.stop();rec['seconds']=timer.elapsed.total_seconds;save(d.O/'staging'/f'{prefix}-outcome.json',rec)
+def starting():
+ prior=json.loads((R/'experiments/b0035_repair/freeze-b.json').read_text())
+ baseline={p:(R/p).read_bytes() for p in EDIT}
+ assert all(raw==bytes.fromhex(prior['production_baseline'][p]) for p,raw in baseline.items())
+ initial={p:bytes.fromhex(v) for p,v in prior['starting_candidates'].items()}
+ assert hashlib.sha256(initial[EDIT[1]]).hexdigest()=='3a3aba918649eaf9240fede6efb15289fcbbb93999ac6fa9b2649020776c936c'
+ return prior,baseline,initial
+async def prepare():
+ assert await git(R,'rev-parse','HEAD')==BASE
+ prior,baseline,initial=starting();configure('preflight')
+ model=await r.s.service_identity();assert model==prior['model'];assert json.loads((O/'model.json').read_text())==model if (O/'model.json').exists() else save(O/'model.json',model) is None
+ owner=Checkout(WorkCycle(R),'b0035-effort-0001-common-preparation','main',BASE,files=[dict(path=p,text=v.decode()) for p,v in baseline.items()]);freezes={}
+ repo=r.Repository.new()
+ async with owner:
+  for p,raw in initial.items():owner.expect(p,raw.decode());write(BinaryFile(resolve_path(R/p),raw))
+  try:
+   scope,corpus=r.observe(repo)
+   for mode in ('low','medium'):
+    h=host(scope,corpus,mode);records=await b.preload(h);q=await h.prepare(CodingProgress(LIMITS));assert not h.projection_outcomes[-1].shortened_indices
+    prospective=b.continuity(h)
+    interaction=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('preparation-only'))
+    payload=interaction._request_payload(q)
+    rendered=await r.provider._post_json(interaction._endpoint,'/apply-template',payload)
+    tokens=await interaction.count_input_tokens(q);assert tokens<=INPUT
+    assert payload['chat_template_kwargs']==dict(enable_thinking=True,reasoning_effort=mode)
+    text=rendered['prompt'];assert text.endswith('<think>\n')
+    assert ('Reasoning effort is set to low.' in text)==(mode=='low')
+    assert 'Reasoning effort is set to xhigh.' not in text
+    save(O/'preflight'/f'{mode}-template.json',rendered)
+    freezes[mode]=dict(mode=mode,at=str(Timestamp.now()),base=BASE,repository_id=str(scope.snapshot.repository_id),snapshot_id=str(scope.snapshot.id),source_hashes={x.value:sha(R/x.value) for x in READ},starting_candidates={p:v.hex() for p,v in initial.items()},production_baseline={p:v.hex() for p,v in baseline.items()},request=r.s.plain(q),request_bytes=r.request_bytes(q),payload=payload,input_tokens_measured=tokens,host_disclosures=records,projection=projection_record(h.projection_outcomes[-1]),prospective=prospective,model=model,limits=r.s.plain(LIMITS),calibration_calls=1,tool_effects_authorized=False,maximum_output_tokens=OUTPUT,maximum_input_tokens=INPUT,transport_timeout=220,outer_seconds=300,applications=3,repairs=2,auxiliary_calls=0,checks=r.s.plain(h.objective.checks),oracles=prior['oracles'],runner_sha256=sha(Path(__file__)),task_sha256=sha(C/'task.md'))
+   left=json.loads(json.dumps(freezes['low']['request']));right=json.loads(json.dumps(freezes['medium']['request']));left['provider_settings']['reasoning_effort']='medium';assert left==right
+   for p,digest in prior['oracles'].items():assert sha(R/p)==digest
+   preflight={}
+   preflight['stage_a']=await r.suite('stage-a',[str(b.a.OLD/'focused.py'),str(b.a.OLD/'heldout.py'),str(b.a.OLD/'oracle_controls.py')],())
+   preflight['reference']=await r.suite('reference',[str(b.PUBLIC/'reference_checks.py')],())
+   preflight['baseline_focused']=await r.suite('baseline-focused',[str(b.PUBLIC/'focused.py')],('test_first_request_scoped_inventory','test_inventory_not_duplicated_on_prepare','test_inventory_charged_to_prompt_budget'))
+   preflight['baseline_heldout']=await r.suite('baseline-heldout',[str(b.PUBLIC/'heldout.py')],('test_current_snapshot_not_cached','test_native_correlation_and_metadata_coexist','test_empty_resource_unicode_and_readonly','test_projection_preserves_metadata_and_objective','test_utf8_size_differs_from_character_count'))
+   preflight['baseline_extra']=await r.suite('baseline-extra',[str(R/'.local/supervised-b0035/test_extra.py')],('test_candidates_and_complete_inventory_coexist','test_admitted_refresh_preserves_native_and_current_inventory','test_projection_cannot_drop_inventory_to_fit'))
+   quality=[]
+   for label,args in [('compatibility',[sys.executable,'-m','pytest','--no-cov','-q','tests/agents/coding/test_navigation.py','tests/agents/coding/test_navigation_history.py','tests/agents/coding/test_repository.py']),('lint',['uv','run','ruff','check',*EDIT]),('format',['uv','run','ruff','format','--check',*EDIT]),('typing',['uv','run','mypy'])]:
+    cmd=r.Command(args[0]).args(*args[1:]).cwd(resolve_path(R)).with_timeout(Duration.seconds(180));out=await r.s.managed(cmd,'common-'+label);assert out.exit_code==0
+    quality.append(dict(name=label,result=r.s.plain(out)))
+  finally:
+   for p,v in baseline.items():write(BinaryFile(resolve_path(R/p),v))
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ old=json.loads((R/'experiments/b0035_repair/freeze-a.json').read_text())
+ preservation=dict(forensics=old['forensics'],preserved={p:sha(R/p) for p in (await git(R,'ls-files','-z',trim=False)).split('\0') if p},refs=await git(R,'show-ref'),protected_ancestor=old['protected_ancestor'],protected_inputs=old['protected_inputs'])
+ save(C/'preservation-freeze.json',preservation);save(C/'preflight.json',dict(checks=preflight,quality=quality))
+ for mode,value in freezes.items():save(C/f'freeze-{mode}.json',value)
+ (C/'runner.txt').write_bytes(Path(__file__).read_bytes())
+ print(json.dumps({m:dict(bytes=f['request_bytes'],tokens=f['input_tokens_measured']) for m,f in freezes.items()}))
+async def calibrate(mode):
+ assert mode in ('low','medium')
+ stage=configure(mode);f=json.loads((C/f'freeze-{mode}.json').read_text());prior,baseline,initial=starting()
+ assert sha(Path(__file__))==f['runner_sha256'] and sha(C/'task.md')==f['task_sha256']
+ for p,v in f['oracles'].items():assert sha(R/p)==v
+ assert await r.s.service_identity()==f['model']
+ if mode=='medium':
+  review=json.loads((C/'review-low.json').read_text());assert review['usable'] is False
+  assert json.loads((O/'low/staging/terminal.json').read_text())['released']
+ owner=Checkout(WorkCycle(R),'b0035-effort-0001-calibration-'+mode,'main',await git(R,'rev-parse','HEAD'),files=[dict(path=p,text=v.decode()) for p,v in baseline.items()])
+ response=None;failure=None
+ async with owner:
+  for p,raw in initial.items():owner.expect(p,raw.decode());write(BinaryFile(resolve_path(R/p),raw))
+  try:
+   scope,corpus=r.observe(r.Repository(r.RepositoryId.parse(f['repository_id'])))
+   assert str(scope.snapshot.id)==f['snapshot_id']
+   for p,v in f['source_hashes'].items():assert sha(R/p)==v
+   h=host(scope,corpus,mode);await b.preload(h);q=await h.prepare(CodingProgress(LIMITS));assert r.s.plain(q)==f['request']
+   model=Measured(mode)
+   actual=await r.provider._post_json(model.delegate._endpoint,'/apply-template',model.delegate._request_payload(q))
+   assert actual==json.loads((O/'preflight'/f'{mode}-template.json').read_text())
+   save(stage/'staging/rendered.json',actual)
+   save(stage/'staging/entry.json',dict(at=str(Timestamp.now()),owner=owner.record,tool_dispatch_authorized=False))
+   try:
+    async with asyncio.timeout(240):response=await model.send(q)
+   except BaseException as error:failure=error_record(error)
+   save(stage/'staging/result.json',dict(response=None if response is None else r.s.plain(response),failure=failure,tool_dispatches=0,edits=0,checks=0,records=model.records))
+  finally:
+   for p,raw in baseline.items():write(BinaryFile(resolve_path(R/p),raw))
+ assert not (R/'.local/backlog/checkout-owner').exists() and all((R/p).read_bytes()==raw for p,raw in baseline.items())
+ save(stage/'staging/terminal.json',dict(at=str(Timestamp.now()),released=True,production_restored=True,response_received=response is not None,failure=failure,tool_dispatches=0))
+ print(json.dumps(dict(mode=mode,response=None if response is None else r.s.plain(response),failure=failure),ensure_ascii=True))
+if __name__=='__main__':asyncio.run(prepare() if sys.argv[1]=='prepare' else calibrate(sys.argv[1]))

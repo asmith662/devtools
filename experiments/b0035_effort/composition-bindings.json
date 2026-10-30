@@ -1,0 +1,29 @@
+{
+  "preserved_helpers": [
+    {
+      "local": ".local/b0035-repair/run-b.py",
+      "durable": "experiments/b0035_repair/runner-b.txt",
+      "sha256": "7a51bb5f0d9161e5c74ad428f351b8f8404acf57797be7cad67a8895376ad3ba"
+    },
+    {
+      "local": ".local/b0035-repair/run.py",
+      "durable": "experiments/b0035_repair/runner-a.txt",
+      "sha256": "bd0198dee69942ed772ff86394f7f915005a7004c1a469f4353306ca9a4ad9c2"
+    },
+    {
+      "local": ".local/delegated-b0035/run.py",
+      "durable": "experiments/delegated_b0035/runner.txt",
+      "sha256": "8e1192674cd8d4d4bfc648b0e08120941d435336b6bee23cf4d6c7e73d6d8b86"
+    },
+    {
+      "local": ".local/supervised-b0035/runner.py",
+      "durable": "experiments/supervised_b0035/runner.txt",
+      "sha256": "37ca007026a570b905b96ab8e255fddb1bd76262c7954287a926063e27948649"
+    }
+  ],
+  "tracked_dependencies": [
+    "experiments/coding_transition/support.py",
+    "experiments/joint_context/capture.py"
+  ],
+  "qualification": "Existing archived helper bytes were used unchanged. Restore these exact text artifacts to their original ignored paths to reproduce composition; doing so does not restore live execution authority."
+}
