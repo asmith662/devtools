@@ -1,0 +1,674 @@
+{
+  "verdict": "failed-behavioral-transition",
+  "candidate": "none; edits and checks unauthorized",
+  "basis": "The one frozen four-call run selected task-directed search and three reads but produced no source-supported next engineering action or specific blocker. No hidden reasoning is inferred.",
+  "source_unchanged": true,
+  "checkout_released": true,
+  "rows": [
+    {
+      "number": 1,
+      "bytes": 27684,
+      "original_bytes": 25772,
+      "input_tokens": 6977,
+      "output_tokens": 55,
+      "seconds": 19.130233,
+      "content": "",
+      "calls": [
+        {
+          "name": "find_source",
+          "arguments_json": "{\"query\":\"metadata resource inventory prompt messages repository_id snapshot_id source_acquired\",\"path\":\"src/devtools/agents/coding/repository.py\"}",
+          "provider_call_id": "hxHWuDs8sMcVfE4Z01LsKNZ4abBkNJbK"
+        }
+      ],
+      "active_sources": [
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            4591,
+            5283
+          ],
+          "bytes": 692,
+          "host_unit": "assert_metadata"
+        },
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            5700,
+            6549
+          ],
+          "bytes": 849,
+          "host_unit": "test_inventory_charged_to_prompt_budget"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8142,
+            11506
+          ],
+          "bytes": 3364,
+          "host_unit": "RepositoryCodingHost.__init__"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            11797,
+            12680
+          ],
+          "bytes": 883,
+          "host_unit": "RepositoryCodingHost.build_request"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            12688,
+            17325
+          ],
+          "bytes": 4637,
+          "host_unit": "RepositoryCodingHost.prepare"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            26535,
+            29163
+          ],
+          "bytes": 2628,
+          "host_unit": "RepositoryCodingHost.apply"
+        },
+        {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ],
+          "bytes": 2222,
+          "host_unit": "SourceScope"
+        }
+      ],
+      "host_units_active": 7,
+      "feedback": [
+        {
+          "kind": "metadata",
+          "units": 8,
+          "names": [
+            "RepositoryCodingHost.prepare",
+            "RepositoryCodingHost.build_request",
+            "RepositoryCodingHost",
+            "RepositoryCodingHost.prepare.summarized",
+            "RepositoryCodingHost.acquire",
+            "RepositoryCodingHost.__init__",
+            "RepositoryCodingHost.feedback",
+            "RepositoryCodingHost._read_unit"
+          ]
+        }
+      ],
+      "omitted": [],
+      "shortened": [],
+      "status": {
+        "kind": "active_source_status",
+        "scope": "current repository/snapshot; metadata is not source",
+        "coordinates": "half-open Unicode offsets",
+        "active_ranges": [
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              11797,
+              12680
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              12688,
+              17325
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              26535,
+              29163
+            ]
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+            "span": [
+              990,
+              3212
+            ]
+          }
+        ],
+        "active_list_partial": true,
+        "omitted_current_disclosure_records": 0,
+        "latest_current_disclosure": {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ],
+          "earlier_same_range_disclosures": 0,
+          "covered_by_one_previous_disclosure": false
+        },
+        "instruction": "Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information."
+      }
+    },
+    {
+      "number": 2,
+      "bytes": 32768,
+      "original_bytes": 31105,
+      "input_tokens": 9795,
+      "output_tokens": 63,
+      "seconds": 12.49548,
+      "content": "",
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":17325,\"end\":20600}",
+          "provider_call_id": "yy6DciNVnEsE9qJ9fRGV6W81QaoHne2A"
+        }
+      ],
+      "active_sources": [
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            4591,
+            5283
+          ],
+          "bytes": 692,
+          "host_unit": "assert_metadata"
+        },
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            5700,
+            6549
+          ],
+          "bytes": 849,
+          "host_unit": "test_inventory_charged_to_prompt_budget"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8142,
+            11506
+          ],
+          "bytes": 3364,
+          "host_unit": "RepositoryCodingHost.__init__"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            11797,
+            12680
+          ],
+          "bytes": 883,
+          "host_unit": "RepositoryCodingHost.build_request"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            12688,
+            17325
+          ],
+          "bytes": 4637,
+          "host_unit": "RepositoryCodingHost.prepare"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            26535,
+            29163
+          ],
+          "bytes": 2628,
+          "host_unit": "RepositoryCodingHost.apply"
+        },
+        {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            2807
+          ],
+          "bytes": 1817,
+          "host_unit": null
+        }
+      ],
+      "host_units_active": 6,
+      "feedback": [
+        {
+          "kind": "source",
+          "span": [
+            17325,
+            20600
+          ],
+          "bytes": 3275,
+          "partial": false
+        }
+      ],
+      "omitted": [],
+      "shortened": [
+        7
+      ],
+      "status": {
+        "kind": "active_source_status",
+        "scope": "current repository/snapshot; metadata is not source",
+        "coordinates": "half-open Unicode offsets",
+        "active_ranges": [
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              11797,
+              12680
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              12688,
+              17325
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              26535,
+              29163
+            ]
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+            "span": [
+              990,
+              2807
+            ]
+          }
+        ],
+        "active_list_partial": true,
+        "omitted_current_disclosure_records": 0,
+        "latest_current_disclosure": {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ],
+          "earlier_same_range_disclosures": 0,
+          "covered_by_one_previous_disclosure": true
+        },
+        "instruction": "Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information."
+      }
+    },
+    {
+      "number": 3,
+      "bytes": 32364,
+      "original_bytes": 35770,
+      "input_tokens": 8123,
+      "output_tokens": 63,
+      "seconds": 10.743028,
+      "content": "",
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":20600,\"end\":24500}",
+          "provider_call_id": "N8yZA4T5AzWF4zcecdWFocROGshnnhTI"
+        }
+      ],
+      "active_sources": [
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            4591,
+            5283
+          ],
+          "bytes": 692,
+          "host_unit": "assert_metadata"
+        },
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            5700,
+            6549
+          ],
+          "bytes": 849,
+          "host_unit": "test_inventory_charged_to_prompt_budget"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8142,
+            11506
+          ],
+          "bytes": 3364,
+          "host_unit": "RepositoryCodingHost.__init__"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            11797,
+            12680
+          ],
+          "bytes": 883,
+          "host_unit": "RepositoryCodingHost.build_request"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            12688,
+            17325
+          ],
+          "bytes": 4637,
+          "host_unit": "RepositoryCodingHost.prepare"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            26535,
+            29163
+          ],
+          "bytes": 2628,
+          "host_unit": "RepositoryCodingHost.apply"
+        },
+        {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ],
+          "bytes": 2222,
+          "host_unit": "SourceScope"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            17325,
+            20600
+          ],
+          "bytes": 3275,
+          "host_unit": null
+        }
+      ],
+      "host_units_active": 7,
+      "feedback": [
+        {
+          "kind": "source",
+          "span": [
+            20600,
+            24500
+          ],
+          "bytes": 3900,
+          "partial": false
+        }
+      ],
+      "omitted": [
+        [
+          8,
+          10,
+          "host-classified-metadata"
+        ]
+      ],
+      "shortened": [],
+      "status": {
+        "kind": "active_source_status",
+        "scope": "current repository/snapshot; metadata is not source",
+        "coordinates": "half-open Unicode offsets",
+        "active_ranges": [
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              12688,
+              17325
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              26535,
+              29163
+            ]
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+            "span": [
+              990,
+              3212
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              17325,
+              20600
+            ]
+          }
+        ],
+        "active_list_partial": true,
+        "omitted_current_disclosure_records": 0,
+        "latest_current_disclosure": {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            17325,
+            20600
+          ],
+          "earlier_same_range_disclosures": 0,
+          "covered_by_one_previous_disclosure": false
+        },
+        "instruction": "Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information."
+      }
+    },
+    {
+      "number": 4,
+      "bytes": 32768,
+      "original_bytes": 41000,
+      "input_tokens": 8108,
+      "output_tokens": 63,
+      "seconds": 10.990502,
+      "content": "",
+      "calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/agents/coding/repository.py\",\"start\":17325,\"end\":20600}",
+          "provider_call_id": "jPeCcmwmMNYyp6NqDjUexUtD7ldML0H4"
+        }
+      ],
+      "active_sources": [
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            4591,
+            5283
+          ],
+          "bytes": 692,
+          "host_unit": "assert_metadata"
+        },
+        {
+          "path": "experiments/local_maintenance_task_navigation/focused.py",
+          "span": [
+            5700,
+            6549
+          ],
+          "bytes": 849,
+          "host_unit": "test_inventory_charged_to_prompt_budget"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            8142,
+            11506
+          ],
+          "bytes": 3364,
+          "host_unit": "RepositoryCodingHost.__init__"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            11797,
+            12680
+          ],
+          "bytes": 883,
+          "host_unit": "RepositoryCodingHost.build_request"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            12688,
+            17325
+          ],
+          "bytes": 4637,
+          "host_unit": "RepositoryCodingHost.prepare"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            26535,
+            29163
+          ],
+          "bytes": 2628,
+          "host_unit": "RepositoryCodingHost.apply"
+        },
+        {
+          "path": "src/devtools/tools/source.py",
+          "span": [
+            990,
+            3212
+          ],
+          "bytes": 2222,
+          "host_unit": "SourceScope"
+        },
+        {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            20600,
+            24154
+          ],
+          "bytes": 3554,
+          "host_unit": null
+        }
+      ],
+      "host_units_active": 7,
+      "feedback": [
+        {
+          "kind": "source",
+          "span": [
+            17325,
+            20600
+          ],
+          "bytes": 3275,
+          "partial": false
+        }
+      ],
+      "omitted": [
+        [
+          8,
+          10,
+          "host-classified-metadata"
+        ],
+        [
+          10,
+          12,
+          "source-capacity"
+        ]
+      ],
+      "shortened": [
+        13
+      ],
+      "status": {
+        "kind": "active_source_status",
+        "scope": "current repository/snapshot; metadata is not source",
+        "coordinates": "half-open Unicode offsets",
+        "active_ranges": [
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              12688,
+              17325
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              26535,
+              29163
+            ]
+          },
+          {
+            "path": "src/devtools/tools/source.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "f689fd674a11bc01fddba9c35d930d2dd0f4c147add49b5f5087e013028d7a38",
+            "span": [
+              990,
+              3212
+            ]
+          },
+          {
+            "path": "src/devtools/agents/coding/repository.py",
+            "snapshot": "ee3df62a5095d651b17109a5946ca1ac49a3d1a751a58f9392b1fb78bb4e63a6",
+            "version": "2af74a4472fb72f23b6db690bf3ad9688755257adc8020bb8fd14ea64d88ae7a",
+            "span": [
+              20600,
+              24154
+            ]
+          }
+        ],
+        "active_list_partial": true,
+        "omitted_current_disclosure_records": 1,
+        "latest_current_disclosure": {
+          "path": "src/devtools/agents/coding/repository.py",
+          "span": [
+            20600,
+            24500
+          ],
+          "earlier_same_range_disclosures": 0,
+          "covered_by_one_previous_disclosure": false
+        },
+        "instruction": "Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information."
+      }
+    }
+  ],
+  "input_tokens": 33003,
+  "output_tokens": 244,
+  "inference_seconds": 53.359243,
+  "agent_seconds": 54.329113,
+  "wrapper_seconds": 81.216612,
+  "host_source_bytes": 15275,
+  "model_source_bytes": 10450,
+  "unique_model_source_characters": 7175,
+  "repeat_calls": 1,
+  "auxiliary_calls": 0,
+  "edits": 0,
+  "worker_checks": 0,
+  "qualifications": [
+    "Seven exact host-selected units were supplied initially; subsequent affordability can partially present user-role source disclosures as well as native source results.",
+    "One earlier additional read was absent before its repeat; inspect rows for actual source availability rather than treating original acquisition as current.",
+    "Final Tool feedback was retained but not consumed because the acting-call limit was reached.",
+    "Model-directed search is observable improvement over an empty-query browse; this is not an equivalent paired causal trial.",
+    "Working-set selection, read-only diagnostic instructions and status presentation all differ from the prior run.",
+    "No B-0035 implementation, natural repair or model-authored production code was delivered.",
+    "Absent cached/reasoning usage remains unknown."
+  ]
+}

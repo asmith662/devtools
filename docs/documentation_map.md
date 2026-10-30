@@ -1010,3 +1010,7 @@ keeps candidate metadata, B-0035 inventory, source reads and acceptance distinct
 separate active exact source from retained disclosure history. The
 [read-only diagnostic protocol](../experiments/coding_transition/protocol.md)
 allows at most four real calls, without a full maintenance attempt.
+
+[Closed diagnostic and independent assessment](../experiments/coding_transition/REPORT.md)
+retain the four-call failure, partial-source qualifications, model usage and
+normal Checkout release; no full maintenance trial followed.

@@ -287,3 +287,8 @@ provider choice, working-set eviction, precise units and task difficulty. The
 [controlled protocol](../../experiments/coding_transition/protocol.md) tests a
 host-selected coherent source set; it cannot establish autonomous discovery or
 completed B-0035 maintenance. Earlier frozen attempts remain unchanged.
+
+The [closed transition diagnostic](../../experiments/coding_transition/REPORT.md)
+recorded task-directed search but no implementation decision in four real calls.
+Its source-status annotation remains opt-in; no live causal improvement, B-0035
+completion or model-authored implementation is claimed.

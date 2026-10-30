@@ -135,3 +135,31 @@ its exit 1 is retained, not reported as a passing gate or test assertion failure
 records identities, commands, timing, versions and physical inputs. Final physical
 repository.py is 32,031 bytes, leaving 737 bytes under the unchanged source ceiling.
 That small margin remains a separate maintenance risk.
+
+## One frozen live diagnostic
+
+[Investigation-transition-0001](../../experiments/coding_transition/REPORT.md)
+failed to establish the desired transition: four actual local calls selected one
+task-directed search and three source reads, with no stated implementation
+hypothesis or specific blocker. Two ranges were new and the third repeated an
+evicted range. All four core host methods stayed exact; SourceScope was partial
+on request two, then fully restored from retained original disclosure on the next
+projection, without repeating its Tool. Task instructions stayed exact.
+
+Known usage was 33,003 input and 244 output tokens; inference took 53.359243 seconds.
+There was no auxiliary inference, edit, worker check, candidate or accepted
+model-authored change. Checkout released normally and all source stayed unchanged.
+The initial 27,684-byte request included 1,912 bytes of annotation overhead;
+status visibility is not free and contributed to later pressure. The final
+repeat feedback was never consumed, so live consumption of a positive repeat
+count was not observed. The model could choose plain text, but chose only Tools.
+
+This is not proof of an intrinsic reasoning limitation: the diagnostic changed
+working-set selection, instructions and available actions together. Additional
+source acquisition was relevant, yet it yielded no demonstrated engineering
+decision within the frozen envelope. Before another full B-0035 trial, use a
+separately authorized decision-checkpoint diagnostic with existing plain
+ModelInteraction, requiring a source-supported action or uncertainty statement.
+Budget annotation cost and explicitly protect required continuously available
+source contracts. Do not implement another retrieval layer or launch a full trial
+automatically. B-0035 remains unimplemented.

@@ -366,3 +366,17 @@ protected inputs match committed executable tree `4d5ad371dd4d43cb677ad2c7d9ac40
 Checkout is released, tracked state is clean, and prior forensic files, experiments
 and refs are preserved. The live attempt remains a failed B-0035 result with no
 model-authored implementation; no status transition or additional authority follows.
+
+## Investigation-to-implementation evidence - 2026-10-29
+
+The [source-status projection](../../development/investigation-transition.md)
+adds bounded opt-in active-source and historical-disclosure facts, reusing existing
+Context bindings. The unchanged protected gate passed 3,899 tests, two optional
+skips and 100% configured production line/branch coverage. The separately frozen
+[read-only diagnostic](../../../experiments/coding_transition/REPORT.md) used four
+real Qwen calls: task-directed search followed by three reads, with no expressed
+implementation decision or blocker. A repeated additional range had been evicted;
+all core host methods stayed exact. No B-0035 code, candidate, worker check, grant,
+status transition or parent closure follows. Before another full attempt, test a
+bounded decision checkpoint and continuously required source selection, accounting
+for annotation overhead; this records pressure, not new execution authority.
