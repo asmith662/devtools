@@ -1,0 +1,129 @@
+{
+  "at": "2026-10-30T13:29:32.533545+00:00",
+  "outcome": "incomplete-decision-checkpoint",
+  "call_chain_inspected": true,
+  "exact_source_units": [
+    {
+      "name": "RepositoryCodingHost.__init__",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        8142,
+        11506
+      ],
+      "bytes": 3364
+    },
+    {
+      "name": "RepositoryCodingHost._index",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        11514,
+        11789
+      ],
+      "bytes": 275
+    },
+    {
+      "name": "RepositoryCodingHost.build_request",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        11797,
+        12680
+      ],
+      "bytes": 883
+    },
+    {
+      "name": "RepositoryCodingHost.prepare",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        12688,
+        17325
+      ],
+      "bytes": 4637
+    },
+    {
+      "name": "RepositoryCodingHost.apply",
+      "path": "src/devtools/agents/coding/repository.py",
+      "span": [
+        26535,
+        29163
+      ],
+      "bytes": 2628
+    },
+    {
+      "name": "prepare_navigation",
+      "path": "src/devtools/agents/coding/navigation.py",
+      "span": [
+        6149,
+        6625
+      ],
+      "bytes": 476
+    },
+    {
+      "name": "task_entry",
+      "path": "src/devtools/agents/coding/navigation.py",
+      "span": [
+        3625,
+        6146
+      ],
+      "bytes": 2521
+    },
+    {
+      "name": "navigation_feedback",
+      "path": "src/devtools/agents/coding/navigation.py",
+      "span": [
+        10999,
+        13043
+      ],
+      "bytes": 2044
+    },
+    {
+      "name": "SourceScope",
+      "path": "src/devtools/tools/source.py",
+      "span": [
+        990,
+        3212
+      ],
+      "bytes": 2222
+    },
+    {
+      "name": "RepositoryResourceOccurrence",
+      "path": "src/devtools/context/repository/resource.py",
+      "span": [
+        2547,
+        2843
+      ],
+      "bytes": 296
+    },
+    {
+      "name": "RepositorySnapshot",
+      "path": "src/devtools/context/repository/snapshot.py",
+      "span": [
+        906,
+        2017
+      ],
+      "bytes": 1111
+    }
+  ],
+  "prior_missing_callees_supplied": true,
+  "source_supported_hypothesis": "not assessable: no response received",
+  "missing_dependency_request": null,
+  "coding_phase_entered": false,
+  "model_edits": {
+    "proposed": 0,
+    "admitted": 0,
+    "refused": 0,
+    "applied": 0
+  },
+  "worker_checks": 0,
+  "repairs": 0,
+  "candidate_acceptance": "not entered; no candidate",
+  "model_authored_production": false,
+  "B0035": "open",
+  "usage": {
+    "measured_input_tokens": 6819,
+    "reported_usage": null,
+    "last_server_n_gen": 3058,
+    "qualification": "server log count is not normalized output usage"
+  },
+  "cause": "Frozen nonstreaming decision invocation timed out while server generated; no semantic result can be inferred.",
+  "next": "Separately authorize a concise output/time-compatible checkpoint using existing host ModelSettings; no new navigation or coding framework."
+}

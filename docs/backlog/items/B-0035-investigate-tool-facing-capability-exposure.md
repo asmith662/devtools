@@ -413,3 +413,14 @@ correct core decisions, including with Tools available. Recommend completing the
 small initialization/message-construction source closure through existing Context
 selection before another full trial; no new phase framework, model success, grant,
 status transition or B-0035 delivery follows. Production inputs remain unchanged.
+
+## Supervisor-prepared B-0035 checkpoint — 2026-10-30
+
+The [new source-backed delegation](../../../experiments/supervised_b0035/REPORT.md)
+closed the initialization/navigation source gap using existing Context materialization.
+One real response-only Qwen request timed out at 150 seconds; server logs record
+generation and cancellation, but no answer or supported hypothesis was received.
+No coding phase, candidate, worker check or model-authored production change followed.
+B-0035 remains open. Reconcile concise decision-output/time bounds before a separately
+authorized follow-up; no new framework, grant, status transition or parent closure
+is implied. Prior evidence and unknown historical receipts remain unchanged.

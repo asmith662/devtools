@@ -1018,3 +1018,10 @@ normal Checkout release; no full maintenance trial followed.
 ## Local coding decision checkpoint
 
 [Diagnostic and recommendation](development/decision-checkpoint.md) record a controlled Tools/no-Tools comparison without production changes.
+
+## Supervisor-prepared B-0035 delegation
+
+[Preparation and limits](development/supervised-b0035.md) and the
+[retained assessment](../experiments/supervised_b0035/REPORT.md) distinguish complete
+source preparation from an incomplete timed-out checkpoint. No coding phase or
+production implementation occurred; B-0035 remains open.

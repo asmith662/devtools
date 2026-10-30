@@ -1,0 +1,192 @@
+{
+  "at": "2026-10-30T13:23:40.190010+00:00",
+  "commands": [
+    {
+      "label": "focused",
+      "exit_code": 0,
+      "seconds": 1.973264,
+      "stdout": "........................................................................ [ 25%]\r\n........................................................................ [ 51%]\r\n........................................................................ [ 76%]\r\n.................................................................        [100%]\r\n281 passed in 1.18s\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "layout",
+      "exit_code": 0,
+      "seconds": 0.21543,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "lint",
+      "exit_code": 0,
+      "seconds": 0.086306,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "typing",
+      "exit_code": 0,
+      "seconds": 1.007198,
+      "stdout": "Success: no issues found in 610 source files\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "label": "versions",
+      "exit_code": 0,
+      "seconds": 0.363401,
+      "stdout": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]\r\npytest 9.1.1\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "observations": [
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "investigation-transition-0001",
+        "call": "focused"
+      },
+      "pattern": {
+        "family": "uv",
+        "operation": "focused",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:01.973072"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "investigation-transition-0001",
+        "call": "layout"
+      },
+      "pattern": {
+        "family": "uv",
+        "operation": "layout",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.215302"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "investigation-transition-0001",
+        "call": "lint"
+      },
+      "pattern": {
+        "family": "uv",
+        "operation": "lint",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.086188"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "investigation-transition-0001",
+        "call": "typing"
+      },
+      "pattern": {
+        "family": "uv",
+        "operation": "typing",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:01.007088"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    },
+    {
+      "origin": {
+        "agent": "local-dogfood-host",
+        "task": "B-0035-inventory",
+        "run": "investigation-transition-0001",
+        "call": "versions"
+      },
+      "pattern": {
+        "family": "uv",
+        "operation": "versions",
+        "argument_roles": [
+          "opaque"
+        ],
+        "capabilities": [
+          "win32"
+        ],
+        "equivalent_tool": null
+      },
+      "source": "framework-result",
+      "entered": true,
+      "outcome": "succeeded",
+      "exit_code": 0,
+      "duration": {
+        "value": "0:00:00.363269"
+      },
+      "events_dropped": 0,
+      "capture_incomplete": false
+    }
+  ]
+}
