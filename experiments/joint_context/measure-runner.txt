@@ -1,0 +1,25 @@
+import asyncio,json,tempfile
+from pathlib import Path
+from dataclasses import replace
+import sys
+sys.path.insert(0,str(Path.cwd()))
+from tests.agents.coding.test_joint_projection import fixture,host_source
+from tests.agents.coding.test_repository import LIMITS,call
+from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding.projection import request_bytes,project_request
+from devtools.models.interaction import ModelResponse,InteractionSource
+from experiments.joint_context.capture import projection_record
+async def main():
+ with tempfile.TemporaryDirectory(dir='.local/joint-context') as temp:
+  h=fixture(Path(temp));await host_source(h,0,3000);await host_source(h,3000,6000)
+  h.progress=CodingProgress(LIMITS)
+  r=ModelResponse('',InteractionSource('authored-measurement'),tool_calls=(call('read_source',dict(path='module.py',start=0,end=3000),'a'),call('read_source',dict(path='module.py',start=6000,end=6031),'b')))
+  assert h.classify(r)=='acquire';await h.acquire(r)
+  original=tuple(h.messages);q=h.build_request(original);singles=[]
+  for i in (1,2):
+   singles.append(projection_record(project_request(q,policy=h.projection,hard_bytes=9000,snapshot=h.scope.snapshot,sources=h._source_messages,protected_indices=frozenset(h._source_messages)-{i})))
+  await h.prepare(h.progress)
+  value=dict(qualification='Independent authored neutral-host shape; actual scoped Tool reads in temporary fixture. Not original Throughput receipts, no live inference.',singles=singles,joint=projection_record(h.projection_outcomes[-1]),retained_history_unchanged=original==tuple(h.messages),tool_calls=['a','b'],acknowledged=[e.acknowledged for e in h.progress.effects])
+  Path('experiments/joint_context/deterministic.json').write_text(json.dumps(value,indent=2)+'\n')
+  print({k:value[k] for k in ('qualification','retained_history_unchanged','acknowledged')});print('individual',[(x['original_bytes'],x['resulting_bytes'],x['status']) for x in singles]);print('joint',value['joint']['original_bytes'],value['joint']['resulting_bytes'],value['joint']['shortened_indices'])
+asyncio.run(main())

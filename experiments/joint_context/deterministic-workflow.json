@@ -1,0 +1,130 @@
+{
+  "qualification": "Authored independent fixture and scripted model; actual shared process, source Tools, managed check and restoration. Not local-model effectiveness.",
+  "model_calls": 2,
+  "projections": [
+    {
+      "status": "reduced",
+      "triggered": true,
+      "original_bytes": 9487,
+      "resulting_bytes": 7998,
+      "target_bytes": 8000,
+      "hard_bytes": 9000,
+      "selected_indices": [
+        0,
+        1,
+        2
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [
+        1
+      ],
+      "active_sources": [
+        {
+          "identity": "924ac09f2d5331782e0a07f70ab83bfba8a8716d900c57dc438a2c68fa454fcc",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            0,
+            1579
+          ]
+        },
+        {
+          "identity": "54eb599ef22ab103591616ee9fbed5aab9623df07222f4e063fb9a560625d35a",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            3000,
+            6000
+          ]
+        }
+      ],
+      "invalidated_source_identities": [
+        "4659179b103c69d7d08eb09886d3a36cce285b8e298b5c998ad7eb493e28d338"
+      ]
+    },
+    {
+      "status": "reduced",
+      "triggered": true,
+      "original_bytes": 14475,
+      "resulting_bytes": 7999,
+      "target_bytes": 8000,
+      "hard_bytes": 9000,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [
+        1,
+        2
+      ],
+      "active_sources": [
+        {
+          "identity": "e3440549952542cd9f1df59d5a84beef23d15bca98c080f947e68ab39ded9529",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            0,
+            1
+          ]
+        },
+        {
+          "identity": "4712cf9e732f0d850e738b89183019b2e93b2a151e093b96555462e2ece32451",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            3000,
+            3249
+          ]
+        },
+        {
+          "identity": "223c9535aa6e3c06f0cfbafb8f2cea88a22574c66735c3511dd919120b74694e",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            0,
+            3000
+          ]
+        },
+        {
+          "identity": "20690521d60682f395aab4c1da22190b9416352d7110375f2f592bd1dddd3a3d",
+          "snapshot": "5042d6ba081b4a67d8681c1b45729ab33b4fc9df54318828589b033d34edd2f8",
+          "repository": "49e9db44-7d0c-4920-8155-84a094dbd7a2",
+          "version": "f8acb00b4a7b963cc926f30cb8f6a1155cd1673e175871d5caa071c439fb9f10",
+          "path": "module.py",
+          "span": [
+            6000,
+            6031
+          ]
+        }
+      ],
+      "invalidated_source_identities": [
+        "4659179b103c69d7d08eb09886d3a36cce285b8e298b5c998ad7eb493e28d338",
+        "54eb599ef22ab103591616ee9fbed5aab9623df07222f4e063fb9a560625d35a"
+      ]
+    }
+  ],
+  "restored": true,
+  "candidate_correct": true,
+  "checks": [
+    {
+      "exit_code": 0,
+      "stdout": "checked\r\n",
+      "passed": true
+    }
+  ]
+}

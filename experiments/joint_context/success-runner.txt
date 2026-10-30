@@ -1,0 +1,18 @@
+import asyncio,json,tempfile,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from tests.agents.coding.test_joint_projection import fixture,host_source
+from tests.agents.coding.test_repository import LIMITS,call,EDIT,Script
+from devtools.agents.coding import run_coding_agent
+from experiments.joint_context.capture import save_result,projection_record
+async def main():
+ with tempfile.TemporaryDirectory(dir='.local/joint-context') as temp:
+  root=Path(temp);h=fixture(root);original=(root/'module.py').read_bytes();candidate={};h.archive=candidate.update
+  await host_source(h,0,3000);await host_source(h,3000,6000)
+  model=Script([(call('read_source',dict(path='module.py',start=0,end=3000),'a'),call('read_source',dict(path='module.py',start=6000,end=6031),'b')),(EDIT,)])
+  result=await run_coding_agent(model,limits=LIMITS,host=h)
+  assert result.accepted and (root/'module.py').read_bytes()==original
+  assert save_result(Path.cwd()/'experiments/joint_context/deterministic-success.json',result)
+  record=dict(qualification='Authored independent fixture and scripted model; actual shared process, source Tools, managed check and restoration. Not local-model effectiveness.',model_calls=model.entries,projections=[projection_record(v) for v in h.projection_outcomes],restored=True,candidate_correct=next(iter(candidate.values())).endswith('return 7\n'),checks=[dict(exit_code=v.command_result.exit_code,stdout=v.command_result.stdout.decode(),passed=v.passed) for row in h.check_results for v in row])
+  Path('experiments/joint_context/deterministic-workflow.json').write_text(json.dumps(record,indent=2)+'\n');print(record['checks'])
+asyncio.run(main())

@@ -1,0 +1,67 @@
+{
+  "disposition": "validated",
+  "accepted": true,
+  "candidate_validated": true,
+  "completed": true,
+  "failure_phase": null,
+  "error": null,
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 4,
+      "proposals": 1,
+      "tool_actions": 4,
+      "call_timeout_seconds": 5.0,
+      "wall_timeout_seconds": 20.0,
+      "completion_check": false
+    },
+    "number": 2,
+    "model_calls": 2,
+    "proposals": 1,
+    "actions": 2,
+    "phase": "completion",
+    "candidate_validated": true,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "a"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "b"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "edit"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "fixed"
+      }
+    ],
+    "usage": [
+      null,
+      null
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

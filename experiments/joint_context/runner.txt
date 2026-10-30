@@ -1,0 +1,105 @@
+"""Fresh bounded continuation; reuse prepared source/check owners, not a new loop."""
+import asyncio,json,sys,hashlib,importlib.util
+from pathlib import Path
+from dataclasses import replace
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/joint_context'
+sys.path.insert(0,str(R))
+spec=importlib.util.spec_from_file_location('prepared',R/'.local/supervised-b0035/runner.py');r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
+r.O=O;r.C=C;r.s.STATE=O/'staging'
+from experiments.joint_context.capture import result_record,save_result,projection_record,error_record
+from devtools.agents.coding import run_coding_agent,CodingLimits
+from devtools.agents.coding.models import CodingProgress
+from devtools.models.interaction import ModelSettings,PromptMessage,InteractionSource
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):r.save(p,v)
+def frozen():return json.loads((C/'freeze.json').read_text())
+HISTORY=R/'experiments/throughput_b0035/evidence/decision-1-outcome.json'
+
+def handoff(h):
+ d=json.loads(HISTORY.read_text())['response']
+ h.messages.append(PromptMessage('user','Trusted supervisor handoff of historical model-authored decision from Throughput-B0035-0001. This is not a fresh response or source witness, and no coding effects occurred in that run. Independent review accepted its direction, not a patch. Exact original response follows:\n'+d['content']))
+ h.messages.append(PromptMessage('user','Now implement the frozen B-0035 obligation. Choose authorized source or grounded edits. Earlier exact source may be partially projected; only presented current ranges ground edits. Reacquire missing source if needed. No tests, limits or permissions may be changed.'))
+
+class Measured(r.Measured):
+ def __init__(self):
+  super().__init__('coding',10);self.delegate=r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource('joint-context-b0035-0001-acting'))
+ async def send(self,q):
+  n=len(self.records)+1;assert n<=10;prefix=f'coding-{n}'
+  rec=dict(at=str(Timestamp.now()),request=r.s.plain(q),payload=self.delegate._request_payload(q),bytes=r.request_bytes(q),entered=False)
+  self.records.append(rec);save(O/'staging'/f'{prefix}-prepared.json',rec)
+  count=await asyncio.wait_for(self.delegate.count_input_tokens(q),20);assert count<=28160 and r.request_bytes(q)<=32768
+  rec.update(measured_input_tokens=count,entered=True);save(O/'staging'/f'{prefix}-entry.json',rec)
+  original=r.provider._read_http_response
+  async def capture(reader):
+   status,body=await original(reader);p=O/'staging'/f'{prefix}-provider-body.bin';assert not p.exists();p.write_bytes(body);return status,body
+  r.provider._read_http_response=capture;timer=Stopwatch()
+  try:
+   response=await asyncio.wait_for(self.delegate.send(q),180);rec.update(response=r.s.plain(response),outcome='normalized');return response
+  except BaseException as e:rec.update(error=error_record(e),outcome='unknown');raise
+  finally:
+   r.provider._read_http_response=original;timer.stop();rec['seconds']=timer.elapsed.total_seconds;save(O/'staging'/f'{prefix}-outcome.json',rec)
+
+async def preflight():
+ old=json.loads((R/'experiments/supervised_b0035/decision-freeze.json').read_text());assert not (R/'.local/backlog/checkout-owner').exists()
+ # Existing independently checked oracles; unchanged assertions, not a new answer.
+ for name in ['focused.py','heldout.py','reference_checks.py']:
+  p=r.OLD+'/'+name;assert sha(R/p)==old['preserved'][p]
+ assert sha(R/'.local/supervised-b0035/test_extra.py')==old['extra_sha256']
+ reference=await r.suite('reference',[r.OLD+'/reference_checks.py'],())
+ focused=await r.suite('focused-baseline',[r.OLD+'/focused.py'],('test_first_request_scoped_inventory','test_inventory_not_duplicated_on_prepare','test_inventory_charged_to_prompt_budget'))
+ held=await r.suite('heldout-baseline',[r.OLD+'/heldout.py'],('test_current_snapshot_not_cached','test_native_correlation_and_metadata_coexist','test_empty_resource_unicode_and_readonly','test_projection_preserves_metadata_and_objective','test_utf8_size_differs_from_character_count'))
+ extra=await r.suite('extra-baseline',[str(R/'.local/supervised-b0035/test_extra.py')],('test_candidates_and_complete_inventory_coexist','test_admitted_refresh_preserves_native_and_current_inventory','test_projection_cannot_drop_inventory_to_fit'))
+ save(O/'preflight.json',dict(at=str(Timestamp.now()),status='passed',reference=reference,focused=focused,withheld=held,extra=extra,prior_preflight=old['preflight'],qualification='Reused independently reviewed oracle, fresh baseline/control executions. Three extra positive paths still require a changed candidate.'))
+
+async def freeze():
+ gate=json.loads((O/'protected.json').read_text());assert gate['exit_code']==0 and gate['inputs_unchanged']
+ assert not (R/'.local/backlog/checkout-owner').exists() and not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ for p,h in gate['inputs'].items():assert sha(R/p)==h,p
+ old=json.loads((R/'experiments/throughput_b0035/decision-freeze.json').read_text())
+ model=await r.s.service_identity();assert model==old['model']
+ pre=json.loads((O/'preflight.json').read_text());assert pre['status']=='passed'
+ scope,corpus=r.observe(r.Repository.new());h=r.make_host(scope,corpus);h.settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=False)
+ records=await r.preload(h);handoff(h)
+ limits=CodingLimits(10,4,20,Duration.seconds(180),Duration.seconds(1140));q=await h.prepare(CodingProgress(limits))
+ tracked={p:sha(R/p) for p in (await git(R,'ls-files','-z',trim=False)).split('\0') if p}
+ f=dict(schema='joint-context-b0035-0001',at=str(Timestamp.now()),base=await git(R,'rev-parse','HEAD'),protected_ancestor=gate['head'],protected_inputs=gate['inputs'],repository_id=str(scope.snapshot.repository_id),snapshot_id=str(scope.snapshot.id),source_hashes={a.value:sha(R/a.value) for a in r.READ},baseline_raw={p:(R/p).read_bytes().hex() for p in r.EDIT},model=model,sampling=r.s.QWEN38_INSTRUCT_SAMPLING,request=r.s.plain(q),request_bytes=r.request_bytes(q),messages=r.s.plain(h.messages),host_disclosures=records,projection=projection_record(h.projection_outcomes[-1]),limits=r.s.plain(limits),output_tokens=2048,input_tokens=28160,prompt_bytes=32768,outer_seconds=1200,applications=3,repairs=2,auxiliary_calls=0,source_bytes=32768,disclosure_bytes=8192,region_bytes=4096,aggregate_bytes=8192,operations=2,decision_handoff=dict(path=str(HISTORY.relative_to(R)),sha256=sha(HISTORY),review_sha256=sha(R/'experiments/throughput_b0035/decision-review.json'),qualification='Historical genuine model decision; not new inference; not source or permission.'),initial_source_policy='Current rematerialized eleven-unit decision closure may yield exact prefixes in original order under hard pressure; objective, handoff, authority, latest feedback remain. No mandatory uninterrupted source obligation beyond valid current anchors for each selected edit. Omitted source requires authorized acquisition.',checks=r.s.plain(h.objective.checks),preflight=pre,oracle_hashes={r.OLD+'/'+n:sha(R/r.OLD/n) for n in ('focused.py','heldout.py','reference_checks.py')},extra_sha256=sha(R/'.local/supervised-b0035/test_extra.py'),runner_sha256=sha(Path(__file__)),prepared_runner_sha256=sha(R/'.local/supervised-b0035/runner.py'),support_sha256=sha(R/'experiments/coding_transition/support.py'),capture_sha256=sha(C/'capture.py'),task_sha256=sha(O/'task.md'),forensics=old['forensics'],refs=await git(R,'show-ref'),preserved=tracked,criteria='Complete B-0035 focused + withheld + three integration predicates + independent exact-source review; full protected gate before integrating accepted candidate. No Codex repair. Timeout/uncertain/capacity/capture failure stops; no replay or new sampling.')
+ for p,v in f['forensics'].items():assert sha(R/p)==v
+ save(C/'freeze.json',f);(C/'runner.txt').write_bytes(Path(__file__).read_bytes());(C/'task.md').write_bytes((O/'task.md').read_bytes())
+ print(json.dumps(dict(bytes=f['request_bytes'],sources=sum(v['bytes'] for v in records),units=len(records),projection=f['projection'])))
+
+async def coding():
+ f=frozen();assert sha(Path(__file__))==f['runner_sha256'];assert await r.s.service_identity()==f['model']
+ for p,h in f['source_hashes'].items():assert sha(R/p)==h,p
+ for p,h in f['protected_inputs'].items():assert sha(R/p)==h,p
+ scope,corpus=r.observe(r.Repository(r.RepositoryId.parse(f['repository_id'])));assert str(scope.snapshot.id)==f['snapshot_id']
+ head=await git(R,'rev-parse','HEAD');owner=Checkout(WorkCycle(R),'joint-context-b0035-0001','main',head,files=[dict(path=p,text=bytes.fromhex(f['baseline_raw'][p]).decode()) for p in r.EDIT]);applied=[]
+ async def effect(changes):
+  if len(applied)>=3:raise ValueError('Repair/application bound exhausted')
+  for c in changes:owner.expect(c.address.value,c.after)
+  applied.append(r.s.plain(changes));save(O/'staging'/f'applied-{len(applied)}.json',r.s.plain(changes));r.write_source_changes(scope.root,changes)
+ def archive(values):
+  for a,t in values.items():
+   raw=(R/a.value).read_bytes();assert raw.decode()==t;p=O/'staging/candidate'/a.value;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+ def restore(a,t):
+  raw=bytes.fromhex(f['baseline_raw'][a.value]);assert raw.decode()==t;write(BinaryFile(resolve_path(R/a.value),raw))
+ h=r.make_host(scope,corpus,effect=effect,archive=archive,restore=restore);h.settings=ModelSettings(maximum_output_tokens=2048,thinking_enabled=False)
+ await r.preload(h);handoff(h);limits=CodingLimits(10,4,20,Duration.seconds(180),Duration.seconds(1140))
+ q=await h.prepare(CodingProgress(limits));assert r.s.plain(q)==f['request'];h.requests.clear();h.projection_outcomes.clear();h.active_disclosures=()
+ assert not (O/'staging/entry.json').exists()
+ async with owner:
+  save(O/'staging/entry.json',dict(at=str(Timestamp.now()),owner=owner.record))
+  async with asyncio.timeout(1200):result=await run_coding_agent(Measured(),limits=limits,host=h)
+  captured=save_result(O/'staging/result.json',result)
+  save(O/'staging/history.json',dict(messages=r.s.plain(h.messages),responses=r.s.plain(h.responses),requests=r.s.plain(h.requests),projections=[projection_record(v) for v in h.projection_outcomes],projection_error=error_record(h.projection_error),sources=r.s.plain(h.source_results),proposals=h.proposals,applied=applied,checks=[[dict(name=v.check.name,command=r.s.plain(v.check.command),result=r.s.plain(v.command_result),inputs_current=v.inputs_current,input_error=error_record(v.input_error)) for v in row] for row in h.check_results]))
+  assert result.custody.restored and not result.custody.reconciliation_required
+ save(O/'staging/terminal.json',dict(at=str(Timestamp.now()),released=True,captured=captured,accepted=result.accepted,disposition=result.disposition))
+ print(json.dumps(result_record(result),indent=2))
+async def main():await {'preflight':preflight,'freeze':freeze,'coding':coding}[sys.argv[1]]()
+if __name__=='__main__':asyncio.run(main())
