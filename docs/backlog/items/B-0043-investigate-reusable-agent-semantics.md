@@ -414,3 +414,13 @@ No coding phase, candidate, worker check or model-authored production change fol
 B-0035 remains open. Reconcile concise decision-output/time bounds before a separately
 authorized follow-up; no new framework, grant, status transition or parent closure
 is implied. Prior evidence and unknown historical receipts remain unchanged.
+
+## Throughput-aware B-0035 attempt — 2026-10-30
+
+The [fresh supervised attempt](../../../experiments/throughput_b0035/REPORT.md)
+received a source-supported decision under realistic inference limits. Coding
+entered and requested two relevant source ranges, then stopped with capacity
+pressure and a separate experimental result-capture failure. No edit or worker
+check occurred; B-0035 remains open. Pure reconstruction identifies existing
+projection behavior under simultaneous reduction pressure, not a new execution
+receipt. No grant, status transition, model success or new framework is implied.

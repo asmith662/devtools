@@ -1,0 +1,51 @@
+{
+  "outcome": "supported decision; coding stopped without edit",
+  "decision_pass": true,
+  "decision": {
+    "seconds": 25.087121,
+    "input_tokens": 6862,
+    "output_tokens": 300,
+    "termination": "normal_stop"
+  },
+  "coding": {
+    "seconds": 17.168326,
+    "calls": 1,
+    "input_tokens": 7821,
+    "output_tokens": 116,
+    "termination": "tool_call",
+    "requested_reads": [
+      {
+        "path": "src/devtools/agents/coding/repository.py",
+        "span": [
+          0,
+          8142
+        ]
+      },
+      {
+        "path": "src/devtools/agents/coding/navigation.py",
+        "span": [
+          0,
+          3625
+        ]
+      }
+    ],
+    "proposals": 0,
+    "checks": 0,
+    "repairs": 0
+  },
+  "recorder_failure": {
+    "wrapper_exit_code": 1,
+    "error": "AttributeError during dataclasses.asdict deepcopy of ProjectionCapacityError; exception reconstruction passed a string where constructor requires ProjectionOutcome",
+    "original_failure": "ProjectionCapacityError exists in returned CodingResult; exact outcome and result fields were not retained",
+    "qualification": "No full result/projection/Tool-feedback record survived. Source requests are known from raw/normalized response; Tool acknowledgment details are not fabricated."
+  },
+  "custody": {
+    "released": true,
+    "source_unchanged": true,
+    "candidate_archive": "unchanged baseline bytes"
+  },
+  "candidate_acceptance": "No changed candidate; withheld positive paths not exercised",
+  "production_change": false,
+  "B0035": "open",
+  "recommendation": "Before another coding attempt, characterize the interaction between the large host-supplied source set and multi-read feedback under existing projection; correct exception-safe experimental capture. No new navigation subsystem or replay of this attempt."
+}

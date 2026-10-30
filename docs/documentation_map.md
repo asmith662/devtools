@@ -1025,3 +1025,8 @@ normal Checkout release; no full maintenance trial followed.
 [retained assessment](../experiments/supervised_b0035/REPORT.md) distinguish complete
 source preparation from an incomplete timed-out checkpoint. No coding phase or
 production implementation occurred; B-0035 remains open.
+
+## Throughput-aware maintenance continuation
+
+[Retained B-0035 assessment](../experiments/throughput_b0035/REPORT.md): supported
+decision, then coding capacity/capture failure before edits. No production change.
