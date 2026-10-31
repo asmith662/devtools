@@ -1,5 +1,8 @@
 # Documentation Map
 
+Live native assessment: [operational preflight](research/live-native-maintenance-preflight.md)
+records the available provider and task/authority blocker; no live episode occurred.
+
 Supported review actor: [governed independent native review](development/native-independent-review.md)
 owns review-only model dispatch, grounded proposals and separate host disposition.
 
