@@ -1,8 +1,8 @@
 # B-0035 — Investigate Tool-facing capability exposure
 
 - type: INVESTIGATION
-- status: DEFERRED
-- decision_maturity: DISCOVERED
+- status: CLOSED
+- decision_maturity: READY_FOR_IMPLEMENTATION
 - necessity: FUTURE_REQUIRED
 - architectural_significance: STRUCTURAL
 - urgency: DEFERRED
@@ -35,7 +35,7 @@ pressure; it does not make a Tool automatically model-visible.
 - pressure_dependencies: B-0008
 - operational_dependencies: stable model-facing Tool consumer
 - promotion_trigger: exposure semantics are stable independently of local experiment code
-- validation_level: NONE
+- validation_level: INTEGRATION
 
 ## Recovered-input / pinned mechanism evidence (2026-10-23)
 
@@ -545,3 +545,28 @@ repair. Stop this model B-0035 campaign; prioritize narrower demonstrated duties
 and a stronger worker for complex integration. Record actual post-edit diagnostic
 affordability and collision-free check preflight as concrete future prerequisites,
 without authorizing another generic framework increment or automatic rerun.
+
+
+## Production closure — 2026-10-31
+
+Explicit maintainer authorization completes the remaining first-request complete
+authorized inventory contract, building on the already delivered descriptor,
+native Tool/source/check and bounded coding-agent seams. Navigation owns the
+Qwen-authored accepted `complete_inventory` representation; Codex supplies host
+presentation/currentness/lifecycle and shared reliability corrections. Ranked
+candidates remain incomplete metadata. There is no new Tool registry or automatic
+visibility/authorization. The original local-worker experiments retain their
+failed or conditional outcomes; this mixed-provenance production delivery is not
+Qwen or gpt-oss end-to-end B-0035 success.
+
+Unchanged public/withheld oracles and all three positive integration predicates
+pass, including actual installed-source refresh, idempotence, scope/privacy,
+UTF-8 sizes, metadata-versus-source authority and complete-request overflow.
+The neutral maintained process executes an admitted edit, a genuine failed check,
+a newly selected grounded repair, passing validation, archive and restoration.
+The unchanged protected development gate passes on the committed executable tree.
+Status closes this approved Tool-exposure/inventory obligation; B-0043, durable
+restart/Evidence and the 188 historical RI-version obligations remain separate.
+
+See the [production contract and measured limits](../../development/authorized-inventory-and-continuation.md)
+and [exact validation/provenance receipt](../../research/code-audit/b0035-production-20261031.json).

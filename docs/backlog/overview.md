@@ -210,7 +210,7 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0032](items/B-0032-investigate-execution-retry-mechanics.md) | Investigate execution retry mechanics | DEFERRED | execution |
 | [B-0033](items/B-0033-investigate-semantic-repair-replanning.md) | Investigate semantic repair and replanning | DEFERRED | agents |
 | [B-0034](items/B-0034-investigate-uncertain-effect-reconciliation.md) | Investigate uncertain-effect reconciliation | DEFERRED | governance |
-| [B-0035](items/B-0035-investigate-tool-facing-capability-exposure.md) | Investigate Tool-facing capability exposure | DEFERRED | tools |
+| [B-0035](items/B-0035-investigate-tool-facing-capability-exposure.md) | Investigate Tool-facing capability exposure | CLOSED | tools |
 | [B-0036](items/B-0036-investigate-action-request-semantics.md) | Investigate Action request semantics | DEFERRED | agents |
 | [B-0037](items/B-0037-investigate-approval-semantics.md) | Investigate approval semantics | DEFERRED | governance |
 | [B-0038](items/B-0038-investigate-approval-workflow-orchestration.md) | Investigate approval workflow orchestration | DEFERRED | orchestration |
@@ -397,3 +397,13 @@ The pending0182a013 diagnostic-ranking defect and other known bugs are unchanged
 
 These are intake and append-only evidence, not approved B-number stories,
 implementation grants, dispatches or parent completion. Frozen science is unchanged.
+
+
+Production B-0035 closure — 2026-10-31: complete authorized first-request inventory,
+verified refresh/nonduplication/privacy/capacity and reliable post-edit check/repair
+continuation pass independent oracles and unchanged protected validation. Qwen
+authored the accepted representation/repair; Codex authored lifecycle integration
+and corrections. No fresh local inference; historical failed local-model outcomes
+remain unchanged. B-0043 and 188 historical RI-version obligations remain open.
+[Production contract](../development/authorized-inventory-and-continuation.md),
+[exact validation](../research/code-audit/b0035-production-20261031.json).

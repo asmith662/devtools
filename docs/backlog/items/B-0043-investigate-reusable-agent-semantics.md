@@ -535,3 +535,30 @@ repair. Stop this model B-0035 campaign; prioritize narrower demonstrated duties
 and a stronger worker for complex integration. Record actual post-edit diagnostic
 affordability and collision-free check preflight as concrete future prerequisites,
 without authorizing another generic framework increment or automatic rerun.
+
+
+## B-0035 production acceptance and local-worker limits — 2026-10-31
+
+B-0035's approved complete initial inventory is now production behavior, with
+Codex-authored host integration and reliability fixes around the accepted Qwen
+representation/natural repair. No new inference was authorized or performed.
+The local evaluations established bounded representation and lint-repair ability;
+supervisor ownership guidance elicited a first-call gpt-oss edit, but its incomplete
+integration was interrupted before genuine repair feedback reached the model.
+These facts do not establish end-to-end local-worker integration competence.
+
+Maintained neutral scripted continuation now proves real admitted edit/check/
+repair, source invalidation, custody and affordability. Scripted success does not
+answer model selection or autonomous task-delegation questions. Broader Agent
+lifecycle, durable evidence/restart, Localization adoption, independent role
+selection and explicit supervision remain open. No generic BaseAgent or new
+orchestration/Context mechanism is authorized. Future local workers should receive
+narrow independently verifiable responsibilities; stronger integration workers
+remain appropriate for complex lifecycle work. Separately address the already
+observed whole-result source ceiling under the existing edits/custody owner before
+expanding self-maintenance of near-limit files. Do not restart the B-0035 campaign.
+
+See [delivery and limitations](../../development/authorized-inventory-and-continuation.md)
+and the [validated receipt](../../research/code-audit/b0035-production-20261031.json).
+Status, dependencies, approvals and the 188 historical RI-version obligations
+remain unchanged.
