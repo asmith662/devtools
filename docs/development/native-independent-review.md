@@ -129,3 +129,29 @@ Planning, task selection, automatic review-driven repair, durable restart and
 autonomous publication/closeout remain separate. The next competence step is one
 separately authorized bounded live coder-and-reviewer task with predeclared
 acceptance, independent provenance and retained failure/rejection evidence.
+
+## Delivery evidence
+
+The [authenticated delivery receipt](../research/code-audit/native-review-20261031.json)
+retains protected source/input identities, environment qualifications, actual
+failed development observations, selection reasons and an authored episode through
+the existing integration-plan consumer. Tested executable commit:
+`a34bdaa7e7f320d8746c13d57d98a27b4f564673`.
+
+Exactly one repository comprehensive run passed: 4,019 tests, two optional skips,
+100% configured production line and branch coverage, 2,511.48 seconds including
+command overhead. All 1,054 protected inputs remained unchanged. The added review
+scenarios contribute 32 tests; the entire native maintenance/review file has 53.
+The complete protected suite has additional real authored-repository work and is
+not claimed to run faster than its predecessor.
+
+During development, the 201-test shared-contract selection passed in 115.13
+seconds. Seven failed-ID/correction/evidence-boundary cases passed in 173.74
+seconds, and the final review-scope consumer passed in 36.19 seconds. The prior
+51-case native run took 652.36 seconds with 50 passes and one assertion failure:
+the fixture expected Python's missing-file exception instead of the filesystem
+domain's actual refusal. The earlier consumer run also retained its two fixture
+serialization failures. Both failed invocations remain failed; focused recovery
+preceded the single final comprehensive run. The observed 478.62-second
+difference between the broader native run and recovery is a scope counterfactual,
+not a controlled performance benchmark or a pass for omitted tests.
