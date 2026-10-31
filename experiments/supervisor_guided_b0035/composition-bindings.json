@@ -1,0 +1,18 @@
+{
+  "composition": "One task-local composition of the maintained shared coding process, no second loop",
+  "dependencies": {
+    ".local/b0035-repair/run-b.py": "7a51bb5f0d9161e5c74ad428f351b8f8404acf57797be7cad67a8895376ad3ba",
+    ".local/b0035-repair/run.py": "bd0198dee69942ed772ff86394f7f915005a7004c1a469f4353306ca9a4ad9c2",
+    ".local/delegated-b0035/run.py": "8e1192674cd8d4d4bfc648b0e08120941d435336b6bee23cf4d6c7e73d6d8b86",
+    ".local/supervised-b0035/runner.py": "37ca007026a570b905b96ab8e255fddb1bd76262c7954287a926063e27948649",
+    "experiments/coding_transition/support.py": "7b1061fe41ec9b1a0a2a024fe1c4821971eb40c78eff48824a9f9c671b3b33d1",
+    "experiments/joint_context/capture.py": "9017d35fd3c1808ffdbbb595b8ec3bd13cabf365811db85ae92d6847710260b7"
+  },
+  "worker_code": "gpt-oss only; no supervisor patch or automatic formatting",
+  "supervisor_artifacts": [
+    "ownership.md",
+    "task.md",
+    "feasibility.json"
+  ],
+  "phase": "pre-inference"
+}
