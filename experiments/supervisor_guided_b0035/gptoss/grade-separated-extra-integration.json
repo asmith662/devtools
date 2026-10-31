@@ -1,0 +1,31 @@
+{
+  "name": "extra-integration",
+  "command": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "arguments": [
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "--tb=short",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervised-b0035\\test_extra.py",
+      "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervisor-guided-b0035\\gptoss\\staging\\grade-separated-extra-integration.xml"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:04:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 1,
+  "stdout": "FFF                                                                      [100%]\r\n================================== FAILURES ===================================\r\n_______________ test_candidates_and_complete_inventory_coexist ________________\r\n.local\\supervised-b0035\\test_extra.py:15: in test_candidates_and_complete_inventory_coexist\r\n    q=asyncio.run(h.prepare(progress()));data=inventory(q)\r\n                                              ^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________ test_admitted_refresh_preserves_native_and_current_inventory _________\r\n.local\\supervised-b0035\\test_extra.py:43: in test_admitted_refresh_preserves_native_and_current_inventory\r\n    asyncio.run(run())\r\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\r\n    return runner.run(main)\r\n           ^^^^^^^^^^^^^^^^\r\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\r\n    return self._loop.run_until_complete(task)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\r\n    return future.result()\r\n           ^^^^^^^^^^^^^^^\r\n.local\\supervised-b0035\\test_extra.py:24: in run\r\n    first=inventory(await h.prepare(state))\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n________________ test_projection_cannot_drop_inventory_to_fit _________________\r\n.local\\supervised-b0035\\test_extra.py:46: in test_projection_cannot_drop_inventory_to_fit\r\n    h=make_host(tmp_path);q=asyncio.run(h.prepare(progress()));data=inventory(q)\r\n                                                                    ^^^^^^^^^^^^\r\nexperiments\\local_maintenance_task_navigation\\focused.py:117: in inventory\r\n    assert len(entries) == 1, \"Exactly one scoped metadata inventory is required\"\r\n           ^^^^^^^^^^^^^^^^^\r\nE   AssertionError: Exactly one scoped metadata inventory is required\r\n=========================== short test summary info ===========================\r\nFAILED .local/supervised-b0035/test_extra.py::test_candidates_and_complete_inventory_coexist\r\nFAILED .local/supervised-b0035/test_extra.py::test_admitted_refresh_preserves_native_and_current_inventory\r\nFAILED .local/supervised-b0035/test_extra.py::test_projection_cannot_drop_inventory_to_fit\r\n3 failed in 0.56s\r\n",
+  "stderr": "",
+  "capture_incomplete": 0
+}

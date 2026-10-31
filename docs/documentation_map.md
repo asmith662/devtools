@@ -1050,3 +1050,7 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 - [Navigation-Recovery-0001](../experiments/navigation_recovery/REPORT.md): protected
   argument-refusal delivery and separately frozen gpt-oss continuation; no B-0035
   implementation accepted.
+
+- [Supervisor-Guided-B0035-0001](../experiments/supervisor_guided_b0035/REPORT.md):
+  explicit ownership handoff, immediate partial model edit, known grading/Context
+  limitations, independent rejection and source restoration; no integrated code.

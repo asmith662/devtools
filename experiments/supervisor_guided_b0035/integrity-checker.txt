@@ -1,0 +1,41 @@
+"""Pure validation of frozen/actual native exchanges and candidate provenance."""
+import asyncio,json,hashlib,sys
+from pathlib import Path
+R=Path.cwd();O=Path(__file__).parent;C=R/'experiments/supervisor_guided_b0035';sys.path.insert(0,str(R))
+from scripts.backlog.coordinator import git
+from devtools.models.interaction import Prompt,PromptMessage,ModelToolCall
+from devtools.core.time import Timestamp
+
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+def prompt(messages):
+ return Prompt('', 'messages',tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in messages))
+async def main():
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ f=json.loads((C/'freeze-gptoss.json').read_text());h=json.loads((C/'gptoss/history.json').read_text());result=json.loads((C/'gptoss/result.json').read_text())
+ rec=json.loads((C/'gptoss/coding-1-outcome.json').read_text());raw=json.loads((C/'gptoss/coding-1-provider-body.bin').read_bytes());m=raw['choices'][0]['message'];response=rec['response']
+ assert (m.get('content') or '')==response['content'] and m.get('reasoning_content')==response['reasoning_content']
+ assert raw['usage']['prompt_tokens']==response['usage']['input_tokens']==6084 and raw['usage']['completion_tokens']==response['usage']['output_tokens']==807
+ for a,b in zip(m['tool_calls'],response['tool_calls'],strict=True):assert a['id']==b['provider_call_id'] and a['function']['arguments']==b['arguments_json'] and a['function']['name']==b['name']
+ assert len(response['tool_calls'])==1 and response['tool_calls'][0]['name']=='replace_source'
+ prompt(rec['request']['prompt']['messages']);prompt(h['messages'])
+ assert rec['bytes']==len(json.dumps(rec['request'],ensure_ascii=False).encode())==26696
+ assert len(h['requests'])==1 and len(h['projections'])==2 and h['projections'][1]['status']=='insufficient'
+ assert result['progress']['model_calls']==1 and result['progress']['proposals']==1 and result['progress']['actions']==0
+ assert len(h['applied'])==1 and len(h['proposals'])==1 and h['proposals'][0]['admitted']
+ assert len(result['progress']['effects'])==4 and all(v['acknowledged'] for v in result['progress']['effects'])
+ assert result['failure_phase']=='preparation' and result['error']['class']=='ProjectionCapacityError' and result['custody']['restored'] and not result['custody']['reconciliation_required']
+ assert [x['result']['exit_code'] for x in h['checks'][0]]==[2,1,0]
+ assert len(h['checks'])==1 and len([m for m in h['messages'] if m['role']=='tool'])==1
+ assert not list((C/'gptoss').glob('coding-2-entry.json'))
+ feedback=json.loads(h['messages'][-1]['content']);assert h['messages'][-1]['tool_call_id']==response['tool_calls'][0]['provider_call_id'] and feedback['passed'] is False
+ for p,rawhex in f['production_baseline'].items():assert (R/p).read_bytes()==bytes.fromhex(rawhex)
+ before=bytes.fromhex(f['starting_candidates']['src/devtools/agents/coding/navigation.py']);after=(C/'gptoss/candidate/src/devtools/agents/coding/navigation.py.txt').read_bytes()
+ assert after==before.replace(b'if policy is not None and len(messages) == 1:',b'if policy is not None and len(messages) == 2:',1)
+ p='src/devtools/agents/coding/repository.py';assert (C/'gptoss/candidate'/p).with_suffix('.py.txt').read_bytes()==bytes.fromhex(f['starting_candidates'][p])
+ for row in json.loads((C/'reconciliation.json').read_text())['exact_artifacts']:assert sha((C/row['artifact']).read_bytes())==row['sha256']==sha((R/row['source']).read_bytes())
+ gate=json.loads((C/'historical-protected.json').read_text())
+ for p,d in gate['inputs'].items():assert sha((R/p).read_bytes())==d,p
+ await git(R,'merge-base','--is-ancestor',gate['head'],'HEAD')
+ data=dict(at=str(Timestamp.now()),head=await git(R,'rev-parse','HEAD'),real_model_responses=1,native_prompts_valid=True,raw_final_reasoning_calls_usage_match=True,proposals_admitted_applied=1,managed_check_exits=[2,1,0],focused_result_is_collection_error=True,feedback_delivered_to_model=False,continuation_projection_bytes=43159,continuation_refused_before_inference=True,result_and_known_effects_retained=True,candidate_exact_change_verified=True,candidate_accepted=False,protected_inputs_unchanged=len(gate['inputs']),historical_protected_head=gate['head'],new_full_protected_gate_run=False,production_restored=True,owner_released=True,original_qwen_health=200)
+ (C/'validation.json').write_text(json.dumps(data,indent=2)+'\n');print(json.dumps(data))
+asyncio.run(main())

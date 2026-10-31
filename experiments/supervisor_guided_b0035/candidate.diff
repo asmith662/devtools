@@ -1,0 +1,11 @@
+--- src/devtools/agents/coding/navigation.py (accepted-A/current-parent)
++++ src/devtools/agents/coding/navigation.py (gpt-oss candidate)
+@@ -166,7 +166,7 @@
+     policy: NavigationPolicy | None,
+ ) -> None:
+     """Retain one host-selected initial view, without inventing native actions."""
+-    if policy is not None and len(messages) == 1:
++    if policy is not None and len(messages) == 2:
+         messages.append(
+             PromptMessage(
+                 "user",

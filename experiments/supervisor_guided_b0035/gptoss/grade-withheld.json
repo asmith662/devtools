@@ -1,0 +1,33 @@
+{
+  "name": "withheld",
+  "command": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "arguments": [
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "--no-cov",
+      "-q",
+      "--tb=short",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_task_navigation\\heldout.py",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\heldout.py",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervised-b0035\\test_extra.py",
+      "--junitxml=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\supervisor-guided-b0035\\gptoss\\staging\\grade-withheld.xml"
+    ],
+    "working_directory": {
+      "value": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools"
+    },
+    "timeout": {
+      "value": "0:04:00"
+    },
+    "stdin": null,
+    "environment": null,
+    "success_exit_codes": "frozenset({0})"
+  },
+  "exit_code": 2,
+  "stdout": "\r\n=================================== ERRORS ====================================\r\n___________ ERROR collecting experiments/delegated_b0035/heldout.py ___________\r\nimport file mismatch:\r\nimported module 'heldout' has this __file__ attribute:\r\n  C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\local_maintenance_task_navigation\\heldout.py\r\nwhich is not the same as the test file we want to collect:\r\n  C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\delegated_b0035\\heldout.py\r\nHINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules\r\n=========================== short test summary info ===========================\r\nERROR experiments/delegated_b0035/heldout.py\r\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\r\n1 error in 0.57s\r\n",
+  "stderr": "",
+  "capture_incomplete": 0
+}

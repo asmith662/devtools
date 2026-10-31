@@ -1,0 +1,28 @@
+warn: LLAMA_ARG_HOST environment variable is set, but will be overwritten by command line argument --host
+0.01.142.179 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.01.143.186 W srv  llama_server: -----------------
+0.01.143.197 W srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+0.01.143.197 W srv  llama_server: this can be a security risk (cross-origin attacks)
+0.01.143.197 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+0.01.143.197 W srv  llama_server: -----------------
+0.01.145.775 I srv    load_model: loading model '/models/gpt-oss-20b-MXFP4.gguf'
+0.07.764.137 W load: setting token '<|message|>' (200008) attribute to USER_DEFINED (16), old attributes: 8
+0.07.764.157 W load: setting token '<|start|>' (200006) attribute to USER_DEFINED (16), old attributes: 8
+0.07.764.158 W load: setting token '<|constrain|>' (200003) attribute to USER_DEFINED (16), old attributes: 8
+0.07.765.346 W load: setting token '<|channel|>' (200005) attribute to USER_DEFINED (16), old attributes: 8
+0.07.771.279 W load: special_eog_ids contains both '<|return|>' and '<|call|>', or '<|calls|>' and '<|flush|>' tokens, removing '<|end|>' token from EOG list
+3.21.870.094 I cmn          init: llama threadpool init, n_threads = 16
+3.22.090.245 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+3.22.103.172 I srv  llama_server: model loaded
+3.22.103.196 I srv  llama_server: listening on http://0.0.0.0:8080
+3.22.103.208 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+3.22.103.221 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+5.45.586.463 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+5.45.590.149 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+5.51.042.308 I slot print_timing: id  0 | task 0 | n_gen =    290, tg =  96.21 t/s, tg_3s =  96.54 t/s
+5.54.042.889 I slot print_timing: id  0 | task 0 | n_gen =    573, tg =  95.24 t/s, tg_3s =  94.26 t/s
+5.56.531.971 I slot print_timing: id  0 | task 0 | prompt eval time =    2448.22 ms /  6084 tokens (    0.40 ms per token,  2485.07 tokens per second)
+5.56.531.987 I slot print_timing: id  0 | task 0 |        eval time =    8495.12 ms /   807 tokens (   10.54 ms per token,    94.88 tokens per second)
+5.56.531.987 I slot print_timing: id  0 | task 0 |       total time =   10943.34 ms /  6891 tokens
+5.56.531.992 I slot print_timing: id  0 | task 0 |    graphs reused =        803
+5.56.554.522 I slot      release: id  0 | task 0 | stop processing: n_tokens = 6890, truncated = 0

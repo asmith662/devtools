@@ -1,0 +1,132 @@
+{
+  "disposition": "failed",
+  "accepted": false,
+  "candidate_validated": false,
+  "completed": false,
+  "failure_phase": "preparation",
+  "error": {
+    "class": "ProjectionCapacityError",
+    "message": "Active Context cannot fit protected input: 43159 bytes > 32768.",
+    "message_policy": "known-capacity-only",
+    "projection": {
+      "status": "insufficient",
+      "triggered": true,
+      "original_bytes": 43159,
+      "resulting_bytes": 43159,
+      "target_bytes": 20000,
+      "hard_bytes": 32768,
+      "selected_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "omitted_exchanges": [],
+      "shortened_indices": [],
+      "active_sources": [
+        {
+          "identity": "e5491b3739453652a3e2baf0a29d01fc4ff7be3d5cbd75374f87930fc5934bd1",
+          "snapshot": "34c062781deba88d963e4e3aeaa81b913b5c397b9c2cd5d7752ce5af67bff644",
+          "repository": "2da8661f-6083-4267-b377-483dbd9f1a75",
+          "version": "d0d0775cc49d4ec00531070a95780b3e3b59148ddfbad9a27bae4b679f3b758a",
+          "path": "src/devtools/agents/coding/navigation.py",
+          "span": [
+            0,
+            8192
+          ]
+        }
+      ],
+      "invalidated_source_identities": [
+        "90a75e6f5bf44840362e5f008d88f216d2d7061da256089c8d42b201548eef09",
+        "832e9d829cef8093d809eb10fa4fbe7e9a796ecd60bf7e96a051d650f2d845d8",
+        "b4f7cf2580bcc54fd97f60c9bad6afa70ae4912391cce6569852265bb52a27f7",
+        "1a7426f208852ed14217fc454da08be04a356304f60876b1bf6fbf9f617a0358",
+        "3fc6e83058d0715c98c219c135f2c17c8c2893ec5bb26a247e3bcc2ff46d23c4",
+        "4e3182d428fc0290b07a186cc355e3297eca160349df867772402c25d8da798e",
+        "0c2d6be25ee1f90b86fbcf693b4db21889bfa24b2810daf74d16297f20fc67c5",
+        "14a87d77f26a2e04a0b6f904100a244c1f73b4e73b462135bfbeb51755720b8e",
+        "03ca7211345cc24629747e6ad4c913c0c879dd49526e295b4fe28e7bf2f5d989",
+        "3667890ae9317216af7fa208ffa4f2f8fc2fe76b4b3922f73564fd40d5e3098b",
+        "5209e95580dab28ceb739c2de42417f6e966143c0ec5f3d51abff6da0a88e87d",
+        "90f7626913f50464f5bc7f5001a1e7b96de0a3f02accc428f2034ebac31c8eae",
+        "85facca68b92aaf5270e6b7ccbda6af24a9944a5b62149d4c6e6bcfd59eccb2b",
+        "559fab0b8f8bdc13738d58346fb38239efd2147713798d7456bea645f1979864"
+      ]
+    },
+    "other_details": "not captured; no exception internals or traceback locals"
+  },
+  "completion_error": null,
+  "progress": {
+    "limits": {
+      "model_calls": 8,
+      "proposals": 3,
+      "tool_actions": 4,
+      "call_timeout_seconds": 240.0,
+      "wall_timeout_seconds": 1140.0,
+      "completion_check": false
+    },
+    "number": 2,
+    "model_calls": 1,
+    "proposals": 1,
+    "actions": 0,
+    "phase": "completion",
+    "candidate_validated": false,
+    "effects": [
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "ptXcbQIGerZKJIGlVteOEr8LLAiFAaiK"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "focused"
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "lint"
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "format"
+      }
+    ],
+    "usage": [
+      {
+        "input_tokens": 6084,
+        "output_tokens": 807,
+        "total_tokens": 6891,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ]
+  },
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false,
+    "error": null
+  },
+  "qualification": "Unknown usage/custody remains null; unacknowledged effects are not failed effects."
+}

@@ -515,3 +515,23 @@ source units stayed exact. No edit, worker check, natural repair or changed
 candidate occurred. No model-authored B-0035 code was integrated; Stage A remains
 conditionally accepted and unintegrated. B-0035 and B-0043 remain open. This does
 not close broader Context/Evidence/autonomy work or authorize another campaign.
+
+## Supervisor-guided integration checkpoint - 2026-10-30
+
+The [separately frozen supervised episode](../../../experiments/supervisor_guided_b0035/REPORT.md)
+resolved navigation representation/composition, constructor initialization and
+prepare refresh ownership before delegation. gpt-oss submitted one grounded
+prepare_navigation prefix-condition edit on its first call. Admission, installation
+and three managed checks occurred, but no host inventory lifecycle was implemented.
+The focused command had a module-name collection collision; Ruff reported PLR2004.
+Before another model request, preparation failed at 43,159 bytes after source
+snapshot invalidation and protected failed-check feedback. No model repair was
+possible. The complete result/effects/candidate were retained and production restored.
+
+Unchanged independent suites run separately confirmed incomplete integration and
+compatibility regressions; no code was accepted. B-0035/B-0043 remain open. This
+is not an unconfounded implementation-capability failure: the process interrupted
+repair. Stop this model B-0035 campaign; prioritize narrower demonstrated duties
+and a stronger worker for complex integration. Record actual post-edit diagnostic
+affordability and collision-free check preflight as concrete future prerequisites,
+without authorizing another generic framework increment or automatic rerun.

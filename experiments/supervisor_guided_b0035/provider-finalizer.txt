@@ -1,0 +1,23 @@
+"""Finalize provider rendering and token freeze without model generation."""
+import asyncio,json,sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).parent));import runner as x
+from devtools.models.interaction import ModelRequest,ModelSettings,Prompt,PromptMessage,ModelToolCall,ModelToolDefinition,InteractionSource
+from devtools.models.interaction.providers.llama_cpp_request_settings import LlamaCppRequestSettings
+async def main():
+ assert not (x.R/'.local/backlog/checkout-owner').exists()
+ assert json.loads((x.O/'service-authority.json').read_text())['human_response']=='+Yes'
+ p=x.C/'freeze-gptoss.json';f=json.loads(p.read_text());assert f['runner_sha256']==x.sha(x.O/'runner.py')
+ actual=await x.identity();prior=f['model']['qualification']
+ assert actual['artifact']==prior['artifact'] and actual['template_sha256']==prior['template_sha256'] and actual['context']==prior['context']==32768
+ q=f['request'];messages=tuple(PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**c) for c in m['tool_calls'])}) for m in q['prompt']['messages'])
+ request=ModelRequest(Prompt('', 'messages',messages),ModelSettings(**q['settings']),provider_settings=LlamaCppRequestSettings(**{k:v for k,v in q['provider_settings'].items() if k!='provider'}),tools=tuple(ModelToolDefinition(**t) for t in q['tools']))
+ assert x.r.s.plain(request)==q and x.r.request_bytes(request)==f['request_bytes']<=32768
+ interaction=x.r.s.LlamaCppInteraction(endpoint='http://127.0.0.1:8081',model='alternative-local',source=InteractionSource('supervisor-guided-preflight-only'))
+ assert interaction._request_payload(request)==f['payload']
+ rendered=await x.r.provider._post_json(interaction._endpoint,'/apply-template',f['payload'])
+ tokens=await interaction.count_input_tokens(request);assert tokens<=x.INPUT
+ x.save(x.C/'rendered-native.json',rendered)
+ f['historical_model_qualification']=f['model'];f['model']=actual;f['input_tokens_measured']=tokens;f['service_authority_sha256']=x.sha(x.C/'service-authority.json');f['ownership_sha256']=x.sha(x.C/'ownership.md');f['native_render_sha256']=x.sha(x.C/'rendered-native.json');f['finalized_before_inference']=str(x.Timestamp.now())
+ p.write_text(json.dumps(f,indent=2)+'\n');print(json.dumps(dict(bytes=f['request_bytes'],tokens=tokens,regions=len(f['host_disclosures']),native_template_verified=True)))
+asyncio.run(main())
