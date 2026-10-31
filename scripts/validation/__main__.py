@@ -12,8 +12,11 @@ from typing import Any
 import pytest
 
 from devtools.core.time import Stopwatch, Timestamp
+from devtools.resources.commands import CommandError, CommandTimeoutError
 from scripts.validate_development import pytest_arguments
-from scripts.validation.evidence import Observations, failure_kind, git, inputs, save
+from scripts.validation.evidence import git, inputs, save
+from scripts.validation.observation import Observations, failure_kind
+from scripts.validation.protected import run_protected
 from scripts.validation.selection import select
 
 
@@ -163,6 +166,13 @@ def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- finite operator modes
         "reuse_policy": "fresh-only; historical observations are not a new comprehensive pass",
         "status": "planned",
         "phases": [],
+        "environment_overrides": {
+            "COVERAGE_FILE": str(
+                args.output.with_suffix(args.output.suffix + ".coverage").absolute()
+            )
+        }
+        if args.mode == "comprehensive"
+        else {},
     }
     if not args.execute:
         save(args.output, json.dumps(report, indent=2))
@@ -174,10 +184,24 @@ def main() -> int:  # noqa: C901, PLR0912, PLR0915 -- finite operator modes
     )
     observations = Observations()
     watch = Stopwatch()
-    code = int(pytest.main([*arguments, "--durations=30"], plugins=[observations]))
+    infrastructure = None
+    try:
+        code = (
+            run_protected(root, args.output, arguments, observations)
+            if args.mode == "comprehensive"
+            else int(
+                pytest.main([*arguments, "--durations=30"], plugins=[observations])
+            )
+        )
+    except (CommandError, OSError, RuntimeError) as error:
+        code = 3
+        infrastructure = (
+            "timeout" if isinstance(error, CommandTimeoutError) else "infrastructure"
+        )
+        report["error"] = str(error)
     report.update(
         exit_code=code,
-        status=failure_kind(code, observations),
+        status=infrastructure or failure_kind(code, observations),
         seconds=watch.stop().total_seconds,
         phases=observations.phases,
         collection_errors=observations.collection_errors,

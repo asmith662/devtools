@@ -6,18 +6,16 @@ from __future__ import annotations
 
 import json
 import sys
-from typing import TYPE_CHECKING, Any
+from pathlib import Path
+from typing import Any
 
 import pytest
 
 from scripts.validation import __main__ as entry
 from scripts.validation import evidence
 from scripts.validation.__main__ import recovery
-from scripts.validation.evidence import Observations, failure_kind
+from scripts.validation.observation import Observations, failure_kind
 from scripts.validation.selection import imports, select
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 def fixture_tree(root: Path) -> None:
@@ -165,6 +163,11 @@ def test_comprehensive_failure_then_targeted_repair(
 
     monkeypatch.setattr(pytest, "main", run)
     monkeypatch.setattr(
+        entry,
+        "run_protected",
+        lambda _root, _output, args, observations: run(args, plugins=[observations]),
+    )
+    monkeypatch.setattr(
         sys,
         "argv",
         ["validation", "comprehensive", "--execute", "--output", ".local/full.json"],
@@ -207,3 +210,36 @@ def test_coding_protocol_contract_groups(tmp_path: Path) -> None:
         "tests/apps/qwen",
         "tests/scripts/backlog",
     }
+
+
+def test_protected_starts_coverage_before_imports(tmp_path: Path) -> None:
+    """Cover import-time statements through the actual fresh child boundary."""
+    from scripts.validation.protected import run_protected  # noqa: PLC0415
+
+    package = tmp_path / "tiny_validation_fixture.py"
+    package.write_text("VALUE = 1\n", encoding="utf-8")
+    test = tmp_path / "test_tiny.py"
+    test.write_text(
+        f"import sys\nsys.path.insert(0, {str(tmp_path)!r})\n"
+        "from tiny_validation_fixture import VALUE\n"
+        "def test_value():\n    assert VALUE == 1\n",
+        encoding="utf-8",
+    )
+    config = tmp_path / "pytest.ini"
+    config.write_text("[pytest]\n", encoding="utf-8")
+    observations = Observations()
+    result = run_protected(
+        Path.cwd(),
+        tmp_path / "result.json",
+        [
+            str(test),
+            "-c",
+            str(config),
+            "--cov=tiny_validation_fixture",
+            "--cov-fail-under=100",
+            "--cov-report=term",
+        ],
+        observations,
+    )
+    assert result == 0
+    assert observations.phases[1]["outcome"] == "passed"

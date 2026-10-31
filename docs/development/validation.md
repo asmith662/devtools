@@ -51,6 +51,11 @@ retries. A terminated process may leave only its intent: that is unknown, not
 passing evidence. Run comprehensive validation on the final committed stable
 candidate. If it fails, repair using focused tests before another final run.
 
+Comprehensive mode starts a fresh managed Python interpreter so framework import
+statements are instrumented from first import. Coverage data and child output
+are retained beside the unique receipt; `COVERAGE_FILE` is explicitly redirected
+there to prevent nested coverage checks from replacing another invocation's data.
+
 Receipts retain argv, changed paths, selection reasons/uncertainty, phase outcomes,
 failure text, setup/call/teardown durations, native exit, wall duration, Git HEAD,
 index blobs, physical SHA256 inputs, Python/platform, installed distributions and
