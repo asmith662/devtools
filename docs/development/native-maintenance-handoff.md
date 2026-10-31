@@ -148,8 +148,22 @@ Development uses the [maintained validation interface](validation.md): inspect
 impact, select relevant native/host/Context/Tools/Checkout/legacy contracts, save
 failures, then rerun the failed IDs and correction group. The final unchanged
 protected profile remains mandatory for publication; no coverage or acceptance
-policy is weakened. Exact commands, elapsed times, final protected inputs and
-publication evidence are recorded in the delivery receipt.
+policy is weakened. The [delivery receipt](../research/code-audit/native-maintenance-20261031.json)
+retains exact commands, selections, elapsed times, final protected inputs and an
+actual scripted episode through separately authorized installation.
+
+The final protected validation executed once against executable commit
+`a48b058f2abb1459b5cdade444cbbaa4801eebf3`: 3,987 passed, two skipped,
+100% configured production line and branch coverage, 2,035.03 seconds including
+command overhead. The maintained native scenarios contribute 21 tests. During
+development, five failed scoped invocations retained their original results and
+were diagnosed without restarting comprehensive validation. The 90-test impact
+run took 358.72 seconds with 89 passes and one timeout-test assertion failure.
+After correcting that assertion, five relevant uncertainty tests passed in
+67.74 seconds. The observed duration difference is 290.98 seconds (about
+4m 51s) versus repeating that broader selection; this is a counterfactual scope
+comparison, not a controlled benchmark. The failed broader result remains failed;
+the final protected result provides the complete successful validation.
 
 Automatic planning/task selection, generic semantic obligation resolution, worker
 routing, automatic reviewer execution, durable model restart and recovery,
