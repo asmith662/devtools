@@ -1,0 +1,18 @@
+import importlib,json,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+module=importlib.import_module('devtools.context.python.imports.members')
+text=Path('.local/intake-live/private-acceptance.txt').read_text(encoding='utf-8')
+before,after=text.split('\nfor body in (',1)
+space={'module':module};exec(before,space)
+original=space['inspect_case'];rows=[]
+def observed(body,expected,**kw):
+ try:original(body,expected,**kw)
+ except AssertionError as error:rows.append({'body':body,'expected':expected,'passed':False,'error':str(error)})
+ else:rows.append({'body':body,'expected':expected,'passed':True})
+space['inspect_case']=observed
+exec('for body in ('+after,space)
+control_bodies=[('def helper():\n    pass\n','resolved'),('async def helper():\n    pass\n','resolved'),('if enabled:\n    def helper():\n        pass\n','resolved'),('class Other:\n    def method(self):\n        pass\n','resolved'),('class Other:\n    pass\n','resolved')]
+for body,expected in control_bodies:observed(body,expected)
+Path('.local/intake-live/private-baseline.json').write_text(json.dumps(rows,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'passed':sum(r['passed'] for r in rows),'failed':sum(not r['passed'] for r in rows),'rows':rows},indent=2))

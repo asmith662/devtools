@@ -1,0 +1,108 @@
+{
+  "at": "2026-10-31T23:25:04.359228+00:00",
+  "container_id": "61a6a7f977910ce5f7c03e6f1d33f19c51e6e7ea1cc1ae065941183cced85348",
+  "image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+  "started_at": "2026-10-31T00:31:30.156317295Z",
+  "command": [
+    "--model",
+    "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--alias",
+    "qwen38-local",
+    "--ctx-size",
+    "32768",
+    "--n-gpu-layers",
+    "all",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--parallel",
+    "1"
+  ],
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--unsloth--Qwen3.8-27B-GGUF\\blobs\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "Destination": "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "health": {
+    "status": "ok"
+  },
+  "models": {
+    "models": [
+      {
+        "name": "qwen38-local",
+        "model": "qwen38-local",
+        "modified_at": "",
+        "size": "",
+        "digest": "",
+        "type": "model",
+        "description": "",
+        "tags": [
+          ""
+        ],
+        "capabilities": [
+          "completion"
+        ],
+        "parameters": "",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "",
+          "families": [
+            ""
+          ],
+          "parameter_size": "",
+          "quantization_level": ""
+        }
+      }
+    ],
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen38-local",
+        "aliases": [
+          "qwen38-local"
+        ],
+        "tags": [],
+        "object": "model",
+        "created": 1793489104,
+        "owned_by": "llamacpp",
+        "meta": {
+          "vocab_type": true,
+          "n_vocab": 248320,
+          "n_ctx": 32768,
+          "n_ctx_train": 262144,
+          "n_embd": 5120,
+          "n_params": 27320697856,
+          "size": 14241849344,
+          "ftype": "IQ4_XS - 4.25 bpw"
+        }
+      }
+    ]
+  },
+  "context_tokens": 32768,
+  "parallel": 1,
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0
+  },
+  "chat_template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "build": "b10868-304665fe7",
+  "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+  "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+  "qualification": "Same running container/image/command/read-only artifact mount and exact serving props as the prior physically hashed qualification. No download, restart, settings change or acting inference. Native v1 portable settings only; unchanged non-thinking sampling differs from recommended instruct guidance and is an explicit experimental limitation."
+}

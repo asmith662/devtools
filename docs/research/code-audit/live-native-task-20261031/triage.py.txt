@@ -1,0 +1,41 @@
+import json,sys,tempfile,hashlib
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from devtools.context import Repository,RepositoryResourceAddress,observe_repository_resources
+from devtools.core.paths import resolve_path
+from devtools.context.python.modules import PythonModuleRoot,interpret_python_module_resources,define_python_module_interpretation_universe
+from devtools.context.python.imports import derive_python_import_declarations,resolve_python_imported_member
+from devtools.core.time import Timestamp,Stopwatch
+from scripts.backlog.intake import Intake
+from scripts.validation.evidence import inputs,git
+R=Path.cwd();O=R/'.local/intake-live';timer=Stopwatch();before=inputs(R)
+assert not (R/'.local/backlog/checkout-owner').exists()
+prior=json.loads((R/'docs/research/code-audit/native-review-20261031.json').read_text(encoding='utf-8'))
+assert before['sha256']==prior['protected_input_sha256']
+auth={'head':before['head'],'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'untracked':git(R,'ls-files','--others','--exclude-standard','-z'),'protected_inputs':before['sha256'],'protected_git_blobs':before['git_blobs'],'forensics':json.loads((R/'.local/native-review/authentication.json').read_text(encoding='utf-8'))['forensic_hashes']}
+(O/'authentication.json').write_text(json.dumps(auth,indent=2),encoding='utf-8')
+cases={
+ 'plain':('from .impl import f\n','resolved'),
+ 'unrelated_function_local_import':('from .impl import f\ndef helper():\n    from .other import f\n','resolved'),
+ 'unrelated_async_local_import':('from .impl import f\nasync def helper():\n    from .other import f\n','resolved'),
+ 'unrelated_class_local_import':('from .impl import f\nclass Helper:\n    from .other import f\n','resolved'),
+ 'module_conditional_import':('if enabled:\n    from .impl import f\n','unsupported'),
+ 'competing_capture':('from .impl import f\nmatch 0:\n    case f:\n        pass\n','unsupported'),
+}
+rows=[]
+with tempfile.TemporaryDirectory(prefix='devtools-live-triage-') as work:
+ for name,(facade,expected) in cases.items():
+  root=Path(work)/name;root.mkdir()
+  files={'consumer.py':'from package import f\n','package/__init__.py':facade,'package/impl.py':'def f():\n    return 7\n'}
+  for p,text in files.items():
+   path=root/p;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text,encoding='utf-8')
+  snapshot=observe_repository_resources(repository=Repository.new(),root=resolve_path(root),addresses=tuple(RepositoryResourceAddress(p) for p in files),maximum_resource_bytes=4096)
+  source=derive_python_import_declarations(snapshot,resource_address=RepositoryResourceAddress('consumer.py'))
+  interpreted=interpret_python_module_resources(snapshot,module_root=PythonModuleRoot('.'),resource_addresses=tuple(r.address for r in snapshot.resources)).interpretations
+  universe=define_python_module_interpretation_universe(repository_id=snapshot.repository_id,interpretations=interpreted)
+  result=resolve_python_imported_member(snapshot,source,source.declarations[0],module_universe=universe)
+  rows.append({'name':name,'expected':expected,'actual':result.outcome.value,'reason':result.unsupported_reason.value if result.unsupported_reason else None,'target':result.target_declaration.support.resource_address.value if result.target_declaration else None,'source':files,'matches':expected==result.outcome.value,'result_identity':result.identity})
+i=Intake(R);q=i.queue();p=i.get('ff4c4110-9c3b-480d-8f0f-77cf4610b700')
+result={'at':str(Timestamp.now()),'starting_main':before['head'],'source':'src/devtools/context/python/imports/members.py','source_sha256':hashlib.sha256((R/'src/devtools/context/python/imports/members.py').read_bytes()).hexdigest(),'original_proposal':p,'queue_counts':{state:sum(v['state']==state for v in q['proposals']) for state in {'PENDING_REVIEW','APPROVED'}},'queue_errors':q['errors'],'cases':rows,'seconds':timer.stop().total_seconds,'model_calls':0}
+(O/'triage.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'source':result['source'],'source_bytes':(R/result['source']).stat().st_size,'counts':result['queue_counts'],'cases':[{k:r[k] for k in ('name','actual','expected','reason','matches')} for r in rows],'seconds':result['seconds']},indent=2))

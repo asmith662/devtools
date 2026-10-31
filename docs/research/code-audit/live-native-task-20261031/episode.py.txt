@@ -1,0 +1,98 @@
+"""One B-0049 experiment composition of existing production owners, never a loop.
+
+Run a phase only once in a real operator terminal. All authority callbacks use
+the existing native default-No prompt. No stdin injection, model-written host
+consent, automatic redispatch, candidate installation or publication is provided.
+"""
+import asyncio, hashlib, json, sys, traceback, urllib.request
+from dataclasses import asdict
+from pathlib import Path
+R=Path.cwd(); O=R/'.local/intake-live'; sys.path.insert(0,str(R))
+from devtools.core.time import Duration,Stopwatch,Timestamp
+from devtools.models.interaction import InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
+from scripts.backlog.native.cli import confirm
+from scripts.backlog.work import WorkCycle
+
+ITEM='B-0049'; cycle=WorkCycle(R); phase=sys.argv[1]
+service=json.loads((O/'current-service.json').read_text(encoding='utf-8'))
+task=json.loads((O/'task.json').read_text(encoding='utf-8'))
+
+def seal(name,value):
+ p=O/name
+ assert not p.exists(),f'Existing {name}; no replay or overwrite'
+ p.write_text(json.dumps(value,indent=2,default=str)+'\n',encoding='utf-8')
+
+def consent(value):
+ return confirm({
+  'experiment':'First and only B-0049 live episode',
+  'service':service,
+  'coordinate':'This decision attests canonical checkout availability and exclusive source mutation for this episode; provider single sequence available for serialized use. Inspector remains independent and untouched. Do not approve if another session currently needs canonical checkout or provider.',
+  'sampling_qualification':'Native v1 prohibits provider-setting extensions. Explicitly approve unchanged actual server sampling, portable max output 2048 and thinking disabled; no default/settings/service changes. Tokenizer fit is checked on each actual request before send. No optimality claim.',
+  'boundary':'At most one coding dispatch and one independent eligible review dispatch. Temporary ordinary feature checkout is governed by existing Checkout. No install, merge, candidate push, backlog closure, services mutation or uncertain-operation replay.',
+  'decision':value})
+
+class Observation:
+ def __init__(self,label): self.label=label; self.count=0
+ def interaction_completed(self,observation):
+  self.count+=1
+  seal(f'{self.label}-provider-{self.count:02d}.json',{
+   'interaction_id':str(observation.interaction_id),
+   'provider':observation.provider,'source':str(observation.source),
+   'started_at':str(observation.started_at),'completed_at':str(observation.completed_at),
+   'provider_response_id':observation.provider_response_id,'provider_model':observation.provider_model,
+   'usage':asdict(observation.response.usage) if observation.response.usage else None,
+   'termination':str(observation.response.termination),
+   'qualification':'Actual supported adapter observation; full normalized requests/responses are retained by native WorkCycle capture.'})
+
+class Qualified:
+ """Transparent fit/currentness admission, no request rewriting or retries."""
+ def __init__(self,label,source):
+  self.source=InteractionSource(source); self.label=label; self.calls=0
+  self.adapter=LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=self.source,observer=Observation(label))
+ async def send(self,request):
+  self.calls+=1; timer=Stopwatch()
+  tokens=await self.adapter.count_input_tokens(request)
+  assert tokens+request.settings.maximum_output_tokens+256<=service['context_tokens'],'Actual request exceeds qualified Context fit; no inference entered'
+  if self.label=='coder':
+   assignment=cycle.native.record(ITEM,'assignment')
+   await cycle.native.validate(assignment,cycle._checkout)
+   cycle.native.authority(assignment,cycle.native.record(ITEM,'authorization'))
+  else:
+   packet=await cycle.native.reviewer.current(ITEM)
+   cycle.native.reviewer.authority(ITEM,packet)
+  seal(f'{self.label}-fit-{self.calls:02d}.json',{'at':str(Timestamp.now()),'input_tokens':tokens,'maximum_output_tokens':request.settings.maximum_output_tokens,'safety_tokens':256,'context_tokens':service['context_tokens'],'tokenizer_seconds':timer.stop().total_seconds,'request_sha256':hashlib.sha256(json.dumps(asdict(request),sort_keys=True,default=str).encode()).hexdigest(),'sampling':'unchanged approved service defaults','provider_settings':None,'continuation':None,'effect':'tokenizer only so far; model send follows once without retry'})
+  print(f'{self.label}: entering live request {self.calls}, {tokens} input tokens',flush=True)
+  return await self.adapter.send(request)
+
+async def main():
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ if phase=='coder':
+  assert cycle.native.record(ITEM,'assignment')['task']==task
+  await cycle.native.authorize(ITEM,reference='human-interactive-native-coder-b0049-20261031',expires=Timestamp.now()+Duration.minutes(45),authorize=consent)
+  result=await cycle.native.execute(ITEM,interaction=Qualified('coder',task['worker']['source']),profile=task['worker']['profile'],authorize=consent)
+  print(json.dumps({'disposition':result['disposition'],'seconds':result['seconds'],'facts':{k:result['facts'].get(k) for k in ('model_calls','proposals','acquisitions','coding_disposition','error','restored','acceptance')}},indent=2),flush=True)
+  return {'result_sha256':result['sha256'],'disposition':result['disposition']}
+ if phase=='review':
+  assert cycle.native.record(ITEM,'result')['disposition']=='REVIEW_CANDIDATE'
+  policy={'actor':'qwen38-independent-reviewer-b0049-20261031','source':'llama.cpp/qwen38-local/native-reviewer-b0049','profile':'qwen38-27b-ud-iq4-xs-native-portable-v1',
+   'independence':{'reference':'host-provisioned-fresh-stateless-inputs-b0049; no coder conversation, reasoning, private oracle or reference implementation; shared model family is a limitation','session':'b0049-review-session-1-separate-adapter-and-explicit-messages','implementation_participant':False,'privileged_reference_access':False},
+   'read_paths':[task['source'],*task['read_paths'],*task['tests']],
+   'settings':{'maximum_output_tokens':2048,'thinking_enabled':False},
+   'budgets':{'model_calls':3,'reads':2,'call_seconds':120,'wall_seconds':360,'prompt_bytes':196608,'response_bytes':65536,'capture_bytes':1048576}}
+  await cycle.native.reviewer.prepare(ITEM,reviewer=policy)
+  await cycle.native.reviewer.authorize(ITEM,reference='human-interactive-native-reviewer-b0049-20261031',expires=Timestamp.now()+Duration.minutes(45),authorize=consent)
+  proposal=await cycle.native.reviewer.execute(ITEM,interaction=Qualified('reviewer',policy['source']),profile=policy['profile'],authorize=consent)
+  print(json.dumps(proposal,indent=2),flush=True)
+  return {'proposal_sha256':proposal['sha256'],'disposition':proposal['disposition']}
+ raise ValueError('Only coder or review; no integration or replay operation')
+
+if __name__=='__main__':
+ watch=Stopwatch()
+ try: outcome=asyncio.run(main())
+ except BaseException as error:
+  outcome={'error':type(error).__name__+': '+str(error),'qualification':'No automatic retry. Inspect actual native dispatch/observations/custody before any further action.'}
+  traceback.print_exc()
+  seal(phase+'-terminal-outcome.json',{'at':str(Timestamp.now()),'seconds':watch.stop().total_seconds,**outcome})
+  raise
+ else: seal(phase+'-terminal-outcome.json',{'at':str(Timestamp.now()),'seconds':watch.stop().total_seconds,**outcome})

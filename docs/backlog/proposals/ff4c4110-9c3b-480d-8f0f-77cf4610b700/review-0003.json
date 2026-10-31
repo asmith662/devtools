@@ -1,0 +1,54 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "proposal_sha256": "2a234c846d5f33ff7d9ec8f7965b2b21bb8d5c3b3a3203819a4852e8a5a866f4",
+  "previous": "92638a0accbf1d7d19ad8a8e6613367b18f4a7e6d9ab726b09debc643398808d",
+  "at": "2026-10-31T23:19:09.399440+00:00",
+  "decision": "APPROVED",
+  "reviewer": "recoveryadmin",
+  "decision_reference": "human-interactive-intake-live-facade-20261031",
+  "rationale": "Approve only the current residual local-namespace import false negative documented in .local/intake-live/recommendation.md and triage.json, with the frozen public and private acceptance criteria. A valid direct module reexport must remain resolved when unrelated function, async-function or class namespaces import the same local name. Preserve conservative module-scope conditional/try imports, competing bindings, target identity and all existing regressions. Source edit scope is only src/devtools/context/python/imports/members.py. The original proposal and prior delivered pattern/handler repair remain historical; broader pressure is not erased or closed. Baseline has three public and six private expected failures with passing controls. This is backlog-only approval/publication, not coding, model, review, integration, installation or closeout authority. Exact later execution grants remain separate.\n",
+  "duplicates": [
+    {
+      "reference": "06c3809b-f80c-461d-9585-2d4a973f8252",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "15bae0a6-b95d-417c-98fa-d75a8aff29d4",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "1d0ed8bb-e38e-44ea-8af3-530c2516981a",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "39c6663a-bab7-43ed-8166-82e780a75d05",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "88246171-d102-4b62-93d7-03c1e19f8a7b",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+      "reason": "title overlap or shared resource"
+    },
+    {
+      "reference": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+      "reason": "title overlap or shared resource"
+    }
+  ],
+  "duplicate_disposition": "Same original pressure; prior competing-binding correction is delivered. This is the separately reproduced local-import scope residual, not a duplicate repair replay.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": {
+    "id": "B-0049",
+    "path": "items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md",
+    "text": "# B-0049 \u2014 Prevent one-facade import fallback from overriding competing pattern or handler bindings\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: context\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/ff4c4110-9c3b-480d-8f0f-77cf4610b700/proposal.json\n- intake_review: ../proposals/ff4c4110-9c3b-480d-8f0f-77cf4610b700/review-0003.json\n\n## Problem / value\n\nP1 maintained RI false-positive References. With actual observed target.py defining f, facade.py importing f then binding f through MatchAs, MatchStar, MatchMapping.rest or ExceptHandler.name, corrected direct module lookup refuses unique declaration truth, but resolve_python_imported_member returns RESOLVED. references.declarations.resolution._resolve overrides the direct refusal with ONE_FACADE and emits a direct-call Reference to target.f. Real ContextTools source_relationships dispatch also exposes the incorrect target for capture and handler cases. Six independently authored source fixtures include valid plain import and refusing ordinary-assignment controls. No source fixture executed, model invoked or edit-authority bypass established.\n\n## Proposed benefit\n\nBounded owner: one-facade imported-member resolution and its Reference fallback, separate from the delivered direct lookup/module-local/base correction. Fail closed on genuine competing bindings and preserve qualified support/reasons. Reuse the maintained non-Name binding extraction only with correct facade scope/traversal; never blindly scan nested local scopes. Acceptance: real retained-source independent regressions for simple/star/mapping-rest captures and exception aliases after facade import; unrelated/local names, unchanged sync/async facade and ordinary assignments remain correct; before/after/lifetime differences remain conservative rather than interpreted at runtime. No fallback may upgrade an authenticated competing-binding refusal into a positive Reference. Cover complete resolver-to-Reference-to-ContextTools ToolRunner composition with literal target/refusal expectations, stale/foreign inputs and stable provenance. Preserve syntactic declaration selection and edit authority. Run focused regressions, Ruff/format, strict mypy and final-tree protected 100% branch coverage before normal PR promotion.\n\n## Uncertainty / unresolved semantics\n\nObserved at main457def and actual maintained APIs; synthetic tiny source repositories establish production code-path correctness failure, not observed historical corruption or autonomous engineering harm. No source fix in this audit: separate bounded repair requires permanent regressions/full gate. Pattern capture and exception alias lifetimes differ; do not erase those distinctions or build a general scope evaluator. Target-module rebinding and other unsupported forms require explicit inspection during the bounded repair, not an assertion that they are already fixed. Original proposal16b27e74 remains implemented and merged for its three-owner scope; this is a distinct facade/fallback responsibility not included in that patch.\n\n## Discovery / parent\n\n{'kind': 'research', 'reference': 'docs/research/ri-configuration-role-closure-audit.md'}\nB-0002\n\n## Evidence\n\ndocs/research/ri-configuration-role-closure-audit.md\ndocs/research/code-audit/ri-config-role-probes.json\n\n## Affected resources\n\nsrc/devtools/context/python/imports/members.py\nsrc/devtools/context/python/references/declarations/resolution.py\nsrc/devtools/context/python/modules/bindings.py\ntests/context/python/imports/test_members.py\ntests/context/python/references/declarations/test_analysis.py\napps/qwen/context_tools.py\ntests/apps/qwen/test_context_tools.py\n\n## Possible dependencies\n\n16b27e74-f553-40a8-b342-c3458a7b7a01\nB-0008\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+    "row": "| [B-0049](items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md) | Prevent one-facade import fallback from overriding competing pattern or handler bindings | BACKLOG | context |"
+  },
+  "sha256": "e3f293a45645f8300f2c7d871520b8c4aa74d4d2d300afa5e36d206de2b49628"
+}

@@ -1,0 +1,47 @@
+import tempfile
+from pathlib import Path
+from devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources
+from devtools.core.paths import resolve_path
+from devtools.context.python.imports import derive_python_import_declarations
+from devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources, define_python_module_interpretation_universe
+
+def inspect_case(extra, expected, *, alias=False, target="def answer():\n    return 11\n"):
+    with tempfile.TemporaryDirectory(prefix="native-facade-withheld-") as directory:
+        root = Path(directory)
+        import_line = "from .implementation import answer as chosen\n" if alias else "from .implementation import answer\n"
+        source_name = "chosen" if alias else "answer"
+        files = {"use.py": f"from facade import {source_name}\n", "facade/__init__.py": import_line + extra, "facade/implementation.py": target}
+        for address, content in files.items():
+            path = root / address
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
+        snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=tuple(RepositoryResourceAddress(a) for a in files), maximum_resource_bytes=8192)
+        declarations = derive_python_import_declarations(snapshot, resource_address=RepositoryResourceAddress("use.py"))
+        meanings = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot("."), resource_addresses=tuple(r.address for r in snapshot.resources)).interpretations
+        universe = define_python_module_interpretation_universe(repository_id=snapshot.repository_id, interpretations=meanings)
+        resolved = module.resolve_python_imported_member(snapshot, declarations, declarations.declarations[0], module_universe=universe)
+        assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)
+        if expected == "resolved":
+            assert resolved.target_declaration.declared_name == "answer"
+            assert resolved.target_declaration.support.resource_address.value == "facade/implementation.py"
+            assert resolved.source_analysis.snapshot_id == snapshot.id
+            assert resolved.facade.resource.address.value == "facade/__init__.py"
+        else:
+            assert resolved.target_declaration is None
+
+for body in (
+    "def helper():\n    if enabled:\n        from .elsewhere import answer\n",
+    "async def helper():\n    try:\n        from .elsewhere import answer\n    except ImportError:\n        pass\n",
+    "if enabled:\n    def helper():\n        from .elsewhere import answer\n",
+    "class Other:\n    def method(self):\n        from .elsewhere import answer\n",
+    "class Other:\n    from .elsewhere import answer\n",
+):
+    inspect_case(body, "resolved")
+inspect_case("def helper():\n    from .elsewhere import chosen\n", "resolved", alias=True)
+inspect_case("if enabled:\n    from .elsewhere import answer\n", "unsupported")
+inspect_case("try:\n    from .elsewhere import answer\nexcept ImportError:\n    pass\n", "unsupported")
+inspect_case("if enabled:\n    from .elsewhere import *\n", "unsupported")
+inspect_case("class answer:\n    pass\n", "unsupported")
+inspect_case("def answer():\n    pass\n", "unsupported")
+inspect_case("try:\n    pass\nexcept ValueError as answer:\n    pass\n", "unsupported")
+inspect_case("", "resolved", target="async def answer():\n    return 11\n")

@@ -229,6 +229,7 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | BACKLOG | models |
 | [B-0047](items/B-0047-protected-development-validation-profile.md) | Protected development validation profile | VALIDATED | evaluation |
 | [B-0048](items/B-0048-restore-python-3-12-json-file-model-compatibility.md) | Restore Python 3.12 JSON file-model compatibility | BACKLOG | resources |
+| [B-0049](items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md) | Prevent one-facade import fallback from overriding competing pattern or handler bindings | BACKLOG | context |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.
 

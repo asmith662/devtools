@@ -1,0 +1,187 @@
+{
+  "schema": "development-validation-v1",
+  "mode": "targeted",
+  "selection": {
+    "changed": [
+      "tests/live_native_facade_public.py"
+    ],
+    "groups": {
+      "tests/live_native_facade_public.py": [
+        "changed test: tests/live_native_facade_public.py",
+        "static reverse-import consumer"
+      ]
+    },
+    "uncertainty": [
+      "tests/live_native_facade_public.py: new file/layout needs owner review"
+    ],
+    "assurance": "bounded impact argument; omitted tests are not passed",
+    "comprehensive_required_for_publication": true
+  },
+  "argv": [
+    "tests/live_native_facade_public.py",
+    "--no-cov",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+  ],
+  "started_at": "2026-10-31T23:16:06.724064+00:00",
+  "previous": null,
+  "correction": "",
+  "reuse_policy": "fresh-only; historical observations are not a new comprehensive pass",
+  "status": "test-or-coverage-failure",
+  "phases": [
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004382200073450804,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.0041293001268059015,
+      "failure": "tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-12788/test_local_namespace_import_do0')\nlocal = 'def helper():\\n    from .other import f\\n'\n\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\n>       assert result.outcome.value == \"resolved\"\nE       AssertionError: assert 'unsupported' == 'resolved'\nE         \nE         - resolved\nE         + unsupported\n\ntests\\live_native_facade_public.py:26: AssertionError"
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00015740003436803818,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010609999299049377,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.005817800061777234,
+      "failure": "tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-12788/test_local_namespace_import_do1')\nlocal = 'async def helper():\\n    from .other import f\\n'\n\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\n>       assert result.outcome.value == \"resolved\"\nE       AssertionError: assert 'unsupported' == 'resolved'\nE         \nE         - resolved\nE         + unsupported\n\ntests\\live_native_facade_public.py:26: AssertionError"
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00012090010568499565,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009206999093294144,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.0037944000214338303,
+      "failure": "tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-12788/test_local_namespace_import_do2')\nlocal = 'class Helper:\\n    from .other import f\\n'\n\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\n>       assert result.outcome.value == \"resolved\"\nE       AssertionError: assert 'unsupported' == 'resolved'\nE         \nE         - resolved\nE         + unsupported\n\ntests\\live_native_facade_public.py:26: AssertionError"
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00011129979975521564,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\n-resolved]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008994000963866711,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\n-resolved]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0034300999250262976,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\n-resolved]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 9.760004468262196e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[if enabled:\\n    from .impl import f\\n-unsupported]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0011949001345783472,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[if enabled:\\n    from .impl import f\\n-unsupported]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.003219099948182702,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[if enabled:\\n    from .impl import f\\n-unsupported]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 9.349989704787731e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nmatch 0:\\n    case f:\\n        pass\\n-unsupported]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009397000540047884,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nmatch 0:\\n    case f:\\n        pass\\n-unsupported]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0031528000254184008,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nmatch 0:\\n    case f:\\n        pass\\n-unsupported]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 9.360001422464848e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nf = 9\\n-unsupported]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010822999756783247,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nf = 9\\n-unsupported]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.018931400030851364,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_facade_public.py::test_existing_module_binding_guards_remain[from .impl import f\\nf = 9\\n-unsupported]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00012280000373721123,
+      "failure": null
+    }
+  ],
+  "environment_overrides": {},
+  "exit_code": 1,
+  "seconds": 7.387968,
+  "collection_errors": [],
+  "finished_at": "2026-10-31T23:16:14.118415+00:00",
+  "inputs_unchanged": true,
+  "original_receipt_sha256": "09a9b0f39fe433f2e8ab6e9b7ec1e783607add8d22b36553134f1c7a40fb2779",
+  "input_receipt_qualification": "Full local receipt retained; durable copy omits repetitive repository-wide input inventories. Exact starting production input map remains in prior authenticated protected receipts."
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "body": "def helper():\n    if enabled:\n        from .elsewhere import answer\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('def helper():\\n    if enabled:\\n        from .elsewhere import answer\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "async def helper():\n    try:\n        from .elsewhere import answer\n    except ImportError:\n        pass\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('async def helper():\\n    try:\\n        from .elsewhere import answer\\n    except ImportError:\\n        pass\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "if enabled:\n    def helper():\n        from .elsewhere import answer\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "class Other:\n    def method(self):\n        from .elsewhere import answer\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('class Other:\\n    def method(self):\\n        from .elsewhere import answer\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "class Other:\n    from .elsewhere import answer\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('class Other:\\n    from .elsewhere import answer\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "def helper():\n    from .elsewhere import chosen\n",
+    "expected": "resolved",
+    "passed": false,
+    "error": "('def helper():\\n    from .elsewhere import chosen\\n', 'unsupported', 'resolved')"
+  },
+  {
+    "body": "if enabled:\n    from .elsewhere import answer\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "try:\n    from .elsewhere import answer\nexcept ImportError:\n    pass\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "if enabled:\n    from .elsewhere import *\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "class answer:\n    pass\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "def answer():\n    pass\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "try:\n    pass\nexcept ValueError as answer:\n    pass\n",
+    "expected": "unsupported",
+    "passed": true
+  },
+  {
+    "body": "",
+    "expected": "resolved",
+    "passed": true
+  },
+  {
+    "body": "def helper():\n    pass\n",
+    "expected": "resolved",
+    "passed": true
+  },
+  {
+    "body": "async def helper():\n    pass\n",
+    "expected": "resolved",
+    "passed": true
+  },
+  {
+    "body": "if enabled:\n    def helper():\n        pass\n",
+    "expected": "resolved",
+    "passed": true
+  },
+  {
+    "body": "class Other:\n    def method(self):\n        pass\n",
+    "expected": "resolved",
+    "passed": true
+  },
+  {
+    "body": "class Other:\n    pass\n",
+    "expected": "resolved",
+    "passed": true
+  }
+]

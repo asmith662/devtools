@@ -1,0 +1,36 @@
+"""Frozen public diagnostics for the supervised facade-scope episode only."""
+from pathlib import Path
+import pytest
+from devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources
+from devtools.core.paths import resolve_path
+from devtools.context.python.imports import derive_python_import_declarations, resolve_python_imported_member
+from devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources, define_python_module_interpretation_universe
+
+
+def observe_result(tmp_path: Path, facade: str):
+    files = {"consumer.py": "from package import f\n", "package/__init__.py": facade, "package/impl.py": "def f():\n    return 7\n"}
+    for name, content in files.items():
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(tmp_path), addresses=tuple(RepositoryResourceAddress(p) for p in files), maximum_resource_bytes=4096)
+    analysis = derive_python_import_declarations(snapshot, resource_address=RepositoryResourceAddress("consumer.py"))
+    interpretations = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot("."), resource_addresses=tuple(r.address for r in snapshot.resources)).interpretations
+    universe = define_python_module_interpretation_universe(repository_id=snapshot.repository_id, interpretations=interpretations)
+    return resolve_python_imported_member(snapshot, analysis, analysis.declarations[0], module_universe=universe)
+
+
+@pytest.mark.parametrize("local", ["def helper():\n    from .other import f\n", "async def helper():\n    from .other import f\n", "class Helper:\n    from .other import f\n"])
+def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):
+    result = observe_result(tmp_path, "from .impl import f\n" + local)
+    assert result.outcome.value == "resolved"
+    assert result.target_declaration is not None
+    assert result.target_declaration.support.resource_address.value == "package/impl.py"
+
+
+@pytest.mark.parametrize("facade,expected", [("from .impl import f\n", "resolved"), ("if enabled:\n    from .impl import f\n", "unsupported"), ("from .impl import f\nmatch 0:\n    case f:\n        pass\n", "unsupported"), ("from .impl import f\nf = 9\n", "unsupported")])
+def test_existing_module_binding_guards_remain(tmp_path, facade, expected):
+    result = observe_result(tmp_path, facade)
+    assert result.outcome.value == expected
+    if expected != "resolved":
+        assert result.target_declaration is None
