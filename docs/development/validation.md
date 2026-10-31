@@ -5,6 +5,70 @@
 > Devtools source-tree copies. The normal protected profile applies unchanged.
 
 
+## Everyday development and failure recovery
+
+Use `uv run python -m scripts.validation` with an explicit mode and a fresh
+`--output .local/validation/<name>.json`. Without `--execute`, it saves a plan.
+No missing selection ever defaults to comprehensive testing.
+
+| Mode | Example arguments after the command | Purpose |
+| --- | --- | --- |
+| targeted | `targeted --test tests/core --execute --output .local/validation/core.json` | Explicit tests or inferred owning tests, without coverage |
+| impact | `impact --base HEAD --output .local/validation/impact.json` | Explain changed paths, owning packages and static consumers |
+| recover | `recover --previous .local/validation/core.json --correction "fixed boundary" --test tests/core --execute --output .local/validation/repair.json` | Failed IDs plus correction impact; original result retained |
+| comprehensive | `comprehensive --execute --output .local/validation/final.json` | Exact protected profile, with phase timing and input receipt |
+
+Selections use current Python AST imports, transitive reverse import consumers,
+whole owning test packages and declared coding/Tool/Checkout integration groups.
+They do not use lexical similarity or retrieval ranking. This operational
+heuristic avoids building RI indexes: RI's qualified static facts also cannot
+establish runtime dependency closure. There is no historical per-test coverage
+context map to authorize finer selection. Changes include the base-to-working
+tree diff (including index), deleted paths and executable untracked files;
+`--changed` adds declared paths for scenario previews. Renames are treated as
+deletion plus addition. Public facades, fixtures, non-Python configuration,
+dependencies, missing owners and dynamic execution produce explicit uncertainty.
+Automatic uncertain execution is refused. Review the plan and supply explicit
+`--test` groups or deliberately choose comprehensive validation. Explicit groups
+remain local checks and do not resolve uncertainty or authorize publication.
+
+Static analysis cannot prove monkeypatch, reflection, subprocess, plugin or
+runtime-configuration dependencies. Maintainers must include relevant contracts
+and broaden uncertain or architectural changes. Package/layout/global-fixture,
+shared protocol and validation-policy changes require the final protected gate.
+All ordinary final publications still require that gate; this amendment changes
+the development loop, not release assurance. WorkCycle and integration's fixed
+validators and fresh-only acceptance remain unchanged.
+
+After failure, retain the original receipt and inspect phase failures. Assertion
+and fixture failures have node IDs; collection, configuration, interruption,
+internal errors and empty selection are distinguished. Exit 1 without a failed
+phase can mean the coverage gate failed. Diagnose those conditions and explicitly
+select the necessary group; do not pretend they are assertion failures. Name the
+actual correction or new diagnostic purpose, rerun failed IDs and correction
+impact, then broaden only for a concrete reason. The tool never automatically
+retries. A terminated process may leave only its intent: that is unknown, not
+passing evidence. Run comprehensive validation on the final committed stable
+candidate. If it fails, repair using focused tests before another final run.
+
+Receipts retain argv, changed paths, selection reasons/uncertainty, phase outcomes,
+failure text, setup/call/teardown durations, native exit, wall duration, Git HEAD,
+index blobs, physical SHA256 inputs, Python/platform, installed distributions and
+an inherited-environment fingerprint (values are not disclosed). Before/after
+comparison rejects input drift. Tracked files outside executable/configuration
+scope, ignored configuration, services and external inputs are not authenticated
+closure. Receipts are local observations, not new durable framework schemas.
+Previous results may inform diagnosis and timing; acceptance remains fresh-only.
+Matching declared inputs do not establish external equivalence. Omitted tests
+are not passed and partial tests never establish global coverage. Recovery links
+the previous receipt and leaves its comprehensive failure intact.
+
+Pytest's existing cache may assist manual `--lf --lfnf=none --no-cov` diagnosis,
+but is not input-authenticated evidence and is not used to manufacture a pass.
+The maintained recovery command uses saved IDs rather than mutable cache state.
+No plugin, worker pool or shared service is added. Phase timings are retained
+for future measured fixture optimization. See [delivery evidence](intelligent-validation.md).
+
 ## Protected development test profile
 
 Run the ordinary repository test suite with:

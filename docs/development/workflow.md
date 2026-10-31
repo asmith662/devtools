@@ -1,5 +1,10 @@
 # Routine development and bounded delegation
 
+During implementation, use the [targeted, impact and recovery commands](validation.md)
+for affected tests. Preserve failed receipts and repair locally before repeating
+a comprehensive command. Comprehensive validation remains the final committed
+candidate assurance gate for publication.
+
 For ordinary authorized single-owner development, use the canonical checkout
 directly on main. Authenticate local/remote main, index, tracked changes and
 Checkout custody first. Preserve unknown changes and original ignored evidence.

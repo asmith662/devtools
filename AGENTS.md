@@ -225,6 +225,15 @@ applicable. Update behavior claims where behavior changes. Update authoritative
 architecture only for actual architectural changes. Do not rewrite historical
 records as if older terminology never existed.
 
+Use focused testing for everyday development and failure repair:
+`uv run python -m scripts.validation targeted --test tests/<owner> --execute --output .local/validation/<unique>.json`.
+Preview change-aware impact with mode `impact` (omit `--execute`); review its
+reasons and uncertainty before execution. Mode `recover --previous <receipt>
+--correction <reason>` reruns failed IDs plus correction impact; explicitly add
+`--test` groups when impact is uncertain. Never repeat an identical failed full
+suite without a correction or new diagnostic purpose. A targeted pass does not
+replace a failed protected run. See the maintained validation policy for details.
+
 The canonical protected development test profile is documented in
 [docs/development/validation.md](docs/development/validation.md). Run it with:
 

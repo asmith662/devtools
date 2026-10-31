@@ -1,5 +1,8 @@
 # Documentation Map
 
+Everyday testing and failure recovery: [maintained validation modes](development/validation.md)
+and [intelligent validation evidence](development/intelligent-validation.md).
+
 Current coding-host ownership: [stateless native protocol and lifecycle decomposition](development/coding-host-decomposition.md)
 preserves closed B-0035 behavior; its delivery receipt records exact validation.
 
