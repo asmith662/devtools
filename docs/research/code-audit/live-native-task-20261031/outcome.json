@@ -1,0 +1,185 @@
+{
+  "at": "2026-10-31T23:31:39.328700+00:00",
+  "starting_main": "fd6af0d951a57718233680a971d135b415e160e4",
+  "prepared_main": "0a9098349948a188c3fcc411a5e5e89de17f79a5",
+  "item": "B-0049",
+  "proposal": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+  "intake_review": "e3f293a45645f8300f2c7d871520b8c4aa74d4d2d300afa5e36d206de2b49628",
+  "assignment": "626d8ee152117998b41284289f7418c443f6c898b2792845ab061d03371f9dc6",
+  "authorization": "f744594e565caf9a4062fa3b531f875b072fe632385ed805e7fd9086fe9b7c82",
+  "result": "ccbf5be2105495a29a9d659ef6a1d727e22dfb4ec1e00097f99897af35de906c",
+  "branch": "feat/native-b0049-live-20261031",
+  "native_seconds": 28.567344,
+  "actual_provider_seconds": 15.095413,
+  "tokenizer_seconds": 1.2076609999999999,
+  "usage": {
+    "input_tokens": 7677,
+    "output_tokens": 174,
+    "total_tokens": 7851
+  },
+  "model_calls": 2,
+  "source_reads": [
+    {
+      "identity": "c275ad733a6a566c08f6b8c186cb166e5c2760a1801b82a7d3c50c1d717f5374",
+      "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+      "path": "src/devtools/context/python/imports/members.py",
+      "content_identity": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+      "span": [
+        0,
+        21395
+      ]
+    },
+    {
+      "identity": "faf9822d965d8cfd24d498524fb1407f637bb8fada3da2f5f33566641a7525d5",
+      "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "content_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+      "span": [
+        0,
+        1482
+      ]
+    },
+    {
+      "identity": "ef8487f3d50f5afb203c5e6c6ad6fd8e9c4816f4283ee5631bb780905c55c318",
+      "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+      "path": "tests/context/python/imports/test_members.py",
+      "content_identity": "01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe",
+      "span": [
+        0,
+        26021
+      ]
+    },
+    {
+      "identity": "0cb70bcc7361690b5a9f956c54cc9d528284b98bc43f0243492d8b50426d3497",
+      "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+      "path": "tests/live_native_facade_public.py",
+      "content_identity": "2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0",
+      "span": [
+        0,
+        2646
+      ]
+    }
+  ],
+  "retained_disclosure_bytes": 51544,
+  "prompt_limit_bytes": 32768,
+  "outcome": "BLOCKED before third model request; no edit or managed check; source-only baseline archive is not a verified engineering candidate",
+  "failure": "ValueError: Coding Prompt byte budget exceeded.",
+  "failure_phase": "preparation",
+  "model_observed": "The implementation was returned in request 2. Three further read_source results were retained locally but never sent to the model because next preparation failed. No inference about its understanding of unseen helper/test content.",
+  "review_prepare_refusal": "PermissionError: Native candidate/result/approval mismatch",
+  "review_calls": 0,
+  "review_grant": null,
+  "review_host_decision": null,
+  "integration_plan": null,
+  "control": "Not executed: no separate lawful approved terminal candidate/unused slot. Reviewer false acceptance remains unmeasured.",
+  "custody": {
+    "restored": true,
+    "checkout_released": true,
+    "release_identity": "696fabccb65f2466c99eb8a4d1a5a15b2ab5a5d67a8d099d21faf167c8ed633d",
+    "source_unchanged": true,
+    "patch_empty": true,
+    "unresolved_effects": false
+  },
+  "archive_map": {
+    ".local/backlog/work/B-0049/assignment.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/assignment.json",
+      "sha256": "a7dcd6fdf3e4556f612557dff65f40db0b2c07b7548eacfe38ab2bbc3e007627",
+      "view_sha256": "a7dcd6fdf3e4556f612557dff65f40db0b2c07b7548eacfe38ab2bbc3e007627",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/assignment.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/authorization.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/authorization.json",
+      "sha256": "ce0fd637d23babaef30ac894099a4bd41c88e48031f72becbed3ac9f03736ce3",
+      "view_sha256": "ce0fd637d23babaef30ac894099a4bd41c88e48031f72becbed3ac9f03736ce3",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/authorization.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/candidate.patch": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/candidate.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "view_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/candidate.patch]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/dispatch.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/dispatch.json",
+      "sha256": "e4166fbc233a1c18daa3d1349cf33812b5b98be0100287da82f5af3491251b8e",
+      "view_sha256": "e4166fbc233a1c18daa3d1349cf33812b5b98be0100287da82f5af3491251b8e",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/dispatch.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/execution.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/execution.json",
+      "sha256": "751d4dce25cf28c3cda87932e2f6073bd5d1e005cf027e2e64ad185afe850e73",
+      "view_sha256": "751d4dce25cf28c3cda87932e2f6073bd5d1e005cf027e2e64ad185afe850e73",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/execution.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/result.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/result.json",
+      "sha256": "990d0220644bde8df5edfa4cba4bb550d0ec57efa4ef5566074b2d2c96a78a2f",
+      "view_sha256": "990d0220644bde8df5edfa4cba4bb550d0ec57efa4ef5566074b2d2c96a78a2f",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/result.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/final-source.py": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/final-source.py.txt",
+      "sha256": "3f9924ab29602d2b1c1b11712a18cf94aca1a7ee8edf4f7515c462dbc046f6ed",
+      "view_sha256": "12e3762abbd195b0f05058c2bab0b942ba44349e6163737712ea428a5f527ece",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/final-source.py]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/observation-0000.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/observation-0000.json",
+      "sha256": "d311603ff95037e91cfb76656ccb2bac40ddedf90923591aa6ea1bdf26e30211",
+      "view_sha256": "d311603ff95037e91cfb76656ccb2bac40ddedf90923591aa6ea1bdf26e30211",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/observation-0000.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/observation-0001.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/observation-0001.json",
+      "sha256": "f45b395033b80d3658a46a9669b19e1d9170243801e0243f653e892dcc0c6f5b",
+      "view_sha256": "f45b395033b80d3658a46a9669b19e1d9170243801e0243f653e892dcc0c6f5b",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/observation-0001.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/observation-0002.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/observation-0002.json",
+      "sha256": "19c13d2cb3eced5d8c2e9228164dd3e61d4c88c654230d67d2c11b59b8bd6077",
+      "view_sha256": "19c13d2cb3eced5d8c2e9228164dd3e61d4c88c654230d67d2c11b59b8bd6077",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/observation-0002.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/observation-0003.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/observation-0003.json",
+      "sha256": "ebe0f94e40e8d288a69951c1131102132f4075d94667a82dd9ea94da5bba08e6",
+      "view_sha256": "ebe0f94e40e8d288a69951c1131102132f4075d94667a82dd9ea94da5bba08e6",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/observation-0003.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/public.py": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/public.py.txt",
+      "sha256": "fce547ee2723718893b4b02c7100c1d87276beee84ebbbbdc1d61eb8fbc16167",
+      "view_sha256": "fce547ee2723718893b4b02c7100c1d87276beee84ebbbbdc1d61eb8fbc16167",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/public.py]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/work/B-0049/worker/withheld.py": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/native-records/worker/withheld.py.txt",
+      "sha256": "ff9ebe210d275c912e2df6251f0f6f645e735f043ad5c3eb3d8d47051a0631bd",
+      "view_sha256": "ff9ebe210d275c912e2df6251f0f6f645e735f043ad5c3eb3d8d47051a0631bd",
+      "restoration": "records-bytes.json: records[.local/backlog/work/B-0049/worker/withheld.py]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    },
+    ".local/backlog/checkout-history/696fabccb65f2466c99eb8a4d1a5a15b2ab5a5d67a8d099d21faf167c8ed633d.json": {
+      "archive": "docs/research/code-audit/live-native-task-20261031/checkout-release.json",
+      "sha256": "3ebf5a278060b3989bc272396715c09a55ce648058a9fdfcc890283c84caa400",
+      "view_sha256": "3ebf5a278060b3989bc272396715c09a55ce648058a9fdfcc890283c84caa400",
+      "restoration": "records-bytes.json: records[.local/backlog/checkout-history/696fabccb65f2466c99eb8a4d1a5a15b2ab5a5d67a8d099d21faf167c8ed633d.json]",
+      "qualification": "archive file is a readable LF view; base64 bundle preserves exact original bytes and physical SHA256 through Git text conversion"
+    }
+  },
+  "no_replay": "This B-0049 native slot is consumed. Preserve it; any later episode requires a separately lawful linked task/slot and fresh exact authorization.",
+  "next_increment": "Prospective aggregate-aware source-read admission/feedback using existing Context and native host, with a deterministic regression for this exact batched-read overflow. Do not increase limits or run a replacement sample under this consumed grant."
+}

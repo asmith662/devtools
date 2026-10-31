@@ -1,0 +1,40 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-10-31T23:28:40.639608+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/native-coder-b0049"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 6602,
+      "output_tokens": 129,
+      "total_tokens": 6731,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":0}",
+        "provider_call_id": "VeJmEX3lnXJos3Mi7MrTp4azHrQfseXe"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/context/python/imports/test_members.py\",\"start\":0}",
+        "provider_call_id": "GQouz8wD40lrMQZQaKnXBCujFd94qTmc"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/live_native_facade_public.py\",\"start\":0}",
+        "provider_call_id": "WkiFBsvhzBUbnPJiZB0EXuycMWDytzJf"
+      }
+    ]
+  },
+  "sha256": "d570ca902cae29a376bab329d03fa03df04f3f1e9c256b8fbce804a4f1630af8"
+}

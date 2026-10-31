@@ -1,5 +1,14 @@
 # Roadmap
 
+First authorized live native maintenance: [B-0049 episode](research/live-native-maintenance-task.md)
+obtained genuine human Intake/coding approval and made two Qwen calls. Four
+source reads overflowed the native aggregate prompt byte limit before an edit;
+custody restored source and the reviewer correctly refused the blocked result.
+No live coding/review competence or integration success is established. The next
+bounded recommendation is aggregate-aware source acquisition admission/feedback
+under existing Context/host owners, with a separately lawful future trial. The
+consumed slot is preserved; B-0043 remains open and B-0035 stays closed.
+
 Delivered bounded [independent native review actor](development/native-independent-review.md):
 actual ModelInteraction/read-only source inspection produces a candidate-bound
 proposal for separate host disposition and existing integration planning. This

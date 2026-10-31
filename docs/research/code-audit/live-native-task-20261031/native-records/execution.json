@@ -1,0 +1,157 @@
+{
+  "schema": "backlog-native-execution-v1",
+  "item": "B-0049",
+  "assignment_sha256": "626d8ee152117998b41284289f7418c443f6c898b2792845ab061d03371f9dc6",
+  "authorization_sha256": "f744594e565caf9a4062fa3b531f875b072fe632385ed805e7fd9086fe9b7c82",
+  "worker": {
+    "actor": "qwen38-native-coder-b0049-20261031",
+    "source": "llama.cpp/qwen38-local/native-coder-b0049",
+    "profile": "qwen38-27b-ud-iq4-xs-native-portable-v1"
+  },
+  "disposition": "BLOCKED",
+  "candidate_sha256": "3f9924ab29602d2b1c1b11712a18cf94aca1a7ee8edf4f7515c462dbc046f6ed",
+  "execution_error": null,
+  "seconds": 24.689215,
+  "facts": {
+    "coding_disposition": "failed",
+    "coding_accepted": false,
+    "completed": false,
+    "error": "ValueError: Coding Prompt byte budget exceeded.",
+    "failure_phase": "preparation",
+    "restored": true,
+    "reconciliation_required": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "D9hz6zY3oJNPQHKzLY6srf0l2MZfuYbM"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "VeJmEX3lnXJos3Mi7MrTp4azHrQfseXe"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "GQouz8wD40lrMQZQaKnXBCujFd94qTmc"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "WkiFBsvhzBUbnPJiZB0EXuycMWDytzJf"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      }
+    ],
+    "model_calls": 2,
+    "usage": [
+      {
+        "input_tokens": 1075,
+        "output_tokens": 45,
+        "total_tokens": 1120,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 6602,
+        "output_tokens": 129,
+        "total_tokens": 6731,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "completion_error": null,
+    "proposals": 0,
+    "acquisitions": 4,
+    "checks": [],
+    "acceptance": null,
+    "acceptance_error": null,
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "5b37170e19a55951375e83ecbdb1970a73374651c40299a8198e911160021f0c"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "d6811d41a005268b3c77288c88b0405dba5e82a6de1564cf349e57608228c3a5"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "984b03adabd1531bc58b1932250aeb04c3fbd3391c446e0453c90745c883bf99"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "d570ca902cae29a376bab329d03fa03df04f3f1e9c256b8fbce804a4f1630af8"
+      }
+    ],
+    "readiness": [],
+    "initial_context": {
+      "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+      "repository": "b99205e6-eb7d-4a15-89d6-f4699dd4dc5b",
+      "ready": false,
+      "unresolved": [
+        "current-owner"
+      ],
+      "evidence": [],
+      "scope": "Information availability only; supplied frame is not claimed exhaustive"
+    },
+    "disclosures": [
+      {
+        "identity": "c275ad733a6a566c08f6b8c186cb166e5c2760a1801b82a7d3c50c1d717f5374",
+        "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+        "path": "src/devtools/context/python/imports/members.py",
+        "content_identity": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+        "span": [
+          0,
+          21395
+        ]
+      },
+      {
+        "identity": "faf9822d965d8cfd24d498524fb1407f637bb8fada3da2f5f33566641a7525d5",
+        "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+        "path": "src/devtools/context/python/modules/bindings.py",
+        "content_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+        "span": [
+          0,
+          1482
+        ]
+      },
+      {
+        "identity": "ef8487f3d50f5afb203c5e6c6ad6fd8e9c4816f4283ee5631bb780905c55c318",
+        "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+        "path": "tests/context/python/imports/test_members.py",
+        "content_identity": "01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe",
+        "span": [
+          0,
+          26021
+        ]
+      },
+      {
+        "identity": "0cb70bcc7361690b5a9f956c54cc9d528284b98bc43f0243492d8b50426d3497",
+        "snapshot": "3defb163167f4d421058df9d286252bb21ce0e290447b04e461d1c7721cbe028",
+        "path": "tests/live_native_facade_public.py",
+        "content_identity": "2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0",
+        "span": [
+          0,
+          2646
+        ]
+      }
+    ],
+    "environment_qualification": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee"
+  },
+  "integration_authorized": false,
+  "sha256": "71aa07bf02644bb67d0b7e592e166ca1069be7b5d5414c74be7d5949cb9dabd6"
+}

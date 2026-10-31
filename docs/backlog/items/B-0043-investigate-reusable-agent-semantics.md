@@ -588,3 +588,20 @@ entry needs explicit versioned compatibility and current authorization; old
 grants and historical model records cannot be relabeled. No new workflow, grant,
 model experiment, parent closure or automatic promotion is executed here.
 B-0035 stays closed, and 188 historical RI-version obligations remain unchanged.
+
+## First authorized native live task - 2026-10-31
+
+The [B-0049 assessment](../../research/live-native-maintenance-task.md) records
+genuine human Intake publication, a distinct native coding grant and one live
+Qwen episode. Two actual model calls selected four source reads; aggregate
+feedback exceeded the unchanged 32,768-byte prompt limit before any edit or
+check. Source restoration and Checkout release are authenticated. The existing
+reviewer refused unsuccessful terminal evidence; no review session, proposal or
+integration plan was manufactured. The slot is consumed and cannot be replayed.
+
+This establishes authorized entry and bounded source acquisition, not engineering
+or independent review competence. Aggregate-aware read admission/feedback through
+existing Context/host owners is the single next bounded recommendation before a
+separately lawful future trial. No new generic Agent, loop, authority, lifecycle,
+status/maturity change or parent closure follows. B-0035 closure, B-0048 history
+and the 188 outstanding historical RI obligations remain unchanged.

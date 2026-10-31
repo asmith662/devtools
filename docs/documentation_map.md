@@ -1,6 +1,8 @@
 # Documentation Map
 
-Live native assessment: [operational preflight](research/live-native-maintenance-preflight.md)
+Live native assessment: [first authorized task and actual Context-budget outcome](research/live-native-maintenance-task.md)
+records genuine human Intake/coding approval and two live calls before any edit;
+review competence remains unmeasured. Earlier [operational preflight](research/live-native-maintenance-preflight.md)
 records the available provider and task/authority blocker; no live episode occurred.
 
 Supported review actor: [governed independent native review](development/native-independent-review.md)
