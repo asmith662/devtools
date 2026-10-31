@@ -3,6 +3,10 @@
 Current coding-host ownership: [stateless native protocol and lifecycle decomposition](development/coding-host-decomposition.md)
 preserves closed B-0035 behavior; its delivery receipt records exact validation.
 
+Current autonomous-development direction: [B-0043 reconciliation and supervised
+native maintenance prompt](development/supervised-maintenance-lifecycle.md).
+This is prospective workflow scope, not current execution authority.
+
 Context implementation increment 2, 2026-10-28:
 [structured semantic working-state compaction](development/semantic-context-compaction.md)
 documents the separately bounded optional interaction, cited fallible notes,

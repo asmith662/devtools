@@ -2,7 +2,7 @@
 
 - type: INVESTIGATION
 - status: DEFERRED
-- decision_maturity: DISCOVERED
+- decision_maturity: SEMANTICS_PARTIAL
 - necessity: FUTURE_REQUIRED
 - architectural_significance: STRUCTURAL
 - urgency: DEFERRED
@@ -19,8 +19,8 @@ integration and bounded Qwen experiments. A Model is not an Agent, and no
 BaseAgent API is authorized merely because the domain exists.
 
 - hard_dependencies: none
-- pressure_dependencies: B-0008, B-0036, B-0031
-- operational_dependencies: stable bounded Agent consumer
+- pressure_dependencies: B-0008, B-0036, B-0031, B-0039, B-0040, B-0011, B-0034, B-0041
+- operational_dependencies: supervised neutral task-to-candidate consumer under existing WorkCycle and Checkout
 - promotion_trigger: shared Agent semantics are stable beyond local composition
 - validation_level: NONE
 
@@ -562,3 +562,29 @@ See [delivery and limitations](../../development/authorized-inventory-and-contin
 and the [validated receipt](../../research/code-audit/b0035-production-20261031.json).
 Status, dependencies, approvals and the 188 historical RI-version obligations
 remain unchanged.
+
+## Reconciled supervised lifecycle direction — 2026-10-31
+
+The current assignment establishes the next bounded consumer: an operator-approved
+native maintenance assignment through the existing WorkCycle/Checkout owners,
+neutral coding host, independent review and read-only integration plan. The
+[reconciliation and complete next prompt](../../development/supervised-maintenance-lifecycle.md)
+map each existing owner and distinguish production, disconnected components,
+scripted mechanics, authentic local-model evidence and unimplemented autonomy.
+The [host decomposition](../../development/coding-host-decomposition.md) separates
+the stateless native protocol from lifecycle without another state owner.
+
+Decision maturity advances only to SEMANTICS_PARTIAL. Status stays DEFERRED and
+validation_level stays NONE for the broader Agent investigation: component tests
+do not validate the unbuilt whole workflow. Concrete pressure includes B-0039
+authority, B-0040 coordination, B-0011 durable Evidence, B-0034 uncertainty and
+B-0041 local lifecycle, alongside the original owners. Existing explicit authority
+and stop-on-uncertainty suffice for the next slice; generic Run/Step/Attempt and
+universal durable recovery are not prerequisites to invent now.
+
+WorkCycle's Qwen task/schema/profile guards and integration's Qwen/Codex receipt
+assumptions are deliberately narrow contracts. The prospective native candidate
+entry needs explicit versioned compatibility and current authorization; old
+grants and historical model records cannot be relabeled. No new workflow, grant,
+model experiment, parent closure or automatic promotion is executed here.
+B-0035 stays closed, and 188 historical RI-version obligations remain unchanged.

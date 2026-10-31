@@ -1,5 +1,32 @@
 # Roadmap
 
+## Current supervised engineering priority — 2026-10-31
+
+B-0035 is closed with complete initial inventory and reliable post-edit
+continuation. The [native protocol decomposition](development/coding-host-decomposition.md)
+addresses the repository host's immediate maintenance constraint without changing
+its lifecycle, source or budget contracts. It does not solve arbitrary large-file
+editing or establish autonomous implementation competence.
+
+The next accepted direction is one **supervised native maintenance handoff**:
+operator-approved backlog obligation → explicit information/source/check scope →
+current Context → selected coding worker → real validation/candidate custody →
+independent review → existing integration plan. See the
+[B-0043 reconciliation and complete next implementation prompt](development/supervised-maintenance-lifecycle.md).
+This is a prospective consumer of existing WorkCycle/Checkout/Agents/Context
+owners, not a new planner, Runtime, registry, memory store or coding loop.
+Legacy Qwen assignment/grant/receipt contracts remain intact; a narrow prospective
+native candidate input is required before claiming model-neutral durable reuse.
+
+Planning remains supervisor-authored; coding, review and publication authority are
+separate. Worker failure or uncertainty stops with preserved evidence. Integration
+effects and canonical closeout require their existing independent authority.
+No new lifecycle feature, model inference, service mutation or backlog execution
+is launched by this roadmap reconciliation. B-0043 remains open. B-0031 generic
+lifecycle, B-0011 durable Evidence and B-0039/B-0040 broader delegation are pressure
+owners, not a reason to replace existing substrates before the bounded consumer.
+Earlier dated model/experiment/audit priorities below retain historical meaning.
+
 Delivered explicit framework-first migration 3: production `22c44a88fa20da8d580b1470441030c80835b7d0`, PR #52, verified source main `a23c081cefb7524471a26a8f539356fa2545a38e`. Agents now owns one bounded model-neutral coding process with actual prepared/native Qwen delegation and a guarded independent non-Qwen source/edit/check/repair application. Existing RI/Context/Tools/Resources remain owners; host retains admission/custody/journals/oracles/governance. Committed gate 3498 passed/2 optional live skips/100% configured branch coverage. [Delivery and limits](development/bounded-coding-agent-delivery.md); [exact receipt](research/code-audit/bounded-coding-agent-20261027.json). Broader Agent/application/Evidence/recovery work remains open; Runtime, observation Option B,A+C and migration4 are unchanged. Earlier notices retain dated meaning. `integration:bounded-coding-agent:22c44a88:20261027`.
 
 Delivered explicit framework-first migration 2: production `59ae70b07f7e2332db887bc61748fe5fd3373fae`, PR #50, verified source main `9078406b76635a81fdaf6e5b45fda2c8db6a3f4f`. Existing Context/RI, Tools and managed Commands now provide neutral exact scoped source acquisition and fixed checks; real Qwen and Codex-attributed local closeout delegate, while an application-import/file-isolated non-Qwen host exercises actual source/check effects. Committed gate 3376 passed/2 optional live skips/100% configured branch coverage. [Contract and validation](development/framework-source-checks.md); [exact receipt](research/code-audit/framework-source-checks-20261027.json). Legacy task/oracle/journal/edit/terminal/authority remain compatible. Broader coding-Agent migration requires explicit task/edit/outcome/custody approval; Runtime, A+C, Option B, restart and Evidence boundaries remain unchanged. Earlier notices retain dated meaning. `integration:framework-source-checks:59ae70b0:20261027`.
@@ -377,6 +404,13 @@ and Evidence ownership terminology, remain in the
 [implementation ledger](implementation_ledger.md) as history only.
 
 ## Current sequencing
+
+As of 2026-10-31, the primary engineering sequence is the supervised maintenance
+handoff selected at the top of this roadmap. Older "next" statements in the
+Qwen/B-0048 summaries below are dated checkpoints, not current execution authority
+or instructions to repeat delivered work. Component retrieval/RI research gates
+and their original evidence remain separate and unchanged; the supervised slice
+uses existing explicit Localization/Context rather than starting a new study.
 
 ### Multi-resolution search engineering baseline
 
