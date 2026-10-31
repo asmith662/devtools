@@ -57,8 +57,10 @@ def test_capacity_result_preserves_structure_and_minimal_fallback(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    host = configured(tmp_path, hard=100)
-    host.projection = ProjectionPolicy(100, 90)
+    # Inventory fits; the complete native request still cannot fit, so capture
+    # the intended structured projection error rather than representation refusal.
+    host = configured(tmp_path, hard=1500)
+    host.projection = ProjectionPolicy(1500, 1400)
     with pytest.raises(ProjectionCapacityError) as caught:
         asyncio.run(host.prepare(host.progress))
     error = caught.value
