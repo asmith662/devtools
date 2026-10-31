@@ -82,3 +82,19 @@ adds opt-in `ProjectionPolicy.report_source_state`. Active ranges and repeated
 disclosures are projected from existing authenticated bindings and previous
 active availability. The bounded host annotation confers no source witness or
 Tool authority, changes no model choice, and consumes the same request budget.
+
+## Complete inventory and post-edit continuation
+
+RepositoryCodingHost reserves a derived inventory slot after the exact objective
+before binding source/check indices. Each preparation fills that slot from the
+current authorized scope. Ranked candidates remain optional and incomplete.
+Prior immutable requests retain their inventory view; native/source history stays
+unchanged. After verified edits, current metadata is refreshed without shifting
+existing indices. Empty authorized scope grants no editable paths or custody effects.
+
+Projection can replace authenticated invalidated host-source feedback fields with
+explicit stale-source references while preserving other instructions and original
+records. Only selected current source can witness an edit. Protected check and
+after-image feedback still must fit in full.
+
+See [inventory, continuation and check contracts](../../../../../docs/development/authorized-inventory-and-continuation.md).

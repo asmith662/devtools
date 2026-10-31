@@ -137,7 +137,7 @@ class Model:
             assert evidence["sources"][0]["text"] == WRONG
             assert (
                 evidence["sources"][0]["version"]
-                != json.loads(self.requests[1].prompt.messages[2].content)["version"]
+                != json.loads(self.requests[1].prompt.messages[3].content)["version"]
             )
         if self.scenario == "cancel-provider":
             message = "provider outcome unknown"

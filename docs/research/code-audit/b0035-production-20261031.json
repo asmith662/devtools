@@ -1,0 +1,172 @@
+{
+  "schema": "devtools-b0035-production-delivery-v1",
+  "status": "implementation-pending-protected-validation",
+  "starting_main": "6bf14115eceee07ac9088cb862b49efcc5f3a7af",
+  "previous_validated_executable": "6ab614c60a20418e779355e178ee3d113634101c",
+  "local_model_interactions": 0,
+  "model_service_mutations": 0,
+  "provenance": {
+    "original_candidate_sha256": "3a3aba918649eaf9240fede6efb15289fcbbb93999ac6fa9b2649020776c936c",
+    "normalized_function_sha256": "3e123c7fa0b7611edcdf2edff95d078ec95c7ff7de60c93cce2d7bbf7aff141f",
+    "attribution": "Qwen original Stage A plus Qwen natural E501 repair; adopted function unchanged except CRLF transport. Codex authors lifecycle integration and reliability corrections. Rejected gpt-oss edit not adopted."
+  },
+  "independent_oracles": {
+    "at": "2026-10-31T12:23:44.615876+00:00",
+    "unchanged_oracle_hashes": {
+      "experiments\\local_maintenance_task_navigation\\focused.py": "49aac4d245828e35f801516a7d79bf26f7e71d3b03ad6916a6310fac124ae4fd",
+      "experiments\\local_maintenance_task_navigation\\heldout.py": "1ecb3733857bca0811fe4ab3a47b3d722d9206d348d3b391985c9ab3d88e8541",
+      "experiments\\local_maintenance_task_navigation\\reference_checks.py": "f82ac9e4ec95f1e9c455a61b848f329a949f5c0a5c916a633b1837df358c537a",
+      ".local\\supervised-b0035\\test_extra.py": "ba269bf5bf3b6fde4bf1d70b9f6e2d3fd7c72767ea892fc5b2ceaa92aa20a4de",
+      "experiments\\delegated_b0035\\focused.py": "408a195d94b0daff7430f6269659944452439758b8e02d79e6e3f724fe521046"
+    },
+    "checks": [
+      {
+        "name": "combined-original-focused",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--import-mode=importlib",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          "experiments/local_maintenance_task_navigation/focused.py",
+          "experiments/delegated_b0035/focused.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "........                                                                 [100%]\r\n8 passed in 0.95s\r\n",
+        "stderr": ""
+      },
+      {
+        "name": "public-withheld",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          "experiments/local_maintenance_task_navigation/heldout.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "......                                                                   [100%]\r\n6 passed in 0.35s\r\n",
+        "stderr": ""
+      },
+      {
+        "name": "stage-a-withheld",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          "experiments/delegated_b0035/heldout.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "...                                                                      [100%]\r\n3 passed in 0.43s\r\n",
+        "stderr": ""
+      },
+      {
+        "name": "stage-a-controls",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          "experiments/delegated_b0035/oracle_controls.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "...........                                                              [100%]\r\n11 passed in 0.34s\r\n",
+        "stderr": ""
+      },
+      {
+        "name": "reference-controls",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          "experiments/local_maintenance_task_navigation/reference_checks.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "..........                                                               [100%]\r\n10 passed in 0.47s\r\n",
+        "stderr": ""
+      },
+      {
+        "name": "positive-integration",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "--tb=short",
+          ".local/supervised-b0035/test_extra.py"
+        ],
+        "exit_code": 0,
+        "passed": true,
+        "stdout": "...                                                                      [100%]\r\n3 passed in 0.51s\r\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "historical_reconstruction": {
+    "kind": "Read-only exact historical input projection; not current-host execution or recovered model response",
+    "original_bytes": 43159,
+    "resulting_bytes": 27714,
+    "shortened_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "current_after_image_identity": "e5491b3739453652a3e2baf0a29d01fc4ff7be3d5cbd75374f87930fc5934bd1",
+    "original_snapshot_verified": "4715ad1753c918328e444232cb3007ee622ba808f519812fe4c110016b49796f",
+    "installed_snapshot_verified": "34c062781deba88d963e4e3aeaa81b913b5c397b9c2cd5d7752ce5af67bff644",
+    "all_seven_resources_verified": true,
+    "source_option_identities_verified": true,
+    "protected_feedback_exact": true,
+    "known_original_outcome": "Remains failed; no inference/effect replay",
+    "qualification": "Frozen request predates mandatory inventory. Maintained real-host regression separately proves inventory-inclusive edit/check/repair."
+  },
+  "protected_gate": null,
+  "publication": null
+}

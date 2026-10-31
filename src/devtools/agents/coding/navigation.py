@@ -164,15 +164,42 @@ def prepare_navigation(
     index: SourceSearchIndex,
     objective: str,
     policy: NavigationPolicy | None,
+    *,
+    has_inventory: bool = False,
 ) -> None:
     """Retain one host-selected initial view, without inventing native actions."""
-    if policy is not None and len(messages) == 1:
+    if policy is not None and len(messages) == 1 + has_inventory:
         messages.append(
             PromptMessage(
                 "user",
                 json.dumps(task_entry(index, objective, policy), ensure_ascii=False),
             ),
         )
+
+
+def initial_messages(objective: str) -> list[PromptMessage]:
+    """Reserve derived metadata before any source/check positions are bound."""
+    return [PromptMessage("user", objective), PromptMessage("user", "")]
+
+
+def prepare_inventory(
+    messages: list[PromptMessage],
+    scope: SourceScope,
+    editable: tuple[RepositoryResourceAddress, ...],
+    maximum_bytes: int,
+) -> None:
+    """Refresh only the reserved current view, never shift historical bindings.
+
+    Immutable requests retain each earlier presentation. Native feedback and
+    original source disclosures stay in their existing retained positions.
+    """
+    messages[1] = PromptMessage(
+        "user",
+        json.dumps(
+            complete_inventory(scope, editable, maximum_bytes),
+            ensure_ascii=False,
+        ),
+    )
 
 
 def task_selection(
@@ -330,6 +357,50 @@ def unit_read_request(
         msg = "Source unit is foreign, stale or outside the admitted index."
         raise ValueError(msg)
     return SourceReadRequest(purpose, unit, unit.start, unit.end, maximum_bytes)
+
+
+def complete_inventory(
+    scope: SourceScope,
+    editable: tuple[RepositoryResourceAddress, ...],
+    maximum_bytes: int,
+) -> dict[str, object]:
+    """Represent every authorized resource as bounded metadata only."""
+    if type(maximum_bytes) is not int or maximum_bytes <= 0:
+        msg = "Inventory presentation bound must be a positive integer."
+        raise ValueError(msg)
+    scope.check_current()
+    addresses = frozenset(r.address for r in scope.snapshot.resources)
+    editable_addresses = frozenset(editable)
+    foreign = editable_addresses - addresses
+    if foreign:
+        msg = (
+            "Editable address is outside the authorized scope: "
+            f"{sorted(map(str, foreign))}."
+        )
+        raise ValueError(msg)
+    resources = [
+        {
+            "address": str(resource.address),
+            "content_identity": str(resource.content_identity),
+            "byte_size": resource.byte_size,
+            "editable": resource.address in editable_addresses,
+        }
+        for resource in sorted(
+            scope.snapshot.resources,
+            key=lambda r: str(r.address),
+        )
+    ]
+    result: dict[str, object] = {
+        "repository_id": str(scope.snapshot.repository_id),
+        "snapshot_id": str(scope.snapshot.id),
+        "source_acquired": False,
+        "complete_inventory": True,
+        "resources": resources,
+    }
+    if len(json.dumps(result, ensure_ascii=False).encode("utf-8")) > maximum_bytes:
+        msg = "Complete inventory metadata cannot fit its disclosure budget."
+        raise ValueError(msg)
+    return result
 
 
 def navigation_feedback(

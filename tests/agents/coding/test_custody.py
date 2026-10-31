@@ -49,9 +49,15 @@ def test_action_limit_charged_before_effect_and_not_refunded() -> None:
     assert len(progress.effects) == 1
 
 
-def test_empty_or_unbounded_custody_refused(tmp_path: Path) -> None:
-    with pytest.raises(ValueError, match="custody"):
-        SourceCustody(resolve_path(tmp_path), {}, maximum_bytes=10)
+def test_empty_custody_grants_no_paths_and_unbounded_is_refused(tmp_path: Path) -> None:
+    custody = SourceCustody(resolve_path(tmp_path), {}, maximum_bytes=10)
+    assert custody.capture() == {}
+    with pytest.raises(ValueError, match="outside"):
+        custody.expect(RepositoryResourceAddress("foreign.py"), "unadmitted")
+    effects: list[object] = []
+    result = custody.restore_known({}, lambda *args: effects.append(args))
+    assert result.restored
+    assert effects == []
     with pytest.raises(ValueError, match="custody"):
         SourceCustody(
             resolve_path(tmp_path),

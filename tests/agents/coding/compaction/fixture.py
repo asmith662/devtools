@@ -30,7 +30,7 @@ class RepairSummary:
         self.requests.append(request)
         value = json.loads(request.prompt.messages[1].content)
         records = value["records"]
-        feedback = json.loads(records["4"]["message"]["content"])
+        feedback = json.loads(records["5"]["message"]["content"])
         assert feedback["passed"] is False
         assert feedback["checks"][0]["exit_code"] == 1
         assert "return 8" in feedback["sources"][0]["text"]
@@ -64,7 +64,7 @@ def configuration(model: RepairSummary) -> SummaryCompaction:
     """Authorize only acquired records; keep current failed-check exchange exact."""
     return SummaryCompaction(
         model,
-        lambda _: SummarySelection(frozenset({1, 2, 3, 4}), frozenset({1, 2})),
+        lambda _: SummarySelection(frozenset({2, 3, 4, 5}), frozenset({2, 3})),
         1,
         20000,
         4096,

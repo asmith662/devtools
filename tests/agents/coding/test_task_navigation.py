@@ -298,7 +298,7 @@ def test_task_candidate_read_keeps_existing_source_authority(
                 request_bytes(
                     host.build_request(
                         tuple(
-                            host.messages[:2] + host.messages[-2:],
+                            host.messages[:3] + host.messages[-2:],
                         ),
                     ),
                 )

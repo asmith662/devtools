@@ -32,8 +32,10 @@ from devtools.agents.coding.navigation import (
     TASK_FIND,
     NavigationPolicy,
     acquire_candidates,
+    initial_messages,
     navigation_refusal,
     navigation_request,
+    prepare_inventory,
     prepare_navigation,
     task_selection,
     unit_read_request,
@@ -134,7 +136,7 @@ class CodingObjective:
         if (
             not self.text.strip()
             or not isinstance(self.editable, tuple)
-            or not self.editable
+            or (addresses and not self.editable)
             or len(set(self.editable)) != len(self.editable)
             or not set(self.editable) <= addresses
             or min(self.disclosure_bytes, self.prompt_bytes) <= 0
@@ -287,7 +289,7 @@ class RepositoryCodingHost:
             },
             maximum_bytes=self.scope.maximum_resource_bytes,
         )
-        self.messages = [PromptMessage("user", objective.text)]
+        self.messages = initial_messages(objective.text)
         self.disclosures: list[SourceRangeDisclosureOption] = []
         self.source_results: list[ContextDisclosure] = []
         self.active_disclosures: tuple[SourceRangeDisclosureOption, ...] = ()
@@ -338,11 +340,18 @@ class RepositoryCodingHost:
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
+        prepare_inventory(
+            self.messages,
+            self.scope,
+            self.objective.editable,
+            self.objective.prompt_bytes,
+        )
         prepare_navigation(
             self.messages,
             self.index,
             self.objective.text,
             self.navigation_policy,
+            has_inventory=True,
         )
         request = self.build_request(tuple(self.messages))
         if self.projection is not None:

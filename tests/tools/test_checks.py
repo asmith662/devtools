@@ -38,6 +38,72 @@ def check(
     )
 
 
+def test_pytest_same_named_files_collect_and_execute(tmp_path: Path) -> None:
+    for name in ("left", "right"):
+        folder = tmp_path / name
+        folder.mkdir()
+        (folder / "focused.py").write_text(
+            "def test_independent():\n    assert 1 + 1 == 2\n",
+            encoding="utf-8",
+        )
+    root = resolve_path(tmp_path)
+    targets = ("left/focused.py", "right/focused.py")
+    legacy = FixedCheck(
+        "old-shape",
+        Command(sys.executable)
+        .args("-m", "pytest", "--no-cov", "-q", *targets)
+        .cwd(root)
+        .with_timeout(Duration.seconds(15)),
+    )
+    bad = asyncio.run(
+        ToolRunner().execute(
+            FixedCheckTool(FixedCheckPlan(root, (legacy,))),
+            legacy.name,
+        ),
+    )
+    assert bad.command_result.exit_code == pytest.ExitCode.INTERRUPTED
+    assert not bad.passed
+    assert b"import file mismatch" in bad.command_result.stdout
+    selected = FixedCheck.pytest(
+        "focused",
+        python=sys.executable,
+        root=root,
+        targets=targets,
+        timeout=Duration.seconds(15),
+    )
+    plan = FixedCheckPlan(root, (selected,))
+    good = asyncio.run(ToolRunner().execute(FixedCheckTool(plan), selected.name))
+    assert good.passed
+    assert b"2 passed" in good.command_result.stdout
+    (tmp_path / "right/focused.py").write_text(
+        "def test_independent():\n    assert False\n",
+        encoding="utf-8",
+    )
+    failed = asyncio.run(ToolRunner().execute(FixedCheckTool(plan), selected.name))
+    assert failed.command_result.exit_code == 1
+    assert not failed.passed
+    assert b"1 failed, 1 passed" in failed.command_result.stdout
+    (tmp_path / "right/focused.py").write_text("not valid python!", encoding="utf-8")
+    collection = asyncio.run(ToolRunner().execute(FixedCheckTool(plan), selected.name))
+    assert collection.command_result.exit_code == pytest.ExitCode.INTERRUPTED
+    assert not collection.passed
+
+
+@pytest.mark.parametrize("targets", [(), ("",), ("--ignore",)])
+def test_pytest_check_requires_targets(
+    tmp_path: Path,
+    targets: tuple[str, ...],
+) -> None:
+    with pytest.raises(ValueError, match="explicit test targets"):
+        FixedCheck.pytest(
+            "invalid",
+            python=sys.executable,
+            root=resolve_path(tmp_path),
+            targets=targets,
+            timeout=Duration.seconds(5),
+        )
+
+
 @pytest.mark.parametrize("bound", [True, False])
 def test_real_fixed_command_and_immutable_plan(tmp_path: Path, *, bound: bool) -> None:
     scope, _ = source_fixture(tmp_path)

@@ -14,6 +14,7 @@ import pytest
 
 from devtools.agents.coding import CodingLimits, run_coding_agent
 from devtools.agents.coding import repository as owner
+from devtools.agents.coding.navigation import prepare_inventory
 from devtools.agents.coding.repository import (
     CodingObjective,
     EditLimits,
@@ -90,7 +91,7 @@ def host_at(root: Path) -> RepositoryCodingHost:
         assert text is not None
         write(TextFile(resolve_path(root / selected.value), text))
 
-    return RepositoryCodingHost(
+    host = RepositoryCodingHost(
         objective,
         corpus=corpus,
         authorize=admit,
@@ -98,6 +99,8 @@ def host_at(root: Path) -> RepositoryCodingHost:
         archive=lambda _: None,
         restore=restore,
     )
+    prepare_inventory(host.messages, scope, objective.editable, objective.prompt_bytes)
+    return host
 
 
 def call(name: str, values: object, identity: str) -> ModelToolCall:

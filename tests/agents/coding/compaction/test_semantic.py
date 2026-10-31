@@ -112,7 +112,7 @@ def configuration(model: Summarizer, **changes: Any) -> SummaryCompaction:
     return replace(
         SummaryCompaction(
             model,
-            lambda _: SummarySelection(frozenset({1, 2}), frozenset({1, 2})),
+            lambda _: SummarySelection(frozenset({2, 3}), frozenset({2, 3})),
             2,
             20000,
             4096,
@@ -166,7 +166,7 @@ def test_explicit_adoption_history_native_and_separate_usage(tmp_path: Path) -> 
     assert receipt.validated
     assert receipt.adopted
     assert receipt.partial_coverage
-    assert receipt.input_indices == (1, 2)
+    assert receipt.input_indices == (2, 3)
     assert receipt.usage == ModelUsage(input_tokens=10, output_tokens=20)
     assert receipt.request == model.requests[0]
     assert receipt.response is not None
@@ -230,7 +230,7 @@ def test_cancellation_propagates_without_projection_installation(
         prepare(host)
     assert host.requests == []
     assert latest(host).status == "cancelled"
-    assert len(host.messages) == 4
+    assert len(host.messages) == 5
 
 
 @pytest.mark.parametrize("budget", [1, 1500])
@@ -287,7 +287,7 @@ def test_privacy_selection_excludes_unselected_policy_and_reasoning(
     model = Summarizer()
     host = setup(tmp_path, model)
     host.messages[0] = PromptMessage("user", "PRIVATE-POLICY-SENTINEL")
-    host.messages[1] = replace(host.messages[1], reasoning_content="PRIVATE-REASONING")
+    host.messages[2] = replace(host.messages[2], reasoning_content="PRIVATE-REASONING")
     host.messages.append(PromptMessage("assistant", "PRIVATE-RECENT-SENTINEL"))
     host.request_compaction()
     result = prepare(host)
@@ -433,7 +433,7 @@ def test_structural_and_provenance_refusals(fault: str) -> None:
 def test_summary_of_acquired_source_does_not_authorize_edit(tmp_path: Path) -> None:
     host = configured(tmp_path, hard=16000)
     asyncio.run(acquire(host))
-    host.messages[1] = replace(host.messages[1], content="older reasoning " * 600)
+    host.messages[2] = replace(host.messages[2], content="older reasoning " * 600)
     host.messages.append(PromptMessage("assistant", "Recent exact work"))
     host.compaction = SemanticCompactor(configuration(Summarizer()))
     history = tuple(host.messages)
@@ -502,8 +502,8 @@ def test_multiple_compactions_original_provenance_and_call_budget(
     host.compaction.config = replace(
         host.compaction.config,
         select=lambda _: SummarySelection(
-            frozenset({1, 2, 4, 5}),
-            frozenset({1, 2, 4, 5}),
+            frozenset({2, 3, 5, 6}),
+            frozenset({2, 3, 5, 6}),
         ),
     )
     history = tuple(host.messages)
@@ -512,7 +512,7 @@ def test_multiple_compactions_original_provenance_and_call_budget(
     assert latest(host).adopted
     assert len(model.requests) == 2
     assert "derived_working_state" not in str(model.requests[1])
-    assert latest(host).replaced_indices == (1, 2, 4, 5)
+    assert latest(host).replaced_indices == (2, 3, 5, 6)
     host.request_compaction()
     prepare(host)
     assert latest(host).status == "call-budget-exhausted"
@@ -569,7 +569,7 @@ def test_partial_input_coverage_and_disjoint_source_catalog(tmp_path: Path) -> N
     host = configured(tmp_path, hard=20000)
     asyncio.run(acquire(host, "first", 0, 5))
     asyncio.run(acquire(host, "second", 5, 10))
-    host.messages[1] = replace(host.messages[1], content="old investigation " * 300)
+    host.messages[2] = replace(host.messages[2], content="old investigation " * 300)
     metadata(host, "oversized", "private huge result " * 1000)
     host.messages.append(PromptMessage("assistant", "Recent exact work"))
     model = Summarizer()
@@ -578,8 +578,8 @@ def test_partial_input_coverage_and_disjoint_source_catalog(tmp_path: Path) -> N
             model,
             input_bytes=15000,
             select=lambda _: SummarySelection(
-                frozenset(range(1, 7)),
-                frozenset(range(1, 7)),
+                frozenset(range(2, 8)),
+                frozenset(range(2, 8)),
             ),
         ),
     )
@@ -587,7 +587,7 @@ def test_partial_input_coverage_and_disjoint_source_catalog(tmp_path: Path) -> N
     prepare(host)
     receipt = latest(host)
     assert receipt.adopted
-    assert receipt.input_indices == (1, 2, 3, 4)
+    assert receipt.input_indices == (2, 3, 4, 5)
     assert receipt.partial_coverage
     payload = json.loads(model.requests[0].prompt.messages[1].content)
     assert [v["span"] for v in payload["historical_sources"].values()] == [
@@ -616,13 +616,16 @@ def test_disclosure_permission_does_not_imply_replacement_permission(
     host = setup(
         tmp_path,
         model,
-        select=lambda _: SummarySelection(frozenset({0, 1, 2, 3}), frozenset({1, 2})),
+        select=lambda _: SummarySelection(
+            frozenset({0, 1, 2, 3, 4}),
+            frozenset({2, 3}),
+        ),
     )
     host.request_compaction()
     result = prepare(host)
     assert latest(host).adopted
     assert not latest(host).partial_coverage
-    assert latest(host).input_indices == (0, 1, 2, 3)
+    assert latest(host).input_indices == (0, 1, 2, 3, 4)
     assert result.prompt.messages[0] == host.messages[0]
     assert result.prompt.messages[-2] == host.messages[-1]
 
@@ -632,8 +635,8 @@ def test_disclosure_permission_does_not_imply_replacement_permission(
     [
         (frozenset({0}), PromptMessage("assistant", "notes")),
         (frozenset({1}), PromptMessage("assistant", "notes")),
-        (frozenset({1, 2}), PromptMessage("user", "untrusted promoted")),
-        (frozenset({1, 2}), None),
+        (frozenset({2, 3}), PromptMessage("user", "untrusted promoted")),
+        (frozenset({2, 3}), None),
         (frozenset(), PromptMessage("assistant", "notes")),
     ],
 )
@@ -671,7 +674,7 @@ def test_summary_can_fit_when_deterministic_omission_cannot(tmp_path: Path) -> N
     host.compaction = SemanticCompactor(
         configuration(
             model,
-            select=lambda _: SummarySelection(frozenset({1}), frozenset({1})),
+            select=lambda _: SummarySelection(frozenset({2}), frozenset({2})),
         ),
     )
     history = tuple(host.messages)

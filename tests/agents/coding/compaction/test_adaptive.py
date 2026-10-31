@@ -34,7 +34,7 @@ def test_automatic_real_host_cache_and_history(tmp_path: Path) -> None:
     host = setup(
         tmp_path,
         model,
-        adaptive=AdaptiveCompaction(8000, 4096, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 4096, lambda _: frozenset({3})),
     )
     original = tuple(host.messages)
     result = prepare(host)
@@ -51,10 +51,10 @@ def test_automatic_real_host_cache_and_history(tmp_path: Path) -> None:
 @pytest.mark.parametrize(
     ("pressure", "reserve", "valuable", "decision"),
     [
-        (10000, 1024, frozenset({2}), "no-pressure"),
-        (8000, 10000, frozenset({2}), "insufficient-headroom"),
+        (10000, 1024, frozenset({3}), "no-pressure"),
+        (8000, 10000, frozenset({3}), "insufficient-headroom"),
         (8000, 1024, frozenset(), "deterministic-sufficient"),
-        (8000, 1024, frozenset({3}), "deterministic-sufficient"),
+        (8000, 1024, frozenset({4}), "deterministic-sufficient"),
     ],
 )
 def test_avoids_unnecessary_inference(
@@ -102,7 +102,7 @@ def test_failed_strategy_not_automatically_repeated(tmp_path: Path, fault: str) 
     host = setup(
         tmp_path,
         model,
-        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({3})),
     )
     if fault == "cancel":
         with pytest.raises(asyncio.CancelledError):
@@ -121,7 +121,7 @@ def test_budget_and_protected_overflow(tmp_path: Path) -> None:
     host = setup(
         tmp_path,
         model,
-        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({3})),
         maximum_calls=1,
     )
     assert host.compaction is not None
@@ -142,10 +142,10 @@ def test_changed_prefix_reassessed_without_mutating_original(tmp_path: Path) -> 
     host = setup(
         tmp_path,
         model,
-        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({3})),
     )
     prepare(host)
-    host.messages[1] = replace(host.messages[1], content="New qualified investigation")
+    host.messages[2] = replace(host.messages[2], content="New qualified investigation")
     retained = tuple(host.messages)
     prepare(host)
     assert len(model.requests) == 2
@@ -160,7 +160,7 @@ def test_disabled_permission_and_unaffordable_input(tmp_path: Path) -> None:
         tmp_path,
         model,
         input_bytes=100,
-        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({3})),
     )
     result = prepare(host)
     assert "Recent exact progress" in str(result)
@@ -184,7 +184,7 @@ def test_independent_coding_process_consumes_automatic_notes(tmp_path: Path) -> 
 
     host = setup(
         tmp_path,
-        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({2})),
+        adaptive=AdaptiveCompaction(8000, 1024, lambda _: frozenset({3})),
     )
     acting = Acting()
     result = asyncio.run(run_coding_agent(acting, host=host, limits=LIMITS))

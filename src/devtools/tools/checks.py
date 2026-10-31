@@ -7,12 +7,15 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from devtools.core.paths import resolve_path
-from devtools.resources.commands import CommandExecutor, CommandOutputPolicy
+from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
 from devtools.tools.errors import ToolInputError
 
 if TYPE_CHECKING:
+    from typing import Self
+
     from devtools.core.paths import ResolvedPath
-    from devtools.resources.commands import Command, CommandResult
+    from devtools.core.time import Duration
+    from devtools.resources.commands import CommandResult
     from devtools.tools.source import SourceScope
 
 _OUTPUT_POLICY = CommandOutputPolicy()
@@ -24,6 +27,43 @@ class FixedCheck:
 
     name: str
     command: Command
+
+    @classmethod
+    def pytest(
+        cls,
+        name: str,
+        *,
+        python: str,
+        root: ResolvedPath,
+        targets: tuple[str, ...],
+        timeout: Duration,
+    ) -> Self:
+        """Build an explicit focused check with collision-safe module imports.
+
+        This does not replace protected validation. Targets and the interpreter
+        remain trusted host input, never model-selected execution authority.
+        """
+        if not targets or any(not t.strip() or t.startswith("-") for t in targets):
+            msg = "Pytest checks require explicit test targets."
+            raise ValueError(msg)
+        return cls(
+            name,
+            Command(python)
+            .args(
+                "-B",
+                "-X",
+                "utf8",
+                "-m",
+                "pytest",
+                "--import-mode=importlib",
+                "--no-cov",
+                "-q",
+                "--tb=short",
+                *targets,
+            )
+            .cwd(root)
+            .with_timeout(timeout),
+        )
 
 
 @dataclass(frozen=True, slots=True)

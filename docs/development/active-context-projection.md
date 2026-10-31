@@ -283,3 +283,16 @@ exception internals, deepcopy or unvetted exception messages. It preserves unkno
 usage/effect/custody values and writes a separate minimal failure receipt if full
 capture fails. Storage failure can still prevent that receipt; this is not durable
 recovery. Frozen historical runners and lost acknowledgments remain unchanged.
+
+## Verified snapshot invalidation of host disclosures
+
+The [inventory/continuation contract](authorized-inventory-and-continuation.md)
+extends existing binding-based reduction to authenticated, same-repository host
+user-source messages whose snapshot is invalidated. Only matching canonical source
+fields are removed; other fields and differing values, including instructions,
+remain. Explicit omission markers retain path and disclosure identity, confer no
+witness, and consume the same full-request budget. Original history is untouched.
+System/unbound/foreign/protected content remains protected; forged bindings fail.
+Latest after-images/check feedback remain exact and are adopted only when a valid
+complete request fits. This is bounded deterministic selection, not a new memory,
+summary mechanism, source reacquisition or effect replay.

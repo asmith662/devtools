@@ -146,25 +146,26 @@ def _current_sources(
         presented = value.get("sources", [value])
         selected = []
         for option in options:
-            if (
-                option.snapshot_id != snapshot.id
-                or option.repository_id != snapshot.repository_id
-            ):
-                continue
-            materialized = materialize_source_range(snapshot, option).items[0]
             expected = {
-                "text": materialized.text,
+                "text": option.text,
                 "path": str(option.unit.resource.address),
                 "version": str(option.unit.resource.content_identity),
                 "span": list(option.span),
             }
             if not any(
                 all(v.get(k) == item for k, item in expected.items())
-                and v.get("snapshot", str(snapshot.id)) == str(snapshot.id)
+                and v.get("snapshot", str(option.snapshot_id))
+                == str(option.snapshot_id)
                 for v in presented
             ):
                 msg = "Source binding does not match presented Context."
                 raise ValueError(msg)
+            if (
+                option.snapshot_id != snapshot.id
+                or option.repository_id != snapshot.repository_id
+            ):
+                continue
+            materialize_source_range(snapshot, option)
             selected.append(option)
         current[index] = tuple(selected)
     return current
@@ -367,6 +368,44 @@ def project_request(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- bounded ordered
         size() if policy.report_source_state else original
     ) > policy.trigger_bytes
     if triggered:
+        # Historical host disclosures are not user-authored instructions.
+        # Authenticate their original fields above, then remove only matching
+        # canonical source fields. Other values/instructions stay verbatim.
+        for index in sorted(plain):
+            option = sources[index][0]
+            if (
+                index not in selected
+                or index in protected_indices
+                or messages[index].role != "user"
+                or option.repository_id != snapshot.repository_id
+                or option.snapshot_id == snapshot.id
+            ):
+                continue
+            original_message = selected[index]
+            before = size()
+            original_value = json.loads(original_message.content)
+            canonical = {
+                **source_feedback(option, option.text),
+                "span": list(option.span),
+            }
+            value = {
+                key: item
+                for key, item in original_value.items()
+                if key not in canonical or item != canonical[key]
+            }
+            value["text"] = {
+                "omitted": "stale-snapshot",
+                "path": str(option.unit.resource.address),
+                "identity": option.identity,
+            }
+            selected[index] = replace(
+                original_message,
+                content=json.dumps(value, ensure_ascii=False),
+            )
+            if size() < before:
+                shortened.append(index)
+            else:
+                selected[index] = original_message
         for priority, first, end, reason in sorted(candidates):
             if size() <= policy.target_bytes:
                 break

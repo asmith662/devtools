@@ -1054,3 +1054,7 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 - [Supervisor-Guided-B0035-0001](../experiments/supervisor_guided_b0035/REPORT.md):
   explicit ownership handoff, immediate partial model edit, known grading/Context
   limitations, independent rejection and source restoration; no integrated code.
+
+- [Complete authorized inventory and post-edit continuation](development/authorized-inventory-and-continuation.md):
+  mixed-provenance B-0035 implementation, authenticated stale-source reduction,
+  actual failed-check repair and explicit collision-safe focused pytest checks.

@@ -190,7 +190,7 @@ def test_status_overhead_triggers_reduction_and_truthful_partial_availability(
         request = await host.prepare(host.progress)
         outcome = host.projection_outcomes[-1]
         assert outcome.triggered
-        assert outcome.omitted_exchanges == ((1, 3, "source-capacity"),)
+        assert outcome.omitted_exchanges == ((2, 4, "source-capacity"),)
         assert status(request)["omitted_current_disclosure_records"] == 1
         assert request_bytes(request) <= before + 500
         assert tuple(host.messages) == original
@@ -243,12 +243,12 @@ def test_disabled_status_preserves_existing_semantic_trigger(tmp_path: Path) -> 
             hard_bytes=before + 3000,
             snapshot=host.scope.snapshot,
             sources=host._source_messages,  # noqa: SLF001 -- original host bindings
-            summarized_indices=frozenset({1, 2}),
+            summarized_indices=frozenset({2, 3}),
             summary=PromptMessage("assistant", "qualified notes " * 1000),
         )
         assert not result.triggered
         assert result.status == "insufficient"
-        assert result.omitted_exchanges == ((1, 3, "semantic-summary"),)
+        assert result.omitted_exchanges == ((2, 4, "semantic-summary"),)
 
     asyncio.run(run())
 

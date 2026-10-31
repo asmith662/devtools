@@ -56,10 +56,10 @@ def test_exact_663_range_failure_recovers_in_shared_process(
     assert result.disposition == "stopped"
     assert result.error is None
     assert worker.entries == 3
-    assert json.loads(host.messages[2].content)["valid_range"] == [0, 663]
-    assert json.loads(host.messages[4].content)["text"] == "x" * 224
-    assert host.messages[2].tool_call_id == "bad"
-    assert host.messages[4].tool_call_id == "fixed"
+    assert json.loads(host.messages[3].content)["valid_range"] == [0, 663]
+    assert json.loads(host.messages[5].content)["text"] == "x" * 224
+    assert host.messages[3].tool_call_id == "bad"
+    assert host.messages[5].tool_call_id == "fixed"
     assert len(host.source_results) == 1
 
 
@@ -81,7 +81,7 @@ def test_explicit_null_is_not_omitted_end(tmp_path: Path) -> None:
     assert result.error is None
     assert result.disposition == "stopped"
     assert result.progress.effects[0].acknowledged
-    assert json.loads(host.messages[2].content)["source_disclosure_entered"] is False
+    assert json.loads(host.messages[3].content)["source_disclosure_entered"] is False
     assert host.source_results == []
 
 

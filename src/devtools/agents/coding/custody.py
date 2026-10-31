@@ -32,9 +32,9 @@ class SourceCustody:
         *,
         maximum_bytes: int,
     ) -> None:
-        """Freeze one host-selected baseline without reading or changing source."""
-        if not baseline or maximum_bytes <= 0:
-            msg = "Source custody needs nonempty scope and a positive read limit."
+        """Freeze scope; an empty baseline grants no paths or restoration effects."""
+        if maximum_bytes <= 0:
+            msg = "Source custody needs a positive read limit."
             raise ValueError(msg)
         self.root, self.maximum_bytes = root, maximum_bytes
         self.baseline = MappingProxyType(dict(baseline))

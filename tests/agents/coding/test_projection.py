@@ -14,6 +14,7 @@ import pytest
 
 from devtools.agents.coding import repository as owner
 from devtools.agents.coding.models import CodingEffect, CodingProgress
+from devtools.agents.coding.navigation import prepare_inventory
 from devtools.agents.coding.projection import (
     ProjectionCapacityError,
     ProjectionPolicy,
@@ -93,7 +94,7 @@ def test_legacy_byte_refusal_does_not_erase_history(tmp_path: Path) -> None:
     host = host_at(tmp_path)
     host.objective = replace(host.objective, prompt_bytes=100)
     original = tuple(host.messages)
-    with pytest.raises(ValueError, match="byte budget"):
+    with pytest.raises(ValueError, match="budget"):
         asyncio.run(host.prepare(CodingProgress(LIMITS)))
     assert tuple(host.messages) == original
     assert host.requests == []
@@ -126,6 +127,12 @@ async def acquire(
     end: int = len(SOURCE),
 ) -> None:
     """Enter actual scope admission, ToolRunner and Context materialization once."""
+    prepare_inventory(
+        host.messages,
+        host.scope,
+        host.objective.editable,
+        host.objective.prompt_bytes,
+    )
     response = ModelResponse(
         "read exact source",
         InteractionSource("independent"),
@@ -184,10 +191,10 @@ def test_metadata_omission_preserves_constraints_history_and_no_effects(
         assert decision.status == "reduced"
         assert decision.target_reached
         assert decision.omitted_exchanges == (
-            (1, 3, "host-classified-metadata"),
-            (3, 5, "host-classified-metadata"),
+            (2, 4, "host-classified-metadata"),
+            (4, 6, "host-classified-metadata"),
         )
-        assert result.prompt.messages == (original[0], *original[5:])
+        assert result.prompt.messages == (*original[:2], *original[6:])
         assert decision.resulting_bytes == len(
             json.dumps(asdict(result), ensure_ascii=False).encode(),
         )
@@ -213,13 +220,13 @@ def test_duplicate_current_source_is_omitted_but_disjoint_ranges_remain(
         host.projection = ProjectionPolicy(before - 1, before - 400)
         await host.prepare(host.progress)
         result = host.projection_outcomes[-1]
-        assert result.omitted_exchanges == ((1, 3, "duplicate-current-source"),)
+        assert result.omitted_exchanges == ((2, 4, "duplicate-current-source"),)
         assert [o.span for o in result.active_sources] == [(7, len(SOURCE)), (0, 7)]
         assert (
             host.disclosures[0] in result.active_sources
         )  # same exact support, distinct executions retained
         assert len(host.source_results) == 3
-        assert len(host.messages) == 7
+        assert len(host.messages) == 8
 
     asyncio.run(run())
 
@@ -228,7 +235,7 @@ def test_disclosure_affordability_retains_original_and_invalidates_omitted_witne
     tmp_path: Path,
 ) -> None:
     async def run() -> None:
-        host = configured(tmp_path, hard=2800)
+        host = configured(tmp_path, hard=3400)
         text = "# " + "x" * 1900 + "\nreturn_value = 6\n"
         write(TextFile(resolve_path(tmp_path / "module.py"), text))
         host.scope = host.scope.observe(
@@ -248,14 +255,14 @@ def test_disclosure_affordability_retains_original_and_invalidates_omitted_witne
         await host.prepare(host.progress)
         decision = host.projection_outcomes[-1]
         assert decision.status == "reduced"
-        assert decision.omitted_exchanges == ((1, 3, "source-capacity"),)
-        assert decision.shortened_indices == (4,)
+        assert decision.omitted_exchanges == ((2, 4, "source-capacity"),)
+        assert decision.shortened_indices == (5,)
         partial = json.loads(decision.request.prompt.messages[-1].content)
         assert partial["partial"] is True
         assert partial["presentation"]["acquired_partial"] is False
         assert partial["presentation"]["acquired_span"] == [0, 1903]
         assert partial["text"] == text[: partial["span"][1]]
-        assert decision.resulting_bytes <= 2800
+        assert decision.resulting_bytes <= 3400
         assert tuple(host.messages) == original
         assert json.loads(host.messages[-1].content)["partial"] is False
         assert len(host.source_results[-1].items[0].text) == 1903
@@ -316,8 +323,8 @@ def test_failed_projection_keeps_previous_active_state_and_original_facts(
 
             monkeypatch.setattr(owner, "project_request", fail)
         elif fault == "capacity":
-            host.objective = replace(host.objective, prompt_bytes=200)
-            host.projection = ProjectionPolicy(190, 150)
+            host.objective = replace(host.objective, prompt_bytes=1500)
+            host.projection = ProjectionPolicy(1400, 1300)
         else:
             host.progress.effects.append(CodingEffect("edit", ("unknown",)))
         with pytest.raises((asyncio.CancelledError, OSError, ValueError)) as caught:
@@ -409,7 +416,7 @@ def test_failed_check_feedback_survives_new_acquisition(tmp_path: Path) -> None:
 
 def test_affordable_unicode_disclosure_keeps_exact_utf8_prefix(tmp_path: Path) -> None:
     async def run() -> None:
-        host = configured(tmp_path, hard=2200)
+        host = configured(tmp_path, hard=3000)
         text = "\u03c0" * 1300
         write(TextFile(resolve_path(tmp_path / "module.py"), text))
         host.scope = host.scope.observe(
@@ -427,7 +434,7 @@ def test_affordable_unicode_disclosure_keeps_exact_utf8_prefix(tmp_path: Path) -
         assert 0 < len(result["text"]) < len(text)
         assert result["text"] == text[: result["span"][1]]
         assert len(result["text"].encode()) == 2 * len(result["text"])
-        assert request_bytes(request) <= 2200
+        assert request_bytes(request) <= 3000
         assert host.messages[-1] == original
         assert host.source_results[-1].items[0].text == text
 
@@ -516,14 +523,14 @@ def test_foreign_binding_and_currentness_never_grant_edit_credit(
             original,
             unit=replace(original.unit, repository_id=Repository.new().id),
         )
-        host._source_messages[2] = (foreign,)  # noqa: SLF001 -- foreign identity fault
+        host._source_messages[3] = (foreign,)  # noqa: SLF001 -- foreign identity fault
         await host.prepare(host.progress)
         assert host.active_disclosures == ()
         assert (
             foreign.identity
             in host.projection_outcomes[-1].invalidated_source_identities
         )
-        host._source_messages[2] = (original,)  # noqa: SLF001 -- restore original host binding
+        host._source_messages[3] = (original,)  # noqa: SLF001 -- restore original host binding
         write(TextFile(resolve_path(tmp_path / "module.py"), SOURCE + "# changed\n"))
         with pytest.raises(ToolInputError, match="no longer current"):
             await host.prepare(host.progress)
@@ -557,10 +564,10 @@ def test_foreign_scope_or_changed_occurrence_rejected_by_context(
         await acquire(host)
         original = host.disclosures[0]
         changed = replace(original.unit.resource, content="x" * len(SOURCE))
-        host._source_messages[2] = (  # noqa: SLF001 -- invalid retained provenance
+        host._source_messages[3] = (  # noqa: SLF001 -- invalid retained provenance
             replace(original, unit=replace(original.unit, resource=changed)),
         )
-        with pytest.raises(ValueError, match="resource changed"):
+        with pytest.raises(ValueError, match="binding does not match"):
             await host.prepare(host.progress)
         assert host.active_disclosures == ()
 

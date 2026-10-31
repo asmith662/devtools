@@ -70,7 +70,7 @@ def test_guarded_projected_repair_uses_real_source_checks_and_custody(
     assert value["source"] == SOURCE
     assert value["usage"] == [None, None, None]
     assert value["projections"][-1]["status"] == "reduced"
-    assert value["projections"][-1]["omitted"] == [[1, 3, "stale-source"]]
+    assert value["projections"][-1]["omitted"] == [[2, 4, "stale-source"]]
 
 
 def test_guarded_semantic_repair_consumes_notes_and_exact_failed_check(

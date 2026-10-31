@@ -196,7 +196,7 @@ def test_actual_host_broad_vs_exact_working_set(
     original = bytes.fromhex(frozen["baseline_raw"][PATH]).decode()
     host = navigation_host(tmp_path, {PATH: original})
     host.objective = replace(host.objective, text=frozen["objective"])
-    host.messages = [PromptMessage("user", frozen["objective"])]
+    host.messages[0] = PromptMessage("user", frozen["objective"])
     command = (
         Command(sys.executable)
         .args(

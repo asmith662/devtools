@@ -13,6 +13,7 @@ import pytest
 
 from devtools.agents.coding import run_coding_agent
 from devtools.agents.coding.models import CodingProgress
+from devtools.agents.coding.navigation import prepare_inventory
 from devtools.agents.coding.projection import (
     ProjectionCapacityError,
     ProjectionPolicy,
@@ -85,6 +86,12 @@ def fixture(root: Path) -> RepositoryCodingHost:
 
 
 async def host_source(host: RepositoryCodingHost, start: int, end: int) -> None:
+    prepare_inventory(
+        host.messages,
+        host.scope,
+        host.objective.editable,
+        host.objective.prompt_bytes,
+    )
     unit = host.index.views[0].units[0]
     option = SourceRangeDisclosureOption("Host working set", unit, start, end, 8192)
     disclosure = await ToolRunner().execute(
@@ -130,7 +137,7 @@ def test_joint_reduction_continues_through_real_edit_check_and_restoration(
                     assert outcome.original_bytes > 13000
                     assert len(outcome.shortened_indices) >= 2
                     assert host.projection is not None
-                    for index in (1, 2):
+                    for index in (2, 3):
                         single = project_request(
                             host.build_request(tuple(host.messages)),
                             policy=host.projection,
@@ -205,7 +212,7 @@ def test_joint_reduction_failure_or_success_preserves_bound_history(
             with pytest.raises(ProjectionCapacityError) as caught:
                 await host.prepare(CodingProgress(LIMITS))
             assert caught.value.outcome.status == "insufficient"
-            assert caught.value.outcome.shortened_indices == (1, 2, 3)
+            assert caught.value.outcome.shortened_indices == (2, 3, 4)
             assert host.active_disclosures == ()
         else:
             await host.prepare(CodingProgress(LIMITS))
@@ -232,7 +239,7 @@ def test_shortened_host_source_does_not_authorize_omitted_anchor(
         host.objective = replace(host.objective, prompt_bytes=5000)
         host.projection = ProjectionPolicy(4500, 4000)
         await host.prepare(CodingProgress(LIMITS))
-        assert host.projection_outcomes[-1].shortened_indices == (1,)
+        assert host.projection_outcomes[-1].shortened_indices == (2,)
         assert all("return 6" not in o.text for o in host.active_disclosures)
         response = ModelResponse(
             "edit",
@@ -260,7 +267,7 @@ def test_bound_source_does_not_remove_mixed_or_standalone_instructions(
         with pytest.raises(ProjectionCapacityError) as caught:
             await host.prepare(CodingProgress(LIMITS))
         projected = caught.value.outcome.request.prompt.messages
-        assert json.loads(projected[1].content)["instruction"] == value["instruction"]
+        assert json.loads(projected[2].content)["instruction"] == value["instruction"]
         assert projected[-1] == original[-1]
         assert tuple(host.messages) == original
         assert host.active_disclosures == ()

@@ -111,3 +111,13 @@ still uses `ScopedSourceTool` and Context materialization. See the
 to higher composition layers. Agents can select a bounded task query and supply
 its own finite outline policy; neither source Tool owns task planning or grants
 source/edit authority from navigation metadata.
+
+## Explicit focused pytest construction
+
+FixedCheck.pytest accepts a trusted interpreter, root, exact test targets and timeout.
+It builds a focused importlib-mode command, avoiding module-name collisions between
+same-named files. It does not rewrite arbitrary Commands, modify oracles or replace
+protected validation; its --no-cov applies only to focused diagnostics. All intended
+assertions execute, and raw assertion/collection/environment exits remain available.
+Legacy bare-sibling-import suites can remain separately named fixed commands.
+See [the complete contract](../../../../docs/development/authorized-inventory-and-continuation.md).
