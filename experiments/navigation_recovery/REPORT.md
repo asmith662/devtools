@@ -191,3 +191,9 @@ The next bounded action should be a supervisor-delegated consumer-bound integrat
 task with an explicit grounded decision checkpoint, or a controlled stronger-worker
 comparison. Another generic navigation, Context or agent-loop increment is not
 supported by this outcome. Do not rerun this closed episode to obtain success.
+
+The ordinary non-force publication of implementation and results was independently
+verified at `966f483bf307db5e11881a3fcb10170efad9eec4`, descending from the
+authenticated starting main. The following receipt/manifest-only closeout adds no
+executable change or inference. Final local/remote identity is verified again and
+recorded in the ignored Codex handoff.
