@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
     from devtools.models.interaction import ModelInteraction
     from scripts.backlog.integration import Integration
+    from scripts.backlog.native.lifecycle import NativeMaintenance
 
 SCOPE = "bounded-local-qwen-implementation; review candidate only; no integration"
 
@@ -87,6 +88,13 @@ class WorkCycle:
         self.root = resolve_path(coordinator).value
         self.intake = Intake(self.root, coordinator=self.root)
         self._checkout: Checkout | None = None
+
+    @property
+    def native(self) -> NativeMaintenance:
+        """Expose the native input branch without changing legacy task contracts."""
+        from scripts.backlog.native import NativeMaintenance  # noqa: PLC0415
+
+        return NativeMaintenance(self)
 
     @property
     def integration(self) -> Integration:

@@ -20,6 +20,7 @@ from scripts.backlog.coordinator import designate, locate
 from scripts.backlog.delegation import Delegations
 from scripts.backlog.intake import DOMAINS, Intake, load_json
 from scripts.backlog.integration import cli as integration_cli
+from scripts.backlog.native import cli as native_cli
 from scripts.backlog.work import WorkCycle, task_from_dict
 
 
@@ -283,9 +284,13 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915 -- e
     discovery.add_argument("item")
     discovery.add_argument("input")
     integration_cli.configure(commands)
+    native_cli.configure(commands)
     args = parser.parse_args(arguments)
     try:
         root = resolve_path(args.root, base_directory=Path.cwd()).value
+        if args.command.startswith("native-"):
+            print(json.dumps(asyncio.run(native_cli.run(args, root)), indent=2))
+            return 0
         if args.command.startswith("integration-"):
             integration_result = asyncio.run(integration_cli.run(args, root))
             print(json.dumps(integration_result, indent=2))

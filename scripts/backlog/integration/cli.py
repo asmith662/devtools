@@ -51,6 +51,11 @@ def configure(commands: Any) -> None:  # noqa: ANN401 -- argparse subparser boun
     issue.add_argument("--policy", required=True)
     issue.add_argument("--reference", required=True)
     issue.add_argument("--expires", required=True)
+    issue.add_argument(
+        "--native",
+        action="store_true",
+        help="Explicit prospective native-candidate integration authority",
+    )
     revoke = commands.add_parser("integration-revoke")
     revoke.add_argument("grant")
     revoke.add_argument("--reference", required=True)
@@ -128,6 +133,7 @@ async def _run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa:
                 reference=args.reference,
                 expires=Timestamp.from_isoformat(args.expires),
                 authorize=confirm,
+                native=getattr(args, "native", False),
             )
         case "integration-revoke":
             return await integration.authority.revoke(

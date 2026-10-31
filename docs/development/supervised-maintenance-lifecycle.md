@@ -1,5 +1,11 @@
 # B-0043: supervised maintenance lifecycle reconciliation
 
+Current delivery: [the supported native maintenance handoff](native-maintenance-handoff.md)
+connects the prospective WorkCycle records, neutral coding process, independent
+review and existing integration plan. This implements the first bounded slice;
+B-0043 remains open. The reconciliation and original implementation prompt below
+retain their pre-delivery meaning and do not issue live-worker authority.
+
 ## Decision, scope and evidence strength
 
 The next increment is **one model-neutral supervised maintenance assignment to

@@ -12,7 +12,7 @@ from devtools.context import RepositoryResourceAddress
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from scripts.backlog.coordinator import git
-from scripts.backlog.intake import _digest
+from scripts.backlog.intake import _digest, load_json
 from scripts.backlog.work import _load
 
 if TYPE_CHECKING:
@@ -89,6 +89,17 @@ class IntegrationAuthority:
             raise ValueError("Invalid integration grant identity")
         return self.cycle.intake._path(".local/backlog/integration-grants/" + identity)
 
+    def grant(self, identity: str) -> dict[str, Any]:
+        """Decode explicit native authority without broadening legacy grants."""
+        path = self.folder(identity) / "grant.json"
+        schema = load_json(path)["schema"]
+        if schema == "backlog-integration-native-grant-v1":
+            value = _load(path, schema)
+            if value.get("candidate_kind") != "native-v1":
+                raise PermissionError("Native integration grant kind differs")
+            return value
+        return _load(path, "backlog-integration-grant-v1")
+
     async def issue(
         self,
         policy: dict[str, Any],
@@ -96,6 +107,7 @@ class IntegrationAuthority:
         reference: str,
         expires: Timestamp,
         authorize: Callable[[dict[str, Any]], bool] | None = None,
+        native: bool = False,
     ) -> dict[str, Any]:
         """Issue only under an actual local maintainer decision, default deny."""
         await self.cycle._coordinator()
@@ -104,6 +116,13 @@ class IntegrationAuthority:
                 "Issue integration authority only from an idle administrative checkout"
             )
         policy_check(policy)
+        if native and (
+            not set(policy["actions"]) <= {"install", "validate"}
+            or policy["parent_close"]
+        ):
+            raise PermissionError(
+                "Native grants permit install/validate only; no publication or closure"
+            )
         if resolve_path(policy["checkout"]).value != self.cycle.root:
             raise PermissionError("Integration grant must bind the canonical checkout")
         for branch in policy["destinations"]:
@@ -111,7 +130,10 @@ class IntegrationAuthority:
         if not reference.strip() or expires.value <= Timestamp.now().value:
             raise PermissionError("Decision provenance and future expiry required")
         grant = {
-            "schema": "backlog-integration-grant-v1",
+            "schema": "backlog-integration-native-grant-v1"
+            if native
+            else "backlog-integration-grant-v1",
+            **({"candidate_kind": "native-v1"} if native else {}),
             "principal": getpass.getuser(),
             "reference": reference,
             "issued_at": str(Timestamp.now()),
@@ -124,7 +146,7 @@ class IntegrationAuthority:
                 self.cycle.root, "remote", "get-url", policy["remote"]
             ),
             "policy": policy,
-            "supervisor": "Codex",
+            "supervisor": getpass.getuser() if native else "Codex",
             "scope": "development-integration-only; no model or scientific dispatch",
         }
         if authorize is None or not authorize(
@@ -148,9 +170,7 @@ class IntegrationAuthority:
     ) -> dict[str, Any]:
         """Stop subsequent stages; already published commits are not rolled back."""
         await self.cycle._coordinator()
-        record = _load(
-            self.folder(identity) / "grant.json", "backlog-integration-grant-v1"
-        )
+        record = self.grant(identity)
         if record["principal"] != getpass.getuser() or not reference.strip():
             raise PermissionError("Issuing host principal and provenance required")
         if authorize is None or not authorize(
@@ -173,13 +193,19 @@ class IntegrationAuthority:
                 },
             )
 
-    async def admit(
+    async def admit(  # noqa: C901 -- explicit legacy/native authority separation
         self, identity: str, plan: dict[str, Any], action: str
     ) -> dict[str, Any]:
         """Authenticate current authority independently of coding/review evidence."""
         await self.cycle._coordinator()
         folder = self.folder(identity)
-        grant = _load(folder / "grant.json", "backlog-integration-grant-v1")
+        grant = self.grant(identity)
+        if plan.get("candidate_kind", "qwen-v1") != grant.get(
+            "candidate_kind", "qwen-v1"
+        ):
+            raise PermissionError(
+                "Integration grant does not authorize this candidate kind"
+            )
         policy = grant["policy"]
         policy_check(policy)
         now = Timestamp.now().value
@@ -187,7 +213,12 @@ class IntegrationAuthority:
             grant["sha256"] != identity
             or grant["principal"] != getpass.getuser()
             or grant["coordinator"] != str(self.cycle.root)
-            or grant["supervisor"] != "Codex"
+            or grant["supervisor"]
+            != (
+                getpass.getuser()
+                if grant.get("candidate_kind") == "native-v1"
+                else "Codex"
+            )
             or not Timestamp.from_isoformat(grant["issued_at"]).value
             <= now
             < Timestamp.from_isoformat(grant["expires_at"]).value
@@ -215,7 +246,18 @@ class IntegrationAuthority:
             raise PermissionError("Integration code or resource allowance exceeded")
         for f in plan["files"]:
             if f["path"] not in policy["sources"] + policy["tests"] or (
-                f["author"] != "Qwen"
+                not (
+                    (
+                        plan.get("candidate_kind") != "native-v1"
+                        and f["author"] == "Qwen"
+                    )
+                    or (
+                        plan.get("candidate_kind") == "native-v1"
+                        and f["path"] == plan["source"]
+                        and f["author"] == plan["candidate_author"]
+                        and f["sha256"] == plan["candidate_sha256"]
+                    )
+                )
                 and f["path"] in policy["sources"]
                 and not policy["corrections"]
             ):

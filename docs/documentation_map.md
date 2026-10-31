@@ -1,5 +1,9 @@
 # Documentation Map
 
+Supported first B-0043 slice: [supervised native maintenance handoff](development/native-maintenance-handoff.md)
+documents prospective WorkCycle records, neutral coding, independent review and
+authenticated integration plans, without automatic publication or parent closure.
+
 Everyday testing and failure recovery: [maintained validation modes](development/validation.md)
 and [intelligent validation evidence](development/intelligent-validation.md).
 

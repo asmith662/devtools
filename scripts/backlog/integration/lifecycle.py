@@ -22,7 +22,7 @@ from scripts.backlog.checkout import Checkout
 from scripts.backlog.checkout import _paths as file_names
 from scripts.backlog.checkout import untracked as untracked_files
 from scripts.backlog.coordinator import common_directory, git
-from scripts.backlog.intake import _digest, _read
+from scripts.backlog.intake import _digest, _read, load_json
 from scripts.backlog.integration.authority import IntegrationAuthority
 from scripts.backlog.integration.git import blob, clean, publish, remote_head
 from scripts.backlog.integration.validation import validate_tree
@@ -32,7 +32,17 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from apps.qwen.tasks import CodingTask
+    from scripts.backlog.native.packet import NativeTask
     from scripts.backlog.work import WorkCycle
+
+
+def candidate_task(assignment: dict[str, Any]) -> CodingTask | NativeTask:
+    """Keep native task decoding separate from the durable legacy CodingTask."""
+    if assignment["schema"] == "backlog-native-assignment-v1":
+        from scripts.backlog.native.packet import task_view  # noqa: PLC0415
+
+        return task_view(assignment["task"])
+    return task_from_dict(assignment["task"])
 
 
 def digest_text(value: str) -> str:
@@ -128,6 +138,11 @@ class Integration:
     def candidate(self, item: str, review: str) -> dict[str, Any]:
         """Authenticate exact candidate/diff and the Codex result review."""
         folder = self.cycle._folder(item)
+        if (
+            load_json(folder / "assignment.json")["schema"]
+            == "backlog-native-assignment-v1"
+        ):
+            return self.cycle.native.candidate(item, review)
         assignment = _load(folder / "assignment.json", "backlog-qwen-assignment-v1")
         result = _load(folder / "result.json", "backlog-qwen-result-v1")
         if not re.fullmatch(r"[a-f0-9]{64}", review):
@@ -186,7 +201,12 @@ class Integration:
         await self.cycle._coordinator()
         candidate = self.candidate(item, review)
         assignment = candidate["assignment"]
-        task = task_from_dict(assignment["task"])
+        task = candidate_task(assignment)
+        native = assignment["schema"] == "backlog-native-assignment-v1"
+        if native and spec.get("parent_complete"):
+            raise PermissionError(
+                "Native maintenance slice cannot declare parent completion"
+            )
         backlog = self.cycle.intake.approved_item(item)
         if not same_backlog(backlog, assignment["backlog"], relocated=True):
             raise PermissionError("Backlog changed; review the new scope explicitly")
@@ -260,7 +280,7 @@ class Integration:
                 "path": task.source,
                 "text": candidate["source"],
                 "sha256": digest_text(candidate["source"]),
-                "author": "Qwen",
+                "author": assignment["task"]["worker"]["actor"] if native else "Qwen",
                 "reference": candidate["result"]["sha256"],
             }
         ]
@@ -319,6 +339,14 @@ class Integration:
             "validation_seconds": spec["validation_seconds"],
             "backlog": backlog,
             "original_backlog_location": assignment["backlog"]["path"],
+            **(
+                {
+                    "candidate_kind": "native-v1",
+                    "candidate_author": assignment["task"]["worker"]["actor"],
+                }
+                if native
+                else {}
+            ),
         }
         identity = _digest(plan)
         with self.cycle.intake._writer():
@@ -662,8 +690,8 @@ class Integration:
                     "allowance retained"
                 )
             self._intent(item, identity, "validation", grant)
-        task = task_from_dict(
-            self.candidate(item, plan["accepted_review"])["assignment"]["task"]
+        task = candidate_task(
+            self.candidate(item, plan["accepted_review"])["assignment"]
         )
         result = await validate_tree(
             checkout, folder / "pre-checks", plan, task.oracle, post=False
@@ -764,14 +792,16 @@ class Integration:
                     + identity
                     + "\nImplementation-Candidate: "
                     + plan["candidate_sha256"]
-                    + "\nImplementation-by: Qwen (immutable candidate)"
+                    + "\nImplementation-by: "
+                    + plan.get("candidate_author", "Qwen")
+                    + " (immutable candidate)"
                     + "\nApplied-by: "
                     + getpass.getuser()
                     + "\nSupervised-by: Codex\nIndependent additions: "
                     + ", ".join(
                         f["author"] + ":" + f["reference"]
                         for f in plan["files"]
-                        if f["author"] != "Qwen"
+                        if f["author"] != plan.get("candidate_author", "Qwen")
                     ),
                 )
                 head = await git(checkout, "rev-parse", "HEAD")
@@ -890,8 +920,8 @@ class Integration:
                 "Verification checkout differs from the exact destination commit"
             )
         materialized = await self._files(plan, checkout, git_checkout=True)
-        task = task_from_dict(
-            self.candidate(item, plan["accepted_review"])["assignment"]["task"]
+        task = candidate_task(
+            self.candidate(item, plan["accepted_review"])["assignment"]
         )
         result = await validate_tree(
             checkout, folder / "post-checks", plan, task.oracle, post=True

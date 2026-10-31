@@ -1,5 +1,10 @@
 # Roadmap
 
+Delivered bounded B-0043 connection: [supervised native maintenance](development/native-maintenance-handoff.md)
+reaches an independently reviewed candidate and read-only integration plan.
+General planning, role execution, restart and autonomous closeout remain separate;
+this delivery does not close B-0043 or reopen B-0035.
+
 ## Current supervised engineering priority — 2026-10-31
 
 B-0035 is closed with complete initial inventory and reliable post-edit

@@ -1,5 +1,13 @@
 # Governed development integration
 
+The [native maintenance entry](../development/native-maintenance-handoff.md) adds
+an explicit prospective candidate reader and `candidate_kind: native-v1` plan
+metadata. Legacy Qwen assignments/results/reviews and their grant meaning remain
+unchanged. A separately issued `integration-issue --native` grant can admit the
+native one-file plan for installation/validation only. Native coding/review does
+not grant installation, publication or parent closeout; legacy grants do not
+authorize native candidates by implication.
+
 > Single-checkout continuation: WorkCycle and integration use the canonical
 > checkout and ordinary branches under exclusive source ownership. Historical
 > secondary-checkout assignments, grants and plans remain inspection-only; they
