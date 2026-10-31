@@ -8,6 +8,9 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
 - `process.run_coding_agent` owns the finite model/proposal phase sequence,
   response-source and native ID checks, continuation and terminal reconciliation.
 - `models` owns coding-specific limits and factual candidate/terminal outcomes.
+- `protocol` owns stateless native coding schemas, argument materialization and
+  operation-family classification. It implements the existing ToolInvocation
+  boundary, never authorization, execution, retained history or another loop.
 - `repository.RepositoryCodingHost` composes real repository Context acquisition,
   exact current edit admission, fixed validation and feedback. Hosts explicitly
   supply authorization and application/archive/restoration collaborators.
@@ -25,7 +28,8 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
   language/task or repository governance defaults.
   The same owner now composes exact witnessed, nonoverlapping replacements into
   whole admitted after-images through `admit_source_batch`. The repository host
-  retains native decoding/count limits, readiness/currentness, feedback, authority
+  selects native decoding and retains count limits, readiness/currentness,
+  feedback, authority
   and effects; its `EditLimits`/`SourceChange` imports remain compatibility facades.
 - `custody.SourceCustody` retains canonical known-source correspondence and
   refuses unknown-byte restoration. It is not Checkout, a transaction or store.
@@ -98,3 +102,7 @@ records. Only selected current source can witness an edit. Protected check and
 after-image feedback still must fit in full.
 
 See [inventory, continuation and check contracts](../../../../../docs/development/authorized-inventory-and-continuation.md).
+
+The [native protocol decomposition](../../../../../docs/development/coding-host-decomposition.md)
+separates effect-free wire/materialization responsibilities from host lifecycle,
+retaining public APIs, source authority and all B-0035 behavior.

@@ -6,6 +6,7 @@ from __future__ import annotations
 import asyncio
 import json
 from dataclasses import dataclass, replace
+from functools import partial
 from typing import TYPE_CHECKING, Literal, cast
 
 from devtools.agents.coding.compaction.operation import SemanticCompactor
@@ -38,7 +39,6 @@ from devtools.agents.coding.navigation import (
     prepare_inventory,
     prepare_navigation,
     task_selection,
-    unit_read_request,
 )
 from devtools.agents.coding.projection import (
     ProjectionCapacityError,
@@ -47,6 +47,15 @@ from devtools.agents.coding.projection import (
     project_request,
     request_bytes,
     source_feedback,
+)
+from devtools.agents.coding.protocol import (
+    CHECK,
+    EDIT,
+    READ,
+    Invocation,
+    arguments,
+    classify_calls,
+    read_request,
 )
 from devtools.agents.model_tools import (
     execute_model_tool_call,
@@ -66,7 +75,7 @@ from devtools.models.interaction import (
     PromptMessage,
 )
 from devtools.resources.filesystem import TextFile, write
-from devtools.tools import ToolDescriptor, ToolRunner
+from devtools.tools import ToolRunner
 from devtools.tools.checks import FixedCheckPlan, FixedCheckResult, FixedCheckTool
 from devtools.tools.source import (
     ScopedSourceTool,
@@ -87,31 +96,6 @@ if TYPE_CHECKING:
     from devtools.tools import Tool
 
 _SETTINGS = ModelSettings()
-_READ = ToolDescriptor(
-    "read_source",
-    "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
-    (
-        '{"type":"object","properties":{"path":{"type":"string"},'
-        '"start":{"type":"integer"},"end":{"type":"integer"}},'
-        '"required":["path","start"],"additionalProperties":'
-        "false}"
-    ),
-)
-_EDIT = ToolDescriptor(
-    "replace_source",
-    ("Propose an exact unique observed replacement; host admission is required."),
-    (
-        '{"type":"object","properties":{"path":{"type":"string"},'
-        '"old_text":{"type":"string"},"new_text":{"type":"string"}},'
-        '"required":["path","old_text","new_text"],'
-        '"additionalProperties":false}'
-    ),
-)
-_CHECK = ToolDescriptor(
-    "validate_candidate",
-    "Request the host-fixed candidate checks.",
-    '{"type":"object","maxProperties":0}',
-)
 
 
 @dataclass(frozen=True, slots=True)
@@ -165,18 +149,6 @@ def write_source_changes(root: ResolvedPath, changes: tuple[SourceChange, ...]) 
         )
 
 
-@dataclass(frozen=True, slots=True)
-class _Invocation[Input]:
-    """One explicitly selected native operation, not a Tool registry."""
-
-    descriptor: ToolDescriptor
-    decode: Callable[[str], Input]
-
-    def materialize(self, serialized_arguments: str) -> Input:
-        """Delegate effect-free materialization to the selected host operation."""
-        return self.decode(serialized_arguments)
-
-
 class _ChangeTool:
     """Execute an already admitted source batch once through a host effect owner."""
 
@@ -201,28 +173,6 @@ class _ChangeTool:
     async def execute(self, arguments: tuple[SourceChange, ...]) -> None:
         """Invoke once; any exception can follow a completed external effect."""
         await self.effect(arguments)
-
-
-def _arguments(
-    serialized: str,
-    fields: set[str],
-    *,
-    optional: frozenset[str] = frozenset(),
-) -> dict[str, object]:
-    """Validate this host's small native argument object, not arbitrary JSON Schema."""
-
-    def pairs(items: list[tuple[str, object]]) -> dict[str, object]:
-        value = dict(items)
-        if len(value) != len(items):
-            msg = "Duplicate coding argument member."
-            raise ValueError(msg)
-        return value
-
-    value = json.loads(serialized, object_pairs_hook=pairs)
-    if not isinstance(value, dict) or not fields <= set(value) <= fields | optional:
-        msg = "Coding arguments do not match the admitted operation."
-        raise ValueError(msg)
-    return value
 
 
 class RepositoryCodingHost:
@@ -324,9 +274,9 @@ class RepositoryCodingHost:
             tools=tuple(
                 normalize_tool_descriptor(d)
                 for d in (
-                    _READ,
-                    _EDIT,
-                    _CHECK,
+                    READ,
+                    EDIT,
+                    CHECK,
                     *(
                         (TASK_FIND if self.navigation_policy else FIND, READ_UNIT)
                         if self.navigation
@@ -462,47 +412,7 @@ class RepositoryCodingHost:
                 else None,
             ),
         )
-        if not response.tool_calls:
-            return "stop"
-        if all(
-            c.name in {_READ.name, _CHECK.name}
-            or (self.navigation and c.name in {FIND.name, READ_UNIT.name})
-            for c in response.tool_calls
-        ):
-            return "acquire"
-        if all(c.name == _EDIT.name for c in response.tool_calls):
-            return "edit"
-        msg = "Coding response contains an unadmitted or mixed operation."
-        raise ValueError(msg)
-
-    def _read(self, serialized: str) -> SourceReadRequest:
-        values = _arguments(serialized, {"path", "start"}, optional=frozenset({"end"}))
-        unit = next(
-            (
-                u
-                for u in self.index.views[0].units
-                if u.resource.address.value == values["path"]
-            ),
-            None,
-        )
-        if unit is None:
-            msg = "Source path is outside the admitted corpus."
-            raise ValueError(msg)
-        return SourceReadRequest(
-            self.objective.text,
-            unit,
-            cast("int", values["start"]),
-            cast("int | None", values.get("end", unit.end)),
-            self.objective.disclosure_bytes,
-        )
-
-    def _read_unit(self, serialized: str) -> SourceReadRequest:
-        return unit_read_request(
-            self.index,
-            _arguments(serialized, {"unit_id", "snapshot_id"}),
-            purpose=self.objective.text,
-            maximum_bytes=self.objective.disclosure_bytes,
-        )
+        return classify_calls(response.tool_calls, navigation=self.navigation)
 
     def _feedback(
         self,
@@ -535,7 +445,7 @@ class RepositoryCodingHost:
             effect = self.progress.claim_action(call.provider_call_id)
             if self.navigation and call.name == FIND.name:
                 try:
-                    values = _arguments(
+                    values = arguments(
                         call.arguments_json,
                         set(),
                         optional=frozenset({"path", "query", "mode", "offset"})
@@ -567,7 +477,7 @@ class RepositoryCodingHost:
                     progress=self.progress,
                 )
                 self._feedback(call, result)
-            elif call.name in {_READ.name, READ_UNIT.name}:
+            elif call.name in {READ.name, READ_UNIT.name}:
                 tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
                     ScopedSourceTool(
                         self.scope,
@@ -576,9 +486,15 @@ class RepositoryCodingHost:
                 )
                 disclosure = await execute_model_tool_call(
                     call,
-                    invocation=_Invocation[SourceReadRequest](
-                        READ_UNIT if call.name == READ_UNIT.name else _READ,
-                        self._read_unit if call.name == READ_UNIT.name else self._read,
+                    invocation=Invocation[SourceReadRequest](
+                        READ_UNIT if call.name == READ_UNIT.name else READ,
+                        partial(
+                            read_request,
+                            index=self.index,
+                            purpose=self.objective.text,
+                            maximum_bytes=self.objective.disclosure_bytes,
+                            by_unit=call.name == READ_UNIT.name,
+                        ),
                     ),
                     tool=tool,
                     admit=self.authorize,
@@ -617,7 +533,7 @@ class RepositoryCodingHost:
                     sources=(option,),
                 )
             else:
-                _arguments(call.arguments_json, set())
+                arguments(call.arguments_json, set())
                 await self.authorize(call, self.objective.checks)
                 passed = await self.check(())
                 self.progress.candidate_validated = passed
@@ -644,7 +560,7 @@ class RepositoryCodingHost:
                 raise CodingEditError(msg)
             return admit_source_batch(
                 (
-                    _arguments(call.arguments_json, {"path", "old_text", "new_text"})
+                    arguments(call.arguments_json, {"path", "old_text", "new_text"})
                     for call in response.tool_calls
                 ),
                 snapshot=self.scope.snapshot,
@@ -677,7 +593,7 @@ class RepositoryCodingHost:
 
         await execute_model_tool_call(
             call,
-            invocation=_Invocation(_EDIT, selected),
+            invocation=Invocation(EDIT, selected),
             tool=_ChangeTool(self.scope, proposal, self.effect),
             admit=admit,
             runner=ToolRunner(),

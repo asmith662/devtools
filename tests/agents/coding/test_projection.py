@@ -21,7 +21,9 @@ from devtools.agents.coding.projection import (
     native_exchange_ranges,
     request_bytes,
 )
-from devtools.agents.coding.repository import _CHECK, _EDIT, RepositoryCodingHost
+from devtools.agents.coding.protocol import CHECK
+from devtools.agents.coding.protocol import EDIT as EDIT_TOOL
+from devtools.agents.coding.repository import RepositoryCodingHost
 from devtools.agents.model_tools import normalize_tool_descriptor
 from devtools.context import Repository, RepositoryResourceAddress
 from devtools.core.paths import resolve_path
@@ -71,7 +73,7 @@ def frozen_request() -> ModelRequest:
         Prompt("", "messages", messages),
         settings=ModelSettings(maximum_output_tokens=4096, thinking_enabled=False),
         tools=tuple(
-            normalize_tool_descriptor(d) for d in (original_read, _EDIT, _CHECK)
+            normalize_tool_descriptor(d) for d in (original_read, EDIT_TOOL, CHECK)
         ),
     )
 

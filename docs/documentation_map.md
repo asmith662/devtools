@@ -1,5 +1,8 @@
 # Documentation Map
 
+Current coding-host ownership: [stateless native protocol and lifecycle decomposition](development/coding-host-decomposition.md)
+preserves closed B-0035 behavior; its delivery receipt records exact validation.
+
 Context implementation increment 2, 2026-10-28:
 [structured semantic working-state compaction](development/semantic-context-compaction.md)
 documents the separately bounded optional interaction, cited fallible notes,
