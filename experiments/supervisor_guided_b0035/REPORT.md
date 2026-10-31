@@ -204,3 +204,9 @@ demonstrated. Any future governed integration must preflight actual post-edit/ch
 affordability and collision-free check invocation. Those concrete limitations are
 recorded, not corrected in this assignment. No generic Context/navigation/planner/
 coding-loop increment or automatic new attempt is recommended or authorized.
+
+The ordinary non-force result publication was verified at
+`9130ad418ab3def248ad2cf692e16d339aab8a12`, descending from authenticated starting
+main. A following publication-receipt/manifest-only closeout changes no executable
+input or scientific outcome. Final local/remote identity is checked again and
+recorded in the ignored Codex handoff.
