@@ -1,6 +1,6 @@
 {
   "schema": "devtools-b0035-production-delivery-v1",
-  "status": "production-accepted-protected-validation-passed",
+  "status": "production-accepted-published",
   "starting_main": "6bf14115eceee07ac9088cb862b49efcc5f3a7af",
   "previous_validated_executable": "6ab614c60a20418e779355e178ee3d113634101c",
   "local_model_interactions": 0,
@@ -1419,7 +1419,16 @@
     "stderr": ""
   },
   "publication": {
-    "state": "pending ordinary authorized non-force push"
+    "at": "2026-10-31T13:55:14.948565+00:00",
+    "main": "b6ce1a5b53d54281a1a61472e7d3657ffa7bccd9",
+    "prior_remote": "6bf14115eceee07ac9088cb862b49efcc5f3a7af",
+    "ordinary_non_force": true,
+    "remote_verified": true,
+    "push_permission": true,
+    "main_protected": false,
+    "active_rules": [],
+    "rulesets": [],
+    "qualification": "Verified accepted delivery main. This later receipt-only commit has the same tested executable inputs; final synchronized main is also recorded in the ignored user handoff."
   },
   "initial_protected_attempt": {
     "name": "protected",
@@ -4155,9 +4164,9 @@
     "tests/tools/test_checks.py"
   ],
   "preservation": {
-    "at": "2026-10-31T13:54:07.761688+00:00",
+    "at": "2026-10-31T13:54:40.651235+00:00",
     "starting_main": "6bf14115eceee07ac9088cb862b49efcc5f3a7af",
-    "head": "e446c7aa2be353441794a871aadac1f1bcaf96d5",
+    "head": "b6ce1a5b53d54281a1a61472e7d3657ffa7bccd9",
     "changed": [
       "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
       "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
