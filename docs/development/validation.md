@@ -71,7 +71,7 @@ the previous receipt and leaves its comprehensive failure intact.
 Pytest's existing cache may assist manual `--lf --lfnf=none --no-cov` diagnosis,
 but is not input-authenticated evidence and is not used to manufacture a pass.
 The maintained recovery command uses saved IDs rather than mutable cache state.
-No plugin, worker pool or shared service is added. Phase timings are retained
+No third-party pytest dependency, worker pool or shared service is added. Phase timings are retained
 for future measured fixture optimization. See [delivery evidence](intelligent-validation.md).
 
 ## Protected development test profile
