@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: PLR2004, COM812, SLF001, E501, C901, PLR0912, PLR0915 -- finite authored lifecycle controls
+# ruff: noqa: PLR2004, COM812, SLF001, E501, C901, PLR0912, PLR0915, PT018, EM101, TRY003 -- finite authored lifecycle controls
 """Actual neutral source/check/repair/custody/review/plan without live models."""
 
 from __future__ import annotations
@@ -7,6 +7,7 @@ from __future__ import annotations
 import asyncio
 import copy
 import json
+from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
 
 import pytest
@@ -16,10 +17,14 @@ from devtools.models.interaction import (
     InteractionSource,
     ModelRequest,
     ModelResponse,
+    ModelTermination,
     ModelToolCall,
+    ModelUsage,
 )
+from devtools.resources.filesystem import FilesystemNotFoundError
 from scripts.backlog.coordinator import designate, git
 from scripts.backlog.intake import _digest
+from scripts.backlog.native.review.proposal import parse
 from scripts.backlog.work import WorkCycle
 
 if TYPE_CHECKING:
@@ -621,3 +626,664 @@ def test_native_operator_preview_and_default_no_authorization(
         == 1
     )
     assert not (cycle._folder(item) / "authorization.json").exists()
+
+
+def reviewer_policy(source: str = "neutral-review-a") -> dict[str, Any]:
+    """Approve an independently provisioned session, not merely another label."""
+    return {
+        "actor": "independent-review-actor",
+        "source": source,
+        "profile": "review-script-v1",
+        "independence": {
+            "reference": "fixture://host-session-attestation",
+            "session": "fresh-review-session",
+            "implementation_participant": False,
+            "privileged_reference_access": False,
+        },
+        "read_paths": [PUBLIC],
+        "settings": {"maximum_output_tokens": 1024, "thinking_enabled": False},
+        "budgets": {
+            "model_calls": 3,
+            "reads": 2,
+            "call_seconds": 10,
+            "wall_seconds": 60,
+            "prompt_bytes": 65536,
+            "response_bytes": 16384,
+            "capture_bytes": 524288,
+        },
+    }
+
+
+def conclusion(disposition: str = "accept") -> dict[str, Any]:
+    """Describe a model-attributed conclusion, never host authorization."""
+    return {
+        "disposition": disposition,
+        "summary": "Candidate returns 3; observed checks support this finite repair, not general correctness.",
+        "evidence": [
+            "task",
+            "baseline",
+            "candidate",
+            "public-checks",
+            "acceptance",
+            "custody",
+        ],
+        "findings": [
+            {
+                "kind": "observed",
+                "severity": "advisory",
+                "message": "A public failure preceded the successful repair",
+                "evidence": ["public-checks"],
+            }
+        ],
+        "outstanding": [],
+        "requests": [],
+        "assessed_obligations": ["objective", "owner"],
+    }
+
+
+class ReviewModel:
+    """Select actual read Tools and a structured review through ModelInteraction."""
+
+    def __init__(
+        self,
+        source: str = "neutral-review-a",
+        *,
+        response: dict[str, Any] | None = None,
+        fault: str | None = None,
+    ) -> None:
+        """Keep response choices separate from trusted host decisions."""
+        self.source = InteractionSource(source)
+        self.response, self.fault = response or conclusion(), fault
+        self.requests: list[ModelRequest] = []
+
+    async def send(self, request: ModelRequest) -> ModelResponse:
+        """Inspect actual disclosure and select a read before concluding."""
+        self.requests.append(request)
+        assert request.conversation is None and request.provider_settings is None
+        assert [t.name for t in request.tools] == ["read_source"]
+        assert json.loads(request.prompt.messages[1].content)["review_scope"][
+            "read_paths"
+        ] == [PUBLIC]
+        content = json.dumps(asdict(request))
+        assert "assert module.value()" not in content
+        assert "independently_derived" not in content
+        assert "withheld.py" not in content
+        if self.fault == "timeout":
+            await asyncio.sleep(5)
+        if self.fault == "malformed":
+            return ModelResponse("Approved!", self.source)
+        if self.fault == "output":
+            return ModelResponse(
+                json.dumps(self.response),
+                self.source,
+                termination=ModelTermination.OUTPUT_LIMIT,
+            )
+        if self.fault == "usage":
+            return ModelResponse(
+                json.dumps(self.response),
+                self.source,
+                usage=ModelUsage(output_tokens=1025),
+            )
+        if self.fault == "source":
+            return ModelResponse(
+                json.dumps(self.response), InteractionSource("foreign-review")
+            )
+        if len(self.requests) == 1 or self.fault == "calls":
+            name = "replace_source" if self.fault == "edit" else "read_source"
+            path = SOURCE if self.fault == "unauthorized" else PUBLIC
+            return ModelResponse(
+                "Inspect the published test obligation",
+                self.source,
+                tool_calls=(
+                    ModelToolCall(
+                        name,
+                        json.dumps({"path": path, "start": 0}),
+                        f"review-read-{len(self.requests)}",
+                    ),
+                ),
+            )
+        assert request.prompt.messages[-1].role == "tool"
+        return ModelResponse(json.dumps(self.response), self.source)
+
+
+async def native_candidate(cycle: WorkCycle, item: str) -> None:
+    """Produce a real checked/restored candidate for refusal controls."""
+    await prepared(cycle, item, task())
+    result = await cycle.native.execute(
+        item,
+        interaction=Scripted(
+            "neutral-script-a", [read_call(), edit(1, 3, "direct-repair")]
+        ),
+        profile="scripted-v1",
+        authorize=lambda _: True,
+    )
+    assert result["disposition"] == "REVIEW_CANDIDATE"
+
+
+async def approve_reviewer(cycle: WorkCycle, item: str, config: dict[str, Any]) -> None:
+    """Separately authorize only the exact frozen review subject."""
+    await cycle.native.reviewer.prepare(item, reviewer=config)
+    await cycle.native.reviewer.authorize(
+        item,
+        reference="fixture://review-only-approval",
+        expires=Timestamp.now() + Duration.minutes(5),
+        authorize=lambda _: True,
+    )
+
+
+@pytest.mark.parametrize("source", ["neutral-review-a", "independent-review-b"])
+def test_native_review_actor_to_existing_integration_plan(
+    repository: tuple[WorkCycle, str], source: str
+) -> None:
+    """Consume real failure/repair evidence; only a later host decision forms review."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await prepared(cycle, item, task())
+        result = await cycle.native.execute(
+            item,
+            interaction=Scripted("neutral-script-a"),
+            profile="scripted-v1",
+            authorize=lambda _: True,
+        )
+        assert result["disposition"] == "REVIEW_CANDIDATE"
+        await approve_reviewer(cycle, item, reviewer_policy(source))
+        model = ReviewModel(source)
+        proposal = await cycle.native.reviewer.execute(
+            item,
+            interaction=model,
+            profile="review-script-v1",
+            authorize=lambda _: True,
+        )
+        assert proposal["status"] == "proposed", proposal
+        assert proposal["host_approved"] is False and proposal["model_calls"] == 2
+        assert proposal["references"]["read:1"]
+        assert not list(cycle._folder(item).glob("review-*.json"))
+        with pytest.raises(PermissionError, match="host review"):
+            await cycle.native.reviewer.decide(
+                item,
+                proposal=proposal["sha256"],
+                accept=True,
+                reference="fixture://declined",
+                rationale="Host declined",
+                authorize=lambda _: False,
+            )
+        seen = []
+
+        def approve(value: dict[str, Any]) -> bool:
+            seen.append(value)
+            return True
+
+        review = await cycle.native.reviewer.decide(
+            item,
+            proposal=proposal["sha256"],
+            accept=True,
+            reference="fixture://host-reviewed-proposal",
+            rationale="Host independently inspected exact candidate and attributed findings",
+            authorize=approve,
+        )
+        assert seen[0]["review_proposal"] == proposal
+        assert (
+            review["proposal_sha256"] == proposal["sha256"]
+            and review["installation_authorized"] is False
+        )
+        plan = await cycle.integration.plan(
+            item,
+            review["sha256"],
+            {
+                "remote": "origin",
+                "destination": "release",
+                "feature": "feat/reviewed-native",
+                "checkout": str(cycle.root),
+                "additions": [],
+                "parent_complete": False,
+                "remaining": ["Authorized implementation competence remains unproved"],
+                "rationale": "Host-approved grounded review",
+                "validation_seconds": 60,
+            },
+        )
+        assert (
+            plan["candidate_kind"] == "native-v1"
+            and plan["candidate_result"] == result["sha256"]
+        )
+        path = cycle.native.reviewer.folder(item) / "proposal.json"
+        original = path.read_bytes()
+        path.write_text(json.dumps({**proposal, "actor": "forged"}), encoding="utf-8")
+        with pytest.raises(ValueError, match="identity/schema"):
+            cycle.integration.candidate(item, review["sha256"])
+        path.write_bytes(original)
+        assert (cycle.root / SOURCE).read_text() == BASE
+        assert not (cycle.root / ".local/backlog/checkout-owner").exists()
+        assert not (
+            cycle.integration.folder(item, plan["sha256"]) / "install.json"
+        ).exists()
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "fault",
+    [
+        "malformed",
+        "output",
+        "usage",
+        "source",
+        "unauthorized",
+        "edit",
+        "calls",
+        "prompt",
+        "capture",
+        "timeout",
+        "persist",
+    ],
+)
+def test_native_review_actor_blocked_without_replay(
+    repository: tuple[WorkCycle, str], fault: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Unknown/malformed/unauthorized outcomes never become acceptance or replay."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await native_candidate(cycle, item)
+        config = reviewer_policy()
+        if fault == "prompt":
+            config["budgets"]["prompt_bytes"] = 1
+        if fault == "capture":
+            config["budgets"]["capture_bytes"] = 1
+        if fault == "calls":
+            config["budgets"]["model_calls"] = 1
+        if fault == "timeout":
+            config["budgets"]["call_seconds"] = config["budgets"]["wall_seconds"] = 1
+        await approve_reviewer(cycle, item, config)
+        model = ReviewModel(fault=fault)
+        actor = cycle.native.reviewer
+        original = actor.save
+
+        def save(item: str, name: str, value: dict[str, Any]) -> dict[str, Any]:
+            if name == "proposal":
+                raise OSError("authored persistence failure")
+            return original(item, name, value)
+
+        if fault == "persist":
+            monkeypatch.setattr(actor, "save", save)
+        if fault == "persist":
+            with pytest.raises(OSError, match="persistence"):
+                await actor.execute(
+                    item,
+                    interaction=model,
+                    profile="review-script-v1",
+                    authorize=lambda _: True,
+                )
+        else:
+            proposal = await actor.execute(
+                item,
+                interaction=model,
+                profile="review-script-v1",
+                authorize=lambda _: True,
+            )
+            assert proposal["status"] == "blocked" and proposal["conclusion"] is None, (
+                proposal
+            )
+            expected = {
+                "malformed": "JSONDecodeError",
+                "output": "source/output allowance",
+                "usage": "source/output allowance",
+                "source": "source/output allowance",
+                "unauthorized": "outside the admitted corpus",
+                "edit": "not an authorized read",
+                "calls": "model-call budget exhausted",
+                "prompt": "Context cannot fit",
+                "capture": "capture budget exhausted",
+                "timeout": "TimeoutError",
+            }
+            assert expected[fault] in proposal["error"]
+            with pytest.raises(PermissionError):
+                await actor.decide(
+                    item,
+                    proposal=proposal["sha256"],
+                    accept=True,
+                    reference="fixture://unsafe",
+                    rationale="Must refuse",
+                    authorize=lambda _: True,
+                )
+        calls = len(model.requests)
+        with pytest.raises(FileExistsError):
+            await actor.execute(
+                item,
+                interaction=model,
+                profile="review-script-v1",
+                authorize=lambda _: True,
+            )
+        assert len(model.requests) == calls
+        assert not list(cycle._folder(item).glob("review-*.json"))
+        assert not (cycle.root / ".local/backlog/checkout-owner").exists()
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("disposition", ["reject", "insufficient-evidence"])
+def test_native_adverse_review_requires_supervisor(
+    repository: tuple[WorkCycle, str], disposition: str
+) -> None:
+    """Keep adverse or insufficient proposals out of integration admission."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await native_candidate(cycle, item)
+        await approve_reviewer(cycle, item, reviewer_policy())
+        value = conclusion(disposition)
+        value["outstanding"] = ["Broader callers have not been inspected"]
+        value["requests"] = ["Supervisor should authorize caller inspection"]
+        value["findings"] = [
+            {
+                "kind": "inference",
+                "severity": "blocking",
+                "message": "A wider behavior contract may exist",
+                "evidence": ["task", "candidate"],
+            }
+        ]
+        proposal = await cycle.native.reviewer.execute(
+            item,
+            interaction=ReviewModel(response=value),
+            profile="review-script-v1",
+            authorize=lambda _: True,
+        )
+        assert proposal["conclusion"]["disposition"] == disposition
+        with pytest.raises(PermissionError, match="Adverse"):
+            await cycle.native.reviewer.decide(
+                item,
+                proposal=proposal["sha256"],
+                accept=True,
+                reference="fixture://cannot-overrule",
+                rationale="Refuse acceptance",
+                authorize=lambda _: True,
+            )
+        review = await cycle.native.reviewer.decide(
+            item,
+            proposal=proposal["sha256"],
+            accept=False,
+            reference="fixture://return-to-supervisor",
+            rationale="Record adverse review and stop",
+            authorize=lambda _: True,
+        )
+        assert review["disposition"] == "REJECTED"
+        with pytest.raises(PermissionError):
+            cycle.integration.candidate(item, review["sha256"])
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "fault",
+    [
+        "identity",
+        "participant",
+        "privileged",
+        "read-scope",
+        "expired",
+        "drift",
+        "candidate",
+        "missing",
+    ],
+)
+def test_native_review_authority_and_subject_boundaries(
+    repository: tuple[WorkCycle, str], fault: str
+) -> None:
+    """Refuse conflicting provenance, expired authority and drift before entry."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await native_candidate(cycle, item)
+        config = reviewer_policy()
+        if fault == "identity":
+            config["actor"] = "neutral-coder"
+        if fault == "participant":
+            config["independence"]["implementation_participant"] = True
+        if fault == "privileged":
+            config["independence"]["privileged_reference_access"] = True
+        if fault == "read-scope":
+            config["read_paths"] = ["secrets.py"]
+        if fault in {"identity", "participant", "privileged", "read-scope"}:
+            with pytest.raises(PermissionError):
+                await cycle.native.reviewer.prepare(item, reviewer=config)
+            return
+        await approve_reviewer(cycle, item, config)
+        if fault == "expired":
+            path = cycle.native.reviewer.folder(item) / "authorization.json"
+            grant = cycle.native.reviewer.record(item, "authorization")
+            grant["expires_at"] = str(Timestamp.now() - Duration.seconds(1))
+            grant.pop("sha256")
+            path.write_text(
+                json.dumps({**grant, "sha256": _digest(grant)}), encoding="utf-8"
+            )
+        if fault == "drift":
+            (cycle.root / SOURCE).write_text(
+                "def value():\n    return 4\n", encoding="utf-8"
+            )
+        if fault == "candidate":
+            (cycle._folder(item) / "worker/final-source.py").write_text(
+                "def value():\n    return 8\n", encoding="utf-8"
+            )
+        if fault == "missing":
+            (cycle._folder(item) / "worker/final-source.py").unlink()
+        model = ReviewModel()
+        with pytest.raises(
+            (PermissionError, FileNotFoundError, FilesystemNotFoundError)
+        ):
+            await cycle.native.reviewer.execute(
+                item,
+                interaction=model,
+                profile="review-script-v1",
+                authorize=lambda _: True,
+            )
+        assert not model.requests
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "fault",
+    [
+        "no-summary",
+        "unknown-reference",
+        "outstanding",
+        "incomplete",
+        "blocking",
+        "self-authority",
+        "duplicate-field",
+    ],
+)
+def test_native_review_closed_grounded_conclusion(fault: str) -> None:
+    """Reject incomplete, ungrounded or self-authorizing conclusions."""
+    value = conclusion()
+    if fault == "no-summary":
+        value["summary"] = ""
+    if fault == "unknown-reference":
+        value["evidence"] = ["invented-proof"]
+    if fault == "outstanding":
+        value["outstanding"] = ["Unresolved behavior"]
+    if fault == "incomplete":
+        value["assessed_obligations"] = ["owner"]
+    if fault == "blocking":
+        value["findings"][0]["severity"] = "blocking"
+    if fault == "self-authority":
+        value["host_approved"] = True
+    text = json.dumps(value)
+    if fault == "duplicate-field":
+        text = text[:-1] + ', "disposition": "accept"}'
+    with pytest.raises(ValueError, match=r"Review|review|Acceptance|Duplicate|Coding"):
+        parse(
+            text,
+            dict.fromkeys(conclusion()["evidence"], "exact-input-id"),
+            {"objective", "owner"},
+        )
+
+
+def test_native_review_refuses_incomplete_terminal_evidence(
+    repository: tuple[WorkCycle, str],
+) -> None:
+    """Inject authenticated fixture faults; no bad terminal evidence reaches a model."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await native_candidate(cycle, item)
+        folder = cycle._folder(item)
+        originals = {
+            name: (folder / (name + ".json")).read_bytes()
+            for name in ("execution", "result")
+        }
+
+        def replace_record(name: str, record: dict[str, Any]) -> dict[str, Any]:
+            record.pop("sha256", None)
+            sealed = {**record, "sha256": _digest(record)}
+            (folder / (name + ".json")).write_text(json.dumps(sealed), encoding="utf-8")
+            return sealed
+
+        for fault in (
+            "not-run",
+            "failed",
+            "private",
+            "effects",
+            "custody",
+            "release",
+            "completed",
+            "task",
+        ):
+            for name, data in originals.items():
+                (folder / (name + ".json")).write_bytes(data)
+            execution = cycle.native.record(item, "execution")
+            result = cycle.native.record(item, "result")
+            facts = result["facts"]
+            if fault == "not-run":
+                facts["checks"] = []
+            if fault == "failed":
+                facts["checks"][-1][0]["passed"] = False
+            if fault == "private":
+                facts["acceptance"]["passed"] = False
+            if fault == "effects":
+                facts["effects"][0]["acknowledged"] = False
+            if fault == "custody":
+                facts["restored"] = False
+            if fault == "release":
+                result["checkout_released"] = False
+            if fault == "completed":
+                facts["completed"] = False
+            if fault == "task":
+                result["item"] = "B-9999"
+            execution["facts"] = facts
+            result["execution_sha256"] = replace_record("execution", execution)[
+                "sha256"
+            ]
+            replace_record("result", result)
+            with pytest.raises(PermissionError):
+                await cycle.native.reviewer.prepare(item, reviewer=reviewer_policy())
+            assert not cycle.native.reviewer.folder(item).exists()
+        for name, data in originals.items():
+            (folder / (name + ".json")).write_bytes(data)
+        await cycle.native.reviewer.prepare(item, reviewer=reviewer_policy())
+
+    asyncio.run(run())
+
+
+def test_native_review_host_expiry_and_proposal_binding(
+    repository: tuple[WorkCycle, str],
+) -> None:
+    """Reject fabricated conclusions, stale subjects and expiry during host consent."""
+
+    async def run() -> None:
+        cycle, item = repository
+        await native_candidate(cycle, item)
+        actor = cycle.native.reviewer
+        await actor.prepare(item, reviewer=reviewer_policy())
+        with pytest.raises(PermissionError):
+            await actor.authorize(
+                item,
+                reference="fixture://no",
+                expires=Timestamp.now() + Duration.minutes(5),
+                authorize=lambda _: False,
+            )
+        await actor.authorize(
+            item,
+            reference="fixture://yes",
+            expires=Timestamp.now() + Duration.minutes(5),
+            authorize=lambda _: True,
+        )
+        model = ReviewModel()
+        with pytest.raises(PermissionError, match="source/profile"):
+            await actor.execute(
+                item,
+                interaction=model,
+                profile="wrong-profile",
+                authorize=lambda _: True,
+            )
+        with pytest.raises(PermissionError, match="dispatch"):
+            await actor.execute(
+                item,
+                interaction=model,
+                profile="review-script-v1",
+                authorize=lambda _: False,
+            )
+        assert not model.requests
+        proposal = await actor.execute(
+            item,
+            interaction=model,
+            profile="review-script-v1",
+            authorize=lambda _: True,
+        )
+        assert proposal["status"] == "proposed"
+        path = actor.folder(item) / "proposal.json"
+        original = path.read_bytes()
+        forged = copy.deepcopy(proposal)
+        forged["conclusion"]["summary"] = (
+            "A different review that the model never returned"
+        )
+        forged.pop("sha256")
+        forged = {**forged, "sha256": _digest(forged)}
+        path.write_text(json.dumps(forged), encoding="utf-8")
+        with pytest.raises(PermissionError, match="actual final model"):
+            await actor.decide(
+                item,
+                proposal=forged["sha256"],
+                accept=True,
+                reference="fixture://forged",
+                rationale="Reject substituted conclusion",
+                authorize=lambda _: True,
+            )
+        path.write_bytes(original)
+        forged = copy.deepcopy(proposal)
+        forged["subject_sha256"] = "0" * 64
+        forged.pop("sha256")
+        forged = {**forged, "sha256": _digest(forged)}
+        path.write_text(json.dumps(forged), encoding="utf-8")
+        with pytest.raises(PermissionError, match="subject mismatch"):
+            await actor.decide(
+                item,
+                proposal=forged["sha256"],
+                accept=True,
+                reference="fixture://stale",
+                rationale="Reject another subject",
+                authorize=lambda _: True,
+            )
+        path.write_bytes(original)
+
+        def expire(_value: dict[str, Any]) -> bool:
+            grant = actor.record(item, "authorization")
+            grant["expires_at"] = str(Timestamp.now() - Duration.seconds(1))
+            grant.pop("sha256")
+            (actor.folder(item) / "authorization.json").write_text(
+                json.dumps({**grant, "sha256": _digest(grant)}), encoding="utf-8"
+            )
+            return True
+
+        with pytest.raises(PermissionError, match="expired"):
+            await actor.decide(
+                item,
+                proposal=proposal["sha256"],
+                accept=True,
+                reference="fixture://expired-during-consent",
+                rationale="Must recheck authority after host consent",
+                authorize=expire,
+            )
+        assert not list(cycle._folder(item).glob("review-*.json"))
+
+    asyncio.run(run())

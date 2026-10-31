@@ -1,5 +1,9 @@
 # B-0043: supervised maintenance lifecycle reconciliation
 
+Subsequent bounded delivery: [governed independent native review](native-independent-review.md)
+adds review-only ModelInteraction execution and grounded proposals before a
+separate host decision. The original reconciliation/prompt below remains historical.
+
 Current delivery: [the supported native maintenance handoff](native-maintenance-handoff.md)
 connects the prospective WorkCycle records, neutral coding process, independent
 review and existing integration plan. This implements the first bounded slice;

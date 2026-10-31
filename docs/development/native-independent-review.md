@@ -1,0 +1,131 @@
+# Governed independent native review
+
+`WorkCycle.native.reviewer` composes a bounded model-neutral review of the exact
+candidate produced by [native maintenance](native-maintenance-handoff.md). It is
+repository administration under `scripts/backlog/native/review/`, using existing
+ModelInteraction, native Tool composition, Context source materialization, native
+candidate authentication and WorkCycle's immutable writer. Runtime, framework
+Agents, coding loops and legacy Qwen contracts are unchanged. B-0043 stays open.
+
+## Operator and trusted host
+
+The existing `native-review` command still accepts a separately approved manual
+decision. The actor path adds these administrative operations:
+
+```text
+uv run python -m scripts.backlog --root <root> native-review-prepare <item> --policy <review-policy.json>
+uv run python -m scripts.backlog --root <root> native-review-authorize <item> --reference <host-decision> --expires <ISO-time>
+uv run python -m scripts.backlog --root <root> native-review-proposal <item>
+uv run python -m scripts.backlog --root <root> native-review-decide <item> --proposal <sha256> --decision accept --reference <host-decision> --rationale <independent-assessment>
+```
+
+Authority commands require the existing genuine interactive default-No host
+confirmation. A configured trusted Python host injects an actual ModelInteraction:
+
+```python
+proposal = await cycle.native.reviewer.execute(
+    item, interaction=review_model, profile="approved-profile",
+    authorize=current_host_decision,
+)
+```
+
+Preparation grants no effects. Dispatch requires both a persisted unexpired
+review-only approval and current host consent. The actual packet, not just a
+role name, is shown to the authority callback. There is no CLI provider loader,
+model registry or external Codex-to-ModelInteraction impersonation. A supported
+adapter must implement the real boundary and honor approved settings.
+
+The closed policy contains `actor`, `source`, `profile`, `independence`,
+`read_paths`, `settings` and `budgets`; `review.actor.policy` defines exact fields
+and ceilings. Independence requires a host-attested fresh session and provenance
+reference, plus explicit false `implementation_participant` and
+`privileged_reference_access` declarations. Actor identity must differ from the
+coder. The same model family may fill both roles with separately provisioned
+sessions. Different strings, hashes and an empty continuation are not proof of
+meaningful independence: the trusted host must actually provision and assess it.
+No coder grant or legacy standing approval is inherited.
+
+## Subject and disclosure
+
+Before preparation, dispatch, each read/model operation, and host disposition,
+the owner reauthenticates assignment/result/candidate identities, current restored
+baseline, declared source/check inputs, configuration and Checkout release.
+Missing, changed, unresolved or unsuccessful terminal evidence blocks entry.
+Historical public failures before a successful repair remain disclosed failures.
+
+The explicit subject contains the task objective and information obligations,
+authorized edit/read/check scope, exact baseline and archived candidate text,
+diff, public check history with diagnostics, qualified private-acceptance outcome,
+custody/effect facts, the coding Localization readiness/disclosure observations,
+and environment limitations. Information readiness is not proof of behavioral
+correctness. Content references bind each
+disclosed group; the result identity also binds undisclosed original evidence.
+Private acceptance implementation, controls, diagnostics, worker reasoning and
+raw coding conversation are excluded. No reference solution is disclosed.
+Private outcome availability is not evidence of exhaustive behavioral coverage.
+
+Only approved assignment source/test addresses enter the read-only SourceScope.
+Model-selected `read_source` uses existing scoped source Tools and Context range
+materialization. It reads restored baseline/dependencies, clearly distinguished
+from archived candidate text. Review never installs candidate bytes to inspect
+them. There are no edits, invented checks, shell, Git, Checkout mutation,
+integration, publication or backlog-approval Tools. Source/evidence text is
+untrusted data; its instructions confer no authority.
+
+The complete initial subject and retained read exchanges must fit the approved
+Prompt budget. No hidden reduction creates fictitious completeness. Native v1
+caps calls, reads, per-call/total time, output tokens, response bytes and capture.
+Provider continuation is not inherited; requests use explicit retained messages.
+Timeout, malformed response, exhaustion, missing conclusion, output limit,
+unauthorized read or capture failure produces a blocked proposal, never implicit
+acceptance. Dispatch intent precedes model entry. One slot prevents replay,
+including when proposal persistence fails or model completion remains uncertain.
+
+## Proposal and host decision
+
+Prospective `backlog-native-review-{subject,authorization,dispatch,proposal}-v1`
+records share the existing work-item folder under `reviewer/`. Bounded native
+observation records retain actual request/response and read intent/result facts.
+They are local content-authenticated records, not signatures or a universal
+Evidence store. Failure to persist propagates and leaves the dispatch claim.
+
+The closed JSON conclusion has `disposition` (`accept`, `reject`, or
+`insufficient-evidence`), `summary`, `evidence` reference names, `findings`,
+`outstanding`, `requests` and `assessed_obligations`. Each finding names its
+support and labels `observed` or `inference` and `blocking` or `advisory`.
+These are attributed model assessments; an `observed` label is not host-certified
+truth. The reviewer can identify an apparent defect, question coverage, reject,
+or request further inspection/validation. It cannot invent evidence references.
+Acceptance proposals require the objective and supplied obligations assessed,
+core evidence cited and no unresolved blocking findings, obligations or requests.
+This checks structural completeness, not the quality of engineering judgment.
+
+`decide` reauthenticates the exact proposal and subject and requires current
+unexpired host authority. The host sees the actual proposal and approves or
+rejects it through the existing native review operation. A favorable proposal
+can still be rejected. An adverse or insufficient proposal cannot be accepted.
+Such results return to the supervisor; no repair/review loop is launched.
+
+The existing native review schema retains its meaning as a host decision. Actor
+decisions additionally bind `proposal_sha256`; the candidate reader authenticates
+that chain before the existing integration-plan owner consumes it. Expiry is
+checked for new review effects/decisions, not used to erase a historical valid
+decision. Review records never grant installation, publication or parent closeout.
+The original administrative decision path remains available independently.
+
+## Assurance and remaining work
+
+Maintained authored-repository tests use neutral scripted ModelInteraction
+responses, actual coding checks/custody, read Tools, proposal persistence, host
+disposition and the existing integration-plan consumer. They establish lifecycle
+mechanics and truthful refusals, not real model judgment or engineering competence.
+Development uses impact previews and targeted saved-failure recovery. Publication
+requires the unchanged protected coverage gate.
+
+Live use still needs separately approved worker/reviewer adapters, actual session
+independence assessment, task/check scope and finite model execution authority.
+No inference, service change or paid fallback is authorized by this delivery.
+Planning, task selection, automatic review-driven repair, durable restart and
+autonomous publication/closeout remain separate. The next competence step is one
+separately authorized bounded live coder-and-reviewer task with predeclared
+acceptance, independent provenance and retained failure/rejection evidence.

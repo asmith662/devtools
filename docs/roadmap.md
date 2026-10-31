@@ -1,5 +1,10 @@
 # Roadmap
 
+Delivered bounded [independent native review actor](development/native-independent-review.md):
+actual ModelInteraction/read-only source inspection produces a candidate-bound
+proposal for separate host disposition and existing integration planning. This
+does not establish live-model competence or close B-0043.
+
 Delivered bounded B-0043 connection: [supervised native maintenance](development/native-maintenance-handoff.md)
 reaches an independently reviewed candidate and read-only integration plan.
 General planning, role execution, restart and autonomous closeout remain separate;

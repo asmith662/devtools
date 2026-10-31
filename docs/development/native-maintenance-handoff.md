@@ -1,5 +1,9 @@
 # Supervised native maintenance handoff
 
+The subsequent [independent review actor](native-independent-review.md) adds
+separately authorized model review and grounded proposals. The original manual
+administrative review path described here remains supported.
+
 This delivery connects one reviewed backlog obligation to the neutral coding
 process, independent candidate review and an authenticated, read-only integration
 plan. It is repository administration under `WorkCycle.native`, implemented in
@@ -166,7 +170,7 @@ comparison, not a controlled benchmark. The failed broader result remains failed
 the final protected result provides the complete successful validation.
 
 Automatic planning/task selection, generic semantic obligation resolution, worker
-routing, automatic reviewer execution, durable model restart and recovery,
+routing, automatic reviewer routing, durable model restart and recovery,
 standing grant migration and autonomous backlog closeout remain unimplemented.
-The next useful capability is a governed independent review actor consuming this
-exact candidate/evidence subject under a separate finite role approval.
+The subsequent independent review actor consumes this exact candidate/evidence
+subject under a separate finite role approval; see its linked contract above.

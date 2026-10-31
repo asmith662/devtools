@@ -1,5 +1,8 @@
 # Documentation Map
 
+Supported review actor: [governed independent native review](development/native-independent-review.md)
+owns review-only model dispatch, grounded proposals and separate host disposition.
+
 Supported first B-0043 slice: [supervised native maintenance handoff](development/native-maintenance-handoff.md)
 documents prospective WorkCycle records, neutral coding, independent review and
 authenticated integration plans, without automatic publication or parent closure.

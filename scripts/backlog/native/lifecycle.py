@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from devtools.models.interaction import ModelInteraction
+    from scripts.backlog.native.review import NativeReviewer
     from scripts.backlog.work import WorkCycle
 
 SCOPE = (
@@ -41,6 +42,13 @@ class NativeMaintenance:
     def __init__(self, cycle: WorkCycle) -> None:
         """Reuse administrative ownership, never construct another coordinator."""
         self.cycle = cycle
+
+    @property
+    def reviewer(self) -> NativeReviewer:
+        """Compose independent review under this native administrative owner."""
+        from scripts.backlog.native.review import NativeReviewer  # noqa: PLC0415
+
+        return NativeReviewer(self)
 
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Load only authenticated prospective native records."""
@@ -488,6 +496,7 @@ class NativeMaintenance:
         rationale: str,
         accept: bool,
         authorize: Callable[[dict[str, Any]], bool] | None = None,
+        proposal: str | None = None,
     ) -> dict[str, Any]:
         """Independently bind exact candidate, result and checks; never install it."""
         await self.cycle._coordinator()
@@ -508,6 +517,11 @@ class NativeMaintenance:
                 "Independent reviewer and explicit decision provenance required",
             )
         self._candidate(assignment, result)
+        proposed = None
+        if proposal is not None:
+            packet = await self.reviewer.current(item)
+            self.reviewer.authority(item, packet)
+            proposed = self.reviewer.admit(item, proposal, reviewer, accept=accept)
         decision = {
             "item": item,
             "assignment_sha256": assignment["sha256"],
@@ -521,16 +535,23 @@ class NativeMaintenance:
             "disposition": "ACCEPT_RECOMMENDED" if accept else "REJECTED",
             "installation_authorized": False,
         }
+        if proposal is not None:
+            decision["proposal_sha256"] = proposal
         if authorize is None or not authorize(
             {
                 "operation": "review-native-candidate",
                 "assignment": assignment,
                 "result": result,
                 "decision": decision,
+                **({"review_proposal": proposed} if proposal is not None else {}),
             },
         ):
             raise PermissionError("Current independent host review decision required")
         self._candidate(self.record(item, "assignment"), self.record(item, "result"))
+        if proposal is not None:
+            packet = await self.reviewer.current(item)
+            self.reviewer.authority(item, packet)
+            self.reviewer.admit(item, proposal, reviewer, accept=accept)
         payload = {"schema": "backlog-native-review-v1", **decision}
         with self.cycle.intake._writer():
             return self.cycle._save(
@@ -651,6 +672,13 @@ class NativeMaintenance:
             or decision["disposition"] != "ACCEPT_RECOMMENDED"
         ):
             raise PermissionError("Native independent review does not authenticate")
+        if "proposal_sha256" in decision:
+            self.reviewer.admit(
+                item,
+                decision["proposal_sha256"],
+                decision["reviewer"],
+                accept=True,
+            )
         return {
             "assignment": assignment,
             "result": result,
