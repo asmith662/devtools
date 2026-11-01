@@ -1,5 +1,12 @@
 # Roadmap
 
+Current operational state: [persistent 64K Qwen adoption](development/qwen-persistent-profile.md)
+was separately approved and verified; 32K remains a configured fallback. Return to
+the unresolved B-0049 facade-scope obligation through a genuinely reviewed linked
+item, unused slot and separate coding/reviewer grants. Its consumed dispatch and
+all historical evidence remain unchanged. No engineering competence is inferred
+from capacity or short Tool transport.
+
 Approved operational follow-up: the [single 64K Qwen qualification](research/qwen64-qualification-trial.md)
 reached READY, returned actual 49,152-/62,464-token neutral inference and restored
 the exact original 32K provider. Bounded capacity/Tool transport are established;

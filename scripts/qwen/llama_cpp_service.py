@@ -21,7 +21,11 @@ from devtools.models.serving.llama_cpp import GGUFModel, LlamaCppServingConfig
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.core.time import Duration
 
-from llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
+from llama_cpp_profile import (
+    QWEN38_27B_UD_IQ4_XS,
+    QWEN38_27B_UD_IQ4_XS_64K,
+    Qwen38LlamaCppExperimentalProfile,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -88,14 +92,26 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         default=llama_cpp.DEFAULT_READINESS_TIMEOUT.total_seconds,
         type=float,
     )
-    commands.add_parser("status", help="Inspect the persistent Qwen service.")
-    commands.add_parser("stop", help="Stop and remove the persistent Qwen service.")
+    status = commands.add_parser("status", help="Inspect the persistent Qwen service.")
+    stop = commands.add_parser(
+        "stop",
+        help="Stop and remove the persistent Qwen service.",
+    )
+    for command in (start, status, stop):
+        command.add_argument(
+            "--context-size",
+            type=int,
+            choices=(32_768, 65_536),
+            default=QWEN38_27B_UD_IQ4_XS_64K.context_size,
+            help="Qualified persistent context (default: 65536; explicit fallback: 32768).",
+        )
     return parser.parse_args(arguments)
 
 
-def profile_fingerprint() -> str:
+def profile_fingerprint(
+    profile: Qwen38LlamaCppExperimentalProfile = QWEN38_27B_UD_IQ4_XS_64K,
+) -> str:
     """Return a stable operational identity for selected serving inputs."""
-    profile = QWEN38_27B_UD_IQ4_XS
     payload = {
         "cache_type_k": profile.cache_type_k,
         "cache_type_v": profile.cache_type_v,
@@ -184,10 +200,11 @@ async def start_service(
     host_port: int,
     readiness_timeout: Duration,
     executor: CommandExecutorType,
+    profile: Qwen38LlamaCppExperimentalProfile = QWEN38_27B_UD_IQ4_XS_64K,
 ) -> PersistentQwenServiceStatus:
     """Idempotently start the one persistent Qwen development service."""
     _validate_start_inputs(host_port, readiness_timeout)
-    fingerprint = profile_fingerprint()
+    fingerprint = profile_fingerprint(profile)
     current = await inspect_service(
         executor=executor,
         expected_fingerprint=fingerprint,
@@ -227,10 +244,10 @@ async def start_service(
 
     _assert_host_port_available(host_port)
     acquired = await acquire_huggingface_gguf(
-        model=QWEN38_27B_UD_IQ4_XS.model,
+        model=profile.model,
         cache_root=cache_root,
     )
-    config = _serving_config(acquired.path, host_port)
+    config = _serving_config(acquired.path, host_port, profile=profile)
     await llama_cpp._preflight_required_features(config, executor)
     launch = await executor.execute(
         llama_cpp._build_launch_command(
@@ -261,9 +278,10 @@ async def start_service(
 async def stop_service(
     *,
     executor: CommandExecutorType,
+    profile: Qwen38LlamaCppExperimentalProfile = QWEN38_27B_UD_IQ4_XS_64K,
 ) -> PersistentQwenServiceStatus:
     """Stop and remove only the independently verified persistent Qwen service."""
-    fingerprint = profile_fingerprint()
+    fingerprint = profile_fingerprint(profile)
     current = await inspect_service(executor=executor, expected_fingerprint=fingerprint)
     if current.state is PersistentQwenServiceState.ABSENT:
         return current
@@ -320,9 +338,13 @@ async def _wait_ready(
         ) from error
 
 
-def _serving_config(model_path: ResolvedPath, host_port: int) -> LlamaCppServingConfig:
+def _serving_config(
+    model_path: ResolvedPath,
+    host_port: int,
+    *,
+    profile: Qwen38LlamaCppExperimentalProfile = QWEN38_27B_UD_IQ4_XS_64K,
+) -> LlamaCppServingConfig:
     """Map the one selected Qwen profile into existing llama.cpp configuration."""
-    profile = QWEN38_27B_UD_IQ4_XS
     image = profile.image_build_identity
     if image is None:
         raise PersistentQwenServiceError("Selected Qwen profile lacks a pinned image.")
@@ -514,6 +536,11 @@ def _print_status(status: PersistentQwenServiceStatus) -> None:
 async def run(arguments: argparse.Namespace) -> PersistentQwenServiceStatus:
     """Dispatch one explicit persistent Qwen lifecycle command."""
     executor = CommandExecutor()
+    profile = (
+        QWEN38_27B_UD_IQ4_XS
+        if arguments.context_size == 32_768
+        else QWEN38_27B_UD_IQ4_XS_64K
+    )
     if arguments.command == "start":
         cache_root = resolve_path(arguments.cache_root, base_directory=Path.cwd())
         status = await start_service(
@@ -521,14 +548,15 @@ async def run(arguments: argparse.Namespace) -> PersistentQwenServiceStatus:
             host_port=arguments.port,
             readiness_timeout=Duration.seconds(arguments.readiness_timeout_seconds),
             executor=executor,
+            profile=profile,
         )
     elif arguments.command == "status":
         status = await inspect_service(
             executor=executor,
-            expected_fingerprint=profile_fingerprint(),
+            expected_fingerprint=profile_fingerprint(profile),
         )
     else:
-        status = await stop_service(executor=executor)
+        status = await stop_service(executor=executor, profile=profile)
     _print_status(status)
     return status
 

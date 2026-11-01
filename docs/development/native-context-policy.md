@@ -1,6 +1,11 @@
 # Native coding Context operating policy
 
-Operational follow-up: a [separately approved bounded trial](../research/qwen64-qualification-trial.md)
+Current service operation: [separately approved persistent 64K adoption](qwen-persistent-profile.md)
+is verified. The controller now defaults to the exact qualified 64K profile and
+retains explicit 32K fallback. Native admission must still use observed running
+capacity and tokenizer results; no Context, edit, capture or task authority changed.
+
+Earlier operational follow-up: a [separately approved bounded trial](../research/qwen64-qualification-trial.md)
 verified 64K allocation and actual 49,152-/62,464-token inference. It restored the
 original 32K service. Qualification evidence does not itself authorize persistent
 adoption or permit reporting 64K capacity while the actual provider remains at 32K.

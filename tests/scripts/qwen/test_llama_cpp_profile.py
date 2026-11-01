@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import importlib.util
 import sys
-from dataclasses import FrozenInstanceError
+from dataclasses import FrozenInstanceError, replace
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
 _PROFILE_PATH = Path("scripts/qwen/llama_cpp_profile.py")
 _CONTEXT_SIZE = 32_768
+_QUALIFIED_CONTEXT_SIZE = 65_536
 _CPU_FFN_LAYERS = 0
 _IMAGE_BUILD_IDENTITY = (
     "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@"
@@ -61,3 +62,12 @@ def test_profile_freezes_exact_research_backed_provenance(
     assert profile.image_build_identity == _IMAGE_BUILD_IDENTITY
     with pytest.raises(FrozenInstanceError):
         profile.context_size = 1
+
+
+def test_qualified_64k_changes_only_context(profile_module: ModuleType) -> None:
+    """Adoption preserves the original fallback and every pinned serving input."""
+    original = profile_module.QWEN38_27B_UD_IQ4_XS
+    qualified = profile_module.QWEN38_27B_UD_IQ4_XS_64K
+    assert original.context_size == _CONTEXT_SIZE
+    assert qualified.context_size == _QUALIFIED_CONTEXT_SIZE
+    assert replace(qualified, context_size=original.context_size) == original

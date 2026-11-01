@@ -7,7 +7,7 @@ This is data only: it neither acquires the GGUF nor starts llama.cpp.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Literal
 
 from devtools.models.serving.huggingface import HuggingFaceGGUFRef
@@ -67,3 +67,7 @@ QWEN38_27B_UD_IQ4_XS = Qwen38LlamaCppExperimentalProfile(
         "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
     ),
 )
+
+# Keep the original 32K profile unchanged for historical consumers and rollback.
+# Exact 64K qualification: docs/research/qwen64-qualification-trial.md.
+QWEN38_27B_UD_IQ4_XS_64K = replace(QWEN38_27B_UD_IQ4_XS, context_size=65_536)

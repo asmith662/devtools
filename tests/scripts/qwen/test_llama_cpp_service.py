@@ -124,7 +124,7 @@ def test_profile_fingerprint_and_configuration_are_canonical(
     )
     assert config.model.path.value.name == profile.model.filename
     assert config.image == profile.image_build_identity
-    assert config.context_size == 32_768 and config.n_cpu_ffn == 0
+    assert config.context_size == 65_536 and config.n_cpu_ffn == 0
     assert config.gpu_layers == "all" and config.flash_attention == "on"
     assert config.cache_type_k == config.cache_type_v == "q4_0"
     assert config.parallel_sequences == 1
@@ -694,3 +694,52 @@ def test_parser_and_helpers_validate_operational_inputs(service: ModuleType) -> 
     assert service._is_valid_profile_fingerprint("A" * 64)
     assert not service._is_valid_profile_fingerprint("stale")
     assert not service._is_valid_profile_fingerprint("g" + "a" * 63)
+
+
+@pytest.mark.parametrize("command", ["start", "status", "stop"])
+@pytest.mark.parametrize("context_size", [32_768, 65_536])
+def test_cli_routes_exact_profile_without_changing_fallback(
+    service: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    command: str,
+    context_size: int,
+) -> None:
+    """Fresh CLI invocations default to 64K and explicitly retain 32K rollback."""
+    seen: dict[str, object] = {}
+    sentinel = object()
+
+    async def operation(**kwargs: object) -> object:
+        seen.update(kwargs)
+        return sentinel
+
+    monkeypatch.setattr(service, "start_service", operation)
+    monkeypatch.setattr(service, "inspect_service", operation)
+    monkeypatch.setattr(service, "stop_service", operation)
+    monkeypatch.setattr(service, "_print_status", lambda _status: None)
+    args = [command]
+    if command == "start":
+        args.extend(["--cache-root", "cache"])
+    assert service.parse_arguments(args).context_size == 65_536
+    args.extend(["--context-size", str(context_size)])
+    assert asyncio.run(service.run(service.parse_arguments(args))) is sentinel
+    profile = (
+        service.QWEN38_27B_UD_IQ4_XS
+        if context_size == 32_768
+        else service.QWEN38_27B_UD_IQ4_XS_64K
+    )
+    if command == "status":
+        assert seen["expected_fingerprint"] == service.profile_fingerprint(profile)
+    else:
+        assert seen["profile"] == profile
+    config = service._serving_config(
+        ResolvedPath(Path("model.gguf").resolve()),
+        8080,
+        profile=profile,
+    )
+    assert config.context_size == context_size
+    expected = (
+        "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1"
+        if context_size == 32_768
+        else "c86e124b80988509063f74d694b99120817f76eec1ce899740f6f61a0437c965"
+    )
+    assert service.profile_fingerprint(profile) == expected

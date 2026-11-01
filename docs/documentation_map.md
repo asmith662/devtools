@@ -1,5 +1,9 @@
 # Documentation Map
 
+Current provider: [approved persistent 64K Qwen profile](development/qwen-persistent-profile.md)
+records actual adoption, measured startup/memory pressure, Tool transport and
+explicit 32K fallback. The next step is a fresh authorized native engineering task.
+
 Coding continuation: [aggregate source-read admission](development/aggregate-source-admission.md)
 owns complete-request preflight, correlated refusals and bounded range recovery.
 The original B-0049 outcome and consumed slot remain historical evidence.
