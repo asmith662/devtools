@@ -31,6 +31,7 @@ from devtools.tools import ToolRunner
 from devtools.tools.checks import FixedCheck, FixedCheckPlan, FixedCheckTool
 from scripts.backlog.intake import _digest, _read
 from scripts.backlog.native.context import assess
+from scripts.backlog.native.packet import context_policy
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable, Mapping
@@ -173,9 +174,11 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
     interaction: ModelInteraction,
     guard: Callable[[], Awaitable[None]],
     scope: SourceScope,
+    measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None,
 ) -> dict[str, Any]:
     """Compose existing process once; never retry unknown model/Tool entry."""
     task, budget = assignment["task"], assignment["task"]["budgets"]
+    context = context_policy(task)
     folder = owner.cycle._folder(assignment["item"]) / "worker"
     folder.mkdir()
     capture = Capture(owner, folder, budget["capture_bytes"])
@@ -279,6 +282,20 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
                 "Mandatory native information obligations remain unresolved",
             )
 
+    async def measured(request: ModelRequest) -> int:
+        await admitted()
+        capture.add(
+            "token-measurement-intent",
+            {"request_sha256": _digest(asdict(request))},
+        )
+        # NativeMaintenance authenticates this collaborator before claiming dispatch.
+        count = await cast("Callable[[ModelRequest], Awaitable[int]]", measure_input)(
+            request,
+        )
+        capture.add("token-measurement-returned", {"input_tokens": count})
+        await admitted()
+        return count
+
     objective = CodingObjective(
         task["objective"],
         scope,
@@ -290,7 +307,7 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
             budget["source_bytes"],
             1,
         ),
-        budget["source_bytes"],
+        budget["source_bytes"] if context is None else context.disclosure_bytes,
         budget["prompt_bytes"],
     )
     host = AcceptanceHost(
@@ -302,6 +319,14 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
         restore=restore,
         readiness=ready,
         settings=settings,
+        projection=None if context is None else context.projection(),
+        navigation=context is not None,
+        token_capacity=None if context is None else context.tokens(),
+        measure_input=None if context is None else measured,
+        warning_bytes=None if context is None else context.warning_bytes,
+        observe_context=None
+        if context is None
+        else (lambda fact: capture.add("context-pressure", asdict(fact))),
     )
     host.configure_acceptance(
         plan("withheld"),
@@ -356,6 +381,27 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
         ),
         host=host,
     )
+    if context is not None:
+        capture.add(
+            "context-projection",
+            {
+                "outcomes": [
+                    {
+                        "status": o.status,
+                        "original_bytes": o.original_bytes,
+                        "resulting_bytes": o.resulting_bytes,
+                        "selected_indices": o.selected_indices,
+                        "omitted_exchanges": o.omitted_exchanges,
+                        "shortened_indices": o.shortened_indices,
+                        "active_source_identities": [
+                            s.identity for s in o.active_sources
+                        ],
+                        "invalidated_source_identities": o.invalidated_source_identities,
+                    }
+                    for o in host.projection_outcomes
+                ],
+            },
+        )
     # Preserve feedback even when no further model entry consumed it. This uses
     # the existing bounded capture; failure never authorizes a retry or candidate.
     feedback = [asdict(m) for m in host.messages if m.role == "tool"]

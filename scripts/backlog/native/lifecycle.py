@@ -21,13 +21,18 @@ from devtools.tools.source import SourceScope
 from scripts.backlog.checkout import Checkout, idle
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import _digest, _read
-from scripts.backlog.native.packet import fingerprint, task_view, tool_definitions
+from scripts.backlog.native.packet import (
+    context_policy,
+    fingerprint,
+    task_view,
+    tool_definitions,
+)
 from scripts.backlog.work import _load, same_backlog
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
+    from collections.abc import Awaitable, Callable
 
-    from devtools.models.interaction import ModelInteraction
+    from devtools.models.interaction import ModelInteraction, ModelRequest
     from scripts.backlog.native.review import NativeReviewer
     from scripts.backlog.work import WorkCycle
 
@@ -195,7 +200,7 @@ class NativeMaintenance:
                     "baseline_source": baseline,
                     "initial_snapshot": str(scope.snapshot.id),
                     "execution_authorized": False,
-                    "tool_definitions": tool_definitions(),
+                    "tool_definitions": tool_definitions(task),
                     "interpreter": sys.executable,
                     "python": sys.version,
                     "configuration": self.configuration(task),
@@ -215,7 +220,7 @@ class NativeMaintenance:
             or assignment["coordinator"] != str(self.cycle.root)
             or assignment["scope"] != SCOPE
             or fingerprint(assignment["task"]) != assignment["task_sha256"]
-            or assignment["tool_definitions"] != tool_definitions()
+            or assignment["tool_definitions"] != tool_definitions(assignment["task"])
             or assignment["interpreter"] != sys.executable
             or assignment["python"] != sys.version
             or assignment["configuration"] != self.configuration(assignment["task"])
@@ -321,13 +326,15 @@ class NativeMaintenance:
                 "Native authorization is expired, foreign or mismatched",
             )
 
-    async def execute(  # noqa: C901, PLR0915 -- one Checkout lifecycle
+    async def execute(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one Checkout lifecycle and explicit qualification
         self,
         item: str,
         *,
         interaction: ModelInteraction,
         profile: str,
         authorize: Callable[[dict[str, Any]], bool] | None = None,
+        measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None,
+        provider_context_tokens: int | None = None,
     ) -> dict[str, Any]:
         """Claim once, invoke the shared neutral process, then archive and restore."""
         from scripts.backlog.native.execution import execute  # noqa: PLC0415
@@ -340,6 +347,15 @@ class NativeMaintenance:
         await self.validate(assignment)
         self.authority(assignment, grant)
         worker = assignment["task"]["worker"]
+        context = context_policy(assignment["task"])
+        if context is not None and (
+            measure_input is None
+            or type(provider_context_tokens) is not int
+            or provider_context_tokens < context.context_tokens
+        ):
+            raise PermissionError(
+                "Native Context profile requires qualified provider capacity and token measurement",
+            )
         if str(interaction.source) != worker["source"] or profile != worker["profile"]:
             raise PermissionError("Configured native worker source/profile differs")
         if authorize is None or not authorize(
@@ -400,6 +416,7 @@ class NativeMaintenance:
                             interaction,
                             guard,
                             scope,
+                            measure_input,
                         )
                     except (Exception, asyncio.CancelledError) as failure:  # noqa: BLE001 -- preserve unknown entry; no replay
                         error = type(failure).__name__ + ": " + str(failure)

@@ -7,12 +7,74 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any
 
+from devtools.agents.coding.capacity import TokenCapacity
+from devtools.agents.coding.navigation import FIND, READ_UNIT
+from devtools.agents.coding.projection import ProjectionPolicy
 from devtools.agents.coding.protocol import CHECK, EDIT, READ
 from devtools.agents.model_tools import normalize_tool_descriptor
 from devtools.context import RepositoryResourceAddress
 from devtools.evaluation.preflight import OracleComparison, check_oracle_expectations
 from devtools.models.interaction import InteractionSource, ModelSettings
 from scripts.backlog.intake import _digest
+
+
+@dataclass(frozen=True, slots=True)
+class NativeContext:
+    """Prospective, explicitly approved Context presentation subrecord.
+
+    Absence preserves native v1's strict byte policy and exact Tool schema.
+    Token capacity requires an independently qualified host and real measurement.
+    Larger disclosure does not enlarge the source edit allowance.
+    """
+
+    schema: str
+    context_tokens: int
+    input_tokens: int
+    reserved_output_tokens: int
+    disclosure_bytes: int
+    warning_bytes: int
+    trigger_bytes: int
+    target_bytes: int
+
+    def __post_init__(self) -> None:
+        """Keep the first integrated policy finite and deterministic."""
+        TokenCapacity(
+            self.context_tokens,
+            self.input_tokens,
+            self.reserved_output_tokens,
+        )
+        if (
+            self.schema != "native-context-v1"
+            or self.context_tokens > 131072
+            or type(self.disclosure_bytes) is not int
+            or not 1 <= self.disclosure_bytes <= 131072
+            or type(self.warning_bytes) is not int
+            or not 0 < self.warning_bytes <= self.trigger_bytes
+        ):
+            raise ValueError("Unsupported native Context profile")
+        self.projection()
+
+    def projection(self) -> ProjectionPolicy:
+        """Reuse the canonical evidence-preserving reducer; no semantic inference."""
+        return ProjectionPolicy(
+            self.trigger_bytes,
+            self.target_bytes,
+            metadata_operations=frozenset({FIND.name}),
+            report_source_state=True,
+        )
+
+    def tokens(self) -> TokenCapacity:
+        """Keep independent token dimensions explicit at the neutral host boundary."""
+        return TokenCapacity(
+            self.context_tokens,
+            self.input_tokens,
+            self.reserved_output_tokens,
+        )
+
+
+def context_policy(task: dict[str, Any]) -> NativeContext | None:
+    """Read only the versioned prospective subrecord, never upgrade old grants."""
+    return NativeContext(**task["context"]) if "context" in task else None
 
 
 @dataclass(frozen=True, slots=True)
@@ -37,9 +99,9 @@ def task_view(task: dict[str, Any]) -> NativeTask:
     return NativeTask(task["source"], tuple(task["tests"]), task["oracle"])
 
 
-def validate(task: dict[str, Any]) -> None:  # noqa: C901, PLR0912
+def validate(task: dict[str, Any]) -> None:  # noqa: C901, PLR0912, PLR0915 -- closed prospective packet
     """Refuse unsupported scope, missing provenance and unbounded worker policy."""
-    if set(task) != {
+    if set(task) - {"context"} != {
         "objective",
         "source",
         "read_paths",
@@ -97,13 +159,19 @@ def validate(task: dict[str, Any]) -> None:  # noqa: C901, PLR0912
     settings = ModelSettings(**task["settings"])
     if settings.maximum_output_tokens is None or settings.maximum_output_tokens > 8192:
         raise ValueError("A finite worker output limit is required")
+    context = context_policy(task)
+    if context is not None and (
+        settings.maximum_output_tokens > context.reserved_output_tokens
+        or context.trigger_bytes > task["budgets"]["prompt_bytes"]
+    ):
+        raise ValueError("Native Context profile and task budgets disagree")
     ceilings = {
         "model_calls": 8,
         "proposals": 3,
         "acquisitions": 6,
         "call_seconds": 120,
         "wall_seconds": 1200,
-        "prompt_bytes": 32768,
+        "prompt_bytes": 32768 if context is None else 131072,
         "source_bytes": 32768,
         "capture_bytes": 1048576,
     }
@@ -159,6 +227,13 @@ def fingerprint(task: dict[str, Any]) -> str:
     return _digest(task)
 
 
-def tool_definitions() -> list[dict[str, Any]]:
+def tool_definitions(task: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """Freeze the actual finite native schema, not a model-selected Tool registry."""
-    return [asdict(normalize_tool_descriptor(d)) for d in (READ, EDIT, CHECK)]
+    navigation = (
+        (FIND, READ_UNIT)
+        if task is not None and context_policy(task) is not None
+        else ()
+    )
+    return [
+        asdict(normalize_tool_descriptor(d)) for d in (READ, EDIT, CHECK, *navigation)
+    ]

@@ -8,6 +8,9 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
 - `process.run_coding_agent` owns the finite model/proposal phase sequence,
   response-source and native ID checks, continuation and terminal reconciliation.
 - `models` owns coding-specific limits and factual candidate/terminal outcomes.
+- `capacity` owns independent token reservations and structured preparation-pressure
+  facts. The host accepts a trusted tokenizer callback and optional pressure observer;
+  neither bytes nor a configured capacity claim establish provider qualification.
 - `protocol` owns stateless native coding schemas, argument materialization and
   operation-family classification. It implements the existing ToolInvocation
   boundary, never authorization, execution, retained history or another loop.

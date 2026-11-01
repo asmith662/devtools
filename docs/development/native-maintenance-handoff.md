@@ -1,5 +1,11 @@
 # Supervised native maintenance handoff
 
+An explicit prospective [native Context profile](native-context-policy.md) now
+connects larger independent request/read budgets, qualified token measurement,
+automatic deterministic projection, pressure observations and existing precise
+navigation. Packets without that versioned subrecord retain the strict profile
+described below; no historical grant or consumed slot is upgraded.
+
 Native coding now uses [aggregate source-read admission](aggregate-source-admission.md).
 Oversized read batches receive correlated pre-entry refusals and can continue
 with smaller authorized ranges. Final Tool feedback is retained in existing

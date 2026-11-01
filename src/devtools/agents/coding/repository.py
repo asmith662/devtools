@@ -9,6 +9,7 @@ from dataclasses import dataclass, replace
 from functools import partial
 from typing import TYPE_CHECKING, Literal, cast
 
+from devtools.agents.coding.capacity import ContextPressure, TokenCapacity
 from devtools.agents.coding.compaction.operation import SemanticCompactor
 from devtools.agents.coding.custody import SourceCustody
 from devtools.agents.coding.edits import (
@@ -206,12 +207,36 @@ class RepositoryCodingHost:
         summary: SummaryCompaction | None = None,
         navigation: bool = False,
         navigation_policy: NavigationPolicy | None = None,
+        token_capacity: TokenCapacity | None = None,
+        measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None,
+        warning_bytes: int | None = None,
+        observe_context: Callable[[ContextPressure], None] | None = None,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
             msg = "Coding corpus belongs to a foreign repository."
             raise ValueError(msg)
         self.objective, self.scope, self.corpus = objective, objective.scope, corpus
+        warning = objective.prompt_bytes if warning_bytes is None else warning_bytes
+        if (
+            type(warning) is not int
+            or not 0 < warning <= objective.prompt_bytes
+            or (token_capacity is None) != (measure_input is None)
+            or (
+                token_capacity is not None
+                and (
+                    settings.maximum_output_tokens is None
+                    or settings.maximum_output_tokens
+                    > token_capacity.reserved_output_tokens
+                )
+            )
+        ):
+            msg = "Invalid coding request capacity or measurement qualification."
+            raise ValueError(msg)
+        self.token_capacity, self.measure_input = token_capacity, measure_input
+        self.warning_bytes, self.observe_context = warning, observe_context
+        self.context_pressure: list[ContextPressure] = []
+        self._original_bytes = 0
         if projection is not None and projection.trigger_bytes > objective.prompt_bytes:
             msg = "Projection watermarks exceed the host byte ceiling."
             raise ValueError(msg)
@@ -288,7 +313,78 @@ class RepositoryCodingHost:
             ),
         )
 
-    async def prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards
+    async def prepare(self, progress: CodingProgress) -> ModelRequest:
+        """Measure bytes and optional provider tokens before acting-model entry.
+
+        Pressure observers receive facts even for an impossible protected minimum.
+        Observer or tokenizer failure stops entry; neither operation is retried.
+        """
+        self._original_bytes = 0
+        prior_outcomes = len(self.projection_outcomes)
+        measured = None
+        request = None
+        action = "refused"
+        try:
+            request = await self._prepare(progress)
+            if self.token_capacity is not None and self.measure_input is not None:
+                history = tuple(self.messages)
+                count = await self.measure_input(request)
+                self.scope.check_current()
+                if tuple(self.messages) != history:
+                    msg = "History changed during input token measurement."
+                    raise ValueError(msg)
+                if type(count) is not int or count < 0:
+                    msg = "Input token measurement is invalid."
+                    raise ValueError(msg)
+                measured = count
+                if measured > self.token_capacity.input_tokens:
+                    msg = (
+                        "Measured input exceeds the qualified token allowance "
+                        "or is invalid."
+                    )
+                    raise ValueError(msg)
+            action = "ready"
+            return request
+        finally:
+            if self._original_bytes:
+                outcome = (
+                    self.projection_outcomes[-1]
+                    if len(self.projection_outcomes) > prior_outcomes
+                    else None
+                )
+                size = (
+                    request_bytes(request)
+                    if request is not None
+                    else (
+                        outcome.resulting_bytes
+                        if outcome is not None
+                        else self._original_bytes
+                    )
+                )
+                fact = ContextPressure(
+                    self._original_bytes,
+                    size,
+                    self.objective.prompt_bytes,
+                    self.warning_bytes,
+                    max(self._original_bytes, size) >= self.warning_bytes,
+                    (
+                        "adaptive"
+                        if self.compaction.config.adaptive is not None
+                        else "semantic"
+                    )
+                    if self.compaction is not None
+                    else ("deterministic" if self.projection is not None else "strict"),
+                    "reduced"
+                    if action == "ready" and size < self._original_bytes
+                    else action,
+                    measured,
+                    self.token_capacity,
+                )
+                self.context_pressure.append(fact)
+                if self.observe_context is not None:
+                    self.observe_context(fact)
+
+    async def _prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
@@ -306,6 +402,7 @@ class RepositoryCodingHost:
             has_inventory=True,
         )
         request = self.build_request(tuple(self.messages))
+        self._original_bytes = request_bytes(request)
         if self.projection is not None:
             policy = self.projection
             try:

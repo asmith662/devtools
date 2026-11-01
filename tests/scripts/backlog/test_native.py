@@ -188,6 +188,38 @@ class Scripted:
         """Exercise actual source read, failure feedback and independently selected repair."""
         index = len(self.requests)
         self.requests.append(request)
+        if str(self.source) == "context-script":
+            if index == 0:
+                selected = ModelToolCall(
+                    "find_source",
+                    json.dumps({"path": SOURCE, "mode": "symbol", "query": "value"}),
+                    "find-0",
+                )
+            elif index == 1:
+                metadata = json.loads(
+                    next(
+                        m.content
+                        for m in request.prompt.messages
+                        if m.tool_call_id == "find-0"
+                    )
+                )
+                assert metadata["source_acquired"] is False
+                assert metadata["units"][0]["name"] == "value"
+                selected = ModelToolCall(
+                    "read_source_unit",
+                    json.dumps(
+                        {
+                            "unit_id": metadata["units"][0]["file_id"],
+                            "snapshot_id": metadata["snapshot_id"],
+                        }
+                    ),
+                    "read-1",
+                )
+            else:
+                selected = self.calls[index - 1]
+            return ModelResponse(
+                "model-selected navigation/repair", self.source, tool_calls=(selected,)
+            )
         if index >= len(self.calls):
             return ModelResponse("Cannot proceed within this schedule", self.source)
         return ModelResponse(
@@ -212,7 +244,9 @@ async def prepared(
     return assignment
 
 
-@pytest.mark.parametrize("source", ["neutral-script-a", "independent-script-b"])
+@pytest.mark.parametrize(
+    "source", ["neutral-script-a", "independent-script-b", "context-script"]
+)
 def test_reviewed_native_task_to_authenticated_installable_plan(
     repository: tuple[WorkCycle, str], source: str
 ) -> None:
@@ -220,10 +254,32 @@ def test_reviewed_native_task_to_authenticated_installable_plan(
 
     async def run() -> None:
         cycle, item = repository
-        await prepared(cycle, item, task(source))
+        packet = task(source)
+        if source == "context-script":
+            packet["context"] = {
+                "schema": "native-context-v1",
+                "context_tokens": 65536,
+                "input_tokens": 62464,
+                "reserved_output_tokens": 2048,
+                "disclosure_bytes": 65536,
+                "warning_bytes": 98304,
+                "trigger_bytes": 114688,
+                "target_bytes": 98304,
+            }
+            packet["budgets"]["prompt_bytes"] = 131072
+        await prepared(cycle, item, packet)
         model = Scripted(source)
+
+        async def measured(_request: ModelRequest) -> int:
+            return 512  # Authored tokenizer control, never a live capacity claim.
+
         result = await cycle.native.execute(
-            item, interaction=model, profile="scripted-v1", authorize=lambda _: True
+            item,
+            interaction=model,
+            profile="scripted-v1",
+            authorize=lambda _: True,
+            measure_input=measured,
+            provider_context_tokens=65536,
         )
         assert result["disposition"] == "REVIEW_CANDIDATE", result
         facts = result["facts"]
@@ -232,7 +288,24 @@ def test_reviewed_native_task_to_authenticated_installable_plan(
         assert facts["restored"]
         assert facts["initial_context"]["unresolved"] == ["owner"]
         assert facts["readiness"][0]["ready"]
-        assert facts["model_calls"] == 3
+        assert facts["model_calls"] == (4 if source == "context-script" else 3)
+        if source == "context-script":
+            assert {t.name for t in model.requests[0].tools} == {
+                "read_source",
+                "replace_source",
+                "validate_candidate",
+                "find_source",
+                "read_source_unit",
+            }
+            observations = [
+                json.loads((cycle._folder(item) / "worker" / row["file"]).read_bytes())
+                for row in facts["observations"]
+            ]
+            pressure = [r for r in observations if r["kind"] == "context-pressure"]
+            assert len(pressure) == 4 and all(
+                r["measured_input_tokens"] == 512 for r in pressure
+            )
+            assert all(r["policy"] == "deterministic" for r in pressure)
         history = next(
             json.loads((cycle._folder(item) / "worker" / row["file"]).read_bytes())
             for row in facts["observations"]
@@ -241,7 +314,9 @@ def test_reviewed_native_task_to_authenticated_installable_plan(
             ]
             == "coding-feedback-history"
         )
-        assert [m["tool_call_id"] for m in history["messages"]] == [
+        assert [m["tool_call_id"] for m in history["messages"]] == (
+            ["find-0"] if source == "context-script" else []
+        ) + [
             "read-1",
             "edit-2",
             "repair-3",
@@ -341,7 +416,12 @@ def test_reviewed_native_task_to_authenticated_installable_plan(
         assert cycle.intake.approved_item(item)["status"] == "BACKLOG"
         with pytest.raises(PermissionError, match="Prior native dispatch"):
             await cycle.native.execute(
-                item, interaction=model, profile="scripted-v1", authorize=lambda _: True
+                item,
+                interaction=model,
+                profile="scripted-v1",
+                authorize=lambda _: True,
+                measure_input=measured,
+                provider_context_tokens=65536,
             )
 
     asyncio.run(run())

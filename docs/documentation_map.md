@@ -5,6 +5,10 @@ owns complete-request preflight, correlated refusals and bounded range recovery.
 The original B-0049 outcome and consumed slot remain historical evidence.
 
 Live native assessment: [first authorized task and actual Context-budget outcome](research/live-native-maintenance-task.md)
+
+Native Context operation: [prospective profiles, automatic deterministic projection,
+pressure and source inspection](development/native-context-policy.md);
+[bounded local capacity trial and qualification limits](research/native-context-capacity.md).
 records genuine human Intake/coding approval and two live calls before any edit;
 review competence remains unmeasured. Earlier [operational preflight](research/live-native-maintenance-preflight.md)
 records the available provider and task/authority blocker; no live episode occurred.

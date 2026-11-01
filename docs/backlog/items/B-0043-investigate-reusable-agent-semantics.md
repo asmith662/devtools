@@ -14,6 +14,35 @@
 
 ## Problem / value
 
+### Context operating follow-up — 2026-11-01
+
+Provenance: the maintainer's larger-Context assignment and the
+[bounded implementation/operational assessment](../../research/native-context-capacity.md).
+The explicit [native Context profile](../../development/native-context-policy.md)
+connects existing deterministic projection and navigation; it does not close this
+item or establish live coding competence. Remaining categorized obligations:
+
+- **Operational qualification:** diagnose bounded startup/readiness at the existing
+  32K configuration, then qualify a coordinated 64K profile with measured token
+  fit, memory and sustained performance. The approved 64K attempt timed out before
+  inference; the original 32K service was restored and authenticated healthy.
+  Defer 96K/128K qualification until the first target is reliable.
+- **Optional policy integration:** prospective native auxiliary grants for existing
+  structured semantic/adaptive compaction and a bounded model-request advisory
+  operation. Preserve independent disclosure/output budgets, original history,
+  source witnesses and unknown-effect non-replay. Existing host-only seams are
+  available; no implicit summarizer authority was granted here.
+- **Inspection semantics:** distinguish indexed/searched/disclosed/active source
+  from explicit actor assessment. Derive task-local coverage from existing facts;
+  define owner, source invalidation and prospective representation before adding
+  durable semantic assessments or cross-task reuse.
+- **Tool presentation:** measure whether phase-specific presentation materially
+  improves schema size and model use before implementing it. The new native
+  profile advertises the existing fixed five-Tool set; no JIT registry exists.
+
+These are unresolved obligations, not automatic approval, task promotion or a
+broader lifecycle/maturity change. B-0049's original slot remains consumed.
+
 Determine what reusable Agent behavior is justified beyond the external Codex
 integration and bounded Qwen experiments. A Model is not an Agent, and no
 BaseAgent API is authorized merely because the domain exists.
