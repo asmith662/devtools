@@ -54,8 +54,10 @@ from devtools.agents.coding.protocol import (
     READ,
     Invocation,
     arguments,
+    capacity_refusal,
     classify_calls,
     read_request,
+    source_refusal,
 )
 from devtools.agents.model_tools import (
     execute_model_tool_call,
@@ -82,7 +84,7 @@ from devtools.tools.source import (
     SourceReadRefusal,
     SourceReadRequest,
     SourceScope,
-    source_read_bounds,
+    select_source_read,
 )
 
 if TYPE_CHECKING:
@@ -431,9 +433,235 @@ class RepositoryCodingHost:
             ),
         )
 
+    def _acquisition_fits(
+        self,
+        pending: tuple[PromptMessage, ...],
+        options: tuple[SourceRangeDisclosureOption | None, ...] = (),
+    ) -> bool:
+        """Reserve complete replies; preview only the host's existing projection.
+
+        No auxiliary model, active-state installation or history mutation occurs.
+        Existing opt-in projection retains its source shortening/provenance and
+        protects mandatory instructions, check feedback and readiness.
+        """
+        request = self.build_request((*self.messages, *pending))
+        if self.projection is None:
+            return request_bytes(request) <= self.objective.prompt_bytes
+        sources = dict(self._source_messages)
+        sources.update(
+            {
+                len(self.messages) + i: (option,)
+                for i, option in enumerate(options)
+                if option is not None
+            },
+        )
+        protected = frozenset(self._check_feedback)
+        if self.readiness is not None:
+            protected |= frozenset(
+                i
+                for i, values in sources.items()
+                if any(o.snapshot_id == self.scope.snapshot.id for o in values)
+            )
+        if self.compaction is not None:
+            protected |= self.compaction.protect(request.prompt.messages)
+        return (
+            project_request(
+                request,
+                policy=self.projection,
+                hard_bytes=self.objective.prompt_bytes,
+                snapshot=self.scope.snapshot,
+                sources=sources,
+                protected_indices=protected,
+                previous_sources=self.active_disclosures,
+            ).status
+            != "insufficient"
+        )
+
+    def _feedback_fits(
+        self,
+        call: ModelToolCall,
+        value: object,
+        pending: tuple[PromptMessage, ...],
+        option: SourceRangeDisclosureOption | None = None,
+    ) -> bool:
+        """Charge this exact feedback plus every remaining correlated reservation."""
+        return self._acquisition_fits(
+            (
+                PromptMessage(
+                    "tool",
+                    json.dumps(value, ensure_ascii=False),
+                    tool_call_id=call.provider_call_id,
+                ),
+                *pending,
+            ),
+            (option,),
+        )
+
+    def _source_batch_fits(self, response: ModelResponse) -> bool:
+        """Preflight an exact read/check batch before unrelated reads enter Tools.
+
+        Malformed pure arguments keep their existing per-call refusal/failure
+        boundary. Operational errors are never caught or reclassified here.
+        """
+        if len(response.tool_calls) == 1 or any(
+            c.name not in {READ.name, READ_UNIT.name, CHECK.name}
+            for c in response.tool_calls
+        ):
+            return True
+        pending: list[PromptMessage] = []
+        options: list[SourceRangeDisclosureOption | None] = []
+        for call in response.tool_calls:
+            option = None
+            value: object = {"passed": False}
+            if call.name != CHECK.name:
+                try:
+                    requested = read_request(
+                        call.arguments_json,
+                        index=self.index,
+                        purpose=self.objective.text,
+                        maximum_bytes=self.objective.disclosure_bytes,
+                        by_unit=call.name == READ_UNIT.name,
+                    )
+                except (TypeError, ValueError):
+                    return True
+                selected = select_source_read(requested)
+                option = None if isinstance(selected, SourceReadRefusal) else selected
+                value = (
+                    source_refusal(selected.request)
+                    if isinstance(selected, SourceReadRefusal)
+                    else source_feedback(selected, selected.text)
+                )
+            options.append(option)
+            pending.append(
+                PromptMessage(
+                    "tool",
+                    json.dumps(value, ensure_ascii=False),
+                    tool_call_id=call.provider_call_id,
+                ),
+            )
+        return self._acquisition_fits(tuple(pending), tuple(options))
+
+    async def _acquire_source(
+        self,
+        call: ModelToolCall,
+        pending: tuple[PromptMessage, ...],
+        effect: CodingEffect,
+        *,
+        batch_fits: bool,
+    ) -> None:
+        """Admit exact known source feedback before Tool entry, never retry errors."""
+        tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
+            ScopedSourceTool(
+                self.scope,
+                maximum_bytes=self.objective.disclosure_bytes,
+            )
+        )
+        requested = read_request(
+            call.arguments_json,
+            index=self.index,
+            purpose=self.objective.text,
+            maximum_bytes=self.objective.disclosure_bytes,
+            by_unit=call.name == READ_UNIT.name,
+        )
+        tool.validate(requested)
+        selected = select_source_read(requested)
+        expected = (
+            source_refusal(selected.request)
+            if isinstance(selected, SourceReadRefusal)
+            else source_feedback(selected, selected.text)
+        )
+        option = None if isinstance(selected, SourceReadRefusal) else selected
+        if not batch_fits or not self._feedback_fits(call, expected, pending, option):
+            await self.authorize(call, requested)
+            tool.validate(requested)
+            refusal = capacity_refusal()
+            fits = self._feedback_fits(call, refusal, pending)
+            self._feedback(call, refusal)
+            effect.acknowledged = True
+            if not fits:
+                msg = (
+                    "Coding capacity: correlated refusal feedback cannot fit; "
+                    "source Tool not entered."
+                )
+                raise ValueError(msg)
+            return
+        if isinstance(selected, SourceReadRefusal):
+            await self.authorize(call, requested)
+            tool.validate(requested)
+            self._feedback(call, expected)
+            return
+        disclosure = await execute_model_tool_call(
+            call,
+            invocation=Invocation[SourceReadRequest](
+                READ_UNIT if call.name == READ_UNIT.name else READ,
+                partial(
+                    read_request,
+                    index=self.index,
+                    purpose=self.objective.text,
+                    maximum_bytes=self.objective.disclosure_bytes,
+                    by_unit=call.name == READ_UNIT.name,
+                ),
+            ),
+            tool=tool,
+            admit=self.authorize,
+            runner=ToolRunner(),
+        )
+        # Returned results are known completions; exceptions above stay unknown.
+        effect.acknowledged = True
+        if isinstance(disclosure, SourceReadRefusal):
+            self._feedback(
+                call,
+                {
+                    **source_refusal(disclosure.request),
+                    "tool_operation_entered": True,
+                },
+            )
+            msg = (
+                "Source Tool completed with a different range refusal after preflight."
+            )
+            raise TypeError(msg)
+        option = cast(
+            "SourceRangeDisclosureOption",
+            disclosure.items[0].native_provenance,
+        )
+        self.source_results.append(disclosure)
+        actual = source_feedback(option, disclosure.items[0].text)
+        if actual != expected:
+            self._feedback(
+                call,
+                {
+                    "status": "UNDISCLOSED",
+                    "tool_operation_entered": True,
+                    "source_disclosure_entered": True,
+                    "payload": actual,
+                },
+            )
+            msg = (
+                "Completed source feedback differs from capacity preflight; "
+                "payload retained, no edit witness."
+            )
+            raise ValueError(msg)
+        self.disclosures.append(option)
+        self._feedback(call, actual, sources=(option,))
+
     async def acquire(self, response: ModelResponse) -> bool:
         """Use shared composition and retain each bounded Tool result."""
         ready = False
+        pending = [
+            PromptMessage(
+                "tool",
+                "\\" * (self.objective.disclosure_bytes + 1024)
+                if call.name == FIND.name
+                else json.dumps(
+                    {"passed": False}
+                    if call.name == CHECK.name
+                    else capacity_refusal(),
+                    ensure_ascii=False,
+                ),
+                tool_call_id=call.provider_call_id,
+            )
+            for call in response.tool_calls
+        ]
         if (
             len(response.tool_calls)
             > self.progress.limits.tool_actions - self.progress.actions
@@ -441,8 +669,11 @@ class RepositoryCodingHost:
             for call in response.tool_calls:
                 self._feedback(call, {"status": "REFUSED", "reason": "action_budget"})
             return False
+        batch_fits = self._source_batch_fits(response)
         for call in response.tool_calls:
             effect = self.progress.claim_action(call.provider_call_id)
+            pending.pop(0)
+
             if self.navigation and call.name == FIND.name:
                 try:
                     values = arguments(
@@ -478,59 +709,11 @@ class RepositoryCodingHost:
                 )
                 self._feedback(call, result)
             elif call.name in {READ.name, READ_UNIT.name}:
-                tool: Tool[SourceReadRequest, ContextDisclosure | SourceReadRefusal] = (
-                    ScopedSourceTool(
-                        self.scope,
-                        maximum_bytes=self.objective.disclosure_bytes,
-                    )
-                )
-                disclosure = await execute_model_tool_call(
+                await self._acquire_source(
                     call,
-                    invocation=Invocation[SourceReadRequest](
-                        READ_UNIT if call.name == READ_UNIT.name else READ,
-                        partial(
-                            read_request,
-                            index=self.index,
-                            purpose=self.objective.text,
-                            maximum_bytes=self.objective.disclosure_bytes,
-                            by_unit=call.name == READ_UNIT.name,
-                        ),
-                    ),
-                    tool=tool,
-                    admit=self.authorize,
-                    runner=ToolRunner(),
-                )
-                if isinstance(disclosure, SourceReadRefusal):
-                    self._feedback(
-                        call,
-                        {
-                            "status": "REFUSED",
-                            "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
-                            "source_disclosure_entered": False,
-                            "path": str(disclosure.request.unit.resource.address),
-                            "snapshot": str(disclosure.request.unit.snapshot_id),
-                            "version": str(
-                                disclosure.request.unit.resource.content_identity,
-                            ),
-                            **source_read_bounds(disclosure.request),
-                            "instruction": (
-                                "Select a new valid interval; "
-                                "this call disclosed no source."
-                            ),
-                        },
-                    )
-                    effect.acknowledged = True
-                    continue
-                option = cast(
-                    "SourceRangeDisclosureOption",
-                    disclosure.items[0].native_provenance,
-                )
-                self.source_results.append(disclosure)
-                self.disclosures.append(option)
-                self._feedback(
-                    call,
-                    source_feedback(option, disclosure.items[0].text),
-                    sources=(option,),
+                    tuple(pending),
+                    effect,
+                    batch_fits=batch_fits,
                 )
             else:
                 arguments(call.arguments_json, set())

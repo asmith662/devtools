@@ -1,5 +1,12 @@
 # Roadmap
 
+Bounded continuation correction: [aggregate source admission](development/aggregate-source-admission.md)
+preflights native read/check batches, preserves correlated feedback and permits
+smaller exact acquisitions under the unchanged byte cap. Neutral scripted tests
+exercise continuation and actual check/repair; no new live-model competence is
+claimed. A later live trial requires a genuinely approved linked new task/unused
+slot and fresh coding/reviewer authority. B-0049's original dispatch remains consumed.
+
 First authorized live native maintenance: [B-0049 episode](research/live-native-maintenance-task.md)
 obtained genuine human Intake/coding approval and made two Qwen calls. Four
 source reads overflowed the native aggregate prompt byte limit before an edit;

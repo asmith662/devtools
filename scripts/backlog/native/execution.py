@@ -356,6 +356,11 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
         ),
         host=host,
     )
+    # Preserve feedback even when no further model entry consumed it. This uses
+    # the existing bounded capture; failure never authorizes a retry or candidate.
+    feedback = [asdict(m) for m in host.messages if m.role == "tool"]
+    if feedback:
+        capture.add("coding-feedback-history", {"messages": feedback})
     return {
         "coding_disposition": result.disposition,
         "coding_accepted": result.accepted,

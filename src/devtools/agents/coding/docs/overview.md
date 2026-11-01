@@ -17,7 +17,7 @@ managed Resources. Runtime and Conversation retain their narrower contracts.
 - `projection` selects valid complete native exchanges and affordable exact source
   through existing Context materialization. The neutral host's optional
   `ProjectionPolicy` separates retained original facts from active Prompt/edit
-  witnesses; default task and capacity behavior remain unchanged.
+  witnesses; configured hard bounds remain authoritative.
 - `compaction` optionally obtains bounded, cited working-state notes through a
   separately selected ModelInteraction. A trusted host explicitly requests it
   or enables the conservative omission/value-based adaptive policy,
@@ -80,6 +80,13 @@ documents optional `NavigationPolicy`, bounded initial objective-derived candida
 explicit outlines and correlated allowance refusals. It composes existing search,
 native Tools and exact source witnesses. Candidate metadata is incomplete and does
 not implement the complete initial resource inventory obligation.
+
+The [aggregate source admission contract](../../../../../docs/development/aggregate-source-admission.md)
+checks complete pending read/check feedback before source Tool entry, emits bounded
+correlated capacity refusals and supports smaller Unicode-range acquisitions.
+Existing explicit projection, exact witnesses, check protection and unknown-effect
+semantics remain authoritative. It does not change provider token capacity or
+activate a new lossy Context policy.
 
 The [investigation-transition contract](../../../../../docs/development/investigation-transition.md)
 adds opt-in `ProjectionPolicy.report_source_state`. Active ranges and repeated

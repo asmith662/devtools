@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Literal, cast
 
 from devtools.agents.coding.navigation import FIND, READ_UNIT, unit_read_request
 from devtools.tools import ToolDescriptor
-from devtools.tools.source import SourceReadRequest
+from devtools.tools.source import SourceReadRequest, source_read_bounds
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -129,3 +129,33 @@ def read_request(
         cast("int | None", values.get("end", unit.end)),
         maximum_bytes,
     )
+
+
+def capacity_refusal() -> dict[str, object]:
+    """Bounded recovery guidance; the native call and inventory identify source."""
+    return {
+        "status": "REFUSED",
+        "error": "SOURCE_CONTEXT_CAPACITY",
+        "source_disclosure_entered": False,
+        "tool_operation_entered": False,
+        "instruction": (
+            "Use fewer reads or an explicit smaller end, e.g. start + 256 within "
+            "source bounds. start/end are half-open Unicode offsets, not bytes/lines. "
+            "Omitted end uses the per-read bound, not remaining request capacity."
+        ),
+    }
+
+
+def source_refusal(request: SourceReadRequest) -> dict[str, object]:
+    """Describe a known pre-disclosure refusal, never an operational exception."""
+    return {
+        "status": "REFUSED",
+        "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
+        "source_disclosure_entered": False,
+        "tool_operation_entered": False,
+        "path": str(request.unit.resource.address),
+        "snapshot": str(request.unit.snapshot_id),
+        "version": str(request.unit.resource.content_identity),
+        **source_read_bounds(request),
+        "instruction": "Select a new valid interval; this call disclosed no source.",
+    }

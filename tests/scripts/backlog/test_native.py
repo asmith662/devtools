@@ -233,6 +233,19 @@ def test_reviewed_native_task_to_authenticated_installable_plan(
         assert facts["initial_context"]["unresolved"] == ["owner"]
         assert facts["readiness"][0]["ready"]
         assert facts["model_calls"] == 3
+        history = next(
+            json.loads((cycle._folder(item) / "worker" / row["file"]).read_bytes())
+            for row in facts["observations"]
+            if json.loads((cycle._folder(item) / "worker" / row["file"]).read_bytes())[
+                "kind"
+            ]
+            == "coding-feedback-history"
+        )
+        assert [m["tool_call_id"] for m in history["messages"]] == [
+            "read-1",
+            "edit-2",
+            "repair-3",
+        ]
         assert facts["proposals"] == 2
         assert "assert 2 == 3" in facts["checks"][0][0]["stdout"]
         assert all("assert module.value()" not in str(r.prompt) for r in model.requests)

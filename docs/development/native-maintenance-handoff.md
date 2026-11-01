@@ -1,5 +1,12 @@
 # Supervised native maintenance handoff
 
+Native coding now uses [aggregate source-read admission](aggregate-source-admission.md).
+Oversized read batches receive correlated pre-entry refusals and can continue
+with smaller authorized ranges. Final Tool feedback is retained in existing
+bounded native capture even when no later model call consumed it. This does not
+change native task/grant meanings, whole-owner readiness, the byte ceiling,
+independent review or the consumed B-0049 slot. No live trial is launched here.
+
 The subsequent [independent review actor](native-independent-review.md) adds
 separately authorized model review and grounded proposals. The original manual
 administrative review path described here remains supported.

@@ -348,8 +348,10 @@ def test_protected_readiness_cannot_be_dropped(
     tmp_path: Path,
 ) -> None:
     async def run() -> None:
-        host = configured(tmp_path, hard=1600)
+        host = configured(tmp_path)
         await acquire(host)
+        host.objective = replace(host.objective, prompt_bytes=1600)
+        host.projection = ProjectionPolicy(1400, 1200)
         host.readiness = lambda _snapshot, _sources: None
         metadata(host, "latest", "x" * 1800)
         with pytest.raises(ProjectionCapacityError):
@@ -665,13 +667,11 @@ def test_empty_acquired_file_is_not_fabricated_to_fit_capacity(tmp_path: Path) -
             addresses=(RepositoryResourceAddress("module.py"),),
         )
         host._index()  # noqa: SLF001 -- authored empty-file observation
-        await acquire(host, "empty", 0, 0)
-        original = tuple(host.messages)
-        with pytest.raises(ProjectionCapacityError) as caught:
-            await host.prepare(host.progress)
-        assert caught.value.outcome.shortened_indices == ()
-        assert caught.value.outcome.request.prompt.messages == original
-        assert json.loads(host.messages[-1].content)["text"] == ""
-        assert host.source_results[-1].items[0].text == ""
+        # Admission now detects even this minimum before entering source Tools.
+        with pytest.raises(ValueError, match="correlated refusal"):
+            await acquire(host, "empty", 0, 0)
+        assert json.loads(host.messages[-1].content)["tool_operation_entered"] is False
+        assert host.source_results == []
+        assert host.disclosures == []
 
     asyncio.run(run())
