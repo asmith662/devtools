@@ -1,0 +1,63 @@
+{
+  "decision": {
+    "schema": "backlog-review-v1",
+    "proposal": "f3f3068e-cb95-4718-9def-ba432b1f3ea4",
+    "proposal_sha256": "8ca406e9d05a09ea8ceb5eafbd71339318b9f776098d490fd6579f0b98904825",
+    "previous": null,
+    "decision": "APPROVED",
+    "reviewer": "human operator recoveryadmin via actual default-No approval",
+    "decision_reference": "human-default-no-live64-intake-20261101",
+    "rationale": "Approve only the independently reproduced local-namespace facade residual as a linked B-0049 follow-up. Fresh baseline: three public failures, 58 passing public/maintained cases; six private failures and twelve private controls. One existing Python implementation file. Preserve module binding guards, source provenance, broader parent pressure and consumed historical dispatch. This authorizes backlog-only review/publication, not inference, implementation, installation or closure.",
+    "duplicates": [
+      {
+        "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "docs/backlog/items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md",
+        "reason": "title overlap or shared resource"
+      }
+    ],
+    "duplicate_disposition": "Required related child of terminal B-0049 approval and consumed WorkCycle slot; not a duplicate independent obligation. Original review/proposal remain unchanged; parent residual provenance is explicit. Other matching lexical proposals are not execution authorities.",
+    "scope": "canonical-backlog-only; no execution authority",
+    "publication": {
+      "id": "B-0050",
+      "path": "items/B-0050-repair-local-namespace-import-interference-with-module-facade-reexports-b-0049-follow-up.md",
+      "text": "# B-0050 \u2014 Repair local-namespace import interference with module facade reexports (B-0049 follow-up)\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: context\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/f3f3068e-cb95-4718-9def-ba432b1f3ea4/proposal.json\n- intake_review: ../proposals/f3f3068e-cb95-4718-9def-ba432b1f3ea4/review-0001.json\n\n## Problem / value\n\nLinked bounded continuation of B-0049 review-0003, not an independent duplicate obligation. Current src/devtools/context/python/imports/members.py still refuses a valid module facade reexport when an unrelated function, async function or class imports the same name in its own namespace. Fresh public and independently authored private baseline checks reproduce the defect. B-0049 original dispatch remains consumed; its broader competing-binding and Reference pressure remains open.\n\n## Proposed benefit\n\nOne-file behavioral repair: unrelated local namespaces must not invalidate module reexports; preserve module conditional/try/star imports, aliases, genuine competing declarations and non-Name binding guards conservatively. Measure one real governed 64K native coder episode and, only for a lawful candidate, independent review and a read-only integration plan. Candidate archival/restoration only; no automatic install, merge, publication or closure.\n\n## Uncertainty / unresolved semantics\n\nA linked child is required because Intake terminal approvals require a new related proposal and WorkCycle has one assignment per canonical item. This does not resolve or duplicate the broader B-0049 obligation. Scripted tests establish mechanics, not Qwen competence. 2048-token generation performance is not established by prior 128-token neutral probes. Private acceptance is bounded, independently authored, and not exhaustive.\n\n## Discovery / parent\n\n{'kind': 'research', 'reference': 'docs/research/live-native-maintenance-task.md; docs/research/code-audit/live-native64-20261101/preflight.json'}\nB-0049\n\n## Evidence\n\ndocs/backlog/proposals/ff4c4110-9c3b-480d-8f0f-77cf4610b700/review-0003.json\ndocs/research/code-audit/live-native64-20261101/preflight.json\ndocs/research/live-native-maintenance-task.md\n\n## Affected resources\n\nsrc/devtools/context/python/imports/members.py\nsrc/devtools/context/python/modules/bindings.py\ntests/context/python/imports/test_members.py\n\n## Possible dependencies\n\nB-0049\nff4c4110-9c3b-480d-8f0f-77cf4610b700\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+      "row": "| [B-0050](items/B-0050-repair-local-namespace-import-interference-with-module-facade-reexports-b-0049-follow-up.md) | Repair local-namespace import interference with module facade reexports (B-0049 follow-up) | BACKLOG | context |"
+    },
+    "proposed_work": {
+      "schema": "backlog-proposal-v1",
+      "id": "f3f3068e-cb95-4718-9def-ba432b1f3ea4",
+      "created_at": "2026-11-01T16:20:34.794764+00:00",
+      "payload": {
+        "kind": "bug",
+        "title": "Repair local-namespace import interference with module facade reexports (B-0049 follow-up)",
+        "summary": "Linked bounded continuation of B-0049 review-0003, not an independent duplicate obligation. Current src/devtools/context/python/imports/members.py still refuses a valid module facade reexport when an unrelated function, async function or class imports the same name in its own namespace. Fresh public and independently authored private baseline checks reproduce the defect. B-0049 original dispatch remains consumed; its broader competing-binding and Reference pressure remains open.",
+        "discovery": {
+          "kind": "research",
+          "reference": "docs/research/live-native-maintenance-task.md; docs/research/code-audit/live-native64-20261101/preflight.json"
+        },
+        "parent": "B-0049",
+        "resources": [
+          "src/devtools/context/python/imports/members.py",
+          "src/devtools/context/python/modules/bindings.py",
+          "tests/context/python/imports/test_members.py"
+        ],
+        "evidence": [
+          "docs/backlog/proposals/ff4c4110-9c3b-480d-8f0f-77cf4610b700/review-0003.json",
+          "docs/research/code-audit/live-native64-20261101/preflight.json",
+          "docs/research/live-native-maintenance-task.md"
+        ],
+        "benefit": "One-file behavioral repair: unrelated local namespaces must not invalidate module reexports; preserve module conditional/try/star imports, aliases, genuine competing declarations and non-Name binding guards conservatively. Measure one real governed 64K native coder episode and, only for a lawful candidate, independent review and a read-only integration plan. Candidate archival/restoration only; no automatic install, merge, publication or closure.",
+        "uncertainty": "A linked child is required because Intake terminal approvals require a new related proposal and WorkCycle has one assignment per canonical item. This does not resolve or duplicate the broader B-0049 obligation. Scripted tests establish mechanics, not Qwen competence. 2048-token generation performance is not established by prior 128-token neutral probes. Private acceptance is bounded, independently authored, and not exhaustive.",
+        "dependencies": [
+          "B-0049",
+          "ff4c4110-9c3b-480d-8f0f-77cf4610b700"
+        ]
+      },
+      "payload_sha256": "e877d632f25045344a31e841377ba6d93ce1ff180d1183714dfa90295c7c056a"
+    }
+  },
+  "scope_sha256": "c6c5452be0331a087cc4d75923caa0bb192e78f95879639e9199be574e40e62b"
+}

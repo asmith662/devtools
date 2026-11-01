@@ -1,5 +1,9 @@
 # Documentation Map
 
+Current live task: [reviewed 64K native maintenance episode](research/live-native64-maintenance-task.md)
+binds B-0050 to the unresolved B-0049 residual with fresh Intake approval,
+independent baseline acceptance and separate exact-scope execution authority.
+
 Current provider: [approved persistent 64K Qwen profile](development/qwen-persistent-profile.md)
 records actual adoption, measured startup/memory pressure, Tool transport and
 explicit 32K fallback. The next step is a fresh authorized native engineering task.

@@ -1,0 +1,80 @@
+{
+  "objective": "Linked B-0049 residual only: repair valid direct module facade reexports refused merely because an unrelated function, async function or class namespace imports the same local name. Preserve exact target/provenance and conservative module-level conditional/try/star imports, aliases, competing declarations, ordinary assignments, pattern/handler guards and maintained regressions. Do not execute fixture source or broaden Python semantics. Inspect current authorized source using find_source, read_source_unit or bounded read_source. Before editing, acquire the complete current editable implementation through read_source to satisfy the declared whole-resource information obligation; metadata/partial ranges alone cannot satisfy it. Use smaller source units/ranges for dependencies/tests where useful; avoid redundant unchanged large reads. Only the one authorized implementation file may change. Actual public checks include the new namespace regressions plus maintained imported-member tests. Hidden independent final acceptance is withheld.",
+  "source": "src/devtools/context/python/imports/members.py",
+  "read_paths": [
+    "src/devtools/context/python/modules/bindings.py"
+  ],
+  "tests": [
+    "tests/live_native_facade64_public.py",
+    "tests/context/python/imports/test_members.py"
+  ],
+  "oracle": "import tempfile\nfrom pathlib import Path\nfrom devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources\nfrom devtools.core.paths import resolve_path\nfrom devtools.context.python.imports import derive_python_import_declarations\nfrom devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources, define_python_module_interpretation_universe\n\ndef inspect_case(extra, expected, *, alias=False, target=\"def answer():\\n    return 11\\n\"):\n    with tempfile.TemporaryDirectory(prefix=\"native-facade-withheld-\") as directory:\n        root = Path(directory)\n        import_line = \"from .implementation import answer as chosen\\n\" if alias else \"from .implementation import answer\\n\"\n        source_name = \"chosen\" if alias else \"answer\"\n        files = {\"use.py\": f\"from facade import {source_name}\\n\", \"facade/__init__.py\": import_line + extra, \"facade/implementation.py\": target}\n        for address, content in files.items():\n            path = root / address\n            path.parent.mkdir(parents=True, exist_ok=True)\n            path.write_text(content, encoding=\"utf-8\")\n        snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=tuple(RepositoryResourceAddress(a) for a in files), maximum_resource_bytes=8192)\n        declarations = derive_python_import_declarations(snapshot, resource_address=RepositoryResourceAddress(\"use.py\"))\n        meanings = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot(\".\"), resource_addresses=tuple(r.address for r in snapshot.resources)).interpretations\n        universe = define_python_module_interpretation_universe(repository_id=snapshot.repository_id, interpretations=meanings)\n        resolved = module.resolve_python_imported_member(snapshot, declarations, declarations.declarations[0], module_universe=universe)\n        assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)\n        if expected == \"resolved\":\n            assert resolved.target_declaration.declared_name == \"answer\"\n            assert resolved.target_declaration.support.resource_address.value == \"facade/implementation.py\"\n            assert resolved.source_analysis.snapshot_id == snapshot.id\n            assert resolved.facade.resource.address.value == \"facade/__init__.py\"\n        else:\n            assert resolved.target_declaration is None\n\nfor body in (\n    \"def helper():\\n    if enabled:\\n        from .elsewhere import answer\\n\",\n    \"async def helper():\\n    try:\\n        from .elsewhere import answer\\n    except ImportError:\\n        pass\\n\",\n    \"if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n\",\n    \"class Other:\\n    def method(self):\\n        from .elsewhere import answer\\n\",\n    \"class Other:\\n    from .elsewhere import answer\\n\",\n):\n    inspect_case(body, \"resolved\")\ninspect_case(\"def helper():\\n    from .elsewhere import chosen\\n\", \"resolved\", alias=True)\ninspect_case(\"if enabled:\\n    from .elsewhere import answer\\n\", \"unsupported\")\ninspect_case(\"try:\\n    from .elsewhere import answer\\nexcept ImportError:\\n    pass\\n\", \"unsupported\")\ninspect_case(\"if enabled:\\n    from .elsewhere import *\\n\", \"unsupported\")\ninspect_case(\"class answer:\\n    pass\\n\", \"unsupported\")\ninspect_case(\"def answer():\\n    pass\\n\", \"unsupported\")\ninspect_case(\"try:\\n    pass\\nexcept ValueError as answer:\\n    pass\\n\", \"unsupported\")\ninspect_case(\"\", \"resolved\", target=\"async def answer():\\n    return 11\\n\")\n",
+  "obligations": [
+    {
+      "name": "current-owner",
+      "predicate": "Acquire the complete current imported-member implementation before editing it; distinguish module bindings from unrelated local namespaces.",
+      "path": "src/devtools/context/python/imports/members.py",
+      "criterion": "current-whole-resource-v1"
+    }
+  ],
+  "preflight": {
+    "reference": "Independent original acceptance reused unchanged before any new inference; original provenance docs/research/code-audit/live-native-task-20261031/private-acceptance.py.txt",
+    "controls_reference": "docs/research/code-audit/live-native64-20261101/private-baseline.json",
+    "comparisons": [
+      {
+        "name": "independent-local-scope",
+        "obligation": "current-owner",
+        "category": "normal",
+        "expected": "resolved",
+        "independently_derived": "resolved",
+        "derivation": "Authored Python namespace contract: a helper-local binding does not rebind the module reexport; exact declaration/provenance checked without executing fixture source."
+      },
+      {
+        "name": "module-scope-guard",
+        "obligation": "current-owner",
+        "category": "boundary",
+        "expected": "unsupported",
+        "independently_derived": "unsupported",
+        "derivation": "Conditional/try/star module bindings and competing declarations remain conservative; independently authored source strings."
+      },
+      {
+        "name": "no-competing-local-content",
+        "obligation": "current-owner",
+        "category": "empty",
+        "expected": "resolved",
+        "independently_derived": "resolved",
+        "derivation": "Neutral helper/class pass controls leave direct module reexport unchanged; sync and async implementation declarations remain supported."
+      }
+    ]
+  },
+  "worker": {
+    "actor": "qwen38-native64-coder-20261101",
+    "source": "llama.cpp/qwen38-local/native64-coder-20261101",
+    "profile": "qwen38-27b-ud-iq4-xs-native64-v1"
+  },
+  "settings": {
+    "maximum_output_tokens": 2048,
+    "thinking_enabled": false
+  },
+  "budgets": {
+    "model_calls": 8,
+    "proposals": 3,
+    "acquisitions": 6,
+    "call_seconds": 120,
+    "wall_seconds": 900,
+    "prompt_bytes": 131072,
+    "source_bytes": 32768,
+    "capture_bytes": 983040
+  },
+  "capture": "bounded-full-v1",
+  "context": {
+    "schema": "native-context-v1",
+    "context_tokens": 65536,
+    "input_tokens": 62464,
+    "reserved_output_tokens": 2048,
+    "disclosure_bytes": 65536,
+    "warning_bytes": 98304,
+    "trigger_bytes": 114688,
+    "target_bytes": 98304
+  }
+}
