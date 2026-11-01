@@ -1,0 +1,32 @@
+"""Exact human decision consumed by the existing Intake authority callbacks."""
+import asyncio,json,sys,getpass
+from pathlib import Path
+R=Path.cwd();O=R/'.local/live64-native';sys.path.insert(0,str(R))
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.intake import _digest
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def core(v):return {k:x for k,x in v.items() if k not in ('at','sha256')}
+async def main():
+ c=WorkCycle(R);await c._coordinator();identity=read(O/'proposal.json')['id']
+ args={'decision':'APPROVED','reviewer':'human operator '+getpass.getuser()+' via actual default-No approval','reference':'human-default-no-live64-intake-20261101','rationale':'Approve only the independently reproduced local-namespace facade residual as a linked B-0049 follow-up. Fresh baseline: three public failures, 58 passing public/maintained cases; six private failures and twelve private controls. One existing Python implementation file. Preserve module binding guards, source provenance, broader parent pressure and consumed historical dispatch. This authorizes backlog-only review/publication, not inference, implementation, installation or closure.','duplicate_disposition':'Required related child of terminal B-0049 approval and consumed WorkCycle slot; not a duplicate independent obligation. Original review/proposal remain unchanged; parent residual provenance is explicit. Other matching lexical proposals are not execution authorities.','domain':'context'}
+ if sys.argv[1:]==['--preview']:
+  def preview(value):save(O/'intake-preview.json',{'decision':core(value),'scope_sha256':_digest(core(value))});return False
+  try:c.intake.review(identity,**args,authorize=preview)
+  except PermissionError as error:
+   assert str(error)=='Host authorization required for review decision'
+  p=read(O/'intake-preview.json');print(json.dumps({'proposal':identity,'proposed_publication':p['decision']['publication']['id'],'scope_sha256':p['scope_sha256'],'approval_recorded':False},indent=2));return
+ approval=read(O/'intake-operator-approval.json');preview=read(O/'intake-preview.json')
+ assert approval['user_response']=='+approve' and approval['scope_sha256']==preview['scope_sha256']
+ assert Timestamp.now().value<Timestamp.from_isoformat(approval['expires_at']).value
+ def consent(value):
+  return (approval['user_response']=='+approve' and _digest(core(value))==approval['scope_sha256'] and Timestamp.now().value<Timestamp.from_isoformat(approval['expires_at']).value)
+ review=c.intake.review(identity,**args,authorize=consent)
+ item=c.intake.promote(identity,authorize=consent)
+ assert not c._folder(item).exists()
+ save(O/'intake-result.json',{'at':str(Timestamp.now()),'proposal':identity,'item':item,'review':review,'operator_approval':approval,'unused_slot':True,'execution_authorized':False})
+ print(json.dumps({'item':item,'review_sha256':review['sha256'],'unused_slot':True,'execution_authorized':False},indent=2))
+asyncio.run(main())

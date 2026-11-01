@@ -1,8 +1,10 @@
 # Documentation Map
 
 Current live task: [reviewed 64K native maintenance episode](research/live-native64-maintenance-task.md)
-binds B-0050 to the unresolved B-0049 residual with fresh Intake approval,
-independent baseline acceptance and separate exact-scope execution authority.
+records B-0050's genuine five-call source/edit/check/repair episode: public checks
+passed after repair, private acceptance failed, source was restored and review
+was correctly blocked. B-0049 and B-0050 dispatches remain consumed; no model
+review, integration or installed source repair is claimed.
 
 Current provider: [approved persistent 64K Qwen profile](development/qwen-persistent-profile.md)
 records actual adoption, measured startup/memory pressure, Tool transport and

@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-01T17:05:59.038862+00:00",
+  "response": {
+    "content": "The edit was admitted (version updated to `6c04...`), but the 3 new tests still fail. The remaining cause: the `if enabled:` / `try:` nested-import check works, but the failing cases have the local `def helper():` node \u2014 and my new `_contains_nested_import` correctly skips it. So `nested_import` is False now. Yet the outcome is still `unsupported`.\n\nWait \u2014 the check ran against the *old* admitted state? No, the `sources` shows the new text was admitted. Let me re-examine: with `def helper():\\n    from .other import f\\n`, the top-level node is `def helper`. In `_direct_competing_kind`, it's a FunctionDef named `helper` \u2260 `f`, no conflict. `iter_non_name_bindings(node)` \u2014 does `f` appear as a pattern/handler binding inside the function? `from .other import f` is an ImportFrom, not a pattern/handler. So no. `_contains_nested_import` now skips the function body \u2192 False. So `nested_import` is False and no competing. So why still unsupported?\n\nThe facade_bindings: `from .impl import f` exists \u2192 1 binding. Then the `facade_lookup` namespace uncertainty check: `lookup_python_module_declaration(..., declared_name=\"f\")`. The `f` import is a reexport. But there's also `def helper()` \u2014 that shouldn't affect `f`. Hmm, but wait: maybe the issue is that the whole test is now failing for a *different* reason. Let me look \u2014 the result is `unsupported`, not `ambiguous`. Unsupported reasons: the only way to get UNSUPPORTED here is star/nested/competing/module-resolution. \n\nActually the check may have run on the previously admitted version before my edit propagated. But the `sources` block shows the NEW text was admitted with version `6c04...`. However the `passed` check likely ran against a candidate BEFORE this admission, OR the admission and check are separate. Let me re-run validation to confirm current state.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/native64-coder-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 24042,
+      "output_tokens": 453,
+      "total_tokens": 24495,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "validate_candidate",
+        "arguments_json": "{}",
+        "provider_call_id": "uU5UexRaJcjiiCI3rzDqh7lSorlaPRyE"
+      }
+    ]
+  },
+  "sha256": "576849f468c37998883b71be03e9145dba85b9d25ec3be49e7c2cb93890857dc"
+}

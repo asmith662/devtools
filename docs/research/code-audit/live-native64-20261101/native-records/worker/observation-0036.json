@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "acceptance-result",
+  "at": "2026-11-01T17:06:52.120620+00:00",
+  "name": "withheld",
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-X",
+    "utf8",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py"
+  ],
+  "exit_code": 1,
+  "outcome": "failed",
+  "seconds": 0.432681,
+  "passed": false,
+  "inputs_current": true,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 45, in <module>\r\n    inspect_case(body, \"resolved\")\r\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 29, in inspect_case\r\n    assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n', 'ambiguous', 'resolved')\r\n",
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "events_dropped": 0,
+  "sha256": "a0be907434e7d25b4d779f1ec484b9f68afce0cf8ff31caad0ab025ff079a07d"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-01T17:06:47.384626+00:00",
+  "response": {
+    "content": "The current admitted version `6c04...` contains my edit. The check still fails. Let me trace the failing case more carefully.\n\nFacade content for the `def` case: `\"from .impl import f\\ndef helper():\\n    from .other import f\\n\"`.\n\nTree body: `[ImportFrom(f from .impl), FunctionDef(helper)]`.\n\nFor node = FunctionDef(helper):\n- `_direct_competing_kind`: FunctionDef, name `helper` \u2260 `f` \u2192 None. \u2713\n- `iter_non_name_bindings(node)`: walks helper body, skipping FunctionDef/ClassDef/AsyncFunctionDef. The body is `from .other import f` (ImportFrom) \u2014 no ExceptHandler/MatchAs/etc. \u2192 yields nothing. \u2713 no competing.\n- `_contains_nested_import(node)`: skips the function node itself and any nested function/class. The only child is the ImportFrom, but it's inside `helper`... \n\nWait. My function starts `pending = [child for child in ast.iter_child_nodes(node)]`. For node = FunctionDef(helper), its children include the body's ImportFrom `from .other import f`. But the function body IS a local scope \u2014 I should skip the *entire* function node's interior, not descend into it. Since the top-level node passed in is the FunctionDef itself, I'm incorrectly descending into its local scope.\n\nThe fix: when the top-level `node` is itself a function/class, its entire interior is local scope, so there is no module-scope nested import inside it. Only `if`/`try`/`for` wrappers at module scope have module-scope interiors.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/native64-coder-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 24517,
+      "output_tokens": 870,
+      "total_tokens": 25387,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/imports/members.py\",\"old_text\":\"def _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\n    \\\"\\\"\\\"Find a module-scope ``import from`` without entering local scopes.\\n\\n    A function, async function or class body binds names in its own local\\n    scope, so a nested import there cannot shadow the module-level reexport.\\n    Conditional/try/loop wrappers remain module scope, so their nested imports\\n    still make the module binding conservative.\\n    \\\"\\\"\\\"\\n    pending = [child for child in ast.iter_child_nodes(node)]\\n    while pending:\\n        current = pending.pop()\\n        if (\\n            isinstance(current, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))\\n            or current is node\\n        ):\\n            continue\\n        if isinstance(current, ast.ImportFrom) and any(\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\n            for alias in current.names\\n        ):\\n            return True\\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\\n    return False\",\"new_text\":\"def _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\n    \\\"\\\"\\\"Find a module-scope ``import from`` without entering local scopes.\\n\\n    A function, async function or class body binds names in its own local\\n    scope, so a nested import there cannot shadow the module-level reexport.\\n    Conditional/try/loop wrappers remain module scope, so their nested imports\\n    still make the module binding conservative.\\n    \\\"\\\"\\\"\\n    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):\\n        return False\\n    pending = [child for child in ast.iter_child_nodes(node)]\\n    while pending:\\n        current = pending.pop()\\n        if isinstance(\\n            current, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)\\n        ):\\n            continue\\n        if isinstance(current, ast.ImportFrom) and any(\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\n            for alias in current.names\\n        ):\\n            return True\\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\\n    return False\"}",
+        "provider_call_id": "YiCnLSJolg39FcLGPvo4rb3cSh53yDlI"
+      }
+    ]
+  },
+  "sha256": "a41928eeedb4690e80c4e0f263a92ff0dc16871591744dbe7878f753545617ab"
+}

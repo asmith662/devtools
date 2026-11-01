@@ -1,0 +1,45 @@
+{
+  "result_sha256": "d6385d49ae350c29454fbf2b8e687360c85cb0fbcff79f6ea658aa0193a16199",
+  "disposition": "BLOCKED",
+  "grant_sha256": "3c30f061cf277e3e5c8873c4e0b43bb9e731a75a08e71d6aac706bb548279798",
+  "facts": {
+    "model_calls": 5,
+    "coding_disposition": "validated",
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "proposals": 2,
+    "acquisitions": 5,
+    "acceptance": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 0.432681,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 45, in <module>\r\n    inspect_case(body, \"resolved\")\r\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 29, in inspect_case\r\n    assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n', 'ambiguous', 'resolved')\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "acceptance_error": null
+  },
+  "checkout_released": true,
+  "at": "2026-11-01T17:07:05.920556+00:00",
+  "seconds": 223.59541,
+  "adapter_entries": 5,
+  "returned_interactions": 5,
+  "adapter_seconds": 164.753292,
+  "support_bytes": 8171,
+  "principal": "recoveryadmin"
+}

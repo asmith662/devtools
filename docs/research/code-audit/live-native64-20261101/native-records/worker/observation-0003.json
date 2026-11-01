@@ -1,0 +1,70 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-entry-intent",
+  "at": "2026-11-01T17:03:46.989204+00:00",
+  "source": "llama.cpp/qwen38-local/native64-coder-20261101",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Linked B-0049 residual only: repair valid direct module facade reexports refused merely because an unrelated function, async function or class namespace imports the same local name. Preserve exact target/provenance and conservative module-level conditional/try/star imports, aliases, competing declarations, ordinary assignments, pattern/handler guards and maintained regressions. Do not execute fixture source or broaden Python semantics. Inspect current authorized source using find_source, read_source_unit or bounded read_source. Before editing, acquire the complete current editable implementation through read_source to satisfy the declared whole-resource information obligation; metadata/partial ranges alone cannot satisfy it. Use smaller source units/ranges for dependencies/tests where useful; avoid redundant unchanged large reads. Only the one authorized implementation file may change. Actual public checks include the new namespace regressions plus maintained imported-member tests. Hidden independent final acceptance is withheld.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"repository_id\": \"2857ba07-d552-40f1-839d-ee339021e4ee\", \"snapshot_id\": \"25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/context/python/imports/members.py\", \"content_identity\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"byte_size\": 21395, \"editable\": true}, {\"address\": \"src/devtools/context/python/modules/bindings.py\", \"content_identity\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"byte_size\": 1482, \"editable\": false}, {\"address\": \"tests/context/python/imports/test_members.py\", \"content_identity\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"byte_size\": 26021, \"editable\": false}, {\"address\": \"tests/live_native_facade64_public.py\", \"content_identity\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"byte_size\": 2646, \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": null, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": null,
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "entry": "claimed; not proof of provider entry",
+  "sha256": "36e43baa60d4b7b8107c44f64e84225e08fae221a71f3af78b63e6e7c08def81"
+}

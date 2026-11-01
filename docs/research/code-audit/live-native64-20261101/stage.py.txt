@@ -1,0 +1,38 @@
+"""Archive fresh preflight, then capture a related pending Intake proposal."""
+import asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/live64-native';D=R/'docs/research/code-audit/live-native64-20261101';sys.path.insert(0,str(R))
+from devtools.core.time import Timestamp,Duration
+from devtools.core.paths import resolve_path
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import inputs,git
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:
+  assert r.status==200;return json.loads(r.read(1<<20))
+async def service():
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=2<<20)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(30)))
+ assert r.succeeded and not r.stdout_truncated
+ actual=json.loads(r.stdout)[0];prior=read(R/'docs/research/code-audit/qwen64-persistent-adoption-20261101.json')['execution']['adopted_inspect']
+ assert actual['Id']==prior['Id'] and actual['Image']==prior['Image'] and actual['Config']==prior['Config'] and actual['Mounts']==prior['Mounts']
+ health,slots,props,models=get('/health'),get('/slots'),get('/props'),get('/v1/models')
+ assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536 and not slots[0]['is_processing']
+ params=props['default_generation_settings']['params']
+ result={'at':str(Timestamp.now()),'container_id':actual['Id'],'image':actual['Image'],'command':actual['Config']['Cmd'],'mounts':actual['Mounts'],'health':health,'context_tokens':slots[0]['n_ctx'],'slots':slots,'parallel':props['total_slots'],'sampling':{k:params[k] for k in ('temperature','top_p','top_k','min_p','presence_penalty')},'chat_template_sha256':hashlib.sha256(props['chat_template'].encode()).hexdigest(),'build':props.get('build_info'),'models':models,'profile_fingerprint':actual['Config']['Labels']['devtools.qwen.profile-sha256'],'artifact_sha256':'40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199','qualification':'Same running container, pinned image, Config and read-only mount as physically hashed adoption. No restart/configuration change or acting inference. Portable native ModelSettings only; actual server default sampling disclosed, not changed.'}
+ assert result['parallel']==1;save(O/'current-service.json',result);save(O/'props.json',props)
+ return result
+service=read(O/'current-service.json') if (O/'current-service.json').exists() else asyncio.run(service())
+baseline=read(O/'public-baseline.json');private=read(O/'private-baseline.json');frozen=read(O/'frozen-inputs.json')
+assert baseline['status']=='test-or-coverage-failure' and baseline['exit_code']==1 and baseline['inputs_unchanged']
+failed={p['nodeid'] for p in baseline['phases'] if p['outcome']=='failed' and p['phase']=='call'}
+passed={p['nodeid'] for p in baseline['phases'] if p['outcome']=='passed' and p['phase']=='call'}
+assert len(failed)==3 and len(passed)==58
+assert sum(not r['passed'] for r in private)==6 and sum(r['passed'] for r in private)==12
+assert hashlib.sha256((R/frozen['source']).read_bytes()).hexdigest()==frozen['source_sha256']
+D.mkdir(parents=True,exist_ok=False)
+preflight={'at':str(Timestamp.now()),'frozen':frozen,'baseline_public':{k:baseline[k] for k in ('status','exit_code','seconds','argv','inputs_unchanged')},'failed_ids':sorted(failed),'passing_public_and_maintained_cases':58,'private_baseline':{'failed':6,'passed':12,'provenance':'Unchanged independently authored original oracle, new fresh execution before acting inference; original model never saw its implementation.'},'service':service,'new_model_calls':0,'new_authority':False,'source_edited':False,'historical_b0049_dispatch_reused':False}
+save(D/'preflight.json',preflight);save(D/'private-baseline.json',private)
+write(TextFile(resolve_path(D/'public-checks.py.txt'),(R/frozen['public_path']).read_text(encoding='utf-8')),overwrite=False)
+print(json.dumps({'public_failed':len(failed),'public_passed':len(passed),'private_failed':6,'private_controls_passed':12,'service':{k:service[k] for k in ('context_tokens','container_id','sampling','profile_fingerprint')},'preflight':str(D/'preflight.json')},indent=2))

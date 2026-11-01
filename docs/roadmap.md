@@ -1,6 +1,15 @@
 # Roadmap
 
-Current operational state: [persistent 64K Qwen adoption](development/qwen-persistent-profile.md)
+Latest live engineering evidence: [B-0050 on the persistent 64K Qwen provider](research/live-native64-maintenance-task.md)
+made five actual calls and two admitted edits, including a public-check repair.
+All 61 public cases passed after repair; independent private acceptance caught
+an unresolved conditional/local-namespace case. Native disposition is BLOCKED,
+source and Checkout were restored/released, and no reviewer or plan was admitted.
+Next: strengthen public obligation coverage for wrapped local namespaces while
+retaining fresh private holdouts before any separately authorized follow-up.
+This partial outcome does not close B-0049, B-0050 or B-0043.
+
+Persistent operational state: [64K Qwen adoption](development/qwen-persistent-profile.md)
 was separately approved and verified; 32K remains a configured fallback. Return to
 the unresolved B-0049 facade-scope obligation through a genuinely reviewed linked
 item, unused slot and separate coding/reviewer grants. Its consumed dispatch and

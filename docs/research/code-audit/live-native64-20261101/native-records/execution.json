@@ -1,0 +1,497 @@
+{
+  "schema": "backlog-native-execution-v1",
+  "item": "B-0050",
+  "assignment_sha256": "53de5ff5dcabcbd9419e4bb30e86e392e92c64ac2bdbfa3044a59c51e1bec15c",
+  "authorization_sha256": "3c30f061cf277e3e5c8873c4e0b43bb9e731a75a08e71d6aac706bb548279798",
+  "worker": {
+    "actor": "qwen38-native64-coder-20261101",
+    "source": "llama.cpp/qwen38-local/native64-coder-20261101",
+    "profile": "qwen38-27b-ud-iq4-xs-native64-v1"
+  },
+  "disposition": "BLOCKED",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "execution_error": null,
+  "seconds": 201.468227,
+  "facts": {
+    "coding_disposition": "validated",
+    "coding_accepted": true,
+    "completed": true,
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "tt5X2bM2wNiv5erphlCToZhl5hOAFgA8"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "mfnxgT7raPP0o6LudoHZYGJPGEPiyEb9"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "QMRQWurTTBVDOIMWLGn2TaF8jpbXAzKI"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "cKNEhWFOs9dtOPnNqLmR2MPAjdGwrJMw"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "YPaGh669GCeDgFoxGA8eOBvwLUuGAi4w"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "uU5UexRaJcjiiCI3rzDqh7lSorlaPRyE"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "YiCnLSJolg39FcLGPvo4rb3cSh53yDlI"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      }
+    ],
+    "model_calls": 5,
+    "usage": [
+      {
+        "input_tokens": 1545,
+        "output_tokens": 139,
+        "total_tokens": 1684,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 8132,
+        "output_tokens": 134,
+        "total_tokens": 8266,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 17176,
+        "output_tokens": 871,
+        "total_tokens": 18047,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 24042,
+        "output_tokens": 453,
+        "total_tokens": 24495,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 24517,
+        "output_tokens": 870,
+        "total_tokens": 25387,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "completion_error": null,
+    "proposals": 2,
+    "acquisitions": 5,
+    "checks": [
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\public.py"
+          ],
+          "exit_code": 1,
+          "outcome": "failed",
+          "seconds": 1.814198,
+          "passed": false,
+          "inputs_current": true,
+          "stdout": "FFF..........................................................            [100%]\r\n================================== FAILURES ===================================\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13251/test_local_namespace_import_do0')\r\nlocal = 'def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13251/test_local_namespace_import_do1')\r\nlocal = 'async def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13251/test_local_namespace_import_do2')\r\nlocal = 'class Helper:\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]\r\n3 failed, 58 passed in 1.28s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ],
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\public.py"
+          ],
+          "exit_code": 1,
+          "outcome": "failed",
+          "seconds": 1.290746,
+          "passed": false,
+          "inputs_current": true,
+          "stdout": "FFF..........................................................            [100%]\r\n================================== FAILURES ===================================\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do0')\r\nlocal = 'def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do1')\r\nlocal = 'async def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do2')\r\nlocal = 'class Helper:\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]\r\n3 failed, 58 passed in 0.77s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ],
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\public.py"
+          ],
+          "exit_code": 0,
+          "outcome": "succeeded",
+          "seconds": 1.143317,
+          "passed": true,
+          "inputs_current": true,
+          "stdout": ".............................................................            [100%]\r\n61 passed in 0.65s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ]
+    ],
+    "acceptance": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 0.432681,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 45, in <module>\r\n    inspect_case(body, \"resolved\")\r\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 29, in inspect_case\r\n    assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n', 'ambiguous', 'resolved')\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "acceptance_error": null,
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "ee55dc38ee16224d0f87557e8ab42f274d0510e5f3d2032e01a52d3bb4751156"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "b8b25fbdb93b6e2dd1209e99cf5cf7c7fc2211b0206f8046fd830d18b1af284e"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "49d531c029664f4fa0a60a9c147cf58f413a5e50dbfaf183678b0a0a0f85eef4"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "36e43baa60d4b7b8107c44f64e84225e08fae221a71f3af78b63e6e7c08def81"
+      },
+      {
+        "file": "observation-0004.json",
+        "sha256": "12755b45a8a43a4db936bed68ff1c53b8ccff0fb9a01b76db7bc160099e3d5db"
+      },
+      {
+        "file": "observation-0005.json",
+        "sha256": "c689c39269d32f0c0efdfcf03a7780b33c1624e9f662a92fb42a018edb1ccb68"
+      },
+      {
+        "file": "observation-0006.json",
+        "sha256": "4da692de824273f2db4413fb6ff5daad98f5dfff2c19496fdf89cd418bd8f8d2"
+      },
+      {
+        "file": "observation-0007.json",
+        "sha256": "1ef89da85cd75267dad702d09daa36d04ecbd9e176528532512323c2ddc07416"
+      },
+      {
+        "file": "observation-0008.json",
+        "sha256": "d5f5a5ff86ff2462c0ffe82f2a2c738b1105bcc73b33f2db1c2ac2992d4218e3"
+      },
+      {
+        "file": "observation-0009.json",
+        "sha256": "0044af7ce938888304402f37772906ca6399a6b29c4bddb32d495972144c06ec"
+      },
+      {
+        "file": "observation-0010.json",
+        "sha256": "d44baf5eca6195ab4cda30967266149f38866a722f28b9b6afa099ebe1390d2e"
+      },
+      {
+        "file": "observation-0011.json",
+        "sha256": "910cf89439e1ad36fa8add18071a7bcd92eda4109dcbf3818db9c69459c908c1"
+      },
+      {
+        "file": "observation-0012.json",
+        "sha256": "ebdb4564b2de0692bfc6ae3ca890ee475538cbc31452a5c420096f669acdbdd6"
+      },
+      {
+        "file": "observation-0013.json",
+        "sha256": "b63168f2d53f3ec42ea7e767309f46a9dabab271e619c0ef2f11889a8db379cb"
+      },
+      {
+        "file": "observation-0014.json",
+        "sha256": "68204d7840ca3e8fd0f876781fd170d6540ec965b4001c01fd01b43dc4a2bd91"
+      },
+      {
+        "file": "observation-0015.json",
+        "sha256": "739de87e1eaf117c8f2317261ea289c161f87ee5c87599a39b1ce8d2ae9e5207"
+      },
+      {
+        "file": "observation-0016.json",
+        "sha256": "d12cb5827a4437a13bea161d2f3d1f21e36ce79c2816e948244fd1253f2137f1"
+      },
+      {
+        "file": "observation-0017.json",
+        "sha256": "84191344dbdb49f9994dc1a49efe89d811ee0484d2e8a0c7183b24e772fe2a11"
+      },
+      {
+        "file": "observation-0018.json",
+        "sha256": "d56365133cf8f4e6f77f44455e0e6e9a79a970830b3304219842a9d75286400d"
+      },
+      {
+        "file": "observation-0019.json",
+        "sha256": "d4b6d0386ca74534c7eead3ae3fa78aa6aba7b4604fcfa958def428bd8337374"
+      },
+      {
+        "file": "observation-0020.json",
+        "sha256": "9b8696aef21d96b39a4f3067b800b6428a3bb67fe8e230b765306653681cb102"
+      },
+      {
+        "file": "observation-0021.json",
+        "sha256": "a83f1898528da48bbdd8d6b8409d1520bda183d0de7e59e4f1314cc7bbd5f551"
+      },
+      {
+        "file": "observation-0022.json",
+        "sha256": "0d6c2bb6598302725cdee6118854832940c61fdf209a74fc5d8eb0e2aec32c6a"
+      },
+      {
+        "file": "observation-0023.json",
+        "sha256": "576849f468c37998883b71be03e9145dba85b9d25ec3be49e7c2cb93890857dc"
+      },
+      {
+        "file": "observation-0024.json",
+        "sha256": "d57f5521b10210bdaa94088bcadf646b4532e5d9957e6e77288fd101881976bb"
+      },
+      {
+        "file": "observation-0025.json",
+        "sha256": "8942f66602777803fc6acbe357f342e52a30f57aff6e522110e43912cd348bfa"
+      },
+      {
+        "file": "observation-0026.json",
+        "sha256": "dd7285a3bbe78cf08ce038f5fd54464eda811a8e837d76d810d4a5b2150d0342"
+      },
+      {
+        "file": "observation-0027.json",
+        "sha256": "23b2b10667c750f967da96d90b461332c1684091e5c49651a27bce86b96160a8"
+      },
+      {
+        "file": "observation-0028.json",
+        "sha256": "22490a32197bd84381adfd5970c68339979eaad9bda326984206f49849f4c2fc"
+      },
+      {
+        "file": "observation-0029.json",
+        "sha256": "77292448ecbf19c63b296f6c6e1277de8f8bf3331a7478229954e2ea2392337e"
+      },
+      {
+        "file": "observation-0030.json",
+        "sha256": "a41928eeedb4690e80c4e0f263a92ff0dc16871591744dbe7878f753545617ab"
+      },
+      {
+        "file": "observation-0031.json",
+        "sha256": "96af56a0b23f6345ccc9690cc5df680915e728d32fc62ba6d110fe6818de12d0"
+      },
+      {
+        "file": "observation-0032.json",
+        "sha256": "3bfd84db17996d984b1473c4085dd186fbab07bf67c7aa5d1dd24d7a14e22d9a"
+      },
+      {
+        "file": "observation-0033.json",
+        "sha256": "2ae5652127296284c09ed38640d13384089a8d272e01477158c5522b92cb3c71"
+      },
+      {
+        "file": "observation-0034.json",
+        "sha256": "d148b040d8294d48146f0a718229b030f5e07f9b630ec9b9f2fa685ea89960b0"
+      },
+      {
+        "file": "observation-0035.json",
+        "sha256": "064228474663bef3a4e418ec87f30cd9f14c48f42823e8ed71b1946a087e4d5a"
+      },
+      {
+        "file": "observation-0036.json",
+        "sha256": "a0be907434e7d25b4d779f1ec484b9f68afce0cf8ff31caad0ab025ff079a07d"
+      },
+      {
+        "file": "observation-0037.json",
+        "sha256": "9a141c3e6ed8168e44a341f65664b6242150bd050c38858496db1ecfe5af2f5d"
+      },
+      {
+        "file": "observation-0038.json",
+        "sha256": "ebfe03251f767328fde0b6df33cbf5fa7d2aab41e5f7febac0dab9d862336a4f"
+      }
+    ],
+    "readiness": [
+      {
+        "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+        "repository": "2857ba07-d552-40f1-839d-ee339021e4ee",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+          "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9",
+          "6cc1cada49a76a4f28fd79da142c55db38175b588fd131c4993a081ad4cddb09",
+          "eea78ce6ec73ec53ca6197268c243f89e83b981af8e8442a848a21c7aca68218"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      },
+      {
+        "snapshot": "de59018aca732a0ae535575f1862aa47d22fba2a4918dbdcce4e02de0da82d8f",
+        "repository": "2857ba07-d552-40f1-839d-ee339021e4ee",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "37c6eba85f0185685855f4b02de7c1688d88b720f8cfafbddc334218c90b31c5"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      }
+    ],
+    "initial_context": {
+      "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+      "repository": "2857ba07-d552-40f1-839d-ee339021e4ee",
+      "ready": false,
+      "unresolved": [
+        "current-owner"
+      ],
+      "evidence": [],
+      "scope": "Information availability only; supplied frame is not claimed exhaustive"
+    },
+    "disclosures": [
+      {
+        "identity": "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+        "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+        "path": "src/devtools/context/python/imports/members.py",
+        "content_identity": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+        "span": [
+          0,
+          21395
+        ]
+      },
+      {
+        "identity": "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9",
+        "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+        "path": "src/devtools/context/python/modules/bindings.py",
+        "content_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+        "span": [
+          0,
+          1482
+        ]
+      },
+      {
+        "identity": "6cc1cada49a76a4f28fd79da142c55db38175b588fd131c4993a081ad4cddb09",
+        "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+        "path": "tests/context/python/imports/test_members.py",
+        "content_identity": "01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe",
+        "span": [
+          0,
+          26021
+        ]
+      },
+      {
+        "identity": "eea78ce6ec73ec53ca6197268c243f89e83b981af8e8442a848a21c7aca68218",
+        "snapshot": "25a97b8947c12fb90766b957fd03b426052d2f68e83708f7139a955707fcb1a4",
+        "path": "tests/live_native_facade64_public.py",
+        "content_identity": "2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0",
+        "span": [
+          0,
+          2646
+        ]
+      },
+      {
+        "identity": "37c6eba85f0185685855f4b02de7c1688d88b720f8cfafbddc334218c90b31c5",
+        "snapshot": "de59018aca732a0ae535575f1862aa47d22fba2a4918dbdcce4e02de0da82d8f",
+        "path": "src/devtools/context/python/imports/members.py",
+        "content_identity": "6c04cf0090f1eaefcea55a95369d65f173faa0b939129fbe777e017b9288f29d",
+        "span": [
+          0,
+          22065
+        ]
+      },
+      {
+        "identity": "67a394aba9fff97f45699cbee111aae2c9a354f00b65d5b7bca363e3537748b2",
+        "snapshot": "517732fe5495ae9bee61bcca2889f1f5eef62b0aecca3744fc0ffacc3047e5a7",
+        "path": "src/devtools/context/python/imports/members.py",
+        "content_identity": "f88eb13108aeef6f971777c141a8bc93121a74b861604c0a606ed1bc22be9ef4",
+        "span": [
+          0,
+          22134
+        ]
+      }
+    ],
+    "environment_qualification": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee"
+  },
+  "integration_authorized": false,
+  "sha256": "ce522de26f12a4672e30b4a49a1ad1175062e84cbef9ed2efb9ff31513141709"
+}

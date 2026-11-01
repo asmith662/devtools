@@ -1,0 +1,863 @@
+{
+  "schema": "live-native64-episode-v1",
+  "at": "2026-11-01T17:26:00.895336+00:00",
+  "item": "B-0050",
+  "proposal": "f3f3068e-cb95-4718-9def-ba432b1f3ea4",
+  "intake_review_sha256": "acfa427db8fd3ab7a40912216b5e66307011dd63276b575da8272101b726dfcd",
+  "preparation_commit": "b706fddb769ba88b728868540489ffeb61976044",
+  "assignment_sha256": "53de5ff5dcabcbd9419e4bb30e86e392e92c64ac2bdbfa3044a59c51e1bec15c",
+  "authorization_sha256": "3c30f061cf277e3e5c8873c4e0b43bb9e731a75a08e71d6aac706bb548279798",
+  "result_sha256": "d6385d49ae350c29454fbf2b8e687360c85cb0fbcff79f6ea658aa0193a16199",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "candidate_qualification": "Diagnostic archived model candidate only; failed private acceptance, not reviewable or installed/published as production code.",
+  "outcome": "BLOCKED",
+  "coding_disposition": "validated",
+  "tools": [
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "provider_call_id": "tt5X2bM2wNiv5erphlCToZhl5hOAFgA8",
+      "path": "src/devtools/context/python/imports/members.py",
+      "start": 0,
+      "end": 21395,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "provider_call_id": "mfnxgT7raPP0o6LudoHZYGJPGEPiyEb9",
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "start": 0,
+      "end": 1482,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "provider_call_id": "QMRQWurTTBVDOIMWLGn2TaF8jpbXAzKI",
+      "path": "tests/context/python/imports/test_members.py",
+      "start": 0,
+      "end": 26021,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "provider_call_id": "cKNEhWFOs9dtOPnNqLmR2MPAjdGwrJMw",
+      "path": "tests/live_native_facade64_public.py",
+      "start": 0,
+      "end": 2646,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 3,
+      "name": "replace_source",
+      "provider_call_id": "YPaGh669GCeDgFoxGA8eOBvwLUuGAi4w",
+      "path": "src/devtools/context/python/imports/members.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 351,
+      "new_text_bytes": 1008
+    },
+    {
+      "model_call": 4,
+      "name": "validate_candidate",
+      "provider_call_id": "uU5UexRaJcjiiCI3rzDqh7lSorlaPRyE",
+      "path": null,
+      "start": null,
+      "end": null,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 5,
+      "name": "replace_source",
+      "provider_call_id": "YiCnLSJolg39FcLGPvo4rb3cSh53yDlI",
+      "path": "src/devtools/context/python/imports/members.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 1008,
+      "new_text_bytes": 1076
+    }
+  ],
+  "model_calls": 5,
+  "usage_totals": {
+    "input_tokens": 75412,
+    "output_tokens": 2467,
+    "qualification": "Sum across requests includes retained context; not unique source tokens or measured uncached prefill."
+  },
+  "maximum_observed_output_tokens": 871,
+  "native_seconds": 212.798437,
+  "driver_seconds": 223.59541,
+  "adapter_seconds": 164.753292,
+  "public_check_seconds": 4.248260999999999,
+  "private_check_seconds": 0.432681,
+  "public_check_results": [
+    {
+      "passed": false,
+      "seconds": 1.814198,
+      "summary": [
+        "3 failed, 58 passed in 1.28s"
+      ]
+    },
+    {
+      "passed": false,
+      "seconds": 1.290746,
+      "summary": [
+        "3 failed, 58 passed in 0.77s"
+      ]
+    },
+    {
+      "passed": true,
+      "seconds": 1.143317,
+      "summary": [
+        "61 passed in 0.65s"
+      ]
+    }
+  ],
+  "private_acceptance": {
+    "name": "withheld",
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "-X",
+      "utf8",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py"
+    ],
+    "exit_code": 1,
+    "outcome": "failed",
+    "seconds": 0.432681,
+    "passed": false,
+    "inputs_current": true,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 45, in <module>\r\n    inspect_case(body, \"resolved\")\r\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\withheld.py\", line 29, in inspect_case\r\n    assert resolved.outcome.value == expected, (extra, resolved.outcome.value, expected)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('if enabled:\\n    def helper():\\n        from .elsewhere import answer\\n', 'ambiguous', 'resolved')\r\n",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "events_dropped": 0
+  },
+  "private_qualification": "Sequential predeclared oracle stopped on its third case. Later cases were not run; no passing claim for omitted cases. No private feedback was sent to the coder.",
+  "review_eligibility": {
+    "eligible": false,
+    "error": "PermissionError",
+    "reason": "Native candidate/result/approval mismatch",
+    "reviewer_model_entered": false
+  },
+  "independent_review_calls": 0,
+  "host_review_decision": null,
+  "integration_plan": null,
+  "context_pressure": [
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T17:03:46.610520+00:00",
+      "original_bytes": 4514,
+      "request_bytes": 5291,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 1545,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "49d531c029664f4fa0a60a9c147cf58f413a5e50dbfaf183678b0a0a0f85eef4"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T17:03:59.562025+00:00",
+      "original_bytes": 31970,
+      "request_bytes": 33417,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 8132,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "1ef89da85cd75267dad702d09daa36d04ecbd9e176528532512323c2ddc07416"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T17:04:14.922881+00:00",
+      "original_bytes": 67782,
+      "request_bytes": 69711,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 17176,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "ebdb4564b2de0692bfc6ae3ca890ee475538cbc31452a5c420096f669acdbdd6"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T17:05:10.744220+00:00",
+      "original_bytes": 100661,
+      "request_bytes": 101855,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": true,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 24042,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "a83f1898528da48bbdd8d6b8409d1520bda183d0de7e59e4f1314cc7bbd5f551"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T17:06:02.648235+00:00",
+      "original_bytes": 102880,
+      "request_bytes": 104073,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": true,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 24517,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "22490a32197bd84381adfd5970c68339979eaad9bda326984206f49849f4c2fc"
+    }
+  ],
+  "projection": {
+    "schema": "backlog-native-observation-v1",
+    "kind": "context-projection",
+    "at": "2026-11-01T17:06:52.135875+00:00",
+    "outcomes": [
+      {
+        "status": "reduced",
+        "original_bytes": 4514,
+        "resulting_bytes": 5291,
+        "selected_indices": [
+          0,
+          1
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 31970,
+        "resulting_bytes": 33417,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+          "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9"
+        ],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 67782,
+        "resulting_bytes": 69711,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+          "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9",
+          "6cc1cada49a76a4f28fd79da142c55db38175b588fd131c4993a081ad4cddb09",
+          "eea78ce6ec73ec53ca6197268c243f89e83b981af8e8442a848a21c7aca68218"
+        ],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 100661,
+        "resulting_bytes": 101855,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "37c6eba85f0185685855f4b02de7c1688d88b720f8cfafbddc334218c90b31c5"
+        ],
+        "invalidated_source_identities": [
+          "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+          "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9",
+          "6cc1cada49a76a4f28fd79da142c55db38175b588fd131c4993a081ad4cddb09",
+          "eea78ce6ec73ec53ca6197268c243f89e83b981af8e8442a848a21c7aca68218"
+        ]
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 102880,
+        "resulting_bytes": 104073,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "37c6eba85f0185685855f4b02de7c1688d88b720f8cfafbddc334218c90b31c5"
+        ],
+        "invalidated_source_identities": [
+          "2fc16e3be003f3ba15112f8034d864f30deb370f571dc165521f0a9cdaec4725",
+          "77f5cab031eb9bf0040a5101d5d3000b3a09230f16556b8175e88e4a71406fa9",
+          "6cc1cada49a76a4f28fd79da142c55db38175b588fd131c4993a081ad4cddb09",
+          "eea78ce6ec73ec53ca6197268c243f89e83b981af8e8442a848a21c7aca68218"
+        ]
+      }
+    ],
+    "sha256": "9a141c3e6ed8168e44a341f65664b6242150bd050c38858496db1ecfe5af2f5d"
+  },
+  "context_qualification": "All five requests admitted with actual token measurement. No exchanges omitted or shortened; source-state annotations increased bytes. Machine status reduced does not establish actual byte reduction. Warning threshold crossed twice; reduction trigger not crossed.",
+  "source_disclosed_bytes": 51544,
+  "source_acquisitions": 4,
+  "duplicate_source_acquisitions": 0,
+  "admitted_edits": 2,
+  "acquisition_actions_including_check": 5,
+  "native_observation_bytes": 475107,
+  "support_observation_bytes": 8171,
+  "source_restored": true,
+  "checkout_released": true,
+  "provider_after": {
+    "container": [
+      {
+        "Id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+        "Created": "2026-11-01T15:02:12.302234207Z",
+        "Path": "/app/llama-server",
+        "Args": [
+          "--model",
+          "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8080",
+          "--alias",
+          "qwen38-local",
+          "--ctx-size",
+          "65536",
+          "--n-gpu-layers",
+          "all",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q4_0",
+          "--cache-type-v",
+          "q4_0",
+          "--parallel",
+          "1"
+        ],
+        "State": {
+          "Status": "running",
+          "Running": true,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 93863,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-01T15:02:12.426596328Z",
+          "FinishedAt": "0001-01-01T00:00:00Z",
+          "Health": {
+            "Status": "healthy",
+            "FailingStreak": 0,
+            "Log": [
+              {
+                "Start": "2026-11-01T17:23:59.117401816Z",
+                "End": "2026-11-01T17:23:59.160848192Z",
+                "ExitCode": 0,
+                "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100    15  100    15    0     0  39577      0 --:--:-- --:--:-- --:--:-- 15000\n{\"status\":\"ok\"}"
+              },
+              {
+                "Start": "2026-11-01T17:24:29.163270347Z",
+                "End": "2026-11-01T17:24:29.210698534Z",
+                "ExitCode": 0,
+                "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0{\"status\":\"ok\"}\r100    15  100    15    0     0  40983      0 --:--:-- --:--:-- --:--:-- 15000\n"
+              },
+              {
+                "Start": "2026-11-01T17:24:59.210481195Z",
+                "End": "2026-11-01T17:24:59.267191901Z",
+                "ExitCode": 0,
+                "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100    15  100    15    0     0  39682      0 --:--:-- --:--:-- --:--:-- 15000\n{\"status\":\"ok\"}"
+              },
+              {
+                "Start": "2026-11-01T17:25:29.269816649Z",
+                "End": "2026-11-01T17:25:29.319046078Z",
+                "ExitCode": 0,
+                "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100    15  100    15    0     0  39473      0 --:--:-- --:--:-- --:--:-- 15000\n{\"status\":\"ok\"}"
+              },
+              {
+                "Start": "2026-11-01T17:25:59.319020096Z",
+                "End": "2026-11-01T17:25:59.37500368Z",
+                "ExitCode": 0,
+                "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100    15  100    15    0     0  33557      0 --:--:-- --:--:-- --:--:-- 15000\n{\"status\":\"ok\"}"
+              }
+            ]
+          }
+        },
+        "Image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "ResolvConfPath": "/var/lib/docker/containers/d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1/hostname",
+        "HostsPath": "/var/lib/docker/containers/d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1/hosts",
+        "LogPath": "/var/lib/docker/containers/d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1/d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1-json.log",
+        "Name": "/devtools-qwen38-llama-cpp",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+          "Binds": null,
+          "ContainerIDFile": "",
+          "LogConfig": {
+            "Type": "json-file",
+            "Config": {}
+          },
+          "NetworkMode": "bridge",
+          "PortBindings": {
+            "8080/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8080"
+              }
+            ]
+          },
+          "RestartPolicy": {
+            "Name": "no",
+            "MaximumRetryCount": 0
+          },
+          "AutoRemove": false,
+          "VolumeDriver": "",
+          "VolumesFrom": null,
+          "ConsoleSize": [
+            0,
+            0
+          ],
+          "CapAdd": null,
+          "CapDrop": null,
+          "CgroupnsMode": "private",
+          "Dns": null,
+          "DnsOptions": [],
+          "DnsSearch": [],
+          "ExtraHosts": null,
+          "GroupAdd": null,
+          "IpcMode": "private",
+          "Cgroup": "",
+          "Links": null,
+          "OomScoreAdj": 0,
+          "PidMode": "",
+          "Privileged": false,
+          "PublishAllPorts": false,
+          "ReadonlyRootfs": false,
+          "SecurityOpt": null,
+          "UTSMode": "",
+          "UsernsMode": "",
+          "ShmSize": 67108864,
+          "Runtime": "runc",
+          "Isolation": "",
+          "CpuShares": 0,
+          "Memory": 0,
+          "NanoCpus": 0,
+          "CgroupParent": "",
+          "BlkioWeight": 0,
+          "BlkioWeightDevice": [],
+          "BlkioDeviceReadBps": [],
+          "BlkioDeviceWriteBps": [],
+          "BlkioDeviceReadIOps": [],
+          "BlkioDeviceWriteIOps": [],
+          "CpuPeriod": 0,
+          "CpuQuota": 0,
+          "CpuRealtimePeriod": 0,
+          "CpuRealtimeRuntime": 0,
+          "CpusetCpus": "",
+          "CpusetMems": "",
+          "Devices": [],
+          "DeviceCgroupRules": null,
+          "DeviceRequests": [
+            {
+              "Driver": "",
+              "Count": -1,
+              "DeviceIDs": null,
+              "Capabilities": [
+                [
+                  "gpu"
+                ]
+              ],
+              "Options": {}
+            }
+          ],
+          "MemoryReservation": 0,
+          "MemorySwap": 0,
+          "MemorySwappiness": null,
+          "OomKillDisable": null,
+          "PidsLimit": null,
+          "Ulimits": [],
+          "CpuCount": 0,
+          "CpuPercent": 0,
+          "IOMaximumIOps": 0,
+          "IOMaximumBandwidth": 0,
+          "Mounts": [
+            {
+              "Type": "bind",
+              "Source": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--unsloth--Qwen3.8-27B-GGUF\\blobs\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+              "Target": "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+              "ReadOnly": true
+            }
+          ],
+          "MaskedPaths": [
+            "/proc/acpi",
+            "/proc/asound",
+            "/proc/interrupts",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/sys/devices/virtual/powercap",
+            "/sys/firmware"
+          ],
+          "ReadonlyPaths": [
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+          ]
+        },
+        "Storage": {
+          "RootFS": {
+            "Snapshot": {
+              "Name": "overlayfs"
+            }
+          }
+        },
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--unsloth--Qwen3.8-27B-GGUF\\blobs\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+            "Destination": "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+            "Mode": "",
+            "RW": false,
+            "Propagation": "rprivate"
+          }
+        ],
+        "Config": {
+          "Hostname": "d8be95699675",
+          "Domainname": "",
+          "User": "",
+          "AttachStdin": false,
+          "AttachStdout": false,
+          "AttachStderr": false,
+          "ExposedPorts": {
+            "8080/tcp": {}
+          },
+          "Tty": false,
+          "OpenStdin": false,
+          "StdinOnce": false,
+          "Env": [
+            "PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "NVARCH=x86_64",
+            "NVIDIA_REQUIRE_CUDA=cuda>=12.8 brand=unknown,driver>=470,driver<471 brand=grid,driver>=470,driver<471 brand=tesla,driver>=470,driver<471 brand=nvidia,driver>=470,driver<471 brand=quadro,driver>=470,driver<471 brand=quadrortx,driver>=470,driver<471 brand=nvidiartx,driver>=470,driver<471 brand=vapps,driver>=470,driver<471 brand=vpc,driver>=470,driver<471 brand=vcs,driver>=470,driver<471 brand=vws,driver>=470,driver<471 brand=cloudgaming,driver>=470,driver<471 brand=unknown,driver>=535,driver<536 brand=grid,driver>=535,driver<536 brand=tesla,driver>=535,driver<536 brand=nvidia,driver>=535,driver<536 brand=quadro,driver>=535,driver<536 brand=quadrortx,driver>=535,driver<536 brand=nvidiartx,driver>=535,driver<536 brand=vapps,driver>=535,driver<536 brand=vpc,driver>=535,driver<536 brand=vcs,driver>=535,driver<536 brand=vws,driver>=535,driver<536 brand=cloudgaming,driver>=535,driver<536 brand=unknown,driver>=550,driver<551 brand=grid,driver>=550,driver<551 brand=tesla,driver>=550,driver<551 brand=nvidia,driver>=550,driver<551 brand=quadro,driver>=550,driver<551 brand=quadrortx,driver>=550,driver<551 brand=nvidiartx,driver>=550,driver<551 brand=vapps,driver>=550,driver<551 brand=vpc,driver>=550,driver<551 brand=vcs,driver>=550,driver<551 brand=vws,driver>=550,driver<551 brand=cloudgaming,driver>=550,driver<551 brand=unknown,driver>=560,driver<561 brand=grid,driver>=560,driver<561 brand=tesla,driver>=560,driver<561 brand=nvidia,driver>=560,driver<561 brand=quadro,driver>=560,driver<561 brand=quadrortx,driver>=560,driver<561 brand=nvidiartx,driver>=560,driver<561 brand=vapps,driver>=560,driver<561 brand=vpc,driver>=560,driver<561 brand=vcs,driver>=560,driver<561 brand=vws,driver>=560,driver<561 brand=cloudgaming,driver>=560,driver<561 brand=unknown,driver>=565,driver<566 brand=grid,driver>=565,driver<566 brand=tesla,driver>=565,driver<566 brand=nvidia,driver>=565,driver<566 brand=quadro,driver>=565,driver<566 brand=quadrortx,driver>=565,driver<566 brand=nvidiartx,driver>=565,driver<566 brand=vapps,driver>=565,driver<566 brand=vpc,driver>=565,driver<566 brand=vcs,driver>=565,driver<566 brand=vws,driver>=565,driver<566 brand=cloudgaming,driver>=565,driver<566",
+            "NV_CUDA_CUDART_VERSION=12.8.90-1",
+            "CUDA_VERSION=12.8.1",
+            "LD_LIBRARY_PATH=/usr/local/cuda/lib64",
+            "NVIDIA_VISIBLE_DEVICES=all",
+            "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
+            "NV_CUDA_LIB_VERSION=12.8.1-1",
+            "NV_NVTX_VERSION=12.8.90-1",
+            "NV_LIBNPP_VERSION=12.3.3.100-1",
+            "NV_LIBNPP_PACKAGE=libnpp-12-8=12.3.3.100-1",
+            "NV_LIBCUSPARSE_VERSION=12.5.8.93-1",
+            "NV_LIBCUBLAS_PACKAGE_NAME=libcublas-12-8",
+            "NV_LIBCUBLAS_VERSION=12.8.4.1-1",
+            "NV_LIBCUBLAS_PACKAGE=libcublas-12-8=12.8.4.1-1",
+            "NV_LIBNCCL_PACKAGE_NAME=libnccl2",
+            "NV_LIBNCCL_PACKAGE_VERSION=2.25.1-1",
+            "NCCL_VERSION=2.25.1-1",
+            "NV_LIBNCCL_PACKAGE=libnccl2=2.25.1-1+cuda12.8",
+            "NVIDIA_PRODUCT_NAME=CUDA",
+            "LLAMA_ARG_HOST=0.0.0.0"
+          ],
+          "Cmd": [
+            "--model",
+            "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8080",
+            "--alias",
+            "qwen38-local",
+            "--ctx-size",
+            "65536",
+            "--n-gpu-layers",
+            "all",
+            "--flash-attn",
+            "on",
+            "--cache-type-k",
+            "q4_0",
+            "--cache-type-v",
+            "q4_0",
+            "--parallel",
+            "1"
+          ],
+          "Healthcheck": {
+            "Test": [
+              "CMD",
+              "curl",
+              "-f",
+              "http://localhost:8080/health"
+            ]
+          },
+          "Image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+          "Volumes": null,
+          "WorkingDir": "/app",
+          "Entrypoint": [
+            "/app/llama-server"
+          ],
+          "Labels": {
+            "devtools.qwen.host-port": "8080",
+            "devtools.qwen.persistent-service": "qwen38-llama-cpp",
+            "devtools.qwen.profile-sha256": "c86e124b80988509063f74d694b99120817f76eec1ce899740f6f61a0437c965",
+            "maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+            "org.opencontainers.image.created": "2026-09-09T04:31:24Z",
+            "org.opencontainers.image.description": "LLM inference in C/C++",
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.revision": "304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3",
+            "org.opencontainers.image.source": "https://github.com/ggml-org/llama.cpp",
+            "org.opencontainers.image.title": "llama.cpp",
+            "org.opencontainers.image.url": "https://github.com/ggml-org/llama.cpp",
+            "org.opencontainers.image.version": "b10868"
+          }
+        },
+        "NetworkSettings": {
+          "SandboxID": "4ff7972862f80dde2df1ee9bb59b205d2e1ff1aecfb89b7d23faa863a3084887",
+          "SandboxKey": "/var/run/docker/netns/4ff7972862f8",
+          "Ports": {
+            "8080/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8080"
+              }
+            ]
+          },
+          "Networks": {
+            "bridge": {
+              "IPAMConfig": null,
+              "Links": null,
+              "Aliases": null,
+              "DriverOpts": null,
+              "GwPriority": 0,
+              "NetworkID": "e8d3e0d3b81200f9205e7e99346f4cf7e3a3f0062143eeeaa532b3b86a1a14dd",
+              "EndpointID": "b933127f44cc7d99b29278f4f9da98af778ac769962032ed251d2cfd0a2b2219",
+              "Gateway": "172.17.0.1",
+              "IPAddress": "172.17.0.2",
+              "MacAddress": "06:0c:bf:96:a6:88",
+              "IPPrefixLen": 16,
+              "IPv6Gateway": "",
+              "GlobalIPv6Address": "",
+              "GlobalIPv6PrefixLen": 0,
+              "DNSNames": null
+            }
+          }
+        },
+        "ImageManifestDescriptor": {
+          "mediaType": "application/vnd.oci.image.manifest.v1+json",
+          "digest": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+          "size": 3273,
+          "platform": {
+            "architecture": "amd64",
+            "os": "linux"
+          }
+        }
+      }
+    ],
+    "health": {
+      "status": "ok"
+    },
+    "slots": [
+      {
+        "id": 0,
+        "n_ctx": 65536,
+        "speculative": false,
+        "is_processing": false,
+        "id_task": 1703,
+        "n_prompt_tokens": 25386,
+        "n_prompt_tokens_processed": 0,
+        "n_prompt_tokens_cache": 0,
+        "params": {
+          "seed": 4294967295,
+          "temperature": 1.0,
+          "dynatemp_range": 0.0,
+          "dynatemp_exponent": 1.0,
+          "top_k": 20,
+          "top_p": 0.949999988079071,
+          "min_p": 0.05000000074505806,
+          "top_n_sigma": -1.0,
+          "xtc_probability": 0.0,
+          "xtc_threshold": 0.10000000149011612,
+          "typical_p": 1.0,
+          "repeat_last_n": 64,
+          "repeat_penalty": 1.0,
+          "presence_penalty": 0.0,
+          "frequency_penalty": 0.0,
+          "dry_multiplier": 0.0,
+          "dry_base": 1.75,
+          "dry_allowed_length": 2,
+          "dry_penalty_last_n": 64,
+          "mirostat": 0,
+          "mirostat_tau": 5.0,
+          "mirostat_eta": 0.10000000149011612,
+          "adaptive_target": -1.0,
+          "adaptive_decay": 0.8999999761581421,
+          "max_tokens": 2048,
+          "n_predict": 2048,
+          "n_keep": 0,
+          "n_discard": 0,
+          "ignore_eos": false,
+          "stream": false,
+          "n_probs": 0,
+          "min_keep": 0,
+          "chat_format": "peg-native",
+          "reasoning_format": "deepseek",
+          "reasoning_in_content": false,
+          "generation_prompt": "<|im_start|>assistant\n<think>\n\n</think>\n\n",
+          "samplers": [
+            "penalties",
+            "dry",
+            "top_n_sigma",
+            "top_k",
+            "typ_p",
+            "top_p",
+            "min_p",
+            "xtc",
+            "temperature"
+          ],
+          "speculative.types": "none",
+          "timings_per_token": false,
+          "post_sampling_probs": false,
+          "backend_sampling": false,
+          "lora": []
+        },
+        "next_token": [
+          {
+            "has_next_token": false,
+            "has_new_line": false,
+            "n_remain": -1,
+            "n_decoded": 0
+          }
+        ]
+      }
+    ]
+  },
+  "resource_summary": {
+    "samples": 5,
+    "sampled_peak_gpu_mib": 14738,
+    "sampled_min_free_gpu_mib": 1313,
+    "sampled_min_windows_free_physical_kib": 2271840,
+    "sampled_min_windows_free_virtual_kib": 9312908
+  },
+  "new_comprehensive_runs": 0,
+  "production_executable_source_published": false,
+  "no_redispatch": true,
+  "no_service_mutations": true,
+  "no_reference_implementation_or_host_patch": true,
+  "source_disclosure_qualification": "51544 bytes counts the four model-selected original source-read payloads only. Retained repeated request content and automatic post-edit source continuation are separately preserved in native request records.",
+  "verification": {
+    "protected_input_identities_and_blobs_matching_existing_gate": 1059,
+    "historical_hashes_preserved": 158,
+    "original_b0049_native_records_unchanged": true,
+    "native_observation_references_authenticated": 39,
+    "oracle_implementation_not_disclosed_to_model_requests": true,
+    "reviewer_or_integration_not_entered": true,
+    "ri_rows": {
+      "ri-completion-experiments.jsonl": 606,
+      "ri-completion-fixtures.jsonl": 94,
+      "ri-followup-history.jsonl": 203
+    }
+  },
+  "focused_framework_validation": {
+    "status": "passed",
+    "seconds": 31.041509,
+    "argv": [
+      "tests/models/interaction/providers/test_llama_cpp.py",
+      "tests/scripts/backlog/test_native_context.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "inputs_unchanged": true
+  },
+  "final_quality_checks": {
+    "at": "2026-11-01T17:56:02.741575+00:00",
+    "ruff": "passed supported src/scripts/apps/tests roots, excluding tests/experiments",
+    "format": "762 maintained files unchanged",
+    "strict_mypy": "623 files passed",
+    "layout": "passed",
+    "diff": "passed",
+    "qualification": "These checks concern the restored framework, not acceptance of the uninstalled candidate."
+  }
+}

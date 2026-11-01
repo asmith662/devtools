@@ -1,0 +1,40 @@
+--- a/src/devtools/context/python/imports/members.py
++++ b/src/devtools/context/python/imports/members.py
+@@ -439,15 +439,29 @@
+ 
+ 
+ def _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:
+-    return any(
+-        nested is not node
+-        and isinstance(nested, ast.ImportFrom)
+-        and any(
++    """Find a module-scope ``import from`` without entering local scopes.
++
++    A function, async function or class body binds names in its own local
++    scope, so a nested import there cannot shadow the module-level reexport.
++    Conditional/try/loop wrappers remain module scope, so their nested imports
++    still make the module binding conservative.
++    """
++    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
++        return False
++    pending = [child for child in ast.iter_child_nodes(node)]
++    while pending:
++        current = pending.pop()
++        if isinstance(
++            current, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
++        ):
++            continue
++        if isinstance(current, ast.ImportFrom) and any(
+             alias.name == "*" or (alias.asname or alias.name) == requested_name
+-            for alias in nested.names
+-        )
+-        for nested in ast.walk(node)
+-    )
++            for alias in current.names
++        ):
++            return True
++        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))
++    return False
+ 
+ 
+ def _binds_name(target: ast.expr, requested_name: str) -> bool:

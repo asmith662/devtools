@@ -1,0 +1,63 @@
+"""Freeze one linked real task using existing Intake and native contracts."""
+import asyncio,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/live64-native';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.intake import Intake
+from scripts.backlog.native.packet import validate,fingerprint
+from scripts.validation.evidence import inputs,git
+
+def save(p,data):
+ write(TextFile(resolve_path(p),json.dumps(data,indent=2)+'\n'),overwrite=False)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+
+async def proposal():
+ c=WorkCycle(R);await c._coordinator();q=c.intake.queue();assert not q['errors']
+ old=c.intake.approved_item('B-0049');assert (c._folder('B-0049')/'dispatch.json').is_file()
+ payload={'kind':'bug','title':'Repair local-namespace import interference with module facade reexports (B-0049 follow-up)',
+ 'summary':'Linked bounded continuation of B-0049 review-0003, not an independent duplicate obligation. Current src/devtools/context/python/imports/members.py still refuses a valid module facade reexport when an unrelated function, async function or class imports the same name in its own namespace. Fresh public and independently authored private baseline checks reproduce the defect. B-0049 original dispatch remains consumed; its broader competing-binding and Reference pressure remains open.',
+ 'discovery':{'kind':'research','reference':'docs/research/live-native-maintenance-task.md; docs/research/code-audit/live-native64-20261101/preflight.json'},
+ 'parent':'B-0049',
+ 'resources':['src/devtools/context/python/imports/members.py','src/devtools/context/python/modules/bindings.py','tests/context/python/imports/test_members.py'],
+ 'evidence':['docs/backlog/proposals/ff4c4110-9c3b-480d-8f0f-77cf4610b700/review-0003.json','docs/research/code-audit/live-native64-20261101/preflight.json','docs/research/live-native-maintenance-task.md'],
+ 'benefit':'One-file behavioral repair: unrelated local namespaces must not invalidate module reexports; preserve module conditional/try/star imports, aliases, genuine competing declarations and non-Name binding guards conservatively. Measure one real governed 64K native coder episode and, only for a lawful candidate, independent review and a read-only integration plan. Candidate archival/restoration only; no automatic install, merge, publication or closure.',
+ 'uncertainty':'A linked child is required because Intake terminal approvals require a new related proposal and WorkCycle has one assignment per canonical item. This does not resolve or duplicate the broader B-0049 obligation. Scripted tests establish mechanics, not Qwen competence. 2048-token generation performance is not established by prior 128-token neutral probes. Private acceptance is bounded, independently authored, and not exhaustive.',
+ 'dependencies':['B-0049','ff4c4110-9c3b-480d-8f0f-77cf4610b700']}
+ identity=c.intake.capture(payload);save(O/'proposal.json',{'id':identity,'payload':payload,'old_review':old['review']['sha256'],'queue_before':len(q['proposals'])})
+ print(json.dumps({'pending_proposal':identity,'parent':'B-0049','state':'PENDING_REVIEW','source':payload['resources'][0]},indent=2))
+
+if sys.argv[1:]==['--capture']:
+ asyncio.run(proposal());raise SystemExit
+
+assert git(R,'branch','--show-current')=='main'
+assert not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only');git(R,'diff','--check')
+assert not (R/'.local/backlog/checkout-owner').exists()
+before=inputs(R);gate=json.loads((R/'.local/qwen64-adoption/final-protected.json').read_bytes())
+assert before['sha256']==gate['inputs']['sha256']
+prior=json.loads((R/'.local/qwen64-adoption/authentication.json').read_bytes());preserved=dict(prior['preserved'])
+for p in ('docs/research/code-audit/qwen64-persistent-adoption-20261101.json','docs/development/qwen-persistent-profile.md','docs/research/code-audit/qwen64-qualification-trial-20261101.json'):
+ preserved[p]=sha(R/p)
+for p,h in preserved.items():assert sha(R/p)==h,p
+save(O/'authentication.json',{'at':str(Timestamp.now()),'inputs':before,'preserved':preserved,'refs':git(R,'show-ref'),'untracked':git(R,'ls-files','--others','--exclude-standard','-z'),'worktrees':git(R,'worktree','list','--porcelain')})
+public='tests/live_native_facade64_public.py';assert not (R/public).exists()
+text=(R/'docs/research/code-audit/live-native-task-20261031/public-checks.py.txt').read_text(encoding='utf-8')
+write(TextFile(resolve_path(R/public),text),overwrite=False)
+oracle=(R/'.local/intake-live/private-acceptance.txt').read_text(encoding='utf-8')
+write(TextFile(resolve_path(O/'private-acceptance.txt'),oracle),overwrite=False)
+old=json.loads((R/'.local/intake-live/task.json').read_bytes())
+task={**old,'objective':'Linked B-0049 residual only: repair valid direct module facade reexports refused merely because an unrelated function, async function or class namespace imports the same local name. Preserve exact target/provenance and conservative module-level conditional/try/star imports, aliases, competing declarations, ordinary assignments, pattern/handler guards and maintained regressions. Do not execute fixture source or broaden Python semantics. Inspect current authorized source using find_source, read_source_unit or bounded read_source. Before editing, acquire the complete current editable implementation through read_source to satisfy the declared whole-resource information obligation; metadata/partial ranges alone cannot satisfy it. Use smaller source units/ranges for dependencies/tests where useful; avoid redundant unchanged large reads. Only the one authorized implementation file may change. Actual public checks include the new namespace regressions plus maintained imported-member tests. Hidden independent final acceptance is withheld.',
+ 'tests':[public,'tests/context/python/imports/test_members.py'],
+ 'oracle':oracle,
+ 'worker':{'actor':'qwen38-native64-coder-20261101','source':'llama.cpp/qwen38-local/native64-coder-20261101','profile':'qwen38-27b-ud-iq4-xs-native64-v1'},
+ 'settings':{'maximum_output_tokens':2048,'thinking_enabled':False},
+ 'budgets':{'model_calls':8,'proposals':3,'acquisitions':6,'call_seconds':120,'wall_seconds':900,'prompt_bytes':131072,'source_bytes':32768,'capture_bytes':1048576},
+ 'context':{'schema':'native-context-v1','context_tokens':65536,'input_tokens':62464,'reserved_output_tokens':2048,'disclosure_bytes':65536,'warning_bytes':98304,'trigger_bytes':114688,'target_bytes':98304},
+ 'preflight':{**old['preflight'],'reference':'Independent original acceptance reused unchanged before any new inference; original provenance docs/research/code-audit/live-native-task-20261031/private-acceptance.py.txt','controls_reference':'docs/research/code-audit/live-native64-20261101/private-baseline.json'}}
+validate(task);save(O/'task.json',task)
+check=(R/'.local/intake-live/check_private.py').read_text(encoding='utf-8').replace('.local/intake-live','.local/live64-native')
+write(TextFile(resolve_path(O/'check_private.py'),check),overwrite=False)
+save(O/'frozen-inputs.json',{'at':str(Timestamp.now()),'head':before['head'],'source':task['source'],'source_sha256':sha(R/task['source']),'source_bytes':(R/task['source']).stat().st_size,'public_path':public,'public_sha256':sha(R/public),'private_sha256':hashlib.sha256(oracle.encode()).hexdigest(),'task_fingerprint':fingerprint(task),'private_implementation_disclosed_to_worker':False,'reference_implementation_authored':False})
+print('Frozen genuine source, public checks, unchanged independent private acceptance and native-context-v1; no approval or inference yet.')

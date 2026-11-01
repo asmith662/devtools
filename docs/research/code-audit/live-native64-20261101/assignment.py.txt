@@ -1,0 +1,43 @@
+"""Prepare one new native slot; coding authority remains a separate decision."""
+import asyncio,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/live64-native';D=R/'docs/research/code-audit/live-native64-20261101';sys.path.insert(0,str(R))
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from scripts.backlog.native.packet import validate,fingerprint
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from devtools.core.time import Timestamp
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+
+if sys.argv[1:]==['--freeze-final']:
+ task=read(O/'task.json')
+ # Reserve 64 KiB for bounded provider/timing/resource observations, keeping
+ # native capture plus supporting observations within the 1 MiB episode limit.
+ task['budgets']['capture_bytes']=983040
+ validate(task);save(O/'task-final.json',task)
+ save(D/'task.json',task)
+ save(D/'preparation.json',{'at':str(Timestamp.now()),'item':read(O/'intake-result.json')['item'],'intake_review_sha256':read(O/'intake-result.json')['review']['sha256'],'task_fingerprint':fingerprint(task),'source_sha256':hashlib.sha256((R/task['source']).read_bytes()).hexdigest(),'native_capture_bytes':983040,'supporting_observation_bytes':65536,'combined_episode_capture_ceiling':1048576,'coding_authorized':False,'private_implementation_excluded_from_worker_and_reviewer_context':True})
+ print('Final prospective task frozen: 960 KiB native capture + 64 KiB supporting observations, no coding approval.')
+ raise SystemExit
+
+async def main():
+ c=WorkCycle(R);item=read(O/'intake-result.json')['item'];await c._coordinator()
+ assert not c._folder(item).exists() and not (R/'.local/backlog/checkout-owner').exists()
+ assert await git(R,'branch','--show-current')=='main'
+ assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ task=read(O/'task-final.json');f=read(O/'frozen-inputs.json')
+ assert hashlib.sha256((R/task['source']).read_bytes()).hexdigest()==f['source_sha256']
+ public=R/f['public_path'];assert not public.exists()
+ text=(D/'public-checks.py.txt').read_text(encoding='utf-8')
+ assert hashlib.sha256(text.encode()).hexdigest()==f['public_sha256']
+ write(TextFile(resolve_path(public),text),overwrite=False)
+ branch='feat/native64-'+item.lower()+'-20261101'
+ assert not await git(R,'for-each-ref','--format=%(objectname)','refs/heads/'+branch)
+ await git(R,'branch',branch)
+ a=await c.native.prepare(item,branch=branch,task=task,supervisor='Codex trusted supervisor; actual human Intake approval '+read(O/'intake-result.json')['review']['sha256']+'; exact coding approval still required')
+ save(O/'assignment-result.json',{'item':item,'assignment_sha256':a['sha256'],'branch':branch,'base_head':a['base_head'],'inputs':a['inputs'],'execution_authorized':False})
+ save(O/'assignment-preview.json',a)
+ print(json.dumps(read(O/'assignment-result.json'),indent=2))
+asyncio.run(main())

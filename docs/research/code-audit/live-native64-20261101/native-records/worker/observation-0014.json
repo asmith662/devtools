@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-01T17:05:06.906122+00:00",
+  "response": {
+    "content": "I now have the complete picture. Let me analyze the B-0049 residual.\n\nThe bug: In `_inspect_facade_bindings`, a **local (nested) namespace** \u2014 a function, async function, or class \u2014 whose body imports the same local name is currently flagged as a competing binding, refusing an otherwise-valid direct reexport.\n\nLooking at the logic:\n- `_contains_nested_import(node, requested_name)` returns `True` for any top-level `node` that contains a nested `ImportFrom` importing `requested_name` (including via asname or `*`).\n- In `test_local_namespace_import_does_not_shadow_module_reexport`, the facade is `\"from .impl import f\\n\" + local` where `local` is a `def helper():` / `async def helper():` / `class Helper:` body containing `from .other import f`. That nested import lives *inside* a function/class body \u2014 a local scope that does not bind the module-level name `f`. So it must NOT be treated as competing/nested.\n\nBut `test_nested_facade_import_is_unsupported` requires that a top-level `if`/`try` block containing `from .impl import f` is flagged `NESTED_FACADE_IMPORT`. And `_contains_nested_import` walks the top-level node \u2014 for the `def`/`class` case it finds the nested import inside and returns True, causing `NESTED_FACADE_IMPORT` unsupported. That's the bug: nested imports inside function/class scopes are local and don't shadow the module reexport.\n\nThe fix: `_contains_nested_import` should only consider nested `ImportFrom` statements that are in **module-level** scope, i.e., not inside a function/class local scope. A `def`/`class` top-level node's own nested imports are local, so the whole top-level `def`/`async def`/`class` node should be skipped for the nested-import check (its body is a local scope). The `if`/`try` top-level node is module-level scope, so its nested imports still count.\n\nLet me refine: the nested import must be at module scope (directly nested inside `if`/`try`/`for` etc.), not inside a function/class. I'll walk but stop at function/class boundaries (like `iter_non_name_bindings` does).\n\nLet me write the fix.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/native64-coder-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 17176,
+      "output_tokens": 871,
+      "total_tokens": 18047,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/imports/members.py\",\"old_text\":\"def _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\n    return any(\\n        nested is not node\\n        and isinstance(nested, ast.ImportFrom)\\n        and any(\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\n            for alias in nested.names\\n        )\\n        for nested in ast.walk(node)\\n    )\",\"new_text\":\"def _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\n    \\\"\\\"\\\"Find a module-scope ``import from`` without entering local scopes.\\n\\n    A function, async function or class body binds names in its own local\\n    scope, so a nested import there cannot shadow the module-level reexport.\\n    Conditional/try/loop wrappers remain module scope, so their nested imports\\n    still make the module binding conservative.\\n    \\\"\\\"\\\"\\n    pending = [child for child in ast.iter_child_nodes(node)]\\n    while pending:\\n        current = pending.pop()\\n        if (\\n            isinstance(current, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))\\n            or current is node\\n        ):\\n            continue\\n        if isinstance(current, ast.ImportFrom) and any(\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\n            for alias in current.names\\n        ):\\n            return True\\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\\n    return False\"}",
+        "provider_call_id": "YPaGh669GCeDgFoxGA8eOBvwLUuGAi4w"
+      }
+    ]
+  },
+  "sha256": "68204d7840ca3e8fd0f876781fd170d6540ec965b4001c01fd01b43dc4a2bd91"
+}

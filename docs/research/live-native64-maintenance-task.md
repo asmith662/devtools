@@ -1,8 +1,14 @@
 # First live 64K native maintenance task
 
-Preparation is complete for one genuine bounded engineering episode. Actual
-model execution has not yet been authorized at this preparation checkpoint.
-This document will retain the observed outcome, including failure if it occurs.
+One genuinely authorized Qwen episode completed. The model acquired source,
+authored an admitted edit, encountered failed public checks and authored a
+repair. The repaired code passed all 61 public/maintained cases, but failed
+independent private acceptance. The native result is **BLOCKED**, source was
+restored and Checkout released. No reviewer model, host acceptance or integration
+plan followed. This is a real partial engineering result, not a completed repair.
+
+The initial preparation checkpoint was published as
+`b706fddb769ba88b728868540489ffeb61976044` before any acting-model entry.
 
 ## Reviewed task and provenance
 
@@ -98,3 +104,122 @@ separate provenance, focused repair and its mandatory final protected gate.
 Inspector remains independently registered on `feat/agent-inspector`; its active
 session and source were not modified. B-0035, B-0048/B-0049 history, forensic
 evidence, RI ledgers, historical refs and outstanding obligations are preserved.
+
+## Actual single coding episode
+
+The actual default-No coding approval separately covered authorization and one
+dispatch of assignment
+`53de5ff5dcabcbd9419e4bb30e86e392e92c64ac2bdbfa3044a59c51e1bec15c`.
+Scope SHA256 was
+`e922e428d019b0af1adcd8ee62e9b2f389d5e89c1dba80d49aad72438d6585f5`;
+the existing native writer issued coding grant
+`3c30f061cf277e3e5c8873c4e0b43bb9e731a75a08e71d6aac706bb548279798`.
+The human approval attested provider/canonical availability. No affirmative
+terminal input or unconditional approval callback was fabricated. Native APIs
+authenticated the actual scope-bound host decision and current principal.
+
+WorkCycle used the fresh B-0050 slot and its own Checkout on ordinary branch
+`feat/native64-b-0050-20261101`. It returned the canonical checkout to main.
+B-0050's dispatch is now consumed, independently of B-0049's consumed slot.
+Unused call/proposal allowances do not authorize a replacement dispatch.
+
+| Call | Request bytes | Measured input tokens | Output tokens | Actual selected operation |
+| --- | ---: | ---: | ---: | --- |
+| 1 | 5,291 | 1,545 | 139 | Read complete implementation and binding helper |
+| 2 | 33,417 | 8,132 | 134 | Read maintained tests and public diagnostic |
+| 3 | 69,711 | 17,176 | 871 | First exact grounded replacement; public check failed |
+| 4 | 101,855 | 24,042 | 453 | Explicit fixed validation; public check still failed |
+| 5 | 104,073 | 24,517 | 870 | Model-authored repair; public check passed |
+
+All five requests returned through actual `LlamaCppInteraction`. Four unique
+`read_source` acquisitions returned 51,544 bytes; no duplicate source acquisition
+occurred. `find_source` and `read_source_unit` were advertised, but Qwen did not
+select them. This does not establish its internal motivation. Existing post-edit
+continuation supplied current source/check evidence. There were two admitted
+replacement proposals, one repair, and five acquisition actions including the
+explicit validation. Codex supplied neither edit nor a reference implementation.
+
+The first replacement still failed the three public namespace cases. Its
+traversal began at children of the supplied statement and did not exclude a
+function/class supplied as that root. The repair added that root exclusion.
+Three actual public commands returned `3 failed, 58 passed`, the same failure
+counts again after explicit validation, then `61 passed`. Their wall times were
+1.814198, 1.290746 and 1.143317 seconds. These remain distinct failed/passing
+observations; the final pass does not relabel the earlier failures.
+
+Private acceptance then failed on a helper function nested under a module-level
+conditional: its local import must leave the direct module reexport resolved,
+but the candidate returned `ambiguous`. The frozen sequential oracle stopped at
+its third case. Later private cases were not run and are not counted as passed.
+Its implementation/diagnostics were never fed back to the coder. The episode
+was not restarted, and no host correction was substituted for Qwen's patch.
+
+## Known outcome, custody and review refusal
+
+The [authenticated episode](code-audit/live-native64-20261101/episode.json) and
+[native result](code-audit/live-native64-20261101/native-records/result.json)
+bind result identity
+`d6385d49ae350c29454fbf2b8e687360c85cb0fbcff79f6ea658aa0193a16199`.
+Shared coding disposition was `validated` against public checks; the broader
+native disposition was correctly `BLOCKED` by private acceptance. No model-call,
+Tool, timeout, output-limit or Context-capacity failure was observed.
+
+The diagnostic [unaccepted candidate](code-audit/live-native64-20261101/unaccepted-candidate.py.txt)
+and [actual native patch](code-audit/live-native64-20261101/unaccepted-candidate.diff.txt)
+are archived as non-installable evidence. Candidate SHA256 is
+`d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0`.
+Its exact 22,134 raw bytes retain CRLF line endings. A normalized text read would
+identify different bytes; archival verification uses the canonical preserving
+reader and exact original patch. This is not a successful reviewable candidate.
+
+All native effects were acknowledged, source custody restored the original
+source identity, no reconciliation was needed, and Checkout released. The
+read-only native subject reader refused the blocked result with
+`PermissionError: Native candidate/result/approval mismatch`. No reviewer policy,
+review dispatch, model proposal, trusted host acceptance, plan or installation
+was fabricated to get past that boundary. Reviewer competence and the live
+review-to-plan path remain unmeasured. B-0050 and broader parent obligations stay
+open; the original source defect remains installed because no candidate was
+integrated.
+
+## Timing, Context and limits of the evidence
+
+The native operation took 212.798437 seconds; the bounded driver including
+approval persistence and supporting observation took 223.595410 seconds.
+Actual adapter calls accounted for 164.753292 seconds. Public managed checks
+took 4.248261 seconds in total, and private acceptance took 0.432681 seconds.
+Reported usage summed to 75,412 input and 2,467 output tokens across five calls.
+Input sums include retained Context; they are not unique source tokens or
+uncached prefill measurements. First-token latency is unavailable nonstreaming.
+The largest observed output was 871 tokens, not the 2,048-token authorized cap.
+
+The third request consumed the full four-resource workload that previously
+blocked B-0049. The largest request was 104,073 bytes, independently measured as
+24,517 input tokens, with output/safety reservations checked within the actual
+65,536-token slot. No request approached the 64K token window; this episode is
+not another long-context qualification. The larger independent byte allowance
+was useful. Context-pressure warnings fired twice; the deterministic reduction
+trigger was not crossed. No exchanges were omitted or shortened and no semantic
+summary was used. Machine projection outcomes say `reduced` for source-state
+annotation changes even when bytes grow; the recorded actual byte fields show
+that no byte reduction occurred. That label is not evidence of compaction.
+
+Native observation files total 475,107 bytes; supporting observations total
+8,171 bytes, within the respective 960/64 KiB reservations and combined 1 MiB
+envelope. Across five resource samples GPU memory peaked at 14,738 MiB, with at
+least 1,313 MiB free. Windows free physical memory stayed above 2,271,840 KiB in
+those samples. No observed CUDA/OOM failure occurred. The same pinned provider
+remained healthy at one 65,536-token slot; no serving change or restart occurred.
+The exclusive provider reservation ended after the terminal episode.
+
+The observed failure category is incomplete semantic obligation coverage under
+the disclosed profile. Complete source was available, and acquisition, request
+admission, edit/check/repair and custody mechanisms worked. This single partial
+result does not establish general engineering competence or explain the model's
+internal reasoning. Native portable sampling remains a disclosed limitation.
+
+The most direct next improvement is a reviewed public regression matrix that
+includes control-flow-wrapped local namespaces, with fresh independent holdouts
+and complete-path inspection before another separately authorized attempt.
+That requires a lawful fresh follow-up/unused slot; neither consumed dispatch
+may be replayed. No additional model sample is authorized by this result.

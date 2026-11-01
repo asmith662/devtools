@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "public-check-result",
+  "at": "2026-11-01T17:06:01.836975+00:00",
+  "checks": [
+    {
+      "name": "public",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0050\\worker\\public.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 1.290746,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "FFF..........................................................            [100%]\r\n================================== FAILURES ===================================\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do0')\r\nlocal = 'def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do1')\r\nlocal = 'async def helper():\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n_ test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n] _\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13252/test_local_namespace_import_do2')\r\nlocal = 'class Helper:\\n    from .other import f\\n'\r\n\r\n    @pytest.mark.parametrize(\"local\", [\"def helper():\\n    from .other import f\\n\", \"async def helper():\\n    from .other import f\\n\", \"class Helper:\\n    from .other import f\\n\"])\r\n    def test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\r\n        result = observe_result(tmp_path, \"from .impl import f\\n\" + local)\r\n>       assert result.outcome.value == \"resolved\"\r\nE       AssertionError: assert 'unsupported' == 'resolved'\r\nE         \r\nE         - resolved\r\nE         + unsupported\r\n\r\ntests\\live_native_facade64_public.py:26: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[async def helper():\\n    from .other import f\\n]\r\nFAILED tests/live_native_facade64_public.py::test_local_namespace_import_does_not_shadow_module_reexport[class Helper:\\n    from .other import f\\n]\r\n3 failed, 58 passed in 0.77s\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    }
+  ],
+  "sha256": "8942f66602777803fc6acbe357f342e52a30f57aff6e522110e43912cd348bfa"
+}

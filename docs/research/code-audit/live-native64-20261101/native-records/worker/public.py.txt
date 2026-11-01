@@ -1,0 +1,5 @@
+import sys
+sys.path.insert(0, 'C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\src')
+sys.path.insert(0, 'C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools')
+import pytest
+raise SystemExit(pytest.main(['tests/live_native_facade64_public.py', 'tests/context/python/imports/test_members.py', '--no-cov', '--import-mode=importlib', '-q']))
