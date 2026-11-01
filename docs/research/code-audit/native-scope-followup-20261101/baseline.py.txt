@@ -1,0 +1,46 @@
+"""Evaluate fixed semantic expectations in authored fixtures; no repair or model."""
+import ast,hashlib,importlib.util,json,sys,tempfile,types
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';sys.path.insert(0,str(R))
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from devtools.context.python.modules.declarations import lookup_python_module_declaration
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def read(p):return json.loads(p.read_bytes())
+spec=importlib.util.spec_from_file_location('prospective_public',R/'tests/live_native_scope_followup_public.py');p=importlib.util.module_from_spec(spec);spec.loader.exec_module(p)
+rows={}
+with tempfile.TemporaryDirectory(prefix='devtools-native-scope-baseline-') as d:
+ for label,cases in [('public',p.CASES),('private',read(O/'holdouts.json')['cases'])]:
+  results=[]
+  for row in cases:
+   problem=p.verify(Path(d)/label/row['name'],row,lookup_python_module_declaration)
+   results.append({'name':row['name'],'expected':row['expected'],'actual':problem['actual'] if problem else row['expected'],'passed':problem is None})
+  rows[label]={'total':len(results),'failed':sum(not r['passed'] for r in results),'cases':results}
+save(O/'behavioral-baseline.json',{'at':str(Timestamp.now()),'source_sha256':read(O/'frozen.json')['source_sha256'],'implementation_changed':False,**rows})
+
+# Only execute the archived model-authored module in an isolated Python namespace.
+# The active module/source stays unchanged. No host correction is supplied.
+old=read(R/'docs/research/code-audit/live-native64-20261101/unaccepted-candidate.json')
+assert hashlib.sha256(old['source_text'].encode()).hexdigest()==old['candidate_sha256']
+name='devtools.context.python.imports._historical_b0050';m=types.ModuleType(name);m.__file__='archived-unaccepted-B0050';sys.modules[name]=m;exec(compile(old['source_text'],m.__file__,'exec'),m.__dict__)
+from devtools.context import Repository,RepositoryResourceAddress,observe_repository_resources
+from devtools.context.python.modules import PythonModuleRoot,interpret_python_module_resources,define_python_module_interpretation_universe
+from devtools.context.python.imports import derive_python_import_declarations,resolve_python_imported_member
+from devtools.resources.filesystem import BinaryFile
+with tempfile.TemporaryDirectory(prefix='devtools-b0050-causal-') as d:
+ root=Path(d);contents={'consumer.py':'from package import f\n','package/__init__.py':'from .impl import f\nif enabled:\n    def helper():\n        from .other import f\n','package/impl.py':'def f():\n    return 7\n'}
+ for address,content in contents.items():
+  dest=root/address;dest.parent.mkdir(parents=True,exist_ok=True);write(BinaryFile(resolve_path(dest),content.encode()),overwrite=False)
+ addresses=tuple(RepositoryResourceAddress(v) for v in contents)
+ s=observe_repository_resources(repository=Repository.new(),root=resolve_path(root),addresses=addresses,maximum_resource_bytes=8192)
+ modules=interpret_python_module_resources(s,module_root=PythonModuleRoot('.'),resource_addresses=addresses).interpretations
+ u=define_python_module_interpretation_universe(repository_id=s.repository_id,interpretations=modules)
+ source=derive_python_import_declarations(s,resource_address=addresses[0]);facade=modules[1]
+ original=resolve_python_imported_member(s,source,source.declarations[0],module_universe=u)
+ repaired=m.resolve_python_imported_member(s,source,source.declarations[0],module_universe=u)
+ canonical=lookup_python_module_declaration(s,module=facade,declared_name='f')
+ assert original.outcome.value=='unsupported' and repaired.outcome.value=='ambiguous' and canonical.outcome.value=='ambiguous'
+ assert len(repaired.facade_bindings)==1 and not m._contains_nested_import(ast.parse(contents['package/__init__.py']).body[1],'f')
+ save(O/'historical-causal-reproduction.json',{'at':str(Timestamp.now()),'archived_candidate_sha256':old['candidate_sha256'],'fixture':contents,'installed_consumer_outcome':original.outcome.value,'B0050_candidate_outcome':repaired.outcome.value,'canonical_lookup_outcome':canonical.outcome.value,'candidate_nested_import_flag':False,'direct_facade_bindings':1,'conclusion':'The second model patch correctly pruned the conditional-local namespace in its own guard. Canonical declaration lookup independently still traversed the local body and returned ambiguity. The consumer must not ignore this canonical refusal. Both original owners need repair for the full parent obligation.','proposed_prerequisite':'Only modules/declarations.py; parent facade repair remains open.','reference_patch_authored':False})
+print(json.dumps({k:{x:v[x] for x in ('total','failed')} for k,v in rows.items()},indent=2))

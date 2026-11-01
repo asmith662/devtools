@@ -1,5 +1,11 @@
 # Roadmap
 
+Prepared [B-0050 follow-up](research/native-scope-followup.md): exact archived
+candidate analysis identifies a second canonical declaration-lookup owner.
+Expanded public acceptance and fresh independent holdouts are frozen. The related
+one-file prerequisite B-0051 received genuine Intake approval; the full facade repair,
+consumed historical slots and B-0043 remain open. No new inference is asserted.
+
 Latest live engineering evidence: [B-0050 on the persistent 64K Qwen provider](research/live-native64-maintenance-task.md)
 made five actual calls and two admitted edits, including a public-check repair.
 All 61 public cases passed after repair; independent private acceptance caught

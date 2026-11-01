@@ -1,0 +1,317 @@
+{
+  "at": "2026-11-01T18:38:08.076472+00:00",
+  "source_sha256": "2575f9af3d983d50dfe62cec64711d762da890f270648d6b4058f8bbfd355043",
+  "implementation_changed": false,
+  "public": {
+    "total": 38,
+    "failed": 17,
+    "cases": [
+      {
+        "name": "direct-function",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "direct-async",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "direct-class",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "direct-nested",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "if-function",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "if-async",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "if-class",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "if-nested",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "for-function",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "for-async",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "for-class",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "for-nested",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "try-function",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "try-async",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "try-class",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "try-nested",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "while-function",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "while-async",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "while-class",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "while-nested",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "plain-function",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "plain-async",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "plain-class",
+        "expected": "resolved",
+        "actual": "resolved",
+        "passed": true
+      },
+      {
+        "name": "plain-import",
+        "expected": "not-supported-declaration",
+        "actual": "not-supported-declaration",
+        "passed": true
+      },
+      {
+        "name": "absent",
+        "expected": "unresolved",
+        "actual": "unresolved",
+        "passed": true
+      },
+      {
+        "name": "guard-assign",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-conditional-import",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-try-import",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-star",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-conditional-star",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-conditional-declaration",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-loop-target",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-handler",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-pattern",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-duplicate-declaration",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-dynamic-global",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guard-dynamic-local",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "alias-local",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      }
+    ]
+  },
+  "private": {
+    "total": 12,
+    "failed": 8,
+    "cases": [
+      {
+        "name": "local-store-through-with",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "local-delete-through-for",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "local-function-under-match",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "local-class-under-finally",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "unicode-crlf-local-annotation",
+        "expected": "resolved",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "absent-name-local-only",
+        "expected": "unresolved",
+        "actual": "not-supported-declaration",
+        "passed": false
+      },
+      {
+        "name": "real-with-target",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "mapping-rest-capture",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "guarded-handler-alias",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      },
+      {
+        "name": "decorated-direct-remains-unsupported",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "unrelated-local-renaming",
+        "expected": "not-supported-declaration",
+        "actual": "ambiguous",
+        "passed": false
+      },
+      {
+        "name": "dynamic-local-policy-preserved",
+        "expected": "ambiguous",
+        "actual": "ambiguous",
+        "passed": true
+      }
+    ]
+  }
+}

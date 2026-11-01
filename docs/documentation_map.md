@@ -1,6 +1,10 @@
 # Documentation Map
 
-Current live task: [reviewed 64K native maintenance episode](research/live-native64-maintenance-task.md)
+Current follow-up: [B-0050 failure analysis and linked canonical prerequisite](research/native-scope-followup.md)
+records expanded acceptance and approved linked prerequisite B-0051. The full
+facade repair spans two owners; coding still requires separate exact authority.
+
+Prior live task: [reviewed 64K native maintenance episode](research/live-native64-maintenance-task.md)
 records B-0050's genuine five-call source/edit/check/repair episode: public checks
 passed after repair, private acceptance failed, source was restored and review
 was correctly blocked. B-0049 and B-0050 dispatches remain consumed; no model

@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-01T18:38:08.119165+00:00",
+  "archived_candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "fixture": {
+    "consumer.py": "from package import f\n",
+    "package/__init__.py": "from .impl import f\nif enabled:\n    def helper():\n        from .other import f\n",
+    "package/impl.py": "def f():\n    return 7\n"
+  },
+  "installed_consumer_outcome": "unsupported",
+  "B0050_candidate_outcome": "ambiguous",
+  "canonical_lookup_outcome": "ambiguous",
+  "candidate_nested_import_flag": false,
+  "direct_facade_bindings": 1,
+  "conclusion": "The second model patch correctly pruned the conditional-local namespace in its own guard. Canonical declaration lookup independently still traversed the local body and returned ambiguity. The consumer must not ignore this canonical refusal. Both original owners need repair for the full parent obligation.",
+  "proposed_prerequisite": "Only modules/declarations.py; parent facade repair remains open.",
+  "reference_patch_authored": false
+}

@@ -1,0 +1,45 @@
+
+import hashlib
+from pathlib import Path
+from devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources
+from devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import BinaryFile, write
+
+def inspect(root, content, name, lookup):
+    root.mkdir(parents=True, exist_ok=True)
+    address = RepositoryResourceAddress("probe.py")
+    write(BinaryFile(resolve_path(root / address.value), content.encode("utf-8")), overwrite=False)
+    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=(address,), maximum_resource_bytes=8192)
+    module = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot("."), resource_addresses=(address,)).interpretations[0]
+    result = lookup(snapshot, module=module, declared_name=name)
+    assert result.module == module
+    assert result.function_analysis.snapshot_id == snapshot.id
+    assert result.class_analysis.snapshot_id == snapshot.id
+    return result, snapshot, address
+
+def verify(root, row, lookup):
+    result, snapshot, address = inspect(root, row["source"], row.get("name_to_lookup", "f"), lookup)
+    actual = result.outcome.value
+    if actual != row["expected"]:
+        return {"case": row["name"], "expected": row["expected"], "actual": actual}
+    if actual == "resolved":
+        assert result.target is not None
+        assert result.target.support.snapshot_id == snapshot.id
+        assert result.target.support.resource_address == address
+        assert result.target.support.source_range.start_line == row.get("line", 1)
+        assert result.target.support.source_range.start_column_utf8 == 0
+    else:
+        assert result.target is None
+    return None
+
+HOLDOUTS = [{'name': 'local-store-through-with', 'source': 'def token():\n    return 11\nwith manager:\n    class Side:\n        token = 99\n', 'name_to_lookup': 'token', 'expected': 'resolved', 'line': 1, 'derivation': 'A class attribute store remains class-local, even under a module with statement; direct module function selection is unchanged.'}, {'name': 'local-delete-through-for', 'source': 'class Target:\n    pass\nfor element in sequence:\n    def other():\n        del Target\n', 'name_to_lookup': 'Target', 'expected': 'resolved', 'line': 1, 'derivation': 'A function-local delete cannot remove a module class without modeled global execution; no fixture is executed.'}, {'name': 'local-function-under-match', 'source': 'async def chosen():\n    return 5\nmatch value:\n    case 0:\n        class Holder:\n            def chosen(self):\n                pass\n', 'name_to_lookup': 'chosen', 'expected': 'resolved', 'line': 1, 'derivation': 'A method declaration is not module competition; wildcard pattern capture is deliberately absent.'}, {'name': 'local-class-under-finally', 'source': 'def Selected():\n    return 6\ntry:\n    pass\nfinally:\n    def wrapper():\n        class Selected:\n            pass\n', 'name_to_lookup': 'Selected', 'expected': 'resolved', 'line': 1, 'derivation': 'The nested class name is bound inside wrapper, whereas wrapper itself is a distinct module name.'}, {'name': 'unicode-crlf-local-annotation', 'source': '# provenance π\r\ndef café():\r\n    return 1\r\nwhile active:\r\n    class Other:\r\n        café: int = 3\r\n', 'name_to_lookup': 'café', 'expected': 'resolved', 'line': 2, 'derivation': 'Unicode local annotations do not rebind a module function; physical-line and snapshot/resource provenance must remain exact.'}, {'name': 'absent-name-local-only', 'source': 'if enabled:\n    class Container:\n        absent = 1\n', 'name_to_lookup': 'absent', 'expected': 'unresolved', 'line': None, 'derivation': 'A class-only name cannot manufacture even a non-declaration module binding.'}, {'name': 'real-with-target', 'source': 'def chosen():\n    pass\nwith manager as chosen:\n    pass\n', 'name_to_lookup': 'chosen', 'expected': 'ambiguous', 'line': None, 'derivation': 'A module with target really does compete with the direct declaration.'}, {'name': 'mapping-rest-capture', 'source': 'class Selected:\n    pass\nmatch payload:\n    case {**Selected}:\n        pass\n', 'name_to_lookup': 'Selected', 'expected': 'ambiguous', 'line': None, 'derivation': 'The mapping-rest string name is an actual module capture, distinct from import/name-store paths.'}, {'name': 'guarded-handler-alias', 'source': 'def target():\n    pass\nif enabled:\n    try:\n        pass\n    except LookupError as target:\n        pass\n', 'name_to_lookup': 'target', 'expected': 'ambiguous', 'line': None, 'derivation': 'Handler alias lifetime is not interpreted; genuine module alias competition stays conservative.'}, {'name': 'decorated-direct-remains-unsupported', 'source': '@decorator\ndef item():\n    pass\nwhile flag:\n    class Holder:\n        item = 4\n', 'name_to_lookup': 'item', 'expected': 'not-supported-declaration', 'line': None, 'derivation': 'Local attribute isolation does not promote an unsupported decorated direct declaration.'}, {'name': 'unrelated-local-renaming', 'source': 'from source import original as selected\ntry:\n    class Holder:\n        selected = 7\nexcept Error:\n    pass\n', 'name_to_lookup': 'selected', 'expected': 'not-supported-declaration', 'line': None, 'derivation': 'An imported alias remains a non-declaration with or without a same-spelled class-local store.'}, {'name': 'dynamic-local-policy-preserved', 'source': 'def target():\n    pass\nif enabled:\n    def helper():\n        locals()\n', 'name_to_lookup': 'target', 'expected': 'ambiguous', 'line': None, 'derivation': 'Existing conservative dynamic-call policy is a separate gate, not weakened by namespace traversal changes.'}]
+import tempfile
+failures = []
+with tempfile.TemporaryDirectory(prefix="devtools-native-scope-holdout-") as directory:
+    for row in HOLDOUTS:
+        problem = verify(Path(directory) / row["name"], row, module.lookup_python_module_declaration)
+        if problem is not None:
+            failures.append(problem)
+print("Independent holdouts:", len(HOLDOUTS), "checked;", len(failures), "failed")
+assert not failures, failures

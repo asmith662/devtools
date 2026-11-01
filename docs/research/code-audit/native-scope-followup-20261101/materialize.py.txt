@@ -1,0 +1,94 @@
+"""Prepare governed public/private checks, not a correct implementation."""
+import hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from devtools.core.time import Timestamp
+from scripts.backlog.native.packet import validate
+def read(p):return json.loads(p.read_bytes())
+def seal(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+common='''
+import hashlib
+from pathlib import Path
+from devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources
+from devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import BinaryFile, write
+
+def inspect(root, content, name, lookup):
+    root.mkdir(parents=True, exist_ok=True)
+    address = RepositoryResourceAddress("probe.py")
+    write(BinaryFile(resolve_path(root / address.value), content.encode("utf-8")), overwrite=False)
+    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=(address,), maximum_resource_bytes=8192)
+    module = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot("."), resource_addresses=(address,)).interpretations[0]
+    result = lookup(snapshot, module=module, declared_name=name)
+    assert result.module == module
+    assert result.function_analysis.snapshot_id == snapshot.id
+    assert result.class_analysis.snapshot_id == snapshot.id
+    return result, snapshot, address
+
+def verify(root, row, lookup):
+    result, snapshot, address = inspect(root, row["source"], row.get("name_to_lookup", "f"), lookup)
+    actual = result.outcome.value
+    if actual != row["expected"]:
+        return {"case": row["name"], "expected": row["expected"], "actual": actual}
+    if actual == "resolved":
+        assert result.target is not None
+        assert result.target.support.snapshot_id == snapshot.id
+        assert result.target.support.resource_address == address
+        assert result.target.support.source_range.start_line == row.get("line", 1)
+        assert result.target.support.source_range.start_column_utf8 == 0
+    else:
+        assert result.target is None
+    return None
+'''
+public=read(O/'public-matrix.json');rows=[{**r,'source':public['bases'][r['base']]+r['extra']} for r in public['cases']]
+public_code='''"""Frozen expanded task acceptance; never a normal installed regression suite."""
+import pytest
+from devtools.context.python.modules.declarations import lookup_python_module_declaration
+'''+common+'\nCASES = '+repr(rows)+'''
+
+@pytest.mark.parametrize("group", ["local-scopes", "wrapped-locals", "targets", "conservative"])
+def test_declared_namespace_matrix(tmp_path, group):
+    failures = []
+    for row in CASES:
+        if row["group"] == group:
+            problem = verify(tmp_path / row["name"], row, lookup_python_module_declaration)
+            if problem is not None:
+                failures.append(problem)
+    assert not failures, failures
+'''
+private=read(O/'holdouts.json')
+oracle=common+'\nHOLDOUTS = '+repr(private['cases'])+'''
+import tempfile
+failures = []
+with tempfile.TemporaryDirectory(prefix="devtools-native-scope-holdout-") as directory:
+    for row in HOLDOUTS:
+        problem = verify(Path(directory) / row["name"], row, module.lookup_python_module_declaration)
+        if problem is not None:
+            failures.append(problem)
+print("Independent holdouts:", len(HOLDOUTS), "checked;", len(failures), "failed")
+assert not failures, failures
+'''
+path=R/'tests/live_native_scope_followup_public.py';assert not path.exists()
+write(TextFile(resolve_path(path),public_code),overwrite=False)
+write(TextFile(resolve_path(O/'public.py.txt'),public_code),overwrite=False)
+write(TextFile(resolve_path(O/'private.py.txt'),oracle),overwrite=False)
+source='src/devtools/context/python/modules/declarations.py'
+task={'objective':'Supervised continuation informed by B-0049/B-0050, narrowed canonical prerequisite only: correct canonical direct module declaration lookup when module control flow contains unrelated local namespaces. Function, async-function and class bodies retain local bindings even when their declarations occur inside module conditionals, loops or exception-handling. Preserve genuine module-level competing stores/declarations/imports, star imports, pattern/handler guards, direct target/provenance and existing conservative dynamic-call behavior. The previously revealed if/function-local-import case is now public evidence, not a hidden holdout. B-0050 changed a consumer guard but canonical lookup still rejected this case. This task changes ONLY modules/declarations.py. Do not bypass the canonical lookup in imports/members.py or claim the parent facade repair is complete. Trace the owned lookup and its bounded binding/provenance contracts. Use find_source/read_source_unit or bounded read_source as helpful; acquire the complete current editable file before editing. Determine and author your own minimal repair. Public checks contain the expanded semantic matrix and maintained module-selection contracts. Private independent acceptance remains hidden.',
+ 'source':source,'read_paths':['src/devtools/context/python/modules/bindings.py'],
+ 'tests':['tests/live_native_scope_followup_public.py','tests/context/python/modules/test_selection.py'],
+ 'oracle':oracle,'obligations':[{'name':'current-canonical-owner','predicate':'Acquire the complete current canonical module-declaration lookup before editing; preserve bounded module/local namespace distinction and current provenance.','path':source,'criterion':'current-whole-resource-v1'}],
+ 'preflight':{'reference':'Fresh independently authored non-import-binding and provenance holdouts; .local/native-scope-followup/holdouts.json','controls_reference':'Prospective fresh baseline archived before inference','comparisons':[
+ {'name':'namespace-isolation','obligation':'current-canonical-owner','category':'normal','expected':'resolved','independently_derived':'resolved','derivation':'An unrelated local store/declaration does not add a module binding to an unconditional direct declaration; independent fixture syntax is not executed.'},
+ {'name':'genuine-module-competition','obligation':'current-canonical-owner','category':'boundary','expected':'ambiguous','independently_derived':'ambiguous','derivation':'Real module captures/aliases and existing dynamic uncertainty remain conservative; no runtime lifetime inference.'},
+ {'name':'no-module-binding','obligation':'current-canonical-owner','category':'empty','expected':'unresolved','independently_derived':'unresolved','derivation':'A name only in an unexecuted local namespace cannot manufacture a direct module binding.'}]},
+ 'worker':{'actor':'qwen38-scope-continuation-coder-20261101','source':'llama.cpp/qwen38-local/scope-continuation-coder-20261101','profile':'qwen38-native64-portable-defaults-supervised-continuation-v1'},
+ 'settings':{'maximum_output_tokens':2048,'thinking_enabled':False},
+ 'budgets':{'model_calls':8,'proposals':3,'acquisitions':6,'call_seconds':120,'wall_seconds':900,'prompt_bytes':131072,'source_bytes':32768,'capture_bytes':983040},
+ 'capture':'bounded-full-v1',
+ 'context':{'schema':'native-context-v1','context_tokens':65536,'input_tokens':62464,'reserved_output_tokens':2048,'disclosure_bytes':65536,'warning_bytes':98304,'trigger_bytes':114688,'target_bytes':98304}}
+validate(task);seal(O/'task.json',task)
+seal(O/'frozen.json',{'at':str(Timestamp.now()),'source':source,'source_sha256':hashlib.sha256((R/source).read_bytes()).hexdigest(),'source_bytes':(R/source).stat().st_size,'public':path.relative_to(R).as_posix(),'public_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'oracle_sha256':hashlib.sha256(oracle.encode()).hexdigest(),'public_cases':len(rows),'private_cases':len(private['cases']),'supervised_historical_feedback':True,'prior_revealed_case_not_private_evidence':True,'reference_patch_authored':False})
+print('Frozen canonical prerequisite acceptance and prospective task; no approval or inference.')

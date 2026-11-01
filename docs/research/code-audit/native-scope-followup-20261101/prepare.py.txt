@@ -1,0 +1,77 @@
+"""Freeze a semantic acceptance matrix; no reference implementation or inference."""
+import ast,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import inputs,git
+
+def seal(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+auth=inputs(R);assert not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only')
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists()
+prior=json.loads((R/'.local/live64-native/authentication.json').read_bytes())
+assert auth['sha256']==prior['inputs']['sha256']
+preserved=dict(prior['preserved'])
+for p in (R/'docs/research/code-audit/live-native64-20261101').rglob('*'):
+ if p.is_file():preserved[p.relative_to(R).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
+for p,h in preserved.items():assert hashlib.sha256((R/p).read_bytes()).hexdigest()==h,p
+seal(O/'authentication.json',{'at':str(Timestamp.now()),'inputs':auth,'preserved':preserved,'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'untracked':git(R,'ls-files','--others','--exclude-standard','-z')})
+
+public=[]
+def case(name,group,base,extra,expected,reason):
+ public.append({'name':name,'group':group,'base':base,'extra':extra,'expected':expected,'reason':reason})
+resolved='resolved';notdecl='not-supported-declaration';ambiguous='ambiguous'
+bases={'function':'def f():\n    return 7\n','async':'async def f():\n    return 7\n','class':'class f:\n    pass\n','import':'from .implementation import f\n','empty':''}
+locals={
+ 'function':'def helper():\n    from .other import f\n',
+ 'async':'async def helper():\n    from .other import f\n',
+ 'class':'class Helper:\n    from .other import f\n',
+ 'nested':'def helper():\n    class Local:\n        async def method(self):\n            from .other import f\n',
+}
+def indent(s):return ''.join('    '+x if x.strip() else x for x in s.splitlines(keepends=True))
+for name,body in locals.items():
+ case('direct-'+name,'local-scopes','function',body,resolved,'Direct local namespaces do not bind the module name; established direct-target behavior.')
+wrappers={'if':lambda s:'if enabled:\n'+indent(s),'for':lambda s:'for entry in entries:\n'+indent(s),'try':lambda s:'try:\n'+indent(s)+'except LookupError:\n    pass\n','while':lambda s:'while enabled:\n'+indent(s)}
+for w,wrap in wrappers.items():
+ for n,body in locals.items():
+  base='import' if w=='if' else 'function'
+  case(w+'-'+n,'wrapped-locals',base,wrap(body),notdecl if base=='import' else resolved,'Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public.')
+for b in ('function','async','class','import'):
+ case('plain-'+b,'targets',b,'',notdecl if b=='import' else resolved,'Exactly one unconditional direct binding keeps its supported declaration/provenance meaning.')
+case('absent','targets','empty','def helper():\n    pass\n','unresolved','No module binding for the requested name.')
+for name,body in {
+ 'assign':'f = 2\n','conditional-import':'if enabled:\n    from .other import f\n',
+ 'try-import':'try:\n    from .other import f\nexcept ImportError:\n    pass\n',
+ 'star':'from .other import *\n','conditional-star':'if enabled:\n    from .other import *\n',
+ 'conditional-declaration':'if enabled:\n    def f():\n        pass\n',
+ 'loop-target':'for f in entries:\n    pass\n',
+ 'handler':'try:\n    pass\nexcept ValueError as f:\n    pass\n',
+ 'pattern':'match value:\n    case f:\n        pass\n',
+ 'duplicate-declaration':'def f():\n    return 9\n',
+ 'dynamic-global':'globals()\n','dynamic-local':'def helper():\n    exec("pass")\n',
+}.items():
+ case('guard-'+name,'conservative','function',body,ambiguous,'True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced.')
+case('alias-local','wrapped-locals','import','if enabled:\n    def helper():\n        from .other import answer as f\n',notdecl,'The bound alias belongs to the local namespace; target identity is still the unconditional import.')
+
+# Independently authored holdouts use non-import binding forms and metamorphic
+# source/provenance checks, not the disclosed if/function-import counterexample.
+private=[
+ {'name':'local-store-through-with','source':'def token():\n    return 11\nwith manager:\n    class Side:\n        token = 99\n','name_to_lookup':'token','expected':resolved,'line':1,'derivation':'A class attribute store remains class-local, even under a module with statement; direct module function selection is unchanged.'},
+ {'name':'local-delete-through-for','source':'class Target:\n    pass\nfor element in sequence:\n    def other():\n        del Target\n','name_to_lookup':'Target','expected':resolved,'line':1,'derivation':'A function-local delete cannot remove a module class without modeled global execution; no fixture is executed.'},
+ {'name':'local-function-under-match','source':'async def chosen():\n    return 5\nmatch value:\n    case 0:\n        class Holder:\n            def chosen(self):\n                pass\n','name_to_lookup':'chosen','expected':resolved,'line':1,'derivation':'A method declaration is not module competition; wildcard pattern capture is deliberately absent.'},
+ {'name':'local-class-under-finally','source':'def Selected():\n    return 6\ntry:\n    pass\nfinally:\n    def wrapper():\n        class Selected:\n            pass\n','name_to_lookup':'Selected','expected':resolved,'line':1,'derivation':'The nested class name is bound inside wrapper, whereas wrapper itself is a distinct module name.'},
+ {'name':'unicode-crlf-local-annotation','source':'# provenance \u03c0\r\ndef caf\u00e9():\r\n    return 1\r\nwhile active:\r\n    class Other:\r\n        caf\u00e9: int = 3\r\n','name_to_lookup':'caf\u00e9','expected':resolved,'line':2,'derivation':'Unicode local annotations do not rebind a module function; physical-line and snapshot/resource provenance must remain exact.'},
+ {'name':'absent-name-local-only','source':'if enabled:\n    class Container:\n        absent = 1\n','name_to_lookup':'absent','expected':'unresolved','line':None,'derivation':'A class-only name cannot manufacture even a non-declaration module binding.'},
+ {'name':'real-with-target','source':'def chosen():\n    pass\nwith manager as chosen:\n    pass\n','name_to_lookup':'chosen','expected':ambiguous,'line':None,'derivation':'A module with target really does compete with the direct declaration.'},
+ {'name':'mapping-rest-capture','source':'class Selected:\n    pass\nmatch payload:\n    case {**Selected}:\n        pass\n','name_to_lookup':'Selected','expected':ambiguous,'line':None,'derivation':'The mapping-rest string name is an actual module capture, distinct from import/name-store paths.'},
+ {'name':'guarded-handler-alias','source':'def target():\n    pass\nif enabled:\n    try:\n        pass\n    except LookupError as target:\n        pass\n','name_to_lookup':'target','expected':ambiguous,'line':None,'derivation':'Handler alias lifetime is not interpreted; genuine module alias competition stays conservative.'},
+ {'name':'decorated-direct-remains-unsupported','source':'@decorator\ndef item():\n    pass\nwhile flag:\n    class Holder:\n        item = 4\n','name_to_lookup':'item','expected':notdecl,'line':None,'derivation':'Local attribute isolation does not promote an unsupported decorated direct declaration.'},
+ {'name':'unrelated-local-renaming','source':'from source import original as selected\ntry:\n    class Holder:\n        selected = 7\nexcept Error:\n    pass\n','name_to_lookup':'selected','expected':notdecl,'line':None,'derivation':'An imported alias remains a non-declaration with or without a same-spelled class-local store.'},
+ {'name':'dynamic-local-policy-preserved','source':'def target():\n    pass\nif enabled:\n    def helper():\n        locals()\n','name_to_lookup':'target','expected':ambiguous,'line':None,'derivation':'Existing conservative dynamic-call policy is a separate gate, not weakened by namespace traversal changes.'},
+]
+for row in public:ast.parse(bases[row['base']]+row['extra'])
+for row in private:ast.parse(row['source'])
+seal(O/'public-matrix.json',{'bases':bases,'cases':public,'derivation':'Predeclared lexical namespace distinctions and existing bounded lookup contracts, not observed outcomes. The previously revealed B-0050 category is public and not reused as a hidden holdout.'})
+seal(O/'holdouts.json',{'cases':private,'independence':'Freshly authored before new inference. Non-import stores/deletes/declarations, Unicode/CRLF provenance and distinct conservative controls. No previous private implementation or reference patch is supplied to the model.'})
+print(json.dumps({'public_cases':len(public),'private_cases':len(private),'production_source_edited':False,'model_calls':0},indent=2))

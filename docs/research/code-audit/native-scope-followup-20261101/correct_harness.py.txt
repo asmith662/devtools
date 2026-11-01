@@ -1,0 +1,16 @@
+import hashlib,json
+from pathlib import Path
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.core.paths import resolve_path
+R=Path.cwd();O=R/'.local/native-scope-followup';H=O/'harness-v1';H.mkdir(exist_ok=False)
+def emit(p,b):write(BinaryFile(resolve_path(p),b),overwrite=False)
+for n in ('public.py.txt','private.py.txt','task.json','frozen.json'):
+ emit(H/n,(O/n).read_bytes())
+for p in (O/'public.py.txt',O/'private.py.txt',R/'tests/live_native_scope_followup_public.py'):
+ b=p.read_bytes().replace(b'function_analysis.snapshot_id',b'function_analysis.derivation.dependency.snapshot_id').replace(b'class_analysis.snapshot_id',b'class_analysis.derivation.dependency.snapshot_id')
+ write(BinaryFile(resolve_path(p),b),overwrite=True)
+t=json.loads((O/'task.json').read_bytes());t['oracle']=(O/'private.py.txt').read_bytes().decode()
+write(BinaryFile(resolve_path(O/'task.json'),(json.dumps(t,indent=2)+'\n').encode()),overwrite=True)
+f=json.loads((O/'frozen.json').read_bytes());f['public_sha256']=hashlib.sha256((R/f['public']).read_bytes()).hexdigest();f['oracle_sha256']=hashlib.sha256(t['oracle'].encode()).hexdigest();f['harness_correction']='Analysis provenance is derivation.dependency.snapshot_id; v1 harness failed before behavioral assertions. Original failed receipt retained.'
+write(BinaryFile(resolve_path(O/'frozen.json'),(json.dumps(f,indent=2)+'\n').encode()),overwrite=True)
+print('Corrected API access only; initial failed receipt and frozen v1 preserved. No expected outcomes changed.')

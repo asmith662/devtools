@@ -1,0 +1,30 @@
+{
+  "id": "cdbe84f8-5f1d-47a9-a421-131db4966a1e",
+  "payload": {
+    "kind": "bug",
+    "title": "Isolate wrapped local namespaces in canonical module declaration lookup (B-0050 prerequisite)",
+    "summary": "Related canonical prerequisite for unresolved B-0049/B-0050 facade repair. Offline exact B-0050 candidate reproduction shows its repaired consumer guard prunes conditional-local imports, but canonical modules/declarations.py independently walks into local bodies and returns ambiguity. Repair ONLY this canonical owner; keep the original facade consumer defect and parent obligations open. Fresh baseline: 17 of 38 public semantic cases and 8 of 12 distinct private holdouts fail; 17 maintained module-selection tests pass.",
+    "discovery": {
+      "kind": "research",
+      "reference": "docs/research/code-audit/native-scope-followup-20261101/historical-causal-reproduction.json"
+    },
+    "parent": "B-0050",
+    "resources": [
+      "src/devtools/context/python/modules/declarations.py",
+      "src/devtools/context/python/modules/bindings.py",
+      "tests/context/python/modules/test_selection.py"
+    ],
+    "evidence": [
+      "docs/research/live-native64-maintenance-task.md",
+      "docs/research/code-audit/native-scope-followup-20261101/behavioral-baseline.json",
+      "docs/research/code-audit/native-scope-followup-20261101/public-matrix.json"
+    ],
+    "benefit": "Restore bounded module/local binding distinctions in the canonical lookup without bypassing refusal in a consumer. Preserve direct target/source provenance and genuine module stores, declarations, imports, aliases, patterns, handlers, star/dynamic conservatism. One supervised model-authored continuation; no reference implementation, automatic installation or closure.",
+    "uncertainty": "The complete parent facade repair spans two owners and does not fit native one-file v1 safely. This item is a related prerequisite, not a duplicate independent obligation or completion of the parent. Public tests disclose the prior revealed failure category; private holdouts use separately authored non-import binding/provenance distinctions. Bounded acceptance is not exhaustive Python semantics. Native WorkCycle rejects provider-specific sampling overrides; an approved future episode must disclose unchanged defaults rather than bypass that guard.",
+    "dependencies": [
+      "B-0050",
+      "B-0049"
+    ]
+  },
+  "queue_before": 69
+}

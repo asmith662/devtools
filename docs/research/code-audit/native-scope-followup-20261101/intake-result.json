@@ -1,0 +1,61 @@
+{
+  "at": "2026-11-01T18:51:45.333423+00:00",
+  "proposal": "cdbe84f8-5f1d-47a9-a421-131db4966a1e",
+  "item": "B-0051",
+  "review": {
+    "schema": "backlog-review-v1",
+    "proposal": "cdbe84f8-5f1d-47a9-a421-131db4966a1e",
+    "proposal_sha256": "d97fa4e58c15052734a23a94d80bfc24e19c2b8b7b0a6d8cdfe8a5ae734b6d87",
+    "previous": null,
+    "at": "2026-11-01T18:51:44.648020+00:00",
+    "decision": "APPROVED",
+    "reviewer": "human operator recoveryadmin via actual default-No approval",
+    "decision_reference": "human-default-no-scope-prerequisite-20261101",
+    "rationale": "Approve a narrowly scoped canonical lookup prerequisite only. Exact current source declarations.py; 38 public semantic cases, 12 independent private holdouts, existing module-selection checks; baseline fails 17/38 public and 8/12 private. Do not bypass canonical ambiguity in members.py. Parent facade repair remains open. Backlog review/publication only; separate exact coding/review authority mandatory.",
+    "duplicates": [
+      {
+        "reference": "16b27e74-f553-40a8-b342-c3458a7b7a01",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "aedea41e-804b-4fe0-ad53-8758e074885d",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "f3f3068e-cb95-4718-9def-ba432b1f3ea4",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "ff4c4110-9c3b-480d-8f0f-77cf4610b700",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "docs/backlog/items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md",
+        "reason": "title overlap or shared resource"
+      },
+      {
+        "reference": "docs/backlog/items/B-0050-repair-local-namespace-import-interference-with-module-facade-reexports-b-0049-follow-up.md",
+        "reason": "title overlap or shared resource"
+      }
+    ],
+    "duplicate_disposition": "Required related prerequisite child of B-0050 (and B-0049), both terminal consumed WorkCycle slots. Preserve prior unaccepted candidates and original obligations. Not an independent duplicate or parent closeout.",
+    "scope": "canonical-backlog-only; no execution authority",
+    "publication": {
+      "id": "B-0051",
+      "path": "items/B-0051-isolate-wrapped-local-namespaces-in-canonical-module-declaration-lookup-b-0050-prerequisite.md",
+      "text": "# B-0051 \u2014 Isolate wrapped local namespaces in canonical module declaration lookup (B-0050 prerequisite)\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: context\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/cdbe84f8-5f1d-47a9-a421-131db4966a1e/proposal.json\n- intake_review: ../proposals/cdbe84f8-5f1d-47a9-a421-131db4966a1e/review-0001.json\n\n## Problem / value\n\nRelated canonical prerequisite for unresolved B-0049/B-0050 facade repair. Offline exact B-0050 candidate reproduction shows its repaired consumer guard prunes conditional-local imports, but canonical modules/declarations.py independently walks into local bodies and returns ambiguity. Repair ONLY this canonical owner; keep the original facade consumer defect and parent obligations open. Fresh baseline: 17 of 38 public semantic cases and 8 of 12 distinct private holdouts fail; 17 maintained module-selection tests pass.\n\n## Proposed benefit\n\nRestore bounded module/local binding distinctions in the canonical lookup without bypassing refusal in a consumer. Preserve direct target/source provenance and genuine module stores, declarations, imports, aliases, patterns, handlers, star/dynamic conservatism. One supervised model-authored continuation; no reference implementation, automatic installation or closure.\n\n## Uncertainty / unresolved semantics\n\nThe complete parent facade repair spans two owners and does not fit native one-file v1 safely. This item is a related prerequisite, not a duplicate independent obligation or completion of the parent. Public tests disclose the prior revealed failure category; private holdouts use separately authored non-import binding/provenance distinctions. Bounded acceptance is not exhaustive Python semantics. Native WorkCycle rejects provider-specific sampling overrides; an approved future episode must disclose unchanged defaults rather than bypass that guard.\n\n## Discovery / parent\n\n{'kind': 'research', 'reference': 'docs/research/code-audit/native-scope-followup-20261101/historical-causal-reproduction.json'}\nB-0050\n\n## Evidence\n\ndocs/research/live-native64-maintenance-task.md\ndocs/research/code-audit/native-scope-followup-20261101/behavioral-baseline.json\ndocs/research/code-audit/native-scope-followup-20261101/public-matrix.json\n\n## Affected resources\n\nsrc/devtools/context/python/modules/declarations.py\nsrc/devtools/context/python/modules/bindings.py\ntests/context/python/modules/test_selection.py\n\n## Possible dependencies\n\nB-0050\nB-0049\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+      "row": "| [B-0051](items/B-0051-isolate-wrapped-local-namespaces-in-canonical-module-declaration-lookup-b-0050-prerequisite.md) | Isolate wrapped local namespaces in canonical module declaration lookup (B-0050 prerequisite) | BACKLOG | context |"
+    },
+    "sha256": "895a81126d69a19a73e861498ce49e3ffe87696377b53ac24ddeaf85f21a5857"
+  },
+  "operator_approval": {
+    "at": "2026-11-01T18:51:43.257691+00:00",
+    "expires_at": "2026-11-01T19:36:43.257705+00:00",
+    "user_response": "+approve",
+    "scope_sha256": "cd70180a428f07a7f5f2e48ccfa688d517668368c05c0ed75d674fbd53f9d4fa",
+    "operation": "Actual human Intake review/publication only; not coding authority",
+    "provenance": "User replied +approve to the exact default-No Intake prompt during this assignment."
+  },
+  "unused_slot": true,
+  "execution_authorized": false
+}

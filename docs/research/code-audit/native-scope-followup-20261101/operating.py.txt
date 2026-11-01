@@ -1,0 +1,42 @@
+"""Read-only provider and archived-patch observations."""
+import ast,asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';D=R/'docs/research/code-audit/native-scope-followup-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:return json.loads(r.read(1<<20))
+def helper(text):
+ tree=ast.parse(text);node=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='_contains_nested_import');s={'ast':ast};exec(compile(ast.Module(body=[node],type_ignores=[]),'exact-historical-function','exec'),s);return s[node.name]
+replacements=[]
+for p in sorted((R/'docs/research/code-audit/live-native64-20261101/native-records/worker').glob('observation-*.json')):
+ v=read(p)
+ if v['kind']!='model-returned':continue
+ for call in v['response'].get('tool_calls',[]):
+  if call.get('name')=='replace_source':
+   arguments=call['arguments_json'];arguments=json.loads(arguments) if isinstance(arguments,str) else arguments
+   replacements.append({'record':p.name,'text':arguments['new_text']})
+if len(replacements)!=2:
+ # Schema has a nested function descriptor only if this retained adapter used it.
+ raise ValueError('Inspect exact Tool-call schema; do not infer patch text')
+root=ast.parse('def helper():\n    from .other import f\n').body[0]
+wrapped=ast.parse('if enabled:\n    def helper():\n        from .other import f\n').body[0]
+records=[]
+for v in replacements:
+ fn=helper(v['text']);records.append({'record':v['record'],'new_text_sha256':hashlib.sha256(v['text'].encode()).hexdigest(),'direct_function_flags_nested_import':fn(root,'f'),'conditional_function_flags_nested_import':fn(wrapped,'f')})
+assert records[0]['direct_function_flags_nested_import'] and not records[1]['direct_function_flags_nested_import'] and not records[1]['conditional_function_flags_nested_import']
+save(D/'first-and-second-patch-analysis.json',{'at':str(Timestamp.now()),'results':records,'qualification':'Executed only the exact recorded model helper; no host-authored repair.'})
+async def main():
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048));r=await ex.execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)));assert r.exit_code==0
+ v=json.loads(r.stdout)[0];previous=read(R/'.local/live64-native/current-service.json')
+ health,slots,props=await asyncio.gather(asyncio.to_thread(get,'/health'),asyncio.to_thread(get,'/slots'),asyncio.to_thread(get,'/props'))
+ assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536 and not slots[0]['is_processing']
+ assert v['Id']==previous['container_id'] and v['Image']==previous['image'] and v['Config']['Cmd']==previous['command']
+ result={'at':str(Timestamp.now()),'container_id':v['Id'],'image':v['Image'],'command':v['Config']['Cmd'],'mounts':v['Mounts'],'health':health,'context_tokens':slots[0]['n_ctx'],'slots':slots,'default_generation_settings':props.get('default_generation_settings'),'persistent_service_mutated':False,'per_request_sampling_override_supported_by_native':False,'reason':'Native execution Guarded.send forbids provider_settings; no silent wrapper rewrites or server-default changes.'}
+ save(O/'current-service.json',result);save(D/'current-service-preparation.json',result)
+ print(json.dumps({'container':v['Id'][:12],'healthy':True,'actual_tokens':slots[0]['n_ctx'],'model_helpers_evaluated':len(records)}))
+asyncio.run(main())

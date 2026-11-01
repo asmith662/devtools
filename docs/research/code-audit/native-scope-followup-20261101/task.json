@@ -1,0 +1,80 @@
+{
+  "objective": "Supervised continuation informed by B-0049/B-0050, narrowed canonical prerequisite only: correct canonical direct module declaration lookup when module control flow contains unrelated local namespaces. Function, async-function and class bodies retain local bindings even when their declarations occur inside module conditionals, loops or exception-handling. Preserve genuine module-level competing stores/declarations/imports, star imports, pattern/handler guards, direct target/provenance and existing conservative dynamic-call behavior. The previously revealed if/function-local-import case is now public evidence, not a hidden holdout. B-0050 changed a consumer guard but canonical lookup still rejected this case. This task changes ONLY modules/declarations.py. Do not bypass the canonical lookup in imports/members.py or claim the parent facade repair is complete. Trace the owned lookup and its bounded binding/provenance contracts. Use find_source/read_source_unit or bounded read_source as helpful; acquire the complete current editable file before editing. Determine and author your own minimal repair. Public checks contain the expanded semantic matrix and maintained module-selection contracts. Private independent acceptance remains hidden.",
+  "source": "src/devtools/context/python/modules/declarations.py",
+  "read_paths": [
+    "src/devtools/context/python/modules/bindings.py"
+  ],
+  "tests": [
+    "tests/live_native_scope_followup_public.py",
+    "tests/context/python/modules/test_selection.py"
+  ],
+  "oracle": "\nimport hashlib\nfrom pathlib import Path\nfrom devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources\nfrom devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.filesystem import BinaryFile, write\n\ndef inspect(root, content, name, lookup):\n    root.mkdir(parents=True, exist_ok=True)\n    address = RepositoryResourceAddress(\"probe.py\")\n    write(BinaryFile(resolve_path(root / address.value), content.encode(\"utf-8\")), overwrite=False)\n    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=(address,), maximum_resource_bytes=8192)\n    module = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot(\".\"), resource_addresses=(address,)).interpretations[0]\n    result = lookup(snapshot, module=module, declared_name=name)\n    assert result.module == module\n    assert result.function_analysis.derivation.dependency.snapshot_id == snapshot.id\n    assert result.class_analysis.derivation.dependency.snapshot_id == snapshot.id\n    return result, snapshot, address\n\ndef verify(root, row, lookup):\n    result, snapshot, address = inspect(root, row[\"source\"], row.get(\"name_to_lookup\", \"f\"), lookup)\n    actual = result.outcome.value\n    if actual != row[\"expected\"]:\n        return {\"case\": row[\"name\"], \"expected\": row[\"expected\"], \"actual\": actual}\n    if actual == \"resolved\":\n        assert result.target is not None\n        assert result.target.support.snapshot_id == snapshot.id\n        assert result.target.support.resource_address == address\n        assert result.target.support.source_range.start_line == row.get(\"line\", 1)\n        assert result.target.support.source_range.start_column_utf8 == 0\n    else:\n        assert result.target is None\n    return None\n\nHOLDOUTS = [{'name': 'local-store-through-with', 'source': 'def token():\\n    return 11\\nwith manager:\\n    class Side:\\n        token = 99\\n', 'name_to_lookup': 'token', 'expected': 'resolved', 'line': 1, 'derivation': 'A class attribute store remains class-local, even under a module with statement; direct module function selection is unchanged.'}, {'name': 'local-delete-through-for', 'source': 'class Target:\\n    pass\\nfor element in sequence:\\n    def other():\\n        del Target\\n', 'name_to_lookup': 'Target', 'expected': 'resolved', 'line': 1, 'derivation': 'A function-local delete cannot remove a module class without modeled global execution; no fixture is executed.'}, {'name': 'local-function-under-match', 'source': 'async def chosen():\\n    return 5\\nmatch value:\\n    case 0:\\n        class Holder:\\n            def chosen(self):\\n                pass\\n', 'name_to_lookup': 'chosen', 'expected': 'resolved', 'line': 1, 'derivation': 'A method declaration is not module competition; wildcard pattern capture is deliberately absent.'}, {'name': 'local-class-under-finally', 'source': 'def Selected():\\n    return 6\\ntry:\\n    pass\\nfinally:\\n    def wrapper():\\n        class Selected:\\n            pass\\n', 'name_to_lookup': 'Selected', 'expected': 'resolved', 'line': 1, 'derivation': 'The nested class name is bound inside wrapper, whereas wrapper itself is a distinct module name.'}, {'name': 'unicode-crlf-local-annotation', 'source': '# provenance \u03c0\\r\\ndef caf\u00e9():\\r\\n    return 1\\r\\nwhile active:\\r\\n    class Other:\\r\\n        caf\u00e9: int = 3\\r\\n', 'name_to_lookup': 'caf\u00e9', 'expected': 'resolved', 'line': 2, 'derivation': 'Unicode local annotations do not rebind a module function; physical-line and snapshot/resource provenance must remain exact.'}, {'name': 'absent-name-local-only', 'source': 'if enabled:\\n    class Container:\\n        absent = 1\\n', 'name_to_lookup': 'absent', 'expected': 'unresolved', 'line': None, 'derivation': 'A class-only name cannot manufacture even a non-declaration module binding.'}, {'name': 'real-with-target', 'source': 'def chosen():\\n    pass\\nwith manager as chosen:\\n    pass\\n', 'name_to_lookup': 'chosen', 'expected': 'ambiguous', 'line': None, 'derivation': 'A module with target really does compete with the direct declaration.'}, {'name': 'mapping-rest-capture', 'source': 'class Selected:\\n    pass\\nmatch payload:\\n    case {**Selected}:\\n        pass\\n', 'name_to_lookup': 'Selected', 'expected': 'ambiguous', 'line': None, 'derivation': 'The mapping-rest string name is an actual module capture, distinct from import/name-store paths.'}, {'name': 'guarded-handler-alias', 'source': 'def target():\\n    pass\\nif enabled:\\n    try:\\n        pass\\n    except LookupError as target:\\n        pass\\n', 'name_to_lookup': 'target', 'expected': 'ambiguous', 'line': None, 'derivation': 'Handler alias lifetime is not interpreted; genuine module alias competition stays conservative.'}, {'name': 'decorated-direct-remains-unsupported', 'source': '@decorator\\ndef item():\\n    pass\\nwhile flag:\\n    class Holder:\\n        item = 4\\n', 'name_to_lookup': 'item', 'expected': 'not-supported-declaration', 'line': None, 'derivation': 'Local attribute isolation does not promote an unsupported decorated direct declaration.'}, {'name': 'unrelated-local-renaming', 'source': 'from source import original as selected\\ntry:\\n    class Holder:\\n        selected = 7\\nexcept Error:\\n    pass\\n', 'name_to_lookup': 'selected', 'expected': 'not-supported-declaration', 'line': None, 'derivation': 'An imported alias remains a non-declaration with or without a same-spelled class-local store.'}, {'name': 'dynamic-local-policy-preserved', 'source': 'def target():\\n    pass\\nif enabled:\\n    def helper():\\n        locals()\\n', 'name_to_lookup': 'target', 'expected': 'ambiguous', 'line': None, 'derivation': 'Existing conservative dynamic-call policy is a separate gate, not weakened by namespace traversal changes.'}]\nimport tempfile\nfailures = []\nwith tempfile.TemporaryDirectory(prefix=\"devtools-native-scope-holdout-\") as directory:\n    for row in HOLDOUTS:\n        problem = verify(Path(directory) / row[\"name\"], row, module.lookup_python_module_declaration)\n        if problem is not None:\n            failures.append(problem)\nprint(\"Independent holdouts:\", len(HOLDOUTS), \"checked;\", len(failures), \"failed\")\nassert not failures, failures\n",
+  "obligations": [
+    {
+      "name": "current-canonical-owner",
+      "predicate": "Acquire the complete current canonical module-declaration lookup before editing; preserve bounded module/local namespace distinction and current provenance.",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "criterion": "current-whole-resource-v1"
+    }
+  ],
+  "preflight": {
+    "reference": "Fresh independently authored non-import-binding and provenance holdouts; .local/native-scope-followup/holdouts.json",
+    "controls_reference": "Prospective fresh baseline archived before inference",
+    "comparisons": [
+      {
+        "name": "namespace-isolation",
+        "obligation": "current-canonical-owner",
+        "category": "normal",
+        "expected": "resolved",
+        "independently_derived": "resolved",
+        "derivation": "An unrelated local store/declaration does not add a module binding to an unconditional direct declaration; independent fixture syntax is not executed."
+      },
+      {
+        "name": "genuine-module-competition",
+        "obligation": "current-canonical-owner",
+        "category": "boundary",
+        "expected": "ambiguous",
+        "independently_derived": "ambiguous",
+        "derivation": "Real module captures/aliases and existing dynamic uncertainty remain conservative; no runtime lifetime inference."
+      },
+      {
+        "name": "no-module-binding",
+        "obligation": "current-canonical-owner",
+        "category": "empty",
+        "expected": "unresolved",
+        "independently_derived": "unresolved",
+        "derivation": "A name only in an unexecuted local namespace cannot manufacture a direct module binding."
+      }
+    ]
+  },
+  "worker": {
+    "actor": "qwen38-scope-continuation-coder-20261101",
+    "source": "llama.cpp/qwen38-local/scope-continuation-coder-20261101",
+    "profile": "qwen38-native64-portable-defaults-supervised-continuation-v1"
+  },
+  "settings": {
+    "maximum_output_tokens": 2048,
+    "thinking_enabled": false
+  },
+  "budgets": {
+    "model_calls": 8,
+    "proposals": 3,
+    "acquisitions": 6,
+    "call_seconds": 120,
+    "wall_seconds": 900,
+    "prompt_bytes": 131072,
+    "source_bytes": 32768,
+    "capture_bytes": 983040
+  },
+  "capture": "bounded-full-v1",
+  "context": {
+    "schema": "native-context-v1",
+    "context_tokens": 65536,
+    "input_tokens": 62464,
+    "reserved_output_tokens": 2048,
+    "disclosure_bytes": 65536,
+    "warning_bytes": 98304,
+    "trigger_bytes": 114688,
+    "target_bytes": 98304
+  }
+}

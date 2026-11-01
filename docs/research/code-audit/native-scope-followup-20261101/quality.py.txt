@@ -1,0 +1,19 @@
+"""Bounded supported-root checks; no live effects or historical rewrite."""
+import asyncio,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch,Timestamp
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+async def main():
+ commands=[('ruff',('uv','run','ruff','check','src','tests','apps','scripts','--exclude','tests/experiments')),('format',('uv','run','ruff','format','--check','src','tests','apps','scripts','--exclude','tests/experiments')),('typing',('uv','run','mypy')),('layout',('uv','run','python','scripts/validate_layout.py')),('diff',('git','diff','--check'))]
+ async def run(name,args):
+  timer=Stopwatch();ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=2048));r=await ex.execute(Command(args[0]).args(*args[1:]).with_timeout(Duration.seconds(180)))
+  return {'name':name,'command':list(args),'exit':r.exit_code,'seconds':timer.elapsed.total_seconds,'stdout':r.stdout.decode(errors='replace'),'stderr':r.stderr.decode(errors='replace'),'truncated':r.stdout_truncated or r.stderr_truncated}
+ result=await asyncio.gather(*(run(n,a) for n,a in commands))
+ write(TextFile(resolve_path(O/'quality.json'),json.dumps({'at':str(Timestamp.now()),'checks':result},indent=2)+'\n'),overwrite=False)
+ print(json.dumps([{k:r[k] for k in ('name','exit','seconds')} for r in result],indent=2))
+ for r in result:
+  if r['exit']:print(r['name'],r['stdout'][:2000],r['stderr'][:1000])
+asyncio.run(main())

@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-01T18:49:30.396756+00:00",
+  "checks": [
+    {
+      "name": "ruff",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit": 0,
+      "seconds": 0.159088,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "format",
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit": 0,
+      "seconds": 0.150232,
+      "stdout": "762 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "truncated": false
+    },
+    {
+      "name": "typing",
+      "command": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "exit": 0,
+      "seconds": 0.508066,
+      "stdout": "Success: no issues found in 623 source files\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "layout",
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit": 0,
+      "seconds": 0.182155,
+      "stdout": "",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "seconds": 0.140482,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/roadmap.md', LF will be replaced by CRLF the next time Git touches it\n",
+      "truncated": false
+    }
+  ]
+}

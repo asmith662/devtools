@@ -1,0 +1,316 @@
+{
+  "bases": {
+    "function": "def f():\n    return 7\n",
+    "async": "async def f():\n    return 7\n",
+    "class": "class f:\n    pass\n",
+    "import": "from .implementation import f\n",
+    "empty": ""
+  },
+  "cases": [
+    {
+      "name": "direct-function",
+      "group": "local-scopes",
+      "base": "function",
+      "extra": "def helper():\n    from .other import f\n",
+      "expected": "resolved",
+      "reason": "Direct local namespaces do not bind the module name; established direct-target behavior."
+    },
+    {
+      "name": "direct-async",
+      "group": "local-scopes",
+      "base": "function",
+      "extra": "async def helper():\n    from .other import f\n",
+      "expected": "resolved",
+      "reason": "Direct local namespaces do not bind the module name; established direct-target behavior."
+    },
+    {
+      "name": "direct-class",
+      "group": "local-scopes",
+      "base": "function",
+      "extra": "class Helper:\n    from .other import f\n",
+      "expected": "resolved",
+      "reason": "Direct local namespaces do not bind the module name; established direct-target behavior."
+    },
+    {
+      "name": "direct-nested",
+      "group": "local-scopes",
+      "base": "function",
+      "extra": "def helper():\n    class Local:\n        async def method(self):\n            from .other import f\n",
+      "expected": "resolved",
+      "reason": "Direct local namespaces do not bind the module name; established direct-target behavior."
+    },
+    {
+      "name": "if-function",
+      "group": "wrapped-locals",
+      "base": "import",
+      "extra": "if enabled:\n    def helper():\n        from .other import f\n",
+      "expected": "not-supported-declaration",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "if-async",
+      "group": "wrapped-locals",
+      "base": "import",
+      "extra": "if enabled:\n    async def helper():\n        from .other import f\n",
+      "expected": "not-supported-declaration",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "if-class",
+      "group": "wrapped-locals",
+      "base": "import",
+      "extra": "if enabled:\n    class Helper:\n        from .other import f\n",
+      "expected": "not-supported-declaration",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "if-nested",
+      "group": "wrapped-locals",
+      "base": "import",
+      "extra": "if enabled:\n    def helper():\n        class Local:\n            async def method(self):\n                from .other import f\n",
+      "expected": "not-supported-declaration",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "for-function",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "for entry in entries:\n    def helper():\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "for-async",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "for entry in entries:\n    async def helper():\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "for-class",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "for entry in entries:\n    class Helper:\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "for-nested",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "for entry in entries:\n    def helper():\n        class Local:\n            async def method(self):\n                from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "try-function",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "try:\n    def helper():\n        from .other import f\nexcept LookupError:\n    pass\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "try-async",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "try:\n    async def helper():\n        from .other import f\nexcept LookupError:\n    pass\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "try-class",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "try:\n    class Helper:\n        from .other import f\nexcept LookupError:\n    pass\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "try-nested",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "try:\n    def helper():\n        class Local:\n            async def method(self):\n                from .other import f\nexcept LookupError:\n    pass\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "while-function",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "while enabled:\n    def helper():\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "while-async",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "while enabled:\n    async def helper():\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "while-class",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "while enabled:\n    class Helper:\n        from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "while-nested",
+      "group": "wrapped-locals",
+      "base": "function",
+      "extra": "while enabled:\n    def helper():\n        class Local:\n            async def method(self):\n                from .other import f\n",
+      "expected": "resolved",
+      "reason": "Wrapping the declaration in module control flow does not move its body bindings into module scope; the B-0050 revealed if/function category is now public."
+    },
+    {
+      "name": "plain-function",
+      "group": "targets",
+      "base": "function",
+      "extra": "",
+      "expected": "resolved",
+      "reason": "Exactly one unconditional direct binding keeps its supported declaration/provenance meaning."
+    },
+    {
+      "name": "plain-async",
+      "group": "targets",
+      "base": "async",
+      "extra": "",
+      "expected": "resolved",
+      "reason": "Exactly one unconditional direct binding keeps its supported declaration/provenance meaning."
+    },
+    {
+      "name": "plain-class",
+      "group": "targets",
+      "base": "class",
+      "extra": "",
+      "expected": "resolved",
+      "reason": "Exactly one unconditional direct binding keeps its supported declaration/provenance meaning."
+    },
+    {
+      "name": "plain-import",
+      "group": "targets",
+      "base": "import",
+      "extra": "",
+      "expected": "not-supported-declaration",
+      "reason": "Exactly one unconditional direct binding keeps its supported declaration/provenance meaning."
+    },
+    {
+      "name": "absent",
+      "group": "targets",
+      "base": "empty",
+      "extra": "def helper():\n    pass\n",
+      "expected": "unresolved",
+      "reason": "No module binding for the requested name."
+    },
+    {
+      "name": "guard-assign",
+      "group": "conservative",
+      "base": "function",
+      "extra": "f = 2\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-conditional-import",
+      "group": "conservative",
+      "base": "function",
+      "extra": "if enabled:\n    from .other import f\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-try-import",
+      "group": "conservative",
+      "base": "function",
+      "extra": "try:\n    from .other import f\nexcept ImportError:\n    pass\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-star",
+      "group": "conservative",
+      "base": "function",
+      "extra": "from .other import *\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-conditional-star",
+      "group": "conservative",
+      "base": "function",
+      "extra": "if enabled:\n    from .other import *\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-conditional-declaration",
+      "group": "conservative",
+      "base": "function",
+      "extra": "if enabled:\n    def f():\n        pass\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-loop-target",
+      "group": "conservative",
+      "base": "function",
+      "extra": "for f in entries:\n    pass\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-handler",
+      "group": "conservative",
+      "base": "function",
+      "extra": "try:\n    pass\nexcept ValueError as f:\n    pass\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-pattern",
+      "group": "conservative",
+      "base": "function",
+      "extra": "match value:\n    case f:\n        pass\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-duplicate-declaration",
+      "group": "conservative",
+      "base": "function",
+      "extra": "def f():\n    return 9\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-dynamic-global",
+      "group": "conservative",
+      "base": "function",
+      "extra": "globals()\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "guard-dynamic-local",
+      "group": "conservative",
+      "base": "function",
+      "extra": "def helper():\n    exec(\"pass\")\n",
+      "expected": "ambiguous",
+      "reason": "True module competition or existing wildcard/dynamic uncertainty must remain conservative; no runtime/lifetime interpretation is introduced."
+    },
+    {
+      "name": "alias-local",
+      "group": "wrapped-locals",
+      "base": "import",
+      "extra": "if enabled:\n    def helper():\n        from .other import answer as f\n",
+      "expected": "not-supported-declaration",
+      "reason": "The bound alias belongs to the local namespace; target identity is still the unconditional import."
+    }
+  ],
+  "derivation": "Predeclared lexical namespace distinctions and existing bounded lookup contracts, not observed outcomes. The previously revealed B-0050 category is public and not reused as a hidden holdout."
+}
