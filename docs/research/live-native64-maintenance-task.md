@@ -168,9 +168,12 @@ The diagnostic [unaccepted candidate](code-audit/live-native64-20261101/unaccept
 and [actual native patch](code-audit/live-native64-20261101/unaccepted-candidate.diff.txt)
 are archived as non-installable evidence. Candidate SHA256 is
 `d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0`.
-Its exact 22,134 raw bytes retain CRLF line endings. A normalized text read would
-identify different bytes; archival verification uses the canonical preserving
-reader and exact original patch. This is not a successful reviewable candidate.
+Its exact 22,134 raw bytes retain CRLF line endings. The
+[escaped-text artifact](code-audit/live-native64-20261101/unaccepted-candidate.json)
+preserves those bytes and the exact native patch across Git newline conversion;
+the plain-text links are display copies subject to normal Git newline handling.
+A normalized text read identifies different bytes. Archival verification uses
+the canonical preserving reader. This is not a successful reviewable candidate.
 
 All native effects were acknowledged, source custody restored the original
 source identity, no reconciliation was needed, and Checkout released. The

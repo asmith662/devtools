@@ -859,5 +859,7 @@
     "layout": "passed",
     "diff": "passed",
     "qualification": "These checks concern the restored framework, not acceptance of the uninstalled candidate."
-  }
+  },
+  "exact_candidate_and_native_patch": "unaccepted-candidate.json (escaped source_text/native_patch_text preserve exact UTF-8 bytes across Git newline conversion)",
+  "candidate_text_display_qualification": ".py.txt and .diff.txt are display copies subject to normal Git newline handling; identities bind the JSON-encoded exact bytes."
 }
