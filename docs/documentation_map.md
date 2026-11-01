@@ -9,6 +9,9 @@ Live native assessment: [first authorized task and actual Context-budget outcome
 Native Context operation: [prospective profiles, automatic deterministic projection,
 pressure and source inspection](development/native-context-policy.md);
 [bounded local capacity trial and qualification limits](research/native-context-capacity.md).
+
+Follow-up: [Qwen 64K operational qualification and protected-count clarification](research/qwen64-operational-qualification.md)
+retains original evidence and requires fresh coordinated service-trial consent.
 records genuine human Intake/coding approval and two live calls before any edit;
 review competence remains unmeasured. Earlier [operational preflight](research/live-native-maintenance-preflight.md)
 records the available provider and task/authority blocker; no live episode occurred.

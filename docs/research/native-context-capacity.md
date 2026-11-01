@@ -1,5 +1,10 @@
 # Native Context capacity assessment — 2026-11-01
 
+Subsequent [operational diagnosis and count reconciliation](qwen64-operational-qualification.md)
+measures the original-profile restoration at about 283.7 seconds, distinguishes
+4,081 tests from 4,096 passing call/subtest reports, and preserves the original
+receipts unchanged. It does not infer a 64K OOM from a startup timeout.
+
 Starting local and remote main were
 `41303319c93c8dc1605207a171dc3ea551b1c2a6`. The canonical tracked/index tree
 was clean; Checkout ownership was absent. Inspector remained a separately active
