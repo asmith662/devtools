@@ -47,7 +47,7 @@ mismatch is refused; `start` does not silently replace it. The 64K fingerprint i
 the original 32K fingerprint remains
 `03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1`.
 
-One cold launch and a repeated supported `start` were verified. The repeated
+One fresh container/model launch and a repeated supported `start` were verified. The repeated
 command returned the same READY container without acquisition/restart or a
 reversion to 32K. No second cold restart, host-boot persistence or new automatic
 restart/fallback manager is claimed. Existing Docker restart settings are unchanged.
@@ -57,6 +57,8 @@ restart/fallback manager is claimed. Existing Docker restart settings are unchan
 Container start to observed READY took **223.059 seconds**; the service start
 operation took 224.579 seconds including its preparation. The complete bounded
 driver took 260.465 seconds. No rollback or second 64K launch was needed.
+Artifact verification read the cached GGUF before startup; these timings are
+not a controlled cold-cache comparison.
 
 The short `LlamaCppInteraction` request had 511 measured input tokens and a
 128-token output ceiling. It returned 49 tokens and an accurately parsed native
@@ -68,7 +70,8 @@ adapter. The existing 49,152-/62,464-token measurements were not repeated.
 Across 18 samples, GPU use peaked at **14,724 MiB**, with at least 1,327 MiB free.
 Windows free physical memory briefly fell to **203,640 KiB** (about 199 MiB),
 and free virtual memory to 1,068,968 KiB. Later free physical memory recovered
-above 8 GiB; Docker and HTTP health remained healthy. Startup pressure is severe
+to roughly 8 GiB; a post-validation observation retained about 6.2 GiB free.
+Docker and HTTP health remained healthy. Startup pressure is severe
 even though this operation completed. There was no observed CUDA allocation
 failure or OOM kill. Logs preserve the auto-fit warning concerning explicitly
 selected GPU layers; it did not prevent loading or inference.
@@ -105,7 +108,19 @@ exact-scope coding and reviewer grants. Keep private oracle implementation out
 of model Context. Do not fabricate a new B-number or replay B-0049. The next
 measurement should be real edit/check/repair and, if eligible, independent review.
 
-Focused profile/controller, provider and native Context tests passed. The
-controller's explicit profile-selection change also requires the ordinary final
-protected gate on the committed executable candidate before publication;
-operational observations alone are not a comprehensive pass.
+Validation passed: 34 focused profile/controller tests, then 273 provider/service
+and native Context tests; supported-root Ruff, formatting, strict mypy, layout,
+Intake, JSON/JSONL, documentation links and historical/ref preservation checks.
+The controller's explicit executable profile-selection change required one final
+protected run on committed candidate `8376bbc1845f9606de64e5409ec134636c13184a`:
+**4,088 passed, two optional skips, 100% configured production line/branch
+coverage** (14,247 statements, 3,644 branches, zero missing/partial). Pytest took
+2,548.43 seconds; the maintained command receipt took 2,550.986 seconds. No
+test-failure repair or second comprehensive invocation was needed. All 1,059
+protected input identities and executable Git blobs match the tested candidate.
+The final evidence commit changes documentation only.
+
+The original stdout is authoritative for test-case counts. Its 4,088 passing
+cases are distinct from 4,103 passing call-phase reports, which include unittest
+subtests. The receipt retains both with that qualification. No historical result
+was relabeled and operational observations were not substituted for coverage.

@@ -20,8 +20,9 @@ projection](development/native-context-policy.md) connect existing navigation,
 independent byte/token budgets and pressure observations to WorkCycle. Existing
 strict assignments retain their limits. The [approved capacity trial](research/native-context-capacity.md)
 did not qualify 64K; the original 32K service was restored and authenticated
-healthy. Reliable 64K operational qualification is the next bounded step before
-another separately authorized live task. B-0049 remains consumed and unchanged.
+healthy. Subsequent qualification and persistent adoption above completed that
+capacity follow-up. The next step is the separately authorized live engineering
+task. B-0049 remains consumed and unchanged.
 
 Bounded continuation correction: [aggregate source admission](development/aggregate-source-admission.md)
 preflights native read/check batches, preserves correlated feedback and permits
