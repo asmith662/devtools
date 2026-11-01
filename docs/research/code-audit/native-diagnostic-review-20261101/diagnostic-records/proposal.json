@@ -1,0 +1,77 @@
+{
+  "schema": "backlog-native-diagnostic-proposal-v1",
+  "subject_sha256": "bc2c5151a1a595ff404e7a8b7206ad8b970c1c3a9ec9ce827d83461b64906410",
+  "authorization_sha256": "1270260bd5e0b12379585b0a0125280edbfba99a90ea363e778604bf99f87cd3",
+  "dispatch_sha256": "163571aed5c6be12441fba7c109b73ed458ae994ba0e9c901cead7c381533366",
+  "actor": "qwen38-blind-diagnostic-reviewer-20261101",
+  "source": "llama.cpp/qwen38-local/blind-diagnostic-B0050-20261101",
+  "profile": "qwen38-native64-diagnostic-defaults-v1",
+  "status": "blocked",
+  "conclusion": null,
+  "error": "PermissionError: Review permits one bounded read per response",
+  "references": {
+    "task": "625c484a19a3f32d9a159f8be161e985c74d95afebbec7ec2926839a0bbd45e7",
+    "scope": "3d66064216aab2321b9e55e4c4865a40634572a435929345aa0c4056d2e33f6d",
+    "baseline": "e09aefde44b5cb044733d46d4ac7e2fcd42f38173e83429857559d7456e37263",
+    "candidate": "8ef7eb871e2097d2abb32d5b410620b4c43d0d419064eddcda5319b4eac75d54",
+    "diff": "a2e3c0d2a1a965b8445881c4be494d2e16e431024b7a883ee9c69f8841be0ccc",
+    "public-checks": "311fcd040a11069dca35b58213d16061bacbad602b1c1835b0e87c73592773ac",
+    "acceptance": "b16ced0c519cdbf0131dbec176d1d547b8b6ab227e49fdbcb86166e10d4bff4f",
+    "terminal": "930cf686a31e572c165e46d4d245f724e3f4e5ae16f446d08f075f1d9bd3cbb2",
+    "edit-history": "6af051240fb8b9ba78aa779a5895fe3bfd0ad40c3d0e6349ea10cbeffbd9a72b",
+    "custody": "b62c93de4168cf56ad3ad1f979f601fde044961124572ad2e91e68cfd23f325d",
+    "effects": "b63ffb03e5f0b82e0ea56bc08fbbbe22a476b321db44d6091d9a7583161044d5",
+    "availability": "a8911d469675260d02843a38ce24fde4f628feded308274fbe797f11731d0ed2",
+    "withheld": "8e03984a97028a00c1891a76d7f3ae19a310160a704afdfde6c2a2fbcd5b5e07",
+    "limits": "991c04b4fcdeb258ac579ae5dbb5a347c80bf865eafd192eae60466d15ba0ba7",
+    "read:1": "4eb7628239d8200cfd287c9fcab4b8202415cb562c9ceb0dfc430050059dbcc6",
+    "read:2": "5db9b3c89ff22a3944f9c373827f228e152b5a7286c568fd2931c482b76aa376"
+  },
+  "observations": [
+    {
+      "file": "observation-0000.json",
+      "sha256": "8b001dae806617ba0750a6fce6e9028988466f37bd86ceefdf887ec1338a26e5"
+    },
+    {
+      "file": "observation-0001.json",
+      "sha256": "90064ca16750eb8a99597315d5d788c53ab74b27b3c4fed23fe4e76e2f2cd0da"
+    },
+    {
+      "file": "observation-0002.json",
+      "sha256": "79d9720b252f073220ec13a45198bf727062016e5010448576e337b1dcf15d13"
+    },
+    {
+      "file": "observation-0003.json",
+      "sha256": "9cfdf816d78f6f55f2c10254c775ce64bf54c69eb398086c3a6cb2caadd0c360"
+    },
+    {
+      "file": "observation-0004.json",
+      "sha256": "8b318880bcf884e5080f5e6097662d22f39816d003016610226789fd001839cd"
+    },
+    {
+      "file": "observation-0005.json",
+      "sha256": "ba46391dcf3f3fbf243c8390b3b4ce105fb9745112f2c8117a37d32aafc1a332"
+    },
+    {
+      "file": "observation-0006.json",
+      "sha256": "596f6f60ed6523938982bd941e12bc8150c75ee31587f21521613a7cb62056e1"
+    },
+    {
+      "file": "observation-0007.json",
+      "sha256": "ead88739659c5a84963873134744d6828e2c3665fb39073758af2bf31187438d"
+    },
+    {
+      "file": "observation-0008.json",
+      "sha256": "e24f0b4a33367460200471b09a9ac9454cfd1c8267b655570eec233340258193"
+    },
+    {
+      "file": "observation-0009.json",
+      "sha256": "bcb6bec5fff6a6742f0f721b92551e535be4e0ee83e0686f8b62502972337c1d"
+    }
+  ],
+  "model_calls": 3,
+  "reads": 2,
+  "seconds": 68.634216,
+  "host_approved": false,
+  "sha256": "8e97cdaf39c479b3644422512a66ad421337887f9e330658131becb36bc043dd"
+}

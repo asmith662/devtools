@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "review-read-result",
+  "at": "2026-11-01T22:03:36.032085+00:00",
+  "reference": "read:1",
+  "identity": "4eb7628239d8200cfd287c9fcab4b8202415cb562c9ceb0dfc430050059dbcc6",
+  "disclosure": {
+    "source_length": 1482,
+    "valid_range": [
+      0,
+      1482
+    ],
+    "maximum_bytes": 32768,
+    "continuation_start": 1482,
+    "remaining_range": [
+      1482,
+      1482
+    ],
+    "text": " Copyright (c) 2026\r\n\"\"\"Names held outside Name nodes in bounded Python binding inventories.\"\"\"\r\n\r\nfrom __future__ import annotations\r\n\r\nimport ast\r\nfrom typing import TYPE_CHECKING\r\n\r\nif TYPE_CHECKING:\r\n    from collections.abc import Iterator\r\n\r\n\r\ndef non_name_binding(node: ast.AST) -> str | None:\r\n    \"\"\"Return a pattern capture or handler alias, not a declaration or store.\r\n\r\n    This identifies syntax only. A handler alias is cleared on handler exit;\r\n    a pattern capture has different lifetime. Neither establishes a declaration.\r\n    Callers retain their own scope, ordering and conservative ambiguity policy.\r\n    \"\"\"\r\n    if isinstance(node, ast.ExceptHandler | ast.MatchAs | ast.MatchStar):\r\n        return node.name\r\n    if isinstance(node, ast.MatchMapping):\r\n        return node.rest\r\n    return None\r\n\r\n\r\ndef iter_non_name_bindings(node: ast.AST) -> Iterator[str]:\r\n    \"\"\"Inspect compound syntax without entering nested function/class scopes.\r\n\r\n    This is only the additional string-name inventory. Existing callers own\r\n    ordinary stores, imports, declaration names and source-order cutoffs.\r\n    \"\"\"\r\n    pending = [node]\r\n    while pending:\r\n        current = pending.pop()\r\n        if isinstance(current, ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef):\r\n            continue\r\n        name = non_name_binding(current)\r\n        if name is not None:\r\n            yield name\r\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\r\n",
+    "path": "src/devtools/context/python/modules/bindings.py",
+    "snapshot": "e23982169117f9e8b0c1d4228990d5e7554859f13379337537d73acfb93b3c54",
+    "version": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+    "span": [
+      1,
+      1482
+    ],
+    "partial": false
+  },
+  "sha256": "9cfdf816d78f6f55f2c10254c775ce64bf54c69eb398086c3a6cb2caadd0c360"
+}

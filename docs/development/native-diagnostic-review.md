@@ -119,3 +119,11 @@ launched. B-0043 and the original failed tasks remain open.
 The B-0051 sampler-setting gap remains recorded in its
 [original outcome](../research/native-scope-followup.md). No sampler pass-through,
 server-default change or attribution of failure to temperature is introduced here.
+
+The [first blind operational measurement](../research/native-diagnostic-review.md)
+completed three real model calls but exhausted two acquisitions without a final
+conclusion and did not identify the known defect. The host rejected its partial
+root-cause claim as incorrect. This proves bounded dispatch, preservation and
+authority isolation, not useful model judgment. The inherited exhaustion message
+also conflates the one-Tool response rule with the total read cap; the record
+explains which actually occurred without changing or replaying that result.

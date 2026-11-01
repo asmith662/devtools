@@ -1,10 +1,12 @@
 # Roadmap
 
-Current bounded work: [governed diagnostic review](development/native-diagnostic-review.md)
-reuses the existing review operation for blocked native evidence, with distinct
-authority and no candidate acceptance. The next measurement is one separately
-approved blind B-0050 review after deterministic/protected validation. No further
-coding episode, sampler pass-through, installation or backlog closeout is implied.
+Delivered [governed diagnostic review](development/native-diagnostic-review.md)
+reuses the existing bounded read-only operation with separate authority and no
+candidate acceptance. One [approved blind B-0050 measurement](research/native-diagnostic-review.md)
+made three real calls, exhausted its two-read allowance and produced an incorrect
+partial diagnosis, not a structured conclusion or known-defect discovery. Next is
+budget-aware inspection/finalization through this owner, without automatic retries.
+No coding episode, sampler pass-through, installation or backlog closeout followed.
 
 Executed [B-0050 follow-up B-0051](research/native-scope-followup.md): exact analysis
 identified a second canonical declaration-lookup owner; expanded public acceptance

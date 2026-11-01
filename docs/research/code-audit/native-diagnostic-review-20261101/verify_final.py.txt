@@ -1,0 +1,60 @@
+"""Authenticate published-code equivalence, diagnosis provenance and preservation."""
+import hashlib,json,re,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-diagnostic-review';D=R/'docs/research/code-audit/native-diagnostic-review-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from scripts.validation.evidence import inputs,git
+from scripts.backlog.work import WorkCycle,_load
+from scripts.backlog.intake import _digest
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+auth=read(O/'authentication.json');gate=read(O/'final-protected.json');current=inputs(R);c=WorkCycle(R);reviewer=c.native.diagnostic_reviewer
+assert gate['status']=='passed' and gate['inputs_unchanged'] and current['sha256']==gate['inputs']['sha256']
+def blobs(s):return {line.split('\t',1)[1]:line.split()[1] for line in s.splitlines()}
+now,old=blobs(current['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(now[p]==old[p] for p in current['sha256'])
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists();git(R,'diff','--check');assert not git(R,'diff','--cached','--name-only')
+for p,h in auth['preserved'].items():assert sha(R/p)==h,p
+packet,grant,dispatch,proposal=(reviewer.record('B-0050',n) for n in ('subject','authorization','dispatch','proposal'))
+assert packet['sha256']==read(O/'subject-preview.json')['sha256']==grant['subject_sha256']==proposal['subject_sha256']
+assert grant['sha256']==dispatch['authorization_sha256']==proposal['authorization_sha256'] and dispatch['sha256']==proposal['dispatch_sha256']
+assert proposal['status']=='blocked' and proposal['conclusion'] is None and not proposal['host_approved'] and proposal['reads']==2 and proposal['model_calls']==3
+assert read(O/'operator-approval.json')['user_response']=='+approve' and read(O/'operator-approval.json')['scope_sha256']==read(O/'approval-scope.json')['scope_sha256']
+assert _digest(read(O/'approval-scope.json')['scope'])==read(O/'approval-scope.json')['scope_sha256']
+assert sha(O/'live.py')==read(O/'approval-scope.json')['scope']['driver_sha256']==sha(D/'live.py.txt')
+frames=[]
+for ref in proposal['observations']:
+ p=reviewer.folder('B-0050')/ref['file'];v=_load(p,'backlog-native-observation-v1');assert v['sha256']==ref['sha256'] and p.read_bytes()==(D/'diagnostic-records'/ref['file']).read_bytes();frames.append(v)
+assert sum(v['kind']=='review-model-intent' for v in frames)==3 and sum(v['kind']=='review-model-returned' for v in frames)==3
+assert sum(v['kind']=='review-read-intent' for v in frames)==2 and sum(v['kind']=='review-read-result' for v in frames)==2
+for item in ('B-0049','B-0050','B-0051'):assert c.native.record(item,'result')['disposition']=='BLOCKED'
+assert not (c._folder('B-0050')/'reviewer').exists() and not list(c._folder('B-0050').glob('review-*.json'))
+assert not (R/'.local/backlog/work/B-0052').exists()
+refs={n:h for h,n in (x.split() for x in git(R,'show-ref').splitlines())};exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for h,n in (x.split() for x in auth['refs'].splitlines()):
+ if n not in exceptions:assert refs.get(n)==h,n
+w=git(R,'worktree','list','--porcelain');inspector=next(v for v in w.split('\n\n') if v.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+git(R,'merge-base','--is-ancestor',auth['starting_head'],'HEAD')
+original=set(auth['untracked_at_initial_assignment'].split('\0'))-{''};untracked=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert len(original)==13 and original<=untracked
+allowed={'docs/documentation_map.md','docs/roadmap.md','docs/development/native-independent-review.md','docs/development/native-maintenance-handoff.md','docs/development/native-diagnostic-review.md','docs/research/native-diagnostic-review.md','scripts/backlog/native/cli.py','scripts/backlog/native/lifecycle.py','scripts/backlog/native/review/actor.py','scripts/backlog/native/review/diagnostic.py','tests/scripts/backlog/test_diagnostic.py'}
+def permitted(p):return p in allowed or p.startswith('docs/research/code-audit/native-diagnostic-review-20261101/')
+assert all(permitted(p) for p in git(R,'diff','--name-only',auth['starting_head']).splitlines()) and all(permitted(p) for p in untracked-original)
+rows={}
+for name in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ lines=[line for line in (R/'docs/research/code-audit'/name).read_text(encoding='utf-8').splitlines() if line.strip()]
+ for line in lines:json.loads(line)
+ rows[name]=len(lines)
+assert sum(rows.values())==903
+for p in D.rglob('*.json'):read(p)
+q=c.intake.queue();assert not q['errors']
+links=0
+for p in (R/'docs/development/native-diagnostic-review.md',R/'docs/research/native-diagnostic-review.md',R/'docs/documentation_map.md',R/'docs/roadmap.md'):
+ for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+  relative=target.split('#')[0]
+  if relative and ':' not in relative:assert (p.parent/relative).exists(),(p,target);links+=1
+result={'at':str(Timestamp.now()),'head':current['head'],'tested_executable_commit':gate['inputs']['head'],'matching_protected_inputs_and_git_blobs':len(current['sha256']),'original_historical_hashes_preserved':len(auth['preserved']),'forensic_files_preserved':len(original),'ri_rows':rows,'original_failed_records_unchanged':True,'new_coding_episodes':0,'diagnostic_model_calls':3,'authenticated_diagnostic_observations':len(frames),'admitted_read_operations':2,'extra_read_not_entered':True,'acceptance_unchanged':True,'inspector_registration':inspector,'checkout_owner_absent':True,'links_checked':links,'protected_runs':1,'protected_status':gate['status'],'protected_seconds':gate['seconds']}
+write(TextFile(resolve_path(O/'integrity-final.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+write(TextFile(resolve_path(D/'integrity-final.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+write(BinaryFile(resolve_path(D/'verify_final.py.txt'),Path(__file__).read_bytes()),overwrite=False)
+print(json.dumps(result,indent=2))

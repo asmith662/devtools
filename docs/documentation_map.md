@@ -4,6 +4,9 @@ Native review authority: [acceptance review](development/native-independent-revi
 retains its successful-candidate gate. [Diagnostic review](development/native-diagnostic-review.md)
 investigates authenticated blocked history under separate read-only grants and
 prospective records; its findings cannot enter installation or integration.
+The [blind B-0050 diagnostic measurement](research/native-diagnostic-review.md)
+records three genuine calls, read-budget exhaustion and an incorrect partial claim;
+it does not establish a successful engineering diagnosis.
 
 Current follow-up: [B-0050 analysis and B-0051 native continuation](research/native-scope-followup.md)
 records expanded acceptance and one genuinely approved five-call episode. Two

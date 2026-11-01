@@ -1,0 +1,13 @@
+import json
+from pathlib import Path
+R=Path.cwd();F=R/'.local/backlog/work/B-0050/diagnostic-reviewer'
+for p in sorted(F.glob('observation-*.json')):
+ v=json.loads(p.read_bytes())
+ if v['kind']=='review-model-returned':
+  print(p.name,'usage',v['response']['usage'],'termination',v['response']['termination'])
+  print(json.dumps(v['response']['content'],ensure_ascii=True))
+  print(json.dumps(v['response']['tool_calls'],indent=2))
+ if v['kind']=='review-read-result':
+  d=v['disclosure'];print('DISCLOSED',v['reference'],{k:d.get(k) for k in ('path','version','span','partial','source_length')},'bytes',len(d.get('text','').encode()))
+print('Proposal limits:',{k:v for k,v in json.loads((F/'proposal.json').read_bytes()).items() if k in ('model_calls','reads','status','error')})
+g=json.loads((R/'.local/native-diagnostic-review/final-protected.json').read_bytes());print('Gate:',{k:g.get(k) for k in ('status','seconds','inputs_unchanged')},'head',g['inputs']['head'])

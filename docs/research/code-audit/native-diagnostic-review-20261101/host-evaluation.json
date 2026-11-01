@@ -1,0 +1,78 @@
+{
+  "schema": "native-diagnostic-host-evaluation-v1",
+  "at": "2026-11-01T22:07:58.532141+00:00",
+  "subject_sha256": "bc2c5151a1a595ff404e7a8b7206ad8b970c1c3a9ec9ce827d83461b64906410",
+  "proposal_sha256": "8e97cdaf39c479b3644422512a66ad421337887f9e330658131becb36bc043dd",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "evaluation_kind": "Trusted supervisor evidence assessment only; not a native acceptance decision",
+  "structured_model_conclusion": null,
+  "model_outcome": "Blocked on a third acquisition after two admitted reads; the one-Tool-per-response limit was not violated. The inherited error text conflates these conditions. No additional inference or acquisition was entered.",
+  "known_canonical_issue": {
+    "identified": false,
+    "source_grounded": false,
+    "canonical_dependency_read": false,
+    "comparison_reference": "Predeclared evaluation-plan.json and original sealed B-0050 private outcome; no oracle rerun or disclosure to reviewer"
+  },
+  "partial_claims": [
+    {
+      "response": "observation-0005.json",
+      "claim": "The helper yields pattern/handler names, not ordinary stores or imports.",
+      "rating": "correct observation",
+      "basis": "Matches read:1 and the canonical helper implementation."
+    },
+    {
+      "response": "observation-0005.json",
+      "claim": "Current members.py is post-repair.",
+      "rating": "incorrect, subsequently self-corrected",
+      "basis": "Tools disclose restored baseline; the third response explicitly recognized the baseline identity."
+    },
+    {
+      "response": "observation-0009.json",
+      "claim": "iter_non_name_bindings enters the supplied function root and yields its import alias f.",
+      "rating": "incorrect",
+      "basis": "The disclosed helper initializes pending=[node], skips function/async/class roots, and non_name_binding handles only pattern/handler aliases. Three public authored AST probes return no names. No fixture source or candidate was executed.",
+      "probes": [
+        {
+          "name": "model-unaliased-example",
+          "authored_syntax": "def helper():\n    from .other import f\n",
+          "actual_non_name_bindings": [],
+          "fixture_code_executed": false
+        },
+        {
+          "name": "explicit-alias-control",
+          "authored_syntax": "def helper():\n    from .other import answer as f\n",
+          "actual_non_name_bindings": [],
+          "fixture_code_executed": false
+        },
+        {
+          "name": "local-handler-root-control",
+          "authored_syntax": "def helper():\n    try:\n        pass\n    except Exception as f:\n        pass\n",
+          "actual_non_name_bindings": [],
+          "fixture_code_executed": false
+        }
+      ]
+    },
+    {
+      "response": "observation-0009.json",
+      "claim": "This explains all three public failures for the final candidate.",
+      "rating": "incorrect chronology and unsupported causal claim",
+      "basis": "The early public failures were followed by 61 passing public tests for the final candidate. The known final failure is private and its counterexample remained withheld."
+    }
+  ],
+  "source_efficiency": {
+    "actual_source_bytes": 22875,
+    "baseline_repeat_bytes": 21394,
+    "qualification": "The second disclosure repeats the supplied historical baseline (apart from its first character), while independently confirming current source state. Both requested spans start at Unicode offset 1, not physical line 1."
+  },
+  "useful_for_engineering_diagnosis": false,
+  "useful_for_lifecycle_measurement": true,
+  "unsupported_root_cause_not_accepted": true,
+  "acceptance_installation_integration_authorized": false,
+  "limitations": [
+    "One same-weight fresh session; no general claim about model competence or diversity.",
+    "There was no completed structured conclusion; only actual partial response claims were assessed.",
+    "No Context/output limit or provider failure caused the stop.",
+    "Three model calls with two acquisition slots left no extra call after a third read; increasing only the read allowance would not guarantee a conclusion."
+  ],
+  "next_bounded_improvement": "Make the existing review operation expose remaining acquisition/model-call budgets and an explicit final-conclusion/insufficient-evidence turn; discourage reacquiring an already supplied matching baseline. Preserve limits and do not auto-retry. This will not by itself cure unsupported reasoning."
+}

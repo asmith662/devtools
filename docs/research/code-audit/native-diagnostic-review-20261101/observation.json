@@ -1,0 +1,183 @@
+{
+  "schema": "native-blind-diagnostic-observation-v1",
+  "at": "2026-11-01T22:04:38.721287+00:00",
+  "item": "B-0050",
+  "subject_sha256": "bc2c5151a1a595ff404e7a8b7206ad8b970c1c3a9ec9ce827d83461b64906410",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "original_result_sha256": "d6385d49ae350c29454fbf2b8e687360c85cb0fbcff79f6ea658aa0193a16199",
+  "original_result_disposition": "BLOCKED",
+  "proposal_sha256": "8e97cdaf39c479b3644422512a66ad421337887f9e330658131becb36bc043dd",
+  "proposal_status": "blocked",
+  "conclusion": null,
+  "error": "PermissionError: Review permits one bounded read per response",
+  "attempted_model_calls": 3,
+  "actual_adapter_entries": 3,
+  "actual_returned_interactions": 3,
+  "tool_calls": [
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "native_call_id": "jc3dD3spp86IKnldK3UmRV5ORtSRJABh",
+      "arguments": {
+        "path": "src/devtools/context/python/modules/bindings.py",
+        "start": 1
+      }
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "native_call_id": "TPm7AkrkxAeuKBm1ZWpfeXfcsarWJLue",
+      "arguments": {
+        "path": "src/devtools/context/python/imports/members.py",
+        "start": 1
+      }
+    },
+    {
+      "model_call": 3,
+      "name": "read_source",
+      "native_call_id": "RMFVzkAzqIHbwdJMGIzMMOWAVRlSU7eN",
+      "arguments": {
+        "path": "tests/context/python/imports/test_members.py",
+        "start": 1,
+        "end": 4000
+      }
+    }
+  ],
+  "source_disclosures": 2,
+  "source_bytes_delivered": 22875,
+  "metadata_operations": 0,
+  "complete_host_request_bytes": [
+    75320,
+    78119,
+    103456
+  ],
+  "usage_totals": {
+    "input_tokens": 66492,
+    "output_tokens": 620,
+    "unreported_usage_responses": 0,
+    "qualification": "Cumulative observed usage, not unique source tokens or uncached prefill."
+  },
+  "per_call_usage": [
+    {
+      "input_tokens": 19809,
+      "output_tokens": 87,
+      "total_tokens": 19896,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 20525,
+      "output_tokens": 139,
+      "total_tokens": 20664,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 26158,
+      "output_tokens": 394,
+      "total_tokens": 26552,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    }
+  ],
+  "native_seconds": 68.634216,
+  "driver_seconds": 69.990751,
+  "adapter_seconds": 62.907818000000006,
+  "native_capture_bytes": 290682,
+  "support_bytes": 2839,
+  "blind_private_implementation_withheld": true,
+  "worker_conversation_not_inherited": true,
+  "acceptance_refused": true,
+  "host_usefulness_evaluation": "Separate host-only assessment, no candidate acceptance",
+  "installation_authorized": false,
+  "integration_plan": null,
+  "provider_after": {
+    "health": {
+      "status": "ok"
+    },
+    "slots": [
+      {
+        "id": 0,
+        "n_ctx": 65536,
+        "speculative": false,
+        "is_processing": false,
+        "id_task": 4258,
+        "n_prompt_tokens": 26551,
+        "n_prompt_tokens_processed": 0,
+        "n_prompt_tokens_cache": 0,
+        "params": {
+          "seed": 4294967295,
+          "temperature": 1.0,
+          "dynatemp_range": 0.0,
+          "dynatemp_exponent": 1.0,
+          "top_k": 20,
+          "top_p": 0.949999988079071,
+          "min_p": 0.05000000074505806,
+          "top_n_sigma": -1.0,
+          "xtc_probability": 0.0,
+          "xtc_threshold": 0.10000000149011612,
+          "typical_p": 1.0,
+          "repeat_last_n": 64,
+          "repeat_penalty": 1.0,
+          "presence_penalty": 0.0,
+          "frequency_penalty": 0.0,
+          "dry_multiplier": 0.0,
+          "dry_base": 1.75,
+          "dry_allowed_length": 2,
+          "dry_penalty_last_n": 64,
+          "mirostat": 0,
+          "mirostat_tau": 5.0,
+          "mirostat_eta": 0.10000000149011612,
+          "adaptive_target": -1.0,
+          "adaptive_decay": 0.8999999761581421,
+          "max_tokens": 2048,
+          "n_predict": 2048,
+          "n_keep": 0,
+          "n_discard": 0,
+          "ignore_eos": false,
+          "stream": false,
+          "n_probs": 0,
+          "min_keep": 0,
+          "chat_format": "peg-native",
+          "reasoning_format": "deepseek",
+          "reasoning_in_content": false,
+          "generation_prompt": "<|im_start|>assistant\n<think>\n\n</think>\n\n",
+          "samplers": [
+            "penalties",
+            "dry",
+            "top_n_sigma",
+            "top_k",
+            "typ_p",
+            "top_p",
+            "min_p",
+            "xtc",
+            "temperature"
+          ],
+          "speculative.types": "none",
+          "timings_per_token": false,
+          "post_sampling_probs": false,
+          "backend_sampling": false,
+          "lora": []
+        },
+        "next_token": [
+          {
+            "has_next_token": false,
+            "has_new_line": false,
+            "n_remain": -1,
+            "n_decoded": 0
+          }
+        ]
+      }
+    ],
+    "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+    "image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "oom_killed": false,
+    "service_mutated": false
+  },
+  "new_comprehensive_runs": 1,
+  "new_coding_episodes": 0,
+  "no_replay": true
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "review-model-returned",
+  "at": "2026-11-01T22:03:35.290575+00:00",
+  "response": {
+    "content": "I'll investigate this candidate independently. Let me start by examining the current source of the key dependency, `bindings.py`, to understand `iter_non_name_bindings`, which is central to the competing-binding detection logic.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/blind-diagnostic-B0050-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 19809,
+      "output_tokens": 87,
+      "total_tokens": 19896,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":1}",
+        "provider_call_id": "jc3dD3spp86IKnldK3UmRV5ORtSRJABh"
+      }
+    ]
+  },
+  "sha256": "90064ca16750eb8a99597315d5d788c53ab74b27b3c4fed23fe4e76e2f2cd0da"
+}
