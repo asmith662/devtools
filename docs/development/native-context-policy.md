@@ -72,7 +72,7 @@ does not permit larger edits.
 A provider qualified for 32K can use a separately approved 32K-token reservation
 with the same larger byte ceiling when measured requests fit. The
 [frozen-envelope measurement](../research/native-context-capacity.md) demonstrates
-69,214 bytes and 16,961 actual input tokens on the restored server. The larger
+69,214 bytes and 17,023 actual input tokens on the restored server. The larger
 byte profile is useful independently of completing the 64K operational target.
 
 The existing capture budget remains explicit and finite (at most 1 MiB), includes
@@ -190,3 +190,9 @@ Scripted responses prove framework mechanics, not local model competence.
 The protected publication policy remains 100% configured production line/branch
 coverage. Focused passes and authenticated old coverage do not replace that gate.
 Final receipt and executable identities are recorded in the delivery assessment.
+
+
+Protected delivery: executable `2c0be91335512a3db2600dd0fafb2a690cd59355`,
+4,081 passed/two optional skips, 100% configured production line/branch coverage,
+one comprehensive execution. [Qualified measurements and final evidence](../research/native-context-capacity.md#protected-delivery)
+preserve focused failures, drift and operational qualification limits separately.

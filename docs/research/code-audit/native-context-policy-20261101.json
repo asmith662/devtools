@@ -1,0 +1,978 @@
+{
+  "at": "2026-11-01T05:49:37.481634+00:00",
+  "scope": "Explicit native Context profile, deterministic projection, token/byte distinction, pressure and existing source navigation; no new coding/reviewer loop or live coding task",
+  "starting_main": "41303319c93c8dc1605207a171dc3ea551b1c2a6",
+  "tested_executable_commit": "2c0be91335512a3db2600dd0fafb2a690cd59355",
+  "implementation_files": [
+    "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+    "docs/development/native-maintenance-handoff.md",
+    "docs/documentation_map.md",
+    "docs/roadmap.md",
+    "docs/development/native-context-policy.md",
+    "docs/research/native-context-capacity.md",
+    "scripts/backlog/native/execution.py",
+    "scripts/backlog/native/lifecycle.py",
+    "scripts/backlog/native/packet.py",
+    "src/devtools/agents/coding/capacity.py",
+    "src/devtools/agents/coding/docs/overview.md",
+    "src/devtools/agents/coding/repository.py",
+    "tests/agents/coding/test_capacity.py",
+    "tests/scripts/backlog/test_native.py",
+    "tests/scripts/backlog/test_native_context.py"
+  ],
+  "provider_trial": {
+    "approval": "User +approve after exact coordinated 64K trial question; 3 neutral calls, <=63000 input tokens/128 output each, 600 seconds; restore 32K. No task inference.",
+    "started": "2026-11-01T03:13:20.857546+00:00",
+    "terminal": "PersistentQwenServiceError: Persistent Qwen service did not become ready within the configured timeout.",
+    "ready_at_64k": false,
+    "live_inference_probes_entered": 0,
+    "restoration": {
+      "at": "2026-11-01T04:43:28.016469+00:00",
+      "same_original_configuration": {
+        "Cmd": true,
+        "Image": true,
+        "Labels": true,
+        "Env": true,
+        "image_id": true,
+        "mounts": true,
+        "ports": true
+      },
+      "status": "READY",
+      "container": "723f6596044c52021beed7b764ffffbd419c0f2ee6719f25250366065bf2888b",
+      "gpu": "name, memory.total [MiB], memory.used [MiB], memory.free [MiB]\r\nNVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 13978 MiB, 2073 MiB\r\n",
+      "no_inference_probes_entered": true,
+      "trial_timeout_seconds": 180,
+      "restoration_initial_wait_timeout_seconds": 180,
+      "restoration_later_ready": true
+    },
+    "original_profile": {
+      "model": {
+        "repository": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "16b6ae91d7429915de9e9a1c859c604731c78088",
+        "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf"
+      },
+      "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "quant": "Unsloth Dynamic IQ4_XS",
+      "context_size": 32768,
+      "n_cpu_ffn": 0,
+      "gpu_layers": "all",
+      "flash_attention": "on",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "parallel_sequences": 1,
+      "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+    },
+    "known_limit": "Startup timeout also occurred at the restored 32K configuration; no causal OOM or 64K allocation/performance conclusion",
+    "local_receipt_sha256": {
+      "service-trial.json": "8f09098821c8aaf84e064f164fff05a749e02a09ac0b944a64326e624e5233ac",
+      "service-original-inspect.json": "22e0da4765df3cada5f440cd04251dfc5b68a351933e7a6f39a007c7ef020e56",
+      "service-restoration.json": "54530330e4f40d50a8bb1111908a3b1a7eeb159bb3ee693205e316c135e84e3b",
+      "service-restored.log": "5cf8d6323637dbfb2cd59a83b9db3d5df91c81e1b9f1b3d553bc9f3664932ebc",
+      "service_trial.py": "49b779f14696266309f4220f8ce73df05b9b0e59c7107336ef4c2a1688f33864"
+    },
+    "before_gpu": "name, memory.total [MiB], memory.used [MiB], memory.free [MiB]\r\nNVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB, 13998 MiB, 2053 MiB\r\n",
+    "host_ram_preflight": {
+      "total_visible_KiB": 33271672,
+      "free_physical_KiB": 4652484,
+      "qualification": "Read-only Windows Get-CimInstance point-in-time preflight; not a reservation"
+    },
+    "original_configuration": {
+      "container_id": "61a6a7f977910ce5f7c03e6f1d33f19c51e6e7ea1cc1ae065941183cced85348",
+      "image_id": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "command": [
+        "--model",
+        "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8080",
+        "--alias",
+        "qwen38-local",
+        "--ctx-size",
+        "32768",
+        "--n-gpu-layers",
+        "all",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q4_0",
+        "--cache-type-v",
+        "q4_0",
+        "--parallel",
+        "1"
+      ],
+      "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "labels": {
+        "devtools.qwen.host-port": "8080",
+        "devtools.qwen.persistent-service": "qwen38-llama-cpp",
+        "devtools.qwen.profile-sha256": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+        "maintainer": "NVIDIA CORPORATION <cudatools@nvidia.com>",
+        "org.opencontainers.image.created": "2026-09-09T04:31:24Z",
+        "org.opencontainers.image.description": "LLM inference in C/C++",
+        "org.opencontainers.image.ref.name": "ubuntu",
+        "org.opencontainers.image.revision": "304665fe7ac957df95e3ff8c8c4ffdf92dd6ffa3",
+        "org.opencontainers.image.source": "https://github.com/ggml-org/llama.cpp",
+        "org.opencontainers.image.title": "llama.cpp",
+        "org.opencontainers.image.url": "https://github.com/ggml-org/llama.cpp",
+        "org.opencontainers.image.version": "b10868"
+      },
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--unsloth--Qwen3.8-27B-GGUF\\blobs\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+          "Destination": "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "port_bindings": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8080"
+          }
+        ]
+      },
+      "environment_sha256": "b381dc09bb42127130fd6e3e1f01e8bbeca030da08ab1ea0fd7a7d7fe8e8f3c5"
+    },
+    "inference_sampling_qualification": "No sampling performance or quality qualification: no inference probe entered. Native portable settings and server sampling defaults were not changed."
+  },
+  "authenticated_frozen_measurement": {
+    "kind": "scripted host continuation with read-only installed tokenizer; no acting-model inference/WorkCycle dispatch",
+    "qualified_server_context_tokens": 32768,
+    "request_bytes": [
+      5053,
+      30347,
+      69214
+    ],
+    "pressure": [
+      {
+        "original_bytes": 4276,
+        "request_bytes": 5053,
+        "ceiling_bytes": 131072,
+        "warning_bytes": 98304,
+        "warning": false,
+        "policy": "deterministic",
+        "action": "ready",
+        "measured_input_tokens": 1501,
+        "token_capacity": {
+          "context_tokens": 32768,
+          "input_tokens": 29696,
+          "reserved_output_tokens": 2048
+        }
+      },
+      {
+        "original_bytes": 29153,
+        "request_bytes": 30347,
+        "ceiling_bytes": 131072,
+        "warning_bytes": 98304,
+        "warning": false,
+        "policy": "deterministic",
+        "action": "ready",
+        "measured_input_tokens": 7235,
+        "token_capacity": {
+          "context_tokens": 32768,
+          "input_tokens": 29696,
+          "reserved_output_tokens": 2048
+        }
+      },
+      {
+        "original_bytes": 67289,
+        "request_bytes": 69214,
+        "ceiling_bytes": 131072,
+        "warning_bytes": 98304,
+        "warning": false,
+        "policy": "deterministic",
+        "action": "ready",
+        "measured_input_tokens": 17023,
+        "token_capacity": {
+          "context_tokens": 32768,
+          "input_tokens": 29696,
+          "reserved_output_tokens": 2048
+        }
+      }
+    ],
+    "source_payload_bytes": 51544,
+    "source_reads": 4,
+    "scripted_calls": 3,
+    "live_inference_calls": 0,
+    "token_measurements": 3,
+    "duplicate_acquisitions": 0,
+    "request_payloads_sha256": "00ee20446288eb6e945e5440297ed6e6d2e79c758b6b320ac84a936e8a6538a4",
+    "source_fixture_sha256": "02c8cc3e36aa759c7ac6d58e6ec9f6df2c0b6f6834a93ba5d56a8e60cf58b5b4",
+    "snapshot": "5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1",
+    "source_versions": {
+      "src/devtools/context/python/imports/members.py": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+      "src/devtools/context/python/modules/bindings.py": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+      "tests/context/python/imports/test_members.py": "01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe",
+      "tests/live_native_facade_public.py": "2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0"
+    },
+    "request_archive_physical_sha256": "597a14272ccb283904f5db02e028f7d939421a185823352f88528e31b7b437d0",
+    "request_payloads_sha256_qualification": "Canonical LF JSON array, ensure_ascii=False, indent=2 and trailing LF; physical Windows archive hash recorded separately"
+  },
+  "authenticated_tokenizer_requests": [
+    {
+      "prompt": {
+        "content": "",
+        "role": "messages",
+        "messages": [
+          {
+            "role": "user",
+            "content": "B-0049 approved residual only: repair a valid direct module facade reexport being refused merely because an unrelated function, async-function or class namespace imports the same local name. Preserve exact implementation target and provenance. Preserve conservative module-level conditional/try/star imports, genuine competing module bindings, aliases, ordinary assignments, pattern/handler guards and existing regressions. Do not execute fixture source or broaden supported Python semantics. Inspect the complete current implementation through read_source before proposing a minimal grounded edit. Only the authorized existing implementation file may change. Public checks include new local-namespace regressions plus the maintained imported-member suite. Hidden independent behavioral checks remain private.",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"repository_id\": \"a1d0be0e-60d3-47aa-a181-4d7d27ed87f4\", \"snapshot_id\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/context/python/imports/members.py\", \"content_identity\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"byte_size\": 21395, \"editable\": true}, {\"address\": \"src/devtools/context/python/modules/bindings.py\", \"content_identity\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"byte_size\": 1482, \"editable\": false}, {\"address\": \"tests/context/python/imports/test_members.py\", \"content_identity\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"byte_size\": 26021, \"editable\": false}, {\"address\": \"tests/live_native_facade_public.py\", \"content_identity\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"byte_size\": 2646, \"editable\": false}]}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": null, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          }
+        ]
+      },
+      "settings": {
+        "maximum_output_tokens": 2048,
+        "thinking_enabled": false
+      },
+      "conversation": null,
+      "provider_settings": null,
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        },
+        {
+          "name": "find_source",
+          "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+        },
+        {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+        }
+      ]
+    },
+    {
+      "prompt": {
+        "content": "",
+        "role": "messages",
+        "messages": [
+          {
+            "role": "user",
+            "content": "B-0049 approved residual only: repair a valid direct module facade reexport being refused merely because an unrelated function, async-function or class namespace imports the same local name. Preserve exact implementation target and provenance. Preserve conservative module-level conditional/try/star imports, genuine competing module bindings, aliases, ordinary assignments, pattern/handler guards and existing regressions. Do not execute fixture source or broaden supported Python semantics. Inspect the complete current implementation through read_source before proposing a minimal grounded edit. Only the authorized existing implementation file may change. Public checks include new local-namespace regressions plus the maintained imported-member suite. Hidden independent behavioral checks remain private.",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"repository_id\": \"a1d0be0e-60d3-47aa-a181-4d7d27ed87f4\", \"snapshot_id\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/context/python/imports/members.py\", \"content_identity\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"byte_size\": 21395, \"editable\": true}, {\"address\": \"src/devtools/context/python/modules/bindings.py\", \"content_identity\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"byte_size\": 1482, \"editable\": false}, {\"address\": \"tests/context/python/imports/test_members.py\", \"content_identity\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"byte_size\": 26021, \"editable\": false}, {\"address\": \"tests/live_native_facade_public.py\", \"content_identity\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"byte_size\": 2646, \"editable\": false}]}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "literal",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"src/devtools/context/python/imports/members.py\",\"start\":0}",
+                "provider_call_id": "D9hz6zY3oJNPQHKzLY6srf0l2MZfuYbM"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"source_length\": 21395, \"valid_range\": [0, 21395], \"maximum_bytes\": 32768, \"continuation_start\": 21395, \"remaining_range\": [21395, 21395], \"text\": \"# Copyright (c) 2026\\r\\n\\\"\\\"\\\"One-facade resolution of imported members to direct Python functions.\\\"\\\"\\\"\\r\\n\\r\\nfrom __future__ import annotations\\r\\n\\r\\nimport ast\\r\\nimport hashlib\\r\\nfrom dataclasses import dataclass\\r\\nfrom enum import Enum\\r\\nfrom typing import TYPE_CHECKING, ClassVar, cast\\r\\n\\r\\nfrom devtools.context.python.imports.declarations import (\\r\\n    PythonImportDeclarationAnalysis,\\r\\n    PythonImportDeclarationKnowledge,\\r\\n    derive_python_import_declarations,\\r\\n)\\r\\nfrom devtools.context.python.imports.resolution import (\\r\\n    PythonImportResolution,\\r\\n    PythonImportResolutionOutcome,\\r\\n    resolve_python_import_declaration,\\r\\n)\\r\\nfrom devtools.context.python.modules.bindings import iter_non_name_bindings\\r\\nfrom devtools.context.python.modules.declarations import (\\r\\n    PythonModuleDeclarationLookupOutcome,\\r\\n    lookup_python_module_declaration,\\r\\n)\\r\\n\\r\\nif TYPE_CHECKING:\\r\\n    from collections.abc import Sequence\\r\\n\\r\\n    from devtools.context.python.function.declarations import (\\r\\n        PythonFunctionDeclarationAnalysis,\\r\\n        PythonFunctionDeclarationKnowledge,\\r\\n    )\\r\\n    from devtools.context.python.modules.interpretation import (\\r\\n        PythonModuleInterpretation,\\r\\n        PythonModuleInterpretationUniverse,\\r\\n    )\\r\\n    from devtools.context.repository.resource import RepositoryResourceAddress\\r\\n    from devtools.context.repository.snapshot import (\\r\\n        RepositorySnapshot,\\r\\n        RepositorySnapshotId,\\r\\n    )\\r\\n\\r\\n_SEMANTICS = \\\"one-facade-python-imported-member-function-resolution-v1\\\"\\r\\n\\r\\n\\r\\nclass PythonImportedMemberResolutionOutcome(Enum):\\r\\n    \\\"\\\"\\\"Classify one bounded imported-member resolution.\\\"\\\"\\\"\\r\\n\\r\\n    RESOLVED = \\\"resolved\\\"\\r\\n    UNRESOLVED_IN_UNIVERSE = \\\"unresolved-in-universe\\\"\\r\\n    AMBIGUOUS = \\\"ambiguous\\\"\\r\\n    UNSUPPORTED = \\\"unsupported\\\"\\r\\n\\r\\n\\r\\nclass PythonImportedMemberUnsupportedReason(Enum):\\r\\n    \\\"\\\"\\\"Explain why relevant syntax is outside the bounded proposition.\\\"\\\"\\\"\\r\\n\\r\\n    SOURCE_NOT_IMPORTED_MEMBER = \\\"source-not-imported-member\\\"\\r\\n    SOURCE_STAR_IMPORT = \\\"source-star-import\\\"\\r\\n    SOURCE_MODULE_RESOLUTION = \\\"source-module-resolution-unsupported\\\"\\r\\n    FACADE_STAR_IMPORT = \\\"facade-star-import\\\"\\r\\n    NESTED_FACADE_IMPORT = \\\"nested-facade-import\\\"\\r\\n    COMPETING_FACADE_BINDING = \\\"competing-facade-direct-binding\\\"\\r\\n    FACADE_MODULE_RESOLUTION = \\\"facade-module-resolution-unsupported\\\"\\r\\n\\r\\n\\r\\nclass PythonFacadeCompetingBindingKind(Enum):\\r\\n    \\\"\\\"\\\"Identify the bounded module-scope binding forms checked by this slice.\\\"\\\"\\\"\\r\\n\\r\\n    IMPORT = \\\"import\\\"\\r\\n    FUNCTION = \\\"function\\\"\\r\\n    CLASS = \\\"class\\\"\\r\\n    ASSIGNMENT = \\\"assignment\\\"\\r\\n    PATTERN_OR_HANDLER = \\\"pattern-or-handler\\\"\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonFacadeBindingSourceOccurrence:\\r\\n    \\\"\\\"\\\"Anchor one competing direct facade binding in observed source.\\\"\\\"\\\"\\r\\n\\r\\n    snapshot_id: RepositorySnapshotId\\r\\n    resource_address: RepositoryResourceAddress\\r\\n    start_line: int\\r\\n    start_column_utf8: int\\r\\n    end_line: int\\r\\n    end_column_utf8: int\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonFacadeCompetingBinding:\\r\\n    \\\"\\\"\\\"Retain one observed direct facade binding that excludes resolution.\\\"\\\"\\\"\\r\\n\\r\\n    name: str\\r\\n    kind: PythonFacadeCompetingBindingKind\\r\\n    support: PythonFacadeBindingSourceOccurrence\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonImportedMemberResolution:\\r\\n    \\\"\\\"\\\"Retain the complete bounded source-to-facade-to-function derivation.\\\"\\\"\\\"\\r\\n\\r\\n    source_analysis: PythonImportDeclarationAnalysis\\r\\n    source_declaration: PythonImportDeclarationKnowledge\\r\\n    module_universe: PythonModuleInterpretationUniverse\\r\\n    outcome: PythonImportedMemberResolutionOutcome\\r\\n    source_module_resolution: PythonImportResolution | None\\r\\n    facade: PythonModuleInterpretation | None\\r\\n    facade_analysis: PythonImportDeclarationAnalysis | None\\r\\n    facade_bindings: tuple[PythonImportDeclarationKnowledge, ...]\\r\\n    competing_facade_bindings: tuple[PythonFacadeCompetingBinding, ...]\\r\\n    facade_module_resolution: PythonImportResolution | None\\r\\n    target: PythonModuleInterpretation | None\\r\\n    target_function_analysis: PythonFunctionDeclarationAnalysis | None\\r\\n    target_declarations: tuple[PythonFunctionDeclarationKnowledge, ...]\\r\\n    unsupported_reason: PythonImportedMemberUnsupportedReason | None\\r\\n\\r\\n    SEMANTICS: ClassVar[str] = _SEMANTICS\\r\\n\\r\\n    @property\\r\\n    def identity(self) -> str:\\r\\n        \\\"\\\"\\\"Identify the result without making universe input order semantic.\\\"\\\"\\\"\\r\\n        return _digest(\\r\\n            self.SEMANTICS,\\r\\n            self.source_declaration.derivation_identity,\\r\\n            str(self.source_declaration.declaration_ordinal),\\r\\n            self.module_universe.identity,\\r\\n            self.outcome.value,\\r\\n            self.facade.identity if self.facade is not None else \\\"\\\",\\r\\n            *(\\r\\n                sorted(\\r\\n                    item.derivation_identity + \\\":\\\" + str(item.declaration_ordinal)\\r\\n                    for item in self.facade_bindings\\r\\n                )\\r\\n            ),\\r\\n            self.target.identity if self.target is not None else \\\"\\\",\\r\\n            *(sorted(item.identity for item in self.target_declarations)),\\r\\n            (\\r\\n                self.unsupported_reason.value\\r\\n                if self.unsupported_reason is not None\\r\\n                else \\\"\\\"\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    @property\\r\\n    def target_declaration(self) -> PythonFunctionDeclarationKnowledge | None:\\r\\n        \\\"\\\"\\\"Return the unique target declaration only for a resolved result.\\\"\\\"\\\"\\r\\n        if self.outcome is not PythonImportedMemberResolutionOutcome.RESOLVED:\\r\\n            return None\\r\\n        return self.target_declarations[0]\\r\\n\\r\\n\\r\\ndef resolve_python_imported_member(  # noqa: PLR0911\\r\\n    snapshot: RepositorySnapshot,\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    *,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    source_interpretations: Sequence[PythonModuleInterpretation] = (),\\r\\n) -> PythonImportedMemberResolution:\\r\\n    \\\"\\\"\\\"Resolve one direct imported member through exactly one facade binding.\\r\\n\\r\\n    This performs no runtime import execution, submodule fallback, recursive\\r\\n    facade traversal, later-use resolution, or public-export analysis.\\r\\n    \\\"\\\"\\\"\\r\\n    _validate_inputs(\\r\\n        snapshot=snapshot,\\r\\n        source_analysis=source_analysis,\\r\\n        source_declaration=source_declaration,\\r\\n        module_universe=module_universe,\\r\\n        source_interpretations=source_interpretations,\\r\\n    )\\r\\n    unsupported_source = {\\r\\n        None: PythonImportedMemberUnsupportedReason.SOURCE_NOT_IMPORTED_MEMBER,\\r\\n        \\\"*\\\": PythonImportedMemberUnsupportedReason.SOURCE_STAR_IMPORT,\\r\\n    }.get(source_declaration.imported_name)\\r\\n    if unsupported_source is not None:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            unsupported_reason=unsupported_source,\\r\\n        )\\r\\n\\r\\n    source_resolution = resolve_python_import_declaration(\\r\\n        source_analysis,\\r\\n        source_declaration,\\r\\n        target_universe=module_universe,\\r\\n        source_interpretations=source_interpretations,\\r\\n    )\\r\\n    if source_resolution.outcome is not PythonImportResolutionOutcome.RESOLVED:\\r\\n        outcome = _import_outcome(source_resolution.outcome)\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            outcome,\\r\\n            source_module_resolution=source_resolution,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.SOURCE_MODULE_RESOLUTION\\r\\n                if outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n                else None\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    facade = source_resolution.matches[0]\\r\\n    facade_analysis = derive_python_import_declarations(\\r\\n        snapshot,\\r\\n        resource_address=facade.resource.address,\\r\\n    )\\r\\n    requested_name = cast(\\\"str\\\", source_declaration.imported_name)\\r\\n    facade_bindings = tuple(\\r\\n        declaration\\r\\n        for declaration in facade_analysis.declarations\\r\\n        if declaration.imported_name not in {None, \\\"*\\\"}\\r\\n        and (declaration.local_alias or declaration.imported_name) == requested_name\\r\\n    )\\r\\n    syntax = _inspect_facade_bindings(\\r\\n        snapshot=snapshot,\\r\\n        facade=facade,\\r\\n        requested_name=requested_name,\\r\\n    )\\r\\n    if syntax.star_import:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=PythonImportedMemberUnsupportedReason.FACADE_STAR_IMPORT,\\r\\n        )\\r\\n    if syntax.nested_import:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=PythonImportedMemberUnsupportedReason.NESTED_FACADE_IMPORT,\\r\\n        )\\r\\n    if syntax.competing:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.COMPETING_FACADE_BINDING\\r\\n            ),\\r\\n        )\\r\\n    if not facade_bindings:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n        )\\r\\n    if len(facade_bindings) > 1:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.AMBIGUOUS,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n        )\\r\\n\\r\\n    # A single import must also survive canonical namespace uncertainty checks.\\r\\n    # NOT_DECLARATION is expected for that import; ambiguity is not absence.\\r\\n    facade_lookup = lookup_python_module_declaration(\\r\\n        snapshot,\\r\\n        module=facade,\\r\\n        declared_name=requested_name,\\r\\n    )\\r\\n    if (\\r\\n        facade_lookup.outcome\\r\\n        is not PythonModuleDeclarationLookupOutcome.NOT_DECLARATION\\r\\n    ):\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.AMBIGUOUS,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n        )\\r\\n\\r\\n    facade_binding = facade_bindings[0]\\r\\n    facade_resolution = resolve_python_import_declaration(\\r\\n        facade_analysis,\\r\\n        facade_binding,\\r\\n        target_universe=module_universe,\\r\\n        source_interpretations=(facade,),\\r\\n    )\\r\\n    if facade_resolution.outcome is not PythonImportResolutionOutcome.RESOLVED:\\r\\n        outcome = _import_outcome(facade_resolution.outcome)\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            outcome,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            facade_module_resolution=facade_resolution,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.FACADE_MODULE_RESOLUTION\\r\\n                if outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n                else None\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    target = facade_resolution.matches[0]\\r\\n    target_lookup = lookup_python_module_declaration(\\r\\n        snapshot,\\r\\n        module=target,\\r\\n        declared_name=cast(\\\"str\\\", facade_binding.imported_name),\\r\\n    )\\r\\n    target_analysis = target_lookup.function_analysis\\r\\n    target_declarations = tuple(\\r\\n        declaration\\r\\n        for declaration in target_analysis.declarations\\r\\n        if declaration.declared_name == facade_binding.imported_name\\r\\n    )\\r\\n    outcome = (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n        if not target_declarations\\r\\n        else PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n        if target_lookup.outcome is PythonModuleDeclarationLookupOutcome.RESOLVED\\r\\n        else PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    )\\r\\n    return _result(\\r\\n        source_analysis,\\r\\n        source_declaration,\\r\\n        module_universe,\\r\\n        outcome,\\r\\n        source_module_resolution=source_resolution,\\r\\n        facade=facade,\\r\\n        facade_analysis=facade_analysis,\\r\\n        facade_bindings=facade_bindings,\\r\\n        facade_module_resolution=facade_resolution,\\r\\n        target=target,\\r\\n        target_function_analysis=target_analysis,\\r\\n        target_declarations=target_declarations,\\r\\n    )\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass _FacadeSyntax:\\r\\n    star_import: bool\\r\\n    nested_import: bool\\r\\n    competing: tuple[PythonFacadeCompetingBinding, ...]\\r\\n\\r\\n\\r\\ndef _inspect_facade_bindings(\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    facade: PythonModuleInterpretation,\\r\\n    requested_name: str,\\r\\n) -> _FacadeSyntax:\\r\\n    tree = ast.parse(facade.resource.content, filename=str(facade.resource.address))\\r\\n    competing: list[PythonFacadeCompetingBinding] = []\\r\\n    star_import = False\\r\\n    nested_import = False\\r\\n    for node in tree.body:\\r\\n        support = _support(snapshot, facade, node)\\r\\n        if isinstance(node, ast.ImportFrom):\\r\\n            star_import = star_import or any(alias.name == \\\"*\\\" for alias in node.names)\\r\\n        else:\\r\\n            kind = _direct_competing_kind(node, requested_name)\\r\\n            if kind is not None:\\r\\n                competing.append(\\r\\n                    PythonFacadeCompetingBinding(\\r\\n                        name=requested_name,\\r\\n                        kind=kind,\\r\\n                        support=support,\\r\\n                    ),\\r\\n                )\\r\\n        if requested_name in iter_non_name_bindings(node):\\r\\n            competing.append(\\r\\n                PythonFacadeCompetingBinding(\\r\\n                    name=requested_name,\\r\\n                    kind=PythonFacadeCompetingBindingKind.PATTERN_OR_HANDLER,\\r\\n                    support=support,\\r\\n                ),\\r\\n            )\\r\\n        nested_import = nested_import or _contains_nested_import(node, requested_name)\\r\\n    return _FacadeSyntax(\\r\\n        star_import=star_import,\\r\\n        nested_import=nested_import,\\r\\n        competing=tuple(competing),\\r\\n    )\\r\\n\\r\\n\\r\\ndef _direct_competing_kind(\\r\\n    node: ast.stmt,\\r\\n    requested_name: str,\\r\\n) -> PythonFacadeCompetingBindingKind | None:\\r\\n    if isinstance(node, ast.Import):\\r\\n        if any(\\r\\n            (alias.asname or alias.name.split(\\\".\\\", 1)[0]) == requested_name\\r\\n            for alias in node.names\\r\\n        ):\\r\\n            return PythonFacadeCompetingBindingKind.IMPORT\\r\\n    elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):\\r\\n        if node.name == requested_name:\\r\\n            return PythonFacadeCompetingBindingKind.FUNCTION\\r\\n    elif isinstance(node, ast.ClassDef):\\r\\n        if node.name == requested_name:\\r\\n            return PythonFacadeCompetingBindingKind.CLASS\\r\\n    elif isinstance(node, (ast.Assign, ast.AnnAssign, ast.AugAssign)):\\r\\n        targets = node.targets if isinstance(node, ast.Assign) else (node.target,)\\r\\n        if any(_binds_name(target, requested_name) for target in targets):\\r\\n            return PythonFacadeCompetingBindingKind.ASSIGNMENT\\r\\n    return None\\r\\n\\r\\n\\r\\ndef _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\r\\n    return any(\\r\\n        nested is not node\\r\\n        and isinstance(nested, ast.ImportFrom)\\r\\n        and any(\\r\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\r\\n            for alias in nested.names\\r\\n        )\\r\\n        for nested in ast.walk(node)\\r\\n    )\\r\\n\\r\\n\\r\\ndef _binds_name(target: ast.expr, requested_name: str) -> bool:\\r\\n    if isinstance(target, ast.Name):\\r\\n        return target.id == requested_name\\r\\n    if isinstance(target, (ast.Tuple, ast.List)):\\r\\n        return any(_binds_name(item, requested_name) for item in target.elts)\\r\\n    return False\\r\\n\\r\\n\\r\\ndef _support(\\r\\n    snapshot: RepositorySnapshot,\\r\\n    facade: PythonModuleInterpretation,\\r\\n    node: ast.stmt,\\r\\n) -> PythonFacadeBindingSourceOccurrence:\\r\\n    return PythonFacadeBindingSourceOccurrence(\\r\\n        snapshot_id=snapshot.id,\\r\\n        resource_address=facade.resource.address,\\r\\n        start_line=node.lineno,\\r\\n        start_column_utf8=node.col_offset,\\r\\n        end_line=cast(\\\"int\\\", node.end_lineno),\\r\\n        end_column_utf8=cast(\\\"int\\\", node.end_col_offset),\\r\\n    )\\r\\n\\r\\n\\r\\ndef _validate_inputs(\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    source_interpretations: Sequence[PythonModuleInterpretation],\\r\\n) -> None:\\r\\n    if source_declaration not in source_analysis.declarations:\\r\\n        msg = \\\"Imported-member declaration does not belong to source analysis.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if (\\r\\n        source_analysis.repository_id != snapshot.repository_id\\r\\n        or source_analysis.snapshot_id != snapshot.id\\r\\n        or source_analysis.resource\\r\\n        != snapshot.resource_at(source_analysis.resource.address)\\r\\n    ):\\r\\n        msg = \\\"Imported-member source analysis does not match snapshot.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if module_universe.repository_id != snapshot.repository_id:\\r\\n        msg = \\\"Imported-member module universe does not match snapshot repository.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if any(\\r\\n        item.snapshot_id != snapshot.id\\r\\n        or item.resource != snapshot.resource_at(item.resource.address)\\r\\n        for item in module_universe.interpretations\\r\\n    ):\\r\\n        msg = \\\"Imported-member module universe contains another snapshot state.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if any(item.snapshot_id != snapshot.id for item in source_interpretations):\\r\\n        msg = \\\"Imported-member source interpretation contains another snapshot state.\\\"\\r\\n        raise ValueError(msg)\\r\\n\\r\\n\\r\\ndef _import_outcome(\\r\\n    outcome: PythonImportResolutionOutcome,\\r\\n) -> PythonImportedMemberResolutionOutcome:\\r\\n    return PythonImportedMemberResolutionOutcome(outcome.value)\\r\\n\\r\\n\\r\\ndef _result(  # noqa: PLR0913\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    outcome: PythonImportedMemberResolutionOutcome,\\r\\n    *,\\r\\n    source_module_resolution: PythonImportResolution | None = None,\\r\\n    facade: PythonModuleInterpretation | None = None,\\r\\n    facade_analysis: PythonImportDeclarationAnalysis | None = None,\\r\\n    facade_bindings: tuple[PythonImportDeclarationKnowledge, ...] = (),\\r\\n    competing_facade_bindings: tuple[PythonFacadeCompetingBinding, ...] = (),\\r\\n    facade_module_resolution: PythonImportResolution | None = None,\\r\\n    target: PythonModuleInterpretation | None = None,\\r\\n    target_function_analysis: PythonFunctionDeclarationAnalysis | None = None,\\r\\n    target_declarations: tuple[PythonFunctionDeclarationKnowledge, ...] = (),\\r\\n    unsupported_reason: PythonImportedMemberUnsupportedReason | None = None,\\r\\n) -> PythonImportedMemberResolution:\\r\\n    return PythonImportedMemberResolution(\\r\\n        source_analysis=source_analysis,\\r\\n        source_declaration=source_declaration,\\r\\n        module_universe=module_universe,\\r\\n        outcome=outcome,\\r\\n        source_module_resolution=source_module_resolution,\\r\\n        facade=facade,\\r\\n        facade_analysis=facade_analysis,\\r\\n        facade_bindings=facade_bindings,\\r\\n        competing_facade_bindings=competing_facade_bindings,\\r\\n        facade_module_resolution=facade_module_resolution,\\r\\n        target=target,\\r\\n        target_function_analysis=target_function_analysis,\\r\\n        target_declarations=target_declarations,\\r\\n        unsupported_reason=unsupported_reason,\\r\\n    )\\r\\n\\r\\n\\r\\ndef _digest(*values: str) -> str:\\r\\n    digest = hashlib.sha256()\\r\\n    for value in values:\\r\\n        encoded = value.encode(\\\"utf-8\\\")\\r\\n        digest.update(len(encoded).to_bytes(8, \\\"big\\\"))\\r\\n        digest.update(encoded)\\r\\n    return digest.hexdigest()\\r\\n\", \"path\": \"src/devtools/context/python/imports/members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"span\": [0, 21395], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "D9hz6zY3oJNPQHKzLY6srf0l2MZfuYbM",
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [{\"path\": \"src/devtools/context/python/imports/members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"span\": [0, 21395]}], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": {\"path\": \"src/devtools/context/python/imports/members.py\", \"span\": [0, 21395], \"earlier_same_range_disclosures\": 0, \"covered_by_one_previous_disclosure\": false}, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          }
+        ]
+      },
+      "settings": {
+        "maximum_output_tokens": 2048,
+        "thinking_enabled": false
+      },
+      "conversation": null,
+      "provider_settings": null,
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        },
+        {
+          "name": "find_source",
+          "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+        },
+        {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+        }
+      ]
+    },
+    {
+      "prompt": {
+        "content": "",
+        "role": "messages",
+        "messages": [
+          {
+            "role": "user",
+            "content": "B-0049 approved residual only: repair a valid direct module facade reexport being refused merely because an unrelated function, async-function or class namespace imports the same local name. Preserve exact implementation target and provenance. Preserve conservative module-level conditional/try/star imports, genuine competing module bindings, aliases, ordinary assignments, pattern/handler guards and existing regressions. Do not execute fixture source or broaden supported Python semantics. Inspect the complete current implementation through read_source before proposing a minimal grounded edit. Only the authorized existing implementation file may change. Public checks include new local-namespace regressions plus the maintained imported-member suite. Hidden independent behavioral checks remain private.",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"repository_id\": \"a1d0be0e-60d3-47aa-a181-4d7d27ed87f4\", \"snapshot_id\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/context/python/imports/members.py\", \"content_identity\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"byte_size\": 21395, \"editable\": true}, {\"address\": \"src/devtools/context/python/modules/bindings.py\", \"content_identity\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"byte_size\": 1482, \"editable\": false}, {\"address\": \"tests/context/python/imports/test_members.py\", \"content_identity\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"byte_size\": 26021, \"editable\": false}, {\"address\": \"tests/live_native_facade_public.py\", \"content_identity\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"byte_size\": 2646, \"editable\": false}]}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "literal",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"src/devtools/context/python/imports/members.py\",\"start\":0}",
+                "provider_call_id": "D9hz6zY3oJNPQHKzLY6srf0l2MZfuYbM"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"source_length\": 21395, \"valid_range\": [0, 21395], \"maximum_bytes\": 32768, \"continuation_start\": 21395, \"remaining_range\": [21395, 21395], \"text\": \"# Copyright (c) 2026\\r\\n\\\"\\\"\\\"One-facade resolution of imported members to direct Python functions.\\\"\\\"\\\"\\r\\n\\r\\nfrom __future__ import annotations\\r\\n\\r\\nimport ast\\r\\nimport hashlib\\r\\nfrom dataclasses import dataclass\\r\\nfrom enum import Enum\\r\\nfrom typing import TYPE_CHECKING, ClassVar, cast\\r\\n\\r\\nfrom devtools.context.python.imports.declarations import (\\r\\n    PythonImportDeclarationAnalysis,\\r\\n    PythonImportDeclarationKnowledge,\\r\\n    derive_python_import_declarations,\\r\\n)\\r\\nfrom devtools.context.python.imports.resolution import (\\r\\n    PythonImportResolution,\\r\\n    PythonImportResolutionOutcome,\\r\\n    resolve_python_import_declaration,\\r\\n)\\r\\nfrom devtools.context.python.modules.bindings import iter_non_name_bindings\\r\\nfrom devtools.context.python.modules.declarations import (\\r\\n    PythonModuleDeclarationLookupOutcome,\\r\\n    lookup_python_module_declaration,\\r\\n)\\r\\n\\r\\nif TYPE_CHECKING:\\r\\n    from collections.abc import Sequence\\r\\n\\r\\n    from devtools.context.python.function.declarations import (\\r\\n        PythonFunctionDeclarationAnalysis,\\r\\n        PythonFunctionDeclarationKnowledge,\\r\\n    )\\r\\n    from devtools.context.python.modules.interpretation import (\\r\\n        PythonModuleInterpretation,\\r\\n        PythonModuleInterpretationUniverse,\\r\\n    )\\r\\n    from devtools.context.repository.resource import RepositoryResourceAddress\\r\\n    from devtools.context.repository.snapshot import (\\r\\n        RepositorySnapshot,\\r\\n        RepositorySnapshotId,\\r\\n    )\\r\\n\\r\\n_SEMANTICS = \\\"one-facade-python-imported-member-function-resolution-v1\\\"\\r\\n\\r\\n\\r\\nclass PythonImportedMemberResolutionOutcome(Enum):\\r\\n    \\\"\\\"\\\"Classify one bounded imported-member resolution.\\\"\\\"\\\"\\r\\n\\r\\n    RESOLVED = \\\"resolved\\\"\\r\\n    UNRESOLVED_IN_UNIVERSE = \\\"unresolved-in-universe\\\"\\r\\n    AMBIGUOUS = \\\"ambiguous\\\"\\r\\n    UNSUPPORTED = \\\"unsupported\\\"\\r\\n\\r\\n\\r\\nclass PythonImportedMemberUnsupportedReason(Enum):\\r\\n    \\\"\\\"\\\"Explain why relevant syntax is outside the bounded proposition.\\\"\\\"\\\"\\r\\n\\r\\n    SOURCE_NOT_IMPORTED_MEMBER = \\\"source-not-imported-member\\\"\\r\\n    SOURCE_STAR_IMPORT = \\\"source-star-import\\\"\\r\\n    SOURCE_MODULE_RESOLUTION = \\\"source-module-resolution-unsupported\\\"\\r\\n    FACADE_STAR_IMPORT = \\\"facade-star-import\\\"\\r\\n    NESTED_FACADE_IMPORT = \\\"nested-facade-import\\\"\\r\\n    COMPETING_FACADE_BINDING = \\\"competing-facade-direct-binding\\\"\\r\\n    FACADE_MODULE_RESOLUTION = \\\"facade-module-resolution-unsupported\\\"\\r\\n\\r\\n\\r\\nclass PythonFacadeCompetingBindingKind(Enum):\\r\\n    \\\"\\\"\\\"Identify the bounded module-scope binding forms checked by this slice.\\\"\\\"\\\"\\r\\n\\r\\n    IMPORT = \\\"import\\\"\\r\\n    FUNCTION = \\\"function\\\"\\r\\n    CLASS = \\\"class\\\"\\r\\n    ASSIGNMENT = \\\"assignment\\\"\\r\\n    PATTERN_OR_HANDLER = \\\"pattern-or-handler\\\"\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonFacadeBindingSourceOccurrence:\\r\\n    \\\"\\\"\\\"Anchor one competing direct facade binding in observed source.\\\"\\\"\\\"\\r\\n\\r\\n    snapshot_id: RepositorySnapshotId\\r\\n    resource_address: RepositoryResourceAddress\\r\\n    start_line: int\\r\\n    start_column_utf8: int\\r\\n    end_line: int\\r\\n    end_column_utf8: int\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonFacadeCompetingBinding:\\r\\n    \\\"\\\"\\\"Retain one observed direct facade binding that excludes resolution.\\\"\\\"\\\"\\r\\n\\r\\n    name: str\\r\\n    kind: PythonFacadeCompetingBindingKind\\r\\n    support: PythonFacadeBindingSourceOccurrence\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass PythonImportedMemberResolution:\\r\\n    \\\"\\\"\\\"Retain the complete bounded source-to-facade-to-function derivation.\\\"\\\"\\\"\\r\\n\\r\\n    source_analysis: PythonImportDeclarationAnalysis\\r\\n    source_declaration: PythonImportDeclarationKnowledge\\r\\n    module_universe: PythonModuleInterpretationUniverse\\r\\n    outcome: PythonImportedMemberResolutionOutcome\\r\\n    source_module_resolution: PythonImportResolution | None\\r\\n    facade: PythonModuleInterpretation | None\\r\\n    facade_analysis: PythonImportDeclarationAnalysis | None\\r\\n    facade_bindings: tuple[PythonImportDeclarationKnowledge, ...]\\r\\n    competing_facade_bindings: tuple[PythonFacadeCompetingBinding, ...]\\r\\n    facade_module_resolution: PythonImportResolution | None\\r\\n    target: PythonModuleInterpretation | None\\r\\n    target_function_analysis: PythonFunctionDeclarationAnalysis | None\\r\\n    target_declarations: tuple[PythonFunctionDeclarationKnowledge, ...]\\r\\n    unsupported_reason: PythonImportedMemberUnsupportedReason | None\\r\\n\\r\\n    SEMANTICS: ClassVar[str] = _SEMANTICS\\r\\n\\r\\n    @property\\r\\n    def identity(self) -> str:\\r\\n        \\\"\\\"\\\"Identify the result without making universe input order semantic.\\\"\\\"\\\"\\r\\n        return _digest(\\r\\n            self.SEMANTICS,\\r\\n            self.source_declaration.derivation_identity,\\r\\n            str(self.source_declaration.declaration_ordinal),\\r\\n            self.module_universe.identity,\\r\\n            self.outcome.value,\\r\\n            self.facade.identity if self.facade is not None else \\\"\\\",\\r\\n            *(\\r\\n                sorted(\\r\\n                    item.derivation_identity + \\\":\\\" + str(item.declaration_ordinal)\\r\\n                    for item in self.facade_bindings\\r\\n                )\\r\\n            ),\\r\\n            self.target.identity if self.target is not None else \\\"\\\",\\r\\n            *(sorted(item.identity for item in self.target_declarations)),\\r\\n            (\\r\\n                self.unsupported_reason.value\\r\\n                if self.unsupported_reason is not None\\r\\n                else \\\"\\\"\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    @property\\r\\n    def target_declaration(self) -> PythonFunctionDeclarationKnowledge | None:\\r\\n        \\\"\\\"\\\"Return the unique target declaration only for a resolved result.\\\"\\\"\\\"\\r\\n        if self.outcome is not PythonImportedMemberResolutionOutcome.RESOLVED:\\r\\n            return None\\r\\n        return self.target_declarations[0]\\r\\n\\r\\n\\r\\ndef resolve_python_imported_member(  # noqa: PLR0911\\r\\n    snapshot: RepositorySnapshot,\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    *,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    source_interpretations: Sequence[PythonModuleInterpretation] = (),\\r\\n) -> PythonImportedMemberResolution:\\r\\n    \\\"\\\"\\\"Resolve one direct imported member through exactly one facade binding.\\r\\n\\r\\n    This performs no runtime import execution, submodule fallback, recursive\\r\\n    facade traversal, later-use resolution, or public-export analysis.\\r\\n    \\\"\\\"\\\"\\r\\n    _validate_inputs(\\r\\n        snapshot=snapshot,\\r\\n        source_analysis=source_analysis,\\r\\n        source_declaration=source_declaration,\\r\\n        module_universe=module_universe,\\r\\n        source_interpretations=source_interpretations,\\r\\n    )\\r\\n    unsupported_source = {\\r\\n        None: PythonImportedMemberUnsupportedReason.SOURCE_NOT_IMPORTED_MEMBER,\\r\\n        \\\"*\\\": PythonImportedMemberUnsupportedReason.SOURCE_STAR_IMPORT,\\r\\n    }.get(source_declaration.imported_name)\\r\\n    if unsupported_source is not None:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            unsupported_reason=unsupported_source,\\r\\n        )\\r\\n\\r\\n    source_resolution = resolve_python_import_declaration(\\r\\n        source_analysis,\\r\\n        source_declaration,\\r\\n        target_universe=module_universe,\\r\\n        source_interpretations=source_interpretations,\\r\\n    )\\r\\n    if source_resolution.outcome is not PythonImportResolutionOutcome.RESOLVED:\\r\\n        outcome = _import_outcome(source_resolution.outcome)\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            outcome,\\r\\n            source_module_resolution=source_resolution,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.SOURCE_MODULE_RESOLUTION\\r\\n                if outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n                else None\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    facade = source_resolution.matches[0]\\r\\n    facade_analysis = derive_python_import_declarations(\\r\\n        snapshot,\\r\\n        resource_address=facade.resource.address,\\r\\n    )\\r\\n    requested_name = cast(\\\"str\\\", source_declaration.imported_name)\\r\\n    facade_bindings = tuple(\\r\\n        declaration\\r\\n        for declaration in facade_analysis.declarations\\r\\n        if declaration.imported_name not in {None, \\\"*\\\"}\\r\\n        and (declaration.local_alias or declaration.imported_name) == requested_name\\r\\n    )\\r\\n    syntax = _inspect_facade_bindings(\\r\\n        snapshot=snapshot,\\r\\n        facade=facade,\\r\\n        requested_name=requested_name,\\r\\n    )\\r\\n    if syntax.star_import:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=PythonImportedMemberUnsupportedReason.FACADE_STAR_IMPORT,\\r\\n        )\\r\\n    if syntax.nested_import:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=PythonImportedMemberUnsupportedReason.NESTED_FACADE_IMPORT,\\r\\n        )\\r\\n    if syntax.competing:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNSUPPORTED,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            competing_facade_bindings=syntax.competing,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.COMPETING_FACADE_BINDING\\r\\n            ),\\r\\n        )\\r\\n    if not facade_bindings:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n        )\\r\\n    if len(facade_bindings) > 1:\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.AMBIGUOUS,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n        )\\r\\n\\r\\n    # A single import must also survive canonical namespace uncertainty checks.\\r\\n    # NOT_DECLARATION is expected for that import; ambiguity is not absence.\\r\\n    facade_lookup = lookup_python_module_declaration(\\r\\n        snapshot,\\r\\n        module=facade,\\r\\n        declared_name=requested_name,\\r\\n    )\\r\\n    if (\\r\\n        facade_lookup.outcome\\r\\n        is not PythonModuleDeclarationLookupOutcome.NOT_DECLARATION\\r\\n    ):\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            PythonImportedMemberResolutionOutcome.AMBIGUOUS,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n        )\\r\\n\\r\\n    facade_binding = facade_bindings[0]\\r\\n    facade_resolution = resolve_python_import_declaration(\\r\\n        facade_analysis,\\r\\n        facade_binding,\\r\\n        target_universe=module_universe,\\r\\n        source_interpretations=(facade,),\\r\\n    )\\r\\n    if facade_resolution.outcome is not PythonImportResolutionOutcome.RESOLVED:\\r\\n        outcome = _import_outcome(facade_resolution.outcome)\\r\\n        return _result(\\r\\n            source_analysis,\\r\\n            source_declaration,\\r\\n            module_universe,\\r\\n            outcome,\\r\\n            source_module_resolution=source_resolution,\\r\\n            facade=facade,\\r\\n            facade_analysis=facade_analysis,\\r\\n            facade_bindings=facade_bindings,\\r\\n            facade_module_resolution=facade_resolution,\\r\\n            unsupported_reason=(\\r\\n                PythonImportedMemberUnsupportedReason.FACADE_MODULE_RESOLUTION\\r\\n                if outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n                else None\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    target = facade_resolution.matches[0]\\r\\n    target_lookup = lookup_python_module_declaration(\\r\\n        snapshot,\\r\\n        module=target,\\r\\n        declared_name=cast(\\\"str\\\", facade_binding.imported_name),\\r\\n    )\\r\\n    target_analysis = target_lookup.function_analysis\\r\\n    target_declarations = tuple(\\r\\n        declaration\\r\\n        for declaration in target_analysis.declarations\\r\\n        if declaration.declared_name == facade_binding.imported_name\\r\\n    )\\r\\n    outcome = (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n        if not target_declarations\\r\\n        else PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n        if target_lookup.outcome is PythonModuleDeclarationLookupOutcome.RESOLVED\\r\\n        else PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    )\\r\\n    return _result(\\r\\n        source_analysis,\\r\\n        source_declaration,\\r\\n        module_universe,\\r\\n        outcome,\\r\\n        source_module_resolution=source_resolution,\\r\\n        facade=facade,\\r\\n        facade_analysis=facade_analysis,\\r\\n        facade_bindings=facade_bindings,\\r\\n        facade_module_resolution=facade_resolution,\\r\\n        target=target,\\r\\n        target_function_analysis=target_analysis,\\r\\n        target_declarations=target_declarations,\\r\\n    )\\r\\n\\r\\n\\r\\n@dataclass(frozen=True, slots=True)\\r\\nclass _FacadeSyntax:\\r\\n    star_import: bool\\r\\n    nested_import: bool\\r\\n    competing: tuple[PythonFacadeCompetingBinding, ...]\\r\\n\\r\\n\\r\\ndef _inspect_facade_bindings(\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    facade: PythonModuleInterpretation,\\r\\n    requested_name: str,\\r\\n) -> _FacadeSyntax:\\r\\n    tree = ast.parse(facade.resource.content, filename=str(facade.resource.address))\\r\\n    competing: list[PythonFacadeCompetingBinding] = []\\r\\n    star_import = False\\r\\n    nested_import = False\\r\\n    for node in tree.body:\\r\\n        support = _support(snapshot, facade, node)\\r\\n        if isinstance(node, ast.ImportFrom):\\r\\n            star_import = star_import or any(alias.name == \\\"*\\\" for alias in node.names)\\r\\n        else:\\r\\n            kind = _direct_competing_kind(node, requested_name)\\r\\n            if kind is not None:\\r\\n                competing.append(\\r\\n                    PythonFacadeCompetingBinding(\\r\\n                        name=requested_name,\\r\\n                        kind=kind,\\r\\n                        support=support,\\r\\n                    ),\\r\\n                )\\r\\n        if requested_name in iter_non_name_bindings(node):\\r\\n            competing.append(\\r\\n                PythonFacadeCompetingBinding(\\r\\n                    name=requested_name,\\r\\n                    kind=PythonFacadeCompetingBindingKind.PATTERN_OR_HANDLER,\\r\\n                    support=support,\\r\\n                ),\\r\\n            )\\r\\n        nested_import = nested_import or _contains_nested_import(node, requested_name)\\r\\n    return _FacadeSyntax(\\r\\n        star_import=star_import,\\r\\n        nested_import=nested_import,\\r\\n        competing=tuple(competing),\\r\\n    )\\r\\n\\r\\n\\r\\ndef _direct_competing_kind(\\r\\n    node: ast.stmt,\\r\\n    requested_name: str,\\r\\n) -> PythonFacadeCompetingBindingKind | None:\\r\\n    if isinstance(node, ast.Import):\\r\\n        if any(\\r\\n            (alias.asname or alias.name.split(\\\".\\\", 1)[0]) == requested_name\\r\\n            for alias in node.names\\r\\n        ):\\r\\n            return PythonFacadeCompetingBindingKind.IMPORT\\r\\n    elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):\\r\\n        if node.name == requested_name:\\r\\n            return PythonFacadeCompetingBindingKind.FUNCTION\\r\\n    elif isinstance(node, ast.ClassDef):\\r\\n        if node.name == requested_name:\\r\\n            return PythonFacadeCompetingBindingKind.CLASS\\r\\n    elif isinstance(node, (ast.Assign, ast.AnnAssign, ast.AugAssign)):\\r\\n        targets = node.targets if isinstance(node, ast.Assign) else (node.target,)\\r\\n        if any(_binds_name(target, requested_name) for target in targets):\\r\\n            return PythonFacadeCompetingBindingKind.ASSIGNMENT\\r\\n    return None\\r\\n\\r\\n\\r\\ndef _contains_nested_import(node: ast.stmt, requested_name: str) -> bool:\\r\\n    return any(\\r\\n        nested is not node\\r\\n        and isinstance(nested, ast.ImportFrom)\\r\\n        and any(\\r\\n            alias.name == \\\"*\\\" or (alias.asname or alias.name) == requested_name\\r\\n            for alias in nested.names\\r\\n        )\\r\\n        for nested in ast.walk(node)\\r\\n    )\\r\\n\\r\\n\\r\\ndef _binds_name(target: ast.expr, requested_name: str) -> bool:\\r\\n    if isinstance(target, ast.Name):\\r\\n        return target.id == requested_name\\r\\n    if isinstance(target, (ast.Tuple, ast.List)):\\r\\n        return any(_binds_name(item, requested_name) for item in target.elts)\\r\\n    return False\\r\\n\\r\\n\\r\\ndef _support(\\r\\n    snapshot: RepositorySnapshot,\\r\\n    facade: PythonModuleInterpretation,\\r\\n    node: ast.stmt,\\r\\n) -> PythonFacadeBindingSourceOccurrence:\\r\\n    return PythonFacadeBindingSourceOccurrence(\\r\\n        snapshot_id=snapshot.id,\\r\\n        resource_address=facade.resource.address,\\r\\n        start_line=node.lineno,\\r\\n        start_column_utf8=node.col_offset,\\r\\n        end_line=cast(\\\"int\\\", node.end_lineno),\\r\\n        end_column_utf8=cast(\\\"int\\\", node.end_col_offset),\\r\\n    )\\r\\n\\r\\n\\r\\ndef _validate_inputs(\\r\\n    *,\\r\\n    snapshot: RepositorySnapshot,\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    source_interpretations: Sequence[PythonModuleInterpretation],\\r\\n) -> None:\\r\\n    if source_declaration not in source_analysis.declarations:\\r\\n        msg = \\\"Imported-member declaration does not belong to source analysis.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if (\\r\\n        source_analysis.repository_id != snapshot.repository_id\\r\\n        or source_analysis.snapshot_id != snapshot.id\\r\\n        or source_analysis.resource\\r\\n        != snapshot.resource_at(source_analysis.resource.address)\\r\\n    ):\\r\\n        msg = \\\"Imported-member source analysis does not match snapshot.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if module_universe.repository_id != snapshot.repository_id:\\r\\n        msg = \\\"Imported-member module universe does not match snapshot repository.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if any(\\r\\n        item.snapshot_id != snapshot.id\\r\\n        or item.resource != snapshot.resource_at(item.resource.address)\\r\\n        for item in module_universe.interpretations\\r\\n    ):\\r\\n        msg = \\\"Imported-member module universe contains another snapshot state.\\\"\\r\\n        raise ValueError(msg)\\r\\n    if any(item.snapshot_id != snapshot.id for item in source_interpretations):\\r\\n        msg = \\\"Imported-member source interpretation contains another snapshot state.\\\"\\r\\n        raise ValueError(msg)\\r\\n\\r\\n\\r\\ndef _import_outcome(\\r\\n    outcome: PythonImportResolutionOutcome,\\r\\n) -> PythonImportedMemberResolutionOutcome:\\r\\n    return PythonImportedMemberResolutionOutcome(outcome.value)\\r\\n\\r\\n\\r\\ndef _result(  # noqa: PLR0913\\r\\n    source_analysis: PythonImportDeclarationAnalysis,\\r\\n    source_declaration: PythonImportDeclarationKnowledge,\\r\\n    module_universe: PythonModuleInterpretationUniverse,\\r\\n    outcome: PythonImportedMemberResolutionOutcome,\\r\\n    *,\\r\\n    source_module_resolution: PythonImportResolution | None = None,\\r\\n    facade: PythonModuleInterpretation | None = None,\\r\\n    facade_analysis: PythonImportDeclarationAnalysis | None = None,\\r\\n    facade_bindings: tuple[PythonImportDeclarationKnowledge, ...] = (),\\r\\n    competing_facade_bindings: tuple[PythonFacadeCompetingBinding, ...] = (),\\r\\n    facade_module_resolution: PythonImportResolution | None = None,\\r\\n    target: PythonModuleInterpretation | None = None,\\r\\n    target_function_analysis: PythonFunctionDeclarationAnalysis | None = None,\\r\\n    target_declarations: tuple[PythonFunctionDeclarationKnowledge, ...] = (),\\r\\n    unsupported_reason: PythonImportedMemberUnsupportedReason | None = None,\\r\\n) -> PythonImportedMemberResolution:\\r\\n    return PythonImportedMemberResolution(\\r\\n        source_analysis=source_analysis,\\r\\n        source_declaration=source_declaration,\\r\\n        module_universe=module_universe,\\r\\n        outcome=outcome,\\r\\n        source_module_resolution=source_module_resolution,\\r\\n        facade=facade,\\r\\n        facade_analysis=facade_analysis,\\r\\n        facade_bindings=facade_bindings,\\r\\n        competing_facade_bindings=competing_facade_bindings,\\r\\n        facade_module_resolution=facade_module_resolution,\\r\\n        target=target,\\r\\n        target_function_analysis=target_function_analysis,\\r\\n        target_declarations=target_declarations,\\r\\n        unsupported_reason=unsupported_reason,\\r\\n    )\\r\\n\\r\\n\\r\\ndef _digest(*values: str) -> str:\\r\\n    digest = hashlib.sha256()\\r\\n    for value in values:\\r\\n        encoded = value.encode(\\\"utf-8\\\")\\r\\n        digest.update(len(encoded).to_bytes(8, \\\"big\\\"))\\r\\n        digest.update(encoded)\\r\\n    return digest.hexdigest()\\r\\n\", \"path\": \"src/devtools/context/python/imports/members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"span\": [0, 21395], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "D9hz6zY3oJNPQHKzLY6srf0l2MZfuYbM",
+            "reasoning_content": null
+          },
+          {
+            "role": "assistant",
+            "content": "literal",
+            "tool_calls": [
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":0}",
+                "provider_call_id": "VeJmEX3lnXJos3Mi7MrTp4azHrQfseXe"
+              },
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"tests/context/python/imports/test_members.py\",\"start\":0}",
+                "provider_call_id": "GQouz8wD40lrMQZQaKnXBCujFd94qTmc"
+              },
+              {
+                "name": "read_source",
+                "arguments_json": "{\"path\":\"tests/live_native_facade_public.py\",\"start\":0}",
+                "provider_call_id": "WkiFBsvhzBUbnPJiZB0EXuycMWDytzJf"
+              }
+            ],
+            "tool_call_id": null,
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"source_length\": 1482, \"valid_range\": [0, 1482], \"maximum_bytes\": 32768, \"continuation_start\": 1482, \"remaining_range\": [1482, 1482], \"text\": \"# Copyright (c) 2026\\r\\n\\\"\\\"\\\"Names held outside Name nodes in bounded Python binding inventories.\\\"\\\"\\\"\\r\\n\\r\\nfrom __future__ import annotations\\r\\n\\r\\nimport ast\\r\\nfrom typing import TYPE_CHECKING\\r\\n\\r\\nif TYPE_CHECKING:\\r\\n    from collections.abc import Iterator\\r\\n\\r\\n\\r\\ndef non_name_binding(node: ast.AST) -> str | None:\\r\\n    \\\"\\\"\\\"Return a pattern capture or handler alias, not a declaration or store.\\r\\n\\r\\n    This identifies syntax only. A handler alias is cleared on handler exit;\\r\\n    a pattern capture has different lifetime. Neither establishes a declaration.\\r\\n    Callers retain their own scope, ordering and conservative ambiguity policy.\\r\\n    \\\"\\\"\\\"\\r\\n    if isinstance(node, ast.ExceptHandler | ast.MatchAs | ast.MatchStar):\\r\\n        return node.name\\r\\n    if isinstance(node, ast.MatchMapping):\\r\\n        return node.rest\\r\\n    return None\\r\\n\\r\\n\\r\\ndef iter_non_name_bindings(node: ast.AST) -> Iterator[str]:\\r\\n    \\\"\\\"\\\"Inspect compound syntax without entering nested function/class scopes.\\r\\n\\r\\n    This is only the additional string-name inventory. Existing callers own\\r\\n    ordinary stores, imports, declaration names and source-order cutoffs.\\r\\n    \\\"\\\"\\\"\\r\\n    pending = [node]\\r\\n    while pending:\\r\\n        current = pending.pop()\\r\\n        if isinstance(current, ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef):\\r\\n            continue\\r\\n        name = non_name_binding(current)\\r\\n        if name is not None:\\r\\n            yield name\\r\\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\\r\\n\", \"path\": \"src/devtools/context/python/modules/bindings.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"span\": [0, 1482], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "VeJmEX3lnXJos3Mi7MrTp4azHrQfseXe",
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"source_length\": 26021, \"valid_range\": [0, 26021], \"maximum_bytes\": 32768, \"continuation_start\": 26021, \"remaining_range\": [26021, 26021], \"text\": \"# Copyright (c) 2026\\r\\n# ruff: noqa: D103\\r\\n\\\"\\\"\\\"Tests for one-facade imported-member function resolution.\\\"\\\"\\\"\\r\\n\\r\\nfrom dataclasses import replace\\r\\nfrom pathlib import Path\\r\\n\\r\\nimport pytest\\r\\n\\r\\nfrom devtools.context.python.imports import (\\r\\n    PythonFacadeCompetingBindingKind,\\r\\n    PythonImportedMemberResolution,\\r\\n    PythonImportedMemberResolutionOutcome,\\r\\n    PythonImportedMemberUnsupportedReason,\\r\\n    derive_python_import_declarations,\\r\\n    resolve_python_imported_member,\\r\\n)\\r\\nfrom devtools.context.python.modules import (\\r\\n    PythonModuleInterpretation,\\r\\n    PythonModuleRoot,\\r\\n    define_python_module_interpretation_universe,\\r\\n    interpret_python_module_resources,\\r\\n)\\r\\nfrom devtools.context.repository.identity import Repository, RepositoryId\\r\\nfrom devtools.context.repository.observation import observe_repository_resources\\r\\nfrom devtools.context.repository.resource import RepositoryResourceAddress\\r\\nfrom devtools.context.repository.snapshot import RepositorySnapshot\\r\\nfrom devtools.core.paths import ResolvedPath\\r\\n\\r\\n\\r\\ndef _snapshot(tmp_path: Path, resources: dict[str, str]) -> RepositorySnapshot:\\r\\n    for address, content in resources.items():\\r\\n        path = tmp_path / address\\r\\n        path.parent.mkdir(parents=True, exist_ok=True)\\r\\n        path.write_text(content, encoding=\\\"utf-8\\\")\\r\\n    return observe_repository_resources(\\r\\n        repository=Repository(\\r\\n            RepositoryId.parse(\\\"00000000-0000-4000-8000-000000000025\\\"),\\r\\n        ),\\r\\n        root=ResolvedPath(tmp_path),\\r\\n        addresses=tuple(RepositoryResourceAddress(item) for item in resources),\\r\\n        maximum_resource_bytes=1024 * 1024,\\r\\n    )\\r\\n\\r\\n\\r\\ndef _interpret(\\r\\n    snapshot: RepositorySnapshot,\\r\\n    addresses: tuple[str, ...],\\r\\n    *,\\r\\n    root: str = \\\".\\\",\\r\\n) -> tuple[PythonModuleInterpretation, ...]:\\r\\n    return interpret_python_module_resources(\\r\\n        snapshot,\\r\\n        module_root=PythonModuleRoot(root),\\r\\n        resource_addresses=tuple(RepositoryResourceAddress(item) for item in addresses),\\r\\n    ).interpretations\\r\\n\\r\\n\\r\\ndef _resolve(\\r\\n    snapshot: RepositorySnapshot,\\r\\n    *,\\r\\n    interpretations: tuple[PythonModuleInterpretation, ...] | None = None,\\r\\n    source_address: str = \\\"consumer.py\\\",\\r\\n) -> PythonImportedMemberResolution:\\r\\n    source = derive_python_import_declarations(\\r\\n        snapshot,\\r\\n        resource_address=RepositoryResourceAddress(source_address),\\r\\n    )\\r\\n    values = interpretations or _interpret(\\r\\n        snapshot,\\r\\n        tuple(item.address.value for item in snapshot.resources),\\r\\n    )\\r\\n    universe = define_python_module_interpretation_universe(\\r\\n        repository_id=snapshot.repository_id,\\r\\n        interpretations=values,\\r\\n    )\\r\\n    return resolve_python_imported_member(\\r\\n        snapshot,\\r\\n        source,\\r\\n        source.declarations[0],\\r\\n        module_universe=universe,\\r\\n    )\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"target\\\",\\r\\n    [\\\"def f():\\\\n    pass\\\\n\\\", \\\"async def f():\\\\n    pass\\\\n\\\"],\\r\\n)\\r\\ndef test_resolves_direct_sync_and_async_function(\\r\\n    tmp_path: Path,\\r\\n    target: str,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": target,\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n    assert result.target_declaration is result.target_declarations[0]\\r\\n    assert result.target_declaration.declared_name == \\\"f\\\"\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    (\\\"source\\\", \\\"reason\\\"),\\r\\n    [\\r\\n        (\\r\\n            \\\"import package\\\\n\\\",\\r\\n            PythonImportedMemberUnsupportedReason.SOURCE_NOT_IMPORTED_MEMBER,\\r\\n        ),\\r\\n        (\\r\\n            \\\"from package import *\\\\n\\\",\\r\\n            PythonImportedMemberUnsupportedReason.SOURCE_STAR_IMPORT,\\r\\n        ),\\r\\n    ],\\r\\n)\\r\\ndef test_source_must_be_a_named_imported_member(\\r\\n    tmp_path: Path,\\r\\n    source: str,\\r\\n    reason: PythonImportedMemberUnsupportedReason,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\\"consumer.py\\\": source, \\\"package/__init__.py\\\": \\\"\\\"},\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.unsupported_reason is reason\\r\\n    assert result.target_declaration is None\\r\\n\\r\\n\\r\\ndef test_source_module_resolution_states_are_preserved(tmp_path: Path) -> None:\\r\\n    unresolved_snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\\"consumer.py\\\": \\\"from package import f\\\\n\\\"},\\r\\n    )\\r\\n    unresolved = _resolve(unresolved_snapshot)\\r\\n    assert unresolved.outcome is (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n    )\\r\\n    assert unresolved.target_declaration is None\\r\\n\\r\\n    ambiguous_snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package.py\\\": \\\"\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"\\\",\\r\\n        },\\r\\n    )\\r\\n    ambiguous = _resolve(ambiguous_snapshot)\\r\\n    assert ambiguous.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    assert ambiguous.target_declaration is None\\r\\n\\r\\n    relative_snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"package/consumer.py\\\": \\\"from .facade import f\\\\n\\\",\\r\\n            \\\"package/facade.py\\\": \\\"\\\",\\r\\n        },\\r\\n    )\\r\\n    unsupported = _resolve(relative_snapshot, source_address=\\\"package/consumer.py\\\")\\r\\n    assert unsupported.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert unsupported.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.SOURCE_MODULE_RESOLUTION\\r\\n    )\\r\\n\\r\\n\\r\\ndef test_source_alias_preserves_imported_identity_and_local_name(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f as renamed\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n    assert result.source_declaration.imported_name == \\\"f\\\"\\r\\n    assert result.source_declaration.local_alias == \\\"renamed\\\"\\r\\n\\r\\n\\r\\ndef test_facade_alias_uses_public_binding_and_private_target_name(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import public_f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f as public_f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n    assert result.facade_bindings[0].imported_name == \\\"f\\\"\\r\\n    assert result.facade_bindings[0].local_alias == \\\"public_f\\\"\\r\\n    assert result.target_declaration is not None\\r\\n    assert result.target_declaration.declared_name == \\\"f\\\"\\r\\n\\r\\n\\r\\ndef test_unrelated_direct_facade_bindings_do_not_compete(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": (\\r\\n                \\\"import os\\\\n\\\"\\r\\n                \\\"def other():\\\\n    pass\\\\n\\\"\\r\\n                \\\"class Other:\\\\n    pass\\\\n\\\"\\r\\n                \\\"holder.value = object()\\\\n\\\"\\r\\n                \\\"from .impl import f\\\\n\\\"\\r\\n            ),\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n\\r\\n    assert _resolve(snapshot).outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    (\\\"target\\\", \\\"expected\\\"),\\r\\n    [\\r\\n        (\\\"VALUE = 1\\\\n\\\", PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE),\\r\\n        (\\r\\n            \\\"class f:\\\\n    pass\\\\n\\\",\\r\\n            PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE,\\r\\n        ),\\r\\n        (\\r\\n            \\\"def outer():\\\\n    def f():\\\\n        pass\\\\n\\\",\\r\\n            PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE,\\r\\n        ),\\r\\n        (\\r\\n            \\\"class Holder:\\\\n    def f(self):\\\\n        pass\\\\n\\\",\\r\\n            PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE,\\r\\n        ),\\r\\n        (\\r\\n            \\\"def f():\\\\n    pass\\\\ndef f():\\\\n    pass\\\\n\\\",\\r\\n            PythonImportedMemberResolutionOutcome.AMBIGUOUS,\\r\\n        ),\\r\\n    ],\\r\\n)\\r\\ndef test_only_one_direct_function_is_an_eligible_target(\\r\\n    tmp_path: Path,\\r\\n    target: str,\\r\\n    expected: PythonImportedMemberResolutionOutcome,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": target,\\r\\n        },\\r\\n    )\\r\\n    assert _resolve(snapshot).outcome is expected\\r\\n\\r\\n\\r\\ndef test_unresolved_target_module_retains_facade_resolution(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .missing import f\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n    )\\r\\n    assert result.facade_module_resolution is not None\\r\\n    assert result.facade_module_resolution.requested_module == \\\"package.missing\\\"\\r\\n    assert result.target is None\\r\\n\\r\\n\\r\\ndef test_absent_and_duplicate_facade_bindings_are_distinct_states(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    absent = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import other\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    absent_result = _resolve(absent)\\r\\n    assert absent_result.outcome is (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n    )\\r\\n    assert absent_result.facade_bindings == ()\\r\\n\\r\\n    duplicate = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": (\\\"from .first import f\\\\nfrom .second import f\\\\n\\\"),\\r\\n            \\\"package/first.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n            \\\"package/second.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    duplicate_result = _resolve(duplicate)\\r\\n    assert duplicate_result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    expected_binding_count = 2\\r\\n    assert len(duplicate_result.facade_bindings) == expected_binding_count\\r\\n\\r\\n\\r\\ndef test_unsupported_facade_relative_resolution_is_preserved(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from ..impl import f\\\\n\\\",\\r\\n            \\\"impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.FACADE_MODULE_RESOLUTION\\r\\n    )\\r\\n\\r\\n\\r\\ndef test_ambiguous_target_module_interpretation_is_not_selected(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    resources = {\\r\\n        \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n        \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n        \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        \\\"alternate/package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n    }\\r\\n    snapshot = _snapshot(tmp_path, resources)\\r\\n    standard = _interpret(snapshot, tuple(resources))\\r\\n    alternate = _interpret(snapshot, (\\\"alternate/package/impl.py\\\",), root=\\\"alternate\\\")\\r\\n    result = _resolve(snapshot, interpretations=(*standard, *alternate))\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    assert result.facade_module_resolution is not None\\r\\n    expected_match_count = 2\\r\\n    assert len(result.facade_module_resolution.matches) == expected_match_count\\r\\n    assert result.target is None\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    (\\\"facade\\\", \\\"kind\\\"),\\r\\n    [\\r\\n        (\\r\\n            \\\"from .impl import f\\\\ndef f():\\\\n    pass\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.FUNCTION,\\r\\n        ),\\r\\n        (\\r\\n            \\\"def f():\\\\n    pass\\\\nfrom .impl import f\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.FUNCTION,\\r\\n        ),\\r\\n        (\\r\\n            \\\"from .impl import f\\\\nf = object()\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.ASSIGNMENT,\\r\\n        ),\\r\\n        (\\r\\n            \\\"from .impl import f\\\\nimport other as f\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.IMPORT,\\r\\n        ),\\r\\n        (\\r\\n            \\\"from .impl import f\\\\nclass f:\\\\n    pass\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.CLASS,\\r\\n        ),\\r\\n        (\\r\\n            \\\"from .impl import f\\\\nf, other = object(), object()\\\\n\\\",\\r\\n            PythonFacadeCompetingBindingKind.ASSIGNMENT,\\r\\n        ),\\r\\n    ],\\r\\n)\\r\\ndef test_competing_direct_facade_binding_is_unsupported(\\r\\n    tmp_path: Path,\\r\\n    facade: str,\\r\\n    kind: PythonFacadeCompetingBindingKind,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": facade,\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.COMPETING_FACADE_BINDING\\r\\n    )\\r\\n    assert result.competing_facade_bindings[0].kind is kind\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"facade\\\",\\r\\n    [\\r\\n        \\\"if enabled:\\\\n    from .impl import f\\\\n\\\",\\r\\n        \\\"try:\\\\n    from .impl import f\\\\nexcept ImportError:\\\\n    pass\\\\n\\\",\\r\\n    ],\\r\\n)\\r\\ndef test_nested_facade_import_is_unsupported(tmp_path: Path, facade: str) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": facade,\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.NESTED_FACADE_IMPORT\\r\\n    )\\r\\n\\r\\n\\r\\ndef test_star_facade_import_is_unsupported(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import *\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.FACADE_STAR_IMPORT\\r\\n    )\\r\\n\\r\\n\\r\\ndef test_two_facade_chain_does_not_recurse(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .api import f\\\\n\\\",\\r\\n            \\\"package/api.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.outcome is (\\r\\n        PythonImportedMemberResolutionOutcome.UNRESOLVED_IN_UNIVERSE\\r\\n    )\\r\\n    assert result.target is not None\\r\\n    assert result.target.resource.address.value == \\\"package/api.py\\\"\\r\\n    assert result.target_declarations == ()\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\\"all_value\\\", ['[\\\"f\\\"]', \\\"[]\\\"])\\r\\ndef test_dunder_all_does_not_change_direct_binding_semantics(\\r\\n    tmp_path: Path,\\r\\n    all_value: str,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": (f\\\"__all__ = {all_value}\\\\nfrom .impl import f\\\\n\\\"),\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    assert _resolve(snapshot).outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n\\r\\n\\r\\ndef test_resolved_provenance_retains_exact_source_facade_and_target(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n\\r\\n    assert result.source_declaration.support.resource_address.value == \\\"consumer.py\\\"\\r\\n    assert result.source_module_resolution is not None\\r\\n    assert result.source_module_resolution.matches[0] is result.facade\\r\\n    assert result.facade_bindings[0].support.resource_address.value == (\\r\\n        \\\"package/__init__.py\\\"\\r\\n    )\\r\\n    assert result.facade_module_resolution is not None\\r\\n    assert result.facade_module_resolution.matches[0] is result.target\\r\\n    assert result.target is not None\\r\\n    assert result.target.resource.address.value == \\\"package/impl.py\\\"\\r\\n    assert result.target_declaration is not None\\r\\n    assert result.target_declaration.support.resource_address.value == \\\"package/impl.py\\\"\\r\\n    assert result.target_declaration.subject.snapshot_id == snapshot.id\\r\\n\\r\\n\\r\\ndef test_result_identity_is_independent_of_universe_input_order(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n            \\\"unrelated.py\\\": \\\"\\\",\\r\\n        },\\r\\n    )\\r\\n    interpretations = _interpret(\\r\\n        snapshot,\\r\\n        tuple(item.address.value for item in snapshot.resources),\\r\\n    )\\r\\n    first = _resolve(snapshot, interpretations=interpretations)\\r\\n    second = _resolve(snapshot, interpretations=tuple(reversed(interpretations)))\\r\\n\\r\\n    assert first.outcome is second.outcome\\r\\n    assert first.identity == second.identity\\r\\n\\r\\n\\r\\ndef test_inputs_must_share_one_repository_snapshot(tmp_path: Path) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    analysis = derive_python_import_declarations(\\r\\n        snapshot,\\r\\n        resource_address=RepositoryResourceAddress(\\\"consumer.py\\\"),\\r\\n    )\\r\\n    interpretations = _interpret(\\r\\n        snapshot,\\r\\n        tuple(item.address.value for item in snapshot.resources),\\r\\n    )\\r\\n    universe = define_python_module_interpretation_universe(\\r\\n        repository_id=snapshot.repository_id,\\r\\n        interpretations=interpretations,\\r\\n    )\\r\\n\\r\\n    with pytest.raises(ValueError, match=\\\"does not belong\\\"):\\r\\n        resolve_python_imported_member(\\r\\n            snapshot,\\r\\n            analysis,\\r\\n            replace(analysis.declarations[0], declaration_ordinal=99),\\r\\n            module_universe=universe,\\r\\n        )\\r\\n\\r\\n    changed = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import changed\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"\\\",\\r\\n        },\\r\\n    )\\r\\n    with pytest.raises(ValueError, match=\\\"analysis does not match\\\"):\\r\\n        resolve_python_imported_member(\\r\\n            changed,\\r\\n            analysis,\\r\\n            analysis.declarations[0],\\r\\n            module_universe=define_python_module_interpretation_universe(\\r\\n                repository_id=changed.repository_id,\\r\\n                interpretations=(),\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    other_repository = RepositoryId.parse(\\\"00000000-0000-4000-8000-000000000026\\\")\\r\\n    with pytest.raises(ValueError, match=\\\"universe does not match\\\"):\\r\\n        resolve_python_imported_member(\\r\\n            snapshot,\\r\\n            analysis,\\r\\n            analysis.declarations[0],\\r\\n            module_universe=replace(universe, repository_id=other_repository),\\r\\n        )\\r\\n\\r\\n    changed_interpretations = _interpret(\\r\\n        changed,\\r\\n        tuple(item.address.value for item in changed.resources),\\r\\n    )\\r\\n    with pytest.raises(ValueError, match=\\\"another snapshot\\\"):\\r\\n        resolve_python_imported_member(\\r\\n            snapshot,\\r\\n            analysis,\\r\\n            analysis.declarations[0],\\r\\n            module_universe=define_python_module_interpretation_universe(\\r\\n                repository_id=snapshot.repository_id,\\r\\n                interpretations=changed_interpretations,\\r\\n            ),\\r\\n        )\\r\\n\\r\\n    with pytest.raises(ValueError, match=\\\"source interpretation\\\"):\\r\\n        resolve_python_imported_member(\\r\\n            snapshot,\\r\\n            analysis,\\r\\n            analysis.declarations[0],\\r\\n            module_universe=universe,\\r\\n            source_interpretations=(changed_interpretations[0],),\\r\\n        )\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"binding\\\",\\r\\n    [\\r\\n        \\\"match 0:\\\\n    case f:\\\\n        pass\\\\n\\\",\\r\\n        \\\"match [0]:\\\\n    case [*f]:\\\\n        pass\\\\n\\\",\\r\\n        \\\"match {}:\\\\n    case {**f}:\\\\n        pass\\\\n\\\",\\r\\n        \\\"try:\\\\n    pass\\\\nexcept ValueError as f:\\\\n    pass\\\\n\\\",\\r\\n    ],\\r\\n)\\r\\n@pytest.mark.parametrize(\\\"before_import\\\", [False, True])\\r\\ndef test_pattern_and_handler_bindings_refuse_facade_resolution(\\r\\n    tmp_path: Path,\\r\\n    binding: str,\\r\\n    *,\\r\\n    before_import: bool,\\r\\n) -> None:\\r\\n    \\\"\\\"\\\"Competing syntax cannot prove the imported function is the binding.\\\"\\\"\\\"\\r\\n    statement = \\\"from .impl import f\\\\n\\\"\\r\\n    facade = binding + statement if before_import else statement + binding\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": facade,\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.UNSUPPORTED\\r\\n    assert result.target_declaration is None\\r\\n    assert result.unsupported_reason is (\\r\\n        PythonImportedMemberUnsupportedReason.COMPETING_FACADE_BINDING\\r\\n    )\\r\\n    support = result.competing_facade_bindings[0]\\r\\n    assert support.name == \\\"f\\\"\\r\\n    assert support.kind.value == \\\"pattern-or-handler\\\"\\r\\n    assert support.support.snapshot_id == snapshot.id\\r\\n    assert support.support.resource_address.value == \\\"package/__init__.py\\\"\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"extra\\\",\\r\\n    [\\r\\n        \\\"match 0:\\\\n    case other:\\\\n        pass\\\\n\\\",\\r\\n        \\\"match 0:\\\\n    case _:\\\\n        pass\\\\n\\\",\\r\\n        \\\"def outer():\\\\n    match 0:\\\\n        case f:\\\\n            pass\\\\n\\\",\\r\\n        \\\"class Owner:\\\\n    match 0:\\\\n        case f:\\\\n            pass\\\\n\\\",\\r\\n        (\\r\\n            \\\"def outer():\\\\n    try:\\\\n        pass\\\\n\\\"\\r\\n            \\\"    except ValueError as f:\\\\n        pass\\\\n\\\"\\r\\n        ),\\r\\n    ],\\r\\n)\\r\\ndef test_unrelated_or_nested_local_captures_preserve_facade(\\r\\n    tmp_path: Path,\\r\\n    extra: str,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\" + extra,\\r\\n            \\\"package/impl.py\\\": \\\"async def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.RESOLVED\\r\\n    assert result.target_declaration is not None\\r\\n    assert result.target_declaration.declared_name == \\\"f\\\"\\r\\n    assert result.target_declaration.support.resource_address.value == \\\"package/impl.py\\\"\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"extra\\\",\\r\\n    [\\\"if enabled:\\\\n    f = 0\\\\n\\\", \\\"globals()\\\\n\\\"],\\r\\n)\\r\\ndef test_facade_namespace_uncertainty_is_not_positive(\\r\\n    tmp_path: Path,\\r\\n    extra: str,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\" + extra,\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    assert result.target_declaration is None\\r\\n\\r\\n\\r\\n@pytest.mark.parametrize(\\r\\n    \\\"target\\\",\\r\\n    [\\r\\n        \\\"def f():\\\\n    pass\\\\nf = 0\\\\n\\\",\\r\\n        \\\"def f():\\\\n    pass\\\\nmatch 0:\\\\n    case f:\\\\n        pass\\\\n\\\",\\r\\n        \\\"def f():\\\\n    pass\\\\nmatch [0]:\\\\n    case [*f]:\\\\n        pass\\\\n\\\",\\r\\n        \\\"def f():\\\\n    pass\\\\nmatch {}:\\\\n    case {**f}:\\\\n        pass\\\\n\\\",\\r\\n        \\\"def f():\\\\n    pass\\\\ntry:\\\\n    pass\\\\nexcept ValueError as f:\\\\n    pass\\\\n\\\",\\r\\n        \\\"@unknown\\\\ndef f():\\\\n    pass\\\\n\\\",\\r\\n    ],\\r\\n)\\r\\ndef test_facade_target_requires_unique_binding_not_only_declaration(\\r\\n    tmp_path: Path,\\r\\n    target: str,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": target,\\r\\n        },\\r\\n    )\\r\\n    result = _resolve(snapshot)\\r\\n    assert result.outcome is PythonImportedMemberResolutionOutcome.AMBIGUOUS\\r\\n    assert result.target_declaration is None\\r\\n    assert result.target_function_analysis is not None\\r\\n    # Syntax remains visible; it is not sufficient to establish the binding.\\r\\n    assert result.target_declarations[0].declared_name == \\\"f\\\"\\r\\n\\r\\n\\r\\ndef test_facade_content_cannot_change_under_matching_nominal_identities(\\r\\n    tmp_path: Path,\\r\\n) -> None:\\r\\n    snapshot = _snapshot(\\r\\n        tmp_path,\\r\\n        {\\r\\n            \\\"consumer.py\\\": \\\"from package import f\\\\n\\\",\\r\\n            \\\"package/__init__.py\\\": \\\"from .impl import f\\\\n\\\",\\r\\n            \\\"package/impl.py\\\": \\\"def f():\\\\n    pass\\\\n\\\",\\r\\n        },\\r\\n    )\\r\\n    interpretations = _interpret(\\r\\n        snapshot,\\r\\n        tuple(item.address.value for item in snapshot.resources),\\r\\n    )\\r\\n    inconsistent = tuple(\\r\\n        replace(item, resource=replace(item.resource, content=\\\"from .impl import g\\\\n\\\"))\\r\\n        if item.resource.address.value == \\\"package/__init__.py\\\"\\r\\n        else item\\r\\n        for item in interpretations\\r\\n    )\\r\\n    with pytest.raises(ValueError, match=\\\"another snapshot state\\\"):\\r\\n        _resolve(snapshot, interpretations=inconsistent)\\r\\n\", \"path\": \"tests/context/python/imports/test_members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"span\": [0, 26021], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "GQouz8wD40lrMQZQaKnXBCujFd94qTmc",
+            "reasoning_content": null
+          },
+          {
+            "role": "tool",
+            "content": "{\"source_length\": 2646, \"valid_range\": [0, 2646], \"maximum_bytes\": 32768, \"continuation_start\": 2646, \"remaining_range\": [2646, 2646], \"text\": \"\\\"\\\"\\\"Frozen public diagnostics for the supervised facade-scope episode only.\\\"\\\"\\\"\\nfrom pathlib import Path\\nimport pytest\\nfrom devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources\\nfrom devtools.core.paths import resolve_path\\nfrom devtools.context.python.imports import derive_python_import_declarations, resolve_python_imported_member\\nfrom devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources, define_python_module_interpretation_universe\\n\\n\\ndef observe_result(tmp_path: Path, facade: str):\\n    files = {\\\"consumer.py\\\": \\\"from package import f\\\\n\\\", \\\"package/__init__.py\\\": facade, \\\"package/impl.py\\\": \\\"def f():\\\\n    return 7\\\\n\\\"}\\n    for name, content in files.items():\\n        path = tmp_path / name\\n        path.parent.mkdir(parents=True, exist_ok=True)\\n        path.write_text(content, encoding=\\\"utf-8\\\")\\n    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(tmp_path), addresses=tuple(RepositoryResourceAddress(p) for p in files), maximum_resource_bytes=4096)\\n    analysis = derive_python_import_declarations(snapshot, resource_address=RepositoryResourceAddress(\\\"consumer.py\\\"))\\n    interpretations = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot(\\\".\\\"), resource_addresses=tuple(r.address for r in snapshot.resources)).interpretations\\n    universe = define_python_module_interpretation_universe(repository_id=snapshot.repository_id, interpretations=interpretations)\\n    return resolve_python_imported_member(snapshot, analysis, analysis.declarations[0], module_universe=universe)\\n\\n\\n@pytest.mark.parametrize(\\\"local\\\", [\\\"def helper():\\\\n    from .other import f\\\\n\\\", \\\"async def helper():\\\\n    from .other import f\\\\n\\\", \\\"class Helper:\\\\n    from .other import f\\\\n\\\"])\\ndef test_local_namespace_import_does_not_shadow_module_reexport(tmp_path, local):\\n    result = observe_result(tmp_path, \\\"from .impl import f\\\\n\\\" + local)\\n    assert result.outcome.value == \\\"resolved\\\"\\n    assert result.target_declaration is not None\\n    assert result.target_declaration.support.resource_address.value == \\\"package/impl.py\\\"\\n\\n\\n@pytest.mark.parametrize(\\\"facade,expected\\\", [(\\\"from .impl import f\\\\n\\\", \\\"resolved\\\"), (\\\"if enabled:\\\\n    from .impl import f\\\\n\\\", \\\"unsupported\\\"), (\\\"from .impl import f\\\\nmatch 0:\\\\n    case f:\\\\n        pass\\\\n\\\", \\\"unsupported\\\"), (\\\"from .impl import f\\\\nf = 9\\\\n\\\", \\\"unsupported\\\")])\\ndef test_existing_module_binding_guards_remain(tmp_path, facade, expected):\\n    result = observe_result(tmp_path, facade)\\n    assert result.outcome.value == expected\\n    if expected != \\\"resolved\\\":\\n        assert result.target_declaration is None\\n\", \"path\": \"tests/live_native_facade_public.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"span\": [0, 2646], \"partial\": false}",
+            "tool_calls": [],
+            "tool_call_id": "WkiFBsvhzBUbnPJiZB0EXuycMWDytzJf",
+            "reasoning_content": null
+          },
+          {
+            "role": "user",
+            "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [{\"path\": \"src/devtools/context/python/imports/members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660\", \"span\": [0, 21395]}, {\"path\": \"src/devtools/context/python/modules/bindings.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"span\": [0, 1482]}, {\"path\": \"tests/context/python/imports/test_members.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"01de3be6b3dd249b0584362985556b26609eac682e42c6eb59e08694b7d2d1fe\", \"span\": [0, 26021]}, {\"path\": \"tests/live_native_facade_public.py\", \"snapshot\": \"5697a21d028e3fc37076ea58e0b17a72a6a6dac16c274291f8450917e7e706d1\", \"version\": \"2110eef6c65498b8f5eab37b1fd6f9309f58915edeec884f674d2f0c2886e5d0\", \"span\": [0, 2646]}], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": {\"path\": \"tests/live_native_facade_public.py\", \"span\": [0, 2646], \"earlier_same_range_disclosures\": 0, \"covered_by_one_previous_disclosure\": false}, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+            "tool_calls": [],
+            "tool_call_id": null,
+            "reasoning_content": null
+          }
+        ]
+      },
+      "settings": {
+        "maximum_output_tokens": 2048,
+        "thinking_enabled": false
+      },
+      "conversation": null,
+      "provider_settings": null,
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        },
+        {
+          "name": "find_source",
+          "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+        },
+        {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+        }
+      ]
+    }
+  ],
+  "preliminary_measurement": {
+    "request_bytes": [
+      5053,
+      30347,
+      69214
+    ],
+    "input_tokens": [
+      1495,
+      7215,
+      16961
+    ],
+    "qualification": "Earlier request payloads were not archived; fresh authenticated measurement supersedes its exact-input claim. Generated identities differ. No inference occurred."
+  },
+  "deterministic_reduction": {
+    "kind": "authored metadata-only projection fixture; no Tool/model effect claimed",
+    "pressure": {
+      "original_bytes": 26798,
+      "request_bytes": 8834,
+      "ceiling_bytes": 32768,
+      "warning_bytes": 15000,
+      "warning": true,
+      "policy": "deterministic",
+      "action": "reduced",
+      "measured_input_tokens": null,
+      "token_capacity": null
+    },
+    "original_retained_messages": 26,
+    "active_messages": 8,
+    "original_history_unchanged": true,
+    "source_disclosures": 0,
+    "omitted_exchanges": [
+      [
+        2,
+        4,
+        "host-classified-metadata"
+      ],
+      [
+        4,
+        6,
+        "host-classified-metadata"
+      ],
+      [
+        6,
+        8,
+        "host-classified-metadata"
+      ],
+      [
+        8,
+        10,
+        "host-classified-metadata"
+      ],
+      [
+        10,
+        12,
+        "host-classified-metadata"
+      ],
+      [
+        12,
+        14,
+        "host-classified-metadata"
+      ],
+      [
+        14,
+        16,
+        "host-classified-metadata"
+      ],
+      [
+        16,
+        18,
+        "host-classified-metadata"
+      ],
+      [
+        18,
+        20,
+        "host-classified-metadata"
+      ]
+    ]
+  },
+  "validation": {
+    "comprehensive_executions": 1,
+    "runs": [
+      {
+        "receipt": "coding-native-3.json",
+        "sha256": "7f9e78a4b5f6b625137f2b9158e6ae1ed6530b9c6117fe3a5a7655f220651b08",
+        "mode": "targeted",
+        "status": "input-drift",
+        "exit_code": 0,
+        "seconds": 101.161729,
+        "call_outcomes": {
+          "passed": 434
+        },
+        "skipped": 0,
+        "inputs_unchanged": false,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]",
+          "tests/scripts/backlog/test_native_context.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      },
+      {
+        "receipt": "final-focused.json",
+        "sha256": "ff778e2a2fca8128edbeda6da75a9d899901d3330c41524ec74db92ad0f11207",
+        "mode": "targeted",
+        "status": "passed",
+        "exit_code": 0,
+        "seconds": 53.729212,
+        "call_outcomes": {
+          "passed": 164
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py",
+          "tests/context/retrieval/source",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]",
+          "tests/scripts/backlog/test_native_context.py",
+          "tests/tools/test_source.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      },
+      {
+        "receipt": "final-protected.json",
+        "sha256": "e625ba78f248c906d7fb0b2001e753436d49d28b7a008fb12711ffb61cdf7464",
+        "mode": "comprehensive",
+        "status": "passed",
+        "exit_code": 0,
+        "seconds": 2247.213302,
+        "call_outcomes": {
+          "passed": 4096
+        },
+        "skipped": 2,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": true,
+        "targets": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      },
+      {
+        "receipt": "focused-1.json",
+        "sha256": "396c02e720b8b8bfc4eced094b81d26f14bba0842b431789edf182dedfb40bc6",
+        "mode": "targeted",
+        "status": "test-or-coverage-failure",
+        "exit_code": 1,
+        "seconds": 846.4875,
+        "call_outcomes": {
+          "passed": 76,
+          "failed": 3
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py",
+          "tests/scripts/backlog/test_native.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": [
+          "tests/agents/coding/test_capacity.py::test_higher_byte_profile_delivers_preserved_batch_without_duplicate_reads",
+          "tests/agents/coding/test_capacity.py::test_measurement_and_observer_failures_never_enter_or_retry[source]",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]"
+        ]
+      },
+      {
+        "receipt": "last-capacity.json",
+        "sha256": "d5eefc6d4261cc1ed0c4738e73470041c57d8a6f8a8f26275ac35f73db93e7b7",
+        "mode": "targeted",
+        "status": "passed",
+        "exit_code": 0,
+        "seconds": 4.695921,
+        "call_outcomes": {
+          "passed": 28
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      },
+      {
+        "receipt": "profile-2.json",
+        "sha256": "6bda2ab5103301dcd4b63213192ec42726124ddd16dcb50db9944fc38680d866",
+        "mode": "targeted",
+        "status": "test-or-coverage-failure",
+        "exit_code": 1,
+        "seconds": 44.818062,
+        "call_outcomes": {
+          "passed": 39,
+          "failed": 1
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]",
+          "tests/scripts/backlog/test_native_context.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": [
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]"
+        ]
+      },
+      {
+        "receipt": "recovery-1.json",
+        "sha256": "20522415a83b27b65a16f9c1a3caf853950ebc350ee7df3ec9aa50ed4ab269ff",
+        "mode": "targeted",
+        "status": "test-or-coverage-failure",
+        "exit_code": 1,
+        "seconds": 32.111911,
+        "call_outcomes": {
+          "passed": 25,
+          "failed": 1
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": [
+          "tests/agents/coding/test_capacity.py::test_higher_byte_profile_delivers_preserved_batch_without_duplicate_reads"
+        ]
+      },
+      {
+        "receipt": "recovery-2.json",
+        "sha256": "e6cb2018203b7a89e5d74aa71e6901c0949f5c958862f9c72bee001b47cf1199",
+        "mode": "targeted",
+        "status": "passed",
+        "exit_code": 0,
+        "seconds": 2.034569,
+        "call_outcomes": {
+          "passed": 1
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding/test_capacity.py::test_higher_byte_profile_delivers_preserved_batch_without_duplicate_reads",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      },
+      {
+        "receipt": "scoped-4.json",
+        "sha256": "972b604d986e643d91b4ecb1f358a526cf2930fb2dcdd5956ae8bb6855e0a8aa",
+        "mode": "targeted",
+        "status": "passed",
+        "exit_code": 0,
+        "seconds": 103.493704,
+        "call_outcomes": {
+          "passed": 434
+        },
+        "skipped": 0,
+        "inputs_unchanged": true,
+        "all_declared_physical_inputs_match_final": false,
+        "targets": [
+          "tests/agents/coding",
+          "tests/scripts/backlog/test_native.py::test_reviewed_native_task_to_authenticated_installable_plan[context-script]",
+          "tests/scripts/backlog/test_native_context.py",
+          "--no-cov",
+          "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+        ],
+        "failed_ids": []
+      }
+    ],
+    "protected_coverage": {
+      "covered_lines": 14247,
+      "num_statements": 14247,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 686,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 3644,
+      "num_partial_branches": 0,
+      "covered_branches": 3644,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "protected_receipt_sha256": "e625ba78f248c906d7fb0b2001e753436d49d28b7a008fb12711ffb61cdf7464",
+    "protected_stdout_sha256": "3bcde0982c4109a8d5ed46bdc7db38a8249d1b0d5ead18b9d6e197b5d3484a56",
+    "protected_coverage_json_sha256": "3bfb4dc7c1ae462499fff2226ded49a79670b922ed86aff88271e87bed0bc4b7",
+    "protected_input_manifest_sha256": "8229b56c5b2c20de41daaedf60f04d45f65d4009b75f7140b5358b9c50fd9cd5",
+    "protected_inputs": 1059,
+    "tested_git_blobs": {
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md": "bfef877141115dcdbe496bdfb8bee4220dc46818",
+      "docs/development/native-context-policy.md": "16b534364f8844ad08569f664fecd94f493034e9",
+      "docs/development/native-maintenance-handoff.md": "36256a363207d5ef497e2ff8ffa0a984396962e6",
+      "docs/documentation_map.md": "655415da80b079b498f105512ae126713930ecec",
+      "docs/research/native-context-capacity.md": "6bcea372a2c7cb53b5fd39c8280f4a72446cb423",
+      "docs/roadmap.md": "e3c42510a25aaa84a2fe04de3b113bed9c927d09",
+      "scripts/backlog/native/execution.py": "5a80dd5debe60f68642791f593936fb10fca764c",
+      "scripts/backlog/native/lifecycle.py": "b1b8fc2ed760646b8243aced6ff21437b650089b",
+      "scripts/backlog/native/packet.py": "ee018c607424208267bb5138b4001bed400d6b6b",
+      "src/devtools/agents/coding/capacity.py": "d478efaee2e47f0d39acc90586676e66c2fcc7fc",
+      "src/devtools/agents/coding/docs/overview.md": "b84b552152006b04c92d472a42ba37e362fb7c18",
+      "src/devtools/agents/coding/repository.py": "0c03b60e76dbe0f57db547fecdf075665e1935fe",
+      "tests/agents/coding/test_capacity.py": "b1f0e3735ec1a1d8b7af41dfc43e19bd08d2f3f8",
+      "tests/scripts/backlog/test_native.py": "a238b83bfba92474a7e1ff782f451e01cd8513a2",
+      "tests/scripts/backlog/test_native_context.py": "acc679c25d306c64c75ba4de7ef8db2fcaed54d0"
+    },
+    "environment": {
+      "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "packages": [
+        "PyYAML==6.0.3",
+        "Pygments==2.20.0",
+        "anyio==4.15.1",
+        "ast_serialize==0.8.0",
+        "bm25s==0.3.11",
+        "certifi==2026.7.22",
+        "click==8.5.0",
+        "colorama==0.4.6",
+        "coverage==7.15.4",
+        "devtools==0.1.0",
+        "filelock==3.32.6",
+        "fsspec==2026.7.0",
+        "h11==0.16.0",
+        "hf-xet==1.6.0",
+        "httpcore==1.0.9",
+        "httpx==0.28.1",
+        "huggingface_hub==1.30.0",
+        "idna==3.19",
+        "iniconfig==2.3.0",
+        "librt==0.15.0",
+        "mypy==2.3.0",
+        "mypy_extensions==1.1.0",
+        "numpy==2.5.3",
+        "packaging==26.3",
+        "pathspec==1.1.1",
+        "pluggy==1.6.0",
+        "pytest-cov==7.1.0",
+        "pytest==9.1.1",
+        "ruff==0.16.2",
+        "tqdm==4.70.0",
+        "typing_extensions==4.16.0",
+        "tzdata==2026.5"
+      ],
+      "environment_sha256": "86f6c8ab3c233cbe6f35a2468b1ab50ac295a4d57bb4e7a381064f12454199c4",
+      "qualification": "Declared tracked and executable untracked files; inherited environment fingerprint only. Ignored files, services and transitive external inputs are not attested. Fresh-only acceptance."
+    },
+    "statics": {
+      "at": "2026-11-01T05:10:20.898655+00:00",
+      "commands": [
+        {
+          "argv": [
+            "uv",
+            "run",
+            "ruff",
+            "check",
+            "src",
+            "scripts",
+            "apps",
+            "tests",
+            "--extend-exclude",
+            "tests/experiments",
+            "--output-format",
+            "concise"
+          ],
+          "exit_code": 0,
+          "seconds": 0.058611,
+          "stdout": "All checks passed!\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "uv",
+            "run",
+            "ruff",
+            "format",
+            "--check",
+            "src",
+            "scripts",
+            "apps",
+            "tests",
+            "--extend-exclude",
+            "tests/experiments"
+          ],
+          "exit_code": 0,
+          "seconds": 0.053531,
+          "stdout": "762 files already formatted\n",
+          "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n"
+        },
+        {
+          "argv": [
+            "uv",
+            "run",
+            "mypy"
+          ],
+          "exit_code": 0,
+          "seconds": 0.396648,
+          "stdout": "Success: no issues found in 623 source files\r\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "uv",
+            "run",
+            "python",
+            "scripts/validate_layout.py"
+          ],
+          "exit_code": 0,
+          "seconds": 0.085924,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "uv",
+            "lock",
+            "--check",
+            "--offline"
+          ],
+          "exit_code": 0,
+          "seconds": 0.022655,
+          "stdout": "",
+          "stderr": "Resolved 69 packages in 0.65ms\n"
+        },
+        {
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "seconds": 0.051488,
+          "stdout": "",
+          "stderr": "warning: in the working copy of 'docs/roadmap.md', LF will be replaced by CRLF the next time Git touches it\n"
+        }
+      ]
+    },
+    "static_receipt_sha256": "e22b56f6e2169ee53a92a1bcb36cf04abfc569712595c290ed3f7cd50bc4600b",
+    "impact_preview_sha256": "5ed543b01cafc9c025358e31b7dc4581f6d21c5003ea764b5ff5cd0bc0c4f57c",
+    "recovery_preview_sha256": "f84440f985c3cea2e2b34b28c27df5a3e8064f8c5675ed2295ef7aadb7c6bb36",
+    "claim": "Only the successful final protected run qualifies the complete changed executable candidate. Focused/failed/drifted observations retain their original status."
+  },
+  "preservation": {
+    "at": "2026-11-01T05:49:34.174364+00:00",
+    "head": "2c0be91335512a3db2600dd0fafb2a690cd59355",
+    "preserved_hashes": 100,
+    "forensic_files": 13,
+    "ri_rows": {
+      "ri-completion-experiments.jsonl": 606,
+      "ri-completion-fixtures.jsonl": 94,
+      "ri-followup-history.jsonl": 203
+    },
+    "historical_obligations": 188,
+    "historical_refs_preserved": true,
+    "intake_chains": 68,
+    "b0049_status": "BACKLOG; unchanged consumed original dispatch",
+    "b0035": "closure unchanged",
+    "b0043": "DEFERRED/SEMANTICS_PARTIAL; categorized follow-up only",
+    "checkout_owner": false,
+    "tracked_clean": true,
+    "index_clean": true,
+    "original_untracked_preserved": 13,
+    "worktrees": "worktree C:/Users/recoveryadmin/Workspace/tools/devtools\nHEAD 2c0be91335512a3db2600dd0fafb2a690cd59355\nbranch refs/heads/main\n\nworktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\nHEAD 958a6dc1aceb7bbad7b3c8f822127a2d4c56f221\nbranch refs/heads/feat/agent-inspector",
+    "documentation_local_links_checked": 562,
+    "protected_inputs": 1059,
+    "protected_physical_and_index_inputs_match": true
+  },
+  "authority": {
+    "b0049_redispatch": false,
+    "new_workcycle_slot": false,
+    "live_coding_inference": false,
+    "live_review_inference": false,
+    "semantic_auxiliary_inference": false,
+    "no_install_publish_closeout_from_test_evidence": true
+  },
+  "publication_contract": "Ordinary non-force main publication after protected pass and matching executable blobs; final publication identities retained separately to avoid a self-referential commit hash"
+}

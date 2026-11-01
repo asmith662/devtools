@@ -35,7 +35,7 @@ separately controls context, parallel sequences, flash attention and K/V types.
 Weight-file size alone does not determine usable Context.
 
 For orientation only, sixteen full-attention layers with 1,024 K/V dimensions,
-both caches, and q4_0's 18-byte/32-value blocks imply approximately 576 MiB of
+both caches, and [q4_0's 18-byte/32-value blocks](https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-common.h) imply approximately 576 MiB of
 additional full-attention K/V payload per additional 32,768 tokens. That estimate
 excludes recurrent state, graph/compute buffers, padding, allocator/workspace,
 Windows/WSL residency, build-specific layouts and contention. It is an inference
@@ -117,9 +117,9 @@ status annotations:
 
 | Prepared request | Complete serialized bytes | Installed-template input tokens |
 | --- | --- | --- |
-| Initial | 5,053 | 1,495 |
-| After implementation read | 30,347 | 7,215 |
-| After the three-read batch | 69,214 | 16,961 |
+| Initial | 5,053 | 1,501 |
+| After implementation read | 30,347 | 7,235 |
+| After the three-read batch | 69,214 | 17,023 |
 
 Four source reads delivered 51,544 exact bytes with zero duplicate acquisitions.
 The final request plus a 2,048-token generation reservation fits the current
@@ -142,5 +142,47 @@ operational 64K qualification; optional native semantic/adaptive grants and
 model-requested compaction; durable actor-assessment semantics; and phase-specific
 Tool presentation. No status/maturity/closeout authority is inferred.
 
-Final validation and publication identities will be recorded in the delivery
-receipt after the stable executable candidate passes the existing protected gate.
+## Protected delivery
+
+Executable commit `2c0be91335512a3db2600dd0fafb2a690cd59355` passed the protected gate:
+4,081 passed, two optional skips, 100% configured production line and branch
+coverage (14,247 statements and 3,644 branches; none missing or partial).
+Exactly one comprehensive execution occurred, taking 2247.213302 seconds
+(pytest: 2,244.77 seconds). All 1,059 declared protected physical inputs and their
+indexed Git blobs remained unchanged. The current source profile and old consumers
+passed; no old full-coverage observation was substituted for changed executable code.
+
+Development observations include 434 passing coding/native cases in 103.15 seconds,
+164 passing source/navigation/native cases in 52.99 seconds, and the final 28-case
+capacity selection in 4.47 seconds. Failed assertions were repaired with focused
+selections. One earlier 434-case observation had input drift and is retained as
+drifted, not a valid final pass. The [durable receipt](code-audit/native-context-policy-20261101.json)
+records every executed receipt's original status, selection, elapsed time, failed
+IDs and input freshness relative to the final tree. Focused development passes do
+not manufacture comprehensive success. No additional full run was used for repairs.
+
+Supported-root Ruff and formatting (762 files), strict mypy (623 files), canonical
+layout, offline lock consistency, Intake, JSON, documentation links, Git ancestry
+and diff checks passed. All 100 preserved evidence-file hashes matched, including
+the thirteen forensic files and frozen B-0048/B-0049 records. The three RI ledgers
+retain 903 rows; historical refs and 188 historical obligations are preserved.
+Checkout ownership is absent; Inspector remains independently registered on its
+feature branch. B-0035 closure and B-0049's consumed slot remain unchanged.
+
+The synthetic metadata-only reduction measured 26,798 to 8,834 serialized bytes,
+retaining all 26 original history messages while presenting eight active messages.
+It had zero source disclosures and invoked no model or Tool effect. This is a
+reducer measurement, not semantic-summary adoption or engineering competence.
+
+The authenticated tokenizer payloads and their canonical serialization hash are
+included in the receipt. An earlier preliminary measurement of the same request
+shape returned 1,495/7,215/16,961 tokens without retaining its full payload archive;
+fresh archived payloads returned 1,501/7,235/17,023. Generated repository/unit
+identities differ. Both observations are kept distinct; the archived measurement
+is the exact-input reference. Its canonical LF JSON hash and the physical CRLF
+Windows archive hash are explicitly distinguished. No inference occurred.
+
+Publication uses an ordinary documentation/evidence child of the tested executable
+commit, with protected file hashes and blobs reauthenticated before non-force push.
+Final local/remote identities are reported in the handoff rather than embedding a
+self-referential commit hash in this receipt.
