@@ -1,0 +1,10 @@
+"""Record the actual +approve received after the default-No Intake prompt."""
+import json
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import TextFile,write
+O=Path.cwd()/'.local/native-scope-followup';v=json.loads((O/'intake-preview.json').read_bytes())
+assert v['scope_sha256']=='cd70180a428f07a7f5f2e48ccfa688d517668368c05c0ed75d674fbd53f9d4fa'
+record={'at':str(Timestamp.now()),'expires_at':str(Timestamp.now()+Duration.minutes(45)),'user_response':'+approve','scope_sha256':v['scope_sha256'],'operation':'Actual human Intake review/publication only; not coding authority','provenance':'User replied +approve to the exact default-No Intake prompt during this assignment.'}
+write(TextFile(resolve_path(O/'intake-operator-approval.json'),json.dumps(record,indent=2)+'\n'),overwrite=False)

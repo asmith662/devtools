@@ -1,8 +1,10 @@
 # Documentation Map
 
-Current follow-up: [B-0050 failure analysis and linked canonical prerequisite](research/native-scope-followup.md)
-records expanded acceptance and approved linked prerequisite B-0051. The full
-facade repair spans two owners; coding still requires separate exact authority.
+Current follow-up: [B-0050 analysis and B-0051 native continuation](research/native-scope-followup.md)
+records expanded acceptance and one genuinely approved five-call episode. Two
+admitted edits failed public validation; a stale third proposal exhausted the
+allowance. Source was restored, review was ineligible and all three historical
+slots remain consumed. The full facade repair spans two owners and remains open.
 
 Prior live task: [reviewed 64K native maintenance episode](research/live-native64-maintenance-task.md)
 records B-0050's genuine five-call source/edit/check/repair episode: public checks

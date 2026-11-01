@@ -1,0 +1,36 @@
+--- a/src/devtools/context/python/modules/declarations.py
++++ b/src/devtools/context/python/modules/declarations.py
+@@ -141,32 +141,7 @@
+         candidates.extend(
+             None for name in iter_non_name_bindings(node) if name == declared_name
+         )
+-        for child in ast.walk(node):
+-            if isinstance(child, ast.Name) and isinstance(
+-                child.ctx,
+-                ast.Store | ast.Del,
+-            ):
+-                if child.id == declared_name:
+-                    candidates.append(None)
+-            elif isinstance(
+-                child,
+-                ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef,
+-            ):
+-                if child.name == declared_name:
+-                    candidates.append(None)
+-            elif isinstance(child, ast.Import | ast.ImportFrom):
+-                for alias in child.names:
+-                    if alias.name == "*":
+-                        uncertain = True
+-                    elif (
+-                        alias.asname
+-                        or (
+-                            alias.name
+-                            if isinstance(child, ast.ImportFrom)
+-                            else alias.name.split(".")[0]
+-                        )
+-                    ) == declared_name:
+-                        candidates.append(None)
++        _scan_module_level_bindings(node, declared_name, candidates, uncertain)
+     if any(
+         isinstance(node, ast.Call)
+         and isinstance(node.func, ast.Name)

@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "public-check-result",
+  "at": "2026-11-01T19:14:39.938806+00:00",
+  "checks": [
+    {
+      "name": "public",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0051\\worker\\public.py"
+      ],
+      "exit_code": 2,
+      "outcome": "failed",
+      "seconds": 0.81322,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "\r\n=================================== ERRORS ====================================\r\n_________ ERROR collecting tests/live_native_scope_followup_public.py _________\r\n.venv\\Lib\\site-packages\\_pytest\\python.py:508: in importtestmodule\r\n    mod = import_path(\r\n.venv\\Lib\\site-packages\\_pytest\\pathlib.py:562: in import_path\r\n    mod = _import_module_using_spec(module_name, path, insert_modules=False)\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n.venv\\Lib\\site-packages\\_pytest\\pathlib.py:716: in _import_module_using_spec\r\n    spec.loader.exec_module(mod)  # type: ignore[union-attr]\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n.venv\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\r\n    exec(co, module.__dict__)\r\ntests\\live_native_scope_followup_public.py:3: in <module>\r\n    from devtools.context.python.modules.declarations import lookup_python_module_declaration\r\nsrc\\devtools\\context\\__init__.py:24: in <module>\r\n    from devtools.context.python.function import (\r\nsrc\\devtools\\context\\python\\function\\__init__.py:42: in <module>\r\n    from devtools.context.python.function.planned_reference import (\r\nsrc\\devtools\\context\\python\\function\\planned_reference.py:10: in <module>\r\n    from devtools.context.python.function.qualified_reference import (\r\nsrc\\devtools\\context\\python\\function\\qualified_reference.py:15: in <module>\r\n    from devtools.context.python.references.declarations.model import (\r\nsrc\\devtools\\context\\python\\references\\__init__.py:4: in <module>\r\n    from devtools.context.python.references.declarations import (\r\nsrc\\devtools\\context\\python\\references\\declarations\\__init__.py:4: in <module>\r\n    from devtools.context.python.references.declarations.analysis import (\r\nsrc\\devtools\\context\\python\\references\\declarations\\analysis.py:9: in <module>\r\n    from devtools.context.python.classes.declarations import (\r\nsrc\\devtools\\context\\python\\classes\\__init__.py:4: in <module>\r\n    from devtools.context.python.classes.bases import (\r\nsrc\\devtools\\context\\python\\classes\\bases.py:19: in <module>\r\n    from devtools.context.python.imports.declarations import (\r\nsrc\\devtools\\context\\python\\imports\\__init__.py:12: in <module>\r\n    from devtools.context.python.imports.members import (\r\nsrc\\devtools\\context\\python\\imports\\members.py:23: in <module>\r\n    from devtools.context.python.modules.declarations import (\r\nE     File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\src\\devtools\\context\\python\\modules\\declarations.py\", line 148\r\nE       lambda: nonlocal_marker := None,\r\nE                               ^^\r\nE   SyntaxError: invalid syntax\r\n_______ ERROR collecting tests/context/python/modules/test_selection.py _______\r\n.venv\\Lib\\site-packages\\_pytest\\python.py:508: in importtestmodule\r\n    mod = import_path(\r\n.venv\\Lib\\site-packages\\_pytest\\pathlib.py:562: in import_path\r\n    mod = _import_module_using_spec(module_name, path, insert_modules=False)\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n.venv\\Lib\\site-packages\\_pytest\\pathlib.py:716: in _import_module_using_spec\r\n    spec.loader.exec_module(mod)  # type: ignore[union-attr]\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n.venv\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\r\n    exec(co, module.__dict__)\r\ntests\\context\\python\\modules\\test_selection.py:15: in <module>\r\n    from devtools.context.python.modules.declarations import (\r\nE     File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\src\\devtools\\context\\python\\modules\\declarations.py\", line 148\r\nE       lambda: nonlocal_marker := None,\r\nE                               ^^\r\nE   SyntaxError: invalid syntax\r\n=========================== short test summary info ===========================\r\nERROR tests/live_native_scope_followup_public.py\r\nERROR tests/context/python/modules/test_selection.py\r\n!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!\r\n2 errors in 0.31s\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    }
+  ],
+  "sha256": "a72f8cf356f98a56242b0a70c17f53aa25b8edf4ea8f4fee88dea84062bc8807"
+}

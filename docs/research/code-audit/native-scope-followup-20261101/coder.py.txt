@@ -1,0 +1,117 @@
+"""One human-approved native coding dispatch; existing WorkCycle owns the loop."""
+import asyncio,contextlib,getpass,hashlib,json,sys,urllib.request
+from dataclasses import asdict
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';sys.path.insert(0,str(R))
+from devtools.core.time import Timestamp,Duration,Stopwatch
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.models.interaction import InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
+from scripts.backlog.intake import _digest
+from scripts.backlog.work import WorkCycle
+
+def read(p):return json.loads(p.read_bytes())
+def seal(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2,default=str)+'\n'),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:
+  assert r.status==200;return json.loads(r.read(1<<20))
+async def runtime():
+ health,slots=await asyncio.gather(asyncio.to_thread(get,'/health'),asyncio.to_thread(get,'/slots'))
+ assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536
+ assert not slots[0]['is_processing'],'Provider busy; no automatic queue/retry'
+ return {'health':health,'context_tokens':slots[0]['n_ctx'],'idle':True}
+
+class Support:
+ """Finite observations only; no effects, dispatch policy or model loop."""
+ def __init__(self,label):
+  self.folder=O/'support'/label;self.folder.mkdir(parents=True,exist_ok=False)
+  self.used=0;self.returned=0;self.entries=0;self.seconds=0.;self.samples=0
+ def add(self,name,value):
+  value={'at':str(Timestamp.now()),**value};size=len((json.dumps(value,indent=2,default=str)+'\n').encode())
+  assert self.used+size<=65536,'Supporting capture envelope exhausted; no replay'
+  seal(self.folder/name,value);self.used+=size
+ def interaction_completed(self,observation):
+  self.returned+=1
+  self.add(f'provider-{self.returned:02d}.json',{'interaction_id':str(observation.interaction_id),'provider':observation.provider,'source':str(observation.source),'started_at':str(observation.started_at),'completed_at':str(observation.completed_at),'provider_response_id':observation.provider_response_id,'provider_model':observation.provider_model,'usage':asdict(observation.response.usage) if observation.response.usage else None,'termination':str(observation.response.termination),'qualification':'Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable.'})
+ async def sample(self):
+  if self.samples>=16:return
+  self.samples+=1;ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1024,max_stderr_bytes=256))
+  rows={}
+  for name,args in {'gpu':('nvidia-smi','--query-gpu=memory.used,memory.free,utilization.gpu','--format=csv,noheader,nounits'),'host':('powershell','-NoProfile','-Command','Get-CimInstance Win32_OperatingSystem | Select-Object FreePhysicalMemory,FreeVirtualMemory | ConvertTo-Json -Compress'),'container':('docker','inspect','--format','{{.State.Running}}|{{.State.OOMKilled}}|{{.State.Health.Status}}','devtools-qwen38-llama-cpp')}.items():
+   try:
+    r=await ex.execute(Command(args[0]).args(*args[1:]).with_timeout(Duration.seconds(10)))
+    rows[name]={'exit':r.exit_code,'stdout':r.stdout.decode(errors='replace'),'stderr':r.stderr.decode(errors='replace'),'truncated':r.stdout_truncated or r.stderr_truncated}
+   except Exception as error:rows[name]={'error':type(error).__name__}
+  self.add(f'resources-{self.samples:02d}.json',rows)
+
+class Actual:
+ def __init__(self,source,support,review=False):
+  self.source=InteractionSource(source);self.support=support;self.review=review
+  self.adapter=LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=self.source,observer=support)
+ async def measure(self,request):
+  await runtime()
+  return await self.adapter.count_input_tokens(request)
+ async def send(self,request):
+  await runtime()
+  if self.review:
+   count=await self.adapter.count_input_tokens(request)
+   assert count<=62464 and count+request.settings.maximum_output_tokens+1024<=65536
+   self.support.add(f'token-fit-{self.support.entries+1:02d}.json',{'input_tokens':count,'output_reservation':request.settings.maximum_output_tokens,'safety_tokens':1024,'context_tokens':65536})
+  self.support.entries+=1
+  self.support.add(f'adapter-entry-{self.support.entries:02d}.json',{'effect':'Adapter send entered once; not proof of provider completion','source':str(self.source)})
+  print(f'Entering actual {"review" if self.review else "coding"} adapter call {self.support.entries}',flush=True)
+  timer=Stopwatch()
+  try:return await self.adapter.send(request)
+  finally:
+   elapsed=timer.elapsed.total_seconds;self.support.seconds+=elapsed
+   self.support.add(f'adapter-finished-{self.support.entries:02d}.json',{'seconds':elapsed,'returned_observations':self.support.returned,'qualification':'Failure/timeout without provider observation is not replayable or proof the provider did not enter.'})
+
+async def monitored(coro,support):
+ task=asyncio.create_task(coro)
+ try:
+  while not task.done():
+   await support.sample()
+   await asyncio.wait({task},timeout=60)
+  return await task
+ finally:
+  if not task.done():
+   task.cancel()
+   with contextlib.suppress(BaseException):await task
+
+async def main():
+ cycle=WorkCycle(R);item=read(O/'intake-result.json')['item'];a=cycle.native.record(item,'assignment')
+ if sys.argv[1:]==['--prepare-approval']:
+  await cycle.native.validate(a);state=await runtime()
+  scope={'item':item,'assignment_sha256':a['sha256'],'base_head':a['base_head'],'branch':a['branch'],'principal':getpass.getuser(),'operations':['authorize-native-maintenance','dispatch-native-maintenance'],'worker':a['task']['worker'],'settings':a['task']['settings'],'budgets':a['task']['budgets'],'context':a['task']['context'],'readable':sorted(a['inputs']),'editable':[a['task']['source']],'provider':read(O/'current-service.json'),'runtime':state,'expires_at':str(Timestamp.now()+Duration.minutes(45)),'driver_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'support_bytes':65536,'authority_boundary':'One coding episode only; source custody/restoration and return to main mandatory; no install, model/service changes, candidate publication, integration or closeout. Operator attests canonical checkout/provider available exclusively during coding, at most 900 seconds plus bounded mandatory reconciliation.'}
+  seal(O/'coding-approval-scope.json',{'scope':scope,'scope_sha256':_digest(scope)})
+  print(json.dumps({'item':item,'assignment':a['sha256'],'scope_sha256':_digest(scope),'expires_at':scope['expires_at'],'branch':a['branch'],'runtime':state},indent=2));return
+ scope_record=read(O/'coding-approval-scope.json');scope=scope_record['scope'];approval=read(O/'coding-operator-approval.json')
+ assert approval['user_response']=='+approve' and approval['scope_sha256']==scope_record['scope_sha256']==_digest(scope)
+ assert a['sha256']==scope['assignment_sha256'] and getpass.getuser()==scope['principal']
+ assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest()==scope['driver_sha256']
+ assert Timestamp.now().value<Timestamp.from_isoformat(scope['expires_at']).value
+ assert not (cycle._folder(item)/'dispatch.json').exists()
+ await runtime()
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=4096,max_stderr_bytes=1024))
+ check=await ex.execute(Command('docker').args('inspect','--format','{{.Id}}|{{.Image}}','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(10)))
+ assert check.exit_code==0 and check.stdout.decode().strip()==scope['provider']['container_id']+'|'+scope['provider']['image']
+ support=Support('coder');interaction=Actual(a['task']['worker']['source'],support)
+ def consent(value):
+  grant=value['grant']
+  return (approval['user_response']=='+approve' and approval['scope_sha256']==_digest(scope) and value['operation'] in scope['operations'] and value['assignment']==a and grant['principal']==scope['principal'] and grant['assignment_sha256']==a['sha256'] and grant['expires_at']==scope['expires_at'] and Timestamp.now().value<Timestamp.from_isoformat(scope['expires_at']).value)
+ watch=Stopwatch();outcome={}
+ try:
+  grant=await cycle.native.authorize(item,reference='human-default-no-scope-prerequisite-coding-'+approval['scope_sha256'],expires=Timestamp.from_isoformat(scope['expires_at']),authorize=consent)
+  result=await monitored(cycle.native.execute(item,interaction=interaction,profile=a['task']['worker']['profile'],authorize=consent,measure_input=interaction.measure,provider_context_tokens=scope['runtime']['context_tokens']),support)
+  outcome={'result_sha256':result['sha256'],'disposition':result['disposition'],'grant_sha256':grant['sha256'],'facts':{k:result['facts'].get(k) for k in ('model_calls','coding_disposition','error','failure_phase','restored','reconciliation_required','proposals','acquisitions','acceptance','acceptance_error')},'checkout_released':result.get('checkout_released')}
+ except BaseException as error:
+  outcome={'error':type(error).__name__+': '+str(error),'qualification':'Inspect native dispatch/result/custody; no automatic replay or patch intervention.'}
+ finally:
+  with contextlib.suppress(Exception):await support.sample()
+  outcome.update(at=str(Timestamp.now()),seconds=watch.elapsed.total_seconds,adapter_entries=support.entries,returned_interactions=support.returned,adapter_seconds=support.seconds,support_bytes=support.used,principal=getpass.getuser())
+  seal(O/'coder-terminal-outcome.json',outcome)
+ print(json.dumps(outcome,indent=2),flush=True)
+
+if __name__=='__main__':asyncio.run(main())

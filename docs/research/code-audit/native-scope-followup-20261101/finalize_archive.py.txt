@@ -1,0 +1,11 @@
+"""Finish synchronous input verification after archival; no acting operation."""
+import json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';D=R/'docs/research/code-audit/native-scope-followup-20261101';sys.path.insert(0,str(R))
+from scripts.validation.evidence import inputs
+v=json.loads((D/'episode.json').read_bytes());a=json.loads((O/'authentication.json').read_bytes())
+assert not (R/'tests/live_native_scope_followup_public.py').exists() and inputs(R)['sha256']==a['inputs']['sha256']
+assert not (R/'.local/backlog/checkout-owner').exists()
+print(json.dumps({k:v[k] for k in ('outcome','coding_disposition','model_calls','admitted_edits','usage_totals','public_checks','review_eligibility','native_seconds','adapter_seconds','native_capture_bytes','support_capture_bytes','resource_summary')},indent=2))
+last=v['final_tool_feedback'][-1];print('Final correlated Tool feedback:',json.dumps(last)[:1300])
+print('Context pressure:',json.dumps(v['context_pressure'])[:1400])

@@ -1,0 +1,61 @@
+"""Authenticate final blocked evidence, original bytes, refs and protected inputs."""
+import hashlib,json,re,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';D=R/'docs/research/code-audit/native-scope-followup-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from scripts.validation.evidence import inputs,git
+from scripts.backlog.work import WorkCycle,_load
+from scripts.backlog.native.packet import fingerprint
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+auth=read(O/'authentication.json');current=inputs(R);tested=read(R/'.local/qwen64-adoption/final-protected.json')['inputs'];c=WorkCycle(R);item=read(O/'intake-result.json')['item']
+assert current['sha256']==auth['inputs']['sha256']==tested['sha256'] and len(current['sha256'])==1059
+def blobs(s):return {line.split('\t',1)[1]:line.split()[1] for line in s.splitlines()}
+now,old=blobs(current['git_blobs']),blobs(tested['git_blobs']);assert all(now[p]==old[p] for p in current['sha256'])
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists();git(R,'diff','--check')
+assert not git(R,'diff','--cached','--name-only')
+a,r,e=(c.native.record(item,n) for n in ('assignment','result','execution'));assert e['facts']==r['facts'] and e['sha256']==r['execution_sha256']
+assert a['task']==read(D/'task.json') and fingerprint(a['task'])==a['task_sha256']
+assert r['disposition']=='BLOCKED' and r['facts']['restored'] and r['checkout_released'] and not r['facts']['reconciliation_required'] and all(v['acknowledged'] for v in r['facts']['effects'])
+assert r['facts']['acceptance'] is None and not (c._folder(item)/'reviewer').exists() and not (c._folder(item)/'integration').exists()
+assert not (R/'tests/live_native_scope_followup_public.py').exists()
+for p,h in auth['preserved'].items():assert sha(R/p)==h,p
+assert c.intake.approved_item(item)['review']['sha256']==read(O/'intake-result.json')['review']['sha256']
+for ref in r['facts']['observations']:
+ p=c._folder(item)/'worker'/ref['file'];assert _load(p,'backlog-native-observation-v1')['sha256']==ref['sha256'];assert (D/'native-records/worker'/ref['file']).read_bytes()==p.read_bytes()
+exact=read(D/'unaccepted-candidate.json');assert hashlib.sha256(exact['source_text'].encode()).hexdigest()==exact['source_sha256']==r['candidate_sha256'];assert exact['source_text'].encode()==(c._folder(item)/'worker/final-source.py').read_bytes()
+assert hashlib.sha256(exact['native_patch_text'].encode()).hexdigest()==exact['native_patch_sha256']
+assert sha(O/'coder.py')==read(O/'coding-approval-scope.json')['scope']['driver_sha256']==sha(D/'coder.py.txt')
+for olditem,d in [('B-0049','live-native-task-20261031'),('B-0050','live-native64-20261101')]:
+ for name in ('assignment','authorization','dispatch','execution','result'):assert c.native.record(olditem,name)['sha256']==read(R/f'docs/research/code-audit/{d}/native-records/{name}.json')['sha256']
+refs={n:h for h,n in (x.split() for x in git(R,'show-ref').splitlines())};exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for h,n in (x.split() for x in auth['refs'].splitlines()):
+ if n not in exceptions:assert refs.get(n)==h,n
+assert refs['refs/heads/'+a['branch']]==a['base_head']
+w=git(R,'worktree','list','--porcelain');inspector=next(x for x in w.split('\n\n') if x.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+git(R,'merge-base','--is-ancestor',auth['inputs']['head'],'HEAD')
+old_untracked=set(auth['untracked'].split('\0'))-{''};assert len(old_untracked)==13
+untracked=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert old_untracked<=untracked
+proposal=read(O/'proposal.json')['id'];allowed={'docs/roadmap.md','docs/documentation_map.md','docs/research/native-scope-followup.md','docs/backlog/overview.md','docs/backlog/items/B-0051-isolate-wrapped-local-namespaces-in-canonical-module-declaration-lookup-b-0050-prerequisite.md'}
+def permitted(p):return p in allowed or p.startswith(('docs/research/code-audit/native-scope-followup-20261101/','docs/backlog/proposals/'+proposal+'/'))
+assert all(permitted(p) for p in git(R,'diff','--name-only',auth['inputs']['head']).splitlines()) and all(permitted(p) for p in untracked-old_untracked)
+q=c.intake.queue();assert not q['errors'];rows={}
+for name in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ lines=[x for x in (R/'docs/research/code-audit'/name).read_text(encoding='utf-8').splitlines() if x.strip()]
+ for line in lines:json.loads(line)
+ rows[name]=len(lines)
+assert sum(rows.values())==903
+for p in D.rglob('*.json'):read(p)
+links=0
+for p in (R/'docs/research/native-scope-followup.md',R/'docs/documentation_map.md',R/'docs/roadmap.md'):
+ for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+  rel=target.split('#')[0]
+  if rel and ':' not in rel:assert (p.parent/rel).exists(),(p,target);links+=1
+episode=read(D/'episode.json');pressure=episode['context_pressure'];projection=episode['projection']['outcomes']
+result={'at':str(Timestamp.now()),'head':current['head'],'protected_inputs_and_blobs_matching_existing_gate':1059,'historical_hashes_preserved':len(auth['preserved']),'forensic_files_preserved':13,'ri_rows':rows,'intake_item':item,'intake_review':read(O/'intake-result.json')['review']['sha256'],'assignment':a['sha256'],'grant':r['authorization_sha256'],'result':r['sha256'],'release':r['checkout_release'],'model_requests_authenticated':5,'native_observations_authenticated':len(r['facts']['observations']),'source_restored':True,'checkout_owner_absent':True,'inspector_registration':inspector,'links_checked':links,'original_consumed_records_unchanged':True,'maximum_request_bytes':max(v['request_bytes'] for v in pressure),'maximum_input_tokens':max(v['measured_input_tokens'] for v in pressure),'context_warnings':sum(v['warning'] for v in pressure),'projection_omissions':sum(len(v['omitted_exchanges']) for v in projection),'projection_shortened':sum(len(v['shortened_indices']) for v in projection),'source_bytes':episode['unique_source_bytes'],'new_comprehensive_runs':0,'qualification':'Existing protected evidence authenticates unchanged executable inputs only; blocked model candidate and failed public checks are not passes.'}
+write(TextFile(resolve_path(O/'integrity-final.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+write(TextFile(resolve_path(D/'integrity-final.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+for n in ('verify_final.py','finalize_archive.py'):write(BinaryFile(resolve_path(D/(n+'.txt')),(O/n).read_bytes()),overwrite=False)
+print(json.dumps(result,indent=2))

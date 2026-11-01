@@ -1,0 +1,70 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-entry-intent",
+  "at": "2026-11-01T19:13:33.829131+00:00",
+  "source": "llama.cpp/qwen38-local/scope-continuation-coder-20261101",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Supervised continuation informed by B-0049/B-0050, narrowed canonical prerequisite only: correct canonical direct module declaration lookup when module control flow contains unrelated local namespaces. Function, async-function and class bodies retain local bindings even when their declarations occur inside module conditionals, loops or exception-handling. Preserve genuine module-level competing stores/declarations/imports, star imports, pattern/handler guards, direct target/provenance and existing conservative dynamic-call behavior. The previously revealed if/function-local-import case is now public evidence, not a hidden holdout. B-0050 changed a consumer guard but canonical lookup still rejected this case. This task changes ONLY modules/declarations.py. Do not bypass the canonical lookup in imports/members.py or claim the parent facade repair is complete. Trace the owned lookup and its bounded binding/provenance contracts. Use find_source/read_source_unit or bounded read_source as helpful; acquire the complete current editable file before editing. Determine and author your own minimal repair. Public checks contain the expanded semantic matrix and maintained module-selection contracts. Private independent acceptance remains hidden.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"repository_id\": \"1686f7c3-ec93-43d8-a92d-84a715068ce7\", \"snapshot_id\": \"4697a7019593cf06552471c1d9426564d22b7363481d7596714a7556c5eab40c\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/context/python/modules/bindings.py\", \"content_identity\": \"1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750\", \"byte_size\": 1482, \"editable\": false}, {\"address\": \"src/devtools/context/python/modules/declarations.py\", \"content_identity\": \"8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1\", \"byte_size\": 7628, \"editable\": true}, {\"address\": \"tests/context/python/modules/test_selection.py\", \"content_identity\": \"6b90314dbceada00b52aaeff1f5c58bd26c1a51da666b48f7d989070709007f4\", \"byte_size\": 5793, \"editable\": false}, {\"address\": \"tests/live_native_scope_followup_public.py\", \"content_identity\": \"1f4495ac7bbda0bc6726efaf33fb0b7f1b6d0ca2f7f4304b9d792fc9410859db\", \"byte_size\": 18070, \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": null, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": null,
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "entry": "claimed; not proof of provider entry",
+  "sha256": "d7bf7c0ac514f4fae8b3b8e405fe6a2bcaaf19d8d2bd7ae6ab6018a85e5618ac"
+}

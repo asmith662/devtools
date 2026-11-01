@@ -1,0 +1,24 @@
+"""Prepare the newly approved item's unused slot; never execute it here."""
+import asyncio,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';D=R/'docs/research/code-audit/native-scope-followup-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,TextFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+async def main():
+ c=WorkCycle(R);await c._coordinator();i=read(O/'intake-result.json');item=i['item'];f=read(O/'frozen.json');task=read(O/'task.json')
+ assert not c._folder(item).exists() and not (R/'.local/backlog/checkout-owner').exists()
+ assert await git(R,'branch','--show-current')=='main' and not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ assert hashlib.sha256((R/task['source']).read_bytes()).hexdigest()==f['source_sha256']
+ p=R/f['public'];assert not p.exists();data=(O/'public.py.txt').read_bytes();assert hashlib.sha256(data).hexdigest()==f['public_sha256']
+ write(BinaryFile(resolve_path(p),data),overwrite=False)
+ branch='feat/native-scope-'+item.lower()+'-20261101';assert not await git(R,'for-each-ref','--format=%(objectname)','refs/heads/'+branch)
+ await git(R,'branch',branch)
+ a=await c.native.prepare(item,branch=branch,task=task,supervisor='Codex trusted supervisor; genuine Intake approval '+i['review']['sha256']+'; canonical prerequisite only; distinct coding approval required')
+ save(O/'assignment-result.json',{'at':str(Timestamp.now()),'item':item,'assignment_sha256':a['sha256'],'branch':branch,'base_head':a['base_head'],'execution_authorized':False})
+ save(O/'assignment-preview.json',a);print(json.dumps(read(O/'assignment-result.json'),indent=2))
+asyncio.run(main())

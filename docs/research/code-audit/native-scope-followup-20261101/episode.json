@@ -1,0 +1,422 @@
+{
+  "schema": "live-native-scope-continuation-v1",
+  "at": "2026-11-01T19:17:55.120700+00:00",
+  "item": "B-0051",
+  "preparation_commit": "4e818c4c412cc237708e01a3f5510349fc49d6c0",
+  "assignment_sha256": "47a414bee5aaba90ee1ecdcb1795e4563f153c14e20b99392fad2505ceff391c",
+  "authorization_sha256": "1a5d65819a57918783af5f90f791148f657819ac6664dc389d2b33a81ef9b86f",
+  "result_sha256": "0d3cf5f97dba9561e5d448611024d4ab753320ed1cb4a10ff8b61bbd0ab100b2",
+  "outcome": "BLOCKED",
+  "coding_disposition": "proposal_limit",
+  "prior_diagnostic_feedback": true,
+  "reference_patch_authored": false,
+  "model_calls": 5,
+  "usage_totals": {
+    "input_tokens": 52845,
+    "output_tokens": 1378,
+    "qualification": "Cumulative across retained request history; not unique code tokens or uncached prefill"
+  },
+  "per_call_usage": [
+    {
+      "input_tokens": 1587,
+      "output_tokens": 117,
+      "total_tokens": 1704,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 4703,
+      "output_tokens": 134,
+      "total_tokens": 4837,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 11931,
+      "output_tokens": 608,
+      "total_tokens": 12539,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 14953,
+      "output_tokens": 154,
+      "total_tokens": 15107,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 19671,
+      "output_tokens": 365,
+      "total_tokens": 20036,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    }
+  ],
+  "tools": [
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "native_call_id": "vjPL16REi93El28lb6gX21lDKs71Cfx9",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": 0,
+      "end": 7628,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "native_call_id": "K42ESrrSVQ9QvwrFPnxvhIDsU3WjJDMB",
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "start": 0,
+      "end": 1482,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "native_call_id": "6cqTuwNZwzMlFM4OzZd1P61LRtx5nZRj",
+      "path": "tests/context/python/modules/test_selection.py",
+      "start": 0,
+      "end": 5793,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "native_call_id": "pJSJAJVIdaTsFv8t8E43IpG8tdWavBl2",
+      "path": "tests/live_native_scope_followup_public.py",
+      "start": 0,
+      "end": 18070,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 3,
+      "name": "replace_source",
+      "native_call_id": "GFN9xiyyTxfmK6igjAyTE0q11HDS9Aeo",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 1173,
+      "new_text_bytes": 280
+    },
+    {
+      "model_call": 4,
+      "name": "replace_source",
+      "native_call_id": "BNTWcTBdCoMySXCGCWzRI2t83lN1hDbz",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 160,
+      "new_text_bytes": 79
+    },
+    {
+      "model_call": 5,
+      "name": "replace_source",
+      "native_call_id": "UIKY4SG0Qll7lvSS0XBFiOE6MqBkv1xa",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 1173,
+      "new_text_bytes": 252
+    }
+  ],
+  "proposals_attempted": 3,
+  "admitted_edits": 2,
+  "source_acquisitions": 4,
+  "unique_source_bytes": 32973,
+  "duplicate_acquisitions": 0,
+  "public_checks": [
+    {
+      "passed": false,
+      "seconds": 0.81322,
+      "summary": "2 errors in 0.31s",
+      "truncated": false
+    },
+    {
+      "passed": false,
+      "seconds": 0.862554,
+      "summary": "2 failed, 19 passed in 0.35s",
+      "truncated": false
+    }
+  ],
+  "private_acceptance": null,
+  "private_qualification": "Not entered because public coding did not complete; none of the 12 holdouts is reported as passed.",
+  "review_eligibility": {
+    "eligible": false,
+    "reason": "Native candidate/result/approval mismatch",
+    "reviewer_model_entered": false
+  },
+  "reviewer_calls": 0,
+  "host_review": null,
+  "integration_plan": null,
+  "native_seconds": 155.150801,
+  "driver_seconds": 159.095454,
+  "adapter_seconds": 117.451889,
+  "public_check_seconds": 1.675774,
+  "private_check_seconds": 0,
+  "native_capture_bytes": 331758,
+  "support_capture_bytes": 7837,
+  "capture_ceiling": 1048576,
+  "projection": {
+    "schema": "backlog-native-observation-v1",
+    "kind": "context-projection",
+    "at": "2026-11-01T19:15:43.130921+00:00",
+    "outcomes": [
+      {
+        "status": "reduced",
+        "original_bytes": 4733,
+        "resulting_bytes": 5510,
+        "selected_indices": [
+          0,
+          1
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 16686,
+        "resulting_bytes": 18137,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "527f87162f0c3739152a492cbab4673dedf461e1b12ea687099be4479a64d2c3",
+          "3fe5297d6919684dd72209c5b243e7b15507142c2f98274ed80e1a0c5fbce9b4"
+        ],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 44388,
+        "resulting_bytes": 46336,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "527f87162f0c3739152a492cbab4673dedf461e1b12ea687099be4479a64d2c3",
+          "3fe5297d6919684dd72209c5b243e7b15507142c2f98274ed80e1a0c5fbce9b4",
+          "676110d40d69cc8e83eb4719df6d957b48324d99736b81b3042c0b2cd26b07b5",
+          "423398df6c1b0178767278b5da5ef0861487bd8be1ecb57a11d065f57804daf1"
+        ],
+        "invalidated_source_identities": []
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 60109,
+        "resulting_bytes": 61311,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "7c2b2d95b6cebe2e46257681aeca0b6e580e45ae0a06689da428a9d95a1d6106"
+        ],
+        "invalidated_source_identities": [
+          "527f87162f0c3739152a492cbab4673dedf461e1b12ea687099be4479a64d2c3",
+          "3fe5297d6919684dd72209c5b243e7b15507142c2f98274ed80e1a0c5fbce9b4",
+          "676110d40d69cc8e83eb4719df6d957b48324d99736b81b3042c0b2cd26b07b5",
+          "423398df6c1b0178767278b5da5ef0861487bd8be1ecb57a11d065f57804daf1"
+        ]
+      },
+      {
+        "status": "reduced",
+        "original_bytes": 81303,
+        "resulting_bytes": 82505,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "omitted_exchanges": [],
+        "shortened_indices": [],
+        "active_source_identities": [
+          "5b2cb8b3babd1506dd2c8ea2bb3d449ea16e0ca24415127748178453f43f8e02"
+        ],
+        "invalidated_source_identities": [
+          "527f87162f0c3739152a492cbab4673dedf461e1b12ea687099be4479a64d2c3",
+          "3fe5297d6919684dd72209c5b243e7b15507142c2f98274ed80e1a0c5fbce9b4",
+          "676110d40d69cc8e83eb4719df6d957b48324d99736b81b3042c0b2cd26b07b5",
+          "423398df6c1b0178767278b5da5ef0861487bd8be1ecb57a11d065f57804daf1",
+          "7c2b2d95b6cebe2e46257681aeca0b6e580e45ae0a06689da428a9d95a1d6106"
+        ]
+      }
+    ],
+    "sha256": "8e6aa66fa25f98be14d1aa47cd2515efb6bac9da2be42b13934ca128d95cd5ca"
+  },
+  "context_pressure": [
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T19:13:31.504498+00:00",
+      "original_bytes": 4733,
+      "request_bytes": 5510,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 1587,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "d04f7bd0686e19d351984983f5a71aec9790f2911f020afdb5bccb36e688c8fd"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T19:13:49.635516+00:00",
+      "original_bytes": 16686,
+      "request_bytes": 18137,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 4703,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "51c90b610563009277a24e347006ed08fc1cac9ec8a6a8a62a83df039398cae2"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T19:14:01.101766+00:00",
+      "original_bytes": 44388,
+      "request_bytes": 46336,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 11931,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "bb07b6d0d8f9430c7bc2c824b98f2fb6c9cb69ecb1ce00eb6c2fe071fd73f085"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T19:14:40.429884+00:00",
+      "original_bytes": 60109,
+      "request_bytes": 61311,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 14953,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "67f5ae79980a1ff4547f39c824c8ece3145f0540c43cc826da803b8f88dcb6a4"
+    },
+    {
+      "schema": "backlog-native-observation-v1",
+      "kind": "context-pressure",
+      "at": "2026-11-01T19:15:05.964944+00:00",
+      "original_bytes": 81303,
+      "request_bytes": 82505,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 19671,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      },
+      "sha256": "e9be9f072c89538b8119c2f769b1ef688b37d5b416215ac18260622295c8ec31"
+    }
+  ],
+  "final_tool_feedback": [
+    {
+      "tool_call_id": "pJSJAJVIdaTsFv8t8E43IpG8tdWavBl2",
+      "content": "{\"source_length\": 18070, \"valid_range\": [0, 18070], \"maximum_bytes\": 65536, \"continuation_start\": 18070, \"remaining_range\": [18070, 18070], \"text\": \"\\\"\\\"\\\"Frozen expanded task acceptance; never a normal installed regression suite.\\\"\\\"\\\"\\nimport pytest\\nfrom devtools.context.python.modules.declarations import lookup_python_module_declaration\\n\\nimport hashlib\\nfrom pathlib import Path\\nfrom devtools.context import Repository, RepositoryResourceAddress, observe_repository_resources\\nfrom devtools.context.python.modules import PythonModuleRoot, interpret_python_module_resources\\nfrom devtools.core.paths import resolve_path\\nfrom devtools.resources.filesystem import BinaryFile, write\\n\\ndef inspect(root, content, name, lookup):\\n    root.mkdir(parents=True, exist_ok=True)\\n    address = RepositoryResourceAddress(\\\"probe.py\\\")\\n    write(BinaryFile(resolve_path(root / address.value), content.encode(\\\"utf-8\\\")), overwrite=False)\\n    snapshot = observe_repository_resources(repository=Repository.new(), root=resolve_path(root), addresses=(address,), maximum_resource_bytes=8192)\\n    module = interpret_python_module_resources(snapshot, module_root=PythonModuleRoot(\\\".\\\"), resource_addresses=(address,)).interpretations[0]\\n    result = lookup(snapshot, module=module, declared_name=name)\\n    assert result.module == module\\n    assert result.function_analysis.derivation.dependency.snapshot_id == snapshot.id\\n    assert result.class_analysis.derivation.dependency.snapshot_id == snapshot.id\\n    return result, snapshot, address\\n\\ndef verify(root, row, lookup):\\n    result, snapshot, address = inspect(root, row[\\\"source\\\"], row.get(\\\"name_to_lookup\\\", \\\"f\\\"), lookup)\\n    actual = result.outcome.value\\n    if actual != row[\\\"expected\\\"]:\\n        return {\\\"case\\\": row[\\\"name\\\"], \\\"expected\\\": row[\\\"expected\\\"], \\\"actual\\\": actual}\\n    if actual == \\\"resolved\\\":\\n        assert result.target is not None\\n        assert result.target.support.snapshot_id == snapshot.id\\n        assert result.target.support.resource_address == a"
+    },
+    {
+      "tool_call_id": "GFN9xiyyTxfmK6igjAyTE0q11HDS9Aeo",
+      "content": "{\"passed\": false, \"checks\": [{\"name\": \"public\", \"exit_code\": 2, \"stdout\": \"\\r\\n=================================== ERRORS ====================================\\r\\n_________ ERROR collecting tests/live_native_scope_followup_public.py _________\\r\\n.venv\\\\Lib\\\\site-packages\\\\_pytest\\\\python.py:508: in importtestmodule\\r\\n    mod = import_path(\\r\\n.venv\\\\Lib\\\\site-packages\\\\_pytest\\\\pathlib.py:562: in import_path\\r\\n    mod = _import_module_using_spec(module_name, path, insert_modules=False)\\r\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n.venv\\\\Lib\\\\site-packages\\\\_pytest\\\\pathlib.py:716: in _import_module_using_spec\\r\\n    spec.loader.exec_module(mod)  # type: ignore[union-attr]\\r\\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n.venv\\\\Lib\\\\site-packages\\\\_pytest\\\\assertion\\\\rewrite.py:188: in exec_module\\r\\n    exec(co, module.__dict__)\\r\\ntests\\\\live_native_scope_followup_public.py:3: in <module>\\r\\n    from devtools.context.python.modules.declarations import lookup_python_module_declaration\\r\\nsrc\\\\devtools\\\\context\\\\__init__.py:24: in <module>\\r\\n    from devtools.context.python.function import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\function\\\\__init__.py:42: in <module>\\r\\n    from devtools.context.python.function.planned_reference import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\function\\\\planned_reference.py:10: in <module>\\r\\n    from devtools.context.python.function.qualified_reference import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\function\\\\qualified_reference.py:15: in <module>\\r\\n    from devtools.context.python.references.declarations.model import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\references\\\\__init__.py:4: in <module>\\r\\n    from devtools.context.python.references.declarations import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\references\\\\declarations\\\\__init__.py:4: in <module>\\r\\n    from devtools.context.python.references.declarations.analysis import (\\r\\nsrc\\\\devtools\\\\context\\\\python\\\\references\\\\declarations\\\\analysis.py:9: in <module>\\r\\n    from devtools.context.python.classes.declarati"
+    },
+    {
+      "tool_call_id": "BNTWcTBdCoMySXCGCWzRI2t83lN1hDbz",
+      "content": "{\"passed\": false, \"checks\": [{\"name\": \"public\", \"exit_code\": 1, \"stdout\": \".F.F.................                                                    [100%]\\r\\n================================== FAILURES ===================================\\r\\n_______________ test_declared_namespace_matrix[wrapped-locals] ________________\\r\\n\\r\\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-13259/test_declared_namespace_matrix1')\\r\\ngroup = 'wrapped-locals'\\r\\n\\r\\n    @pytest.mark.parametrize(\\\"group\\\", [\\\"local-scopes\\\", \\\"wrapped-locals\\\", \\\"targets\\\", \\\"conservative\\\"])\\r\\n    def test_declared_namespace_matrix(tmp_path, group):\\r\\n        failures = []\\r\\n        for row in CASES:\\r\\n            if row[\\\"group\\\"] == group:\\r\\n>               problem = verify(tmp_path / row[\\\"name\\\"], row, lookup_python_module_declaration)\\r\\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n\\r\\ntests\\\\live_native_scope_followup_public.py:46: \\r\\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\\r\\ntests\\\\live_native_scope_followup_public.py:25: in verify\\r\\n    result, snapshot, address = inspect(root, row[\\\"source\\\"], row.get(\\\"name_to_lookup\\\", \\\"f\\\"), lookup)\\r\\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\ntests\\\\live_native_scope_followup_public.py:18: in inspect\\r\\n    result = lookup(snapshot, module=module, declared_name=name)\\r\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\\r\\n\\r\\nsnapshot = RepositorySnapshot(id=RepositorySnapshotId(value='468b2609a0647d398ce0f038015a6b1adbc5a06a82dc80ca50df0af8460bdd73'), ...mentation import f\\\\nif enabled:\\\\n    def helper():\\\\n        from .other import f\\\\n', encoding='utf-8', byte_size=89),))\\r\\nmodule = PythonModuleInterpretation(repository_id=RepositoryId(value=Identity(value=UUID('9362a19f-46ce-495b-8bbe-81d18"
+    },
+    {
+      "tool_call_id": "UIKY4SG0Qll7lvSS0XBFiOE6MqBkv1xa",
+      "content": "{\"status\": \"REFUSED\", \"reason\": \"Old text must match exactly one source region\"}"
+    }
+  ],
+  "source_restored": true,
+  "checkout_release": "9979b03270ed4e3cf96ea81c45eac45fb7245f08d630d863bf100197864a9f16",
+  "known_effects": true,
+  "provider_healthy_64k": true,
+  "resource_summary": {
+    "samples": 4,
+    "sampled_peak_gpu_mib": 14738,
+    "sampled_min_free_gpu_mib": 1313,
+    "sampled_min_free_physical_kib": 784564,
+    "sampled_min_free_virtual_kib": 5527188
+  },
+  "new_comprehensive_runs": 0,
+  "production_source_changed": false,
+  "no_redispatch": true
+}

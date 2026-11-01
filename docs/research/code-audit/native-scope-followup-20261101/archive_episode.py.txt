@@ -1,0 +1,71 @@
+"""Archive the single failed episode; never repair, redispatch or admit review."""
+import asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-scope-followup';D=R/'docs/research/code-audit/native-scope-followup-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import BinaryFile,TextFile,write,read as fs_read,FileFormat
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle,_load
+from scripts.backlog.native.review.subject import subject
+from scripts.validation.evidence import inputs
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def copy(a,b):
+ b.parent.mkdir(parents=True,exist_ok=True)
+ if b.exists():assert b.read_bytes()==a.read_bytes()
+ else:write(BinaryFile(resolve_path(b),a.read_bytes()),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:return json.loads(r.read(1<<20))
+async def main():
+ c=WorkCycle(R);item=read(O/'intake-result.json')['item'];a=c.native.record(item,'assignment');result=c.native.record(item,'result');facts=result['facts'];folder=c._folder(item);worker=folder/'worker'
+ assert result['disposition']=='BLOCKED' and facts['coding_disposition']=='proposal_limit' and facts['acceptance'] is None and facts['restored'] and result['checkout_released'] and not facts['reconciliation_required']
+ assert not (R/'.local/backlog/checkout-owner').exists() and sha(R/a['task']['source'])==read(O/'frozen.json')['source_sha256']
+ try:await subject(c.native,item)
+ except PermissionError as error:eligibility={'eligible':False,'reason':str(error),'reviewer_model_entered':False}
+ else:raise AssertionError('Blocked result unexpectedly eligible')
+ assert not (folder/'reviewer').exists()
+ for p in sorted(folder.glob('*.json')):copy(p,D/'native-records'/p.name)
+ for p in sorted(worker.glob('*.json')):copy(p,D/'native-records/worker'/p.name)
+ for n in ('public.py','withheld.py'):copy(worker/n,D/'native-records/worker'/(n+'.txt'))
+ candidate=worker/'final-source.py';exact=fs_read(resolve_path(candidate),file_format=FileFormat.TEXT,max_bytes=32768);assert isinstance(exact,TextFile) and not exact.truncated
+ assert exact.content.encode()==candidate.read_bytes()
+ patch=folder/'candidate.patch';patch_text=fs_read(resolve_path(patch),file_format=FileFormat.TEXT,max_bytes=65536).content if patch.exists() else None
+ copy(candidate,D/'unaccepted-candidate.py.txt')
+ if patch.exists():copy(patch,D/'unaccepted-candidate.diff.txt')
+ save(D/'unaccepted-candidate.json',{'qualification':'Exact terminal unaccepted model-authored source and optional native patch, escaped to preserve CRLF. Not a passing/reviewable candidate and no installation authority.','source_text':exact.content,'source_sha256':sha(candidate),'native_result_candidate_sha256':result.get('candidate_sha256'),'native_patch_text':patch_text,'native_patch_sha256':sha(patch) if patch.exists() else None})
+ for p in sorted((O/'support/coder').glob('*.json')):copy(p,D/'support/coder'/p.name)
+ for n in ('coding-approval-scope.json','coding-operator-approval.json','coder-terminal-outcome.json','assignment-result.json'):copy(O/n,D/n)
+ for n in ('coder.py','assignment.py','record_coding_consent.py','record_intake_consent.py','archive_episode.py'):copy(O/n,D/(n+'.txt'))
+ for p in (R/'.local/backlog/checkout-history').glob('*.json'):
+  v=read(p)
+  if v.get('operation')=='native:'+a['sha256']:
+   assert _load(p,'backlog-checkout-owner-v1')['sha256']==result['checkout_release'];copy(p,D/'native-records/checkout-release.json')
+ frames=[read(worker/ref['file']) for ref in facts['observations']]
+ for ref,v in zip(facts['observations'],frames,strict=True):assert _load(worker/ref['file'],'backlog-native-observation-v1')['sha256']==ref['sha256']
+ returned=[v for v in frames if v['kind']=='model-returned'];requests=[v['request'] for v in frames if v['kind']=='model-entry-intent'];tools=[]
+ for call,v in enumerate(returned,1):
+  for t in v['response']['tool_calls']:
+   args=json.loads(t['arguments_json']);tools.append({'model_call':call,'name':t['name'],'native_call_id':t['provider_call_id'],'path':args.get('path'),'start':args.get('start'),'end':args.get('end'),'old_text_bytes':len(args.get('old_text','').encode()),'new_text_bytes':len(args.get('new_text','').encode())})
+ checks=[x for group in facts['checks'] for x in group];history=next(v for v in frames if v['kind']=='coding-feedback-history');last=[]
+ for m in history['messages'][-4:]:last.append({'tool_call_id':m['tool_call_id'],'content':m['content'][:2048]})
+ projection=next(v for v in frames if v['kind']=='context-projection');pressure=[v for v in frames if v['kind']=='context-pressure']
+ support=read(O/'coder-terminal-outcome.json');native_bytes=sum(p.stat().st_size for p in worker.glob('observation-*.json'));support_bytes=sum(p.stat().st_size for p in (O/'support/coder').glob('*.json'));assert native_bytes<=983040 and support_bytes<=65536 and native_bytes+support_bytes<=1048576
+ usage=facts['usage'];edits=[v for v in frames if v['kind']=='edit-completed'];intents=[v for v in frames if v['kind']=='edit-intent'];assert len(edits)==len(intents)==2 and len(returned)==len(requests)==5
+ assert all(a['task']['oracle'] not in m['content'] and 'HOLDOUTS = ' not in m['content'] for q in requests for m in q['prompt']['messages'])
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048));container=await ex.execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)));assert container.exit_code==0;provider=json.loads(container.stdout)[0];prior=read(O/'current-service.json')
+ health,slots=await asyncio.gather(asyncio.to_thread(get,'/health'),asyncio.to_thread(get,'/slots'));assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536
+ assert provider['Id']==prior['container_id'] and provider['Image']==prior['image'] and provider['Config']['Cmd']==prior['command'] and provider['Mounts']==prior['mounts'] and not provider['State']['OOMKilled']
+ save(D/'provider-after.json',{'at':str(Timestamp.now()),'container_id':provider['Id'],'image':provider['Image'],'command':provider['Config']['Cmd'],'health':health,'slots':slots,'oom_killed':provider['State']['OOMKilled'],'service_mutated':False})
+ resources=[read(p) for p in sorted((O/'support/coder').glob('resources-*.json'))];gpu=[];host=[]
+ for v in resources:
+  g,h=v.get('gpu',{}),v.get('host',{})
+  if g.get('exit')==0 and not g.get('truncated'):gpu.append([int(x.strip()) for x in g['stdout'].strip().split(',')])
+  if h.get('exit')==0 and not h.get('truncated'):host.append(json.loads(h['stdout']))
+ outcome={'schema':'live-native-scope-continuation-v1','at':str(Timestamp.now()),'item':item,'preparation_commit':a['base_head'],'assignment_sha256':a['sha256'],'authorization_sha256':result['authorization_sha256'],'result_sha256':result['sha256'],'outcome':result['disposition'],'coding_disposition':facts['coding_disposition'],'prior_diagnostic_feedback':True,'reference_patch_authored':False,'model_calls':len(returned),'usage_totals':{'input_tokens':sum(v['input_tokens'] for v in usage),'output_tokens':sum(v['output_tokens'] for v in usage),'qualification':'Cumulative across retained request history; not unique code tokens or uncached prefill'},'per_call_usage':usage,'tools':tools,'proposals_attempted':facts['proposals'],'admitted_edits':len(edits),'source_acquisitions':sum(t['name'] in ('read_source','read_source_unit','find_source') for t in tools),'unique_source_bytes':sum(t['end']-t['start'] for t in tools if t['name']=='read_source'),'duplicate_acquisitions':0,'public_checks':[{'passed':v['passed'],'seconds':v['seconds'],'summary':v['stdout'].strip().splitlines()[-1],'truncated':v['stdout_truncated'] or v['stderr_truncated']} for v in checks],'private_acceptance':facts['acceptance'],'private_qualification':'Not entered because public coding did not complete; none of the 12 holdouts is reported as passed.','review_eligibility':eligibility,'reviewer_calls':0,'host_review':None,'integration_plan':None,'native_seconds':result['seconds'],'driver_seconds':support['seconds'],'adapter_seconds':support['adapter_seconds'],'public_check_seconds':sum(v['seconds'] for v in checks),'private_check_seconds':0,'native_capture_bytes':native_bytes,'support_capture_bytes':support_bytes,'capture_ceiling':1048576,'projection':projection,'context_pressure':pressure,'final_tool_feedback':last,'source_restored':True,'checkout_release':result['checkout_release'],'known_effects':all(v['acknowledged'] for v in facts['effects']),'provider_healthy_64k':True,'resource_summary':{'samples':len(resources),'sampled_peak_gpu_mib':max(v[0] for v in gpu) if gpu else None,'sampled_min_free_gpu_mib':min(v[1] for v in gpu) if gpu else None,'sampled_min_free_physical_kib':min(v['FreePhysicalMemory'] for v in host) if host else None,'sampled_min_free_virtual_kib':min(v['FreeVirtualMemory'] for v in host) if host else None},'new_comprehensive_runs':0,'production_source_changed':False,'no_redispatch':True}
+ save(D/'episode.json',outcome);save(O/'review-eligibility.json',eligibility)
+ public=R/read(O/'frozen.json')['public'];assert sha(public)==read(O/'frozen.json')['public_sha256'];public.unlink()
+ assert inputs(R)['sha256']==read(O/'authentication.json')['inputs']['sha256']
+ print(json.dumps({k:outcome[k] for k in ('outcome','coding_disposition','model_calls','admitted_edits','usage_totals','public_checks','review_eligibility','native_seconds','adapter_seconds','native_capture_bytes','support_capture_bytes','resource_summary')},indent=2))
+asyncio.run(main())

@@ -1,10 +1,13 @@
 # Roadmap
 
-Prepared [B-0050 follow-up](research/native-scope-followup.md): exact archived
-candidate analysis identifies a second canonical declaration-lookup owner.
-Expanded public acceptance and fresh independent holdouts are frozen. The related
-one-file prerequisite B-0051 received genuine Intake approval; the full facade repair,
-consumed historical slots and B-0043 remain open. No new inference is asserted.
+Executed [B-0050 follow-up B-0051](research/native-scope-followup.md): exact analysis
+identified a second canonical declaration-lookup owner; expanded public acceptance
+and fresh independent holdouts were frozen. One genuinely approved Qwen episode
+made five calls and two admitted edits, but syntax/missing-helper failures and a
+stale third proposal exhausted its allowance. Native result is BLOCKED; private
+acceptance and review were not entered. Source/Checkout were restored/released.
+The full facade repair, now-consumed B-0051 slot and B-0043 remain open. The bounded
+native sampler-settings gap is documented; no further Context system is warranted.
 
 Latest live engineering evidence: [B-0050 on the persistent 64K Qwen provider](research/live-native64-maintenance-task.md)
 made five actual calls and two admitted edits, including a public-check repair.

@@ -1,7 +1,11 @@
-# B-0050 failure analysis and linked canonical prerequisite
+# B-0050 failure analysis and B-0051 native continuation
 
-Preparation and human Intake review are complete. No new coding inference,
-execution grant, candidate, reviewer inference or integration plan is asserted.
+One genuinely approved B-0051 coding episode completed **BLOCKED**. Qwen made
+five actual calls, acquired all four source resources, authored two admitted
+edits and attempted a third proposal. It did not complete public validation;
+private acceptance and independent review were not entered. Source was restored,
+Checkout released and the persistent 64K service remained healthy. No model
+candidate was installed or published as executable code.
 Starting authenticated local and remote main:
 `1e724c60f6cc82e4333193cfb0dac231dde50ab0`.
 
@@ -13,7 +17,8 @@ operator prompt binds review scope SHA256
 `cd70180a428f07a7f5f2e48ccfa688d517668368c05c0ed75d674fbd53f9d4fa`.
 The existing callback returned false for preview and subsequently consumed the
 actual scope-bound human decision; it did not manufacture consent. The new
-WorkCycle slot is unused. Coding execution still requires distinct authority.
+WorkCycle slot was unused at preparation. A second genuine `+approve` authorized
+the exact coding episode below; that slot is now consumed.
 
 ## What the first implementation failure established
 
@@ -49,7 +54,7 @@ v1 permits one editable implementation file. The proposed next item is therefore
 a **linked canonical prerequisite**, editing only
 `src/devtools/context/python/modules/declarations.py`. The original consumer
 repair and broader B-0049/B-0050 obligations remain open. This prospective
-narrowing requires genuine human Intake review; it is not a claim that the
+narrowing received genuine human Intake review; it is not a claim that the
 one-file profile can complete the whole parent task.
 
 The canonical lookup must distinguish module bindings from unrelated local
@@ -99,7 +104,8 @@ output tokens/call, 120 seconds/call and 900 seconds total. Independent limits
 remain 128 KiB/request, 32 KiB editable source, 64 KiB disclosure and 960 KiB native
 capture plus 64 KiB support. Provider input is measured: 62,464 input tokens,
 2,048 output reservation and 1,024 safety tokens within actual 65,536 capacity.
-Deterministic projection remains enabled. Exact authority is still required.
+Deterministic projection remained enabled. The operator separately approved the
+exact assignment and dispatch scope before model entry.
 
 The unchanged pinned provider is healthy with one actual 65,536-token slot; no
 restart, download, service change or benchmark occurred. Native portable requests
@@ -138,10 +144,102 @@ worktree. No source edit, provider mutation or new comprehensive run occurred.
 Existing protected evidence concerns unchanged framework inputs only; it is not
 a pass about a new candidate. No production executable source is published here.
 
-The next productive operation is a separately scoped coding grant for the
-approved linked prerequisite. A favorable candidate
-would require independent reviewer authority and separate host disposition before
-read-only integration planning. Broader facade repair, review-driven repair,
-failed-candidate diagnostic review, automatic selection and closeout remain open.
-This checkpoint establishes improved supervision and the exact ownership boundary;
-it does not establish another live-model outcome.
+The preparation checkpoint was ordinarily published as
+`4e818c4c412cc237708e01a3f5510349fc49d6c0` before inference. The earlier pending
+integrity snapshot retains its original timestamp and meaning; the genuine
+subsequent approval and terminal evidence are additional records, not rewritten
+history. Broader facade repair, review-driven repair, failed-candidate diagnostic
+review, automatic selection and closeout remain open.
+
+## Actual authorized episode
+
+Assignment SHA256:
+`47a414bee5aaba90ee1ecdcb1795e4563f153c14e20b99392fad2505ceff391c`.
+Coding grant:
+`1a5d65819a57918783af5f90f791148f657819ac6664dc389d2b33a81ef9b86f`.
+Result:
+`0d3cf5f97dba9561e5d448611024d4ab753320ed1cb4a10ff8b61bbd0ab100b2`.
+The [actual operator decision](code-audit/native-scope-followup-20261101/coding-operator-approval.json)
+binds scope digest
+`13944b788e7f4e5f2e6826ddb6d450fef381ed8118191efe46f59535425c09ff`,
+including finite budgets, expiry, provider reservation and source restoration.
+The owner used `feat/native-scope-b-0051-20261101` in the canonical checkout and
+returned to `main`. Neither historical slot was replayed.
+
+The [episode receipt](code-audit/native-scope-followup-20261101/episode.json)
+retains all normalized requests/responses, exact native Tool identifiers,
+35 authenticated observations, public output, authority, custody and support
+measurements. Qwen selected four whole-resource `read_source` requests: editable
+declarations, read-only bindings, maintained selection tests and expanded public
+checks. Total exact source acquired: 32,973 bytes, no duplicate acquisitions.
+It did not select `find_source`, `read_source_unit` or an explicit
+`validate_candidate` call; existing managed public validation followed admitted
+edits automatically. No motivation is inferred from those Tool choices.
+
+The model's third call correctly described the unscoped `ast.walk` problem, but
+its actual replacement introduced `lambda: nonlocal_marker := None`, which is
+invalid Python. Both test modules failed collection: two errors, no executed
+test passes. The fourth call removed that syntax error but retained a call to
+`_scan_module_level_bindings` without defining it. Public validation then
+reported **two failed, 19 passed**; the grouped failing tests stop at `NameError`,
+so this is not 38 fully evaluated semantic cases. The fifth response proposed
+replacing the original loop text, which had already been removed. The host
+returned the correctly correlated refusal, `Old text must match exactly one
+source region`. Three attempted proposals exhausted the approved allowance;
+only two were admitted. No extra sample, host-written repair or replay followed.
+
+This is a model implementation/current-source repair failure. All five calls
+returned normally with Tool proposals and without output-limit truncation.
+Public collection/runtime errors were accurately delivered to subsequent calls.
+There is no observed provider error, missing authorized source, Context-capacity
+failure or unexplained Tool effect. A larger output allowance or different
+sampling setting is not established as a remedy by this observation.
+
+| Measurement | Actual observation |
+| --- | --- |
+| Model calls / admitted edits / attempted proposals | 5 / 2 / 3 |
+| Cumulative input / output tokens | 52,845 / 1,378; retained Context counted repeatedly |
+| Maximum response | 608 output tokens; approved ceiling 2,048 |
+| Native / outer driver time | 155.151 / 159.095 seconds |
+| Adapter interaction time | 117.452 seconds; nonstreaming first-token timing unavailable |
+| Managed public check time | 0.813220 + 0.862554 = 1.675774 seconds |
+| Private checks / reviewer inference | Neither entered |
+| Largest request / measured input | 82,505 bytes / 19,671 tokens |
+| Capture | 331,758 native + 7,837 support = 339,595 bytes within 1 MiB |
+| Projection | No omitted exchanges, no shortened source, no pressure warnings |
+| Resource samples | Four; sampled GPU high 14,738 MiB, free GPU low 1,313 MiB |
+| Host free physical / virtual memory low | 784,564 / 5,527,188 KiB; sampled observations, not continuous extrema |
+
+Machine projection status `reduced` includes source-state annotations that can
+increase serialized size. It is not claimed as measured compression here.
+The [provider-after receipt](code-audit/native-scope-followup-20261101/provider-after.json)
+authenticates the same container, pinned image/settings and healthy actual 64K
+slot, without OOM termination or any service mutation.
+
+The terminal source and native patch are preserved as an
+[exact escaped unaccepted artifact](code-audit/native-scope-followup-20261101/unaccepted-candidate.json),
+not a reviewable candidate or production implementation. Private acceptance was
+never entered: none of its 12 cases is reported as a candidate pass. Existing
+review-subject admission refused the blocked result. No reviewer authorization,
+reviewer model request, host review decision, integration plan, installation,
+publication of model code or closeout occurred. B-0051 and its parents remain
+unresolved. A separate prospective reviewer composition was not executed.
+
+The [final integrity receipt](code-audit/native-scope-followup-20261101/integrity-final.json)
+verifies exact restored protected hashes/blobs, candidate/patch bytes, original
+historical records, release and Inspector registration. An archival helper hit a
+nested-event-loop error only in its final synchronous verification after saving
+the observations; a separate synchronous verifier completed that check. This
+local reporting error is distinct from the completed model outcome and caused
+no redispatch or source correction.
+
+## Next bounded improvement
+
+The concrete configuration gap is approved per-request sampling in the native
+assignment: the existing adapter can express it, but the native guard rejects it.
+A small prospective native contract integration could permit an explicit coding
+sampler without changing server defaults or rewriting captured requests. This is
+not implemented, and these observations do not prove lower temperature would fix
+the syntax, missing-helper or stale-edit failures. Further live work requires a
+new genuinely reviewed related item and fresh authority; B-0051 is now consumed.
+No additional Context framework or capacity benchmark is justified by this run.

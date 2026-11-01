@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-01T19:13:47.159746+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/scope-continuation-coder-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 1587,
+      "output_tokens": 117,
+      "total_tokens": 1704,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/declarations.py\",\"start\":0,\"end\":7628}",
+        "provider_call_id": "vjPL16REi93El28lb6gX21lDKs71Cfx9"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":0,\"end\":1482}",
+        "provider_call_id": "K42ESrrSVQ9QvwrFPnxvhIDsU3WjJDMB"
+      }
+    ]
+  },
+  "sha256": "60c608cb4246f7b6172a8451683ce298abb2d7c9964e28a59d60e39e5a45f865"
+}
