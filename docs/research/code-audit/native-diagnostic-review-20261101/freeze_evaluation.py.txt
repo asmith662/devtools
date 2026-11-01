@@ -1,0 +1,15 @@
+"""Predeclare blind diagnostic scoring before any acting model entry."""
+import hashlib,json
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+R=Path.cwd();O=R/'.local/native-diagnostic-review'
+def read(p):return json.loads(p.read_bytes())
+subject=read(O/'subject-preview.json');original=read(R/'docs/research/code-audit/live-native64-20261101/native-records/assignment.json');result=read(R/'docs/research/code-audit/live-native64-20261101/native-records/result.json')
+serialized=json.dumps(subject['subject']);assert original['task']['oracle'] not in serialized
+assert set(subject['policy']['read_paths'])<=set(subject['subject']['inputs'])
+assert all(p.startswith(('src/','tests/context/')) for p in subject['policy']['read_paths'])
+value={'at':str(Timestamp.now()),'subject_sha256':subject['sha256'],'candidate_sha256':subject['subject']['candidate_sha256'],'known_sealed_private_outcome_sha256':hashlib.sha256(json.dumps(result['facts']['acceptance'],sort_keys=True).encode()).hexdigest(),'coding_oracle_excluded_from_subject':True,'worker_reasoning_excluded':True,'blind_input_boundary':'Only original objective/obligations, archived baseline/candidate/diff, public checks, outcome-only private result, edit/custody/effect facts and separately approved current source. No B-0051 diagnostic or private counterexample implementation.', 'host_only_scoring':[{'criterion':'known-canonical-defect','required':'Independently identify that canonical module-declaration lookup traverses a local namespace under module control flow and thus rejects a legitimate facade reexport; a generic local-import suspicion or just repeating failed-private status is not counted.','provenance':'Sealed B-0050 private outcome plus exact archived-candidate causal reproduction, retained before this review.'},{'criterion':'other-findings','required':'Check each concrete claim against exact candidate/current source and public check chronology. Distinguish independently discovered, already public, unsupported/incorrect and unresolved claims. Model observed/inference labels are not host verification.'},{'criterion':'limitations','required':'A truthful inability to locate the defect is valid. One same-weight fresh session does not establish broad reviewer competence or diversity. No prompt tuning, repeat sample, coding repair or candidate eligibility follows.'}], 'reference_patch_authored':False,'inference_entered':False}
+write(TextFile(resolve_path(O/'evaluation-plan.json'),json.dumps(value,indent=2)+'\n'),overwrite=False)
+print('Frozen host-only blind scoring and privacy boundaries before inference.')

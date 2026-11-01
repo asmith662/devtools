@@ -1,5 +1,11 @@
 # Roadmap
 
+Current bounded work: [governed diagnostic review](development/native-diagnostic-review.md)
+reuses the existing review operation for blocked native evidence, with distinct
+authority and no candidate acceptance. The next measurement is one separately
+approved blind B-0050 review after deterministic/protected validation. No further
+coding episode, sampler pass-through, installation or backlog closeout is implied.
+
 Executed [B-0050 follow-up B-0051](research/native-scope-followup.md): exact analysis
 identified a second canonical declaration-lookup owner; expanded public acceptance
 and fresh independent holdouts were frozen. One genuinely approved Qwen episode

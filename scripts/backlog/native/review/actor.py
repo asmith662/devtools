@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: EM101, TRY003, SLF001, E501, COM812, PLR2004, C901, PLR0915, TRY301, TRY004 -- finite operational policy and single dispatch boundary
+# ruff: noqa: EM101, TRY003, SLF001, E501, COM812, PLR2004, C901, PLR0912, PLR0915, TRY301, TRY004 -- finite operational policy and single dispatch boundary
 """One separately approved read-only review, followed by a distinct host decision."""
 
 from __future__ import annotations
@@ -12,8 +12,14 @@ from dataclasses import asdict
 from functools import partial
 from typing import TYPE_CHECKING, Any, cast
 
+from devtools.agents.coding.navigation import (
+    FIND,
+    READ_UNIT,
+    navigation_feedback,
+    navigation_request,
+)
 from devtools.agents.coding.projection import request_bytes, source_feedback
-from devtools.agents.coding.protocol import READ, Invocation, read_request
+from devtools.agents.coding.protocol import READ, Invocation, arguments, read_request
 from devtools.agents.model_tools import (
     execute_model_tool_call,
     normalize_tool_descriptor,
@@ -24,7 +30,9 @@ from devtools.context.repository.corpus import (
     realize_repository_text_corpus,
 )
 from devtools.context.repository.discovery import discover_repository_resource_addresses
+from devtools.context.repository.identity import RepositoryId
 from devtools.context.retrieval import build_source_search_index
+from devtools.core.paths import resolve_path
 from devtools.core.time import Stopwatch, Timestamp
 from devtools.models.interaction import (
     ModelRequest,
@@ -35,13 +43,16 @@ from devtools.models.interaction import (
 )
 from devtools.tools import ToolRunner
 from devtools.tools.source import (
+    ScopedSourceNavigationTool,
     ScopedSourceTool,
+    SourceNavigationRequest,
     SourceReadRefusal,
     SourceReadRequest,
     SourceScope,
 )
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
+from scripts.backlog.native.review import diagnostic
 from scripts.backlog.native.review.proposal import parse
 from scripts.backlog.native.review.subject import subject
 from scripts.backlog.work import _load
@@ -158,13 +169,54 @@ def policy(value: dict[str, Any], worker: dict[str, Any]) -> None:
 class NativeReviewer:
     """Administrative review operation, without coding or integration authority."""
 
-    def __init__(self, owner: NativeMaintenance) -> None:
+    def __init__(
+        self, owner: NativeMaintenance, *, diagnostic_only: bool = False
+    ) -> None:
         """Reuse WorkCycle's writer and native candidate authentication."""
         self.owner = owner
+        self.diagnostic_only = diagnostic_only
+        self.scope = diagnostic.SCOPE if diagnostic_only else SCOPE
+        self.prefix = (
+            "backlog-native-diagnostic-"
+            if diagnostic_only
+            else "backlog-native-review-"
+        )
+
+    def operation(self, verb: str) -> str:
+        """Keep prospective diagnostic grants distinct from acceptance authority."""
+        return verb + (
+            "-native-diagnostic-actor"
+            if self.diagnostic_only
+            else "-native-review-actor"
+        )
+
+    def tools(self) -> list[dict[str, Any]]:
+        """Reuse existing read/navigation descriptors without advertising effects."""
+        return [
+            asdict(normalize_tool_descriptor(t))
+            for t in ((READ, FIND, READ_UNIT) if self.diagnostic_only else (READ,))
+        ]
+
+    async def subject(
+        self, item: str, paths: list[str], archive: str | None
+    ) -> dict[str, Any]:
+        """Select the explicit administrative responsibility, never a model decision."""
+        if self.diagnostic_only:
+            if not archive:
+                raise ValueError("Exact diagnostic archive resource required")
+            try:
+                return await diagnostic.subject(self.owner, item, archive, paths)
+            except (KeyError, TypeError) as error:
+                raise ValueError("Incomplete diagnostic historical evidence") from error
+        if archive is not None:
+            raise ValueError("Acceptance review does not read diagnostic archives")
+        return await subject(self.owner, item)
 
     def folder(self, item: str) -> Path:
         """One non-replayable reviewer slot per native assignment."""
-        return self.owner.cycle._folder(item) / "reviewer"
+        return self.owner.cycle._folder(item) / (
+            "diagnostic-reviewer" if self.diagnostic_only else "reviewer"
+        )
 
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Read a closed operational record with its content identity."""
@@ -172,7 +224,7 @@ class NativeReviewer:
             raise ValueError("Unsupported reviewer record")
         return _load(
             self.folder(item) / (name + ".json"),
-            "backlog-native-review-" + name + "-v1",
+            self.prefix + name + "-v1",
         )
 
     def save(self, item: str, name: str, value: dict[str, Any]) -> dict[str, Any]:
@@ -180,13 +232,15 @@ class NativeReviewer:
         with self.owner.cycle.intake._writer():
             return self.owner.cycle._save(
                 self.folder(item) / (name + ".json"),
-                {"schema": "backlog-native-review-" + name + "-v1", **value},
+                {"schema": self.prefix + name + "-v1", **value},
             )
 
-    async def prepare(self, item: str, *, reviewer: dict[str, Any]) -> dict[str, Any]:
+    async def prepare(
+        self, item: str, *, reviewer: dict[str, Any], archive: str | None = None
+    ) -> dict[str, Any]:
         """Freeze the exact disclosed subject and proposed authority, without dispatch."""
-        current = await subject(self.owner, item)
-        policy(reviewer, current["evidence"]["scope"]["worker"])
+        policy(reviewer, self.owner.record(item, "assignment")["task"]["worker"])
+        current = await self.subject(item, reviewer["read_paths"], archive)
         if not set(reviewer["read_paths"]) <= set(current["inputs"]):
             raise PermissionError("Review source outside authorized assignment")
         with self.owner.cycle.intake._writer():
@@ -194,12 +248,13 @@ class NativeReviewer:
             return self.owner.cycle._save(
                 self.folder(item) / "subject.json",
                 {
-                    "schema": "backlog-native-review-subject-v1",
+                    "schema": self.prefix + "subject-v1",
                     "at": str(Timestamp.now()),
                     "subject": current,
                     "policy": reviewer,
-                    "scope": SCOPE,
-                    "tools": [asdict(normalize_tool_descriptor(READ))],
+                    "scope": self.scope,
+                    "tools": self.tools(),
+                    **({"archive": archive} if self.diagnostic_only else {}),
                 },
             )
 
@@ -208,9 +263,12 @@ class NativeReviewer:
         packet = self.record(item, "subject")
         policy(packet["policy"], packet["subject"]["evidence"]["scope"]["worker"])
         if (
-            packet["scope"] != SCOPE
-            or packet["tools"] != [asdict(normalize_tool_descriptor(READ))]
-            or packet["subject"] != await subject(self.owner, item)
+            packet["scope"] != self.scope
+            or packet["tools"] != self.tools()
+            or packet["subject"]
+            != await self.subject(
+                item, packet["policy"]["read_paths"], packet.get("archive")
+            )
         ):
             raise PermissionError("Review subject/evidence/source is stale")
         return packet
@@ -231,7 +289,7 @@ class NativeReviewer:
             "reference": reference,
             "issued_at": str(Timestamp.now()),
             "expires_at": str(expires),
-            "scope": SCOPE,
+            "scope": self.scope,
         }
         if (
             not reference.strip()
@@ -239,7 +297,7 @@ class NativeReviewer:
             or authorize is None
             or not authorize(
                 {
-                    "operation": "authorize-native-review-actor",
+                    "operation": self.operation("authorize"),
                     "packet": packet,
                     "grant": value,
                 }
@@ -259,7 +317,7 @@ class NativeReviewer:
         if (
             grant["subject_sha256"] != packet["sha256"]
             or grant["principal"] != getpass.getuser()
-            or grant["scope"] != SCOPE
+            or grant["scope"] != self.scope
             or not Timestamp.from_isoformat(grant["issued_at"]).value
             <= Timestamp.now().value
             < Timestamp.from_isoformat(grant["expires_at"]).value
@@ -285,7 +343,7 @@ class NativeReviewer:
             raise PermissionError("Review interaction source/profile mismatch")
         if authorize is None or not authorize(
             {
-                "operation": "dispatch-native-review-actor",
+                "operation": self.operation("dispatch"),
                 "packet": packet,
                 "grant": grant,
             }
@@ -311,14 +369,14 @@ class NativeReviewer:
         references = dict(packet["subject"]["references"])
         try:
             async with asyncio.timeout(config["budgets"]["wall_seconds"]):
-                scope = self.owner.observe(self.owner.record(item, "assignment"))
+                assignment = self.owner.record(item, "assignment")
                 addresses = tuple(
                     RepositoryResourceAddress(p) for p in config["read_paths"]
                 )
                 # Only the explicit authorized subset enters the read Tool's Context.
                 scope = SourceScope.observe(
-                    root=scope.root,
-                    repository=Repository(scope.snapshot.repository_id),
+                    root=resolve_path(self.owner.cycle.root),
+                    repository=Repository(RepositoryId.parse(assignment["repository"])),
                     addresses=addresses,
                 )
                 corpus = realize_repository_text_corpus(
@@ -336,7 +394,9 @@ class NativeReviewer:
                 )
                 index = build_source_search_index(scope.snapshot, corpus=corpus)
                 messages = [
-                    PromptMessage("system", SYSTEM),
+                    PromptMessage(
+                        "system", diagnostic.SYSTEM if self.diagnostic_only else SYSTEM
+                    ),
                     PromptMessage(
                         "user",
                         json.dumps(
@@ -345,14 +405,17 @@ class NativeReviewer:
                                 "references": references,
                                 "review_scope": {
                                     "read_paths": config["read_paths"],
-                                    "tools": [READ.name],
+                                    "tools": [t["name"] for t in self.tools()],
                                     "budgets": config["budgets"],
-                                    "source_state": "restored baseline; archived candidate is in subject",
+                                    "source_state": "current separately authenticated source; historical candidate is in subject"
+                                    if self.diagnostic_only
+                                    else "restored baseline; archived candidate is in subject",
                                 },
                             }
                         ),
                     ),
                 ]
+                claimed: set[str] = set()
                 for _ in range(config["budgets"]["model_calls"]):
                     await self.current(item)
                     self.authority(item, packet)
@@ -361,7 +424,14 @@ class NativeReviewer:
                     request = ModelRequest(
                         Prompt("", "messages", tuple(messages)),
                         settings=ModelSettings(**config["settings"]),
-                        tools=(normalize_tool_descriptor(READ),),
+                        tools=tuple(
+                            normalize_tool_descriptor(t)
+                            for t in (
+                                (READ, FIND, READ_UNIT)
+                                if self.diagnostic_only
+                                else (READ,)
+                            )
+                        ),
                     )
                     if request_bytes(request) > config["budgets"]["prompt_bytes"]:
                         raise ValueError(
@@ -391,18 +461,26 @@ class NativeReviewer:
                             "Review response source/output allowance invalid"
                         )
                     if not response.tool_calls:
-                        conclusion = parse(
-                            response.content,
-                            references,
-                            {
-                                "objective",
-                                *(
-                                    o["name"]
-                                    for o in packet["subject"]["evidence"]["task"][
-                                        "obligations"
-                                    ]
-                                ),
-                            },
+                        conclusion = (
+                            diagnostic.parse(
+                                response.content,
+                                references,
+                                packet["subject"]["candidate_sha256"],
+                            )
+                            if self.diagnostic_only
+                            else parse(
+                                response.content,
+                                references,
+                                {
+                                    "objective",
+                                    *(
+                                        o["name"]
+                                        for o in packet["subject"]["evidence"]["task"][
+                                            "obligations"
+                                        ]
+                                    ),
+                                },
+                            )
                         )
                         break
                     if (
@@ -413,27 +491,90 @@ class NativeReviewer:
                             "Review permits one bounded read per response"
                         )
                     call = response.tool_calls[0]
-                    if call.name != READ.name or not call.provider_call_id:
+                    if (
+                        call.name not in {t["name"] for t in self.tools()}
+                        or not call.provider_call_id
+                    ):
                         raise PermissionError("Review Tool is not an authorized read")
+                    if self.diagnostic_only and call.provider_call_id in claimed:
+                        raise PermissionError(
+                            "Diagnostic Tool identity already claimed; no replay"
+                        )
+                    claimed.add(call.provider_call_id)
 
                     async def admit(_call: Any, _arguments: Any) -> None:  # noqa: ANN401
                         await self.current(item)
                         self.authority(item, packet)
                         capture.add("review-read-intent", {"call": asdict(_call)})
 
+                    if self.diagnostic_only and call.name == FIND.name:
+
+                        def selection(serialized: str) -> SourceNavigationRequest:
+                            return navigation_request(
+                                arguments(
+                                    serialized,
+                                    set(),
+                                    optional=frozenset(
+                                        {"query", "path", "mode", "offset"}
+                                    ),
+                                )
+                            )
+
+                        units = await execute_model_tool_call(
+                            call,
+                            invocation=Invocation(FIND, selection),
+                            tool=ScopedSourceNavigationTool(scope, index),
+                            admit=admit,
+                            runner=ToolRunner(),
+                        )
+                        feedback = navigation_feedback(
+                            units,
+                            index,
+                            offset=selection(call.arguments_json).offset,
+                            maximum_bytes=8192,
+                        )
+                        reads += 1
+                        name = f"read:{reads}"
+                        references[name] = _digest(feedback)
+                        capture.add(
+                            "review-read-result",
+                            {
+                                "reference": name,
+                                "identity": references[name],
+                                "disclosure": feedback,
+                            },
+                        )
+                        messages.extend(
+                            (
+                                PromptMessage(
+                                    "assistant",
+                                    response.content,
+                                    tool_calls=response.tool_calls,
+                                    reasoning_content=response.reasoning_content,
+                                ),
+                                PromptMessage(
+                                    "tool",
+                                    json.dumps({"reference": name, **feedback}),
+                                    tool_call_id=call.provider_call_id,
+                                ),
+                            )
+                        )
+                        continue
                     tool: Tool[
                         SourceReadRequest, ContextDisclosure | SourceReadRefusal
                     ] = ScopedSourceTool(scope, maximum_bytes=32768)
                     disclosure = await execute_model_tool_call(
                         call,
                         invocation=Invocation[SourceReadRequest](
-                            READ,
+                            READ_UNIT if call.name == READ_UNIT.name else READ,
                             partial(
                                 read_request,
                                 index=index,
-                                purpose="Independent native review of restored baseline",
+                                purpose="Diagnostic inspection of current authorized source"
+                                if self.diagnostic_only
+                                else "Independent native review of restored baseline",
                                 maximum_bytes=32768,
-                                by_unit=False,
+                                by_unit=call.name == READ_UNIT.name,
                             ),
                         ),
                         tool=tool,
@@ -510,6 +651,10 @@ class NativeReviewer:
         self, item: str, identity: str, reviewer: str, *, accept: bool
     ) -> dict[str, Any]:
         """Authenticate a proposal for host disposition and downstream native readers."""
+        if self.diagnostic_only:
+            raise PermissionError(
+                "Diagnostic findings cannot authorize acceptance or integration"
+            )
         if not re.fullmatch(r"[a-f0-9]{64}", identity):
             raise ValueError("Invalid review proposal identity")
         packet, proposal = self.record(item, "subject"), self.record(item, "proposal")
@@ -609,6 +754,10 @@ class NativeReviewer:
         authorize: Callable[[dict[str, Any]], bool] | None = None,
     ) -> dict[str, Any]:
         """Apply current host disposition through the existing review record."""
+        if self.diagnostic_only:
+            raise PermissionError(
+                "Diagnostic findings cannot become a native acceptance decision"
+            )
         packet = await self.current(item)
         self.authority(item, packet)
         return await self.owner.review(

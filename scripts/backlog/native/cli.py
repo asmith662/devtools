@@ -72,11 +72,39 @@ def configure(commands: Any) -> None:  # noqa: ANN401 -- existing argparse bound
     actor.add_argument("--reference", required=True)
     actor.add_argument("--rationale", required=True)
     actor.add_argument("--decision", choices=("accept", "reject"), required=True)
+    diagnostic = commands.add_parser("native-diagnostic-prepare")
+    diagnostic.add_argument("item")
+    diagnostic.add_argument("--archive", required=True)
+    diagnostic.add_argument("--policy", required=True)
+    diagnostic = commands.add_parser("native-diagnostic-authorize")
+    diagnostic.add_argument("item")
+    diagnostic.add_argument("--reference", required=True)
+    diagnostic.add_argument("--expires", required=True)
+    diagnostic = commands.add_parser("native-diagnostic-proposal")
+    diagnostic.add_argument("item")
 
 
-async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: PLR0911 -- finite administrative commands
+async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: PLR0911, C901 -- finite administrative commands
     """Prepare/inspect/approve/review only; integration planning has its own command."""
     native = WorkCycle(root).native
+    if args.command == "native-diagnostic-prepare":
+        return await native.diagnostic_reviewer.prepare(
+            args.item,
+            archive=args.archive,
+            reviewer=load_json(
+                resolve_path(args.policy, base_directory=Path.cwd()).value
+            ),
+        )
+    if args.command == "native-diagnostic-authorize":
+        return await native.diagnostic_reviewer.authorize(
+            args.item,
+            reference=args.reference,
+            expires=Timestamp.from_isoformat(args.expires),
+            authorize=confirm,
+        )
+    if args.command == "native-diagnostic-proposal":
+        await native.diagnostic_reviewer.current(args.item)
+        return native.diagnostic_reviewer.record(args.item, "proposal")
     if args.command == "native-review-prepare":
         return await native.reviewer.prepare(
             args.item,

@@ -1,5 +1,10 @@
 # Documentation Map
 
+Native review authority: [acceptance review](development/native-independent-review.md)
+retains its successful-candidate gate. [Diagnostic review](development/native-diagnostic-review.md)
+investigates authenticated blocked history under separate read-only grants and
+prospective records; its findings cannot enter installation or integration.
+
 Current follow-up: [B-0050 analysis and B-0051 native continuation](research/native-scope-followup.md)
 records expanded acceptance and one genuinely approved five-call episode. Two
 admitted edits failed public validation; a stale third proposal exhausted the

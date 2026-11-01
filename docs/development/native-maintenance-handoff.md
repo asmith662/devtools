@@ -17,6 +17,10 @@ The subsequent [independent review actor](native-independent-review.md) adds
 separately authorized model review and grounded proposals. The original manual
 administrative review path described here remains supported.
 
+[Diagnostic review](native-diagnostic-review.md) separately investigates archived
+blocked native results. It cannot turn failure evidence into acceptance or create
+an integration-eligible candidate; consumed coding dispatches remain consumed.
+
 This delivery connects one reviewed backlog obligation to the neutral coding
 process, independent candidate review and an authenticated, read-only integration
 plan. It is repository administration under `WorkCycle.native`, implemented in

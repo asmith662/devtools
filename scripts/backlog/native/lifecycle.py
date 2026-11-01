@@ -55,6 +55,13 @@ class NativeMaintenance:
 
         return NativeReviewer(self)
 
+    @property
+    def diagnostic_reviewer(self) -> NativeReviewer:
+        """Inspect authenticated blocked history; confer no acceptance authority."""
+        from scripts.backlog.native.review import NativeReviewer  # noqa: PLC0415
+
+        return NativeReviewer(self, diagnostic_only=True)
+
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Load only authenticated prospective native records."""
         return _load(

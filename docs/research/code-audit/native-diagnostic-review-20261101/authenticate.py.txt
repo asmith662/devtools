@@ -1,0 +1,30 @@
+"""Capture historical/native identities and unchanged provider, without inference."""
+import asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-diagnostic-review';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.validation.evidence import git
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:return json.loads(r.read(1<<20))
+preserved=dict(read(R/'.local/native-scope-followup/authentication.json')['preserved'])
+for p in (R/'docs/research/code-audit/native-scope-followup-20261101').rglob('*'):
+ if p.is_file():preserved[p.relative_to(R).as_posix()]=sha(p)
+for item in ('B-0049','B-0050','B-0051'):
+ for p in (R/'.local/backlog/work'/item).rglob('*'):
+  if p.is_file():preserved[p.relative_to(R).as_posix()]=sha(p)
+assert not (R/'.local/backlog/checkout-owner').exists();assert git(R,'branch','--show-current')=='main'
+save(O/'authentication.json',{'at':str(Timestamp.now()),'starting_head':git(R,'rev-parse','HEAD'),'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'untracked_at_initial_assignment':read(R/'.local/native-scope-followup/authentication.json')['untracked'],'preserved':preserved})
+async def main():
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048));r=await ex.execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)));assert r.exit_code==0
+ v=json.loads(r.stdout)[0];health,slots,props=await asyncio.gather(asyncio.to_thread(get,'/health'),asyncio.to_thread(get,'/slots'),asyncio.to_thread(get,'/props'))
+ old=read(R/'.local/native-scope-followup/current-service.json');assert v['Id']==old['container_id'] and v['Image']==old['image'] and v['Config']['Cmd']==old['command']
+ assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536
+ save(O/'provider-preparation.json',{'at':str(Timestamp.now()),'container_id':v['Id'],'image':v['Image'],'command':v['Config']['Cmd'],'mounts':v['Mounts'],'health':health,'slots':slots,'default_generation_settings':props.get('default_generation_settings'),'service_mutated':False})
+ print(json.dumps({'historical_files_preserved':len(preserved),'actual_context_tokens':slots[0]['n_ctx'],'provider_idle':not slots[0]['is_processing']}))
+asyncio.run(main())

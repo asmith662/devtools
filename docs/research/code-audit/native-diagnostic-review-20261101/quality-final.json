@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-01T21:08:55.263314+00:00",
+  "checks": [
+    {
+      "name": "ruff",
+      "argv": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.082245,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "format",
+      "argv": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.083246,
+      "stdout": "764 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "truncated": false
+    },
+    {
+      "name": "typing",
+      "argv": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.744911,
+      "stdout": "Success: no issues found in 624 source files\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.122778,
+      "stdout": "",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.092399,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/development/native-independent-review.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/roadmap.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/backlog/native/review/actor.py', LF will be replaced by CRLF the next time Git touches it\n",
+      "truncated": false
+    }
+  ]
+}

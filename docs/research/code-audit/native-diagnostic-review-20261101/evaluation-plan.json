@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-01T20:29:36.754357+00:00",
+  "subject_sha256": "bc2c5151a1a595ff404e7a8b7206ad8b970c1c3a9ec9ce827d83461b64906410",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "known_sealed_private_outcome_sha256": "cd73ec74fa18ff6bebdf027625968f55131de4921cc5a8634107af3e681f210b",
+  "coding_oracle_excluded_from_subject": true,
+  "worker_reasoning_excluded": true,
+  "blind_input_boundary": "Only original objective/obligations, archived baseline/candidate/diff, public checks, outcome-only private result, edit/custody/effect facts and separately approved current source. No B-0051 diagnostic or private counterexample implementation.",
+  "host_only_scoring": [
+    {
+      "criterion": "known-canonical-defect",
+      "required": "Independently identify that canonical module-declaration lookup traverses a local namespace under module control flow and thus rejects a legitimate facade reexport; a generic local-import suspicion or just repeating failed-private status is not counted.",
+      "provenance": "Sealed B-0050 private outcome plus exact archived-candidate causal reproduction, retained before this review."
+    },
+    {
+      "criterion": "other-findings",
+      "required": "Check each concrete claim against exact candidate/current source and public check chronology. Distinguish independently discovered, already public, unsupported/incorrect and unresolved claims. Model observed/inference labels are not host verification."
+    },
+    {
+      "criterion": "limitations",
+      "required": "A truthful inability to locate the defect is valid. One same-weight fresh session does not establish broad reviewer competence or diversity. No prompt tuning, repeat sample, coding repair or candidate eligibility follows."
+    }
+  ],
+  "reference_patch_authored": false,
+  "inference_entered": false
+}

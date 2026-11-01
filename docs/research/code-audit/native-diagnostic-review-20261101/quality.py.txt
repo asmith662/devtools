@@ -1,0 +1,16 @@
+"""Machine-readable maintained-root checks for the final executable candidate."""
+import asyncio,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/native-diagnostic-review';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration,Stopwatch
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+async def main():
+ async def run(name,args):
+  timer=Stopwatch();v=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=2048)).execute(Command(args[0]).args(*args[1:]).cwd(resolve_path(R)).with_timeout(Duration.seconds(180)))
+  return {'name':name,'argv':list(args),'exit_code':v.exit_code,'seconds':timer.elapsed.total_seconds,'stdout':v.stdout.decode(errors='replace'),'stderr':v.stderr.decode(errors='replace'),'truncated':v.stdout_truncated or v.stderr_truncated}
+ commands=[('ruff',('uv','run','ruff','check','src','tests','apps','scripts','--exclude','tests/experiments')),('format',('uv','run','ruff','format','--check','src','tests','apps','scripts','--exclude','tests/experiments')),('typing',('uv','run','mypy')),('layout',('uv','run','python','scripts/validate_layout.py')),('diff',('git','diff','--check'))]
+ result=await asyncio.gather(*(run(n,a) for n,a in commands));write(TextFile(resolve_path(O/'quality-final.json'),json.dumps({'at':str(Timestamp.now()),'checks':result},indent=2)+'\n'),overwrite=False)
+ print(json.dumps([{k:r[k] for k in ('name','exit_code','seconds')} for r in result],indent=2));assert all(r['exit_code']==0 and not r['truncated'] for r in result)
+asyncio.run(main())

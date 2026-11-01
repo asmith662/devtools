@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-01T21:09:53.967550+00:00",
+  "starting_main": "482408c364b1eadabad9422a99640c9da5dc0d36",
+  "subject_sha256": "bc2c5151a1a595ff404e7a8b7206ad8b970c1c3a9ec9ce827d83461b64906410",
+  "candidate_sha256": "d76127cd7399eb68dbf944d40b4de17f1af40c96dd03ee94bc90f40f7a5fe9e0",
+  "live_driver_sha256": "bdbf80522dfc0f0e9d504f6def75ef97e850939043f3a0e35ce89031208f57ee",
+  "live_approval": null,
+  "actual_model_calls": 0,
+  "protected_gate": "not yet executed; required before publication",
+  "focused": {
+    "first-consumers.json": {
+      "status": "input-drift",
+      "seconds": 74.594446,
+      "exit_code": 0,
+      "inputs_unchanged": false
+    },
+    "diagnostic-matrix.json": {
+      "status": "test-or-coverage-failure",
+      "seconds": 176.637214,
+      "exit_code": 1,
+      "inputs_unchanged": true
+    },
+    "recovery-final.json": {
+      "status": "passed",
+      "seconds": 2042.925088,
+      "exit_code": 0,
+      "inputs_unchanged": true
+    },
+    "final-archive-controls.json": {
+      "status": "passed",
+      "seconds": 88.201246,
+      "exit_code": 0,
+      "inputs_unchanged": true
+    }
+  }
+}

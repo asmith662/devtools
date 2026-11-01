@@ -1,0 +1,8 @@
+import asyncio,json,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R))
+from scripts.backlog.work import WorkCycle
+async def main():
+ value=await WorkCycle(R).native.diagnostic_reviewer.current('B-0050')
+ print(json.dumps({'subject_sha256':value['sha256'],'candidate_sha256':value['subject']['candidate_sha256'],'current':True,'model_entered':False}))
+asyncio.run(main())

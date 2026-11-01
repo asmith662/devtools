@@ -1,5 +1,10 @@
 # Governed independent native review
 
+This is **acceptance review**. A separate
+[diagnostic purpose](native-diagnostic-review.md) reuses the bounded read-only
+operation for authenticated blocked history, with distinct schemas/grants and no
+acceptance or integration authority. None of the acceptance gates below is relaxed.
+
 `WorkCycle.native.reviewer` composes a bounded model-neutral review of the exact
 candidate produced by [native maintenance](native-maintenance-handoff.md). It is
 repository administration under `scripts/backlog/native/review/`, using existing
