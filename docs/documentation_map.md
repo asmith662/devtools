@@ -12,6 +12,10 @@ pressure and source inspection](development/native-context-policy.md);
 
 Follow-up: [Qwen 64K operational qualification and protected-count clarification](research/qwen64-operational-qualification.md)
 retains original evidence and requires fresh coordinated service-trial consent.
+
+Executed follow-up: [approved single 64K trial](research/qwen64-qualification-trial.md)
+records actual long-context inference, measured resource pressure and exact 32K
+restoration; it does not authorize persistent service adoption or a coding task.
 records genuine human Intake/coding approval and two live calls before any edit;
 review competence remains unmeasured. Earlier [operational preflight](research/live-native-maintenance-preflight.md)
 records the available provider and task/authority blocker; no live episode occurred.

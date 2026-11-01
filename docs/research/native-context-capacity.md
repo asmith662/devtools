@@ -1,5 +1,10 @@
 # Native Context capacity assessment — 2026-11-01
 
+Later [approved operational qualification](qwen64-qualification-trial.md) established
+bounded 64K operation with actual long-input inference, followed by mandatory 32K
+restoration. This earlier increment's timeout and qualification limits remain dated
+historical observations; current persistent capacity is still 32K.
+
 Subsequent [operational diagnosis and count reconciliation](qwen64-operational-qualification.md)
 measures the original-profile restoration at about 283.7 seconds, distinguishes
 4,081 tests from 4,096 passing call/subtest reports, and preserves the original

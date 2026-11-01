@@ -1,5 +1,10 @@
 # Qwen 64K operational qualification — 2026-11-01
 
+Subsequent [freshly approved execution](qwen64-qualification-trial.md) reached READY,
+completed actual 49,152-/62,464-token inference and restored the exact original 32K
+service. The unentered disposition below remains the historical diagnosis checkpoint;
+its approval state and evidence were not retroactively rewritten.
+
 This assessment starts from synchronized main
 `17080623de9d99f25c4fb6ef017f8cb8a28ef280`. The canonical tracked/index tree was
 clean and Checkout ownership absent. Inspector remains independently registered

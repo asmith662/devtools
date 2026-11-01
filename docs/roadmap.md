@@ -1,5 +1,13 @@
 # Roadmap
 
+Approved operational follow-up: the [single 64K Qwen qualification](research/qwen64-qualification-trial.md)
+reached READY, returned actual 49,152-/62,464-token neutral inference and restored
+the exact original 32K provider. Bounded capacity/Tool transport are established;
+repeatability, engineering competence and persistent 64K adoption remain separate.
+The next productive milestone is a fresh authorized native coder–reviewer task,
+with an unused slot and exact budgets informed by measured latency. B-0049's
+original consumed dispatch remains unchanged.
+
 Native Context operating policy: [prospective profiles and deterministic automatic
 projection](development/native-context-policy.md) connect existing navigation,
 independent byte/token budgets and pressure observations to WorkCycle. Existing

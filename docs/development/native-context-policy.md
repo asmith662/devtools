@@ -1,5 +1,12 @@
 # Native coding Context operating policy
 
+Operational follow-up: a [separately approved bounded trial](../research/qwen64-qualification-trial.md)
+verified 64K allocation and actual 49,152-/62,464-token inference. It restored the
+original 32K service. Qualification evidence does not itself authorize persistent
+adoption or permit reporting 64K capacity while the actual provider remains at 32K.
+The tested output ceiling was 128; larger generation budgets retain their own
+acceptance requirements. No native task/grant or implementation changed.
+
 ## Ownership and implemented capability
 
 This increment starts from synchronized main
