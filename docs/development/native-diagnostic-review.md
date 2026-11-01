@@ -89,6 +89,40 @@ source/navigation operation consumes the existing read allowance; duplicate nati
 call identities are refused. Only one Tool operation is admitted per response.
 No edits, checks, arbitrary shell or Git Tools exist.
 
+## Budget-aware diagnostic continuation
+
+New diagnostic subjects bind `continuation` with schema
+`native-diagnostic-finalization-v1` and one reserved model call. This prospective
+policy is part of the exact approved subject; earlier subjects without it retain
+their recorded execution policy. Existing acceptance review is unchanged.
+
+Before every model entry, the existing reviewer supplies and captures a
+`native-diagnostic-budget-v1` view: used/remaining model calls (remaining includes
+the impending call), completed/remaining acquisitions, current authorized resource
+identities, and whether source Tools are available. Complete historical baseline
+and candidate text is already in the subject and needs no confirming reread.
+Matching current baseline identity establishes equivalence to that baseline;
+it does not establish equivalence to the uninstalled candidate.
+
+The last approved call is reserved for synthesis. Exhausting acquisitions earlier
+also selects synthesis immediately. Synthesis advertises no source Tools and asks
+for a structured diagnosis or an explicit insufficient-evidence conclusion. A
+single-call approval therefore permits synthesis only. No extra call is added,
+and the host never invents a conclusion. Authority expiry, changed evidence,
+Context/capture capacity, timeout or unusable output can still prevent completion.
+
+The latest host budget view is active Context metadata, not source evidence or
+authority. Prior requests, budget views and Tool disclosures remain in the
+immutable captured history. This does not introduce lossy compaction or turn
+budget metadata into a source witness.
+
+Diagnostic refusals distinguish `REVIEW_TOOL_BATCH_LIMIT` (multiple operations
+in one response), `REVIEW_ACQUISITION_BUDGET_EXHAUSTED` (total allowance consumed),
+and `REVIEW_FINALIZATION_TOOLS_UNAVAILABLE` (reserved synthesis). Pre-entry refused
+calls retain native call identities and `tool_effect_entered: false`. Operations
+that entered the Tool runner keep their original intent/completion/uncertainty
+semantics. No automatic retry follows a refusal or uncertain effect.
+
 ## Findings and trusted evaluation
 
 The closed model conclusion uses `schema: native-diagnostic-conclusion-v1`,
@@ -125,5 +159,8 @@ completed three real model calls but exhausted two acquisitions without a final
 conclusion and did not identify the known defect. The host rejected its partial
 root-cause claim as incorrect. This proves bounded dispatch, preservation and
 authority isolation, not useful model judgment. The inherited exhaustion message
-also conflates the one-Tool response rule with the total read cap; the record
-explains which actually occurred without changing or replaying that result.
+conflated the one-Tool response rule with the total read cap; its final response
+contained one requested read, but both permitted acquisitions were already used.
+The prospective continuation policy corrects that distinction without changing
+or replaying the original result. Completion, factual correctness and engineering
+utility are evaluated separately in subsequent live observations.

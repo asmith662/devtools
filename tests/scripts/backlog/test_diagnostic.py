@@ -22,7 +22,7 @@ from devtools.models.interaction import (
 from devtools.resources.filesystem import FilesystemError
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.review.actor import NativeReviewer
-from scripts.backlog.native.review.diagnostic import parse
+from scripts.backlog.native.review.diagnostic import budget_view, parse
 from tests.scripts.backlog.test_native import (
     BASE,
     PUBLIC,
@@ -234,6 +234,185 @@ def test_blocked_diagnostic_is_read_only_and_not_integration(
 
 
 @pytest.mark.parametrize(
+    ("calls", "reads", "phase", "remaining"),
+    [
+        (0, 0, "inspection", 3),
+        (1, 1, "inspection", 2),
+        (2, 1, "synthesis", 1),
+        (1, 2, "synthesis", 2),
+    ],
+)
+def test_remaining_diagnostic_budget(
+    calls: int,
+    reads: int,
+    phase: str,
+    remaining: int,
+) -> None:
+    packet = {
+        "policy": reviewer_policy(),
+        "subject": {
+            "inputs": {SOURCE: "baseline-id", PUBLIC: "other-id"},
+            "evidence": {
+                "baseline": {"path": SOURCE, "identity": "baseline-id"},
+                "candidate": {"path": SOURCE, "sha256": "c" * 64},
+            },
+        },
+    }
+    view = budget_view(packet, calls, reads)
+    assert view["phase"] == phase
+    assert view["model_calls_remaining_including_this_call"] == remaining
+    assert view["acquisitions_remaining"] == 2 - reads
+    assert view["current_resources"][0]["matches_supplied_baseline"]
+    assert not view["current_resources"][1]["matches_supplied_baseline"]
+    assert all(s["complete_text_in_subject"] for s in view["supplied_source"])
+    with pytest.raises(ValueError, match="exhausted before synthesis"):
+        budget_view(packet, 3, reads)
+
+
+@pytest.mark.parametrize(
+    "scenario",
+    [
+        "finish",
+        "insufficient",
+        "one-call",
+        "early",
+        "batch",
+        "legacy-total",
+        "final-tool",
+        "total-tool",
+        "final-malformed",
+        "final-unsupported",
+        "marker",
+    ],
+)
+def test_budgeted_diagnostic_continuation(  # noqa: C901 -- finite lifecycle fault matrix
+    failed: tuple[WorkCycle, str, str],
+    scenario: str,
+) -> None:
+    config: dict[str, Any] = {}
+
+    class BudgetModel(DiagnosticModel):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            if scenario == "legacy-total":
+                view = None
+            else:
+                view = json.loads(request.prompt.messages[-1].content)
+                assert (
+                    view["model_calls_remaining_including_this_call"]
+                    == config["budgets"]["model_calls"] - len(self.requests) + 1
+                )
+                assert bool(request.tools) == view["source_tools_permitted"]
+            final = view is not None and view["phase"] == "synthesis"
+            if (
+                final and scenario not in {"final-tool", "total-tool"}
+            ) or scenario == "early":
+                assert not request.tools or scenario == "early"
+                if scenario == "final-malformed":
+                    return ModelResponse("cannot provide JSON", self.source)
+                value = answer(self.candidate)
+                if scenario == "insufficient":
+                    value.update(
+                        disposition="insufficient-evidence",
+                        findings=[],
+                        outstanding=["Dependency behavior not inspected"],
+                    )
+                if scenario == "final-unsupported":
+                    value["findings"][0]["evidence"] = ["hidden-oracle"]
+                return ModelResponse(json.dumps(value), self.source)
+            call = ModelToolCall(
+                "read_source",
+                json.dumps({"path": SOURCE, "start": 0}),
+                f"read-{len(self.requests)}",
+            )
+            return ModelResponse(
+                "",
+                self.source,
+                tool_calls=(call, call) if scenario == "batch" else (call,),
+            )
+
+    async def run() -> None:
+        nonlocal config
+        c, item, archive = failed
+        config = reviewer_policy()
+        config["read_paths"] = [SOURCE]
+        if scenario in {"insufficient", "total-tool"}:
+            config["budgets"].update(model_calls=4, reads=1)
+        if scenario == "one-call":
+            config["budgets"]["model_calls"] = 1
+        if scenario == "final-tool":
+            config["budgets"]["reads"] = 3
+        reviewer = c.native.diagnostic_reviewer
+        packet = await reviewer.prepare(item, reviewer=config, archive=archive)
+        if scenario in {"legacy-total", "marker"}:
+            if scenario == "marker":
+                packet["continuation"]["reserved_model_calls"] = 2
+            else:
+                del packet["continuation"]
+            packet["sha256"] = _digest(
+                {k: v for k, v in packet.items() if k != "sha256"},
+            )
+            (reviewer.folder(item) / "subject.json").write_text(
+                json.dumps(packet),
+                encoding="utf-8",
+            )
+        if scenario == "marker":
+            with pytest.raises(PermissionError, match="stale"):
+                await reviewer.current(item)
+            return
+        await reviewer.authorize(
+            item,
+            reference="fixture://exact-budgeted-grant",
+            expires=Timestamp.now() + Duration.minutes(5),
+            authorize=lambda _: True,
+        )
+        model = BudgetModel(packet["subject"]["candidate_sha256"])
+        proposal = await reviewer.execute(
+            item,
+            interaction=model,
+            profile=config["profile"],
+            authorize=lambda _: True,
+        )
+        assert len(model.requests) <= config["budgets"]["model_calls"]
+        assert proposal["subject_sha256"] == packet["sha256"]
+        expected = {
+            "batch": "REVIEW_TOOL_BATCH_LIMIT",
+            "legacy-total": "REVIEW_ACQUISITION_BUDGET_EXHAUSTED",
+            "total-tool": "REVIEW_ACQUISITION_BUDGET_EXHAUSTED",
+            "final-tool": "REVIEW_FINALIZATION_TOOLS_UNAVAILABLE",
+        }
+        if scenario in expected:
+            assert expected[scenario] in proposal["error"]
+            assert proposal["reads"] == (
+                0 if scenario == "batch" else 1 if scenario == "total-tool" else 2
+            )
+            observations = [
+                json.loads((reviewer.folder(item) / x["file"]).read_bytes())
+                for x in proposal["observations"]
+            ]
+            refusal = next(
+                o for o in observations if o["kind"] == "review-tool-refused"
+            )
+            assert refusal["tool_effect_entered"] is False
+        else:
+            assert proposal["status"] == (
+                "blocked" if scenario.startswith("final-") else "proposed"
+            ), proposal
+        if scenario in {"one-call", "early"}:
+            assert proposal["model_calls"] == 1 and proposal["reads"] == 0
+        if scenario == "insufficient":
+            assert (
+                proposal["model_calls"] == 2
+                and proposal["conclusion"]["disposition"] == "insufficient-evidence"
+            )
+        assert not proposal["host_approved"]
+        assert c.native.record(item, "result")["disposition"] == "BLOCKED"
+        assert (c.root / SOURCE).read_text() == BASE
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
     "fault",
     [
         "malformed",
@@ -363,7 +542,13 @@ def test_navigation_and_unit_acquisition(failed: tuple[WorkCycle, str, str]) -> 
                     "find",
                 )
             elif len(self.requests) == 2:
-                data = json.loads(request.prompt.messages[-1].content)
+                data = json.loads(
+                    next(
+                        m.content
+                        for m in reversed(request.prompt.messages)
+                        if m.role == "tool"
+                    ),
+                )
                 unit = data["units"][0]
                 call = ModelToolCall(
                     "read_source_unit",

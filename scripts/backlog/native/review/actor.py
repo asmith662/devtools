@@ -254,7 +254,14 @@ class NativeReviewer:
                     "policy": reviewer,
                     "scope": self.scope,
                     "tools": self.tools(),
-                    **({"archive": archive} if self.diagnostic_only else {}),
+                    **(
+                        {
+                            "archive": archive,
+                            "continuation": dict(diagnostic.CONTINUATION),
+                        }
+                        if self.diagnostic_only
+                        else {}
+                    ),
                 },
             )
 
@@ -265,6 +272,13 @@ class NativeReviewer:
         if (
             packet["scope"] != self.scope
             or packet["tools"] != self.tools()
+            or (
+                "continuation" in packet
+                and (
+                    not self.diagnostic_only
+                    or packet["continuation"] != diagnostic.CONTINUATION
+                )
+            )
             or packet["subject"]
             != await self.subject(
                 item, packet["policy"]["read_paths"], packet.get("archive")
@@ -421,13 +435,25 @@ class NativeReviewer:
                     self.authority(item, packet)
                     if str(interaction.source) != config["source"]:
                         raise PermissionError("Reviewer source changed")
+                    view = (
+                        diagnostic.budget_view(packet, calls, reads)
+                        if self.diagnostic_only and "continuation" in packet
+                        else None
+                    )
+                    active_messages = list(messages)
+                    if view is not None:
+                        active_messages.append(PromptMessage("user", json.dumps(view)))
+                        capture.add("review-budget", view)
                     request = ModelRequest(
-                        Prompt("", "messages", tuple(messages)),
+                        Prompt("", "messages", tuple(active_messages)),
                         settings=ModelSettings(**config["settings"]),
                         tools=tuple(
                             normalize_tool_descriptor(t)
                             for t in (
-                                (READ, FIND, READ_UNIT)
+                                ()
+                                if view is not None
+                                and not view["source_tools_permitted"]
+                                else (READ, FIND, READ_UNIT)
                                 if self.diagnostic_only
                                 else (READ,)
                             )
@@ -483,7 +509,27 @@ class NativeReviewer:
                             )
                         )
                         break
-                    if (
+                    if self.diagnostic_only:
+                        reason = (
+                            "REVIEW_ACQUISITION_BUDGET_EXHAUSTED: total source acquisition allowance exhausted"
+                            if reads >= config["budgets"]["reads"]
+                            else "REVIEW_FINALIZATION_TOOLS_UNAVAILABLE: reserved synthesis call has no source Tools"
+                            if view is not None and not view["source_tools_permitted"]
+                            else "REVIEW_TOOL_BATCH_LIMIT: at most one Tool call per response"
+                            if len(response.tool_calls) != 1
+                            else None
+                        )
+                        if reason is not None:
+                            capture.add(
+                                "review-tool-refused",
+                                {
+                                    "calls": [asdict(c) for c in response.tool_calls],
+                                    "reason": reason,
+                                    "tool_effect_entered": False,
+                                },
+                            )
+                            raise PermissionError(reason)
+                    elif (
                         len(response.tool_calls) != 1
                         or reads >= config["budgets"]["reads"]
                     ):
