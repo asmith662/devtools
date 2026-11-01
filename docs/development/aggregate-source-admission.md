@@ -147,3 +147,13 @@ dispatch consent. An eligible successful candidate separately requires a fresh
 independent reviewer session and review-only authorization. The old B-0049 grant
 and dispatch cannot be reused. No new canonical task identity or live authority
 is created by this framework increment.
+
+## Delivery evidence
+
+Tested executable commit: `95367e6860342a8b0f6386fe9c70af904e4f0800`. Exactly one committed-tree protected execution passed: **4,038 passed, 2 optional skips**, 100% configured production line and branch coverage, 2637.34 seconds command elapsed. All 1,056 protected inputs remained unchanged. No threshold, exclusion, dependency or profile limit was weakened.
+
+The [machine-readable receipt](../research/code-audit/aggregate-source-admission-20261101.json) retains source/blob identities, environment qualifications, exact selections, preserved development failures and the interrupted broad recovery invocation. The 405-case coding/source selection, 52-case native consumer selection and 21-case final boundary/capture selection passed; static checks passed over supported roots.
+
+The frozen legacy third request reconstructs to 66,082 serialized bytes. Corrected scripted requests measure 3,083, 27,953, 30,071 and 31,040 bytes under the same 32,768-byte ceiling. Three batch reads are refused before entry; the next selected 128-character range is materialized. No provider tokens or live judgment were measured in this increment.
+
+The host module now exceeds native v1's one-file source ceiling; that conservative profile remains enforced. The correction stays with its existing stateful owner and pure protocol/projection collaborators rather than introducing a second host/state interface. Future native task selection must continue to qualify file size explicitly.
