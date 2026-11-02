@@ -1,0 +1,30 @@
+"""Authenticate preserved B-0052 history; no new grant, model call or source edit."""
+import hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation'
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.intake import _read
+from scripts.validation.evidence import git
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def get(p):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+p,timeout=10) as r:return json.loads(r.read(131072))
+c=WorkCycle(R);active=c.routine.active();a=c.native.record('B-0052','assignment');r=c.native.record('B-0052','result');p=c.native.reviewer.record('B-0052','proposal');source,patch=c.native._candidate(a,r)
+assert active['sha256']=='f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf'
+assert r['candidate_sha256']==hashlib.sha256(source.encode()).hexdigest()=='a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255'
+assert _read(R/a['task']['source'])==a['baseline_source'] and c.native.configuration(a['task'])==a['configuration']
+assert r['facts']['acceptance']['passed'] and r['facts']['acceptance']['inputs_current']
+assert p['error']=='PermissionError: Review permits one bounded read per response' and p['reads']==0 and p['model_calls']==1
+history=load(R/'.local/e2e-native/authentication.json')['preserved'];assert all(h(R/n)==v for n,v in history.items())
+native={p.relative_to(R).as_posix():h(p) for item in ('B-0049','B-0050','B-0051','B-0052') for p in c._folder(item).rglob('*') if p.is_file()}
+assert not (c.native.reviewer.folder('B-0052')/'continuation').exists()
+f=load(R/'.local/e2e-native/frozen.json');assert h(R/'.local/e2e-native/public.py.txt')==f['public_sha256'] and h(R/'.local/e2e-native/private.py.txt')==f['private_sha256']
+health,slots=get('/health'),get('/slots');assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536 and not slots[0]['is_processing']
+forensics={n:h(R/n) for n in git(R,'ls-files','--others','--exclude-standard','-z').split('\0') if n.startswith('experiments/')};assert len(forensics)==13
+assert not git(R,'diff','--name-only',a['base_head'],'HEAD','--','src')
+result={'at':str(Timestamp.now()),'starting_head':git(R,'rev-parse','HEAD'),'remote_main':git(R,'ls-remote','origin','refs/heads/main').split()[0],'active_policy':active['sha256'],'assignment':a['sha256'],'coding_dispatch':c.native.record('B-0052','dispatch')['sha256'],'native_result':r['sha256'],'candidate_sha256':r['candidate_sha256'],'patch_sha256':patch,'baseline_raw_sha256':h(R/a['task']['source']),'prior_subject':c.native.reviewer.record('B-0052','subject')['sha256'],'prior_proposal':p['sha256'],'public_sha256':f['public_sha256'],'private_sha256':f['private_sha256'],'source_tree_blobs_unchanged_since_coding_base':True,'historical_files':history,'native_history':native,'forensics':forensics,'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'health':health,'slots':slots,'checkout_released':not (R/'.local/backlog/checkout-owner').exists(),'public_check_materialized_before':(R/f['public_path']).exists(),'qualification':'Historical archive authenticated; actual current subject admission waits for exact frozen public rematerialization and clean committed host tree.'}
+write(TextFile(resolve_path(O/'authentication.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+print(json.dumps({k:v for k,v in result.items() if k not in ('historical_files','native_history','forensics','refs','slots')},indent=2))

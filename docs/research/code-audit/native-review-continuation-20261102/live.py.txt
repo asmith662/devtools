@@ -1,0 +1,87 @@
+"""One bounded B-0052 review continuation through supported owners; never coding."""
+import asyncio,hashlib,importlib.util,json,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation';E=R/'.local/e2e-native'
+from devtools.core.time import Timestamp,Duration,Stopwatch
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from scripts.validation.evidence import inputs
+spec=importlib.util.spec_from_file_location('established_live_native_support',E/'coder.py');base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(name,value):write(TextFile(resolve_path(O/name),json.dumps(value,indent=2,default=str)+'\n'),overwrite=False)
+def assessment(reference):return {'reference':reference,**dict.fromkeys(('architecture','security','destructive','secrets','paid','service_change','validation_relaxation'),False)}
+async def qualify(policy):
+ await base.runtime()
+ result=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+ assert result.exit_code==0 and not result.stdout_truncated
+ v=json.loads(result.stdout)[0];before=load(E/'current-service.json')
+ assert v['Id']==before['container_id'] and v['Image']==before['image'] and v['Config']['Cmd']==before['command'] and v['Mounts']==before['mounts']
+ assert v['Image'].removeprefix('sha256:')==policy['provider']['image']
+ return {'configuration':policy['provider'],'healthy':True,'idle':True}
+async def main():
+ mode=sys.argv[1];c=WorkCycle(R);item='B-0052';a=c.native.record(item,'assignment');auth=load(O/'authentication.json');gate=load(O/'protected-completion.json')
+ assert gate['status']=='passed' and gate['inputs_unchanged']
+ assert c.native.record(item,'result')['sha256']==auth['native_result'] and h(R/a['task']['source'])==auth['baseline_raw_sha256']
+ active=c.routine.active();version=active['sha256'];policy=active['policy'];assert version==auth['active_policy']
+ owner=c.native.reviewer;f=load(E/'frozen.json');public=R/f['public_path']
+ if mode=='--review':
+  assert not (O/'review-outcome.json').exists() and not (owner.folder(item)/'continuation').exists()
+  assert await git(R,'branch','--show-current')=='main'
+  head=await git(R,'rev-parse','HEAD');assert head==gate['inputs']['head']==(await git(R,'ls-remote','origin','refs/heads/main')).split()[0]
+  actual=await asyncio.to_thread(inputs,R);assert actual['sha256']==gate['inputs']['sha256']
+  assert h(E/'private.py.txt')==f['private_sha256']
+  data=(E/'public.py.txt').read_bytes();assert hashlib.sha256(data).hexdigest()==f['public_sha256']
+  existed=public.exists()
+  assert public==R/'tests/live_native_csv_row_public.py' and resolve_path(public).value==public
+  if existed:assert public.read_bytes()==data
+  else:write(BinaryFile(resolve_path(public),data),overwrite=False)
+  save('public-materialization.json',{'path':f['public_path'],'sha256':f['public_sha256'],'created':not existed,'archive':'.local/e2e-native/public.py.txt','criteria_changed':False})
+  await c.native.validate(a)
+  current=await owner.subject(item,sorted(a['inputs']),None)
+  assert current==owner.record(item,'subject')['subject']
+  save('qualification.json',{'at':str(Timestamp.now()),'assignment':a['sha256'],'native_result':auth['native_result'],'candidate':auth['candidate_sha256'],'declared_inputs_match':True,'configuration_matches':True,'current_subject_equals_original':True,'historical_public_and_private_qualification':'Authenticated matching input evidence under existing native currentness, not fresh execution.','new_coding_dispatch':False,'source_tree_blobs_unchanged':not await git(R,'diff','--name-only',a['base_head'],'HEAD','--','src')})
+  paths=(await git(R,'diff','--name-only',a['base_head'],'HEAD','--')).splitlines()
+  materialized={name:(R/name).read_bytes().decode('utf-8') for name in paths if name in gate['inputs']['sha256'] and (R/name).is_file()}
+  save('tested-materialization.json',materialized)
+  config={'actor':'qwen38-csv-acceptance-continuation-reviewer-20261102','source':'llama.cpp/qwen38-local/csv-acceptance-continuation-fresh-20261102','profile':'qwen38-native64-independent-review-defaults-v1','independence':{'reference':'Trusted host constructs a fresh stateless LlamaCppInteraction and only the owner-projected task/candidate/check/custody messages; no coder or first-review transcript, private oracle, reference patch or host scoring. Same pinned weights are not model diversity.','session':'B0052-acceptance-continuation-2-fresh-20261102','implementation_participant':False,'privileged_reference_access':False},'read_paths':sorted(a['inputs']),'settings':{'maximum_output_tokens':2048,'thinking_enabled':False},'budgets':dict(policy['review'])}
+  packet=await owner.prepare_continuation(item,previous=auth['prior_proposal'],reviewer=config,correction_reference='Published batch correction 91b3676f5c9f10c4cfac44fbfc7a66c46f386c3a; this prospective continuation owner committed and protected-validated at '+head)
+  actor=owner.select(packet['sha256']);qualified=await qualify(policy)
+  grant=await c.routine.authorize_reviewer(version,item,attempt=packet['sha256'],assessment=assessment('User explicitly authorized one prospective acceptance continuation of exact qualified B-0052 candidate after a known zero-read batch barrier. No substantive judgment retried; unchanged private/public criteria and policy limits; review-only fresh session.'),provider=qualified)
+  save('execution-scope.json',{'at':str(Timestamp.now()),'subject':packet['sha256'],'grant':grant,'policy':version,'candidate':auth['candidate_sha256'],'model':policy['provider'],'reviewer':config,'native_capture_bytes':config['budgets']['capture_bytes'],'support_capture_bytes':65536,'combined_capture_ceiling':1048576,'provider_reservation':'Host serial use of currently authenticated idle provider for at most 480s; availability checked before every send, no preemption or service change.','sampling':'Portable ModelSettings; persistent provider defaults including temperature 1.0 unchanged.','coding':False,'installation':False})
+  support=base.Support('b0052-acceptance-continuation-2');model=base.Actual(config['source'],support,review=True);watch=Stopwatch()
+  proposal=await base.monitored(actor.execute(item,interaction=model,profile=config['profile'],authorize=c.routine.callback(grant['reference'])),support)
+  save('review-outcome.json',{'at':str(Timestamp.now()),'subject':packet['sha256'],'proposal':proposal,'seconds':watch.elapsed.total_seconds,'adapter_entries':support.entries,'returned_interactions':support.returned,'adapter_seconds':support.seconds,'support_bytes':support.used,'policy':version,'grant':grant['sha256'],'coding_repeated':False})
+  print(json.dumps({'subject':packet['sha256'],'status':proposal['status'],'error':proposal['error'],'conclusion':proposal['conclusion'],'model_calls':proposal['model_calls'],'reads':proposal['reads'],'seconds':watch.elapsed.total_seconds},indent=2));return
+ if mode=='--host-plan':
+  outcome=load(O/'review-outcome.json');host=load(O/'host-assessment.json');actor=owner.select(outcome['subject']);proposal=actor.record(item,'proposal')
+  assert host['subject']==outcome['subject'] and host['proposal']==proposal['sha256'] and host['candidate']==auth['candidate_sha256']
+  assert proposal['status']=='proposed'
+  review=await c.routine.host_review(version,item,attempt=outcome['subject'],proposal=proposal['sha256'],accept=host['accept'],rationale=host['rationale'],assessment=assessment('Trusted Codex host independently inspected exact candidate, original task, qualified check evidence and actual model findings; model JSON is not host approval.'))
+  save('host-review.json',review)
+  if host['accept']:
+   plan=await c.routine.plan(version,item,review['sha256'],{'remote':'origin','destination':'main','feature':'feat/integrate-b0052-reviewed-continuation','checkout':str(R),'additions':[],'parent_complete':False,'remaining':['Separate exact-plan integration installation/validation/review/publication authority','Prepare maintained regression additions preserving frozen public/private behavioral criteria before protected executable publication','Reconcile existing 1800-second integration validation maximum with the measured longer mandatory protected gate before installation; no validation requirement waived','Refresh the destination-pinned plan after subsequent main publication','B-0052 backlog closeout remains separately governed'],'rationale':'Exact unchanged Qwen candidate independently reviewed in a lawful fresh bounded attempt; host inspected findings. Read-only milestone plan only, not installation-ready: retained validation maximum and regression additions require prospective preparation.','validation_seconds':1800},assessment=assessment('Read-only integration plan bound to exact qualified candidate, fresh review subject and trusted host disposition; ordinary destination-based planning, no installation/publication authority.'))
+   save('integration-plan.json',plan)
+  # Git checkout may rematerialize CRLF. Restore only equivalent tested bytes.
+  restored=[]
+  for name,text in load(O/'tested-materialization.json').items():
+   p=R/name;expected=text.encode();actual=p.read_bytes()
+   if actual!=expected:
+    assert actual.replace(b'\r\n',b'\n')==expected.replace(b'\r\n',b'\n'),name
+    write(BinaryFile(resolve_path(p),expected));restored.append(name)
+  save('materialization-reconciliation.json',{'restored_only_equivalent_tested_bytes':restored,'semantic_changes':False})
+  assert await git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists()
+  assert h(R/a['task']['source'])==auth['baseline_raw_sha256']
+  print(json.dumps({'host_review':review['sha256'],'accepted':host['accept'],'plan':load(O/'integration-plan.json')['sha256'] if host['accept'] else None,'candidate_installed':False}));return
+ if mode=='--cleanup':
+  material=load(O/'public-materialization.json')
+  if material['created']:
+   assert public==R/'tests/live_native_csv_row_public.py' and resolve_path(public).value==public and h(public)==material['sha256']
+   public.unlink() # Exact task-owned temporary preparation, no filesystem delete substrate exists.
+  save('cleanup.json',{'at':str(Timestamp.now()),'temporary_public_removed':material['created'],'candidate_installed':False,'coding_repeated':False,'source_sha256':h(R/a['task']['source'])})
+  return
+ raise ValueError('One explicit bounded operation required')
+asyncio.run(main())

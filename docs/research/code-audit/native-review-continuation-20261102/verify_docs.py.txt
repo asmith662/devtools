@@ -1,0 +1,48 @@
+"""Check only new public artifacts, links and unchanged protected inputs."""
+import asyncio,hashlib,json,re,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation';D=R/'docs/research/code-audit/native-review-continuation-20261102'
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Timestamp
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.intake import _digest
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import inputs,git
+def load(p):return json.loads(p.read_bytes())
+def sha(data):return hashlib.sha256(data).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+envelopes=0;sealed=0
+for p in sorted(D.glob('*.json')):
+ value=load(p)
+ if p.name in ('native-attempt.json','provider-support.json','standing-authority.json','checkout-release.json'):
+  for row in value:
+   if 'utf8_text' in row:
+    assert sha(row['utf8_text'].encode())==row['sha256'],str(p)
+    record=json.loads(row['utf8_text']);envelopes+=1
+    if 'schema' in record and 'sha256' in record:
+     assert _digest({k:v for k,v in record.items() if k!='sha256'})==record['sha256'];sealed+=1
+ if p.name=='protected-output.json':
+  for row in value.values():assert sha(row['utf8_text'].encode())==row['sha256'];envelopes+=1
+private=(R/'.local/e2e-native/private.py.txt').read_text(encoding='utf-8')
+for p in D.iterdir():
+ if p.is_file():
+  text=p.read_text(encoding='utf-8');assert private not in text and json.dumps(private) not in text,p
+report=R/'docs/research/native-review-continuation.md';links=[]
+for target in re.findall(r'\]\(([^)]+)\)',report.read_text(encoding='utf-8')):
+ target=target.split('#')[0]
+ if target and not target.startswith(('https:','http:')):assert (report.parent/target).exists(),target;links.append(target)
+gate=load(O/'protected-completion.json');current=inputs(R);assert current['sha256']==gate['inputs']['sha256']
+def blobs(text):return {r.split('\t',1)[1]:r.split()[1] for r in text.splitlines()}
+a,b=blobs(current['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(a[n]==b[n] for n in current['sha256'])
+assert not git(R,'diff','--check')
+async def layout():
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=8192)).execute(Command(sys.executable).args('scripts/validate_layout.py').cwd(resolve_path(R)).with_timeout(Duration.seconds(120)))
+ assert r.exit_code==0 and not r.stdout_truncated and not r.stderr_truncated
+ return {'argv':[sys.executable,'scripts/validate_layout.py'],'exit_code':r.exit_code,'seconds':r.duration.total_seconds}
+c=WorkCycle(R);queue=c.intake.queue();assert not queue['errors']
+observed=load(O/'review-outcome.json');assert observed['proposal']['status']=='blocked' and not (O/'host-review.json').exists() and not (O/'integration-plan.json').exists()
+v={'at':str(Timestamp.now()),'json_files':len(list(D.glob('*.json'))),'raw_envelopes_verified':envelopes,'sealed_records_verified':sealed,'private_frozen_implementation_not_copied':True,'qualification':'Closed review subject projection remains the primary disclosure boundary; this exact-text scan is an additional check, not universal secret detection.','links':links,'protected_inputs_and_blobs_match':len(current['sha256']),'diff_check':True,'layout':asyncio.run(layout()),'intake_errors':[],'intake_proposals':len(queue['proposals']),'native_host_acceptance':False,'integration_plan':False,'additional_model_calls':0}
+save(O/'documentary-checks.json',v);save(D/'documentary-checks.json',v)
+write(TextFile(resolve_path(D/'verify_docs.py.txt'),Path(__file__).read_text(encoding='utf-8')),overwrite=False)
+print(json.dumps(v,indent=2))

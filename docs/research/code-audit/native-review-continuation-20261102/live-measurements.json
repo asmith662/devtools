@@ -1,0 +1,69 @@
+{
+  "at": "2026-11-02T23:13:40.552464+00:00",
+  "subject": "35264a7eba5fcceb17b341208eaf9b6c98874bd84d1e0e9382825b9b398cba33",
+  "proposal": "2b1ac4fa7bd5855548d9eb53738acccb8dce9cc32c7660eb86e78118c6986e85",
+  "candidate": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "usage": {
+    "input_tokens": 24605,
+    "output_tokens": 264,
+    "total_tokens": 24869
+  },
+  "source_bytes_disclosed": 6535,
+  "actual_reads": [
+    {
+      "call_id": "85sNNfdDAYDQxXSE2gcmIXjc2GkYLXEI",
+      "path": "tests/resources/filesystem/models/csv/test_row.py",
+      "span": [
+        0,
+        2257
+      ],
+      "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+      "version": "8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b"
+    },
+    {
+      "call_id": "z9uZusfS1uRs7DupLCHgTi0NQqDzaauJ",
+      "path": "tests/resources/filesystem/models/csv/test_file.py",
+      "span": [
+        0,
+        4278
+      ],
+      "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+      "version": "85401a1769cd653c8cefa839ab916e069a591a511849264f853bfd4d753db298"
+    }
+  ],
+  "refused_batch": {
+    "schema": "backlog-native-observation-v1",
+    "kind": "review-tool-refused",
+    "at": "2026-11-02T23:10:37.477872+00:00",
+    "calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/live_native_csv_row_public.py\",\"start\":0}",
+        "provider_call_id": "ruRhSmmuZhLwz6HDe3HW6NZVT7pLswNJ"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/codecs/csv.py\",\"start\":0}",
+        "provider_call_id": "HBJpaSAOzYg2QYRRGgGS4Xih6gqWWQxu"
+      }
+    ],
+    "reason": "PermissionError: Review total acquisition allowance exceeded",
+    "tool_effect_entered": false,
+    "sha256": "691212c95ee30fb1e5d2463c5afa5fc101a37e50b794d0d477bd0dae7cf822c5"
+  },
+  "remaining_model_calls_at_terminal": 2,
+  "remaining_reads_before_refusal": 1,
+  "native_observation_file_bytes": 99742,
+  "capture_qualification": "On-disk observation envelope bytes, not a claim about provider tokens or additional available acquisition authority.",
+  "returned_content": [
+    "I'll review the candidate against the task. Let me examine the test expectations to verify the candidate's behavior.\n\n",
+    "I have the two most relevant test files. The candidate adds a uniqueness check to `CsvRow.__post_init__` using `set`, which correctly implements exact duplicate detection (case/whitespace/Unicode distinct). Let me verify the codec and live test don't construct rows with duplicate headers that the new check would break.\n\n"
+  ],
+  "normal_tool_terminated_responses": true,
+  "dynamic_remaining_budget_disclosed": false,
+  "initial_total_budget_disclosed": true,
+  "workflow_completion": false,
+  "judgment_correctness": "Not measurable: no concluded engineering judgment",
+  "partial_analysis": "Supported: len(set(headers)) compared with original length rejects equal string names and preserves distinct case/whitespace/codepoint names without replacing the stored tuple. No defect finding was completed.",
+  "no_review_or_coding_replay": true
+}

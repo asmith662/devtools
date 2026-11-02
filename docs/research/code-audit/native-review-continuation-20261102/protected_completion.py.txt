@@ -1,0 +1,31 @@
+"""Complete existing protected profile after its wrapper's one-hour timeout."""
+import asyncio,json,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation';P=O/'protected-completion.json'
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch,Timestamp
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy,CommandStdout,CommandStderr
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import inputs
+from scripts.validation.observation import Observations,failure_kind
+def load(p):return json.loads(p.read_bytes())
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2,default=str)+'\n'),overwrite=False)
+async def main():
+ old=load(O/'final-protected.json');assert old['status']=='timeout' and old['inputs_unchanged'] and not old['phases']
+ before=await asyncio.to_thread(inputs,R);assert before['head']==old['inputs']['head'] and before['sha256']==old['inputs']['sha256']
+ child=P.with_suffix('.json.pytest.json');coverage=P.with_suffix('.json.coverage');argv=['-m','scripts.validation.protected',str(child),*old['argv'],'--durations=30']
+ report={'schema':'development-validation-v1','mode':'comprehensive','selection':old['selection'],'argv':old['argv'],'managed_argv':[sys.executable,*argv],'inputs':before,'started_at':str(Timestamp.now()),'previous':str(O/'final-protected.json'),'correction':'Operational deadline only: fixed one-hour wrapper stopped the progressing protected child. Reuse existing protected fresh-interpreter entry point with a finite two-hour managed Command. Identical tests, configured coverage and stable executable tree; no partial coverage reuse.','reuse_policy':'fresh-only; timed-out observations are not a comprehensive pass','status':'planned','phases':[],'command_timeout_seconds':7200,'environment_overrides':{'COVERAGE_FILE':str(coverage)}}
+ save(P.with_suffix('.json.intent'),report)
+ command=Command(sys.executable).args(*argv).cwd(resolve_path(R)).with_environment({'COVERAGE_FILE':str(coverage)}).with_timeout(Duration.hours(2))
+ watch=Stopwatch();execution=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32<<20,max_stderr_bytes=4<<20)).start(command)
+ async for event in execution.events():
+  if isinstance(event,(CommandStdout,CommandStderr)):print(event.data.decode('utf-8',errors='replace'),end='',flush=True)
+ result=await execution
+ for name,data in (('stdout',result.stdout),('stderr',result.stderr)):
+  write(TextFile(resolve_path(P.with_suffix('.json.'+name)),data.decode('utf-8',errors='replace')),overwrite=False)
+ assert not result.stdout_truncated and not result.stderr_truncated and child.exists()
+ facts=load(child);observations=Observations();observations.phases=facts['phases'];observations.collection_errors=facts['collection_errors']
+ after=await asyncio.to_thread(inputs,R);unchanged=after==before
+ report.update(exit_code=result.exit_code,status=failure_kind(result.exit_code,observations) if unchanged else 'input-drift',seconds=watch.elapsed.total_seconds,phases=observations.phases,collection_errors=observations.collection_errors,finished_at=str(Timestamp.now()),inputs_unchanged=unchanged)
+ save(P,report);raise SystemExit(result.exit_code if unchanged else 1)
+asyncio.run(main())

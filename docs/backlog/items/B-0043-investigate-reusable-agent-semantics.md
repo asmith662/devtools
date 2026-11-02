@@ -655,3 +655,10 @@ barrier, preserving v1 history and exact downstream subject selection. It is not
 a new coding task, generalized restart system or permission to retry substantive
 engineering rejection. Broader autonomy and installation/closeout remain open;
 this does not close B-0043 or alter the 188 historical RI obligations.
+
+The [actual B-0052 continuation measurement](../../research/native-review-continuation.md)
+entered one fresh policy-authorized Qwen review without repeating coding. Its
+first two-read batch completed; a later batch exceeded the one remaining read
+and was refused before entry. No structured judgment, host acceptance or plan
+resulted. Budget-aware acceptance-review completion remains pressure through the
+existing owner; this consumed allowance supplies no further retry authority.

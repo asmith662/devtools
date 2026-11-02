@@ -5,6 +5,11 @@ owns one prospective attempt after a known unentered legacy batch barrier, with
 explicit subject selection, separate policy-derived authority and exact host/plan
 binding. It preserves the coding task, qualified candidate and consumed attempts.
 
+[B-0052's actual acceptance-review continuation](research/native-review-continuation.md)
+records one policy-authorized fresh attempt: its two-read batch executed, then a
+later batch exceeded the remaining acquisition allowance. It remains blocked
+without a judgment, host acceptance, installation or integration plan.
+
 [Acceptance read batching and B-0052's consumed-review boundary](research/acceptance-read-batches.md)
 records the prospective batch correction and the authenticated reason no new
 B-0052 model review or integration plan was entered. Coding was not repeated.

@@ -1,0 +1,30 @@
+"""Verify stable protected inputs and preserved history before source publication."""
+import hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation'
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import inputs,git
+from scripts.backlog.work import WorkCycle
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+gate=load(O/'protected-completion.json');assert gate['status']=='passed' and gate['inputs_unchanged']
+current=inputs(R);assert current['head']==gate['inputs']['head'] and current['sha256']==gate['inputs']['sha256']
+def blobs(v):return {r.split('\t',1)[1]:r.split()[1] for r in v.splitlines()}
+a,b=blobs(current['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(a[n]==b[n] for n in current['sha256'])
+assert all(current[k]==gate['inputs'][k] for k in ('python','executable','platform','packages'))
+before=load(O/'authentication.json')
+for group in ('historical_files','native_history','forensics'):
+ for name,identity in before[group].items():assert h(R/name)==identity,name
+c=WorkCycle(R);assert c.routine.active()['sha256']==before['active_policy']
+assert not (R/'.local/backlog/checkout-owner').exists() and not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only')
+assert git(R,'branch','--show-current')=='main'
+remote=git(R,'ls-remote','origin','refs/heads/main').split()[0];assert remote==before['starting_head']
+assert not git(R,'merge-base','--is-ancestor',remote,'HEAD')
+worktrees=git(R,'worktree','list','--porcelain');assert 'worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n' in worktrees and '\nbranch refs/heads/feat/agent-inspector' in worktrees
+value={'at':str(Timestamp.now()),'tested_executable_commit':current['head'],'protected_status':gate['status'],'protected_runs':2,'previous_protected_status':load(O/'final-protected.json')['status'],'matching_protected_inputs_and_blobs':len(current['sha256']),'runtime_and_packages_match':True,'environment_qualification':'Invocation environment fingerprints may differ; no complete external-state equivalence claimed.','preserved_historical_files':len(before['historical_files']),'preserved_native_files':len(before['native_history']),'forensic_files':len(before['forensics']),'remote_main_before_source_push':remote,'checkout_released':True,'new_live_calls':0,'new_grants':0,'inspector':worktrees}
+write(TextFile(resolve_path(O/'source-publication-verification.json'),json.dumps(value,indent=2)+'\n'),overwrite=False)
+gap={'at':str(Timestamp.now()),'inspected_commit':current['head'],'integration_maximum_seconds':1800,'plan_validation_seconds':1800,'protected_completed_seconds':gate['seconds'],'prior_protected_timeout_seconds':load(O/'final-protected.json')['seconds'],'source_owners':{name:git(R,'rev-parse','HEAD:'+name) for name in ('scripts/backlog/integration/lifecycle.py','scripts/backlog/integration/validation.py')},'observed_contract':'Integration.plan permits at most 1800 validation seconds; validate_tree applies that bound to the entire fixed pre-publication profile including the protected suite.','qualification':'A read-only plan is a valid milestone, not proof of executable installation readiness. Existing validation policy is unchanged. Prospective budget reconciliation, maintained regression additions and exact installation authority remain required.','control_changed':False}
+write(TextFile(resolve_path(O/'integration-budget-gap.json'),json.dumps(gap,indent=2)+'\n'),overwrite=False)
+print(json.dumps(value,indent=2))

@@ -1,0 +1,97 @@
+"""Authenticate unchanged tested inputs and archive one actual review outcome."""
+import asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-continuation';D=R/'docs/research/code-audit/native-review-continuation-20261102'
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git,inputs
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,value):write(TextFile(resolve_path(p),json.dumps(value,indent=2,default=str)+'\n'),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as response:return json.loads(response.read(131072))
+async def provider():
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+ assert r.exit_code==0 and not r.stdout_truncated
+ v=json.loads(r.stdout)[0];before=load(R/'.local/e2e-native/current-service.json')
+ assert v['Id']==before['container_id'] and v['Image']==before['image'] and v['Config']['Cmd']==before['command'] and v['Mounts']==before['mounts']
+ return {'container':v['Id'],'image':v['Image'],'command':v['Config']['Cmd'],'mounts':v['Mounts'],'mutated':False}
+before=load(O/'authentication.json');gate=load(O/'protected-completion.json');outcome=load(O/'review-outcome.json')
+assert gate['status']=='passed' and gate['inputs_unchanged']
+now=inputs(R);assert now['sha256']==gate['inputs']['sha256']
+def blobs(text):return {r.split('\t',1)[1]:r.split()[1] for r in text.splitlines()}
+a,b=blobs(now['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(a[n]==b[n] for n in now['sha256'])
+assert all(now[k]==gate['inputs'][k] for k in ('python','executable','platform','packages'))
+for group in ('historical_files','native_history','forensics'):
+ for name,identity in before[group].items():assert h(R/name)==identity,name
+assert h(R/'src/devtools/resources/filesystem/models/csv.py')==before['baseline_raw_sha256']
+refs={name:identity for identity,name in (line.split() for line in git(R,'show-ref').splitlines())}
+exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for line in before['refs'].splitlines():
+ identity,name=line.split()
+ if name not in exceptions:assert refs.get(name)==identity,name
+ledgers={}
+for name in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ p=R/'docs/research/code-audit'/name;rows=[json.loads(v) for v in p.read_text(encoding='utf-8').splitlines() if v.strip()];ledgers[name]={'rows':len(rows),'sha256':h(p)}
+ assert git(R,'rev-parse',before['starting_head']+':'+p.relative_to(R).as_posix())==git(R,'rev-parse','HEAD:'+p.relative_to(R).as_posix())
+assert sum(v['rows'] for v in ledgers.values())==903
+c=WorkCycle(R);assert c.routine.active()['sha256']==before['active_policy']
+assert c.native.record('B-0052','result')['sha256']==before['native_result']
+assert c.native.reviewer.record('B-0052','proposal')['sha256']==before['prior_proposal']
+actor=c.native.reviewer.select(outcome['subject']);proposal=actor.record('B-0052','proposal');assert proposal==outcome['proposal']
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists()
+assert not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only')
+worktrees=git(R,'worktree','list','--porcelain');inspector=next(v for v in worktrees.split('\n\n') if v.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+queue=c.intake.queue();assert not queue['errors']
+service=asyncio.run(provider());service.update(health=get('/health'),slots=get('/slots'))
+assert service['health']=={'status':'ok'} and len(service['slots'])==1 and service['slots'][0]['n_ctx']==65536 and not service['slots'][0]['is_processing']
+value={'at':str(Timestamp.now()),'head':now['head'],'tested_executable_commit':gate['inputs']['head'],'protected_status':gate['status'],'protected_seconds':gate['seconds'],'protected_executions':2,'previous_protected_status':load(O/'final-protected.json')['status'],'previous_protected_seconds':load(O/'final-protected.json')['seconds'],'matching_protected_inputs_and_blobs':len(now['sha256']),'runtime_and_packages_match':True,'environment_fingerprint_matches':now['environment_sha256']==gate['inputs']['environment_sha256'],'environment_qualification':'Tool invocation fingerprints may differ; complete external-state equivalence is not claimed.','preserved_historical_files':len(before['historical_files']),'preserved_native_files':len(before['native_history']),'forensic_files':len(before['forensics']),'ri_ledgers':ledgers,'historical_refs_preserved':True,'inspector':inspector,'provider':service,'active_policy':before['active_policy'],'candidate':before['candidate_sha256'],'original_result_unchanged':True,'original_review_unchanged':True,'continuation_subject':outcome['subject'],'continuation_proposal':proposal['sha256'],'review_status':proposal['status'],'model_calls':proposal['model_calls'],'reads':proposal['reads'],'host_review':load(O/'host-review.json')['sha256'] if (O/'host-review.json').exists() else None,'integration_plan':load(O/'integration-plan.json')['sha256'] if (O/'integration-plan.json').exists() else None,'candidate_installed':False,'coding_repeated':False,'checkout_released':True,'temporary_public_present':(R/'tests/live_native_csv_row_public.py').exists(),'intake_errors':[]}
+assert not value['temporary_public_present']
+if sys.argv[1:] == ['--published']:
+ remote=git(R,'ls-remote','origin','refs/heads/main').split()[0];assert remote==now['head'];value['remote_main']=remote
+ current=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert current==set(before['forensics'])
+ save(O/'publication-verification.json',value)
+ print(json.dumps({k:v for k,v in value.items() if k!='provider'},indent=2));raise SystemExit
+assert not D.exists();D.mkdir(parents=True)
+for name in ('authentication.json','historical-eligibility.json','focused-1.json','consumer-2.json','final-focused-3.json','quality-final.json','impact-preview.json','final-protected.json','protected-completion.json','source-publication-verification.json','public-materialization.json','qualification.json','execution-scope.json','review-outcome.json','live-measurements.json','host-assessment.json','host-review.json','integration-plan.json','integration-budget-gap.json','materialization-reconciliation.json','cleanup.json'):
+ p=O/name
+ if p.exists():write(BinaryFile(resolve_path(D/name),p.read_bytes()),overwrite=False)
+save(D/'protected-output.json',{name:{'sha256':h(O/('protected-completion.json.'+name)),'utf8_text':(O/('protected-completion.json.'+name)).read_bytes().decode('utf-8')} for name in ('stdout','stderr')})
+records=[]
+for p in sorted(actor.folder('B-0052').glob('*.json')):
+ records.append({'path':p.relative_to(R).as_posix(),'sha256':h(p),'utf8_text':p.read_bytes().decode('utf-8')})
+save(D/'native-attempt.json',records)
+grant=actor.record('B-0052','authorization');references={grant['reference']}
+if (O/'host-review.json').exists():references.add(load(O/'host-review.json')['reference'])
+authority=[]
+for p in sorted(c.routine.folder.glob('control-*.json')):
+ authority.append({'path':p.relative_to(R).as_posix(),'sha256':h(p),'utf8_text':p.read_bytes().decode('utf-8')})
+decisions=[]
+for p in sorted((c.routine.folder/'decisions').glob('*.json')):
+ record=load(p)
+ if any(ref.endswith(':'+record['sha256']) for ref in references) or (value['host_review'] and record['kind']=='integration-plan' and record['request'].get('review')==value['host_review']):
+  decisions.append(record['sha256'])
+  if record['kind']=='host-review':
+   request=record['request']
+   projection={k:v for k,v in record.items() if k!='request'}
+   projection['request_projection']={'operation':request['operation'],'assignment_sha256':request['assignment']['sha256'],'result_sha256':request['result']['sha256'],'decision':request['decision'],'review_proposal_sha256':request['review_proposal']['sha256']}
+   authority.append({'path':p.relative_to(R).as_posix(),'sha256':h(p),'record_sha256':record['sha256'],'projection':projection,'omitted':'Full host-only request.assignment and request.result contain private acceptance implementation/controls. Immutable original remains in host administration; this projection is not the original byte payload or a reconstructible full-request attestation.'})
+  else:authority.append({'path':p.relative_to(R).as_posix(),'sha256':h(p),'utf8_text':p.read_bytes().decode('utf-8')})
+assert len(decisions)==1+int(bool(value['host_review']))+int(bool(value['integration_plan']))
+save(D/'standing-authority.json',authority)
+checkout_records=[]
+for p in sorted((R/'.local/backlog/checkout-history').glob('*.json')):
+ record=load(p)
+ if record.get('operation') in {'routine-plan:'+identity for identity in decisions}:
+  checkout_records.append({'path':p.relative_to(R).as_posix(),'sha256':h(p),'utf8_text':p.read_bytes().decode('utf-8')})
+assert len(checkout_records)==int(bool(value['integration_plan']))
+save(D/'checkout-release.json',checkout_records)
+support=R/'.local/e2e-native/support/b0052-acceptance-continuation-2'
+if support.exists():save(D/'provider-support.json',[{'path':p.relative_to(R).as_posix(),'sha256':h(p),'utf8_text':p.read_bytes().decode('utf-8')} for p in sorted(support.rglob('*')) if p.is_file()])
+for name in ('authenticate.py','quality.py','prepublish.py','live.py','assess.py','finish.py','protected_completion.py'):
+ write(BinaryFile(resolve_path(D/(name+'.txt')),(O/name).read_bytes()),overwrite=False)
+save(D/'integrity.json',value);save(O/'integrity.json',value)
+print(json.dumps({k:v for k,v in value.items() if k!='provider'},indent=2))

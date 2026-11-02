@@ -1,0 +1,96 @@
+{
+  "at": "2026-11-02T21:12:31.082810+00:00",
+  "commands": [
+    {
+      "name": "ruff",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.634342,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "format",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.115027,
+      "stdout": "774 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "truncated": false
+    },
+    {
+      "name": "mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.569043,
+      "stdout": "Success: no issues found in 629 source files\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "owner-mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "scripts/backlog/native",
+        "scripts/backlog/routine/__init__.py",
+        "scripts/backlog/integration/lifecycle.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.368954,
+      "stdout": "Success: no issues found in 15 source files\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "layout",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.067225,
+      "stdout": "",
+      "stderr": "",
+      "truncated": false
+    }
+  ],
+  "intake_errors": [],
+  "proposal_count": 71,
+  "links": [
+    "native-diagnostic-review.md",
+    "native-maintenance-handoff.md",
+    "native-review-continuation.md",
+    "../research/code-audit/native-review-20261031.json",
+    "native-review-continuation.md"
+  ]
+}

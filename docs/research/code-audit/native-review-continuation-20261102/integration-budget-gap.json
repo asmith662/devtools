@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-02T23:09:09.841898+00:00",
+  "inspected_commit": "f06442f6b4c65b60adc379e697555c564b6a7a8f",
+  "integration_maximum_seconds": 1800,
+  "plan_validation_seconds": 1800,
+  "protected_completed_seconds": 3073.894803,
+  "prior_protected_timeout_seconds": 3600.037077,
+  "source_owners": {
+    "scripts/backlog/integration/lifecycle.py": "570f9ffad7659c6e24934552d9dbd90b519b004a",
+    "scripts/backlog/integration/validation.py": "330c40338f9e5eb2179434e21d47d335716327a3"
+  },
+  "observed_contract": "Integration.plan permits at most 1800 validation seconds; validate_tree applies that bound to the entire fixed pre-publication profile including the protected suite.",
+  "qualification": "A read-only plan is a valid milestone, not proof of executable installation readiness. Existing validation policy is unchanged. Prospective budget reconciliation, maintained regression additions and exact installation authority remain required.",
+  "control_changed": false
+}

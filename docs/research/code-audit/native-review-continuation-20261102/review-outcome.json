@@ -1,0 +1,82 @@
+{
+  "at": "2026-11-02T23:10:37.482655+00:00",
+  "subject": "35264a7eba5fcceb17b341208eaf9b6c98874bd84d1e0e9382825b9b398cba33",
+  "proposal": {
+    "schema": "backlog-native-review-proposal-v2",
+    "subject_sha256": "35264a7eba5fcceb17b341208eaf9b6c98874bd84d1e0e9382825b9b398cba33",
+    "authorization_sha256": "14a8561621b485a7462a9cc76f4b9acdc22ea98fcce0450e2fbfcca79b4ed05f",
+    "dispatch_sha256": "c59bb403474a27503b2b690f475bb7f63e8cef9784435e34fdaea27e9e648936",
+    "actor": "qwen38-csv-acceptance-continuation-reviewer-20261102",
+    "source": "llama.cpp/qwen38-local/csv-acceptance-continuation-fresh-20261102",
+    "profile": "qwen38-native64-independent-review-defaults-v1",
+    "status": "blocked",
+    "conclusion": null,
+    "error": "PermissionError: Review total acquisition allowance exceeded",
+    "references": {
+      "task": "7002fd80cfbc8febc6f8bad3e97d00e80d33dff16beaafdc8297809a9a21821b",
+      "scope": "2b30aa2ada430a60a6b30b4c0068730937d44ef00db354cb96fd2bf0bbe14677",
+      "baseline": "af5f42951080d42c7ff55aa84963d7a57d61c4be5f833821b07019a3d9c2c68d",
+      "candidate": "6280e743b0eff70dec7c2adac552d88a0dca57bbb5023c7d3894c0e0d2958120",
+      "diff": "3fb6936eb1c48acf284c5d66ce90925211d9794a4c212143673de9546e76209c",
+      "public-checks": "4f8bda67b2af05eef407d6bb5d9b6ff79421cf6cbc48a78f47519f84f0c0bb35",
+      "acceptance": "9e749ff8a3a0ebf5a7db967c17fd12d6273aa1ed5f0d554bec37f72df23ad5a3",
+      "custody": "277df3cd5f0aa03d7e1572e3dbe7097418899ddf41551458754ae1e9ab5b7baf",
+      "effects": "27ea80f9e56da4d775046865d9622a0fed648765e63b461f73b765393a99db61",
+      "information": "1eaba4f44717d553291d822cd349f73735248ecb19e72ade034df4afcb218673",
+      "limits": "5fd1ebf50e7681df845a049730a160d6774a7338eea8de3a25c914e1f1cbdb63",
+      "read:1": "8e16253b22a93b4e3b04fb529a8478abd9c5dbb4122abdcb8ce227b03702b1f3",
+      "read:2": "2896f5785c095b8472ec8408e8c085014fec04dd5173ea830b9b9b9e83a0df64"
+    },
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "efab545a56e272c2411550e467260e4a1b3dcd5293f5b1a9478a3fb48195d461"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "47f423bf325e9c0f996bc1f756b14b486793a7df296f217f70a9526daa30eb14"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "0e40fb2d22d870b4722141117f8c71ef1a2714cdd535197ccc0b661d756a2ca1"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "a6d4d099e254af626611fa8f696f4999aab2d83ed3337261b766662daf342644"
+      },
+      {
+        "file": "observation-0004.json",
+        "sha256": "159725ebc35f9b1b8702109f7801a9cf526b151173d5eb191870663041e99bd1"
+      },
+      {
+        "file": "observation-0005.json",
+        "sha256": "89452dbdfa9ff837f82ca3ee45886452c934a096a0ec3bb295fe589de1bbc774"
+      },
+      {
+        "file": "observation-0006.json",
+        "sha256": "56bac50896a2e2ac42ce68c197d8cea7d8fa053c36cb474e7926b9f15b076273"
+      },
+      {
+        "file": "observation-0007.json",
+        "sha256": "d71f719fea9c84ee6f93b7583f151f869e60354e3162692fffb90eafd6028911"
+      },
+      {
+        "file": "observation-0008.json",
+        "sha256": "691212c95ee30fb1e5d2463c5afa5fc101a37e50b794d0d477bd0dae7cf822c5"
+      }
+    ],
+    "model_calls": 2,
+    "reads": 2,
+    "seconds": 50.032374,
+    "host_approved": false,
+    "sha256": "2b1ac4fa7bd5855548d9eb53738acccb8dce9cc32c7660eb86e78118c6986e85"
+  },
+  "seconds": 54.18402,
+  "adapter_entries": 2,
+  "returned_interactions": 2,
+  "adapter_seconds": 30.673209999999997,
+  "support_bytes": 3221,
+  "policy": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "grant": "14a8561621b485a7462a9cc76f4b9acdc22ea98fcce0450e2fbfcca79b4ed05f",
+  "coding_repeated": false
+}
