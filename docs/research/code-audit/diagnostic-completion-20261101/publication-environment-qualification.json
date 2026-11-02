@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-02T01:22:21.861151+00:00",
+  "purpose": "Qualification, not a new protected result or weakened gate",
+  "protected_environment_sha256": "3bd5a6a8d083e7665ef5eb2a6f80bdb9198c462124b5457de078ce2d6a5f5cb0",
+  "separate_validation_invocation_environment_sha256": "d278971da170f558580ff5f1be4b047585521c1cd90a69e8ab31d1d0dfbcbe6d",
+  "protected_inputs_unchanged_during_run": true,
+  "protected_status": "passed",
+  "isolated_repeated_command_changed_environment_key_names": [
+    "CODEX_TOOL_CALL_ID"
+  ],
+  "other_environment_key_hashes_match_between_probes": true,
+  "pytest_import_did_not_change_environment": true,
+  "python_executable_platform_and_installed_packages_match": true,
+  "protected_file_hashes_match": true,
+  "qualification": "The full fingerprint includes per-invocation CODEX_TOOL_CALL_ID. Exact protected-run versus publication whole-environment equivalence is not claimed; original fingerprints and qualifications are retained. Isolated probes do not reconstruct the withheld historical environment values.",
+  "new_comprehensive_invocations": 0,
+  "new_model_calls": 0,
+  "environment_values_disclosed": false
+}

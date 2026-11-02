@@ -196,6 +196,16 @@ feature branch; its own development advanced without being modified here. The
 persistent provider remained healthy with an actual 65,536-token slot and no
 service/configuration mutation by this assignment.
 
+Publication qualification also found that the full inherited-environment
+fingerprint varies between commands. Two isolated per-key hash snapshots differed
+only in `CODEX_TOOL_CALL_ID`; no environment values were disclosed. Python,
+executable, platform, installed distributions and protected file hashes match the
+tested candidate. Both comprehensive receipts independently attest unchanged
+inputs throughout their run. Exact whole-environment equivalence across those
+invocations is not claimed; the
+[qualification record](code-audit/diagnostic-completion-20261101/publication-environment-qualification.json)
+preserves the original fingerprints and the limit of that comparison.
+
 ## Boundary and next responsibility
 
 Diagnostic findings remain advisory. Acceptance review, successful-candidate
