@@ -1,0 +1,37 @@
+"""Freeze one new historical subject driver and independent host criteria; no inference."""
+import hashlib,json
+from pathlib import Path
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+R=Path.cwd();O=R/'.local/diagnostic-completion';old=R/'.local/native-diagnostic-review'
+def save(path,value):write(TextFile(resolve_path(path),json.dumps(value,indent=2)+'\n'),overwrite=False)
+text=(old/'live.py').read_bytes().decode()
+for a,b in [
+ ("O=R/'.local/native-diagnostic-review'","O=R/'.local/diagnostic-completion'"),
+ ("item='B-0050'","item='B-0051'"),
+ ("qwen38-blind-diagnostic-reviewer-20261101","qwen38-budgeted-diagnostic-reviewer-B0051-20261101"),
+ ("blind-diagnostic-B0050-20261101","budgeted-diagnostic-B0051-20261101"),
+ ("fresh-blind-B0050-diagnostic-20261101","fresh-budgeted-B0051-diagnostic-20261101"),
+ ("qwen38-native64-diagnostic-defaults-v1","qwen38-native64-diagnostic-finalization-v1"),
+ ("No coder reasoning/transcript, private oracle/counterexample or later B-0051 diagnosis is disclosed.","No coder reasoning/transcript, private holdouts, host scoring or later host diagnosis is disclosed. Public error history is authorized evidence, not blind defect discovery."),
+ ("'read_paths':['src/devtools/context/python/imports/members.py','src/devtools/context/python/imports/declarations.py','src/devtools/context/python/modules/declarations.py','src/devtools/context/python/modules/bindings.py','tests/context/python/imports/test_members.py']","'read_paths':['src/devtools/context/python/modules/declarations.py','src/devtools/context/python/modules/bindings.py','tests/context/python/modules/test_selection.py','src/devtools/context/python/imports/members.py']"),
+ ("'model_calls':3,'reads':2", "'model_calls':4,'reads':3"),
+ ("'wall_seconds':360", "'wall_seconds':540"),
+ ("docs/research/code-audit/live-native64-20261101/unaccepted-candidate.json","docs/research/code-audit/native-scope-followup-20261101/unaccepted-candidate.json"),
+ ("'blind':True", "'blind':False,'host_evaluation_plan_sha256':hashlib.sha256((O/'host-evaluation-plan.json').read_bytes()).hexdigest(),'continuation':packet['continuation']"),
+]:
+ assert a in text,a
+ text=text.replace(a,b)
+write(TextFile(resolve_path(O/'live.py'),text),overwrite=False)
+save(O/'host-evaluation-plan.json',{
+ 'schema':'bounded-diagnostic-host-evaluation-v1','frozen_at':str(Timestamp.now()),'item':'B-0051',
+ 'candidate_sha256':'61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b',
+ 'workflow':['Structured parsed conclusion within approved calls, time and read scope','No extra calls or effects; final synthesis has no source Tools'],
+ 'correctness':['Identify undefined _scan_module_level_bindings in the final candidate and connect to actual NameError','Distinguish first invalid lambda syntax from final syntactically valid but undefined-helper revision','Do not invent private acceptance, completed public semantic matrix, successful repair or third installed edit','Do not claim the restored current baseline is the archived candidate','Ground additional claims in actually disclosed source and checks'],
+ 'utility':['Explain failure mechanism beyond repeating an error string','Recommend bounded further inspection/validation or engineering obligations without claiming a complete repair','Acknowledge unavailable intermediate source, public test materializations and withheld holdouts'],
+ 'disclosure':'Host-only evaluation criteria, prior detailed diagnosis and private holdouts never enter ModelInteraction Context. Public error strings are not blind discovery.',
+ 'evaluation':'Workflow completion, diagnostic correctness and engineering utility scored independently; unsupported claims recorded, no acceptance authority',
+ 'trials':1,'coding_dispatches':0,'provider_changes':False,
+})
+print('New B-0051 driver and host-only criteria frozen without model entry.')

@@ -1,11 +1,22 @@
 # Roadmap
 
+Delivered [budget-aware diagnostic finalization](research/diagnostic-completion.md)
+reserves synthesis within the existing approved call allowance and reports
+remaining acquisitions. One approved B-0051 assessment reached Tool-free synthesis
+and correctly explained the missing helper and successive public failures, but
+Markdown-wrapped JSON was refused by strict admission. The native proposal stays
+blocked; host inspection found useful bounded reasoning and unsupported claims.
+A discovered budget-observation envelope collision was corrected prospectively;
+original records remain unchanged. Next is bounded response-format delivery,
+not another coding episode or automatic replay.
+
 Delivered [governed diagnostic review](development/native-diagnostic-review.md)
 reuses the existing bounded read-only operation with separate authority and no
 candidate acceptance. One [approved blind B-0050 measurement](research/native-diagnostic-review.md)
 made three real calls, exhausted its two-read allowance and produced an incorrect
 partial diagnosis, not a structured conclusion or known-defect discovery. Next is
-budget-aware inspection/finalization through this owner, without automatic retries.
+budget-aware inspection/finalization through this owner (delivered above), without
+automatic retries.
 No coding episode, sampler pass-through, installation or backlog closeout followed.
 
 Executed [B-0050 follow-up B-0051](research/native-scope-followup.md): exact analysis

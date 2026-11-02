@@ -1,0 +1,29 @@
+"""Archive final validation separately from the already-frozen live outcome."""
+import hashlib,json,re
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,TextFile,write
+R=Path.cwd();O=R/'.local/diagnostic-completion';D=R/'docs/research/code-audit/diagnostic-completion-20261101'
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def copy(a,b):
+ if b.exists():assert a.read_bytes()==b.read_bytes()
+ else:write(BinaryFile(resolve_path(b),a.read_bytes()),overwrite=False)
+first,final=read(O/'final-protected.json'),read(O/'final-protected-02.json')
+assert all(v['status']=='passed' and v['inputs_unchanged'] for v in (first,final))
+assert final['inputs']['head']=='e5bc96250f73df7e8ed34407746a522dca19980d'
+stdout=(O/'final-protected-02.json.stdout').read_bytes().decode();summary=re.findall(r'(\d+) passed, (\d+) skipped',stdout)
+assert summary==[('4129','2')] and 'Required test coverage of 100% reached' in stdout
+for n in ('final-protected-02.json','quality-final-02.json','envelope-repair-03.json','envelope-final-04.json'):
+ copy(O/n,D/n)
+for n in ('stdout','stderr'):copy(O/('final-protected-02.json.'+n),D/('protected-pytest-02.'+n+'.txt'))
+for n in ('assess.py','verify.py','record_consent.py','prepare_driver.py','inspect_candidate.py'):
+ copy(O/n,D/(n+'.txt'))
+scope=read(O/'approval-scope.json');driver=(O/'live.py').read_bytes()
+assert hashlib.sha256(driver).hexdigest()==scope['scope']['driver_sha256']
+driver_record={'purpose':'Byte-preserving record of the exact approved one-dispatch driver; display .py.txt copies may normalize line endings','encoding':'utf-8','source_text':driver.decode(),'source_sha256':hashlib.sha256(driver).hexdigest(),'approval_scope_sha256':scope['scope_sha256']}
+write(TextFile(resolve_path(D/'driver-input.json'),json.dumps(driver_record,indent=2)+'\n'),overwrite=False)
+value={'schema':'diagnostic-completion-validation-manifest-v1','at':str(Timestamp.now()),'comprehensive_invocations':2,'comprehensive_results':[{'receipt':n,'sha256':sha(O/n),'status':v['status'],'seconds':v['seconds'],'head':v['inputs']['head']} for n,v in (('final-protected.json',first),('final-protected-02.json',final))],'final_passed_tests':4129,'final_optional_skips':2,'configured_production_line_and_branch_coverage':'100%','second_run_reason':'A genuine live assessment exposed budget-view schema overwriting the standard observation envelope; focused canonical-reader regression verified the prospective nested-envelope correction before the final gate.','first_run_not_relabelled':True,'original_live_result_not_relabelled':True,'live_assessments':1,'actual_model_calls':4,'coding_episodes':0,'new_model_calls_after_correction':0,'live_review_executable':first['inputs']['head'],'final_tested_executable':final['inputs']['head'],'original_live_observation_manifest':'observation.json; its comprehensive count describes the one completed run before that observation was archived','environment_qualification':final['inputs']['qualification']}
+write(TextFile(resolve_path(D/'validation-manifest.json'),json.dumps(value,indent=2)+'\n'),overwrite=False)
+print(json.dumps(value,indent=2))

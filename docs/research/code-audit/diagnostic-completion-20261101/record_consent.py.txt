@@ -1,0 +1,12 @@
+﻿"""Persist the actual user +approve for this exact diagnostic-only prompt."""
+import json
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+O=Path.cwd()/'.local/diagnostic-completion';scope=json.loads((O/'approval-scope.json').read_bytes())
+assert scope['scope_sha256']=='ac3f0ff51cefde0b9a7aabf9145a5e0460e0e595927a5b6e889818e286865e3d'
+assert Timestamp.now().value<Timestamp.from_isoformat(scope['scope']['expires_at']).value
+v={'at':str(Timestamp.now()),'user_response':'+approve','scope_sha256':scope['scope_sha256'],'provenance':'Actual human reply +approve to the exact default-No diagnostic subject, limits and provider-reservation prompt in this task.','coding_or_acceptance_authority':False}
+write(TextFile(resolve_path(O/'operator-approval.json'),json.dumps(v,indent=2)+'\n'),overwrite=False)
+

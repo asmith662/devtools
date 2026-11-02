@@ -1,0 +1,54 @@
+{
+  "schema": "native-diagnostic-budget-v1",
+  "kind": "review-budget",
+  "at": "2026-11-02T00:06:05.965277+00:00",
+  "phase": "inspection",
+  "model_calls_used": 0,
+  "model_calls_remaining_including_this_call": 4,
+  "acquisitions_completed": 0,
+  "acquisitions_remaining": 3,
+  "source_tools_permitted": true,
+  "final_model_call_reserved": true,
+  "supplied_source": [
+    {
+      "reference": "baseline",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "identity": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+      "complete_text_in_subject": true
+    },
+    {
+      "reference": "candidate",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "sha256": "61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b",
+      "complete_text_in_subject": true
+    }
+  ],
+  "current_resources": [
+    {
+      "path": "src/devtools/context/python/imports/members.py",
+      "current_identity": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": true
+    },
+    {
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "current_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": true
+    },
+    {
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "current_identity": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+      "matches_supplied_baseline": true,
+      "eligible_for_acquisition": true
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "current_identity": "6b90314dbceada00b52aaeff1f5c58bd26c1a51da666b48f7d989070709007f4",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": true
+    }
+  ],
+  "instruction": "Use supplied baseline/candidate text directly; no reread is required. A matching current baseline identity authenticates equivalence to that baseline, not to the candidate. Acquire only missing useful evidence. You may conclude now; the last approved call is reserved for synthesis.",
+  "sha256": "32f2a6e7c6be62a5e8e46aef4a5cba4044e2503537138e13a153cad063990c88"
+}

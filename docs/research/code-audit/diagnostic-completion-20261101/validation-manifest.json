@@ -1,0 +1,35 @@
+{
+  "schema": "diagnostic-completion-validation-manifest-v1",
+  "at": "2026-11-02T01:13:29.870625+00:00",
+  "comprehensive_invocations": 2,
+  "comprehensive_results": [
+    {
+      "receipt": "final-protected.json",
+      "sha256": "e0b39878756d487cffaa9f35a1fa4db12952abe7b63c35d49538fb8c8b139cd2",
+      "status": "passed",
+      "seconds": 3158.03424,
+      "head": "6818f9a779911ea8f12f910c1e9f61eb3007bba3"
+    },
+    {
+      "receipt": "final-protected-02.json",
+      "sha256": "764794bd3d66c9a4f70a79bb2f5d480d574fe8e33166d4e486327b1b91329ccb",
+      "status": "passed",
+      "seconds": 3303.018822,
+      "head": "e5bc96250f73df7e8ed34407746a522dca19980d"
+    }
+  ],
+  "final_passed_tests": 4129,
+  "final_optional_skips": 2,
+  "configured_production_line_and_branch_coverage": "100%",
+  "second_run_reason": "A genuine live assessment exposed budget-view schema overwriting the standard observation envelope; focused canonical-reader regression verified the prospective nested-envelope correction before the final gate.",
+  "first_run_not_relabelled": true,
+  "original_live_result_not_relabelled": true,
+  "live_assessments": 1,
+  "actual_model_calls": 4,
+  "coding_episodes": 0,
+  "new_model_calls_after_correction": 0,
+  "live_review_executable": "6818f9a779911ea8f12f910c1e9f61eb3007bba3",
+  "final_tested_executable": "e5bc96250f73df7e8ed34407746a522dca19980d",
+  "original_live_observation_manifest": "observation.json; its comprehensive count describes the one completed run before that observation was archived",
+  "environment_qualification": "Declared tracked and executable untracked files; inherited environment fingerprint only. Ignored files, services and transitive external inputs are not attested. Fresh-only acceptance."
+}

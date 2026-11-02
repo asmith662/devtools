@@ -1,0 +1,54 @@
+{
+  "schema": "native-diagnostic-budget-v1",
+  "kind": "review-budget",
+  "at": "2026-11-02T00:07:13.405634+00:00",
+  "phase": "synthesis",
+  "model_calls_used": 3,
+  "model_calls_remaining_including_this_call": 1,
+  "acquisitions_completed": 3,
+  "acquisitions_remaining": 0,
+  "source_tools_permitted": false,
+  "final_model_call_reserved": true,
+  "supplied_source": [
+    {
+      "reference": "baseline",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "identity": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+      "complete_text_in_subject": true
+    },
+    {
+      "reference": "candidate",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "sha256": "61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b",
+      "complete_text_in_subject": true
+    }
+  ],
+  "current_resources": [
+    {
+      "path": "src/devtools/context/python/imports/members.py",
+      "current_identity": "fd6444b86b67b7cc6f643f4ba590d08f63461cbee06b3e3089d7c29224ec4660",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": false
+    },
+    {
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "current_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": false
+    },
+    {
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "current_identity": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+      "matches_supplied_baseline": true,
+      "eligible_for_acquisition": false
+    },
+    {
+      "path": "tests/context/python/modules/test_selection.py",
+      "current_identity": "6b90314dbceada00b52aaeff1f5c58bd26c1a51da666b48f7d989070709007f4",
+      "matches_supplied_baseline": false,
+      "eligible_for_acquisition": false
+    }
+  ],
+  "instruction": "Produce the final structured diagnostic conclusion now. No source Tools are available. If evidence is insufficient, return disposition insufficient-evidence with specific gaps. No further model call is promised. Do not request Tools or invent findings.",
+  "sha256": "4697c953bdfadf4f0719e6a581cdc9350f3675667c9d99b220aece8900f6bc04"
+}

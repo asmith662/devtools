@@ -1,0 +1,72 @@
+{
+  "schema": "bounded-diagnostic-host-evaluation-v1",
+  "at": "2026-11-02T00:16:17.850078+00:00",
+  "item": "B-0051",
+  "subject_sha256": "4ec2e3d8a43551ea02e2627a6ba59a4f33d56e559467576d361363a84eabd1c6",
+  "proposal_sha256": "b76b937fcfd2c8df3889e46dc918af56a545315deb67972199e392e2aa75e788",
+  "candidate_sha256": "61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b",
+  "frozen_evaluation_plan_sha256": "46af425722c8eeacbc0271d80a1a1176ee66f1be6b9052074f7df136f89b03b6",
+  "raw_final_content_sha256": "8d0a07a02684d5142914e2f536446e5b6757161a0bb728d3800d6eec74d9e74e",
+  "workflow": {
+    "actual_model_calls": 4,
+    "completed_model_responses": 4,
+    "actual_acquisitions": 3,
+    "source_reads": 2,
+    "metadata_searches": 1,
+    "final_synthesis_tools": [],
+    "model_synthesized": true,
+    "native_structured_conclusion_admitted": false,
+    "native_status": "blocked",
+    "reason": "Strict parser rejects Markdown code fence; no response rewriting or replay",
+    "host_only_unwrapped_payload_validates": true
+  },
+  "correctness": {
+    "supported": [
+      "Final archived candidate calls undefined _scan_module_level_bindings at line 144; public NameError confirms runtime failure",
+      "Refactor removed inline traversal without supplying the helper; explains why non-declaration branches fail",
+      "Earlier SyntaxError line is absent from final candidate; reviewer correctly distinguishes superseded syntax failure from final NameError",
+      "Public final outcome is two failed and nineteen passed; reviewer does not call private acceptance executed or passed",
+      "Reviewer explicitly acknowledges uninspected consumers/tests and inference limits for intermediate revision mapping"
+    ],
+    "unsupported_or_overstated": [
+      {
+        "claim": "bindings.py source location lines 13-63",
+        "assessment": "Invalid end line: actual disclosed file has 41 physical lines. Core missing-helper finding remains supported elsewhere."
+      },
+      {
+        "claim": "NameError is guaranteed for any module with a non-declaration/import body node",
+        "assessment": "Too broad: existing early guards can return before reaching that branch. The two observed failing paths are proven."
+      },
+      {
+        "claim": "Current tests/consumer are flagged as not matching supplied baseline",
+        "assessment": "Budget comparison refers to the one supplied implementation baseline, not every historical input. test_selection.py is explicitly a matching historical input; no source drift is established."
+      },
+      {
+        "claim": "Restoring the original inline ast.walk scan could serve as a repair candidate",
+        "assessment": "May remove this regression but would restore the known flawed baseline. It is not demonstrated to satisfy the original scope obligation or expanded public matrix; reviewer appropriately does not claim completed acceptance."
+      }
+    ],
+    "qualification": "Public missing-helper failure was disclosed; this is source-grounded explanation, not blind discovery. The harder withheld B-0050 flaw was not retested."
+  },
+  "engineering_utility": {
+    "useful": true,
+    "scope": "Useful bounded root-cause and revision diagnosis for supervisor, with invalid locations and overstatements removed",
+    "not_a_complete_repair_plan": true,
+    "limitations": [
+      "Redundant baseline reread used one acquisition despite existing complete text",
+      "Search inspected only current authorized resources, not a global or historical helper-definition graph",
+      "No holdouts, private execution, candidate installation or live repair occurred"
+    ]
+  },
+  "authority": {
+    "host_approved": false,
+    "native_result_remains": "BLOCKED",
+    "acceptance_review_entered": false,
+    "integration_plan": null,
+    "installation_authorized": false,
+    "coding_dispatch_replayed": false,
+    "model_assessments": 1
+  },
+  "observation_qualification": "Budget views in the authentic live trace used their own schema in the observation envelope due a new logging collision. Actual schemas, native hashes and complete original bytes are retained. Future capture nests the view without modifying these records.",
+  "next_bounded_step": "Repair diagnostic response-format delivery prospectively while preserving raw output, strict payload validation and original blocked results; do not replay this subject."
+}

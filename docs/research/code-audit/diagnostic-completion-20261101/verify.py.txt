@@ -1,0 +1,77 @@
+﻿"""Authenticate this increment's exact inputs and preserve independent historical work."""
+import hashlib,json,re,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/diagnostic-completion';D=R/'docs/research/code-audit/diagnostic-completion-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import inputs,git
+from scripts.backlog.work import WorkCycle,_load
+from scripts.backlog.intake import _digest
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+auth,gate=read(O/'authentication.json'),read(O/'final-protected-02.json');now=inputs(R)
+assert gate['status']=='passed' and gate['inputs_unchanged'] and now['sha256']==gate['inputs']['sha256']
+def blobs(s):return {line.split('\t',1)[1]:line.split()[1] for line in s.splitlines()}
+current,tested=blobs(now['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(current[p]==tested[p] for p in now['sha256'])
+for p,h in auth['preserved'].items():assert sha(R/p)==h,p
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists()
+git(R,'diff','--check');assert not git(R,'diff','--cached','--name-only')
+c=WorkCycle(R);r=c.native.diagnostic_reviewer
+for item in ('B-0049','B-0050','B-0051'):assert c.native.record(item,'result')['disposition']=='BLOCKED'
+assert not (R/'.local/backlog/work/B-0052').exists()
+packet,grant,dispatch,proposal=(r.record('B-0051',n) for n in ('subject','authorization','dispatch','proposal'))
+assert packet['sha256']==read(O/'subject-preview.json')['sha256']==grant['subject_sha256']==proposal['subject_sha256']
+assert grant['sha256']==dispatch['authorization_sha256']==proposal['authorization_sha256'] and dispatch['sha256']==proposal['dispatch_sha256']
+assert not proposal['host_approved'] and proposal['model_calls']<=4 and proposal['reads']<=3
+assert packet['subject']['candidate_sha256']=='61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b'
+scope=read(O/'approval-scope.json');consent=read(O/'operator-approval.json')
+assert _digest(scope['scope'])==scope['scope_sha256']==consent['scope_sha256'] and consent['user_response']=='+approve'
+assert sha(O/'live.py')==scope['scope']['driver_sha256']==sha(D/'live.py.txt')
+driver_record=read(D/'driver-input.json');assert hashlib.sha256(driver_record['source_text'].encode()).hexdigest()==driver_record['source_sha256']==scope['scope']['driver_sha256']
+assert sha(O/'host-evaluation-plan.json')==scope['scope']['host_evaluation_plan_sha256']
+live_gate=read(O/'final-protected.json')
+assert scope['scope']['tested_inputs_sha256']==live_gate['inputs']['sha256']
+assert scope['scope']['executable_head']==live_gate['inputs']['head']=='6818f9a779911ea8f12f910c1e9f61eb3007bba3'
+frames=[]
+for ref in proposal['observations']:
+ p=r.folder('B-0051')/ref['file'];raw=read(p);schema='native-diagnostic-budget-v1' if raw.get('kind')=='review-budget' else 'backlog-native-observation-v1';v=_load(p,schema);assert v['sha256']==ref['sha256'] and p.read_bytes()==(D/'diagnostic-records'/ref['file']).read_bytes();frames.append(v)
+requests=[v['request'] for v in frames if v['kind']=='review-model-intent'];views=[v for v in frames if v['kind']=='review-budget']
+assert len(requests)==len(views)==proposal['model_calls']
+for i,(request,view) in enumerate(zip(requests,views)):
+ assert view['model_calls_remaining_including_this_call']==4-i
+ assert bool(request['tools'])==view['source_tools_permitted']
+ if view['phase']=='synthesis':assert not request['tools']
+try:c.native._candidate(c.native.record('B-0051','assignment'),c.native.record('B-0051','result'))
+except PermissionError:pass
+else:raise AssertionError('Blocked candidate gained eligibility')
+try:r.admit('B-0051',proposal['sha256'],proposal['actor'],accept=True)
+except PermissionError:pass
+else:raise AssertionError('Diagnostic gained acceptance authority')
+assert not (c._folder('B-0051')/'reviewer').exists() and not list(c._folder('B-0051').glob('review-*.json'))
+refs={n:h for h,n in (x.split() for x in git(R,'show-ref').splitlines())};exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for h,n in (x.split() for x in auth['refs'].splitlines()):
+ if n not in exceptions:assert refs.get(n)==h,n
+w=git(R,'worktree','list','--porcelain');inspector=next(v for v in w.split('\n\n') if v.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+git(R,'merge-base','--is-ancestor',auth['starting_head'],'HEAD')
+original=set(auth['untracked_at_initial_assignment'].split('\0'))-{''};untracked=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert len(original)==13 and original<=untracked
+rows={}
+for name in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ lines=[line for line in (R/'docs/research/code-audit'/name).read_text(encoding='utf-8').splitlines() if line.strip()]
+ for line in lines:json.loads(line)
+ rows[name]=len(lines)
+assert sum(rows.values())==903
+for p in D.rglob('*.json'):read(p)
+assert not c.intake.queue()['errors']
+for p in (R/'docs/development/native-diagnostic-review.md',R/'docs/research/diagnostic-completion.md',R/'docs/documentation_map.md',R/'docs/roadmap.md'):
+ for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+  relative=target.split('#')[0]
+  if relative and ':' not in relative and resolve_path(p.parent/relative).value!=resolve_path(D/'integrity-final.json').value:assert (p.parent/relative).exists(),(p,target)
+with urllib.request.urlopen('http://127.0.0.1:8080/health',timeout=10) as response:health=json.loads(response.read(4096))
+with urllib.request.urlopen('http://127.0.0.1:8080/slots',timeout=10) as response:slots=json.loads(response.read(65536))
+assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536
+result={'at':str(Timestamp.now()),'head':now['head'],'tested_executable_commit':gate['inputs']['head'],'live_review_executable_commit':live_gate['inputs']['head'],'matching_protected_inputs_and_git_blobs':len(now['sha256']),'historical_hashes_preserved':len(auth['preserved']),'forensic_files':len(original),'ri_rows':rows,'consumed_coding_slots_unchanged':True,'original_B0050_diagnostic_unchanged':True,'diagnostic_model_calls':proposal['model_calls'],'source_operations':proposal['reads'],'budget_views':len(views),'proposal_status':proposal['status'],'acceptance_unchanged':True,'checkout_owner_absent':True,'inspector_registration':inspector,'provider_health':health,'context_tokens':slots[0]['n_ctx'],'provider_idle':not slots[0]['is_processing'],'protected_runs':2,'protected_status':gate['status'],'protected_seconds':gate['seconds'],'first_protected_status':live_gate['status'],'first_protected_seconds':live_gate['seconds'],'second_run_reason':'Corrected budget observation envelope collision exposed by the one authentic live assessment; no model replay'}
+save(O/'integrity-final.json',result);save(D/'integrity-final.json',result)
+print(json.dumps(result,indent=2))
+

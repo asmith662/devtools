@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "review-model-returned",
+  "at": "2026-11-02T00:06:37.548037+00:00",
+  "response": {
+    "content": "I'll diagnose the archived candidate. I already have complete baseline/candidate text in the subject. Let me examine the dependency contract `bindings.py` (for `iter_non_name_bindings`) to evaluate the candidate's refactor, using one acquisition.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/budgeted-diagnostic-B0051-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 14860,
+      "output_tokens": 93,
+      "total_tokens": 14953,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":0}",
+        "provider_call_id": "SExrPSmjfhjKinXViL4r3twt58GOc7mf"
+      }
+    ]
+  },
+  "sha256": "f7515e793780f82af95c844293f448314cc37c4d51e66e53c633622b0a8e2181"
+}

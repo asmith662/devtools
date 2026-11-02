@@ -1,0 +1,76 @@
+﻿"""Preserve one actual diagnostic outcome without replay or candidate promotion."""
+import asyncio,hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/diagnostic-completion';D=R/'docs/research/code-audit/diagnostic-completion-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import BinaryFile,TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle,_load
+from scripts.validation.evidence import inputs
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2,default=str)+'\n'),overwrite=False)
+def copy(a,b):
+ b.parent.mkdir(parents=True,exist_ok=True)
+ if b.exists():assert a.read_bytes()==b.read_bytes()
+ else:write(BinaryFile(resolve_path(b),a.read_bytes()),overwrite=False)
+def get(path):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+path,timeout=10) as r:return json.loads(r.read(1<<20))
+async def main():
+ c=WorkCycle(R);reviewer=c.native.diagnostic_reviewer;item='B-0051';folder=reviewer.folder(item)
+ packet=reviewer.record(item,'subject');a=c.native.record(item,'assignment');result=c.native.record(item,'result')
+ assert result['disposition']=='BLOCKED' and not (R/'.local/backlog/checkout-owner').exists()
+ try:c.native._candidate(a,result)
+ except PermissionError:acceptance_refused=True
+ else:raise AssertionError('Diagnostic result became acceptance eligible')
+ for p in sorted(folder.glob('*.json')):copy(p,D/'diagnostic-records'/p.name)
+ for n in ('approval-scope.json','operator-approval.json','terminal-outcome.json','final-protected.json'):
+  if (O/n).exists():copy(O/n,D/n)
+ for p in sorted((O/'support').glob('*.json')):copy(p,D/'support'/p.name)
+ for n in ('quality-final.json','focused-01.json','contracts-02.json','impact-initial.json','impact-final.json','host-evaluation-plan.json','host-source-facts.json','provider-preparation.json'):
+  copy(O/n,D/n)
+ for n in ('stdout','stderr'):
+  copy(O/('final-protected.json.'+n),D/('protected-pytest.'+n+'.json'))
+ frames=[]
+ for p in sorted(folder.glob('observation-*.json')):
+  raw=read(p);schema='native-diagnostic-budget-v1' if raw.get('kind')=='review-budget' else 'backlog-native-observation-v1'
+  frames.append(_load(p,schema))
+ proposal=reviewer.record(item,'proposal') if (folder/'proposal.json').exists() else None
+ if proposal:
+  for ref in proposal['observations']:
+   raw=read(folder/ref['file']);schema='native-diagnostic-budget-v1' if raw.get('kind')=='review-budget' else 'backlog-native-observation-v1'
+   assert _load(folder/ref['file'],schema)['sha256']==ref['sha256']
+ requests=[v['request'] for v in frames if v['kind']=='review-model-intent'];responses=[v['response'] for v in frames if v['kind']=='review-model-returned'];tools=[]
+ for i,v in enumerate(responses,1):
+  for call in v['tool_calls']:
+   try:args=json.loads(call['arguments_json'])
+   except (json.JSONDecodeError,TypeError):args={'unparsed_arguments_json':call['arguments_json']}
+   tools.append({'model_call':i,'name':call['name'],'native_call_id':call['provider_call_id'],'arguments':args})
+ oracle=a['task']['oracle']
+ def strings(value):
+  if isinstance(value,str):yield value
+  elif isinstance(value,dict):
+   for child in value.values():yield from strings(child)
+  elif isinstance(value,list):
+   for child in value:yield from strings(child)
+ assert all(oracle not in s for r in requests for s in strings(r))
+ source=[v['disclosure'] for v in frames if v['kind']=='review-read-result' and 'text' in v['disclosure']]
+ usage=[v['usage'] for v in responses if v.get('usage')]
+ terminal=read(O/'terminal-outcome.json');capture=sum(p.stat().st_size for p in folder.glob('observation-*.json'));support=sum(p.stat().st_size for p in (O/'support').glob('*.json'));assert capture<=983040 and support<=65536 and capture+support<=1048576
+ ex=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048));checked=await ex.execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)));assert checked.exit_code==0
+ container=json.loads(checked.stdout)[0];old=read(O/'provider-preparation.json');health,slots=await asyncio.gather(asyncio.to_thread(get,'/health'),asyncio.to_thread(get,'/slots'))
+ assert container['Id']==old['container_id'] and container['Image']==old['image'] and container['Config']['Cmd']==old['command'] and container['Mounts']==old['mounts']
+ provider={'health':health,'slots':slots,'container_id':container['Id'],'image':container['Image'],'oom_killed':container['State']['OOMKilled'],'service_mutated':False}
+ gate=read(O/'final-protected.json');now=await asyncio.to_thread(inputs,R);assert now['sha256']==gate['inputs']['sha256']
+ for p,h in read(O/'authentication.json')['preserved'].items():assert sha(R/p)==h,p
+ out={'schema':'native-budgeted-diagnostic-observation-v1','at':str(Timestamp.now()),'item':item,'subject_sha256':packet['sha256'],'candidate_sha256':packet['subject']['candidate_sha256'],'original_result_sha256':result['sha256'],'original_result_disposition':result['disposition'],'proposal_sha256':proposal['sha256'] if proposal else None,'proposal_status':proposal['status'] if proposal else 'not persisted; dispatch claim retained','conclusion':proposal['conclusion'] if proposal else None,'error':proposal['error'] if proposal else terminal.get('error'),'attempted_model_calls':len(requests),'actual_adapter_entries':terminal['adapter_entries'],'actual_returned_interactions':len(responses),'tool_calls':tools,'source_disclosures':len(source),'source_bytes_delivered':sum(len(v['text'].encode()) for v in source),'metadata_operations':sum(t['name']=='find_source' for t in tools),'complete_host_request_bytes':[len(json.dumps(v,ensure_ascii=False).encode()) for v in requests],'usage_totals':{'input_tokens':sum(v['input_tokens'] or 0 for v in usage),'output_tokens':sum(v['output_tokens'] or 0 for v in usage),'unreported_usage_responses':len(responses)-len(usage),'qualification':'Cumulative observed usage, not unique source tokens or uncached prefill.'},'per_call_usage':usage,'native_seconds':proposal['seconds'] if proposal else None,'driver_seconds':terminal['driver_seconds'],'adapter_seconds':terminal['adapter_seconds'],'native_capture_bytes':capture,'support_bytes':support,'private_implementation_withheld':True,'public_errors_visible':True,'worker_conversation_not_inherited':True,'acceptance_refused':acceptance_refused,'host_usefulness_evaluation':'Separate host-only assessment, no candidate acceptance','installation_authorized':False,'integration_plan':None,'provider_after':provider,'new_comprehensive_runs':1,'new_coding_episodes':0,'no_replay':True}
+ out.update(budget_views=[{k:v[k] for k in ('phase','model_calls_used','model_calls_remaining_including_this_call','acquisitions_completed','acquisitions_remaining','source_tools_permitted')} for v in frames if v['kind']=='review-budget'],budget_observation_schema_collision=True,advertised_tools_per_call=[[t['name'] for t in r['tools']] for r in requests],response_content_bytes=[len(v['content'].encode()) for v in responses],response_reasoning_bytes=[len((v.get('reasoning_content') or '').encode()) for v in responses])
+ save(D/'observation.json',out)
+ for n in ('archive_observation.py','live.py'):
+  dest=D/(n+'.txt')
+  if dest.exists():assert dest.read_bytes()==(O/n).read_bytes()
+  else:copy(O/n,dest)
+ print(json.dumps({k:out[k] for k in ('proposal_status','actual_adapter_entries','actual_returned_interactions','source_bytes_delivered','usage_totals','native_seconds','driver_seconds','adapter_seconds','native_capture_bytes','support_bytes','acceptance_refused')},indent=2))
+asyncio.run(main())
+

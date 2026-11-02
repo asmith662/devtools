@@ -1,0 +1,123 @@
+{
+  "purpose": "Host-only inspection of an unadmitted fenced payload; not a native conclusion",
+  "native_proposal_sha256": "b76b937fcfd2c8df3889e46dc918af56a545315deb67972199e392e2aa75e788",
+  "raw_final_content_sha256": "8d0a07a02684d5142914e2f536446e5b6757161a0bb728d3800d6eec74d9e74e",
+  "payload": {
+    "schema": "native-diagnostic-conclusion-v1",
+    "scope": "diagnostic-only",
+    "candidate_sha256": "61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b",
+    "disposition": "findings",
+    "summary": "The archived candidate refactored the inline module-level binding scan in lookup_python_module_declaration into a call to a helper _scan_module_level_bindings(node, declared_name, candidates, uncertain) but never defined that function anywhere in the file. Consequently the final candidate raises NameError at declarations.py:144 whenever a module-body node is neither a ClassDef/FunctionDef/AsyncFunctionDef nor an Import/ImportFrom. The second public-check run (exit 1) confirms this directly: collection succeeds, 19 passed / 2 failed, both failures being 'NameError: name _scan_module_level_bindings is not defined' in the wrapped-locals and conservative matrix groups. The first public-check run (exit 2) showed a SyntaxError at a 'lambda: nonlocal_marker := None' line that appears in neither the archived candidate nor the baseline; the edit history (two edit-intent/edit-completed pairs with distinct intermediate hashes) indicates that syntax error came from a superseded intermediate edit state, not the final archived candidate. The observed defects are fully explained by the visible candidate source and public-check outputs; no withheld private defect is inferred. I did not acquire the current text of imports/members.py or tests/context/python/modules/test_selection.py, so consumer-side behavior is unverified.",
+    "evidence": [
+      "candidate",
+      "baseline",
+      "diff",
+      "public-checks",
+      "edit-history",
+      "read:1",
+      "read:2",
+      "read:3",
+      "availability"
+    ],
+    "findings": [
+      {
+        "kind": "observed",
+        "message": "The candidate invokes _scan_module_level_bindings(node, declared_name, candidates, uncertain) in the non-class/function/non-import branch of the module-body loop, but no definition of _scan_module_level_bindings exists in the candidate file (or in the current bindings.py it depends on). This is a guaranteed NameError at runtime for any module whose body contains such a node.",
+        "evidence": [
+          "candidate",
+          "diff",
+          "public-checks",
+          "read:1",
+          "read:3"
+        ],
+        "locations": [
+          {
+            "reference": "candidate",
+            "path": "src/devtools/context/python/modules/declarations.py",
+            "start_line": 141,
+            "end_line": 144
+          },
+          {
+            "reference": "diff",
+            "path": "src/devtools/context/python/modules/declarations.py",
+            "start_line": 144,
+            "end_line": 148
+          }
+        ]
+      },
+      {
+        "kind": "observed",
+        "message": "The second public-check run (exit_code 1) matches the final candidate exactly: module collection succeeds and '2 failed, 19 passed', with both failures being 'NameError: name _scan_module_level_bindings is not defined' at declarations.py:144, occurring in the wrapped-locals and conservative groups of test_declared_namespace_matrix.",
+        "evidence": [
+          "public-checks"
+        ],
+        "locations": []
+      },
+      {
+        "kind": "inference",
+        "message": "The local-scopes and targets groups passed only because their top-level body nodes are ClassDef/FunctionDef/AsyncFunctionDef or Import/ImportFrom, which hit 'continue' and never reach the undefined _scan_module_level_bindings call. Passing public checks therefore do not exercise or prove the refactored non-name-binding scan; the 2 failing groups are the ones whose module-level compound statements (e.g. conditional/loop bodies, handler guards) require that scan. This is consistent with the task's concern that canonical lookup must correctly handle module control flow with unrelated local namespaces.",
+        "evidence": [
+          "candidate",
+          "public-checks",
+          "task"
+        ],
+        "locations": [
+          {
+            "reference": "candidate",
+            "path": "src/devtools/context/python/modules/declarations.py",
+            "start_line": 117,
+            "end_line": 148
+          }
+        ]
+      },
+      {
+        "kind": "uncertain",
+        "message": "The first public-check run (exit_code 2) reported a SyntaxError at 'lambda: nonlocal_marker := None,' (line 148), a line present in neither the archived candidate text nor the baseline. Given the edit history shows two separate edit-intent/edit-completed pairs with distinct intermediate content hashes (d3e0a9... -> 333a72...), this syntax error most plausibly arose from a superseded intermediate edit state rather than the final archived candidate. I cannot fully rule out an alternate explanation without the exact per-run file hash mapping, which is not provided.",
+        "evidence": [
+          "public-checks",
+          "edit-history",
+          "candidate",
+          "baseline"
+        ],
+        "locations": []
+      },
+      {
+        "kind": "observed",
+        "message": "The current modules/bindings.py contract (non_name_binding / iter_non_name_bindings) is unchanged by the candidate (identity 112152... matches the supplied baseline) and does not define or export _scan_module_level_bindings, confirming the helper is genuinely absent rather than supplied by the dependency. The inline baseline behavior that the candidate removed (ast.walk over non-declaration module-level nodes) is what the missing helper was meant to encapsulate.",
+        "evidence": [
+          "read:1",
+          "baseline",
+          "candidate",
+          "availability"
+        ],
+        "locations": [
+          {
+            "reference": "read:1",
+            "path": "src/devtools/context/python/modules/bindings.py",
+            "start_line": 13,
+            "end_line": 63
+          },
+          {
+            "reference": "baseline",
+            "path": "src/devtools/context/python/modules/declarations.py",
+            "start_line": 144,
+            "end_line": 168
+          }
+        ]
+      }
+    ],
+    "outstanding": [
+      "The current text of src/devtools/context/python/imports/members.py was not acquired (identity fd6444...; flagged as not matching the supplied baseline and not eligible for acquisition). Whether the parent-facade consumer guard interacts with or masks this NameError is unverified.",
+      "The current text of tests/context/python/modules/test_selection.py was not acquired (identity 6b9031...; flagged as not matching the supplied baseline). Its expected outcomes for the refactored scan are unverified.",
+      "The exact file hash for each of the two public-check runs is not recorded, so the mapping of the exit-2 SyntaxError to a specific intermediate edit state rests on inference from the edit-history hash sequence rather than a direct attestation.",
+      "Whether a minimal repair (restoring the inline ast.walk scan, or adding a correctly defined _scan_module_level_bindings helper with the same bounded store/import/star-import semantics as the baseline) satisfies the private acceptance and the wrapped-locals/conservative semantic matrix is not determinable here; private acceptance was not executed."
+    ],
+    "requests": [
+      "Re-run the full public-check suite against a candidate in which _scan_module_level_bindings is either defined (matching baseline store/import/star-import semantics, including the 'uncertain' flag for star imports and the non-Name bindings from iter_non_name_bindings) or the inline scan is restored verbatim, and confirm the wrapped-locals and conservative groups pass without NameError.",
+      "Acquire and inspect the current imports/members.py consumer guard to confirm the canonical direct module declaration lookup path is not bypassed and that the NameError propagates as expected rather than being swallowed.",
+      "Reconcile the edit-history intermediate hashes with the per-run check file hashes to conclusively attribute the exit-2 SyntaxError to a superseded intermediate state, and confirm the final archived candidate is the sole subject under diagnosis.",
+      "Validate that the module/local namespace distinction is preserved: declarations inside module-level conditionals, loops, or exception handlers of function/async/class bodies must not be mistaken for module-level declarations, and genuine module-level competing stores/declarations/imports must still yield AMBIGUOUS/NOT_DECLARATION as appropriate."
+    ]
+  },
+  "authority": false
+}

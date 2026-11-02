@@ -8,6 +8,13 @@ The [blind B-0050 diagnostic measurement](research/native-diagnostic-review.md)
 records three genuine calls, read-budget exhaustion and an incorrect partial claim;
 it does not establish a successful engineering diagnosis.
 
+[Budget-aware diagnostic completion and B-0051](research/diagnostic-completion.md)
+records the prospective reserved synthesis policy and one genuine four-call
+assessment. Useful root-cause reasoning was returned inside fenced JSON, so native
+admission remained blocked. It separates model synthesis, strict admission,
+factual correctness and engineering utility, preserving the original observation
+schema defect and its prospective correction without model replay.
+
 Current follow-up: [B-0050 analysis and B-0051 native continuation](research/native-scope-followup.md)
 records expanded acceptance and one genuinely approved five-call episode. Two
 admitted edits failed public validation; a stale third proposal exhausted the

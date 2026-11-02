@@ -1,0 +1,15 @@
+"""Host-only static facts about the authentic archive; never execute or disclose a repair."""
+import ast,hashlib,json
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+R=Path.cwd();O=R/'.local/diagnostic-completion'
+packet=json.loads((O/'subject-preview.json').read_bytes());ev=packet['subject']['evidence'];source=ev['candidate']['text'];tree=ast.parse(source)
+defs=[n.name for n in ast.walk(tree) if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef))]
+calls=[{'name':n.func.id,'line':n.lineno,'end_line':n.end_lineno} for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='_scan_module_level_bindings']
+assert len(calls)==1 and '_scan_module_level_bindings' not in defs
+assert hashlib.sha256(source.encode()).hexdigest()==packet['subject']['candidate_sha256']
+out={'at':str(Timestamp.now()),'candidate_sha256':packet['subject']['candidate_sha256'],'final_candidate_parses':True,'called_helper':calls,'helper_definition_present':False,'baseline_identity':ev['baseline']['identity'],'public_check_groups':len(ev['public-checks']),'edit_completion_records':sum(v['kind']=='edit-completed' for v in ev['edit-history']),'private_acceptance':ev['acceptance'],'evidence_limits':'Static name/definition observation plus public NameError; not execution of candidate and not proof of complete behavioral diagnosis. Intermediate bytes and stale proposal not in reviewer subject.','model_disclosure':False}
+write(TextFile(resolve_path(O/'host-source-facts.json'),json.dumps(out,indent=2)+'\n'),overwrite=False)
+print(json.dumps(out,indent=2))

@@ -1,0 +1,256 @@
+{
+  "schema": "native-budgeted-diagnostic-observation-v1",
+  "at": "2026-11-02T00:10:54.680803+00:00",
+  "item": "B-0051",
+  "subject_sha256": "4ec2e3d8a43551ea02e2627a6ba59a4f33d56e559467576d361363a84eabd1c6",
+  "candidate_sha256": "61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b",
+  "original_result_sha256": "0d3cf5f97dba9561e5d448611024d4ab753320ed1cb4a10ff8b61bbd0ab100b2",
+  "original_result_disposition": "BLOCKED",
+  "proposal_sha256": "b76b937fcfd2c8df3889e46dc918af56a545315deb67972199e392e2aa75e788",
+  "proposal_status": "blocked",
+  "conclusion": null,
+  "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "attempted_model_calls": 4,
+  "actual_adapter_entries": 4,
+  "actual_returned_interactions": 4,
+  "tool_calls": [
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "native_call_id": "SExrPSmjfhjKinXViL4r3twt58GOc7mf",
+      "arguments": {
+        "path": "src/devtools/context/python/modules/bindings.py",
+        "start": 0
+      }
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "native_call_id": "byPEr3w3GJDqwtaGGZY3IdEZs9mSqVWC",
+      "arguments": {
+        "path": "src/devtools/context/python/modules/declarations.py",
+        "start": 0
+      }
+    },
+    {
+      "model_call": 3,
+      "name": "find_source",
+      "native_call_id": "DqegpAkSaoKDkjOfD1DPm7QjU69IqZ1b",
+      "arguments": {
+        "query": "_scan_module_level_bindings"
+      }
+    }
+  ],
+  "source_disclosures": 2,
+  "source_bytes_delivered": 9110,
+  "metadata_operations": 1,
+  "complete_host_request_bytes": [
+    53150,
+    55968,
+    65637,
+    66863
+  ],
+  "usage_totals": {
+    "input_tokens": 65886,
+    "output_tokens": 2495,
+    "unreported_usage_responses": 0,
+    "qualification": "Cumulative observed usage, not unique source tokens or uncached prefill."
+  },
+  "per_call_usage": [
+    {
+      "input_tokens": 14860,
+      "output_tokens": 93,
+      "total_tokens": 14953,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 15577,
+      "output_tokens": 77,
+      "total_tokens": 15654,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 17692,
+      "output_tokens": 487,
+      "total_tokens": 18179,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 17757,
+      "output_tokens": 1838,
+      "total_tokens": 19595,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    }
+  ],
+  "native_seconds": 171.798389,
+  "driver_seconds": 172.613067,
+  "adapter_seconds": 165.159317,
+  "native_capture_bytes": 281436,
+  "support_bytes": 3801,
+  "private_implementation_withheld": true,
+  "public_errors_visible": true,
+  "worker_conversation_not_inherited": true,
+  "acceptance_refused": true,
+  "host_usefulness_evaluation": "Separate host-only assessment, no candidate acceptance",
+  "installation_authorized": false,
+  "integration_plan": null,
+  "provider_after": {
+    "health": {
+      "status": "ok"
+    },
+    "slots": [
+      {
+        "id": 0,
+        "n_ctx": 65536,
+        "speculative": false,
+        "is_processing": false,
+        "id_task": 5342,
+        "n_prompt_tokens": 19594,
+        "n_prompt_tokens_processed": 0,
+        "n_prompt_tokens_cache": 0,
+        "params": {
+          "seed": 4294967295,
+          "temperature": 1.0,
+          "dynatemp_range": 0.0,
+          "dynatemp_exponent": 1.0,
+          "top_k": 20,
+          "top_p": 0.949999988079071,
+          "min_p": 0.05000000074505806,
+          "top_n_sigma": -1.0,
+          "xtc_probability": 0.0,
+          "xtc_threshold": 0.10000000149011612,
+          "typical_p": 1.0,
+          "repeat_last_n": 64,
+          "repeat_penalty": 1.0,
+          "presence_penalty": 0.0,
+          "frequency_penalty": 0.0,
+          "dry_multiplier": 0.0,
+          "dry_base": 1.75,
+          "dry_allowed_length": 2,
+          "dry_penalty_last_n": 64,
+          "mirostat": 0,
+          "mirostat_tau": 5.0,
+          "mirostat_eta": 0.10000000149011612,
+          "adaptive_target": -1.0,
+          "adaptive_decay": 0.8999999761581421,
+          "max_tokens": 2048,
+          "n_predict": 2048,
+          "n_keep": 0,
+          "n_discard": 0,
+          "ignore_eos": false,
+          "stream": false,
+          "n_probs": 0,
+          "min_keep": 0,
+          "chat_format": "peg-native",
+          "reasoning_format": "deepseek",
+          "reasoning_in_content": false,
+          "generation_prompt": "<|im_start|>assistant\n<think>\n\n</think>\n\n",
+          "samplers": [
+            "penalties",
+            "dry",
+            "top_n_sigma",
+            "top_k",
+            "typ_p",
+            "top_p",
+            "min_p",
+            "xtc",
+            "temperature"
+          ],
+          "speculative.types": "none",
+          "timings_per_token": false,
+          "post_sampling_probs": false,
+          "backend_sampling": false,
+          "lora": []
+        },
+        "next_token": [
+          {
+            "has_next_token": false,
+            "has_new_line": false,
+            "n_remain": -1,
+            "n_decoded": 0
+          }
+        ]
+      }
+    ],
+    "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+    "image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "oom_killed": false,
+    "service_mutated": false
+  },
+  "new_comprehensive_runs": 1,
+  "new_coding_episodes": 0,
+  "no_replay": true,
+  "budget_views": [
+    {
+      "phase": "inspection",
+      "model_calls_used": 0,
+      "model_calls_remaining_including_this_call": 4,
+      "acquisitions_completed": 0,
+      "acquisitions_remaining": 3,
+      "source_tools_permitted": true
+    },
+    {
+      "phase": "inspection",
+      "model_calls_used": 1,
+      "model_calls_remaining_including_this_call": 3,
+      "acquisitions_completed": 1,
+      "acquisitions_remaining": 2,
+      "source_tools_permitted": true
+    },
+    {
+      "phase": "inspection",
+      "model_calls_used": 2,
+      "model_calls_remaining_including_this_call": 2,
+      "acquisitions_completed": 2,
+      "acquisitions_remaining": 1,
+      "source_tools_permitted": true
+    },
+    {
+      "phase": "synthesis",
+      "model_calls_used": 3,
+      "model_calls_remaining_including_this_call": 1,
+      "acquisitions_completed": 3,
+      "acquisitions_remaining": 0,
+      "source_tools_permitted": false
+    }
+  ],
+  "budget_observation_schema_collision": true,
+  "advertised_tools_per_call": [
+    [
+      "read_source",
+      "find_source",
+      "read_source_unit"
+    ],
+    [
+      "read_source",
+      "find_source",
+      "read_source_unit"
+    ],
+    [
+      "read_source",
+      "find_source",
+      "read_source_unit"
+    ],
+    []
+  ],
+  "response_content_bytes": [
+    248,
+    151,
+    2063,
+    7851
+  ],
+  "response_reasoning_bytes": [
+    0,
+    0,
+    0,
+    0
+  ]
+}

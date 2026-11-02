@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "review-model-returned",
+  "at": "2026-11-02T00:06:44.402440+00:00",
+  "response": {
+    "content": "I have everything needed. The diagnosis is fully evidenced by the candidate text, the diff, the public-check outputs, and the `bindings.py` contract.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/budgeted-diagnostic-B0051-20261101"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 15577,
+      "output_tokens": 77,
+      "total_tokens": 15654,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/declarations.py\",\"start\":0}",
+        "provider_call_id": "byPEr3w3GJDqwtaGGZY3IdEZs9mSqVWC"
+      }
+    ]
+  },
+  "sha256": "243121180ca30e2c82dee78a7d8243f461d06c98fa33fb79140315c211d0f821"
+}
