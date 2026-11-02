@@ -1,5 +1,13 @@
 # Roadmap
 
+Delivered [strict diagnostic response delivery](research/diagnostic-response-delivery.md)
+through the existing owner: a prospective single JSON fence is normalized before
+the unchanged closed validator, with raw/candidate hashes and refusal provenance.
+The exact B-0051 response passes the new deterministic regression without changing
+its BLOCKED native result or running inference. Next engineering pressure remains
+the authentic B-0051 canonical scope prerequisite under fresh task/execution
+authority, followed by acceptance review only if a lawful candidate qualifies.
+
 Delivered [budget-aware diagnostic finalization](research/diagnostic-completion.md)
 reserves synthesis within the existing approved call allowance and reports
 remaining acquisitions. One approved B-0051 assessment reached Tool-free synthesis

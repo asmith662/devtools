@@ -1,0 +1,28 @@
+"""Derived deterministic evidence, never a replay or rewrite of native history."""
+import ast,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/diagnostic-response';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review.diagnostic import parse,response_payload
+from scripts.backlog.work import _load
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+auth=read(O/'authentication.json')
+source=(R/'scripts/backlog/native/review/diagnostic.py').read_bytes().decode();node=next(n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef) and n.name=='parse')
+validator_hash=hashlib.sha256(ast.get_source_segment(source,node).encode()).hexdigest();assert validator_hash==auth['strict_validator_source_sha256']
+fixture=read(R/'tests/scripts/backlog/fixtures/b0051-diagnostic-response.json');original=_load(R/fixture['origin'],'backlog-native-observation-v1');folder=(R/fixture['origin']).parent
+assert original['sha256']==fixture['observation_sha256'] and original['response']==fixture['response']
+proposal=_load(folder/'proposal.json','backlog-native-diagnostic-proposal-v1');assert proposal['sha256']==fixture['proposal_sha256'] and proposal['status']=='blocked' and proposal['conclusion'] is None
+intent=_load(folder/'observation-0016.json','backlog-native-observation-v1');assert _digest(intent['request'])==fixture['request_sha256'] and intent['request']['tools']==[]
+raw=fixture['response']['content']
+try:parse(raw,fixture['references'],fixture['candidate_sha256'])
+except json.JSONDecodeError as error:raw_result=type(error).__name__+': '+str(error)
+else:raise AssertionError('Strict raw parser unexpectedly changed')
+payload,rule=response_payload(raw);value=parse(payload,fixture['references'],fixture['candidate_sha256'])
+for p,h in auth['preserved'].items():assert sha(R/p)==h,p
+record={'at':str(Timestamp.now()),'purpose':'New deterministic derived evidence only; not native admission, model execution or approval','origin':fixture['origin'],'original_observation_sha256':original['sha256'],'original_proposal_sha256':proposal['sha256'],'complete_request_sha256':fixture['request_sha256'],'raw_content_sha256':hashlib.sha256(raw.encode()).hexdigest(),'raw_content_bytes':len(raw.encode()),'raw_strict_result':raw_result,'normalized_payload':payload,'normalized_payload_sha256':hashlib.sha256(payload.encode()).hexdigest(),'normalized_payload_bytes':len(payload.encode()),'normalization_rule':rule,'strict_validation':'passed','diagnostic_disposition':value['disposition'],'strict_validator_source_sha256':validator_hash,'strict_validator_unchanged':True,'known_invalid_location_preserved':any(l['end_line']==63 for f in value['findings'] for l in f['locations']),'factual_correctness_certified':False,'historical_proposal_status':proposal['status'],'historical_conclusion':proposal['conclusion'],'historical_records_modified':False,'preserved_hashes':len(auth['preserved']),'new_model_calls':0,'native_administration_entered':False}
+write(TextFile(resolve_path(O/'derived-reproduction.json'),json.dumps(record,indent=2)+'\n'),overwrite=False)
+print(json.dumps({k:v for k,v in record.items() if k!='normalized_payload'},indent=2))

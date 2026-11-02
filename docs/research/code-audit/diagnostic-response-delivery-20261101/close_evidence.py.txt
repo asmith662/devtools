@@ -1,0 +1,52 @@
+"""Archive validated correction evidence without changing historical decisions."""
+import ast,hashlib,json,re,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/diagnostic-response';D=R/'docs/research/code-audit/diagnostic-response-delivery-20261101';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,TextFile,write
+from scripts.validation.evidence import inputs,git
+from scripts.backlog.work import WorkCycle,_load
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def copy(a,b):
+ b.parent.mkdir(parents=True,exist_ok=True)
+ if b.exists():assert a.read_bytes()==b.read_bytes()
+ else:write(BinaryFile(resolve_path(b),a.read_bytes()),overwrite=False)
+gate=read(O/'final-protected.json');auth=read(O/'authentication.json');now=inputs(R)
+assert gate['status']=='passed' and gate['inputs_unchanged'] and now['sha256']==gate['inputs']['sha256']
+assert gate['inputs']['head']=='6868b292d32067d3e4ab94fa0e30d8f6f91f736d'
+def blobs(s):return {x.split('\t',1)[1]:x.split()[1] for x in s.splitlines()}
+current,tested=blobs(now['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(current[p]==tested[p] for p in now['sha256'])
+for k in ('python','executable','platform','packages'):assert now[k]==gate['inputs'][k],k
+for p,h in auth['preserved'].items():assert sha(R/p)==h,p
+text=(R/'scripts/backlog/native/review/diagnostic.py').read_bytes().decode();node=next(n for n in ast.parse(text).body if isinstance(n,ast.FunctionDef) and n.name=='parse');assert hashlib.sha256(ast.get_source_segment(text,node).encode()).hexdigest()==auth['strict_validator_source_sha256']
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists();git(R,'diff','--check');assert not git(R,'diff','--cached','--name-only')
+refs={n:h for h,n in (line.split() for line in git(R,'show-ref').splitlines())};exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for h,n in (line.split() for line in auth['refs'].splitlines()):
+ if n not in exceptions:assert refs.get(n)==h,n
+git(R,'merge-base','--is-ancestor',auth['starting_head'],'HEAD')
+w=git(R,'worktree','list','--porcelain');inspector=next(v for v in w.split('\n\n') if v.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+original=set(auth['untracked_at_initial_assignment'].split('\0'))-{''};untracked=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert len(original)==13 and original<=untracked
+c=WorkCycle(R);assert not c.intake.queue()['errors']
+for item in ('B-0049','B-0050','B-0051'):assert c.native.record(item,'result')['disposition']=='BLOCKED'
+for item in ('B-0050','B-0051'):assert c.native.diagnostic_reviewer.record(item,'proposal')['status']=='blocked'
+old=c.native.diagnostic_reviewer.record('B-0051','proposal');assert old['sha256']=='b76b937fcfd2c8df3889e46dc918af56a545315deb67972199e392e2aa75e788' and old['conclusion'] is None
+rows={}
+for n in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ lines=[v for v in (R/'docs/research/code-audit'/n).read_text(encoding='utf-8').splitlines() if v.strip()]
+ for v in lines:json.loads(v)
+ rows[n]=len(lines)
+assert sum(rows.values())==903
+for n in ('authentication.json','original-reproduction.json','derived-reproduction.json','quality-final.json','delivery-01.json','contracts-02.json','impact-01.json','impact-final.json','final-protected.json','provider-before.json','provider-after.json'):copy(O/n,D/n)
+for n in ('stdout','stderr'):copy(O/('final-protected.json.'+n),D/('protected-pytest.'+n+'.txt'))
+for n in ('prepare.py','reproduce.py','close_evidence.py'):copy(O/n,D/(n+'.txt'))
+for p in D.rglob('*.json'):read(p)
+for p in (R/'docs/development/native-diagnostic-review.md',R/'docs/research/diagnostic-response-delivery.md',R/'docs/documentation_map.md',R/'docs/roadmap.md'):
+ for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+  value=target.split('#')[0]
+  if value and ':' not in value and resolve_path(p.parent/value).value!=resolve_path(D/'integrity-final.json').value:assert (p.parent/value).exists(),(p,target)
+stdout=(O/'final-protected.json.stdout').read_bytes().decode();summary=re.findall(r'(\d+) passed, (\d+) skipped',stdout);assert len(summary)==1 and 'Required test coverage of 100% reached' in stdout
+record={'at':str(Timestamp.now()),'head':now['head'],'tested_executable_commit':gate['inputs']['head'],'matching_protected_input_and_blob_count':len(now['sha256']),'python_platform_packages_match':True,'inherited_environment_qualification':'Fingerprint includes invocation-specific metadata; complete cross-invocation environment equivalence is not claimed. Original protected receipt attests stable inputs during its run.','historical_hashes_preserved':len(auth['preserved']),'strict_validator_source_unchanged':True,'historical_B0051_diagnostic_status':old['status'],'historical_B0051_conclusion':old['conclusion'],'consumed_coding_and_diagnostic_records_unchanged':True,'forensic_files_preserved':len(original),'ri_rows':rows,'checkout_owner_absent':True,'inspector_registration':inspector,'protected_runs':1,'protected_passed_tests':int(summary[0][0]),'optional_skips':int(summary[0][1]),'configured_production_line_and_branch_coverage':'100%','protected_seconds':gate['seconds'],'real_model_calls':0,'service_mutations':0,'next_task':'Unresolved B-0051 canonical scope prerequisite; genuine reviewed linked continuation and unused WorkCycle slot required, not created here.'}
+write(TextFile(resolve_path(D/'integrity-final.json'),json.dumps(record,indent=2)+'\n'),overwrite=False);write(TextFile(resolve_path(O/'integrity-final.json'),json.dumps(record,indent=2)+'\n'),overwrite=False)
+print(json.dumps(record,indent=2))

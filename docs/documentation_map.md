@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Strict diagnostic response delivery](research/diagnostic-response-delivery.md)
+documents prospective single-fence normalization, separate raw/payload identities,
+the unchanged closed validator and deterministic reproduction of B-0051. Its
+historical native result remains BLOCKED; no new model episode is performed.
+
 Native review authority: [acceptance review](development/native-independent-review.md)
 retains its successful-candidate gate. [Diagnostic review](development/native-diagnostic-review.md)
 investigates authenticated blocked history under separate read-only grants and

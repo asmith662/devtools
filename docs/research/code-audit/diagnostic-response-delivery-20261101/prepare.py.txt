@@ -1,0 +1,31 @@
+"""Authenticate preserved history and freeze an exact response fixture; no inference."""
+import ast,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/diagnostic-response';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.validation.evidence import git
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review.diagnostic import parse
+def read(p):return json.loads(p.read_bytes())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):
+ p.parent.mkdir(parents=True,exist_ok=True)
+ if p==O/'authentication.json' and p.exists():return
+ write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+old=read(R/'.local/diagnostic-completion/authentication.json');preserved=dict(old['preserved'])
+for base in (R/'docs/research/code-audit/diagnostic-completion-20261101',*(R/'.local/backlog/work'/n for n in ('B-0049','B-0050','B-0051'))):
+ for p in base.rglob('*'):
+  if p.is_file():preserved[p.relative_to(R).as_posix()]=sha(p)
+assert not (R/'.local/backlog/checkout-owner').exists() and git(R,'branch','--show-current')=='main'
+source=(R/'scripts/backlog/native/review/diagnostic.py').read_bytes().decode();tree=ast.parse(source);validator=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='parse')
+save(O/'authentication.json',{'at':str(Timestamp.now()),'starting_head':git(R,'rev-parse','HEAD'),'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'untracked_at_initial_assignment':git(R,'ls-files','--others','--exclude-standard','-z'),'preserved':preserved,'strict_validator_source_sha256':hashlib.sha256(ast.get_source_segment(source,validator).encode()).hexdigest()})
+D=R/'docs/research/code-audit/diagnostic-completion-20261101/diagnostic-records';proposal=read(D/'proposal.json');frame=read(D/'observation-0017.json');intent=read(D/'observation-0016.json');raw=frame['response']['content']
+assert proposal['status']=='blocked' and proposal['conclusion'] is None and len(raw.encode())==7851
+try:parse(raw,proposal['references'],'61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b')
+except json.JSONDecodeError as error:failure=type(error).__name__+': '+str(error)
+else:raise AssertionError('Historical raw response unexpectedly admitted')
+save(R/'tests/scripts/backlog/fixtures/b0051-diagnostic-response.json',{'origin':'docs/research/code-audit/diagnostic-completion-20261101/diagnostic-records/observation-0017.json','observation_sha256':frame['sha256'],'proposal_sha256':proposal['sha256'],'original_status':proposal['status'],'original_conclusion':proposal['conclusion'],'candidate_sha256':'61b4f5d97579759438ef1a23f035b0afc36ad6d02f3e56c4b8c9d8f7955b8c2b','references':proposal['references'],'response':frame['response'],'request_sha256':_digest(intent['request']),'raw_content_sha256':hashlib.sha256(raw.encode()).hexdigest()})
+save(O/'original-reproduction.json',{'at':str(Timestamp.now()),'raw_content_bytes':len(raw.encode()),'raw_content_sha256':hashlib.sha256(raw.encode()).hexdigest(),'original_parser_result':failure,'original_proposal_sha256':proposal['sha256'],'original_status':'blocked','historical_record_modified':False,'model_calls':0,'preserved_files':len(preserved)})
+print(json.dumps({'original_rejection':failure,'raw_bytes':len(raw.encode()),'preserved_files':len(preserved),'inference':False}))
