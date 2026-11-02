@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-02T13:32:22.755526+00:00",
+  "base_head": "0227cdfc23fe73b457f13f15f77a27b1f6bc11e1",
+  "source": "src/devtools/resources/filesystem/models/csv.py",
+  "inputs": {
+    "src/devtools/resources/filesystem/models/csv.py": "b49914a0c9cab47724e2670f182a58b09e4f00e98bb87930d7504d5f88ccb80c",
+    "tests/resources/filesystem/models/csv/test_row.py": "9a65274b4a8aebbdebe94e1fbc294922aa146a4a2de929135d2d55fd9bfb9ebb",
+    "tests/resources/filesystem/models/csv/test_file.py": "d1a3c583bb268f8c5078eeb2777f9513f6470f43b69277a3f144db4869753f1d",
+    "tests/resources/filesystem/codecs/test_csv.py": "270b65a90fdd53a1a57109bcfd184d71c4fb89fcdb6fab72692dabc8e514953f"
+  },
+  "public_sha256": "64c1b9a7bd1b441e7f0605620d525a181e4d2e7a33551320a14d34e54992f32f",
+  "private_sha256": "ab952788c6b3d2b6cc6816415c11478f88e24399813df7059910989623650cf5",
+  "public_path": "tests/live_native_csv_row_public.py",
+  "baseline": {
+    "headers": [
+      "id",
+      "id"
+    ],
+    "cells": [
+      "first",
+      "last"
+    ],
+    "indexed": "first",
+    "mapping": {
+      "id": "last"
+    }
+  },
+  "queue_counts": {
+    "PENDING_REVIEW": 66,
+    "APPROVED": 4
+  },
+  "queue_errors": [],
+  "triage": [
+    {
+      "id": "794a4df3-e51e-4927-8f43-c7dd3cb6535c",
+      "reason": "Authenticated delivered advisory and current source; do not replay"
+    },
+    {
+      "id": "4cb7c397-e664-4379-893c-c36d3a739cef",
+      "reason": "Authenticated delivered advisory and current source; do not replay"
+    },
+    {
+      "id": "bdcf3bbc-7d26-4826-bfef-f0171187b864",
+      "reason": "Authenticated delivered advisory and current source; do not replay"
+    }
+  ],
+  "authority": "Preparation only. No human task review, execution or candidate integration authority."
+}

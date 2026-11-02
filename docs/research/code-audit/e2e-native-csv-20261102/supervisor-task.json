@@ -1,0 +1,84 @@
+{
+  "objective": "Repair standalone CsvRow exact duplicate header admission only. Current CsvRow((\"id\",\"id\"),(\"first\",\"last\")) produces conflicting row[\"id\"] and as_dict()[\"id\"] values. Reject exact duplicate header names with ValueError during construction, before an ambiguous row becomes usable. Preserve exact header spelling: case, whitespace and Unicode normalization are NOT identity transformations. Preserve all existing behavior for unique names, including standalone empty rows and unique blank names, immutable iterable input capture, widths, string cells, indexing, iteration, mapping and conversion. Keep CsvFile/CsvCodec and dialect behavior unchanged. Only the authorized existing Python implementation may change. Before editing acquire the complete current owner with read_source to satisfy its whole-resource witness. Use find_source/read_source_unit or bounded source reads for tests/dependencies as useful. Submit a precise grounded replacement; no tests or other files may be edited. Public acceptance is frozen; separately authored final acceptance is withheld. No reference patch is provided.",
+  "source": "src/devtools/resources/filesystem/models/csv.py",
+  "read_paths": [
+    "src/devtools/resources/filesystem/codecs/csv.py",
+    "src/devtools/resources/filesystem/models/text.py"
+  ],
+  "tests": [
+    "tests/live_native_csv_row_public.py",
+    "tests/resources/filesystem/models/csv/test_row.py",
+    "tests/resources/filesystem/models/csv/test_file.py",
+    "tests/resources/filesystem/models/csv/test_dialect.py",
+    "tests/resources/filesystem/codecs/test_csv.py"
+  ],
+  "oracle": "# Independent holdouts: permutations, canonical Unicode distinctions and iterator storage.\n# The native acceptance host supplies the actual candidate module as `module`.\nfrom itertools import permutations\nRow = module.CsvRow\nfor headers in permutations((\"first\", \"second\", \"first\")):\n    try:\n        Row(headers, (\"x\", \"y\", \"z\"))\n    except ValueError:\n        pass\n    else:\n        raise AssertionError(\"Nonadjacent or reordered exact duplicate admitted\")\ntry:\n    Row(iter((\"caf\\u00e9\", \"other\", \"caf\\u00e9\")), iter((\"1\", \"2\", \"3\")))\nexcept ValueError:\n    pass\nelse:\n    raise AssertionError(\"Duplicate after freezing iterable headers admitted\")\nfor names in ((\"caf\\u00e9\", \"cafe\\u0301\"), (\"x\", \"X\", \" x\", \"x \"), (\"\",), ()):\n    cells = tuple(str(n) for n in range(len(names)))\n    row = Row(iter(names), iter(cells))\n    assert row.headers == names and row.cells == cells\n    assert list(row.as_dict().items()) == list(zip(names, cells))\n    assert all(row[name] == row.as_dict()[name] for name in names)\n    assert row.convert(lambda r: r.items()) == tuple(zip(names, cells))\n    try:\n        row.cells = ()\n    except (AttributeError, TypeError):\n        pass\n    else:\n        raise AssertionError(\"Row no longer immutable\")\n",
+  "obligations": [
+    {
+      "name": "current-owner",
+      "predicate": "Acquire the complete current immutable CSV model owner; preserve its exact-key row and file contracts while repairing duplicate standalone admission.",
+      "path": "src/devtools/resources/filesystem/models/csv.py",
+      "criterion": "current-whole-resource-v1"
+    }
+  ],
+  "preflight": {
+    "reference": ".local/e2e-native/frozen.json; independently derived exact-key consistency, public baseline and immutable holdouts frozen before inference",
+    "controls_reference": ".local/e2e-native/private-preflight.json",
+    "comparisons": [
+      {
+        "name": "duplicate-key",
+        "obligation": "current-owner",
+        "category": "normal",
+        "expected": "ValueError",
+        "independently_derived": "ValueError",
+        "derivation": "Two cells with the same exact key cannot support unambiguous keyed and mapping access; no preferred repair is assumed."
+      },
+      {
+        "name": "distinct-spellings",
+        "obligation": "current-owner",
+        "category": "boundary",
+        "expected": "preserved",
+        "independently_derived": "preserved",
+        "derivation": "Exact Python string keys preserve case, spacing and distinct Unicode spellings; no normalization is authorized."
+      },
+      {
+        "name": "empty-standalone",
+        "obligation": "current-owner",
+        "category": "empty",
+        "expected": "preserved",
+        "independently_derived": "preserved",
+        "derivation": "Empty standalone row currently has consistent empty positional and mapping views; preserve this outside-scope behavior."
+      }
+    ]
+  },
+  "worker": {
+    "actor": "qwen38-csv-row-coder-20261102",
+    "source": "llama.cpp/qwen38-local/csv-row-coder-20261102",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  },
+  "settings": {
+    "maximum_output_tokens": 2048,
+    "thinking_enabled": false
+  },
+  "budgets": {
+    "model_calls": 8,
+    "proposals": 3,
+    "acquisitions": 6,
+    "call_seconds": 120,
+    "wall_seconds": 900,
+    "prompt_bytes": 131072,
+    "source_bytes": 32768,
+    "capture_bytes": 983040
+  },
+  "capture": "bounded-full-v1",
+  "context": {
+    "schema": "native-context-v1",
+    "context_tokens": 65536,
+    "input_tokens": 62464,
+    "reserved_output_tokens": 2048,
+    "disclosure_bytes": 65536,
+    "warning_bytes": 98304,
+    "trigger_bytes": 114688,
+    "target_bytes": 98304
+  }
+}

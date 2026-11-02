@@ -232,6 +232,7 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0049](items/B-0049-prevent-one-facade-import-fallback-from-overriding-competing-pattern-or-handler-bindings.md) | Prevent one-facade import fallback from overriding competing pattern or handler bindings | BACKLOG | context |
 | [B-0050](items/B-0050-repair-local-namespace-import-interference-with-module-facade-reexports-b-0049-follow-up.md) | Repair local-namespace import interference with module facade reexports (B-0049 follow-up) | BACKLOG | context |
 | [B-0051](items/B-0051-isolate-wrapped-local-namespaces-in-canonical-module-declaration-lookup-b-0050-prerequisite.md) | Isolate wrapped local namespaces in canonical module declaration lookup (B-0050 prerequisite) | BACKLOG | context |
+| [B-0052](items/B-0052-reject-ambiguous-duplicate-header-identities-in-standalone-csv-rows.md) | Reject ambiguous duplicate header identities in standalone CSV rows | BACKLOG | resources |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.
 

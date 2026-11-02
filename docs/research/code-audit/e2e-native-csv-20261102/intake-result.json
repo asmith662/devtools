@@ -1,0 +1,35 @@
+{
+  "item": "B-0052",
+  "proposal": "1caa2686-428f-4fdf-b052-f0b8382b44dc",
+  "review": {
+    "schema": "backlog-review-v1",
+    "proposal": "1caa2686-428f-4fdf-b052-f0b8382b44dc",
+    "proposal_sha256": "6bea29e1039a1cc00902199539fdb409348a57c06c7e48e251deb890fbe0a08b",
+    "previous": null,
+    "at": "2026-11-02T14:23:10.783290+00:00",
+    "decision": "APPROVED",
+    "reviewer": "human operator recoveryadmin via actual default-No approval",
+    "decision_reference": "human-default-no-e2e-csv-intake-20261102",
+    "rationale": "Approve only exact duplicate header refusal in standalone CsvRow, one existing implementation owner src/devtools/resources/filesystem/models/csv.py. Current direct lookup and mapping disagree. Freeze 5 public behavioral cases plus existing row/file/codec checks and separate permutation/Unicode/iterator holdouts. Preserve exact names and all existing valid behavior; no installation, worker execution or closeout follows from Intake review.",
+    "duplicates": [],
+    "duplicate_disposition": "New independently reproduced standalone model admission defect, distinct from delivered NONNUMERIC codec proposal 67f7d086 and all earlier consumed scope repairs. No matching existing duplicate found. Preserve earlier scopes and evidence.",
+    "scope": "canonical-backlog-only; no execution authority",
+    "publication": {
+      "id": "B-0052",
+      "path": "items/B-0052-reject-ambiguous-duplicate-header-identities-in-standalone-csv-rows.md",
+      "text": "# B-0052 \u2014 Reject ambiguous duplicate header identities in standalone CSV rows\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: resources\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/1caa2686-428f-4fdf-b052-f0b8382b44dc/proposal.json\n- intake_review: ../proposals/1caa2686-428f-4fdf-b052-f0b8382b44dc/review-0001.json\n\n## Problem / value\n\nCurrent exported CsvRow admits exact duplicate header names: CsvRow((\"id\",\"id\"),(\"first\",\"last\"))[\"id\"] returns \"first\" while as_dict()[\"id\"] returns \"last\". This inconsistency loses one cell in keyed mapping access. CsvFile and CsvCodec already reject duplicate headers, but public standalone construction bypasses those checks. Repair only standalone exact-name uniqueness admission in the existing model owner.\n\n## Proposed benefit\n\nMake positional, keyed and mapping views agree for every admitted standalone row. Reject exact duplicate names with ValueError after immutable input capture. Preserve exact case/spacing/Unicode spelling, cell order, existing width/type validation, conversion and codec/file behavior. A real one-file model repair with frozen public regressions and independent holdouts; no automatic installation.\n\n## Uncertainty / unresolved semantics\n\nNo production data loss observed beyond authored in-memory API calls. Empty standalone rows and unique blank names are outside this repair and retain current behavior. No new normalization, CSV dialect, codec change, transaction, schema migration or broader header type policy. This is a newly reproduced model-owner defect, distinct from delivered NONNUMERIC proposal 67f7d086-86d9-400f-bfaf-d9bc4df9aea1. No earlier dispatch exists.\n\n## Discovery / parent\n\n{'kind': 'agent', 'reference': '.local/e2e-native/frozen.json; current main 0227cdfc23fe73b457f13f15f77a27b1f6bc11e1; independent actual public API reproduction'}\nNone\n\n## Evidence\n\nsrc/devtools/resources/filesystem/docs/csv.md\ntests/resources/filesystem/models/csv/test_row.py\ndocs/development/filesystem-contract-repair.md\n\n## Affected resources\n\nsrc/devtools/resources/filesystem/models/csv.py\ntests/resources/filesystem/models/csv/test_row.py\ntests/resources/filesystem/models/csv/test_file.py\ntests/resources/filesystem/codecs/test_csv.py\n\n## Possible dependencies\n\nExisting CSV model contracts; human Intake approval, exact native coding authority, independent acceptance/review and separate integration authority.\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+      "row": "| [B-0052](items/B-0052-reject-ambiguous-duplicate-header-identities-in-standalone-csv-rows.md) | Reject ambiguous duplicate header identities in standalone CSV rows | BACKLOG | resources |"
+    },
+    "sha256": "3d70faf533567bde040db157ebc775d30ea8b358e9c4cae0886cca58ea1da4ee"
+  },
+  "unused_slot": true,
+  "execution_authorized": false,
+  "approval": {
+    "recorded_at": "2026-11-02T14:23:09.744434+00:00",
+    "principal": "recoveryadmin",
+    "mechanism": "Actual default-No request_user_input_async question and subsequent human +approve message; this host record is not model approval.",
+    "user_response": "+approve",
+    "scope_sha256": "e1beb6eda22046715abe3653b6f81e187e06aeb4d550c2b87f7af6310db94721",
+    "expires_at": "2026-11-02T15:08:09.744456+00:00"
+  }
+}

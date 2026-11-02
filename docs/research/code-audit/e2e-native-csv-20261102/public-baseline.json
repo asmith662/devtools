@@ -1,0 +1,1154 @@
+{
+  "schema": "development-validation-v1",
+  "mode": "targeted",
+  "argv": [
+    "tests/live_native_csv_row_public.py",
+    "tests/resources/filesystem/codecs/test_csv.py",
+    "tests/resources/filesystem/models/csv",
+    "--no-cov",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+  ],
+  "started_at": "2026-11-02T13:33:09.455445+00:00",
+  "finished_at": "2026-11-02T13:34:32.565177+00:00",
+  "status": "test-or-coverage-failure",
+  "exit_code": 1,
+  "seconds": 83.1043,
+  "inputs_unchanged": true,
+  "phases": [
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers0-cells0]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00167160015553236,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers0-cells0]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.00214369990862906,
+      "failure": "headers = ('id', 'id'), cells = ('first', 'last')\n\n    @pytest.mark.parametrize(\"headers,cells\", [\n        ((\"id\", \"id\"), (\"first\", \"last\")),\n        ((\"id\", \"state\", \"id\"), (\"a\", \"ok\", \"b\")),\n        ((\"id\", \"id\"), (\"same\", \"same\")),\n    ])\n    def test_duplicate_header_identity_is_refused(headers, cells):\n>       with pytest.raises(ValueError):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE ValueError\n\ntests\\live_native_csv_row_public.py:11: Failed"
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers0-cells0]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000591800082474947,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers1-cells1]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008233999833464622,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers1-cells1]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.0004817000590264797,
+      "failure": "headers = ('id', 'state', 'id'), cells = ('a', 'ok', 'b')\n\n    @pytest.mark.parametrize(\"headers,cells\", [\n        ((\"id\", \"id\"), (\"first\", \"last\")),\n        ((\"id\", \"state\", \"id\"), (\"a\", \"ok\", \"b\")),\n        ((\"id\", \"id\"), (\"same\", \"same\")),\n    ])\n    def test_duplicate_header_identity_is_refused(headers, cells):\n>       with pytest.raises(ValueError):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE ValueError\n\ntests\\live_native_csv_row_public.py:11: Failed"
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers1-cells1]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000499499961733818,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers2-cells2]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008171000517904758,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers2-cells2]",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.0004414001014083624,
+      "failure": "headers = ('id', 'id'), cells = ('same', 'same')\n\n    @pytest.mark.parametrize(\"headers,cells\", [\n        ((\"id\", \"id\"), (\"first\", \"last\")),\n        ((\"id\", \"state\", \"id\"), (\"a\", \"ok\", \"b\")),\n        ((\"id\", \"id\"), (\"same\", \"same\")),\n    ])\n    def test_duplicate_header_identity_is_refused(headers, cells):\n>       with pytest.raises(ValueError):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE ValueError\n\ntests\\live_native_csv_row_public.py:11: Failed"
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_duplicate_header_identity_is_refused[headers2-cells2]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000555599806830287,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_valid_exact_names_and_order_are_preserved",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.000413200119510293,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_valid_exact_names_and_order_are_preserved",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005223997868597507,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_valid_exact_names_and_order_are_preserved",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005249001551419497,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_existing_width_and_cell_type_refusals_remain",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0004057998303323984,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_existing_width_and_cell_type_refusals_remain",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006695999763906002,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_csv_row_public.py::test_existing_width_and_cell_type_refusals_remain",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003931999672204256,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_preserves_metadata_and_parses_quoted_csv",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0322732999920845,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_preserves_metadata_and_parses_quoted_csv",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0007302998565137386,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_preserves_metadata_and_parses_quoted_csv",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0007726999465376139,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_supports_alternate_encodings_and_normalizes_errors",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005327400052919984,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_supports_alternate_encodings_and_normalizes_errors",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0020436998456716537,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_decode_supports_alternate_encodings_and_normalizes_errors",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0007011000998318195,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[-header row]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005170600023120642,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[-header row]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006956998258829117,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[-header row]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0007122999522835016,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\\n-header row]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0051588998176157475,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\\n-header row]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006046001799404621,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\\n-header row]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00048429984599351883,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,id\\n1,2\\n-unique]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006055000005289912,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,id\\n1,2\\n-unique]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006934001576155424,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,id\\n1,2\\n-unique]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004249000921845436,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[,name\\n1,Ada\\n-blank]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0056934000458568335,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[,name\\n1,Ada\\n-blank]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006657999474555254,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[,name\\n1,Ada\\n-blank]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000421999953687191,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1\\n-values]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0030569001100957394,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1\\n-values]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006804999429732561,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1\\n-values]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004338000435382128,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\"unterminated-Invalid CSV]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004653299925848842,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\"unterminated-Invalid CSV]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.000754999928176403,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[\"unterminated-Invalid CSV]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004072000738233328,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1,\"unterminated-Invalid CSV]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005107200006023049,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1,\"unterminated-Invalid CSV]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0011851999443024397,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_rejects_invalid_header_based_source[id,name\\n1,\"unterminated-Invalid CSV]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004491000436246395,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_derives_source_size_and_supports_header_only_and_dialects",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.010187200037762523,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_derives_source_size_and_supports_header_only_and_dialects",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.001585099846124649,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_parse_derives_source_size_and_supports_header_only_and_dialects",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00040280004031956196,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[minimal]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006352199940010905,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[minimal]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0010198999661952257,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[minimal]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0008427000138908625,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[all]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0073893999215215445,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[all]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.000871199881657958,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[all]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005697999149560928,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[nonnumeric]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005006200168281794,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[nonnumeric]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0007909999694675207,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_uses_current_state_and_explicit_dialect[nonnumeric]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000619000056758523,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_wraps_invalid_quote_none_combinations",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004182900069281459,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_wraps_invalid_quote_none_combinations",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.001048400066792965,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_serialize_wraps_invalid_quote_none_combinations",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005516000092029572,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_encode_uses_model_encoding_override_and_normalizes_errors",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005229899892583489,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_encode_uses_model_encoding_override_and_normalizes_errors",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0008042000699788332,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_encode_uses_model_encoding_override_and_normalizes_errors",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004972999449819326,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004740499891340733,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006950998213142157,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00047990004532039165,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.007469400065019727,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006677999626845121,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n001,1.50\\n-dialect0-headers0-cells0-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0006788000464439392,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006269600009545684,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005888999439775944,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000618400052189827,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005730899982154369,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005602999590337276,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[\"id\",\"value\"\\n1e2,-0\\n-dialect1-headers1-cells1-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00043979985639452934,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006999500095844269,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006029000505805016,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0006864999886602163,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006650499999523163,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0007092999294400215,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[1,2\\n3,4\\n-dialect2-headers2-cells2-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00047500012442469597,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.007994499988853931,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0010216999799013138,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005499999970197678,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00592779996804893,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006774000357836485,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n007;\"x;y\"\\r\\n-dialect3-headers3-cells3-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005015998613089323,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005711199948564172,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005869001615792513,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00047479989007115364,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.008406499866396189,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.000597700010985136,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\r\\n001;\"a\\r\\nb\"\\r\\n-dialect4-headers4-cells4-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0009041999001055956,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005985800176858902,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0007949999999254942,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004997001960873604,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006010600132867694,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006031999364495277,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id;value\\n001;x\\\\;y\\n-dialect5-headers5-cells5-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00046309991739690304,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-False]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.007542100036516786,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-False]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005667998921126127,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-False]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00045669986866414547,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-True]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.007977499859407544,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-True]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005946001037955284,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_preserves_literal_string_source[id,value\\n001,\"a \"\"quote\"\"\"\\n-dialect6-headers6-cells6-True]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0013331000227481127,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,1\\n2,3\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004703700076788664,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,1\\n2,3\\n]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005318999756127596,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,1\\n2,3\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00040229992009699345,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006203900091350079,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3\\n]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005667998921126127,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0009186000097543001,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3,\"unterminated]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004998499993234873,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3,\"unterminated]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005672001279890537,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[1,2\\n3,\"unterminated]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003831000067293644,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[,2\\n3,4\\n]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.006135900039225817,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[,2\\n3,4\\n]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0008251001127064228,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_malformed_source_uses_domain_errors[,2\\n3,4\\n]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004002000205218792,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_serialization_still_quotes_string_fields",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005082699935883284,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_serialization_still_quotes_string_fields",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005816000048071146,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_csv.py::test_nonnumeric_serialization_still_quotes_string_fields",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003707997966557741,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_retains_immutable_default_and_explicit_policy",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0022907000966370106,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_retains_immutable_default_and_explicit_policy",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005054001230746508,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_retains_immutable_default_and_explicit_policy",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003307000733911991,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-delimiter]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010371000971645117,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-delimiter]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005548999179154634,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-delimiter]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003804001025855541,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-quote]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.000680999830365181,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-quote]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0007149998564273119,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-quote]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003970998805016279,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-escape]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0007466000970453024,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-escape]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005264000501483679,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-escape]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00035539991222321987,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-terminator]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008060000836849213,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-terminator]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005804998800158501,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_dialect.py::test_dialect_rejects_invalid_csv_control_characters[<lambda>-terminator]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000377400079742074,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_is_a_sequence_with_columns_and_structured_search",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0061882000882178545,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_is_a_sequence_with_columns_and_structured_search",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006080998573452234,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_is_a_sequence_with_columns_and_structured_search",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00037869997322559357,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_transformations_preserve_source_provenance_and_original",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004702599951997399,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_transformations_preserve_source_provenance_and_original",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0011891000904142857,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_transformations_preserve_source_provenance_and_original",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0003904001787304878,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers0-rows0-header]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005159899825230241,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers0-rows0-header]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006759001407772303,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers0-rows0-header]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.000447999918833375,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers1-rows1-blank]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.015299400081858039,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers1-rows1-blank]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005981998983770609,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers1-rows1-blank]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0010353999678045511,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers2-rows2-unique]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005943600088357925,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers2-rows2-unique]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005495999939739704,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers2-rows2-unique]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004358000587671995,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers3-rows3-match]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.007382999872788787,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers3-rows3-match]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005690001416951418,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_rejects_ambiguous_headers_and_incompatible_rows[headers3-rows3-match]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00044359988532960415,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_converts_rows_in_order_with_indexed_failures",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.005265599815174937,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_converts_rows_in_order_with_indexed_failures",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0012161999475210905,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_file.py::test_file_converts_rows_in_order_with_indexed_failures",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00041690003126859665,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_supports_positional_and_keyed_read_only_access",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0003394999075680971,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_supports_positional_and_keyed_read_only_access",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00047440011985599995,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_supports_positional_and_keyed_read_only_access",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0005901998374611139,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_rejects_mismatched_header_and_value_widths",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0003621999640017748,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_rejects_mismatched_header_and_value_widths",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0005891998298466206,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_rejects_mismatched_header_and_value_widths",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00036349985748529434,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_conversion_delegates_to_the_explicit_callable",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0003122999332845211,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_conversion_delegates_to_the_explicit_callable",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0006142999045550823,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/csv/test_row.py::test_row_conversion_delegates_to_the_explicit_callable",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0004948999267071486,
+      "failure": null
+    }
+  ],
+  "original_receipt_sha256": "4b07aee6e539d21ecd25052f10e70299132243c9d658895a3b2e794985b484ee"
+}
