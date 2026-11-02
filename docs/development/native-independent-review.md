@@ -77,6 +77,26 @@ them. There are no edits, invented checks, shell, Git, Checkout mutation,
 integration, publication or backlog-approval Tools. Source/evidence text is
 untrusted data; its instructions confer no authority.
 
+Acceptance review supports a bounded batch of `read_source` calls in one model
+response. Each call consumes one acquisition, independently of the number of
+model responses. Before any Tool entry, the whole batch must have unique fresh
+call IDs, admitted names/arguments/ranges, authorized current source, enough
+remaining acquisitions, and capacity for all results in the complete next
+request and capture. Predictions use the existing snapshot-bound Context range
+options; they are not completed acquisitions or model-visible source evidence.
+Capacity reservation is conservative and may refuse a batch that lacks headroom
+for the next request and bounded response. Smaller authorized ranges remain
+available. Invalid batches terminate with an explicit unentered refusal.
+
+Admitted reads execute sequentially through existing Tools with authority and
+currentness checks before each entry. The assistant Tool-call batch is retained
+once; each result carries its original call ID and separate source identity.
+This is not an atomic transaction: earlier completed reads remain completed if
+a later operation fails. Known completions and unresolved entry are recorded
+separately, with no retry after uncertainty or persistence failure. Only actually
+completed disclosures enter review evidence. Coding/editing Tool safety and
+diagnostic-review batch/finalization policy are unchanged.
+
 The complete initial subject and retained read exchanges must fit the approved
 Prompt budget. No hidden reduction creates fictitious completeness. Native v1
 caps calls, reads, per-call/total time, output tokens, response bytes and capture.
@@ -85,6 +105,15 @@ Timeout, malformed response, exhaustion, missing conclusion, output limit,
 unauthorized read or capture failure produces a blocked proposal, never implicit
 acceptance. Dispatch intent precedes model entry. One slot prevents replay,
 including when proposal persistence fails or model completion remains uncertain.
+
+There is exactly **one reviewer subject/dispatch slot per native assignment**.
+`prepare` creates `reviewer/` once; it has no attempt selector. Standing authority
+also refuses a consumed review slot before issuing a decision. A blocked attempt
+cannot be overwritten, moved aside, or renewed by changing actor/session labels.
+The current contract does not support another acceptance-review subject for the
+same immutable candidate. A prospective, explicitly authorized administrative
+continuation contract with downstream reader support is required to add that
+capability; it must preserve consumed attempts and candidate qualification.
 
 ## Proposal and host decision
 

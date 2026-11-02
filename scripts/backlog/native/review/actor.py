@@ -54,6 +54,7 @@ from devtools.tools.source import (
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
 from scripts.backlog.native.review import diagnostic
+from scripts.backlog.native.review.acquisition import acquire
 from scripts.backlog.native.review.proposal import parse
 from scripts.backlog.native.review.subject import subject
 from scripts.backlog.work import _load
@@ -76,6 +77,8 @@ Working source Tools expose restored BASELINE, not installed candidate. Candidat
 and diff are in the subject. Private acceptance implementation is unavailable.
 Use authorized read_source if useful; do not edit, execute checks or invent authority.
 Only review_scope.read_paths may be read; subject scope describes the CODER's scope.
+Read-only read_source calls may be batched within the remaining total read allowance.
+Each call needs a unique ID; an invalid or oversized batch enters no read Tools.
 Return a JSON object with disposition (accept/reject/insufficient-evidence), summary,
 evidence (reference names), findings (kind observed/inference, severity blocking/advisory,
 message, evidence names), outstanding, requests, assessed_obligations (objective plus
@@ -626,13 +629,26 @@ class NativeReviewer:
                                 },
                             )
                             raise PermissionError(reason)
-                    elif (
-                        len(response.tool_calls) != 1
-                        or reads >= config["budgets"]["reads"]
-                    ):
-                        raise PermissionError(
-                            "Review permits one bounded read per response"
+                    else:
+
+                        async def guard() -> None:
+                            await self.current(item)
+                            self.authority(item, packet)
+
+                        reads = await acquire(
+                            response,
+                            request,
+                            scope=scope,
+                            index=index,
+                            reads=reads,
+                            budgets=config["budgets"],
+                            messages=messages,
+                            references=references,
+                            claimed=claimed,
+                            capture=capture,
+                            guard=guard,
                         )
+                        continue
                     call = response.tool_calls[0]
                     if (
                         call.name not in {t["name"] for t in self.tools()}
@@ -764,6 +780,8 @@ class NativeReviewer:
                         "Review model-call budget exhausted without conclusion"
                     )
         except (Exception, asyncio.CancelledError) as error:  # noqa: BLE001 -- terminal uncertainty; no replay
+            # A later batch operation may fail after earlier known completions.
+            reads = sum(name.startswith("read:") for name in references)
             failure = type(error).__name__ + ": " + str(error)
         # Failure to persist is propagated. The dispatch claim remains and blocks replay.
         return self.save(

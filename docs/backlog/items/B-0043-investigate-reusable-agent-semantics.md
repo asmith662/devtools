@@ -634,3 +634,17 @@ existing Context/host owners is the single next bounded recommendation before a
 separately lawful future trial. No new generic Agent, loop, authority, lifecycle,
 status/maturity change or parent closure follows. B-0035 closure, B-0048 history
 and the 188 outstanding historical RI obligations remain unchanged.
+
+## Acceptance-review continuation boundary - 2026-11-02
+
+The [B-0052 read-batch correction and administrative boundary](../../research/acceptance-read-batches.md)
+preserves a qualified, archived real-model candidate while correcting prospective
+read-only batch admission through the existing reviewer. Its original blocked
+review slot remains consumed. Current native records/readers provide one subject
+per assignment and cannot lawfully admit a fresh review of that same candidate.
+No coding replay, model review, host acceptance, installation or integration plan
+was manufactured. A narrowly versioned review-continuation contract with exact
+candidate/prior-attempt binding and downstream reader support is remaining
+administrative pressure, not authorization to implement or execute it here.
+This observation does not close B-0052 or change B-0043's status/maturity, B-0035
+closure or the 188 historical RI obligations.

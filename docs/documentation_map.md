@@ -1,5 +1,9 @@
 # Documentation Map
 
+[Acceptance read batching and B-0052's consumed-review boundary](research/acceptance-read-batches.md)
+records the prospective batch correction and the authenticated reason no new
+B-0052 model review or integration plan was entered. Coding was not repeated.
+
 [Actual standing-authority/B-0052 delivery](research/routine-authority-and-b0052.md)
 records genuine activation, policy-derived grants, a qualified real coding
 candidate, and the blocked acceptance-review Tool batch. It distinguishes
