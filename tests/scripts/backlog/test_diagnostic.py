@@ -23,6 +23,7 @@ from devtools.resources.filesystem import FilesystemError
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.review.actor import NativeReviewer
 from scripts.backlog.native.review.diagnostic import budget_view, parse
+from scripts.backlog.work import _load
 from tests.scripts.backlog.test_native import (
     BASE,
     PUBLIC,
@@ -98,6 +99,21 @@ def answer(candidate: str) -> dict[str, Any]:
         "outstanding": ["Unknown private implementation remains withheld"],
         "requests": ["Supervisor may authorize additional independent validation"],
     }
+
+
+def assert_observation_envelopes(
+    reviewer: NativeReviewer,
+    item: str,
+    proposal: dict[str, Any],
+) -> None:
+    for reference in proposal["observations"]:
+        observation = _load(
+            reviewer.folder(item) / reference["file"],
+            "backlog-native-observation-v1",
+        )
+        assert observation["sha256"] == reference["sha256"]
+        if observation["kind"] == "review-budget":
+            assert observation["budget"]["schema"] == "native-diagnostic-budget-v1"
 
 
 class DiagnosticModel:
@@ -375,6 +391,7 @@ def test_budgeted_diagnostic_continuation(  # noqa: C901 -- finite lifecycle fau
         )
         assert len(model.requests) <= config["budgets"]["model_calls"]
         assert proposal["subject_sha256"] == packet["sha256"]
+        assert_observation_envelopes(reviewer, item, proposal)
         expected = {
             "batch": "REVIEW_TOOL_BATCH_LIMIT",
             "legacy-total": "REVIEW_ACQUISITION_BUDGET_EXHAUSTED",

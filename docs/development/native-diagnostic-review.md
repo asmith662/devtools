@@ -104,6 +104,12 @@ and candidate text is already in the subject and needs no confirming reread.
 Matching current baseline identity establishes equivalence to that baseline;
 it does not establish equivalence to the uninstalled candidate.
 
+The view is nested under `budget` in a standard
+`backlog-native-observation-v1` envelope; its own schema never replaces the
+observation schema. The first B-0051 live records exposed that collision before
+this correction. Those original records retain their actual budget-view schema
+and hashes; they are qualified historical evidence, not rewritten envelopes.
+
 The last approved call is reserved for synthesis. Exhausting acquisitions earlier
 also selects synthesis immediately. Synthesis advertises no source Tools and asks
 for a structured diagnosis or an explicit insufficient-evidence conclusion. A

@@ -443,7 +443,7 @@ class NativeReviewer:
                     active_messages = list(messages)
                     if view is not None:
                         active_messages.append(PromptMessage("user", json.dumps(view)))
-                        capture.add("review-budget", view)
+                        capture.add("review-budget", {"budget": view})
                     request = ModelRequest(
                         Prompt("", "messages", tuple(active_messages)),
                         settings=ModelSettings(**config["settings"]),
