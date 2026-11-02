@@ -1,0 +1,308 @@
+{
+  "schema": "backlog-routine-decision-v1",
+  "policy_version": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "subject": "B-0052",
+  "subjects": [
+    "1caa2686-428f-4fdf-b052-f0b8382b44dc",
+    "B-0052"
+  ],
+  "kind": "acceptance-review",
+  "request": {
+    "operation": "authorize-native-review-actor",
+    "packet": {
+      "schema": "backlog-native-review-subject-v1",
+      "at": "2026-11-02T17:24:55.594102+00:00",
+      "subject": {
+        "item": "B-0052",
+        "assignment_sha256": "7489f593e0b23b4a8b118201394d738f62febf3f606d2efec83d7a5e394b33ef",
+        "result_sha256": "f1971ed020430afcf064e88f9cacb193ce1f0a900233759ac78aa66788d2eed2",
+        "candidate_sha256": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+        "configuration": {
+          ".coveragerc": null,
+          ".python-version": null,
+          "conftest.py": null,
+          "pyproject.toml": "7be05833bf5f1d6e6a16f9d495779f731e87e551977ce4824b202f45edf16cfd",
+          "pytest.ini": null,
+          "setup.cfg": null,
+          "tests/conftest.py": null,
+          "tests/resources/conftest.py": null,
+          "tests/resources/filesystem/codecs/conftest.py": null,
+          "tests/resources/filesystem/conftest.py": null,
+          "tests/resources/filesystem/models/conftest.py": null,
+          "tests/resources/filesystem/models/csv/conftest.py": null,
+          "uv.lock": "a25448669c13213461a7aadf937cb85304b03d1398f5b092db63df435bdb19c3"
+        },
+        "inputs": {
+          "src/devtools/resources/filesystem/codecs/csv.py": "0f5f23b6d94d229c3dceb38a70deff60a05f20e2a43e618262de3fe00bed62a0",
+          "src/devtools/resources/filesystem/models/csv.py": "826099dbbc06176b100ea2856c69cb9dca2c81a278d005432c104536ff2aa4ba",
+          "src/devtools/resources/filesystem/models/text.py": "beffe8d57eaed9c504a35747390aa3b6006ed87ac8e2cf4c2f9cecb8aa4e634b",
+          "tests/live_native_csv_row_public.py": "10629409eba7bb141f59e9e88e054bd147d6b164ca4f224eed3a9fbd7fa4a9c7",
+          "tests/resources/filesystem/codecs/test_csv.py": "b1a826b5ff449fdddcd0294e669d820007b9a5948b0eb04a196017382319744f",
+          "tests/resources/filesystem/models/csv/test_dialect.py": "b11253de0b821b7840e1164edcaa3e7055385e418694cbb5671ef6578d8cc5a7",
+          "tests/resources/filesystem/models/csv/test_file.py": "85401a1769cd653c8cefa839ab916e069a591a511849264f853bfd4d753db298",
+          "tests/resources/filesystem/models/csv/test_row.py": "8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b"
+        },
+        "evidence": {
+          "task": {
+            "objective": "Repair standalone CsvRow exact duplicate header admission only. Current CsvRow((\"id\",\"id\"),(\"first\",\"last\")) produces conflicting row[\"id\"] and as_dict()[\"id\"] values. Reject exact duplicate header names with ValueError during construction, before an ambiguous row becomes usable. Preserve exact header spelling: case, whitespace and Unicode normalization are NOT identity transformations. Preserve all existing behavior for unique names, including standalone empty rows and unique blank names, immutable iterable input capture, widths, string cells, indexing, iteration, mapping and conversion. Keep CsvFile/CsvCodec and dialect behavior unchanged. Only the authorized existing Python implementation may change. Before editing acquire the complete current owner with read_source to satisfy its whole-resource witness. Use find_source/read_source_unit or bounded source reads for tests/dependencies as useful. Submit a precise grounded replacement; no tests or other files may be edited. Public acceptance is frozen; separately authored final acceptance is withheld. No reference patch is provided.",
+            "obligations": [
+              {
+                "name": "current-owner",
+                "predicate": "Acquire the complete current immutable CSV model owner; preserve its exact-key row and file contracts while repairing duplicate standalone admission.",
+                "path": "src/devtools/resources/filesystem/models/csv.py",
+                "criterion": "current-whole-resource-v1"
+              }
+            ]
+          },
+          "scope": {
+            "edit": "src/devtools/resources/filesystem/models/csv.py",
+            "read": [
+              "src/devtools/resources/filesystem/codecs/csv.py",
+              "src/devtools/resources/filesystem/models/csv.py",
+              "src/devtools/resources/filesystem/models/text.py",
+              "tests/live_native_csv_row_public.py",
+              "tests/resources/filesystem/codecs/test_csv.py",
+              "tests/resources/filesystem/models/csv/test_dialect.py",
+              "tests/resources/filesystem/models/csv/test_file.py",
+              "tests/resources/filesystem/models/csv/test_row.py"
+            ],
+            "checks": [
+              "tests/live_native_csv_row_public.py",
+              "tests/resources/filesystem/models/csv/test_row.py",
+              "tests/resources/filesystem/models/csv/test_file.py",
+              "tests/resources/filesystem/models/csv/test_dialect.py",
+              "tests/resources/filesystem/codecs/test_csv.py"
+            ],
+            "worker": {
+              "actor": "qwen38-csv-row-coder-20261102",
+              "source": "llama.cpp/qwen38-local/csv-row-coder-20261102",
+              "profile": "qwen38-native64-portable-defaults-v1"
+            }
+          },
+          "baseline": {
+            "path": "src/devtools/resources/filesystem/models/csv.py",
+            "text": "# Copyright (c) 2026\n\"\"\"Immutable header-based CSV filesystem models.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, field, replace\nfrom enum import StrEnum\nfrom typing import TYPE_CHECKING, overload\n\nfrom devtools.core.conversion import convert, convert_all\nfrom devtools.resources.filesystem.models.base import FileFormat\nfrom devtools.resources.filesystem.models.text import TextFile\n\nif TYPE_CHECKING:\n    from collections.abc import Callable, Iterable, Iterator\n\n    from devtools.core.conversion import Converter\n\n\nclass CsvQuoting(StrEnum):\n    \"\"\"Represent supported CSV quoting policies.\"\"\"\n\n    MINIMAL = \"minimal\"\n    ALL = \"all\"\n    NONNUMERIC = \"nonnumeric\"\n    NONE = \"none\"\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvDialect:\n    \"\"\"Represent immutable CSV parsing and serialization policy.\n\n    :ivar delimiter: Single-character field delimiter.\n    :ivar quotechar: Single-character quote marker.\n    :ivar escapechar: Optional single-character escape marker.\n    :ivar doublequote: Whether doubled quote markers escape quotes.\n    :ivar skipinitialspace: Whether parsing skips spaces after delimiters.\n    :ivar lineterminator: Serialized record terminator.\n    :ivar quoting: Public quoting policy.\n    \"\"\"\n\n    delimiter: str = \",\"\n    quotechar: str = '\"'\n    escapechar: str | None = None\n    doublequote: bool = True\n    skipinitialspace: bool = False\n    lineterminator: str = \"\\n\"\n    quoting: CsvQuoting = CsvQuoting.MINIMAL\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate CSV dialect invariants.\"\"\"\n        if len(self.delimiter) != 1:\n            msg = \"CSV delimiter must be exactly one character.\"\n            raise ValueError(msg)\n\n        if len(self.quotechar) != 1:\n            msg = \"CSV quote character must be exactly one character.\"\n            raise ValueError(msg)\n\n        if self.escapechar is not None and len(self.escapechar) != 1:\n            msg = \"CSV escape character must be exactly one character.\"\n            raise ValueError(msg)\n\n        if not self.lineterminator:\n            msg = \"CSV line terminator cannot be empty.\"\n            raise ValueError(msg)\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvRow:\n    \"\"\"Represent one immutable header-addressable CSV row.\n\n    :ivar headers: Column names in positional order.\n    :ivar cells: Cell values in positional order.\n    \"\"\"\n\n    headers: tuple[str, ...]\n    cells: tuple[str, ...]\n\n    def __post_init__(self) -> None:\n        \"\"\"Freeze storage and validate row dimensions.\"\"\"\n        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"cells\", tuple(self.cells))\n\n        if len(self.headers) != len(self.cells):\n            msg = \"CSV row values must match the number of headers.\"\n            raise ValueError(msg)\n\n        if any(not isinstance(value, str) for value in self.cells):\n            msg = \"CSV row values must be strings.\"\n            raise ValueError(msg)\n\n    @overload\n    def __getitem__(self, key: int) -> str: ...\n\n    @overload\n    def __getitem__(self, key: slice) -> tuple[str, ...]: ...\n\n    @overload\n    def __getitem__(self, key: str) -> str: ...\n\n    def __getitem__(self, key: int | slice | str) -> str | tuple[str, ...]:\n        \"\"\"Return a cell by position, slice, or header name.\n\n        :param key: Integer position, slice, or header name.\n        :returns: Cell value or immutable cell slice.\n        :raises KeyError: If a header name is unknown.\n        \"\"\"\n        if isinstance(key, str):\n            try:\n                index = self.headers.index(key)\n            except ValueError as error:\n                raise KeyError(key) from error\n\n            return self.cells[index]\n\n        return self.cells[key]\n\n    def __iter__(self) -> Iterator[str]:\n        \"\"\"Iterate over row values in positional order.\"\"\"\n        return iter(self.cells)\n\n    def __len__(self) -> int:\n        \"\"\"Return the number of cells in the row.\"\"\"\n        return len(self.cells)\n\n    def __contains__(self, key: object) -> bool:\n        \"\"\"Return whether a header name is present in the row.\"\"\"\n        return isinstance(key, str) and key in self.headers\n\n    def get(self, key: str, default: str | None = None) -> str | None:\n        \"\"\"Return a named value or an explicit default.\n\n        :param key: Header name.\n        :param default: Value returned when the header is absent.\n        :returns: Named cell or default.\n        \"\"\"\n        try:\n            return self[key]\n        except KeyError:\n            return default\n\n    def keys(self) -> tuple[str, ...]:\n        \"\"\"Return column names in positional order.\"\"\"\n        return self.headers\n\n    def values(self) -> tuple[str, ...]:\n        \"\"\"Return cell values in positional order.\"\"\"\n        return self.cells\n\n    def items(self) -> tuple[tuple[str, str], ...]:\n        \"\"\"Return immutable header/value pairs in positional order.\"\"\"\n        return tuple(zip(self.headers, self.cells, strict=True))\n\n    def as_dict(self) -> dict[str, str]:\n        \"\"\"Return an ordinary mapping copy of the row.\"\"\"\n        return dict(self.items())\n\n    def convert[TargetT](self, converter: Converter[CsvRow, TargetT]) -> TargetT:\n        \"\"\"Convert this row through an explicit callable.\n\n        :param converter: Callable receiving this immutable row.\n        :returns: Converter result.\n        :raises ConversionError: If the converter raises an ordinary exception.\n        \"\"\"\n        return convert(self, converter)\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvFile(TextFile):\n    \"\"\"Represent immutable header-based CSV source and structured rows.\n\n    ``content`` is original decoded source provenance. ``headers`` and ``rows``\n    are the current structured state; ``CsvCodec`` serializes that state after\n    immutable transformations.\n\n    :ivar headers: Unique, non-blank CSV headers.\n    :ivar rows: Immutable rows sharing the file headers.\n    :ivar dialect: CSV parsing and serialization policy.\n    \"\"\"\n\n    headers: tuple[str, ...] = field(kw_only=True)\n    rows: tuple[CsvRow, ...] = field(kw_only=True)\n    dialect: CsvDialect = field(default_factory=CsvDialect, kw_only=True)\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate text metadata and freeze structured CSV state.\"\"\"\n        # Explicit class avoids the pre-slots __class__ cell on Python 3.12.\n        super(CsvFile, self).__post_init__()\n        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"rows\", tuple(self.rows))\n\n        if not self.headers:\n            msg = \"CSV files require a header row.\"\n            raise ValueError(msg)\n\n        if any(not header.strip() for header in self.headers):\n            msg = \"CSV headers cannot be blank.\"\n            raise ValueError(msg)\n\n        if len(set(self.headers)) != len(self.headers):\n            msg = \"CSV headers must be unique.\"\n            raise ValueError(msg)\n\n        for row in self.rows:\n            if row.headers != self.headers:\n                msg = \"CSV row headers must match the file headers.\"\n                raise ValueError(msg)\n\n    @property\n    def format(self) -> FileFormat:\n        \"\"\"Return the CSV file format.\"\"\"\n        return FileFormat.CSV\n\n    @overload\n    def __getitem__(self, index: int) -> CsvRow: ...\n\n    @overload\n    def __getitem__(self, index: slice) -> tuple[CsvRow, ...]: ...\n\n    def __getitem__(self, index: int | slice) -> CsvRow | tuple[CsvRow, ...]:\n        \"\"\"Return a row or immutable row slice.\"\"\"\n        return self.rows[index]\n\n    def __iter__(self) -> Iterator[CsvRow]:\n        \"\"\"Iterate over structured rows.\"\"\"\n        return iter(self.rows)\n\n    def __len__(self) -> int:\n        \"\"\"Return the number of data rows.\"\"\"\n        return len(self.rows)\n\n    def column(self, name: str) -> tuple[str, ...]:\n        \"\"\"Return values for a named column in row order.\n\n        :param name: Header name.\n        :returns: Immutable values in data-row order.\n        :raises KeyError: If the header is unknown.\n        \"\"\"\n        if name not in self.headers:\n            raise KeyError(name)\n\n        return tuple(row[name] for row in self.rows)\n\n    def find(self, predicate: Callable[[CsvRow], bool]) -> CsvRow | None:\n        \"\"\"Return the first row satisfying a predicate.\n\n        :param predicate: Predicate receiving one structured row.\n        :returns: First matching row or ``None``.\n        \"\"\"\n        for row in self.rows:\n            if predicate(row):\n                return row\n\n        return None\n\n    def find_all(self, predicate: Callable[[CsvRow], bool]) -> tuple[CsvRow, ...]:\n        \"\"\"Return all rows satisfying a predicate.\"\"\"\n        return tuple(row for row in self.rows if predicate(row))\n\n    def find_by(self, column: str, value: str) -> CsvRow | None:\n        \"\"\"Return the first row with a matching named cell.\"\"\"\n        if column not in self.headers:\n            raise KeyError(column)\n\n        return self.find(lambda row: row[column] == value)\n\n    def convert_rows[TargetT](\n        self,\n        converter: Converter[CsvRow, TargetT],\n    ) -> tuple[TargetT, ...]:\n        \"\"\"Convert structured rows through an explicit callable.\n\n        :param converter: Callable receiving each immutable row.\n        :returns: Immutable converted results in row order.\n        :raises ConversionError: If a row conversion fails.\n        \"\"\"\n        return convert_all(self.rows, converter)\n\n    def appended(self, row: CsvRow) -> CsvFile:\n        \"\"\"Return a copy with an appended compatible row.\"\"\"\n        self._validate_row_headers(row)\n        return replace(self, rows=(*self.rows, row))\n\n    def extended(self, rows: Iterable[CsvRow]) -> CsvFile:\n        \"\"\"Return a copy with additional compatible rows.\"\"\"\n        additions = tuple(rows)\n\n        for row in additions:\n            self._validate_row_headers(row)\n\n        return replace(self, rows=(*self.rows, *additions))\n\n    def with_row(self, index: int, row: CsvRow) -> CsvFile:\n        \"\"\"Return a copy with one compatible row replaced.\"\"\"\n        self._validate_row_headers(row)\n        updated = list(self.rows)\n        updated[index] = row\n        return replace(self, rows=tuple(updated))\n\n    def without_row(self, index: int) -> CsvFile:\n        \"\"\"Return a copy without one row.\"\"\"\n        updated = list(self.rows)\n        del updated[index]\n        return replace(self, rows=tuple(updated))\n\n    def _validate_row_headers(self, row: CsvRow) -> None:\n        \"\"\"Validate that a row belongs to this file schema.\"\"\"\n        if row.headers != self.headers:\n            msg = \"CSV row headers must match the file headers.\"\n            raise ValueError(msg)\n",
+            "identity": "826099dbbc06176b100ea2856c69cb9dca2c81a278d005432c104536ff2aa4ba"
+          },
+          "candidate": {
+            "path": "src/devtools/resources/filesystem/models/csv.py",
+            "text": "# Copyright (c) 2026\n\"\"\"Immutable header-based CSV filesystem models.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, field, replace\nfrom enum import StrEnum\nfrom typing import TYPE_CHECKING, overload\n\nfrom devtools.core.conversion import convert, convert_all\nfrom devtools.resources.filesystem.models.base import FileFormat\nfrom devtools.resources.filesystem.models.text import TextFile\n\nif TYPE_CHECKING:\n    from collections.abc import Callable, Iterable, Iterator\n\n    from devtools.core.conversion import Converter\n\n\nclass CsvQuoting(StrEnum):\n    \"\"\"Represent supported CSV quoting policies.\"\"\"\n\n    MINIMAL = \"minimal\"\n    ALL = \"all\"\n    NONNUMERIC = \"nonnumeric\"\n    NONE = \"none\"\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvDialect:\n    \"\"\"Represent immutable CSV parsing and serialization policy.\n\n    :ivar delimiter: Single-character field delimiter.\n    :ivar quotechar: Single-character quote marker.\n    :ivar escapechar: Optional single-character escape marker.\n    :ivar doublequote: Whether doubled quote markers escape quotes.\n    :ivar skipinitialspace: Whether parsing skips spaces after delimiters.\n    :ivar lineterminator: Serialized record terminator.\n    :ivar quoting: Public quoting policy.\n    \"\"\"\n\n    delimiter: str = \",\"\n    quotechar: str = '\"'\n    escapechar: str | None = None\n    doublequote: bool = True\n    skipinitialspace: bool = False\n    lineterminator: str = \"\\n\"\n    quoting: CsvQuoting = CsvQuoting.MINIMAL\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate CSV dialect invariants.\"\"\"\n        if len(self.delimiter) != 1:\n            msg = \"CSV delimiter must be exactly one character.\"\n            raise ValueError(msg)\n\n        if len(self.quotechar) != 1:\n            msg = \"CSV quote character must be exactly one character.\"\n            raise ValueError(msg)\n\n        if self.escapechar is not None and len(self.escapechar) != 1:\n            msg = \"CSV escape character must be exactly one character.\"\n            raise ValueError(msg)\n\n        if not self.lineterminator:\n            msg = \"CSV line terminator cannot be empty.\"\n            raise ValueError(msg)\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvRow:\n    \"\"\"Represent one immutable header-addressable CSV row.\n\n    :ivar headers: Column names in positional order.\n    :ivar cells: Cell values in positional order.\n    \"\"\"\n\n    headers: tuple[str, ...]\n    cells: tuple[str, ...]\n\n    def __post_init__(self) -> None:\n        \"\"\"Freeze storage and validate row dimensions.\"\"\"\n        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"cells\", tuple(self.cells))\n\n        if len(set(self.headers)) != len(self.headers):\n            msg = \"CSV row headers must be unique.\"\n            raise ValueError(msg)\n\n        if len(self.headers) != len(self.cells):\n            msg = \"CSV row values must match the number of headers.\"\n            raise ValueError(msg)\n\n        if any(not isinstance(value, str) for value in self.cells):\n            msg = \"CSV row values must be strings.\"\n            raise ValueError(msg)\n\n    @overload\n    def __getitem__(self, key: int) -> str: ...\n\n    @overload\n    def __getitem__(self, key: slice) -> tuple[str, ...]: ...\n\n    @overload\n    def __getitem__(self, key: str) -> str: ...\n\n    def __getitem__(self, key: int | slice | str) -> str | tuple[str, ...]:\n        \"\"\"Return a cell by position, slice, or header name.\n\n        :param key: Integer position, slice, or header name.\n        :returns: Cell value or immutable cell slice.\n        :raises KeyError: If a header name is unknown.\n        \"\"\"\n        if isinstance(key, str):\n            try:\n                index = self.headers.index(key)\n            except ValueError as error:\n                raise KeyError(key) from error\n\n            return self.cells[index]\n\n        return self.cells[key]\n\n    def __iter__(self) -> Iterator[str]:\n        \"\"\"Iterate over row values in positional order.\"\"\"\n        return iter(self.cells)\n\n    def __len__(self) -> int:\n        \"\"\"Return the number of cells in the row.\"\"\"\n        return len(self.cells)\n\n    def __contains__(self, key: object) -> bool:\n        \"\"\"Return whether a header name is present in the row.\"\"\"\n        return isinstance(key, str) and key in self.headers\n\n    def get(self, key: str, default: str | None = None) -> str | None:\n        \"\"\"Return a named value or an explicit default.\n\n        :param key: Header name.\n        :param default: Value returned when the header is absent.\n        :returns: Named cell or default.\n        \"\"\"\n        try:\n            return self[key]\n        except KeyError:\n            return default\n\n    def keys(self) -> tuple[str, ...]:\n        \"\"\"Return column names in positional order.\"\"\"\n        return self.headers\n\n    def values(self) -> tuple[str, ...]:\n        \"\"\"Return cell values in positional order.\"\"\"\n        return self.cells\n\n    def items(self) -> tuple[tuple[str, str], ...]:\n        \"\"\"Return immutable header/value pairs in positional order.\"\"\"\n        return tuple(zip(self.headers, self.cells, strict=True))\n\n    def as_dict(self) -> dict[str, str]:\n        \"\"\"Return an ordinary mapping copy of the row.\"\"\"\n        return dict(self.items())\n\n    def convert[TargetT](self, converter: Converter[CsvRow, TargetT]) -> TargetT:\n        \"\"\"Convert this row through an explicit callable.\n\n        :param converter: Callable receiving this immutable row.\n        :returns: Converter result.\n        :raises ConversionError: If the converter raises an ordinary exception.\n        \"\"\"\n        return convert(self, converter)\n\n\n@dataclass(frozen=True, slots=True)\nclass CsvFile(TextFile):\n    \"\"\"Represent immutable header-based CSV source and structured rows.\n\n    ``content`` is original decoded source provenance. ``headers`` and ``rows``\n    are the current structured state; ``CsvCodec`` serializes that state after\n    immutable transformations.\n\n    :ivar headers: Unique, non-blank CSV headers.\n    :ivar rows: Immutable rows sharing the file headers.\n    :ivar dialect: CSV parsing and serialization policy.\n    \"\"\"\n\n    headers: tuple[str, ...] = field(kw_only=True)\n    rows: tuple[CsvRow, ...] = field(kw_only=True)\n    dialect: CsvDialect = field(default_factory=CsvDialect, kw_only=True)\n\n    def __post_init__(self) -> None:\n        \"\"\"Validate text metadata and freeze structured CSV state.\"\"\"\n        # Explicit class avoids the pre-slots __class__ cell on Python 3.12.\n        super(CsvFile, self).__post_init__()\n        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"rows\", tuple(self.rows))\n\n        if not self.headers:\n            msg = \"CSV files require a header row.\"\n            raise ValueError(msg)\n\n        if any(not header.strip() for header in self.headers):\n            msg = \"CSV headers cannot be blank.\"\n            raise ValueError(msg)\n\n        if len(set(self.headers)) != len(self.headers):\n            msg = \"CSV headers must be unique.\"\n            raise ValueError(msg)\n\n        for row in self.rows:\n            if row.headers != self.headers:\n                msg = \"CSV row headers must match the file headers.\"\n                raise ValueError(msg)\n\n    @property\n    def format(self) -> FileFormat:\n        \"\"\"Return the CSV file format.\"\"\"\n        return FileFormat.CSV\n\n    @overload\n    def __getitem__(self, index: int) -> CsvRow: ...\n\n    @overload\n    def __getitem__(self, index: slice) -> tuple[CsvRow, ...]: ...\n\n    def __getitem__(self, index: int | slice) -> CsvRow | tuple[CsvRow, ...]:\n        \"\"\"Return a row or immutable row slice.\"\"\"\n        return self.rows[index]\n\n    def __iter__(self) -> Iterator[CsvRow]:\n        \"\"\"Iterate over structured rows.\"\"\"\n        return iter(self.rows)\n\n    def __len__(self) -> int:\n        \"\"\"Return the number of data rows.\"\"\"\n        return len(self.rows)\n\n    def column(self, name: str) -> tuple[str, ...]:\n        \"\"\"Return values for a named column in row order.\n\n        :param name: Header name.\n        :returns: Immutable values in data-row order.\n        :raises KeyError: If the header is unknown.\n        \"\"\"\n        if name not in self.headers:\n            raise KeyError(name)\n\n        return tuple(row[name] for row in self.rows)\n\n    def find(self, predicate: Callable[[CsvRow], bool]) -> CsvRow | None:\n        \"\"\"Return the first row satisfying a predicate.\n\n        :param predicate: Predicate receiving one structured row.\n        :returns: First matching row or ``None``.\n        \"\"\"\n        for row in self.rows:\n            if predicate(row):\n                return row\n\n        return None\n\n    def find_all(self, predicate: Callable[[CsvRow], bool]) -> tuple[CsvRow, ...]:\n        \"\"\"Return all rows satisfying a predicate.\"\"\"\n        return tuple(row for row in self.rows if predicate(row))\n\n    def find_by(self, column: str, value: str) -> CsvRow | None:\n        \"\"\"Return the first row with a matching named cell.\"\"\"\n        if column not in self.headers:\n            raise KeyError(column)\n\n        return self.find(lambda row: row[column] == value)\n\n    def convert_rows[TargetT](\n        self,\n        converter: Converter[CsvRow, TargetT],\n    ) -> tuple[TargetT, ...]:\n        \"\"\"Convert structured rows through an explicit callable.\n\n        :param converter: Callable receiving each immutable row.\n        :returns: Immutable converted results in row order.\n        :raises ConversionError: If a row conversion fails.\n        \"\"\"\n        return convert_all(self.rows, converter)\n\n    def appended(self, row: CsvRow) -> CsvFile:\n        \"\"\"Return a copy with an appended compatible row.\"\"\"\n        self._validate_row_headers(row)\n        return replace(self, rows=(*self.rows, row))\n\n    def extended(self, rows: Iterable[CsvRow]) -> CsvFile:\n        \"\"\"Return a copy with additional compatible rows.\"\"\"\n        additions = tuple(rows)\n\n        for row in additions:\n            self._validate_row_headers(row)\n\n        return replace(self, rows=(*self.rows, *additions))\n\n    def with_row(self, index: int, row: CsvRow) -> CsvFile:\n        \"\"\"Return a copy with one compatible row replaced.\"\"\"\n        self._validate_row_headers(row)\n        updated = list(self.rows)\n        updated[index] = row\n        return replace(self, rows=tuple(updated))\n\n    def without_row(self, index: int) -> CsvFile:\n        \"\"\"Return a copy without one row.\"\"\"\n        updated = list(self.rows)\n        del updated[index]\n        return replace(self, rows=tuple(updated))\n\n    def _validate_row_headers(self, row: CsvRow) -> None:\n        \"\"\"Validate that a row belongs to this file schema.\"\"\"\n        if row.headers != self.headers:\n            msg = \"CSV row headers must match the file headers.\"\n            raise ValueError(msg)\n",
+            "sha256": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255"
+          },
+          "diff": {
+            "text": "--- a/src/devtools/resources/filesystem/models/csv.py\n+++ b/src/devtools/resources/filesystem/models/csv.py\n@@ -82,6 +82,10 @@\n         object.__setattr__(self, \"headers\", tuple(self.headers))\n         object.__setattr__(self, \"cells\", tuple(self.cells))\n \n+        if len(set(self.headers)) != len(self.headers):\n+            msg = \"CSV row headers must be unique.\"\n+            raise ValueError(msg)\n+\n         if len(self.headers) != len(self.cells):\n             msg = \"CSV row values must match the number of headers.\"\n             raise ValueError(msg)\n",
+            "sha256": "385da31f1b570482b187d89c5c63f6b8474fd68d45fda197b6c17b6b31ca9b04"
+          },
+          "public-checks": [
+            [
+              {
+                "name": "public",
+                "argv": [
+                  "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+                  "-I",
+                  "-B",
+                  "-X",
+                  "utf8",
+                  "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0052\\worker\\public.py"
+                ],
+                "exit_code": 0,
+                "outcome": "succeeded",
+                "seconds": 57.339739,
+                "passed": true,
+                "inputs_current": true,
+                "stdout": "......................................................                   [100%]\r\n54 passed in 56.66s\r\n",
+                "stderr": "",
+                "stdout_truncated": false,
+                "stderr_truncated": false,
+                "events_dropped": 0
+              }
+            ]
+          ],
+          "acceptance": {
+            "passed": true,
+            "exit_code": 0,
+            "seconds": 0.138847,
+            "inputs_current": true
+          },
+          "custody": {
+            "restored": true,
+            "checkout_released": true,
+            "release": "a0ca0fd2371453f93b83226d6cda5664a605ea0602e7e02426950a78b8e67b43",
+            "reconciliation_required": false
+          },
+          "effects": [
+            {
+              "kind": "tool",
+              "native_call_ids": [
+                "ZjOlQP5SKvVwW6xMy1noSpm9R9ETaUIL"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            },
+            {
+              "kind": "tool",
+              "native_call_ids": [
+                "6zH5faVOg1EKraapt09oznmloWht8Js6"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            },
+            {
+              "kind": "edit",
+              "native_call_ids": [
+                "V7EfYDpdtyCzbs7GvJkFYtY2maMjI3Vo"
+              ],
+              "acknowledged": true,
+              "check_name": null
+            },
+            {
+              "kind": "check",
+              "native_call_ids": [],
+              "acknowledged": true,
+              "check_name": "public"
+            }
+          ],
+          "information": {
+            "readiness": [
+              {
+                "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+                "repository": "e67b3dde-8837-4de7-b009-b8eaf101c382",
+                "ready": true,
+                "unresolved": [],
+                "evidence": [
+                  "8a04538200908391e95a99a81f9653cd430461be2aba1437bbfe8339abd09d9a",
+                  "af015fdbbe48449a4170fd86ca0ab75c3b65d9337fc4da0f7343f4433acdf22a"
+                ],
+                "scope": "Information availability only; supplied frame is not claimed exhaustive"
+              }
+            ],
+            "disclosures": [
+              {
+                "identity": "8a04538200908391e95a99a81f9653cd430461be2aba1437bbfe8339abd09d9a",
+                "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+                "path": "src/devtools/resources/filesystem/models/csv.py",
+                "content_identity": "826099dbbc06176b100ea2856c69cb9dca2c81a278d005432c104536ff2aa4ba",
+                "span": [
+                  0,
+                  10653
+                ]
+              },
+              {
+                "identity": "af015fdbbe48449a4170fd86ca0ab75c3b65d9337fc4da0f7343f4433acdf22a",
+                "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+                "path": "tests/resources/filesystem/models/csv/test_row.py",
+                "content_identity": "8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b",
+                "span": [
+                  0,
+                  2257
+                ]
+              },
+              {
+                "identity": "eb27b5276380336484f4cbb4eb01362f8b0bb41565b1ae7bff7d982e45b237cb",
+                "snapshot": "24b9d3293880c49d7185fdf9397de416784f9094388c0549d2d2b039b3781340",
+                "path": "src/devtools/resources/filesystem/models/csv.py",
+                "content_identity": "487fb9a19be2b7d7a4c617b0491f96a8a79c0ee4db26c3c43c423a355931f138",
+                "span": [
+                  0,
+                  10796
+                ]
+              }
+            ]
+          },
+          "limits": {
+            "environment": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee",
+            "private_acceptance": "Outcome only; private implementation, controls and diagnostics withheld",
+            "independence": "Host attestation, not proof from model labels or content hashes",
+            "current_source": "Working source is restored baseline; candidate is archived, never installed for review"
+          }
+        },
+        "references": {
+          "task": "7002fd80cfbc8febc6f8bad3e97d00e80d33dff16beaafdc8297809a9a21821b",
+          "scope": "2b30aa2ada430a60a6b30b4c0068730937d44ef00db354cb96fd2bf0bbe14677",
+          "baseline": "af5f42951080d42c7ff55aa84963d7a57d61c4be5f833821b07019a3d9c2c68d",
+          "candidate": "6280e743b0eff70dec7c2adac552d88a0dca57bbb5023c7d3894c0e0d2958120",
+          "diff": "3fb6936eb1c48acf284c5d66ce90925211d9794a4c212143673de9546e76209c",
+          "public-checks": "4f8bda67b2af05eef407d6bb5d9b6ff79421cf6cbc48a78f47519f84f0c0bb35",
+          "acceptance": "9e749ff8a3a0ebf5a7db967c17fd12d6273aa1ed5f0d554bec37f72df23ad5a3",
+          "custody": "277df3cd5f0aa03d7e1572e3dbe7097418899ddf41551458754ae1e9ab5b7baf",
+          "effects": "27ea80f9e56da4d775046865d9622a0fed648765e63b461f73b765393a99db61",
+          "information": "1eaba4f44717d553291d822cd349f73735248ecb19e72ade034df4afcb218673",
+          "limits": "5fd1ebf50e7681df845a049730a160d6774a7338eea8de3a25c914e1f1cbdb63"
+        }
+      },
+      "policy": {
+        "actor": "qwen38-csv-row-independent-reviewer-20261102",
+        "source": "llama.cpp/qwen38-local/csv-row-reviewer-fresh-20261102",
+        "profile": "qwen38-native64-independent-review-defaults-v1",
+        "independence": {
+          "reference": "Trusted host provisions a new stateless LlamaCppInteraction. NativeReviewer constructs only authenticated task/candidate/evidence messages; no coder conversation, implementation reasoning, private oracle or reference patch. Same weights provide no model diversity.",
+          "session": "csv-B0052-fresh-review-20261102",
+          "implementation_participant": false,
+          "privileged_reference_access": false
+        },
+        "read_paths": [
+          "src/devtools/resources/filesystem/codecs/csv.py",
+          "src/devtools/resources/filesystem/models/csv.py",
+          "src/devtools/resources/filesystem/models/text.py",
+          "tests/live_native_csv_row_public.py",
+          "tests/resources/filesystem/codecs/test_csv.py",
+          "tests/resources/filesystem/models/csv/test_dialect.py",
+          "tests/resources/filesystem/models/csv/test_file.py",
+          "tests/resources/filesystem/models/csv/test_row.py"
+        ],
+        "settings": {
+          "maximum_output_tokens": 2048,
+          "thinking_enabled": false
+        },
+        "budgets": {
+          "model_calls": 4,
+          "reads": 3,
+          "call_seconds": 120,
+          "wall_seconds": 480,
+          "prompt_bytes": 131072,
+          "response_bytes": 65536,
+          "capture_bytes": 983040
+        }
+      },
+      "scope": "native-independent-review-v1; read-only; proposal-only; no-check-edit-install-publish-closeout",
+      "tools": [
+        {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+        }
+      ],
+      "sha256": "d4888159c0b34d4afa0abbef8b48513d6c94985a6c9af0ace3206fd5d48012da"
+    },
+    "grant": {
+      "subject_sha256": "d4888159c0b34d4afa0abbef8b48513d6c94985a6c9af0ace3206fd5d48012da",
+      "principal": "recoveryadmin",
+      "expires_at": "2026-11-02T18:24:55.595873+00:00",
+      "scope": "native-independent-review-v1; read-only; proposal-only; no-check-edit-install-publish-closeout"
+    }
+  },
+  "assessment": {
+    "reference": "Fresh read-only independent acceptance review of the exact qualified B-0052 candidate; existing eligibility/closed conclusion/host disposition remain mandatory.",
+    "architecture": false,
+    "security": false,
+    "destructive": false,
+    "secrets": false,
+    "paid": false,
+    "service_change": false,
+    "validation_relaxation": false
+  },
+  "provider": {
+    "configuration": {
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "qwen38-local",
+      "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "context_tokens": 65536
+    },
+    "healthy": true,
+    "idle": true
+  },
+  "at": "2026-11-02T17:24:57.312097+00:00",
+  "expires_at": "2026-11-02T18:24:55.595873+00:00",
+  "sha256": "5b98530b2cd4fca0e3b7390432ea2946cb8633298f6707a9b019db38365c6293"
+}

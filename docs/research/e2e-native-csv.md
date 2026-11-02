@@ -40,3 +40,14 @@ No production executable change, live inference, candidate acceptance, reviewer
 dispatch, integration, installation or closeout is claimed by this preparation.
 Coding and reviewer authority remain separate exact-subject decisions. The
 persistent 64K service and independent Inspector worktree must remain unchanged.
+
+## Executed under standing authority
+
+The [actual episode and authority delivery](routine-authority-and-b0052.md)
+preserve the later genuine operator activation and fresh policy-derived grants.
+Qwen independently authored one admitted repair in three real calls; all 54
+public checks and frozen private acceptance passed. Source/Checkout were restored.
+A separate actual reviewer call requested two reads in one response. The existing
+one-Tool-per-response gate refused that batch before any reads, leaving a blocked
+proposal with no conclusion. No host acceptance, integration plan or installation
+was substituted. These later observations do not alter the preparation above.

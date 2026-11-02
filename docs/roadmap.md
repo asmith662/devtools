@@ -1,5 +1,14 @@
 # Roadmap
 
+Delivered [standing routine authority and the actual B-0052 episode](research/routine-authority-and-b0052.md).
+One genuine operator activation now supplies bounded exact-task grants without
+per-step prompts. Qwen independently produced a CSV-row candidate passing all
+54 public checks and frozen private acceptance. Acceptance review was blocked
+when its first response batched two reads against the existing one-read shape;
+no conclusion, host acceptance, plan or installation followed. Next is bounded
+acceptance-review batch feedback/continuation, not another coding sample or a
+new authority/Agent architecture. Existing historical slots stay consumed.
+
 The operator has requested [standing routine-development authority](development/routine-development-authority.md)
 to replace repeated routine prompts with authenticated policy-derived task grants.
 B-0052's unchanged approved CSV-row preparation remains the next bounded live

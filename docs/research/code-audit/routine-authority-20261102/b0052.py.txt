@@ -1,0 +1,61 @@
+"""One policy-authorized B-0052 operation using the already delivered owners."""
+import asyncio,hashlib,importlib.util,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/routine-development';E=R/'.local/e2e-native';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from scripts.backlog.work import WorkCycle
+spec=importlib.util.spec_from_file_location('existing_native_host_support',E/'coder.py');base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
+def read(p):return json.loads(p.read_bytes())
+def save(name,v):write(TextFile(resolve_path(O/name),json.dumps(v,indent=2,default=str)+'\n'),overwrite=False)
+def assessment(reference):return {'reference':reference,**dict.fromkeys(('architecture','security','destructive','secrets','paid','service_change','validation_relaxation'),False)}
+async def qualification(policy):
+ state=await base.runtime()
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+ assert r.exit_code==0;v=json.loads(r.stdout)[0];old=read(E/'current-service.json')
+ assert v['Id']==old['container_id'] and v['Image']==old['image'] and v['Config']['Cmd']==old['command'] and v['Mounts']==old['mounts']
+ assert v['Image'].removeprefix('sha256:')==policy['provider']['image'] and state['context_tokens']==policy['provider']['context_tokens']
+ return {'configuration':policy['provider'],'healthy':True,'idle':True}
+async def main():
+ gate=read(O/'final-protected.json');assert gate['status']=='passed' and gate['inputs_unchanged']
+ c=WorkCycle(R);await c._coordinator();active=c.routine.active();identity=active['sha256'];policy=active['policy']
+ item=read(E/'intake-result.json')['item'];assert item=='B-0052';a=c.native.record(item,'assignment');f=read(E/'frozen.json')
+ assert a['task']==read(E/'task.json') and hashlib.sha256((R/a['task']['source']).read_bytes()).hexdigest()==f['inputs'][f['source']]
+ public=R/f['public_path'];data=(E/'public.py.txt').read_bytes();assert hashlib.sha256(data).hexdigest()==f['public_sha256']
+ if public.exists():assert public.read_bytes()==data
+ else:write(BinaryFile(resolve_path(public),data),overwrite=False)
+ mode=sys.argv[1];timer=Stopwatch()
+ if mode=='--coding':
+  assert not (c._folder(item)/'dispatch.json').exists()
+  provider=await qualification(policy)
+  grant=await c.routine.authorize_native(identity,item,assessment=assessment('Codex inspected frozen B-0052, exact CSV owner, real lookup/mapping defect and unchanged acceptance; one-file API repair without exceptional effects.'),provider=provider)
+  save('b0052-coding-grant.json',grant)
+  support=base.Support('routine-coder');interaction=base.Actual(a['task']['worker']['source'],support)
+  result=await base.monitored(c.native.execute(item,interaction=interaction,profile=a['task']['worker']['profile'],authorize=c.routine.callback(grant['reference']),measure_input=interaction.measure,provider_context_tokens=provider['configuration']['context_tokens']),support)
+  save('b0052-coding-outcome.json',{'at':str(Timestamp.now()),'seconds':timer.elapsed.total_seconds,'result':result['sha256'],'disposition':result['disposition'],'candidate_sha256':result['candidate_sha256'],'adapter_entries':support.entries,'returned_interactions':support.returned,'adapter_seconds':support.seconds,'support_bytes':support.used,'policy':identity,'grant':grant['sha256']})
+  print(json.dumps(read(O/'b0052-coding-outcome.json'),indent=2));return
+ if mode=='--review':
+  result=c.native.record(item,'result');assert result['disposition']=='REVIEW_CANDIDATE'
+  provider=await qualification(policy);owner=c.native.reviewer
+  config={'actor':'qwen38-csv-row-independent-reviewer-20261102','source':'llama.cpp/qwen38-local/csv-row-reviewer-fresh-20261102','profile':'qwen38-native64-independent-review-defaults-v1','independence':{'reference':'Trusted host provisions a new stateless LlamaCppInteraction. NativeReviewer constructs only authenticated task/candidate/evidence messages; no coder conversation, implementation reasoning, private oracle or reference patch. Same weights provide no model diversity.','session':'csv-B0052-fresh-review-20261102','implementation_participant':False,'privileged_reference_access':False},'read_paths':sorted(a['inputs']),'settings':{'maximum_output_tokens':2048,'thinking_enabled':False},'budgets':dict(policy['review'])}
+  packet=await owner.prepare(item,reviewer=config)
+  grant=await c.routine.authorize_reviewer(identity,item,assessment=assessment('Fresh read-only independent acceptance review of the exact qualified B-0052 candidate; existing eligibility/closed conclusion/host disposition remain mandatory.'),provider=provider)
+  save('b0052-review-grant.json',grant)
+  support=base.Support('routine-reviewer');interaction=base.Actual(config['source'],support,review=True)
+  proposal=await base.monitored(owner.execute(item,interaction=interaction,profile=config['profile'],authorize=c.routine.callback(grant['reference'])),support)
+  save('b0052-review-outcome.json',{'at':str(Timestamp.now()),'seconds':timer.elapsed.total_seconds,'subject':packet['sha256'],'proposal':proposal,'adapter_entries':support.entries,'returned_interactions':support.returned,'adapter_seconds':support.seconds,'support_bytes':support.used,'policy':identity})
+  print(json.dumps({'status':proposal['status'],'conclusion':proposal['conclusion'],'error':proposal['error'],'seconds':timer.elapsed.total_seconds},indent=2));return
+ if mode=='--host-plan':
+  host=read(O/'b0052-host-assessment.json');proposal=c.native.reviewer.record(item,'proposal')
+  assert host['proposal_sha256']==proposal['sha256'] and host['candidate_sha256']==c.native.record(item,'result')['candidate_sha256']
+  review=await c.routine.host_review(identity,item,proposal=proposal['sha256'],accept=host['accept'],rationale=host['rationale'],assessment=assessment('Actual independent Codex host inspection of source, exact native evidence and attributed review findings; no approval inferred from model JSON.'))
+  save('b0052-host-review.json',review)
+  if host['accept']:
+   plan=await c.routine.plan(identity,item,review['sha256'],{'remote':'origin','destination':'main','feature':'feat/integrate-csv-b0052-reviewed','checkout':str(R),'additions':[],'parent_complete':False,'remaining':['Separate governed installation authority','Permanent maintained regressions and final protected validation before executable publication','Backlog closeout remains separately governed'],'rationale':'Exact Qwen-authored CSV candidate qualified by frozen public/private checks and independently reviewed; plan only, no installation.','validation_seconds':1800},assessment=assessment('Read-only plan for an authenticated accepted candidate against current synchronized main; no integration execution or publication authority.'))
+   save('b0052-integration-plan.json',plan)
+   print(json.dumps({'review':review['sha256'],'plan':plan['sha256'],'installation':False}));return
+  print(json.dumps({'review':review['sha256'],'accepted':False}));return
+ raise ValueError('One explicit bounded operation required')
+asyncio.run(main())

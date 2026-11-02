@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-02T17:31:34.061128+00:00",
+  "candidate_sha256": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "technical_assessment": "Four added lines check exact duplicate headers after iterable freezing and before row use. Case/space/Unicode identity, valid blank/empty rows, width checks, string cells, frozen storage and existing codecs remain intact. The frozen public and independent private checks support this bounded repair. No host reference implementation or patch was supplied.",
+  "review_workflow_completion": false,
+  "review_correctness": "Not measured: content was empty and no structured conclusion was produced.",
+  "review_utility": "The two proposed public-test reads were relevant, but the batch was refused before either read.",
+  "boundary": "Two calls in one response violated batch shape, not the total three-acquisition allowance. Model returned normally; no Context, provider or output-limit failure was observed.",
+  "host_disposition": "Acceptance withheld; actual blocked proposal cannot be admitted. No substitute manual native review or integration plan was created.",
+  "next_increment": "Make acceptance-review read-batch limits explicit and recoverable through the existing reviewer/Tool correlation owner, within the originally approved calls/reads. Preserve this consumed attempt; do not retry it as if unused."
+}

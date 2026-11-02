@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-02T17:22:33.393743+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/csv-row-coder-20261102"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 1916,
+      "output_tokens": 44,
+      "total_tokens": 1960,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/csv.py\",\"start\":0}",
+        "provider_call_id": "ZjOlQP5SKvVwW6xMy1noSpm9R9ETaUIL"
+      }
+    ]
+  },
+  "sha256": "aa696dc4d746c06c8830f49ae046cc13c4e7e25809ba057b1423966591e71e5a"
+}

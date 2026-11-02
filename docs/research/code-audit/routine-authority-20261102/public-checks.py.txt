@@ -1,0 +1,30 @@
+"""Prospective public acceptance: standalone rows cannot have ambiguous keys."""
+import pytest
+from devtools.resources.filesystem import CsvRow
+
+@pytest.mark.parametrize("headers,cells", [
+    (("id", "id"), ("first", "last")),
+    (("id", "state", "id"), ("a", "ok", "b")),
+    (("id", "id"), ("same", "same")),
+])
+def test_duplicate_header_identity_is_refused(headers, cells):
+    with pytest.raises(ValueError):
+        CsvRow(headers, cells)
+
+def test_valid_exact_names_and_order_are_preserved():
+    headers = ["id", "ID", " id"]
+    cells = ["001", "", "3"]
+    row = CsvRow(headers, cells)
+    headers[0] = "changed"
+    cells[0] = "changed"
+    assert row.headers == ("id", "ID", " id")
+    assert tuple(row) == ("001", "", "3")
+    assert row.items() == tuple(zip(row.headers, row.cells))
+    assert all(row[name] == row.get(name) == row.as_dict()[name] for name in row.headers)
+    assert row[-1] == "3" and row[:2] == ("001", "")
+
+def test_existing_width_and_cell_type_refusals_remain():
+    with pytest.raises(ValueError):
+        CsvRow(("id",), ("one", "two"))
+    with pytest.raises(ValueError):
+        CsvRow(("id",), (1,))

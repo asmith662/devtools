@@ -1,0 +1,288 @@
+{
+  "schema": "backlog-native-result-v1",
+  "item": "B-0052",
+  "assignment_sha256": "7489f593e0b23b4a8b118201394d738f62febf3f606d2efec83d7a5e394b33ef",
+  "authorization_sha256": "47f3430f54c80baca501c84649cd2ed15b80679df7b01286a99a95aa1a0ada1b",
+  "worker": {
+    "actor": "qwen38-csv-row-coder-20261102",
+    "source": "llama.cpp/qwen38-local/csv-row-coder-20261102",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  },
+  "disposition": "REVIEW_CANDIDATE",
+  "candidate_sha256": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "execution_error": null,
+  "seconds": 121.89576,
+  "facts": {
+    "coding_disposition": "validated",
+    "coding_accepted": true,
+    "completed": true,
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "ZjOlQP5SKvVwW6xMy1noSpm9R9ETaUIL"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "6zH5faVOg1EKraapt09oznmloWht8Js6"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "V7EfYDpdtyCzbs7GvJkFYtY2maMjI3Vo"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      }
+    ],
+    "model_calls": 3,
+    "usage": [
+      {
+        "input_tokens": 1916,
+        "output_tokens": 44,
+        "total_tokens": 1960,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 5171,
+        "output_tokens": 67,
+        "total_tokens": 5238,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 6297,
+        "output_tokens": 243,
+        "total_tokens": 6540,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "completion_error": null,
+    "proposals": 1,
+    "acquisitions": 2,
+    "checks": [
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0052\\worker\\public.py"
+          ],
+          "exit_code": 0,
+          "outcome": "succeeded",
+          "seconds": 57.339739,
+          "passed": true,
+          "inputs_current": true,
+          "stdout": "......................................................                   [100%]\r\n54 passed in 56.66s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ]
+    ],
+    "acceptance": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0052\\worker\\withheld.py"
+      ],
+      "exit_code": 0,
+      "outcome": "succeeded",
+      "seconds": 0.138847,
+      "passed": true,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "acceptance_error": null,
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "a103534482d3713188a750cba0174cefc76a9e80fa7cb1b549df2633e2fd8f1e"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "ed030bbaae3ef9f97b9016bde54c700bdc2e5fb8ba535fc94eab854dc5bafdf1"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "77a7d231da90076df5f1f17d58915bea98e8fb1d70f04efd32b7399fa2407331"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "2cc2e870a0434f604608452aabe321f06179395683b044d192d7b80e015ba466"
+      },
+      {
+        "file": "observation-0004.json",
+        "sha256": "aa696dc4d746c06c8830f49ae046cc13c4e7e25809ba057b1423966591e71e5a"
+      },
+      {
+        "file": "observation-0005.json",
+        "sha256": "442b16baf1736c1a7dd226f11924687358d59f020e5c4ad068cce5dbbaa9f8bd"
+      },
+      {
+        "file": "observation-0006.json",
+        "sha256": "580b80bebb943c1b66dd28cd8c4cb724ece19f6ab77fafd748d42a8254d93204"
+      },
+      {
+        "file": "observation-0007.json",
+        "sha256": "26301da1fcb6e67274febe4d70a3928980eff7f57424b96b3d16ea3e68ae10ca"
+      },
+      {
+        "file": "observation-0008.json",
+        "sha256": "76d111e7be14f666ec5cb909098492b440656d275b9e4dd706683171078d2c84"
+      },
+      {
+        "file": "observation-0009.json",
+        "sha256": "cb0bdf37ee1af1be098508ea7994b7e5b9fee71b4852150cc8965c234b3220b1"
+      },
+      {
+        "file": "observation-0010.json",
+        "sha256": "6dadeb0fd65ce56fc6151414514e2ed7a997b647246ed79dd82916c1c99ff1bc"
+      },
+      {
+        "file": "observation-0011.json",
+        "sha256": "fa5de5f2bf1d7e9a2f9e5131486fe6c96ebdce10eb30e2a2b070512d9c887883"
+      },
+      {
+        "file": "observation-0012.json",
+        "sha256": "92416b119f45392b89bac6312c3125141bdc8a5fb438d73bb3e438cbb7e659b5"
+      },
+      {
+        "file": "observation-0013.json",
+        "sha256": "2716a954ea570711c1e1ee25344124e81eacf45eabdf0bfbb32f69383fdd9871"
+      },
+      {
+        "file": "observation-0014.json",
+        "sha256": "3fa701ecad97dfeb2cb82ec12d91d30667bd77b5836a7b873035555724b0e49e"
+      },
+      {
+        "file": "observation-0015.json",
+        "sha256": "d7d0b83dde06d9eaf223cb019f57ea9e594601084b79cad1fb420a10aea00aa5"
+      },
+      {
+        "file": "observation-0016.json",
+        "sha256": "f856a81029c1022300a668857ee7c8be2c91fdeb1c1f914c4ded7cd860269dcd"
+      },
+      {
+        "file": "observation-0017.json",
+        "sha256": "9457fc1250d6f8546f6f138ac9c1c9a3798bb8e94c05f1d904a767a9a2476efc"
+      },
+      {
+        "file": "observation-0018.json",
+        "sha256": "35c005c4b91f773daf2f8507d281b1d1ed7b3512e8564038603973b79fbc5d04"
+      },
+      {
+        "file": "observation-0019.json",
+        "sha256": "0de9a309ef323fcb28bd34a7fb1dbcb1ecc05c4961b333a43807dac22bf0dccd"
+      },
+      {
+        "file": "observation-0020.json",
+        "sha256": "38df6789b52904a9dd7737d17ea6d5616ce9b5aae26933eb4f729c9518f027e0"
+      },
+      {
+        "file": "observation-0021.json",
+        "sha256": "89e5039ed6ad94f98d2ef5801c895009f85eec1e1064d447af3bb8dcba75cb35"
+      },
+      {
+        "file": "observation-0022.json",
+        "sha256": "e1ac1f37f2092c96e46ab5f9fb48894d567f5a04b1e7632c52a3e44ba64c74f8"
+      }
+    ],
+    "readiness": [
+      {
+        "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+        "repository": "e67b3dde-8837-4de7-b009-b8eaf101c382",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "8a04538200908391e95a99a81f9653cd430461be2aba1437bbfe8339abd09d9a",
+          "af015fdbbe48449a4170fd86ca0ab75c3b65d9337fc4da0f7343f4433acdf22a"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      }
+    ],
+    "initial_context": {
+      "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+      "repository": "e67b3dde-8837-4de7-b009-b8eaf101c382",
+      "ready": false,
+      "unresolved": [
+        "current-owner"
+      ],
+      "evidence": [],
+      "scope": "Information availability only; supplied frame is not claimed exhaustive"
+    },
+    "disclosures": [
+      {
+        "identity": "8a04538200908391e95a99a81f9653cd430461be2aba1437bbfe8339abd09d9a",
+        "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+        "path": "src/devtools/resources/filesystem/models/csv.py",
+        "content_identity": "826099dbbc06176b100ea2856c69cb9dca2c81a278d005432c104536ff2aa4ba",
+        "span": [
+          0,
+          10653
+        ]
+      },
+      {
+        "identity": "af015fdbbe48449a4170fd86ca0ab75c3b65d9337fc4da0f7343f4433acdf22a",
+        "snapshot": "c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4",
+        "path": "tests/resources/filesystem/models/csv/test_row.py",
+        "content_identity": "8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b",
+        "span": [
+          0,
+          2257
+        ]
+      },
+      {
+        "identity": "eb27b5276380336484f4cbb4eb01362f8b0bb41565b1ae7bff7d982e45b237cb",
+        "snapshot": "24b9d3293880c49d7185fdf9397de416784f9094388c0549d2d2b039b3781340",
+        "path": "src/devtools/resources/filesystem/models/csv.py",
+        "content_identity": "487fb9a19be2b7d7a4c617b0491f96a8a79c0ee4db26c3c43c423a355931f138",
+        "span": [
+          0,
+          10796
+        ]
+      }
+    ],
+    "environment_qualification": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee"
+  },
+  "integration_authorized": false,
+  "execution_sha256": "c28513b41ebee50cc54c155b745b399700dc73abcf1af906fc6e3a5cca50210d",
+  "checkout_released": true,
+  "checkout_release": "a0ca0fd2371453f93b83226d6cda5664a605ea0602e7e02426950a78b8e67b43",
+  "sha256": "f1971ed020430afcf064e88f9cacb193ce1f0a900233759ac78aa66788d2eed2"
+}

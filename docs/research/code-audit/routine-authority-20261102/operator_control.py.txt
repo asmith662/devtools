@@ -1,0 +1,35 @@
+"""Actual operator activation, separate from policy implementation and task grants."""
+import asyncio,getpass,hashlib,json,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/routine-development';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.intake import _digest
+def read(n):return json.loads((O/n).read_bytes())
+def save(n,v):write(TextFile(resolve_path(O/n),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def scope(v):return {**v,'control':{k:x for k,x in v['control'].items() if k!='at'}}
+async def main():
+ c=WorkCycle(R);p=read('operator-policy.json')
+ options={'policy':p,'reference':'actual-human-standing-routine-development-20261102'}
+ if sys.argv[1:]==['--preview']:
+  def preview(v):save('activation-preview.json',{'scope':scope(v),'scope_sha256':_digest(scope(v)),'policy_sha256':_digest(p)});return False
+  try:await c.routine.control('activate',**options,authorize=preview)
+  except PermissionError as e:assert str(e)=='Explicit operator policy decision required'
+  v=read('activation-preview.json');print(json.dumps({'scope_sha256':v['scope_sha256'],'policy_sha256':v['policy_sha256'],'activation_recorded':False,'standing_expiry':None}));return
+ gate=read('final-protected.json')
+ assert gate['status']=='passed' and gate['inputs_unchanged']
+ from scripts.validation.evidence import inputs
+ current=await asyncio.to_thread(inputs,R)
+ assert current['head']==gate['inputs']['head'] and current['sha256']==gate['inputs']['sha256']
+ for key in ('python','executable','platform','packages'):assert current[key]==gate['inputs'][key]
+ a=read('operator-activation-consent.json');v=read('activation-preview.json')
+ assert a['actual_user_response']=='+yes' and a['scope_sha256']==v['scope_sha256'] and a['principal']==getpass.getuser()
+ # No timeout turns silence into consent. This recorded explicit decision has
+ # no inactivity expiry and only applies to this unchanged policy/control scope.
+ def allowed(request):return a['actual_user_response']=='+yes' and _digest(scope(request))==a['scope_sha256']
+ record=await c.routine.control('activate',**options,authorize=allowed)
+ save('activation-result.json',{'at':str(Timestamp.now()),'control':record,'actual_consent':a})
+ print(json.dumps({'active_policy_version':record['sha256'],'expires_at':None}))
+asyncio.run(main())

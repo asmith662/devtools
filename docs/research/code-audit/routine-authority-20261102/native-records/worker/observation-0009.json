@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-02T17:22:41.305549+00:00",
+  "response": {
+    "content": "I have the full current owner source. Let me check the test expectations for row behavior to ground the change.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/csv-row-coder-20261102"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 5171,
+      "output_tokens": 67,
+      "total_tokens": 5238,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/resources/filesystem/models/csv/test_row.py\",\"start\":0}",
+        "provider_call_id": "6zH5faVOg1EKraapt09oznmloWht8Js6"
+      }
+    ]
+  },
+  "sha256": "cb0bdf37ee1af1be098508ea7994b7e5b9fee71b4852150cc8965c234b3220b1"
+}

@@ -1,0 +1,61 @@
+"""Archive authentic policy and one live episode; never promote a blocked review."""
+import hashlib,json,re,sys
+from pathlib import Path
+R=Path.cwd();O=R/'.local/routine-development';E=R/'.local/e2e-native';D=R/'docs/research/code-audit/routine-authority-20261102';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git
+def read(p):return json.loads(p.read_bytes())
+def save(p,v):
+ p.parent.mkdir(parents=True,exist_ok=True)
+ if p.exists():
+  old=read(p);assert {k:x for k,x in old.items() if k!='at'}=={k:x for k,x in v.items() if k!='at'},p
+  return
+ write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def copy(a,b):
+ b.parent.mkdir(parents=True,exist_ok=True)
+ if b.exists():
+  if a.suffix=='.json':assert read(a)==read(b),(a,b)
+  else:assert a.read_bytes()==b.read_bytes(),(a,b)
+  return
+ write(BinaryFile(resolve_path(b),a.read_bytes()),overwrite=False)
+c=WorkCycle(R);item='B-0052';folder=c._folder(item);a=c.native.record(item,'assignment');result=c.native.record(item,'result');facts=result['facts'];proposal=c.native.reviewer.record(item,'proposal')
+assert result['disposition']=='REVIEW_CANDIDATE' and facts['acceptance']['passed'] and facts['restored'] and result['checkout_released']
+assert proposal['status']=='blocked' and proposal['conclusion'] is None and proposal['model_calls']==1 and proposal['reads']==0
+try:c.native.reviewer.admit(item,proposal['sha256'],proposal['actor'],accept=True)
+except PermissionError as e:refusal=str(e)
+else:raise AssertionError('Blocked review unexpectedly admitted')
+active=c.routine.active();assert active['sha256']==read(O/'activation-result.json')['control']['sha256']
+f=read(E/'frozen.json');assert a['task']==read(E/'task.json') and all(hashlib.sha256((R/p).read_bytes()).hexdigest()==h for p,h in f['inputs'].items())
+source=(folder/'worker/final-source.py').read_bytes().decode('utf-8');patch=(folder/'candidate.patch').read_bytes().decode('utf-8')
+assert hashlib.sha256(source.encode()).hexdigest()==result['candidate_sha256']
+save(D/'candidate.json',{'candidate_sha256':result['candidate_sha256'],'source_text':source,'patch_sha256':hashlib.sha256(patch.encode()).hexdigest(),'native_patch_text':patch,'installed':False,'author':a['task']['worker']})
+frames=[read(p) for p in sorted((folder/'worker').glob('observation-*.json'))]
+review_frames=[read(p) for p in sorted(c.native.reviewer.folder(item).glob('observation-*.json'))]
+def calls(rows,kind):
+ return [{'name':call['name'],'id':call['provider_call_id'],'arguments':json.loads(call['arguments_json'])} for v in rows if v['kind']==kind for call in v['response'].get('tool_calls',[])]
+worker_calls=calls(frames,'model-returned');review_calls=calls(review_frames,'review-model-returned');assert len(review_calls)==2 and all(x['name']=='read_source' for x in review_calls)
+usage=facts['usage'];review_usage=[v['response']['usage'] for v in review_frames if v['kind']=='review-model-returned']
+pressures=[v for v in frames if v['kind']=='context-pressure']
+public=[v for group in facts['checks'] for v in group];gate=read(O/'final-protected.json')
+stdout=(O/'final-protected.json.stdout').read_bytes().decode();summary=re.findall(r'(\d+) passed, (\d+) skipped',stdout);assert len(summary)==1 and 'Required test coverage of 100% reached' in stdout
+metrics={'at':str(Timestamp.now()),'policy_version':active['sha256'],'task':item,'assignment_sha256':a['sha256'],'result_sha256':result['sha256'],'candidate_sha256':result['candidate_sha256'],'review_proposal_sha256':proposal['sha256'],'coding':{'calls_entered':read(O/'b0052-coding-outcome.json')['adapter_entries'],'calls_completed':facts['model_calls'],'input_tokens':sum(v['input_tokens'] for v in usage),'output_tokens':sum(v['output_tokens'] for v in usage),'proposals':facts['proposals'],'acquisitions':facts['acquisitions'],'selected_tools':worker_calls,'seconds':read(O/'b0052-coding-outcome.json')['seconds'],'adapter_seconds':read(O/'b0052-coding-outcome.json')['adapter_seconds'],'public':public,'private':facts['acceptance'],'max_request_bytes':max(v['request_bytes'] for v in pressures),'max_input_tokens':max(v['measured_input_tokens'] for v in pressures),'pressure_actions':[v['action'] for v in pressures],'capture_native_bytes':sum(p.stat().st_size for p in (folder/'worker').glob('observation-*.json')),'support_bytes':read(O/'b0052-coding-outcome.json')['support_bytes']},'review':{'calls_entered':read(O/'b0052-review-outcome.json')['adapter_entries'],'calls_completed':proposal['model_calls'],'input_tokens':sum(v['input_tokens'] for v in review_usage),'output_tokens':sum(v['output_tokens'] for v in review_usage),'requested_reads':review_calls,'entered_reads':0,'total_read_allowance':3,'batch_allowance':1,'remaining_calls_when_blocked':3,'seconds':read(O/'b0052-review-outcome.json')['seconds'],'adapter_seconds':read(O/'b0052-review-outcome.json')['adapter_seconds'],'status':proposal['status'],'error':proposal['error'],'structured_conclusion':None,'model_findings':[],'host_acceptance_admission_refusal':refusal},'protected':{'runs':1,'passed':int(summary[0][0]),'skipped':int(summary[0][1]),'seconds':gate['seconds'],'executable_commit':gate['inputs']['head'],'coverage':'100% configured production line and branch','inputs_unchanged':gate['inputs_unchanged']},'governance':{'per_task_interactive_approvals_after_activation':0,'coding_candidate_installed':False,'host_review_acceptance_issued':False,'integration_plan_produced':False,'coding_and_review_dispatch_consumed':True,'old_expiring_prompt_reused':False,'frozen_acceptance_changed':False}}
+save(O/'episode.json',metrics);save(D/'episode.json',metrics)
+save(D/'host-evaluation.json',{'at':str(Timestamp.now()),'candidate_sha256':result['candidate_sha256'],'technical_assessment':'Four added lines check exact duplicate headers after iterable freezing and before row use. Case/space/Unicode identity, valid blank/empty rows, width checks, string cells, frozen storage and existing codecs remain intact. The frozen public and independent private checks support this bounded repair. No host reference implementation or patch was supplied.','review_workflow_completion':False,'review_correctness':'Not measured: content was empty and no structured conclusion was produced.','review_utility':'The two proposed public-test reads were relevant, but the batch was refused before either read.','boundary':'Two calls in one response violated batch shape, not the total three-acquisition allowance. Model returned normally; no Context, provider or output-limit failure was observed.','host_disposition':'Acceptance withheld; actual blocked proposal cannot be admitted. No substitute manual native review or integration plan was created.','next_increment':'Make acceptance-review read-batch limits explicit and recoverable through the existing reviewer/Tool correlation owner, within the originally approved calls/reads. Preserve this consumed attempt; do not retry it as if unused.'})
+for name in ('activation-result.json','operator-activation-consent.json','b0052-coding-grant.json','b0052-coding-outcome.json','b0052-review-grant.json','b0052-review-outcome.json','final-protected.json'):
+ copy(O/name,D/name)
+for stream in ('stdout','stderr'):copy(O/('final-protected.json.'+stream),D/('protected-pytest.'+stream+'.txt'))
+for p in folder.glob('*.json'):copy(p,D/'native-records'/p.name)
+for p in (folder/'worker').glob('observation-*.json'):copy(p,D/'native-records/worker'/p.name)
+for p in c.native.reviewer.folder(item).glob('*.json'):copy(p,D/'native-records/reviewer'/p.name)
+for p in (R/'.local/backlog/routine').glob('control-*.json'):copy(p,D/'policy-records'/p.name)
+for p in (R/'.local/backlog/routine/decisions').glob('*.json'):copy(p,D/'policy-records/decisions'/p.name)
+for p in (E/'support').rglob('*.json'):
+ if p.parent.name in ('routine-coder','routine-reviewer'):copy(p,D/'support'/p.parent.name/p.name)
+for name in ('b0052.py','operator_control.py','verify.py','close.py'):copy(O/name,D/(name+'.txt'))
+copy(E/'public.py.txt',D/'public-checks.py.txt')
+# Remove only this task's original prospective test, never unknown/user work.
+public_path=R/f['public_path'];assert resolve_path(public_path).value==public_path and hashlib.sha256(public_path.read_bytes()).hexdigest()==f['public_sha256'];public_path.unlink()
+print(json.dumps({'coding_calls':facts['model_calls'],'public_passed':all(v['passed'] for v in public),'private_passed':facts['acceptance']['passed'],'review_status':proposal['status'],'review_reads_requested':len(review_calls),'review_reads_entered':0,'no_integration_or_installation':True,'protected_passed':int(summary[0][0])},indent=2))

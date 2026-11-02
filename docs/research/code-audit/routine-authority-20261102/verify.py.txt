@@ -1,0 +1,42 @@
+"""Exact tested-input and historical preservation checks, never new test evidence."""
+import hashlib,json,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();O=R/'.local/routine-development';sys.path.insert(0,str(R))
+from scripts.validation.evidence import inputs,git
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+def read(p):return json.loads(p.read_bytes())
+gate=read(O/'final-protected.json');assert gate['status']=='passed' and gate['inputs_unchanged']
+if sys.argv[1:]==['--restore-materialization']:
+ rows=read(O/'tested-input-bytes-v2.json');restored=[]
+ for name,text in rows.items():
+  p=R/name;expected=text.encode();actual=p.read_bytes()
+  assert p.is_relative_to(R) and p.is_file()
+  if actual!=expected:
+   assert actual.replace(b'\r\n',b'\n')==expected.replace(b'\r\n',b'\n'),name
+   write(BinaryFile(resolve_path(p),expected));restored.append(name)
+ print(json.dumps({'restored_only_tested_line_ending_representations':restored}))
+now=inputs(R);assert now['sha256']==gate['inputs']['sha256']
+def blobs(s):return {x.split('\t',1)[1]:x.split()[1] for x in s.splitlines()}
+actual,tested=blobs(now['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(actual[p]==tested[p] for p in now['sha256'])
+for key in ('python','executable','platform','packages'):assert now[key]==gate['inputs'][key],key
+auth=read(R/'.local/e2e-native/authentication.json')
+for p,h in auth['preserved'].items():assert hashlib.sha256((R/p).read_bytes()).hexdigest()==h,p
+assert git(R,'branch','--show-current')=='main' and not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only')
+assert not (R/'.local/backlog/checkout-owner').exists()
+worktrees=git(R,'worktree','list','--porcelain');inspector=next(w for w in worktrees.split('\n\n') if w.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+result={'at':str(Timestamp.now()),'head':now['head'],'tested_executable_commit':gate['inputs']['head'],'matching_protected_inputs_and_blobs':len(now['sha256']),'runtime_and_packages_match':True,'environment_fingerprint_matches':now['environment_sha256']==gate['inputs']['environment_sha256'],'environment_qualification':'Separate tool invocations can differ in CODEX_TOOL_CALL_ID; global environment equivalence is not claimed.','historical_files_preserved':len(auth['preserved']),'inspector':inspector,'checkout_owner_absent':True}
+if sys.argv[1:]==['--published']:
+ remote=git(R,'ls-remote','origin','refs/heads/main').split()[0];assert remote==now['head'];result['remote_main']=remote
+ original=set(auth['untracked_at_initial_assignment'].split('\0'))-{''} if 'untracked_at_initial_assignment' in auth else None
+ # The underlying previous immutable authentication has the exact forensic set.
+ original=set(read(R/'.local/diagnostic-response/authentication.json')['untracked_at_initial_assignment'].split('\0'))-{''}
+ current=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert current==original and len(current)==13
+ result['forensic_files_preserved']=13
+ with urllib.request.urlopen('http://127.0.0.1:8080/health',timeout=10) as r:result['health']=json.loads(r.read(4096))
+ with urllib.request.urlopen('http://127.0.0.1:8080/slots',timeout=10) as r:slots=json.loads(r.read(65536))
+ assert result['health']=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536 and not slots[0]['is_processing']
+ result['actual_context_tokens']=65536
+ write(TextFile(resolve_path(O/'publication-verification.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+print(json.dumps(result,indent=2))

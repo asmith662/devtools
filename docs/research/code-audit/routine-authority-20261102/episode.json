@@ -1,0 +1,152 @@
+{
+  "at": "2026-11-02T17:31:34.037160+00:00",
+  "policy_version": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "task": "B-0052",
+  "assignment_sha256": "7489f593e0b23b4a8b118201394d738f62febf3f606d2efec83d7a5e394b33ef",
+  "result_sha256": "f1971ed020430afcf064e88f9cacb193ce1f0a900233759ac78aa66788d2eed2",
+  "candidate_sha256": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "review_proposal_sha256": "4e0b440d370b65187eb2d121cac6a542f888681bcb149be3b3ffb7fc36c4efca",
+  "coding": {
+    "calls_entered": 3,
+    "calls_completed": 3,
+    "input_tokens": 13384,
+    "output_tokens": 354,
+    "proposals": 1,
+    "acquisitions": 2,
+    "selected_tools": [
+      {
+        "name": "read_source",
+        "id": "ZjOlQP5SKvVwW6xMy1noSpm9R9ETaUIL",
+        "arguments": {
+          "path": "src/devtools/resources/filesystem/models/csv.py",
+          "start": 0
+        }
+      },
+      {
+        "name": "read_source",
+        "id": "6zH5faVOg1EKraapt09oznmloWht8Js6",
+        "arguments": {
+          "path": "tests/resources/filesystem/models/csv/test_row.py",
+          "start": 0
+        }
+      },
+      {
+        "name": "replace_source",
+        "id": "V7EfYDpdtyCzbs7GvJkFYtY2maMjI3Vo",
+        "arguments": {
+          "path": "src/devtools/resources/filesystem/models/csv.py",
+          "old_text": "        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"cells\", tuple(self.cells))\n\n        if len(self.headers) != len(self.cells):",
+          "new_text": "        object.__setattr__(self, \"headers\", tuple(self.headers))\n        object.__setattr__(self, \"cells\", tuple(self.cells))\n\n        if len(set(self.headers)) != len(self.headers):\n            msg = \"CSV row headers must be unique.\"\n            raise ValueError(msg)\n\n        if len(self.headers) != len(self.cells):"
+        }
+      }
+    ],
+    "seconds": 132.443632,
+    "adapter_seconds": 29.37811,
+    "public": [
+      {
+        "name": "public",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "-X",
+          "utf8",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0052\\worker\\public.py"
+        ],
+        "exit_code": 0,
+        "outcome": "succeeded",
+        "seconds": 57.339739,
+        "passed": true,
+        "inputs_current": true,
+        "stdout": "......................................................                   [100%]\r\n54 passed in 56.66s\r\n",
+        "stderr": "",
+        "stdout_truncated": false,
+        "stderr_truncated": false,
+        "events_dropped": 0
+      }
+    ],
+    "private": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0052\\worker\\withheld.py"
+      ],
+      "exit_code": 0,
+      "outcome": "succeeded",
+      "seconds": 0.138847,
+      "passed": true,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "max_request_bytes": 23400,
+    "max_input_tokens": 6297,
+    "pressure_actions": [
+      "ready",
+      "ready",
+      "ready"
+    ],
+    "capture_native_bytes": 92175,
+    "support_bytes": 4458
+  },
+  "review": {
+    "calls_entered": 1,
+    "calls_completed": 1,
+    "input_tokens": 10999,
+    "output_tokens": 86,
+    "requested_reads": [
+      {
+        "name": "read_source",
+        "id": "2oMe4Z7IdAlHB2pLN0FbzzXuzAAZ0Sjn",
+        "arguments": {
+          "path": "tests/resources/filesystem/models/csv/test_row.py",
+          "start": 0
+        }
+      },
+      {
+        "name": "read_source",
+        "id": "KJYudeCQJbEHAtqGW4IpDtQXaDzUtixJ",
+        "arguments": {
+          "path": "tests/live_native_csv_row_public.py",
+          "start": 0
+        }
+      }
+    ],
+    "entered_reads": 0,
+    "total_read_allowance": 3,
+    "batch_allowance": 1,
+    "remaining_calls_when_blocked": 3,
+    "seconds": 38.117056,
+    "adapter_seconds": 21.24212,
+    "status": "blocked",
+    "error": "PermissionError: Review permits one bounded read per response",
+    "structured_conclusion": null,
+    "model_findings": [],
+    "host_acceptance_admission_refusal": "Native review proposal/actor/subject mismatch"
+  },
+  "protected": {
+    "runs": 1,
+    "passed": 4186,
+    "skipped": 2,
+    "seconds": 2896.142947,
+    "executable_commit": "e371a71c93b5884fcf6bd4aa7ede6632a815c0a3",
+    "coverage": "100% configured production line and branch",
+    "inputs_unchanged": true
+  },
+  "governance": {
+    "per_task_interactive_approvals_after_activation": 0,
+    "coding_candidate_installed": false,
+    "host_review_acceptance_issued": false,
+    "integration_plan_produced": false,
+    "coding_and_review_dispatch_consumed": true,
+    "old_expiring_prompt_reused": false,
+    "frozen_acceptance_changed": false
+  }
+}

@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Actual standing-authority/B-0052 delivery](research/routine-authority-and-b0052.md)
+records genuine activation, policy-derived grants, a qualified real coding
+candidate, and the blocked acceptance-review Tool batch. It distinguishes
+scripted authority mechanics from live coding and unmeasured review judgment.
+
 [Standing routine-development authority](development/routine-development-authority.md)
 owns the prospective repository-operator policy, exact per-task grants,
 revocation, audit links and human escalation. It reuses WorkCycle/Intake/review;

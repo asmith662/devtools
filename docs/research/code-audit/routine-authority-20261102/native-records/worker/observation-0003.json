@@ -1,0 +1,70 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-entry-intent",
+  "at": "2026-11-02T17:22:22.905483+00:00",
+  "source": "llama.cpp/qwen38-local/csv-row-coder-20261102",
+  "request": {
+    "prompt": {
+      "content": "",
+      "role": "messages",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Repair standalone CsvRow exact duplicate header admission only. Current CsvRow((\"id\",\"id\"),(\"first\",\"last\")) produces conflicting row[\"id\"] and as_dict()[\"id\"] values. Reject exact duplicate header names with ValueError during construction, before an ambiguous row becomes usable. Preserve exact header spelling: case, whitespace and Unicode normalization are NOT identity transformations. Preserve all existing behavior for unique names, including standalone empty rows and unique blank names, immutable iterable input capture, widths, string cells, indexing, iteration, mapping and conversion. Keep CsvFile/CsvCodec and dialect behavior unchanged. Only the authorized existing Python implementation may change. Before editing acquire the complete current owner with read_source to satisfy its whole-resource witness. Use find_source/read_source_unit or bounded source reads for tests/dependencies as useful. Submit a precise grounded replacement; no tests or other files may be edited. Public acceptance is frozen; separately authored final acceptance is withheld. No reference patch is provided.",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"repository_id\": \"e67b3dde-8837-4de7-b009-b8eaf101c382\", \"snapshot_id\": \"c7a3365dc01c567369f17a13b7299abb027ee56c49a5c510ac597fdc465f95b4\", \"source_acquired\": false, \"complete_inventory\": true, \"resources\": [{\"address\": \"src/devtools/resources/filesystem/codecs/csv.py\", \"content_identity\": \"0f5f23b6d94d229c3dceb38a70deff60a05f20e2a43e618262de3fe00bed62a0\", \"byte_size\": 5976, \"editable\": false}, {\"address\": \"src/devtools/resources/filesystem/models/csv.py\", \"content_identity\": \"826099dbbc06176b100ea2856c69cb9dca2c81a278d005432c104536ff2aa4ba\", \"byte_size\": 10653, \"editable\": true}, {\"address\": \"src/devtools/resources/filesystem/models/text.py\", \"content_identity\": \"beffe8d57eaed9c504a35747390aa3b6006ed87ac8e2cf4c2f9cecb8aa4e634b\", \"byte_size\": 3159, \"editable\": false}, {\"address\": \"tests/live_native_csv_row_public.py\", \"content_identity\": \"10629409eba7bb141f59e9e88e054bd147d6b164ca4f224eed3a9fbd7fa4a9c7\", \"byte_size\": 1141, \"editable\": false}, {\"address\": \"tests/resources/filesystem/codecs/test_csv.py\", \"content_identity\": \"b1a826b5ff449fdddcd0294e669d820007b9a5948b0eb04a196017382319744f\", \"byte_size\": 9004, \"editable\": false}, {\"address\": \"tests/resources/filesystem/models/csv/test_dialect.py\", \"content_identity\": \"b11253de0b821b7840e1164edcaa3e7055385e418694cbb5671ef6578d8cc5a7\", \"byte_size\": 1475, \"editable\": false}, {\"address\": \"tests/resources/filesystem/models/csv/test_file.py\", \"content_identity\": \"85401a1769cd653c8cefa839ab916e069a591a511849264f853bfd4d753db298\", \"byte_size\": 4278, \"editable\": false}, {\"address\": \"tests/resources/filesystem/models/csv/test_row.py\", \"content_identity\": \"8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b\", \"byte_size\": 2257, \"editable\": false}]}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        },
+        {
+          "role": "user",
+          "content": "{\"kind\": \"active_source_status\", \"scope\": \"current repository/snapshot; metadata is not source\", \"coordinates\": \"half-open Unicode offsets\", \"active_ranges\": [], \"active_list_partial\": false, \"omitted_current_disclosure_records\": 0, \"latest_current_disclosure\": null, \"instruction\": \"Only exact source presented here can ground edits. Historical acquisition is not active evidence. Continuation offsets are optional, not a requirement to read whole files. Select missing methods/windows, propose a grounded edit or request an authorized check when ready, or stop with a specific blocker. Repeating an identical active range adds no source information.\"}",
+          "tool_calls": [],
+          "tool_call_id": null,
+          "reasoning_content": null
+        }
+      ]
+    },
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "conversation": null,
+    "provider_settings": null,
+    "tools": [
+      {
+        "name": "read_source",
+        "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "replace_source",
+        "description": "Propose an exact unique observed replacement; host admission is required.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+      },
+      {
+        "name": "validate_candidate",
+        "description": "Request the host-fixed candidate checks.",
+        "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+      },
+      {
+        "name": "find_source",
+        "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+      },
+      {
+        "name": "read_source_unit",
+        "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+        "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+      }
+    ]
+  },
+  "entry": "claimed; not proof of provider entry",
+  "sha256": "2cc2e870a0434f604608452aabe321f06179395683b044d192d7b80e015ba466"
+}

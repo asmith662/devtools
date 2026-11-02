@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "review-model-returned",
+  "at": "2026-11-02T17:25:30.248864+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/csv-row-reviewer-fresh-20261102"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 10999,
+      "output_tokens": 86,
+      "total_tokens": 11085,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/resources/filesystem/models/csv/test_row.py\",\"start\":0}",
+        "provider_call_id": "2oMe4Z7IdAlHB2pLN0FbzzXuzAAZ0Sjn"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/live_native_csv_row_public.py\",\"start\":0}",
+        "provider_call_id": "KJYudeCQJbEHAtqGW4IpDtQXaDzUtixJ"
+      }
+    ]
+  },
+  "sha256": "53b838703666782203e3649bfe256d004bf8c72d22213ea9ce89586a0f20fda6"
+}

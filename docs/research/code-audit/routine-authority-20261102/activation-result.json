@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-02T17:21:36.031896+00:00",
+  "control": {
+    "schema": "backlog-routine-control-v1",
+    "root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+    "principal": "recoveryadmin",
+    "at": "2026-11-02T17:21:36.029989+00:00",
+    "previous": null,
+    "action": "activate",
+    "policy": {
+      "schema": "routine-development-policy-v1",
+      "categories": [
+        "bug",
+        "refactor",
+        "enhancement"
+      ],
+      "edit_roots": [
+        "src/devtools/core/",
+        "src/devtools/context/",
+        "src/devtools/resources/filesystem/"
+      ],
+      "read_roots": [
+        "src/devtools/",
+        "tests/"
+      ],
+      "profiles": [
+        "qwen38-native64-portable-defaults-v1",
+        "qwen38-native64-independent-review-defaults-v1"
+      ],
+      "provider": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "coding": {
+        "model_calls": 8,
+        "proposals": 3,
+        "acquisitions": 6,
+        "call_seconds": 120,
+        "wall_seconds": 900,
+        "prompt_bytes": 131072,
+        "source_bytes": 32768,
+        "capture_bytes": 983040
+      },
+      "review": {
+        "model_calls": 4,
+        "reads": 3,
+        "call_seconds": 120,
+        "wall_seconds": 480,
+        "prompt_bytes": 131072,
+        "response_bytes": 65536,
+        "capture_bytes": 983040
+      },
+      "output_tokens": 2048,
+      "grant_seconds": 3600,
+      "operations": [
+        "intake",
+        "coding",
+        "acceptance-review",
+        "diagnostic-review",
+        "host-review",
+        "integration-plan",
+        "git"
+      ],
+      "git": {
+        "remote": "origin",
+        "branches": [
+          "main"
+        ],
+        "force": false
+      },
+      "validation": "protected-development-100-percent-v1"
+    },
+    "subject": null,
+    "reference": "actual-human-standing-routine-development-20261102",
+    "sha256": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf"
+  },
+  "actual_consent": {
+    "at": "2026-11-02T14:53:36.689111+00:00",
+    "actual_user_response": "+yes",
+    "mechanism": "Actual human response to the default-No standing-policy activation question in this conversation",
+    "scope_sha256": "52a6d7ca24068e4a155d758ba33d3fe2bd2ac82be6e6c91191f2a24f2d59e97f",
+    "policy_sha256": "fd2c3c00ef9421af7beb9c1168cb292c82acb50c8c12b15cab4092e7863d84d5",
+    "principal": "recoveryadmin",
+    "inactivity_expiry": null,
+    "condition": "Activate only after required protected validation passes; no old individual grant approved."
+  }
+}
