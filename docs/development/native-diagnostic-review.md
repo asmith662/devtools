@@ -131,6 +131,64 @@ semantics. No automatic retry follows a refusal or uncertain effect.
 
 ## Findings and trusted evaluation
 
+### Structured response delivery
+
+New diagnostic subjects additionally bind `delivery` with schema
+`native-diagnostic-response-delivery-v1` and rule `single-json-fence-v1`.
+It is part of the subject approved by the host. Historical subjects without
+this marker keep strict raw-content parsing; unknown delivery rules are refused.
+Acceptance review's parsing, eligibility and authority are unchanged.
+
+The llama.cpp adapter already offers provider-owned
+`LlamaCppRequestSettings(response_format="json_object")`. Portable ModelSettings
+has no structured-output setting or capability negotiation, and the closed native
+review policy admits only its existing output-token/thinking settings. This
+increment does not inject an unapproved provider extension, add schema generation,
+or claim live qualification of provider-enforced JSON. It uses a narrow,
+provider-neutral presentation boundary in the diagnostic owner instead.
+
+The stages remain separate:
+
+1. ModelInteraction returns its ordinary response; Capture retains the complete
+   request and original response, including content, termination and reported usage.
+2. Source, output limits, response capacity and Tool permissions are checked before
+   any presentation admission. A Tool request during synthesis is still refused.
+3. New diagnostic deliveries optionally unwrap exactly one complete triple-backtick
+   fence, unlabelled or labelled lowercase `json`. Only surrounding ASCII spaces,
+   tabs, CR/LF and opening-line horizontal whitespace are allowed; separators may
+   be LF or CRLF. The closing fence must be exact and occupy its own line.
+   Bare JSON passes unchanged. No JSON substring is searched for or repaired.
+4. The complete candidate payload goes through the unchanged strict JSON/object
+   parser and closed diagnostic conclusion validator. Prose, additional blocks,
+   unsupported labels, malformed fences/JSON, extra or missing fields, duplicate
+   members, wrong candidate identity and invalid claims/references remain refused.
+5. Factual claims still require independent host evaluation. A valid schema does
+   not certify a source location or make an inferred defect true.
+6. The existing immutable proposal writer determines the final durable
+   `proposed`/`blocked` disposition. A diagnostic proposal remains advisory and
+   cannot enter acceptance or integration.
+
+Raw content is never rewritten. New returned-response observations separately
+retain its UTF-8 SHA256. A `review-response-delivery` observation nests its facts
+under `delivery` inside the standard observation envelope: complete request and
+response identities, raw-content hash, exact candidate payload and its UTF-8 hash,
+normalization rule, strict-validation outcome and validated-advisory/refused status.
+Wrapper refusal records no payload hash; parse/schema refusal retains the actual
+candidate payload and failure. These are validation facts, not host acceptance.
+If Capture or final proposal persistence fails, the dispatch claim remains;
+no parsed payload authorizes replay or manufactures a durable successful result.
+
+The semantic-compaction `summary_payload` helper has a deliberately different
+summary-specific contract (labelled JSON only and stricter content exclusions).
+It and the filesystem Markdown heading reader are unchanged. Diagnostic delivery
+does not introduce a general Markdown parser, JSON-repair library or new
+structured-output framework.
+
+The exact [B-0051 response](../research/diagnostic-completion.md) now has a maintained
+derived deterministic regression. Its original native proposal remains BLOCKED
+with a null conclusion and its original `JSONDecodeError`. No model is redispatched
+and the known incorrect claims remain incorrect after presentation admission.
+
 The closed model conclusion uses `schema: native-diagnostic-conclusion-v1`,
 `scope: diagnostic-only`, exact `candidate_sha256`, `disposition` (`findings`,
 `insufficient-evidence`, `refused`), `summary`, `evidence`, `findings`,

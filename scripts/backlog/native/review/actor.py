@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import getpass
+import hashlib
 import json
 import re
 from dataclasses import asdict
@@ -63,7 +64,7 @@ if TYPE_CHECKING:
 
     from devtools.context.planning.materialization import ContextDisclosure
     from devtools.context.planning.source import SourceRangeDisclosureOption
-    from devtools.models.interaction import ModelInteraction
+    from devtools.models.interaction import ModelInteraction, ModelResponse
     from devtools.tools import Tool
     from scripts.backlog.native.lifecycle import NativeMaintenance
 
@@ -258,6 +259,7 @@ class NativeReviewer:
                         {
                             "archive": archive,
                             "continuation": dict(diagnostic.CONTINUATION),
+                            "delivery": dict(diagnostic.DELIVERY),
                         }
                         if self.diagnostic_only
                         else {}
@@ -279,6 +281,13 @@ class NativeReviewer:
                     or packet["continuation"] != diagnostic.CONTINUATION
                 )
             )
+            or (
+                "delivery" in packet
+                and (
+                    not self.diagnostic_only
+                    or packet["delivery"] != diagnostic.DELIVERY
+                )
+            )
             or packet["subject"]
             != await self.subject(
                 item, packet["policy"]["read_paths"], packet.get("archive")
@@ -286,6 +295,54 @@ class NativeReviewer:
         ):
             raise PermissionError("Review subject/evidence/source is stale")
         return packet
+
+    def diagnostic_conclusion(
+        self,
+        packet: dict[str, Any],
+        request: ModelRequest,
+        response: ModelResponse,
+        references: dict[str, str],
+        capture: Capture,
+    ) -> dict[str, Any]:
+        """Keep raw capture, presentation delivery and closed validation separate."""
+        if "delivery" not in packet:
+            return diagnostic.parse(
+                response.content, references, packet["subject"]["candidate_sha256"]
+            )
+        delivery: dict[str, Any] = {
+            "schema": "native-diagnostic-response-observation-v1",
+            "request_sha256": _digest(asdict(request)),
+            "response_sha256": _digest(asdict(response)),
+            "raw_content_sha256": hashlib.sha256(response.content.encode()).hexdigest(),
+            "normalization_rule": "not_applied",
+            "normalized_payload": None,
+            "normalized_payload_sha256": None,
+            "strict_validation": "not_entered",
+            "disposition": "refused",
+        }
+        try:
+            payload, rule = diagnostic.response_payload(response.content)
+            delivery.update(
+                normalized_payload=payload,
+                normalized_payload_sha256=hashlib.sha256(payload.encode()).hexdigest(),
+                normalization_rule=rule,
+                strict_validation="entered",
+            )
+            conclusion = diagnostic.parse(
+                payload, references, packet["subject"]["candidate_sha256"]
+            )
+            delivery.update(
+                strict_validation="passed", disposition="validated-advisory"
+            )
+        except Exception as error:
+            if delivery["strict_validation"] == "entered":
+                delivery["strict_validation"] = "failed"
+            delivery["error"] = type(error).__name__ + ": " + str(error)
+            raise
+        finally:
+            # The payload's schema never replaces Capture's standard envelope.
+            capture.add("review-response-delivery", {"delivery": delivery})
+        return conclusion
 
     async def authorize(
         self,
@@ -467,11 +524,38 @@ class NativeReviewer:
                     calls += 1
                     async with asyncio.timeout(config["budgets"]["call_seconds"]):
                         response = await interaction.send(request)
-                    capture.add("review-model-returned", {"response": asdict(response)})
+                    capture.add(
+                        "review-model-returned",
+                        {
+                            "response": asdict(response),
+                            **(
+                                {
+                                    "raw_content_sha256": hashlib.sha256(
+                                        response.content.encode()
+                                    ).hexdigest()
+                                    if isinstance(response.content, str)
+                                    else None
+                                }
+                                if self.diagnostic_only and "delivery" in packet
+                                else {}
+                            ),
+                        },
+                    )
                     await self.current(item)
                     self.authority(item, packet)
                     if (
                         response.source != interaction.source
+                        or (
+                            self.diagnostic_only
+                            and "delivery" in packet
+                            and (
+                                not isinstance(response.content, str)
+                                or (
+                                    response.termination == ModelTermination.TOOL_CALL
+                                    and not response.tool_calls
+                                )
+                            )
+                        )
                         or str(interaction.source) != config["source"]
                         or response.termination == ModelTermination.OUTPUT_LIMIT
                         or (
@@ -488,10 +572,8 @@ class NativeReviewer:
                         )
                     if not response.tool_calls:
                         conclusion = (
-                            diagnostic.parse(
-                                response.content,
-                                references,
-                                packet["subject"]["candidate_sha256"],
+                            self.diagnostic_conclusion(
+                                packet, request, response, references, capture
                             )
                             if self.diagnostic_only
                             else parse(
