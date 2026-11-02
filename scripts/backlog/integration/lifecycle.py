@@ -343,6 +343,15 @@ class Integration:
                 {
                     "candidate_kind": "native-v1",
                     "candidate_author": assignment["task"]["worker"]["actor"],
+                    **(
+                        {
+                            "review_subject_sha256": candidate["review"][
+                                "review_subject_sha256"
+                            ]
+                        }
+                        if "review_subject_sha256" in candidate["review"]
+                        else {}
+                    ),
                 }
                 if native
                 else {}
@@ -366,6 +375,8 @@ class Integration:
         if (
             candidate["result"]["sha256"] != plan["candidate_result"]
             or candidate["patch_sha256"] != plan["patch_sha256"]
+            or candidate["review"].get("review_subject_sha256")
+            != plan.get("review_subject_sha256")
         ):
             raise PermissionError("Accepted implementation changed after planning")
         await self.authority.admit(grant, plan, action)

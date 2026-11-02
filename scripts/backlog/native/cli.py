@@ -38,7 +38,7 @@ def confirm(value: dict[str, Any]) -> bool:
         return False
 
 
-def configure(commands: Any) -> None:  # noqa: ANN401 -- existing argparse boundary
+def configure(commands: Any) -> None:  # noqa: ANN401, PLR0915 -- finite argparse boundary
     """Extend existing administration with finite native commands."""
     prepare = commands.add_parser("native-prepare")
     prepare.add_argument("item")
@@ -62,16 +62,30 @@ def configure(commands: Any) -> None:  # noqa: ANN401 -- existing argparse bound
     actor.add_argument("--policy", required=True)
     actor = commands.add_parser("native-review-authorize")
     actor.add_argument("item")
+    actor.add_argument(
+        "--attempt", help="Exact prospective continuation subject SHA256"
+    )
     actor.add_argument("--reference", required=True)
     actor.add_argument("--expires", required=True)
     actor = commands.add_parser("native-review-proposal")
     actor.add_argument("item")
+    actor.add_argument("--attempt")
     actor = commands.add_parser("native-review-decide")
     actor.add_argument("item")
+    actor.add_argument("--attempt")
     actor.add_argument("--proposal", required=True)
     actor.add_argument("--reference", required=True)
     actor.add_argument("--rationale", required=True)
     actor.add_argument("--decision", choices=("accept", "reject"), required=True)
+    actor = commands.add_parser("native-review-continue")
+    actor.add_argument("item")
+    actor.add_argument(
+        "--previous", required=True, help="Exact original blocked proposal SHA256"
+    )
+    actor.add_argument("--policy", required=True)
+    actor.add_argument(
+        "--correction", required=True, help="Trusted host correction provenance"
+    )
     diagnostic = commands.add_parser("native-diagnostic-prepare")
     diagnostic.add_argument("item")
     diagnostic.add_argument("--archive", required=True)
@@ -112,18 +126,28 @@ async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: 
                 resolve_path(args.policy, base_directory=Path.cwd()).value
             ),
         )
+    if args.command == "native-review-continue":
+        return await native.reviewer.prepare_continuation(
+            args.item,
+            previous=args.previous,
+            reviewer=load_json(
+                resolve_path(args.policy, base_directory=Path.cwd()).value
+            ),
+            correction_reference=args.correction,
+        )
     if args.command == "native-review-authorize":
-        return await native.reviewer.authorize(
+        return await native.reviewer.select(args.attempt).authorize(
             args.item,
             reference=args.reference,
             expires=Timestamp.from_isoformat(args.expires),
             authorize=confirm,
         )
     if args.command == "native-review-proposal":
-        await native.reviewer.current(args.item)
-        return native.reviewer.record(args.item, "proposal")
+        owner = native.reviewer.select(args.attempt)
+        await owner.current(args.item)
+        return owner.record(args.item, "proposal")
     if args.command == "native-review-decide":
-        return await native.reviewer.decide(
+        return await native.reviewer.select(args.attempt).decide(
             args.item,
             proposal=args.proposal,
             accept=args.decision == "accept",

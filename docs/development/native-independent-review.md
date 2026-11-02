@@ -106,14 +106,15 @@ unauthorized read or capture failure produces a blocked proposal, never implicit
 acceptance. Dispatch intent precedes model entry. One slot prevents replay,
 including when proposal persistence fails or model completion remains uncertain.
 
-There is exactly **one reviewer subject/dispatch slot per native assignment**.
+The legacy v1 path has **one reviewer subject/dispatch slot per native assignment**.
 `prepare` creates `reviewer/` once; it has no attempt selector. Standing authority
 also refuses a consumed review slot before issuing a decision. A blocked attempt
 cannot be overwritten, moved aside, or renewed by changing actor/session labels.
-The current contract does not support another acceptance-review subject for the
-same immutable candidate. A prospective, explicitly authorized administrative
-continuation contract with downstream reader support is required to add that
-capability; it must preserve consumed attempts and candidate qualification.
+The prospective [bounded continuation](native-review-continuation.md) now permits
+one distinct v2 subject after the authenticated, known unentered legacy batch
+barrier. The original dispatch remains consumed. Exact selection is required for
+new authority, host disposition and integration readers; there is no implicit
+latest-result rule, engineering-rejection retry or general restart capability.
 
 ## Proposal and host decision
 

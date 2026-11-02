@@ -27,6 +27,7 @@ from scripts.backlog.native.packet import (
     task_view,
     tool_definitions,
 )
+from scripts.backlog.native.review.continuation import read_decision
 from scripts.backlog.work import _load, same_backlog
 
 if TYPE_CHECKING:
@@ -534,6 +535,7 @@ class NativeMaintenance:
         accept: bool,
         authorize: Callable[[dict[str, Any]], bool] | None = None,
         proposal: str | None = None,
+        attempt: str | None = None,
     ) -> dict[str, Any]:
         """Independently bind exact candidate, result and checks; never install it."""
         await self.cycle._coordinator()
@@ -555,10 +557,15 @@ class NativeMaintenance:
             )
         self._candidate(assignment, result)
         proposed = None
+        actor = self.reviewer.select(attempt)
+        if attempt is not None and proposal is None:
+            raise PermissionError(
+                "Continuation disposition requires an exact model proposal",
+            )
         if proposal is not None:
-            packet = await self.reviewer.current(item)
-            self.reviewer.authority(item, packet)
-            proposed = self.reviewer.admit(item, proposal, reviewer, accept=accept)
+            packet = await actor.current(item)
+            actor.authority(item, packet)
+            proposed = actor.admit(item, proposal, reviewer, accept=accept)
         decision = {
             "item": item,
             "assignment_sha256": assignment["sha256"],
@@ -574,6 +581,8 @@ class NativeMaintenance:
         }
         if proposal is not None:
             decision["proposal_sha256"] = proposal
+        if attempt is not None:
+            decision["review_subject_sha256"] = attempt
         if authorize is None or not authorize(
             {
                 "operation": "review-native-candidate",
@@ -586,10 +595,15 @@ class NativeMaintenance:
             raise PermissionError("Current independent host review decision required")
         self._candidate(self.record(item, "assignment"), self.record(item, "result"))
         if proposal is not None:
-            packet = await self.reviewer.current(item)
-            self.reviewer.authority(item, packet)
-            self.reviewer.admit(item, proposal, reviewer, accept=accept)
-        payload = {"schema": "backlog-native-review-v1", **decision}
+            packet = await actor.current(item)
+            actor.authority(item, packet)
+            actor.admit(item, proposal, reviewer, accept=accept)
+        payload = {
+            "schema": "backlog-native-review-v2"
+            if attempt is not None
+            else "backlog-native-review-v1",
+            **decision,
+        }
         with self.cycle.intake._writer():
             return self.cycle._save(
                 self.cycle._folder(item) / ("review-" + _digest(payload) + ".json"),
@@ -695,11 +709,10 @@ class NativeMaintenance:
             self.record(item, "result"),
         )
         # Review filenames include the ordinary full record identity, as legacy supervision does.
-        decision = _load(
+        decision = read_decision(
             self.cycle._folder(item) / ("review-" + review + ".json"),
-            "backlog-native-review-v1",
         )
-        self.cycle.routine.check_reference(
+        linked = self.cycle.routine.check_reference(
             decision["reference"],
             subject=item,
             kind="host-review",
@@ -714,13 +727,30 @@ class NativeMaintenance:
             or decision["disposition"] != "ACCEPT_RECOMMENDED"
         ):
             raise PermissionError("Native independent review does not authenticate")
+        proposed = None
         if "proposal_sha256" in decision:
-            self.reviewer.admit(
+            proposed = self.reviewer.select(
+                decision.get("review_subject_sha256"),
+            ).admit(
                 item,
                 decision["proposal_sha256"],
                 decision["reviewer"],
                 accept=True,
             )
+        if linked is not None and not self.cycle.routine.callback(
+            decision["reference"],
+        )(
+            {
+                "operation": "review-native-candidate",
+                "assignment": assignment,
+                "result": result,
+                "decision": {
+                    k: v for k, v in decision.items() if k not in {"schema", "sha256"}
+                },
+                "review_proposal": proposed,
+            },
+        ):
+            raise PermissionError("Host decision differs from exact routine authority")
         return {
             "assignment": assignment,
             "result": result,

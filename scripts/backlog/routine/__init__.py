@@ -411,6 +411,7 @@ class RoutineAuthority:
         item: str,
         *,
         diagnostic: bool = False,
+        attempt: str | None = None,
         assessment: dict[str, Any],
         provider: dict[str, Any],
     ) -> dict[str, Any]:
@@ -420,6 +421,7 @@ class RoutineAuthority:
             if diagnostic
             else self.cycle.native.reviewer
         )
+        owner = owner.select(attempt)
         if (owner.folder(item) / "dispatch.json").exists():
             raise PermissionError("Consumed review slot cannot replay")
         expires = Timestamp.now() + Duration.seconds(
@@ -499,6 +501,7 @@ class RoutineAuthority:
         item: str,
         *,
         proposal: str,
+        attempt: str | None = None,
         accept: bool,
         rationale: str,
         assessment: dict[str, Any],
@@ -515,8 +518,9 @@ class RoutineAuthority:
             "accept": accept,
             "rationale": rationale,
         }
+        actor = self.cycle.native.reviewer.select(attempt)
         try:
-            await self.cycle.native.reviewer.decide(
+            await actor.decide(
                 item,
                 **options,
                 reference="prospective-policy-decision",
@@ -531,7 +535,7 @@ class RoutineAuthority:
             captured[0],
             assessment=assessment,
         )
-        return await self.cycle.native.reviewer.decide(
+        return await actor.decide(
             item,
             **options,
             reference=reference,

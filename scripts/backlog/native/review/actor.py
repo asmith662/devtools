@@ -53,7 +53,7 @@ from devtools.tools.source import (
 )
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
-from scripts.backlog.native.review import diagnostic
+from scripts.backlog.native.review import continuation, diagnostic
 from scripts.backlog.native.review.acquisition import acquire
 from scripts.backlog.native.review.proposal import parse
 from scripts.backlog.native.review.subject import subject
@@ -79,6 +79,7 @@ Use authorized read_source if useful; do not edit, execute checks or invent auth
 Only review_scope.read_paths may be read; subject scope describes the CODER's scope.
 Read-only read_source calls may be batched within the remaining total read allowance.
 Each call needs a unique ID; an invalid or oversized batch enters no read Tools.
+Return only raw JSON, without Markdown fences or surrounding prose.
 Return a JSON object with disposition (accept/reject/insufficient-evidence), summary,
 evidence (reference names), findings (kind observed/inference, severity blocking/advisory,
 message, evidence names), outstanding, requests, assessed_obligations (objective plus
@@ -174,10 +175,20 @@ class NativeReviewer:
     """Administrative review operation, without coding or integration authority."""
 
     def __init__(
-        self, owner: NativeMaintenance, *, diagnostic_only: bool = False
+        self,
+        owner: NativeMaintenance,
+        *,
+        diagnostic_only: bool = False,
+        attempt: str | None = None,
     ) -> None:
         """Reuse WorkCycle's writer and native candidate authentication."""
         self.owner = owner
+        if attempt is not None and (
+            diagnostic_only or not re.fullmatch(r"[a-f0-9]{64}", attempt)
+        ):
+            raise ValueError("Exact acceptance continuation subject required")
+        self.attempt = attempt
+        self.version = "v2" if attempt is not None else "v1"
         self.diagnostic_only = diagnostic_only
         self.scope = diagnostic.SCOPE if diagnostic_only else SCOPE
         self.prefix = (
@@ -192,6 +203,12 @@ class NativeReviewer:
             "-native-diagnostic-actor"
             if self.diagnostic_only
             else "-native-review-actor"
+        )
+
+    def select(self, attempt: str | None) -> NativeReviewer:
+        """Select an exact prospective attempt; None preserves legacy readers."""
+        return NativeReviewer(
+            self.owner, diagnostic_only=self.diagnostic_only, attempt=attempt
         )
 
     def tools(self) -> list[dict[str, Any]]:
@@ -218,31 +235,44 @@ class NativeReviewer:
 
     def folder(self, item: str) -> Path:
         """One non-replayable reviewer slot per native assignment."""
-        return self.owner.cycle._folder(item) / (
+        folder = self.owner.cycle._folder(item) / (
             "diagnostic-reviewer" if self.diagnostic_only else "reviewer"
         )
+        return folder / "continuation" if self.attempt is not None else folder
 
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Read a closed operational record with its content identity."""
         if name not in {"subject", "authorization", "dispatch", "proposal"}:
             raise ValueError("Unsupported reviewer record")
-        return _load(
+        value = _load(
             self.folder(item) / (name + ".json"),
-            self.prefix + name + "-v1",
+            self.prefix + name + "-" + self.version,
         )
+        if self.attempt is not None:
+            if (
+                value["sha256"] if name == "subject" else value["subject_sha256"]
+            ) != self.attempt:
+                raise PermissionError("Record belongs to another review attempt")
+            if name == "subject":
+                continuation.validate(self, item, value)
+        return value
 
     def save(self, item: str, name: str, value: dict[str, Any]) -> dict[str, Any]:
         """Use the existing immutable administrative writer, never a new evidence store."""
         with self.owner.cycle.intake._writer():
             return self.owner.cycle._save(
                 self.folder(item) / (name + ".json"),
-                {"schema": self.prefix + name + "-v1", **value},
+                {"schema": self.prefix + name + "-" + self.version, **value},
             )
 
     async def prepare(
         self, item: str, *, reviewer: dict[str, Any], archive: str | None = None
     ) -> dict[str, Any]:
         """Freeze the exact disclosed subject and proposed authority, without dispatch."""
+        if self.attempt is not None:
+            raise PermissionError(
+                "Create prospective attempts through prepare_continuation"
+            )
         policy(reviewer, self.owner.record(item, "assignment")["task"]["worker"])
         current = await self.subject(item, reviewer["read_paths"], archive)
         if not set(reviewer["read_paths"]) <= set(current["inputs"]):
@@ -267,6 +297,49 @@ class NativeReviewer:
                         if self.diagnostic_only
                         else {}
                     ),
+                },
+            )
+
+    async def prepare_continuation(
+        self,
+        item: str,
+        *,
+        previous: str,
+        reviewer: dict[str, Any],
+        correction_reference: str,
+    ) -> dict[str, Any]:
+        """Prepare at most one fresh acceptance attempt; preparation grants no effects."""
+        if self.diagnostic_only or self.attempt is not None:
+            raise PermissionError(
+                "Only the original acceptance slot can have one continuation"
+            )
+        policy(reviewer, self.owner.record(item, "assignment")["task"]["worker"])
+        current = await self.subject(item, reviewer["read_paths"], None)
+        parent = continuation.predecessor(self, item, current)
+        if (
+            previous != parent["previous_proposal_sha256"]
+            or not set(reviewer["read_paths"]) <= set(current["inputs"])
+            or reviewer["independence"]["session"]
+            == self.record(item, "subject")["policy"]["independence"]["session"]
+            or not correction_reference.strip()
+            or len(correction_reference) > 2048
+        ):
+            raise PermissionError(
+                "Continuation needs exact prior outcome, fresh session and correction"
+            )
+        with self.owner.cycle.intake._writer():
+            folder = self.folder(item) / "continuation"
+            folder.mkdir()
+            return self.owner.cycle._save(
+                folder / "subject.json",
+                {
+                    "schema": self.prefix + "subject-v2",
+                    "at": str(Timestamp.now()),
+                    "subject": current,
+                    "policy": reviewer,
+                    "scope": self.scope,
+                    "tools": self.tools(),
+                    "attempt": {**parent, "correction_reference": correction_reference},
                 },
             )
 
@@ -928,5 +1001,6 @@ class NativeReviewer:
             rationale=rationale,
             accept=accept,
             proposal=proposal,
+            attempt=self.attempt,
             authorize=authorize,
         )

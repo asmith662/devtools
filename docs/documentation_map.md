@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Bounded acceptance-review continuation](development/native-review-continuation.md)
+owns one prospective attempt after a known unentered legacy batch barrier, with
+explicit subject selection, separate policy-derived authority and exact host/plan
+binding. It preserves the coding task, qualified candidate and consumed attempts.
+
 [Acceptance read batching and B-0052's consumed-review boundary](research/acceptance-read-batches.md)
 records the prospective batch correction and the authenticated reason no new
 B-0052 model review or integration plan was entered. Coding was not repeated.

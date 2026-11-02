@@ -648,3 +648,10 @@ candidate/prior-attempt binding and downstream reader support is remaining
 administrative pressure, not authorization to implement or execute it here.
 This observation does not close B-0052 or change B-0043's status/maturity, B-0035
 closure or the 188 historical RI obligations.
+
+The subsequent explicitly authorized [bounded review continuation](../../development/native-review-continuation.md)
+adds one prospective v2 acceptance attempt for the authenticated legacy batch
+barrier, preserving v1 history and exact downstream subject selection. It is not
+a new coding task, generalized restart system or permission to retry substantive
+engineering rejection. Broader autonomy and installation/closeout remain open;
+this does not close B-0043 or alter the 188 historical RI obligations.
