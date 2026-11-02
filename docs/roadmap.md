@@ -1,5 +1,12 @@
 # Roadmap
 
+The operator has requested [standing routine-development authority](development/routine-development-authority.md)
+to replace repeated routine prompts with authenticated policy-derived task grants.
+B-0052's unchanged approved CSV-row preparation remains the next bounded live
+coding subject once that policy is tested and genuinely activated. Historical
+scope/diagnostic attempts remain consumed; no automatic installation or closeout
+is implied. The dated checkpoints below retain their original meanings.
+
 Delivered [strict diagnostic response delivery](research/diagnostic-response-delivery.md)
 through the existing owner: a prospective single JSON fence is normalized before
 the unchanged closed validator, with raw/candidate hashes and refusal provenance.

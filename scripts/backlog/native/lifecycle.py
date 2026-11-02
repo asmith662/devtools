@@ -320,6 +320,19 @@ class NativeMaintenance:
 
     def authority(self, assignment: dict[str, Any], grant: dict[str, Any]) -> None:
         """Recheck the persisted native grant, never a legacy standing grant."""
+        linked = self.cycle.routine.check_reference(
+            grant["reference"],
+            subject=assignment["item"],
+            kind="coding",
+        )
+        if linked is not None and not self.cycle.routine.callback(grant["reference"])(
+            {
+                "operation": "authorize-native-maintenance",
+                "assignment": assignment,
+                "grant": grant,
+            },
+        ):
+            raise PermissionError("Routine grant differs from exact coding scope")
         if (
             self.record(assignment["item"], "authorization") != grant
             or grant["assignment_sha256"] != assignment["sha256"]
@@ -685,6 +698,11 @@ class NativeMaintenance:
         decision = _load(
             self.cycle._folder(item) / ("review-" + review + ".json"),
             "backlog-native-review-v1",
+        )
+        self.cycle.routine.check_reference(
+            decision["reference"],
+            subject=item,
+            kind="host-review",
         )
         source, patch = self._candidate(assignment, result)
         if (

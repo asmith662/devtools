@@ -1,5 +1,10 @@
 # Supervised native maintenance handoff
 
+Prospective [standing routine authority](routine-development-authority.md) may
+now supply the trusted host callbacks below and issue fresh exact-task grants
+without repeated operator prompts. Activation is separately authenticated;
+historical manual grants, eligibility, acceptance and integration limits remain.
+
 An explicit prospective [native Context profile](native-context-policy.md) now
 connects larger independent request/read budgets, qualified token measurement,
 automatic deterministic projection, pressure observations and existing precise

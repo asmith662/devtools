@@ -14,6 +14,12 @@
 
 ## Problem / value
 
+Prospective bounded repository administration now has an explicitly requested
+[standing routine-development policy](../../development/routine-development-authority.md).
+It supplies existing owners' exact-task callbacks and retains revocation, finite
+grants, independent review and exceptional escalation. This does not establish
+a framework-wide authority algebra or close this broader investigation.
+
 Determine principals, grants, restrictions, authorization, approval conditions,
 delegation, revocation, and freshness only when a governed mutation needs them.
 Approval is not authority; historical authorization evidence is not current

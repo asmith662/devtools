@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelInteraction
     from scripts.backlog.integration import Integration
     from scripts.backlog.native.lifecycle import NativeMaintenance
+    from scripts.backlog.routine import RoutineAuthority
 
 SCOPE = "bounded-local-qwen-implementation; review candidate only; no integration"
 
@@ -88,6 +89,13 @@ class WorkCycle:
         self.root = resolve_path(coordinator).value
         self.intake = Intake(self.root, coordinator=self.root)
         self._checkout: Checkout | None = None
+
+    @property
+    def routine(self) -> RoutineAuthority:
+        """Use explicit revocable operator policy, independent of legacy grants."""
+        from scripts.backlog.routine import RoutineAuthority  # noqa: PLC0415
+
+        return RoutineAuthority(self)
 
     @property
     def native(self) -> NativeMaintenance:

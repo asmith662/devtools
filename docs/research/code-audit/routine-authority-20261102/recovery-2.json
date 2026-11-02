@@ -1,0 +1,61 @@
+{
+  "schema": "development-validation-v1",
+  "mode": "targeted",
+  "argv": [
+    "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+    "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+    "--no-cov",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+  ],
+  "started_at": "2026-11-02T14:48:39.452208+00:00",
+  "finished_at": "2026-11-02T14:49:31.595339+00:00",
+  "status": "passed",
+  "exit_code": 0,
+  "seconds": 52.136771,
+  "inputs_unchanged": true,
+  "phases": [
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 1.0827949000522494,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 8.895444999914616,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0001387998927384615,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 1.403508799849078,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 37.80268620001152,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0001580000389367342,
+      "failure": null
+    }
+  ],
+  "original_sha256": "938164be3df56b572750b77d36dd40338af426bbdaaf9aa94980293c48b2c856"
+}

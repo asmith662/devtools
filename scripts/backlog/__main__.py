@@ -21,6 +21,7 @@ from scripts.backlog.delegation import Delegations
 from scripts.backlog.intake import DOMAINS, Intake, load_json
 from scripts.backlog.integration import cli as integration_cli
 from scripts.backlog.native import cli as native_cli
+from scripts.backlog.routine import cli as routine_cli
 from scripts.backlog.work import WorkCycle, task_from_dict
 
 
@@ -203,7 +204,7 @@ async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa
     raise ValueError("Unknown work operation")
 
 
-def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915 -- explicit local subcommands
+def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915, PLR0911 -- explicit local subcommands
     """Capture/list/show/advisory/review/promote within one explicit checkout."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
@@ -285,9 +286,17 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915 -- e
     discovery.add_argument("input")
     integration_cli.configure(commands)
     native_cli.configure(commands)
+    routine_cli.configure(commands)
     args = parser.parse_args(arguments)
     try:
         root = resolve_path(args.root, base_directory=Path.cwd()).value
+        if args.command.startswith("routine-"):
+            print(
+                json.dumps(
+                    asyncio.run(routine_cli.run(args, WorkCycle(root))), indent=2
+                )
+            )
+            return 0
         if args.command.startswith("native-"):
             print(json.dumps(asyncio.run(native_cli.run(args, root)), indent=2))
             return 0

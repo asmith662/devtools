@@ -385,6 +385,21 @@ class NativeReviewer:
     def authority(self, item: str, packet: dict[str, Any]) -> dict[str, Any]:
         """Check persisted host principal, exact subject and finite expiry at every effect."""
         grant = self.record(item, "authorization")
+        linked = self.owner.cycle.routine.check_reference(
+            grant["reference"],
+            subject=item,
+            kind="diagnostic-review" if self.diagnostic_only else "acceptance-review",
+        )
+        if linked is not None and not self.owner.cycle.routine.callback(
+            grant["reference"]
+        )(
+            {
+                "operation": self.operation("authorize"),
+                "packet": packet,
+                "grant": grant,
+            },
+        ):
+            raise PermissionError("Routine grant differs from exact review scope")
         if (
             grant["subject_sha256"] != packet["sha256"]
             or grant["principal"] != getpass.getuser()

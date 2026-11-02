@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Standing routine-development authority](development/routine-development-authority.md)
+owns the prospective repository-operator policy, exact per-task grants,
+revocation, audit links and human escalation. It reuses WorkCycle/Intake/review;
+it does not weaken acceptance or authorize a scheduler or installation loop.
+
 [Strict diagnostic response delivery](research/diagnostic-response-delivery.md)
 documents prospective single-fence normalization, separate raw/payload identities,
 the unchanged closed validator and deterministic reproduction of B-0051. Its

@@ -1,0 +1,249 @@
+{
+  "schema": "development-validation-v1",
+  "mode": "targeted",
+  "argv": [
+    "tests/scripts/backlog/routine/test_authority.py",
+    "--no-cov",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+  ],
+  "started_at": "2026-11-02T14:46:01.782128+00:00",
+  "finished_at": "2026-11-02T14:46:46.875773+00:00",
+  "status": "test-or-coverage-failure",
+  "exit_code": 1,
+  "seconds": 45.087137,
+  "inputs_unchanged": true,
+  "phases": [
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 2.864797699963674,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 25.27576299989596,
+      "failure": "repository = (<scripts.backlog.work.WorkCycle object at 0x00000161BE9AA120>, 'B-0010')\n\n    def test_real_native_review_and_plan_use_one_policy(\n        repository: tuple[WorkCycle, str],\n    ) -> None:\n        \"\"\"No per-task console; actual read/edit/fail/repair/check/private/review/plan.\"\"\"\n        cycle, item = repository\n    \n        async def run() -> None:\n            identity = await activate(cycle)\n            await prepare(cycle, item)\n            grant = await cycle.routine.authorize_native(\n                identity, item, assessment=assessment(), provider=provider()\n            )\n            assert identity in grant[\"reference\"]\n            result = await cycle.native.execute(\n                item,\n                interaction=Scripted(\"neutral-script-a\"),\n                profile=\"scripted-v1\",\n                authorize=cycle.routine.callback(grant[\"reference\"]),\n            )\n            assert result[\"disposition\"] == \"REVIEW_CANDIDATE\"\n            assert result[\"facts\"][\"acceptance\"][\"passed\"]\n            await cycle.native.reviewer.prepare(item, reviewer=reviewer_policy())\n            review_grant = await cycle.routine.authorize_reviewer(\n                identity, item, assessment=assessment(), provider=provider()\n            )\n            proposal = await cycle.native.reviewer.execute(\n                item,\n                interaction=ReviewModel(),\n                profile=\"review-script-v1\",\n                authorize=cycle.routine.callback(review_grant[\"reference\"]),\n            )\n            assert proposal[\"status\"] == \"completed\"\n            review = await cycle.routine.host_review(\n                identity,\n                item,\n                proposal=proposal[\"sha256\"],\n                accept=True,\n                rationale=\"Host checked the source and finite acceptance evidence\",\n                assessment=assessment(),\n            )\n            await git(cycle.root, \"branch\", \"main\")\n            await git(cycle.root, \"push\", \"origin\", \"main\")\n            spec = {\n                \"remote\": \"origin\",\n                \"destination\": \"main\",\n                \"feature\": \"feat/integrated\",\n                \"checkout\": str(cycle.root),\n                \"additions\": [],\n                \"parent_complete\": False,\n                \"remaining\": [\"Separately authorize installation and protected validation\"],\n                \"rationale\": \"Read-only authenticated candidate plan\",\n                \"validation_seconds\": 60,\n            }\n            plan = await cycle.routine.plan(\n                identity, item, review[\"sha256\"], spec, assessment=assessment()\n            )\n            assert plan[\"candidate_kind\"] == \"native-v1\"\n            assert plan[\"accepted_review\"] == review[\"sha256\"]\n            assert not (cycle.root / \".local/backlog/checkout-owner\").exists()\n            with pytest.raises(PermissionError, match=\"Consumed\"):\n                await cycle.routine.authorize_native(\n                    identity, item, assessment=assessment(), provider=provider()\n                )\n            await cycle.routine.control(\n                \"revoke\", reference=\"fixture://operator-stop\", authorize=lambda _: True\n            )\n            with pytest.raises(PermissionError, match=\"revoked\"):\n                cycle.integration.candidate(item, review[\"sha256\"])\n    \n>       asyncio.run(run())\n\ntests\\scripts\\backlog\\routine\\test_authority.py:166: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    async def run() -> None:\n        identity = await activate(cycle)\n        await prepare(cycle, item)\n        grant = await cycle.routine.authorize_native(\n            identity, item, assessment=assessment(), provider=provider()\n        )\n        assert identity in grant[\"reference\"]\n        result = await cycle.native.execute(\n            item,\n            interaction=Scripted(\"neutral-script-a\"),\n            profile=\"scripted-v1\",\n            authorize=cycle.routine.callback(grant[\"reference\"]),\n        )\n        assert result[\"disposition\"] == \"REVIEW_CANDIDATE\"\n        assert result[\"facts\"][\"acceptance\"][\"passed\"]\n        await cycle.native.reviewer.prepare(item, reviewer=reviewer_policy())\n        review_grant = await cycle.routine.authorize_reviewer(\n            identity, item, assessment=assessment(), provider=provider()\n        )\n        proposal = await cycle.native.reviewer.execute(\n            item,\n            interaction=ReviewModel(),\n            profile=\"review-script-v1\",\n            authorize=cycle.routine.callback(review_grant[\"reference\"]),\n        )\n>       assert proposal[\"status\"] == \"completed\"\nE       AssertionError: assert 'proposed' == 'completed'\nE         \nE         - completed\nE         + proposed\n\ntests\\scripts\\backlog\\routine\\test_authority.py:128: AssertionError"
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_real_native_review_and_plan_use_one_policy",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0009520999155938625,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 2.332046400057152,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.20479669980704784,
+      "failure": "repository = (<scripts.backlog.work.WorkCycle object at 0x00000161BEA1E5D0>, 'B-0010')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000161BEA4C770>\n\n    def test_multiple_tasks_share_policy_and_no_interactive_consent(\n        repository: tuple[WorkCycle, str], monkeypatch: pytest.MonkeyPatch\n    ) -> None:\n        \"\"\"One policy may review another real proposal and issue distinct exact grants.\"\"\"\n        cycle, item = repository\n        monkeypatch.setattr(\n            \"builtins.input\", lambda *_: pytest.fail(\"Unexpected interactive consent\")\n        )\n    \n        async def run() -> None:\n            identity = await activate(cycle)\n            payload = copy.deepcopy(cycle.intake.approved_item(item)[\"proposal\"][\"payload\"])\n            payload[\"title\"] = \"Another independently reviewed authored obligation\"\n            proposal = cycle.intake.capture(payload)\n            review = cycle.routine.intake_review(\n                identity,\n                proposal,\n                assessment=assessment(),\n                decision=\"APPROVED\",\n                rationale=\"A distinct bounded obligation\",\n                duplicate_disposition=\"Shared source, independent task\",\n                domain=\"agents\",\n            )\n            other = review[\"publication\"][\"id\"]\n            await git(cycle.root, \"add\", \"docs\")\n            await git(cycle.root, \"commit\", \"-m\", \"Publish authored second obligation\")\n            # Tiny fixture branch is not active or owned; ordinary non-force advance.\n            await git(cycle.root, \"branch\", \"-d\", \"feat/native-work\")\n            await git(cycle.root, \"branch\", \"feat/native-work\")\n            for selected in (item, other):\n                await prepare(cycle, selected)\n                grant = await cycle.routine.authorize_native(\n                    identity, selected, assessment=assessment(), provider=provider()\n                )\n                assert identity in grant[\"reference\"]\n                decision = cycle.routine.check_reference(grant[\"reference\"])\n                assert decision is not None and decision[\"subject\"] == selected\n            assert (\n                cycle.native.record(item, \"authorization\")[\"reference\"]\n                != cycle.native.record(other, \"authorization\")[\"reference\"]\n            )\n    \n>       asyncio.run(run())\n\ntests\\scripts\\backlog\\routine\\test_authority.py:211: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\ntests\\scripts\\backlog\\routine\\test_authority.py:183: in run\n    review = cycle.routine.intake_review(\nscripts\\backlog\\routine\\__init__.py:453: in intake_review\n    review = self.cycle.intake.review(\nscripts\\backlog\\intake.py:424: in review\n    or not authorize({**review, \"proposed_work\": record[\"proposal\"]})\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nrequest = {'schema': 'backlog-review-v1', 'proposal': '2ed12e1b-064c-43aa-8661-30144b4ad506', 'proposal_sha256': '167fff598dcd95ad21a39ed505bbfa6aa8ecffa80b64bbe2db6c5a73b7a7734a', 'previous': None, ...}\n\n    def allowed(request: dict[str, Any]) -> bool:\n        record = self.check_reference(reference)\n        if record is None:\n            return False\n>       link = request.get(\"grant\", request.get(\"decision\", request)).get(\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"reference\",\n            request.get(\"decision_reference\"),\n        )\nE       AttributeError: 'str' object has no attribute 'get'\n\nscripts\\backlog\\routine\\__init__.py:322: AttributeError"
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_multiple_tasks_share_policy_and_no_interactive_consent",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.0007010998670011759,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_expiry_denial_and_replacement_override_grants",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.9115764999296516,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_expiry_denial_and_replacement_override_grants",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 5.8291133001912385,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_expiry_denial_and_replacement_override_grants",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00011950009502470493,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[architecture]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0001441999338567257,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[architecture]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00014130002819001675,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[architecture]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.46000262349844e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[destructive]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00010569998994469643,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[destructive]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.580011151731014e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[destructive]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.6099845096468925e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[paid]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00010600010864436626,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[paid]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.159984670579433e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[paid]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.339994095265865e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[secrets]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.449990466237068e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[secrets]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.379986345767975e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[secrets]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.7499855756759644e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[security]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.460002183914185e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[security]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 6.969994865357876e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[security]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.559995770454407e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[service_change]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.649991989135742e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[service_change]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 9.540002793073654e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[service_change]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.510014645755291e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[validation_relaxation]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00011019990779459476,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[validation_relaxation]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.919990457594395e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_exceptional_work_escalates[validation_relaxation]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.189988926053047e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_policy_limits_and_control_integrity",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 1.2939354998525232,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_policy_limits_and_control_integrity",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 2.58062979998067,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/scripts/backlog/routine/test_authority.py::test_policy_limits_and_control_integrity",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00012860004790127277,
+      "failure": null
+    }
+  ],
+  "original_sha256": "9a96cd6c5647f1b73e782ab98b8389994aff5ec3ad60f54d2afe3722ddca923c"
+}

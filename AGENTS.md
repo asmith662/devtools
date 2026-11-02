@@ -321,6 +321,16 @@ new authority after relocation.
 
 ### Governed source mutation
 
+For ordinary bounded backlog work, use an explicitly activated
+[standing routine-development policy](docs/development/routine-development-authority.md)
+through `WorkCycle.routine`. Issue fresh exact-task grants from that policy and
+recheck it at governed boundaries; do not repeatedly request per-task human
+consent for eligible work. Policy activation/replacement, exceptional work and
+out-of-scope effects retain genuine operator decisions. Never infer activation
+from an unanswered prompt or convert historical grants into current authority.
+Preserve private acceptance, independent review, protected validation, Checkout
+custody, consumed slots and separate integration/publication contracts.
+
 Trusted local development/evaluation may invoke the existing bounded Qwen worker
 directly, without backlog promotion, a standing grant or terminal confirmation.
 The host-owned CodingTask, exact source/read/edit scope, fixed validation and

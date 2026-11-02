@@ -143,6 +143,12 @@ active task, Git branch or model service is changed by capture/review.
 
 ### Operator commands
 
+The CLI remains default-No for manual decisions. An explicitly activated
+[routine-development policy](../development/routine-development-authority.md)
+may supply the existing Intake callback through `WorkCycle.routine.intake_review`.
+Its versioned decision binds the precise proposal and publication; it does not
+reuse a historical human approval or infer consent from silence.
+
 Run from the repository root (or use global `--root <checkout>`). Relative input
 paths resolve against the caller's current working directory.
 
