@@ -1,0 +1,38 @@
+"""Read-only authentication; no model entry or consumed-slot renewal."""
+import asyncio, hashlib, json, sys, urllib.request
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/reviewer-batch'
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def load(p):return json.loads(p.read_bytes())
+def get(p):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+p,timeout=10) as r:return json.loads(r.read(131072))
+def main():
+ c=WorkCycle(R);active=c.routine.active();assert active['sha256']=='f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf'
+ a=c.native.record('B-0052','assignment');r=c.native.record('B-0052','result');o=c.native.reviewer;p=o.record('B-0052','proposal')
+ assert r['disposition']=='REVIEW_CANDIDATE' and r['candidate_sha256']=='a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255'
+ candidate,patch=c.native._candidate(a,r)
+ assert c.native.configuration(a['task'])==a['configuration']
+ from scripts.backlog.intake import _read
+ assert _read(R/a['task']['source'])==a['baseline_source']
+ assert hashlib.sha256(candidate.encode()).hexdigest()==r['candidate_sha256']
+ assert p['status']=='blocked' and p['reads']==0 and p['model_calls']==1
+ failures=[]
+ try:asyncio.run(c.routine.authorize_reviewer(active['sha256'],'B-0052',assessment={},provider={}))
+ except PermissionError as e:failures.append(str(e))
+ assert failures==['Consumed review slot cannot replay']
+ # Do not call prepare: mkdir is the guard, not a supported new-subject operation.
+ assert (o.folder('B-0052')/'subject.json').is_file() and (o.folder('B-0052')/'dispatch.json').is_file()
+ health,slots=get('/health'),get('/slots');assert health=={'status':'ok'} and len(slots)==1 and slots[0]['n_ctx']==65536 and not slots[0]['is_processing']
+ historical=load(R/'.local/e2e-native/authentication.json')['preserved']
+ for name,identity in historical.items():assert h(R/name)==identity,name
+ paths={p.relative_to(R).as_posix():h(p) for root in (c._folder('B-0052'),R/'docs/research/code-audit/routine-authority-20261102') for p in root.rglob('*') if p.is_file()}
+ forensic=git(R,'ls-files','--others','--exclude-standard','-z').split('\0');forensic={n:h(R/n) for n in forensic if n.startswith('experiments/')}
+ result={'at':str(Timestamp.now()),'head':git(R,'rev-parse','HEAD'),'remote_main':git(R,'ls-remote','origin','refs/heads/main').split()[0],'active_policy':active['sha256'],'assignment':a['sha256'],'result':r['sha256'],'candidate_sha256':r['candidate_sha256'],'patch_sha256':patch,'original_proposal':p['sha256'],'slot_constraint':failures[0],'baseline_sha256':h(R/a['task']['source']),'historical_files':len(historical),'preserved':paths,'forensic':forensic,'refs':git(R,'show-ref'),'worktrees':git(R,'worktree','list','--porcelain'),'health':health,'slots':slots,'checkout_owner_absent':not (R/'.local/backlog/checkout-owner').exists(),'live_calls':0,'new_grants':0,'new_plan':False,'source_installed':False,'missing_current_task_inputs':[n for n in a['inputs'] if not (R/n).exists()],'historical_candidate_checks':'Original result and archive authenticated; no fresh checks or current subject admission claimed.'}
+ write(TextFile(resolve_path(O/'authentication.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+ print(json.dumps({k:v for k,v in result.items() if k not in ('preserved','forensic','refs','slots')},indent=2))
+main()

@@ -1,0 +1,11 @@
+"""Keep interruption separate from validation success; no phase results invented."""
+import json,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R))
+from devtools.core.time import Timestamp
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+p=R/'.local/reviewer-batch/recovery-2.json.intent';intent=json.loads(p.read_bytes())
+result={'at':str(Timestamp.now()),'status':'interrupted-by-host','original_intent':str(p.relative_to(R)),'started_at':intent['started_at'],'selected_items_observed_at_collection':731,'original_process_exit_code':1,'reason':'Recovery automatically expanded through the administrative owner to 731 tests; stopped to avoid duplicating the pending mandatory final protected suite. Use explicit final focused selections after correction. No pass claimed for this incomplete run.','phase_results_available':False,'process_exit_verified':True,'new_model_calls':0}
+write(TextFile(resolve_path(R/'.local/reviewer-batch/interruption.json'),json.dumps(result,indent=2)+'\n'),overwrite=False)
+print(json.dumps(result,indent=2))

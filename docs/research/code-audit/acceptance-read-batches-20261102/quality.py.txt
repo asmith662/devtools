@@ -1,0 +1,26 @@
+"""Bounded supported-root checks; record actual results without changing inputs."""
+import asyncio,json,sys,re,hashlib
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/reviewer-batch'
+from devtools.core.time import Timestamp,Duration
+from devtools.core.paths import resolve_path
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.work import WorkCycle
+async def run(name,args):
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32768,max_stderr_bytes=32768)).execute(Command(sys.executable).args(*args).with_timeout(Duration.seconds(240)).cwd(resolve_path(R)))
+ return {'name':name,'argv':[sys.executable,*args],'exit_code':r.exit_code,'seconds':r.duration.total_seconds,'stdout':r.stdout.decode('utf-8',errors='replace'),'stderr':r.stderr.decode('utf-8',errors='replace'),'stdout_truncated':r.stdout_truncated,'stderr_truncated':r.stderr_truncated}
+async def main():
+ rows=await asyncio.gather(run('ruff',['-m','ruff','check','src','tests','apps','scripts','--exclude','tests/experiments']),run('format',['-m','ruff','format','--check','src','tests','apps','scripts','--exclude','tests/experiments']),run('mypy',['-m','mypy']),run('review-owner-mypy',['-m','mypy','scripts/backlog/native/review/acquisition.py','scripts/backlog/native/review/actor.py']),run('layout',['scripts/validate_layout.py']))
+ queue=WorkCycle(R).intake.queue();assert not queue['errors'],queue['errors']
+ links=[]
+ for name in ('docs/research/acceptance-read-batches.md','docs/development/native-independent-review.md'):
+  p=R/name
+  for target in re.findall(r'\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+   target=target.split('#')[0]
+   if target and not target.startswith(('http:','https:')):
+    assert (p.parent/target).exists(),target;links.append(target)
+ result={'at':str(Timestamp.now()),'commands':rows,'intake_errors':queue['errors'],'intake_proposals':len(queue['proposals']),'links_checked':links}
+ path=O/sys.argv[1];write(TextFile(resolve_path(path),json.dumps(result,indent=2)+'\n'),overwrite=False)
+ print(json.dumps(result,indent=2));assert all(r['exit_code']==0 and not r['stdout_truncated'] and not r['stderr_truncated'] for r in rows)
+asyncio.run(main())

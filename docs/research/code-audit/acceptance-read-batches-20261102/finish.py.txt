@@ -1,0 +1,65 @@
+"""Authenticate final unchanged executable inputs and archive genuine observations."""
+import asyncio,collections,hashlib,json,re,sys,urllib.request
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/reviewer-batch';D=R/'docs/research/code-audit/acceptance-read-batches-20261102'
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Duration
+from devtools.resources.filesystem import TextFile,BinaryFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git,inputs
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+def get(p):
+ with urllib.request.urlopen('http://127.0.0.1:8080'+p,timeout=10) as response:return json.loads(response.read(131072))
+async def inspect():
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+ assert r.exit_code==0 and not r.stdout_truncated
+ state=json.loads(r.stdout)[0];before=load(R/'.local/e2e-native/current-service.json')
+ assert state['Id']==before['container_id'] and state['Image']==before['image'] and state['Config']['Cmd']==before['command'] and state['Mounts']==before['mounts']
+ return {'container':state['Id'],'image':state['Image'],'command':state['Config']['Cmd'],'mounts':state['Mounts'],'mutated':False}
+gate=load(O/'final-protected.json');assert gate['status']=='passed' and gate['inputs_unchanged']
+now=inputs(R);assert now['sha256']==gate['inputs']['sha256']
+def blobs(value):return {line.split('\t',1)[1]:line.split()[1] for line in value.splitlines()}
+a,b=blobs(now['git_blobs']),blobs(gate['inputs']['git_blobs']);assert all(a[n]==b[n] for n in now['sha256'])
+assert all(now[k]==gate['inputs'][k] for k in ('python','executable','platform','packages'))
+before=load(O/'authentication.json')
+assert h(R/'src/devtools/resources/filesystem/models/csv.py')==before['baseline_sha256']
+for name,identity in before['preserved'].items():assert h(R/name)==identity,name
+for name,identity in before['forensic'].items():assert h(R/name)==identity,name
+history=load(R/'.local/e2e-native/authentication.json')['preserved']
+for name,identity in history.items():assert h(R/name)==identity,name
+refs=dict(line.split()[::-1] for line in git(R,'show-ref').splitlines());exceptions={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+for line in before['refs'].splitlines():
+ identity,name=line.split()
+ if name not in exceptions:assert refs.get(name)==identity,name
+ledgers={}
+for name in ('ri-completion-experiments.jsonl','ri-completion-fixtures.jsonl','ri-followup-history.jsonl'):
+ p=R/'docs/research/code-audit'/name;rows=[json.loads(v) for v in p.read_text(encoding='utf-8').splitlines() if v.strip()];ledgers[name]={'rows':len(rows),'sha256':h(p)}
+ assert git(R,'rev-parse',before['head']+':'+p.relative_to(R).as_posix())==git(R,'rev-parse','HEAD:'+p.relative_to(R).as_posix())
+assert sum(v['rows'] for v in ledgers.values())==903
+c=WorkCycle(R);active=c.routine.active();assert active['sha256']==before['active_policy']
+assert c.native.record('B-0052','result')['sha256']==before['result'] and c.native.reviewer.record('B-0052','proposal')['sha256']==before['original_proposal']
+assert git(R,'branch','--show-current')=='main' and not (R/'.local/backlog/checkout-owner').exists()
+assert not git(R,'diff','--name-only') and not git(R,'diff','--cached','--name-only')
+worktrees=git(R,'worktree','list','--porcelain');inspector=next(v for v in worktrees.split('\n\n') if v.startswith('worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n'));assert '\nbranch refs/heads/feat/agent-inspector' in inspector
+queue=c.intake.queue();assert not queue['errors']
+provider=asyncio.run(inspect());provider.update(health=get('/health'),slots=get('/slots'))
+assert provider['health']=={'status':'ok'} and len(provider['slots'])==1 and provider['slots'][0]['n_ctx']==65536 and not provider['slots'][0]['is_processing']
+result={'at':str(Timestamp.now()),'head':now['head'],'tested_executable_commit':gate['inputs']['head'],'protected_status':gate['status'],'protected_seconds':gate['seconds'],'protected_executions':1,'matching_protected_inputs_and_blobs':len(now['sha256']),'runtime_and_packages_match':True,'environment_fingerprint_matches':now['environment_sha256']==gate['inputs']['environment_sha256'],'environment_qualification':'Tool invocation fingerprints can differ; complete external environment equivalence is not claimed.','historical_files_preserved':len(history),'archived_and_native_files_preserved':len(before['preserved']),'forensic_files_preserved':len(before['forensic']),'ri_ledgers':ledgers,'historical_refs_preserved':True,'inspector':inspector,'provider':provider,'active_policy':active['sha256'],'b0052_candidate':before['candidate_sha256'],'b0052_result_unchanged':True,'b0052_review_unchanged':True,'new_live_calls':0,'new_grants':0,'host_acceptance':False,'integration_plan':False,'candidate_installed':False,'checkout_released':True,'intake_errors':[]}
+if sys.argv[1:] == ['--published']:
+ remote=git(R,'ls-remote','origin','refs/heads/main').split()[0];assert remote==now['head'];result['remote_main']=remote
+ current=set(git(R,'ls-files','--others','--exclude-standard','-z').split('\0'))-{''};assert current==set(before['forensic'])
+ save(O/'publication-verification.json',result)
+ print(json.dumps({k:v for k,v in result.items() if k not in ('provider','ri_ledgers')},indent=2));raise SystemExit
+assert not D.exists();D.mkdir(parents=True)
+for name in ('authentication.json','focused-1.json','interruption.json','impact-preview.json','final-focused-3.json','quality-final.json','final-protected.json','final-protected.json.stdout','final-protected.json.stderr'):
+ p=O/name;target=D/(name+'.txt' if name.endswith(('.stdout','.stderr')) else name)
+ write(BinaryFile(resolve_path(target),p.read_bytes()),overwrite=False)
+write(BinaryFile(resolve_path(D/'interrupted-recovery-intent.json'),(O/'recovery-2.json.intent').read_bytes()),overwrite=False)
+save(D/'protected-output.json', {name:{'sha256':h(O/('final-protected.json.'+name)),'utf8_text':(O/('final-protected.json.'+name)).read_bytes().decode('utf-8')} for name in ('stdout','stderr')})
+for name in ('authenticate.py','record_interruption.py','quality.py','finish.py'):
+ write(BinaryFile(resolve_path(D/(name+'.txt')), (O/name).read_bytes()),overwrite=False)
+save(D/'integrity.json',result);save(O/'integrity.json',result)
+print(json.dumps({k:v for k,v in result.items() if k not in ('provider','ri_ledgers')},indent=2))

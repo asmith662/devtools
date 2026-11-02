@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-02T20:02:42.638840+00:00",
+  "commands": [
+    {
+      "name": "ruff",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.343951,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "name": "format",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.321754,
+      "stdout": "772 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "name": "mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.973857,
+      "stdout": "Success: no issues found in 628 source files\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "name": "review-owner-mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "scripts/backlog/native/review/acquisition.py",
+        "scripts/backlog/native/review/actor.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.944405,
+      "stdout": "Success: no issues found in 2 source files\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "name": "layout",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.294625,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "intake_errors": [],
+  "intake_proposals": 71,
+  "links_checked": [
+    "../development/native-independent-review.md",
+    "../development/routine-development-authority.md",
+    "code-audit/acceptance-read-batches-20261102/index.json",
+    "code-audit/acceptance-read-batches-20261102/protected-output.json",
+    "code-audit/acceptance-read-batches-20261102/integrity.json",
+    "native-diagnostic-review.md",
+    "native-maintenance-handoff.md",
+    "../research/code-audit/native-review-20261031.json"
+  ]
+}
