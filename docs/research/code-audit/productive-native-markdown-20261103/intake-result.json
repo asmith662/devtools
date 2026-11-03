@@ -1,0 +1,26 @@
+{
+  "proposal": "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+  "item": "B-0053",
+  "review": {
+    "schema": "backlog-review-v1",
+    "proposal": "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+    "proposal_sha256": "f8e73ede742a7f0b1499c528c02b1ee3bf22f0c8ff756c34092743462bba6da6",
+    "previous": null,
+    "at": "2026-11-03T17:12:15.689530+00:00",
+    "decision": "APPROVED",
+    "reviewer": "trusted host recoveryadmin",
+    "decision_reference": "routine-v1:f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf:83bdc8d97ef504c2f28dd6b7e40264eacdf8b12b149632b947db1aa06e1b5bb3",
+    "rationale": "Independently reproduced public MarkdownFile literal title corruption and missing lookups on current main. One existing filesystem model file, independently frozen acceptance and unused slot. This is distinct from delivered fence closers and consumed CSV/module-scope tasks. Eligible routine bug under activated policy; no install or canonical closure authority.",
+    "duplicates": [],
+    "duplicate_disposition": "Distinct literal heading title suffix defect; reviewed approved items have consumed slots and delivered modest pending items must not be replayed.",
+    "scope": "canonical-backlog-only; no execution authority",
+    "publication": {
+      "id": "B-0053",
+      "path": "items/B-0053-preserve-attached-literal-hash-suffixes-in-markdown-heading-titles.md",
+      "text": "# B-0053 \u2014 Preserve attached literal hash suffixes in Markdown heading titles\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: resources\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/proposal.json\n- intake_review: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/review-0001.json\n\n## Problem / value\n\nOn authenticated main a4274bd190bf7ee16c4f8077410617dd37461157, exported MarkdownFile parses \"# C#\" as title \"C\". find_heading(\"C#\") and find_section(\"C#\") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.\n\n## Proposed benefit\n\nKeep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.\n\n## Uncertainty / unresolved semantics\n\nAuthored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.\n\n## Discovery / parent\n\n{'kind': 'agent', 'reference': '.local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings'}\nNone\n\n## Evidence\n\nsrc/devtools/resources/filesystem/docs/markdown.md\ntests/resources/filesystem/models/markdown/test_file.py\n\n## Affected resources\n\nsrc/devtools/resources/filesystem/models/markdown/file.py\nsrc/devtools/resources/filesystem/models/markdown/heading.py\nsrc/devtools/resources/filesystem/models/markdown/section.py\nsrc/devtools/resources/filesystem/models/text.py\ntests/resources/filesystem/models/markdown/test_file.py\ntests/resources/filesystem/models/markdown/test_heading.py\ntests/resources/filesystem/models/markdown/test_section.py\ntests/resources/filesystem/codecs/test_markdown.py\n\n## Possible dependencies\n\nExisting filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority.\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+      "row": "| [B-0053](items/B-0053-preserve-attached-literal-hash-suffixes-in-markdown-heading-titles.md) | Preserve attached literal hash suffixes in Markdown heading titles | BACKLOG | resources |"
+    },
+    "sha256": "b75c1b26c230128c70e76d708332d6c9ad23c2b2403c40c297e9797a9f6ecb5b"
+  },
+  "policy": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf"
+}

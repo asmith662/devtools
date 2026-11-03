@@ -1,0 +1,775 @@
+{
+  "schema": "development-validation-v1",
+  "mode": "targeted",
+  "argv": [
+    "tests/live_native_markdown_hash_public.py",
+    "tests/resources/filesystem/codecs/test_markdown.py",
+    "tests/resources/filesystem/models/markdown",
+    "--no-cov",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+  ],
+  "started_at": "2026-11-03T17:12:22.565190+00:00",
+  "finished_at": "2026-11-03T17:13:43.795018+00:00",
+  "status": "test-or-coverage-failure",
+  "exit_code": 1,
+  "seconds": 81.222113,
+  "inputs_unchanged": true,
+  "phases": [
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_literal_hash_is_part_of_heading_title",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.004206100013107061,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_literal_hash_is_part_of_heading_title",
+      "phase": "call",
+      "outcome": "failed",
+      "seconds": 0.0005927998572587967,
+      "failure": "tmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14869/test_literal_hash_is_part_of_h0')\n\n    def test_literal_hash_is_part_of_heading_title(tmp_path):\n        source = '# C#\\nGuide\\n## Topic##\\nDetails\\n'\n        document = MarkdownFile(ResolvedPath(tmp_path / 'guide.md'), source)\n>       assert [(h.level, h.text, h.line) for h in document.headings] == [(1, 'C#', 1), (2, 'Topic##', 3)]\nE       AssertionError: assert [(1, 'C', 1), (2, 'Topic', 3)] == [(1, 'C#', 1)...'Topic##', 3)]\nE         \nE         At index 0 diff: (1, 'C', 1) != (1, 'C#', 1)\nE         Use -v to get more diff\n\ntests\\live_native_markdown_hash_public.py:8: AssertionError"
+    },
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_literal_hash_is_part_of_heading_title",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00014740019105374813,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_separated_closing_markers_still_normalize",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009261001832783222,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_separated_closing_markers_still_normalize",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001221999991685152,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/live_native_markdown_hash_public.py::test_separated_closing_markers_still_normalize",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.780012674629688e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Title\\n-utf-8]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0016129000578075647,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Title\\n-utf-8]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001050999853760004,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Title\\n-utf-8]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.790001109242439e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Caf\\xc3\\xa9\\r\\n-utf-8]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008946000598371029,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Caf\\xc3\\xa9\\r\\n-utf-8]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 9.990017861127853e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[# Caf\\xc3\\xa9\\r\\n-utf-8]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.980006583034992e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[## M\\xc3\\xbcnchen\\n-utf-16]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008858998771756887,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[## M\\xc3\\xbcnchen\\n-utf-16]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00022119982168078423,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_decode_preserves_exact_markdown_source_and_metadata[## M\\xc3\\xbcnchen\\n-utf-16]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 8.279993198812008e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_decoding_failures",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.000887200003489852,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_decoding_failures",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00031949998810887337,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_decoding_failures",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.369997911155224e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_encode_uses_source_content_and_explicit_encoding_policy",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00076299998909235,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_encode_uses_source_content_and_explicit_encoding_policy",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 9.739981032907963e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_encode_uses_source_content_and_explicit_encoding_policy",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.770016625523567e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_encoding_failures",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009087999351322651,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_encoding_failures",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001626000739634037,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/codecs/test_markdown.py::test_markdown_codec_normalizes_encoding_failures",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.309997454285622e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_atx_headings_ignore_non_headings_and_fenced_code",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009870000649243593,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_atx_headings_ignore_non_headings_and_fenced_code",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00014660018496215343,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_atx_headings_ignore_non_headings_and_fenced_code",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.069995626807213e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_heading_and_section_properties_are_empty_without_atx_source",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009527998045086861,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_heading_and_section_properties_are_empty_without_atx_source",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 9.700004011392593e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_heading_and_section_properties_are_empty_without_atx_source",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.3000014051795e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_long_fences_require_an_equally_long_matching_closer",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008229000959545374,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_long_fences_require_an_equally_long_matching_closer",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00010130018927156925,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_long_fences_require_an_equally_long_matching_closer",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.269989535212517e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_follow_same_or_higher_heading_boundaries",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0007829000242054462,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_follow_same_or_higher_heading_boundaries",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00013069994747638702,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_follow_same_or_higher_heading_boundaries",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.7099928855896e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_handle_adjacent_and_nested_level_changes",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008751999121159315,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_handle_adjacent_and_nested_level_changes",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011779996566474438,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_sections_handle_adjacent_and_nested_level_changes",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.100007496774197e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_lookup_and_inherited_source_search_are_independent",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009270000737160444,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_lookup_and_inherited_source_search_are_independent",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00022009992972016335,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_lookup_and_inherited_source_search_are_independent",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.54000323265791e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_section_content_is_normalized_logical_source",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0007269999478012323,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_section_content_is_normalized_logical_source",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00010220007970929146,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_section_content_is_normalized_logical_source",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.020006887614727e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-`]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0008396001067012548,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-`]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001175999641418457,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-`]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.439986802637577e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-~]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009824999142438173,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-~]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011669984087347984,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[text-suffix-~]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.989995017647743e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-`]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010654001962393522,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-`]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001129999291151762,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-`]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.84000551700592e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-~]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010261998977512121,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-~]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.0001200998667627573,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[shorter-~]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 0.00011250004172325134,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-`]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0010869998950511217,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-`]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011640018783509731,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-`]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.189996540546417e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-~]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009382001589983702,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-~]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011339993216097355,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[other-marker-~]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 7.54001084715128e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-`]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0011100999545305967,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-`]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011020014062523842,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-`]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.869994103908539e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-~]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0009977000299841166,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-~]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011639995500445366,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_file.py::test_fence_closer_requires_matching_markers_and_no_text_suffix[longer-~]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.95998314768076e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[1]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00011539994738996029,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[1]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 8.779997006058693e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[1]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.969987250864506e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[2]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.949994273483753e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[2]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.870001718401909e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[2]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.890017539262772e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[3]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00010009994730353355,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[3]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.239985279738903e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[3]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.9399986639618874e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[4]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00010229996405541897,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[4]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.139984518289566e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[4]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.219993181526661e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[5]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.860005229711533e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[5]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.600011304020882e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[5]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.889986641705036e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[6]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 9.620003402233124e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[6]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.00000673532486e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_exposes_level_depth_marker_and_normalized_text[6]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 5.829986184835434e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[0-1-between]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00015219999477267265,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[0-1-between]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00010780012235045433,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[0-1-between]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.949994713068008e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[7-1-between]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00016289995983242989,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[7-1-between]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.740012370049953e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[7-1-between]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.46000262349844e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[1-0-positive]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00014870008453726768,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[1-0-positive]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 9.950017556548119e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_heading.py::test_heading_rejects_invalid_source_coordinates[1-0-positive]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.500002928078175e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_exposes_boundaries_and_normalized_string_forms",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00011110003106296062,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_exposes_boundaries_and_normalized_string_forms",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011690007522702217,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_exposes_boundaries_and_normalized_string_forms",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.329989992082119e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[0-1-1-positive]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.0001913001760840416,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[0-1-1-positive]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 7.890001870691776e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[0-1-1-positive]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 6.370013579726219e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[3-2-3-cannot precede]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.00016549997963011265,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[3-2-3-cannot precede]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00010100007057189941,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[3-2-3-cannot precede]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 8.730008266866207e-05,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[2-3-1-must match]",
+      "phase": "setup",
+      "outcome": "passed",
+      "seconds": 0.000188400037586689,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[2-3-1-must match]",
+      "phase": "call",
+      "outcome": "passed",
+      "seconds": 0.00011380016803741455,
+      "failure": null
+    },
+    {
+      "nodeid": "tests/resources/filesystem/models/markdown/test_section.py::test_section_rejects_invalid_boundaries[2-3-1-must match]",
+      "phase": "teardown",
+      "outcome": "passed",
+      "seconds": 9.430013597011566e-05,
+      "failure": null
+    }
+  ]
+}

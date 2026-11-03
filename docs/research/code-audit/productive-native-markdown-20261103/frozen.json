@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-03T17:11:23.124779+00:00",
+  "base_head": "a4274bd190bf7ee16c4f8077410617dd37461157",
+  "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+  "inputs": {
+    "src/devtools/resources/filesystem/models/markdown/file.py": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+    "src/devtools/resources/filesystem/models/markdown/heading.py": "ad6336ce85e759de0c3b16b1c2d4dd25f5db7455ff2a7c2254e47b81cc3d419b",
+    "src/devtools/resources/filesystem/models/markdown/section.py": "5e753e13ae43ac22fa897b37327cc947c3d5e1eeb43c26f1b57187be8a5ee249",
+    "src/devtools/resources/filesystem/models/text.py": "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111",
+    "tests/resources/filesystem/models/markdown/test_file.py": "cf84bfc22727154a0817fb0152c0c98a01513a2ece69d37bc249b0c07427da36",
+    "tests/resources/filesystem/models/markdown/test_heading.py": "320be7f2c8022240399c1780cf07906282a46c208f49e86e229497096e0955cd",
+    "tests/resources/filesystem/models/markdown/test_section.py": "03e3214410edb444469de1ad1ede1dfd831ed3bf3fbb6c27b8a84be26b0a5d9e",
+    "tests/resources/filesystem/codecs/test_markdown.py": "fbcf838af8480e336fab830afba91f2af098010c0dc6ae37d3f975bcc0bd7fa8"
+  },
+  "public_path": "tests/live_native_markdown_hash_public.py",
+  "public_sha256": "67095725a06b56cb2328a9606a9186138d67d160bdcb4a8645a9fe99d1cb7315",
+  "private_sha256": "c83f668f576121e4f7663440347b5d4919fd951b39b4a9752208656718a662ec",
+  "baseline": {
+    "source": "# C#\nGuide\n",
+    "actual_title": "C",
+    "expected_title": "C#",
+    "heading_lookup": null,
+    "section_lookup": null
+  },
+  "private_baseline": {
+    "passed": false,
+    "error": "('### F##  ', 'F##', 'F')"
+  },
+  "controls": "Plain separated closers, tab-separated closers, fenced headings and empty title passed",
+  "derivation": "Literal title and separated suffix expectations independently specified before inference. CommonMark0.31.2 ATX heading boundary rule; narrow literal structural model only; no inline unescaping or full conformance. No reference implementation."
+}

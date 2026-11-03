@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+  "created_at": "2026-11-03T17:11:23.305444+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Preserve attached literal hash suffixes in Markdown heading titles",
+    "summary": "On authenticated main a4274bd190bf7ee16c4f8077410617dd37461157, exported MarkdownFile parses \"# C#\" as title \"C\". find_heading(\"C#\") and find_section(\"C#\") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.",
+    "discovery": {
+      "kind": "agent",
+      "reference": ".local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings"
+    },
+    "parent": null,
+    "resources": [
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "src/devtools/resources/filesystem/models/markdown/heading.py",
+      "src/devtools/resources/filesystem/models/markdown/section.py",
+      "src/devtools/resources/filesystem/models/text.py",
+      "tests/resources/filesystem/models/markdown/test_file.py",
+      "tests/resources/filesystem/models/markdown/test_heading.py",
+      "tests/resources/filesystem/models/markdown/test_section.py",
+      "tests/resources/filesystem/codecs/test_markdown.py"
+    ],
+    "evidence": [
+      "src/devtools/resources/filesystem/docs/markdown.md",
+      "tests/resources/filesystem/models/markdown/test_file.py"
+    ],
+    "benefit": "Keep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.",
+    "uncertainty": "Authored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.",
+    "dependencies": [
+      "Existing filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority."
+    ]
+  },
+  "payload_sha256": "730fe6bcdf82375d01da11958f6c26c05bb6d9c89d6e75252f4ec9ff230ec1a4"
+}
