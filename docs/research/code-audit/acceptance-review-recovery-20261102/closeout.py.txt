@@ -1,0 +1,133 @@
+"""Authenticate unchanged executable inputs and retain bounded public evidence."""
+import asyncio, hashlib, json, sys, urllib.request
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp, Duration
+from devtools.resources.filesystem import TextFile, BinaryFile, write
+from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import inputs, git
+from scripts.backlog.intake import _digest
+O = R / '.local/review-recovery'
+D = R / 'docs/research/code-audit/acceptance-review-recovery-20261102'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p, v): write(TextFile(resolve_path(p), json.dumps(v, indent=2, default=str) + '\n'), overwrite=False)
+def blobs(s): return {row.split('\t', 1)[1]: row.split()[1] for row in s.splitlines()}
+
+async def provider():
+    r = await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072, max_stderr_bytes=2048)).execute(Command('docker').args('inspect', 'devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+    assert r.succeeded and not r.stdout_truncated
+    v = json.loads(r.stdout)[0]
+    old = load(R / '.local/e2e-native/current-service.json')
+    assert v['Id'] == old['container_id'] and v['Image'] == old['image']
+    assert v['Config']['Cmd'] == old['command'] and v['Mounts'] == old['mounts']
+    with urllib.request.urlopen('http://127.0.0.1:8080/slots', timeout=10) as response:
+        slots = json.loads(response.read(131072))
+    assert len(slots) == 1 and slots[0]['n_ctx'] == 65536 and not slots[0]['is_processing']
+    return {'container_id': v['Id'], 'image': v['Image'], 'command': v['Config']['Cmd'], 'mounts': v['Mounts'], 'slots': slots, 'changed': False}
+
+before = load(O / 'authentication.json')
+gate = load(O / 'protected-completion.json')
+assert gate['status'] == 'passed' and gate['inputs_unchanged']
+now = inputs(R)
+assert now['sha256'] == gate['inputs']['sha256']
+a, b = blobs(now['git_blobs']), blobs(gate['inputs']['git_blobs'])
+assert all(a[n] == b[n] for n in now['sha256'])
+assert all(now[k] == gate['inputs'][k] for k in ('python', 'executable', 'platform', 'packages'))
+for group in ('historical_files', 'native_history', 'forensics'):
+    for name, identity in before[group].items(): assert h(R / name) == identity, name
+c = WorkCycle(R)
+assert c.routine.active()['sha256'] == before['active_policy']
+assert c.native.record('B-0052', 'result')['sha256'] == before['native_result']
+assert h(R / 'src/devtools/resources/filesystem/models/csv.py') == before['baseline_raw_sha256']
+assert not (R / '.local/backlog/checkout-owner').exists()
+assert git(R, 'branch', '--show-current') == 'main'
+assert not git(R, 'diff', '--name-only') and not git(R, 'diff', '--cached', '--name-only')
+refs = {name: value for value, name in (row.split() for row in git(R, 'show-ref').splitlines())}
+exceptions = {'refs/heads/main', 'refs/remotes/origin/main', 'refs/remotes/origin/HEAD', 'refs/heads/feat/agent-inspector', 'refs/remotes/origin/feat/agent-inspector'}
+for row in before['refs'].splitlines():
+    value, name = row.split()
+    if name not in exceptions: assert refs.get(name) == value, name
+tree = git(R, 'worktree', 'list', '--porcelain')
+assert 'worktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\n' in tree
+assert '\nbranch refs/heads/feat/agent-inspector' in tree
+ledgers = {}
+for name in ('ri-completion-experiments.jsonl', 'ri-completion-fixtures.jsonl', 'ri-followup-history.jsonl'):
+    path = R / 'docs/research/code-audit' / name
+    ledgers[name] = {'rows': len([s for s in path.read_text(encoding='utf-8').splitlines() if s.strip()]), 'sha256': h(path)}
+    assert git(R, 'rev-parse', before['starting_head'] + ':' + path.relative_to(R).as_posix()) == git(R, 'rev-parse', 'HEAD:' + path.relative_to(R).as_posix())
+assert sum(v['rows'] for v in ledgers.values()) == 903
+outcome = load(O / 'review-outcome.json') if (O / 'review-outcome.json').exists() else None
+actor = c.native.reviewer.select(outcome['subject']) if outcome else None
+if actor: assert actor.record('B-0052', 'proposal') == outcome['proposal']
+value = {'at': str(Timestamp.now()), 'head': now['head'], 'tested_executable_commit': gate['inputs']['head'],
+    'protected_status': gate['status'], 'protected_seconds': gate['seconds'],
+    'matching_protected_inputs_and_blobs': len(now['sha256']), 'packages_and_runtime_match': True,
+    'environment_fingerprint_matches': now['environment_sha256'] == gate['inputs']['environment_sha256'],
+    'qualification': 'Declared executable/configuration inputs and Git blobs authenticated; complete ignored/external-state equivalence is not claimed.',
+    'preserved': {k: len(before[k]) for k in ('historical_files', 'native_history', 'forensics')},
+    'ri_ledgers': ledgers, 'historical_refs_preserved': True, 'checkout_released': True,
+    'worktrees': tree, 'provider': asyncio.run(provider()), 'active_policy': before['active_policy'],
+    'candidate': before['candidate_sha256'], 'coding_repeated': False, 'candidate_installed': False,
+    'temporary_public_present': (R / 'tests/live_native_csv_row_public.py').exists(),
+    'review_subject': outcome['subject'] if outcome else None,
+    'review_proposal': outcome['proposal']['sha256'] if outcome else None,
+    'review_status': outcome['proposal']['status'] if outcome else None,
+    'model_calls': outcome['proposal']['model_calls'] if outcome else 0,
+    'host_review': load(O / 'host-review.json')['sha256'] if (O / 'host-review.json').exists() else None,
+    'integration_plan': load(O / 'integration-plan.json')['sha256'] if (O / 'integration-plan.json').exists() else None}
+assert not value['temporary_public_present']
+mode = sys.argv[1]
+if mode in ('--before-push', '--published'):
+    remote = git(R, 'ls-remote', 'origin', 'refs/heads/main').split()[0]
+    if mode == '--before-push': assert remote == before['starting_head']
+    else:
+        assert remote == now['head']
+        assert set(git(R, 'ls-files', '--others', '--exclude-standard', '-z').split('\0')) - {''} == set(before['forensics'])
+    value['remote_main'] = remote
+    save(O / ('source-publication-verification.json' if mode == '--before-push' else 'publication-verification.json'), value)
+elif mode == '--archive':
+    assert outcome and not D.exists()
+    D.mkdir(parents=True)
+    summaries = {}
+    for p in sorted(O.glob('*.json')):
+        v = load(p)
+        if 'phases' in v and 'status' in v:
+            summaries[p.name] = {k: v.get(k) for k in ('status', 'exit_code', 'seconds', 'inputs_unchanged', 'argv', 'correction')}
+            summaries[p.name].update(raw_sha256=h(p), distinct_test_ids=len({r['nodeid'] for r in v['phases']}), failures=[{'nodeid': r['nodeid'], 'phase': r['phase'], 'failure_tail': r.get('failure', '')[-2500:]} for r in v['phases'] if r['outcome'] == 'failed'])
+    save(D / 'validation-history.json', summaries)
+    for name in ('authentication.json', 'resumption-state.json', 'recovery-quality-1.json', 'recovery-quality-2.json', 'protected-completion.json', 'source-publication-verification.json', 'qualification.json', 'public-materialization.json', 'execution-scope.json', 'review-outcome.json', 'live-measurements.json', 'parser-authentication.json', 'host-assessment.json', 'host-review.json', 'integration-plan.json', 'materialization-reconciliation.json', 'cleanup.json'):
+        p = O / name
+        if p.exists(): write(BinaryFile(resolve_path(D / name), p.read_bytes()), overwrite=False)
+    def rows(paths): return [{'path': p.relative_to(R).as_posix(), 'sha256': h(p), 'utf8_text': p.read_bytes().decode('utf-8')} for p in sorted(paths)]
+    save(D / 'native-attempt.json', rows(actor.folder('B-0052').glob('*.json')))
+    for record in load(D / 'native-attempt.json'):
+        raw = json.loads(record['utf8_text'])
+        assert _digest({k: v for k, v in raw.items() if k != 'sha256'}) == raw['sha256']
+    save(D / 'provider-support.json', rows((R / '.local/e2e-native/support/b0052-acceptance-recovery-3').rglob('*.json')))
+    authority = rows(c.routine.folder.glob('control-*.json'))
+    reference = actor.record('B-0052', 'authorization')['reference']
+    hostref = load(O / 'host-review.json')['reference'] if value['host_review'] else None
+    for p in sorted((c.routine.folder / 'decisions').glob('*.json')):
+        v = load(p)
+        if reference.endswith(':' + v['sha256']) or (hostref and hostref.endswith(':' + v['sha256'])) or (value['host_review'] and v['kind'] == 'integration-plan' and v['request'].get('review') == value['host_review']):
+            if v['kind'] == 'host-review':
+                request = v['request']
+                authority.append({'path': p.relative_to(R).as_posix(), 'sha256': h(p), 'record_sha256': v['sha256'], 'projection': {**{k: x for k, x in v.items() if k != 'request'}, 'request_projection': {'operation': request['operation'], 'assignment_sha256': request['assignment']['sha256'], 'result_sha256': request['result']['sha256'], 'decision': request['decision'], 'review_proposal_sha256': request['review_proposal']['sha256']}}, 'omitted': 'Host-private assignment/result including oracle implementation; original retained in canonical administration. Projection is not the full sealed payload.'})
+            else: authority.extend(rows([p]))
+    save(D / 'standing-authority.json', authority)
+    save(D / 'protected-output.json', {name: {'sha256': h(O / ('protected-completion.json.' + name)), 'utf8_text': (O / ('protected-completion.json.' + name)).read_bytes().decode('utf-8')} for name in ('stdout', 'stderr')})
+    for name in ('resume_inspect.py', 'quality.py', 'protected.py', 'live.py', 'measure_live.py', 'closeout.py', 'refresh_plan.py', 'inspect_terminal.py', 'host_closeout.py'):
+        p = O / name
+        write(BinaryFile(resolve_path(D / (name + '.txt')), p.read_bytes()), overwrite=False)
+    save(D / 'integrity.json', value)
+    private = (R / '.local/e2e-native/private.py.txt').read_text(encoding='utf-8')
+    for p in D.iterdir():
+        text = p.read_text(encoding='utf-8')
+        assert private not in text and json.dumps(private) not in text, p
+    save(O / 'integrity.json', value)
+else: raise ValueError('Explicit checkpoint required')
+print(json.dumps({k: v for k, v in value.items() if k not in ('provider', 'worktrees')}, indent=2))

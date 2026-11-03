@@ -1,0 +1,157 @@
+{
+  "at": "2026-11-03T00:28:51.692286+00:00",
+  "head": "1346631a5ab9b924066e8b49fb54ceaf5cb0a69a",
+  "branch": "main",
+  "status": "M docs/development/native-independent-review.md\n M docs/development/native-review-continuation.md\n M docs/development/routine-development-authority.md\n M docs/documentation_map.md\n M scripts/backlog/native/cli.py\n M scripts/backlog/native/review/acquisition.py\n M scripts/backlog/native/review/actor.py\n M scripts/backlog/native/review/continuation.py\n M scripts/backlog/native/review/diagnostic.py\n M tests/scripts/backlog/test_native.py\n M tests/scripts/backlog/test_review_acquisition.py\n M tests/scripts/backlog/test_review_continuation.py\n?? experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/\n?? experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json\n?? experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/\n?? experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/\n?? experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/\n?? scripts/backlog/native/review/budget.py\n?? tests/scripts/backlog/test_review_recovery.py",
+  "remote_main": "1346631a5ab9b924066e8b49fb54ceaf5cb0a69a",
+  "checkout_released": true,
+  "new_attempt_exists": false,
+  "preserved": {
+    "historical_files": 630,
+    "native_history": 192,
+    "forensics": 13
+  },
+  "active_policy": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "candidate": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "receipts": {
+    "focused-1.json": {
+      "status": "test-or-coverage-failure",
+      "exit_code": 1,
+      "seconds": 342.535244,
+      "inputs_unchanged": true,
+      "failed_ids": [
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[malformed]",
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[tool-final]"
+      ],
+      "distinct_test_ids": 6
+    },
+    "focused-3.json": {
+      "status": "test-or-coverage-failure",
+      "exit_code": 1,
+      "seconds": 341.32209,
+      "inputs_unchanged": true,
+      "failed_ids": [
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+        "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]"
+      ],
+      "distinct_test_ids": 5
+    },
+    "focused-4.json": {
+      "status": "configuration",
+      "exit_code": 4,
+      "seconds": 2.292106,
+      "inputs_unchanged": true,
+      "failed_ids": [],
+      "distinct_test_ids": 0
+    },
+    "focused-5.json": {
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 155.169189,
+      "inputs_unchanged": true,
+      "failed_ids": [],
+      "distinct_test_ids": 45
+    },
+    "impact-preview.json": {
+      "status": "planned",
+      "exit_code": null,
+      "seconds": null,
+      "inputs_unchanged": null,
+      "failed_ids": [],
+      "distinct_test_ids": 0
+    },
+    "recovered-consumers-7.json": {
+      "status": "configuration",
+      "exit_code": 4,
+      "seconds": 0.18098,
+      "inputs_unchanged": true,
+      "failed_ids": [],
+      "distinct_test_ids": 0
+    }
+  },
+  "orphan_intents": [
+    "consumers-6.json.intent",
+    "recovered-consumers-8.json.intent",
+    "recovery-2.json.intent"
+  ],
+  "provider_slots": [
+    {
+      "id": 0,
+      "n_ctx": 65536,
+      "speculative": false,
+      "is_processing": false,
+      "id_task": 7805,
+      "n_prompt_tokens": 13710,
+      "n_prompt_tokens_processed": 0,
+      "n_prompt_tokens_cache": 0,
+      "params": {
+        "seed": 4294967295,
+        "temperature": 1.0,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 20,
+        "top_p": 0.949999988079071,
+        "min_p": 0.05000000074505806,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": 2048,
+        "n_predict": 2048,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": false,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "peg-native",
+        "reasoning_format": "deepseek",
+        "reasoning_in_content": false,
+        "generation_prompt": "<|im_start|>assistant\n<think>\n\n</think>\n\n",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "next_token": [
+        {
+          "has_next_token": false,
+          "has_new_line": false,
+          "n_remain": -1,
+          "n_decoded": 0
+        }
+      ]
+    }
+  ],
+  "worktrees": "worktree C:/Users/recoveryadmin/Workspace/tools/devtools\nHEAD 1346631a5ab9b924066e8b49fb54ceaf5cb0a69a\nbranch refs/heads/main\n\nworktree C:/Users/recoveryadmin/Workspace/tools/devtools-inspector\nHEAD e3569bb02102734476c0511fbb8852924760e126\nbranch refs/heads/feat/agent-inspector",
+  "inspector_head": "e3569bb02102734476c0511fbb8852924760e126",
+  "inspector_status": "",
+  "inspector_files": {}
+}

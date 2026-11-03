@@ -1,0 +1,56 @@
+"""Inspect only the already completed third review; no inference or authority mutation."""
+import difflib, hashlib, json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.native.review.proposal import parse
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+O = R / '.local/review-recovery'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+c = WorkCycle(R)
+out = load(O / 'review-outcome.json')
+actor = c.native.reviewer.select(out['subject'])
+packet = actor.record('B-0052', 'subject')
+proposal = actor.record('B-0052', 'proposal')
+records = [load(p) for p in sorted(actor.folder('B-0052').glob('observation-*.json'))]
+responses = [v for v in records if v['kind'] == 'review-model-returned']
+intents = [v for v in records if v['kind'] == 'review-model-intent']
+reads = [v for v in records if v['kind'] == 'review-read-result']
+a = c.native.record('B-0052', 'assignment')
+r = c.native.record('B-0052', 'result')
+candidate, patch_hash = c.native._candidate(a, r)
+assert candidate == packet['subject']['evidence']['candidate']['text']
+assert hashlib.sha256(candidate.encode()).hexdigest() == r['candidate_sha256']
+assert out['proposal'] == proposal and proposal['status'] == 'blocked' and proposal['conclusion'] is None
+try:
+    parse(responses[-1]['response']['content'], proposal['references'], {'objective', *(v['name'] for v in a['task']['obligations'])})
+except Exception as error:
+    assert type(error) is json.JSONDecodeError
+    diagnostic = {'type': type(error).__name__, 'message': str(error), 'position': error.pos, 'line': error.lineno, 'column': error.colno}
+else: raise AssertionError('Original response unexpectedly admitted')
+value = {
+    'folder': str(actor.folder('B-0052')), 'proposal': proposal, 'diagnostic': diagnostic,
+    'subject_keys': list(packet), 'task': packet['subject']['evidence']['task'],
+    'diff': ''.join(difflib.unified_diff(a['baseline_source'].splitlines(True), candidate.splitlines(True), fromfile='baseline', tofile='candidate')),
+    'source_baseline_matches': (R / a['task']['source']).read_text(encoding='utf-8') == a['baseline_source'],
+    'candidate_patch_sha256': patch_hash, 'public_checks': packet['subject']['evidence']['public-checks'],
+    'acceptance': packet['subject']['evidence']['acceptance'],
+    'responses': [{'record': v['sha256'], 'response': v['response']} for v in responses],
+    'reads': [{'record': v['sha256'], 'keys': list(v), 'result': {k: x for k, x in v.items() if k not in ('disclosure', 'sha256')}} for v in reads],
+    'final_request': {k: v for k, v in intents[-1]['request'].items() if k != 'prompt'},
+    'final_system': intents[-1]['request']['prompt']['messages'][0]['content'],
+    'final_budget': json.loads(intents[-1]['request']['prompt']['messages'][-1]['content']),
+    'observations': [{'kind': v['kind'], 'sha256': v['sha256']} for v in records],
+}
+value.update(at=str(Timestamp.now()), native_admission_repeated=False,
+    operation='Read-only deterministic parser diagnostic against preserved response, no model send',
+    response_content_sha256=[hashlib.sha256(v['response']['content'].encode()).hexdigest() for v in responses],
+    record_files={p.relative_to(R).as_posix(): h(p) for p in sorted(actor.folder('B-0052').glob('*.json'))},
+    schema_validation_reached=False, terminal_tool_block_entered=False,
+    classification='Non-JSON prose with a Python example fence and a literal XML-like placeholder Tool block; no embedded JSON recommendation. Normal provider termination, no missing return, no output limit, no evidence-insufficiency claim. No schema/reference/obligation judgment was admitted.')
+write(TextFile(resolve_path(O / 'parser-authentication.json'), json.dumps(value, indent=2) + '\n'), overwrite=False)
+print(json.dumps({k: value[k] for k in ('diagnostic', 'diff', 'source_baseline_matches', 'response_content_sha256', 'classification')}, indent=2))

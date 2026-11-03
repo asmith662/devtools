@@ -1,0 +1,40 @@
+"""Write an explicitly non-authoritative host assessment of preserved evidence."""
+import hashlib, json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+from scripts.backlog.work import WorkCycle
+O = R / '.local/review-recovery'
+def load(p): return json.loads(p.read_bytes())
+c = WorkCycle(R)
+auth = load(O / 'authentication.json')
+out = load(O / 'review-outcome.json')
+audit = load(O / 'parser-authentication.json')
+assert audit['proposal'] == out['proposal']
+assert c.routine.active()['sha256'] == auth['active_policy']
+assert c.native.record('B-0052', 'result')['sha256'] == auth['native_result']
+assert out['proposal']['status'] == 'blocked' and out['proposal']['conclusion'] is None
+value = {
+    'at': str(Timestamp.now()), 'assessor': 'Codex trusted host, interrupted evidence closeout',
+    'scope': 'Independent host reading of preserved candidate/task/check/custody and actual review output; no fresh inference, candidate execution or native disposition',
+    'subject': out['subject'], 'proposal': out['proposal']['sha256'], 'candidate': auth['candidate_sha256'],
+    'native_acceptance_authority': False, 'host_review_created': False, 'integration_plan_created': False,
+    'assessment': 'Favorable within the typed standalone exact-string uniqueness scope, with no demonstrated blocking candidate defect in the preserved evidence. This is host research assessment only; the blocked native proposal remains inadmissible.',
+    'claims': [
+        {'model_claim': 'The only edit rejects duplicate standalone headers after tuple capture.', 'host_assessment': 'Confirmed by exact authenticated four-line candidate diff in CsvRow.__post_init__; raises ValueError before a constructed ambiguous row is returned.'},
+        {'model_claim': 'Unique case, spacing, Unicode spelling, empty rows and unique blank headers retain behavior.', 'host_assessment': 'Supported by unchanged storage/access logic and exact str equality in set membership; no normalization added. The model phrase exact string identity is imprecise: equality and hashing, not Python object identity, determine duplicates. Broader unsupported header types remain outside scope.'},
+        {'model_claim': 'Width, string-cell, indexing, iteration, mapping, conversion, file, codec and dialect paths are preserved.', 'host_assessment': 'Those bodies are unchanged and unique-name rows reach the existing validators. A row invalid for duplicates and width/type may now fail uniqueness first, consistent with the bounded task; universal exception-precedence preservation is not claimed.'},
+        {'model_claim': 'Public 54 checks and acceptance passed.', 'host_assessment': 'Confirmed as historical observations in the owner-projected subject and original qualified result. Neither was rerun or relabeled fresh in this closeout.'},
+        {'model_claim': 'The current-owner obligation was satisfied because the complete owner was preserved.', 'host_assessment': 'The final prose reasons about the supplied complete baseline/candidate and task obligation. Preservation alone does not establish the coder acquisition witness; the separate original qualified result retains its disclosure/currentness evidence. No structured assessed_obligations or evidence names were returned.'},
+        {'model_claim': 'No blocking defect or unresolved blocking risk identified.', 'host_assessment': 'Consistent with this bounded host reading, but remains model prose rather than a disposition. There is no admitted accept/reject/insufficient-evidence object.'},
+        {'model_claim': 'Trailing read_source placeholder block.', 'host_assessment': 'Literal output text only. Final request tools and normalized response tool_calls were both empty; no placeholder read occurred. It conflicts with the synthesis instruction and supplies no evidence request admissible under the contract.'},
+    ],
+    'remaining_blocker': 'Final review response violated the raw structured judgment contract: non-JSON prose and a literal Tool-like tail, with no JSON object to unwrap or schema fields to validate. This is response-contract noncompliance, not a demonstrated candidate defect or transport failure.',
+    'next_smallest_action': 'Separately scope a bounded acceptance-review synthesis response-contract investigation/correction using the preserved final request/response as an offline regression fixture. Require explicit grounded schema output, preserve raw bytes and fail-closed admission. Fence stripping cannot recover this response. Any future live review additionally needs prospective reviewed eligibility and fresh exact-task authority because v3 is consumed and cannot chain; do not add another hardcoded slot.',
+    'candidate_installed': False, 'coding_repeated': False, 'model_calls_in_closeout': 0,
+}
+write(TextFile(resolve_path(O / 'host-assessment.json'), json.dumps(value, indent=2) + '\n'), overwrite=False)
+print(json.dumps({k: value[k] for k in ('assessment', 'remaining_blocker', 'native_acceptance_authority')}, indent=2))

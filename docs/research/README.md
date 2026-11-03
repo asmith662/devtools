@@ -1,5 +1,10 @@
 # Research Evidence
 
+[Interrupted B-0052 acceptance-review closeout](acceptance-review-recovery.md)
+authenticates the third review's non-JSON terminal response, preserved candidate
+and protected implementation receipt. Model prose, strict admission and host-only
+assessment remain distinct; no installation or further review follows.
+
 Subsequent Context implementation, 2026-10-28:
 [opt-in active projection and deterministic Case 0003 reconstruction](../development/active-context-projection.md).
 Complete historical facts remain retained; request fit is not live task success.

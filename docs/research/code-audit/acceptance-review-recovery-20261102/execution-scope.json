@@ -1,0 +1,64 @@
+{
+  "at": "2026-11-03T01:49:15.434249+00:00",
+  "subject": "df8aee46e7dff292316be19285f7b7ed92ed6c89d6a63e550be2a7c3c66dd716",
+  "grant": {
+    "schema": "backlog-native-review-authorization-v3",
+    "subject_sha256": "df8aee46e7dff292316be19285f7b7ed92ed6c89d6a63e550be2a7c3c66dd716",
+    "principal": "recoveryadmin",
+    "reference": "routine-v1:f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf:2a405849e3f7ad88e8bb8a24ef4859c56e46cd98a595ab3b68ce3e14c264a5ad",
+    "issued_at": "2026-11-03T01:49:13.183541+00:00",
+    "expires_at": "2026-11-03T02:49:07.770873+00:00",
+    "scope": "native-independent-review-v1; read-only; proposal-only; no-check-edit-install-publish-closeout",
+    "sha256": "f3f6e58006b0635891cf6e69f8c5cd31e819a65c32a183f7884f69dce6687602"
+  },
+  "policy": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "candidate": "a7471ffeec9a21cdb12ddc3bcb0cb315680f109ff70d168ade03310c24bef255",
+  "model": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "reviewer": {
+    "actor": "qwen38-csv-acceptance-recovery-reviewer-20261102",
+    "source": "llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102",
+    "profile": "qwen38-native64-independent-review-defaults-v1",
+    "independence": {
+      "reference": "Trusted host constructs a fresh stateless LlamaCppInteraction and only the owner-projected task/candidate/check/custody messages; no coder or first-review transcript, private oracle, reference patch or host scoring. Same pinned weights are not model diversity.",
+      "session": "B0052-acceptance-recovery-3-fresh-20261102",
+      "implementation_participant": false,
+      "privileged_reference_access": false
+    },
+    "read_paths": [
+      "src/devtools/resources/filesystem/codecs/csv.py",
+      "src/devtools/resources/filesystem/models/csv.py",
+      "src/devtools/resources/filesystem/models/text.py",
+      "tests/live_native_csv_row_public.py",
+      "tests/resources/filesystem/codecs/test_csv.py",
+      "tests/resources/filesystem/models/csv/test_dialect.py",
+      "tests/resources/filesystem/models/csv/test_file.py",
+      "tests/resources/filesystem/models/csv/test_row.py"
+    ],
+    "settings": {
+      "maximum_output_tokens": 2048,
+      "thinking_enabled": false
+    },
+    "budgets": {
+      "model_calls": 4,
+      "reads": 3,
+      "call_seconds": 120,
+      "wall_seconds": 480,
+      "prompt_bytes": 131072,
+      "response_bytes": 65536,
+      "capture_bytes": 983040
+    }
+  },
+  "native_capture_bytes": 983040,
+  "support_capture_bytes": 65536,
+  "combined_capture_ceiling": 1048576,
+  "provider_reservation": "Host serial use of currently authenticated idle provider for at most 480s; availability checked before every send, no preemption or service change.",
+  "sampling": "Portable ModelSettings; persistent provider defaults including temperature 1.0 unchanged.",
+  "coding": false,
+  "installation": false
+}

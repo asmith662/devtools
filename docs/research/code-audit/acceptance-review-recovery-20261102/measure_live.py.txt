@@ -1,0 +1,40 @@
+"""Measure only the already consumed review; never dispatch or judge it."""
+import json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+from scripts.backlog.work import WorkCycle
+O = R / '.local/review-recovery'
+def load(p): return json.loads(p.read_bytes())
+out = load(O / 'review-outcome.json')
+actor = WorkCycle(R).native.reviewer.select(out['subject'])
+proposal = actor.record('B-0052', 'proposal')
+assert out['proposal'] == proposal
+records = [load(p) for p in sorted(actor.folder('B-0052').glob('observation-*.json'))]
+responses = [v for v in records if v['kind'] == 'review-model-returned']
+reads = [v for v in records if v['kind'] == 'review-read-result']
+intents = [v for v in records if v['kind'] == 'review-model-intent']
+budgets = [v['budget'] for v in records if v['kind'] == 'review-budget']
+support = R / '.local/e2e-native/support/b0052-acceptance-recovery-3'
+observers = [load(p) for p in sorted(support.glob('provider-*.json'))]
+assert len(responses) == len(observers) == out['returned_interactions']
+assert len(reads) == proposal['reads']
+usage = {key: sum((v['response'].get('usage') or {}).get(key) or 0 for v in responses) for key in ('input_tokens', 'output_tokens', 'total_tokens')}
+facts = {'at': str(Timestamp.now()), 'subject': out['subject'], 'proposal': proposal['sha256'],
+    'status': proposal['status'], 'error': proposal['error'], 'native_model_calls_claimed': proposal['model_calls'],
+    'adapter_entries': out['adapter_entries'], 'returned_provider_observations': len(observers),
+    'native_seconds': proposal['seconds'], 'wall_seconds': out['seconds'], 'adapter_seconds': out['adapter_seconds'],
+    'reported_usage': usage, 'reads': len(reads), 'source_bytes_disclosed': sum(len(v['disclosure']['text'].encode()) for v in reads),
+    'read_paths': [v['disclosure']['path'] for v in reads], 'budget_views': budgets,
+    'tool_refusals': [v for v in records if v['kind'] == 'review-tool-refused'],
+    'prepared_refusal_feedback': [v for v in records if v['kind'] == 'review-refusal-feedback'],
+    'last_captured_request_had_tools': bool(intents[-1]['request']['tools']) if intents else None,
+    'provider_response_ids': [v['provider_response_id'] for v in observers],
+    'returned_content': [v['response']['content'] for v in responses],
+    'conclusion': proposal['conclusion'], 'coding_repeated': False, 'candidate_installed': False,
+    'qualification': 'Returned provider observations authenticate completed actual adapter responses. A claimed/entered call without a return is unresolved and must not replay. Reported input counts include each submitted prompt; no fresh-token or cache-efficiency claim.'}
+write(TextFile(resolve_path(O / 'live-measurements.json'), json.dumps(facts, indent=2) + '\n'), overwrite=False)
+print(json.dumps(facts, indent=2))

@@ -1,0 +1,72 @@
+[
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-entry-01.json",
+    "sha256": "a3e39278e7806c30d5afd711f0f9106782c39bf6bfaf8927b9f8f41568ec7829",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:23.969264+00:00\",\n  \"effect\": \"Adapter send entered once; not proof of provider completion\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-entry-02.json",
+    "sha256": "25cba58bc049ec245d2856fd39e6632655e8956d0caa0547be52d4ddbb92e666",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:57.858180+00:00\",\n  \"effect\": \"Adapter send entered once; not proof of provider completion\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-entry-03.json",
+    "sha256": "14a0270867d0c7375993676b76c6aa863f6740dc27274de26ef2a161c9537013",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:50:20.936658+00:00\",\n  \"effect\": \"Adapter send entered once; not proof of provider completion\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-finished-01.json",
+    "sha256": "a54f2dc603217d459411166572984e8aad2867665708912f185d83d5a5668e88",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:45.830613+00:00\",\n  \"seconds\": 21.859872,\n  \"returned_observations\": 1,\n  \"qualification\": \"Failure/timeout without provider observation is not replayable or proof the provider did not enter.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-finished-02.json",
+    "sha256": "6d9e9f105efb40422396ed69309c0b72d75f60ae89ac23e643b8bf0e79a303ee",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:50:04.528392+00:00\",\n  \"seconds\": 6.668482,\n  \"returned_observations\": 2,\n  \"qualification\": \"Failure/timeout without provider observation is not replayable or proof the provider did not enter.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/adapter-finished-03.json",
+    "sha256": "bb6cc22140b4a9ccd86cc190c078d550921927752b930a8af440dee7d62d4852",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:51:02.364083+00:00\",\n  \"seconds\": 41.425708,\n  \"returned_observations\": 3,\n  \"qualification\": \"Failure/timeout without provider observation is not replayable or proof the provider did not enter.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/provider-01.json",
+    "sha256": "76877102f64ef0f766a1abe62a917caa1178ee7ccb2adf920e04f03e87d76aad",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:45.828727+00:00\",\n  \"interaction_id\": \"6e0bd22b-5384-4532-9fc0-3ce1763cb92f\",\n  \"provider\": \"llama.cpp\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\",\n  \"started_at\": \"2026-11-03T01:49:23.970723+00:00\",\n  \"completed_at\": \"2026-11-03T01:49:45.828685+00:00\",\n  \"provider_response_id\": \"chatcmpl-YOwSxBZHW9BZuQyBrkYJYFni73tsLO4n\",\n  \"provider_model\": \"qwen38-local\",\n  \"usage\": {\n    \"input_tokens\": 12136,\n    \"output_tokens\": 44,\n    \"total_tokens\": 12180,\n    \"cached_input_tokens\": null,\n    \"cache_write_tokens\": null,\n    \"reasoning_tokens\": null\n  },\n  \"termination\": \"tool_call\",\n  \"qualification\": \"Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/provider-02.json",
+    "sha256": "79e419dbd888c241dd1d056168d87b3b47ef589825f460c5635e17f367d03753",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:50:04.526597+00:00\",\n  \"interaction_id\": \"835cb40d-8213-4c04-9ca1-7b747dcaf73a\",\n  \"provider\": \"llama.cpp\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\",\n  \"started_at\": \"2026-11-03T01:49:57.859894+00:00\",\n  \"completed_at\": \"2026-11-03T01:50:04.526550+00:00\",\n  \"provider_response_id\": \"chatcmpl-M1LKXrR1Y2TFfyDw9ldpiKTTXmZWVvzR\",\n  \"provider_model\": \"qwen38-local\",\n  \"usage\": {\n    \"input_tokens\": 13097,\n    \"output_tokens\": 89,\n    \"total_tokens\": 13186,\n    \"cached_input_tokens\": null,\n    \"cache_write_tokens\": null,\n    \"reasoning_tokens\": null\n  },\n  \"termination\": \"tool_call\",\n  \"qualification\": \"Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/provider-03.json",
+    "sha256": "db8bd0a7f5d2e62454bd7f97debdfd8dcfb3da001742ef2325cd8ddfa87756af",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:51:02.362344+00:00\",\n  \"interaction_id\": \"eb7cd6db-9402-41d7-92f4-9f367dcecb34\",\n  \"provider\": \"llama.cpp\",\n  \"source\": \"llama.cpp/qwen38-local/csv-acceptance-recovery-fresh-20261102\",\n  \"started_at\": \"2026-11-03T01:50:20.938361+00:00\",\n  \"completed_at\": \"2026-11-03T01:51:02.362306+00:00\",\n  \"provider_response_id\": \"chatcmpl-0lvZfUkFitXrOXT0uUsZwKyLqPcPlFQ8\",\n  \"provider_model\": \"qwen38-local\",\n  \"usage\": {\n    \"input_tokens\": 16105,\n    \"output_tokens\": 435,\n    \"total_tokens\": 16540,\n    \"cached_input_tokens\": null,\n    \"cache_write_tokens\": null,\n    \"reasoning_tokens\": null\n  },\n  \"termination\": \"normal_stop\",\n  \"qualification\": \"Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable.\"\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/resources-01.json",
+    "sha256": "c5a5f6601e5d5717ee84936df78bd41baea771e202d2b4e80afdff493ae2c781",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:17.618595+00:00\",\n  \"gpu\": {\n    \"exit\": 0,\n    \"stdout\": \"14740, 1311, 0\\r\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  },\n  \"host\": {\n    \"exit\": 0,\n    \"stdout\": \"{\\\"FreePhysicalMemory\\\":3499780,\\\"FreeVirtualMemory\\\":3788880}\\r\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  },\n  \"container\": {\n    \"exit\": 0,\n    \"stdout\": \"true|false|healthy\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  }\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/resources-02.json",
+    "sha256": "544d7558832d6c538dcb4a64385950bd0436c99d81354f7664aab73739f27844",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:50:20.205065+00:00\",\n  \"gpu\": {\n    \"exit\": 0,\n    \"stdout\": \"14740, 1311, 0\\r\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  },\n  \"host\": {\n    \"exit\": 0,\n    \"stdout\": \"{\\\"FreePhysicalMemory\\\":1575620,\\\"FreeVirtualMemory\\\":4120084}\\r\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  },\n  \"container\": {\n    \"exit\": 0,\n    \"stdout\": \"true|false|healthy\\n\",\n    \"stderr\": \"\",\n    \"truncated\": false\n  }\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/token-fit-01.json",
+    "sha256": "55830b48e2e6a1b9aada464df4dc754f0c897c0848835d1f496d5f152ae316ec",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:23.967648+00:00\",\n  \"input_tokens\": 12136,\n  \"output_reservation\": 2048,\n  \"safety_tokens\": 1024,\n  \"context_tokens\": 65536\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/token-fit-02.json",
+    "sha256": "aa8b448c04afc6414c07c2e0a470c3a9f117aae1c4d8c0a11f6e648f5f308976",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:49:57.856197+00:00\",\n  \"input_tokens\": 13097,\n  \"output_reservation\": 2048,\n  \"safety_tokens\": 1024,\n  \"context_tokens\": 65536\n}\n"
+  },
+  {
+    "path": ".local/e2e-native/support/b0052-acceptance-recovery-3/token-fit-03.json",
+    "sha256": "fd2c8c1ab7176314ccdd524fe090993d0a2152b2cd798aaa61d7c621383d19c6",
+    "utf8_text": "{\n  \"at\": \"2026-11-03T01:50:20.934793+00:00\",\n  \"input_tokens\": 16105,\n  \"output_reservation\": 2048,\n  \"safety_tokens\": 1024,\n  \"context_tokens\": 65536\n}\n"
+  }
+]

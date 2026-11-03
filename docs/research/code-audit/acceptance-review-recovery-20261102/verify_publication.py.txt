@@ -1,0 +1,86 @@
+"""Authenticate an evidence-only index/commit without running tests or inference."""
+import hashlib, json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile, TextFile, write
+from scripts.backlog.intake import _digest
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import inputs, git
+O = R / '.local/review-recovery'
+D = R / 'docs/research/code-audit/acceptance-review-recovery-20261102'
+BASE = 'ee16dd1034169fa929b1d0855a64a9cffeb2b636'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+mode = sys.argv[1]
+assert mode in ('--create', '--staged', '--committed')
+if mode == '--create':
+    assert not (D / 'manifest.json').exists()
+    write(BinaryFile(resolve_path(D / 'verify_publication.py.txt'), Path(__file__).read_bytes()), overwrite=False)
+    value = {'at': str(Timestamp.now()), 'tested_executable_commit': BASE,
+        'purpose': 'Immutable interrupted third-review evidence; no authority or completion recommendation',
+        'files': {p.name: {'sha256': h(p), 'bytes': p.stat().st_size} for p in sorted(D.iterdir()) if p.is_file()},
+        'qualification': 'Manifest excludes itself. Exact archive bytes must also match index/commit Git blobs. Public report/main publication identities are separately authenticated, not circularly embedded here.'}
+    write(TextFile(resolve_path(D / 'manifest.json'), json.dumps(value, indent=2) + '\n'), overwrite=False)
+manifest = load(D / 'manifest.json')
+assert set(manifest['files']) == {p.name for p in D.iterdir() if p.is_file()} - {'manifest.json'}
+for name, identity in manifest['files'].items():
+    p = D / name
+    assert h(p) == identity['sha256'] and p.stat().st_size == identity['bytes'], name
+c = WorkCycle(R)
+auth = load(O / 'authentication.json')
+for group in ('historical_files', 'native_history', 'forensics'):
+    for name, identity in auth[group].items(): assert h(R / name) == identity, name
+assert c.routine.active()['sha256'] == auth['active_policy']
+assert c.native.record('B-0052', 'result')['sha256'] == auth['native_result']
+a = c.native.record('B-0052', 'assignment')
+candidate, patch = c.native._candidate(a, c.native.record('B-0052', 'result'))
+assert hashlib.sha256(candidate.encode()).hexdigest() == auth['candidate_sha256']
+assert h(R / a['task']['source']) == auth['baseline_raw_sha256']
+assert not (R / '.local/backlog/checkout-owner').exists()
+assert not (R / 'tests/live_native_csv_row_public.py').exists()
+out = load(O / 'review-outcome.json')
+actor = c.native.reviewer.select(out['subject'])
+proposal = actor.record('B-0052', 'proposal')
+assert proposal == out['proposal'] and proposal['status'] == 'blocked' and proposal['conclusion'] is None
+assert not (O / 'host-review.json').exists() and not (O / 'integration-plan.json').exists()
+native = {}
+for row in load(D / 'native-attempt.json'):
+    p = R / row['path']
+    assert p.read_bytes() == row['utf8_text'].encode() and h(p) == row['sha256']
+    raw = json.loads(row['utf8_text'])
+    assert _digest({k: v for k, v in raw.items() if k != 'sha256'}) == raw['sha256']
+    native[p.name] = raw
+for row in proposal['observations']:
+    assert native[row['file']]['sha256'] == row['sha256']
+assert len(native) == 19
+for row in load(D / 'provider-support.json'):
+    assert (R / row['path']).read_bytes() == row['utf8_text'].encode()
+    assert h(R / row['path']) == row['sha256']
+gate, current = load(O / 'protected-completion.json'), inputs(R)
+assert gate['inputs']['head'] == BASE and gate['status'] == 'passed' and gate['inputs_unchanged']
+assert current['sha256'] == gate['inputs']['sha256']
+def blobs(s): return {row.split('\t', 1)[1]: row.split()[1] for row in s.splitlines()}
+actual, tested = blobs(current['git_blobs']), blobs(gate['inputs']['git_blobs'])
+assert all(actual[n] == tested[n] for n in current['sha256'])
+assert all(current[k] == gate['inputs'][k] for k in ('python', 'executable', 'platform', 'packages'))
+expected = {'docs/documentation_map.md', 'docs/research/README.md', 'docs/research/acceptance-review-recovery.md'} | {p.relative_to(R).as_posix() for p in D.iterdir() if p.is_file()}
+if mode != '--create':
+    changed = set(git(R, 'diff', '--cached', '--name-only').splitlines()) if mode == '--staged' else set(git(R, 'diff', '--name-only', BASE, 'HEAD').splitlines())
+    assert changed == expected, (changed - expected, expected - changed)
+    assert not git(R, 'diff', '--name-only')
+    for p in D.iterdir():
+        name = p.relative_to(R).as_posix()
+        revision = ':' + name if mode == '--staged' else 'HEAD:' + name
+        assert git(R, 'hash-object', '--no-filters', '--', name) == git(R, 'rev-parse', revision), name
+    assert not git(R, 'diff', '--cached', '--check')
+assert not git(R, 'diff', '--check')
+print(json.dumps({'at': str(Timestamp.now()), 'mode': mode, 'head': current['head'],
+    'manifest_members': len(manifest['files']), 'native_records': len(native),
+    'matching_protected_inputs_and_blobs': len(current['sha256']),
+    'historical_files_preserved': sum(len(auth[k]) for k in ('historical_files', 'native_history', 'forensics')),
+    'archive_git_bytes_verified': mode != '--create', 'candidate_installed': False,
+    'host_review_or_plan_created': False, 'model_calls_in_closeout': 0,
+    'expected_documentary_paths': len(expected)}, indent=2))

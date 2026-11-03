@@ -1,0 +1,52 @@
+"""Authenticate interruption checkpoint without changing historical operations."""
+import hashlib, json, sys, urllib.request
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+from scripts.validation.evidence import git
+from scripts.backlog.work import WorkCycle
+
+O = R / '.local/review-recovery'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+before = load(O / 'authentication.json')
+for group in ('historical_files', 'native_history', 'forensics'):
+    for name, identity in before[group].items():
+        assert h(R / name) == identity, name
+c = WorkCycle(R)
+assert c.routine.active()['sha256'] == before['active_policy']
+assert not (R / '.local/backlog/checkout-owner').exists()
+assert not (c.native.reviewer.folder('B-0052') / 'attempts').exists()
+assert not git(R, 'diff', '--cached', '--name-only')
+assert c.native.record('B-0052', 'result')['sha256'] == before['native_result']
+assert h(R / 'src/devtools/resources/filesystem/models/csv.py') == before['baseline_raw_sha256']
+inspector = Path('C:/Users/recoveryadmin/Workspace/tools/devtools-inspector')
+inspector_status = git(inspector, 'status', '--porcelain=v1')
+inspector_names = set(git(inspector, 'diff', '--name-only').splitlines())
+inspector_names.update(git(inspector, 'ls-files', '--others', '--exclude-standard', '-z').split('\0'))
+inspector_files = {n: h(inspector / n) for n in inspector_names if n and (inspector / n).is_file()}
+receipts = {}
+for p in O.glob('*.json'):
+    v = load(p)
+    if 'status' in v and 'phases' in v:
+        receipts[p.name] = {k: v.get(k) for k in ('status', 'exit_code', 'seconds', 'inputs_unchanged')}
+        receipts[p.name]['failed_ids'] = sorted({p['nodeid'] for p in v['phases'] if p.get('outcome') == 'failed'})
+        receipts[p.name]['distinct_test_ids'] = len({p['nodeid'] for p in v['phases']})
+with urllib.request.urlopen('http://127.0.0.1:8080/slots', timeout=10) as response:
+    slots = json.loads(response.read(131072))
+assert len(slots) == 1 and slots[0]['n_ctx'] == 65536 and not slots[0]['is_processing']
+value = {'at': str(Timestamp.now()), 'head': git(R, 'rev-parse', 'HEAD'),
+    'branch': git(R, 'branch', '--show-current'), 'status': git(R, 'status', '--short'),
+    'remote_main': git(R, 'ls-remote', 'origin', 'refs/heads/main').split()[0],
+    'checkout_released': True, 'new_attempt_exists': False,
+    'preserved': {k: len(before[k]) for k in ('historical_files', 'native_history', 'forensics')},
+    'active_policy': before['active_policy'], 'candidate': before['candidate_sha256'],
+    'receipts': receipts, 'orphan_intents': [p.name for p in O.glob('*.json.intent') if not p.with_suffix('').exists()],
+    'provider_slots': slots, 'worktrees': git(R, 'worktree', 'list', '--porcelain'),
+    'inspector_head': git(inspector, 'rev-parse', 'HEAD'), 'inspector_status': inspector_status,
+    'inspector_files': inspector_files}
+write(TextFile(resolve_path(O / 'resumption-state.json'), json.dumps(value, indent=2) + '\n'), overwrite=False)
+print(json.dumps({k: v for k, v in value.items() if k not in ('status', 'inspector_files', 'provider_slots', 'worktrees')}, indent=2))

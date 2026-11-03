@@ -1,0 +1,25 @@
+"""Record supported-root static, layout, Intake and documentation checks."""
+import asyncio,json,re,sys
+from pathlib import Path
+R=Path.cwd();sys.path.insert(0,str(R));O=R/'.local/review-recovery'
+from devtools.core.time import Timestamp,Duration
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from scripts.backlog.work import WorkCycle
+async def run(name,args):
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32768,max_stderr_bytes=32768)).execute(Command(sys.executable).args(*args).cwd(resolve_path(R)).with_timeout(Duration.seconds(240)))
+ return {'name':name,'argv':[sys.executable,*args],'exit_code':r.exit_code,'seconds':r.duration.total_seconds,'stdout':r.stdout.decode('utf-8',errors='replace'),'stderr':r.stderr.decode('utf-8',errors='replace'),'truncated':r.stdout_truncated or r.stderr_truncated}
+async def main():
+ rows=await asyncio.gather(run('ruff',['-m','ruff','check','src','tests','apps','scripts','--exclude','tests/experiments']),run('format',['-m','ruff','format','--check','src','tests','apps','scripts','--exclude','tests/experiments']),run('mypy',['-m','mypy']),run('owner-mypy',['-m','mypy','scripts/backlog/native','scripts/backlog/routine/__init__.py','scripts/backlog/integration/lifecycle.py']),run('layout',['scripts/validate_layout.py']))
+ queue=WorkCycle(R).intake.queue();assert not queue['errors']
+ links=[]
+ for name in ('docs/development/native-review-continuation.md','docs/development/native-independent-review.md','docs/development/routine-development-authority.md'):
+  p=R/name
+  for target in re.findall(r'\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+   target=target.split('#')[0]
+   if target and not target.startswith(('https:','http:')):assert (p.parent/target).exists(),target;links.append(target)
+ value={'at':str(Timestamp.now()),'commands':rows,'intake_errors':queue['errors'],'proposal_count':len(queue['proposals']),'links':links}
+ write(TextFile(resolve_path(O/sys.argv[1]),json.dumps(value,indent=2)+'\n'),overwrite=False)
+ print(json.dumps(value,indent=2));assert all(v['exit_code']==0 and not v['truncated'] for v in rows)
+asyncio.run(main())

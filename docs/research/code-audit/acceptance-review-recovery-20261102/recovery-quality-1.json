@@ -1,0 +1,96 @@
+{
+  "at": "2026-11-03T00:27:49.173185+00:00",
+  "commands": [
+    {
+      "name": "ruff",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 1,
+      "seconds": 0.131066,
+      "stdout": "COM812 [*] Trailing comma missing\n   --> tests\\scripts\\backlog\\test_review_acquisition.py:309:67\n    |\n307 |     if fault:\n308 |         with pytest.raises(\n309 |             (ValueError, PermissionError, OSError, ToolInputError)\n    |                                                                   ^\n310 |         ) as failure:\n311 |             asyncio.run(run())\n    |\nhelp: Add trailing comma\n    |\n308 |         with pytest.raises(\n    -             (ValueError, PermissionError, OSError, ToolInputError)\n309 +             (ValueError, PermissionError, OSError, ToolInputError),\n310 |         ) as failure:\n    |\n\nFound 1 error.\n[*] 1 fixable with the `--fix` option.\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "format",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.379664,
+      "stdout": "776 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "truncated": false
+    },
+    {
+      "name": "mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy"
+      ],
+      "exit_code": 1,
+      "seconds": 0.540621,
+      "stdout": "tests\\scripts\\backlog\\test_review_acquisition.py:114: error: Value of type \"object\" is not indexable  [index]\r\ntests\\scripts\\backlog\\test_diagnostic.py:25: error: Module \"scripts.backlog.native.review.diagnostic\" does not explicitly export attribute \"budget_view\"  [attr-defined]\r\nFound 2 errors in 2 files (checked 630 source files)\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "owner-mypy",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "scripts/backlog/native",
+        "scripts/backlog/routine/__init__.py",
+        "scripts/backlog/integration/lifecycle.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.419676,
+      "stdout": "Success: no issues found in 16 source files\r\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "layout",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.072229,
+      "stdout": "",
+      "stderr": "",
+      "truncated": false
+    }
+  ],
+  "intake_errors": [],
+  "proposal_count": 71,
+  "links": [
+    "native-diagnostic-review.md",
+    "native-maintenance-handoff.md",
+    "native-review-continuation.md",
+    "../research/code-audit/native-review-20261031.json",
+    "native-review-continuation.md"
+  ]
+}

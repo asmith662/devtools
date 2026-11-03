@@ -1,0 +1,41 @@
+"""Refresh only read-only destination planning after documentary publication."""
+import asyncio, hashlib, json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, BinaryFile, write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+from scripts.validation.evidence import inputs
+O = R / '.local/review-recovery'
+def load(p): return json.loads(p.read_bytes())
+async def main():
+    c = WorkCycle(R)
+    gate = load(O / 'protected-completion.json')
+    assert gate['status'] == 'passed' and gate['inputs_unchanged']
+    current = await asyncio.to_thread(inputs, R)
+    assert current['sha256'] == gate['inputs']['sha256']
+    head = await git(R, 'rev-parse', 'HEAD')
+    assert (await git(R, 'ls-remote', 'origin', 'refs/heads/main')).split()[0] == head
+    assert await git(R, 'branch', '--show-current') == 'main'
+    host = load(O / 'host-review.json')
+    old = load(O / 'integration-plan.json')
+    # Keep all original limits and installation-readiness qualifications.
+    spec = {k: old[k] for k in ('remote', 'destination', 'feature', 'checkout', 'parent_complete', 'remaining', 'rationale', 'validation_seconds')}
+    spec['additions'] = []
+    version = c.routine.active()['sha256']
+    assessment = {'reference': 'Read-only refresh of the existing accepted review plan against verified synchronized final main; no new review, installation, validation relaxation or publication effects.', **dict.fromkeys(('architecture', 'security', 'destructive', 'secrets', 'paid', 'service_change', 'validation_relaxation'), False)}
+    plan = await c.routine.plan(version, 'B-0052', host['sha256'], spec, assessment=assessment)
+    for name, text in load(O / 'tested-materialization.json').items():
+        path, expected = R / name, text.encode()
+        actual = path.read_bytes()
+        if actual != expected:
+            assert actual.replace(b'\r\n', b'\n') == expected.replace(b'\r\n', b'\n'), name
+            write(BinaryFile(resolve_path(path), expected))
+    assert (await asyncio.to_thread(inputs, R))['sha256'] == gate['inputs']['sha256']
+    assert not (R / '.local/backlog/checkout-owner').exists()
+    write(TextFile(resolve_path(O / 'final-integration-plan.json'), json.dumps(plan, indent=2) + '\n'), overwrite=False)
+    print(json.dumps({'at': str(Timestamp.now()), 'head': head, 'plan': plan['sha256'], 'plan_keys': list(plan), 'candidate_installed': False, 'checkout_released': True}, indent=2))
+asyncio.run(main())

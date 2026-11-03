@@ -1,0 +1,64 @@
+"""Check new documentary envelopes, links and unchanged protected inputs."""
+import asyncio, hashlib, json, re, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp, Duration
+from devtools.resources.filesystem import TextFile, BinaryFile, write
+from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
+from scripts.validation.evidence import inputs, git
+from scripts.backlog.intake import _digest
+from scripts.backlog.work import WorkCycle
+O = R / '.local/review-recovery'
+D = R / 'docs/research/code-audit/acceptance-review-recovery-20261102'
+def load(p): return json.loads(p.read_bytes())
+envelopes = sealed = 0
+def inspect(v):
+    global envelopes, sealed
+    if isinstance(v, list):
+        for x in v: inspect(x)
+    elif isinstance(v, dict):
+        if 'utf8_text' in v and 'sha256' in v:
+            assert hashlib.sha256(v['utf8_text'].encode()).hexdigest() == v['sha256']
+            envelopes += 1
+            try: raw = json.loads(v['utf8_text'])
+            except json.JSONDecodeError: return
+            if isinstance(raw, dict) and 'schema' in raw and 'sha256' in raw:
+                assert _digest({k: x for k, x in raw.items() if k != 'sha256'}) == raw['sha256']
+                sealed += 1
+        else:
+            for x in v.values(): inspect(x)
+for p in D.glob('*.json'): inspect(load(p))
+private = (R / '.local/e2e-native/private.py.txt').read_text(encoding='utf-8')
+for p in D.iterdir():
+    if p.is_file():
+        text = p.read_text(encoding='utf-8')
+        assert private not in text and json.dumps(private) not in text, p
+links = []
+for name in ('docs/research/acceptance-review-recovery.md', 'docs/documentation_map.md', 'docs/research/README.md', 'docs/research/code-audit/acceptance-review-recovery-20261102/README.md', 'docs/development/native-review-continuation.md', 'docs/development/native-independent-review.md', 'docs/development/routine-development-authority.md'):
+    p = R / name
+    for target in re.findall(r'\]\(([^)]+)\)', p.read_text(encoding='utf-8')):
+        target = target.split('#')[0]
+        if target and not target.startswith(('https:', 'http:')):
+            assert (p.parent / target).exists(), target
+            links.append(target)
+gate, actual = load(O / 'protected-completion.json'), inputs(R)
+assert gate['status'] == 'passed' and gate['inputs_unchanged'] and actual['sha256'] == gate['inputs']['sha256']
+def blobs(s): return {row.split('\t', 1)[1]: row.split()[1] for row in s.splitlines()}
+a, b = blobs(actual['git_blobs']), blobs(gate['inputs']['git_blobs'])
+assert all(a[n] == b[n] for n in actual['sha256'])
+assert not git(R, 'diff', '--check') and not git(R, 'diff', '--cached', '--check')
+assert not WorkCycle(R).intake.queue()['errors']
+async def layout():
+    result = await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192, max_stderr_bytes=8192)).execute(Command(sys.executable).args('scripts/validate_layout.py').cwd(resolve_path(R)).with_timeout(Duration.seconds(120)))
+    assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated
+asyncio.run(layout())
+value = {'at': str(Timestamp.now()), 'raw_envelopes_verified': envelopes, 'sealed_records_verified': sealed,
+    'matching_protected_inputs_and_blobs': len(actual['sha256']), 'links': links,
+    'private_implementation_not_copied': True, 'privacy_qualification': 'Exact-text scan supplements the owner-projected subject boundary; not universal secret detection.',
+    'layout': 'passed', 'intake_errors': [], 'diff_checks': 'passed'}
+for p in (O / 'documentary-checks.json', D / 'documentary-checks.json'):
+    write(TextFile(resolve_path(p), json.dumps(value, indent=2) + '\n'), overwrite=False)
+write(BinaryFile(resolve_path(D / 'verify_docs.py.txt'), Path(__file__).read_bytes()), overwrite=False)
+print(json.dumps(value, indent=2))

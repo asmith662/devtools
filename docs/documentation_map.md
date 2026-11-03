@@ -1,5 +1,13 @@
 # Documentation Map
 
+[Interrupted B-0052 review closeout](research/acceptance-review-recovery.md)
+records published implementation `ee16dd10`, the protected 4,234-pass receipt,
+and the authentic third review: three calls/three reads, then BLOCKED because
+the final response was non-JSON prose with a literal Tool-like tail. No structured
+recommendation, host acceptance or integration plan was admitted. The evidence-only
+closeout preserves the candidate, consumed attempts and active standing policy;
+response-contract work requires separate scope and does not authorize replay.
+
 [Bounded acceptance-review continuation](development/native-review-continuation.md)
 owns one prospective attempt after a known unentered legacy batch barrier, with
 explicit subject selection, separate policy-derived authority and exact host/plan

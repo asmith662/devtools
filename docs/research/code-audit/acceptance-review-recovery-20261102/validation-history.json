@@ -1,0 +1,193 @@
+{
+  "focused-1.json": {
+    "status": "test-or-coverage-failure",
+    "exit_code": 1,
+    "seconds": 342.535244,
+    "inputs_unchanged": true,
+    "argv": [
+      "tests/scripts/backlog/test_review_continuation.py",
+      "tests/scripts/backlog/test_review_recovery.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "",
+    "raw_sha256": "af71082f334c3d6f765032db2a19728f0d48209661ac31a1c45e3b46e33e5c8f",
+    "distinct_test_ids": 6,
+    "failures": [
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+        "phase": "call",
+        "failure_tail": "   ^^^^^^^^^^^^^^^\nscripts\\backlog\\intake.py:129: in load_json\n    value = json.loads(_read(path))\n                       ^^^^^^^^^^^\nscripts\\backlog\\intake.py:121: in _read\n    file = read(resolve_path(path), file_format=FileFormat.TEXT, max_bytes=1 << 20)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\npath = ResolvedPath(value=WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14421/test_hi...og/work/B-0010/reviewer/attempts/9a3d6fb87db82ce24d95475267714670ed906e3c8bcc39121c6c619870a63756/authorization.json'))\nfile_format = <FileFormat.TEXT: 'text'>, max_bytes = 1048576\n\n    def read(\n        path: ResolvedPath,\n        *,\n        file_format: FileFormat | None = None,\n        max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n    ) -> File:\n        \"\"\"Read a filesystem file into its rich file model.\n    \n        When ``file_format`` is omitted, the format is inferred from the path.\n        An explicit format overrides suffix-based inference.\n    \n        The file is size-checked before loading and again after reading. A file\n        that grows between those checks can still be read into memory before the\n        second check rejects it; no oversized model is returned.\n    \n        :param path: Resolved path to the file.\n        :param file_format: Explicit file format override.\n        :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n        :returns: Decoded file model.\n        :raises FilesystemNotFoundError: If the target does not exist.\n        :raises NotAFileError: If the target is not a regular file.\n        :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n        :raises FilesystemPermissionError: If filesystem access is denied.\n        \"\"\"\n        source = path.value\n    \n        try:\n            if not source.exists():\n                msg = f\"Filesystem path does not exist: {path}.\"\n>               raise FilesystemNotFoundError(msg)\nE               devtools.resources.filesystem.errors.FilesystemNotFoundError: Filesystem path does not exist: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin\\pytest-14421\\test_historical_budget_recover0\\repository\\.local\\backlog\\work\\B-0010\\reviewer\\attempts\\9a3d6fb87db82ce24d95475267714670ed906e3c8bcc39121c6c619870a63756\\authorization.json.\n\nsrc\\devtools\\resources\\filesystem\\reading.py:57: FilesystemNotFoundError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+        "phase": "call",
+        "failure_tail": "   ^^^^^^^^^^^^^^^\nscripts\\backlog\\intake.py:129: in load_json\n    value = json.loads(_read(path))\n                       ^^^^^^^^^^^\nscripts\\backlog\\intake.py:121: in _read\n    file = read(resolve_path(path), file_format=FileFormat.TEXT, max_bytes=1 << 20)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\npath = ResolvedPath(value=WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14421/test_hi...og/work/B-0010/reviewer/attempts/d221e6d5d9853b66b7d687f7100f727c1c81f09c95bf73f30aaefa3456929f83/authorization.json'))\nfile_format = <FileFormat.TEXT: 'text'>, max_bytes = 1048576\n\n    def read(\n        path: ResolvedPath,\n        *,\n        file_format: FileFormat | None = None,\n        max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n    ) -> File:\n        \"\"\"Read a filesystem file into its rich file model.\n    \n        When ``file_format`` is omitted, the format is inferred from the path.\n        An explicit format overrides suffix-based inference.\n    \n        The file is size-checked before loading and again after reading. A file\n        that grows between those checks can still be read into memory before the\n        second check rejects it; no oversized model is returned.\n    \n        :param path: Resolved path to the file.\n        :param file_format: Explicit file format override.\n        :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n        :returns: Decoded file model.\n        :raises FilesystemNotFoundError: If the target does not exist.\n        :raises NotAFileError: If the target is not a regular file.\n        :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n        :raises FilesystemPermissionError: If filesystem access is denied.\n        \"\"\"\n        source = path.value\n    \n        try:\n            if not source.exists():\n                msg = f\"Filesystem path does not exist: {path}.\"\n>               raise FilesystemNotFoundError(msg)\nE               devtools.resources.filesystem.errors.FilesystemNotFoundError: Filesystem path does not exist: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin\\pytest-14421\\test_historical_budget_recover1\\repository\\.local\\backlog\\work\\B-0010\\reviewer\\attempts\\d221e6d5d9853b66b7d687f7100f727c1c81f09c95bf73f30aaefa3456929f83\\authorization.json.\n\nsrc\\devtools\\resources\\filesystem\\reading.py:57: FilesystemNotFoundError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[malformed]",
+        "phase": "call",
+        "failure_tail": "   ^^^^^^^^^^^^^^^\nscripts\\backlog\\intake.py:129: in load_json\n    value = json.loads(_read(path))\n                       ^^^^^^^^^^^\nscripts\\backlog\\intake.py:121: in _read\n    file = read(resolve_path(path), file_format=FileFormat.TEXT, max_bytes=1 << 20)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\npath = ResolvedPath(value=WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14421/test_hi...og/work/B-0010/reviewer/attempts/f125eb09ad64dfcb0bb8fbd2fd168e687e10041082c49598569c8e6d64457a42/authorization.json'))\nfile_format = <FileFormat.TEXT: 'text'>, max_bytes = 1048576\n\n    def read(\n        path: ResolvedPath,\n        *,\n        file_format: FileFormat | None = None,\n        max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n    ) -> File:\n        \"\"\"Read a filesystem file into its rich file model.\n    \n        When ``file_format`` is omitted, the format is inferred from the path.\n        An explicit format overrides suffix-based inference.\n    \n        The file is size-checked before loading and again after reading. A file\n        that grows between those checks can still be read into memory before the\n        second check rejects it; no oversized model is returned.\n    \n        :param path: Resolved path to the file.\n        :param file_format: Explicit file format override.\n        :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n        :returns: Decoded file model.\n        :raises FilesystemNotFoundError: If the target does not exist.\n        :raises NotAFileError: If the target is not a regular file.\n        :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n        :raises FilesystemPermissionError: If filesystem access is denied.\n        \"\"\"\n        source = path.value\n    \n        try:\n            if not source.exists():\n                msg = f\"Filesystem path does not exist: {path}.\"\n>               raise FilesystemNotFoundError(msg)\nE               devtools.resources.filesystem.errors.FilesystemNotFoundError: Filesystem path does not exist: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin\\pytest-14421\\test_historical_budget_recover2\\repository\\.local\\backlog\\work\\B-0010\\reviewer\\attempts\\f125eb09ad64dfcb0bb8fbd2fd168e687e10041082c49598569c8e6d64457a42\\authorization.json.\n\nsrc\\devtools\\resources\\filesystem\\reading.py:57: FilesystemNotFoundError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[tool-final]",
+        "phase": "call",
+        "failure_tail": "   ^^^^^^^^^^^^^^^\nscripts\\backlog\\intake.py:129: in load_json\n    value = json.loads(_read(path))\n                       ^^^^^^^^^^^\nscripts\\backlog\\intake.py:121: in _read\n    file = read(resolve_path(path), file_format=FileFormat.TEXT, max_bytes=1 << 20)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\npath = ResolvedPath(value=WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14421/test_hi...og/work/B-0010/reviewer/attempts/b8f0baab02e16506b8ad8967f86d137c224b0641c9e5b064317bd8411399e6e0/authorization.json'))\nfile_format = <FileFormat.TEXT: 'text'>, max_bytes = 1048576\n\n    def read(\n        path: ResolvedPath,\n        *,\n        file_format: FileFormat | None = None,\n        max_bytes: int | None = DEFAULT_MAX_READ_BYTES,\n    ) -> File:\n        \"\"\"Read a filesystem file into its rich file model.\n    \n        When ``file_format`` is omitted, the format is inferred from the path.\n        An explicit format overrides suffix-based inference.\n    \n        The file is size-checked before loading and again after reading. A file\n        that grows between those checks can still be read into memory before the\n        second check rejects it; no oversized model is returned.\n    \n        :param path: Resolved path to the file.\n        :param file_format: Explicit file format override.\n        :param max_bytes: Maximum permitted file size, or ``None`` for no limit.\n        :returns: Decoded file model.\n        :raises FilesystemNotFoundError: If the target does not exist.\n        :raises NotAFileError: If the target is not a regular file.\n        :raises FileTooLargeError: If the file exceeds ``max_bytes``.\n        :raises FilesystemPermissionError: If filesystem access is denied.\n        \"\"\"\n        source = path.value\n    \n        try:\n            if not source.exists():\n                msg = f\"Filesystem path does not exist: {path}.\"\n>               raise FilesystemNotFoundError(msg)\nE               devtools.resources.filesystem.errors.FilesystemNotFoundError: Filesystem path does not exist: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin\\pytest-14421\\test_historical_budget_recover3\\repository\\.local\\backlog\\work\\B-0010\\reviewer\\attempts\\b8f0baab02e16506b8ad8967f86d137c224b0641c9e5b064317bd8411399e6e0\\authorization.json.\n\nsrc\\devtools\\resources\\filesystem\\reading.py:57: FilesystemNotFoundError"
+      }
+    ]
+  },
+  "focused-3.json": {
+    "status": "test-or-coverage-failure",
+    "exit_code": 1,
+    "seconds": 341.32209,
+    "inputs_unchanged": true,
+    "argv": [
+      "tests/scripts/backlog/test_review_recovery.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "No-chaining preflight before absent grant access; exact consumed-dispatch exception and policy expiry/revocation probes",
+    "raw_sha256": "c963b5b8e0fb94e477ee0d1fc2ef32d2150dfdd322a8a6be22c73a7e1ba8af80",
+    "distinct_test_ids": 5,
+    "failures": [
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+        "phase": "call",
+        "failure_tail": "           },\n                    assessment=assessment(),\n                )\n                assert plan[\"review_subject_sha256\"] == third[\"sha256\"]\n                assert plan[\"accepted_review\"] == decision[\"sha256\"]\n            else:\n                with pytest.raises(PermissionError):\n                    selected.admit(item, proposal[\"sha256\"], config[\"actor\"], accept=True)\n            assert not (selected.folder(item) / \"install.json\").exists()\n    \n>       asyncio.run(run())\n\ntests\\scripts\\backlog\\test_review_recovery.py:333: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\ntests\\scripts\\backlog\\test_review_recovery.py:308: in run\n    await git(c.root, \"push\", \"origin\", \"main\")\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nroot = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-14427/test_historical_budget_recover0/repository')\nmissing_ok = False, trim = True, arguments = ('push', 'origin', 'main')\n\n    async def git(\n        root: Path, *arguments: str, missing_ok: bool = False, trim: bool = True\n    ) -> str:\n        \"\"\"Run bounded repository administration through canonical managed commands.\"\"\"\n        result = await CommandExecutor().execute(\n            Command(\"git\")\n            .args(*arguments)\n            .cwd(resolve_path(root))\n            .with_timeout(Duration.seconds(30))\n        )\n        if missing_ok and result.exit_code == 1:\n            return \"\"\n        if result.failed or result.stdout_truncated or result.stderr_truncated:\n>           raise ValueError(\n                \"Git inspection failed: \"\n                + \" \".join(arguments)\n                + \"\\n\"\n                + result.stderr[:2048].decode(\"utf-8\", errors=\"replace\")\n            )\nE           ValueError: Git inspection failed: push origin main\nE           error: src refspec main does not match any\nE           error: failed to push some refs to 'C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin\\pytest-14427\\test_historical_budget_recover0\\origin.git'\n\nscripts\\backlog\\coordinator.py:33: ValueError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+        "phase": "call",
+        "failure_tail": "         )\n        version = await activate(c)\n        grant = await c.routine.authorize_reviewer(\n            version,\n            item,\n            attempt=third[\"sha256\"],\n            assessment=assessment(),\n            provider=provider(),\n        )\n        model = RecoveryModel(mode)\n        if mode == \"revoked\":\n            await c.routine.control(\n                \"deny\",\n                reference=\"authored denial\",\n                subject=item,\n                authorize=lambda _: True,\n            )\n            with pytest.raises(PermissionError):\n                await selected.execute(\n                    item,\n                    interaction=model,\n                    profile=config[\"profile\"],\n                    authorize=c.routine.callback(grant[\"reference\"]),\n                )\n            assert not model.requests\n            return\n        grant_path = selected.folder(item) / \"authorization.json\"\n        original_grant = grant_path.read_bytes()\n        reseal(grant_path, {\"expires_at\": str(Timestamp.now() - Duration.seconds(1))})\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        assert not model.requests\n        grant_path.write_bytes(original_grant)\n        source_path = c.root / SOURCE\n        source_bytes = source_path.read_bytes()\n        source_path.write_text(\"def value():\\n    return 99\\n\", encoding=\"utf-8\")\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        source_path.write_bytes(source_bytes)\n        assert not model.requests\n        proposal = await selected.execute(\n            item,\n            interaction=model,\n            profile=config[\"profile\"],\n            authorize=c.routine.callback(grant[\"reference\"]),\n        )\n        assert len(model.requests) == 4\n        assert proposal[\"reads\"] == 3\n>       assert proposal[\"status\"] == (\n            \"proposed\" if mode in {\"accept\", \"insufficient-evidence\"} else \"blocked\"\n        )\nE       AssertionError: assert 'blocked' == 'proposed'\nE         \nE         - proposed\nE         + blocked\n\ntests\\scripts\\backlog\\test_review_recovery.py:284: AssertionError"
+      }
+    ]
+  },
+  "focused-4.json": {
+    "status": "configuration",
+    "exit_code": 4,
+    "seconds": 2.292106,
+    "inputs_unchanged": true,
+    "argv": [
+      "tests/scripts/backlog/test_diagnostic.py::test_diagnostic_budget_view",
+      "tests/scripts/backlog/test_review_acquisition.py::test_historical_batch_preflight_and_effects",
+      "tests/scripts/backlog/test_review_acquisition.py::test_refusal_feedback_capacity_and_correlation",
+      "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+      "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "Author explicit insufficient-evidence gap and ordinary destination ref in tiny repository; retain closed validator",
+    "raw_sha256": "86e34b4598f9f08c4f8565401e16aaef5bd405782394cafd9f0b7c49a6fba645",
+    "distinct_test_ids": 0,
+    "failures": []
+  },
+  "focused-5.json": {
+    "status": "passed",
+    "exit_code": 0,
+    "seconds": 155.169189,
+    "inputs_unchanged": true,
+    "argv": [
+      "tests/scripts/backlog/test_diagnostic.py::test_remaining_diagnostic_budget",
+      "tests/scripts/backlog/test_review_acquisition.py::test_historical_batch_preflight_and_effects",
+      "tests/scripts/backlog/test_review_acquisition.py::test_refusal_feedback_capacity_and_correlation",
+      "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+      "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "Correct explicit diagnostic node ID; test the two repaired fixtures and zero-effect feedback bounds",
+    "raw_sha256": "4799d888b4e3ac1f6468e154ad69d75905d4cdbeceac12d8997192cca9161408",
+    "distinct_test_ids": 45,
+    "failures": []
+  },
+  "impact-preview.json": {
+    "status": "planned",
+    "exit_code": null,
+    "seconds": null,
+    "inputs_unchanged": null,
+    "argv": [
+      "tests/apps/operator_dashboard/test_native_history.py",
+      "tests/apps/operator_dashboard/test_projection.py",
+      "tests/apps/operator_dashboard/test_server.py",
+      "tests/apps/qwen/conftest.py",
+      "tests/apps/qwen/obligations/test_cli.py",
+      "tests/apps/qwen/obligations/test_frame.py",
+      "tests/apps/qwen/obligations/test_lifecycle.py",
+      "tests/apps/qwen/obligations/test_native.py",
+      "tests/apps/qwen/test_coding_agent.py",
+      "tests/apps/qwen/test_coding_loop.py",
+      "tests/apps/qwen/test_context_tools.py",
+      "tests/apps/qwen/test_edit_diagnostics.py",
+      "tests/apps/qwen/test_edits.py",
+      "tests/apps/qwen/test_environment.py",
+      "tests/apps/qwen/test_grounding.py",
+      "tests/apps/qwen/test_live_change_checks.py",
+      "tests/apps/qwen/test_navigation.py",
+      "tests/apps/qwen/test_new_file_feedback.py",
+      "tests/apps/qwen/test_observed_edits.py",
+      "tests/apps/qwen/test_portable_mechanics.py",
+      "tests/apps/qwen/test_repair_feedback.py",
+      "tests/apps/qwen/test_task_selection.py",
+      "tests/scripts/backlog",
+      "tests/scripts/test_command_capabilities.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "",
+    "raw_sha256": "c783b01444e0c09dfb0a832b1dc293ca27bdcb81c06a338a850c3cfd61ded06e",
+    "distinct_test_ids": 0,
+    "failures": []
+  },
+  "protected-completion.json": {
+    "status": "passed",
+    "exit_code": 0,
+    "seconds": 4349.517151,
+    "inputs_unchanged": true,
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "User-requested final protected gate with a finite two-hour managed deadline, informed by the preserved prior 3600-second wrapper timeout. Same maintained fresh-child owner, selection and coverage; no semantic policy change.",
+    "raw_sha256": "b1d66f149e58f9d967abeb03140648a8c6a717ea434b397c7552d7a6786d4ff4",
+    "distinct_test_ids": 4236,
+    "failures": []
+  },
+  "recovered-consumers-7.json": {
+    "status": "configuration",
+    "exit_code": 4,
+    "seconds": 0.18098,
+    "inputs_unchanged": true,
+    "argv": [
+      "tests/scripts/backlog/routine",
+      "tests/scripts/backlog/test_native.py",
+      "tests/scripts/backlog/test_native_diagnostic.py",
+      "tests/scripts/backlog/test_review_continuation.py",
+      "tests/scripts/backlog/test_review_recovery.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "",
+    "raw_sha256": "6ccb5ea976d69eab9bf5073cbc115a10b4eb441500cf93012b889a10b465c6f6",
+    "distinct_test_ids": 0,
+    "failures": []
+  },
+  "recovered-consumers-8.json": {
+    "status": "input-drift",
+    "exit_code": 0,
+    "seconds": 2125.911929,
+    "inputs_unchanged": false,
+    "argv": [
+      "tests/scripts/backlog/routine",
+      "tests/scripts/backlog/test_diagnostic.py",
+      "tests/scripts/backlog/test_native.py",
+      "tests/scripts/backlog/test_review_continuation.py",
+      "tests/scripts/backlog/test_review_recovery.py",
+      "--no-cov",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments"
+    ],
+    "correction": "",
+    "raw_sha256": "05b8b92ebddf471cc7c48183f3510d294fdc6482aeb75414ca2fcd9b81e44721",
+    "distinct_test_ids": 115,
+    "failures": []
+  }
+}
