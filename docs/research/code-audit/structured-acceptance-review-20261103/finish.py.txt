@@ -1,0 +1,105 @@
+"""Authenticate this bounded delivery repair and publish factual local evidence."""
+import asyncio, hashlib, json, sys, urllib.request
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration, Timestamp
+from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
+from devtools.resources.filesystem import BinaryFile, TextFile, write
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git, inputs
+O = R / '.local/structured-review'
+D = R / 'docs/research/code-audit/structured-acceptance-review-20261103'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p, v): write(TextFile(resolve_path(p), json.dumps(v, indent=2) + '\n'), overwrite=False)
+def blobs(s): return {row.split('\t', 1)[1]: row.split()[1] for row in s.splitlines()}
+before = load(O / 'before.json')
+c = WorkCycle(R)
+for name, identity in before['files'].items(): assert h(R / name) == identity, name
+legacy = load(R / '.local/review-recovery/authentication.json')
+for group in ('historical_files', 'native_history', 'forensics'):
+    for name, identity in legacy[group].items(): assert h(R / name) == identity, name
+folders = [c._folder(item) for item in ('B-0049','B-0050','B-0051','B-0052')]
+folders += [c.routine.folder, R / 'docs/research/code-audit/acceptance-review-recovery-20261102']
+actual = {p.relative_to(R).as_posix(): h(p) for folder in folders for p in folder.rglob('*') if p.is_file()}
+assert actual == {n: v for n, v in before['files'].items() if not n.startswith('experiments/')}
+assert c.routine.active()['sha256'] == before['policy']
+assert c.native.record('B-0052', 'result')['candidate_sha256'] == before['candidate']
+candidate, _ = c.native._candidate(c.native.record('B-0052', 'assignment'), c.native.record('B-0052', 'result'))
+assert hashlib.sha256(candidate.encode()).hexdigest() == before['candidate']
+assert h(R / 'src/devtools/resources/filesystem/models/csv.py') == before['source_sha256']
+assert not (R / '.local/backlog/checkout-owner').exists()
+refs = {name: value for value, name in (line.split() for line in git(R, 'show-ref').splitlines())}
+for line in before['refs'].splitlines():
+    value, name = line.split()
+    if name not in {'refs/heads/main', 'refs/remotes/origin/main', 'refs/remotes/origin/HEAD', 'refs/heads/feat/agent-inspector', 'refs/remotes/origin/feat/agent-inspector'}: assert refs[name] == value, name
+assert git(R, 'branch', '--show-current') == 'main'
+inspector = R.parent / 'devtools-inspector'
+inspector_status = git(inspector, 'status', '--porcelain')
+inspector_paths = set(git(inspector, 'diff', '--name-only').splitlines()) | set(git(inspector, 'ls-files', '--others', '--exclude-standard', '-z').split('\0'))
+inspector_state = {'head': git(inspector, 'rev-parse', 'HEAD'), 'status': inspector_status,
+    'observed_files': {name: h(inspector / name) for name in sorted(inspector_paths) if name and (inspector / name).is_file()},
+    'qualification': 'Independent active Inspector edits appeared after initial clean observation. This task performs no writes, checkout, cleanup, staging or publication in that worktree; no continuing cleanliness or byte-stability claim.'}
+assert not git(R, 'diff', '--check') and not git(R, 'diff', '--cached', '--check')
+mode = sys.argv[1]
+v = {'at': str(Timestamp.now()), 'head': git(R, 'rev-parse', 'HEAD'),
+    'preserved_files': len(before['files']), 'administration_and_old_packet_exactly_unchanged': True,
+    'active_policy': before['policy'], 'candidate': before['candidate'],
+    'source_remains_baseline': True, 'checkout_released': True, 'inspector': inspector_state,
+    'historical_refs_preserved': True, 'model_calls': 0, 'live_review_entered': False,
+    'legacy_preserved_groups': {group: len(legacy[group]) for group in ('historical_files','native_history','forensics')},
+    'new_intake_or_continuation_slot': False}
+if mode == '--preservation':
+    save(O / 'preservation-before-gate.json', v)
+    print(json.dumps(v, indent=2)); raise SystemExit(0)
+gate, now = load(O / 'protected-authorized.json'), inputs(R)
+assert gate['status'] == 'passed' and gate['inputs_unchanged']
+assert now['sha256'] == gate['inputs']['sha256']
+a, b = blobs(now['git_blobs']), blobs(gate['inputs']['git_blobs'])
+assert all(a[n] == b[n] for n in now['sha256'])
+assert all(now[k] == gate['inputs'][k] for k in ('python','executable','platform','packages'))
+v.update(tested_commit=gate['inputs']['head'], matching_executable_inputs_and_blobs=len(now['sha256']),
+    protected_status=gate['status'], protected_seconds=gate['seconds'],
+    runtime_packages_match=True, environment_fingerprint_matches=now['environment_sha256'] == gate['inputs']['environment_sha256'],
+    qualification='Declared physical/Git executable inputs and runtime/packages authenticated; not full ignored/environment/external equivalence.')
+async def provider():
+    result = await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072, max_stderr_bytes=2048)).execute(Command('docker').args('inspect', 'devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+    assert result.succeeded and not result.stdout_truncated
+    current, old = json.loads(result.stdout)[0], load(R / '.local/e2e-native/current-service.json')
+    assert current['Id'] == old['container_id'] and current['Image'] == old['image']
+    assert current['Config']['Cmd'] == old['command'] and current['Mounts'] == old['mounts']
+    values = {}
+    for endpoint in ('health','slots'):
+        with urllib.request.urlopen('http://127.0.0.1:8080/' + endpoint, timeout=10) as response: values[endpoint] = json.loads(response.read(131072))
+    assert values['health'] == {'status':'ok'} and len(values['slots']) == 1
+    assert values['slots'][0]['n_ctx'] == 65536 and not values['slots'][0]['is_processing']
+    return {'container_id': current['Id'], 'image': current['Image'], 'command': current['Config']['Cmd'], 'mounts': current['Mounts'], **values, 'changed': False}
+v['provider'] = asyncio.run(provider())
+if mode == '--archive':
+    assert not D.exists()
+    D.mkdir()
+    for name in ('before.json','preservation-before-gate.json','quality-final.json','protected-authorized.json','protected-interruption.json','protected-completion.json.intent'):
+        write(BinaryFile(resolve_path(D / name), (O / name).read_bytes()), overwrite=False)
+    histories = {}
+    for name in ('initial-focused.json','delivery-focused.json','recovery-consumers.json','final-focused.json'):
+        p = O / name
+        if p.exists():
+            receipt = load(p)
+            histories[name] = {k: receipt.get(k) for k in ('status','exit_code','seconds','inputs_unchanged','correction','selection')}
+            histories[name].update(sha256=h(p), tests=len({row['nodeid'] for row in receipt['phases']}), failures=[{'nodeid':row['nodeid'],'phase':row['phase'],'failure_tail':(row.get('failure') or '')[-2000:]} for row in receipt['phases'] if row['outcome'] == 'failed'])
+    save(D / 'focused-history.json', histories)
+    save(D / 'protected-output.json', {name: {'sha256': h(O / ('protected-authorized.json.' + name)), 'utf8_text': (O / ('protected-authorized.json.' + name)).read_bytes().decode('utf-8')} for name in ('stdout','stderr')})
+    for name in ('authenticate.py','protected.py','protected-authorized.py','authorize_gate.py','finish.py'):
+        write(BinaryFile(resolve_path(D / (name + '.txt')), (O / name).read_bytes()), overwrite=False)
+    save(D / 'integrity.json', v)
+elif mode == '--published':
+    assert not git(R, 'diff', '--name-only') and not git(R, 'diff', '--cached', '--name-only')
+    remote = git(R, 'ls-remote', 'origin', 'refs/heads/main').split()[0]
+    assert remote == v['head']
+    assert {n for n in git(R, 'ls-files','--others','--exclude-standard','-z').split('\0') if n} == {n for n in before['files'] if n.startswith('experiments/')}
+    v['remote_main'] = remote
+    save(O / 'publication-verification.json', v)
+else: raise ValueError('Explicit bounded checkpoint required')
+print(json.dumps({k:x for k,x in v.items() if k != 'provider'}, indent=2))

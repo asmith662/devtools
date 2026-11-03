@@ -1,0 +1,508 @@
+{
+  "initial-focused.json": {
+    "status": "test-or-coverage-failure",
+    "exit_code": 1,
+    "seconds": 413.709294,
+    "inputs_unchanged": true,
+    "correction": "",
+    "selection": {
+      "changed": [
+        "scripts/backlog/native/review/acquisition.py",
+        "scripts/backlog/native/review/actor.py",
+        "scripts/backlog/native/review/budget.py",
+        "scripts/backlog/native/review/continuation.py",
+        "scripts/backlog/native/review/delivery.py",
+        "tests/scripts/backlog/test_native.py",
+        "tests/scripts/backlog/test_review_continuation.py",
+        "tests/scripts/backlog/test_review_recovery.py"
+      ],
+      "groups": {
+        "tests/scripts/backlog": [
+          "operational owner: scripts/backlog/native/review/acquisition.py",
+          "operational owner: scripts/backlog/native/review/actor.py",
+          "operational owner: scripts/backlog/native/review/budget.py",
+          "operational owner: scripts/backlog/native/review/continuation.py",
+          "operational owner: scripts/backlog/native/review/delivery.py"
+        ],
+        "tests/scripts/test_command_capabilities.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_native_history.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_projection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_server.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/conftest.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_agent.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_loop.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_context_tools.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edit_diagnostics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_environment.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_grounding.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_live_change_checks.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_navigation.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_new_file_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_observed_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_portable_mechanics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_repair_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_task_selection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_cli.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_frame.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_lifecycle.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_native.py": [
+          "static reverse-import consumer"
+        ]
+      },
+      "uncertainty": [
+        "scripts/backlog/native/review/delivery.py: new file/layout needs owner review"
+      ],
+      "assurance": "bounded impact argument; omitted tests are not passed",
+      "comprehensive_required_for_publication": true
+    },
+    "sha256": "56bd5722ab46e766d4f68f1d8f4b5b154701bb3caac05fbc2bc836ffc8c6cbe6",
+    "tests": 7,
+    "failures": [
+      {
+        "nodeid": "tests/scripts/backlog/test_native.py::test_native_review_actor_to_existing_integration_plan[neutral-review-a]",
+        "phase": "call",
+        "failure_tail": "      assert (cycle.root / SOURCE).read_text() == BASE\n            assert not (cycle.root / \".local/backlog/checkout-owner\").exists()\n            assert not (\n                cycle.integration.folder(item, plan[\"sha256\"]) / \"install.json\"\n            ).exists()\n    \n>       asyncio.run(run())\n\ntests\\scripts\\backlog\\test_native.py:987: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    async def run() -> None:\n        cycle, item = repository\n        await prepared(cycle, item, task())\n        result = await cycle.native.execute(\n            item,\n            interaction=Scripted(\"neutral-script-a\"),\n            profile=\"scripted-v1\",\n            authorize=lambda _: True,\n        )\n        assert result[\"disposition\"] == \"REVIEW_CANDIDATE\"\n        await approve_reviewer(cycle, item, reviewer_policy(source))\n        model = ReviewModel(source)\n        proposal = await cycle.native.reviewer.execute(\n            item,\n            interaction=model,\n            profile=\"review-script-v1\",\n            authorize=lambda _: True,\n        )\n>       assert proposal[\"status\"] == \"proposed\", proposal\nE       AssertionError: {'schema': 'backlog-native-review-proposal-v1', 'subject_sha256': 'ed74d5e2add0849f2d4015e2f0780f5fc0fe47e398c33ad2d83...85223a0401c68850646326f1e', 'dispatch_sha256': '0cd8d0536d150d50de0b8548d373a2a339e9e2e98f1b199f4690cc2c84f915b4', ...}\nE       assert 'blocked' == 'proposed'\nE         \nE         - proposed\nE         + blocked\n\ntests\\scripts\\backlog\\test_native.py:924: AssertionError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_native.py::test_native_review_actor_to_existing_integration_plan[independent-review-b]",
+        "phase": "call",
+        "failure_tail": "      assert (cycle.root / SOURCE).read_text() == BASE\n            assert not (cycle.root / \".local/backlog/checkout-owner\").exists()\n            assert not (\n                cycle.integration.folder(item, plan[\"sha256\"]) / \"install.json\"\n            ).exists()\n    \n>       asyncio.run(run())\n\ntests\\scripts\\backlog\\test_native.py:987: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Python314\\Lib\\asyncio\\runners.py:204: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\runners.py:127: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    async def run() -> None:\n        cycle, item = repository\n        await prepared(cycle, item, task())\n        result = await cycle.native.execute(\n            item,\n            interaction=Scripted(\"neutral-script-a\"),\n            profile=\"scripted-v1\",\n            authorize=lambda _: True,\n        )\n        assert result[\"disposition\"] == \"REVIEW_CANDIDATE\"\n        await approve_reviewer(cycle, item, reviewer_policy(source))\n        model = ReviewModel(source)\n        proposal = await cycle.native.reviewer.execute(\n            item,\n            interaction=model,\n            profile=\"review-script-v1\",\n            authorize=lambda _: True,\n        )\n>       assert proposal[\"status\"] == \"proposed\", proposal\nE       AssertionError: {'schema': 'backlog-native-review-proposal-v1', 'subject_sha256': '9b62cca3b4a6951b9367ad091428125861c5ac3889f6a9f4bbb...6a322f41ff121854069d5efbe', 'dispatch_sha256': '71381b6c841c21d481a4860a32a41fc4d0d469fa9273010995aaa4e43b0455f4', ...}\nE       assert 'blocked' == 'proposed'\nE         \nE         - proposed\nE         + blocked\n\ntests\\scripts\\backlog\\test_native.py:924: AssertionError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[accept]",
+        "phase": "call",
+        "failure_tail": "           )\n            with pytest.raises(PermissionError):\n                await selected.execute(\n                    item,\n                    interaction=model,\n                    profile=config[\"profile\"],\n                    authorize=c.routine.callback(grant[\"reference\"]),\n                )\n            assert not model.requests\n            return\n        grant_path = selected.folder(item) / \"authorization.json\"\n        original_grant = grant_path.read_bytes()\n        reseal(grant_path, {\"expires_at\": str(Timestamp.now() - Duration.seconds(1))})\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        assert not model.requests\n        grant_path.write_bytes(original_grant)\n        source_path = c.root / SOURCE\n        source_bytes = source_path.read_bytes()\n        source_path.write_text(\"def value():\\n    return 99\\n\", encoding=\"utf-8\")\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        source_path.write_bytes(source_bytes)\n        assert not model.requests\n        proposal = await selected.execute(\n            item,\n            interaction=model,\n            profile=config[\"profile\"],\n            authorize=c.routine.callback(grant[\"reference\"]),\n        )\n        assert len(model.requests) == 4\n        assert proposal[\"reads\"] == 3\n>       assert proposal[\"status\"] == (\n            \"proposed\" if mode in {\"accept\", \"insufficient-evidence\"} else \"blocked\"\n        )\nE       AssertionError: assert 'blocked' == 'proposed'\nE         \nE         - proposed\nE         + blocked\n\ntests\\scripts\\backlog\\test_review_recovery.py:294: AssertionError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/test_review_recovery.py::test_historical_budget_recovery_and_exact_attempt[insufficient-evidence]",
+        "phase": "call",
+        "failure_tail": "           )\n            with pytest.raises(PermissionError):\n                await selected.execute(\n                    item,\n                    interaction=model,\n                    profile=config[\"profile\"],\n                    authorize=c.routine.callback(grant[\"reference\"]),\n                )\n            assert not model.requests\n            return\n        grant_path = selected.folder(item) / \"authorization.json\"\n        original_grant = grant_path.read_bytes()\n        reseal(grant_path, {\"expires_at\": str(Timestamp.now() - Duration.seconds(1))})\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        assert not model.requests\n        grant_path.write_bytes(original_grant)\n        source_path = c.root / SOURCE\n        source_bytes = source_path.read_bytes()\n        source_path.write_text(\"def value():\\n    return 99\\n\", encoding=\"utf-8\")\n        with pytest.raises(PermissionError):\n            await selected.execute(\n                item,\n                interaction=model,\n                profile=config[\"profile\"],\n                authorize=c.routine.callback(grant[\"reference\"]),\n            )\n        source_path.write_bytes(source_bytes)\n        assert not model.requests\n        proposal = await selected.execute(\n            item,\n            interaction=model,\n            profile=config[\"profile\"],\n            authorize=c.routine.callback(grant[\"reference\"]),\n        )\n        assert len(model.requests) == 4\n        assert proposal[\"reads\"] == 3\n>       assert proposal[\"status\"] == (\n            \"proposed\" if mode in {\"accept\", \"insufficient-evidence\"} else \"blocked\"\n        )\nE       AssertionError: assert 'blocked' == 'proposed'\nE         \nE         - proposed\nE         + blocked\n\ntests\\scripts\\backlog\\test_review_recovery.py:294: AssertionError"
+      }
+    ]
+  },
+  "delivery-focused.json": {
+    "status": "test-or-coverage-failure",
+    "exit_code": 1,
+    "seconds": 140.975285,
+    "inputs_unchanged": true,
+    "correction": "",
+    "selection": {
+      "changed": [
+        "docs/development/native-diagnostic-review.md",
+        "docs/development/native-independent-review.md",
+        "docs/development/native-review-continuation.md",
+        "docs/documentation_map.md",
+        "scripts/backlog/native/review/acquisition.py",
+        "scripts/backlog/native/review/actor.py",
+        "scripts/backlog/native/review/budget.py",
+        "scripts/backlog/native/review/continuation.py",
+        "scripts/backlog/native/review/delivery.py",
+        "tests/scripts/backlog/review/__init__.py",
+        "tests/scripts/backlog/review/test_delivery.py",
+        "tests/scripts/backlog/test_native.py",
+        "tests/scripts/backlog/test_review_acquisition.py",
+        "tests/scripts/backlog/test_review_continuation.py",
+        "tests/scripts/backlog/test_review_recovery.py"
+      ],
+      "groups": {
+        "tests/scripts/backlog": [
+          "operational owner: scripts/backlog/native/review/acquisition.py",
+          "operational owner: scripts/backlog/native/review/actor.py",
+          "operational owner: scripts/backlog/native/review/budget.py",
+          "operational owner: scripts/backlog/native/review/continuation.py",
+          "operational owner: scripts/backlog/native/review/delivery.py"
+        ],
+        "tests/scripts/test_command_capabilities.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_native_history.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_projection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_server.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/conftest.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_agent.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_loop.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_context_tools.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edit_diagnostics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_environment.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_grounding.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_live_change_checks.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_navigation.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_new_file_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_observed_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_portable_mechanics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_repair_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_task_selection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_cli.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_frame.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_lifecycle.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_native.py": [
+          "static reverse-import consumer"
+        ]
+      },
+      "uncertainty": [
+        "docs/development/native-diagnostic-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-diagnostic-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-independent-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-independent-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-review-continuation.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-review-continuation.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/documentation_map.md: absent/deleted or outside analyzed Python scope",
+        "docs/documentation_map.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "tests/scripts/backlog/review/__init__.py: configuration/layout/fixture or non-Python input needs explicit review",
+        "scripts/backlog/native/review/delivery.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/__init__.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/test_delivery.py: new file/layout needs owner review"
+      ],
+      "assurance": "bounded impact argument; omitted tests are not passed",
+      "comprehensive_required_for_publication": true
+    },
+    "sha256": "44ae3d005362dd3b1c4458a8f2a273a7f56e306d95c6746f6d78a499d26f8ec8",
+    "tests": 34,
+    "failures": [
+      {
+        "nodeid": "tests/scripts/backlog/review/test_delivery.py::test_unsupported_or_ungrounded_delivery_fails[mixed]",
+        "phase": "call",
+        "failure_tail": "    \"json\",\n            \"duplicate\",\n            \"missing-envelope\",\n            \"missing-conclusion\",\n            \"extra\",\n            \"subject\",\n            \"candidate\",\n            \"unsupported-name\",\n            \"missing-id\",\n            \"repeat-id\",\n            \"mixed\",\n            \"no-call\",\n            \"stop\",\n            \"truncated\",\n            \"source\",\n            \"references\",\n            \"unassessed\",\n            \"blocking\",\n            \"diagnostic\",\n            \"request-tools\",\n            \"request-settings\",\n            \"delivery\",\n        ],\n    )\n    def test_unsupported_or_ungrounded_delivery_fails(fault: str) -> None:\n        p, request, response = exchange()\n        raw = asdict(response)\n        req = asdict(request)\n        call = raw[\"tool_calls\"][0]\n        args = json.loads(call[\"arguments_json\"])\n        claimed: set[str] = set()\n        if fault == \"json\":\n            call[\"arguments_json\"] = \"{broken\"\n        elif fault == \"duplicate\":\n            call[\"arguments_json\"] = call[\"arguments_json\"].replace(\n                '\"summary\":', '\"summary\":\"duplicate\", \"summary\":'\n            )\n        elif fault == \"missing-envelope\":\n            del args[\"candidate_sha256\"]\n        elif fault == \"missing-conclusion\":\n            del args[\"conclusion\"][\"assessed_obligations\"]\n        elif fault == \"extra\":\n            args[\"conclusion\"][\"extra\"] = True\n        elif fault in {\"subject\", \"candidate\"}:\n            args[fault + \"_sha256\"] = \"0\" * 64\n        elif fault == \"unsupported-name\":\n            call[\"name\"] = \"accept_candidate\"\n        elif fault == \"missing-id\":\n            call[\"provider_call_id\"] = None\n        elif fault == \"repeat-id\":\n            claimed.add(call[\"provider_call_id\"])\n        elif fault == \"mixed\":\n>           raw[\"tool_calls\"].append(copy.deepcopy(call))\n            ^^^^^^^^^^^^^^^^^^^^^^^^\nE           AttributeError: 'tuple' object has no attribute 'append'\n\ntests\\scripts\\backlog\\review\\test_delivery.py:204: AttributeError"
+      },
+      {
+        "nodeid": "tests/scripts/backlog/review/test_delivery.py::test_existing_adapter_transports_schema_and_exact_arguments",
+        "phase": "call",
+        "failure_tail": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Python314\\Lib\\asyncio\\base_events.py:719: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\nsrc\\devtools\\models\\interaction\\providers\\llama_cpp.py:84: in send\n    content = _final_assistant_content(response)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nresponse = {'choices': [{'finish_reason': 'tool_calls', 'message': {'role': 'assistant', 'content': None, 'tool_calls': [{'id': 'final-proposal', 'type': 'function', 'function': {...}}]}}]}\n\n    def _final_assistant_content(response: dict[str, object]) -> str:\n        \"\"\"Extract the minimum validated final-assistant subset from llama.cpp.\"\"\"\n        choices = response.get(\"choices\")\n        if not isinstance(choices, list) or not choices:\n            msg = \"llama.cpp successful response must contain a nonempty choices list.\"\n            raise LlamaCppResponseError(msg)\n        choice = choices[0]\n        if not isinstance(choice, dict):\n            msg = \"llama.cpp successful response choice must be an object.\"\n            raise LlamaCppResponseError(msg)\n        message = choice.get(\"message\")\n        if not isinstance(message, dict):\n            msg = \"llama.cpp successful response choice must contain a message object.\"\n            raise LlamaCppResponseError(msg)\n        if message.get(\"role\") != \"assistant\":\n            msg = \"llama.cpp successful response message must have assistant role.\"\n            raise LlamaCppResponseError(msg)\n        content = message.get(\"content\")\n        if not isinstance(content, str):\n            msg = \"llama.cpp successful response assistant content must be text.\"\n>           raise LlamaCppResponseError(msg)\nE           devtools.models.interaction.providers.llama_cpp_errors.LlamaCppResponseError: llama.cpp successful response assistant content must be text.\n\nsrc\\devtools\\models\\interaction\\providers\\llama_cpp.py:536: LlamaCppResponseError"
+      }
+    ]
+  },
+  "recovery-consumers.json": {
+    "status": "passed",
+    "exit_code": 0,
+    "seconds": 3895.045512,
+    "inputs_unchanged": true,
+    "correction": "Compare disclosed callable definitions across equivalent dataclass tuple and persisted JSON list representations; retain identities and closed validation. Correct offline fixture tuple mutation and pinned adapter empty-text framing.",
+    "selection": {
+      "changed": [
+        "docs/development/native-diagnostic-review.md",
+        "docs/development/native-independent-review.md",
+        "docs/development/native-review-continuation.md",
+        "docs/documentation_map.md",
+        "scripts/backlog/native/review/acquisition.py",
+        "scripts/backlog/native/review/actor.py",
+        "scripts/backlog/native/review/budget.py",
+        "scripts/backlog/native/review/continuation.py",
+        "scripts/backlog/native/review/delivery.py",
+        "tests/scripts/backlog/review/__init__.py",
+        "tests/scripts/backlog/review/test_delivery.py",
+        "tests/scripts/backlog/test_native.py",
+        "tests/scripts/backlog/test_review_acquisition.py",
+        "tests/scripts/backlog/test_review_continuation.py",
+        "tests/scripts/backlog/test_review_recovery.py"
+      ],
+      "groups": {
+        "tests/scripts/backlog": [
+          "operational owner: scripts/backlog/native/review/acquisition.py",
+          "operational owner: scripts/backlog/native/review/actor.py",
+          "operational owner: scripts/backlog/native/review/budget.py",
+          "operational owner: scripts/backlog/native/review/continuation.py",
+          "operational owner: scripts/backlog/native/review/delivery.py"
+        ],
+        "tests/scripts/test_command_capabilities.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_native_history.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_projection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_server.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/conftest.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_agent.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_loop.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_context_tools.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edit_diagnostics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_environment.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_grounding.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_live_change_checks.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_navigation.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_new_file_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_observed_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_portable_mechanics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_repair_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_task_selection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_cli.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_frame.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_lifecycle.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_native.py": [
+          "static reverse-import consumer"
+        ]
+      },
+      "uncertainty": [
+        "docs/development/native-diagnostic-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-diagnostic-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-independent-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-independent-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-review-continuation.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-review-continuation.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/documentation_map.md: absent/deleted or outside analyzed Python scope",
+        "docs/documentation_map.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "tests/scripts/backlog/review/__init__.py: configuration/layout/fixture or non-Python input needs explicit review",
+        "scripts/backlog/native/review/delivery.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/__init__.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/test_delivery.py: new file/layout needs owner review"
+      ],
+      "assurance": "bounded impact argument; omitted tests are not passed",
+      "comprehensive_required_for_publication": true
+    },
+    "sha256": "f5d42ececdfd84e752bf0888b54f5fd9ce893a0fd94472e02541b368fa26195c",
+    "tests": 796,
+    "failures": []
+  },
+  "final-focused.json": {
+    "status": "passed",
+    "exit_code": 0,
+    "seconds": 30.390605,
+    "inputs_unchanged": true,
+    "correction": "",
+    "selection": {
+      "changed": [
+        "docs/development/native-diagnostic-review.md",
+        "docs/development/native-independent-review.md",
+        "docs/development/native-review-continuation.md",
+        "docs/documentation_map.md",
+        "scripts/backlog/native/review/acquisition.py",
+        "scripts/backlog/native/review/actor.py",
+        "scripts/backlog/native/review/budget.py",
+        "scripts/backlog/native/review/continuation.py",
+        "scripts/backlog/native/review/delivery.py",
+        "tests/scripts/backlog/review/__init__.py",
+        "tests/scripts/backlog/review/test_delivery.py",
+        "tests/scripts/backlog/test_native.py",
+        "tests/scripts/backlog/test_review_acquisition.py",
+        "tests/scripts/backlog/test_review_continuation.py",
+        "tests/scripts/backlog/test_review_recovery.py"
+      ],
+      "groups": {
+        "tests/scripts/backlog": [
+          "operational owner: scripts/backlog/native/review/acquisition.py",
+          "operational owner: scripts/backlog/native/review/actor.py",
+          "operational owner: scripts/backlog/native/review/budget.py",
+          "operational owner: scripts/backlog/native/review/continuation.py",
+          "operational owner: scripts/backlog/native/review/delivery.py"
+        ],
+        "tests/scripts/test_command_capabilities.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_native_history.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_projection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/operator_dashboard/test_server.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/conftest.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_agent.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_coding_loop.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_context_tools.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_edit_diagnostics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_environment.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_grounding.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_live_change_checks.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_navigation.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_new_file_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_observed_edits.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_portable_mechanics.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_repair_feedback.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/test_task_selection.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_cli.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_frame.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_lifecycle.py": [
+          "static reverse-import consumer"
+        ],
+        "tests/apps/qwen/obligations/test_native.py": [
+          "static reverse-import consumer"
+        ]
+      },
+      "uncertainty": [
+        "docs/development/native-diagnostic-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-diagnostic-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-independent-review.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-independent-review.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/development/native-review-continuation.md: absent/deleted or outside analyzed Python scope",
+        "docs/development/native-review-continuation.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "docs/documentation_map.md: absent/deleted or outside analyzed Python scope",
+        "docs/documentation_map.md: configuration/layout/fixture or non-Python input needs explicit review",
+        "tests/scripts/backlog/review/__init__.py: configuration/layout/fixture or non-Python input needs explicit review",
+        "scripts/backlog/native/review/delivery.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/__init__.py: new file/layout needs owner review",
+        "tests/scripts/backlog/review/test_delivery.py: new file/layout needs owner review"
+      ],
+      "assurance": "bounded impact argument; omitted tests are not passed",
+      "comprehensive_required_for_publication": true
+    },
+    "sha256": "0078e73e6b1c305ec74bce2bbd40b4cf35740e0cb52f038ba35d49efc977af20",
+    "tests": 5,
+    "failures": []
+  }
+}

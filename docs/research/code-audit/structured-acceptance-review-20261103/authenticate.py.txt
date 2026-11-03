@@ -1,0 +1,24 @@
+"""Snapshot existing history and authority without dispatching anything."""
+import hashlib, json, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git
+O = R / '.local/structured-review'
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+c = WorkCycle(R)
+folders = [c._folder(item) for item in ('B-0049', 'B-0050', 'B-0051', 'B-0052')]
+folders += [c.routine.folder, R / 'docs/research/code-audit/acceptance-review-recovery-20261102']
+files = {p.relative_to(R).as_posix(): h(p) for folder in folders for p in folder.rglob('*') if p.is_file()}
+files.update({name: h(R / name) for name in git(R, 'ls-files', '--others', '--exclude-standard', '-z').split('\0') if name.startswith('experiments/')})
+assert not (R / '.local/backlog/checkout-owner').exists()
+v = {'at': str(Timestamp.now()), 'head': git(R, 'rev-parse', 'HEAD'), 'files': files,
+    'policy': c.routine.active()['sha256'], 'candidate': c.native.record('B-0052', 'result')['candidate_sha256'],
+    'source_sha256': h(R / 'src/devtools/resources/filesystem/models/csv.py'),
+    'worktrees': git(R, 'worktree', 'list', '--porcelain'), 'refs': git(R, 'show-ref')}
+write(TextFile(resolve_path(O / 'before.json'), json.dumps(v, indent=2) + '\n'), overwrite=False)
+print(json.dumps({k: v[k] for k in ('head', 'policy', 'candidate')}, indent=2))

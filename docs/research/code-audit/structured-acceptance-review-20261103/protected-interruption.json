@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-03T14:45:08.010900+00:00",
+  "status": "interrupted-no-completion-receipt",
+  "intent_path": ".local\\structured-review\\protected-completion.json.intent",
+  "intent_sha256": "0f00dab1cee16d19df8a5883a73c417b181eccc9990b33de81f957996dc9b587",
+  "head": "4fe7ac6c90c50e60cf7470ae1dcfa011a6956e21",
+  "observed_failure": "PermissionError: [WinError 5] Access is denied: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin",
+  "scope": "Pytest tmp_path setup failed before many test bodies, not a review-delivery assertion failure.",
+  "stop": "Ctrl-C requested through the running exec session; exit 1. Subsequent Get-Process python showed only pre-existing 2026-11-01 processes 164384 and 195668, no current validation wrapper/child.",
+  "diagnostic": {
+    "argv": [
+      ".venv/Scripts/python.exe",
+      "-m",
+      "pytest",
+      "tests/agents/coding/compaction/test_adaptive.py",
+      "-x",
+      "--no-cov",
+      "--tb=short"
+    ],
+    "sandboxed": "4 passed, one tmp_path setup error; 0.43 seconds",
+    "authorized_outside_sandbox": "20 passed in 1.41 seconds; exit 0",
+    "provenance": "Host projection of actual exec tool return, not a saved pytest phase receipt."
+  },
+  "correction": "Run unchanged committed executable inputs and unchanged protected selection/coverage through an explicitly escalated command with access to pytest temporary state. No permission workaround in source, source edit, profile relaxation or live operation.",
+  "wmi_inspection": "Unavailable (HRESULT 0x80010114); process cessation was confirmed through Get-Process instead."
+}

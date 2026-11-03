@@ -1,0 +1,32 @@
+"""Preserve permission-refused launch; prepare the same gate with lawful OS access."""
+import hashlib, json
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, write
+R = Path.cwd()
+O = R / '.local/structured-review'
+intent = O / 'protected-completion.json.intent'
+assert intent.exists() and not (O / 'protected-completion.json').exists()
+v = {'at': str(Timestamp.now()), 'status': 'interrupted-no-completion-receipt',
+    'intent_path': str(intent.relative_to(R)), 'intent_sha256': hashlib.sha256(intent.read_bytes()).hexdigest(),
+    'head': '4fe7ac6c90c50e60cf7470ae1dcfa011a6956e21',
+    'observed_failure': "PermissionError: [WinError 5] Access is denied: C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\pytest-of-recoveryadmin",
+    'scope': 'Pytest tmp_path setup failed before many test bodies, not a review-delivery assertion failure.',
+    'stop': 'Ctrl-C requested through the running exec session; exit 1. Subsequent Get-Process python showed only pre-existing 2026-11-01 processes 164384 and 195668, no current validation wrapper/child.',
+    'diagnostic': {'argv': ['.venv/Scripts/python.exe','-m','pytest','tests/agents/coding/compaction/test_adaptive.py','-x','--no-cov','--tb=short'],
+        'sandboxed': '4 passed, one tmp_path setup error; 0.43 seconds',
+        'authorized_outside_sandbox': '20 passed in 1.41 seconds; exit 0',
+        'provenance': 'Host projection of actual exec tool return, not a saved pytest phase receipt.'},
+    'correction': 'Run unchanged committed executable inputs and unchanged protected selection/coverage through an explicitly escalated command with access to pytest temporary state. No permission workaround in source, source edit, profile relaxation or live operation.',
+    'wmi_inspection': 'Unavailable (HRESULT 0x80010114); process cessation was confirmed through Get-Process instead.'}
+write(TextFile(resolve_path(O / 'protected-interruption.json'),json.dumps(v,indent=2)+'\n'),overwrite=False)
+source=(O/'protected.py').read_text(encoding='utf-8')
+source=source.replace("P=O/'protected-completion.json'", "P=O/'protected-authorized.json'")
+source=source.replace("'previous':None", "'previous':{'intent':'.local/structured-review/protected-completion.json.intent','interruption':'.local/structured-review/protected-interruption.json','qualification':'Interrupted permission-refused launch, not a completed protected gate'}")
+source=source.replace('Final structured-review publication gate with a finite two-hour managed deadline,', 'Corrected OS access after authenticated pytest temp-directory sandbox refusal; unchanged source/profile. Final structured-review publication gate with a finite two-hour managed deadline,')
+write(TextFile(resolve_path(O/'protected-authorized.py'),source),overwrite=False)
+for name in ('finish.py','verify_docs.py'):
+    p=O/name
+    source=p.read_text(encoding='utf-8').replace('protected-completion','protected-authorized')
+    write(TextFile(resolve_path(p),source),overwrite=True)

@@ -1,0 +1,58 @@
+"""Bounded documentary, protected-input and Git-byte checks after the one gate."""
+import hashlib, json, re, sys
+from pathlib import Path
+R = Path.cwd()
+sys.path.insert(0, str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import TextFile, BinaryFile, write
+from scripts.backlog.work import WorkCycle
+from scripts.validation.evidence import git, inputs
+O = R / '.local/structured-review'
+D = R / 'docs/research/code-audit/structured-acceptance-review-20261103'
+def load(p): return json.loads(p.read_bytes())
+def h(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v): write(TextFile(resolve_path(p),json.dumps(v,indent=2)+'\n'),overwrite=False)
+mode = sys.argv[1]
+assert mode in ('--record','--staged','--committed')
+gate, current = load(O / 'protected-authorized.json'), inputs(R)
+assert gate['status'] == 'passed' and gate['inputs_unchanged']
+assert current['sha256'] == gate['inputs']['sha256']
+def blobs(s): return {row.split('\t',1)[1]:row.split()[1] for row in s.splitlines()}
+a,b = blobs(current['git_blobs']),blobs(gate['inputs']['git_blobs'])
+assert all(a[n] == b[n] for n in current['sha256'])
+for k in ('python','executable','platform','packages'): assert current[k] == gate['inputs'][k]
+assert h(D / 'protected-authorized.json') == h(O / 'protected-authorized.json')
+for row in load(D / 'protected-output.json').values(): assert hashlib.sha256(row['utf8_text'].encode()).hexdigest() == row['sha256']
+assert all(row['exit_code'] == 0 and not row['truncated'] for row in load(D / 'quality-final.json')['commands'])
+assert not WorkCycle(R).intake.queue()['errors']
+links=[]
+for name in ('docs/documentation_map.md','docs/development/structured-acceptance-review.md','docs/development/native-independent-review.md','docs/development/native-diagnostic-review.md','docs/development/native-review-continuation.md',D.relative_to(R).as_posix()+'/README.md'):
+    p=R/name
+    for target in re.findall(r'\]\(([^)]+)\)',p.read_text(encoding='utf-8')):
+        target=target.split('#')[0]
+        if target and not target.startswith(('http:','https:')):
+            assert (p.parent/target).exists(),(name,target)
+            links.append(target)
+private=(R/'.local/e2e-native/private.py.txt').read_text(encoding='utf-8')
+for p in D.iterdir():
+    if p.is_file():
+        text=p.read_text(encoding='utf-8')
+        assert private not in text and json.dumps(private) not in text,p
+assert not git(R,'diff','--check') and not git(R,'diff','--cached','--check')
+if mode=='--record':
+    save(D/'documentary-checks.json',{'at':str(Timestamp.now()),'matching_protected_inputs_and_blobs':len(current['sha256']),'protected_output_hashes_verified':True,'links_checked':len(links),'intake_errors':[],'private_implementation_not_copied':True,'qualification':'Owner projection and exact-text private scan, not general secret detection','diff_checks':'passed'})
+    write(BinaryFile(resolve_path(D/'verify_docs.py.txt'),Path(__file__).read_bytes()),overwrite=False)
+    save(D/'manifest.json',{'at':str(Timestamp.now()),'tested_executable_commit':gate['inputs']['head'],'files':{p.name:{'sha256':h(p),'bytes':p.stat().st_size} for p in sorted(D.iterdir()) if p.is_file()},'qualification':'Manifest excludes itself. Archive file bytes are separately checked against index/commit Git objects.'})
+manifest=load(D/'manifest.json')
+assert set(manifest['files']) == {p.name for p in D.iterdir() if p.is_file()}-{'manifest.json'}
+for name,v in manifest['files'].items(): assert h(D/name)==v['sha256'] and (D/name).stat().st_size==v['bytes'],name
+if mode!='--record':
+    changed=set(git(R,'diff','--name-only',gate['inputs']['head'],'--').splitlines())
+    allowed={'docs/development/structured-acceptance-review.md'}|{p.relative_to(R).as_posix() for p in D.iterdir() if p.is_file()}
+    assert changed <= allowed,changed-allowed
+    for p in D.iterdir():
+        name=p.relative_to(R).as_posix()
+        ref=':'+name if mode=='--staged' else 'HEAD:'+name
+        assert git(R,'hash-object','--no-filters','--',name)==git(R,'rev-parse',ref),name
+print(json.dumps({'mode':mode,'head':current['head'],'tested_commit':gate['inputs']['head'],'matching_protected_inputs_and_blobs':len(current['sha256']),'manifest_members':len(manifest['files']),'links_checked':len(links),'git_archive_bytes_checked':mode!='--record'},indent=2))
