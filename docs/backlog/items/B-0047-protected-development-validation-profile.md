@@ -69,3 +69,14 @@ See the [complete audit and prioritized roadmap](../../research/production-adopt
 and [source/custody identities](../../research/production-adoption-and-architecture-evidence-20261023.json).
 Existing status, parent, dependencies, decision maturity and promotion trigger
 remain unchanged; advisory research does not authorize implementation.
+
+## Operational improvement evidence (2026-11-03)
+
+The comprehensive validation wrapper timed out at its one-hour limit during
+the B-0053 Markdown repair publication. The same committed tree then passed the
+canonical `scripts/validate_development.py` protected profile directly in
+4092.61 seconds (4313 passed, 2 skipped, configured 100% production branch
+coverage). This identifies a wrapper deadline mismatch for long protected
+runs. Track a wrapper-timeout operational improvement through its existing
+owner; this observation does not change the protected validation policy or
+profile.
