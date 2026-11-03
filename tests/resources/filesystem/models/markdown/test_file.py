@@ -46,6 +46,99 @@ ordinary # text
     assert file.headings == file.headings
 
 
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        ("# C#", "C#"),
+        ("### F##  ", "F##"),
+        ("## alpha#beta###", "alpha#beta###"),
+        ("# end#\t", "end#"),
+        ("# C## ###", "C##"),
+        ("# word ### tail#", "word ### tail#"),
+        ("# word\t####\t ", "word"),
+        ("# Plain ###", "Plain"),
+        (r"# x \#", r"x \#"),
+        (r"# foo #\##", r"foo #\##"),
+        ("# hashes ### #", "hashes ###"),
+        ("# ### #", "###"),
+        ("# word\u00a0###", "word\u00a0###"),
+        ("# trailing # tail", "trailing # tail"),
+        ("###### Plain", "Plain"),
+        ("# \t", ""),
+    ],
+)
+def test_atx_titles_strip_only_separated_terminal_hashes(
+    tmp_path: Path,
+    source: str,
+    expected: str,
+) -> None:
+    """Literal suffixes survive while space/tab-delimited closing runs disappear."""
+    content = source + "\nBody\n"
+    file = MarkdownFile(ResolvedPath(tmp_path / "hash-titles.md"), content)
+    (heading,) = file.headings
+    (section,) = file.sections
+
+    assert heading.text == expected
+    assert file.find_heading(expected, case_sensitive=True) == heading
+    assert file.find_section(expected, case_sensitive=True) == section
+    assert section.title == expected
+    assert section.content == "Body"
+    assert file.content == content
+
+
+@pytest.mark.parametrize("level", [1, 2, 6])
+@pytest.mark.parametrize("separator", [" ", "\t", "  "])
+@pytest.mark.parametrize("closing_length", [1, 2, 7])
+def test_closing_hashes_preserve_empty_atx_titles(
+    tmp_path: Path,
+    level: int,
+    separator: str,
+    closing_length: int,
+) -> None:
+    """Keep the 27 revealed post-hoc empty-title cases as public regressions."""
+    source = "#" * level + separator + "#" * closing_length + "\nBody\n"
+    file = MarkdownFile(ResolvedPath(tmp_path / "empty-title.md"), source)
+    (heading,) = file.headings
+    (section,) = file.sections
+
+    assert (heading.level, heading.text, heading.line) == (level, "", 1)
+    assert file.find_heading("", case_sensitive=True) == heading
+    assert file.find_section("", case_sensitive=True) == section
+    assert (section.title, section.start_line, section.end_line) == ("", 1, 2)
+    assert section.content == "Body"
+    assert file.content == source
+
+
+def test_hash_titles_preserve_crlf_sections_and_fence_boundaries(
+    tmp_path: Path,
+) -> None:
+    """Hash-bearing and empty titles retain level, lookup and source contracts."""
+    source = (
+        "# Root#\r\nBody\r\n## Child## ###\r\nData\r\n"
+        "```text\r\n# hidden#\r\n```\r\n# ##\r\nEmpty\r\n# NEXT#\r\nDone\r\n"
+    )
+    file = MarkdownFile(ResolvedPath(tmp_path / "hash-sections.md"), source)
+
+    assert [(h.level, h.text, h.line) for h in file.headings] == [
+        (1, "Root#", 1),
+        (2, "Child##", 3),
+        (1, "", 8),
+        (1, "NEXT#", 10),
+    ]
+    assert [(s.title, s.start_line, s.end_line) for s in file.sections] == [
+        ("Root#", 1, 7),
+        ("Child##", 3, 7),
+        ("", 8, 9),
+        ("NEXT#", 10, 11),
+    ]
+    assert file.find_heading("next#") == file.headings[-1]
+    assert file.find_section("next#") == file.sections[-1]
+    assert file.sections[-1].content == "Done"
+    assert file.find_heading("hidden#") is None
+    assert file.find_section("hidden#") is None
+    assert file.content == source
+
+
 def test_heading_and_section_properties_are_empty_without_atx_source(
     tmp_path: Path,
 ) -> None:

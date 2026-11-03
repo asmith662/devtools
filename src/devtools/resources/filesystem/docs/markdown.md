@@ -8,8 +8,12 @@ is a narrow structural helper, not a CommonMark AST.
 
 Only ATX headings are recognized. Levels are 1 through 6, opening markers
 require whitespace before heading text, and empty heading text is accepted.
-Heading lines are one-based. Closing hash markers are normalized by the current
-ATX pattern. Setext headings are unsupported.
+Heading lines are one-based. A terminal hash run is a closing marker only when
+preceded by a space or tab and followed only by spaces or tabs. Attached literal
+hashes remain part of the title: `# C#` has title `C#`, and `# C## ###` has title
+`C##`. The opening separator also permits an empty title with closing markers:
+`# ##` has an empty title. Surrounding title whitespace is trimmed; inline
+escapes remain literal. Setext headings are unsupported.
 
 Headings within recognized fenced code are ignored. Fences use backticks or
 tildes, permit up to three leading spaces, and close only with the same

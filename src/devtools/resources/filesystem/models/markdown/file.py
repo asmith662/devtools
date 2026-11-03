@@ -23,8 +23,9 @@ class MarkdownFile(TextFile):
     :ivar content: Original decoded Markdown source.
     """
 
+    # The opening separator also bounds a closing hash run on an empty heading.
     _ATX_HEADING_PATTERN: ClassVar[re.Pattern[str]] = re.compile(
-        r"^(?P<marker>#{1,6})[ \t]+(?P<text>.*?)[ \t]*#*[ \t]*$",
+        r"^(?P<marker>#{1,6})[ \t]+(?P<text>.*?)(?:(?<=[ \t])#+)?[ \t]*$",
     )
     _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(
         r"^[ \t]{0,3}(?P<fence>`{3,}|~{3,})[ \t]*(?P<info>.*?)[ \t]*$",
