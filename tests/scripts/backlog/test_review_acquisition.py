@@ -43,6 +43,7 @@ from tests.scripts.backlog.test_native import (
     approve_reviewer,
     conclusion,
     native_candidate,
+    review_response,
     reviewer_policy,
 )
 from tests.scripts.backlog.test_native import (
@@ -401,7 +402,7 @@ def test_batch_review_to_plan_and_no_consumed_replay(
                 )
                 answer = conclusion()
                 answer["findings"] = []
-                return ModelResponse(json.dumps(answer), self.source)
+                return review_response(request, self.source, answer)
 
         model = Model()
         proposal = await actor.execute(

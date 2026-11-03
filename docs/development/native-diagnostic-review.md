@@ -1,5 +1,8 @@
 # Governed diagnostic review of blocked native candidates
 
+The prospective [acceptance proposal callable](structured-acceptance-review.md)
+does not alter this diagnostic delivery rule or confer acceptance authority.
+
 `WorkCycle.native.diagnostic_reviewer` independently investigates an authenticated
 unsuccessful native candidate. It is a second explicit administrative purpose of
 the existing bounded [review operation](native-independent-review.md), not a new

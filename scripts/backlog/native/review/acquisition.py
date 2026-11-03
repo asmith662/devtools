@@ -20,7 +20,7 @@ from devtools.tools.source import (
     select_source_read,
 )
 from scripts.backlog.intake import _digest
-from scripts.backlog.native.review import budget
+from scripts.backlog.native.review import budget, delivery
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
@@ -86,7 +86,11 @@ def refusal_feedback(  # noqa: PLR0917 -- exact call/request/capture pairing
             "messages",
             (*messages, *exchange, PromptMessage("user", json.dumps(view))),
         ),
-        tools=request.tools if view["source_tools_permitted"] else (),
+        tools=delivery.tools(packet, source=view["source_tools_permitted"])
+        if "delivery" in packet
+        else request.tools
+        if view["source_tools_permitted"]
+        else (),
     )
     reserve = (
         len(json.dumps(asdict(following), indent=2).encode())

@@ -65,7 +65,11 @@ def view(
         ],
         "current_resources": resources,
         "instruction": (
-            "Produce the final structured review conclusion now. No source Tools are available. "
+            "Submit one submit_review_proposal call now; no source Tools are available. "
+            "If evidence is insufficient, use disposition insufficient-evidence with specific gaps. "
+            "No further model call is promised; the proposal has no effects."
+            if final and not diagnostic and "delivery" in packet
+            else "Produce the final structured review conclusion now. No source Tools are available. "
             "If evidence is insufficient, return disposition insufficient-evidence with specific gaps. "
             "No further model call is promised. Do not request Tools or invent findings."
             if final

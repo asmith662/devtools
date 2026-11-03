@@ -1,5 +1,9 @@
 # Bounded acceptance-review continuation
 
+New preparation uses the same [structured proposal delivery](structured-acceptance-review.md)
+as ordinary acceptance review. Eligibility, slot counts and historical record
+contracts below are unchanged; no continuation of B-0052's consumed v3 is added.
+
 `WorkCycle.native.reviewer` now supports one prospective continuation of an
 authenticated qualified candidate whose original acceptance review stopped at
 the established legacy single-read batch barrier. This is repository

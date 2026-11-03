@@ -53,7 +53,7 @@ from devtools.tools.source import (
 )
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
-from scripts.backlog.native.review import budget, continuation, diagnostic
+from scripts.backlog.native.review import budget, continuation, delivery, diagnostic
 from scripts.backlog.native.review.acquisition import (
     ReadBatchRefusalError,
     acquire,
@@ -305,7 +305,10 @@ class NativeReviewer:
                     "scope": self.scope,
                     "tools": self.tools(),
                     **(
-                        {"completion": dict(budget.COMPLETION)}
+                        {
+                            "completion": dict(budget.COMPLETION),
+                            "delivery": dict(delivery.DELIVERY),
+                        }
                         if not self.diagnostic_only
                         else {}
                     ),
@@ -367,6 +370,7 @@ class NativeReviewer:
                     "tools": self.tools(),
                     "attempt": {**parent, "correction_reference": correction_reference},
                     "completion": dict(budget.COMPLETION),
+                    "delivery": dict(delivery.DELIVERY),
                 },
             )
 
@@ -391,8 +395,13 @@ class NativeReviewer:
             or (
                 "delivery" in packet
                 and (
-                    not self.diagnostic_only
-                    or packet["delivery"] != diagnostic.DELIVERY
+                    packet["delivery"]
+                    != (
+                        diagnostic.DELIVERY
+                        if self.diagnostic_only
+                        else delivery.DELIVERY
+                    )
+                    or (not self.diagnostic_only and "completion" not in packet)
                 )
             )
             or packet["subject"]
@@ -588,7 +597,12 @@ class NativeReviewer:
                 index = build_source_search_index(scope.snapshot, corpus=corpus)
                 messages = [
                     PromptMessage(
-                        "system", diagnostic.SYSTEM if self.diagnostic_only else SYSTEM
+                        "system",
+                        diagnostic.SYSTEM
+                        if self.diagnostic_only
+                        else delivery.SYSTEM
+                        if "delivery" in packet
+                        else SYSTEM,
                     ),
                     PromptMessage(
                         "user",
@@ -598,7 +612,13 @@ class NativeReviewer:
                                 "references": references,
                                 "review_scope": {
                                     "read_paths": config["read_paths"],
-                                    "tools": [t["name"] for t in self.tools()],
+                                    "tools": [t["name"] for t in self.tools()]
+                                    + (
+                                        [delivery.NAME]
+                                        if not self.diagnostic_only
+                                        and "delivery" in packet
+                                        else []
+                                    ),
                                     "budgets": config["budgets"],
                                     "source_state": "current separately authenticated source; historical candidate is in subject"
                                     if self.diagnostic_only
@@ -629,7 +649,12 @@ class NativeReviewer:
                     request = ModelRequest(
                         Prompt("", "messages", tuple(active_messages)),
                         settings=ModelSettings(**config["settings"]),
-                        tools=tuple(
+                        tools=delivery.tools(
+                            packet,
+                            source=view is None or view["source_tools_permitted"],
+                        )
+                        if not self.diagnostic_only and "delivery" in packet
+                        else tuple(
                             normalize_tool_descriptor(t)
                             for t in (
                                 ()
@@ -695,6 +720,33 @@ class NativeReviewer:
                         raise ValueError(
                             "Review response source/output allowance invalid"
                         )
+                    if (
+                        not self.diagnostic_only
+                        and "delivery" in packet
+                        and (
+                            not response.tool_calls
+                            or any(c.name == delivery.NAME for c in response.tool_calls)
+                        )
+                    ):
+                        proposed = delivery.conclusion(
+                            packet,
+                            asdict(request),
+                            asdict(response),
+                            references,
+                            claimed,
+                        )
+                        capture.add(
+                            "review-conclusion-proposal",
+                            {
+                                "request_sha256": _digest(asdict(request)),
+                                "response_sha256": _digest(asdict(response)),
+                                "call": asdict(response.tool_calls[0]),
+                                "conclusion_sha256": _digest(proposed),
+                                "tool_effect_entered": False,
+                            },
+                        )
+                        conclusion = proposed
+                        break
                     if not response.tool_calls:
                         conclusion = (
                             self.diagnostic_conclusion(
@@ -978,6 +1030,8 @@ class NativeReviewer:
             raise PermissionError("Native review proposal/actor/subject mismatch")
         references = dict(packet["subject"]["references"])
         returned = None
+        request = None
+        claimed: set[str] = set()
         for observation in proposal["observations"]:
             if not re.fullmatch(r"observation-\d{4}\.json", observation["file"]):
                 raise PermissionError("Invalid reviewer observation address")
@@ -986,7 +1040,15 @@ class NativeReviewer:
             )
             if value["sha256"] != observation["sha256"]:
                 raise PermissionError("Reviewer observation changed")
+            if value["kind"] == "review-model-intent":
+                request = value["request"]
             if value["kind"] == "review-model-returned":
+                if returned is not None:
+                    claimed.update(
+                        c["provider_call_id"]
+                        for c in returned["tool_calls"]
+                        if c["provider_call_id"]
+                    )
                 returned = value["response"]
             if value["kind"] == "review-read-result":
                 if value["identity"] != _digest(value["disclosure"]):
@@ -1007,20 +1069,27 @@ class NativeReviewer:
         )
         if (
             returned is None
-            or returned["tool_calls"]
+            or ("delivery" in packet and request is None)
+            or (returned["tool_calls"] and "delivery" not in packet)
             or returned["source"]["value"] != proposal["source"]
             or returned["termination"] == ModelTermination.OUTPUT_LIMIT
-            or parse(
-                returned["content"],
-                references,
-                set(parsed["assessed_obligations"])
-                | {
-                    "objective",
-                    *(
-                        o["name"]
-                        for o in packet["subject"]["evidence"]["task"]["obligations"]
-                    ),
-                },
+            or (
+                delivery.conclusion(packet, request, returned, references, claimed)
+                if "delivery" in packet and request is not None
+                else parse(
+                    returned["content"],
+                    references,
+                    set(parsed["assessed_obligations"])
+                    | {
+                        "objective",
+                        *(
+                            o["name"]
+                            for o in packet["subject"]["evidence"]["task"][
+                                "obligations"
+                            ]
+                        ),
+                    },
+                )
             )
             != parsed
         ):

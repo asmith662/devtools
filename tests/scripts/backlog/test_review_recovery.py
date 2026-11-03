@@ -23,7 +23,12 @@ from devtools.models.interaction import (
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import _digest
 from tests.scripts.backlog.routine.test_authority import activate, assessment, provider
-from tests.scripts.backlog.test_native import PUBLIC, SOURCE, conclusion
+from tests.scripts.backlog.test_native import (
+    PUBLIC,
+    SOURCE,
+    conclusion,
+    review_response,
+)
 from tests.scripts.backlog.test_native import (
     repository as repository,  # noqa: PLC0414
 )
@@ -99,7 +104,7 @@ class RecoveryModel:
             )
         else:
             assert n == 4
-            assert not request.tools
+            assert [t.name for t in request.tools] == ["submit_review_proposal"]
             assert view["phase"] == "synthesis"
             assert view["acquisitions_remaining"] == 0
             if self.mode == "tool-final":
@@ -126,7 +131,7 @@ class RecoveryModel:
                 ]
             if self.mode == "malformed":
                 value["unsupported"] = True
-            return ModelResponse(json.dumps(value), self.source)
+            return review_response(request, self.source, value)
         return ModelResponse(
             "",
             self.source,
@@ -163,6 +168,7 @@ def test_historical_budget_recovery_and_exact_attempt(
         packet = json.loads(path.read_bytes())
         packet.pop("sha256")
         packet.pop("completion")
+        packet.pop("delivery")
         packet["sha256"] = _digest(packet)
         path.write_text(json.dumps(packet), encoding="utf-8")
         actor = c.native.reviewer.select(packet["sha256"])

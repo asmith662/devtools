@@ -28,6 +28,7 @@ from tests.scripts.backlog.test_native import (
     SOURCE,
     conclusion,
     native_candidate,
+    review_response,
     reviewer_policy,
 )
 from tests.scripts.backlog.test_native import (
@@ -76,7 +77,7 @@ class BatchModel:
         value = conclusion()
         value["findings"] = []
         value["evidence"].extend(["read:1", "read:2"])
-        return ModelResponse(json.dumps(value), self.source)
+        return review_response(request, self.source, value)
 
 
 async def legacy_failure(
@@ -93,6 +94,7 @@ async def legacy_failure(
     packet = json.loads(path.read_bytes())
     packet.pop("sha256")
     packet.pop("completion")
+    packet.pop("delivery")
     packet["sha256"] = _digest(packet)
     path.write_text(json.dumps(packet), encoding="utf-8")
     await cycle.native.reviewer.authorize(

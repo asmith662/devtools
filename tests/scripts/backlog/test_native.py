@@ -774,6 +774,36 @@ def conclusion(disposition: str = "accept") -> dict[str, Any]:
     }
 
 
+def review_response(
+    request: ModelRequest, source: InteractionSource, value: dict[str, Any]
+) -> ModelResponse:
+    """Emit a proposal through the actual advertised transport, including legacy fixtures."""
+    from scripts.backlog.native.review import delivery  # noqa: PLC0415
+
+    final = next((t for t in request.tools if t.name == delivery.NAME), None)
+    if final is None:
+        return ModelResponse(json.dumps(value), source)
+    properties = json.loads(final.input_schema_json)["properties"]
+    return ModelResponse(
+        "",
+        source,
+        termination=ModelTermination.TOOL_CALL,
+        tool_calls=(
+            ModelToolCall(
+                delivery.NAME,
+                json.dumps(
+                    {
+                        "subject_sha256": properties["subject_sha256"]["enum"][0],
+                        "candidate_sha256": properties["candidate_sha256"]["enum"][0],
+                        "conclusion": value,
+                    }
+                ),
+                "final-proposal",
+            ),
+        ),
+    )
+
+
 class ReviewModel:
     """Select actual read Tools and a structured review through ModelInteraction."""
 
@@ -793,7 +823,10 @@ class ReviewModel:
         """Inspect actual disclosure and select a read before concluding."""
         self.requests.append(request)
         assert request.conversation is None and request.provider_settings is None
-        assert [t.name for t in request.tools] == ["read_source"]
+        assert [t.name for t in request.tools] in (
+            ["read_source"],
+            ["read_source", "submit_review_proposal"],
+        )
         assert json.loads(request.prompt.messages[1].content)["review_scope"][
             "read_paths"
         ] == [PUBLIC]
@@ -836,7 +869,7 @@ class ReviewModel:
                 ),
             )
         assert any(m.role == "tool" for m in request.prompt.messages)
-        return ModelResponse(json.dumps(self.response), self.source)
+        return review_response(request, self.source, self.response)
 
 
 async def native_candidate(cycle: WorkCycle, item: str) -> None:
@@ -994,6 +1027,7 @@ def test_native_review_actor_blocked_without_replay(
         packet = json.loads(path.read_bytes())
         packet.pop("sha256")
         packet.pop("completion")
+        packet.pop("delivery")
         packet["sha256"] = _digest(packet)
         path.write_text(json.dumps(packet), encoding="utf-8")
         grant_path = cycle.native.reviewer.folder(item) / "authorization.json"

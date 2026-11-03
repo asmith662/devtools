@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Structured acceptance-review conclusions](development/structured-acceptance-review.md)
+defines the prospective subject-bound, non-effecting final-proposal callable over
+existing model-neutral request/response values. Strict factual validation and
+host disposition remain separate; historical B-0052 stays blocked and consumed.
+
 [Interrupted B-0052 review closeout](research/acceptance-review-recovery.md)
 records published implementation `ee16dd10`, the protected 4,234-pass receipt,
 and the authentic third review: three calls/three reads, then BLOCKED because

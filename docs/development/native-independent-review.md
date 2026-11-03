@@ -5,6 +5,10 @@ This is **acceptance review**. A separate
 operation for authenticated blocked history, with distinct schemas/grants and no
 acceptance or integration authority. None of the acceptance gates below is relaxed.
 
+New subjects use [structured callable conclusion delivery](structured-acceptance-review.md)
+through existing model-neutral request/response values. The callable transports
+only a proposal; source Tools and host acceptance retain their existing authority.
+
 `WorkCycle.native.reviewer` composes a bounded model-neutral review of the exact
 candidate produced by [native maintenance](native-maintenance-handoff.md). It is
 repository administration under `scripts/backlog/native/review/`, using existing
@@ -149,6 +153,14 @@ or request further inspection/validation. It cannot invent evidence references.
 Acceptance proposals require the objective and supplied obligations assessed,
 core evidence cited and no unresolved blocking findings, obligations or requests.
 This checks structural completeness, not the quality of engineering judgment.
+
+New subjects additionally bind `delivery: native-review-response-delivery-v1`
+with rule `single-proposal-call-v1`. Requests disclose the subject/candidate-bound
+`submit_review_proposal` schema alongside inspection reads; synthesis retains
+only the proposal callable. Exactly one fresh identified call supplies the closed
+conclusion above. Text-only, mixed and unsupported delivery fails. Historical
+subjects without the marker retain strict raw-content parsing. Host admission
+reparses the captured final request/call without repeating ModelInteraction.
 
 `decide` reauthenticates the exact proposal and subject and requires current
 unexpired host authority. The host sees the actual proposal and approves or

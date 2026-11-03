@@ -12,7 +12,7 @@ from devtools.agents.coding.protocol import READ, arguments
 from devtools.core.time import Timestamp
 from devtools.models.interaction import ModelTermination
 from scripts.backlog.intake import _digest, load_json
-from scripts.backlog.native.review import budget
+from scripts.backlog.native.review import budget, delivery
 from scripts.backlog.work import _load
 
 if TYPE_CHECKING:
@@ -395,6 +395,7 @@ def prepare_next(  # noqa: PLR0913, PLR0917 -- exact parent, candidate and corre
         "scope": reviewer.scope,
         "tools": reviewer.tools(),
         "completion": dict(budget.COMPLETION),
+        "delivery": dict(delivery.DELIVERY),
         "attempt": {**parent, "correction_reference": reference},
     }
     with reviewer.owner.cycle.intake._writer():
