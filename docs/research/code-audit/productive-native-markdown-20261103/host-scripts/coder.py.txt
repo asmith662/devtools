@@ -1,0 +1,22 @@
+"""Exactly one native episode, authorized prospectively by active standing policy."""
+from common import *
+from devtools.core.time import Stopwatch
+async def main():
+ c=WorkCycle(R);i=load(O/'intake-result.json');item=i['item'];a=c.native.record(item,'assignment');active=c.routine.active(i['policy'])
+ assert not (c._folder(item)/'dispatch.json').exists() and not (O/'coder-terminal-outcome.json').exists()
+ qualification,state=await provider(c);save(O/'coder-entry-provider.json',state)
+ await c.native.validate(a)
+ grant=await c.routine.authorize_native(active['sha256'],item,assessment=assess('Trusted host verified frozen B-0053 narrow Markdown title bug; independently failing public/private controls; one model-authored episode, no installation or reference repair'),provider=qualification)
+ save(O/'coding-grant.json',grant)
+ host=established();support=host.Support('coder');interaction=host.Actual(a['task']['worker']['source'],support);watch=Stopwatch();out={}
+ try:
+  result=await host.monitored(c.native.execute(item,interaction=interaction,profile=a['task']['worker']['profile'],authorize=c.routine.callback(grant['reference']),measure_input=interaction.measure,provider_context_tokens=65536),support)
+  out={'result_sha256':result['sha256'],'disposition':result['disposition'],'candidate_sha256':result.get('candidate_sha256'),'facts':{k:result['facts'].get(k) for k in ('model_calls','coding_disposition','error','failure_phase','restored','reconciliation_required','proposals','acquisitions','acceptance','acceptance_error')},'checkout_released':result.get('checkout_released')}
+ except BaseException as error:out={'error':type(error).__name__+': '+str(error),'qualification':'No replay; reconcile existing native records and custody.'}
+ finally:
+  import contextlib
+  with contextlib.suppress(Exception):await support.sample()
+  out.update(at=str(Timestamp.now()),seconds=watch.elapsed.total_seconds,adapter_entries=support.entries,returned_interactions=support.returned,adapter_seconds=support.seconds,support_bytes=support.used,grant_sha256=grant['sha256'])
+  save(O/'coder-terminal-outcome.json',out)
+ print(json.dumps(out,indent=2),flush=True)
+asyncio.run(main())

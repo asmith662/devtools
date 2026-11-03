@@ -1,0 +1,40 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-03T17:22:15.744982+00:00",
+  "response": {
+    "content": "Let me read the tests and sibling models to understand expected behavior.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/markdown-hash-coder-20261103"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 4055,
+      "output_tokens": 147,
+      "total_tokens": 4202,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/resources/filesystem/models/markdown/test_file.py\",\"start\":0}",
+        "provider_call_id": "bIkTCNS6ph2e80wZpF0X2aQe0OEhrTJ6"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/resources/filesystem/codecs/test_markdown.py\",\"start\":0}",
+        "provider_call_id": "VDqZFkmekVKlHQR3xpdr5IQG6qTcOFF8"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/live_native_markdown_hash_public.py\",\"start\":0}",
+        "provider_call_id": "FViedXXZfNKpNnvJmmFxlWxLTtuxexMM"
+      }
+    ]
+  },
+  "sha256": "752f7b29f2eff25f9c1497c91ce7ab7bfbac2cb53a2cdf37a2bc08f16b402221"
+}

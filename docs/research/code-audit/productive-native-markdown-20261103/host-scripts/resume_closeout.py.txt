@@ -1,0 +1,119 @@
+"""Append authenticated outcome bytes only; no coding, review, cleanup or Git effects."""
+from common import *
+import types
+from devtools.resources.filesystem import BinaryFile
+
+D = R / 'docs/research/code-audit/productive-native-markdown-20261103'
+
+
+def preserve(source, target):
+    payload = source.read_bytes()
+    if target.exists():
+        assert target.read_bytes() == payload, target
+    else:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        write(BinaryFile(resolve_path(target), payload), overwrite=False)
+
+
+async def main():
+    c = WorkCycle(R)
+    folder = c._folder('B-0053')
+    result = c.native.record('B-0053', 'result')
+    assignment = c.native.record('B-0053', 'assignment')
+    before, frozen = load(O / 'before.json'), load(O / 'frozen.json')
+    reconciled = load(O / 'reconciliation.json')
+    assert result['disposition'] == 'BLOCKED' and not result['facts']['acceptance']['passed']
+    assert result['facts']['model_calls'] == 4 and result['facts']['acquisitions'] == 6
+    assert result['facts']['proposals'] == 1 and result['facts']['restored'] and result['checkout_released']
+    assert not (R / '.local/backlog/checkout-owner').exists()
+    assert c.routine.active()['sha256'] == before['policy']
+    assert not (folder / 'reviewer').exists() and not (folder / 'review.json').exists()
+    assert not (R / frozen['public_path']).exists()
+    assert h(D / 'public.py.txt') == frozen['public_sha256']
+    assert h(O / 'private.py.txt') == frozen['private_sha256']
+    assert h(R / frozen['source']) == frozen['inputs'][frozen['source']]
+    assert assignment['baseline_source'].encode() == (R / frozen['source']).read_bytes()
+    candidate = folder / 'worker/final-source.py'
+    assert h(candidate) == result['candidate_sha256']
+    module = types.ModuleType('interrupted_candidate_assessment')
+    sys.modules[module.__name__] = module
+    exec(compile(candidate.read_bytes(), str(candidate), 'exec'), module.__dict__)
+    from devtools.resources.filesystem.models.markdown import file as baseline
+    assessment = load(O / 'host-assessment.json')
+    for row in assessment['frozen_case_completion'] + assessment['additional_empty_heading_matrix']:
+        for owner, key in ((module, 'candidate'), (baseline, 'baseline')):
+            actual = [v.text for v in owner.MarkdownFile(resolve_path(R / 'offline-unwritten.md'), row['source'] + '\n').headings]
+            assert actual == row[key], row
+    assert assessment['empty_heading_matrix'] == {'cases': 27, 'baseline_correct': 27, 'candidate_correct': 0}
+    assert assessment['native_candidate_admission']['refused']
+    observations = [load(p) for p in sorted((folder / 'worker').glob('observation-*.json'))]
+    requests = [row for row in observations if row['kind'] == 'model-entry-intent']
+    returns = [row for row in observations if row['kind'] == 'model-returned']
+    assert len(requests) == len(returns) == 4
+    private = (O / 'private.py.txt').read_text(encoding='utf-8')
+    for row in requests:
+        assert private not in json.dumps(row) and json.dumps(private) not in json.dumps(row)
+    for name, group in before['groups'].items():
+        assert all(h(R / p) == digest for p, digest in group.items()), name
+    assert all(h(R / p) == digest for p, digest in before['guarded'].items())
+    protected = reconciled['protected']
+    assert protected['status'] == 'passed' and not protected['changed_physical_inputs'] and not protected['changed_git_inputs']
+    assert all(protected['runtime_comparisons'][k] for k in ('python', 'executable', 'platform', 'packages'))
+    del protected['phases']
+    archived_gate = R / 'docs/research/code-audit/structured-acceptance-review-20261103/protected-authorized.json'
+    assert h(archived_gate) == protected['receipt_sha256']
+    protected['published_receipt'] = archived_gate.relative_to(R).as_posix()
+    protected['protected_reruns_in_closeout'] = 0
+    container = json.loads((O / 'provider-reconciled.json').read_text(encoding='utf-16'))[0]
+    old = load(O / 'coder-entry-provider.json')
+    assert container['Id'] == old['container_id'] and container['Image'] == old['image']
+    assert container['Config']['Cmd'] == old['command'] and container['Mounts'] == old['mounts']
+    assert container['State']['Running'] and not container['State']['OOMKilled']
+    assert container['State']['Health']['Status'] == 'healthy'
+    runtime = await established().runtime()
+    ledgers = {}
+    for name in ('ri-completion-experiments.jsonl', 'ri-completion-fixtures.jsonl', 'ri-followup-history.jsonl'):
+        p = R / 'docs/research/code-audit' / name
+        relative = p.relative_to(R).as_posix()
+        assert await git(R, 'rev-parse', before['head'] + ':' + relative) == await git(R, 'rev-parse', 'HEAD:' + relative)
+        ledgers[name] = {'rows': len([v for v in p.read_text(encoding='utf-8').splitlines() if v.strip()]), 'sha256': h(p)}
+    assert sum(v['rows'] for v in ledgers.values()) == 903
+    inspector = R.parent / 'devtools-inspector'
+    integrity = {
+        **{k: v for k, v in reconciled.items() if k not in ('public_checks', 'protected', 'inspector')},
+        'protected': protected,
+        'ri_ledgers': ledgers,
+        'provider': {**old, 'runtime': runtime, 'docker_health': container['State']['Health']['Status'], 'running': True, 'oom_killed': False, 'changed': False, 'at': str(Timestamp.now())},
+        'inspector': {'head': await git(inspector, 'rev-parse', 'HEAD'), 'branch': await git(inspector, 'branch', '--show-current'), 'status': await git(inspector, 'status', '--porcelain'), 'qualification': 'Observed only; independent worktree may advance; never mutated by closeout.'},
+        'offline_assessment_reauthenticated': True,
+        'frozen_private_and_posthoc_matrix_distinct': True,
+        'model_calls_in_closeout': 0,
+        'review_dispatches_in_closeout': 0,
+        'installed_candidate': False,
+        'interrupted_closeout_observation': 'At resumption main/remote remained preparation 3d9de0a5, cleanup receipt existed and temporary public file was absent, but no outcome archive or closeout commit existed. No publication inferred from prior reported script exit; no cause of partial execution asserted.',
+    }
+    if (O / 'integrity-resumed.json').exists():
+        recorded = load(O / 'integrity-resumed.json')
+        for key in ('head', 'source_sha256', 'candidate_sha256', 'standing_policy_sha256', 'ri_ledgers'):
+            assert recorded[key] == integrity[key], key
+    else:
+        save(O / 'integrity-resumed.json', integrity)
+    for p in sorted(folder.rglob('*')):
+        if p.is_file():
+            preserve(p, D / 'native' / p.relative_to(folder))
+    preserve(R / '.local/backlog/checkout-history' / (result['checkout_release'] + '.json'), D / 'checkout-release.json')
+    for p in sorted((O / 'support').rglob('*')):
+        if p.is_file():
+            preserve(p, D / 'support' / p.relative_to(O / 'support'))
+    for name in ('task.json', 'private.py.txt', 'assignment-result.json', 'coding-grant.json', 'coder-entry-provider.json', 'coder-terminal-outcome.json', 'host-assessment.json', 'integrity-resumed.json', 'temporary-test-cleanup.json', 'preparation-git-commit.json', 'preparation-git-push.json'):
+        preserve(O / name, D / name)
+    for name in ('common.py', 'prepare.py', 'intake.py', 'task.py', 'assignment.py', 'coder.py', 'assessment.py', 'closeout.py', 'git_permission.py', 'reconcile.py', 'resume_closeout.py'):
+        preserve(O / name, D / 'host-scripts' / (name + '.txt'))
+    preserve(R / '.local/e2e-native/coder.py', D / 'host-scripts/established-coder.py.txt')
+    for p in sorted((c.routine.folder / 'decisions').glob('*.json')):
+        if p.relative_to(R).as_posix() not in before['guarded']:
+            preserve(p, D / 'routine-decisions' / p.name)
+    print(json.dumps({'archived_files_before_manifest': len([p for p in D.rglob('*') if p.is_file()]), 'source_sha256': integrity['source_sha256'], 'candidate_sha256': integrity['candidate_sha256'], 'provider': runtime, 'inspector': integrity['inspector'], 'ri_rows': 903, 'protected_inputs': protected['input_count']}, indent=2))
+
+
+asyncio.run(main())

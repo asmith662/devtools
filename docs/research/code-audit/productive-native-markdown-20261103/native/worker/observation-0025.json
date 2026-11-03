@@ -1,0 +1,25 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "acceptance-result",
+  "at": "2026-11-03T17:22:48.531409+00:00",
+  "name": "withheld",
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-X",
+    "utf8",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py"
+  ],
+  "exit_code": 1,
+  "outcome": "failed",
+  "seconds": 0.129973,
+  "passed": false,
+  "inputs_current": true,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py\", line 27, in <module>\r\n    assert heading.text == expected, (source, expected, heading.text)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('# ##', '', '##')\r\n",
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "events_dropped": 0,
+  "sha256": "333f31a7d484281403465e351a14cca60741a10c9aa8801b922a3eaf8bfc947a"
+}

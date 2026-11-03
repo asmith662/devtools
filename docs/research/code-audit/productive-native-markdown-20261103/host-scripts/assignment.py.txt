@@ -1,0 +1,14 @@
+"""Prepare the fresh slot using the existing native owner."""
+from common import *
+async def main():
+ c=WorkCycle(R);await c._coordinator();i=load(O/'intake-result.json');f=load(O/'frozen.json');item=i['item']
+ assert not c._folder(item).exists() and not (R/'.local/backlog/checkout-owner').exists()
+ assert await git(R,'branch','--show-current')=='main' and not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ assert (await git(R,'ls-remote','origin','refs/heads/main')).split()[0]==await git(R,'rev-parse','HEAD')
+ assert all(h(R/p)==v for p,v in f['inputs'].items()) and h(R/f['public_path'])==f['public_sha256']
+ branch='feat/native-markdown-b0053-20261103';assert not await git(R,'for-each-ref','--format=%(objectname)','refs/heads/'+branch)
+ await git(R,'branch',branch)
+ a=await c.native.prepare(item,branch=branch,task=load(O/'task.json'),supervisor='Codex trusted host; activated routine authority '+i['policy']+'; genuine Intake '+i['review']['sha256']+'; no source implementation supplied')
+ save(O/'assignment-result.json',{'at':str(Timestamp.now()),'item':item,'assignment_sha256':a['sha256'],'branch':branch,'base_head':a['base_head']})
+ print(json.dumps(load(O/'assignment-result.json')))
+asyncio.run(main())

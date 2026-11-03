@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-03T17:22:31.256898+00:00",
+  "response": {
+    "content": "I have the full owner file and the frozen acceptance. Let me confirm the sibling models and then make the edit.\n\nThe bug: the ATX pattern's `text` group `(?P<text>.*?)[ \\t]*#*[ \\t]*$` is lazy, so a terminal hash run is stripped even when attached to the title (e.g. `# C#` \u2192 \"C\"). Only a hash run separated from the title by whitespace should be a closing marker.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/markdown-hash-coder-20261103"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 8219,
+      "output_tokens": 195,
+      "total_tokens": 8414,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/heading.py\",\"start\":0}",
+        "provider_call_id": "kRO8K5GN3CJMwY1EvXURfaKxcedw7wpE"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/section.py\",\"start\":0}",
+        "provider_call_id": "Sg4phVgfnKqzuWCUjhvvJyEIX4fy67Pk"
+      }
+    ]
+  },
+  "sha256": "077f1232f16307730436da9cd1008e61c7189befbe5edcfb5ac3958f56f26679"
+}

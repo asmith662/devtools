@@ -1,0 +1,11 @@
+--- a/src/devtools/resources/filesystem/models/markdown/file.py
++++ b/src/devtools/resources/filesystem/models/markdown/file.py
+@@ -24,7 +24,7 @@
+     """
+ 
+     _ATX_HEADING_PATTERN: ClassVar[re.Pattern[str]] = re.compile(
+-        r"^(?P<marker>#{1,6})[ \t]+(?P<text>.*?)[ \t]*#*[ \t]*$",
++        r"^(?P<marker>#{1,6})[ \t]+(?P<text>.*?)(?:(?<=\S)[ \t]+#*|[ \t]*)[ \t]*$",
+     )
+     _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(
+         r"^[ \t]{0,3}(?P<fence>`{3,}|~{3,})[ \t]*(?P<info>.*?)[ \t]*$",

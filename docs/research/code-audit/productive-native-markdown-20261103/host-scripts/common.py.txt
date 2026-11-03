@@ -1,0 +1,23 @@
+"""Local evidence helpers; established framework owners retain all execution."""
+import asyncio,hashlib,importlib.util,json,sys,urllib.request
+from pathlib import Path
+R=Path(__file__).resolve().parents[2];O=R/'.local/productive-native';sys.path.insert(0,str(R))
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Timestamp
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.resources.filesystem import TextFile,write
+from scripts.backlog.work import WorkCycle
+from scripts.backlog.coordinator import git
+def load(p):return json.loads(p.read_bytes())
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):write(TextFile(resolve_path(p),json.dumps(v,indent=2,default=str)+'\n'),overwrite=False)
+def assess(ref):return dict(reference=ref,architecture=False,security=False,destructive=False,secrets=False,paid=False,service_change=False,validation_relaxation=False)
+def established():
+ s=importlib.util.spec_from_file_location('established_native_host',R/'.local/e2e-native/coder.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);m.O=O;return m
+async def provider(c):
+ r=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=131072,max_stderr_bytes=2048)).execute(Command('docker').args('inspect','devtools-qwen38-llama-cpp').with_timeout(Duration.seconds(15)))
+ assert r.succeeded and not r.stdout_truncated
+ now=json.loads(r.stdout)[0];old=load(R/'.local/e2e-native/current-service.json')
+ assert now['Id']==old['container_id'] and now['Image']==old['image'] and now['Config']['Cmd']==old['command'] and now['Mounts']==old['mounts']
+ state=await established().runtime();assert now['State']['Running'] and not now['State']['OOMKilled']
+ return {'configuration':c.routine.active()['policy']['provider'],'healthy':True,'idle':True},dict(container_id=now['Id'],image=now['Image'],command=now['Config']['Cmd'],mounts=now['Mounts'],runtime=state,changed=False)

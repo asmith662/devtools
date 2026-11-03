@@ -1,0 +1,263 @@
+{
+  "schema": "backlog-routine-decision-v1",
+  "policy_version": "f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf",
+  "subject": "B-0053",
+  "subjects": [
+    "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+    "B-0053"
+  ],
+  "kind": "coding",
+  "request": {
+    "operation": "authorize-native-maintenance",
+    "assignment": {
+      "schema": "backlog-native-assignment-v1",
+      "item": "B-0053",
+      "at": "2026-11-03T17:20:42.703373+00:00",
+      "coordinator": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "scope": "native-one-python-v1; candidate-and-read-only-plan; no-install-publish-closeout",
+      "branch": "feat/native-markdown-b0053-20261103",
+      "base_head": "3d9de0a5446c30093d4d3f4a258f737746ff60f0",
+      "backlog": {
+        "id": "B-0053",
+        "status": "BACKLOG",
+        "text": "# B-0053 \u2014 Preserve attached literal hash suffixes in Markdown heading titles\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: resources\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/proposal.json\n- intake_review: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/review-0001.json\n\n## Problem / value\n\nOn authenticated main a4274bd190bf7ee16c4f8077410617dd37461157, exported MarkdownFile parses \"# C#\" as title \"C\". find_heading(\"C#\") and find_section(\"C#\") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.\n\n## Proposed benefit\n\nKeep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.\n\n## Uncertainty / unresolved semantics\n\nAuthored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.\n\n## Discovery / parent\n\n{'kind': 'agent', 'reference': '.local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings'}\nNone\n\n## Evidence\n\nsrc/devtools/resources/filesystem/docs/markdown.md\ntests/resources/filesystem/models/markdown/test_file.py\n\n## Affected resources\n\nsrc/devtools/resources/filesystem/models/markdown/file.py\nsrc/devtools/resources/filesystem/models/markdown/heading.py\nsrc/devtools/resources/filesystem/models/markdown/section.py\nsrc/devtools/resources/filesystem/models/text.py\ntests/resources/filesystem/models/markdown/test_file.py\ntests/resources/filesystem/models/markdown/test_heading.py\ntests/resources/filesystem/models/markdown/test_section.py\ntests/resources/filesystem/codecs/test_markdown.py\n\n## Possible dependencies\n\nExisting filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority.\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+        "item_sha256": "ba4cdd453e83953618a6813b62e85ff648000cd191f814acbed4836b3167a129",
+        "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\docs\\backlog\\items\\B-0053-preserve-attached-literal-hash-suffixes-in-markdown-heading-titles.md",
+        "proposal": {
+          "schema": "backlog-proposal-v1",
+          "id": "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+          "created_at": "2026-11-03T17:11:23.305444+00:00",
+          "payload": {
+            "kind": "bug",
+            "title": "Preserve attached literal hash suffixes in Markdown heading titles",
+            "summary": "On authenticated main a4274bd190bf7ee16c4f8077410617dd37461157, exported MarkdownFile parses \"# C#\" as title \"C\". find_heading(\"C#\") and find_section(\"C#\") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.",
+            "discovery": {
+              "kind": "agent",
+              "reference": ".local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings"
+            },
+            "parent": null,
+            "resources": [
+              "src/devtools/resources/filesystem/models/markdown/file.py",
+              "src/devtools/resources/filesystem/models/markdown/heading.py",
+              "src/devtools/resources/filesystem/models/markdown/section.py",
+              "src/devtools/resources/filesystem/models/text.py",
+              "tests/resources/filesystem/models/markdown/test_file.py",
+              "tests/resources/filesystem/models/markdown/test_heading.py",
+              "tests/resources/filesystem/models/markdown/test_section.py",
+              "tests/resources/filesystem/codecs/test_markdown.py"
+            ],
+            "evidence": [
+              "src/devtools/resources/filesystem/docs/markdown.md",
+              "tests/resources/filesystem/models/markdown/test_file.py"
+            ],
+            "benefit": "Keep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.",
+            "uncertainty": "Authored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.",
+            "dependencies": [
+              "Existing filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority."
+            ]
+          },
+          "payload_sha256": "730fe6bcdf82375d01da11958f6c26c05bb6d9c89d6e75252f4ec9ff230ec1a4"
+        },
+        "review": {
+          "schema": "backlog-review-v1",
+          "proposal": "4d56c38c-e8b2-49ba-bdaf-255f71ef238e",
+          "proposal_sha256": "f8e73ede742a7f0b1499c528c02b1ee3bf22f0c8ff756c34092743462bba6da6",
+          "previous": null,
+          "at": "2026-11-03T17:12:15.689530+00:00",
+          "decision": "APPROVED",
+          "reviewer": "trusted host recoveryadmin",
+          "decision_reference": "routine-v1:f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf:83bdc8d97ef504c2f28dd6b7e40264eacdf8b12b149632b947db1aa06e1b5bb3",
+          "rationale": "Independently reproduced public MarkdownFile literal title corruption and missing lookups on current main. One existing filesystem model file, independently frozen acceptance and unused slot. This is distinct from delivered fence closers and consumed CSV/module-scope tasks. Eligible routine bug under activated policy; no install or canonical closure authority.",
+          "duplicates": [],
+          "duplicate_disposition": "Distinct literal heading title suffix defect; reviewed approved items have consumed slots and delivered modest pending items must not be replayed.",
+          "scope": "canonical-backlog-only; no execution authority",
+          "publication": {
+            "id": "B-0053",
+            "path": "items/B-0053-preserve-attached-literal-hash-suffixes-in-markdown-heading-titles.md",
+            "text": "# B-0053 \u2014 Preserve attached literal hash suffixes in Markdown heading titles\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: resources\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/proposal.json\n- intake_review: ../proposals/4d56c38c-e8b2-49ba-bdaf-255f71ef238e/review-0001.json\n\n## Problem / value\n\nOn authenticated main a4274bd190bf7ee16c4f8077410617dd37461157, exported MarkdownFile parses \"# C#\" as title \"C\". find_heading(\"C#\") and find_section(\"C#\") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.\n\n## Proposed benefit\n\nKeep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.\n\n## Uncertainty / unresolved semantics\n\nAuthored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.\n\n## Discovery / parent\n\n{'kind': 'agent', 'reference': '.local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings'}\nNone\n\n## Evidence\n\nsrc/devtools/resources/filesystem/docs/markdown.md\ntests/resources/filesystem/models/markdown/test_file.py\n\n## Affected resources\n\nsrc/devtools/resources/filesystem/models/markdown/file.py\nsrc/devtools/resources/filesystem/models/markdown/heading.py\nsrc/devtools/resources/filesystem/models/markdown/section.py\nsrc/devtools/resources/filesystem/models/text.py\ntests/resources/filesystem/models/markdown/test_file.py\ntests/resources/filesystem/models/markdown/test_heading.py\ntests/resources/filesystem/models/markdown/test_section.py\ntests/resources/filesystem/codecs/test_markdown.py\n\n## Possible dependencies\n\nExisting filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority.\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+            "row": "| [B-0053](items/B-0053-preserve-attached-literal-hash-suffixes-in-markdown-heading-titles.md) | Preserve attached literal hash suffixes in Markdown heading titles | BACKLOG | resources |"
+          },
+          "sha256": "b75c1b26c230128c70e76d708332d6c9ad23c2b2403c40c297e9797a9f6ecb5b"
+        }
+      },
+      "supervisor": "Codex trusted host; activated routine authority f712a8e21f0c07485fa46f904ea6f63a984e1fb6ae69637a5242b045fe2defcf; genuine Intake b75c1b26c230128c70e76d708332d6c9ad23c2b2403c40c297e9797a9f6ecb5b; no source implementation supplied",
+      "task": {
+        "settings": {
+          "maximum_output_tokens": 2048,
+          "thinking_enabled": false
+        },
+        "budgets": {
+          "model_calls": 8,
+          "proposals": 3,
+          "acquisitions": 6,
+          "call_seconds": 120,
+          "wall_seconds": 900,
+          "prompt_bytes": 131072,
+          "source_bytes": 32768,
+          "capture_bytes": 983040
+        },
+        "capture": "bounded-full-v1",
+        "context": {
+          "schema": "native-context-v1",
+          "context_tokens": 65536,
+          "input_tokens": 62464,
+          "reserved_output_tokens": 2048,
+          "disclosure_bytes": 65536,
+          "warning_bytes": 98304,
+          "trigger_bytes": 114688,
+          "target_bytes": 98304
+        },
+        "objective": "Repair attached literal hash suffix corruption in MarkdownFile heading titles only. Current source \"# C#\" becomes title \"C\" and both heading/section lookup by \"C#\" fail. Within already recognized ATX lines, only a terminal run of hashes separated from preceding title by a space or tab is a closing marker. Attached hashes remain literal title text, including when followed by trailing whitespace or by a separate closing run. Preserve current trimming and separated closer behavior, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics and exact original content. Markdown remains a narrow raw-text helper: no inline escape decoding or full CommonMark parser, no new indentation/opening grammar, no source-fidelity redesign. Only the existing authorized model file may change. Acquire complete current owner via read_source before editing; tests and sibling models are authorized reads. Public behavioral acceptance is frozen and separate final acceptance is withheld. No reference repair provided. Propose an exact grounded edit and use managed checks; repair within the finite bounds if validation identifies an issue.",
+        "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+        "read_paths": [
+          "src/devtools/resources/filesystem/models/markdown/heading.py",
+          "src/devtools/resources/filesystem/models/markdown/section.py",
+          "src/devtools/resources/filesystem/models/text.py"
+        ],
+        "tests": [
+          "tests/live_native_markdown_hash_public.py",
+          "tests/resources/filesystem/models/markdown/test_file.py",
+          "tests/resources/filesystem/models/markdown/test_heading.py",
+          "tests/resources/filesystem/models/markdown/test_section.py",
+          "tests/resources/filesystem/codecs/test_markdown.py"
+        ],
+        "oracle": "from pathlib import Path\nfrom devtools.core.paths import ResolvedPath\n\ncases = [\n    ('### F##  ', 'F##'),\n    ('## alpha#beta###', 'alpha#beta###'),\n    ('# end#\\t', 'end#'),\n    ('# C## ###', 'C##'),\n    ('# word ### tail#', 'word ### tail#'),\n    ('# word\\t####\\t ', 'word'),\n    ('# ##', ''),\n    ('# ', ''),\n    ('# x \\\\#', 'x \\\\#'),\n    ('# foo #\\\\##', 'foo #\\\\##'),\n    ('###### Plain', 'Plain'),\n]\nfor source, expected in cases:\n    document = module.MarkdownFile(ResolvedPath(Path.cwd() / 'holdout.md'), source + '\\n')\n    assert len(document.headings) == 1, repr(source)\n    heading = document.headings[0]\n    assert heading.text == expected, (source, expected, heading.text)\n    assert document.find_heading(expected, case_sensitive=True) == heading\n    assert document.find_section(expected).title == expected\n    assert document.content == source + '\\n'\n\nsource = '# Root#\\r\\nBody\\r\\n## Child## ###\\r\\nData\\r\\n```text\\r\\n# hidden#\\r\\n```\\r\\n# NEXT#\\r\\nDone\\r\\n'\ndocument = module.MarkdownFile(ResolvedPath(Path.cwd() / 'hierarchy.md'), source)\nassert [(h.level,h.text,h.line) for h in document.headings] == [(1,'Root#',1),(2,'Child##',3),(1,'NEXT#',8)]\nassert [(s.title,s.start_line,s.end_line) for s in document.sections] == [('Root#',1,7),('Child##',3,7),('NEXT#',8,9)]\nassert document.find_section('next#').content == 'Done'\nassert document.find_heading('hidden#') is None\nassert document.content == source\n",
+        "obligations": [
+          {
+            "name": "current-owner",
+            "predicate": "Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling.",
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+            "criterion": "current-whole-resource-v1"
+          }
+        ],
+        "preflight": {
+          "reference": ".local/productive-native/frozen.json; independent public API and CommonMark0.31.2 closing-marker boundary expectations, no reference implementation",
+          "controls_reference": ".local/productive-native/frozen.json; independently passing separated closers, fenced source and empty heading controls",
+          "comparisons": [
+            {
+              "name": "literal-title",
+              "obligation": "current-owner",
+              "category": "normal",
+              "expected": "preserve attached #",
+              "independently_derived": "preserve attached #",
+              "derivation": "Attached hashes are title characters; heading/section lookup must match the preserved title."
+            },
+            {
+              "name": "separated-closer",
+              "obligation": "current-owner",
+              "category": "boundary",
+              "expected": "strip separated terminal hash run only",
+              "independently_derived": "strip separated terminal hash run only",
+              "derivation": "Space/tab before a terminal closing run separates marker from title; an attached earlier run remains literal."
+            },
+            {
+              "name": "empty-title",
+              "obligation": "current-owner",
+              "category": "empty",
+              "expected": "preserve existing empty heading",
+              "independently_derived": "preserve existing empty heading",
+              "derivation": "Existing recognized empty heading remains valid; opening grammar is unchanged."
+            }
+          ]
+        },
+        "worker": {
+          "actor": "qwen38-markdown-hash-coder-20261103",
+          "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+          "profile": "qwen38-native64-portable-defaults-v1"
+        }
+      },
+      "task_sha256": "3da2212dbc3900552fcc7671038eff5b98e50a52ae1ea90b942d951106e3036d",
+      "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+      "inputs": {
+        "src/devtools/resources/filesystem/models/markdown/file.py": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42",
+        "src/devtools/resources/filesystem/models/markdown/heading.py": "7b3c441f3efe098c1444eca1107b10387f08601be5e5ca3e26a73ec3f01c97af",
+        "src/devtools/resources/filesystem/models/markdown/section.py": "be459c6f8ddc32dacfa1c70451caabced3ea2658ee078e505ef629642e7cce9f",
+        "src/devtools/resources/filesystem/models/text.py": "beffe8d57eaed9c504a35747390aa3b6006ed87ac8e2cf4c2f9cecb8aa4e634b",
+        "tests/live_native_markdown_hash_public.py": "d2c03bc725c37a06c9b785ee96d5d1f5e9caa401401f1c19995e530a96f71267",
+        "tests/resources/filesystem/codecs/test_markdown.py": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d",
+        "tests/resources/filesystem/models/markdown/test_file.py": "455b726c3b5cf88d70cda031fa2d4cc44e0d2fcd9628b7c67531f0cff91238e9",
+        "tests/resources/filesystem/models/markdown/test_heading.py": "bb40d08eb579f1f0227b8eb5700da64b870455748d0497ebbfa11fb00c997b85",
+        "tests/resources/filesystem/models/markdown/test_section.py": "4aabb3f8affeefe4cc1cc66e2a363d8a7f6aa356ecc0babc88702742717dcd97"
+      },
+      "baseline_source": "# Copyright (c) 2026\r\n\"\"\"Markdown file models.\"\"\"\r\n\r\nfrom __future__ import annotations\r\n\r\nimport re\r\nfrom dataclasses import dataclass\r\nfrom typing import ClassVar\r\n\r\nfrom devtools.resources.filesystem.models.base import FileFormat\r\nfrom devtools.resources.filesystem.models.markdown.heading import MarkdownHeading\r\nfrom devtools.resources.filesystem.models.markdown.section import MarkdownSection\r\nfrom devtools.resources.filesystem.models.text import TextFile\r\n\r\n\r\n@dataclass(frozen=True, slots=True)\r\nclass MarkdownFile(TextFile):\r\n    \"\"\"Represent immutable Markdown source with structural access.\r\n\r\n    The model currently recognizes ATX headings only. Headings inside fenced\r\n    code blocks are ignored.\r\n\r\n    :ivar content: Original decoded Markdown source.\r\n    \"\"\"\r\n\r\n    _ATX_HEADING_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\r\n        r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)[ \\t]*#*[ \\t]*$\",\r\n    )\r\n    _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\r\n        r\"^[ \\t]{0,3}(?P<fence>`{3,}|~{3,})[ \\t]*(?P<info>.*?)[ \\t]*$\",\r\n    )\r\n\r\n    @property\r\n    def format(self) -> FileFormat:\r\n        \"\"\"Return the Markdown file format.\r\n\r\n        :returns: Markdown file format.\r\n        \"\"\"\r\n        return FileFormat.MARKDOWN\r\n\r\n    @property\r\n    def headings(self) -> tuple[MarkdownHeading, ...]:\r\n        \"\"\"Return all recognized ATX headings.\r\n\r\n        Headings inside fenced code blocks are ignored.\r\n\r\n        :returns: Immutable sequence of headings in source order.\r\n        \"\"\"\r\n        return tuple(self._parse_headings())\r\n\r\n    @property\r\n    def sections(self) -> tuple[MarkdownSection, ...]:\r\n        \"\"\"Return all heading-rooted Markdown sections.\r\n\r\n        A section extends from its heading through the line before the next\r\n        heading of the same or higher level. Nested lower-level headings remain\r\n        part of the parent section.\r\n\r\n        :returns: Immutable sequence of sections in source order.\r\n        \"\"\"\r\n        headings = self.headings\r\n\r\n        return tuple(\r\n            self._build_section(index, headings) for index in range(len(headings))\r\n        )\r\n\r\n    def find_heading(\r\n        self,\r\n        text: str,\r\n        *,\r\n        case_sensitive: bool = False,\r\n    ) -> MarkdownHeading | None:\r\n        \"\"\"Find the first heading with matching text.\r\n\r\n        :param text: Heading text to locate.\r\n        :param case_sensitive: Whether matching should preserve case.\r\n        :returns: First matching heading or ``None``.\r\n        \"\"\"\r\n        target = text if case_sensitive else text.casefold()\r\n\r\n        for heading in self.headings:\r\n            candidate = heading.text if case_sensitive else heading.text.casefold()\r\n\r\n            if candidate == target:\r\n                return heading\r\n\r\n        return None\r\n\r\n    def find_section(\r\n        self,\r\n        title: str,\r\n        *,\r\n        case_sensitive: bool = False,\r\n    ) -> MarkdownSection | None:\r\n        \"\"\"Find the first section with matching heading text.\r\n\r\n        :param title: Section heading text to locate.\r\n        :param case_sensitive: Whether matching should preserve case.\r\n        :returns: First matching section or ``None``.\r\n        \"\"\"\r\n        target = title if case_sensitive else title.casefold()\r\n\r\n        for section in self.sections:\r\n            candidate = section.title if case_sensitive else section.title.casefold()\r\n\r\n            if candidate == target:\r\n                return section\r\n\r\n        return None\r\n\r\n    def _parse_headings(self) -> list[MarkdownHeading]:\r\n        \"\"\"Parse recognized headings from source content.\r\n\r\n        :returns: Headings in source order.\r\n        \"\"\"\r\n        headings: list[MarkdownHeading] = []\r\n        active_fence: str | None = None\r\n\r\n        for line_number, line in enumerate(\r\n            self.content.splitlines(),\r\n            start=1,\r\n        ):\r\n            fence_match = self._FENCE_PATTERN.match(line)\r\n\r\n            if fence_match is not None:\r\n                fence = fence_match.group(\"fence\")\r\n\r\n                if active_fence is None:\r\n                    active_fence = fence\r\n                    continue\r\n\r\n                if (\r\n                    fence_match.group(\"info\") == \"\"\r\n                    and fence[0] == active_fence[0]\r\n                    and len(fence) >= len(active_fence)\r\n                ):\r\n                    active_fence = None\r\n                    continue\r\n\r\n            if active_fence is not None:\r\n                continue\r\n\r\n            heading_match = self._ATX_HEADING_PATTERN.match(line)\r\n\r\n            if heading_match is None:\r\n                continue\r\n\r\n            marker = heading_match.group(\"marker\")\r\n            text = heading_match.group(\"text\").strip()\r\n\r\n            headings.append(\r\n                MarkdownHeading(\r\n                    level=len(marker),\r\n                    text=text,\r\n                    line=line_number,\r\n                ),\r\n            )\r\n\r\n        return headings\r\n\r\n    def _build_section(\r\n        self,\r\n        index: int,\r\n        headings: tuple[MarkdownHeading, ...],\r\n    ) -> MarkdownSection:\r\n        \"\"\"Build one section from parsed heading boundaries.\r\n\r\n        :param index: Index of the section heading.\r\n        :param headings: Parsed headings in source order.\r\n        :returns: Constructed Markdown section.\r\n        \"\"\"\r\n        heading = headings[index]\r\n        lines = self.content.splitlines()\r\n\r\n        end_line = len(lines)\r\n\r\n        for candidate in headings[index + 1 :]:\r\n            if candidate.level <= heading.level:\r\n                end_line = candidate.line - 1\r\n                break\r\n\r\n        content_lines = lines[heading.line : end_line]\r\n        content = \"\\n\".join(content_lines)\r\n\r\n        return MarkdownSection(\r\n            heading=heading,\r\n            content=content,\r\n            start_line=heading.line,\r\n            end_line=end_line,\r\n        )\r\n",
+      "initial_snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+      "execution_authorized": false,
+      "tool_definitions": [
+        {
+          "name": "read_source",
+          "description": "Read half-open Unicode offsets; omit end for a byte-bounded remaining prefix.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"end\":{\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\"}},\"required\":[\"path\",\"start\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "replace_source",
+          "description": "Propose an exact unique observed replacement; host admission is required.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"new_text\":{\"type\":\"string\"},\"old_text\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"old_text\",\"new_text\"],\"type\":\"object\"}"
+        },
+        {
+          "name": "validate_candidate",
+          "description": "Request the host-fixed candidate checks.",
+          "input_schema_json": "{\"maxProperties\":0,\"type\":\"object\"}"
+        },
+        {
+          "name": "find_source",
+          "description": "Search scoped file/symbol/window metadata. Without query, page the outline. Prefer small named units; read_source_unit acquires their exact source. Metadata is not a source witness. offset pages results. A supplied path must be an exact authorized file-resource address, never a directory or prefix. Omit path to search authorized resources under the existing result limits.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"mode\":{\"enum\":[\"file\",\"symbol\",\"window\",\"mixed\"]},\"offset\":{\"minimum\":0,\"type\":\"integer\"},\"path\":{\"type\":\"string\"},\"query\":{\"maxLength\":256,\"type\":\"string\"}},\"type\":\"object\"}"
+        },
+        {
+          "name": "read_source_unit",
+          "description": "Read an exact current unit from find_source. Partial results report the next Unicode offset; use read_source for adjacent ranges. Select enclosing/file IDs from metadata only when needed. Source and request byte limits still apply.",
+          "input_schema_json": "{\"additionalProperties\":false,\"properties\":{\"snapshot_id\":{\"type\":\"string\"},\"unit_id\":{\"type\":\"string\"}},\"required\":[\"unit_id\",\"snapshot_id\"],\"type\":\"object\"}"
+        }
+      ],
+      "interpreter": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+      "configuration": {
+        ".coveragerc": null,
+        ".python-version": null,
+        "conftest.py": null,
+        "pyproject.toml": "7be05833bf5f1d6e6a16f9d495779f731e87e551977ce4824b202f45edf16cfd",
+        "pytest.ini": null,
+        "setup.cfg": null,
+        "tests/conftest.py": null,
+        "tests/resources/conftest.py": null,
+        "tests/resources/filesystem/codecs/conftest.py": null,
+        "tests/resources/filesystem/conftest.py": null,
+        "tests/resources/filesystem/models/conftest.py": null,
+        "tests/resources/filesystem/models/markdown/conftest.py": null,
+        "uv.lock": "a25448669c13213461a7aadf937cb85304b03d1398f5b092db63df435bdb19c3"
+      },
+      "sha256": "aa28dd0ab81532e6a32a345fab4c652279309ad1c1d2e523ab0c0daac408537f"
+    },
+    "grant": {
+      "item": "B-0053",
+      "assignment_sha256": "aa28dd0ab81532e6a32a345fab4c652279309ad1c1d2e523ab0c0daac408537f",
+      "principal": "recoveryadmin",
+      "expires_at": "2026-11-03T18:21:31.318433+00:00",
+      "scope": "native-one-python-v1; candidate-and-read-only-plan; no-install-publish-closeout"
+    }
+  },
+  "assessment": {
+    "reference": "Trusted host verified frozen B-0053 narrow Markdown title bug; independently failing public/private controls; one model-authored episode, no installation or reference repair",
+    "architecture": false,
+    "security": false,
+    "destructive": false,
+    "secrets": false,
+    "paid": false,
+    "service_change": false,
+    "validation_relaxation": false
+  },
+  "provider": {
+    "configuration": {
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "qwen38-local",
+      "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "context_tokens": 65536
+    },
+    "healthy": true,
+    "idle": true
+  },
+  "at": "2026-11-03T17:21:33.217164+00:00",
+  "expires_at": "2026-11-03T18:21:31.318433+00:00",
+  "sha256": "a62b9a6e2674c78f915b5b4771617f06f26db41dcb934d5f5a2426ee39db5c0e"
+}

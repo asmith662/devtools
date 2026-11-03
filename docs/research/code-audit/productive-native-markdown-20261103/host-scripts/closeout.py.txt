@@ -1,0 +1,54 @@
+"""Preserve the authentic failed episode, restore temporary check scope, verify inputs."""
+from common import *
+from devtools.resources.filesystem import BinaryFile
+from scripts.validation.evidence import inputs
+D=R/'docs/research/code-audit/productive-native-markdown-20261103'
+async def main():
+ c=WorkCycle(R);item='B-0053';folder=c._folder(item);a=c.native.record(item,'assignment');result=c.native.record(item,'result');before=load(O/'before.json');f=load(O/'frozen.json')
+ assert result['disposition']=='BLOCKED' and not result['facts']['acceptance']['passed']
+ assert await git(R,'branch','--show-current')=='main' and not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only')
+ assert not (R/'.local/backlog/checkout-owner').exists() and result['checkout_released'] and result['facts']['restored']
+ assert all(h(R/p)==v for p,v in before['guarded'].items())
+ for name,group in before['groups'].items():assert all(h(R/p)==v for p,v in group.items()),name
+ assert all(h(R/p)==v for p,v in f['inputs'].items())
+ assert c.routine.active()['sha256']==before['policy'] and not (folder/'reviewer').exists()
+ temp=R/f['public_path'];assert temp.resolve().parent==R/'tests' and h(temp)==f['public_sha256']
+ save(O/'temporary-test-cleanup.json',{'at':str(Timestamp.now()),'path':f['public_path'],'sha256':h(temp),'preserved_at':'docs/research/code-audit/productive-native-markdown-20261103/public.py.txt','qualification':'Only this run-owned frozen temporary file removed after native restoration and admission refusal; no historical evidence removed.'})
+ temp.unlink()
+ gate=load(R/'.local/structured-review/protected-authorized.json');now=await asyncio.to_thread(inputs,R)
+ assert gate['status']=='passed' and gate['inputs_unchanged'] and now['sha256']==gate['inputs']['sha256']
+ def blobs(v):return {line.split('\t',1)[1]:line.split()[1] for line in v.splitlines()}
+ g,n=blobs(gate['inputs']['git_blobs']),blobs(now['git_blobs']);assert all(g[p]==n[p] for p in now['sha256'])
+ assert all(now[k]==gate['inputs'][k] for k in ('python','executable','platform','packages'))
+ qualified,service=await provider(c)
+ artifact=Path(service['mounts'][0]['Source']);artifact_hash=await asyncio.to_thread(h,artifact);assert artifact_hash==qualified['configuration']['artifact_sha256']
+ refs={name:value for value,name in (line.split() for line in (await git(R,'show-ref')).splitlines())}
+ allowed={'refs/heads/main','refs/remotes/origin/main','refs/remotes/origin/HEAD','refs/heads/feat/agent-inspector','refs/remotes/origin/feat/agent-inspector'}
+ for line in before['refs'].splitlines():
+  value,name=line.split()
+  if name not in allowed:assert refs[name]==value,name
+ inspector=R.parent/'devtools-inspector';state={'head':await git(inspector,'rev-parse','HEAD'),'branch':await git(inspector,'branch','--show-current'),'status':await git(inspector,'status','--porcelain'),'qualification':'Observed only; independent Inspector worktree is untouched and may advance.'}
+ assert state['branch']=='feat/agent-inspector'
+ integrity={'at':str(Timestamp.now()),'main':await git(R,'rev-parse','HEAD'),'policy':before['policy'],'protected':{'receipt':'.local/structured-review/protected-authorized.json','receipt_sha256':h(R/'.local/structured-review/protected-authorized.json'),'tested_commit':gate['inputs']['head'],'status':gate['status'],'matching_physical_and_git_inputs':len(now['sha256']),'runtime_packages_match':True,'environment_fingerprint_matches':now['environment_sha256']==gate['inputs']['environment_sha256'],'comprehensive_reruns':0,'qualification':'Authenticated historical protected evidence: 4269 passes, 2 optional skips,100% configured production line/branch coverage. No ignored or external environment closure claimed.'},'preserved_groups':{name:len(group) for name,group in before['groups'].items()},'preserved_guarded_files':len(before['guarded']),'source_sha256':h(R/f['source']),'baseline_sha256':f['inputs'][f['source']],'checkout_available':True,'native_release':result['checkout_release'],'consumed_dispatch_sha256':load(folder/'dispatch.json')['sha256'],'old_refs_preserved':True,'worktrees':await git(R,'worktree','list','--porcelain'),'inspector':state,'provider':service,'model_artifact':{'bytes':artifact.stat().st_size,'sha256':artifact_hash,'read_only_hash':True},'reviewer_calls':0,'no_review_subject_or_dispatch':True,'no_integration_plan_or_installation':True}
+ save(O/'integrity.json',integrity)
+ # Exact original records, including private code, are published only now after
+ # the sole coding episode has ended and is ineligible for independent review.
+ for src in sorted(folder.rglob('*')):
+  if src.is_file():write(BinaryFile(resolve_path(D/'native'/src.relative_to(folder)),src.read_bytes()),overwrite=False)
+ release=R/'.local/backlog/checkout-history'/(result['checkout_release']+'.json')
+ write(BinaryFile(resolve_path(D/'checkout-release.json'),release.read_bytes()),overwrite=False)
+ for src in sorted((O/'support').rglob('*')):
+  if src.is_file():write(BinaryFile(resolve_path(D/'support'/src.relative_to(O/'support')),src.read_bytes()),overwrite=False)
+ for name in ('task.json','private.py.txt','assignment-result.json','coding-grant.json','coder-entry-provider.json','coder-terminal-outcome.json','host-assessment.json','integrity.json','temporary-test-cleanup.json','preparation-git-commit.json','preparation-git-push.json'):
+  write(BinaryFile(resolve_path(D/name),(O/name).read_bytes()),overwrite=False)
+ for name in ('common.py','prepare.py','intake.py','task.py','assignment.py','coder.py','assessment.py','closeout.py','git_permission.py'):
+  write(BinaryFile(resolve_path(D/'host-scripts'/(name+'.txt')),(O/name).read_bytes()),overwrite=False)
+ # Preserve the reused established host composition as an attributed input.
+ write(BinaryFile(resolve_path(D/'host-scripts/established-coder.py.txt'),(R/'.local/e2e-native/coder.py').read_bytes()),overwrite=False)
+ decisions=[]
+ for p in sorted((c.routine.folder/'decisions').glob('*.json')):
+  if p.relative_to(R).as_posix() not in before['guarded']:
+   write(BinaryFile(resolve_path(D/'routine-decisions'/p.name),p.read_bytes()),overwrite=False);decisions.append(p.name)
+ save(D/'episode-manifest.json',{'at':str(Timestamp.now()),'files':{p.relative_to(D).as_posix():h(p) for p in sorted(D.rglob('*')) if p.is_file()},'qualification':'Exact bytes, immutable authentic native observations and raw arguments; normalized ModelInteraction captures, not a claim of uncaptured HTTP wire bodies. Private oracle published after terminal failure; historical subject remains undispatched.'})
+ print(json.dumps({'archived_files':len(load(D/'episode-manifest.json')['files']),'integrity':{k:v for k,v in integrity.items() if k not in ('provider','worktrees')},'routine_decisions':len(decisions)},indent=2))
+asyncio.run(main())

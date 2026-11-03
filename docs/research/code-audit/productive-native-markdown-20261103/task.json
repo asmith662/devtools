@@ -1,0 +1,85 @@
+{
+  "settings": {
+    "maximum_output_tokens": 2048,
+    "thinking_enabled": false
+  },
+  "budgets": {
+    "model_calls": 8,
+    "proposals": 3,
+    "acquisitions": 6,
+    "call_seconds": 120,
+    "wall_seconds": 900,
+    "prompt_bytes": 131072,
+    "source_bytes": 32768,
+    "capture_bytes": 983040
+  },
+  "capture": "bounded-full-v1",
+  "context": {
+    "schema": "native-context-v1",
+    "context_tokens": 65536,
+    "input_tokens": 62464,
+    "reserved_output_tokens": 2048,
+    "disclosure_bytes": 65536,
+    "warning_bytes": 98304,
+    "trigger_bytes": 114688,
+    "target_bytes": 98304
+  },
+  "objective": "Repair attached literal hash suffix corruption in MarkdownFile heading titles only. Current source \"# C#\" becomes title \"C\" and both heading/section lookup by \"C#\" fail. Within already recognized ATX lines, only a terminal run of hashes separated from preceding title by a space or tab is a closing marker. Attached hashes remain literal title text, including when followed by trailing whitespace or by a separate closing run. Preserve current trimming and separated closer behavior, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics and exact original content. Markdown remains a narrow raw-text helper: no inline escape decoding or full CommonMark parser, no new indentation/opening grammar, no source-fidelity redesign. Only the existing authorized model file may change. Acquire complete current owner via read_source before editing; tests and sibling models are authorized reads. Public behavioral acceptance is frozen and separate final acceptance is withheld. No reference repair provided. Propose an exact grounded edit and use managed checks; repair within the finite bounds if validation identifies an issue.",
+  "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+  "read_paths": [
+    "src/devtools/resources/filesystem/models/markdown/heading.py",
+    "src/devtools/resources/filesystem/models/markdown/section.py",
+    "src/devtools/resources/filesystem/models/text.py"
+  ],
+  "tests": [
+    "tests/live_native_markdown_hash_public.py",
+    "tests/resources/filesystem/models/markdown/test_file.py",
+    "tests/resources/filesystem/models/markdown/test_heading.py",
+    "tests/resources/filesystem/models/markdown/test_section.py",
+    "tests/resources/filesystem/codecs/test_markdown.py"
+  ],
+  "oracle": "from pathlib import Path\nfrom devtools.core.paths import ResolvedPath\n\ncases = [\n    ('### F##  ', 'F##'),\n    ('## alpha#beta###', 'alpha#beta###'),\n    ('# end#\\t', 'end#'),\n    ('# C## ###', 'C##'),\n    ('# word ### tail#', 'word ### tail#'),\n    ('# word\\t####\\t ', 'word'),\n    ('# ##', ''),\n    ('# ', ''),\n    ('# x \\\\#', 'x \\\\#'),\n    ('# foo #\\\\##', 'foo #\\\\##'),\n    ('###### Plain', 'Plain'),\n]\nfor source, expected in cases:\n    document = module.MarkdownFile(ResolvedPath(Path.cwd() / 'holdout.md'), source + '\\n')\n    assert len(document.headings) == 1, repr(source)\n    heading = document.headings[0]\n    assert heading.text == expected, (source, expected, heading.text)\n    assert document.find_heading(expected, case_sensitive=True) == heading\n    assert document.find_section(expected).title == expected\n    assert document.content == source + '\\n'\n\nsource = '# Root#\\r\\nBody\\r\\n## Child## ###\\r\\nData\\r\\n```text\\r\\n# hidden#\\r\\n```\\r\\n# NEXT#\\r\\nDone\\r\\n'\ndocument = module.MarkdownFile(ResolvedPath(Path.cwd() / 'hierarchy.md'), source)\nassert [(h.level,h.text,h.line) for h in document.headings] == [(1,'Root#',1),(2,'Child##',3),(1,'NEXT#',8)]\nassert [(s.title,s.start_line,s.end_line) for s in document.sections] == [('Root#',1,7),('Child##',3,7),('NEXT#',8,9)]\nassert document.find_section('next#').content == 'Done'\nassert document.find_heading('hidden#') is None\nassert document.content == source\n",
+  "obligations": [
+    {
+      "name": "current-owner",
+      "predicate": "Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling.",
+      "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+      "criterion": "current-whole-resource-v1"
+    }
+  ],
+  "preflight": {
+    "reference": ".local/productive-native/frozen.json; independent public API and CommonMark0.31.2 closing-marker boundary expectations, no reference implementation",
+    "controls_reference": ".local/productive-native/frozen.json; independently passing separated closers, fenced source and empty heading controls",
+    "comparisons": [
+      {
+        "name": "literal-title",
+        "obligation": "current-owner",
+        "category": "normal",
+        "expected": "preserve attached #",
+        "independently_derived": "preserve attached #",
+        "derivation": "Attached hashes are title characters; heading/section lookup must match the preserved title."
+      },
+      {
+        "name": "separated-closer",
+        "obligation": "current-owner",
+        "category": "boundary",
+        "expected": "strip separated terminal hash run only",
+        "independently_derived": "strip separated terminal hash run only",
+        "derivation": "Space/tab before a terminal closing run separates marker from title; an attached earlier run remains literal."
+      },
+      {
+        "name": "empty-title",
+        "obligation": "current-owner",
+        "category": "empty",
+        "expected": "preserve existing empty heading",
+        "independently_derived": "preserve existing empty heading",
+        "derivation": "Existing recognized empty heading remains valid; opening grammar is unchanged."
+      }
+    ]
+  },
+  "worker": {
+    "actor": "qwen38-markdown-hash-coder-20261103",
+    "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  }
+}

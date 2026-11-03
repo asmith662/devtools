@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-03T17:22:46.336399+00:00",
+  "response": {
+    "content": "Now I understand the full picture. The fix: change the ATX pattern so the closing-hash run requires a separating space/tab (or empty text), while attached hashes remain literal.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/markdown-hash-coder-20261103"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 10044,
+      "output_tokens": 178,
+      "total_tokens": 10222,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"old_text\":\"        r\\\"^(?P<marker>#{1,6})[ \\\\t]+(?P<text>.*?)[ \\\\t]*#*[ \\\\t]*$\\\",\",\"new_text\":\"        r\\\"^(?P<marker>#{1,6})[ \\\\t]+(?P<text>.*?)(?:(?<=\\\\S)[ \\\\t]+#*|[ \\\\t]*)[ \\\\t]*$\\\",\"}",
+        "provider_call_id": "1ATaZ0XSjihPkTVCswFkCvQI5G4LPktU"
+      }
+    ]
+  },
+  "sha256": "0ef656315306e0f2cb8060a934deedab32f54f525ce63c05ea9b5da756a9bcf1"
+}

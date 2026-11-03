@@ -1,0 +1,38 @@
+"""Independent offline assessment of archived bytes; no repair, replay or authority."""
+from common import *
+import types
+from scripts.backlog.intake import _digest
+c=WorkCycle(R);item='B-0053';a=c.native.record(item,'assignment');result=c.native.record(item,'result');folder=c._folder(item)
+assert result['disposition']=='BLOCKED' and result['facts']['coding_disposition']=='validated'
+assert result['facts']['restored'] and result['checkout_released'] and not result['facts']['acceptance']['passed']
+assert not (folder/'reviewer').exists() and not (folder/'review.json').exists()
+path=folder/'worker/final-source.py';source=path.read_bytes().decode('utf-8')
+assert hashlib.sha256(source.encode()).hexdigest()==result['candidate_sha256']
+module=types.ModuleType('offline_markdown_candidate');sys.modules[module.__name__]=module
+exec(compile(source,str(path),'exec'),module.__dict__)
+from devtools.resources.filesystem.models.markdown import file as baseline
+def title(owner,text):
+ doc=owner.MarkdownFile(resolve_path(R/'host-probe.md'),text+'\n');return tuple(x.text for x in doc.headings)
+cases=[('# C#','C#'),('### F##  ','F##'),('## alpha#beta###','alpha#beta###'),('# end#\t','end#'),('# C## ###','C##'),('# word ### tail#','word ### tail#'),('# word\t####\t ','word'),('# ##',''),('# ',''),('# x \\#','x \\#'),('# foo #\\##','foo #\\##'),('###### Plain','Plain')]
+rows=[dict(source=s,expected=(e,),baseline=title(baseline,s),candidate=title(module,s)) for s,e in cases]
+matrix=[]
+for level in (1,2,6):
+ for gap in (' ','\t','  '):
+  for count in (1,2,7):
+   s='#'*level+gap+'#'*count
+   matrix.append(dict(source=s,expected=('',),baseline=title(baseline,s),candidate=title(module,s)))
+try:c.native._candidate(a,result)
+except PermissionError as e:admission={'refused':True,'error':str(e)}
+else:raise AssertionError('Blocked candidate admitted')
+observations=[load(p) for p in sorted((folder/'worker').glob('observation-*.json'))]
+for row in observations:assert row['sha256']==_digest({k:v for k,v in row.items() if k!='sha256'})
+returned=[x for x in observations if x['kind']=='model-returned'];requests=[x for x in observations if x['kind']=='model-entry-intent'];assert len(returned)==len(requests)==4
+calls=[]
+for index,v in enumerate(returned,1):
+ r=v['response'];calls.append(dict(index=index,response_sha256=v['sha256'],content_sha256=hashlib.sha256(r['content'].encode()).hexdigest(),termination=r['termination'],usage=r['usage'],tool_calls=r['tool_calls']))
+pressure=[{k:v for k,v in x.items() if k not in ('sha256','schema')} for x in observations if x['kind']=='context-pressure']
+support=sorted((O/'support/coder').glob('provider-*.json'))
+assert len(support)==4
+usage={key:sum(x['response']['usage'][key] for x in returned) for key in ('input_tokens','output_tokens','total_tokens')}
+save(O/'host-assessment.json',{'at':str(Timestamp.now()),'authority':'Host-only factual assessment; no independent reviewer inference or native host disposition exists. Does not revise frozen acceptance or original terminal result.','native_result_sha256':result['sha256'],'candidate_sha256':result['candidate_sha256'],'candidate_physical_sha256':h(path),'candidate_not_installed':True,'frozen_case_completion':rows,'additional_empty_heading_matrix':matrix,'empty_heading_matrix':{'cases':len(matrix),'baseline_correct':sum(x['baseline']==x['expected'] for x in matrix),'candidate_correct':sum(x['candidate']==x['expected'] for x in matrix)},'finding':'Model-authored pattern requires a non-whitespace predecessor for the closing-marker branch. When title is empty, opening whitespace consumes the boundary and closing hashes enter the text capture. The original empty heading becomes hash text. This is a real regression against the preserve-empty-heading requirement, not malformed acceptance, transport, output truncation, missing source, or a reviewer format failure.','native_candidate_admission':admission,'reviewer_calls':0,'typed_submission_measured':False,'model_calls':calls,'usage':usage,'provider_identities':[load(p) for p in support],'context':pressure,'remaining_blocker':'Candidate semantic preservation at boundary cases. Private acceptance correctly blocks review; structured reviewer transport remains unmeasured in this assignment.','no_new_review_or_continuation':True})
+print(json.dumps({'result':result['disposition'],'usage':usage,'matrix':load(O/'host-assessment.json')['empty_heading_matrix'],'admission':admission,'tools':[(x['index'],[t['name'] for t in x['tool_calls']]) for x in calls]},indent=2))

@@ -1,0 +1,389 @@
+{
+  "schema": "backlog-native-execution-v1",
+  "item": "B-0053",
+  "assignment_sha256": "aa28dd0ab81532e6a32a345fab4c652279309ad1c1d2e523ab0c0daac408537f",
+  "authorization_sha256": "59a801d6debc716aca53cd3c5995e0bd164fa575b8aac7a483edb5e803e35217",
+  "worker": {
+    "actor": "qwen38-markdown-hash-coder-20261103",
+    "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  },
+  "disposition": "BLOCKED",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "execution_error": null,
+  "seconds": 69.918155,
+  "facts": {
+    "coding_disposition": "validated",
+    "coding_accepted": true,
+    "completed": true,
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "G8pQDrXTIVeYIgpyr2YzG7bnkPs4HTFU"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "bIkTCNS6ph2e80wZpF0X2aQe0OEhrTJ6"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "VDqZFkmekVKlHQR3xpdr5IQG6qTcOFF8"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "FViedXXZfNKpNnvJmmFxlWxLTtuxexMM"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "kRO8K5GN3CJMwY1EvXURfaKxcedw7wpE"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "Sg4phVgfnKqzuWCUjhvvJyEIX4fy67Pk"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "1ATaZ0XSjihPkTVCswFkCvQI5G4LPktU"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      }
+    ],
+    "model_calls": 4,
+    "usage": [
+      {
+        "input_tokens": 2014,
+        "output_tokens": 46,
+        "total_tokens": 2060,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 4055,
+        "output_tokens": 147,
+        "total_tokens": 4202,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 8219,
+        "output_tokens": 195,
+        "total_tokens": 8414,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 10044,
+        "output_tokens": 178,
+        "total_tokens": 10222,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "completion_error": null,
+    "proposals": 1,
+    "acquisitions": 6,
+    "checks": [
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\public.py"
+          ],
+          "exit_code": 0,
+          "outcome": "succeeded",
+          "seconds": 0.642237,
+          "passed": true,
+          "inputs_current": true,
+          "stdout": "....................................                                     [100%]\r\n36 passed in 0.12s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ]
+    ],
+    "acceptance": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 0.129973,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py\", line 27, in <module>\r\n    assert heading.text == expected, (source, expected, heading.text)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('# ##', '', '##')\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "acceptance_error": null,
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "4eb35e94939e4e5045ceac1673a6b32c2cbba01d4a5fb1f33eb86a6a5005acc1"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "bfd064afa5c658d442272ac841c5ed7ae2c0e6c3b3aac465dca3e9df33990923"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "385679039919f7df94aece6c40c5057bb20389dca53879417f5870d411c4bd5b"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "ead53b545cb76fcc03e4198cd02f6ec8d991e0804dbfe61b44f2533e7acef220"
+      },
+      {
+        "file": "observation-0004.json",
+        "sha256": "6420af998e04d971c86683160280041334c6e580b7c40c6a70cb7de88bbb4738"
+      },
+      {
+        "file": "observation-0005.json",
+        "sha256": "9cd9921840bc7eaa4b43a27f9ff0bf9c5f589faa00161156a683722203ab6ab4"
+      },
+      {
+        "file": "observation-0006.json",
+        "sha256": "865068af466946555a293c53760505f09c67f1f25c7948d6330403cd6617405e"
+      },
+      {
+        "file": "observation-0007.json",
+        "sha256": "f6664eedaeab0c915514cb454ff80f2e1afa014f879ffab2583ef26644fb6194"
+      },
+      {
+        "file": "observation-0008.json",
+        "sha256": "21c484a8b313b07e4e7c8e07634644ac00204ffd5477fe35d7e7c034c6c80111"
+      },
+      {
+        "file": "observation-0009.json",
+        "sha256": "752f7b29f2eff25f9c1497c91ce7ab7bfbac2cb53a2cdf37a2bc08f16b402221"
+      },
+      {
+        "file": "observation-0010.json",
+        "sha256": "2b0dac7fc9badeb9a86412e0974e655b9f425108b084d5dfa00ca6fd3b06795c"
+      },
+      {
+        "file": "observation-0011.json",
+        "sha256": "38f4e9dc6f9cf5c1749f63074c2ba257cc950c1395973f94b522f72ec5c2ac49"
+      },
+      {
+        "file": "observation-0012.json",
+        "sha256": "7a635f056097e580910dc8ba4239d2942e75d0b2370b0b76d2abba5441f56977"
+      },
+      {
+        "file": "observation-0013.json",
+        "sha256": "abcee4f39c6f11099d3bc94d07972ae9fbd0f58ad60413f65db2479426dfa36d"
+      },
+      {
+        "file": "observation-0014.json",
+        "sha256": "077f1232f16307730436da9cd1008e61c7189befbe5edcfb5ac3958f56f26679"
+      },
+      {
+        "file": "observation-0015.json",
+        "sha256": "2388987b92524c4b8d524ae8bd4763be83b80cbcfde82b9c4b574d64992be5dd"
+      },
+      {
+        "file": "observation-0016.json",
+        "sha256": "d955d484691ec9aa637104bb35b4ea2259ef70c89ec046ad41ec7a74084f1c0e"
+      },
+      {
+        "file": "observation-0017.json",
+        "sha256": "e5a4ab3cd8cfb195e816980d955e97d32a0a7f33aeac9c04f24f3c18c08eb168"
+      },
+      {
+        "file": "observation-0018.json",
+        "sha256": "70f73ca0a6b5600b0700e06109c0ac7278bbfd1312b15576c8678c72a67f1840"
+      },
+      {
+        "file": "observation-0019.json",
+        "sha256": "0ef656315306e0f2cb8060a934deedab32f54f525ce63c05ea9b5da756a9bcf1"
+      },
+      {
+        "file": "observation-0020.json",
+        "sha256": "693d4441df03ab1c1a754d51a4c4c682e9b8df617f82479d2478ab7eedbb2683"
+      },
+      {
+        "file": "observation-0021.json",
+        "sha256": "7e593d2616697dafd271ea03f8b9e0f85cca2e62ca2db188d467e2d307355497"
+      },
+      {
+        "file": "observation-0022.json",
+        "sha256": "1e0c8f89304f25b6b4813b1e9af8ac09e97f7298966eb5605d79df1a65cd118c"
+      },
+      {
+        "file": "observation-0023.json",
+        "sha256": "a7f7178508f252d2d41ed95ed4346a5426cd57130d22c883969330a0cd7d4eb9"
+      },
+      {
+        "file": "observation-0024.json",
+        "sha256": "8d5585700472678e0c6a548283ad1ed6c627fa1cae70190d65ee5a5df7ed99b7"
+      },
+      {
+        "file": "observation-0025.json",
+        "sha256": "333f31a7d484281403465e351a14cca60741a10c9aa8801b922a3eaf8bfc947a"
+      },
+      {
+        "file": "observation-0026.json",
+        "sha256": "744cdbececd62caf8409dbf6e905a963248c936bca22db4f0bcca85e86c9737f"
+      },
+      {
+        "file": "observation-0027.json",
+        "sha256": "437f9aaeb1eef5838c8aa3375df19e6915669c64d94a05f6a799ee625e2313b9"
+      }
+    ],
+    "readiness": [
+      {
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "0fa77bfaa7e5755f387f69e7d7b99a79f8e6960cad1a82ed32ad630f8b466ef1",
+          "f9c68f654b69012ed123e9b64a6d3af716761cd34ca27b775cb18ae6e749603c",
+          "b6c8f102b32cedf9e65d7bc9f7514403f99a93f005caa853aa9f849433842909",
+          "1d76a45ca91960b0a2ea9daf32d7d3c161e342f0bce40026595956d3426a0404",
+          "641ef9bb88b66a686ff15c33a275e84980995e98f7b54105179e58bace755ff3",
+          "bd67fdfe4d6c4783ed7409ec19f73cab55d8d9f4148cd55e843b78aa03c907ef"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      }
+    ],
+    "initial_context": {
+      "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+      "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+      "ready": false,
+      "unresolved": [
+        "current-owner"
+      ],
+      "evidence": [],
+      "scope": "Information availability only; supplied frame is not claimed exhaustive"
+    },
+    "disclosures": [
+      {
+        "identity": "0fa77bfaa7e5755f387f69e7d7b99a79f8e6960cad1a82ed32ad630f8b466ef1",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+        "content_identity": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42",
+        "span": [
+          0,
+          5910
+        ]
+      },
+      {
+        "identity": "f9c68f654b69012ed123e9b64a6d3af716761cd34ca27b775cb18ae6e749603c",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "tests/resources/filesystem/models/markdown/test_file.py",
+        "content_identity": "455b726c3b5cf88d70cda031fa2d4cc44e0d2fcd9628b7c67531f0cff91238e9",
+        "span": [
+          0,
+          6458
+        ]
+      },
+      {
+        "identity": "b6c8f102b32cedf9e65d7bc9f7514403f99a93f005caa853aa9f849433842909",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "tests/resources/filesystem/codecs/test_markdown.py",
+        "content_identity": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d",
+        "span": [
+          0,
+          2514
+        ]
+      },
+      {
+        "identity": "1d76a45ca91960b0a2ea9daf32d7d3c161e342f0bce40026595956d3426a0404",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "tests/live_native_markdown_hash_public.py",
+        "content_identity": "d2c03bc725c37a06c9b785ee96d5d1f5e9caa401401f1c19995e530a96f71267",
+        "span": [
+          0,
+          847
+        ]
+      },
+      {
+        "identity": "641ef9bb88b66a686ff15c33a275e84980995e98f7b54105179e58bace755ff3",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "content_identity": "7b3c441f3efe098c1444eca1107b10387f08601be5e5ca3e26a73ec3f01c97af",
+        "span": [
+          0,
+          1638
+        ]
+      },
+      {
+        "identity": "bd67fdfe4d6c4783ed7409ec19f73cab55d8d9f4148cd55e843b78aa03c907ef",
+        "snapshot": "32dd9c268c0a7d1bcb5edd87964a8ff9008f1ab618fadca8af0c69ef9acc22c0",
+        "path": "src/devtools/resources/filesystem/models/markdown/section.py",
+        "content_identity": "be459c6f8ddc32dacfa1c70451caabced3ea2658ee078e505ef629642e7cce9f",
+        "span": [
+          0,
+          2934
+        ]
+      },
+      {
+        "identity": "7bb85ba820137a798702d1b9d4fce1d4ed2c7800e24557708a2d729109298f03",
+        "snapshot": "7a8649885f76aed0f6022f30aea6325e26deed656e39c5798eea7d76589daeb7",
+        "path": "src/devtools/resources/filesystem/models/markdown/file.py",
+        "content_identity": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+        "span": [
+          0,
+          5928
+        ]
+      }
+    ],
+    "environment_qualification": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee"
+  },
+  "integration_authorized": false,
+  "sha256": "b894c4f941a658c2438927d9bdff7cb2c437a29180d73ddfe58d7398774f13c7"
+}

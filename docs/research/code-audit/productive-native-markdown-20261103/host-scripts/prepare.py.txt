@@ -1,0 +1,40 @@
+"""Authenticate, freeze independent inputs, and capture an authentic Intake defect."""
+from common import *
+from scripts.validation.evidence import inputs
+async def main():
+ c=WorkCycle(R);await c._coordinator();assert await git(R,'branch','--show-current')=='main'
+ assert not await git(R,'diff','--name-only') and not await git(R,'diff','--cached','--name-only') and not await git(R,'diff','--check')
+ assert not (R/'.local/backlog/checkout-owner').exists()
+ head=await git(R,'rev-parse','HEAD');assert head=='a4274bd190bf7ee16c4f8077410617dd37461157'
+ assert (await git(R,'ls-remote','origin','refs/heads/main')).split()[0]==head
+ qualification,service=await provider(c)
+ if (O/'current-service.json').exists():assert load(O/'current-service.json')==service
+ else:save(O/'current-service.json',service)
+ old=load(R/'.local/review-recovery/authentication.json')
+ protected=load(R/'.local/structured-review/protected-authorized.json');now=await asyncio.to_thread(inputs,R)
+ assert now['sha256']==protected['inputs']['sha256']
+ groups={}
+ for group in ('historical_files','native_history','forensics'):
+  assert all(h(R/p)==v for p,v in old[group].items());groups[group]=old[group]
+ folders=[c._folder(n) for n in ('B-0049','B-0050','B-0051','B-0052')]+[c.routine.folder]
+ guarded={p.relative_to(R).as_posix():h(p) for folder in folders for p in folder.rglob('*') if p.is_file()}
+ source='src/devtools/resources/filesystem/models/markdown/file.py'
+ paths=[source,'src/devtools/resources/filesystem/models/markdown/heading.py','src/devtools/resources/filesystem/models/markdown/section.py','src/devtools/resources/filesystem/models/text.py','tests/resources/filesystem/models/markdown/test_file.py','tests/resources/filesystem/models/markdown/test_heading.py','tests/resources/filesystem/models/markdown/test_section.py','tests/resources/filesystem/codecs/test_markdown.py']
+ from devtools.resources.filesystem.models.markdown import file as baseline
+ from devtools.core.paths import ResolvedPath
+ example=baseline.MarkdownFile(ResolvedPath(R/'probe.md'),'# C#\nGuide\n')
+ assert example.headings[0].text=='C' and example.find_heading('C#') is None and example.find_section('C#') is None
+ oracle=(O/'private.py.txt').read_text(encoding='utf-8')
+ try:exec(compile(oracle,'frozen-independent-holdout','exec'),{'module':baseline})
+ except AssertionError as error:private={'passed':False,'error':str(error)}
+ else:raise AssertionError('Expected genuine baseline failure')
+ controls=baseline.MarkdownFile(ResolvedPath(R/'control.md'),'# Plain ###\n## Child\t##\n```\n# hidden\n```\n# \n')
+ assert tuple(v.text for v in controls.headings)==('Plain','Child','')
+ save(O/'before.json',{'at':str(Timestamp.now()),'head':head,'refs':await git(R,'show-ref'),'guarded':guarded,'groups':groups,'policy':c.routine.active()['sha256'],'inspector_head':await git(R.parent/'devtools-inspector','rev-parse','HEAD'),'inspector_status':await git(R.parent/'devtools-inspector','status','--porcelain'),'protected_reuse_inputs':len(now['sha256']),'no_inference':True})
+ frozen={'at':str(Timestamp.now()),'base_head':head,'source':source,'inputs':{p:h(R/p) for p in paths},'public_path':'tests/live_native_markdown_hash_public.py','public_sha256':h(O/'public.py.txt'),'private_sha256':h(O/'private.py.txt'),'baseline':{'source':'# C#\nGuide\n','actual_title':example.headings[0].text,'expected_title':'C#','heading_lookup':None,'section_lookup':None},'private_baseline':private,'controls':'Plain separated closers, tab-separated closers, fenced headings and empty title passed','derivation':'Literal title and separated suffix expectations independently specified before inference. CommonMark0.31.2 ATX heading boundary rule; narrow literal structural model only; no inline unescaping or full conformance. No reference implementation.'}
+ save(O/'frozen.json',frozen)
+ q=c.intake.queue();assert not q['errors']
+ payload={'kind':'bug','title':'Preserve attached literal hash suffixes in Markdown heading titles','summary':'On authenticated main '+head+', exported MarkdownFile parses "# C#" as title "C". find_heading("C#") and find_section("C#") consequently return None. Its optional closing-hash pattern consumes attached title characters without the space/tab boundary of a closing marker. Repair only the existing structural Markdown owner; preserve literal hashes and strip only a separated terminal hash run.','discovery':{'kind':'agent','reference':'.local/productive-native/frozen.json; independently reproduced public API; https://spec.commonmark.org/0.31.2/#atx-headings'},'parent':None,'resources':paths,'evidence':['src/devtools/resources/filesystem/docs/markdown.md','tests/resources/filesystem/models/markdown/test_file.py'],'benefit':'Keep programming-language and other hash-suffixed titles intact so existing heading/section lookups find the intended source. Preserve existing levels, whitespace trimming, empty headings, fence handling, section boundaries, original content and model APIs. One-file repair, frozen public tests and independent private acceptance.','uncertainty':'Authored in-memory reproduction, no observed production document loss. Markdown remains a narrow helper; no inline escape decoding, Setext, new indentation grammar, source-slice fidelity or full CommonMark parser. Existing fence-closer repair is delivered and separate; B-0049/50/51 and B-0052 remain unchanged.','dependencies':['Existing filesystem Markdown model and codec; standing Intake and exact native grants; independent review; separate integration authority.']}
+ identity=c.intake.capture(payload);save(O/'proposal.json',{'id':identity,'payload':payload})
+ print(json.dumps({'proposal':identity,'baseline':frozen['baseline'],'private':private,'protected_inputs_match':len(now['sha256']),'provider':qualification,'guarded_files':len(guarded)},indent=2))
+asyncio.run(main())

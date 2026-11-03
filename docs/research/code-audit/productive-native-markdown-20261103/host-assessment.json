@@ -1,0 +1,752 @@
+{
+  "at": "2026-11-03T17:25:48.122647+00:00",
+  "authority": "Host-only factual assessment; no independent reviewer inference or native host disposition exists. Does not revise frozen acceptance or original terminal result.",
+  "native_result_sha256": "b5a503c914fecb8f8c148a9ed83a34a17261cbbd1b0c66e99353ed98d4b5137a",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "candidate_physical_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "candidate_not_installed": true,
+  "frozen_case_completion": [
+    {
+      "source": "# C#",
+      "expected": [
+        "C#"
+      ],
+      "baseline": [
+        "C"
+      ],
+      "candidate": [
+        "C#"
+      ]
+    },
+    {
+      "source": "### F##  ",
+      "expected": [
+        "F##"
+      ],
+      "baseline": [
+        "F"
+      ],
+      "candidate": [
+        "F##"
+      ]
+    },
+    {
+      "source": "## alpha#beta###",
+      "expected": [
+        "alpha#beta###"
+      ],
+      "baseline": [
+        "alpha#beta"
+      ],
+      "candidate": [
+        "alpha#beta###"
+      ]
+    },
+    {
+      "source": "# end#\t",
+      "expected": [
+        "end#"
+      ],
+      "baseline": [
+        "end"
+      ],
+      "candidate": [
+        "end#"
+      ]
+    },
+    {
+      "source": "# C## ###",
+      "expected": [
+        "C##"
+      ],
+      "baseline": [
+        "C##"
+      ],
+      "candidate": [
+        "C##"
+      ]
+    },
+    {
+      "source": "# word ### tail#",
+      "expected": [
+        "word ### tail#"
+      ],
+      "baseline": [
+        "word ### tail"
+      ],
+      "candidate": [
+        "word ### tail#"
+      ]
+    },
+    {
+      "source": "# word\t####\t ",
+      "expected": [
+        "word"
+      ],
+      "baseline": [
+        "word"
+      ],
+      "candidate": [
+        "word"
+      ]
+    },
+    {
+      "source": "# ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "# ",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        ""
+      ]
+    },
+    {
+      "source": "# x \\#",
+      "expected": [
+        "x \\#"
+      ],
+      "baseline": [
+        "x \\"
+      ],
+      "candidate": [
+        "x \\#"
+      ]
+    },
+    {
+      "source": "# foo #\\##",
+      "expected": [
+        "foo #\\##"
+      ],
+      "baseline": [
+        "foo #\\"
+      ],
+      "candidate": [
+        "foo #\\##"
+      ]
+    },
+    {
+      "source": "###### Plain",
+      "expected": [
+        "Plain"
+      ],
+      "baseline": [
+        "Plain"
+      ],
+      "candidate": [
+        "Plain"
+      ]
+    }
+  ],
+  "additional_empty_heading_matrix": [
+    {
+      "source": "# #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "# ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "# #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "#\t#",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "#\t##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "#\t#######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "#  #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "#  ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "#  #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "## #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "## ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "## #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "##\t#",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "##\t##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "##\t#######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "##  #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "##  ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "##  #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "###### #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "###### ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "###### #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "######\t#",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "######\t##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "######\t#######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    },
+    {
+      "source": "######  #",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#"
+      ]
+    },
+    {
+      "source": "######  ##",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "##"
+      ]
+    },
+    {
+      "source": "######  #######",
+      "expected": [
+        ""
+      ],
+      "baseline": [
+        ""
+      ],
+      "candidate": [
+        "#######"
+      ]
+    }
+  ],
+  "empty_heading_matrix": {
+    "cases": 27,
+    "baseline_correct": 27,
+    "candidate_correct": 0
+  },
+  "finding": "Model-authored pattern requires a non-whitespace predecessor for the closing-marker branch. When title is empty, opening whitespace consumes the boundary and closing hashes enter the text capture. The original empty heading becomes hash text. This is a real regression against the preserve-empty-heading requirement, not malformed acceptance, transport, output truncation, missing source, or a reviewer format failure.",
+  "native_candidate_admission": {
+    "refused": true,
+    "error": "Native candidate/result/approval mismatch"
+  },
+  "reviewer_calls": 0,
+  "typed_submission_measured": false,
+  "model_calls": [
+    {
+      "index": 1,
+      "response_sha256": "6420af998e04d971c86683160280041334c6e580b7c40c6a70cb7de88bbb4738",
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "termination": "tool_call",
+      "usage": {
+        "input_tokens": 2014,
+        "output_tokens": 46,
+        "total_tokens": 2060,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"start\":0}",
+          "provider_call_id": "G8pQDrXTIVeYIgpyr2YzG7bnkPs4HTFU"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "response_sha256": "752f7b29f2eff25f9c1497c91ce7ab7bfbac2cb53a2cdf37a2bc08f16b402221",
+      "content_sha256": "a9ceb0a6d757681a060957043008d0f2c8b445346dc2f5ec68cf6aabf2fbb441",
+      "termination": "tool_call",
+      "usage": {
+        "input_tokens": 4055,
+        "output_tokens": 147,
+        "total_tokens": 4202,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"tests/resources/filesystem/models/markdown/test_file.py\",\"start\":0}",
+          "provider_call_id": "bIkTCNS6ph2e80wZpF0X2aQe0OEhrTJ6"
+        },
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"tests/resources/filesystem/codecs/test_markdown.py\",\"start\":0}",
+          "provider_call_id": "VDqZFkmekVKlHQR3xpdr5IQG6qTcOFF8"
+        },
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"tests/live_native_markdown_hash_public.py\",\"start\":0}",
+          "provider_call_id": "FViedXXZfNKpNnvJmmFxlWxLTtuxexMM"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "response_sha256": "077f1232f16307730436da9cd1008e61c7189befbe5edcfb5ac3958f56f26679",
+      "content_sha256": "0ac769cb6c97c6286e991494e1fe1fb00ec02a5b64bec19201e8f4e39da4a1b9",
+      "termination": "tool_call",
+      "usage": {
+        "input_tokens": 8219,
+        "output_tokens": 195,
+        "total_tokens": 8414,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "tool_calls": [
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/heading.py\",\"start\":0}",
+          "provider_call_id": "kRO8K5GN3CJMwY1EvXURfaKxcedw7wpE"
+        },
+        {
+          "name": "read_source",
+          "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/section.py\",\"start\":0}",
+          "provider_call_id": "Sg4phVgfnKqzuWCUjhvvJyEIX4fy67Pk"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "response_sha256": "0ef656315306e0f2cb8060a934deedab32f54f525ce63c05ea9b5da756a9bcf1",
+      "content_sha256": "4f0a3da8d70afc962b014834e346fe2b7b40f5a6aedf84bf8354718d28bd4b8d",
+      "termination": "tool_call",
+      "usage": {
+        "input_tokens": 10044,
+        "output_tokens": 178,
+        "total_tokens": 10222,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "tool_calls": [
+        {
+          "name": "replace_source",
+          "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"old_text\":\"        r\\\"^(?P<marker>#{1,6})[ \\\\t]+(?P<text>.*?)[ \\\\t]*#*[ \\\\t]*$\\\",\",\"new_text\":\"        r\\\"^(?P<marker>#{1,6})[ \\\\t]+(?P<text>.*?)(?:(?<=\\\\S)[ \\\\t]+#*|[ \\\\t]*)[ \\\\t]*$\\\",\"}",
+          "provider_call_id": "1ATaZ0XSjihPkTVCswFkCvQI5G4LPktU"
+        }
+      ]
+    }
+  ],
+  "usage": {
+    "input_tokens": 24332,
+    "output_tokens": 566,
+    "total_tokens": 24898
+  },
+  "provider_identities": [
+    {
+      "at": "2026-11-03T17:22:04.294223+00:00",
+      "interaction_id": "ee67e332-8398-4461-b9de-1dedc998cf03",
+      "provider": "llama.cpp",
+      "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+      "started_at": "2026-11-03T17:21:53.899888+00:00",
+      "completed_at": "2026-11-03T17:22:04.294186+00:00",
+      "provider_response_id": "chatcmpl-xNNgeC1yPKZnh8tz9JQhBUg2cQLkMxGF",
+      "provider_model": "qwen38-local",
+      "usage": {
+        "input_tokens": 2014,
+        "output_tokens": 46,
+        "total_tokens": 2060,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "termination": "tool_call",
+      "qualification": "Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable."
+    },
+    {
+      "at": "2026-11-03T17:22:15.740403+00:00",
+      "interaction_id": "a8ff380f-b054-4e5e-9b3a-06fbc8528197",
+      "provider": "llama.cpp",
+      "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+      "started_at": "2026-11-03T17:22:06.880182+00:00",
+      "completed_at": "2026-11-03T17:22:15.740365+00:00",
+      "provider_response_id": "chatcmpl-4qdGMCsaLEhGNU9GvTuJAxxx1lrODvGj",
+      "provider_model": "qwen38-local",
+      "usage": {
+        "input_tokens": 4055,
+        "output_tokens": 147,
+        "total_tokens": 4202,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "termination": "tool_call",
+      "qualification": "Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable."
+    },
+    {
+      "at": "2026-11-03T17:22:31.253577+00:00",
+      "interaction_id": "2662539f-d51c-47de-81c7-05ce88b06a1a",
+      "provider": "llama.cpp",
+      "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+      "started_at": "2026-11-03T17:22:17.508305+00:00",
+      "completed_at": "2026-11-03T17:22:31.253543+00:00",
+      "provider_response_id": "chatcmpl-PWxfGRUeFHD4ExrrblmbSnZKeH9vKP9m",
+      "provider_model": "qwen38-local",
+      "usage": {
+        "input_tokens": 8219,
+        "output_tokens": 195,
+        "total_tokens": 8414,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "termination": "tool_call",
+      "qualification": "Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable."
+    },
+    {
+      "at": "2026-11-03T17:22:46.333390+00:00",
+      "interaction_id": "4d8a26e4-6bd5-44c6-8c6c-f48a75483d3b",
+      "provider": "llama.cpp",
+      "source": "llama.cpp/qwen38-local/markdown-hash-coder-20261103",
+      "started_at": "2026-11-03T17:22:34.929165+00:00",
+      "completed_at": "2026-11-03T17:22:46.333351+00:00",
+      "provider_response_id": "chatcmpl-99g8f259pxD718IRyDl9XhVSTikHSdgo",
+      "provider_model": "qwen38-local",
+      "usage": {
+        "input_tokens": 10044,
+        "output_tokens": 178,
+        "total_tokens": 10222,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      "termination": "tool_call",
+      "qualification": "Actual supported adapter observation; exact normalized request/response retained by native Capture; nonstreaming first-token latency unavailable."
+    }
+  ],
+  "context": [
+    {
+      "kind": "context-pressure",
+      "at": "2026-11-03T17:21:53.650813+00:00",
+      "original_bytes": 5728,
+      "request_bytes": 6505,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 2014,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      }
+    },
+    {
+      "kind": "context-pressure",
+      "at": "2026-11-03T17:22:05.728124+00:00",
+      "original_bytes": 13490,
+      "request_bytes": 14704,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 4055,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      }
+    },
+    {
+      "kind": "context-pressure",
+      "at": "2026-11-03T17:22:17.246063+00:00",
+      "original_bytes": 27736,
+      "request_bytes": 29696,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 8219,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      }
+    },
+    {
+      "kind": "context-pressure",
+      "at": "2026-11-03T17:22:33.273039+00:00",
+      "original_bytes": 34976,
+      "request_bytes": 36963,
+      "ceiling_bytes": 131072,
+      "warning_bytes": 98304,
+      "warning": false,
+      "policy": "deterministic",
+      "action": "ready",
+      "measured_input_tokens": 10044,
+      "token_capacity": {
+        "context_tokens": 65536,
+        "input_tokens": 62464,
+        "reserved_output_tokens": 2048
+      }
+    }
+  ],
+  "remaining_blocker": "Candidate semantic preservation at boundary cases. Private acceptance correctly blocks review; structured reviewer transport remains unmeasured in this assignment.",
+  "no_new_review_or_continuation": true
+}

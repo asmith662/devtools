@@ -1,0 +1,92 @@
+"""Read-only interrupted-closeout authentication; never dispatches a worker."""
+from common import *
+from collections import Counter
+from scripts.backlog.intake import _digest
+from scripts.validation.evidence import inputs
+
+
+async def main():
+    c = WorkCycle(R)
+    folder = c._folder('B-0053')
+    before = load(O / 'before.json')
+    frozen = load(O / 'frozen.json')
+    result = c.native.record('B-0053', 'result')
+    assignment = c.native.record('B-0053', 'assignment')
+    gate_path = R / '.local/structured-review/protected-authorized.json'
+    gate = load(gate_path)
+    now = await asyncio.to_thread(inputs, R)
+    observations = [load(p) for p in sorted((folder / 'worker').glob('observation-*.json'))]
+    for row in observations:
+        assert row['sha256'] == _digest({k: v for k, v in row.items() if k != 'sha256'})
+    assert result['disposition'] == 'BLOCKED'
+    assert result['checkout_released'] and result['facts']['restored']
+    assert not (R / '.local/backlog/checkout-owner').exists()
+    assert not (folder / 'reviewer').exists() and not (folder / 'review.json').exists()
+    assert h(folder / 'worker/final-source.py') == result['candidate_sha256']
+    assert h(R / frozen['source']) == frozen['inputs'][frozen['source']]
+    changed_groups = {name: [p for p, digest in group.items() if not (R / p).is_file() or h(R / p) != digest] for name, group in before['groups'].items()}
+    changed_guarded = [p for p, digest in before['guarded'].items() if not (R / p).is_file() or h(R / p) != digest]
+    assert not any(changed_groups.values()) and not changed_guarded
+    assert c.routine.active()['sha256'] == before['policy']
+    old_hashes = gate['inputs']['sha256']
+    changed_inputs = sorted(p for p in old_hashes.keys() | now['sha256'].keys() if old_hashes.get(p) != now['sha256'].get(p))
+    def blobs(value):
+        return {line.split('\t', 1)[1]: line.split()[1] for line in value.splitlines()}
+    old_blobs, new_blobs = blobs(gate['inputs']['git_blobs']), blobs(now['git_blobs'])
+    changed_blobs = [p for p in now['sha256'] if old_blobs.get(p) != new_blobs.get(p)]
+    refs = {name: value for value, name in (line.split() for line in (await git(R, 'show-ref')).splitlines())}
+    allowed = {'refs/heads/main', 'refs/remotes/origin/main', 'refs/remotes/origin/HEAD', 'refs/heads/feat/agent-inspector', 'refs/remotes/origin/feat/agent-inspector'}
+    changed_refs = [name for value, name in (line.split() for line in before['refs'].splitlines()) if name not in allowed and refs.get(name) != value]
+    assert not changed_refs
+    release_path = R / '.local/backlog/checkout-history' / (result['checkout_release'] + '.json')
+    release = load(release_path)
+    assert release['sha256'] == _digest({k: v for k, v in release.items() if k != 'sha256'})
+    public = next(row for row in observations if row['kind'] == 'public-check-result')
+    summary = {
+        'at': str(Timestamp.now()),
+        'head': await git(R, 'rev-parse', 'HEAD'),
+        'branch': await git(R, 'branch', '--show-current'),
+        'tracked_diff': await git(R, 'diff', '--name-only'),
+        'staged_diff': await git(R, 'diff', '--cached', '--name-only'),
+        'untracked': (await git(R, 'ls-files', '--others', '--exclude-standard')).splitlines(),
+        'result_sha256': result['sha256'],
+        'dispatch': load(folder / 'dispatch.json'),
+        'assignment_sha256': assignment['sha256'],
+        'counts': dict(Counter(row['kind'] for row in observations)),
+        'source_sha256': h(R / frozen['source']),
+        'candidate_sha256': h(folder / 'worker/final-source.py'),
+        'public_checks': public['checks'],
+        'checkout_release': release,
+        'temporary_public_absent': not (R / frozen['public_path']).exists(),
+        'cleanup_receipt': load(O / 'temporary-test-cleanup.json'),
+        'guarded_files': len(before['guarded']),
+        'preserved_groups': {name: len(group) for name, group in before['groups'].items()},
+        'unchanged_guarded_and_groups': True,
+        'standing_policy_sha256': before['policy'],
+        'old_refs_preserved': True,
+        'protected': {
+            'receipt': str(gate_path.relative_to(R)),
+            'receipt_sha256': h(gate_path),
+            'status': gate['status'],
+            'tested_commit': gate['inputs']['head'],
+            'inputs_unchanged_at_execution': gate['inputs_unchanged'],
+            'input_count': len(now['sha256']),
+            'changed_physical_inputs': changed_inputs,
+            'changed_git_inputs': changed_blobs,
+            'runtime_comparisons': {k: now[k] == gate['inputs'][k] for k in ('python', 'executable', 'platform', 'packages', 'environment_sha256')},
+            'phases': gate['phases'],
+            'qualification': 'Historical protected evidence only; no fresh-only acceptance or new feature validation claimed. Ignored/external inputs are not authenticated closure.',
+        },
+        'inspector': {
+            'head': await git(R.parent / 'devtools-inspector', 'rev-parse', 'HEAD'),
+            'branch': await git(R.parent / 'devtools-inspector', 'branch', '--show-current'),
+            'status': await git(R.parent / 'devtools-inspector', 'status', '--porcelain'),
+            'qualification': 'Read-only observation of independent concurrent worktree.',
+        },
+    }
+    save(O / 'reconciliation.json', summary)
+    print(json.dumps({k: v for k, v in summary.items() if k not in ('public_checks', 'checkout_release', 'protected', 'untracked')}, indent=2))
+    print(json.dumps({'protected': {k: v for k, v in summary['protected'].items() if k != 'phases'}, 'public_checks': public['checks']}, indent=2))
+
+
+asyncio.run(main())

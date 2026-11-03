@@ -1,0 +1,32 @@
+from pathlib import Path
+from devtools.core.paths import ResolvedPath
+
+cases = [
+    ('### F##  ', 'F##'),
+    ('## alpha#beta###', 'alpha#beta###'),
+    ('# end#\t', 'end#'),
+    ('# C## ###', 'C##'),
+    ('# word ### tail#', 'word ### tail#'),
+    ('# word\t####\t ', 'word'),
+    ('# ##', ''),
+    ('# ', ''),
+    ('# x \\#', 'x \\#'),
+    ('# foo #\\##', 'foo #\\##'),
+    ('###### Plain', 'Plain'),
+]
+for source, expected in cases:
+    document = module.MarkdownFile(ResolvedPath(Path.cwd() / 'holdout.md'), source + '\n')
+    assert len(document.headings) == 1, repr(source)
+    heading = document.headings[0]
+    assert heading.text == expected, (source, expected, heading.text)
+    assert document.find_heading(expected, case_sensitive=True) == heading
+    assert document.find_section(expected).title == expected
+    assert document.content == source + '\n'
+
+source = '# Root#\r\nBody\r\n## Child## ###\r\nData\r\n```text\r\n# hidden#\r\n```\r\n# NEXT#\r\nDone\r\n'
+document = module.MarkdownFile(ResolvedPath(Path.cwd() / 'hierarchy.md'), source)
+assert [(h.level,h.text,h.line) for h in document.headings] == [(1,'Root#',1),(2,'Child##',3),(1,'NEXT#',8)]
+assert [(s.title,s.start_line,s.end_line) for s in document.sections] == [('Root#',1,7),('Child##',3,7),('NEXT#',8,9)]
+assert document.find_section('next#').content == 'Done'
+assert document.find_heading('hidden#') is None
+assert document.content == source

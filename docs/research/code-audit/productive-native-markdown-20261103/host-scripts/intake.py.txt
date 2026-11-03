@@ -1,0 +1,9 @@
+"""Use the active operator standing policy for an exact trusted Intake decision."""
+from common import *
+from devtools.resources.filesystem import BinaryFile
+c=WorkCycle(R);active=c.routine.active();p=load(O/'proposal.json')['id'];f=load(O/'frozen.json')
+assert all(h(R/n)==v for n,v in f['inputs'].items())
+review=c.routine.intake_review(active['sha256'],p,assessment=assess('Codex genuine bounded Markdown title defect assessment; frozen public/private independent API evidence; no wider parsing or governance change'),decision='APPROVED',rationale='Independently reproduced public MarkdownFile literal title corruption and missing lookups on current main. One existing filesystem model file, independently frozen acceptance and unused slot. This is distinct from delivered fence closers and consumed CSV/module-scope tasks. Eligible routine bug under activated policy; no install or canonical closure authority.',duplicate_disposition='Distinct literal heading title suffix defect; reviewed approved items have consumed slots and delivered modest pending items must not be replayed.',domain='resources')
+record=c.intake.get(p);save(O/'intake-result.json',{'proposal':p,'item':review['publication']['id'],'review':review,'policy':active['sha256']})
+target=R/f['public_path'];assert not target.exists();write(BinaryFile(resolve_path(target),(O/'public.py.txt').read_bytes()),overwrite=False)
+print(json.dumps({'item':review['publication']['id'],'review':review['sha256'],'publication_path':review['publication']['path']},indent=2))

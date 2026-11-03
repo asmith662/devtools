@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-03T17:21:40.267213+00:00",
+  "gpu": {
+    "exit": 0,
+    "stdout": "14740, 1311, 0\r\n",
+    "stderr": "",
+    "truncated": false
+  },
+  "host": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Get-CimInstance : The requested object does not exist. \r\nAt line:1 char:1\r\n+ Get-CimInstance Win32_OperatingSystem | Select-Object FreePhysicalMem ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (root\\cimv2:Win32_O",
+    "truncated": true
+  },
+  "container": {
+    "exit": 0,
+    "stdout": "true|false|healthy\n",
+    "stderr": "",
+    "truncated": false
+  }
+}

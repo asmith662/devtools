@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-03T17:40:02.924358+00:00",
+  "commands": [
+    {
+      "name": "ruff",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.200823,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "name": "format",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.175404,
+      "stdout": "779 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "truncated": false
+    },
+    {
+      "name": "layout",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.081871,
+      "stdout": "",
+      "stderr": "",
+      "truncated": false
+    }
+  ],
+  "qualification": "Unchanged supported-source static checks and layout. Immutable historical data and host scripts archived as research evidence are not style-normalized. No pytest, confirmation or live model checks."
+}

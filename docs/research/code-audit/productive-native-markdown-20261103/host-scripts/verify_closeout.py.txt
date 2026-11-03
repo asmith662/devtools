@@ -1,0 +1,129 @@
+"""Authenticate evidence packet, documentary scope and exact staged/committed bytes."""
+from common import *
+import difflib
+import re
+from scripts.backlog.intake import _digest
+from scripts.validation.evidence import inputs
+from devtools.resources.filesystem import BinaryFile
+
+D = R / 'docs/research/code-audit/productive-native-markdown-20261103'
+
+
+async def main():
+    mode = sys.argv[1]
+    assert mode in ('record', 'staged', 'committed')
+    refresh = mode == 'record' and sys.argv[2:] == ['--refresh-derived']
+    cycle = WorkCycle(R)
+    before = load(O / 'before.json')
+    frozen = load(O / 'frozen.json')
+    result = cycle.native.record('B-0053', 'result')
+    assignment = cycle.native.record('B-0053', 'assignment')
+    folder = cycle._folder('B-0053')
+    assert cycle.routine.active()['sha256'] == before['policy']
+    assert result['disposition'] == 'BLOCKED' and result['facts']['restored'] and result['checkout_released']
+    assert not (R / '.local/backlog/checkout-owner').exists()
+    assert not (folder / 'reviewer').exists() and not (folder / 'review.json').exists()
+    assert not (R / frozen['public_path']).exists()
+    for group in [before['guarded'], *before['groups'].values()]:
+        assert all(h(R / p) == identity for p, identity in group.items())
+    refs = {name: value for value, name in (line.split() for line in (await git(R, 'show-ref')).splitlines())}
+    movable = {'refs/heads/main', 'refs/remotes/origin/main', 'refs/remotes/origin/HEAD', 'refs/heads/feat/agent-inspector', 'refs/remotes/origin/feat/agent-inspector'}
+    for value, name in (line.split() for line in before['refs'].splitlines()):
+        if name not in movable:
+            assert refs.get(name) == value, name
+    for name, row in load(D / 'integrity-resumed.json')['ri_ledgers'].items():
+        assert h(R / 'docs/research/code-audit' / name) == row['sha256'], name
+    current = await asyncio.to_thread(inputs, R)
+    gate = load(R / '.local/structured-review/protected-authorized.json')
+    assert current['sha256'] == gate['inputs']['sha256'] and gate['status'] == 'passed' and gate['inputs_unchanged']
+    def blobs(value):
+        return {line.split('\t', 1)[1]: line.split()[1] for line in value.splitlines()}
+    new_blobs, old_blobs = blobs(current['git_blobs']), blobs(gate['inputs']['git_blobs'])
+    assert all(new_blobs[p] == old_blobs[p] for p in current['sha256'])
+    for key in ('python', 'executable', 'platform', 'packages'):
+        assert current[key] == gate['inputs'][key]
+    for p in sorted(folder.rglob('*')):
+        if p.is_file():
+            assert p.read_bytes() == (D / 'native' / p.relative_to(folder)).read_bytes(), p
+    for p in sorted((O / 'support').rglob('*')):
+        if p.is_file():
+            assert p.read_bytes() == (D / 'support' / p.relative_to(O / 'support')).read_bytes(), p
+    sealed = 0
+    for p in (D / 'native').rglob('*.json'):
+        row = load(p)
+        if 'sha256' in row:
+            assert row['sha256'] == _digest({k: v for k, v in row.items() if k != 'sha256'}), p
+            sealed += 1
+    candidate = (D / 'native/worker/final-source.py').read_bytes()
+    baseline = assignment['baseline_source'].encode()
+    assert candidate == (folder / 'worker/final-source.py').read_bytes()
+    assert baseline == (R / frozen['source']).read_bytes()
+    assert hashlib.sha256(candidate).hexdigest() == result['candidate_sha256']
+    expected_patch = list(difflib.unified_diff(baseline.decode().splitlines(), candidate.decode().splitlines(), fromfile='a/' + frozen['source'], tofile='b/' + frozen['source'], lineterm=''))
+    assert expected_patch == (D / 'native/candidate.patch').read_text(encoding='utf-8').splitlines()
+    assert h(D / 'public.py.txt') == frozen['public_sha256']
+    assert h(D / 'private.py.txt') == frozen['private_sha256']
+    for name, digest in load(D / 'preparation-manifest.json')['files'].items():
+        assert h(D / name) == digest, name
+    queue = cycle.intake.queue()
+    assert not queue['errors']
+    links = []
+    for p in (R / 'docs/documentation_map.md', R / 'docs/research/productive-native-markdown.md', D / 'README.md'):
+        for target in re.findall(r'\]\(([^)]+)\)', p.read_text(encoding='utf-8')):
+            relative = target.split('#')[0]
+            if relative and not relative.startswith(('https:', 'http:')):
+                pending = mode == 'record' and p == D / 'README.md' and relative in {'documentary-checks.json', 'episode-manifest.json'}
+                assert (p.parent / relative).exists() or pending, (p, relative)
+                links.append({'document': p.relative_to(R).as_posix(), 'target': target})
+    quality = load(O / 'closeout-quality.json')
+    assert all(row['exit_code'] == 0 and not row['truncated'] for row in quality['commands'])
+    assert not await git(R, 'diff', '--check') and not await git(R, 'diff', '--cached', '--check')
+    allowed = {p.relative_to(R).as_posix() for p in D.rglob('*') if p.is_file()} | {'docs/documentation_map.md', 'docs/research/productive-native-markdown.md'}
+    changed = set((await git(R, 'diff', '--name-only', '3d9de0a5')).splitlines())
+    assert changed <= allowed, changed - allowed
+    if mode == 'record':
+        if refresh:
+            draft = O / 'draft-before-data-whitespace'
+            draft.mkdir(exist_ok=False)
+            for name in ('documentary-checks.json', 'episode-manifest.json', 'host-scripts/verify_closeout.py.txt'):
+                write(BinaryFile(resolve_path(draft / name.replace('/', '__')), (D / name).read_bytes()), overwrite=False)
+        for source, target in ((O / 'closeout-quality.json', D / 'closeout-quality.json'), (Path(__file__), D / 'host-scripts/verify_closeout.py.txt'), (O / 'quality_closeout.py', D / 'host-scripts/quality_closeout.py.txt')):
+            write(BinaryFile(resolve_path(target), source.read_bytes()), overwrite=refresh)
+        documentary = {
+            'at': str(Timestamp.now()), 'mode': 'evidence-only interrupted closeout',
+            'sealed_native_records_verified': sealed, 'archive_matches_original_native_and_support_bytes': True,
+            'candidate_patch_reconstructed_exactly': True, 'original_preparation_manifest_verified': True,
+            'frozen_private_failure_preserved': True, 'posthoc_matrix_reauthenticated_separately': True,
+            'matching_protected_inputs_and_git_blobs': len(current['sha256']),
+            'protected_receipt_sha256': h(R / '.local/structured-review/protected-authorized.json'),
+            'environment_fingerprint_matches': current['environment_sha256'] == gate['inputs']['environment_sha256'],
+            'protected_reruns': 0, 'new_model_calls': 0, 'review_dispatches': 0,
+            'links': links, 'intake_errors': queue['errors'], 'diff_checks': 'passed',
+            'archive_whitespace_policy': 'Native CRLF is recognized and exact candidate.patch diff context is retained by scoped native/.gitattributes. No candidate bytes or production checks are changed.',
+            'documentation_impact': 'Research report and navigation only. No source, package API, architecture, taxonomy, durable contract, backlog status or historical ledger change.',
+            'qualification': 'Historical validation reuse for unchanged declared inputs; no new feature/fresh-only acceptance or ignored/external input closure claim. Original private code is published only as terminal research evidence; no worker is dispatched.',
+        }
+        write(TextFile(resolve_path(D / 'documentary-checks.json'), json.dumps(documentary, indent=2) + '\n'), overwrite=refresh)
+        manifest = {'at': str(Timestamp.now()), 'files': {p.relative_to(D).as_posix(): h(p) for p in sorted(D.rglob('*')) if p.is_file() and p != D / 'episode-manifest.json'}, 'qualification': 'Exact original bytes and appended closeout evidence; excludes this manifest itself. Original preparation manifest remains unchanged. No model replay, review or candidate installation.'}
+        write(TextFile(resolve_path(D / 'episode-manifest.json'), json.dumps(manifest, indent=2) + '\n'), overwrite=refresh)
+    manifest = load(D / 'episode-manifest.json')
+    assert set(manifest['files']) == {p.relative_to(D).as_posix() for p in D.rglob('*') if p.is_file()} - {'episode-manifest.json'}
+    for name, digest in manifest['files'].items():
+        assert h(D / name) == digest, name
+    for row in links:
+        assert ((R / row['document']).parent / row['target'].split('#')[0]).exists(), row
+    if mode != 'record':
+        staged = set((await git(R, 'diff', '--cached', '--name-only')).splitlines())
+        if mode == 'staged':
+            prefix = D.relative_to(R).as_posix() + '/'
+            original = {prefix + name for name in load(D / 'preparation-manifest.json')['files']} | {prefix + 'preparation-manifest.json'}
+            assert staged == allowed - original, (staged - allowed, (allowed - original) - staged)
+        for p in sorted(D.rglob('*')):
+            if p.is_file():
+                name = p.relative_to(R).as_posix()
+                ref = ':' + name if mode == 'staged' else 'HEAD:' + name
+                assert await git(R, 'hash-object', '--no-filters', '--', name) == await git(R, 'rev-parse', ref), name
+    print(json.dumps({'mode': mode, 'manifest_members': len(manifest['files']), 'sealed_records': sealed, 'links_checked': len(links), 'protected_inputs': len(current['sha256']), 'git_archive_bytes_checked': mode != 'record'}, indent=2))
+
+
+asyncio.run(main())

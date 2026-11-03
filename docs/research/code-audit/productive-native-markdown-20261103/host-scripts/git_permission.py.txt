@@ -1,0 +1,9 @@
+"""Bind exact routine Git intent; permission only, no Git effect."""
+from common import *
+async def main():
+ c=WorkCycle(R);active=c.routine.active();mode=sys.argv[1];assert mode in ('commit','push')
+ paths=(await git(R,'diff','--cached','--name-only')).splitlines() if mode=='commit' else load(O/sys.argv[2])['paths']
+ request={'operation':'git','argv':['commit'] if mode=='commit' else ['push','origin','main'],'validation_reference':'B-0053 frozen independent baseline, exact Intake scope, documentary integrity/layout checks and authenticated protected receipt reuse; production inputs unchanged','git_inputs':{'head':await git(R,'rev-parse','HEAD'),'index_sha256':h(R/'.git/index'),'paths':paths}}
+ ref=c.routine.approve(active['sha256'],'git',request,assessment=assess('Trusted host exact bounded evidence/backlog publication; no installation or closure; preserves historical source and private boundaries'))
+ name=sys.argv[2] if mode=='commit' else sys.argv[3];save(O/name,{'reference':ref,'paths':paths,'request':request});print(json.dumps({'permission':ref,'paths':paths}))
+asyncio.run(main())

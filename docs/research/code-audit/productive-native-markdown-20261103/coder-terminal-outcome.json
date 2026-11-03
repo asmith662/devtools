@@ -1,0 +1,45 @@
+{
+  "result_sha256": "b5a503c914fecb8f8c148a9ed83a34a17261cbbd1b0c66e99353ed98d4b5137a",
+  "disposition": "BLOCKED",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "facts": {
+    "model_calls": 4,
+    "coding_disposition": "validated",
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "proposals": 1,
+    "acquisitions": 6,
+    "acceptance": {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 0.129973,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0053\\worker\\withheld.py\", line 27, in <module>\r\n    assert heading.text == expected, (source, expected, heading.text)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: ('# ##', '', '##')\r\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    },
+    "acceptance_error": null
+  },
+  "checkout_released": true,
+  "at": "2026-11-03T17:22:59.513314+00:00",
+  "seconds": 80.884058,
+  "adapter_entries": 4,
+  "returned_interactions": 4,
+  "adapter_seconds": 44.411118,
+  "support_bytes": 6734,
+  "grant_sha256": "59a801d6debc716aca53cd3c5995e0bd164fa575b8aac7a483edb5e803e35217"
+}

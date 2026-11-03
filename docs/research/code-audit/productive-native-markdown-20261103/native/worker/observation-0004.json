@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-03T17:22:04.297903+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/markdown-hash-coder-20261103"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 2014,
+      "output_tokens": 46,
+      "total_tokens": 2060,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"start\":0}",
+        "provider_call_id": "G8pQDrXTIVeYIgpyr2YzG7bnkPs4HTFU"
+      }
+    ]
+  },
+  "sha256": "6420af998e04d971c86683160280041334c6e580b7c40c6a70cb7de88bbb4738"
+}

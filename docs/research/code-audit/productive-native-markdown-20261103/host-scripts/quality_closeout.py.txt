@@ -1,0 +1,21 @@
+"""Bounded supported-source static checks and repository layout; no pytest."""
+from common import *
+
+
+async def run(name, args):
+    result = await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32768, max_stderr_bytes=32768)).execute(Command(sys.executable).args(*args).cwd(resolve_path(R)).with_timeout(Duration.seconds(180)))
+    return {'name': name, 'argv': [sys.executable, *args], 'exit_code': result.exit_code, 'seconds': result.duration.total_seconds, 'stdout': result.stdout.decode(errors='replace'), 'stderr': result.stderr.decode(errors='replace'), 'truncated': result.stdout_truncated or result.stderr_truncated}
+
+
+async def main():
+    rows = await asyncio.gather(
+        run('ruff', ['-m', 'ruff', 'check', 'src', 'tests', 'apps', 'scripts', '--exclude', 'tests/experiments']),
+        run('format', ['-m', 'ruff', 'format', '--check', 'src', 'tests', 'apps', 'scripts', '--exclude', 'tests/experiments']),
+        run('layout', ['scripts/validate_layout.py']),
+    )
+    save(O / 'closeout-quality.json', {'at': str(Timestamp.now()), 'commands': rows, 'qualification': 'Unchanged supported-source static checks and layout. Immutable historical data and host scripts archived as research evidence are not style-normalized. No pytest, confirmation or live model checks.'})
+    print(json.dumps([{'name': row['name'], 'exit_code': row['exit_code'], 'truncated': row['truncated'], 'stdout': row['stdout'][:500], 'stderr': row['stderr'][:500]} for row in rows], indent=2))
+    assert all(row['exit_code'] == 0 and not row['truncated'] for row in rows)
+
+
+asyncio.run(main())

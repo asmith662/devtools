@@ -1,5 +1,12 @@
 # Documentation Map
 
+[B-0053 interrupted evidence closeout](research/productive-native-markdown.md)
+records one genuine four-call Qwen coding episode: six source acquisitions, one
+admitted replacement, 36 public passes and a frozen private empty-heading
+failure. Native result remains BLOCKED, source is restored and the execution slot
+is consumed. The immutable packet separates original acceptance from 27 later
+host-only regressions; no repeat coding, review dispatch or installation occurred.
+
 [Structured acceptance-review conclusions](development/structured-acceptance-review.md)
 defines the prospective subject-bound, non-effecting final-proposal callable over
 existing model-neutral request/response values. Strict factual validation and
