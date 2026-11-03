@@ -9,8 +9,12 @@
 The [development integration contract](integration.md) extends WorkCycle after
 accepted coding review. It owns separately delegated installation, validated
 feature publication, target promotion, verification and canonical progress.
-Coding approval does not confer integration authority; partial slices leave the
-parent open. Existing proposal and worker evidence remain immutable.
+Its verified direct-completion entry can close an obligation already completed
+through authorized direct development, using implementation provenance,
+obligation review, exact protected validation and destination evidence without
+creating worker-candidate records. Coding approval does not confer integration
+authority; partial slices leave the parent open. Existing proposal and worker
+evidence remain immutable.
 
 ## Required identity and lifecycle fields
 

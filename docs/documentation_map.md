@@ -302,7 +302,9 @@ scope and evidence freshness. WorkCycle continues to own review/publication.
 
 - [Governed development integration](backlog/integration.md) owns the existing
   WorkCycle's candidate-to-destination lifecycle, separate standing integration
-  authority, exact-tree review, Git reconciliation and canonical closeout.
+  authority, exact-tree review, Git reconciliation and canonical closeout. Its
+  direct-completion entry records authorized non-worker repairs without changing
+  native candidate acceptance or attempt history.
 
 - [Central architecture](architecture.md) is the canonical current and accepted
   system-architecture overview: domains, boundaries, dependency direction,

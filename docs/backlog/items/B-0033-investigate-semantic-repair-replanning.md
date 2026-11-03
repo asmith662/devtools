@@ -23,3 +23,15 @@ Agent framework or orchestration engine.
 - operational_dependencies: bounded Agent consumer with known failed work
 - promotion_trigger: one consumer needs explicit repair distinct from retry
 - validation_level: NONE
+
+## B-0053 continuation requirement (2026-11-03)
+
+B-0053 supplies a live failed-attempt case: its native Qwen execution remains
+BLOCKED after frozen private acceptance rejected the candidate, while a separate
+authorized Codex repair completed the engineering obligation. A future bounded
+repair-continuation or delegation capability should continue the same engineering
+obligation after a failed attempt instead of creating a replacement backlog task.
+It must preserve task identity, source custody, independent acceptance, finite
+execution budgets, model provenance and diagnostic confidentiality. This is
+follow-up evidence for the existing investigation, not implementation authority
+or a promotion of this deferred item.

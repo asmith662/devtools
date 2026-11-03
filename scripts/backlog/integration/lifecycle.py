@@ -29,6 +29,7 @@ from scripts.backlog.integration.validation import validate_tree
 from scripts.backlog.work import _load, same_backlog, task_from_dict
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
     from pathlib import Path
 
     from apps.qwen.tasks import CodingTask
@@ -551,6 +552,229 @@ class Integration:
     async def closeout(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Publish authoritative progress under the same source ownership."""
         return await self._operate(item, identity, grant, "closeout")
+
+    async def direct_closeout(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- direct completion owner transaction
+        self,
+        item: str,
+        spec: dict[str, Any],
+        *,
+        reviewer: str,
+        review_reference: str,
+        rationale: str,
+        authorization_reference: str,
+        authorize: Callable[[dict[str, Any]], bool] | None,
+    ) -> dict[str, Any]:
+        """Close verified direct-maintainer work without inventing a worker candidate.
+
+        Native candidates continue through the existing acceptance and Integration
+        lifecycle. This path authenticates an already published direct repair and
+        records its own completion decision and provenance.
+        """
+        await self.cycle._coordinator()
+        expected = {
+            "implementation_commit",
+            "validation_commit",
+            "implementation_by",
+            "remote",
+            "destination",
+            "validation_receipt",
+            "obligations",
+            "remaining_obligations",
+            "evidence",
+        }
+        if (
+            set(spec) != expected
+            or not isinstance(spec["implementation_by"], str)
+            or not spec["implementation_by"].strip()
+            or spec["remote"] != "origin"
+            or spec["destination"] != "main"
+            or not isinstance(spec["validation_receipt"], str)
+            or not isinstance(spec["obligations"], list)
+            or not spec["obligations"]
+            or any(not isinstance(v, str) or not v.strip() for v in spec["obligations"])
+            or spec["remaining_obligations"] != []
+            or not isinstance(spec["evidence"], list)
+            or not spec["evidence"]
+            or any(not isinstance(v, str) or not v.strip() for v in spec["evidence"])
+            or reviewer != "Codex"
+            or not review_reference.strip()
+            or not rationale.strip()
+            or not authorization_reference.strip()
+        ):
+            raise ValueError("Complete direct-completion evidence and review required")
+        commit = spec["implementation_commit"]
+        validation_commit = spec["validation_commit"]
+        if (
+            not isinstance(commit, str)
+            or re.fullmatch(r"[a-f0-9]{40}|[a-f0-9]{64}", commit) is None
+            or not isinstance(validation_commit, str)
+            or re.fullmatch(r"[a-f0-9]{40}|[a-f0-9]{64}", validation_commit) is None
+        ):
+            raise ValueError("Direct implementation commit identity required")
+        for evidence_path in spec["evidence"]:
+            RepositoryResourceAddress(evidence_path)
+            if not evidence_path.startswith(("src/devtools/", "tests/", "docs/")):
+                raise PermissionError(
+                    "Completion evidence must identify repository work"
+                )
+            await git(self.cycle.root, "cat-file", "-e", f"{commit}:{evidence_path}")
+        receipt_path = resolve_path(
+            spec["validation_receipt"], base_directory=self.cycle.root
+        ).value
+        if not receipt_path.is_relative_to(self.cycle.root / ".local/validation"):
+            raise PermissionError(
+                "Protected validation evidence must be repository-local"
+            )
+        receipt = load_json(receipt_path)
+        receipt_sha = hashlib.sha256(receipt_path.read_bytes()).hexdigest()
+        if (
+            receipt.get("status") != "passed"
+            or receipt.get("executed_commit") != validation_commit
+            or receipt.get("configured_coverage_percent") != 100.0
+            or type(receipt.get("passed")) is not int
+            or receipt["passed"] < 1
+            or "scripts/validate_development.py" not in receipt.get("command", [])
+        ):
+            raise PermissionError(
+                "Exact protected development validation receipt required"
+            )
+        branch = await git(self.cycle.root, "branch", "--show-current")
+        head = await git(self.cycle.root, "rev-parse", "HEAD")
+        remote = await remote_head(self.cycle.root, spec["remote"], spec["destination"])
+        if branch != spec["destination"] or head != remote:
+            raise PermissionError(
+                "Direct closeout requires synchronized destination main"
+            )
+        await git(
+            self.cycle.root, "merge-base", "--is-ancestor", commit, validation_commit
+        )
+        await git(
+            self.cycle.root, "merge-base", "--is-ancestor", validation_commit, head
+        )
+        later_paths = await git(
+            self.cycle.root, "diff", "--name-only", validation_commit, head
+        )
+        if any(
+            path and not path.startswith("docs/") for path in later_paths.splitlines()
+        ):
+            raise PermissionError(
+                "Executable inputs changed after protected validation"
+            )
+        status = await git(self.cycle.root, "status", "--porcelain")
+        if any(not line.startswith("??") for line in status.splitlines()):
+            raise PermissionError("Tracked repository changes prevent direct closeout")
+        if (self.cycle.root / ".local/backlog/checkout-owner").exists():
+            raise PermissionError("Checkout owner prevents administrative closeout")
+
+        request_identity = {
+            "item": item,
+            "spec": spec,
+            "reviewer": reviewer,
+            "review_reference": review_reference,
+            "rationale": rationale,
+            "authorization_reference": authorization_reference,
+        }
+        identity = _digest(request_identity)
+        folder = self.cycle._folder(item) / "direct-completion" / identity
+        record_path = folder / "completion.json"
+        if record_path.exists():
+            previous = _load(record_path, "backlog-direct-completion-v1")
+            if previous.get("request") != request_identity:
+                raise PermissionError("Direct completion evidence changed")
+            return previous
+        backlog = self.cycle.intake.approved_item(item)
+        if "- status: BACKLOG" not in backlog["text"]:
+            raise PermissionError("Only an open BACKLOG item can be directly closed")
+        completion = {
+            "schema": "backlog-direct-completion-v1",
+            "request": request_identity,
+            "identity": identity,
+            "item": item,
+            "decision": "COMPLETE_PARENT",
+            "implementation_by": spec["implementation_by"],
+            "implementation_commit": commit,
+            "validation_commit": validation_commit,
+            "destination": f"{spec['remote']}/{spec['destination']}@{head}",
+            "protected_validation": {
+                "path": spec["validation_receipt"],
+                "sha256": receipt_sha,
+                "executed_commit": validation_commit,
+                "status": receipt["status"],
+                "passed": receipt.get("passed"),
+                "skipped": receipt.get("skipped"),
+                "coverage_percent": receipt["configured_coverage_percent"],
+            },
+            "obligations": spec["obligations"],
+            "remaining_obligations": [],
+            "evidence": spec["evidence"],
+            "completion_review": {
+                "reviewer": reviewer,
+                "reference": review_reference,
+                "rationale": rationale,
+            },
+            "authorization_reference": authorization_reference,
+        }
+        request = {"operation": "direct-backlog-completion", "completion": completion}
+        if authorize is None or not authorize(request):
+            raise PermissionError("Explicit direct-completion authorization required")
+        with self.cycle.intake._writer():
+            current = self.cycle.intake.approved_item(item)
+            if current["text"] != backlog["text"]:
+                raise PermissionError("Backlog item changed during direct closeout")
+            path = resolve_path(current["path"]).value
+            old = _read(path)
+            updated = old.replace("- status: BACKLOG", "- status: CLOSED", 1)
+            if updated == old:
+                raise PermissionError("Backlog status transition is unavailable")
+            updated += (
+                "\n## Verified direct implementation completion "
+                + identity
+                + "\n\n"
+                + "- Implementation: "
+                + spec["implementation_by"]
+                + " @ "
+                + commit
+                + "\n"
+                + "- Verified destination: "
+                + f"{spec['remote']}/{spec['destination']}@{head}"
+                + "\n"
+                + "- Protected validation receipt: "
+                + receipt_sha
+                + " (executed commit "
+                + validation_commit
+                + "; passed; 100% configured coverage)\n"
+                + "- Codex completion review: "
+                + review_reference
+                + " — "
+                + rationale
+                + "\n"
+                + "- Authorization: "
+                + authorization_reference
+                + "\n"
+                + "- Engineering obligations: "
+                + "; ".join(spec["obligations"])
+                + "\n"
+                + "- Evidence: "
+                + "; ".join(spec["evidence"])
+                + "\n"
+            )
+            index_path = self.cycle.root / "docs/backlog/overview.md"
+            index = _read(index_path)
+            lines = index.splitlines(keepends=True)
+            row_prefix = "| [" + item + "]"
+            matching = [
+                i for i, line in enumerate(lines) if line.startswith(row_prefix)
+            ]
+            if len(matching) != 1 or "| BACKLOG |" not in lines[matching[0]]:
+                raise PermissionError("Canonical backlog index row differs")
+            lines[matching[0]] = lines[matching[0]].replace(
+                "| BACKLOG |", "| CLOSED |", 1
+            )
+            folder.mkdir(parents=True, exist_ok=True)
+            write(TextFile(resolve_path(path), updated))
+            write(TextFile(resolve_path(index_path), "".join(lines)))
+            self.cycle._save(record_path, completion)
+        return _load(record_path, "backlog-direct-completion-v1")
 
     def _intent(self, item: str, identity: str, phase: str, grant: str) -> None:
         path = self.folder(item, identity) / (phase + "-intent.json")

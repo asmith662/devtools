@@ -68,6 +68,13 @@ def configure(commands: Any) -> None:  # noqa: ANN401 -- argparse subparser boun
     plan.add_argument("item")
     plan.add_argument("--review", required=True)
     plan.add_argument("--spec", required=True)
+    direct = commands.add_parser("integration-direct-closeout")
+    direct.add_argument("item")
+    direct.add_argument("--spec", required=True)
+    direct.add_argument("--reviewer", required=True)
+    direct.add_argument("--review-reference", required=True)
+    direct.add_argument("--rationale", required=True)
+    direct.add_argument("--authorization-reference", required=True)
     status = commands.add_parser("integration-status")
     status.add_argument("item")
     status.add_argument("plan")
@@ -188,6 +195,16 @@ async def _run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa:
                 args.item,
                 args.review,
                 load_json(resolve_path(args.spec, base_directory=Path.cwd()).value),
+            )
+        case "integration-direct-closeout":
+            return await integration.direct_closeout(
+                args.item,
+                load_json(resolve_path(args.spec, base_directory=Path.cwd()).value),
+                reviewer=args.reviewer,
+                review_reference=args.review_reference,
+                rationale=args.rationale,
+                authorization_reference=args.authorization_reference,
+                authorize=confirm,
             )
         case "integration-status":
             return integration.status(args.item, args.plan)

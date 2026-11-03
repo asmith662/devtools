@@ -33,6 +33,44 @@ The [2026-10-24 integration checkpoint](../research/feature-branch-integration-2
 records one such main-derived candidate. Protected publication remains a separate
 explicit decision; existing server protections are never bypassed.
 
+### Verified direct completion
+
+Engineering-obligation completion is distinct from any worker-attempt outcome.
+The accepted-candidate lifecycle above remains mandatory when installing a
+native or legacy worker candidate. A BLOCKED or rejected worker attempt remains
+historically blocked; it cannot be relabeled or replaced by a direct-completion
+record.
+
+An authorized direct-maintainer repair already published to the protected
+destination can close its backlog parent through the existing Integration
+owner's `integration-direct-closeout` entry. This is a separate record, not a
+synthetic assignment, candidate, worker acceptance, or Integration event. The
+owner requires the implementation actor and commit, every completed obligation
+and its repository evidence, an explicit empty remaining-obligations list, a
+Codex completion review, and an authorization callback for the exact request.
+It records implementation and validation commits separately, authenticates a
+passing protected-development receipt for the exact validated tree, 100%
+configured production coverage, ancestry from the implementation commit through
+the validation commit to synchronized `origin/main`, and no executable-input
+changes after the receipt (documentation-only later commits are allowed). It appends a
+hash-identified completion record under
+`.local/backlog/work/<B-id>/direct-completion/`, then updates the canonical item
+and overview to `CLOSED`. Ordinary Git publication rules still apply.
+
+The operator entry is `python -m scripts.backlog integration-direct-closeout
+<B-id> --spec <direct-completion.json> --reviewer Codex --review-reference
+<review> --rationale <assessment> --authorization-reference <decision>`. The
+active routine policy is not expanded by this entry; each closeout still needs
+the existing owner's exact-request authorization callback. Policy approval of
+this completion contract does not authorize unrelated or future source changes.
+
+The direct path records production implementation provenance independently of
+the worker-attempt history. It does not authorize source changes or substitute
+for protected validation. It is limited to complete parent disposition; partial
+work remains open. Native installation continues to require an accepted native
+candidate and the separate Integration grant, validation, destination
+verification, and parent-vs-slice review above.
+
 ## Lifecycle and ownership
 
 | Phase | Required evidence / effect |
