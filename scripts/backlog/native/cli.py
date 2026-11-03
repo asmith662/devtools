@@ -80,6 +80,9 @@ def configure(commands: Any) -> None:  # noqa: ANN401, PLR0915 -- finite argpars
     actor = commands.add_parser("native-review-continue")
     actor.add_argument("item")
     actor.add_argument(
+        "--attempt", help="Exact predecessor subject for bounded v3 continuation"
+    )
+    actor.add_argument(
         "--previous", required=True, help="Exact original blocked proposal SHA256"
     )
     actor.add_argument("--policy", required=True)
@@ -130,6 +133,7 @@ async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: 
         return await native.reviewer.prepare_continuation(
             args.item,
             previous=args.previous,
+            attempt=args.attempt,
             reviewer=load_json(
                 resolve_path(args.policy, base_directory=Path.cwd()).value
             ),

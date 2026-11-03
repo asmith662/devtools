@@ -26,7 +26,6 @@ from tests.scripts.backlog.routine.test_authority import activate, assessment, p
 from tests.scripts.backlog.test_native import (
     PUBLIC,
     SOURCE,
-    approve_reviewer,
     conclusion,
     native_candidate,
     reviewer_policy,
@@ -68,7 +67,9 @@ class BatchModel:
                     for n, p in enumerate((SOURCE, PUBLIC))
                 ),
             )
-        assert [m.tool_call_id for m in request.prompt.messages[-2:]] == [
+        assert [m.tool_call_id for m in request.prompt.messages if m.role == "tool"][
+            -2:
+        ] == [
             "read-0",
             "read-1",
         ]
@@ -87,7 +88,19 @@ async def legacy_failure(
     await native_candidate(cycle, item)
     config = reviewer_policy()
     config["read_paths"] = [SOURCE, PUBLIC]
-    await approve_reviewer(cycle, item, config)
+    await cycle.native.reviewer.prepare(item, reviewer=config)
+    path = cycle.native.reviewer.folder(item) / "subject.json"
+    packet = json.loads(path.read_bytes())
+    packet.pop("sha256")
+    packet.pop("completion")
+    packet["sha256"] = _digest(packet)
+    path.write_text(json.dumps(packet), encoding="utf-8")
+    await cycle.native.reviewer.authorize(
+        item,
+        reference="authored-legacy-review",
+        expires=Timestamp.now() + Duration.minutes(5),
+        authorize=lambda _: True,
+    )
 
     async def old_batch(*_args: Any, **_kwargs: Any) -> int:  # noqa: ANN401
         raise PermissionError(LEGACY_BATCH_FAILURE.removeprefix("PermissionError: "))

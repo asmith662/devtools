@@ -18,10 +18,13 @@ from devtools.resources.filesystem import FileFormat, TextFile, read
 from devtools.tools.source import SourceScope
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.packet import fingerprint
+from scripts.backlog.native.review import budget
 from scripts.backlog.work import _load
 
 if TYPE_CHECKING:
     from scripts.backlog.native.lifecycle import NativeMaintenance
+
+budget_view = budget.view
 
 SCOPE = "native-diagnostic-review-v1; read-only; findings-only; no-accept-integrate-install-publish-closeout"
 CONTINUATION = {
@@ -66,62 +69,6 @@ def response_payload(text: str) -> tuple[str, str]:
     if match is None or re.search(r"(?m)^[ \t]*```", match[1]):
         raise ValueError("Unsupported diagnostic JSON presentation envelope")
     return match[1], "single-json-fence-v1"
-
-
-def budget_view(packet: dict[str, Any], calls: int, reads: int) -> dict[str, Any]:
-    """Describe active allowances and supplied source; never create authority/evidence."""
-    limits = packet["policy"]["budgets"]
-    remaining_calls = limits["model_calls"] - calls
-    remaining_reads = limits["reads"] - reads
-    if remaining_calls <= 0:
-        raise ValueError("Diagnostic model-call budget exhausted before synthesis")
-    final = remaining_calls == 1 or remaining_reads == 0
-    subject = packet["subject"]
-    baseline, candidate = (subject["evidence"][k] for k in ("baseline", "candidate"))
-    resources = [
-        {
-            "path": path,
-            "current_identity": identity,
-            "matches_supplied_baseline": path == baseline["path"]
-            and identity == baseline["identity"],
-            "eligible_for_acquisition": not final,
-        }
-        for path, identity in subject["inputs"].items()
-    ]
-    return {
-        "schema": "native-diagnostic-budget-v1",
-        "phase": "synthesis" if final else "inspection",
-        "model_calls_used": calls,
-        "model_calls_remaining_including_this_call": remaining_calls,
-        "acquisitions_completed": reads,
-        "acquisitions_remaining": remaining_reads,
-        "source_tools_permitted": not final,
-        "final_model_call_reserved": True,
-        "supplied_source": [
-            {
-                "reference": "baseline",
-                "path": baseline["path"],
-                "identity": baseline["identity"],
-                "complete_text_in_subject": True,
-            },
-            {
-                "reference": "candidate",
-                "path": candidate["path"],
-                "sha256": candidate["sha256"],
-                "complete_text_in_subject": True,
-            },
-        ],
-        "current_resources": resources,
-        "instruction": (
-            "Produce the final structured diagnostic conclusion now. No source Tools are available. "
-            "If evidence is insufficient, return disposition insufficient-evidence with specific gaps. "
-            "No further model call is promised. Do not request Tools or invent findings."
-            if final
-            else "Use supplied baseline/candidate text directly; no reread is required. A matching current "
-            "baseline identity authenticates equivalence to that baseline, not to the candidate. "
-            "Acquire only missing useful evidence. You may conclude now; the last approved call is reserved for synthesis."
-        ),
-    }
 
 
 def _text(owner: NativeMaintenance, path: str) -> str:

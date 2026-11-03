@@ -53,8 +53,12 @@ from devtools.tools.source import (
 )
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
-from scripts.backlog.native.review import continuation, diagnostic
-from scripts.backlog.native.review.acquisition import acquire
+from scripts.backlog.native.review import budget, continuation, diagnostic
+from scripts.backlog.native.review.acquisition import (
+    ReadBatchRefusalError,
+    acquire,
+    refusal_feedback,
+)
 from scripts.backlog.native.review.proposal import parse
 from scripts.backlog.native.review.subject import subject
 from scripts.backlog.work import _load
@@ -79,6 +83,8 @@ Use authorized read_source if useful; do not edit, execute checks or invent auth
 Only review_scope.read_paths may be read; subject scope describes the CODER's scope.
 Read-only read_source calls may be batched within the remaining total read allowance.
 Each call needs a unique ID; an invalid or oversized batch enters no read Tools.
+Use the current remaining-budget view. Known unentered refusals are feedback, not
+new permission. The final approved call has no Tools: conclude or state insufficient evidence.
 Return only raw JSON, without Markdown fences or surrounding prose.
 Return a JSON object with disposition (accept/reject/insufficient-evidence), summary,
 evidence (reference names), findings (kind observed/inference, severity blocking/advisory,
@@ -238,31 +244,41 @@ class NativeReviewer:
         folder = self.owner.cycle._folder(item) / (
             "diagnostic-reviewer" if self.diagnostic_only else "reviewer"
         )
-        return folder / "continuation" if self.attempt is not None else folder
+        if self.attempt is None:
+            return folder
+        addressed = folder / "attempts" / self.attempt
+        return addressed if addressed.exists() else folder / "continuation"
 
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Read a closed operational record with its content identity."""
         if name not in {"subject", "authorization", "dispatch", "proposal"}:
             raise ValueError("Unsupported reviewer record")
-        value = _load(
-            self.folder(item) / (name + ".json"),
-            self.prefix + name + "-" + self.version,
-        )
+        path = self.folder(item) / (name + ".json")
+        version = self.version
+        if self.attempt is not None and self.folder(item).parent.name == "attempts":
+            version = "v3"
+        value = _load(path, self.prefix + name + "-" + version)
         if self.attempt is not None:
             if (
                 value["sha256"] if name == "subject" else value["subject_sha256"]
             ) != self.attempt:
                 raise PermissionError("Record belongs to another review attempt")
             if name == "subject":
-                continuation.validate(self, item, value)
+                if version == "v3":
+                    continuation.validate_next(self, item, value)
+                else:
+                    continuation.validate(self, item, value)
         return value
 
     def save(self, item: str, name: str, value: dict[str, Any]) -> dict[str, Any]:
         """Use the existing immutable administrative writer, never a new evidence store."""
         with self.owner.cycle.intake._writer():
+            version = self.version
+            if self.attempt is not None and self.folder(item).parent.name == "attempts":
+                version = "v3"
             return self.owner.cycle._save(
                 self.folder(item) / (name + ".json"),
-                {"schema": self.prefix + name + "-" + self.version, **value},
+                {"schema": self.prefix + name + "-" + version, **value},
             )
 
     async def prepare(
@@ -289,6 +305,11 @@ class NativeReviewer:
                     "scope": self.scope,
                     "tools": self.tools(),
                     **(
+                        {"completion": dict(budget.COMPLETION)}
+                        if not self.diagnostic_only
+                        else {}
+                    ),
+                    **(
                         {
                             "archive": archive,
                             "continuation": dict(diagnostic.CONTINUATION),
@@ -307,6 +328,7 @@ class NativeReviewer:
         previous: str,
         reviewer: dict[str, Any],
         correction_reference: str,
+        attempt: str | None = None,
     ) -> dict[str, Any]:
         """Prepare at most one fresh acceptance attempt; preparation grants no effects."""
         if self.diagnostic_only or self.attempt is not None:
@@ -315,6 +337,10 @@ class NativeReviewer:
             )
         policy(reviewer, self.owner.record(item, "assignment")["task"]["worker"])
         current = await self.subject(item, reviewer["read_paths"], None)
+        if attempt is not None:
+            return continuation.prepare_next(
+                self, item, current, attempt, previous, reviewer, correction_reference
+            )
         parent = continuation.predecessor(self, item, current)
         if (
             previous != parent["previous_proposal_sha256"]
@@ -340,6 +366,7 @@ class NativeReviewer:
                     "scope": self.scope,
                     "tools": self.tools(),
                     "attempt": {**parent, "correction_reference": correction_reference},
+                    "completion": dict(budget.COMPLETION),
                 },
             )
 
@@ -349,6 +376,10 @@ class NativeReviewer:
         policy(packet["policy"], packet["subject"]["evidence"]["scope"]["worker"])
         if (
             packet["scope"] != self.scope
+            or (
+                "completion" in packet
+                and (self.diagnostic_only or packet["completion"] != budget.COMPLETION)
+            )
             or packet["tools"] != self.tools()
             or (
                 "continuation" in packet
@@ -584,8 +615,11 @@ class NativeReviewer:
                     if str(interaction.source) != config["source"]:
                         raise PermissionError("Reviewer source changed")
                     view = (
-                        diagnostic.budget_view(packet, calls, reads)
-                        if self.diagnostic_only and "continuation" in packet
+                        budget.view(
+                            packet, calls, reads, diagnostic=self.diagnostic_only
+                        )
+                        if (self.diagnostic_only and "continuation" in packet)
+                        or (not self.diagnostic_only and "completion" in packet)
                         else None
                     )
                     active_messages = list(messages)
@@ -708,19 +742,47 @@ class NativeReviewer:
                             await self.current(item)
                             self.authority(item, packet)
 
-                        reads = await acquire(
-                            response,
-                            request,
-                            scope=scope,
-                            index=index,
-                            reads=reads,
-                            budgets=config["budgets"],
-                            messages=messages,
-                            references=references,
-                            claimed=claimed,
-                            capture=capture,
-                            guard=guard,
-                        )
+                        try:
+                            if view is not None and not view["source_tools_permitted"]:
+                                reason = "Review synthesis has no source Tools"
+                                capture.add(
+                                    "review-tool-refused",
+                                    {
+                                        "calls": [
+                                            asdict(c) for c in response.tool_calls
+                                        ],
+                                        "reason": reason,
+                                        "tool_effect_entered": False,
+                                    },
+                                )
+                                raise ReadBatchRefusalError(reason)
+                            reads = await acquire(
+                                response,
+                                request,
+                                scope=scope,
+                                index=index,
+                                reads=reads,
+                                budgets=config["budgets"],
+                                messages=messages,
+                                references=references,
+                                claimed=claimed,
+                                capture=capture,
+                                guard=guard,
+                                recover=view is not None,
+                            )
+                        except ReadBatchRefusalError as error:
+                            await guard()
+                            refusal_feedback(
+                                packet,
+                                calls,
+                                reads,
+                                response,
+                                request,
+                                str(error),
+                                messages,
+                                claimed,
+                                capture,
+                            )
                         continue
                     call = response.tool_calls[0]
                     if (

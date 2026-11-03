@@ -835,7 +835,7 @@ class ReviewModel:
                     ),
                 ),
             )
-        assert request.prompt.messages[-1].role == "tool"
+        assert any(m.role == "tool" for m in request.prompt.messages)
         return ModelResponse(json.dumps(self.response), self.source)
 
 
@@ -988,6 +988,20 @@ def test_native_review_actor_blocked_without_replay(
         if fault == "timeout":
             config["budgets"]["call_seconds"] = config["budgets"]["wall_seconds"] = 1
         await approve_reviewer(cycle, item, config)
+        # Materialize the historical pre-completion-policy contract in this
+        # authored fixture; new known-refusal recovery has separate regressions.
+        path = cycle.native.reviewer.folder(item) / "subject.json"
+        packet = json.loads(path.read_bytes())
+        packet.pop("sha256")
+        packet.pop("completion")
+        packet["sha256"] = _digest(packet)
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        grant_path = cycle.native.reviewer.folder(item) / "authorization.json"
+        grant = json.loads(grant_path.read_bytes())
+        grant.pop("sha256")
+        grant["subject_sha256"] = packet["sha256"]
+        grant["sha256"] = _digest(grant)
+        grant_path.write_text(json.dumps(grant), encoding="utf-8")
         model = ReviewModel(fault=fault)
         actor = cycle.native.reviewer
         original = actor.save

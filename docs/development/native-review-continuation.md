@@ -21,7 +21,8 @@ assignment, consumed coding dispatch and immutable candidate remain unchanged.
 | Trusted host disposition | Native review v2 record explicitly naming the subject and proposal |
 | Integration plan | Existing owner; exact accepted host-review hash plus explicit continuation-subject hash |
 
-There is one fixed continuation slot, not an open-ended numbered registry.
+Version 2 has one fixed continuation slot. The prospective version 3 allowance
+below adds one content-addressed subject, not an open-ended numbered registry.
 Creating it uses the existing exclusive administrative writer and directory
 claim; concurrent or duplicate preparation fails. Persistence failure does not
 refund the slot. Legacy v1 subjects/readers and manual review retain their
@@ -93,6 +94,35 @@ An expired new grant cannot be reused or silently renewed. The continuation
 cannot itself create another continuation, even after an infrastructure failure.
 Additional failure families or another allowance require explicit prospective
 contract work, not approval shopping or a caller-supplied retry reason.
+
+## Prospective recovery of the v2 budget interruption
+
+The operator authorized one additional attempt against the existing B-0052
+qualified candidate after its authenticated v2 acquisition-budget interruption.
+Version 3 supports exactly that failure grammar: two returned model requests,
+two completed authorized reads, then a two-read batch refused before entry with
+one acquisition remaining, no structured conclusion and no native host judgment.
+All nine historical observations, content identities, source/settings/Tool scope,
+grant/dispatch/proposal links, timing and completed-read references authenticate.
+Missing returns, partial or unknown effects, changed candidate, substantive
+judgment and a v3 predecessor are ineligible. Earlier reads remain historical
+completions; the new session receives the ordinary independent subject.
+
+Pass `attempt=<v2-subject-sha256>` alongside the exact previous proposal to
+`prepare_continuation`, or `--attempt` to `native-review-continue`. Preparation
+claims `reviewer/attempts/<new-subject-sha256>/` under the exclusive writer.
+Subject, authorization, dispatch and proposal use v3 schemas. A nonempty attempt
+directory consumes the finite allowance even if later persistence fails.
+No second v3 subject or continuation of v3 is permitted. V1/v2 records remain
+immutable; explicit selectors also bind existing host and integration readers.
+
+New acceptance subjects include the shared completion policy: remaining-budget
+visibility, one reserved synthesis call and correlated recovery of known
+zero-entry refusals within the same approved limits. The final call exposes no
+source Tools. Capacity failure, authority/currentness loss and ambiguous effects
+remain terminal. This policy is prospective and does not rewrite historical
+subjects or refund consumed dispatches. Fresh standing-policy authorization is
+required for the new exact subject; preparation alone grants no effects.
 
 ## Host and integration consumers
 

@@ -116,6 +116,9 @@ cannot undo a call already entered; known source restoration remains mandatory.
 An eligible [acceptance-review continuation](native-review-continuation.md) may
 receive a fresh policy-derived grant for its explicit new subject. This is a
 separate bounded attempt, not renewal of the old grant or replay of its dispatch.
+The closed v3 continuation similarly uses a fresh exact-subject grant after
+authentication of the v2 budget interruption; its single prospective allowance
+does not alter policy ceilings or permit another attempt after v3 is consumed.
 Use `authorize_reviewer(..., attempt=subject_sha256)` and
 `host_review(..., attempt=subject_sha256)`. The existing acceptance-review and
 host-review operations, profile/resource ceilings and escalation remain unchanged.

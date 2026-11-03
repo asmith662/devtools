@@ -32,7 +32,11 @@ from devtools.tools.errors import ToolInputError
 from devtools.tools.source import ScopedSourceTool, SourceReadRequest, SourceScope
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
-from scripts.backlog.native.review.acquisition import acquire
+from scripts.backlog.native.review.acquisition import (
+    ReadBatchRefusalError,
+    acquire,
+    refusal_feedback,
+)
 from tests.scripts.backlog.test_native import (
     PUBLIC,
     SOURCE,
@@ -77,6 +81,76 @@ def historical_calls() -> tuple[ModelToolCall, ...]:
     return tuple(ModelToolCall(**c) for c in record["response"]["tool_calls"])
 
 
+@pytest.mark.parametrize("fault", [None, "prompt", "capture", "calls", "duplicate"])
+def test_refusal_feedback_capacity_and_correlation(fault: str | None) -> None:
+    """A refusal adds no source authority and cannot exceed remaining capacity."""
+    calls = historical_calls()
+    response = ModelResponse("", InteractionSource("bounded-review"), tool_calls=calls)
+    messages = [PromptMessage("system", "Mandatory instructions")]
+    request = ModelRequest(Prompt("", "messages", tuple(messages)))
+    capture = MemoryCapture()
+    packet: dict[str, Any] = {
+        "policy": {
+            "read_paths": [],
+            "budgets": {
+                "model_calls": 4,
+                "reads": 3,
+                "prompt_bytes": 65536,
+                "response_bytes": 1024,
+            },
+        },
+        "subject": {
+            "inputs": {},
+            "evidence": {
+                "baseline": {"path": "source.py", "identity": "baseline"},
+                "candidate": {"path": "source.py", "sha256": "candidate"},
+            },
+        },
+    }
+    claimed = (
+        {cast("str", calls[0].provider_call_id)} if fault == "duplicate" else set()
+    )
+    if fault == "prompt":
+        packet["policy"]["budgets"]["prompt_bytes"] = 1
+    if fault == "capture":
+        capture.maximum = 1
+    if fault:
+        with pytest.raises((PermissionError, ValueError)):
+            refusal_feedback(
+                packet,
+                4 if fault == "calls" else 2,
+                2,
+                response,
+                request,
+                "batch exceeds remaining one read",
+                messages,
+                claimed,
+                capture,
+            )
+        assert len(messages) == 1
+        return
+    refusal_feedback(
+        packet,
+        2,
+        2,
+        response,
+        request,
+        "batch exceeds remaining one read",
+        messages,
+        claimed,
+        capture,
+    )
+    assert [m.tool_call_id for m in messages if m.role == "tool"] == [
+        c.provider_call_id for c in calls
+    ]
+    assert all(
+        json.loads(m.content)["acquisitions_remaining"] == 1
+        for m in messages
+        if m.role == "tool"
+    )
+    assert set(claimed) == {c.provider_call_id for c in calls}
+
+
 @pytest.mark.parametrize(
     "fault",
     [
@@ -99,10 +173,13 @@ def historical_calls() -> tuple[ModelToolCall, ...]:
         "persist",
     ],
 )
+@pytest.mark.parametrize("recover", [False, True])
 def test_historical_batch_preflight_and_effects(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     fault: str | None,
+    *,
+    recover: bool,
 ) -> None:
     """Retain authentic batch shape over small authored source, never live refs."""
     calls = historical_calls()
@@ -224,10 +301,13 @@ def test_historical_batch_preflight_and_effects(
             claimed=claimed,
             capture=capture,
             guard=guard,
+            recover=recover,
         )
 
     if fault:
-        with pytest.raises((ValueError, PermissionError, OSError, ToolInputError)):
+        with pytest.raises(
+            (ValueError, PermissionError, OSError, ToolInputError),
+        ) as failure:
             asyncio.run(run())
         expected_entries = {
             "unknown-first": 1,
@@ -237,6 +317,8 @@ def test_historical_batch_preflight_and_effects(
             "persist": 1,
         }
         assert len(entered) == expected_entries.get(fault, 0)
+        if entered or fault == "stale":
+            assert not isinstance(failure.value, ReadBatchRefusalError)
         if not entered:
             assert capture.values[-1]["tool_effect_entered"] is False
             assert not references
@@ -308,7 +390,9 @@ def test_batch_review_to_plan_and_no_consumed_replay(
                             for n, p in enumerate(config["read_paths"])
                         ),
                     )
-                assert [m.tool_call_id for m in request.prompt.messages[-2:]] == [
+                assert [
+                    m.tool_call_id for m in request.prompt.messages if m.role == "tool"
+                ][-2:] == [
                     "batch-0",
                     "batch-1",
                 ]

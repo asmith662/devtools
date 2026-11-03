@@ -20,6 +20,7 @@ from devtools.tools.source import (
     select_source_read,
 )
 from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import budget
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
@@ -32,7 +33,86 @@ if TYPE_CHECKING:
     from scripts.backlog.native.execution import Capture
 
 
-async def acquire(  # noqa: C901 -- preflight, ordered entry, completion are distinct
+class ReadBatchRefusalError(PermissionError):
+    """A persisted preflight refusal with proven zero Tool entries."""
+
+
+def refusal_feedback(  # noqa: PLR0917 -- exact call/request/capture pairing
+    packet: dict[str, Any],
+    calls: int,
+    reads: int,
+    response: ModelResponse,
+    request: ModelRequest,
+    reason: str,
+    messages: list[PromptMessage],
+    claimed: set[str],
+    capture: Capture,
+) -> None:
+    """Prepare correlated refusals; only a later captured request proves delivery."""
+    ids = [c.provider_call_id for c in response.tool_calls]
+    if not all(ids) or len(set(ids)) != len(ids) or claimed.intersection(ids):
+        raise PermissionError("Refusal cannot correlate missing or repeated call IDs")
+    view = budget.view(packet, calls, reads, diagnostic=False)
+    value = {
+        "status": "refused",
+        "tool_effect_entered": False,
+        "reason": reason,
+        "acquisitions_remaining": view["acquisitions_remaining"],
+        "model_calls_remaining": view["model_calls_remaining_including_this_call"],
+        "next_response_must_synthesize": not view["source_tools_permitted"],
+        "permitted_operations": ["structured-conclusion"]
+        + (
+            ["authorized-read-within-remaining-allowance"]
+            if view["source_tools_permitted"]
+            else []
+        ),
+    }
+    exchange = [
+        PromptMessage(
+            "assistant",
+            response.content,
+            tool_calls=response.tool_calls,
+            reasoning_content=response.reasoning_content,
+        ),
+    ]
+    exchange.extend(
+        PromptMessage("tool", json.dumps(value), tool_call_id=c.provider_call_id)
+        for c in response.tool_calls
+    )
+    following = replace(
+        request,
+        prompt=Prompt(
+            "",
+            "messages",
+            (*messages, *exchange, PromptMessage("user", json.dumps(view))),
+        ),
+        tools=request.tools if view["source_tools_permitted"] else (),
+    )
+    reserve = (
+        len(json.dumps(asdict(following), indent=2).encode())
+        + 2 * packet["policy"]["budgets"]["response_bytes"]
+        + 16384
+    )
+    if (
+        request_bytes(following) > packet["policy"]["budgets"]["prompt_bytes"]
+        or capture.used + reserve > capture.maximum
+    ):
+        raise ValueError(
+            "Correlated refusal and mandatory Context cannot fit remaining capacity",
+        )
+    capture.add(
+        "review-refusal-feedback",
+        {
+            "calls": [asdict(c) for c in response.tool_calls],
+            "feedback": value,
+            "disclosure": "prepared; next captured model intent proves inclusion",
+        },
+    )
+    claimed.update(cast("list[str]", ids))
+    messages.extend(exchange)
+
+
+async def acquire(  # noqa: C901, PLR0912 -- preflight, ordered entry, completion are distinct
     response: ModelResponse,
     request: ModelRequest,
     *,
@@ -45,6 +125,7 @@ async def acquire(  # noqa: C901 -- preflight, ordered entry, completion are dis
     claimed: set[str],
     capture: Capture,
     guard: Callable[[], Awaitable[None]],
+    recover: bool = False,
 ) -> int:
     """Validate the entire read-only batch before any ToolRunner entry.
 
@@ -142,6 +223,16 @@ async def acquire(  # noqa: C901 -- preflight, ordered entry, completion are dis
                 "tool_effect_entered": False,
             },
         )
+        if recover and isinstance(
+            error,
+            (ValueError, PermissionError, TypeError, KeyError),
+        ):
+            await guard()  # Authority/currentness failures never become recoverable.
+            ids = [c.provider_call_id for c in calls]
+            if all(ids) and len(set(ids)) == len(ids) and not claimed.intersection(ids):
+                raise ReadBatchRefusalError(
+                    type(error).__name__ + ": " + str(error),
+                ) from error
         raise
 
     # No effects occurred above. These sequential operations are not atomic.

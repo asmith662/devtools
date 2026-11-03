@@ -86,7 +86,21 @@ request and capture. Predictions use the existing snapshot-bound Context range
 options; they are not completed acquisitions or model-visible source evidence.
 Capacity reservation is conservative and may refuse a batch that lacks headroom
 for the next request and bounded response. Smaller authorized ranges remain
-available. Invalid batches terminate with an explicit unentered refusal.
+available. New subjects carry `completion: native-review-completion-v1`.
+For those subjects, known preflight refusals with unique fresh call IDs return
+correlated Tool feedback with zero entered effects and the remaining allowance.
+The refused batch consumes its model call but no acquisitions. Recovery stays
+inside the original call, read, time, Prompt and capture limits. Authority loss,
+stale inputs, ambiguous entry, missing/repeated IDs and persistence failure still
+terminate. Historical subjects without this policy retain their old behavior.
+
+Acceptance and diagnostic review share the budget-view implementation. Each
+prospective acceptance request reports remaining calls/acquisitions, supplied
+baseline/candidate identities and source eligibility. The last approved call,
+or a call after acquisition exhaustion, has no source Tools and requests the
+structured conclusion or explicit insufficient evidence. No call is added.
+Refusal feedback is recorded as prepared; only the next captured request proves
+its inclusion in model input. Actual completed reads alone become evidence.
 
 Admitted reads execute sequentially through existing Tools with authority and
 currentness checks before each entry. The assistant Tool-call batch is retained
@@ -112,7 +126,8 @@ also refuses a consumed review slot before issuing a decision. A blocked attempt
 cannot be overwritten, moved aside, or renewed by changing actor/session labels.
 The prospective [bounded continuation](native-review-continuation.md) now permits
 one distinct v2 subject after the authenticated, known unentered legacy batch
-barrier. The original dispatch remains consumed. Exact selection is required for
+barrier, plus one v3 subject after the closed v2 remaining-budget interruption.
+All preceding dispatches remain consumed. Exact selection is required for
 new authority, host disposition and integration readers; there is no implicit
 latest-result rule, engineering-rejection retry or general restart capability.
 
