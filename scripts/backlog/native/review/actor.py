@@ -241,7 +241,7 @@ class NativeReviewer:
 
     def folder(self, item: str) -> Path:
         """One non-replayable reviewer slot per native assignment."""
-        folder = self.owner.cycle._folder(item) / (
+        folder = self.owner.folder(item) / (
             "diagnostic-reviewer" if self.diagnostic_only else "reviewer"
         )
         if self.attempt is None:

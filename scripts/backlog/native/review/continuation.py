@@ -128,7 +128,7 @@ def predecessor(
     if times != sorted(times) or times[-2] >= times[-1]:
         raise PermissionError("Prior completion lacks valid historical authority")
     # Any host judgment is consequential; do not shop for a replacement judgment.
-    for path in reviewer.owner.cycle._folder(item).glob("review-*.json"):
+    for path in reviewer.owner.folder(item).glob("review-*.json"):
         decision = read_decision(path)
         if (
             decision.get("proposal_sha256") == proposal["sha256"]
@@ -319,7 +319,7 @@ def budget_predecessor(  # noqa: PLR0912 -- closed nine-observation historical g
     ]
     if times != sorted(times) or times[-2] >= times[-1]:
         raise PermissionError("Prior effects lack valid historical authority")
-    for path in reviewer.owner.cycle._folder(item).glob("review-*.json"):
+    for path in reviewer.owner.folder(item).glob("review-*.json"):
         decision = read_decision(path)
         if (
             decision.get("proposal_sha256") == proposal["sha256"]

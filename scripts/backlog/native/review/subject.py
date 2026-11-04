@@ -60,7 +60,7 @@ async def subject(owner: NativeMaintenance, item: str) -> dict[str, Any]:
             "sha256": result["candidate_sha256"],
         },
         "diff": {
-            "text": _read(owner.cycle._folder(item) / "candidate.patch"),
+            "text": _read(owner.folder(item) / "candidate.patch"),
             "sha256": patch_hash,
         },
         "public-checks": checks,

@@ -213,7 +213,7 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0030](items/B-0030-investigate-provider-neutral-generative-model-interaction.md) | Provider-neutral generative-model interaction | SUPERSEDED | models |
 | [B-0031](items/B-0031-investigate-generic-execution-lifecycle-promotion.md) | Investigate generic execution lifecycle promotion | DEFERRED | execution |
 | [B-0032](items/B-0032-investigate-execution-retry-mechanics.md) | Investigate execution retry mechanics | DEFERRED | execution |
-| [B-0033](items/B-0033-investigate-semantic-repair-replanning.md) | Investigate semantic repair and replanning | DEFERRED | agents |
+| [B-0033](items/B-0033-investigate-semantic-repair-replanning.md) | Investigate semantic repair and replanning | ACTIVE | agents |
 | [B-0034](items/B-0034-investigate-uncertain-effect-reconciliation.md) | Investigate uncertain-effect reconciliation | DEFERRED | governance |
 | [B-0035](items/B-0035-investigate-tool-facing-capability-exposure.md) | Investigate Tool-facing capability exposure | CLOSED | tools |
 | [B-0036](items/B-0036-investigate-action-request-semantics.md) | Investigate Action request semantics | DEFERRED | agents |

@@ -180,7 +180,7 @@ async def subject(
         or patch != expected
     ):
         raise PermissionError("Diagnostic archive candidate/diff identity mismatch")
-    folder = owner.cycle._folder(item)
+    folder = owner.folder(item)
     availability = []
     for relative, text in (
         ("worker/final-source.py", source),

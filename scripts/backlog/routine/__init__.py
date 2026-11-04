@@ -192,6 +192,9 @@ class RoutineAuthority:
                 raise PermissionError("Qualified pinned idle provider required")
             if kind == "coding":
                 a = request["assignment"]
+                attempt = a.get("continuation", {}).get("number", 1)
+                if attempt > policy.get("coding_attempts", 1):
+                    raise PermissionError("Coding attempt exceeds active policy")
                 task = a["task"]
                 config = task
                 paths = [task["source"], *task["read_paths"], *task["tests"]]
@@ -368,10 +371,12 @@ class RoutineAuthority:
         *,
         assessment: dict[str, Any],
         provider: dict[str, Any],
+        attempt: int = 1,
     ) -> dict[str, Any]:
         """Issue a fresh existing native grant, never revive a dispatch slot."""
-        a = self.cycle.native.record(item, "assignment")
-        if (self.cycle._folder(item) / "dispatch.json").exists():
+        owner = self.cycle.native.select(attempt)
+        a = owner.record(item, "assignment")
+        if (owner.folder(item) / "dispatch.json").exists():
             raise PermissionError("Consumed native slot cannot replay")
         seconds = self.active(identity)["policy"]["grant_seconds"]
         expires = Timestamp.now() + Duration.seconds(seconds)
@@ -382,7 +387,7 @@ class RoutineAuthority:
             return False
 
         try:
-            await self.cycle.native.authorize(
+            await owner.authorize(
                 item,
                 reference="prospective-policy-decision",
                 expires=expires,
@@ -398,7 +403,7 @@ class RoutineAuthority:
             assessment=assessment,
             provider=provider,
         )
-        return await self.cycle.native.authorize(
+        return await owner.authorize(
             a["item"],
             reference=reference,
             expires=expires,

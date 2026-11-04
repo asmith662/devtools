@@ -48,6 +48,9 @@ task interpretation. General semantic decomposition is not implemented.
 Prepare against an existing separate `feat/` branch at the administrative HEAD.
 No worker branch is automatically selected or created. The same WorkCycle
 one-assignment slot prevents replacing or replaying a legacy or native attempt.
+The prospective [coding-continuation contract](coding-continuation.md) permits
+separately addressed children under an explicitly activated finite policy;
+historical slots remain unchanged.
 Preparation records source/check identities and initial Context metadata, without
 disclosing private acceptance to the worker or granting execution authority.
 

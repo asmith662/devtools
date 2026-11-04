@@ -47,6 +47,15 @@ def configure(commands: Any) -> None:  # noqa: ANN401, PLR0915 -- finite argpars
     prepare.add_argument("--supervisor", required=True)
     preview = commands.add_parser("native-preview")
     preview.add_argument("item")
+    preview.add_argument("--coding-attempt", type=int, default=1)
+    continuation = commands.add_parser("native-continue")
+    continuation.add_argument("item")
+    continuation.add_argument("--coding-attempt", type=int, required=True)
+    continuation.add_argument("--policy", required=True)
+    continuation.add_argument("--branch", required=True)
+    continuation.add_argument("--task", required=True)
+    continuation.add_argument("--supervisor", required=True)
+    continuation.add_argument("--disclose-public", action="store_true")
     approval = commands.add_parser("native-authorize")
     approval.add_argument("item")
     approval.add_argument("--reference", required=True)
@@ -101,9 +110,19 @@ def configure(commands: Any) -> None:  # noqa: ANN401, PLR0915 -- finite argpars
     diagnostic.add_argument("item")
 
 
-async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: PLR0911, C901 -- finite administrative commands
+async def run(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: PLR0911, PLR0912, C901 -- finite administrative commands
     """Prepare/inspect/approve/review only; integration planning has its own command."""
-    native = WorkCycle(root).native
+    native = WorkCycle(root).native.select(getattr(args, "coding_attempt", 1))
+    if args.command == "native-continue":
+        return await native.prepare_continuation(
+            args.item,
+            attempt=args.coding_attempt,
+            policy=args.policy,
+            branch=args.branch,
+            task=load_json(resolve_path(args.task, base_directory=Path.cwd()).value),
+            supervisor=args.supervisor,
+            disclose_public=args.disclose_public,
+        )
     if args.command == "native-diagnostic-prepare":
         return await native.diagnostic_reviewer.prepare(
             args.item,

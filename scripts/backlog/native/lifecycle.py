@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: EM101, TRY003, SLF001, E501 -- finite operational receipts and formatter compatibility
+# ruff: noqa: EM101, TRY003, SLF001, E501, COM812, PLC0415 -- finite operational receipts and formatter compatibility
 """One approved native assignment to candidate review; no installation authority."""
 
 from __future__ import annotations
@@ -32,10 +32,13 @@ from scripts.backlog.work import _load, same_backlog
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
+    from pathlib import Path
 
     from devtools.models.interaction import ModelInteraction, ModelRequest
     from scripts.backlog.native.review import NativeReviewer
     from scripts.backlog.work import WorkCycle
+
+MAXIMUM_ATTEMPTS = 100
 
 SCOPE = (
     "native-one-python-v1; candidate-and-read-only-plan; no-install-publish-closeout"
@@ -45,28 +48,40 @@ SCOPE = (
 class NativeMaintenance:
     """The native input branch of WorkCycle, sharing its one-slot/writer/Checkout."""
 
-    def __init__(self, cycle: WorkCycle) -> None:
+    def __init__(self, cycle: WorkCycle, attempt: int = 1) -> None:
         """Reuse administrative ownership, never construct another coordinator."""
         self.cycle = cycle
+        if type(attempt) is not int or not 1 <= attempt <= MAXIMUM_ATTEMPTS:
+            raise ValueError("Finite native attempt number required")
+        self.attempt = attempt
+
+    def select(self, attempt: int = 1) -> NativeMaintenance:
+        """Address one immutable coding slot; historical records remain attempt one."""
+        return NativeMaintenance(self.cycle, attempt)
+
+    def folder(self, item: str) -> Path:
+        """Keep the original slot in place and address prospective child slots."""
+        root = self.cycle._folder(item)
+        return root if self.attempt == 1 else root / "attempts" / f"{self.attempt:04d}"
 
     @property
     def reviewer(self) -> NativeReviewer:
         """Compose independent review under this native administrative owner."""
-        from scripts.backlog.native.review import NativeReviewer  # noqa: PLC0415
+        from scripts.backlog.native.review import NativeReviewer
 
         return NativeReviewer(self)
 
     @property
     def diagnostic_reviewer(self) -> NativeReviewer:
         """Inspect authenticated blocked history; confer no acceptance authority."""
-        from scripts.backlog.native.review import NativeReviewer  # noqa: PLC0415
+        from scripts.backlog.native.review import NativeReviewer
 
         return NativeReviewer(self, diagnostic_only=True)
 
     def record(self, item: str, name: str) -> dict[str, Any]:
         """Load only authenticated prospective native records."""
         return _load(
-            self.cycle._folder(item) / (name + ".json"),
+            self.folder(item) / (name + ".json"),
             "backlog-native-" + name + "-v1",
         )
 
@@ -74,7 +89,7 @@ class NativeMaintenance:
         """Append immutable operational facts using the existing writer."""
         with self.cycle.intake._writer():
             return self.cycle._save(
-                self.cycle._folder(item) / (name + ".json"),
+                self.folder(item) / (name + ".json"),
                 {"schema": "backlog-native-" + name + "-v1", **value},
             )
 
@@ -87,9 +102,29 @@ class NativeMaintenance:
             maximum_resource_bytes=131072,
         )
 
+    async def prepare_continuation(  # noqa: PLR0913 -- exact prospective scope
+        self,
+        item: str,
+        *,
+        attempt: int,
+        policy: str,
+        branch: str,
+        task: dict[str, Any],
+        supervisor: str,
+        disclose_public: bool = False,
+    ) -> dict[str, Any]:
+        """Prepare a fresh child under active policy without replaying its parent."""
+        from scripts.backlog.native.continuation import predecessor
+
+        owner = self.select(attempt)
+        link = await predecessor(owner, item, policy, disclose_public=disclose_public)
+        return await owner.prepare(
+            item, branch=branch, task=task, supervisor=supervisor, continuation=link
+        )
+
     def configuration(self, task: dict[str, Any]) -> dict[str, str | None]:
         """Pin check configuration without granting source disclosure rights."""
-        from pathlib import Path  # noqa: PLC0415
+        from pathlib import Path
 
         names = {
             "pyproject.toml",
@@ -126,17 +161,43 @@ class NativeMaintenance:
             )
         return values
 
-    async def prepare(
+    async def prepare(  # noqa: C901 -- exact prospective scope
         self,
         item: str,
         *,
         branch: str,
         task: dict[str, Any],
         supervisor: str,
+        continuation: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Freeze reviewed backlog, scope and evidence; preparation grants no effects."""
         await self.cycle._coordinator()
         await idle(self.cycle.root)
+        from scripts.backlog.native import (
+            continuation as coding_continuation,
+        )
+
+        if self.attempt > 1:
+            if (
+                continuation is None
+                or continuation
+                != await coding_continuation.predecessor(
+                    self,
+                    item,
+                    continuation["policy"],
+                    disclose_public=continuation["disclose_public"],
+                )
+            ):
+                raise PermissionError("Authenticated continuation required")
+            prior = self.select(self.attempt - 1).record(item, "assignment")
+            if any(
+                task[k] != v
+                for k, v in prior["task"].items()
+                if k not in {"worker", "settings", "budgets"}
+            ):
+                raise PermissionError("Continuation must preserve task obligations")
+        elif continuation is not None:
+            raise PermissionError("Original assignment cannot have a predecessor")
         if (self.cycle.root / ".local/backlog/checkout-owner").exists():
             raise PermissionError("Checkout owned; native preparation refused")
         task_view(task)
@@ -180,9 +241,18 @@ class NativeMaintenance:
         baseline = scope.snapshot.resource_at(
             RepositoryResourceAddress(task["source"]),
         ).content
+        if (
+            continuation is not None
+            and {
+                r.address.value: str(r.content_identity)
+                for r in scope.snapshot.resources
+            }
+            != self.select(self.attempt - 1).record(item, "assignment")["inputs"]
+        ):
+            raise PermissionError("Continuation source/check inputs drifted")
         if len(baseline.encode()) > task["budgets"]["source_bytes"]:
             raise ValueError("Native source exceeds approved resulting-source ceiling")
-        folder = self.cycle._folder(item)
+        folder = self.folder(item)
         with self.cycle.intake._writer():
             folder.parent.mkdir(parents=True, exist_ok=True)
             folder.mkdir()  # Same one-slot rule as legacy WorkCycle; no redispatch slot.
@@ -212,6 +282,11 @@ class NativeMaintenance:
                     "interpreter": sys.executable,
                     "python": sys.version,
                     "configuration": self.configuration(task),
+                    **(
+                        {"continuation": continuation}
+                        if continuation is not None
+                        else {}
+                    ),
                 },
             )
 
@@ -222,6 +297,11 @@ class NativeMaintenance:
     ) -> SourceScope:
         """Authenticate exact packet, administrative state and declared current inputs."""
         await self.cycle._coordinator()
+        from scripts.backlog.native import (
+            continuation as coding_continuation,
+        )
+
+        await coding_continuation.validate(self, assignment, checkout)
         stored = self.record(assignment["item"], "assignment")
         if (
             stored != assignment
@@ -358,7 +438,7 @@ class NativeMaintenance:
         provider_context_tokens: int | None = None,
     ) -> dict[str, Any]:
         """Claim once, invoke the shared neutral process, then archive and restore."""
-        from scripts.backlog.native.execution import execute  # noqa: PLC0415
+        from scripts.backlog.native.execution import execute
 
         timer = Stopwatch()
         assignment, grant = (
@@ -389,7 +469,7 @@ class NativeMaintenance:
             raise PermissionError("Current native dispatch approval required")
         await self.validate(assignment)
         self.authority(assignment, grant)
-        folder = self.cycle._folder(item)
+        folder = self.folder(item)
         if (folder / "dispatch.json").exists():
             raise PermissionError(
                 "Prior native dispatch exists; reconcile, never redispatch",
@@ -451,7 +531,7 @@ class NativeMaintenance:
                                 tofile="b/" + assignment["task"]["source"],
                             ),
                         )
-                        from devtools.resources.filesystem import (  # noqa: PLC0415
+                        from devtools.resources.filesystem import (
                             TextFile,
                             write,
                         )
@@ -508,7 +588,7 @@ class NativeMaintenance:
         for path in (self.cycle.root / ".local/backlog/checkout-history").glob(
             "*.json",
         ):
-            from scripts.backlog.intake import load_json  # noqa: PLC0415
+            from scripts.backlog.intake import load_json
 
             if load_json(path).get("operation") == "native:" + assignment["sha256"]:
                 releases.append(_load(path, "backlog-checkout-owner-v1")["sha256"])
@@ -606,7 +686,7 @@ class NativeMaintenance:
         }
         with self.cycle.intake._writer():
             return self.cycle._save(
-                self.cycle._folder(item) / ("review-" + _digest(payload) + ".json"),
+                self.folder(item) / ("review-" + _digest(payload) + ".json"),
                 payload,
             )
 
@@ -615,7 +695,7 @@ class NativeMaintenance:
         assignment: dict[str, Any],
         result: dict[str, Any],
     ) -> tuple[str, str]:
-        import hashlib  # noqa: PLC0415
+        import hashlib
 
         item = assignment["item"]
         approval = self.record(item, "authorization")
@@ -668,7 +748,7 @@ class NativeMaintenance:
             or any(not e["acknowledged"] for e in facts["effects"])
         ):
             raise PermissionError("Native result lacks complete check/custody evidence")
-        folder = self.cycle._folder(item)
+        folder = self.folder(item)
         for observation in facts["observations"]:
             if not re.fullmatch(r"observation-\d{4}\.json", observation["file"]):
                 raise PermissionError("Invalid native observation address")
@@ -710,7 +790,7 @@ class NativeMaintenance:
         )
         # Review filenames include the ordinary full record identity, as legacy supervision does.
         decision = read_decision(
-            self.cycle._folder(item) / ("review-" + review + ".json"),
+            self.folder(item) / ("review-" + review + ".json"),
         )
         linked = self.cycle.routine.check_reference(
             decision["reference"],

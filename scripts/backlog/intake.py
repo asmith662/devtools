@@ -186,6 +186,73 @@ class Intake:
             overwrite=False,
         )
 
+    def activate_existing(
+        self,
+        identity: str,
+        *,
+        reference: str,
+        rationale: str,
+        authorize: Callable[[dict[str, Any]], bool] | None = None,
+    ) -> dict[str, Any]:
+        """Activate an existing deferred obligation under explicit host authority."""
+        if not re.fullmatch(r"B-\d{4}", identity):
+            raise PermissionError("Canonical existing item required")
+        _text(reference)
+        _text(rationale)
+        with self._writer():
+            self._source_idle()
+            paths = list((self.backlog / "items").glob(identity + "-*.md"))
+            if len(paths) != 1:
+                raise PermissionError("One existing canonical item required")
+            path = self._path(paths[0].relative_to(self.root).as_posix())
+            text = _read(path)
+            overview = self._path("docs/backlog/overview.md")
+            index = _read(overview)
+            rows = [r for r in index.splitlines() if r.startswith(f"| [{identity}](")]
+            if (
+                text.count("- status: DEFERRED") != 1
+                or len(rows) != 1
+                or "| DEFERRED |" not in rows[0]
+            ):
+                raise PermissionError("Item and index must both be deferred")
+            decision = {
+                "operation": "activate-existing-backlog-item",
+                "item": identity,
+                "reference": reference,
+                "rationale": rationale,
+                "item_sha256": _digest(text),
+                "index_sha256": _digest(index),
+            }
+            if authorize is None or not authorize(decision):
+                raise PermissionError("Explicit readiness decision required")
+            if _read(path) != text or _read(overview) != index:
+                raise PermissionError("Backlog changed during readiness decision")
+            receipt = {
+                "schema": "backlog-readiness-v1",
+                **decision,
+                "at": str(Timestamp.now()),
+            }
+            receipt_path = self._path(
+                ".local/backlog/readiness/" + _digest(receipt) + ".json"
+            )
+            receipt_path.parent.mkdir(parents=True, exist_ok=True)
+            self._save(receipt_path, receipt)
+            write(
+                TextFile(
+                    resolve_path(path),
+                    text.replace("- status: DEFERRED", "- status: ACTIVE", 1),
+                )
+            )
+            write(
+                TextFile(
+                    resolve_path(overview),
+                    index.replace(
+                        rows[0], rows[0].replace("| DEFERRED |", "| ACTIVE |", 1)
+                    ),
+                )
+            )
+            return receipt
+
     def capture(self, payload: dict[str, Any]) -> str:
         """Capture untrusted discovery only; return its host-assigned identity."""
         _validate(payload)

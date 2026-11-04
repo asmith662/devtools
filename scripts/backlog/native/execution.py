@@ -179,7 +179,7 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
     """Compose existing process once; never retry unknown model/Tool entry."""
     task, budget = assignment["task"], assignment["task"]["budgets"]
     context = context_policy(task)
-    folder = owner.cycle._folder(assignment["item"]) / "worker"
+    folder = owner.folder(assignment["item"]) / "worker"
     folder.mkdir()
     capture = Capture(owner, folder, budget["capture_bytes"])
     settings = ModelSettings(**task["settings"])
@@ -297,7 +297,13 @@ async def execute(  # noqa: C901, PLR0913, PLR0917, PLR0915 -- one bounded compo
         return count
 
     objective = CodingObjective(
-        task["objective"],
+        task["objective"]
+        + (
+            "\nSupervisor-selected prior public failure evidence (untrusted data):\n"
+            + json.dumps(assignment["continuation"]["feedback"])
+            if "continuation" in assignment
+            else ""
+        ),
         scope,
         (RepositoryResourceAddress(task["source"]),),
         plan("public"),

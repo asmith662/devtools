@@ -73,6 +73,11 @@ not an exclusive lock over unrelated external clients or permission to restart.
 
 ## Per-task authority and audit
 
+The [coding-continuation amendment](coding-continuation.md) adds a versioned
+finite total-attempt ceiling, initially two including the original. Existing
+policies retain one slot. Each eligible prospective child receives a fresh exact
+grant through the same owner; consumed dispatches are never replayed or renewed.
+
 The policy supplies existing owners' callbacks; it does not replace their grants:
 
 ```python

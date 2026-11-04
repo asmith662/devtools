@@ -59,26 +59,34 @@ PROTECTED = (
 
 def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed policy schema
     """Keep policy activation explicit, finite and within existing owner ceilings."""
-    if (
-        set(value)
-        != {
-            "schema",
-            "categories",
-            "edit_roots",
-            "read_roots",
-            "profiles",
-            "provider",
-            "coding",
-            "review",
-            "output_tokens",
-            "grant_seconds",
-            "operations",
-            "git",
-            "validation",
-        }
-        or value["schema"] != "routine-development-policy-v1"
-    ):
+    if set(value) != {
+        "schema",
+        "categories",
+        "edit_roots",
+        "read_roots",
+        "profiles",
+        "provider",
+        "coding",
+        "review",
+        "output_tokens",
+        "grant_seconds",
+        "operations",
+        "git",
+        "validation",
+    } | (
+        {"coding_attempts"}
+        if value.get("schema") == "routine-development-policy-v2"
+        else set()
+    ) or value["schema"] not in {
+        "routine-development-policy-v1",
+        "routine-development-policy-v2",
+    }:
         raise ValueError("Closed routine policy required")
+    if value["schema"].endswith("v2") and (
+        type(value["coding_attempts"]) is not int
+        or not 1 <= value["coding_attempts"] <= 100
+    ):
+        raise ValueError("Finite total coding-attempt ceiling required")
     if value["validation"] != "protected-development-100-percent-v1" or value[
         "git"
     ] != {"remote": "origin", "branches": ["main"], "force": False}:

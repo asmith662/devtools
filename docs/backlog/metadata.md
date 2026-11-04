@@ -16,6 +16,11 @@ creating worker-candidate records. Coding approval does not confer integration
 authority; partial slices leave the parent open. Existing proposal and worker
 evidence remain immutable.
 
+`Intake.activate_existing` records an explicit host readiness decision for a
+canonical deferred item and updates its item/index status to ACTIVE, preserving
+the same identity and an immutable local receipt. Readiness creates no coding
+grant or acceptance and does not replace Intake's reviewed BACKLOG admission.
+
 ## Required identity and lifecycle fields
 
 Each record has id, type, title, status, and decision_maturity. Unknown values
