@@ -3,7 +3,9 @@
 The [first live admission measurement](../research/coding-continuation-admission.md)
 authenticated B-0051's frozen inputs and stopped before a child or model call:
 Checkout-history digest authentication failed, and the earlier exit-code-2 public
-collection failure also falls outside current eligibility.
+collection failure also fell outside eligibility at that checkpoint.
+That historical no-go is retained; the subsequent correction below addresses
+its two causes without changing policy or historical records.
 
 WorkCycle's native owner administers distinct coding episodes under one canonical
 engineering obligation. This differs from intra-episode edit/check/repair and
@@ -77,6 +79,26 @@ disclosure and private-oracle confidentiality. The identity/administration contr
 does not assume public failure permanently; only initial eligibility does.
 Strategy replanning, scheduling, automatic selection and legacy-worker continuation
 remain outside this increment.
+
+## Exact custody and chronological public failure
+
+Admission now uses Checkout's strict exact-operation restored-release verifier,
+also used by accepted native candidate authentication. Global historical errors
+remain visible through `work-history`; they are not silently repaired or accepted
+as valid custody. The malformed unrelated receipt from the first measurement
+remains invalid and unchanged.
+
+The terminal candidate must have complete ordinary public validation (final exit
+codes 0/1, at least one failure), known effects and restored/released custody.
+Earlier exit code 2 is eligible only for complete collection SyntaxErrors
+attributed to the editable source, after an acknowledged edit and before a later
+acknowledged change and complete final ordinary check on a different candidate.
+Other collection errors and terminal collection failure remain ineligible.
+
+Authenticated contiguous observations bind the edit before/after digest chain,
+edit completions, check intents/results and final archived candidate. Pending
+checks/edits, missing intent, unvalidated later edits or stale candidate bytes
+refuse. Private-acceptance rejection remains outside this initial pathway.
 
 ## Validation and implementation provenance
 

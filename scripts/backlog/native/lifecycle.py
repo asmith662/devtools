@@ -18,7 +18,7 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Stopwatch, Timestamp
 from devtools.resources.filesystem import BinaryFile, FileFormat, read
 from devtools.tools.source import SourceScope
-from scripts.backlog.checkout import Checkout, idle
+from scripts.backlog.checkout import Checkout, idle, restored_release
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import _digest, _read
 from scripts.backlog.native.packet import (
@@ -726,24 +726,13 @@ class NativeMaintenance:
             or result.get("checkout_released") is not True
         ):
             raise PermissionError("Native candidate/result/approval mismatch")
-        if not re.fullmatch(r"[a-f0-9]{64}", result["checkout_release"]):
-            raise PermissionError("Invalid native Checkout release identity")
-        release = _load(
-            self.cycle.root
-            / ".local/backlog/checkout-history"
-            / (result["checkout_release"] + ".json"),
-            "backlog-checkout-owner-v1",
+        restored_release(
+            self.cycle,
+            result["checkout_release"],
+            operation="native:" + assignment["sha256"],
+            branch=assignment["branch"],
+            revision=assignment["base_head"],
         )
-        if (
-            release["operation"] != "native:" + assignment["sha256"]
-            or release["root"] != str(self.cycle.root)
-            or release["branch"] != assignment["branch"]
-            or release["revision"] != assignment["base_head"]
-            or release["final_head"] != release["return_head"]
-        ):
-            raise PermissionError(
-                "Native Checkout release does not bind this candidate",
-            )
         facts = result["facts"]
         execution_record = self.record(item, "execution")
         if (

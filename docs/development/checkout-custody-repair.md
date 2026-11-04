@@ -47,6 +47,19 @@ the owner journal and avoiding an unlink/rmdir crash window with an empty claim.
 Existing completion records remain append-only. Before rename, custody remains;
 after rename, the journal is retained and the old claim is absent.
 
+Restored-source consumers authenticate the exact release hash through
+`checkout.restored_release`: root, operation, branch, base, non-committing scope
+and restored administrative head must match. Completion records are independent;
+there is no global release hash chain. An unrelated invalid historical receipt
+does not supply or invalidate another operation's custody proof. Relevant
+invalid, foreign or missing releases still refuse. The in-memory journal payload
+must also match its last seal; loading a sealed mapping as payload cannot finish.
+
+`uv run python -m scripts.backlog work-history` independently audits every
+completion's schema, digest and filename, returns nonzero on errors and never
+modifies records. This global report retains historical integrity problems
+separately from exact-operation admission.
+
 This is not a transaction system, distributed lock, sandbox or power-loss durability
 guarantee. It requires a trusted local filesystem supporting these locks and
 same-volume rename. Network filesystems and uncooperative external writers or

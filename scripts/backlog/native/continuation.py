@@ -7,15 +7,135 @@ from __future__ import annotations
 import difflib
 import getpass
 import hashlib
+import re
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from devtools.core.time import Timestamp
-from scripts.backlog.intake import _read
+from scripts.backlog.checkout import restored_release
+from scripts.backlog.intake import _digest, _read
 from scripts.backlog.work import _load
 
 if TYPE_CHECKING:
     from scripts.backlog.checkout import Checkout
     from scripts.backlog.native.lifecycle import NativeMaintenance
+
+COLLECTION_ERROR_EXIT = 2
+
+
+def _source_syntax_failure(check: dict[str, Any], source: str) -> bool:
+    """Recognize only complete collection SyntaxErrors attributed to the edit target."""
+    text = check["stdout"] + "\n" + check["stderr"]
+    if any(
+        word in text for word in ("KeyboardInterrupt", "INTERNALERROR", "UsageError")
+    ):
+        return False
+    blocks = text.split("ERROR collecting ")[1:]
+    if not blocks:
+        return False
+    for block in blocks:
+        last_file = None
+        syntax = False
+        for line in block.splitlines():
+            if 'File "' in line:
+                last_file = line.split('File "', 1)[1].split('"', 1)[0]
+            exception = re.match(r"\s*E\s+([A-Z][\w.]*):", line)
+            if exception:
+                if exception[1] != "SyntaxError" or last_file != source:
+                    return False
+                syntax = True
+        if not syntax:
+            return False
+    return True
+
+
+def public_failure(
+    assignment: dict[str, Any],
+    facts: dict[str, Any],
+    rows: list[dict[str, Any]],
+    candidate: str,
+) -> None:
+    """Bind final validation to the exact acknowledged candidate and edit chronology."""
+    source = assignment["task"]["source"]
+    current = _digest(assignment["baseline_source"])
+    pending_edit: str | None = None
+    pending_check: tuple[str, int] | None = None
+    edits = 0
+    checked: list[tuple[str, int, list[dict[str, Any]]]] = []
+    for row in rows:
+        kind = row["kind"]
+        if kind == "edit-intent":
+            changes = row["changes"]
+            if (
+                pending_edit is not None
+                or pending_check is not None
+                or len(changes) != 1
+                or changes[0]["path"] != source
+                or changes[0]["before_sha256"] != current
+                or changes[0]["after_sha256"] == current
+                or not isinstance(changes[0]["after_sha256"], str)
+                or re.fullmatch(r"[a-f0-9]{64}", changes[0]["after_sha256"]) is None
+            ):
+                raise PermissionError("Uncertain prior edit chronology")
+            pending_edit = changes[0]["after_sha256"]
+        elif kind == "edit-completed":
+            if pending_edit is None or row["paths"] != [source]:
+                raise PermissionError("Prior edit lacks authenticated completion")
+            current, pending_edit = pending_edit, None
+            edits += 1
+        elif kind == "public-check-intent":
+            if (
+                pending_edit is not None
+                or pending_check is not None
+                or not row.get("snapshot")
+            ):
+                raise PermissionError("Uncertain prior check chronology")
+            pending_check = (current, edits)
+        elif kind == "public-check-result":
+            if pending_check != (current, edits):
+                raise PermissionError("Prior public result lacks current check intent")
+            checked.append((current, edits, row["checks"]))
+            pending_check = None
+    if (
+        pending_edit is not None
+        or pending_check is not None
+        or not checked
+        or checked[-1][:2] != (current, edits)
+        or current != _digest(candidate)
+        or edits != sum(e["kind"] == "edit" for e in facts["effects"])
+        or len(checked) != sum(e["kind"] == "check" for e in facts["effects"])
+    ):
+        raise PermissionError(
+            "Final candidate lacks complete current public validation"
+        )
+    final = checked[-1]
+    if not final[2] or not any(c["exit_code"] == 1 for c in final[2]):
+        raise PermissionError("Terminal ordinary public failure required")
+    source_path = str(Path(assignment["coordinator"]) / source)
+    for index, (identity, edit_count, group) in enumerate(checked):
+        if not group:
+            raise PermissionError("Empty prior public check group")
+        for check in group:
+            code = check["exit_code"]
+            if type(code) is not int or check["name"] != "public":
+                raise PermissionError("Unknown public check outcome")
+            if code in (0, 1):
+                if check["passed"] != (code == 0) or (
+                    code == 1 and check["outcome"] != "failed"
+                ):
+                    raise PermissionError("Inconsistent public check outcome")
+                continue
+            if (
+                code != COLLECTION_ERROR_EXIT
+                or index == len(checked) - 1
+                or edit_count == 0
+                or edit_count >= final[1]
+                or identity == final[0]
+                or check["passed"]
+                or check["outcome"] != "failed"
+                or not _source_syntax_failure(check, source_path)
+            ):
+                raise PermissionError("Incomplete or uncertain public diagnostics")
 
 
 async def predecessor(
@@ -80,16 +200,13 @@ async def predecessor(
         raise PermissionError(
             "Continuation requires known terminal public-validation failure"
         )
-    releases = [
-        _load(p, "backlog-checkout-owner-v1")
-        for p in (owner.cycle.root / ".local/backlog/checkout-history").glob("*.json")
-    ]
-    if not any(
-        r["sha256"] == result["checkout_release"]
-        and r["operation"] == "native:" + assignment["sha256"]
-        for r in releases
-    ):
-        raise PermissionError("Authenticated Checkout release required")
+    restored_release(
+        owner.cycle,
+        result["checkout_release"],
+        operation="native:" + assignment["sha256"],
+        branch=assignment["branch"],
+        revision=assignment["base_head"],
+    )
     checks = facts["checks"]
     if not checks or not checks[-1] or not any(not c["passed"] for c in checks[-1]):
         raise PermissionError("Final public failure required")
@@ -100,13 +217,13 @@ async def predecessor(
                 or check["stdout_truncated"]
                 or check["stderr_truncated"]
                 or check["events_dropped"]
-                or check["exit_code"] not in (0, 1)
             ):
                 raise PermissionError("Incomplete or uncertain public diagnostics")
     observed = []
-    for ref in facts["observations"]:
+    rows = []
+    for number, ref in enumerate(facts["observations"]):
         if (
-            not ref["file"].startswith("observation-")
+            ref["file"] != f"observation-{number:04d}.json"
             or "/" in ref["file"]
             or "\\" in ref["file"]
         ):
@@ -119,6 +236,7 @@ async def predecessor(
             raise PermissionError("Prior observation changed")
         if not issued <= Timestamp.from_isoformat(row["at"]).value < expires:
             raise PermissionError("Prior effect exceeded historical authority")
+        rows.append(row)
         if row["kind"] == "public-check-result":
             observed.append(row["checks"])
     if observed != checks:
@@ -138,6 +256,7 @@ async def predecessor(
         or patch != expected
     ):
         raise PermissionError("Prior candidate/diff changed")
+    public_failure(assignment, facts, rows, candidate)
     return {
         "number": owner.attempt,
         "policy": policy,

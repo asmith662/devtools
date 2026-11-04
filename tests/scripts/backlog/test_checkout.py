@@ -20,10 +20,76 @@ from devtools.resources.commands import Command, CommandExecutor
 from devtools.resources.filesystem.errors import FilesystemNotFoundError
 from scripts.backlog import __main__ as cli
 from scripts.backlog import checkout
-from scripts.backlog.checkout import Checkout, recover
+from scripts.backlog.checkout import (
+    Checkout,
+    history_integrity,
+    recover,
+    restored_release,
+)
 from scripts.backlog.coordinator import git
+from scripts.backlog.intake import _digest
 from tests.scripts.backlog.test_work import discovery
 from tests.scripts.backlog.test_work import fixture as fixture  # noqa: PLC0414
+
+
+def test_double_sealed_journal_cannot_finalize(fixture: dict[str, Any]) -> None:
+    """A loaded sealed mapping is not the in-memory journal payload."""
+
+    async def run() -> None:
+        f = fixture
+        owner = session(f)
+        await owner.__aenter__()
+        path = owner.folder / "owner.json"
+        original = path.read_bytes()
+        owner.record = json.loads(original)
+        with pytest.raises(PermissionError, match="owner changed"):
+            await owner.finish()
+        assert path.read_bytes() == original
+        assert not list((f["root"] / ".local/backlog/checkout-history").glob("*.json"))
+        owner.record.pop("sha256")
+        await owner.finish()
+
+    asyncio.run(run())
+
+
+def test_historical_double_seal_stays_invalid_and_reported(
+    fixture: dict[str, Any],
+) -> None:
+    """Reproduce the old capture defect without repairing or accepting its receipt."""
+
+    async def run() -> None:
+        f = fixture
+        async with session(f):
+            pass
+        history = f["root"] / ".local/backlog/checkout-history"
+        existing = next(history.glob("*.json"))
+        value = json.loads(existing.read_bytes())
+        payload = {k: v for k, v in value.items() if k != "sha256"}
+        owner_payload = {
+            k: v for k, v in payload.items() if k not in {"finished_at", "final_head"}
+        }
+        malformed = {**payload, "sha256": _digest(owner_payload)}
+        name = _digest(malformed)
+        path = history / (name + ".json")
+        f["cycle"]._save(path, malformed)
+        preserved = path.read_bytes()
+        assert name != _digest(payload)
+        with pytest.raises(ValueError, match="identity/schema"):
+            restored_release(
+                f["cycle"],
+                name,
+                operation=value["operation"],
+                branch=value["branch"],
+                revision=value["revision"],
+            )
+        audit = history_integrity(f["cycle"])
+        assert audit["disposition"] == "HISTORY_INTEGRITY_FAILED"
+        assert audit["errors"] == [
+            {"file": path.name, "error": "Work receipt identity/schema mismatch"}
+        ]
+        assert path.read_bytes() == preserved
+
+    asyncio.run(run())
 
 
 def session(f: dict[str, Any]) -> Checkout:

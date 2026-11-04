@@ -77,3 +77,43 @@ The strongest immediate blocker is Checkout-history integrity authentication.
 The next bounded action is reconciliation through that receipt's existing owner,
 followed by explicit assessment of eligibility for the known, recovered
 collection failure. This measurement authorizes neither action.
+
+## Subsequent authenticated cause and correction
+
+The later authorized investigation identified the producing historical cleanup
+script, `.local/finish-offline11.py`. It assigned the sealed `_load(owner.json)`
+result directly to `Checkout.record`, retaining its `sha256`. The old finish
+implementation at `772d965d8a037b126219b94af647ffb59d382334` then hashed a
+completion payload containing that old seal, overwriting the seal in its output.
+
+Removing completion fields reconstructs owner digest
+`964e9db05f3737acc46ed704e8d64595b97ff1fc388d142d22c01dd517105281`.
+Including that value as `sha256` in the completion payload reproduces the stored
+`cf08541a...` exactly. This identifies a historical double-sealing/capture defect;
+no receipt was rewritten. The physical file SHA256 remains
+`21097db674da2f78fc06d269f5e41e4cc6b29dfc3d251dbb4f6a7edb213226c1`.
+The bounded derivation is retained in
+`.local/validation/b0051-receipt-double-seal-proof.json`.
+
+Checkout's existing trust contract is an active fenced owner and independently
+authenticated operation release, not a global release chain. The correction
+centralizes exact restored-release validation for native candidates and
+continuation, while `work-history` separately reports all invalid historical
+receipts. A sealed in-memory payload now refuses finalization.
+
+B-0051's edit/check observations show acknowledged digest changes before both
+checks. Its final archived candidate matches the second edit and final ordinary
+failure; no edit followed that check. The corrected classification admits this
+known terminal public failure, while refusing unrecovered collection failure,
+unknown errors/effects and stale candidates. The standing two-attempt policy,
+original failure records and acceptance implementation remain unchanged.
+
+Live execution is a separate phase after validation and publication of this
+correction. The original no-go above remains the result of the earlier admission
+measurement and is not retrospectively changed into a coding episode.
+
+The correction's focused validation passed 119 tests, including Checkout,
+continuation and native compatibility. Ruff, formatting, strict mypy (634 source
+files), layout and diff checks passed; the parent inventory and malformed receipt
+remained unchanged. The exact committed candidate requires protected validation
+before publication and live entry.

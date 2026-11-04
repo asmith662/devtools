@@ -92,9 +92,14 @@ def confirm_delegation(request: dict[str, Any]) -> bool:
         return False
 
 
-async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: C901, PLR0911 -- explicit commands
+async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: C901, PLR0911, PLR0912 -- explicit commands
     cycle = WorkCycle(root)
     match args.command:
+        case "work-history":
+            from scripts.backlog.checkout import history_integrity  # noqa: PLC0415
+
+            await cycle._coordinator()  # noqa: SLF001
+            return history_integrity(cycle)
         case "work-recover":
             from scripts.backlog.checkout import recover  # noqa: PLC0415
 
@@ -250,6 +255,7 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915, PLR
     grant.add_argument("--expires", required=True)
     commands.add_parser("work-execute").add_argument("item")
     commands.add_parser("work-status").add_argument("item")
+    commands.add_parser("work-history")
     issue = commands.add_parser("delegation-issue")
     issue.add_argument("--policy", required=True)
     issue.add_argument("--reference", required=True)
@@ -320,7 +326,11 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915, PLR
             return (
                 1
                 if work_result.get("disposition")
-                in {"ESCALATION_REQUIRED", "RECONCILIATION_REQUIRED"}
+                in {
+                    "ESCALATION_REQUIRED",
+                    "RECONCILIATION_REQUIRED",
+                    "HISTORY_INTEGRITY_FAILED",
+                }
                 else 0
             )
         if args.command == "designate":

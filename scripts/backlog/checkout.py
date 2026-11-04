@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import secrets
 import stat
 import sys
@@ -21,6 +22,7 @@ from devtools.context import RepositoryResourceAddress
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
+from devtools.resources.filesystem.errors import FilesystemError
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import _digest, load_json
 
@@ -135,6 +137,61 @@ async def idle(root: Path) -> None:
         raise PermissionError("Tracked source/index is not clean")
 
 
+def restored_release(
+    cycle: WorkCycle,
+    identity: str,
+    *,
+    operation: str,
+    branch: str,
+    revision: str,
+) -> dict[str, Any]:
+    """Authenticate one exact restored-source release, never unrelated history."""
+    from scripts.backlog.work import _load  # noqa: PLC0415 -- owner composition
+
+    if not re.fullmatch(r"[a-f0-9]{64}", identity):
+        raise PermissionError("Invalid Checkout release identity")
+    value = _load(
+        cycle.root / ".local/backlog/checkout-history" / (identity + ".json"),
+        "backlog-checkout-owner-v1",
+    )
+    if (
+        value["sha256"] != identity
+        or value.get("operation") != operation
+        or value.get("root") != str(cycle.root)
+        or value.get("branch") != branch
+        or value.get("revision") != revision
+        or value.get("commit_allowed") is not False
+        or not value.get("finished_at")
+        or not value.get("return_head")
+        or value.get("final_head") != value["return_head"]
+    ):
+        raise PermissionError("Checkout release does not bind restored operation")
+    return value
+
+
+def history_integrity(cycle: WorkCycle) -> dict[str, Any]:
+    """Report global historical integrity independently, without repairing receipts."""
+    from scripts.backlog.work import _load  # noqa: PLC0415 -- existing reader
+
+    paths = sorted((cycle.root / ".local/backlog/checkout-history").glob("*.json"))
+    errors = []
+    for path in paths:
+        try:
+            value = _load(path, "backlog-checkout-owner-v1")
+            if value["sha256"] != path.stem:
+                raise ValueError("Checkout history filename identity mismatch")
+        except (FilesystemError, OSError, ValueError, KeyError) as error:
+            errors.append({"file": path.name, "error": str(error)})
+    return {
+        "disposition": "HISTORY_INTEGRITY_FAILED"
+        if errors
+        else "HISTORY_INTEGRITY_VERIFIED",
+        "records": len(paths),
+        "errors": errors,
+        "records_modified": False,
+    }
+
+
 async def _operations(root: Path) -> None:
     """Never interfere with an externally started Git operation."""
     for name in (
@@ -199,6 +256,7 @@ class Checkout:
         digest = value.pop("sha256", None)
         if (
             self._sealed is None
+            or _digest(self.record) != self._sealed
             or digest != self._sealed
             or _digest(value) != digest
             or value.get("root") != str(self.root)

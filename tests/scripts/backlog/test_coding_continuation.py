@@ -6,13 +6,20 @@ from __future__ import annotations
 
 import asyncio
 import copy
+import json
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 import pytest
 
 from devtools.core.time import Duration, Timestamp
+from devtools.models.interaction import ModelToolCall
+from scripts.backlog.checkout import history_integrity
+from scripts.backlog.coordinator import git
+from scripts.backlog.intake import _digest, _read
+from scripts.backlog.native.continuation import public_failure
 from scripts.backlog.routine.policy import validate
+from scripts.backlog.work import _load
 from tests.scripts.backlog.routine.test_authority import assessment, policy, provider
 from tests.scripts.backlog.test_native import (
     Scripted,
@@ -26,7 +33,13 @@ if TYPE_CHECKING:
     from scripts.backlog.work import WorkCycle
 
 
-async def failed(cycle: WorkCycle, item: str) -> str:
+async def failed(
+    cycle: WorkCycle,
+    item: str,
+    *,
+    calls: list[ModelToolCall] | None = None,
+    proposals: int = 1,
+) -> str:
     """Exercise a real edit/public failure/terminal restoration with a fake model."""
     config = policy()
     config.update(schema="routine-development-policy-v2", coding_attempts=2)
@@ -37,7 +50,7 @@ async def failed(cycle: WorkCycle, item: str) -> str:
         authorize=lambda _: True,
     )
     packet = task()
-    packet["budgets"]["proposals"] = 1
+    packet["budgets"]["proposals"] = proposals
     await cycle.native.prepare(
         item,
         branch="feat/native-work",
@@ -52,7 +65,10 @@ async def failed(cycle: WorkCycle, item: str) -> str:
     )
     result = await cycle.native.execute(
         item,
-        interaction=Scripted("neutral-script-a", [read_call(), edit(1, 2, "bad")]),
+        interaction=Scripted(
+            "neutral-script-a",
+            calls if calls is not None else [read_call(), edit(1, 2, "bad")],
+        ),
         profile="scripted-v1",
         authorize=cycle.routine.callback(grant["reference"]),
     )
@@ -231,6 +247,151 @@ def test_historical_policy_stays_one_slot() -> None:
     validate(config)
 
 
+@pytest.mark.parametrize(
+    "sequence", ["recovered-syntax", "terminal-syntax", "import-error"]
+)
+def test_authenticated_public_failure_sequences(
+    repository: tuple[WorkCycle, str], sequence: str
+) -> None:
+    """Only a superseded source SyntaxError can precede ordinary terminal failure."""
+    cycle, item = repository
+
+    async def run() -> None:
+        public = cycle.root / "tests/test_sample.py"
+        public.write_text(
+            "from devtools.sample import value\n"
+            "def test_value():\n    assert value() == 3\n"
+        )
+        await git(cycle.root, "add", "tests/test_sample.py")
+        await git(
+            cycle.root, "commit", "-m", "Authored collection-sensitive public input"
+        )
+        await git(cycle.root, "branch", "-f", "feat/native-work", "HEAD")
+        invalid = (
+            "def value():\n    return (\n"
+            if sequence != "import-error"
+            else "raise ImportError('fixture collection error')\n"
+        )
+        baseline = "def value():\n    return 1\n"
+
+        def replacement(before: str, after: str, name: str) -> ModelToolCall:
+            return ModelToolCall(
+                "replace_source",
+                json.dumps(
+                    {
+                        "path": "src/devtools/sample.py",
+                        "old_text": before,
+                        "new_text": after,
+                    }
+                ),
+                name,
+            )
+
+        calls = [read_call(), replacement(baseline, invalid, "invalid")]
+        if sequence != "terminal-syntax":
+            calls.append(
+                replacement(
+                    invalid, "def value():\n    return 2\n", "repaired-collection"
+                )
+            )
+        version = await failed(cycle, item, calls=calls, proposals=len(calls) - 1)
+        result = cycle.native.record(item, "result")
+        assert [g[0]["exit_code"] for g in result["facts"]["checks"]] == (
+            [2] if sequence == "terminal-syntax" else [2, 1]
+        )
+        packet = cycle.native.record(item, "assignment")["task"]
+        if sequence == "recovered-syntax":
+            child = await cycle.native.prepare_continuation(
+                item,
+                attempt=2,
+                policy=version,
+                branch="feat/native-work",
+                task=packet,
+                supervisor="Known edit repaired collection before terminal failure",
+            )
+            assert child["continuation"]["number"] == 2
+        else:
+            with pytest.raises(PermissionError):
+                await cycle.native.prepare_continuation(
+                    item,
+                    attempt=2,
+                    policy=version,
+                    branch="feat/native-work",
+                    task=packet,
+                    supervisor="Unqualified collection failure",
+                )
+            assert not cycle.native.select(2).folder(item).exists()
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("kind", ["unrelated", "relevant", "foreign-operation"])
+def test_release_authentication_is_operation_scoped(
+    repository: tuple[WorkCycle, str], kind: str
+) -> None:
+    """Unrelated history stays reportable; compromised or foreign custody refuses."""
+    cycle, item = repository
+
+    async def run() -> None:
+        version = await failed(cycle, item)
+        result = cycle.native.record(item, "result")
+        history = cycle.root / ".local/backlog/checkout-history"
+        if kind == "unrelated":
+            path = history / ("f" * 64 + ".json")
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema": "backlog-checkout-owner-v1",
+                        "sha256": "f" * 64,
+                        "operation": "other",
+                    }
+                )
+            )
+        elif kind == "relevant":
+            path = history / (result["checkout_release"] + ".json")
+            row = json.loads(path.read_bytes())
+            row["operation"] = "changed"
+            path.write_text(json.dumps(row))
+        else:
+            path = history / (result["checkout_release"] + ".json")
+            row = json.loads(path.read_bytes())
+            row.pop("sha256")
+            row["operation"] = "other"
+            sealed = cycle._save(history / (_digest(row) + ".json"), row)
+            result.pop("sha256")
+            result["checkout_release"] = sealed["sha256"]
+            target = cycle.native.folder(item) / "result.json"
+            target.unlink()
+            cycle._save(target, result)
+        preserved = path.read_bytes()
+        packet = cycle.native.record(item, "assignment")["task"]
+        if kind == "unrelated":
+            await cycle.native.prepare_continuation(
+                item,
+                attempt=2,
+                policy=version,
+                branch="feat/native-work",
+                task=packet,
+                supervisor="Exact relevant custody authenticates",
+            )
+            audit = history_integrity(cycle)
+            assert audit["disposition"] == "HISTORY_INTEGRITY_FAILED"
+            assert any(error["file"] == path.name for error in audit["errors"])
+        else:
+            with pytest.raises((PermissionError, ValueError)):
+                await cycle.native.prepare_continuation(
+                    item,
+                    attempt=2,
+                    policy=version,
+                    branch="feat/native-work",
+                    task=packet,
+                    supervisor="Compromised custody",
+                )
+        assert path.read_bytes() == preserved
+
+    asyncio.run(run())
+
+
 def test_child_cannot_receive_manual_execution_grant(
     repository: tuple[WorkCycle, str],
 ) -> None:
@@ -257,6 +418,69 @@ def test_child_cannot_receive_manual_execution_grant(
                 authorize=lambda _: True,
             )
         assert not (owner.folder(item) / "authorization.json").exists()
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "kind",
+    [
+        "stale-archive",
+        "unchecked-edit",
+        "pending-check",
+        "missing-intent",
+        "foreign-source",
+    ],
+)
+def test_public_failure_requires_current_checked_candidate(
+    repository: tuple[WorkCycle, str], kind: str
+) -> None:
+    """Sealed check results alone do not establish validation of another candidate."""
+    cycle, item = repository
+
+    async def run() -> None:
+        await failed(cycle, item)
+        assignment = cycle.native.record(item, "assignment")
+        facts = copy.deepcopy(cycle.native.record(item, "result")["facts"])
+        rows = [
+            _load(
+                cycle.native.folder(item) / "worker" / ref["file"],
+                "backlog-native-observation-v1",
+            )
+            for ref in facts["observations"]
+        ]
+        candidate = _read(cycle.native.folder(item) / "worker/final-source.py")
+        if kind == "stale-archive":
+            candidate += "# unvalidated after-image\n"
+        elif kind == "unchecked-edit":
+            after = candidate + "# acknowledged but unchecked\n"
+            rows.extend(
+                [
+                    {
+                        "kind": "edit-intent",
+                        "changes": [
+                            {
+                                "path": assignment["task"]["source"],
+                                "before_sha256": _digest(candidate),
+                                "after_sha256": _digest(after),
+                            }
+                        ],
+                    },
+                    {"kind": "edit-completed", "paths": [assignment["task"]["source"]]},
+                ]
+            )
+            facts["effects"].append({"kind": "edit", "acknowledged": True})
+            candidate = after
+        elif kind == "pending-check":
+            rows.append({"kind": "public-check-intent", "snapshot": "unreturned"})
+        elif kind == "missing-intent":
+            rows = [r for r in rows if r["kind"] != "public-check-intent"]
+        else:
+            next(r for r in rows if r["kind"] == "edit-intent")["changes"][0][
+                "path"
+            ] = "src/devtools/foreign.py"
+        with pytest.raises(PermissionError):
+            public_failure(assignment, facts, rows, candidate)
 
     asyncio.run(run())
 
