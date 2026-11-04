@@ -55,6 +55,9 @@ B-0051 is the first prospective live opportunity: its unresolved episode ended
 in public-validation failure with acknowledged effects, restored source and
 released Checkout custody. Current inputs, branch and historical authority still
 require admission checks. No continuation has been prepared or dispatched here.
+Read-only admission found its original public input
+`tests/live_native_scope_followup_public.py` absent; exact restoration through
+its authenticated owner is required before full eligibility reauthentication.
 
 This delivers one conservative slice. Independent private-acceptance rejection
 requires future supervised diagnostic disclosure that protects oracle

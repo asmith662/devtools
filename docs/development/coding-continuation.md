@@ -72,3 +72,26 @@ disclosure and private-oracle confidentiality. The identity/administration contr
 does not assume public failure permanently; only initial eligibility does.
 Strategy replanning, scheduling, automatic selection and legacy-worker continuation
 remain outside this increment.
+
+## Validation and implementation provenance
+
+Codex direct maintenance implemented this slice at `d3d2733d` and corrected the
+child-grant restriction at `c2651baeb63dd25b1e84e66910b33a8eec7a7d3a`.
+The manual-child-grant regression failed before the correction and passed after
+it. The initial protected run was deliberately interrupted for that correction;
+it is not passing validation evidence.
+
+The final 18 focused regressions passed. The unchanged protected profile,
+`uv run python scripts/validate_development.py`, then passed on exact commit
+`c2651baeb63dd25b1e84e66910b33a8eec7a7d3a`: **4,334 passed, 2 skipped**, with
+100% configured production line/branch coverage in 4,464.92 seconds. Pytest cache
+bookkeeping was disabled and tracebacks shortened to avoid the previously
+observed memory failure; test selection and coverage policy were unchanged.
+Maintained backlog source/test Ruff and formatting checks, strict mypy (634
+source files), layout, diff and Git connectivity checks passed.
+
+The full log and receipt are retained locally at
+`.local/validation/b0033-protected-c2651bae.log` and
+`.local/validation/b0033-protected-c2651bae-result.json`; focused results are in
+`.local/validation/b0033-policy-guard-focused.json`. These deterministic tests
+establish ownership mechanics. No live Qwen episode or review was dispatched.
