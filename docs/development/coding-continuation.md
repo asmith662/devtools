@@ -7,6 +7,12 @@ collection failure also fell outside eligibility at that checkpoint.
 That historical no-go is retained; the subsequent correction below addresses
 its two causes without changing policy or historical records.
 
+The subsequent [first authentic continuation](../research/coding-continuation-first-live.md)
+executed B-0051 attempt 2 under a fresh standing-policy grant. Six genuine Qwen
+calls and three admitted edits ended BLOCKED on public validation. Both slots
+remain consumed; original history, restored source and private diagnostics were
+preserved. No acceptance review or installation was entered.
+
 WorkCycle's native owner administers distinct coding episodes under one canonical
 engineering obligation. This differs from intra-episode edit/check/repair and
 read-only reviewer continuation. Runtime and ModelInteraction gain no orchestration.

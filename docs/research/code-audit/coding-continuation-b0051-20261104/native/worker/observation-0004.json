@@ -1,0 +1,35 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-04T22:02:25.855743+00:00",
+  "response": {
+    "content": "",
+    "source": {
+      "value": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 4466,
+      "output_tokens": 89,
+      "total_tokens": 4555,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/declarations.py\",\"start\":0}",
+        "provider_call_id": "1iGLra7Cwfp5UleBJnPoAKdDqaw8NMrR"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/modules/bindings.py\",\"start\":0}",
+        "provider_call_id": "yKh0YUDbrCL4pfeggA354WzeJNFbxWf6"
+      }
+    ]
+  },
+  "sha256": "8d801630605e57a3db3441109e087e04d4cf05e75e33894e447b653bec6b1476"
+}

@@ -1,0 +1,17 @@
+{
+  "commit": "dc89074f676f079d465f0f93589f95dc45468544",
+  "command": "uv run python scripts/validate_development.py",
+  "exit_code": 0,
+  "passed": 4347,
+  "skipped": 2,
+  "seconds": 4503.6,
+  "configured_production_coverage_percent": 100,
+  "log_sha256": "2eb75f4e71d60007f0198ea6f805e7eb01bcdf3535ef958ad784728f92f18f65",
+  "previous_failed_log": ".local/validation/b0051-admission-protected-df589ac4.log",
+  "source_frozen": true,
+  "at": "2026-11-04T21:54:26.250756+00:00",
+  "environment_overrides": {
+    "PYTEST_ADDOPTS": "-p no:cacheprovider --tb=short",
+    "PYTHONUNBUFFERED": "1"
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "schema": "backlog-native-result-v1",
+  "item": "B-0051",
+  "assignment_sha256": "0773aaf5111062511778f9e948c0071494524ab431a44ff2f690e2036e29ba02",
+  "authorization_sha256": "aafba3477c2f75fc42905d6755aa4dfa9321942c5dd005584e83823b9642e2af",
+  "worker": {
+    "actor": "qwen38-b0051-attempt-2-coder-20261104",
+    "source": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  },
+  "disposition": "BLOCKED",
+  "candidate_sha256": "d14de3e8d727c9025890b88774af9e29ae7100e1ce69e8c7d7fd0ad25450f079",
+  "execution_error": null,
+  "seconds": 285.829746,
+  "facts": {
+    "coding_disposition": "proposal_limit",
+    "coding_accepted": false,
+    "completed": true,
+    "error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation_required": false,
+    "effects": [
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "1iGLra7Cwfp5UleBJnPoAKdDqaw8NMrR"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "yKh0YUDbrCL4pfeggA354WzeJNFbxWf6"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "ZLBQPyqVqGeu9W6DiO2fon05LOMxn7Xw"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "tool",
+        "native_call_ids": [
+          "81enKPVQZRhWrK5qlXzIO7YDGtDdopGW"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "1vI05eAQHp6Sr79rrpQbpmK4k0INtp6I"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "sklgPTBEe1tBa73Q0U7nZsAsxM7Tu26b"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      },
+      {
+        "kind": "edit",
+        "native_call_ids": [
+          "fCGbwwz6FF63AYpBBbxa49FMw141LRQf"
+        ],
+        "acknowledged": true,
+        "check_name": null
+      },
+      {
+        "kind": "check",
+        "native_call_ids": [],
+        "acknowledged": true,
+        "check_name": "public"
+      }
+    ],
+    "model_calls": 6,
+    "usage": [
+      {
+        "input_tokens": 4466,
+        "output_tokens": 89,
+        "total_tokens": 4555,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 7530,
+        "output_tokens": 84,
+        "total_tokens": 7614,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 12657,
+        "output_tokens": 70,
+        "total_tokens": 12727,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 14764,
+        "output_tokens": 342,
+        "total_tokens": 15106,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 19455,
+        "output_tokens": 247,
+        "total_tokens": 19702,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      },
+      {
+        "input_tokens": 22143,
+        "output_tokens": 703,
+        "total_tokens": 22846,
+        "cached_input_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null
+      }
+    ],
+    "completion_error": null,
+    "proposals": 3,
+    "acquisitions": 4,
+    "checks": [
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0051\\attempts\\0002\\worker\\public.py"
+          ],
+          "exit_code": 1,
+          "outcome": "failed",
+          "seconds": 77.634606,
+          "passed": false,
+          "inputs_current": true,
+          "stdout": ".F.F.................                                                    [100%]\r\n================================== FAILURES ===================================\r\n_______________ test_declared_namespace_matrix[wrapped-locals] ________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15592/test_declared_namespace_matrix1')\r\ngroup = 'wrapped-locals'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n>               problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n\r\ntests\\live_native_scope_followup_public.py:46: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\ntests\\live_native_scope_followup_public.py:25: in verify\r\n    result, snapshot, address = inspect(root, row[\"source\"], row.get(\"name_to_lookup\", \"f\"), lookup)\r\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\ntests\\live_native_scope_followup_public.py:18: in inspect\r\n    result = lookup(snapshot, module=module, declared_name=name)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nsnapshot = RepositorySnapshot(id=RepositorySnapshotId(value='28cfb4d1f936828107225e289503cdd0ec14eeb8e11104336ee6cec2741c5d64'), ...mentation import f\\nif enabled:\\n    def helper():\\n        from .other import f\\n', encoding='utf-8', byte_size=89),))\r\nmodule = PythonModuleInterpretation(repository_id=RepositoryId(value=Identity(value=UUID('cb45474d-d780-4eeb-8127-22cadb342d63'...89), module_root=PythonModuleRoot(value='.'), dotted_name='probe', kind=<PythonModuleKind.ORDINARY: 'ordinary-module'>)\r\ndeclared_name = 'f'\r\n\r\n    def lookup_python_module_declaration(  # noqa: C901, PLR0912, PLR0915\r\n        snapshot: RepositorySnapshot,\r\n        *,\r\n        module: PythonModuleInterpretation,\r\n        declared_name: str,\r\n    ) -> PythonModuleDeclarationLookup:\r\n        \"\"\"Resolve only one unique undecorated direct declaration binding.\r\n    \r\n        Competing, nested, wildcard, and dynamic bindings do not establish a\r\n        target. This is static repository syntax, never runtime attribute lookup.\r\n        \"\"\"\r\n        if not declared_name.isidentifier():\r\n            msg = \"Direct member name must be a Python identifier.\"\r\n            raise ValueError(msg)\r\n        if (\r\n            module.repository_id != snapshot.repository_id\r\n            or module.snapshot_id != snapshot.id\r\n            or module.resource != snapshot.resource_at(module.resource.address)\r\n        ):\r\n            msg = \"Direct member module differs from the supplied snapshot.\"\r\n            raise ValueError(msg)\r\n        address = module.resource.address\r\n        functions = derive_python_function_declarations(snapshot, resource_address=address)\r\n        classes = derive_python_class_method_declarations(\r\n            snapshot,\r\n            resource_address=address,\r\n        )\r\n        tree = ast.parse(module.resource.content, filename=str(address))\r\n        candidates: list[PythonDirectModuleDeclaration | None] = []\r\n        uncertain = False\r\n        for node in tree.body:\r\n            if isinstance(node, ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef):\r\n                if node.name == declared_name:\r\n                    if node.decorator_list:\r\n                        candidates.append(None)\r\n                    elif isinstance(node, ast.ClassDef):\r\n                        candidates.extend(\r\n                            item\r\n                            for item in classes.classes\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                    else:\r\n                        candidates.extend(\r\n                            item\r\n                            for item in functions.declarations\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                continue\r\n            if isinstance(node, ast.Import | ast.ImportFrom):\r\n                for alias in node.names:\r\n                    if alias.name == \"*\":\r\n                        uncertain = True\r\n                    elif (\r\n                        alias.asname\r\n                        or (\r\n                            alias.name\r\n                            if isinstance(node, ast.ImportFrom)\r\n                            else alias.name.split(\".\")[0]\r\n                        )\r\n                    ) == declared_name:\r\n                        candidates.append(None)\r\n                continue\r\n            candidates.extend(\r\n                None for name in iter_non_name_bindings(node) if name == declared_name\r\n            )\r\n>           for child in _iter_module_level_nodes(node):\r\n                         ^^^^^^^^^^^^^^^^^^^^^^^^\r\nE           NameError: name '_iter_module_level_nodes' is not defined\r\n\r\nsrc\\devtools\\context\\python\\modules\\declarations.py:144: NameError\r\n________________ test_declared_namespace_matrix[conservative] _________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15592/test_declared_namespace_matrix3')\r\ngroup = 'conservative'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n>               problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n\r\ntests\\live_native_scope_followup_public.py:46: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\ntests\\live_native_scope_followup_public.py:25: in verify\r\n    result, snapshot, address = inspect(root, row[\"source\"], row.get(\"name_to_lookup\", \"f\"), lookup)\r\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\ntests\\live_native_scope_followup_public.py:18: in inspect\r\n    result = lookup(snapshot, module=module, declared_name=name)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nsnapshot = RepositorySnapshot(id=RepositorySnapshotId(value='4edfa3c0844dd0d3f54f47929366d4d4153ec820aa328a6a582589b5efbc7fc2'), ...ac23650b7a7b69ac3dd17ea59cb42354db20d5'), content='def f():\\n    return 7\\nf = 2\\n', encoding='utf-8', byte_size=28),))\r\nmodule = PythonModuleInterpretation(repository_id=RepositoryId(value=Identity(value=UUID('9d63e8d7-1262-4ed9-9853-f546a5338c7d'...28), module_root=PythonModuleRoot(value='.'), dotted_name='probe', kind=<PythonModuleKind.ORDINARY: 'ordinary-module'>)\r\ndeclared_name = 'f'\r\n\r\n    def lookup_python_module_declaration(  # noqa: C901, PLR0912, PLR0915\r\n        snapshot: RepositorySnapshot,\r\n        *,\r\n        module: PythonModuleInterpretation,\r\n        declared_name: str,\r\n    ) -> PythonModuleDeclarationLookup:\r\n        \"\"\"Resolve only one unique undecorated direct declaration binding.\r\n    \r\n        Competing, nested, wildcard, and dynamic bindings do not establish a\r\n        target. This is static repository syntax, never runtime attribute lookup.\r\n        \"\"\"\r\n        if not declared_name.isidentifier():\r\n            msg = \"Direct member name must be a Python identifier.\"\r\n            raise ValueError(msg)\r\n        if (\r\n            module.repository_id != snapshot.repository_id\r\n            or module.snapshot_id != snapshot.id\r\n            or module.resource != snapshot.resource_at(module.resource.address)\r\n        ):\r\n            msg = \"Direct member module differs from the supplied snapshot.\"\r\n            raise ValueError(msg)\r\n        address = module.resource.address\r\n        functions = derive_python_function_declarations(snapshot, resource_address=address)\r\n        classes = derive_python_class_method_declarations(\r\n            snapshot,\r\n            resource_address=address,\r\n        )\r\n        tree = ast.parse(module.resource.content, filename=str(address))\r\n        candidates: list[PythonDirectModuleDeclaration | None] = []\r\n        uncertain = False\r\n        for node in tree.body:\r\n            if isinstance(node, ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef):\r\n                if node.name == declared_name:\r\n                    if node.decorator_list:\r\n                        candidates.append(None)\r\n                    elif isinstance(node, ast.ClassDef):\r\n                        candidates.extend(\r\n                            item\r\n                            for item in classes.classes\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                    else:\r\n                        candidates.extend(\r\n                            item\r\n                            for item in functions.declarations\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                continue\r\n            if isinstance(node, ast.Import | ast.ImportFrom):\r\n                for alias in node.names:\r\n                    if alias.name == \"*\":\r\n                        uncertain = True\r\n                    elif (\r\n                        alias.asname\r\n                        or (\r\n                            alias.name\r\n                            if isinstance(node, ast.ImportFrom)\r\n                            else alias.name.split(\".\")[0]\r\n                        )\r\n                    ) == declared_name:\r\n                        candidates.append(None)\r\n                continue\r\n            candidates.extend(\r\n                None for name in iter_non_name_bindings(node) if name == declared_name\r\n            )\r\n>           for child in _iter_module_level_nodes(node):\r\n                         ^^^^^^^^^^^^^^^^^^^^^^^^\r\nE           NameError: name '_iter_module_level_nodes' is not defined\r\n\r\nsrc\\devtools\\context\\python\\modules\\declarations.py:144: NameError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[wrapped-locals]\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]\r\n2 failed, 19 passed in 76.86s (0:01:16)\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ],
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0051\\attempts\\0002\\worker\\public.py"
+          ],
+          "exit_code": 1,
+          "outcome": "failed",
+          "seconds": 1.148155,
+          "passed": false,
+          "inputs_current": true,
+          "stdout": "...F.................                                                    [100%]\r\n================================== FAILURES ===================================\r\n________________ test_declared_namespace_matrix[conservative] _________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15593/test_declared_namespace_matrix3')\r\ngroup = 'conservative'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n                problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                if problem is not None:\r\n                    failures.append(problem)\r\n>       assert not failures, failures\r\nE       AssertionError: [{'case': 'guard-conditional-declaration', 'expected': 'ambiguous', 'actual': 'resolved'}]\r\nE       assert not [{'case': 'guard-conditional-declaration', 'expected': 'ambiguous', 'actual': 'resolved'}]\r\n\r\ntests\\live_native_scope_followup_public.py:49: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]\r\n1 failed, 20 passed in 0.62s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ],
+      [
+        {
+          "name": "public",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "-X",
+            "utf8",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0051\\attempts\\0002\\worker\\public.py"
+          ],
+          "exit_code": 1,
+          "outcome": "failed",
+          "seconds": 0.778714,
+          "passed": false,
+          "inputs_current": true,
+          "stdout": ".F.F.................                                                    [100%]\r\n================================== FAILURES ===================================\r\n_______________ test_declared_namespace_matrix[wrapped-locals] ________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15594/test_declared_namespace_matrix1')\r\ngroup = 'wrapped-locals'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n>               problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n\r\ntests\\live_native_scope_followup_public.py:46: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\ntests\\live_native_scope_followup_public.py:25: in verify\r\n    result, snapshot, address = inspect(root, row[\"source\"], row.get(\"name_to_lookup\", \"f\"), lookup)\r\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\ntests\\live_native_scope_followup_public.py:18: in inspect\r\n    result = lookup(snapshot, module=module, declared_name=name)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nsnapshot = RepositorySnapshot(id=RepositorySnapshotId(value='6a2e5a5ea7b402b7089ad0bc705335c7c421e23d7e83da34e57d57944f3387ec'), ...mentation import f\\nif enabled:\\n    def helper():\\n        from .other import f\\n', encoding='utf-8', byte_size=89),))\r\nmodule = PythonModuleInterpretation(repository_id=RepositoryId(value=Identity(value=UUID('4291dce4-cf70-40b4-a602-2021975c96cb'...89), module_root=PythonModuleRoot(value='.'), dotted_name='probe', kind=<PythonModuleKind.ORDINARY: 'ordinary-module'>)\r\ndeclared_name = 'f'\r\n\r\n    def lookup_python_module_declaration(  # noqa: C901, PLR0912, PLR0915\r\n        snapshot: RepositorySnapshot,\r\n        *,\r\n        module: PythonModuleInterpretation,\r\n        declared_name: str,\r\n    ) -> PythonModuleDeclarationLookup:\r\n        \"\"\"Resolve only one unique undecorated direct declaration binding.\r\n    \r\n        Competing, nested, wildcard, and dynamic bindings do not establish a\r\n        target. This is static repository syntax, never runtime attribute lookup.\r\n        \"\"\"\r\n        if not declared_name.isidentifier():\r\n            msg = \"Direct member name must be a Python identifier.\"\r\n            raise ValueError(msg)\r\n        if (\r\n            module.repository_id != snapshot.repository_id\r\n            or module.snapshot_id != snapshot.id\r\n            or module.resource != snapshot.resource_at(module.resource.address)\r\n        ):\r\n            msg = \"Direct member module differs from the supplied snapshot.\"\r\n            raise ValueError(msg)\r\n        address = module.resource.address\r\n        functions = derive_python_function_declarations(snapshot, resource_address=address)\r\n        classes = derive_python_class_method_declarations(\r\n            snapshot,\r\n            resource_address=address,\r\n        )\r\n        tree = ast.parse(module.resource.content, filename=str(address))\r\n        candidates: list[PythonDirectModuleDeclaration | None] = []\r\n        uncertain = False\r\n        for node in tree.body:\r\n            if isinstance(node, ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef):\r\n                if node.name == declared_name:\r\n                    if node.decorator_list:\r\n                        candidates.append(None)\r\n                    elif isinstance(node, ast.ClassDef):\r\n                        candidates.extend(\r\n                            item\r\n                            for item in classes.classes\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                    else:\r\n                        candidates.extend(\r\n                            item\r\n                            for item in functions.declarations\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                continue\r\n            if isinstance(node, ast.Import | ast.ImportFrom):\r\n                for alias in node.names:\r\n                    if alias.name == \"*\":\r\n                        uncertain = True\r\n                    elif (\r\n                        alias.asname\r\n                        or (\r\n                            alias.name\r\n                            if isinstance(node, ast.ImportFrom)\r\n                            else alias.name.split(\".\")[0]\r\n                        )\r\n                    ) == declared_name:\r\n                        candidates.append(None)\r\n                continue\r\n            candidates.extend(\r\n                None for name in iter_non_name_bindings(node) if name == declared_name\r\n            )\r\n>           for child, inside_local_scope in _iter_module_level_nodes(node):\r\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE           TypeError: cannot unpack non-iterable If object\r\n\r\nsrc\\devtools\\context\\python\\modules\\declarations.py:144: TypeError\r\n________________ test_declared_namespace_matrix[conservative] _________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15594/test_declared_namespace_matrix3')\r\ngroup = 'conservative'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n>               problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n\r\ntests\\live_native_scope_followup_public.py:46: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\ntests\\live_native_scope_followup_public.py:25: in verify\r\n    result, snapshot, address = inspect(root, row[\"source\"], row.get(\"name_to_lookup\", \"f\"), lookup)\r\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\ntests\\live_native_scope_followup_public.py:18: in inspect\r\n    result = lookup(snapshot, module=module, declared_name=name)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nsnapshot = RepositorySnapshot(id=RepositorySnapshotId(value='bb7a52a6ece3c124926709a01428493c4cb91764f75aab3715512e475b13754d'), ...ac23650b7a7b69ac3dd17ea59cb42354db20d5'), content='def f():\\n    return 7\\nf = 2\\n', encoding='utf-8', byte_size=28),))\r\nmodule = PythonModuleInterpretation(repository_id=RepositoryId(value=Identity(value=UUID('743cc0a9-de0e-4d7f-906a-feb9b69dd402'...28), module_root=PythonModuleRoot(value='.'), dotted_name='probe', kind=<PythonModuleKind.ORDINARY: 'ordinary-module'>)\r\ndeclared_name = 'f'\r\n\r\n    def lookup_python_module_declaration(  # noqa: C901, PLR0912, PLR0915\r\n        snapshot: RepositorySnapshot,\r\n        *,\r\n        module: PythonModuleInterpretation,\r\n        declared_name: str,\r\n    ) -> PythonModuleDeclarationLookup:\r\n        \"\"\"Resolve only one unique undecorated direct declaration binding.\r\n    \r\n        Competing, nested, wildcard, and dynamic bindings do not establish a\r\n        target. This is static repository syntax, never runtime attribute lookup.\r\n        \"\"\"\r\n        if not declared_name.isidentifier():\r\n            msg = \"Direct member name must be a Python identifier.\"\r\n            raise ValueError(msg)\r\n        if (\r\n            module.repository_id != snapshot.repository_id\r\n            or module.snapshot_id != snapshot.id\r\n            or module.resource != snapshot.resource_at(module.resource.address)\r\n        ):\r\n            msg = \"Direct member module differs from the supplied snapshot.\"\r\n            raise ValueError(msg)\r\n        address = module.resource.address\r\n        functions = derive_python_function_declarations(snapshot, resource_address=address)\r\n        classes = derive_python_class_method_declarations(\r\n            snapshot,\r\n            resource_address=address,\r\n        )\r\n        tree = ast.parse(module.resource.content, filename=str(address))\r\n        candidates: list[PythonDirectModuleDeclaration | None] = []\r\n        uncertain = False\r\n        for node in tree.body:\r\n            if isinstance(node, ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef):\r\n                if node.name == declared_name:\r\n                    if node.decorator_list:\r\n                        candidates.append(None)\r\n                    elif isinstance(node, ast.ClassDef):\r\n                        candidates.extend(\r\n                            item\r\n                            for item in classes.classes\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                    else:\r\n                        candidates.extend(\r\n                            item\r\n                            for item in functions.declarations\r\n                            if item.support.source_range.start_line == node.lineno\r\n                            and item.support.source_range.start_column_utf8\r\n                            == node.col_offset\r\n                        )\r\n                continue\r\n            if isinstance(node, ast.Import | ast.ImportFrom):\r\n                for alias in node.names:\r\n                    if alias.name == \"*\":\r\n                        uncertain = True\r\n                    elif (\r\n                        alias.asname\r\n                        or (\r\n                            alias.name\r\n                            if isinstance(node, ast.ImportFrom)\r\n                            else alias.name.split(\".\")[0]\r\n                        )\r\n                    ) == declared_name:\r\n                        candidates.append(None)\r\n                continue\r\n            candidates.extend(\r\n                None for name in iter_non_name_bindings(node) if name == declared_name\r\n            )\r\n>           for child, inside_local_scope in _iter_module_level_nodes(node):\r\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE           TypeError: cannot unpack non-iterable Assign object\r\n\r\nsrc\\devtools\\context\\python\\modules\\declarations.py:144: TypeError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[wrapped-locals]\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]\r\n2 failed, 19 passed in 0.27s\r\n",
+          "stderr": "",
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "events_dropped": 0
+        }
+      ]
+    ],
+    "acceptance": null,
+    "acceptance_error": null,
+    "observations": [
+      {
+        "file": "observation-0000.json",
+        "sha256": "2cd1b6f292cc9f06d786f725a1b520ed4a4e493707ef6c83a949ef51a1d16b4c"
+      },
+      {
+        "file": "observation-0001.json",
+        "sha256": "cc3259bb6b81a6cb3e436525fbb5af329fe6fa27ed17d8b5f974f6cdc61ce0a1"
+      },
+      {
+        "file": "observation-0002.json",
+        "sha256": "e75528b7259c2d95d833bd5ce2922d8888c16c98c89bebbe8f0f9198e701f98f"
+      },
+      {
+        "file": "observation-0003.json",
+        "sha256": "d03dbacd8377f81f81accba0c9a6121808f450d1ae9e985664360c0e3ca4db39"
+      },
+      {
+        "file": "observation-0004.json",
+        "sha256": "8d801630605e57a3db3441109e087e04d4cf05e75e33894e447b653bec6b1476"
+      },
+      {
+        "file": "observation-0005.json",
+        "sha256": "bce19f9e0197c70618ee6c7ea7ecc9b6eeb6211e768606524633a0cb103acb62"
+      },
+      {
+        "file": "observation-0006.json",
+        "sha256": "da7762f1acaf4edcc6998e018db0f6286c90dcf2a050face629b2e085e13ae15"
+      },
+      {
+        "file": "observation-0007.json",
+        "sha256": "6a73e41e089d03c86da200245bf0256c94d31f3901e7d21f05dbc54ff04d0fd0"
+      },
+      {
+        "file": "observation-0008.json",
+        "sha256": "2c897d25f13d6e5bb2e9f9d4d798828cd57bef72ceb40c1d26b532644e53ce15"
+      },
+      {
+        "file": "observation-0009.json",
+        "sha256": "a7414b9f3bd380c79062a9402d771c68a8e42a09fbf620251d6e5da4a363d10b"
+      },
+      {
+        "file": "observation-0010.json",
+        "sha256": "82c5750bb11f54e1e9aa3685c875925ad4d2771bf46211c177c14a881d271da1"
+      },
+      {
+        "file": "observation-0011.json",
+        "sha256": "500127293ed9b1dfb429960e04315abcf4ee0a5c325ab8c578ea9e334485610b"
+      },
+      {
+        "file": "observation-0012.json",
+        "sha256": "fab484846380181ed57855d78d6abd075f29452d9789afa1167eed607d5eb4d0"
+      },
+      {
+        "file": "observation-0013.json",
+        "sha256": "8f849c186864dc4dc7efb9c16f18ca8b0e4c99db69897bf31c8f91cf8f64cbb6"
+      },
+      {
+        "file": "observation-0014.json",
+        "sha256": "a4c96c2ba60aed099b4dc199b43ba3c11744d5e4a6ebe0a7e768501e1eb1c98e"
+      },
+      {
+        "file": "observation-0015.json",
+        "sha256": "cc3573e683dabcb45041bdc1192e07208b1a50ebb2e58b19f133e14632bfe637"
+      },
+      {
+        "file": "observation-0016.json",
+        "sha256": "9c31d44ee3ff3042fa17a1d960ff9e43ec2272118a2fc10df388991d1eb98481"
+      },
+      {
+        "file": "observation-0017.json",
+        "sha256": "271a7b9a600d8bb84d6b6a57b4e4d373c4b0dd695aa9034e659cc14821a0bebf"
+      },
+      {
+        "file": "observation-0018.json",
+        "sha256": "e63fc92553def099b56fe5a9c673ac48122200106cace0549a55603f6b973c9d"
+      },
+      {
+        "file": "observation-0019.json",
+        "sha256": "bb9cafd0460b09b3da1ea785e96df06af70c52ab6b64df8df9a04ed5e75aca45"
+      },
+      {
+        "file": "observation-0020.json",
+        "sha256": "d08debbfb547871e4d32a7569ed107d6c976a53b72022b96f869fbbe57d617d7"
+      },
+      {
+        "file": "observation-0021.json",
+        "sha256": "46615310f403fa464b87f5ef4979c48f57b41bce15d844814ad862cef9a67a5b"
+      },
+      {
+        "file": "observation-0022.json",
+        "sha256": "8212b12d0f9a5425b04aef63a4a3b464fae9b6cec52a657754d8fd9dfa2c0efd"
+      },
+      {
+        "file": "observation-0023.json",
+        "sha256": "cb1e77339e97a39d445219ada3d409a4c607b903cadb0b55d66328ea60aba367"
+      },
+      {
+        "file": "observation-0024.json",
+        "sha256": "8d734d6dea9448d1cb5308c839d51d3e2c18c6dde36824d774b84bff2f7d6bc1"
+      },
+      {
+        "file": "observation-0025.json",
+        "sha256": "09fb2a8277cd5f3f2dc591e0c7d7a0e67cb2ed9a5eee65fcf271d9c9f8598823"
+      },
+      {
+        "file": "observation-0026.json",
+        "sha256": "c1de8fc7470a5fc248f81879d70e28a594c412177638678bfca4c0901311529f"
+      },
+      {
+        "file": "observation-0027.json",
+        "sha256": "d4e66f49378471f8a0742525b1e450f67672f65dd9861dfff4314ec588c89c22"
+      },
+      {
+        "file": "observation-0028.json",
+        "sha256": "9d216da7847d52ae05c7ddb097b0c44a81d457e3ce2ca178ac62486788755b2f"
+      },
+      {
+        "file": "observation-0029.json",
+        "sha256": "dcb3aaafaa695d3abc2db4fbdda03e49abc5cfec82ed5c42eeb09e6ed61c2a63"
+      },
+      {
+        "file": "observation-0030.json",
+        "sha256": "624f462715944877e288ebf4e32a06429a8560026762ac8962518340f0fbbd8e"
+      },
+      {
+        "file": "observation-0031.json",
+        "sha256": "9f0c670628e322bdcc4b1c0a6843a8884d24f40ecaa5fbb76b37bd4965296ccc"
+      },
+      {
+        "file": "observation-0032.json",
+        "sha256": "5b1cace625aaa961a22a14a4055901885a51c8b7fca5268c23f951397f0d4249"
+      },
+      {
+        "file": "observation-0033.json",
+        "sha256": "6892464163658ccb8f547df4b28b60c21e9af11531b2a165c85179443f078976"
+      },
+      {
+        "file": "observation-0034.json",
+        "sha256": "995acb33a0462ffa7e9b75810d80343f438a09656c481cd69f37ffffe423afa2"
+      },
+      {
+        "file": "observation-0035.json",
+        "sha256": "d8e60e4d121e097de308676a278bf922497d78c8985d0991ac845e071a1b03b2"
+      },
+      {
+        "file": "observation-0036.json",
+        "sha256": "e3611c0693fa5b9dd5b82a27d1b7bc25cb26f1d11cf1053fc67db0f188a256ea"
+      },
+      {
+        "file": "observation-0037.json",
+        "sha256": "55965f017c095974c126aa0bbe666e130c96ad3608516463d89b6ac3a1fa7d94"
+      },
+      {
+        "file": "observation-0038.json",
+        "sha256": "41924ce6a74bc3d5cfe576d59a67f2eb6ceefc7cf5a2f0701b16215ff6dab9f2"
+      },
+      {
+        "file": "observation-0039.json",
+        "sha256": "ba258872b6f59f888d57e089960c4d81a5301a01f8611fa08c7cb5e3360bde81"
+      },
+      {
+        "file": "observation-0040.json",
+        "sha256": "3b975a42ba2a557b51b73e9f028a4935ec3a7dcdfd4eb339d3db76b8f9c33358"
+      },
+      {
+        "file": "observation-0041.json",
+        "sha256": "37fea600f75705c00b40119404095ed71acac7542bd84c50d2ad5c9ded5ad368"
+      },
+      {
+        "file": "observation-0042.json",
+        "sha256": "c2fab6cc8b97b7076f6543f62e56db752e3f29b0c831c6cd45a4be9e9e254691"
+      },
+      {
+        "file": "observation-0043.json",
+        "sha256": "d6b7c9624927d09410c1b3c0b139ab038e596b8a908c358611088aa72b65b7fd"
+      }
+    ],
+    "readiness": [
+      {
+        "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+        "repository": "e61d3ef1-1fe8-4464-98e8-964f43351cb4",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "9d182c6972e4ac8617c3c0f5411405abcada9cf28a76886de04414ff4a5bf145",
+          "f648b54cd93047be6e4b6b8dab43d93215223aad83d351452736b76f6f3d5ef1",
+          "4175c923b7a106bdcefc1ed1a929a3771db033d8be3f2101db33d4d3201be660",
+          "d6b35dc84130b18d45b41daeb27708a8b9aa1d11d4488b94348a6d14780119fc"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      },
+      {
+        "snapshot": "4251905ba45e1393ea1a2263a27a725ba4eafab84f75baf3e5af1759b6254a39",
+        "repository": "e61d3ef1-1fe8-4464-98e8-964f43351cb4",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "34024a650cd0c33e846c47d524bf7d6a4fbb30aeeb9e88b09e326a3fbfb6a192"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      },
+      {
+        "snapshot": "71d1b50b1ccf333f145da1b2738685203a9dbc3909f7076a581c403010688cf8",
+        "repository": "e61d3ef1-1fe8-4464-98e8-964f43351cb4",
+        "ready": true,
+        "unresolved": [],
+        "evidence": [
+          "fb01e5385d7f4b734770485f42f77cdf45c4e2583a7e8e35872375a66dc95b06"
+        ],
+        "scope": "Information availability only; supplied frame is not claimed exhaustive"
+      }
+    ],
+    "initial_context": {
+      "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+      "repository": "e61d3ef1-1fe8-4464-98e8-964f43351cb4",
+      "ready": false,
+      "unresolved": [
+        "current-canonical-owner"
+      ],
+      "evidence": [],
+      "scope": "Information availability only; supplied frame is not claimed exhaustive"
+    },
+    "disclosures": [
+      {
+        "identity": "9d182c6972e4ac8617c3c0f5411405abcada9cf28a76886de04414ff4a5bf145",
+        "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+        "path": "src/devtools/context/python/modules/declarations.py",
+        "content_identity": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+        "span": [
+          0,
+          7628
+        ]
+      },
+      {
+        "identity": "f648b54cd93047be6e4b6b8dab43d93215223aad83d351452736b76f6f3d5ef1",
+        "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+        "path": "src/devtools/context/python/modules/bindings.py",
+        "content_identity": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+        "span": [
+          0,
+          1482
+        ]
+      },
+      {
+        "identity": "4175c923b7a106bdcefc1ed1a929a3771db033d8be3f2101db33d4d3201be660",
+        "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+        "path": "tests/live_native_scope_followup_public.py",
+        "content_identity": "1f4495ac7bbda0bc6726efaf33fb0b7f1b6d0ca2f7f4304b9d792fc9410859db",
+        "span": [
+          0,
+          18070
+        ]
+      },
+      {
+        "identity": "d6b35dc84130b18d45b41daeb27708a8b9aa1d11d4488b94348a6d14780119fc",
+        "snapshot": "63ba0635f200cdf11ca42b57365e146960160f5af175c69adaf26a1268dd7371",
+        "path": "tests/context/python/modules/test_selection.py",
+        "content_identity": "6b90314dbceada00b52aaeff1f5c58bd26c1a51da666b48f7d989070709007f4",
+        "span": [
+          0,
+          5793
+        ]
+      },
+      {
+        "identity": "34024a650cd0c33e846c47d524bf7d6a4fbb30aeeb9e88b09e326a3fbfb6a192",
+        "snapshot": "4251905ba45e1393ea1a2263a27a725ba4eafab84f75baf3e5af1759b6254a39",
+        "path": "src/devtools/context/python/modules/declarations.py",
+        "content_identity": "9d4b83948ae2a4f4ff284a95d90f6b2a7d4401627c9c59039af795b513194e31",
+        "span": [
+          0,
+          7644
+        ]
+      },
+      {
+        "identity": "fb01e5385d7f4b734770485f42f77cdf45c4e2583a7e8e35872375a66dc95b06",
+        "snapshot": "71d1b50b1ccf333f145da1b2738685203a9dbc3909f7076a581c403010688cf8",
+        "path": "src/devtools/context/python/modules/declarations.py",
+        "content_identity": "0808612a640369a5100dc6e6534726f11731b28bd22173fc77d40d56ce73439c",
+        "span": [
+          0,
+          8277
+        ]
+      },
+      {
+        "identity": "cd9e3a5700ff363cc5a0bf66a72914f0c1750f8b85dedddbffe6fd12f30a3d02",
+        "snapshot": "6e48323455545ea91a2f366732755df1996123936a3cbcd90d8508226bd9b1db",
+        "path": "src/devtools/context/python/modules/declarations.py",
+        "content_identity": "65f2cc21c091814247e4baed96c655d0fd5504942ba7dc63827d33c20098b850",
+        "span": [
+          0,
+          8383
+        ]
+      }
+    ],
+    "environment_qualification": "Fixed interpreter and declared source/check inputs; no complete external environment attestation or restart guarantee"
+  },
+  "integration_authorized": false,
+  "execution_sha256": "a18728a1fdac5c0fc9ef6ee70c2a3c005d10d3ee3d73b62e7af08e7ea24188a8",
+  "checkout_released": true,
+  "checkout_release": "2d6c8b0ff9102150129e995d6b4ce66ddbe56b858307c70c4f5c46b1f0f6bb09",
+  "sha256": "7ce6ad6a0c3443ef53591e3f77e3ac91edea15baf44f5efb31398ff881c7c558"
+}

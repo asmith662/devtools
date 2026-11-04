@@ -1,0 +1,54 @@
+--- a/src/devtools/context/python/modules/declarations.py
++++ b/src/devtools/context/python/modules/declarations.py
+@@ -141,18 +141,21 @@
+         candidates.extend(
+             None for name in iter_non_name_bindings(node) if name == declared_name
+         )
+-        for child in ast.walk(node):
++        for child, inside_local_scope in _iter_module_level_nodes(node):
++            if isinstance(
++                child,
++                ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef,
++            ):
++                if child.name == declared_name:
++                    candidates.append(None)
++                continue
++            if inside_local_scope:
++                continue
+             if isinstance(child, ast.Name) and isinstance(
+                 child.ctx,
+                 ast.Store | ast.Del,
+             ):
+                 if child.id == declared_name:
+-                    candidates.append(None)
+-            elif isinstance(
+-                child,
+-                ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef,
+-            ):
+-                if child.name == declared_name:
+                     candidates.append(None)
+             elif isinstance(child, ast.Import | ast.ImportFrom):
+                 for alias in child.names:
+@@ -196,6 +199,22 @@
+     )
+ 
+ 
++def _iter_module_level_nodes(node: ast.AST):
++    """Yield module-scope bindings inside one statement without entering local scopes.
++
++    Function, async-function, and class bodies own local namespaces even when
++    they are declared inside module control flow, so their stores, imports, and
++    names are never module-level bindings.
++    """
++    pending = [node]
++    while pending:
++        current = pending.pop()
++        if isinstance(current, ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef):
++            continue
++        yield current
++        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))
++
++
+ def _digest(*values: str) -> str:
+     digest = hashlib.sha256()
+     for value in values:

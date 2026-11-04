@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-04T22:05:04.492198+00:00",
+  "response": {
+    "content": "My replacement applied (the call now references `_iter_module_level_nodes`), but I haven't added the helper function yet. Let me add it next to `_digest`.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 19455,
+      "output_tokens": 247,
+      "total_tokens": 19702,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"new_text\":\"def _iter_module_level_nodes(node: ast.AST):\\n    \\\"\\\"\\\"Yield module-scope bindings inside one statement without entering local scopes.\\n\\n    Function, async-function, and class bodies own local namespaces even when\\n    they are declared inside module control flow, so their stores, imports, and\\n    names are never module-level bindings.\\n    \\\"\\\"\\\"\\n    pending = [node]\\n    while pending:\\n        current = pending.pop()\\n        if isinstance(current, ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef):\\n            continue\\n        yield current\\n        pending.extend(reversed(tuple(ast.iter_child_nodes(current))))\\n\\n\\ndef _digest(*values: str) -> str:\",\"old_text\":\"def _digest(*values: str) -> str:\",\"path\":\"src/devtools/context/python/modules/declarations.py\"}",
+        "provider_call_id": "sklgPTBEe1tBa73Q0U7nZsAsxM7Tu26b"
+      }
+    ]
+  },
+  "sha256": "9d216da7847d52ae05c7ddb097b0c44a81d457e3ce2ca178ac62486788755b2f"
+}

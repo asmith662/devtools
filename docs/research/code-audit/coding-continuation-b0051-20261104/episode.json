@@ -1,0 +1,244 @@
+{
+  "at": "2026-11-04T22:12:53.372190+00:00",
+  "item": "B-0051",
+  "engineering_status": "BACKLOG",
+  "policy": "08fcfcbfda2e51db7a7fb61a5cdd923deec75ebbff4cdad4b8e9f4520fa33662",
+  "coding_attempt": 2,
+  "maximum_attempts": 2,
+  "parent_assignment_sha256": "47a414bee5aaba90ee1ecdcb1795e4563f153c14e20b99392fad2505ceff391c",
+  "parent_result_sha256": "0d3cf5f97dba9561e5d448611024d4ab753320ed1cb4a10ff8b61bbd0ab100b2",
+  "child_assignment_sha256": "0773aaf5111062511778f9e948c0071494524ab431a44ff2f690e2036e29ba02",
+  "child_result_sha256": "7ce6ad6a0c3443ef53591e3f77e3ac91edea15baf44f5efb31398ff881c7c558",
+  "authorization_sha256": "aafba3477c2f75fc42905d6755aa4dfa9321942c5dd005584e83823b9642e2af",
+  "authorization_reference": "routine-v1:08fcfcbfda2e51db7a7fb61a5cdd923deec75ebbff4cdad4b8e9f4520fa33662:168c4d140c8c7577e07dd11dd6c0767ecd19ae568e9bb31ada0a84ae2fa142f5",
+  "branch": "feat/native-b-0051-attempt-2-20261104",
+  "base_head": "dc89074f676f079d465f0f93589f95dc45468544",
+  "worker": {
+    "actor": "qwen38-b0051-attempt-2-coder-20261104",
+    "source": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104",
+    "profile": "qwen38-native64-portable-defaults-v1"
+  },
+  "unchanged_budgets": {
+    "model_calls": 8,
+    "proposals": 3,
+    "acquisitions": 6,
+    "call_seconds": 120,
+    "wall_seconds": 900,
+    "prompt_bytes": 131072,
+    "source_bytes": 32768,
+    "capture_bytes": 983040
+  },
+  "input_content_identities": {
+    "src/devtools/context/python/modules/bindings.py": "1121521d511cee57c7b3261283fe100779787d2b4eed75d1e902cabb4af82750",
+    "src/devtools/context/python/modules/declarations.py": "8783209c15a9d21fa243abd7ca60d5a32a580552cf20d1c0f561e31ddf2211d1",
+    "tests/context/python/modules/test_selection.py": "6b90314dbceada00b52aaeff1f5c58bd26c1a51da666b48f7d989070709007f4",
+    "tests/live_native_scope_followup_public.py": "1f4495ac7bbda0bc6726efaf33fb0b7f1b6d0ca2f7f4304b9d792fc9410859db"
+  },
+  "public_bytes": 18070,
+  "public_sha256": "7de45c1583dc96faeaec5ff09bc263ae649f28751cc6dfd3a0b08402cdc016aa",
+  "outcome": "BLOCKED",
+  "coding_disposition": "proposal_limit",
+  "model_calls": 6,
+  "adapter_entries": 6,
+  "returned_interactions": 6,
+  "source_acquisitions": 4,
+  "proposals": 3,
+  "admitted_edits": 3,
+  "usage": [
+    {
+      "input_tokens": 4466,
+      "output_tokens": 89,
+      "total_tokens": 4555,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 7530,
+      "output_tokens": 84,
+      "total_tokens": 7614,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 12657,
+      "output_tokens": 70,
+      "total_tokens": 12727,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 14764,
+      "output_tokens": 342,
+      "total_tokens": 15106,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 19455,
+      "output_tokens": 247,
+      "total_tokens": 19702,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    {
+      "input_tokens": 22143,
+      "output_tokens": 703,
+      "total_tokens": 22846,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    }
+  ],
+  "cumulative_input_tokens": 81015,
+  "cumulative_output_tokens": 1535,
+  "peak_reported_input_tokens": 22143,
+  "usage_qualification": "Cumulative request histories; not unique source tokens or uncached prefill. First-token latency not observed.",
+  "context_policy": {
+    "schema": "native-context-v1",
+    "context_tokens": 65536,
+    "input_tokens": 62464,
+    "reserved_output_tokens": 2048,
+    "disclosure_bytes": 65536,
+    "warning_bytes": 98304,
+    "trigger_bytes": 114688,
+    "target_bytes": 98304
+  },
+  "tools": [
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": 0,
+      "end": null,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 1,
+      "name": "read_source",
+      "path": "src/devtools/context/python/modules/bindings.py",
+      "start": 0,
+      "end": null,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 2,
+      "name": "read_source",
+      "path": "tests/live_native_scope_followup_public.py",
+      "start": 0,
+      "end": 18070,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 3,
+      "name": "read_source",
+      "path": "tests/context/python/modules/test_selection.py",
+      "start": 0,
+      "end": 5793,
+      "old_text_bytes": 0,
+      "new_text_bytes": 0
+    },
+    {
+      "model_call": 4,
+      "name": "replace_source",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 174,
+      "new_text_bytes": 190
+    },
+    {
+      "model_call": 5,
+      "name": "replace_source",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 33,
+      "new_text_bytes": 650
+    },
+    {
+      "model_call": 6,
+      "name": "replace_source",
+      "path": "src/devtools/context/python/modules/declarations.py",
+      "start": null,
+      "end": null,
+      "old_text_bytes": 1069,
+      "new_text_bytes": 1172
+    }
+  ],
+  "public_checks": [
+    {
+      "round": 1,
+      "exit_code": 1,
+      "passed": false,
+      "seconds": 77.634606,
+      "summary": "2 failed, 19 passed in 76.86s (0:01:16)",
+      "failed_ids": [
+        "FAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[wrapped-locals]",
+        "FAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]"
+      ],
+      "inputs_current": true,
+      "truncated": false
+    },
+    {
+      "round": 2,
+      "exit_code": 1,
+      "passed": false,
+      "seconds": 1.148155,
+      "summary": "1 failed, 20 passed in 0.62s",
+      "failed_ids": [
+        "FAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]"
+      ],
+      "inputs_current": true,
+      "truncated": false
+    },
+    {
+      "round": 3,
+      "exit_code": 1,
+      "passed": false,
+      "seconds": 0.778714,
+      "summary": "2 failed, 19 passed in 0.27s",
+      "failed_ids": [
+        "FAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[wrapped-locals]",
+        "FAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]"
+      ],
+      "inputs_current": true,
+      "truncated": false
+    }
+  ],
+  "final_failure": "Caller unpacks (child, inside_local_scope), but helper yields bare AST nodes; TypeError: cannot unpack non-iterable Assign object.",
+  "intermediate_semantic_failure": "guard-conditional-declaration expected ambiguous, incorrectly resolved after pruning real conditional declarations.",
+  "private_acceptance_entered": false,
+  "private_acceptance": null,
+  "structured_reviewer_calls": 0,
+  "host_disposition": null,
+  "integration_plan": null,
+  "review_ineligibility": "No candidate passed all frozen public checks.",
+  "native_seconds": 285.829746,
+  "driver_seconds": 286.313736,
+  "adapter_seconds": 152.977175,
+  "public_check_seconds": 79.561475,
+  "candidate_sha256": "d14de3e8d727c9025890b88774af9e29ae7100e1ce69e8c7d7fd0ad25450f079",
+  "patch_sha256": "41569c461d28a4fd3ccb7ae0e2b2d0b4fadbd3890ced01fbb476f1b7bf0deac5",
+  "source_restored_sha256": "2575f9af3d983d50dfe62cec64711d762da890f270648d6b4058f8bbfd355043",
+  "checkout_release": "2d6c8b0ff9102150129e995d6b4ce66ddbe56b858307c70c4f5c46b1f0f6bb09",
+  "source_restored": true,
+  "checkout_released": true,
+  "parent_files_preserved": 66,
+  "native_capture_bytes": 490628,
+  "support_capture_bytes": 11072,
+  "capture_ceiling_bytes": 1048576,
+  "private_oracle_excluded_from_model_requests": true,
+  "protected_validation_commit": "dc89074f676f079d465f0f93589f95dc45468544",
+  "new_protected_runs_for_model_experiment": 0,
+  "candidate_installed": false,
+  "no_third_attempt": true,
+  "strongest_remaining_blocker": "Model-authored repair consistency and module-scope conservatism under public feedback; both authorized coding slots are consumed."
+}

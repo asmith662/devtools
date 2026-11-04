@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-04T22:02:47.569740+00:00",
+  "response": {
+    "content": "Let me check the other test file for maintained module-selection contracts.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 12657,
+      "output_tokens": 70,
+      "total_tokens": 12727,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/context/python/modules/test_selection.py\",\"start\":0,\"end\":5793}",
+        "provider_call_id": "81enKPVQZRhWrK5qlXzIO7YDGtDdopGW"
+      }
+    ]
+  },
+  "sha256": "a4c96c2ba60aed099b4dc199b43ba3c11744d5e4a6ebe0a7e768501e1eb1c98e"
+}

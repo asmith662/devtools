@@ -1,0 +1,30 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-04T22:06:06.890460+00:00",
+  "response": {
+    "content": "The only remaining failure is `guard-conditional-declaration`:\n```\ndef f():\n    return 7\nif enabled:\n    def f():\n        pass\n```\nExpected `ambiguous` (a genuine module-level competing declaration), but my scope-aware walker now skips the nested `def f` entirely (treating it like the wrapped-locals `helper`), yielding `resolved`.\n\nThe correct semantic distinction:\n- **Local binding**: the name is bound *inside* a function/class body (its local namespace) \u2014 never module-level (the wrapped-locals cases, including the revealed if/function-import).\n- **Genuine competing declaration**: a `def`/`async def`/`class` that is a *direct member* of a module statement's control-flow body (not nested inside another local body) \u2014 this is a real module-level re-declaration and must be flagged.\n\nSo the walker must **descend into** function/class bodies for the purpose of finding competing *declarations*, but must treat any name *store/import* found inside a body as a **local** binding (not module-level). Let me refine the helper to distinguish \"inside a local scope\" so stores/imports are ignored there while declarations are still surfaced.\n\n",
+    "source": {
+      "value": "llama.cpp/qwen38-local/b0051-attempt-2-coder-20261104"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 22143,
+      "output_tokens": 703,
+      "total_tokens": 22846,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "replace_source",
+        "arguments_json": "{\"new_text\":\"        for child, inside_local_scope in _iter_module_level_nodes(node):\\n            if isinstance(\\n                child,\\n                ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef,\\n            ):\\n                if child.name == declared_name:\\n                    candidates.append(None)\\n                continue\\n            if inside_local_scope:\\n                continue\\n            if isinstance(child, ast.Name) and isinstance(\\n                child.ctx,\\n                ast.Store | ast.Del,\\n            ):\\n                if child.id == declared_name:\\n                    candidates.append(None)\\n            elif isinstance(child, ast.Import | ast.ImportFrom):\\n                for alias in child.names:\\n                    if alias.name == \\\"*\\\":\\n                        uncertain = True\\n                    elif (\\n                        alias.asname\\n                        or (\\n                            alias.name\\n                            if isinstance(child, ast.ImportFrom)\\n                            else alias.name.split(\\\".\\\")[0]\\n                        )\\n                    ) == declared_name:\\n                        candidates.append(None)\",\"old_text\":\"        for child in _iter_module_level_nodes(node):\\n            if isinstance(child, ast.Name) and isinstance(\\n                child.ctx,\\n                ast.Store | ast.Del,\\n            ):\\n                if child.id == declared_name:\\n                    candidates.append(None)\\n            elif isinstance(\\n                child,\\n                ast.ClassDef | ast.FunctionDef | ast.AsyncFunctionDef,\\n            ):\\n                if child.name == declared_name:\\n                    candidates.append(None)\\n            elif isinstance(child, ast.Import | ast.ImportFrom):\\n                for alias in child.names:\\n                    if alias.name == \\\"*\\\":\\n                        uncertain = True\\n                    elif (\\n                        alias.asname\\n                        or (\\n                            alias.name\\n                            if isinstance(child, ast.ImportFrom)\\n                            else alias.name.split(\\\".\\\")[0]\\n                        )\\n                    ) == declared_name:\\n                        candidates.append(None)\",\"path\":\"src/devtools/context/python/modules/declarations.py\"}",
+        "provider_call_id": "fCGbwwz6FF63AYpBBbxa49FMw141LRQf"
+      }
+    ]
+  },
+  "sha256": "55965f017c095974c126aa0bbe666e130c96ad3608516463d89b6ac3a1fa7d94"
+}

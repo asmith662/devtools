@@ -129,3 +129,11 @@ The targeted correction run passed all 38 selected tests, but its input-freshnes
 check failed because an explanatory source comment changed during execution.
 That diagnostic result is retained; fresh validation of the committed correction
 is required before publication.
+
+The frozen correction at `dc89074f676f079d465f0f93589f95dc45468544` then passed
+the three focused recovery tests and the protected gate: 4,347 passed, two
+skipped, 100% configured production coverage, 4,503.60 seconds. Both correction
+commits were non-force pushed before inference. The subsequent
+[authentic child episode](coding-continuation-first-live.md) was lawfully
+admitted and completed BLOCKED on public validation. This supersedes the earlier
+admission blocker without rewriting that measurement or either failed attempt.

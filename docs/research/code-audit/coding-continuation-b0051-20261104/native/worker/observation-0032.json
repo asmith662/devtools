@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "public-check-result",
+  "at": "2026-11-04T22:05:07.171391+00:00",
+  "checks": [
+    {
+      "name": "public",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\backlog\\work\\B-0051\\attempts\\0002\\worker\\public.py"
+      ],
+      "exit_code": 1,
+      "outcome": "failed",
+      "seconds": 1.148155,
+      "passed": false,
+      "inputs_current": true,
+      "stdout": "...F.................                                                    [100%]\r\n================================== FAILURES ===================================\r\n________________ test_declared_namespace_matrix[conservative] _________________\r\n\r\ntmp_path = WindowsPath('C:/Users/recoveryadmin/AppData/Local/Temp/pytest-of-recoveryadmin/pytest-15593/test_declared_namespace_matrix3')\r\ngroup = 'conservative'\r\n\r\n    @pytest.mark.parametrize(\"group\", [\"local-scopes\", \"wrapped-locals\", \"targets\", \"conservative\"])\r\n    def test_declared_namespace_matrix(tmp_path, group):\r\n        failures = []\r\n        for row in CASES:\r\n            if row[\"group\"] == group:\r\n                problem = verify(tmp_path / row[\"name\"], row, lookup_python_module_declaration)\r\n                if problem is not None:\r\n                    failures.append(problem)\r\n>       assert not failures, failures\r\nE       AssertionError: [{'case': 'guard-conditional-declaration', 'expected': 'ambiguous', 'actual': 'resolved'}]\r\nE       assert not [{'case': 'guard-conditional-declaration', 'expected': 'ambiguous', 'actual': 'resolved'}]\r\n\r\ntests\\live_native_scope_followup_public.py:49: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/live_native_scope_followup_public.py::test_declared_namespace_matrix[conservative]\r\n1 failed, 20 passed in 0.62s\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "events_dropped": 0
+    }
+  ],
+  "sha256": "5b1cace625aaa961a22a14a4055901885a51c8b7fca5268c23f951397f0d4249"
+}
