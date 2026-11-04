@@ -117,3 +117,15 @@ continuation and native compatibility. Ruff, formatting, strict mypy (634 source
 files), layout and diff checks passed; the parent inventory and malformed receipt
 remained unchanged. The exact committed candidate requires protected validation
 before publication and live entry.
+
+The first protected run on `df589ac44a25d1914ecbbad7e2459687741787d8`
+finished with 4,345 passed, two skipped and two Integration closeout failures;
+configured production coverage was 100%, but the gate failed. Its new in-memory
+payload-equality check rejected Integration's existing host-owned file
+registration before `expect`. The correction rejects an embedded `sha256`
+instead, retaining the exact on-disk journal fence and double-seal refusal.
+The failed gate is retained, not replaced by a targeted passing result.
+The targeted correction run passed all 38 selected tests, but its input-freshness
+check failed because an explanatory source comment changed during execution.
+That diagnostic result is retained; fresh validation of the committed correction
+is required before publication.

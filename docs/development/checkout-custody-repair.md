@@ -53,7 +53,9 @@ and restored administrative head must match. Completion records are independent;
 there is no global release hash chain. An unrelated invalid historical receipt
 does not supply or invalidate another operation's custody proof. Relevant
 invalid, foreign or missing releases still refuse. The in-memory journal payload
-must also match its last seal; loading a sealed mapping as payload cannot finish.
+must not contain a seal; loading a sealed mapping as payload cannot finish.
+Existing host-owned Integration file registration remains supported; the
+on-disk journal must still match the last authenticated seal.
 
 `uv run python -m scripts.backlog work-history` independently audits every
 completion's schema, digest and filename, returns nonzero on errors and never

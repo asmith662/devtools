@@ -254,9 +254,11 @@ class Checkout:
         """Require the exact last journal, including its nonreusable generation."""
         value = load_json(self.folder / "owner.json")
         digest = value.pop("sha256", None)
+        # Integration registers host-owned closeout files before expect().
+        # Reject an embedded seal without forbidding that existing payload update.
         if (
             self._sealed is None
-            or _digest(self.record) != self._sealed
+            or "sha256" in self.record
             or digest != self._sealed
             or _digest(value) != digest
             or value.get("root") != str(self.root)
