@@ -52,6 +52,8 @@ Preparation grants no effects. Existing authority, guarded coding host and Check
 recheck the child/predecessor at governed boundaries. `native-continue` prepares;
 `native-preview --coding-attempt N` inspects. Trusted hosts inject execution
 collaborators. Eligible policy-derived grants require no interactive task approval.
+Children reject manual grants at issuance and effect admission; historical root
+manual-grant compatibility remains intact.
 
 The supervisor selects disclosure explicitly. Default feedback is a factual public
 failure summary; `disclose_public=True` also selects complete final public-check

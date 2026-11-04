@@ -395,6 +395,18 @@ class NativeMaintenance:
         ):
             raise PermissionError("Explicit native host approval required")
         await self.validate(assignment)
+        if self.attempt > 1 and (
+            self.cycle.routine.check_reference(reference, subject=item, kind="coding")
+            is None
+            or not self.cycle.routine.callback(reference)(
+                {
+                    "operation": "authorize-native-maintenance",
+                    "assignment": assignment,
+                    "grant": grant,
+                }
+            )
+        ):
+            raise PermissionError("Continuation requires a fresh policy-derived grant")
         if Timestamp.now().value >= expires.value:
             raise PermissionError("Native approval expired during consent")
         return self.save(item, "authorization", grant)
@@ -406,6 +418,8 @@ class NativeMaintenance:
             subject=assignment["item"],
             kind="coding",
         )
+        if self.attempt > 1 and linked is None:
+            raise PermissionError("Continuation requires a fresh policy-derived grant")
         if linked is not None and not self.cycle.routine.callback(grant["reference"])(
             {
                 "operation": "authorize-native-maintenance",

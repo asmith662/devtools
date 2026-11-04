@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from devtools.core.time import Duration, Timestamp
 from scripts.backlog.routine.policy import validate
 from tests.scripts.backlog.routine.test_authority import assessment, policy, provider
 from tests.scripts.backlog.test_native import (
@@ -228,6 +229,36 @@ def test_historical_policy_stays_one_slot() -> None:
     config = policy()
     config.update(schema="routine-development-policy-v2", coding_attempts=3)
     validate(config)
+
+
+def test_child_cannot_receive_manual_execution_grant(
+    repository: tuple[WorkCycle, str],
+) -> None:
+    """Every continuation grant must derive from the active standing policy."""
+    cycle, item = repository
+
+    async def run() -> None:
+        version = await failed(cycle, item)
+        packet = cycle.native.record(item, "assignment")["task"]
+        await cycle.native.prepare_continuation(
+            item,
+            attempt=2,
+            policy=version,
+            branch="feat/native-work",
+            task=packet,
+            supervisor="trusted supervisor",
+        )
+        owner = cycle.native.select(2)
+        with pytest.raises(PermissionError, match="policy-derived"):
+            await owner.authorize(
+                item,
+                reference="manual-exception",
+                expires=Timestamp.now() + Duration.minutes(5),
+                authorize=lambda _: True,
+            )
+        assert not (owner.folder(item) / "authorization.json").exists()
+
+    asyncio.run(run())
 
 
 @pytest.mark.parametrize("change", ["source", "revoked", "expired"])

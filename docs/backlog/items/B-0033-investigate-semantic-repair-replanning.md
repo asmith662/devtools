@@ -47,7 +47,7 @@ The operator subsequently authorized implementation and activated the two-total-
 attempt standing amendment. Intake recorded readiness from DEFERRED to ACTIVE
 without creating a replacement obligation. WorkCycle.native now addresses
 immutable coding children and issues fresh policy-derived grants after known
-terminal public-validation failure. The 17 focused deterministic regressions
+terminal public-validation failure. The 18 focused deterministic regressions
 passed, including an alternate scripted coding model; this is simulated evidence,
 not another live Qwen episode.
 
