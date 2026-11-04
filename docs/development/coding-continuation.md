@@ -1,5 +1,10 @@
 # Bounded coding continuation
 
+The [first live admission measurement](../research/coding-continuation-admission.md)
+authenticated B-0051's frozen inputs and stopped before a child or model call:
+Checkout-history digest authentication failed, and the earlier exit-code-2 public
+collection failure also falls outside current eligibility.
+
 WorkCycle's native owner administers distinct coding episodes under one canonical
 engineering obligation. This differs from intra-episode edit/check/repair and
 read-only reviewer continuation. Runtime and ModelInteraction gain no orchestration.

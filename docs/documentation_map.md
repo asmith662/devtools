@@ -86,6 +86,8 @@ explicit 32K fallback. The next step is a fresh authorized native engineering ta
 
 Coding episodes: [bounded terminal-failure continuation](development/coding-continuation.md)
 owns immutable child assignments and fresh finite standing grants under one task.
+Its [first live admission measurement](research/coding-continuation-admission.md)
+authenticates exact B-0051 recovery and records refusal before model entry.
 
 Coding continuation: [aggregate source-read admission](development/aggregate-source-admission.md)
 owns complete-request preflight, correlated refusals and bounded range recovery.

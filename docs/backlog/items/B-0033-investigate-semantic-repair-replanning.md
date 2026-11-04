@@ -62,3 +62,12 @@ its authenticated owner is required before full eligibility reauthentication.
 This delivers one conservative slice. Independent private-acceptance rejection
 requires future supervised diagnostic disclosure that protects oracle
 implementation. Broader strategy repair, replanning and delegation remain open.
+
+## First authentic admission measurement
+
+The [B-0051 admission measurement](../../research/coding-continuation-admission.md)
+recovered the exact public file and authenticated unchanged task inputs. The
+existing owner refused an unrelated Checkout-history payload-digest mismatch;
+the earlier public collection exit code 2 also falls outside current eligibility.
+No child, grant, inference or review was entered. B-0033 remains ACTIVE; these
+blockers require owner reconciliation and deliberate eligibility assessment.
