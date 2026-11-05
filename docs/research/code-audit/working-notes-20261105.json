@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "at": "2026-11-05T16:32:04.995926+00:00",
+  "implementation_commit": "b5b1936cb288b3853f3ddef13e22276cabad0614",
+  "recovered_base": "de037dac7bb4285cf749fbbe4fdd0c026ae8e2e0",
+  "scope": "Task-local role/episode working Context and first independent NativeReviewer consumer; no global Memory or RI truth promotion.",
+  "implementation": {
+    "framework": "src/devtools/context/working",
+    "consumer": "scripts/backlog/native/review/notes.py",
+    "activation": "working_notes=True on a new acceptance-review subject, bound before its existing grant",
+    "model_note_trust": "Always provisional; exact quote verification is literal only; semantic host attestations require an explicit check reference",
+    "reconstruction": "Existing authenticated episode checkpoint plus original approved subject/completed read bindings; no redispatch authority",
+    "final_review_schema_changed": false,
+    "private_oracle_or_worker_notes_imported": false
+  },
+  "validation": {
+    "focused_consumers": {
+      "passed": 135,
+      "seconds": 334.67
+    },
+    "typing_correction_test": {
+      "passed": 1
+    },
+    "frozen_fixture_preservation": {
+      "passed": 1,
+      "raw_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+      "representation": "Original CRLF bytes retained with per-fixture Git whitespace declaration"
+    },
+    "strict_mypy": {
+      "passed": true,
+      "source_files": 641
+    },
+    "supported_ruff_and_format": {
+      "passed": true,
+      "scope": "src tests apps scripts, excluding retained tests/experiments; new development Markdown also format-checked",
+      "formatted_files": 792
+    },
+    "root_static_limitations": [
+      "Root Ruff check includes immutable research/generated archives and reported 31349 diagnostics. No archival fixes applied.",
+      "Root formatter included retained artifacts and panicked in annotation rendering. These root invocations are not claimed passing; supported-input checks passed."
+    ],
+    "layout": {
+      "passed": true
+    },
+    "local_links": {
+      "passed": true,
+      "targets_checked": 344
+    },
+    "protected": {
+      "entered_runs": 1,
+      "passed": 4406,
+      "skipped": 2,
+      "skips": "Two opt-in live Codex tests",
+      "collection_errors": 0,
+      "exit_code": 0,
+      "wall_seconds": 4135.700976,
+      "pytest_seconds": 4116.81,
+      "managed_timeout_seconds": 7200,
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.validation.protected",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\working-notes-protected-final.pytest.json",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+        "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments",
+        "--durations=30"
+      ],
+      "profile": "Exact scripts.validate_development.py pytest_arguments and existing fresh protected bootstrap; normal configured branch gate",
+      "coverage": {
+        "percent": 100,
+        "statements": 14421,
+        "missing_statements": 0,
+        "branches": 3702,
+        "partial_branches": 0,
+        "total_line": "TOTAL                                                                     14421      0   3702      0   100%"
+      },
+      "inputs_unchanged": true,
+      "complete": true
+    }
+  },
+  "validated_input_sha256": {
+    "scripts/backlog/native/review/__init__.py": "a0d8bad9dcc08d8fec73233c04b28af684fc3b9bddcd827ba3db0d3b4bc35fab",
+    "scripts/backlog/native/review/acquisition.py": "1ed05165abbf1ecea46845d60cdb3c319526328a8a6ec8a50455b4049eafda18",
+    "scripts/backlog/native/review/actor.py": "a72299bc10e3425f326bc91fdf18079215544fd38e2d9788a2e7a3f3c69c6634",
+    "scripts/backlog/native/review/budget.py": "199615e6b59cb06993c912eb54161bc8fd1991a848b1298e9e3192030aaebd65",
+    "scripts/backlog/native/review/continuation.py": "d3af8ac0957acca49a0727f67e36a8507ec53f963c4fa3aca6755727db7bad3f",
+    "scripts/backlog/native/review/delivery.py": "ffeaba7dbfb68517c732cbb03de8c3a02717c44689a796d6d553f4a0e419e181",
+    "scripts/backlog/native/review/diagnostic.py": "49f04f35ca1a7849da81fbdb7554c1910a0de7ecbfb83d9cba8b95f18d634ff9",
+    "scripts/backlog/native/review/notes.py": "9373dae969f233d2479cc04c72f5e41074cfb5083e3d30c12ffa3edf64eff025",
+    "scripts/backlog/native/review/proposal.py": "21efd61a273ddfdf27a1b72fb25b3c7e1f0935d01575c1aaec2b0349cec0344a",
+    "scripts/backlog/native/review/subject.py": "7a0e4182aa5ea5873edd79226017fc8c669d2b1cf22b45dfa932452087d025f7",
+    "src/devtools/context/working/__init__.py": "e6287290e1c7454a2b56bf51a9d24795c42c59cad477d5c06ac01c5bae2d04f7",
+    "src/devtools/context/working/docs/overview.md": "ef81eb032958f6f38328b3848a8057b47d80be7e05df29eda214550fe9425f07",
+    "src/devtools/context/working/evidence.py": "4666bdbaf22ccc89c0b30cfe6cdbb4c19eaed1da44322f319425578bb11162dc",
+    "src/devtools/context/working/notes.py": "8d6fd729e1396027ea05433dab9fef29126527c0fdf185f65557b4e7031a808e",
+    "tests/context/working/__init__.py": "bb6925c8e7d6fa70ae9e22d6b012e4ac499240f22c2732585bb0ed4b1ad46042",
+    "tests/context/working/fixtures/.gitattributes": "262f0d1b0d5e5690f6ce83273a5cef5be20597346ed94f0d8ccd8d59ec23e43c",
+    "tests/context/working/fixtures/p3-candidate.txt": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "tests/context/working/fixtures/p3-claims.json": "5924751cfd1cdfc78e5ddabb04a4a86123773a0d83580b7baa04dad29f2cea87",
+    "tests/context/working/test_notes.py": "d0f444f22c1a761aacf6565afa7e9a5943ea69a3e1dec8dc3a26670d05182088",
+    "tests/context/working/test_p3.py": "51f509384ac84b520181ca26c4f6502401620c33c4232f1e5b007e8e7b35983d",
+    "tests/scripts/backlog/review/test_notes.py": "9f33988f0292c29397e0245d12a72b30a216c52d3acc9b0096944c3271ee68ba"
+  },
+  "receipts": {
+    "working-notes-final-focused.json": {
+      "path": ".local/validation/working-notes-final-focused.json",
+      "sha256": "f6a102ebfb8eb94824706e4261a9b6afad1d6c04552c472d0904cbe179ca3680"
+    },
+    "working-notes-typing-correction.json": {
+      "path": ".local/validation/working-notes-typing-correction.json",
+      "sha256": "6a11b6383ed57e82b902bddae401e2f4315fd3721da02398142b14585989f969"
+    },
+    "working-notes-fixture-preservation.json": {
+      "path": ".local/validation/working-notes-fixture-preservation.json",
+      "sha256": "9918e962c39ce5bf38b75be8e2a08bd12cad08491499ab172d9e6877077f4b9e"
+    },
+    "working-notes-supported-static-01.json": {
+      "path": ".local/validation/working-notes-supported-static-01.json",
+      "sha256": "75915235175f68e69444a0179e26add3e626cc42d9445dde6252e650c7500fef"
+    },
+    "working-notes-protected-final.json": {
+      "path": ".local/validation/working-notes-protected-final.json",
+      "sha256": "332b7c8c067cd2a201ff67d2bdb6c6149ecae3c0afdd12278d4565b1a2bdc2ac"
+    },
+    "working-notes-protected-final.pytest.json": {
+      "path": ".local/validation/working-notes-protected-final.pytest.json",
+      "sha256": "00c99925e7bd962477065e6319050e8e9298a4ba33b7558764ec2078bfd5f1f1"
+    },
+    "working-notes-protected-final.stdout": {
+      "path": ".local/validation/working-notes-protected-final.stdout",
+      "sha256": "58c50e6c4ac45fe9a147bf4f72b17b88b1c735018ac4e93cd71ac340bdfb8cca"
+    },
+    "working-notes-protected-final.stderr": {
+      "path": ".local/validation/working-notes-protected-final.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "limitations": [
+    "Deterministic checks establish state/provenance and trust boundaries, not improved LLM factual accuracy.",
+    "No live Qwen inference or native attempt entered. Existing failed episodes/slots and standing authority are unchanged.",
+    "No automatic cross-task retrieval, long-term procedural memory, general semantic contradiction detector or automatic consumed-attempt resume.",
+    "The final evidence-only publication may have a later HEAD; executable input equality must be checked against the tested implementation commit."
+  ],
+  "next": [
+    "Coding worker helper/consumer contract notes over existing source disclosures and projection.",
+    "Explicitly reviewed versioned procedural playbook entries with source/evaluation evidence, limitations and host selection.",
+    "Prospective baseline-versus-working-notes evaluation defined in the development contract; freeze exact requests/scoring and obtain a fresh bounded inference approval before any generation."
+  ]
+}

@@ -158,3 +158,21 @@ retain all notes, source bindings, raw requests/responses, usage and timing. Thi
 measures the combined procedure/state package, not an isolated memory effect.
 Freeze exact requests, scoring, scope and duration before obtaining a fresh
 single operator approval. No inference is authorized by this documentation.
+
+## Validated implementation
+
+Implementation `b5b1936cb288b3853f3ddef13e22276cabad0614` passed 135 focused
+consumer tests, strict mypy over 641 files, supported-input Ruff/format checks,
+layout and link checks. Its single protected run passed **4,406 tests with two
+opt-in live Codex tests skipped**, at **100% production branch coverage**.
+The managed deadline was 7,200 seconds; actual wall time was 4,135.70 seconds.
+The complete receipt confirms unchanged inputs. See the compact
+[validation evidence](../research/code-audit/working-notes-20261105.json) for
+source identities, receipt hashes, command and limitations.
+
+Supported-input static checks target framework/tests/apps/scripts, excluding
+retained `tests/experiments/`. Root-wide Ruff additionally encounters immutable
+research/generated archives; its check reported archival diagnostics and its
+formatter panicked while rendering retained artifacts. Those invocations are
+not called passing, and no historical artifact or global lint policy was changed.
+Working-note accuracy under a live model remains unmeasured.
