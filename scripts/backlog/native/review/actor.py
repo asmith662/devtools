@@ -9,7 +9,7 @@ import getpass
 import hashlib
 import json
 import re
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from functools import partial
 from typing import TYPE_CHECKING, Any, cast
 
@@ -54,6 +54,7 @@ from devtools.tools.source import (
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
 from scripts.backlog.native.review import budget, continuation, delivery, diagnostic
+from scripts.backlog.native.review import notes as working
 from scripts.backlog.native.review.acquisition import (
     ReadBatchRefusalError,
     acquire,
@@ -282,9 +283,18 @@ class NativeReviewer:
             )
 
     async def prepare(
-        self, item: str, *, reviewer: dict[str, Any], archive: str | None = None
+        self,
+        item: str,
+        *,
+        reviewer: dict[str, Any],
+        archive: str | None = None,
+        working_notes: bool = False,
     ) -> dict[str, Any]:
         """Freeze the exact disclosed subject and proposed authority, without dispatch."""
+        if type(working_notes) is not bool or (working_notes and self.diagnostic_only):
+            raise ValueError(
+                "Working notes require prospective independent acceptance review"
+            )
         if self.attempt is not None:
             raise PermissionError(
                 "Create prospective attempts through prepare_continuation"
@@ -304,6 +314,11 @@ class NativeReviewer:
                     "policy": reviewer,
                     "scope": self.scope,
                     "tools": self.tools(),
+                    **(
+                        {"working_notes": dict(working.CONTRACT)}
+                        if working_notes
+                        else {}
+                    ),
                     **(
                         {
                             "completion": dict(budget.COMPLETION),
@@ -380,6 +395,12 @@ class NativeReviewer:
         policy(packet["policy"], packet["subject"]["evidence"]["scope"]["worker"])
         if (
             packet["scope"] != self.scope
+            or (
+                "working_notes" in packet
+                and (
+                    self.diagnostic_only or packet["working_notes"] != working.CONTRACT
+                )
+            )
             or (
                 "completion" in packet
                 and (self.diagnostic_only or packet["completion"] != budget.COMPLETION)
@@ -628,6 +649,13 @@ class NativeReviewer:
                         ),
                     ),
                 ]
+                memory = (
+                    working.ReviewNotes(packet, scope.snapshot, capture)
+                    if "working_notes" in packet
+                    else None
+                )
+                if memory is not None:
+                    memory.persist("independent-subject")
                 claimed: set[str] = set()
                 for _ in range(config["budgets"]["model_calls"]):
                     await self.current(item)
@@ -646,6 +674,8 @@ class NativeReviewer:
                     if view is not None:
                         active_messages.append(PromptMessage("user", json.dumps(view)))
                         capture.add("review-budget", {"budget": view})
+                    if memory is not None:
+                        active_messages.append(memory.message())
                     request = ModelRequest(
                         Prompt("", "messages", tuple(active_messages)),
                         settings=ModelSettings(**config["settings"]),
@@ -720,6 +750,14 @@ class NativeReviewer:
                         raise ValueError(
                             "Review response source/output allowance invalid"
                         )
+                    noted = memory is not None and memory.accept(
+                        response.content,
+                        "model-response:" + _digest(asdict(response)),
+                    )
+                    if noted and not response.tool_calls:
+                        # Raw output/checkpoints remain captured; only the bounded
+                        # current view, not accumulating note text, is disclosed.
+                        continue
                     if (
                         not self.diagnostic_only
                         and "delivery" in packet
@@ -789,6 +827,9 @@ class NativeReviewer:
                             )
                             raise PermissionError(reason)
                     else:
+                        inspection_response = (
+                            replace(response, content="") if noted else response
+                        )
 
                         async def guard() -> None:
                             await self.current(item)
@@ -809,7 +850,7 @@ class NativeReviewer:
                                 )
                                 raise ReadBatchRefusalError(reason)
                             reads = await acquire(
-                                response,
+                                inspection_response,
                                 request,
                                 scope=scope,
                                 index=index,
@@ -821,6 +862,9 @@ class NativeReviewer:
                                 capture=capture,
                                 guard=guard,
                                 recover=view is not None,
+                                observed=memory.observed
+                                if memory is not None
+                                else None,
                             )
                         except ReadBatchRefusalError as error:
                             await guard()
@@ -828,7 +872,7 @@ class NativeReviewer:
                                 packet,
                                 calls,
                                 reads,
-                                response,
+                                inspection_response,
                                 request,
                                 str(error),
                                 messages,

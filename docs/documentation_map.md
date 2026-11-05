@@ -1,5 +1,11 @@
 # Documentation Map
 
+[Source-grounded task-local working notes](development/agent-working-notes.md)
+defines bounded role/episode Context state and its prospective NativeReviewer
+integration. Model claims stay provisional; source quotation, explicit host
+checks, freshness and reconstruction remain distinct from model accuracy and
+future cross-task procedural memory. No additional live inference is implied.
+
 [P3 reviewer finalization follow-up](research/llm-harness-p3-followup.md)
 records eight approved calls comparing concise/original instructions and
 384/2,048-token ceilings. Delivery improves, but only two reviews are factual;

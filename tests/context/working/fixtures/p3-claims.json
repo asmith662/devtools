@@ -1,0 +1,20 @@
+{
+  "source_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "origin": "docs/research/code-audit/llm-harness-p3-followup-20261105/calls.json",
+  "cases": [
+    {
+      "id": "P3-original-2048-r2",
+      "published_response_sha256": "1988527a9422de0e61271fdbccd41a81b524dcb8bfd42cc7d986ea98d4a263c4",
+      "claim": "The same root cause means any heading whose title legitimately ends with '#' characters followed by a space and a closing hash run (e.g. '# C# #') will also be mis-parsed, because the trailing hashes are absorbed into the text group instead of being treated as the closing sequence.",
+      "input": "# C# #",
+      "correct_candidate_title": "C#"
+    },
+    {
+      "id": "P3-concise-2048-r2",
+      "published_response_sha256": "34950c5d4dff660a901ea81baf66943753b02b327158e8b6b517f2140d92fe65",
+      "claim": "The same regex defect also affects non-empty trailing closing hashes, e.g. '# Title #' would capture 'Title #' rather than 'Title', so heading/section titles and case-folded lookups would be wrong; inferred from the pattern, not directly executed.",
+      "input": "# Title #",
+      "correct_candidate_title": "Title"
+    }
+  ]
+}

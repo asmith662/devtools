@@ -1,5 +1,10 @@
 # Structured acceptance-review conclusion delivery
 
+Prospective subjects can opt into [task-local working notes](agent-working-notes.md)
+through the same reviewer owner. The separate working Context does not change
+this Tool schema, identities, grants, strict final delivery or host disposition;
+recorded hypotheses remain model-attributed claims.
+
 New acceptance-review subjects bind `delivery` with schema
 `native-review-response-delivery-v1`, rule `single-proposal-call-v1`, before
 host authorization. The existing reviewer owner in

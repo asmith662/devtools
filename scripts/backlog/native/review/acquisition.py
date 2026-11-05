@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
 
     from devtools.context.planning.materialization import ContextDisclosure
+    from devtools.context.planning.source import SourceRangeDisclosureOption
     from devtools.context.retrieval.source.index import SourceSearchIndex
     from devtools.models.interaction import ModelRequest, ModelResponse
     from devtools.tools import Tool
@@ -130,6 +131,7 @@ async def acquire(  # noqa: C901, PLR0912 -- preflight, ordered entry, completio
     capture: Capture,
     guard: Callable[[], Awaitable[None]],
     recover: bool = False,
+    observed: Callable[[str, SourceRangeDisclosureOption], None] | None = None,
 ) -> int:
     """Validate the entire read-only batch before any ToolRunner entry.
 
@@ -308,4 +310,6 @@ async def acquire(  # noqa: C901, PLR0912 -- preflight, ordered entry, completio
                 tool_call_id=call.provider_call_id,
             ),
         )
+        if observed is not None:
+            observed(name, option)
     return reads
