@@ -272,9 +272,68 @@ def test_finite_history_and_projection() -> None:
     assert view["omitted_notes"]
     minimum = WorkingNotes(state.scope, {}).project(4096)
     size = len(json.dumps(minimum, ensure_ascii=False).encode())
-    view = state.project(size + 4)
+    view = state.project(size + 140)
     assert view["omitted_notes"] == 32
     assert view["omitted_sources"] == 1
+    with pytest.raises(ValueError, match="cannot fit"):
+        state.project(1)
+
+
+def test_active_claim_survives_recent_literal_read_flood() -> None:
+    state = book(binding("x" * 512))
+    claim = state.record(
+        "hypothesis",
+        "Producer may violate empty-value contract",
+        "Inspect exact producer outputs",
+    )
+    for _ in range(3):
+        state.observe(state.sources["candidate"].anchor(0, 512, "x" * 512))
+    view: Any = state.project(1800)
+    assert claim.sequence in {n["sequence"] for n in view["notes"]}
+    assert view["omitted_notes"]
+    assert view["omitted_sources"]
+    assert view["omitted_active_sequences"] == []
+    assert len(json.dumps(view).encode()) <= 1800
+    narrow: Any = state.project(720)
+    assert narrow["omitted_active_sequences"] == [claim.sequence]
+    assert "checkpoint" in narrow["recovery"]
+    assert state.notes[0] == claim  # Projection never mutates retained evidence.
+
+
+def test_revised_contradicted_and_stale_claim_projection() -> None:
+    state = book()
+    anchor = state.sources["candidate"].anchor(0, 1, "α")
+    prior = state.record(
+        "hypothesis",
+        "Producer returns empty",
+        "Public contract",
+        (anchor,),
+    )
+    contrary = state.record(
+        "conclusion",
+        "Observed public output is nonempty",
+        "Fixed public observation:receipt",
+        (anchor,),
+        contradicts=(prior.sequence,),
+    )
+    checked = state.attest(contrary.sequence, "host:fixed-public-observation:receipt")
+    assert state.status(prior) == "contradicted"
+    view: Any = state.project(4096)
+    assert (
+        next(n for n in view["notes"] if n["sequence"] == checked.sequence)["status"]
+        == "host-verified"
+    )
+    assert state.sources["candidate"].reopen(anchor)["quote"] == "α"
+    state.sources["candidate"] = binding("changed")
+    assert state.status(checked) == "stale"
+    assert not state.project(4096)["omitted_active_sequences"]
+
+
+def test_coverage_metadata_alone_cannot_exceed_budget() -> None:
+    state = book()
+    view = state.project(620)
+    assert view["omitted_sources"] == 1
+    assert not view["omitted_notes"]
     with pytest.raises(ValueError, match="cannot fit"):
         state.project(1)
 

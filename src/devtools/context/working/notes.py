@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass, replace
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Literal, cast
 
 from devtools.context.working.evidence import SourceAnchor, SourceBinding, coverage
 
@@ -223,9 +223,18 @@ class WorkingNotes:
                     else "retained-subject",
                 },
             )
-        selected = [
-            {**asdict(note), "status": self.status(note)} for note in self._notes
-        ]
+        # Recent literal reads must not displace the unresolved claim they were
+        # acquired to investigate. Priority affects selection, not chronology.
+        ranked = sorted(
+            self._notes,
+            key=lambda n: (
+                n.kind != "source" and self.status(n) not in {"superseded", "stale"},
+                n.kind != "source",
+                n.sequence,
+            ),
+            reverse=True,
+        )
+        selected: list[dict[str, object]] = []
         view: dict[str, object] = {
             "kind": "task_role_working_context",
             "scope": asdict(self.scope),
@@ -239,15 +248,42 @@ class WorkingNotes:
             "notes": selected,
             "omitted_notes": 0,
             "omitted_sources": 0,
+            "omitted_active_sequences": [],
+            "recovery": "Retained episode checkpoint; reopen a note by sequence.",
         }
-        while len(json.dumps(view, ensure_ascii=False).encode()) > maximum_bytes:
-            if selected:
-                selected.pop(0)
-                view["omitted_notes"] = len(self._notes) - len(selected)
-            elif sources:
+        active = {
+            n.sequence
+            for n in ranked
+            if n.kind != "source" and self.status(n) not in {"superseded", "stale"}
+        }
+
+        def update() -> None:
+            included = {n["sequence"] for n in selected}
+            view["omitted_notes"] = len(self._notes) - len(selected)
+            view["omitted_active_sequences"] = sorted(active - included)
+            view["omitted_sources"] = len(self.sources) - len(sources)
+
+        def size() -> int:
+            return len(json.dumps(view, ensure_ascii=False).encode())
+
+        update()
+        # Coverage metadata is recoverable too; it cannot monopolize the claim
+        # budget. Reserve room for the highest-priority whole note when possible.
+        for note in ranked:
+            row = {**asdict(note), "status": self.status(note)}
+            selected.append(row)
+            update()
+            while size() > maximum_bytes and sources:
                 sources.pop()
-                view["omitted_sources"] = len(self.sources) - len(sources)
-            else:
-                msg = "Mandatory working Context cannot fit its byte budget."
-                raise ValueError(msg)
+                update()
+            if size() > maximum_bytes:
+                selected.remove(row)
+                update()
+        selected.sort(key=lambda n: cast("int", n["sequence"]))
+        while size() > maximum_bytes and sources:
+            sources.pop()
+            update()
+        if size() > maximum_bytes:
+            msg = "Mandatory working Context cannot fit its byte budget."
+            raise ValueError(msg)
         return view

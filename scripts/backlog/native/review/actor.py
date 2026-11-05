@@ -53,7 +53,13 @@ from devtools.tools.source import (
 )
 from scripts.backlog.intake import _digest
 from scripts.backlog.native.execution import Capture
-from scripts.backlog.native.review import budget, continuation, delivery, diagnostic
+from scripts.backlog.native.review import (
+    budget,
+    checks,
+    continuation,
+    delivery,
+    diagnostic,
+)
 from scripts.backlog.native.review import notes as working
 from scripts.backlog.native.review.acquisition import (
     ReadBatchRefusalError,
@@ -289,6 +295,7 @@ class NativeReviewer:
         reviewer: dict[str, Any],
         archive: str | None = None,
         working_notes: bool = False,
+        public_observations: dict[str, dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         """Freeze the exact disclosed subject and proposed authority, without dispatch."""
         if type(working_notes) is not bool or (working_notes and self.diagnostic_only):
@@ -301,6 +308,12 @@ class NativeReviewer:
             )
         policy(reviewer, self.owner.record(item, "assignment")["task"]["worker"])
         current = await self.subject(item, reviewer["read_paths"], archive)
+        if public_observations is not None:
+            if self.diagnostic_only:
+                raise ValueError("Public observations require independent review")
+            checks.validate(
+                {"subject": current, "public_observations": public_observations}
+            )
         if not set(reviewer["read_paths"]) <= set(current["inputs"]):
             raise PermissionError("Review source outside authorized assignment")
         with self.owner.cycle.intake._writer():
@@ -314,6 +327,11 @@ class NativeReviewer:
                     "policy": reviewer,
                     "scope": self.scope,
                     "tools": self.tools(),
+                    **(
+                        {"public_observations": public_observations}
+                        if public_observations is not None
+                        else {}
+                    ),
                     **(
                         {"working_notes": dict(working.CONTRACT)}
                         if working_notes
@@ -392,6 +410,7 @@ class NativeReviewer:
     async def current(self, item: str) -> dict[str, Any]:
         """Reauthenticate current baseline, candidate, checks, custody and disclosure policy."""
         packet = self.record(item, "subject")
+        checks.validate(packet)
         policy(packet["policy"], packet["subject"]["evidence"]["scope"]["worker"])
         if (
             packet["scope"] != self.scope
@@ -849,6 +868,23 @@ class NativeReviewer:
                                     },
                                 )
                                 raise ReadBatchRefusalError(reason)
+                            if any(
+                                c.name in {checks.NAME, checks.RECALL}
+                                for c in response.tool_calls
+                            ):
+                                reads = await checks.acquire(
+                                    packet,
+                                    inspection_response,
+                                    request,
+                                    reads=reads,
+                                    messages=messages,
+                                    references=references,
+                                    claimed=claimed,
+                                    capture=capture,
+                                    guard=guard,
+                                    memory=memory,
+                                )
+                                continue
                             reads = await acquire(
                                 inspection_response,
                                 request,
@@ -1094,9 +1130,18 @@ class NativeReviewer:
                         if c["provider_call_id"]
                     )
                 returned = value["response"]
-            if value["kind"] == "review-read-result":
+            if value["kind"] in {"review-read-result", "review-evidence-result"}:
                 if value["identity"] != _digest(value["disclosure"]):
                     raise PermissionError("Review disclosure identity mismatch")
+                if value["kind"] == "review-evidence-result" and value[
+                    "reference"
+                ].startswith("public-check:"):
+                    catalog = checks.validate(packet)
+                    name = value["reference"].removeprefix("public-check:")
+                    if name not in catalog or value["disclosure"] != catalog[name]:
+                        raise PermissionError(
+                            "Review public observation differs from frozen catalog"
+                        )
                 references[value["reference"]] = value["identity"]
         if references != proposal["references"]:
             raise PermissionError("Review evidence references differ")

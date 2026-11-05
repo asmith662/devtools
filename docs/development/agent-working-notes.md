@@ -125,6 +125,57 @@ Projection accounts for procedure/envelope bytes and selects complete records
 within 8,192 bytes, reporting omitted notes/sources. Omission does not delete
 history or claim complete coverage. Failure to fit mandatory scope fails closed.
 
+### Active claims and public behavioral observations
+
+Projection now selects current non-source claims before redundant literal source
+observations. Superseded/stale interpretations have lower priority; selection
+does not change their status or history. Whole records remain chronological in
+the output. `omitted_active_sequences` explicitly names unresolved records that
+could not fit. Retained checkpoints still hold the full original notes. This is
+bounded task Context selection, not an increase in the 8,192-byte allowance or
+promotion of model claims to facts.
+
+The existing reviewer can prospectively opt into a host-frozen public observation
+catalog through `prepare(..., public_observations={name: observation})`.
+`scripts.backlog.native.review.checks.observe` accepts a known complete
+`FixedCheckResult` from a matching host-owned `FixedCheckPlan` and current
+declared `SourceScope`, with a receipt reference and exact candidate/baseline
+content identity. It retains the fixed argv, timeout, input identities, command
+status, actual stdout/stderr bytes and bounded textual diagnostics. Ordinary
+validation exit 1 is an observation; collection/infrastructure errors, stale
+inputs, unknown effects and incomplete output cannot enter this catalog.
+
+The **trusted host**, under separate exact authorization, executes the public
+definition with existing `FixedCheckTool`. Candidate installation is unnecessary:
+the host can admit a fixed source-inspection probe over an immutable archive.
+The host remains responsible for classifying the definition as public and for
+binding its declared source/dependencies. A result cannot establish that an
+arbitrary command exercised a producer merely by naming it. Private-oracle code,
+worker conclusions and secrets are excluded before preparing the subject.
+
+`inspect_public_check` is a read-only selector over that frozen catalog. The model
+chooses a disclosed name and exact source version; it cannot provide code, argv,
+test inputs or new assertions. The Tool returns the actual recorded observation
+and a `public-check:<name>` citation. It does **not** rerun a command, install a
+candidate, verify the model's causal explanation or confer acceptance authority.
+`reopen_working_note` retrieves a retained sequence under the exact task, reviewer
+role and episode, preserving provisional/stale/disputed status. Both disclosures
+consume existing acquisition allowance; synthesis removes both Tools. Complete
+responses must fit existing prompt/capture bounds and use fresh correlated IDs.
+
+Historical subjects without a catalog gain neither callable. The strict final
+proposal schema, identity checks, required acceptance/custody references and host
+disposition remain unchanged. Host readback authenticates catalog observations
+against sealed capture, not model-supplied claims. These observations can support
+an investigation but cannot replace missing structural acceptance evidence.
+
+The current standing local policy permits only its four existing callable names.
+It does not authorize these two new names in local inference requests. Without a
+policy change, local qualification may expose the same authenticated public
+observations as exact, scoped `read_source` resources. This transport difference
+must be reported; deterministic selector tests do not establish live use of the
+new names. No policy amendment is part of this increment.
+
 ## Deterministic evidence and next steps
 
 Tests cover exact evidence, Unicode ranges/gaps, scope isolation, stale sources,

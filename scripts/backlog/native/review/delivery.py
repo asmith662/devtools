@@ -11,6 +11,7 @@ from typing import Any
 from devtools.agents.coding.protocol import READ, arguments
 from devtools.agents.model_tools import normalize_tool_descriptor
 from devtools.models.interaction import ModelTermination, ModelToolDefinition
+from scripts.backlog.native.review import checks
 from scripts.backlog.native.review.proposal import parse
 
 NAME = "submit_review_proposal"
@@ -101,7 +102,10 @@ def definition(packet: dict[str, Any]) -> ModelToolDefinition:
 
 def tools(packet: dict[str, Any], *, source: bool) -> tuple[ModelToolDefinition, ...]:
     """Synthesis removes source capabilities while retaining the proposal channel."""
-    return (*((normalize_tool_descriptor(READ),) if source else ()), definition(packet))
+    return (
+        *((normalize_tool_descriptor(READ), *checks.tools(packet)) if source else ()),
+        definition(packet),
+    )
 
 
 def conclusion(

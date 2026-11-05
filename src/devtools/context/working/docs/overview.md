@@ -12,6 +12,13 @@ DerivedKnowledge. Resource/source owners retain observation and acquisition;
 Context selects the working view, and the consumer's existing episode owns
 durable capture. Model-written text never becomes verified merely by recording it.
 
+Projection favors active non-source claims before literal read quotations, while
+retaining original status and chronological presentation. Omitted active sequence
+numbers explicitly support recovery from the same retained episode checkpoint.
+No additional history or Context budget is granted. The reviewer separately owns
+read-only disclosure of host-authorized fixed public-check observations; Context
+does not execute checks or decide behavioral correctness.
+
 The package depends on canonical repository resource/snapshot values and standard
 library support only. It does not import Agents, Tools, native administration,
 Persistence or model providers. A later coding consumer can reuse it without a

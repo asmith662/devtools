@@ -1,5 +1,11 @@
 # Documentation Map
 
+[Evidence-bound reviewer observations and active claims](development/agent-working-notes.md#active-claims-and-public-behavioral-observations)
+defines read-only access to host-authorized fixed public-check outputs, retained
+note recovery and priority for unresolved claims within the existing Context
+bound. It preserves strict acceptance and separates output observation from
+interpretation; the current local policy still limits callable names.
+
 [Unattended reviewer-note procedure comparison](research/reviewer-notes-procedure-results.md)
 records eight genuine standing-authorized generations with zero per-run operator
 approvals. Explicit guidance produces one early provisional note, but its anchor
