@@ -1,0 +1,107 @@
+{
+  "at": "2026-11-05T21:44:11.189932+00:00",
+  "checks": {
+    "active_standing_policy": true,
+    "no_per_run_operator_decision": true,
+    "fresh_parent_children_and_budget_carveout": true,
+    "eight_consumed_generations_six_reads": true,
+    "preentry_zero_model_calls": true,
+    "frozen_hashes": true,
+    "initial_request_hashes": true,
+    "unchanged_grader_and_public_evidence": true,
+    "raw_byte_roundtrips": true,
+    "actual_checkpoint_reconstruction": true,
+    "authored_note_exposed_then_omitted": true,
+    "literal_anchor_not_semantic_truth": true,
+    "bounded_projection": true,
+    "links": 11,
+    "provider_unchanged": true
+  },
+  "commands": [
+    {
+      "name": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/research/README.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "git_integrity",
+      "argv": [
+        "git",
+        "fsck",
+        "--connectivity-only",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "production_diff",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "scripts",
+        "apps",
+        "tests",
+        "pyproject.toml",
+        "uv.lock",
+        "AGENTS.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_status",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_head",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6\n",
+      "stderr": ""
+    }
+  ],
+  "production_executable_changes": false,
+  "protected_suite_runs": 0,
+  "additional_inference_after_packet": 0,
+  "scope": "Focused experiment/evidence checks only; no production change or comprehensive rerun."
+}

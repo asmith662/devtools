@@ -1,0 +1,123 @@
+{
+  "rubric_frozen_before_generation": true,
+  "independent_grader_unchanged": true,
+  "per_run_operator_approvals": 0,
+  "measurements": [
+    {
+      "condition": "existing",
+      "generations": 4,
+      "reads": 3,
+      "input_tokens": 31252,
+      "output_tokens": 2592,
+      "cached_prompt_tokens": 2572,
+      "seconds": 159.746212,
+      "valid_authored_notes": 0,
+      "valid_inspection_notes": 0,
+      "actual_strict_admission": false,
+      "factual_pass": false
+    },
+    {
+      "condition": "explicit",
+      "generations": 4,
+      "reads": 3,
+      "input_tokens": 34703,
+      "output_tokens": 1044,
+      "cached_prompt_tokens": 2560,
+      "seconds": 90.483682,
+      "valid_authored_notes": 1,
+      "valid_inspection_notes": 1,
+      "actual_strict_admission": false,
+      "factual_pass": false
+    }
+  ],
+  "delivery": [
+    {
+      "condition": "existing",
+      "native_structured_delivery": true,
+      "subject_candidate_ids_correct": true,
+      "raw_recommendation": "accept",
+      "offline_strict_proposal_admission": "ValueError: Review obligation references are invalid",
+      "meaning": "Host diagnosis of captured raw proposal only; bypasses no execution or actual note failure."
+    },
+    {
+      "condition": "explicit",
+      "native_structured_delivery": true,
+      "subject_candidate_ids_correct": true,
+      "raw_recommendation": "accept",
+      "offline_strict_proposal_admission": "ValueError: Acceptance proposal has incomplete obligations or blocking risks",
+      "meaning": "Host diagnosis of captured raw proposal only; bypasses no execution or actual note failure."
+    }
+  ],
+  "existing": {
+    "valid_authored_notes": 0,
+    "unstructured_inspection_notes": {
+      "phase": 2,
+      "text_prefix": "Working notes:",
+      "tokens_entire_response": 908,
+      "assessment": "Contains useful traces for ordinary cases but is prose, not protocol. Partly checks an unverified lead while misattributing its target to baseline. Not admitted as durable notes; removed at Context reduction."
+    },
+    "final_note_attempt": "Late WORKING_NOTES JSON followed by extra prose; actual rejection JSONDecodeError Extra data. Visible secondary defects: unsupported note kind inference and candidate[0:1] quote r instead of #. Not repaired.",
+    "factual_errors": [
+      "Wrong accept recommendation; misses # ## empty-title defect.",
+      "Final advisory finding claims empty-title behavior unchanged, contradicted by # ##.",
+      "Calls attached # C### unspecified despite the general attached-hash rule."
+    ],
+    "true_defects_identified": 0,
+    "blocking_findings_proposed": 0,
+    "advisory_findings_proposed": 4,
+    "uncertainty": "Acknowledges no executed checks, but treats inferred preservation as sufficient for acceptance.",
+    "factual_pass": false
+  },
+  "explicit": {
+    "valid_authored_notes": 1,
+    "valid_inspection_notes": 1,
+    "phase": 1,
+    "kind": "hypothesis",
+    "semantic_verification": null,
+    "literal_anchor": {
+      "reference": "candidate",
+      "start": 0,
+      "end": 1,
+      "quote": "#",
+      "literal_valid": true,
+      "relevant_support_for_regex_claim": false,
+      "assessment": "The copyright/comment prefix does not support a claim about the later regex. Valid anchor geometry does not establish relevance or truth."
+    },
+    "later_exposure": {
+      "phase2": true,
+      "phase3_after_reconstruction": true,
+      "phase4_final": false,
+      "projection_omitted_notes_before_final": 2,
+      "final_visible_sequences": [
+        3,
+        4
+      ],
+      "authored_sequence": 1,
+      "persistence": "Retained in actual checkpoint; omission from projection is not deletion.",
+      "demonstrated_model_reconsultation": false,
+      "explicit_contradiction_checks": 0,
+      "revisions": 0,
+      "supersessions": 0
+    },
+    "later_responses": "Inspection turns2/3 return native reads with empty assistant content; do not name/revise the requested note. Final cites source reads but not its own note; full source also remains, so latent use cannot be inferred.",
+    "factual_errors": [
+      "Wrong accept recommendation; misses # ## empty-title defect.",
+      "Summary infers preservation of empty-title and lookup contracts from unchanged consumer code, despite the changed regex producer.",
+      "Summary invents a trailing space in the # C# input trace; result C# is correct but that step is not."
+    ],
+    "true_defects_identified": 0,
+    "blocking_findings_proposed": 0,
+    "findings_proposed": 0,
+    "uncertainty": "Calls conclusions inferred, but expresses no outstanding gap and accepts anyway. Fewer findings does not mean fewer false assertions.",
+    "strict_failure": "Accept lacks required task/baseline/public-checks/acceptance/custody evidence; no synthetic references supplied.",
+    "factual_pass": false
+  },
+  "causal_limits": [
+    "One uncontrolled pair; cannot establish statistically reliable improvement or harm.",
+    "Inspection addendum changes instruction emphasis; source/Tools/settings/grader fixed.",
+    "Some useful existing-arm reasoning was unstructured prose and lost on reduction.",
+    "Explicit early valid note was exposed after reconstruction but was irrelevant-anchored and omitted before final synthesis.",
+    "Accurate source quotes do not verify an interpretation; active note exposure and evidence relevance need separate qualification."
+  ],
+  "overall": "Timing guidance improved valid early-note creation in this pair (0 to1); no valid note revision or explicit later use, no factual improvement (0/1 each), and both strict conclusions rejected."
+}

@@ -1,5 +1,11 @@
 # Documentation Map
 
+[Unattended reviewer-note procedure comparison](research/reviewer-notes-procedure-results.md)
+records eight genuine standing-authorized generations with zero per-run operator
+approvals. Explicit guidance produces one early provisional note, but its anchor
+is irrelevant, final projection omits it and neither review is factually correct.
+Candidate playbook v5 stays unqualified; evidence verification is the next priority.
+
 [Standing bounded local-work authority](development/routine-local-work.md)
 extends the existing routine policy/grant owner for local evaluations, source
 research, diagnostics and budget-conserving supervisor delegation. One explicit

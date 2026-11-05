@@ -1,0 +1,27 @@
+{
+  "packet": {
+    "head": "28425b5c2b32bb181f716251fea5baa2df3a021f",
+    "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+    "files": {
+      "packet.py": "69004118fe4f1993c859f947e7b5ad44ffb5ed3303e1dca97ab84ce6632581bd",
+      "plan.json": "41ba3a1890f3f8d3dae3e1b436658402dbd6258348bec84476ded47e7b6c0bd6",
+      "subject-common.json": "752d8865914989958f158cd6301c51f5c99e30450a4b347c9c98e09dcc22d152",
+      "packets.json": "c6b4e541a869adac411bd307f0ee62ca6efeae076f2e45353ea16cb60ced1a6c",
+      "grader-only.json": "76a21c1bd6c751d450a947f500817b6e8c5cdbb2e47be39e2dd924703311ac04",
+      "source-identity.json": "b5f60e1f738f8e5dff7bb6a801c604b3c47d8753b4c4b68ab0ae8828e84af371",
+      "grant-inputs.json": "964b08fcc812f82e44e208d099cb35feb7b2a20f9de21c4a1f78dbd985f04f31",
+      "initial-requests.json": "cf6dae44b9d61ff2c84087a14738c96a4892828f42e8c5a5c0ef05c7a3806d7a",
+      "production-inputs.json": "83cc3e54969b63fa96cca8d8e6369e14dd6298488282d9c897f8e22c06042a96",
+      "execute-qualified.py": "b0a5a58a9ce5bc913566dd773a6cf8604ca08aaead270b3f528f7a27d2e619d4"
+    },
+    "operator_approvals_for_run": 0,
+    "authority": "Existing active WorkCycle.routine.local; fresh root and bounded child grants before inference, not historical experiment approval.",
+    "preentry_correction": {
+      "previous_frozen_sha256": "6a73ec91af5aead1fe00b25afe0cad52144803897c9fc3eb7cc019262cc0afc2",
+      "previous_consumed_generations": 0,
+      "cause": "Generation capture intercepted apply-template/tokenize measurement; second write collided. Disable generation tap only during measurement; actual send remains byte-captured.",
+      "scope_effect": "Same task, common evidence, request hashes, procedure variants, settings and scoring; only capture seam corrected. Fresh standing grants; no model replay."
+    }
+  },
+  "sha256": "482e7291b75c6138f3b1ec85bfe101a1a80b42acd43c33340eafad8df7eaa788"
+}

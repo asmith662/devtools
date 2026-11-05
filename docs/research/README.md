@@ -1,5 +1,11 @@
 # Research Evidence
 
+[First unattended reviewer-note procedure comparison](reviewer-notes-procedure-results.md)
+uses fresh standing grants for eight Qwen generations without per-run approval.
+One early note is valid but weakly anchored and omitted before synthesis; both
+final proposals accept incorrectly. Transport, relevant evidence and factual
+reasoning remain separate qualifications. Candidate playbook v5 is not activated.
+
 [First live reviewer working-memory comparison](reviewer-working-memory-effectiveness.md)
 preserves one matched four-turn pair: eight generations, six reads and actual
 checkpoint reconstruction, but no factually valid final review or accepted

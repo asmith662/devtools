@@ -1,0 +1,140 @@
+"""Eight prospective call slots through standing LocalWork and existing review owners."""
+import asyncio,hashlib,json
+from dataclasses import asdict,replace
+from pathlib import Path
+from packet import R,O,c,base,packets,initial,request,scope_index,LABELS,PHASES,ADDENDUM,EXPLICIT
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Stopwatch
+from devtools.models.interaction import PromptMessage,InteractionSource,ModelTermination
+from devtools.models.interaction.providers import llama_cpp as adapter
+from devtools.resources.filesystem import BinaryFile,write
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from scripts.backlog.native.review.acquisition import acquire
+from scripts.backlog.native.review.notes import ReviewNotes
+from devtools.agents.coding.protocol import read_request
+from devtools.tools.source import select_source_read,SourceReadRefusal
+E=O/'execution-qualified';used=0
+def put(path,value):
+ global used
+ raw=value if isinstance(value,bytes) else (json.dumps(value,indent=2,default=str)+'\n').encode()
+ assert used+len(raw)<=4194304,'External capture ceiling reached; no replay'
+ write(BinaryFile(resolve_path(path),raw),overwrite=False);used+=len(raw)
+class Capture:
+ maximum=4194304
+ def __init__(self,folder):self.folder=folder;self.n=0
+ @property
+ def used(self):return used
+ def add(self,kind,value):
+  self.n+=1;path=self.folder/f'{self.n:03}-{kind}.json';put(path,{'kind':kind,'value':value});return path
+class Observer:
+ def __init__(self):self.values=[]
+ def interaction_completed(self,value):self.values.append(asdict(value))
+async def main():
+ frozen=c.load(O/'frozen-qualified.json');assert _digest(frozen['packet'])==frozen['sha256']
+ for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+ assert not E.exists(),'Existing entries require reconciliation, never replay'
+ assert await c.git(R,'rev-parse','HEAD')==frozen['packet']['head']
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ cycle=c.WorkCycle(R);active=cycle.routine.active();assert active['sha256']==frozen['packet']['policy_version']
+ provider,before=await c.provider(cycle);assert before==c.load(O/'provider-before.json')
+ props=await asyncio.to_thread(c.established().get,'/props');assert props==c.load(O/'props-before.json')
+ source,index=scope_index();values=packets();inputs=c.load(O/'grant-inputs.json')
+ E.mkdir()
+ root_limits={**active['policy']['local']['budgets'],'model_calls':8,'input_tokens':16384,'output_tokens':2048,'total_output_tokens':16384,'reads':6,'source_bytes':32768,'checks':0,'wall_seconds':1020,'capture_bytes':4194304,'delegations':2,'prompt_bytes':131072,'response_bytes':65536}
+ scope={'subject':values['existing']['subject']['item'],'plan_sha256':frozen['sha256'],'repository':inputs['repository'],'actor':'trusted-supervisor:reviewer-notes-procedure','role':'supervisor','roles':['reviewer'],'purpose':'working-memory','profile':'local-qwen-evaluation-v1','inputs':inputs['inputs'],'tools':['read_source','submit_review_proposal'],'checks':{},'private_oracle':False,'budgets':root_limits}
+ assessment=c.assess('host-frozen public P3 procedure comparison; read-only fixture, proposal and bounded captures; grader excluded; no installation/service effects')
+ parent=await cycle.routine.local.authorize(active['sha256'],scope,assessment=assessment,provider=provider)
+ put(E/'parent-grant.json',parent)
+ states={};observer=Observer();seen=set();rows=[];stop=None
+ for label,p in values.items():
+  child=json.loads(json.dumps(scope));child.update(actor=p['policy']['source'],role='reviewer',roles=[])
+  child['budgets'].update(model_calls=4,total_output_tokens=8192,reads=3,capture_bytes=1835008,delegations=0)
+  grant=await cycle.routine.local.authorize(active['sha256'],child,assessment=assessment,provider=provider,parent=parent['reference'])
+  folder=E/label;folder.mkdir();put(folder/'grant.json',grant);cap=Capture(folder)
+  client=adapter.LlamaCppInteraction(endpoint=active['policy']['provider']['endpoint'],model=active['policy']['provider']['model'],source=InteractionSource(p['policy']['source']),observer=observer)
+  states[label]={'messages':initial(p),'reads':0,'refs':dict(p['subject']['references']),'claimed':set(),'capture':cap,'notes':ReviewNotes(p,source.snapshot,cap),'grant':grant,'client':client,'stopped':None,'checkpoint':None}
+ put(E/'method.json',{'frozen_sha256':frozen['sha256'],'driver_sha256':c.h(Path(__file__)),'authority':'Fresh parent and child WorkCycle.routine.local grants; every model call uses local.interact, every read uses local.enter/complete and native acquire. No manual or historical experiment grants.','per_run_operator_approvals':0,'model_notes_seeded':0,'projection':'Only current bounded working view; accepted note text omitted from active history as in NativeReviewer. Raw outputs/checkpoints retained.'})
+ async def guard(st):
+  cycle.routine.local.check(st['grant']['reference']);source.check_current()
+  for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+  for name,h in c.load(O/'production-inputs.json').items():assert c.h(R/name)==h,name
+ wall=Stopwatch()
+ for phase in range(1,5):
+  for label in LABELS:
+   st=states[label];p=values[label];notes=st['notes'];cap=st['capture'];ref=st['grant']['reference'];client=st['client']
+   if st['stopped']:continue
+   if wall.elapsed.total_seconds>=1020:stop='Frozen wall ceiling reached';break
+   await guard(st)
+   if phase==3:
+    removed=[asdict(m) for m in st['messages'][2:]];st['messages']=initial(p)
+    checkpoint=c.load(st['checkpoint'])['value']['state'];assert _digest(checkpoint)==_digest(notes.book.checkpoint())
+    cap.add('reconstruction-input',{'state':checkpoint,'checkpoint_file_sha256':c.h(st['checkpoint']),'completed_read_references':{k:v for k,v in st['refs'].items() if k.startswith('read:')}})
+    restored=ReviewNotes(p,source.snapshot,cap);restored.book.sources.update(notes.book.sources);restored.restore(checkpoint)
+    assert _digest(restored.book.checkpoint())==_digest(checkpoint);notes=restored;st['notes']=notes
+    cap.add('context-reconstruction',{'removed_messages':len(removed),'removed_sha256':_digest(removed),'restored_notes':len(notes.book.notes),'model_authored_restored':sum(n.verification is None for n in notes.book.notes),'semantic_host_attestations':0})
+   messages=[*st['messages'],PromptMessage('user',PHASES[phase-1])]
+   if label=='explicit':messages.append(PromptMessage('user',ADDENDUM+'\n'+EXPLICIT[phase-1]))
+   messages.append(notes.message());req=request(p,messages,phase)
+   body=json.dumps(client._request_payload(req),separators=(',',':')).encode()
+   if phase==1:assert hashlib.sha256(body).hexdigest()==next(v for v in c.load(O/'initial-requests.json') if v['condition']==label)['wire_sha256']
+   folder=E/f'{phase}-{label}';folder.mkdir();put(folder/'request.json',body);put(folder/'model-request.json',asdict(req))
+   put(folder/'intent.json',{'at':str(Timestamp.now()),'phase':phase,'condition':label,'wire_sha256':hashlib.sha256(body).hexdigest(),'grant_reference':ref,'meaning':'Prepared request; actual consumed entry is authenticated from routine ledger.'})
+   before_entries=cycle.routine.local.records(ref);raw_read=adapter._read_http_response;captured=[];measured={}
+   async def capture(reader):
+    status,raw=await raw_read(reader);assert len(raw)<=65536;put(folder/'response-body.json',raw);captured.append((status,raw));put(folder/'http.json',{'status':status,'body_sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)});return status,raw
+   async def qualify():
+    qualified,current=await c.provider(cycle);assert current==before;put(folder/'provider-qualified.json',current);return qualified
+   async def measure(value):
+    adapter._read_http_response=raw_read
+    try:count=await client.count_input_tokens(value)
+    finally:adapter._read_http_response=capture
+    measured['input_tokens']=count;return count
+   adapter._read_http_response=capture;timer=Stopwatch();response=None;error=None;obs=len(observer.values)
+   try:response=await cycle.routine.local.interact(ref,req,interaction=client,qualify=qualify,measure=measure)
+   except Exception as ex:error={'type':type(ex).__name__,'message':str(ex)}
+   finally:adapter._read_http_response=raw_read
+   elapsed=timer.elapsed.total_seconds
+   entered=[v for v in cycle.routine.local.records(ref)[len(before_entries):] if v['operation']=='model']
+   put(folder/'entry.json',{'consumed':bool(entered),'routine_entries':entered,'wrapper_returned':response is not None})
+   if response is not None:put(folder/'normalized.json',asdict(response))
+   if len(observer.values)>obs:put(folder/'observation.json',observer.values[-1])
+   raw=json.loads(captured[0][1]) if captured else {}
+   row={'ordinal':len(rows)+1,'condition':label,'phase':phase,'seconds':elapsed,'input_tokens':measured.get('input_tokens'),'usage':raw.get('usage'),'finish_reasons':[v.get('finish_reason') for v in raw.get('choices',[])],'consumed':bool(entered),'returned':response is not None,'error':error,'read_completed':False,'notes_only':False,'note_protocol_used':False,'model_notes_accepted':0,'proposal':None,'protocol_failure':None}
+   if response is not None:
+    try:
+     if response.termination==ModelTermination.OUTPUT_LIMIT:raise ValueError('Review response hit output ceiling')
+     ids=[t.provider_call_id for t in response.tool_calls];assert all(ids) and len(set(ids))==len(ids) and not seen.intersection(ids);seen.update(ids)
+     prior=len(notes.book.notes);noted=notes.accept(response.content,'model-response:'+c.h(folder/'response-body.json'));row['note_protocol_used']=noted;row['model_notes_accepted']=len(notes.book.notes)-prior
+     if noted:response=replace(response,content='')
+     if len(response.tool_calls)==1 and response.tool_calls[0].name==delivery.NAME:
+      proposal=delivery.conclusion(p,asdict(req),asdict(response),st['refs'],st['claimed']);row['proposal']=proposal;put(folder/'proposal.json',proposal);st['stopped']='Concluded' if phase==4 else 'Early conclusion; remaining slots unused'
+     elif phase<4 and noted and not response.tool_calls:row['notes_only']=True
+     elif phase<4:
+      assert len(response.tool_calls)==1,'At most one native source read per inspection'
+      call=response.tool_calls[0];arg=read_request(call.arguments_json,index=index,purpose='Independent calibration read of frozen restored baseline',maximum_bytes=32768,by_unit=False);option=select_source_read(arg)
+      assert not isinstance(option,SourceReadRefusal)
+      entry=cycle.routine.local.enter(ref,'read',{'path':str(arg.unit.resource.address),'maximum_bytes':32768,'call':asdict(call)})
+      try:
+       async def read_guard():await guard(st)
+       st['reads']=await acquire(response,req,scope=source,index=index,reads=st['reads'],budgets=p['policy']['budgets'],messages=st['messages'],references=st['refs'],claimed=st['claimed'],capture=cap,guard=read_guard,observed=notes.observed)
+       cycle.routine.local.complete(ref,entry,{'reference':'read:'+str(st['reads']),'disclosure_sha256':st['refs']['read:'+str(st['reads'])],'completed':True});row['read_completed']=True
+      except Exception as ex:
+       cycle.routine.local.complete(ref,entry,{'error':type(ex).__name__+': '+str(ex)},outcome='unknown-or-failed');raise
+     else:raise ValueError('Final response did not deliver one strict proposal')
+    except Exception as ex:row['protocol_failure']={'type':type(ex).__name__,'message':str(ex)};st['stopped']='Protocol failure; no retry'
+   else:st['stopped']='Standing wrapper failed; no retry';stop='Wrapper/authority/provider failure; preserve entry and stop packet'
+   st['checkpoint']=cap.add('turn-working-state',{'phase':phase,'state':notes.book.checkpoint()});put(folder/'working-projection.json',json.loads(notes.message().content));put(folder/'result.json',row);rows.append(row)
+   print(json.dumps({k:row[k] for k in ('ordinal','condition','phase','seconds','input_tokens','usage','finish_reasons','consumed','read_completed','notes_only','model_notes_accepted','protocol_failure')}),flush=True)
+   if stop:break
+  if stop:break
+ _,after=await c.provider(cycle);props_after=await asyncio.to_thread(c.established().get,'/props');put(E/'provider-after.json',after);put(E/'props-after.json',props_after);assert before==after and props==props_after
+ for st in states.values():await guard(st)
+ for label,st in states.items():
+  records=cycle.routine.local.records(st['grant']['reference']);results={}
+  grant_folder=cycle.routine.folder/'local'/st['grant']['decision']['sha256']
+  for f in grant_folder.glob('*-result.json'):results[f.name]=c.load(f)
+  put(E/label/'authority-records.json',{'entries':records,'results':results})
+ put(E/'summary.json',{'frozen_sha256':frozen['sha256'],'policy_version':active['sha256'],'operator_approvals_for_run':0,'consumed_generations':sum(r['consumed'] for r in rows),'returned':sum(r['returned'] for r in rows),'seconds':wall.elapsed.total_seconds,'capture_bytes_before_summary':used,'stop':stop,'conditions':{label:{'reads':st['reads'],'terminal':st['stopped'],'grant_reference':st['grant']['reference']} for label,st in states.items()},'provider_unchanged':True,'production_unchanged':True,'rows':rows})
+ print(json.dumps({'consumed_generations':sum(r['consumed'] for r in rows),'seconds':wall.elapsed.total_seconds,'operator_approvals_for_run':0,'stop':stop}),flush=True)
+if __name__=='__main__':asyncio.run(main())

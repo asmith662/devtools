@@ -1,0 +1,48 @@
+{
+  "schema": "reviewer-notes-procedure-comparison-v1",
+  "design": "One matched pair of four-turn reviews, alternating existing/explicit. Both enable exact production ReviewNotes. Same public evidence, native Tool schemas (fresh subject IDs only), settings and independent grader. Existing procedure vs inspection-time addendum. No statistical replication.",
+  "common_phases": [
+    "Inspection 1 of 3. Independently inspect the supplied baseline and archived candidate against the task. Treat historical leads as unverified hypotheses. Request one useful read_source interval of the authorized baseline fixture; do not submit your final proposal yet. You may record provisional reasoning. At most one read in this response.",
+    "Inspection 2 of 3. Check your tentative interpretations and the historical leads against the exact source and expected contract. Correct, supersede or withdraw unsupported interpretations; keep genuine uncertainty explicit. Request one useful read_source interval. Do not finalize yet. At most one read in this response.",
+    "Inspection 3 of 3, after planned Context reduction. Earlier inspection exchanges have been omitted. Original task and complete sources remain. Only explicitly retained working Context, if supplied, represents saved observations; do not invent missing history. Reconsult the source, check contradictions and record any correction to your provisional knowledge. Request one useful read_source interval. Next call is final; at most one read now.",
+    "Final reserved synthesis. No source Tools remain. Submit exactly one submit_review_proposal with the exact advertised subject/candidate identities and all required fields. Assess objective and current-owner. Ground each alleged defect in source and contract; distinguish uncertainty from a demonstrated failure. No prose substitutes for the callable."
+  ],
+  "existing_procedure": "Evidence-first independent review: claim -> expected contract -> exact\nobserved evidence -> contradiction/uncertainty check -> supported finding.\nMatching quotation proves the quotation, not your interpretation. Passing checks\nor a cited source do not prove a defect. Keep hypotheses and unresolved questions\nexplicit; prefer insufficient-evidence to an invented blocking defect. Verify\nhelper/caller relationships against both source units before relying on them.\nYou may retain notes in assistant content alongside an existing read_source call;\nno additional model call is needed per note. Use WORKING_NOTES followed by newline\nand JSON {\"working_notes\":[{\"kind\":\"hypothesis\",\"text\":\"claim\",\n\"expected_contract\":\"requirement or explicit uncertainty\",\"support\":[\n{\"reference\":\"candidate\",\"start\":0,\"end\":1,\"quote\":\"exact character\"}],\n\"contradicts\":[],\"supersedes\":[]}]}. Kinds: source, hypothesis, relationship,\nquestion, conclusion. Every note is provisional, even source claims. Only the host\ncan verify; no model field can declare truth. Quotes use half-open Unicode offsets\ninside disclosed ranges. At most 8 notes per response, 32 retained including\nrevisions, 1024 characters per text/contract, 4 support quotes of 512 characters.\nUse predecessor sequence numbers to correct/supersede your provisional notes or\nrecord a contradiction. Missing evidence is a question, not proof of absence.\nLive evidence reopens through read_source under existing read authorization;\narchived candidate quotes reopen from retained subject Context, never the live\nbaseline at the same path. Source coverage is disclosure, not semantic assessment.\nOn the final reserved call submit the unchanged submit_review_proposal contract;\nnotes alone are not a conclusion and do not create more calls, reads or authority.\n",
+  "explicit_addendum": "Inspection-time working-note procedure. During inspection, record one compact provisional hypothesis or question in the existing WORKING_NOTES protocol, rather than waiting for the final response. State the expected task contract and identify its supporting disclosed reference (candidate, baseline, or completed read:N). Keep text around 300 characters and expected_contract around 250. All interpretations remain provisional. If exact quote offsets are unknown, leave support empty and name the source reference in text; never guess a range or copy the illustrative quote from the protocol. Use only existing note fields and valid JSON, with no prose following the JSON block. You may put this content alongside one read_source call. On later inspections, reconsult the projected note by its real sequence, explicitly state what evidence contradicts it or what remains unverified, and revise/supersede it only when justified. Reopen the supplied source when needed. Before final synthesis, reconsult your retained contract/claim and contradiction check; unproven claims must stay uncertainty rather than become blocking findings. The final submit_review_proposal schema, exact obligation names and factual standard are unchanged.",
+  "explicit_phase_guidance": [
+    "Now create the compact provisional note during this first inspection, identifying a disclosed source reference. Use the existing protocol; you may also request the one source read.",
+    "Reconsult your earlier note from working_context. Record a compact contradiction or uncertainty check against its expected contract; reference the real sequence in text. Correct/supersede a prior hypothesis if evidence warrants, otherwise retain it as provisional.",
+    "After reconstruction, explicitly name the retained note sequence you are reconsulting. Check it against the original source and contract, record a contradiction/uncertainty check, and revise it only with support. Do this before final synthesis.",
+    "Reconsult your retained provisional claim, expected contract and contradiction check before concluding. Do not turn an unverified interpretation into a demonstrated defect or acceptance. Submit the unchanged final Tool contract now."
+  ],
+  "context_reconstruction": "Before turn3 remove prior inspection exchanges from BOTH conditions, retain original public task/full sources, restore each condition own actual captured checkpoint and completed-read bindings only. Never preload a model note or grader answer.",
+  "source_tools": "Same production read_source for exact restored historical baseline fixture; archived candidate supplied in full. At most one read per inspection response. Valid notes-only inspection is supported by actual NativeReviewer and consumes its ordinary call; record missed requested reads separately.",
+  "limits": {
+    "generations": 8,
+    "per_condition": 4,
+    "input_tokens_per_call": 16384,
+    "output_tokens_per_call": 2048,
+    "total_reserved_output_tokens": 16384,
+    "source_reads": 6,
+    "call_seconds": 120,
+    "wall_seconds": 1020,
+    "capture_bytes": 4194304,
+    "child_capture_bytes": 1835008,
+    "retries": 0
+  },
+  "stop": "No replay. Stop affected condition on malformed notes, invalid Tool batch/proposal or early conclusion. Valid notes-only inspection may continue. Stop whole packet on unknown provider effects, authority/source/provider drift or budget failure. Unused calls are not reassigned.",
+  "scoring": [
+    "valid model-authored notes before finalization, separate from automatic literal notes",
+    "exact source anchors vs unanchored hypotheses; literal match is not semantic truth",
+    "checkpoint reconstruction and later explicit model reuse of prior sequence/claim, separate from transport",
+    "explicit contradiction/uncertainty checks and justified revisions/supersessions",
+    "all final facts/defects under the unchanged grader, recommendation and strict admission separately",
+    "source Tool use, fresh IDs, response termination, actual tokens/latency/cache and bounded Context"
+  ],
+  "confounds": [
+    "One pair with uncontrolled seed and cache/order effects",
+    "Instruction addendum is the intended treatment; identity metadata necessarily differs",
+    "Full sources retained after reduction; saved notes are not exclusive access to evidence",
+    "Both treatments may fail; no normalization into Tools or verified facts"
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "frozen_sha256": "482e7291b75c6138f3b1ec85bfe101a1a80b42acd43c33340eafad8df7eaa788",
+  "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+  "operator_approvals_for_run": 0,
+  "consumed_generations": 8,
+  "returned": 8,
+  "seconds": 252.241438,
+  "capture_bytes_before_summary": 1520060,
+  "stop": null,
+  "conditions": {
+    "existing": {
+      "reads": 3,
+      "terminal": "Protocol failure; no retry",
+      "grant_reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:2d561199aa2acc4b2f0d883b5ee65860a1b94cc12bc0441a72d143bb1630282d"
+    },
+    "explicit": {
+      "reads": 3,
+      "terminal": "Protocol failure; no retry",
+      "grant_reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:e51f77f5ff8a3a139ec00a89f0007f255eab98030804f795d299838a9e93ef0c"
+    }
+  },
+  "provider_unchanged": true,
+  "production_unchanged": true,
+  "rows": [
+    {
+      "ordinal": 1,
+      "condition": "existing",
+      "phase": 1,
+      "seconds": 18.162692,
+      "input_tokens": 6963,
+      "usage": {
+        "completion_tokens": 58,
+        "prompt_tokens": 6963,
+        "total_tokens": 7021,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 2,
+      "condition": "explicit",
+      "phase": 1,
+      "seconds": 19.267129,
+      "input_tokens": 7216,
+      "usage": {
+        "completion_tokens": 200,
+        "prompt_tokens": 7216,
+        "total_tokens": 7416,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": true,
+      "model_notes_accepted": 1,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 3,
+      "condition": "existing",
+      "phase": 2,
+      "seconds": 48.841425,
+      "input_tokens": 7707,
+      "usage": {
+        "completion_tokens": 908,
+        "prompt_tokens": 7707,
+        "total_tokens": 8615,
+        "prompt_tokens_details": {
+          "cached_tokens": 1286
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 4,
+      "condition": "explicit",
+      "phase": 2,
+      "seconds": 11.703734,
+      "input_tokens": 8955,
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 8955,
+        "total_tokens": 9017,
+        "prompt_tokens_details": {
+          "cached_tokens": 1280
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 5,
+      "condition": "existing",
+      "phase": 3,
+      "seconds": 11.668844,
+      "input_tokens": 7888,
+      "usage": {
+        "completion_tokens": 88,
+        "prompt_tokens": 7888,
+        "total_tokens": 7976,
+        "prompt_tokens_details": {
+          "cached_tokens": 1286
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 6,
+      "condition": "explicit",
+      "phase": 3,
+      "seconds": 11.386996,
+      "input_tokens": 8874,
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 8874,
+        "total_tokens": 8936,
+        "prompt_tokens_details": {
+          "cached_tokens": 1280
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 7,
+      "condition": "existing",
+      "phase": 4,
+      "seconds": 81.073251,
+      "input_tokens": 8694,
+      "usage": {
+        "completion_tokens": 1538,
+        "prompt_tokens": 8694,
+        "total_tokens": 10232,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": {
+        "type": "JSONDecodeError",
+        "message": "Extra data: line 3 column 1 (char 1754)"
+      }
+    },
+    {
+      "ordinal": 8,
+      "condition": "explicit",
+      "phase": 4,
+      "seconds": 48.125823,
+      "input_tokens": 9658,
+      "usage": {
+        "completion_tokens": 720,
+        "prompt_tokens": 9658,
+        "total_tokens": 10378,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": {
+        "type": "ValueError",
+        "message": "Acceptance proposal has incomplete obligations or blocking risks"
+      }
+    }
+  ]
+}

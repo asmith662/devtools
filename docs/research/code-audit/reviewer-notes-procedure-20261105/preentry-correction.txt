@@ -1,0 +1,17 @@
+"""Narrow pre-entry capture correction; no request/scoring or production changes."""
+import json,hashlib,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+from scripts.backlog.intake import _digest
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import BinaryFile,TextFile,write
+R=Path.cwd();O=R/'.local/reviewer-notes-procedure'
+old=json.loads((O/'frozen.json').read_bytes());summary=json.loads((O/'execution/summary.json').read_bytes());assert summary['consumed_generations']==0
+source=(O/'execute.py').read_text()
+source=source.replace("E=O/'execution';used=0","E=O/'execution-qualified';used=0").replace("c.load(O/'frozen.json')","c.load(O/'frozen-qualified.json')")
+source=source.replace("count=await client.count_input_tokens(value);measured['input_tokens']=count;return count","adapter._read_http_response=raw_read\n    try:count=await client.count_input_tokens(value)\n    finally:adapter._read_http_response=capture\n    measured['input_tokens']=count;return count")
+write(BinaryFile(resolve_path(O/'execute-qualified.py'),source.encode()),overwrite=False)
+packet=old['packet'];packet['files']=dict(packet['files']);packet['files'].pop('execute.py');packet['files']['execute-qualified.py']=hashlib.sha256((O/'execute-qualified.py').read_bytes()).hexdigest()
+packet['preentry_correction']={'previous_frozen_sha256':old['sha256'],'previous_consumed_generations':0,'cause':'Generation capture intercepted apply-template/tokenize measurement; second write collided. Disable generation tap only during measurement; actual send remains byte-captured.','scope_effect':'Same task, common evidence, request hashes, procedure variants, settings and scoring; only capture seam corrected. Fresh standing grants; no model replay.'}
+write(TextFile(resolve_path(O/'frozen-qualified.json'),json.dumps({'packet':packet,'sha256':_digest(packet)},indent=2)+'\n'),overwrite=False)
+print(json.dumps({'corrected_frozen_sha256':_digest(packet),'previous_generations':0,'requests_and_scoring_unchanged':True}))

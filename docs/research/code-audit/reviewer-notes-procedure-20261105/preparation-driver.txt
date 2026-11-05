@@ -1,0 +1,74 @@
+"""Prospective procedure comparison, reusing the previous calibration composition."""
+import asyncio,hashlib,importlib.util,json,sys
+from pathlib import Path
+from dataclasses import asdict
+sys.path.insert(0,str(Path.cwd()))
+R=Path.cwd();O=R/'.local/reviewer-notes-procedure'
+s=importlib.util.spec_from_file_location('previous_memory_composition',R/'.local/reviewer-memory-live-v2/packet.py');base=importlib.util.module_from_spec(s);s.loader.exec_module(base)
+c=base.c;c.O=O
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from scripts.backlog.native.review.notes import ReviewNotes,PROCEDURE,CONTRACT
+from devtools.core.paths import resolve_path
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.tools.source import SourceScope
+from devtools.models.interaction import PromptMessage,InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
+from devtools.resources.filesystem import BinaryFile,write
+
+LABELS=('existing','explicit')
+ADDENDUM='''Inspection-time working-note procedure. During inspection, record one compact provisional hypothesis or question in the existing WORKING_NOTES protocol, rather than waiting for the final response. State the expected task contract and identify its supporting disclosed reference (candidate, baseline, or completed read:N). Keep text around 300 characters and expected_contract around 250. All interpretations remain provisional. If exact quote offsets are unknown, leave support empty and name the source reference in text; never guess a range or copy the illustrative quote from the protocol. Use only existing note fields and valid JSON, with no prose following the JSON block. You may put this content alongside one read_source call. On later inspections, reconsult the projected note by its real sequence, explicitly state what evidence contradicts it or what remains unverified, and revise/supersede it only when justified. Reopen the supplied source when needed. Before final synthesis, reconsult your retained contract/claim and contradiction check; unproven claims must stay uncertainty rather than become blocking findings. The final submit_review_proposal schema, exact obligation names and factual standard are unchanged.'''
+PHASES=list(base.PHASES)
+EXPLICIT=[
+ 'Now create the compact provisional note during this first inspection, identifying a disclosed source reference. Use the existing protocol; you may also request the one source read.',
+ 'Reconsult your earlier note from working_context. Record a compact contradiction or uncertainty check against its expected contract; reference the real sequence in text. Correct/supersede a prior hypothesis if evidence warrants, otherwise retain it as provisional.',
+ 'After reconstruction, explicitly name the retained note sequence you are reconsulting. Check it against the original source and contract, record a contradiction/uncertainty check, and revise it only with support. Do this before final synthesis.',
+ 'Reconsult your retained provisional claim, expected contract and contradiction check before concluding. Do not turn an unverified interpretation into a demonstrated defect or acceptance. Submit the unchanged final Tool contract now.'
+]
+def packets():return c.load(O/'packets.json')
+def initial(p):return base.initial(p)
+def request(p,messages,phase):return base.request(p,messages,phase)
+def scope_index():return base.scope_index(c.load(O/'source-identity.json')['repository'])
+async def prepare():
+ assert not (O/'frozen.json').exists(),'Existing packet must not be rewritten'
+ assert await c.git(R,'rev-parse','HEAD')=='28425b5c2b32bb181f716251fea5baa2df3a021f'
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ cycle=c.WorkCycle(R);active=cycle.routine.active();assert active['sha256']=='26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978'
+ previous=c.load(R/'.local/reviewer-memory-live-v2/subject.json');common=previous['subject']
+ assert c.h(R/'tests/context/working/fixtures/p3-candidate.txt')=='ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119'
+ assert c.h(R/base.PATH)=='a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645'
+ c.save(O/'subject-common.json',common)
+ write(BinaryFile(resolve_path(O/'grader-only.json'),(R/'.local/reviewer-memory-live-v2/grader-only.json').read_bytes()),overwrite=False)
+ c.save(O/'source-identity.json',c.load(R/'.local/reviewer-memory-live-v2/source-snapshot.json'))
+ values={}
+ for label in LABELS:
+  p=json.loads(json.dumps(previous));p['sha256']=_digest({'subject':common,'episode':'inspection-procedure-v1:'+label});p['policy']['source']='reviewer-notes-procedure:'+label
+  # Role stays independent reviewer; distinct episode/source IDs prevent state leakage.
+  p['working_notes']=CONTRACT;values[label]=p
+ c.save(O/'packets.json',values)
+ plan={'schema':'reviewer-notes-procedure-comparison-v1','design':'One matched pair of four-turn reviews, alternating existing/explicit. Both enable exact production ReviewNotes. Same public evidence, native Tool schemas (fresh subject IDs only), settings and independent grader. Existing procedure vs inspection-time addendum. No statistical replication.','common_phases':PHASES,'existing_procedure':PROCEDURE,'explicit_addendum':ADDENDUM,'explicit_phase_guidance':EXPLICIT,'context_reconstruction':'Before turn3 remove prior inspection exchanges from BOTH conditions, retain original public task/full sources, restore each condition own actual captured checkpoint and completed-read bindings only. Never preload a model note or grader answer.','source_tools':'Same production read_source for exact restored historical baseline fixture; archived candidate supplied in full. At most one read per inspection response. Valid notes-only inspection is supported by actual NativeReviewer and consumes its ordinary call; record missed requested reads separately.','limits':{'generations':8,'per_condition':4,'input_tokens_per_call':16384,'output_tokens_per_call':2048,'total_reserved_output_tokens':16384,'source_reads':6,'call_seconds':120,'wall_seconds':1020,'capture_bytes':4194304,'child_capture_bytes':1835008,'retries':0},'stop':'No replay. Stop affected condition on malformed notes, invalid Tool batch/proposal or early conclusion. Valid notes-only inspection may continue. Stop whole packet on unknown provider effects, authority/source/provider drift or budget failure. Unused calls are not reassigned.','scoring':['valid model-authored notes before finalization, separate from automatic literal notes','exact source anchors vs unanchored hypotheses; literal match is not semantic truth','checkpoint reconstruction and later explicit model reuse of prior sequence/claim, separate from transport','explicit contradiction/uncertainty checks and justified revisions/supersessions','all final facts/defects under the unchanged grader, recommendation and strict admission separately','source Tool use, fresh IDs, response termination, actual tokens/latency/cache and bounded Context'],'confounds':['One pair with uncontrolled seed and cache/order effects','Instruction addendum is the intended treatment; identity metadata necessarily differs','Full sources retained after reduction; saved notes are not exclusive access to evidence','Both treatments may fail; no normalization into Tools or verified facts']}
+ c.save(O/'plan.json',plan)
+ public=[base.PATH,'tests/context/working/fixtures/p3-candidate.txt',str((O/'subject-common.json').relative_to(R)).replace('\\','/'),str((O/'plan.json').relative_to(R)).replace('\\','/')]
+ source=SourceScope.observe(root=resolve_path(R),repository=Repository(RepositoryId.parse(c.load(O/'source-identity.json')['repository'])),addresses=tuple(RepositoryResourceAddress(p) for p in public),maximum_resource_bytes=32768)
+ c.save(O/'grant-inputs.json',{'repository':str(source.snapshot.repository_id),'inputs':{str(r.address):str(r.content_identity) for r in source.snapshot.resources}})
+ _,provider=await c.provider(cycle);props=await asyncio.to_thread(c.established().get,'/props');c.save(O/'provider-before.json',provider);c.save(O/'props-before.json',props)
+ scope,index=scope_index()
+ class EmptyCapture:
+  def add(self,*args):raise AssertionError('Preflight must seed no notes')
+ initial_requests=[]
+ for label,p in values.items():
+  notes=ReviewNotes(p,scope.snapshot,EmptyCapture());messages=initial(p)+[PromptMessage('user',PHASES[0])]
+  if label=='explicit':messages.append(PromptMessage('user',ADDENDUM+'\n'+EXPLICIT[0]))
+  messages.append(notes.message());req=request(p,messages,1)
+  client=LlamaCppInteraction(endpoint=active['policy']['provider']['endpoint'],model=active['policy']['provider']['model'],source=InteractionSource(p['policy']['source']))
+  body=json.dumps(client._request_payload(req),separators=(',',':')).encode();count=await client.count_input_tokens(req);assert count<=16384
+  initial_requests.append({'condition':label,'request':asdict(req),'wire_sha256':hashlib.sha256(body).hexdigest(),'input_tokens':count})
+ c.save(O/'initial-requests.json',initial_requests)
+ owners=list(c.load(R/'.local/reviewer-memory-live-v2/production-inputs.json'))+['scripts/backlog/routine/local.py','scripts/backlog/routine/policy.py','scripts/backlog/routine/__init__.py']
+ c.save(O/'production-inputs.json',{p:c.h(R/p) for p in owners})
+ names=('packet.py','execute.py','plan.json','subject-common.json','packets.json','grader-only.json','source-identity.json','grant-inputs.json','initial-requests.json','production-inputs.json')
+ frozen={'head':await c.git(R,'rev-parse','HEAD'),'policy_version':active['sha256'],'files':{n:c.h(O/n) for n in names},'operator_approvals_for_run':0,'authority':'Existing active WorkCycle.routine.local; fresh root and bounded child grants before inference, not historical experiment approval.'}
+ c.save(O/'frozen.json',{'packet':frozen,'sha256':_digest(frozen)})
+ print(json.dumps({'frozen_sha256':_digest(frozen),'initial_input_tokens':[(v['condition'],v['input_tokens']) for v in initial_requests],'calls_so_far':0,'policy_version':active['sha256']}))
+if __name__=='__main__':asyncio.run(prepare())

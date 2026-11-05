@@ -1,0 +1,45 @@
+{
+  "method": "Host-only AST regex literal extraction and group(text).strip(); never execute/import candidate module. Public post-response diagnostics under unchanged frozen claim rubric, not hidden acceptance or new holdouts.",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "baseline_sha256": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+  "cases": {
+    "# ##": {
+      "baseline": "",
+      "candidate": "##"
+    },
+    "# C#": {
+      "baseline": "C",
+      "candidate": "C#"
+    },
+    "# C# #": {
+      "baseline": "C#",
+      "candidate": "C#"
+    },
+    "# Title #": {
+      "baseline": "Title",
+      "candidate": "Title"
+    },
+    "# C###": {
+      "baseline": "C",
+      "candidate": "C###"
+    },
+    "# ": {
+      "baseline": "",
+      "candidate": ""
+    },
+    "#": {
+      "baseline": null,
+      "candidate": null
+    },
+    "# A  #  ": {
+      "baseline": "A",
+      "candidate": "A"
+    },
+    "# A  # B": {
+      "baseline": "A  # B",
+      "candidate": "A  # B"
+    }
+  },
+  "grading_file_sha256": "76a21c1bd6c751d450a947f500817b6e8c5cdbb2e47be39e2dd924703311ac04",
+  "grading_unchanged_from_previous": true
+}

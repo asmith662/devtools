@@ -1,0 +1,130 @@
+"""Compact existing-format publication; no inference or production changes."""
+import ast,asyncio,hashlib,json,re,sys
+from pathlib import Path
+from packet import R,O,c,packets
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.core.time import Duration
+E=O/'execution-qualified';D=R/'docs/research/code-audit/reviewer-notes-procedure-20261105'
+def copy(path,name):write(BinaryFile(resolve_path(D/name),path.read_bytes()),overwrite=False)
+def save(name,value):c.save(D/name,value)
+def pattern(text):
+ tree=ast.parse(text)
+ return next(ast.literal_eval(n.value.args[0]) for n in ast.walk(tree) if isinstance(n,ast.AnnAssign) and isinstance(n.target,ast.Name) and n.target.id=='_ATX_HEADING_PATTERN')
+def main():
+ assert not D.exists(),'Existing evidence must be reconciled, never overwritten'
+ summary=c.load(E/'summary.json');assert summary['consumed_generations']==summary['returned']==8 and summary['operator_approvals_for_run']==0
+ D.mkdir();write(BinaryFile(resolve_path(D/'.gitattributes'),b'* -text\n*.txt whitespace=cr-at-eol\n'),overwrite=False)
+ for source,target in [('frozen-qualified.json','frozen.json'),('frozen.json','preentry-frozen.json'),('plan.json','plan.json'),('subject-common.json','subject-common.json'),('packets.json','packets.json'),('grader-only.json','grader-only.json'),('source-identity.json','source-identity.json'),('grant-inputs.json','grant-inputs.json'),('initial-requests.json','initial-requests.json'),('production-inputs.json','production-inputs.json'),('packet.py','preparation-driver.txt'),('execute.py','preentry-driver.txt'),('execute-qualified.py','execution-driver.txt'),('repair_preentry.py','preentry-correction.txt')]:copy(O/source,target)
+ copy(E/'summary.json','execution.json');copy(E/'method.json','execution-method.json')
+ save('environment.json',{'provider_before':c.load(O/'provider-before.json'),'provider_after':c.load(E/'provider-after.json'),'props_before':c.load(O/'props-before.json'),'props_after':c.load(E/'props-after.json')})
+ authority={'policy_version':summary['policy_version'],'operator_approvals_for_run':0,'parent':c.load(E/'parent-grant.json'),'children':{},'preentry':{'summary':c.load(O/'execution/summary.json'),'parent':c.load(O/'execution/parent-grant.json'),'children':{label:c.load(O/'execution'/label/'grant.json') for label in ('existing','explicit')},'measurement_http':c.load(O/'execution/1-existing/http.json'),'measurement_body_utf8':(O/'execution/1-existing/response-body.json').read_bytes().decode(),'model_ledger_entries':0,'meaning':'Only apply-template was captured; token-measurement filename collision before any model entry. Both child ledgers authenticated empty. Corrected prospective freeze and fresh grants, no inference replay.'}}
+ for label in ('existing','explicit'):
+  authority['children'][label]={'grant':c.load(E/label/'grant.json'),'ledger':c.load(E/label/'authority-records.json')}
+ save('authority.json',authority)
+ bodies={};calls=[]
+ for row in summary['rows']:
+  name=f"{row['phase']}-{row['condition']}";folder=E/name;raw=(folder/'request.json').read_bytes();h=hashlib.sha256(raw).hexdigest();bodies[h]=raw.decode()
+  response=(folder/'response-body.json').read_bytes();assert hashlib.sha256(response).hexdigest()==c.load(folder/'http.json')['body_sha256']
+  calls.append({'id':name,'request_sha256':h,'response_body_utf8':response.decode(),'http':c.load(folder/'http.json'),'entry':c.load(folder/'entry.json'),'result':row,'normalized_response':c.load(folder/'normalized.json'),'model_request':c.load(folder/'model-request.json'),'observation_metadata':c.load(folder/'observation.json'),'provider_qualified':c.load(folder/'provider-qualified.json')})
+ save('calls.json',{'version':1,'encoding':'Exact raw UTF-8 request/response byte round trips, not normalized into Tools','request_bodies_by_sha256':bodies,'calls':calls})
+ records={}
+ for label in ('existing','explicit'):
+  for path in sorted((E/label).glob('[0-9][0-9][0-9]-*.json')):records[str(path.relative_to(E)).replace('\\','/')]={'sha256':c.h(path),'raw_utf8':path.read_bytes().decode()}
+ for path in sorted(E.glob('*-*/working-projection.json')):records[str(path.relative_to(E)).replace('\\','/')]={'sha256':c.h(path),'raw_utf8':path.read_bytes().decode()}
+ save('episode-records.json',{'version':1,'records':records,'meaning':'Actual note/custody/read/checkpoint/reconstruction records, including explicitly omitted projected notes. Literal host verification is not semantic truth.'})
+ subject=c.load(O/'subject-common.json');candidate=subject['evidence']['candidate']['text'];baseline=subject['evidence']['baseline']['text'];rx=re.compile(pattern(candidate));bx=re.compile(pattern(baseline))
+ cases={text:{label:(pat.match(text).group('text').strip() if pat.match(text) else None) for label,pat in [('baseline',bx),('candidate',rx)]} for text in ['# ##','# C#','# C# #','# Title #','# C###','# ','#','# A  #  ','# A  # B']}
+ save('host-claim-checks.json',{'method':'Host-only AST regex literal extraction and group(text).strip(); never execute/import candidate module. Public post-response diagnostics under unchanged frozen claim rubric, not hidden acceptance or new holdouts.','candidate_sha256':hashlib.sha256(candidate.encode()).hexdigest(),'baseline_sha256':hashlib.sha256(baseline.encode()).hexdigest(),'cases':cases,'grading_file_sha256':c.h(O/'grader-only.json'),'grading_unchanged_from_previous':c.h(O/'grader-only.json')==c.h(R/'.local/reviewer-memory-live-v2/grader-only.json')})
+ totals=[];offline=[]
+ for label in ('existing','explicit'):
+  rows=[v for v in summary['rows'] if v['condition']==label];refs=dict(subject['references'])
+  for path in (E/label).glob('[0-9][0-9][0-9]-*.json'):
+   value=c.load(path)
+   if value['kind']=='review-read-result':refs[value['value']['reference']]=value['value']['identity']
+  final=c.load(E/f'4-{label}'/'normalized.json');proposal=json.loads(final['tool_calls'][0]['arguments_json'])
+  try:delivery.conclusion(packets()[label],c.load(E/f'4-{label}'/'model-request.json'),final,refs,set());admission='admitted'
+  except Exception as ex:admission=type(ex).__name__+': '+str(ex)
+  offline.append({'condition':label,'native_structured_delivery':True,'subject_candidate_ids_correct':proposal['subject_sha256']==packets()[label]['sha256'] and proposal['candidate_sha256']==subject['candidate_sha256'],'raw_recommendation':proposal['conclusion']['disposition'],'offline_strict_proposal_admission':admission,'meaning':'Host diagnosis of captured raw proposal only; bypasses no execution or actual note failure.'})
+  totals.append({'condition':label,'generations':len(rows),'reads':sum(v['read_completed'] for v in rows),'input_tokens':sum(v['input_tokens'] for v in rows),'output_tokens':sum(v['usage']['completion_tokens'] for v in rows),'cached_prompt_tokens':sum(v['usage'].get('prompt_tokens_details',{}).get('cached_tokens',0) for v in rows),'seconds':sum(v['seconds'] for v in rows),'valid_authored_notes':sum(v['model_notes_accepted'] for v in rows),'valid_inspection_notes':sum(v['model_notes_accepted'] for v in rows if v['phase']<4),'actual_strict_admission':False,'factual_pass':False})
+ scores={'rubric_frozen_before_generation':True,'independent_grader_unchanged':True,'per_run_operator_approvals':0,'measurements':totals,'delivery':offline,'existing':{'valid_authored_notes':0,'unstructured_inspection_notes':{'phase':2,'text_prefix':'Working notes:','tokens_entire_response':908,'assessment':'Contains useful traces for ordinary cases but is prose, not protocol. Partly checks an unverified lead while misattributing its target to baseline. Not admitted as durable notes; removed at Context reduction.'},'final_note_attempt':'Late WORKING_NOTES JSON followed by extra prose; actual rejection JSONDecodeError Extra data. Visible secondary defects: unsupported note kind inference and candidate[0:1] quote r instead of #. Not repaired.','factual_errors':['Wrong accept recommendation; misses # ## empty-title defect.','Final advisory finding claims empty-title behavior unchanged, contradicted by # ##.','Calls attached # C### unspecified despite the general attached-hash rule.'],'true_defects_identified':0,'blocking_findings_proposed':0,'advisory_findings_proposed':4,'uncertainty':'Acknowledges no executed checks, but treats inferred preservation as sufficient for acceptance.','factual_pass':False},'explicit':{'valid_authored_notes':1,'valid_inspection_notes':1,'phase':1,'kind':'hypothesis','semantic_verification':None,'literal_anchor':{'reference':'candidate','start':0,'end':1,'quote':'#','literal_valid':candidate[0:1]=='#','relevant_support_for_regex_claim':False,'assessment':'The copyright/comment prefix does not support a claim about the later regex. Valid anchor geometry does not establish relevance or truth.'},'later_exposure':{'phase2':True,'phase3_after_reconstruction':True,'phase4_final':False,'projection_omitted_notes_before_final':2,'final_visible_sequences':[3,4],'authored_sequence':1,'persistence':'Retained in actual checkpoint; omission from projection is not deletion.','demonstrated_model_reconsultation':False,'explicit_contradiction_checks':0,'revisions':0,'supersessions':0},'later_responses':'Inspection turns2/3 return native reads with empty assistant content; do not name/revise the requested note. Final cites source reads but not its own note; full source also remains, so latent use cannot be inferred.','factual_errors':['Wrong accept recommendation; misses # ## empty-title defect.','Summary infers preservation of empty-title and lookup contracts from unchanged consumer code, despite the changed regex producer.','Summary invents a trailing space in the # C# input trace; result C# is correct but that step is not.'],'true_defects_identified':0,'blocking_findings_proposed':0,'findings_proposed':0,'uncertainty':'Calls conclusions inferred, but expresses no outstanding gap and accepts anyway. Fewer findings does not mean fewer false assertions.','strict_failure':'Accept lacks required task/baseline/public-checks/acceptance/custody evidence; no synthetic references supplied.','factual_pass':False},'causal_limits':['One uncontrolled pair; cannot establish statistically reliable improvement or harm.','Inspection addendum changes instruction emphasis; source/Tools/settings/grader fixed.','Some useful existing-arm reasoning was unstructured prose and lost on reduction.','Explicit early valid note was exposed after reconstruction but was irrelevant-anchored and omitted before final synthesis.','Accurate source quotes do not verify an interpretation; active note exposure and evidence relevance need separate qualification.'],'overall':'Timing guidance improved valid early-note creation in this pair (0 to1); no valid note revision or explicit later use, no factual improvement (0/1 each), and both strict conclusions rejected.'}
+ save('scores.json',scores)
+ previous=c.load(R/'docs/research/code-audit/reviewer-memory-live-20261105/candidate-playbook-v4.json')
+ save('candidate-playbook-v5.json',{'version':5,'status':'DIAGNOSTIC_CANDIDATE_NOT_QUALIFIED_NOT_ACTIVATED','predecessor':'../reviewer-memory-live-20261105/candidate-playbook-v4.json','tested_provider':previous['tested_provider'],'template_sha256':previous['template_sha256'],'default_sampling':previous['default_sampling'],'thinking_enabled':False,'output_ceiling':2048,'instructions':'plan.json exact existing procedure and prospective inspection-time addendum; only fresh subject/source IDs differ in unchanged Tool definitions','authority':'Fresh WorkCycle.routine.local parent/child grants under policy '+summary['policy_version']+'; zero per-run operator decisions','measurements':totals,'result':'One valid early provisional note with explicit guidance vs zero with existing procedure. Anchor is literally valid but irrelevant; no explicit contradiction check/revision, authored note omitted before final; both accept incorrectly. No accuracy promotion.','candidate_next_increment':'Prioritize source-bound public evidence verification and preserving a compact active claim in existing Context projection. Reuse fixed public-check/source owners; no arbitrary reviewer execution/private oracle exposure. Requalify before widening consumers.','coding_worker_api_memory':'Defer broad rollout. Later test one producer/consumer return-contract relation with relevant anchors to both and retained active projection; this pair does not establish coding benefit.','confidence':'Diagnostic n=1 pair, no statistical claim; exact failures retained.','evidence':['plan.json','calls.json','scores.json','episode-records.json','authority.json','host-claim-checks.json','environment.json'],'production_changes':False})
+ print(json.dumps({'evidence_directory':str(D.relative_to(R)),'totals':totals,'strict_diagnostics':offline,'bytes':sum(p.stat().st_size for p in D.iterdir() if p.is_file())}))
+async def validate():
+ assert not (D/'validation.json').exists() and not (D/'manifest.json').exists()
+ cycle=c.WorkCycle(R);frozen=c.load(D/'frozen.json');assert _digest(frozen['packet'])==frozen['sha256']
+ assert cycle.routine.active()['sha256']==frozen['packet']['policy_version']
+ aliases={'packet.py':'preparation-driver.txt','execute-qualified.py':'execution-driver.txt'}
+ for name,h in frozen['packet']['files'].items():assert c.h(D/aliases.get(name,name))==h,name
+ assert c.h(D/'grader-only.json')==c.h(R/'.local/reviewer-memory-live-v2/grader-only.json')
+ assert c.load(D/'subject-common.json')==c.load(R/'.local/reviewer-memory-live-v2/subject.json')['subject']
+ for name,h in c.load(D/'production-inputs.json').items():assert c.h(R/name)==h,name
+ authority=c.load(D/'authority.json');ref=authority['parent']['reference'];authority['parent_ledger']=cycle.routine.local.records(ref)
+ ids=[];ledger_calls=0;ledger_reads=0
+ for label in ('existing','explicit'):
+  info=authority['children'][label];grant=info['grant'];rows=info['ledger']['entries'];assert grant['decision']['request']['parent']==ref
+  assert grant['decision']['request']['scope']['plan_sha256']==frozen['sha256']
+  for i,row in enumerate(rows):
+   assert _digest({k:v for k,v in row.items() if k!='sha256'})==row['sha256']
+   assert row['reference']==grant['reference'] and row['previous']==(rows[i-1]['sha256'] if i else None)
+   result=info['ledger']['results'][row['sha256']+'-result.json'];assert result['entry']==row['sha256'] and result['outcome']=='returned'
+   assert _digest({k:v for k,v in result.items() if k!='sha256'})==result['sha256']
+   ledger_calls+=row['operation']=='model';ledger_reads+=row['operation']=='read'
+  assert sum(row['cost']['model_calls'] for row in rows)==4 and sum(row['cost']['reads'] for row in rows)==3
+  assert all(sum(row['cost'][k] for row in rows)<=grant['decision']['request']['scope']['budgets'][k] for k in rows[0]['cost'])
+ assert ledger_calls==8 and ledger_reads==6
+ assert len(authority['parent_ledger'])==2
+ assert sum(row['cost']['model_calls'] for row in authority['parent_ledger'])==8
+ assert all(sum(row['cost'][k] for row in authority['parent_ledger'])<=authority['parent']['decision']['request']['scope']['budgets'][k] for k in authority['parent_ledger'][0]['cost'])
+ for label,g in authority['preentry']['children'].items():assert not cycle.routine.local.records(g['reference'])
+ assert authority['preentry']['summary']['consumed_generations']==0
+ write(BinaryFile(resolve_path(D/'authority.json'),(json.dumps(authority,indent=2)+'\n').encode()),overwrite=True)
+ calls=c.load(D/'calls.json');assert len(calls['calls'])==8;actual_output=0
+ for call in calls['calls']:
+  wire=calls['request_bodies_by_sha256'][call['request_sha256']].encode();assert hashlib.sha256(wire).hexdigest()==call['request_sha256']
+  raw=call['response_body_utf8'].encode();assert hashlib.sha256(raw).hexdigest()==call['http']['body_sha256'] and len(raw)==call['http']['bytes']<=65536
+  value=json.loads(raw);assert value['usage']==call['result']['usage'] and value['usage']['completion_tokens']<=2048;actual_output+=value['usage']['completion_tokens']
+  assert call['result']['input_tokens']==value['usage']['prompt_tokens']<=16384 and call['result']['seconds']<120
+  assert not any('correct_candidate_title' in m.get('content','') or 'expected_disposition' in m.get('content','') for m in json.loads(wire)['messages'])
+  for tool in call['normalized_response']['tool_calls']:ids.append(tool['provider_call_id'])
+ assert len(ids)==len(set(ids))==8 and actual_output==3636<=16384
+ for cell in c.load(D/'initial-requests.json'):assert next(x for x in calls['calls'] if x['id']=='1-'+cell['condition'])['request_sha256']==cell['wire_sha256']
+ records=c.load(D/'episode-records.json')['records']
+ for name,value in records.items():
+  assert hashlib.sha256(value['raw_utf8'].encode()).hexdigest()==value['sha256']
+  if name.endswith('working-projection.json'):assert len(json.dumps(json.loads(value['raw_utf8']),ensure_ascii=False).encode())<=8192
+ for label in ('existing','explicit'):
+  values=[json.loads(v['raw_utf8']) for k,v in records.items() if k.startswith(label+'/')]
+  before=next(x for x in values if x['kind']=='turn-working-state' and x['value']['phase']==2)['value']['state']
+  restored=next(x for x in values if x['kind']=='reconstruction-input')['value']['state'];assert _digest(before)==_digest(restored)
+ explicit3=next(x for x in calls['calls'] if x['id']=='3-explicit')['model_request'];explicit4=next(x for x in calls['calls'] if x['id']=='4-explicit')['model_request']
+ view3=json.loads(explicit3['prompt']['messages'][-1]['content'])['working_context'];view4=json.loads(explicit4['prompt']['messages'][-1]['content'])['working_context']
+ assert any(n['sequence']==1 for n in view3['notes']) and not any(n['sequence']==1 for n in view4['notes']) and view4['omitted_notes']==2
+ report=R/'docs/research/reviewer-notes-procedure-results.md';targets=[]
+ for target in re.findall(r'\]\(([^)]+)\)',report.read_text()):
+  if '://' in target:continue
+  file=(report.parent/target.split('#',1)[0]).resolve();assert file.exists() or file in (D/'manifest.json',D/'validation.json');targets.append(target)
+ commands=[];executor=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=4096))
+ for name,args in [('layout',['uv','run','python','scripts/validate_layout.py']),('diff',['git','diff','--check']),('git_integrity',['git','fsck','--connectivity-only','--no-dangling']),('production_diff',['git','diff','--name-only','HEAD','--','src','scripts','apps','tests','pyproject.toml','uv.lock','AGENTS.md']),('inspector_status',['git','-C',str(R.parent/'devtools-inspector'),'status','--porcelain']),('inspector_head',['git','-C',str(R.parent/'devtools-inspector'),'rev-parse','HEAD'])]:
+  result=await executor.execute(Command(args[0]).args(*args[1:]).with_timeout(Duration.seconds(120)))
+  assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated
+  stdout=result.stdout.decode();stderr=result.stderr.decode()
+  if name in ('production_diff','inspector_status'):assert not stdout.strip()
+  if name=='inspector_head':assert stdout.strip()=='b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6'
+  commands.append({'name':name,'argv':args,'exit_code':0,'stdout':stdout,'stderr':stderr})
+  print(name+' passed',flush=True)
+ _,provider=await c.provider(cycle);assert provider==c.load(O/'provider-before.json')
+ assert not await c.git(R,'diff','--cached','--name-only')
+ save('validation.json',{'at':str(Timestamp.now()),'checks':{'active_standing_policy':True,'no_per_run_operator_decision':True,'fresh_parent_children_and_budget_carveout':True,'eight_consumed_generations_six_reads':True,'preentry_zero_model_calls':True,'frozen_hashes':True,'initial_request_hashes':True,'unchanged_grader_and_public_evidence':True,'raw_byte_roundtrips':True,'actual_checkpoint_reconstruction':True,'authored_note_exposed_then_omitted':True,'literal_anchor_not_semantic_truth':True,'bounded_projection':True,'links':len(targets),'provider_unchanged':True},'commands':commands,'production_executable_changes':False,'protected_suite_runs':0,'additional_inference_after_packet':0,'scope':'Focused experiment/evidence checks only; no production change or comprehensive rerun.'})
+ copy(Path(__file__),'publication-driver.txt')
+ save('manifest.json',{'version':1,'at':str(Timestamp.now()),'base_head':frozen['packet']['head'],'frozen_sha256':frozen['sha256'],'policy_version':frozen['packet']['policy_version'],'files':{f.name:{'sha256':c.h(f),'bytes':f.stat().st_size} for f in sorted(D.iterdir()) if f.is_file()}})
+ print(json.dumps({'validation':'passed','files':len(list(D.iterdir())),'evidence_bytes':sum(f.stat().st_size for f in D.iterdir() if f.is_file()),'further_inference':0}))
+if __name__=='__main__':
+ if '--validate' in sys.argv:asyncio.run(validate())
+ else:main()

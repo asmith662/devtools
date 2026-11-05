@@ -1,0 +1,69 @@
+{
+  "version": 5,
+  "status": "DIAGNOSTIC_CANDIDATE_NOT_QUALIFIED_NOT_ACTIVATED",
+  "predecessor": "../reviewer-memory-live-20261105/candidate-playbook-v4.json",
+  "tested_provider": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "default_sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "reasoning_format": "none",
+    "seed": 4294967295
+  },
+  "thinking_enabled": false,
+  "output_ceiling": 2048,
+  "instructions": "plan.json exact existing procedure and prospective inspection-time addendum; only fresh subject/source IDs differ in unchanged Tool definitions",
+  "authority": "Fresh WorkCycle.routine.local parent/child grants under policy 26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978; zero per-run operator decisions",
+  "measurements": [
+    {
+      "condition": "existing",
+      "generations": 4,
+      "reads": 3,
+      "input_tokens": 31252,
+      "output_tokens": 2592,
+      "cached_prompt_tokens": 2572,
+      "seconds": 159.746212,
+      "valid_authored_notes": 0,
+      "valid_inspection_notes": 0,
+      "actual_strict_admission": false,
+      "factual_pass": false
+    },
+    {
+      "condition": "explicit",
+      "generations": 4,
+      "reads": 3,
+      "input_tokens": 34703,
+      "output_tokens": 1044,
+      "cached_prompt_tokens": 2560,
+      "seconds": 90.483682,
+      "valid_authored_notes": 1,
+      "valid_inspection_notes": 1,
+      "actual_strict_admission": false,
+      "factual_pass": false
+    }
+  ],
+  "result": "One valid early provisional note with explicit guidance vs zero with existing procedure. Anchor is literally valid but irrelevant; no explicit contradiction check/revision, authored note omitted before final; both accept incorrectly. No accuracy promotion.",
+  "candidate_next_increment": "Prioritize source-bound public evidence verification and preserving a compact active claim in existing Context projection. Reuse fixed public-check/source owners; no arbitrary reviewer execution/private oracle exposure. Requalify before widening consumers.",
+  "coding_worker_api_memory": "Defer broad rollout. Later test one producer/consumer return-contract relation with relevant anchors to both and retained active projection; this pair does not establish coding benefit.",
+  "confidence": "Diagnostic n=1 pair, no statistical claim; exact failures retained.",
+  "evidence": [
+    "plan.json",
+    "calls.json",
+    "scores.json",
+    "episode-records.json",
+    "authority.json",
+    "host-claim-checks.json",
+    "environment.json"
+  ],
+  "production_changes": false
+}
