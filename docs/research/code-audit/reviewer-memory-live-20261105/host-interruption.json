@@ -1,0 +1,7 @@
+{
+  "point": "After five completed generations, before sixth entry or request",
+  "cause": "Decoded JSON lists compared directly with in-memory dataclass tuple fields. Canonical JSON digest equality is the appropriate checkpoint comparison.",
+  "effects": "All five entered calls and reads completed and captured. No sixth entry. No model retry or scope change.",
+  "disposition": "Authenticate stored responses, completed read receipts and checkpoint, then continue only remaining frozen slots within original wall deadline.",
+  "original_driver_sha256": "9db2a37e0c0c954a0d77a955ecb39248130ae144d814f722f11714cae3bbd4f3"
+}

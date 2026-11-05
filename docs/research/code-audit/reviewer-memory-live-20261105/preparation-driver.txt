@@ -1,0 +1,82 @@
+"""Frozen calibration composition; existing owners retain source, notes and delivery."""
+import asyncio, hashlib, importlib.util, json, sys
+from dataclasses import asdict
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
+from devtools.context import Repository, RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.context.repository.resource import ContentIdentity
+from devtools.context.repository.corpus import define_repository_text_corpus, realize_repository_text_corpus
+from devtools.context.repository.discovery import discover_repository_resource_addresses
+from devtools.context.retrieval import build_source_search_index
+from devtools.core.paths import resolve_path
+from devtools.models.interaction import ModelRequest, ModelSettings, Prompt, PromptMessage, InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
+from devtools.resources.filesystem import BinaryFile, write
+from devtools.tools.source import SourceScope
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from scripts.backlog.native.review.notes import CONTRACT
+R=Path.cwd(); O=R/'.local/reviewer-memory-live-v2'
+s=importlib.util.spec_from_file_location('calibration_common',R/'.local/productive-native/common.py');c=importlib.util.module_from_spec(s);s.loader.exec_module(c);c.O=O
+PATH='.local/reviewer-memory-live-v2/baseline.txt'
+SETTINGS=asdict(ModelSettings(maximum_output_tokens=2048,thinking_enabled=False))
+BUDGETS=dict(model_calls=4,reads=3,response_bytes=65536,prompt_bytes=131072,capture_bytes=2097152)
+PHASES=[
+ 'Inspection 1 of 3. Independently inspect the supplied baseline and archived candidate against the task. Treat historical leads as unverified hypotheses. Request one useful read_source interval of the authorized baseline fixture; do not submit your final proposal yet. You may record provisional reasoning. At most one read in this response.',
+ 'Inspection 2 of 3. Check your tentative interpretations and the historical leads against the exact source and expected contract. Correct, supersede or withdraw unsupported interpretations; keep genuine uncertainty explicit. Request one useful read_source interval. Do not finalize yet. At most one read in this response.',
+ 'Inspection 3 of 3, after planned Context reduction. Earlier inspection exchanges have been omitted. Original task and complete sources remain. Only explicitly retained working Context, if supplied, represents saved observations; do not invent missing history. Reconsult the source, check contradictions and record any correction to your provisional knowledge. Request one useful read_source interval. Next call is final; at most one read now.',
+ 'Final reserved synthesis. No source Tools remain. Submit exactly one submit_review_proposal with the exact advertised subject/candidate identities and all required fields. Assess objective and current-owner. Ground each alleged defect in source and contract; distinguish uncertainty from a demonstrated failure. No prose substitutes for the callable.'
+]
+def scope_index(repository):
+ addresses=(RepositoryResourceAddress(PATH),)
+ scope=SourceScope.observe(root=resolve_path(R),repository=Repository(RepositoryId.parse(repository)),addresses=addresses)
+ corpus=realize_repository_text_corpus(snapshot=scope.snapshot,definition=define_repository_text_corpus(discovery=discover_repository_resource_addresses(repository=Repository(scope.snapshot.repository_id),root=scope.root,requested_addresses=addresses,maximum_resource_count=16,maximum_traversal_entry_count=256),selected_addresses=addresses))
+ return scope,build_source_search_index(scope.snapshot,corpus=corpus)
+def packet(): return c.load(O/'subject.json')
+def initial(p):
+ return [PromptMessage('system',delivery.SYSTEM),PromptMessage('user',json.dumps({'subject':p['subject'],'references':p['subject']['references'],'review_scope':{'read_paths':[PATH],'budgets':BUDGETS,'source_state':'Read-only calibration fixture of exact historical baseline, not current production. Archived candidate is supplied in full, never installed. No private oracle, coder conclusion, expected grader answer, live native attempt or acceptance authority is supplied.'}}))]
+def request(p,messages,phase):
+ return ModelRequest(Prompt('', 'messages',tuple(messages)),settings=ModelSettings(**SETTINGS),tools=delivery.tools(p,source=phase<4))
+async def prepare():
+ assert not (O/'approval-scope.json').exists(),'Frozen packet already exists; reconcile, never rewrite'
+ old=c.load(R/'docs/research/code-audit/productive-native-markdown-20261103/native/assignment.json');v=dict(old);assert v.pop('sha256')==_digest(v)
+ baseline=old['baseline_source']; candidate_path=R/'tests/context/working/fixtures/p3-candidate.txt'; candidate=candidate_path.read_bytes().decode('utf-8')
+ assert c.h(candidate_path)=='ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119'
+ assert str(ContentIdentity.from_text(baseline))==old['inputs'][old['task']['source']]
+ write(BinaryFile(resolve_path(R/PATH),baseline.encode()),overwrite=False)
+ assert await c.git(R,'rev-parse','HEAD')=='eb0b68b24ad102bc9bdafa622e2010c69cc5cf2d'
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ task={'objective':old['task']['objective'].split(' Acquire')[0],'obligations':old['task']['obligations']}
+ # Public original requirements only. No coding-loop procedural material or oracle.
+ task['objective']=task['objective'].split(' Before')[0]
+ leads=[{k:v for k,v in row.items() if k != 'correct_candidate_title'} for row in c.load(R/'tests/context/working/fixtures/p3-claims.json')['cases']]
+ # Retain the authentic claims as explicitly unverified leads, not adjudicated facts.
+ evidence={'task':task,'baseline':{'path':PATH,'text':baseline,'identity':str(ContentIdentity.from_text(baseline)),'sha256':hashlib.sha256(baseline.encode()).hexdigest(),'historical_source_path':old['task']['source']},'candidate':{'path':old['task']['source'],'text':candidate,'sha256':c.h(candidate_path)},'historical-leads':{'status':'unverified historical model claims; independently test and withdraw if unsupported','claims':leads}}
+ refs={k:_digest(v) for k,v in evidence.items()};refs['candidate']=c.h(candidate_path)
+ subject={'item':'calibration:P3-working-memory','candidate_sha256':c.h(candidate_path),'evidence':evidence,'references':refs,'inputs':{PATH:str(ContentIdentity.from_text(baseline))}}
+ p={'sha256':_digest(subject),'subject':subject,'delivery':delivery.DELIVERY,'policy':{'actor':'calibration-reviewer','source':'reviewer-memory-calibration','settings':SETTINGS,'budgets':BUDGETS,'read_paths':[PATH]}}
+ c.save(O/'subject.json',p)
+ plan={'schema':'bounded-reviewer-memory-comparison-v1','design':'One matched baseline/memory pair, four conditional turns each, alternating conditions. Not repeated P3 followup: no expected answer or adjudicated counterexample in actor Context. Combined procedure+note-state treatment; no component attribution. Current source fixture is frozen historical baseline, not production.','phases':PHASES,'context_reduction':'Before phase3 drop both conditions inspection exchanges, preserve original task/full sources. Memory only restores its own captured checkpoint and exact completed-read bindings. No grader feedback. Full sources remain, so retention aid is not exclusive access to evidence.','memory':CONTRACT,'limits':{'model_calls':8,'maximum_input_tokens_per_call':16384,'maximum_output_tokens_per_call':2048,'maximum_output_tokens_total':16384,'call_seconds':120,'wall_seconds':1020,'capture_bytes':2097152,'raw_response_bytes_per_call':65536,'retries':0,'source_reads_total':6,'source_read_bytes_per_call':32768,'source_paths':[PATH]},'stop':'Stop affected condition on malformed notes, read/proposal protocol failure or early conclusion; no retries or invented calls. Stop packet on provider/scope/currentness ambiguity. Unused calls are not redistributed.','scoring':['native Tool delivery/schema/identities','source facts and each alleged defect independently checked against source and task','unsupported or contradicted findings and warranted uncertainty','source reads, model-note creation/revision/supersession and later demonstrated reuse separate from projected transport','Context tokens/bytes, note/checkpoint sizes, latency, usage, finish reasons, errors'],'confounds':['One pair; uncontrolled seed; order/prefix-cache latency','Procedure, optional note protocol and saved state change together','Same full sources remain after reduction; no proof of long-context robustness','Structural source verification is literal only; no semantic note truth enforcement']}
+ c.save(O/'plan.json',plan)
+ c.save(O/'grader-only.json',{'never_disclose_to_actor':True,'expected_disposition':'reject','required_true_defect':'Candidate misinterprets empty closing-hash headings: # ## yields ## instead of empty; must ground causal explanation in actual regex.','public_false_leads':{'# C# #':'C#','# Title #':'Title'},'factual_success':'One grounded genuine blocking defect, no unsupported or contradicted findings; all claimed source facts assessed. Correct rejection alone is insufficient. Insufficient-evidence may be appropriately cautious but is not correct complete review.','notes':'Score every model-authored semantic note separately. Matching source quotation verifies literal transport only. Count later use only with explicit corresponding claim, revision or sequence evidence, not merely projection presence.'})
+ _,provider=await c.provider(c.WorkCycle(R));c.save(O/'provider-before.json',provider)
+ props=await asyncio.to_thread(c.established().get,'/props');c.save(O/'props-before.json',props)
+ scope,index=scope_index(old['repository']);c.save(O/'source-snapshot.json',{'snapshot':str(scope.snapshot.id),'repository':old['repository'],'baseline_raw_sha256':c.h(R/PATH),'baseline_content_identity':str(ContentIdentity.from_text(baseline)),'parent_assignment':old['sha256']})
+ client=LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource(p['policy']['source']))
+ from scripts.backlog.native.review.notes import ReviewNotes
+ class NoCapture:
+  def add(self,*args):raise AssertionError('Preflight must not create notes')
+ first=[]
+ for condition in ('baseline','memory'):
+  messages=initial(p)+[PromptMessage('user',PHASES[0])]
+  if condition=='memory':messages.append(ReviewNotes(p,scope.snapshot,NoCapture()).message())
+  req=request(p,messages,1);body=json.dumps(client._request_payload(req),separators=(',',':')).encode();count=await client.count_input_tokens(req);assert count<=16384
+  first.append({'condition':condition,'model_request':asdict(req),'wire_sha256':hashlib.sha256(body).hexdigest(),'input_tokens':count})
+ c.save(O/'initial-requests.json',first)
+ owners=['src/devtools/context/working/evidence.py','src/devtools/context/working/notes.py','scripts/backlog/native/review/notes.py','scripts/backlog/native/review/acquisition.py','scripts/backlog/native/review/delivery.py','src/devtools/models/interaction/providers/llama_cpp.py','src/devtools/tools/source.py']
+ c.save(O/'production-inputs.json',{p:c.h(R/p) for p in owners})
+ authorization={'repository':str(R),'commit':await c.git(R,'rev-parse','HEAD'),'packet':{name:c.h(O/name) for name in ('packet.py','plan.json','subject.json','grader-only.json','initial-requests.json','source-snapshot.json','production-inputs.json')},'provider':{'endpoint':'http://127.0.0.1:8080','model':'qwen38-local','container_id':provider['container_id'],'image':provider['image'],'context_tokens':65536,'template_sha256':hashlib.sha256(props['chat_template'].encode()).hexdigest()},'limits':plan['limits'],'effects':'Inference, exact read-only frozen baseline fixture and bounded evidence writes only. No production edits, native slots, service changes, Inspector, hidden oracle disclosure or standing-policy changes.','authority':'Fresh single explicit session approval required; prior approvals and standing policy do not apply. Silence is No.','dynamic_requests':'Initial requests and deterministic transition procedure frozen; later exact requests necessarily depend on actual model Tools/notes. Capture and hash every request before generation.'}
+ c.save(O/'approval-scope.json',{'scope':authorization,'scope_sha256':_digest(authorization)})
+ print(json.dumps({'scope_sha256':_digest(authorization),'first_inputs':[(v['condition'],v['input_tokens']) for v in first],'baseline_sha256':c.h(R/PATH),'provider_unchanged':provider['changed']==False,'generation_calls':0}))
+if __name__=='__main__':asyncio.run(prepare())

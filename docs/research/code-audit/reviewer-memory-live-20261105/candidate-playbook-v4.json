@@ -1,0 +1,73 @@
+{
+  "version": 4,
+  "status": "DIAGNOSTIC_CANDIDATE_NO_EFFECTIVENESS_PROMOTION_NOT_ACTIVATED",
+  "predecessor": "../llm-harness-p3-followup-20261105/candidate-playbook-v3.json",
+  "tested_provider": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "default_sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "reasoning_format": "none",
+    "seed": 4294967295
+  },
+  "thinking_enabled": false,
+  "output_ceiling": 2048,
+  "role": "Independent read-only reviewer, exact production final Tool/schema",
+  "treatment": "Existing optional evidence-first ReviewNotes procedure plus bounded automatic/model note state, reconstructed before third turn. No expected answer preloaded.",
+  "measurements": [
+    {
+      "condition": "baseline",
+      "generations": 4,
+      "source_reads": 3,
+      "input_tokens": 26388,
+      "output_tokens": 972,
+      "cached_prompt_tokens": 12126,
+      "generation_seconds": 64.590961,
+      "final_native_submission": true,
+      "correct_subject_candidate_ids": true,
+      "strictly_admitted": true,
+      "factual_pass": false,
+      "truncated": false
+    },
+    {
+      "condition": "memory",
+      "generations": 4,
+      "source_reads": 3,
+      "input_tokens": 36129,
+      "output_tokens": 2008,
+      "cached_prompt_tokens": 19347,
+      "generation_seconds": 109.50158499999999,
+      "final_native_submission": true,
+      "correct_subject_candidate_ids": true,
+      "strictly_admitted": false,
+      "factual_pass": false,
+      "truncated": false
+    }
+  ],
+  "negative_evidence": "No accepted model-authored notes; final attempted anchor malformed. Baseline wrong rejection explanation, memory wrong acceptance and invalid obligation names. No factual pass.",
+  "confidence": "One matched pair, uncontrolled sampling, cache/order and combined-treatment confounds; does not establish causal memory improvement or degradation.",
+  "candidate_next_increment": "Existing reviewer instruction/budget guidance: record one small provisional contract/claim during inspection and revisit it before finalization; prefer anchor-free provisional hypothesis when exact coordinates are not known. Do not relax source-anchor verification or conclusion schema. Qualify prospectively before activation.",
+  "future_consumers": {
+    "coding": "Defer broad integration; smallest candidate is one source-anchored producer/consumer API relationship via existing coding disclosures, provisional until checked against both units. This reviewer sample does not validate coding benefit.",
+    "durable_memory": "Do not auto-promote these reviews. First candidate is host-selected, role/snapshot-scoped episode retrieval with exact source/freshness checks. Procedural promotion requires explicit reviewed versioned playbook evidence and counterexamples."
+  },
+  "evidence": [
+    "plan.json",
+    "calls.json",
+    "episode-records.json",
+    "scores.json",
+    "host-claim-checks.json",
+    "environment.json"
+  ],
+  "production_changes": false
+}

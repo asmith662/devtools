@@ -1,0 +1,103 @@
+{
+  "scope_sha256": "0846357868987c9137f61b04f54a228cf45f8501b1540a81ad9f180b31c41184",
+  "rubric_unchanged": true,
+  "grader_never_in_actor_context": true,
+  "measurements": [
+    {
+      "condition": "baseline",
+      "generations": 4,
+      "source_reads": 3,
+      "input_tokens": 26388,
+      "output_tokens": 972,
+      "cached_prompt_tokens": 12126,
+      "generation_seconds": 64.590961,
+      "final_native_submission": true,
+      "correct_subject_candidate_ids": true,
+      "strictly_admitted": true,
+      "factual_pass": false,
+      "truncated": false
+    },
+    {
+      "condition": "memory",
+      "generations": 4,
+      "source_reads": 3,
+      "input_tokens": 36129,
+      "output_tokens": 2008,
+      "cached_prompt_tokens": 19347,
+      "generation_seconds": 109.50158499999999,
+      "final_native_submission": true,
+      "correct_subject_candidate_ids": true,
+      "strictly_admitted": false,
+      "factual_pass": false,
+      "truncated": false
+    }
+  ],
+  "baseline": {
+    "recommendation": "reject",
+    "correct_recommendation_label": true,
+    "true_blocking_defect_identified": false,
+    "proposed_defects": 2,
+    "supported_proposed_defects": 0,
+    "unsupported_or_contradicted_findings": 2,
+    "source_errors": [
+      "Claims # C# followed by spaces becomes C; exact candidate yields C#.",
+      "Treats dropping trailing whitespace as a violation although both parsers apply .strip(). # Title plus space yields Title.",
+      "Summary repeats false C#-with-separate-closer corruption; exact candidate yields C#.",
+      "Summary claims original baseline preserves attached hashes; the baseline actually yields C for # C#."
+    ],
+    "uncertainty": "Correctly states no runtime verification, but expresses contradicted defects as blocking/advisory rather than uncertain hypotheses.",
+    "factual_pass": false
+  },
+  "memory": {
+    "recommendation": "accept",
+    "correct_recommendation_label": false,
+    "true_blocking_defect_identified": false,
+    "proposed_findings": 3,
+    "supported_actual_defects": 0,
+    "unsupported_or_contradicted_findings": 2,
+    "finding_assessments": [
+      {
+        "index": 0,
+        "assessment": "Supported: diff confined to the regex; unchanged surrounding implementation. This does not prove semantic preservation."
+      },
+      {
+        "index": 1,
+        "assessment": "Mixed: C#, C# # and Title # traces agree with counterchecks; assertion that pure-hash empty-title behavior is unchanged is false. # ## remains ## instead of empty."
+      },
+      {
+        "index": 2,
+        "assessment": "Unsupported scope judgment: narrow raw-text parser scope does not waive valid separated closing sequences or empty-title contract. Speculative multi-run outcomes are not a demonstrated finding."
+      }
+    ],
+    "uncertainty": "Acknowledges absence of runtime checks and edge-case uncertainty, but calls it nonblocking while asserting complete success.",
+    "strict_delivery_if_note_failure_bypassed_for_host_diagnosis_only": "ValueError: Review obligation references are invalid",
+    "assessed_obligation_names": "Verbose descriptions replace exact names objective/current-owner; unchanged native parser rejects them. Accept would additionally require its normal complete evidence/no-outstanding checks; no fabricated validation references supplied.",
+    "factual_pass": false
+  },
+  "working_notes": {
+    "model_authored_accepted": 0,
+    "model_authored_batches_attempted": 1,
+    "attempt_phase": 4,
+    "attempted_kind": "conclusion",
+    "revisions": 0,
+    "supersessions": 0,
+    "automatic_literal_source_notes": 3,
+    "restored_before_phase3": 2,
+    "semantic_host_attestations": 0,
+    "note_rejection": {
+      "start": 780,
+      "end": 890,
+      "span_characters": 110,
+      "quote_characters": 157,
+      "literal_matches": false,
+      "actual_slice": "\n    _ATX_HEADING_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\r\n        r\"^(?P<marker>#{1,6})[ \\t]+(?P<tex",
+      "error": "Working support is not an exact disclosed source interval."
+    },
+    "later_retrieval": "Actual saved two-quotation checkpoint restored and projected before turn3. No valid model-authored note survived, so creation/revision/subsequent use of its own notes was NOT demonstrated.",
+    "attribution": "Final references include read:1/read:2/read:3, but full original sources and post-reduction read remain available; citations do not prove saved notes caused factual conclusions.",
+    "staleness": "No source drift; misleading inference appeared in final model proposal, not as admitted verified memory.",
+    "projection": "8192-byte total projection bound maintained; three literal records remain in checkpoint while later projections can omit older records. Omission is not deletion."
+  },
+  "overall": "Neither condition produced a factual final review. Automatic memory transport succeeded; active model note maintenance and improved reasoning did not. One pair cannot establish benefit/harm or model optimum.",
+  "host_interruption": "Five completed calls then local tuple/list equality assertion before sixth entry. Canonical JSON digest verification and authenticated receipt reconstruction resumed only remaining three within original 1020sec wall. One extra host preflight comparison failed before any new model entry for the same tuple/list issue. No inference/read retry, packet or scoring changes."
+}

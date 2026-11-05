@@ -175,4 +175,10 @@ retained `tests/experiments/`. Root-wide Ruff additionally encounters immutable
 research/generated archives; its check reported archival diagnostics and its
 formatter panicked while rendering retained artifacts. Those invocations are
 not called passing, and no historical artifact or global lint policy was changed.
-Working-note accuracy under a live model remains unmeasured.
+The subsequent [first live comparison](../research/reviewer-working-memory-effectiveness.md)
+measures one matched four-turn baseline/memory pair. Checkpoint transport and
+literal quotations work, but neither final review is factual and the only
+attempted model-authored note has an invalid source anchor. No improvement in
+model accuracy or valid authored-note maintenance is demonstrated. The earlier
+prospective sketch above remains historical; the actual frozen packet and its
+fresh approval govern the measured comparison.

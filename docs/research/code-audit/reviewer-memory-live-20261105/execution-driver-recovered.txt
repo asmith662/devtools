@@ -1,0 +1,152 @@
+"""Single approved comparison, composed from existing ModelInteraction/review owners."""
+import asyncio, hashlib, json
+from dataclasses import asdict, replace
+from pathlib import Path
+from packet import R,O,c,packet,initial,request,PHASES,scope_index
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp,Stopwatch,parse_timestamp
+from devtools.models.interaction import PromptMessage,InteractionSource,ModelToolCall
+from devtools.models.interaction.providers import llama_cpp as adapter
+from devtools.resources.filesystem import BinaryFile,write
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from scripts.backlog.native.review.acquisition import acquire
+from scripts.backlog.native.review.notes import ReviewNotes,CONTRACT
+from devtools.context.working import SourceBinding
+from devtools.agents.coding.protocol import read_request
+from devtools.agents.coding.projection import source_feedback
+from devtools.tools.source import select_source_read
+
+E=O/'execution';used=0
+def put(path,value):
+ global used
+ raw=value if isinstance(value,bytes) else (json.dumps(value,indent=2,default=str)+'\n').encode()
+ assert used+len(raw)<=2097152,'Capture exhausted; no replay'
+ write(BinaryFile(resolve_path(path),raw),overwrite=False);used+=len(raw)
+class Capture:
+ maximum=2097152
+ def __init__(self,folder):self.folder=folder;self.n=0;self.records=[]
+ @property
+ def used(self):return used
+ def add(self,kind,value):
+  self.n+=1;record={'kind':kind,'value':value};put(self.folder/f'{self.n:03}-{kind}.json',record);self.records.append(record)
+class Observer:
+ def __init__(self):self.values=[]
+ def interaction_completed(self,observation):self.values.append(asdict(observation))
+async def main():
+ global used
+ authorization=c.load(O/'approval-scope.json');scope=authorization['scope'];sha=authorization['scope_sha256'];assert _digest(scope)==sha
+ approval=c.load(O/'operator-approval.json');assert approval['scope_sha256']==sha and approval['operator_message']=='+approve' and approval['actual_session_reply'] is True
+ resume=E.exists()
+ if resume:assert (O/'host-interruption.json').exists() and not (E/'summary.json').exists(),'Existing execution: reconcile, never replay'
+ for path,h in scope['packet'].items():assert c.h(O/path)==h,path
+ for path,h in c.load(O/'production-inputs.json').items():assert c.h(R/path)==h,path
+ assert await c.git(R,'rev-parse','HEAD')==scope['commit']
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ _,before=await c.provider(c.WorkCycle(R));assert before==c.load(O/'provider-before.json')
+ props=await asyncio.to_thread(c.established().get,'/props');assert props==c.load(O/'props-before.json')
+ p=packet();snapshot=c.load(O/'source-snapshot.json');source,index=scope_index(snapshot['repository'])
+ assert str(source.snapshot.id)==snapshot['snapshot']
+ if not resume:
+  E.mkdir();put(E/'method.json',{'driver_sha256':c.h(Path(__file__)),'scope_sha256':sha,'owner_reuse':'Existing llama.cpp ModelInteraction; native acquire, ReviewNotes and strict delivery.conclusion. Effect-free calibration subject, not a native review dispatch or retrospective authorization.','notes_opt_in':CONTRACT,'production_unchanged':True})
+ states={};observer=Observer();seen=set();rows=[];stop=None
+ client=adapter.LlamaCppInteraction(endpoint='http://127.0.0.1:8080',model='qwen38-local',source=InteractionSource(p['policy']['source']),observer=observer)
+ for label in ('baseline','memory'):
+  folder=E/label;folder.mkdir(exist_ok=resume);cap=Capture(folder)
+  states[label]={'messages':initial(p),'reads':0,'refs':dict(p['subject']['references']),'claimed':set(),'capture':cap,'notes':ReviewNotes(p,source.snapshot,cap) if label=='memory' else None,'stopped':None}
+ async def guard():
+  source.check_current()
+  assert c.h(R/'.local/reviewer-memory-live-v2/baseline.txt')==snapshot['baseline_raw_sha256']
+  for path,h in c.load(O/'production-inputs.json').items():assert c.h(R/path)==h,path
+ elapsed_before=0;completed=set()
+ if resume:
+  entries=sorted(E.glob('*-*/entry.json'));assert len(entries)==5
+  rows=sorted([c.load(f.parent/'result.json') for f in entries],key=lambda x:x['ordinal'])
+  assert [(x['phase'],x['condition']) for x in rows]==[(1,'baseline'),(1,'memory'),(2,'baseline'),(2,'memory'),(3,'baseline')]
+  assert all(x['returned'] and x['read_completed'] and not x['error'] and not x['protocol_failure'] for x in rows)
+  used=sum(f.stat().st_size for f in E.rglob('*') if f.is_file())
+  elapsed_before=(Timestamp.now()-parse_timestamp(c.load(E/'1-baseline/entry.json')['at'])).total_seconds;assert elapsed_before<1020
+  for label,st in states.items():
+   cap=st['capture'];files=sorted(cap.folder.glob('[0-9][0-9][0-9]-*.json'));cap.n=len(files);cap.records=[c.load(f) for f in files]
+   disclosures=[x['value'] for x in cap.records if x['kind']=='review-read-result'];st['reads']=len(disclosures)
+   for value in disclosures:
+    st['refs'][value['reference']]=value['identity'];st['claimed'].add(value['call']['provider_call_id']);seen.add(value['call']['provider_call_id'])
+    if st['notes'] is not None:
+     arg=read_request(value['call']['arguments_json'],index=index,purpose='Reconstruct completed disclosure only; no Tool execution',maximum_bytes=32768,by_unit=False);option=select_source_read(arg)
+     assert _digest(source_feedback(option,option.text))==_digest(value['disclosure'])==value['identity']
+     st['notes'].book.sources[value['reference']]=SourceBinding(value['reference'],option.unit.resource,option.identity,(option.span,),option.snapshot_id,live=True)
+   if st['notes'] is not None:
+    checkpoint=c.load(cap.folder/f'{cap.n:03}-turn-working-state.json')['value']['state'];st['notes'].restore(checkpoint);assert _digest(checkpoint)==_digest(st['notes'].book.checkpoint())
+   last=max(x['phase'] for x in rows if x['condition']==label);folder=E/f'{last}-{label}'
+   req=c.load(folder/'model-request.json');resp=c.load(folder/'normalized.json');last_read=disclosures[-1]
+   st['messages']=[PromptMessage(**{**m,'tool_calls':tuple(ModelToolCall(**t) for t in m['tool_calls'])}) for m in req['prompt']['messages']]
+   st['messages'].extend([PromptMessage('assistant',resp['content'],tool_calls=tuple(ModelToolCall(**t) for t in resp['tool_calls']),reasoning_content=resp['reasoning_content']),PromptMessage('tool',json.dumps({'reference':last_read['reference'],**last_read['disclosure']}),tool_call_id=last_read['call']['provider_call_id'])])
+  completed={(x['phase'],x['condition']) for x in rows}
+  put(E/'known-entry-recovery.json',{'at':str(Timestamp.now()),'completed_entries':5,'remaining_entries':3,'elapsed_seconds_including_interruption':elapsed_before,'original_driver_sha256':c.h(O/'execution-driver-original.txt'),'recovered_driver_sha256':c.h(Path(__file__)),'rule':'No inference or source Tool replay; checkpoint and source bindings reconstructed from exact completed receipts. Same scope, task, transitions, scoring and original wall deadline.','checkpoint_digest_equality':True})
+ wall=Stopwatch()
+ for phase in range(1,5):
+  for label in ('baseline','memory'):
+   if (phase,label) in completed:continue
+   st=states[label]
+   if st['stopped']:continue
+   if elapsed_before+wall.elapsed.total_seconds>=1020:stop='Wall budget reached';break
+   await guard();await c.established().runtime()
+   notes=st['notes'];cap=st['capture']
+   if phase==3:
+    removed=[asdict(m) for m in st['messages'][2:]];st['messages']=initial(p)
+    if notes is not None:
+     checkpoint=c.load(cap.folder/f'{cap.n:03}-turn-working-state.json')['value']['state'];assert _digest(checkpoint)==_digest(notes.book.checkpoint());cap.add('reconstruction-input',{'state':checkpoint,'completed_read_references':{k:v for k,v in st['refs'].items() if k.startswith('read:')}})
+     restored=ReviewNotes(p,source.snapshot,cap);restored.book.sources.update(notes.book.sources);restored.restore(checkpoint);notes=restored;st['notes']=notes
+     assert _digest(notes.book.checkpoint())==_digest(checkpoint)
+    cap.add('context-reconstruction',{'removed_messages':len(removed),'removed_sha256':_digest(removed),'retained':'Original task and full source, plus only own checkpoint for memory condition','model_notes_before':len(notes.book.notes) if notes else 0})
+   messages=[*st['messages'],PromptMessage('user',PHASES[phase-1])]
+   if notes is not None:messages.append(notes.message())
+   req=request(p,messages,phase)
+   body=json.dumps(client._request_payload(req),separators=(',',':')).encode();count=await asyncio.wait_for(client.count_input_tokens(req),30)
+   assert count<=16384
+   if phase==1:
+    frozen=next(x for x in c.load(O/'initial-requests.json') if x['condition']==label);assert hashlib.sha256(body).hexdigest()==frozen['wire_sha256']
+   folder=E/f'{phase}-{label}';folder.mkdir();put(folder/'request.json',body);put(folder/'model-request.json',asdict(req))
+   put(folder/'entry.json',{'at':str(Timestamp.now()),'ordinal':len(rows)+1,'phase':phase,'condition':label,'scope_sha256':sha,'input_tokens':count,'output_reservation':2048,'wire_sha256':hashlib.sha256(body).hexdigest(),'entry':'Consumed generation entry, no retry'})
+   raw_read=adapter._read_http_response;captured=[]
+   async def capture(reader):
+    status,raw=await raw_read(reader);assert len(raw)<=65536;put(folder/'response-body.json',raw);captured.append((status,raw));put(folder/'http.json',{'status':status,'body_sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)});return status,raw
+   adapter._read_http_response=capture;timer=Stopwatch();response=None;error=None;start=len(observer.values)
+   try:response=await asyncio.wait_for(client.send(req),min(120,1020-elapsed_before-wall.elapsed.total_seconds))
+   except Exception as ex:error={'type':type(ex).__name__,'message':str(ex)}
+   finally:adapter._read_http_response=raw_read
+   elapsed=timer.elapsed.total_seconds
+   if response is not None:put(folder/'normalized.json',asdict(response))
+   if len(observer.values)>start:put(folder/'observation.json',observer.values[-1])
+   raw=json.loads(captured[0][1]) if captured else {};usage=raw.get('usage',{});finish=[v.get('finish_reason') for v in raw.get('choices',[])]
+   row={'ordinal':len(rows)+1,'condition':label,'phase':phase,'seconds':elapsed,'input_tokens':count,'wire_bytes':len(body),'usage':usage,'finish_reasons':finish,'returned':response is not None,'error':error,'read_completed':False,'model_notes_accepted':0,'note_protocol_used':False,'proposal':None,'protocol_failure':None}
+   if response is not None:
+    try:
+     assert usage.get('completion_tokens',0)<=2048,'Output ceiling exceeded'
+     ids=[t.provider_call_id for t in response.tool_calls];assert all(ids) and len(set(ids))==len(ids) and not seen.intersection(ids),'Missing/reused call ID'
+     seen.update(ids)
+     if notes is not None:
+      prior=len(notes.book.notes);accepted=notes.accept(response.content,c.h(folder/'response-body.json'));row['note_protocol_used']=accepted;row['model_notes_accepted']=len(notes.book.notes)-prior
+      if accepted:response=replace(response,content='')
+     if len(response.tool_calls)==1 and response.tool_calls[0].name==delivery.NAME:
+      proposal=delivery.conclusion(p,asdict(req),asdict(response),st['refs'],st['claimed']);row['proposal']=proposal;put(folder/'proposal.json',proposal)
+      st['stopped']='Concluded' if phase==4 else 'Early conclusion; remaining calls unused'
+     elif phase<4:
+      assert len(response.tool_calls)==1,'Inspection requires one read, no retries'
+      st['reads']=await acquire(response,req,scope=source,index=index,reads=st['reads'],budgets=p['policy']['budgets'],messages=messages,references=st['refs'],claimed=st['claimed'],capture=cap,guard=guard,observed=notes.observed if notes else None)
+      row['read_completed']=True;st['messages']=messages
+     else:raise ValueError('Final response did not deliver one structured proposal')
+    except Exception as ex:
+     row['protocol_failure']={'type':type(ex).__name__,'message':str(ex)};st['stopped']='Protocol failure; no retry'
+   else:st['stopped']='Adapter failed; no retry'
+   if notes is not None:
+    cap.add('turn-working-state',{'phase':phase,'state':notes.book.checkpoint()});put(folder/'working-projection.json',json.loads(notes.message().content))
+   put(folder/'result.json',row);rows.append(row)
+   print(json.dumps({k:row[k] for k in ('ordinal','condition','phase','seconds','input_tokens','usage','finish_reasons','read_completed','model_notes_accepted','protocol_failure')}),flush=True)
+   if error is not None and (not captured or error['type'] in ('TimeoutError','AssertionError')):stop='Ambiguous provider entry; no retry';break
+  if stop:break
+ _,after=await c.provider(c.WorkCycle(R));props_after=await asyncio.to_thread(c.established().get,'/props');put(E/'provider-after.json',after);put(E/'props-after.json',props_after);assert before==after and props==props_after
+ await guard()
+ put(E/'summary.json',{'scope_sha256':sha,'generations':len(rows),'seconds':elapsed_before+wall.elapsed.total_seconds,'capture_bytes_before_summary':used,'stop':stop,'conditions':{label:{'reads':st['reads'],'terminal':st['stopped']} for label,st in states.items()},'provider_unchanged':True,'production_unchanged':True,'rows':rows})
+ print(json.dumps({'generations':len(rows),'seconds':wall.elapsed.total_seconds,'capture_bytes':used,'stop':stop}),flush=True)
+if __name__=='__main__':asyncio.run(main())

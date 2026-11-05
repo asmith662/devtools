@@ -1,5 +1,11 @@
 # Research Evidence
 
+[First live reviewer working-memory comparison](reviewer-working-memory-effectiveness.md)
+preserves one matched four-turn pair: eight generations, six reads and actual
+checkpoint reconstruction, but no factually valid final review or accepted
+model-authored notes. Memory transport is distinct from demonstrated reasoning
+benefit; candidate playbook v4 remains unqualified and inactive.
+
 [Interrupted B-0052 acceptance-review closeout](acceptance-review-recovery.md)
 authenticates the third review's non-JSON terminal response, preserved candidate
 and protected implementation receipt. Model prose, strict admission and host-only

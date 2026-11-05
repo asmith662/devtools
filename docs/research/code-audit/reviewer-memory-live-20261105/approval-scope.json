@@ -1,0 +1,43 @@
+{
+  "scope": {
+    "repository": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+    "commit": "eb0b68b24ad102bc9bdafa622e2010c69cc5cf2d",
+    "packet": {
+      "packet.py": "efc1a1a2b9eadf7213a73af9a4a6b6acfe4368f7148ddf9a60c361c27b10d906",
+      "plan.json": "f72ad8fa26a40c00093a6202266a4defab943f72fb16eb7603231713b4c1f697",
+      "subject.json": "3dec9384293cbf2c52e8ec103d1069f30517874656596fcdf1fbbf4f77130cac",
+      "grader-only.json": "76a21c1bd6c751d450a947f500817b6e8c5cdbb2e47be39e2dd924703311ac04",
+      "initial-requests.json": "1d66b045c010045f5bd6b6ad8486b354d808424449f9feefda2354748c83f324",
+      "source-snapshot.json": "b5f60e1f738f8e5dff7bb6a801c604b3c47d8753b4c4b68ab0ae8828e84af371",
+      "production-inputs.json": "067cb4a38baf1ef3ac7b35bfe5c8816588ebe6cc63a407e6cb8e31881a08b7de"
+    },
+    "provider": {
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "qwen38-local",
+      "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+      "image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "context_tokens": 65536,
+      "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+    },
+    "limits": {
+      "model_calls": 8,
+      "maximum_input_tokens_per_call": 16384,
+      "maximum_output_tokens_per_call": 2048,
+      "maximum_output_tokens_total": 16384,
+      "call_seconds": 120,
+      "wall_seconds": 1020,
+      "capture_bytes": 2097152,
+      "raw_response_bytes_per_call": 65536,
+      "retries": 0,
+      "source_reads_total": 6,
+      "source_read_bytes_per_call": 32768,
+      "source_paths": [
+        ".local/reviewer-memory-live-v2/baseline.txt"
+      ]
+    },
+    "effects": "Inference, exact read-only frozen baseline fixture and bounded evidence writes only. No production edits, native slots, service changes, Inspector, hidden oracle disclosure or standing-policy changes.",
+    "authority": "Fresh single explicit session approval required; prior approvals and standing policy do not apply. Silence is No.",
+    "dynamic_requests": "Initial requests and deterministic transition procedure frozen; later exact requests necessarily depend on actual model Tools/notes. Capture and hash every request before generation."
+  },
+  "scope_sha256": "0846357868987c9137f61b04f54a228cf45f8501b1540a81ad9f180b31c41184"
+}

@@ -1,0 +1,121 @@
+"""Compact publication of captured calibration evidence; no inference or Tool replay."""
+import ast,asyncio,difflib,hashlib,json,re,sys
+from dataclasses import asdict
+from pathlib import Path
+from packet import R,O,c,packet
+from devtools.core.paths import resolve_path
+from devtools.core.time import Timestamp
+from devtools.resources.filesystem import BinaryFile,write
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import delivery
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+from devtools.core.time import Duration
+E=O/'execution';D=R/'docs/research/code-audit/reviewer-memory-live-20261105'
+def copy(source,name):write(BinaryFile(resolve_path(D/name),source.read_bytes()),overwrite=False)
+def save(name,value):c.save(D/name,value)
+def pattern(text):
+ tree=ast.parse(text)
+ node=next(n for n in ast.walk(tree) if isinstance(n,ast.AnnAssign) and isinstance(n.target,ast.Name) and n.target.id=='_ATX_HEADING_PATTERN')
+ return ast.literal_eval(node.value.args[0])
+def main():
+ assert not D.exists(),'Existing publication must be reconciled, never overwritten'
+ summary=c.load(E/'summary.json');assert summary['generations']==8 and summary['provider_unchanged'] and summary['production_unchanged'] and summary['seconds']<1020
+ authorization=c.load(O/'approval-scope.json');assert _digest(authorization['scope'])==authorization['scope_sha256']
+ for path,h in authorization['scope']['packet'].items():assert c.h(O/path)==h
+ D.mkdir()
+ write(BinaryFile(resolve_path(D/'.gitattributes'),b'* -text\n'),overwrite=False)
+ for source,name in [('approval-scope.json','approval-scope.json'),('operator-approval.json','operator-approval.json'),('plan.json','plan.json'),('subject.json','subject.json'),('initial-requests.json','initial-requests.json'),('grader-only.json','grader-only.json'),('source-snapshot.json','source-snapshot.json'),('production-inputs.json','production-inputs.json'),('packet.py','preparation-driver.txt'),('execution-driver-original.txt','execution-driver-original.txt'),('execute.py','execution-driver-recovered.txt'),('host-interruption.json','host-interruption.json')]:copy(O/source,name)
+ copy(E/'summary.json','execution.json');copy(E/'known-entry-recovery.json','known-entry-recovery.json')
+ save('environment.json',{'provider_before':c.load(O/'provider-before.json'),'provider_after':c.load(E/'provider-after.json'),'props_before':c.load(O/'props-before.json'),'props_after':c.load(E/'props-after.json')})
+ bodies={};calls=[]
+ for row in summary['rows']:
+  identity=f"{row['phase']}-{row['condition']}";f=E/identity;body=(f/'request.json').read_bytes();sha=hashlib.sha256(body).hexdigest();assert sha==c.load(f/'entry.json')['wire_sha256'];bodies[sha]=body.decode('utf-8')
+  raw=(f/'response-body.json').read_bytes();assert hashlib.sha256(raw).hexdigest()==c.load(f/'http.json')['body_sha256']
+  calls.append({'id':identity,'request_sha256':sha,'response_body_utf8':raw.decode('utf-8'),'http':c.load(f/'http.json'),'entry':c.load(f/'entry.json'),'result':row,'normalized_response':c.load(f/'normalized.json'),'model_request':c.load(f/'model-request.json'),'observation_metadata':c.load(f/'observation.json')})
+ save('calls.json',{'version':1,'encoding':'Exact captured UTF-8 byte round trips; neither request nor response rewritten','request_bodies_by_sha256':bodies,'calls':calls})
+ retained={}
+ for label in ('baseline','memory'):
+  for f in sorted((E/label).glob('*.json')):
+   retained[str(f.relative_to(E))]={'sha256':c.h(f),'raw_utf8':f.read_bytes().decode('utf-8')}
+ for f in sorted(E.glob('*-memory/working-projection.json')):
+  retained[str(f.relative_to(E))]={'sha256':c.h(f),'raw_utf8':f.read_bytes().decode('utf-8')}
+ save('episode-records.json',{'version':1,'records':retained,'meaning':'Actual completed-read, note/checkpoint and reconstruction records. No synthetic model notes or semantic host attestations.'})
+ p=packet();base=p['subject']['evidence']['baseline']['text'];cand=p['subject']['evidence']['candidate']['text'];rx=re.compile(pattern(cand));bx=re.compile(pattern(base))
+ cases={}
+ for text in ['# ##','# C# #','# Title #','# C#   ','# Title ','# C#','#   ','# Title# # # # #']:
+  cases[text]={'baseline':bx.match(text).group('text').strip() if bx.match(text) else None,'candidate':rx.match(text).group('text').strip() if rx.match(text) else None}
+ assert cases['# ##']['candidate']=='##' and cases['# C# #']['candidate']=='C#' and cases['# Title #']['candidate']=='Title'
+ save('host-claim-checks.json',{'method':'AST literal extraction of _ATX_HEADING_PATTERN, re.match and group(text).strip only; never import or execute candidate module. Post-response checks under frozen claim rubric, not new hidden acceptance. No results disclosed to actor.','candidate_sha256':hashlib.sha256(cand.encode()).hexdigest(),'baseline_sha256':hashlib.sha256(base.encode()).hexdigest(),'candidate_pattern':pattern(cand),'baseline_pattern':pattern(base),'cases':cases,'source_diff':''.join(difflib.unified_diff(base.splitlines(keepends=True),cand.splitlines(keepends=True),fromfile='baseline',tofile='candidate'))})
+ refs=dict(p['subject']['references'])
+ for f in (E/'memory').glob('*.json'):
+  v=c.load(f)
+  if v['kind']=='review-read-result':refs[v['value']['reference']]=v['value']['identity']
+ final=c.load(E/'4-memory/normalized.json');note=json.loads(final['content'].removeprefix('WORKING_NOTES\n'))['working_notes'][0];anchor=note['support'][0]
+ try:delivery.conclusion(p,c.load(E/'4-memory/model-request.json'),final,refs,set());independent_admission='admitted'
+ except Exception as ex:independent_admission=type(ex).__name__+': '+str(ex)
+ rows=summary['rows'];measurements=[]
+ for label in ('baseline','memory'):
+  selected=[row for row in rows if row['condition']==label]
+  measurements.append({'condition':label,'generations':len(selected),'source_reads':sum(x['read_completed'] for x in selected),'input_tokens':sum(x['input_tokens'] for x in selected),'output_tokens':sum(x['usage']['completion_tokens'] for x in selected),'cached_prompt_tokens':sum(x['usage'].get('prompt_tokens_details',{}).get('cached_tokens',0) for x in selected),'generation_seconds':sum(x['seconds'] for x in selected),'final_native_submission':True,'correct_subject_candidate_ids':True,'strictly_admitted':label=='baseline','factual_pass':False,'truncated':False})
+ scores={'scope_sha256':authorization['scope_sha256'],'rubric_unchanged':True,'grader_never_in_actor_context':True,'measurements':measurements,'baseline':{'recommendation':'reject','correct_recommendation_label':True,'true_blocking_defect_identified':False,'proposed_defects':2,'supported_proposed_defects':0,'unsupported_or_contradicted_findings':2,'source_errors':['Claims # C# followed by spaces becomes C; exact candidate yields C#.','Treats dropping trailing whitespace as a violation although both parsers apply .strip(). # Title plus space yields Title.','Summary repeats false C#-with-separate-closer corruption; exact candidate yields C#.','Summary claims original baseline preserves attached hashes; the baseline actually yields C for # C#.'],'uncertainty':'Correctly states no runtime verification, but expresses contradicted defects as blocking/advisory rather than uncertain hypotheses.','factual_pass':False},'memory':{'recommendation':'accept','correct_recommendation_label':False,'true_blocking_defect_identified':False,'proposed_findings':3,'supported_actual_defects':0,'unsupported_or_contradicted_findings':2,'finding_assessments':[{'index':0,'assessment':'Supported: diff confined to the regex; unchanged surrounding implementation. This does not prove semantic preservation.'},{'index':1,'assessment':'Mixed: C#, C# # and Title # traces agree with counterchecks; assertion that pure-hash empty-title behavior is unchanged is false. # ## remains ## instead of empty.'},{'index':2,'assessment':'Unsupported scope judgment: narrow raw-text parser scope does not waive valid separated closing sequences or empty-title contract. Speculative multi-run outcomes are not a demonstrated finding.'}],'uncertainty':'Acknowledges absence of runtime checks and edge-case uncertainty, but calls it nonblocking while asserting complete success.','strict_delivery_if_note_failure_bypassed_for_host_diagnosis_only':independent_admission,'assessed_obligation_names':'Verbose descriptions replace exact names objective/current-owner; unchanged native parser rejects them. Accept would additionally require its normal complete evidence/no-outstanding checks; no fabricated validation references supplied.','factual_pass':False},'working_notes':{'model_authored_accepted':0,'model_authored_batches_attempted':1,'attempt_phase':4,'attempted_kind':'conclusion','revisions':0,'supersessions':0,'automatic_literal_source_notes':3,'restored_before_phase3':2,'semantic_host_attestations':0,'note_rejection':{'start':anchor['start'],'end':anchor['end'],'span_characters':anchor['end']-anchor['start'],'quote_characters':len(anchor['quote']),'literal_matches':cand[anchor['start']:anchor['end']]==anchor['quote'],'actual_slice':cand[anchor['start']:anchor['end']],'error':'Working support is not an exact disclosed source interval.'},'later_retrieval':'Actual saved two-quotation checkpoint restored and projected before turn3. No valid model-authored note survived, so creation/revision/subsequent use of its own notes was NOT demonstrated.','attribution':'Final references include read:1/read:2/read:3, but full original sources and post-reduction read remain available; citations do not prove saved notes caused factual conclusions.','staleness':'No source drift; misleading inference appeared in final model proposal, not as admitted verified memory.','projection':'8192-byte total projection bound maintained; three literal records remain in checkpoint while later projections can omit older records. Omission is not deletion.'},'overall':'Neither condition produced a factual final review. Automatic memory transport succeeded; active model note maintenance and improved reasoning did not. One pair cannot establish benefit/harm or model optimum.','host_interruption':'Five completed calls then local tuple/list equality assertion before sixth entry. Canonical JSON digest verification and authenticated receipt reconstruction resumed only remaining three within original 1020sec wall. One extra host preflight comparison failed before any new model entry for the same tuple/list issue. No inference/read retry, packet or scoring changes.'}
+ save('scores.json',scores)
+ old=c.load(R/'docs/research/code-audit/llm-harness-p3-followup-20261105/candidate-playbook-v3.json')
+ save('candidate-playbook-v4.json',{'version':4,'status':'DIAGNOSTIC_CANDIDATE_NO_EFFECTIVENESS_PROMOTION_NOT_ACTIVATED','predecessor':'../llm-harness-p3-followup-20261105/candidate-playbook-v3.json','tested_provider':old['tested_provider'],'template_sha256':old['template_sha256'],'default_sampling':old['default_sampling'],'thinking_enabled':False,'output_ceiling':2048,'role':'Independent read-only reviewer, exact production final Tool/schema','treatment':'Existing optional evidence-first ReviewNotes procedure plus bounded automatic/model note state, reconstructed before third turn. No expected answer preloaded.','measurements':measurements,'negative_evidence':'No accepted model-authored notes; final attempted anchor malformed. Baseline wrong rejection explanation, memory wrong acceptance and invalid obligation names. No factual pass.','confidence':'One matched pair, uncontrolled sampling, cache/order and combined-treatment confounds; does not establish causal memory improvement or degradation.','candidate_next_increment':'Existing reviewer instruction/budget guidance: record one small provisional contract/claim during inspection and revisit it before finalization; prefer anchor-free provisional hypothesis when exact coordinates are not known. Do not relax source-anchor verification or conclusion schema. Qualify prospectively before activation.','future_consumers':{'coding':'Defer broad integration; smallest candidate is one source-anchored producer/consumer API relationship via existing coding disclosures, provisional until checked against both units. This reviewer sample does not validate coding benefit.','durable_memory':'Do not auto-promote these reviews. First candidate is host-selected, role/snapshot-scoped episode retrieval with exact source/freshness checks. Procedural promotion requires explicit reviewed versioned playbook evidence and counterexamples.'},'evidence':['plan.json','calls.json','episode-records.json','scores.json','host-claim-checks.json','environment.json'],'production_changes':False})
+ save('preflight-and-validation.json',{'focused_receipt_sha256':c.h(R/'.local/validation/reviewer-memory-live-preflight.json'),'focused_receipt':c.load(R/'.local/validation/reviewer-memory-live-preflight.json'),'focused_result':'59 passed before inference; unchanged working-notes/reviewer owners; not a model-accuracy claim.','rejected_preflight':c.load(R/'.local/reviewer-memory-live/REJECTED-PREFLIGHT.json'),'rejected_scope_sha256':c.load(R/'.local/reviewer-memory-live/approval-scope.json')['scope_sha256'],'rejected_preflight_generations':0,'protected_suite_runs':0,'production_inputs_unchanged':all(c.h(R/path)==h for path,h in c.load(O/'production-inputs.json').items())})
+ print(json.dumps({'published_directory':str(D.relative_to(R)),'measurements':measurements,'memory_extra_admission_failure':independent_admission,'invalid_anchor_span':anchor['end']-anchor['start'],'invalid_anchor_quote':len(anchor['quote']),'files':len(list(D.iterdir()))}))
+async def validate():
+ assert not (D/'validation.json').exists() and not (D/'manifest.json').exists()
+ if not (D/'execution-method.json').exists():copy(E/'method.json','execution-method.json')
+ assert c.h(D/'execution-method.json')==c.h(E/'method.json')
+ write(BinaryFile(resolve_path(D/'publication-driver-recovered.txt'),Path(__file__).read_bytes()),overwrite=False)
+ auth=c.load(D/'approval-scope.json');assert _digest(auth['scope'])==auth['scope_sha256']=='0846357868987c9137f61b04f54a228cf45f8501b1540a81ad9f180b31c41184'
+ aliases={'packet.py':'preparation-driver.txt'}
+ for name,h in auth['scope']['packet'].items():assert c.h(D/aliases.get(name,name))==h
+ assert c.load(D/'operator-approval.json')['actual_session_reply'] is True
+ captured=c.load(D/'calls.json');calls=captured['calls'];assert len(calls)==8
+ bodies=captured['request_bodies_by_sha256'];ids=[];reads=0
+ for call in calls:
+  raw=bodies[call['request_sha256']].encode();assert hashlib.sha256(raw).hexdigest()==call['request_sha256']==call['entry']['wire_sha256']
+  response=call['response_body_utf8'].encode();assert hashlib.sha256(response).hexdigest()==call['http']['body_sha256'];assert len(response)==call['http']['bytes']<=65536
+  assert call['entry']['scope_sha256']==auth['scope_sha256'] and call['entry']['input_tokens']<=16384
+  server=json.loads(response);assert server['usage']['completion_tokens']<=2048
+  assert server['usage']==call['result']['usage']
+  req=json.loads(raw);assert not any('correct_candidate_title' in m.get('content','') for m in req['messages'])
+  for t in call['normalized_response']['tool_calls']:
+   ids.append(t['provider_call_id'])
+   if t['name']=='read_source':
+    values=json.loads(t['arguments_json']);assert values['path']=='.local/reviewer-memory-live-v2/baseline.txt';reads+=1
+ assert len(ids)==len(set(ids))==8 and reads==6
+ assert sum(call['result']['usage']['completion_tokens'] for call in calls)==2980<=16384
+ for cell in c.load(D/'initial-requests.json'):assert next(v for v in calls if v['id']=='1-'+cell['condition'])['request_sha256']==cell['wire_sha256']
+ records=c.load(D/'episode-records.json')['records']
+ for name,value in records.items():
+  assert hashlib.sha256(value['raw_utf8'].encode()).hexdigest()==value['sha256']
+  if name.endswith('working-projection.json'):assert len(json.dumps(json.loads(value['raw_utf8']),ensure_ascii=False).encode())<=8192
+ scope_records=[json.loads(v['raw_utf8']) for k,v in records.items() if k.startswith('memory') and k.endswith('.json')]
+ recon=next(x for x in scope_records if x['kind']=='reconstruction-input')['value']['state'];previous=next(x for x in scope_records if x['kind']=='turn-working-state' and x['value']['phase']==2)['value']['state'];assert _digest(recon)==_digest(previous) and len(recon['notes'])==2
+ last=next(x for x in scope_records if x['kind']=='turn-working-state' and x['value']['phase']==4)['value']['state'];assert len(last['notes'])==3 and all(n['verification']=='host:exact-source-quotation' for n in last['notes'])
+ report=R/'docs/research/reviewer-working-memory-effectiveness.md';targets=[]
+ for label,target in re.findall(r'\[([^\]]+)\]\(([^)]+)\)',report.read_text()):
+  if '://' in target:continue
+  target=target.split('#',1)[0]
+  if target:targets.append((report.parent/target).resolve())
+ assert all(t.exists() or t in (D/'manifest.json',D/'validation.json') for t in targets)
+ for doc in ('docs/documentation_map.md','docs/research/README.md','docs/development/agent-working-notes.md'):assert 'reviewer-working-memory-effectiveness.md' in (R/doc).read_text()
+ commands=[];executor=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=8192,max_stderr_bytes=4096))
+ for name,argv in [('layout',['uv','run','python','scripts/validate_layout.py']),('diff',['git','diff','--check']),('git_integrity',['git','fsck','--connectivity-only','--no-dangling']),('inspector_status',['git','-C',str(R.parent/'devtools-inspector'),'status','--porcelain']),('inspector_head',['git','-C',str(R.parent/'devtools-inspector'),'rev-parse','HEAD']),('production_diff',['git','diff','--name-only','HEAD','--','src','apps','scripts','tests','pyproject.toml','uv.lock','AGENTS.md'])]:
+  result=await executor.execute(Command(argv[0]).args(*argv[1:]).with_timeout(Duration.seconds(120)))
+  assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated,(name,result)
+  stdout=result.stdout.decode('utf-8');stderr=result.stderr.decode('utf-8')
+  if name in ('production_diff','inspector_status'):assert not stdout.strip(),name
+  if name=='inspector_head':assert stdout.strip()=='b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6'
+  commands.append({'name':name,'argv':argv,'exit_code':0,'stdout':stdout,'stderr':stderr})
+  print(name+' passed',flush=True)
+ _,provider=await c.provider(c.WorkCycle(R));assert provider==c.load(O/'provider-before.json')
+ assert not await c.git(R,'diff','--cached','--name-only')
+ save('validation.json',{'at':str(Timestamp.now()),'checks':{'scope_and_frozen_hashes':True,'initial_request_hashes':True,'all_eight_raw_request_response_round_trips':True,'six_authorized_reads_fresh_ids':True,'budgets':True,'actual_saved_checkpoint_reconstruction':True,'literal_notes_not_semantic_attestation':True,'bounded_projection_with_explicit_omission':True,'no_grader_answer_fields_disclosed':True,'introduced_report_links':len(targets),'note_and_final_admission_failures_preserved':True,'provider_unchanged':True},'commands':commands,'focused_tests_reused':'59 passed; preflight-and-validation.json preserves original receipt','production_executable_changes':False,'protected_suite_runs':0,'new_inference_after_packet':0,'receipt_correction':'First local publication check compared byte stdout to a text Inspector SHA. Actual Inspector identity was unchanged; decode stdout before comparison. Both publication driver versions preserved. No inference or production change.','scope':'Documentation/evidence integrity only; no full-suite claim or model-accuracy claim from deterministic tests.'})
+ save('manifest.json',{'version':1,'at':str(Timestamp.now()),'base_head':auth['scope']['commit'],'scope_sha256':auth['scope_sha256'],'files':{str(f.relative_to(D)):{'sha256':c.h(f),'bytes':f.stat().st_size} for f in sorted(D.iterdir()) if f.is_file()}})
+ print(json.dumps({'validation':'passed','files':len(list(D.iterdir())),'evidence_bytes':sum(f.stat().st_size for f in D.iterdir() if f.is_file()),'generation_calls':8,'additional_inference':0}))
+if __name__=='__main__':
+ if '--validate' in sys.argv:asyncio.run(validate())
+ else:main()

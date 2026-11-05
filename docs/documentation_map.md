@@ -1,5 +1,11 @@
 # Documentation Map
 
+[First live reviewer working-memory comparison](research/reviewer-working-memory-effectiveness.md)
+records eight approved generations with actual source reads and checkpoint
+reconstruction. Neither final review is factual; no valid model-authored note
+cycle or accuracy benefit is demonstrated. Candidate playbook v4 preserves
+the negative result and bounds the next inspection-time instruction candidate.
+
 [Source-grounded task-local working notes](development/agent-working-notes.md)
 defines bounded role/episode Context state and its prospective NativeReviewer
 integration. Model claims stay provisional; source quotation, explicit host

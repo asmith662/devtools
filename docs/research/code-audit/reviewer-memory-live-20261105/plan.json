@@ -1,0 +1,45 @@
+{
+  "schema": "bounded-reviewer-memory-comparison-v1",
+  "design": "One matched baseline/memory pair, four conditional turns each, alternating conditions. Not repeated P3 followup: no expected answer or adjudicated counterexample in actor Context. Combined procedure+note-state treatment; no component attribution. Current source fixture is frozen historical baseline, not production.",
+  "phases": [
+    "Inspection 1 of 3. Independently inspect the supplied baseline and archived candidate against the task. Treat historical leads as unverified hypotheses. Request one useful read_source interval of the authorized baseline fixture; do not submit your final proposal yet. You may record provisional reasoning. At most one read in this response.",
+    "Inspection 2 of 3. Check your tentative interpretations and the historical leads against the exact source and expected contract. Correct, supersede or withdraw unsupported interpretations; keep genuine uncertainty explicit. Request one useful read_source interval. Do not finalize yet. At most one read in this response.",
+    "Inspection 3 of 3, after planned Context reduction. Earlier inspection exchanges have been omitted. Original task and complete sources remain. Only explicitly retained working Context, if supplied, represents saved observations; do not invent missing history. Reconsult the source, check contradictions and record any correction to your provisional knowledge. Request one useful read_source interval. Next call is final; at most one read now.",
+    "Final reserved synthesis. No source Tools remain. Submit exactly one submit_review_proposal with the exact advertised subject/candidate identities and all required fields. Assess objective and current-owner. Ground each alleged defect in source and contract; distinguish uncertainty from a demonstrated failure. No prose substitutes for the callable."
+  ],
+  "context_reduction": "Before phase3 drop both conditions inspection exchanges, preserve original task/full sources. Memory only restores its own captured checkpoint and exact completed-read bindings. No grader feedback. Full sources remain, so retention aid is not exclusive access to evidence.",
+  "memory": {
+    "schema": "review-working-notes-v1",
+    "projection_bytes": 8192
+  },
+  "limits": {
+    "model_calls": 8,
+    "maximum_input_tokens_per_call": 16384,
+    "maximum_output_tokens_per_call": 2048,
+    "maximum_output_tokens_total": 16384,
+    "call_seconds": 120,
+    "wall_seconds": 1020,
+    "capture_bytes": 2097152,
+    "raw_response_bytes_per_call": 65536,
+    "retries": 0,
+    "source_reads_total": 6,
+    "source_read_bytes_per_call": 32768,
+    "source_paths": [
+      ".local/reviewer-memory-live-v2/baseline.txt"
+    ]
+  },
+  "stop": "Stop affected condition on malformed notes, read/proposal protocol failure or early conclusion; no retries or invented calls. Stop packet on provider/scope/currentness ambiguity. Unused calls are not redistributed.",
+  "scoring": [
+    "native Tool delivery/schema/identities",
+    "source facts and each alleged defect independently checked against source and task",
+    "unsupported or contradicted findings and warranted uncertainty",
+    "source reads, model-note creation/revision/supersession and later demonstrated reuse separate from projected transport",
+    "Context tokens/bytes, note/checkpoint sizes, latency, usage, finish reasons, errors"
+  ],
+  "confounds": [
+    "One pair; uncontrolled seed; order/prefix-cache latency",
+    "Procedure, optional note protocol and saved state change together",
+    "Same full sources remain after reduction; no proof of long-context robustness",
+    "Structural source verification is literal only; no semantic note truth enforcement"
+  ]
+}

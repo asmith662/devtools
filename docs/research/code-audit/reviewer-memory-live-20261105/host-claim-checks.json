@@ -1,0 +1,42 @@
+{
+  "method": "AST literal extraction of _ATX_HEADING_PATTERN, re.match and group(text).strip only; never import or execute candidate module. Post-response checks under frozen claim rubric, not new hidden acceptance. No results disclosed to actor.",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "baseline_sha256": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+  "candidate_pattern": "^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$",
+  "baseline_pattern": "^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)[ \\t]*#*[ \\t]*$",
+  "cases": {
+    "# ##": {
+      "baseline": "",
+      "candidate": "##"
+    },
+    "# C# #": {
+      "baseline": "C#",
+      "candidate": "C#"
+    },
+    "# Title #": {
+      "baseline": "Title",
+      "candidate": "Title"
+    },
+    "# C#   ": {
+      "baseline": "C",
+      "candidate": "C#"
+    },
+    "# Title ": {
+      "baseline": "Title",
+      "candidate": "Title"
+    },
+    "# C#": {
+      "baseline": "C",
+      "candidate": "C#"
+    },
+    "#   ": {
+      "baseline": "",
+      "candidate": ""
+    },
+    "# Title# # # # #": {
+      "baseline": "Title# # # #",
+      "candidate": "Title# # # #"
+    }
+  },
+  "source_diff": "--- baseline\n+++ candidate\n@@ -24,7 +24,7 @@\n     \"\"\"\r\n \r\n     _ATX_HEADING_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\r\n-        r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)[ \\t]*#*[ \\t]*$\",\r\n+        r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$\",\r\n     )\r\n     _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\r\n         r\"^[ \\t]{0,3}(?P<fence>`{3,}|~{3,})[ \\t]*(?P<info>.*?)[ \\t]*$\",\r\n"
+}

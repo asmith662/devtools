@@ -1,0 +1,273 @@
+{
+  "scope_sha256": "0846357868987c9137f61b04f54a228cf45f8501b1540a81ad9f180b31c41184",
+  "generations": 8,
+  "seconds": 364.220439,
+  "capture_bytes_before_summary": 856884,
+  "stop": null,
+  "conditions": {
+    "baseline": {
+      "reads": 3,
+      "terminal": "Concluded"
+    },
+    "memory": {
+      "reads": 3,
+      "terminal": "Protocol failure; no retry"
+    }
+  },
+  "provider_unchanged": true,
+  "production_unchanged": true,
+  "rows": [
+    {
+      "ordinal": 1,
+      "condition": "baseline",
+      "phase": 1,
+      "seconds": 12.878882,
+      "input_tokens": 6104,
+      "wire_bytes": 22356,
+      "usage": {
+        "completion_tokens": 85,
+        "prompt_tokens": 6104,
+        "total_tokens": 6189,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 2,
+      "condition": "memory",
+      "phase": 1,
+      "seconds": 3.816062,
+      "input_tokens": 6961,
+      "wire_bytes": 25587,
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 6961,
+        "total_tokens": 7022,
+        "prompt_tokens_details": {
+          "cached_tokens": 6029
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 3,
+      "condition": "baseline",
+      "phase": 2,
+      "seconds": 3.393864,
+      "input_tokens": 6623,
+      "wire_bytes": 24199,
+      "usage": {
+        "completion_tokens": 59,
+        "prompt_tokens": 6623,
+        "total_tokens": 6682,
+        "prompt_tokens_details": {
+          "cached_tokens": 6097
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 4,
+      "condition": "memory",
+      "phase": 2,
+      "seconds": 6.322606,
+      "input_tokens": 9198,
+      "wire_bytes": 32634,
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 9198,
+        "total_tokens": 9260,
+        "prompt_tokens_details": {
+          "cached_tokens": 6097
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 5,
+      "condition": "baseline",
+      "phase": 3,
+      "seconds": 3.021834,
+      "input_tokens": 6121,
+      "wire_bytes": 22458,
+      "usage": {
+        "completion_tokens": 59,
+        "prompt_tokens": 6121,
+        "total_tokens": 6180,
+        "prompt_tokens_details": {
+          "cached_tokens": 6029
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 6,
+      "condition": "memory",
+      "phase": 3,
+      "seconds": 5.689835,
+      "input_tokens": 8497,
+      "wire_bytes": 29948,
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 8497,
+        "total_tokens": 8559,
+        "prompt_tokens_details": {
+          "cached_tokens": 6029
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 7,
+      "condition": "baseline",
+      "phase": 4,
+      "seconds": 45.296381,
+      "input_tokens": 7540,
+      "wire_bytes": 28191,
+      "usage": {
+        "completion_tokens": 769,
+        "prompt_tokens": 7540,
+        "total_tokens": 8309,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": {
+        "assessed_obligations": [
+          "objective",
+          "current-owner"
+        ],
+        "disposition": "reject",
+        "evidence": [
+          "task",
+          "baseline",
+          "candidate",
+          "read:3",
+          "historical-leads"
+        ],
+        "findings": [
+          {
+            "evidence": [
+              "task",
+              "baseline",
+              "candidate"
+            ],
+            "kind": "inference",
+            "message": "The candidate's new regex branch '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)' treats any terminal run of hashes preceded by whitespace as a closing marker, not only a closing run containing at least one hash. Consequently '# Title ' (trailing whitespace, no closing hashes) and '# C#   ' (attached hashes plus trailing whitespace) now yield title 'Title'/'C' instead of 'Title '/'C# ', changing current trimming behavior and contradicting the explicit requirement to preserve separated closer behavior and keep attached hashes literal even when followed by trailing whitespace.",
+            "severity": "blocking"
+          },
+          {
+            "evidence": [
+              "task",
+              "candidate"
+            ],
+            "kind": "inference",
+            "message": "Because the zero-hash closing branch is reachable on any line ending in whitespace, the change alters title extraction for ordinary headings with trailing spaces, which the baseline regex handled by preserving them in the text group (later .strip()). This is a behavior change beyond the authorized attached-hash repair, violating the narrow-scope requirement.",
+            "severity": "advisory"
+          }
+        ],
+        "outstanding": [
+          "No executable runtime verification was available in this archived calibration; findings rest on static regex semantics traced from supplied sources."
+        ],
+        "requests": [
+          "Independently execute the candidate pattern against '# C#', '# C# #', '# C#   ', '# Title #', and '# Title ' to confirm the attached/trailing-hash title extraction before acceptance."
+        ],
+        "summary": "Candidate changes only the ATX heading regex in the authorized model file (src/devtools/resources/filesystem/models/markdown/file.py), which fits the current-owner scope. However, the new pattern '^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$' introduces a closing-marker branch '[ \\t]+#*' that matches a run of zero hashes, because '* ' permits empty. A line like '# C#   ' (attached hashes followed by trailing whitespace) therefore splits at the whitespace before the final hashes and yields text 'C', the exact corruption the task forbids. This is the same class of defect the historical leads describe for '# C# #' (text 'C'), and it also breaks '# Title ' (trailing whitespace, no hashes) by dropping the trailing space and altering the current trimming contract. Since the baseline preserves attached hashes as literal title text and the task requires that attached hashes remain literal even when followed by trailing whitespace, the candidate fails the objective."
+      },
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 8,
+      "condition": "memory",
+      "phase": 4,
+      "seconds": 93.673082,
+      "input_tokens": 11473,
+      "wire_bytes": 39782,
+      "usage": {
+        "completion_tokens": 1823,
+        "prompt_tokens": 11473,
+        "total_tokens": 13296,
+        "prompt_tokens_details": {
+          "cached_tokens": 1192
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "model_notes_accepted": 0,
+      "note_protocol_used": false,
+      "proposal": null,
+      "protocol_failure": {
+        "type": "ValueError",
+        "message": "Working support is not an exact disclosed source interval."
+      }
+    }
+  ]
+}

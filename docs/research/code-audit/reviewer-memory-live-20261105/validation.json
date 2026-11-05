@@ -1,0 +1,106 @@
+{
+  "at": "2026-11-05T18:01:28.468985+00:00",
+  "checks": {
+    "scope_and_frozen_hashes": true,
+    "initial_request_hashes": true,
+    "all_eight_raw_request_response_round_trips": true,
+    "six_authorized_reads_fresh_ids": true,
+    "budgets": true,
+    "actual_saved_checkpoint_reconstruction": true,
+    "literal_notes_not_semantic_attestation": true,
+    "bounded_projection_with_explicit_omission": true,
+    "no_grader_answer_fields_disclosed": true,
+    "introduced_report_links": 14,
+    "note_and_final_admission_failures_preserved": true,
+    "provider_unchanged": true
+  },
+  "commands": [
+    {
+      "name": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/development/agent-working-notes.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/research/README.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "git_integrity",
+      "argv": [
+        "git",
+        "fsck",
+        "--connectivity-only",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_status",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_head",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6\n",
+      "stderr": ""
+    },
+    {
+      "name": "production_diff",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "apps",
+        "scripts",
+        "tests",
+        "pyproject.toml",
+        "uv.lock",
+        "AGENTS.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "focused_tests_reused": "59 passed; preflight-and-validation.json preserves original receipt",
+  "production_executable_changes": false,
+  "protected_suite_runs": 0,
+  "new_inference_after_packet": 0,
+  "receipt_correction": "First local publication check compared byte stdout to a text Inspector SHA. Actual Inspector identity was unchanged; decode stdout before comparison. Both publication driver versions preserved. No inference or production change.",
+  "scope": "Documentation/evidence integrity only; no full-suite claim or model-accuracy claim from deterministic tests."
+}
