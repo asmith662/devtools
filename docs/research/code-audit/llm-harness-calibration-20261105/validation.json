@@ -1,0 +1,105 @@
+{
+  "at": "2026-11-05T03:04:09.690557+00:00",
+  "checks": {
+    "artifact_manifest_hashes": true,
+    "original_frozen_packet_unchanged": true,
+    "raw_request_response_roundtrips": 15,
+    "individual_wire_hashes": 15,
+    "unique_native_ids": 12,
+    "input_measurement_matches_usage": 15,
+    "score_consistency": true,
+    "captured_provider_unchanged": true,
+    "checkout_owner_absent": true,
+    "local_link_targets": 364
+  },
+  "commands": [
+    {
+      "name": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/research/llm-harness-role-memory-audit.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "git_integrity",
+      "argv": [
+        "git",
+        "fsck",
+        "--connectivity-only",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_status",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_head",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6\n",
+      "stderr": ""
+    },
+    {
+      "name": "executable_diff",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "apps",
+        "scripts",
+        "tests",
+        "pyproject.toml",
+        "uv.lock",
+        "AGENTS.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "production_executable_inputs_changed": false,
+  "protected_suite_runs": 0,
+  "new_inference_after_packet": 0,
+  "standing_authority_modified": false,
+  "inspector_preserved": true,
+  "preliminary_check_correction": "Initial link check preceded creation of this validation receipt and stopped on its forward reference. No command validation or generation ran in that failed check; order corrected.",
+  "scope": "Evidence/documentation checks only; no comprehensive validation"
+}

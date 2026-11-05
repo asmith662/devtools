@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "status": "CANDIDATE_DIAGNOSTIC_ONLY_NOT_ACTIVATED",
+  "predecessor": "../llm-harness-20261104/playbook-candidates.json",
+  "tested_provider": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "thinking_enabled": false,
+  "default_sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "reasoning_format": "none",
+    "seed": 4294967295
+  },
+  "evidence": [
+    "calls.json",
+    "scores.json",
+    "environment.json",
+    "authorization.json"
+  ],
+  "conditions": {
+    "one_response_per_cell": true,
+    "no_tool_effects": true,
+    "maximum_output_tokens": 384,
+    "maximum_input_tokens": 8192,
+    "source": "Frozen synthetic fixtures and public historical candidate evidence; no private oracle implementation",
+    "memory_promotion": false,
+    "limitations": [
+      "One uncontrolled sample per cell, fixed order, visible cell IDs and prefix-cache variation",
+      "P3 changes bundled instructions and callable availability, not only transport",
+      "P4 is a synthetic coordinate exercise; its first text begins with ASCII question mark although the metadata version was derived from an intended alpha fixture. Span lengths/gap answer are unaffected; Unicode/source-version fidelity is unqualified."
+    ]
+  },
+  "records": [
+    {
+      "id": "coding-core/v2-candidate",
+      "predecessor": "coding-core/v1",
+      "profile": "H2",
+      "cells": [
+        "P1-H2",
+        "P2-H2"
+      ],
+      "result": "2/2 passed; H0 and H1 also 2/2. No observed role-position correctness gain.",
+      "confidence": "Low; measured compatibility only, no demonstrated improvement",
+      "recommendation": "Retain explicit trusted role as a candidate; do not call it a proven repair for historical coding failures."
+    },
+    {
+      "id": "native-tool-procedure/v2-candidate",
+      "predecessor": "native-tool-procedure/v1",
+      "cells": [
+        "P1-H3",
+        "P2-H3",
+        "P1-flat-negative"
+      ],
+      "result": "Native schemas yielded complete calls; flattened schema control yielded Tool-shaped prose, no native action. H2 also passed both matched positive tasks.",
+      "confidence": "Direct channel observations; no isolated incremental instruction benefit",
+      "recommendation": "Keep native schemas and correlated IDs. Explain proposal versus Tool execution in role instructions; never execute prose."
+    },
+    {
+      "id": "llama-qwen38-instruct/v2-candidate",
+      "predecessor": "llama-qwen38-instruct/v1",
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5
+      },
+      "cells": [
+        "P1-H4",
+        "P2-H4"
+      ],
+      "result": "2/2 passed, identical correctness and output-token counts to H3; latency difference confounded by prefix caching.",
+      "confidence": "No evidence of accuracy superiority or regression on these two cells",
+      "recommendation": "Do not promote or change production sampler based on this packet."
+    },
+    {
+      "id": "independent-review-call/v2-candidate",
+      "predecessor": "independent-review-call/v1",
+      "cells": [
+        "P3-json",
+        "P3-call"
+      ],
+      "result": "Neither completed at 384 output tokens. Callable has correct reject/identity/citation prefix but malformed truncated arguments; adapter correctly refuses. JSON control produces prose trace.",
+      "confidence": "High confidence in observed truncation and admission, unknown full semantic judgment",
+      "recommendation": "First bounded implementation candidate: budget-aware concise final-submission instruction in existing reviewer synthesis owner, retaining strict parsing, identity/citation checks and host disposition. Do not silently increase limits or repair partial JSON."
+    },
+    {
+      "id": "source-coverage-view/v1-candidate",
+      "cells": [
+        "P4-ranges",
+        "P4-view"
+      ],
+      "result": "Both identify correct [10,20) gap. Without view: prose only; with view: correct native call, 143 to 64 output tokens, +54 input tokens.",
+      "confidence": "Promising single synthetic pair; instruction interpretation, cell ID and sampling remain confounds",
+      "recommendation": "Expose canonical existing coverage/gap view through Context, no second source ledger. Qualify on real projected-source tasks before promotion."
+    }
+  ]
+}

@@ -1,11 +1,15 @@
 # Documentation Map
 
+[Actual frozen Qwen calibration](research/llm-harness-calibration-results.md)
+records all 15 explicitly approved generations: matched role/sampling baselines
+already pass, both review profiles truncate, and the coverage-view pair changes
+native delivery. It preserves raw wire bodies, scores and a candidate playbook;
+no production, policy, service or historical attempt changes occurred.
+
 [LLM harness, roles and memory audit](research/llm-harness-role-memory-audit.md)
 authenticates native coding/reviewer requests, enabled Jinja, the inherited
-sampling mismatch and existing source-range state. Its frozen 15-call calibration
-has 15/15 effect-free input checks and zero new generation calls; model accuracy
-remains unmeasured pending exact prospective authorization. It proposes bounded
-prompt, memory and role work without changing production, policy or services.
+sampling mismatch and existing source-range state. Its original frozen packet
+and zero-generation audit remain historical preparation for the measured results.
 
 [First authentic B-0033 continuation](research/coding-continuation-first-live.md)
 records B-0051's distinct second attempt: six genuine calls and three admitted

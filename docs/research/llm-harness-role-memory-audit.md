@@ -1,5 +1,10 @@
 # LLM harness, agent roles and memory audit
 
+The subsequent [frozen calibration results](llm-harness-calibration-results.md)
+record fifteen explicitly approved generations. The audit observations and
+original frozen input packet below remain historical, with no retrospective
+changes to their requests, scoring or failed coding outcomes.
+
 Audit of `main` at `9df553aec96c7882b523a289542cec10616d4b8a`, 2026-11-04.
 This report qualifies visible integration behavior, not Qwen's general coding
 capability. No new generation, native attempt, review dispatch, service change or

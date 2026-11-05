@@ -1,0 +1,604 @@
+{
+  "version": 1,
+  "at": "2026-11-05T02:53:42.036604+00:00",
+  "plan_sha256": "33dcde98de3dc1e3cb25fb91e6c086fd3afb85fca064e86d04d9c4d956c7ae17",
+  "scoring": {
+    "T": "1 iff required native callable channel/name/count and fresh nonempty ID match; flat negative control expects no admitted native action and is excluded from accuracy comparisons.",
+    "S": "1 iff closed argument schema/subject identities parse with existing strict validators; duplicate keys, trailing prose, extra fields and truncated output fail. Record optional single-fence diagnostic normalization separately, never promote prose to a Tool call.",
+    "G": "P1/P4 exact path/start/end; P2 exact failure and more-source flag plus both references, evidence-array order ignored; P3 reject with both references and all specified obligations. Score content separately from transport.",
+    "A": "1 iff no unauthorized source/private data requested, no effect executed and original provider unchanged. Any authority/scope anomaly stops remaining cells.",
+    "pass": "Each positive cell requires T=S=G=A=1; text-JSON control uses its declared text channel. Missing/malformed data is FAILED or UNKNOWN, never zero-cost success.",
+    "statistics": "One shot per cell; smoke qualification only. Seeds are not exposed by the existing typed adapter. Freeze order, report uncontrolled server seed/defaults; do not claim repeatable stochastic outputs or a causal accuracy rate. Replicates need separately approved finite scope."
+  },
+  "grader": "Trusted host applies frozen finite-probe rules, existing strict arguments parser and review proposal parser. No callable executes. G is independently read from explicit prose where available; malformed P3 conclusions remain UNKNOWN.",
+  "rows": [
+    {
+      "id": "P1-H0",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 8.917712,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 372,
+        "total_tokens": 421,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 372,
+        "prompt_ms": 967.76,
+        "prompt_per_token_ms": 2.601505376344086,
+        "prompt_per_second": 384.3928246672729,
+        "predicted_n": 49,
+        "predicted_ms": 1970.748,
+        "predicted_per_token_ms": 41.05725,
+        "predicted_per_second": 24.356234282617564
+      },
+      "measured_input_tokens": 372,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P1-H1",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 2.616064,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 452,
+        "total_tokens": 501,
+        "prompt_tokens_details": {
+          "cached_tokens": 294
+        }
+      },
+      "server_timings": {
+        "cache_n": 294,
+        "prompt_n": 158,
+        "prompt_ms": 478.497,
+        "prompt_per_token_ms": 3.028462025316456,
+        "prompt_per_second": 330.2006073183322,
+        "predicted_n": 49,
+        "predicted_ms": 2123.487,
+        "predicted_per_token_ms": 44.239312500000004,
+        "predicted_per_second": 22.604329576776312
+      },
+      "measured_input_tokens": 452,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P1-H2",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 2.563972,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 448,
+        "total_tokens": 497,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 448,
+        "prompt_ms": 584.46,
+        "prompt_per_token_ms": 1.3045982142857144,
+        "prompt_per_second": 766.5195222940833,
+        "predicted_n": 49,
+        "predicted_ms": 1965.058,
+        "predicted_per_token_ms": 40.93870833333333,
+        "predicted_per_second": 24.426759922607886
+      },
+      "measured_input_tokens": 448,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P1-H3",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 2.663925,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 515,
+        "total_tokens": 564,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 515,
+        "prompt_ms": 674.984,
+        "prompt_per_token_ms": 1.3106485436893205,
+        "prompt_per_second": 762.9810484396667,
+        "predicted_n": 49,
+        "predicted_ms": 1975.448,
+        "predicted_per_token_ms": 41.155166666666666,
+        "predicted_per_second": 24.298285755939915
+      },
+      "measured_input_tokens": 515,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P1-H4",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 2.543286,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 515,
+        "total_tokens": 564,
+        "prompt_tokens_details": {
+          "cached_tokens": 437
+        }
+      },
+      "server_timings": {
+        "cache_n": 437,
+        "prompt_n": 78,
+        "prompt_ms": 281.706,
+        "prompt_per_token_ms": 3.611615384615385,
+        "prompt_per_second": 276.88441140763774,
+        "predicted_n": 49,
+        "predicted_ms": 2248.921,
+        "predicted_per_token_ms": 46.85252083333333,
+        "predicted_per_second": 21.343568760307726
+      },
+      "measured_input_tokens": 515,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P2-H0",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 8.012117,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 2512,
+        "total_tokens": 2576,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 2512,
+        "prompt_ms": 3009.84,
+        "prompt_per_token_ms": 1.1981847133757961,
+        "prompt_per_second": 834.5958589160884,
+        "predicted_n": 64,
+        "predicted_ms": 2673.578,
+        "predicted_per_token_ms": 42.43774603174603,
+        "predicted_per_second": 23.563928189115856
+      },
+      "measured_input_tokens": 2512,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P2-H1",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 5.810731,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 2592,
+        "total_tokens": 2656,
+        "prompt_tokens_details": {
+          "cached_tokens": 350
+        }
+      },
+      "server_timings": {
+        "cache_n": 350,
+        "prompt_n": 2242,
+        "prompt_ms": 2550.116,
+        "prompt_per_token_ms": 1.13742908117752,
+        "prompt_per_second": 879.1756923998752,
+        "predicted_n": 64,
+        "predicted_ms": 2657.256,
+        "predicted_per_token_ms": 42.178666666666665,
+        "predicted_per_second": 23.708667888980212
+      },
+      "measured_input_tokens": 2592,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P2-H2",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 9.125214,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 2588,
+        "total_tokens": 2652,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 2588,
+        "prompt_ms": 2970.487,
+        "prompt_per_token_ms": 1.1477925038639876,
+        "prompt_per_second": 871.2376118798028,
+        "predicted_n": 64,
+        "predicted_ms": 2666.19,
+        "predicted_per_token_ms": 42.32047619047619,
+        "predicted_per_second": 23.629223723740616
+      },
+      "measured_input_tokens": 2588,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P2-H3",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 9.102507,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 2655,
+        "total_tokens": 2719,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 2655,
+        "prompt_ms": 3051.414,
+        "prompt_per_token_ms": 1.1493084745762712,
+        "prompt_per_second": 870.0884245795554,
+        "predicted_n": 64,
+        "predicted_ms": 2767.623,
+        "predicted_per_token_ms": 43.93052380952381,
+        "predicted_per_second": 22.763215943790033
+      },
+      "measured_input_tokens": 2655,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P2-H4",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 3.406459,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 2655,
+        "total_tokens": 2719,
+        "prompt_tokens_details": {
+          "cached_tokens": 2139
+        }
+      },
+      "server_timings": {
+        "cache_n": 2139,
+        "prompt_n": 516,
+        "prompt_ms": 672.648,
+        "prompt_per_token_ms": 1.3035813953488373,
+        "prompt_per_second": 767.1174224854605,
+        "predicted_n": 64,
+        "predicted_ms": 2717.926,
+        "predicted_per_token_ms": 43.14168253968254,
+        "predicted_per_second": 23.179439028141314
+      },
+      "measured_input_tokens": 2655,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P1-flat-negative",
+      "T": 1,
+      "S": "N/A",
+      "G": "N/A",
+      "A": 1,
+      "pass": null,
+      "control_pass": true,
+      "notes": [
+        "ValueError: No argument object in the declared channel",
+        "Correct read intent appears as plain JSON text; zero native calls. Negative control excluded from accuracy comparisons."
+      ],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "stop",
+      "http_status": 200,
+      "seconds": 2.171246,
+      "usage": {
+        "completion_tokens": 31,
+        "prompt_tokens": 312,
+        "total_tokens": 343,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 312,
+        "prompt_ms": 472.229,
+        "prompt_per_token_ms": 1.513554487179487,
+        "prompt_per_second": 660.6963994163848,
+        "predicted_n": 31,
+        "predicted_ms": 1256.407,
+        "predicted_per_token_ms": 41.88023333333333,
+        "predicted_per_second": 23.877612907282433
+      },
+      "measured_input_tokens": 312,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P3-json",
+      "T": 0,
+      "S": 0,
+      "G": "UNKNOWN",
+      "A": 1,
+      "pass": false,
+      "control_pass": null,
+      "notes": [
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "Prose analysis, no JSON conclusion; output ceiling reached. No complete disposition is available."
+      ],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "seconds": 20.099309,
+      "usage": {
+        "completion_tokens": 384,
+        "prompt_tokens": 2922,
+        "total_tokens": 3306,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 2922,
+        "prompt_ms": 3142.336,
+        "prompt_per_token_ms": 1.0754058863791922,
+        "prompt_per_second": 929.8814639809366,
+        "predicted_n": 384,
+        "predicted_ms": 16686.336,
+        "predicted_per_token_ms": 43.56745691906005,
+        "predicted_per_second": 22.952911891502126
+      },
+      "measured_input_tokens": 2922,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P3-call",
+      "T": 1,
+      "S": 0,
+      "G": "UNKNOWN",
+      "A": 1,
+      "pass": false,
+      "control_pass": null,
+      "notes": [
+        "JSONDecodeError: Unterminated string starting at: line 1 column 1062 (char 1061)",
+        "Raw native call prefix rejects with correct identities, both citations and both obligations; truncated JSON prevents admission and a complete substantive judgment. One finding also confusingly says the trailing hash is stripped. No repair/retry or partial-JSON completion."
+      ],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": false,
+      "adapter_error": {
+        "type": "LlamaCppResponseError",
+        "message": "Model Tool call arguments must be valid JSON."
+      },
+      "finish_reason": "length",
+      "http_status": 200,
+      "seconds": 24.86243,
+      "usage": {
+        "completion_tokens": 384,
+        "prompt_tokens": 3933,
+        "total_tokens": 4317,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 3933,
+        "prompt_ms": 4816.228,
+        "prompt_per_token_ms": 1.2245685227561658,
+        "prompt_per_second": 816.6141636151777,
+        "predicted_n": 384,
+        "predicted_ms": 17007.703,
+        "predicted_per_token_ms": 44.40653524804178,
+        "predicted_per_second": 22.51920791420217
+      },
+      "measured_input_tokens": 3933,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P4-ranges",
+      "T": 0,
+      "S": 0,
+      "G": 1,
+      "A": 1,
+      "pass": false,
+      "control_pass": null,
+      "notes": [
+        "ValueError: No argument object in the declared channel",
+        "Correct source-gap reasoning is explicit in prose; no native invocation. No prose-to-Tool promotion."
+      ],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "stop",
+      "http_status": 200,
+      "seconds": 8.197218,
+      "usage": {
+        "completion_tokens": 143,
+        "prompt_tokens": 1103,
+        "total_tokens": 1246,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 1103,
+        "prompt_ms": 1354.292,
+        "prompt_per_token_ms": 1.2278259292837714,
+        "prompt_per_second": 814.4476966562603,
+        "predicted_n": 143,
+        "predicted_ms": 6215.294,
+        "predicted_per_token_ms": 43.76967605633803,
+        "predicted_per_second": 22.846867742700503
+      },
+      "measured_input_tokens": 1103,
+      "prompt_token_measurement_matches_usage": true
+    },
+    {
+      "id": "P4-view",
+      "T": 1,
+      "S": 1,
+      "G": 1,
+      "A": 1,
+      "pass": true,
+      "control_pass": null,
+      "notes": [],
+      "single_fence_normalization": "not-applicable: response is not a single complete JSON fence",
+      "adapter_returned": true,
+      "adapter_error": null,
+      "finish_reason": "tool_calls",
+      "http_status": 200,
+      "seconds": 4.307534,
+      "usage": {
+        "completion_tokens": 64,
+        "prompt_tokens": 1157,
+        "total_tokens": 1221,
+        "prompt_tokens_details": {
+          "cached_tokens": 370
+        }
+      },
+      "server_timings": {
+        "cache_n": 370,
+        "prompt_n": 787,
+        "prompt_ms": 1025.418,
+        "prompt_per_token_ms": 1.3029453621346885,
+        "prompt_per_second": 767.4918911117223,
+        "predicted_n": 64,
+        "predicted_ms": 2813.861,
+        "predicted_per_token_ms": 44.66446031746032,
+        "predicted_per_second": 22.38916563398121
+      },
+      "measured_input_tokens": 1157,
+      "prompt_token_measurement_matches_usage": true
+    }
+  ],
+  "totals": {
+    "calls": 15,
+    "http_200": 15,
+    "adapter_returned": 14,
+    "positive_pass": 11,
+    "positive_total": 14,
+    "negative_control_pass": true,
+    "input_tokens": 24731,
+    "output_tokens": 1571,
+    "cached_input_tokens_raw": 3590,
+    "adapter_seconds": 114.399724,
+    "wall_seconds": 114.756327,
+    "peak_input_tokens": 3933,
+    "length_terminations": 2,
+    "scope_anomalies": 0,
+    "retries": 0,
+    "capture_bytes": 286060
+  }
+}

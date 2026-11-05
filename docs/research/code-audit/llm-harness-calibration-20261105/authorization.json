@@ -1,0 +1,100 @@
+{
+  "scope": {
+    "scope": {
+      "repository": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "commit": "3d10ef4b2529d3f6be54b828f2a219fc68d3fc33",
+      "plan_sha256": "33dcde98de3dc1e3cb25fb91e6c086fd3afb85fca064e86d04d9c4d956c7ae17",
+      "requests_sha256": "d5041f55d560a1b2c0c657153b2af02d724381bf83d44c9d08ea4b2448182da2",
+      "provider": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+      "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+      "actual_default_sampling": {
+        "temperature": 1.0,
+        "top_p": 0.949999988079071,
+        "top_k": 20,
+        "min_p": 0.05000000074505806,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "reasoning_format": "none",
+        "seed": 4294967295
+      },
+      "budgets": {
+        "model_calls": 15,
+        "per_call_seconds": 60,
+        "wall_seconds": 960,
+        "maximum_output_tokens": 384,
+        "maximum_input_tokens": 8192,
+        "capture_bytes": 1048576,
+        "raw_response_bytes_per_call": 65536,
+        "thinking_enabled": false,
+        "service_changes": 0,
+        "source_writes": 0,
+        "retries": 0
+      },
+      "settings_change": "Only the frozen H4 per-request preset: temperature0.7,top_p0.8,top_k20,min_p0,presence_penalty1.5; no global defaults changes. All requests thinkingFalse.",
+      "effects": "Inference and bounded evidence writes only. No callable execution, source reads/edits, native attempts, private oracle disclosure, policy changes or service mutation.",
+      "analysis_limitations": [
+        "Cell IDs are model-visible nuisance differences; one-shot observations cannot establish a causal role/sampling effect.",
+        "P3 is a bundled delivery-profile comparison with different completion instructions, and the text control metadata still names the submission callable. Only profile compliance, not an isolated Tool-channel effect, can be inferred.",
+        "Seeds are uncontrolled. Easy probes can show ceiling effects. No universal coding-capability or accuracy-rate claim."
+      ],
+      "approval_rule": "One explicit operator approval of this exact immutable scope. No-response is No; not derived from standing policy or task instruction."
+    },
+    "scope_sha256": "ef5f7b32b82293cd5574dd06db1e61632d515fefa300d8f65799671466f27c0c"
+  },
+  "approval": {
+    "at_recorded": "2026-11-05T02:44:28.266083+00:00",
+    "operator_message": "+approve",
+    "source": "Explicit operator reply in this Codex session after presentation of the full exact packet",
+    "scope_sha256": "ef5f7b32b82293cd5574dd06db1e61632d515fefa300d8f65799671466f27c0c",
+    "scope_file_sha256": "7df9ca920c14fc5efa9e31fa65306d8d00e0a2abb41aa1e07461055d94f8e2fb",
+    "authorized_calls": 15,
+    "derived_from_standing_policy": false,
+    "no_response_default": "No"
+  },
+  "preflight": {
+    "core_role_and_sampling_pairs": "Matched after excluding visible nuisance cell IDs. No request rewrite. H0/H1 tests added instruction content; H1/H2 moves identical text; H2/H3 adds procedure; H3/H4 changes sampler preset.",
+    "limitations": [
+      "Cell IDs are model-visible nuisance differences; one-shot observations cannot establish a causal role/sampling effect.",
+      "P3 is a bundled delivery-profile comparison with different completion instructions, and the text control metadata still names the submission callable. Only profile compliance, not an isolated Tool-channel effect, can be inferred.",
+      "Seeds are uncontrolled. Easy probes can show ceiling effects. No universal coding-capability or accuracy-rate claim."
+    ],
+    "material_uninterpretable_packet": false,
+    "tool_choice": {
+      "adapter_supported": false,
+      "used_in_frozen_requests": false,
+      "server_template_validation": [
+        {
+          "value": "required",
+          "accepted": true,
+          "rendered_sha256": "90a4cfc4a1ea7f231d9464d5c0b70e9a910df876db1e2ec482d0c4a5e878a113"
+        },
+        {
+          "value": "CALIBRATION_INVALID_TOOL_CHOICE",
+          "accepted": false,
+          "error": "LlamaCppResponseError: llama.cpp response had an invalid HTTP status line."
+        }
+      ],
+      "reliance": "No required-Tool enforcement is relied on; native advertisement and system guidance only."
+    },
+    "minimum_constructed_p3_callable_tokens": 214,
+    "inference_calls": 0
+  },
+  "pre_generation_driver_errors": [
+    {
+      "type": "AttributeError",
+      "detail": "Unawaited Git inspection coroutine; before any adapter entry"
+    },
+    {
+      "type": "ModuleNotFoundError",
+      "detail": "Local driver import path omitted repository root; before any adapter entry"
+    }
+  ],
+  "reconciliation": "Both host invocation errors occurred before entry receipts or generation. Original approval retained; no requests replayed."
+}
