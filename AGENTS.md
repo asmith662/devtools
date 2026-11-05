@@ -340,6 +340,16 @@ evidence, not production publication authority. WorkCycle backlog progression,
 integration, protected promotion and consequential external actions retain their
 separate authorization requirements.
 
+Bounded calibration, role-specific evaluation, working-memory/playbook experiments,
+public-source research and development diagnostics use the activated
+[standing local-work amendment](docs/development/routine-local-work.md) through
+`WorkCycle.routine.local`. After its genuine one-time activation, derive fresh
+exact-scope grants without per-run operator approval. Recheck current policy,
+provider, sources and budgets at admission. Supervisor delegation must narrow
+parent permissions and reserve from the parent's finite account. Never infer
+policy activation, disclose private oracles, replay uncertain effects or treat
+standing authority as permission to bypass actual CLI sandbox restrictions.
+
 WorkCycle and integration use the canonical checkout with ordinary branches.
 Only one source-mutating operation may hold `.local/backlog/checkout-owner`.
 Do not remove an abandoned owner or redispatch after an ambiguous outcome.

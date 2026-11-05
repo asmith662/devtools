@@ -38,6 +38,13 @@ not signatures or protection from a hostile principal controlling the host.
 
 ## Policy scope and escalation
 
+The [v3 local-work amendment](routine-local-work.md) adds bounded calibration,
+role/memory/playbook evaluation, source research, diagnostics and supervisor
+delegation through this same owner. Once explicitly activated, it derives fresh
+exact grants automatically; routine packets no longer need individual `+approve`
+responses. Historical experiment approvals remain historical. Native candidate
+acceptance, custody and Integration requirements below remain authoritative.
+
 The closed `routine-development-policy-v1` contains categories, edit/read roots,
 allowed operations and profiles, a pinned local provider, coding/review limits,
 output limits, individual grant lifetime, Git constraints and the unchanged

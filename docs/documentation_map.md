@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Standing bounded local-work authority](development/routine-local-work.md)
+extends the existing routine policy/grant owner for local evaluations, source
+research, diagnostics and budget-conserving supervisor delegation. One explicit
+policy activation replaces per-run prompts; sandbox permission remains separate.
+
 [First live reviewer working-memory comparison](research/reviewer-working-memory-effectiveness.md)
 records eight approved generations with actual source reads and checkpoint
 reconstruction. Neither final review is factual; no valid model-authored note

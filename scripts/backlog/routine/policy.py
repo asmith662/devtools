@@ -16,6 +16,7 @@ OPERATIONS = {
     "host-review",
     "integration-plan",
     "git",
+    "local",
 }
 EXCEPTIONS = {
     "architecture",
@@ -55,6 +56,89 @@ PROTECTED = (
     "persistence/",
     "resources/commands/",
 )
+LOCAL = {
+    "model_calls": 32,
+    "input_tokens": 65536,
+    "output_tokens": 8192,
+    "total_output_tokens": 131072,
+    "reads": 64,
+    "source_bytes": 131072,
+    "checks": 32,
+    "call_seconds": 180,
+    "wall_seconds": 10800,
+    "capture_bytes": 8388608,
+    "delegations": 8,
+    "prompt_bytes": 262144,
+    "response_bytes": 65536,
+}
+ROLES = {"supervisor", "reviewer", "planner", "coding", "researcher"}
+PURPOSES = {
+    "calibration",
+    "source-analysis",
+    "role-evaluation",
+    "working-memory",
+    "prompt-playbook",
+    "development",
+}
+LOCAL_TOOLS = {
+    "read_source",
+    "read_source_unit",
+    "find_source",
+    "submit_review_proposal",
+}
+
+
+def local_policy(value: dict[str, Any]) -> None:
+    """Finite read-only evaluation/development scope, never native installation."""
+    if not isinstance(value, dict) or set(value) != {
+        "roles",
+        "purposes",
+        "read_roots",
+        "tools",
+        "budgets",
+        "profiles",
+    }:
+        raise ValueError("Closed local-work policy required")
+    for key, allowed in (
+        ("roles", ROLES),
+        ("purposes", PURPOSES),
+        ("tools", LOCAL_TOOLS),
+    ):
+        values = value[key]
+        if (
+            not isinstance(values, list)
+            or len(set(values)) != len(values)
+            or not set(values) <= allowed
+        ):
+            raise PermissionError("Local role, purpose or Tool requires escalation")
+    roots = value["read_roots"]
+    profiles = value["profiles"]
+    if (
+        not isinstance(profiles, list)
+        or not profiles
+        or len(profiles) > 32
+        or any(not isinstance(p, str) or not p.strip() for p in profiles)
+        or len(set(profiles)) != len(profiles)
+    ):
+        raise ValueError("Bounded local profiles required")
+    if not isinstance(roots, list) or not roots or len(roots) > 32:
+        raise ValueError("Bounded local resource roots required")
+    for root in roots:
+        RepositoryResourceAddress(root + "probe")
+        if not root.endswith("/") or not root.startswith(
+            ("src/", "tests/", "docs/", "scripts/", "experiments/", ".local/"),
+        ):
+            raise PermissionError("Local resource root requires escalation")
+    limits = value["budgets"]
+    if (
+        not isinstance(limits, dict)
+        or set(limits) != set(LOCAL)
+        or any(
+            type(limits[k]) is not int or not 0 < limits[k] <= v
+            for k, v in LOCAL.items()
+        )
+    ):
+        raise ValueError("Finite local-work policy limits required")
 
 
 def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed policy schema
@@ -75,18 +159,26 @@ def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed po
         "validation",
     } | (
         {"coding_attempts"}
-        if value.get("schema") == "routine-development-policy-v2"
+        if value.get("schema")
+        in {"routine-development-policy-v2", "routine-development-policy-v3"}
         else set()
+    ) | (
+        {"local"} if value.get("schema") == "routine-development-policy-v3" else set()
     ) or value["schema"] not in {
         "routine-development-policy-v1",
         "routine-development-policy-v2",
+        "routine-development-policy-v3",
     }:
         raise ValueError("Closed routine policy required")
-    if value["schema"].endswith("v2") and (
+    if value["schema"] != "routine-development-policy-v1" and (
         type(value["coding_attempts"]) is not int
         or not 1 <= value["coding_attempts"] <= 100
     ):
         raise ValueError("Finite total coding-attempt ceiling required")
+    if value["schema"] == "routine-development-policy-v3":
+        local_policy(value["local"])
+    elif "local" in value["operations"]:
+        raise PermissionError("Local work requires the explicit v3 amendment")
     if value["validation"] != "protected-development-100-percent-v1" or value[
         "git"
     ] != {"remote": "origin", "branches": ["main"], "force": False}:
@@ -135,7 +227,9 @@ def validate(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed po
             raise ValueError("Finite routine resource limits required")
     if (
         type(value["grant_seconds"]) is not int
-        or not 1 <= value["grant_seconds"] <= 3600
+        or not 1
+        <= value["grant_seconds"]
+        <= (10800 if value["schema"].endswith("v3") else 3600)
         or type(value["output_tokens"]) is not int
         or not 1 <= value["output_tokens"] <= 8192
     ):

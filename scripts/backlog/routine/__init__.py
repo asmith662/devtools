@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
 
+    from scripts.backlog.routine.local import LocalWork
     from scripts.backlog.work import WorkCycle
 
 
@@ -34,6 +35,8 @@ def normalized(request: dict[str, Any]) -> dict[str, Any]:
             if k not in {"at", "sha256", "decision_reference"}
         }
     operation = value["operation"]
+    if operation == "authorize-routine-local":
+        value.pop("reference", None)
     value["operation"] = operation.replace("dispatch-", "authorize-", 1)
     if "grant" in value:
         value["grant"] = {
@@ -61,6 +64,13 @@ class RoutineAuthority:
         from scripts.backlog.work import _load  # noqa: PLC0415
 
         return _load(path, "backlog-routine-" + name + "-v1")
+
+    @property
+    def local(self) -> LocalWork:
+        """Bounded local work uses this same policy, decision and writer owner."""
+        from scripts.backlog.routine.local import LocalWork  # noqa: PLC0415
+
+        return LocalWork(self)
 
     def controls(self) -> list[dict[str, Any]]:
         """Authenticate the complete immutable activation/revocation/denial chain."""
@@ -157,6 +167,10 @@ class RoutineAuthority:
         """Keep exact native bounds and trusted-host review semantics authoritative."""
         if kind not in policy["operations"]:
             raise PermissionError("Operation outside standing policy")
+        if kind == "local":
+            from scripts.backlog.routine.local import eligible  # noqa: PLC0415
+
+            return eligible(policy, request, provider)
         operations = {
             "coding": {"authorize-native-maintenance"},
             "acceptance-review": {"authorize-native-review-actor"},
