@@ -1,5 +1,15 @@
 # Standing authority for bounded local work
 
+Activated through the existing operator-control owner after the actual
+`+activate` decision and protected pass on 2026-11-05. The activation version is
+`26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978`;
+the policy digest is
+`7a2b7e6265f2f73a9b8e0a12e006596bcd6a0ba4013fecfbe25d03786032e479`.
+The [delivery receipt](../research/code-audit/routine-local-authority-20261105.json)
+preserves the operator decision, exact control, historical hashes and two real
+zero-inference automatic grants. Future runs must query current policy rather
+than assume this historical activation remains unrevoked.
+
 This operator-requested amendment extends `WorkCycle.routine`, not framework
 governance. The reviewed [v3 policy](routine-local-policy.json) adds local
 calibration, public-source research, role evaluation, working-memory/playbook
@@ -7,6 +17,11 @@ experiments and development diagnostics. Its activation uses the same explicit
 default-No operator control as [routine development](routine-development-authority.md).
 The implementation alone does not activate it. After one genuine activation,
 eligible grants and bounded delegations require no per-run human prompt.
+
+Earlier research and executed packets retain their recorded approval conditions.
+For new eligible packets, derive fresh standing-policy grants instead of
+repeating an older research document's prospective operator-approval procedure.
+Do not reuse historical grants or silently broaden a frozen experiment.
 
 ## Grant and execution boundaries
 
@@ -119,8 +134,9 @@ No user or project Codex configuration is changed by this amendment.
 The installed CLI supports `codex exec --approve-for-me`, which routes approval
 requests through automatic review while retaining the workspace-write sandbox.
 That is the practical trusted-workspace choice when routine Git, cache or
-network operations sometimes need an escalation. Automatic review may still
-deny an action. See [OpenAI sandbox and approvals documentation](https://learn.chatgpt.com/docs/agent-approvals-security).
+network operations sometimes need an escalation. Automatic review uses additional
+Codex review calls and may deny an action; it does not supply Devtools authority.
+See [OpenAI sandbox and approvals documentation](https://learn.chatgpt.com/docs/agent-approvals-security).
 
 For strictly noninteractive runs with prearranged filesystem/network access:
 
@@ -145,3 +161,13 @@ ModelInteraction entry, exact request budgets, revoked/expired authority,
 source drift, unknown-effect refusal, fixed checks and parent budget carve-outs.
 They distinguish authority mechanics from live model quality. This amendment
 runs no live inference and does not rewrite calibration approvals or outcomes.
+
+Implementation `f17745601605290d05503f3f53902fcd67edabdb` passed the protected
+profile once: **4,444 tests passed, two opt-in live tests skipped, 100% production
+branch coverage**, with unchanged executable inputs. The managed run took
+4,550.74 seconds under a 7,200-second deadline. All 51 routine-authority tests
+were included; focused development also passed 50 owner tests and 21 targeted
+delegation/resource checks. Strict mypy checked 643 files; maintained-source
+Ruff/format, layout and diff checks passed. Thirteen preexisting routine records
+were preserved byte-for-byte. No persistent provider, Inspector or Codex CLI
+configuration changes were made.

@@ -182,3 +182,8 @@ attempted model-authored note has an invalid source anchor. No improvement in
 model accuracy or valid authored-note maintenance is demonstrated. The earlier
 prospective sketch above remains historical; the actual frozen packet and its
 fresh approval govern the measured comparison.
+
+For future eligible local evaluations, the activated
+[standing local-work policy](routine-local-work.md) supplies fresh exact grants
+without another per-run operator prompt. Preserve the historical experiment's
+approval and outcome; freeze and qualify each new packet under current authority.

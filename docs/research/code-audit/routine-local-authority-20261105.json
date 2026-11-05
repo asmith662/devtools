@@ -1,0 +1,523 @@
+{
+  "schema": "routine-local-authority-delivery-v1",
+  "at": "2026-11-05T20:47:37.287629+00:00",
+  "implementation_commit": "f17745601605290d05503f3f53902fcd67edabdb",
+  "activation": {
+    "at": "2026-11-05T20:44:55.244780+00:00",
+    "scope_sha256": "4c2ba7c3bac506b37701f7e3d91071dc15338438e0c71ad98f5591344e9d11b5",
+    "actual_operator_message": "+activate",
+    "control": {
+      "schema": "backlog-routine-control-v1",
+      "root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "principal": "recoveryadmin",
+      "at": "2026-11-05T20:44:55.235563+00:00",
+      "previous": "08fcfcbfda2e51db7a7fb61a5cdd923deec75ebbff4cdad4b8e9f4520fa33662",
+      "action": "activate",
+      "policy": {
+        "schema": "routine-development-policy-v3",
+        "categories": [
+          "bug",
+          "refactor",
+          "enhancement"
+        ],
+        "edit_roots": [
+          "src/devtools/core/",
+          "src/devtools/context/",
+          "src/devtools/resources/filesystem/"
+        ],
+        "read_roots": [
+          "src/devtools/",
+          "tests/"
+        ],
+        "profiles": [
+          "qwen38-native64-portable-defaults-v1",
+          "qwen38-native64-independent-review-defaults-v1"
+        ],
+        "provider": {
+          "endpoint": "http://127.0.0.1:8080",
+          "model": "qwen38-local",
+          "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+          "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+          "context_tokens": 65536
+        },
+        "coding": {
+          "model_calls": 8,
+          "proposals": 3,
+          "acquisitions": 6,
+          "call_seconds": 120,
+          "wall_seconds": 900,
+          "prompt_bytes": 131072,
+          "source_bytes": 32768,
+          "capture_bytes": 983040
+        },
+        "review": {
+          "model_calls": 4,
+          "reads": 3,
+          "call_seconds": 120,
+          "wall_seconds": 480,
+          "prompt_bytes": 131072,
+          "response_bytes": 65536,
+          "capture_bytes": 983040
+        },
+        "output_tokens": 2048,
+        "grant_seconds": 10800,
+        "operations": [
+          "intake",
+          "coding",
+          "acceptance-review",
+          "diagnostic-review",
+          "host-review",
+          "integration-plan",
+          "git",
+          "local"
+        ],
+        "git": {
+          "remote": "origin",
+          "branches": [
+            "main"
+          ],
+          "force": false
+        },
+        "validation": "protected-development-100-percent-v1",
+        "coding_attempts": 2,
+        "local": {
+          "roles": [
+            "coding",
+            "planner",
+            "researcher",
+            "reviewer",
+            "supervisor"
+          ],
+          "purposes": [
+            "calibration",
+            "development",
+            "prompt-playbook",
+            "role-evaluation",
+            "source-analysis",
+            "working-memory"
+          ],
+          "read_roots": [
+            "src/",
+            "tests/",
+            "docs/",
+            "scripts/",
+            "experiments/",
+            ".local/"
+          ],
+          "tools": [
+            "find_source",
+            "read_source",
+            "read_source_unit",
+            "submit_review_proposal"
+          ],
+          "budgets": {
+            "model_calls": 16,
+            "input_tokens": 32768,
+            "output_tokens": 2048,
+            "total_output_tokens": 32768,
+            "reads": 32,
+            "source_bytes": 131072,
+            "checks": 16,
+            "call_seconds": 120,
+            "wall_seconds": 10800,
+            "capture_bytes": 4194304,
+            "delegations": 4,
+            "prompt_bytes": 262144,
+            "response_bytes": 65536
+          },
+          "profiles": [
+            "local-qwen-evaluation-v1"
+          ]
+        }
+      },
+      "subject": null,
+      "reference": "actual-operator-standing-local-activation:4c2ba7c3bac506b37701f7e3d91071dc15338438e0c71ad98f5591344e9d11b5",
+      "sha256": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978"
+    },
+    "historical_records_preserved": 13,
+    "live_inference_calls": 0
+  },
+  "operator_decision": {
+    "recorded_at": "2026-11-05T19:32:47.013621+00:00",
+    "operator_message": "+activate",
+    "actual_session_reply": true,
+    "scope_sha256": "4c2ba7c3bac506b37701f7e3d91071dc15338438e0c71ad98f5591344e9d11b5",
+    "policy_sha256": "7a2b7e6265f2f73a9b8e0a12e006596bcd6a0ba4013fecfbe25d03786032e479",
+    "source": "Actual user reply after the exact visible one-time amendment request in this Codex session",
+    "condition": "Apply through RoutineAuthority.control only after final protected validation passes",
+    "prior_approvals_reused": false
+  },
+  "frozen_scope_sha256": "4c2ba7c3bac506b37701f7e3d91071dc15338438e0c71ad98f5591344e9d11b5",
+  "policy_file": {
+    "path": "docs/development/routine-local-policy.json",
+    "sha256": "f86102df29c33f57dd1a2bd5f46cb2eb608c6fde4b48d6d1fa040a88aaf95b9d",
+    "canonical_sha256": "7a2b7e6265f2f73a9b8e0a12e006596bcd6a0ba4013fecfbe25d03786032e479"
+  },
+  "protected": {
+    "receipt": ".local/validation/routine-local-protected-final.json",
+    "sha256": "3eb745835f3e1df7639ccb09ea0a9485b37b4d216b30930e96f32743aa36d9cf",
+    "child_sha256": "0973056f6d2f783332827e13ba58956ceb9bb1ee3c748b1b00d6fb25b1d0fb05",
+    "status": "passed",
+    "exit_code": 0,
+    "complete": true,
+    "inputs_unchanged": true,
+    "seconds": 4550.743272,
+    "deadline_seconds": 7200,
+    "ordinary_test_summary": "4444 passed; 2 opt-in live tests skipped",
+    "authority_tests": 51,
+    "production_coverage": {
+      "statements": 14421,
+      "missing": 0,
+      "branches": 3702,
+      "partial": 0,
+      "percent": 100
+    },
+    "runs": 1,
+    "declared_executable_inputs_digest": "0d667f621d57f3b974fd09cf712d38859a108740b03bde995e8c8a44c0117938",
+    "observer_call_phase_reports": {
+      "passed": 4459
+    },
+    "count_qualification": "Observer phase reports are not collection counts; ordinary test counts come from the actual pytest terminal summary (4444 passed, 2 skipped)."
+  },
+  "focused": [
+    {
+      "receipt": ".local/validation/routine-local-final-focused.json",
+      "sha256": "0386a32a4c079397dce18ac8a34c7e931862a3f87a01773c2c87e9e80a1734f0",
+      "status": "passed",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "seconds": 203.339833
+    },
+    {
+      "receipt": ".local/validation/routine-local-final-delegation.json",
+      "sha256": "02362a0cfa4ea600d6b2cc8d01ec9c60d3bb8918e6af0b3dbd780976809a25b0",
+      "status": "passed",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "seconds": 68.261452
+    }
+  ],
+  "static_checks": {
+    ".local/validation/routine-local-supported-ruff.txt": {
+      "sha256": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af",
+      "result": "passed",
+      "note": "Maintained source groups; retained tests/experiments excluded from Ruff/format."
+    },
+    ".local/validation/routine-local-supported-format.txt": {
+      "sha256": "0d682723f01ad16b950bdaa711401af5b1f4c2d33d682dd19915635d1182ad91",
+      "result": "passed",
+      "note": "Maintained source groups; retained tests/experiments excluded from Ruff/format."
+    },
+    ".local/validation/routine-local-mypy-final2.txt": {
+      "sha256": "aec86a20fdaba81bfb2ecd80f86685a8828e7e839876487099de604a605e5430",
+      "result": "passed",
+      "note": "Maintained source groups; retained tests/experiments excluded from Ruff/format."
+    }
+  },
+  "automatic_grant_qualification": {
+    "at": "2026-11-05T20:44:56.705956+00:00",
+    "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+    "fresh_grants": [
+      {
+        "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:f20fb91b3c68739dec970e08dcc7d068efb70f459144ed286ae91a49573f72df",
+        "decision": {
+          "schema": "backlog-routine-decision-v1",
+          "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+          "subject": "standing-local-authority-qualification",
+          "subjects": [
+            "standing-local-authority-qualification"
+          ],
+          "kind": "local",
+          "request": {
+            "operation": "authorize-routine-local",
+            "scope": {
+              "subject": "standing-local-authority-qualification",
+              "plan_sha256": "c2d5a7308a64c18c2a5d21d9dd91ed6d817f108265bcfccdc4fe4caed6922cca",
+              "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+              "actor": "trusted-host-local-qualification",
+              "role": "researcher",
+              "roles": [],
+              "purpose": "source-analysis",
+              "profile": "local-qwen-evaluation-v1",
+              "inputs": {
+                "docs/development/routine-local-policy.json": "1d70376297ba7f37d99e7589d26ab158e5af5132133f0fdd51c099a2973d359a"
+              },
+              "tools": [],
+              "checks": {},
+              "budgets": {
+                "model_calls": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_output_tokens": 0,
+                "reads": 0,
+                "source_bytes": 131072,
+                "checks": 0,
+                "call_seconds": 0,
+                "wall_seconds": 60,
+                "capture_bytes": 262144,
+                "delegations": 0,
+                "prompt_bytes": 262144,
+                "response_bytes": 65536
+              },
+              "private_oracle": false
+            },
+            "parent": null,
+            "source_snapshot": "25566b43191d49bee1716fa2411a14eccd9e67ad2e4b15736d3253cb56034b83"
+          },
+          "assessment": {
+            "reference": "actual-current-operator-task; public source identity and bounded receipt writes only",
+            "service_change": false,
+            "architecture": false,
+            "validation_relaxation": false,
+            "destructive": false,
+            "security": false,
+            "secrets": false,
+            "paid": false
+          },
+          "provider": null,
+          "at": "2026-11-05T20:44:56.537946+00:00",
+          "expires_at": "2026-11-05T23:44:56.537922+00:00",
+          "sha256": "f20fb91b3c68739dec970e08dcc7d068efb70f459144ed286ae91a49573f72df"
+        }
+      },
+      {
+        "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:ae522addd4bf3a80e82245efb2e1a5129fd5e04a4a4338fb0f90daa45b2a3ae3",
+        "decision": {
+          "schema": "backlog-routine-decision-v1",
+          "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+          "subject": "standing-local-authority-qualification",
+          "subjects": [
+            "standing-local-authority-qualification"
+          ],
+          "kind": "local",
+          "request": {
+            "operation": "authorize-routine-local",
+            "scope": {
+              "subject": "standing-local-authority-qualification",
+              "plan_sha256": "c2d5a7308a64c18c2a5d21d9dd91ed6d817f108265bcfccdc4fe4caed6922cca",
+              "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+              "actor": "trusted-host-local-qualification",
+              "role": "researcher",
+              "roles": [],
+              "purpose": "source-analysis",
+              "profile": "local-qwen-evaluation-v1",
+              "inputs": {
+                "docs/development/routine-local-policy.json": "1d70376297ba7f37d99e7589d26ab158e5af5132133f0fdd51c099a2973d359a"
+              },
+              "tools": [],
+              "checks": {},
+              "budgets": {
+                "model_calls": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_output_tokens": 0,
+                "reads": 0,
+                "source_bytes": 131072,
+                "checks": 0,
+                "call_seconds": 0,
+                "wall_seconds": 60,
+                "capture_bytes": 262144,
+                "delegations": 0,
+                "prompt_bytes": 262144,
+                "response_bytes": 65536
+              },
+              "private_oracle": false
+            },
+            "parent": null,
+            "source_snapshot": "25566b43191d49bee1716fa2411a14eccd9e67ad2e4b15736d3253cb56034b83"
+          },
+          "assessment": {
+            "reference": "actual-current-operator-task; public source identity and bounded receipt writes only",
+            "service_change": false,
+            "architecture": false,
+            "validation_relaxation": false,
+            "destructive": false,
+            "security": false,
+            "secrets": false,
+            "paid": false
+          },
+          "provider": null,
+          "at": "2026-11-05T20:44:56.683697+00:00",
+          "expires_at": "2026-11-05T23:44:56.683677+00:00",
+          "sha256": "ae522addd4bf3a80e82245efb2e1a5129fd5e04a4a4338fb0f90daa45b2a3ae3"
+        }
+      }
+    ],
+    "entry": {
+      "schema": "backlog-routine-local-entry-v1",
+      "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:f20fb91b3c68739dec970e08dcc7d068efb70f459144ed286ae91a49573f72df",
+      "at": "2026-11-05T20:44:56.697365+00:00",
+      "previous": null,
+      "operation": "evidence",
+      "payload": {
+        "source_snapshot": "25566b43191d49bee1716fa2411a14eccd9e67ad2e4b15736d3253cb56034b83",
+        "public_source_identity_verified": true,
+        "live_inference_calls": 0
+      },
+      "cost": {
+        "delegations": 0,
+        "reads": 0,
+        "total_output_tokens": 0,
+        "checks": 0,
+        "capture_bytes": 16694,
+        "model_calls": 0
+      },
+      "meaning": "Consumed permission only; no unknown replay.",
+      "sha256": "4e7056c362a07e7aa991aee3abe0055a01b2bff87f8f9eff277a77d8ebde143b"
+    },
+    "result": {
+      "schema": "backlog-routine-local-result-v1",
+      "entry": "4e7056c362a07e7aa991aee3abe0055a01b2bff87f8f9eff277a77d8ebde143b",
+      "outcome": "returned",
+      "result": {
+        "source_identity_correspondence": true,
+        "live_inference_calls": 0
+      },
+      "sha256": "13a8769cd6bff8455a2f8a04c3ad8418c34b2978ba255cde73f360d40bd48d89"
+    },
+    "interactive_decisions_for_runs": 0,
+    "live_inference_calls": 0,
+    "limits": "This qualifies authority/source metadata only, not model capability or coding/review outcomes"
+  },
+  "historical_routine_records": {
+    "unchanged": true,
+    "count": 13,
+    "sha256": {
+      ".local\\backlog\\routine\\control-0001.json": "7aa7d02ed850813951f25faba4560b63b13915257671ce294348f0e46702a3e4",
+      ".local\\backlog\\routine\\control-0002.json": "fce803e659b78d81a9c97787e80160e9cf4c37a87d0208df5b415b0bc79f9fe8",
+      ".local\\backlog\\routine\\decisions\\082baa88a4ab82326f705ac55fc66c9e85e33a40a17ed7adf0606b3946dac2e5.json": "a820712997e8e1ca8bc59eb9870cefc8208fc96457aded2ad6dae1b5934139c9",
+      ".local\\backlog\\routine\\decisions\\168c4d140c8c7577e07dd11dd6c0767ecd19ae568e9bb31ada0a84ae2fa142f5.json": "3bc48d5a8c00d01e8dd443c525a7bddae989bb429227bbc6473446654c43ac26",
+      ".local\\backlog\\routine\\decisions\\2a405849e3f7ad88e8bb8a24ef4859c56e46cd98a595ab3b68ce3e14c264a5ad.json": "f070c013d68f4976b0091323e324c154adb542b3ac1e3717daf8863fd4f4401f",
+      ".local\\backlog\\routine\\decisions\\4fbae08187bd448bd8c65b1ef062523c0151232c5aaa26080c79339e10772d7f.json": "08c4315e6c02695b9408a9ca19dcab5d2358f4c50d767106d04d4032b1c143c5",
+      ".local\\backlog\\routine\\decisions\\5947056f8520e33a2d0e8ad0b45036de722b36ea38c1d75df4bf014fd7ec07c7.json": "061267ac5453cf83c988ed6b5525d11d77b9baea9176e81bdc1f96d57047b4ba",
+      ".local\\backlog\\routine\\decisions\\5b98530b2cd4fca0e3b7390432ea2946cb8633298f6707a9b019db38365c6293.json": "29383a43131631e9cebafb2f92e4b7fc6d1128a386bff046ae135b030c735cf0",
+      ".local\\backlog\\routine\\decisions\\83bdc8d97ef504c2f28dd6b7e40264eacdf8b12b149632b947db1aa06e1b5bb3.json": "fbae70fc9856042b4287a52fee8914855dfec70ef4e3c2305c4524d378b1504e",
+      ".local\\backlog\\routine\\decisions\\8860d4d0c11ba0f20092af24fe3a11610cbc237d680e2aaef09d6b43866c24fe.json": "922a63e364da7441b770aa45c5e36e2cddbe06fa4c2be6feef6da1739cbf17ab",
+      ".local\\backlog\\routine\\decisions\\a62b9a6e2674c78f915b5b4771617f06f26db41dcb934d5f5a2426ee39db5c0e.json": "be2a8f3eb0361bf65fedcb00d2ca91f8d88812b6347decb8c1bf196173107704",
+      ".local\\backlog\\routine\\decisions\\f919c5ae5c618aaa83dbf557f3b7469d5bfac167400d11013e77b198be71a92b.json": "6d7cd25f2a8bb9688feba9903632c71ab1b7a43d86636204b3b34de004d1446b",
+      ".local\\backlog\\routine\\decisions\\f9f4290c4a57c9162d142fb7d4def80122e4d569f49b41a87bc1898efcad60e1.json": "c3dabf488730eb38bfeab27f4dc8258ccc922cb7767ce3ba89b3cd718df3b258"
+    }
+  },
+  "provider": {
+    "qualification": {
+      "configuration": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "healthy": true,
+      "idle": true
+    },
+    "state": {
+      "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+      "image": "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "command": [
+        "--model",
+        "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8080",
+        "--alias",
+        "qwen38-local",
+        "--ctx-size",
+        "65536",
+        "--n-gpu-layers",
+        "all",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q4_0",
+        "--cache-type-v",
+        "q4_0",
+        "--parallel",
+        "1"
+      ],
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--unsloth--Qwen3.8-27B-GGUF\\blobs\\40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+          "Destination": "/models/Qwen3.8-27B-UD-IQ4_XS.gguf",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "runtime": {
+        "health": {
+          "status": "ok"
+        },
+        "context_tokens": 65536,
+        "idle": true
+      },
+      "changed": false
+    },
+    "mutation": false,
+    "inference_calls": 0
+  },
+  "inspector": {
+    "head": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6",
+    "branch": "feat/agent-inspector",
+    "clean": true,
+    "modified": false
+  },
+  "cli": {
+    "at": "2026-11-05T19:38:06.815560+00:00",
+    "cli_version": "0.166.0",
+    "observed_user_config": {
+      "explicit_approval_policy": false,
+      "explicit_sandbox_mode": false,
+      "windows_sandbox": "elevated",
+      "canonical_project_trust": "trusted"
+    },
+    "repository_config_present": false,
+    "active_session": "workspace-write; restricted network; managed tool rules remain authoritative",
+    "supported_noninteractive_options": [
+      "exec --approve-for-me retains workspace-write with automatic review",
+      "exec --sandbox workspace-write -c approval_policy=never suppresses prompts but does not escape sandbox"
+    ],
+    "official_sources": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://learn.chatgpt.com/docs/agent-approvals-security"
+    ],
+    "configuration_mutated": false,
+    "live_inference_calls": 0
+  },
+  "live_inference_calls": 0,
+  "limitations": [
+    "Tests prove authority mechanics, not model coding/review quality.",
+    "New local-work grants remain read-only/proposal-only; native edits retain existing custody/attempt/Integration gates.",
+    "Actual CLI sandbox permissions remain independent; no Codex configuration was modified.",
+    "Earlier unsuccessful development receipts and stopped broad recovery selection remain local and are not represented as passes."
+  ],
+  "native_contracts_preserved": {
+    "coding": true,
+    "review": true,
+    "provider": true,
+    "coding_attempts": true,
+    "profiles": true,
+    "edit_roots": true,
+    "read_roots": true,
+    "output_tokens": true,
+    "git": true,
+    "validation": true
+  },
+  "grant_lifetime_amendment": {
+    "previous_seconds": 3600,
+    "current_seconds": 10800,
+    "approved_by_exact_policy_activation": true
+  },
+  "publication_checks": {
+    "new_report_relative_links": [
+      "../research/code-audit/routine-local-authority-20261105.json",
+      "routine-local-policy.json",
+      "routine-development-authority.md"
+    ],
+    "layout_passed": true,
+    "diff_check_passed": true,
+    "executable_inputs_still_match_protected_candidate": true,
+    "protected_repeat_runs": 0
+  }
+}
