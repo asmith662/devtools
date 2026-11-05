@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-05T01:17:16.123338+00:00",
+  "source_head": "9df553aec96c7882b523a289542cec10616d4b8a",
+  "deterministic_validation": {
+    "receipt": ".local/validation/llm-harness-audit-deterministic.json",
+    "receipt_sha256": "57596a3ab2e03b8908ae9b1be0e237bcbf174c4bd6a40637e3424af19ca95a89",
+    "passed": 173,
+    "seconds": 187.3,
+    "exit_code": 0,
+    "inputs_unchanged": true
+  },
+  "protected_validation_runs": 0,
+  "new_generation_calls": 0,
+  "template_only_checks": {
+    "passed": 15,
+    "total": 15,
+    "peak_input_tokens": 3933
+  },
+  "gpu_observation": {
+    "source": "nvidia-smi --query-gpu=name,memory.total,memory.used,memory.free --format=csv,noheader,nounits",
+    "model": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "total_mib": 16376,
+    "used_mib": 14742,
+    "free_mib": 1309,
+    "qualification": "Observed during audit; not a reservation or proof a different precision fits."
+  },
+  "historical_assignment_and_result_ids_reauthenticated": true,
+  "standing_policy_unchanged": true,
+  "third_b0051_attempt_absent": true,
+  "checkout_owner_absent": true,
+  "provider_healthy_idle_65536_unchanged": true,
+  "inspector_unchanged_head": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6",
+  "inspector_clean": true,
+  "freeze_verified": true,
+  "validation_runtime_evidence": {
+    "focused_119_without_coverage_seconds": 1468.466878,
+    "focused_setup_seconds": 157.8766847990919,
+    "focused_call_seconds": 1215.8224897023756,
+    "protected_4347_seconds": 4503.6,
+    "maintained_wrapper_timeout_seconds": 3600,
+    "existing_timeout_backlog": "B-0047"
+  }
+}

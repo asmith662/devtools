@@ -1,5 +1,17 @@
 # Documentation Map
 
+[LLM harness, roles and memory audit](research/llm-harness-role-memory-audit.md)
+authenticates native coding/reviewer requests, enabled Jinja, the inherited
+sampling mismatch and existing source-range state. Its frozen 15-call calibration
+has 15/15 effect-free input checks and zero new generation calls; model accuracy
+remains unmeasured pending exact prospective authorization. It proposes bounded
+prompt, memory and role work without changing production, policy or services.
+
+[First authentic B-0033 continuation](research/coding-continuation-first-live.md)
+records B-0051's distinct second attempt: six genuine calls and three admitted
+edits, terminal public-validation failure, restored source and two consumed slots.
+It preserves the earlier admission refusal and original failed episode.
+
 [B-0053 interrupted evidence closeout](research/productive-native-markdown.md)
 records one genuine four-call Qwen coding episode: six source acquisitions, one
 admitted replacement, 36 public passes and a frozen private empty-heading
