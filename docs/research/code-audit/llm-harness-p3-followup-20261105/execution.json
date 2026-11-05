@@ -1,0 +1,225 @@
+{
+  "at": "2026-11-05T13:22:09.164285+00:00",
+  "scope_sha256": "5f13e14200bb7e79b4fbacab350202d3a4fad1f4a9635e54ce598c0026f0ed24",
+  "entered": 8,
+  "returned": 7,
+  "expected": 8,
+  "stop": null,
+  "seconds": 179.626868,
+  "capture_bytes_before_summary": 310672,
+  "provider_unchanged": true,
+  "tool_effects": 0,
+  "results": [
+    {
+      "id": "P3-original-384-r1",
+      "ordinal": 1,
+      "started_at": "2026-11-05T13:19:09.562792+00:00",
+      "finished_at": "2026-11-05T13:19:33.551806+00:00",
+      "seconds": 23.986536,
+      "measured_input_tokens": 3933,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 24.014391,
+      "usage": {
+        "completion_tokens": 384,
+        "prompt_tokens": 3933,
+        "total_tokens": 4317,
+        "prompt_tokens_details": {
+          "cached_tokens": 3929
+        }
+      },
+      "finish_reasons": [
+        "length"
+      ]
+    },
+    {
+      "id": "P3-concise-384-r1",
+      "ordinal": 2,
+      "started_at": "2026-11-05T13:19:33.566289+00:00",
+      "finished_at": "2026-11-05T13:19:54.255557+00:00",
+      "seconds": 20.686893,
+      "measured_input_tokens": 4061,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 44.718129,
+      "usage": {
+        "completion_tokens": 352,
+        "prompt_tokens": 4061,
+        "total_tokens": 4413,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-concise-2048-r1",
+      "ordinal": 3,
+      "started_at": "2026-11-05T13:19:54.290807+00:00",
+      "finished_at": "2026-11-05T13:20:12.012903+00:00",
+      "seconds": 17.719488,
+      "measured_input_tokens": 4061,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 62.475475,
+      "usage": {
+        "completion_tokens": 408,
+        "prompt_tokens": 4061,
+        "total_tokens": 4469,
+        "prompt_tokens_details": {
+          "cached_tokens": 4057
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-original-2048-r1",
+      "ordinal": 4,
+      "started_at": "2026-11-05T13:20:12.031110+00:00",
+      "finished_at": "2026-11-05T13:20:38.030148+00:00",
+      "seconds": 25.996747,
+      "measured_input_tokens": 3933,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 88.492721,
+      "usage": {
+        "completion_tokens": 597,
+        "prompt_tokens": 3933,
+        "total_tokens": 4530,
+        "prompt_tokens_details": {
+          "cached_tokens": 3929
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-original-2048-r2",
+      "ordinal": 5,
+      "started_at": "2026-11-05T13:20:38.043151+00:00",
+      "finished_at": "2026-11-05T13:21:09.039963+00:00",
+      "seconds": 30.994352,
+      "measured_input_tokens": 3933,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 119.502535,
+      "usage": {
+        "completion_tokens": 724,
+        "prompt_tokens": 3933,
+        "total_tokens": 4657,
+        "prompt_tokens_details": {
+          "cached_tokens": 3929
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-concise-2048-r2",
+      "ordinal": 6,
+      "started_at": "2026-11-05T13:21:09.050140+00:00",
+      "finished_at": "2026-11-05T13:21:38.019688+00:00",
+      "seconds": 28.967025,
+      "measured_input_tokens": 4061,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 148.482259,
+      "usage": {
+        "completion_tokens": 662,
+        "prompt_tokens": 4061,
+        "total_tokens": 4723,
+        "prompt_tokens_details": {
+          "cached_tokens": 4057
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-concise-384-r2",
+      "ordinal": 7,
+      "started_at": "2026-11-05T13:21:38.030448+00:00",
+      "finished_at": "2026-11-05T13:21:51.823261+00:00",
+      "seconds": 13.790325,
+      "measured_input_tokens": 4061,
+      "adapter_returned": true,
+      "error": null,
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 162.285833,
+      "usage": {
+        "completion_tokens": 325,
+        "prompt_tokens": 4061,
+        "total_tokens": 4386,
+        "prompt_tokens_details": {
+          "cached_tokens": 4057
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ]
+    },
+    {
+      "id": "P3-original-384-r2",
+      "ordinal": 8,
+      "started_at": "2026-11-05T13:21:51.844564+00:00",
+      "finished_at": "2026-11-05T13:22:08.940659+00:00",
+      "seconds": 17.096043,
+      "measured_input_tokens": 3933,
+      "adapter_returned": false,
+      "error": {
+        "type": "LlamaCppResponseError",
+        "message": "Model Tool call arguments must be valid JSON."
+      },
+      "http_response_captured": true,
+      "fresh_ids": true,
+      "authority_anomalies": [],
+      "tool_effects": 0,
+      "wall_seconds": 179.403234,
+      "usage": {
+        "completion_tokens": 384,
+        "prompt_tokens": 3933,
+        "total_tokens": 4317,
+        "prompt_tokens_details": {
+          "cached_tokens": 3929
+        }
+      },
+      "finish_reasons": [
+        "length"
+      ]
+    }
+  ]
+}

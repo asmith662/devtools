@@ -1,0 +1,49 @@
+{
+  "scope": {
+    "scope": {
+      "repository": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+      "commit": "262d357e2604ff13db13458f1c89b8713952ae08",
+      "plan_sha256": "0a836352b060ae2881173dc4043b4a6dd5d0a583dde5bf7daf32ffd229b6a986",
+      "requests_sha256": "46f5d6a03e0f57539dd7c1b1a8bf7156b06fb0dd3d43ef63ced7d87826c4516a",
+      "provider": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+      "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+      "server_props_sha256": "9f8d07ec3ea20113745dea98acef454bd003f152cfbb72a8723c0db871b04103",
+      "budgets": {
+        "model_calls": 8,
+        "maximum_input_tokens_per_call": 8192,
+        "maximum_output_tokens_per_call": 2048,
+        "maximum_output_tokens_total": 9728,
+        "call_seconds": 120,
+        "wall_seconds": 1020,
+        "capture_bytes": 2097152,
+        "raw_response_bytes_per_call": 65536,
+        "retries": 0,
+        "tool_effects": 0,
+        "service_changes": 0
+      },
+      "effects": "Local inference and bounded evidence writes only; no Tools, source edits, native attempts, private oracle disclosure, standing-policy changes, Inspector or service mutation.",
+      "design": "2 instruction variants x 2 output ceilings x 2 repeated blocks. Reversed second block balances fixed-order/cache exposure. All other model-visible inputs identical; no new cell IDs in prompts.",
+      "approval_rule": "One explicit operator reply after exact packet presentation; previous 15-call approval does not apply; silence is No."
+    },
+    "scope_sha256": "5f13e14200bb7e79b4fbacab350202d3a4fad1f4a9635e54ce598c0026f0ed24"
+  },
+  "approval": {
+    "at_recorded": "2026-11-05T13:19:07.680407+00:00",
+    "operator_message": "+approve",
+    "source": "Actual explicit reply in this Codex session after eight-call packet scope presentation",
+    "scope_sha256": "5f13e14200bb7e79b4fbacab350202d3a4fad1f4a9635e54ce598c0026f0ed24",
+    "scope_file_sha256": "fd47e1d76eed8c5e46fd204b12b6a9e8e37cae7802001f638459581c13410cb2",
+    "authorized_calls": 8,
+    "prior_15_call_approval_reused": false,
+    "derived_from_standing_policy": false,
+    "no_response_default": "No"
+  },
+  "previous_experiment_approval_reused": false
+}

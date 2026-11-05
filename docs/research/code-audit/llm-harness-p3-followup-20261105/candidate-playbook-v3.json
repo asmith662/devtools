@@ -1,0 +1,137 @@
+{
+  "version": 3,
+  "status": "DIAGNOSTIC_CANDIDATE_NOT_RELIABLY_QUALIFIED_NOT_ACTIVATED",
+  "predecessor": "../llm-harness-calibration-20261105/candidate-playbook-v2.json",
+  "tested_provider": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "default_sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "reasoning_format": "none",
+    "seed": 4294967295
+  },
+  "thinking_enabled": false,
+  "tool_schema": "Exact unchanged production submit_review_proposal definition; no tool_choice or response_format enforcement",
+  "request_settings": {
+    "output_ceilings": [
+      384,
+      2048
+    ],
+    "concise_soft_target_tokens": 300,
+    "other_settings_unchanged": true
+  },
+  "instructions": {
+    "original": "plan.json original_system_sha256 and requests.json",
+    "concise": "plan.json concise_addendum appended to the exact original system instruction"
+  },
+  "evidence": [
+    "plan.json",
+    "requests.json",
+    "calls.json",
+    "scores.json",
+    "host-claim-checks.json",
+    "environment.json"
+  ],
+  "measurements": [
+    {
+      "variant": "original",
+      "ceiling": 384,
+      "n": 2,
+      "T": 2,
+      "S": 0,
+      "F": 0,
+      "full_pass": 0,
+      "output_tokens": [
+        384,
+        384
+      ],
+      "seconds": [
+        23.986536,
+        17.096043
+      ]
+    },
+    {
+      "variant": "concise",
+      "ceiling": 384,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 1,
+      "full_pass": 1,
+      "output_tokens": [
+        352,
+        325
+      ],
+      "seconds": [
+        20.686893,
+        13.790325
+      ]
+    },
+    {
+      "variant": "original",
+      "ceiling": 2048,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 0,
+      "full_pass": 0,
+      "output_tokens": [
+        597,
+        724
+      ],
+      "seconds": [
+        25.996747,
+        30.994352
+      ]
+    },
+    {
+      "variant": "concise",
+      "ceiling": 2048,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 1,
+      "full_pass": 1,
+      "output_tokens": [
+        408,
+        662
+      ],
+      "seconds": [
+        17.719488,
+        28.967025
+      ]
+    }
+  ],
+  "interpretation": {
+    "delivery": "Concise instruction removes observed 384-token truncation in 2/2; production-sized 2048 also removes truncation for both instruction variants in 4/4.",
+    "factual_correctness": "Only two of eight full contracts pass; concise 1/2 at each ceiling, original 0/2 at each ceiling. Four of six delivery-admitted conclusions contain factual contradictions or unsupported defects.",
+    "normalization": "Zero additional admissible factual successes; do not fix truncated JSON or accept correct rejection alone.",
+    "confidence": "Two unseeded repetitions per condition, same public fixture, balanced order but unequal prefix cache; not statistical proof of prompt reliability or runtime advantage."
+  },
+  "production_decision": {
+    "budget_change_required": false,
+    "parser_relaxation_required": false,
+    "implementation_made": false,
+    "reliable_contract_established": false,
+    "smallest_candidate_change": "Existing finalization instruction only: prioritize a concise observed counterexample and named evidence; omit unverified causal explanations and speculative extra defects, or state specific uncertainty. The tested addendum is not qualified as a reliable production correction. Further task-diverse prospective qualification is needed before promotion."
+  },
+  "next_prioritized_capability": {
+    "name": "Source-grounded working notes and role-specific memory",
+    "owners": [
+      "Context",
+      "Repository Intelligence"
+    ],
+    "scope": "Bind each retained observation/inference to exact source version/range or public case, record unknowns, and retrieve by role. No separate memory database, scheduler or implementation in this assignment."
+  },
+  "memory_or_policy_promotion": false
+}

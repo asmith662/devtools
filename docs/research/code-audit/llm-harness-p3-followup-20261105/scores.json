@@ -1,0 +1,406 @@
+{
+  "version": 1,
+  "at": "2026-11-05T13:34:42.160617+00:00",
+  "frozen_scoring": {
+    "T": "One actual native submit_review_proposal envelope, correct name/count, fresh nonempty correlated ID. No prose-to-Tool conversion.",
+    "S": "Complete JSON with existing strict arguments/proposal validators and exact closed Tool schema including all required fields, enums, list/text bounds and no duplicate or extra keys. length termination cannot pass. Calibration parser only; never a native review disposition.",
+    "I": "Both parsed subject and candidate identities match frozen values; score separately even if other schema fields fail. Incomplete JSON is UNKNOWN.",
+    "F": "Trusted host checks every summary/finding/causal assertion against supplied source and public revealed case: candidate returns title ## for # ## while empty is required. No claim that this case strips the closing hashes; no fabricated execution/test results, unavailable citations, invented obligations or unsupported defects. At least one grounded explanation of the mismatch is required. Reject unsupported or contradictory findings even with valid JSON. Incomplete output is UNKNOWN unless a visible contradiction independently proves failure. Preserve per-claim reasons.",
+    "R": "Parsed final disposition must be reject; a correct verdict alone does not establish factual correctness. Incomplete output is UNKNOWN; partial prefixes recorded without admission.",
+    "O": "Both objective and empty-closing-heading assessed; evidence includes candidate and revealed-case.",
+    "A": "Zero effects and unchanged provider; no unauthorized callable/source/private requests. Scope anomaly or uncertain unreturned entry stops remaining cells; never retry.",
+    "pass": "T=S=I=F=R=O=A=1; report every dimension, tokens, finish reason and latency separately.",
+    "normalization": "Only separately reported single-complete-JSON-fence diagnostics, never execute prose or repair partial/truncated JSON.",
+    "statistics": "Two repetitions per condition only; unseeded, fixed counterbalanced order and caching limit confidence; no universal reliability or model-optimality claim."
+  },
+  "grading_method": "Existing strict ModelToolCall, arguments and review proposal parsers plus explicit trusted per-claim factual grading. The unchanged production delivery owner additionally requires normal TOOL_CALL termination; complete argument JSON at length does not pass. No native review lifecycle or host acceptance is manufactured.",
+  "rows": [
+    {
+      "id": "P3-original-384-r1",
+      "variant": "original",
+      "ceiling": 384,
+      "repetition": 1,
+      "T": 1,
+      "S": 0,
+      "I": 1,
+      "F": 0,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Observed title ## differs from required empty",
+          "grounded": true,
+          "basis": "revealed-case and host-claim-checks # ##"
+        },
+        {
+          "claim": "First hash is consumed as closing hashes while second remains in text",
+          "grounded": false,
+          "basis": "Captured text is the entire ##; alleged split both contradicts that observation and reverses the order of text and closing suffix."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "length",
+      "output_tokens": 384,
+      "input_tokens": 3933,
+      "cached_input_tokens_raw": 3929,
+      "seconds": 23.986536,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-concise-384-r1",
+      "variant": "concise",
+      "ceiling": 384,
+      "repetition": 1,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 0,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Candidate returns ## instead of empty",
+          "grounded": true,
+          "basis": "revealed-case"
+        },
+        {
+          "claim": "Text group is empty and the closing branch consumes ##, yet strip yields ##",
+          "grounded": false,
+          "basis": "An empty capture strips to empty. Actual text capture is ##; the closing branch cannot consume that run after the opening separator has been consumed."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 352,
+      "input_tokens": 4061,
+      "cached_input_tokens_raw": 0,
+      "seconds": 20.686893,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-concise-2048-r1",
+      "variant": "concise",
+      "ceiling": 2048,
+      "repetition": 1,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 1,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": true,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Candidate captures ## into text rather than recognizing an empty closing-hash heading",
+          "grounded": true,
+          "basis": "revealed-case and extracted regex match"
+        },
+        {
+          "claim": "Non-space lookbehind prevents the empty-text closing branch in this case",
+          "grounded": true,
+          "basis": "After the opening marker separator, the preceding character is whitespace, so (?<=\\S) fails; the fallback whitespace suffix cannot consume ##. The text group expands to ##. This grade scopes the explanation to this supplied case, not all possible empty headings."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 408,
+      "input_tokens": 4061,
+      "cached_input_tokens_raw": 4057,
+      "seconds": 17.719488,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-original-2048-r1",
+      "variant": "original",
+      "ceiling": 2048,
+      "repetition": 1,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 0,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Observed ## is incorrect",
+          "grounded": true,
+          "basis": "revealed-case"
+        },
+        {
+          "claim": "An empty title would also fail the empty-title obligation",
+          "grounded": false,
+          "basis": "Empty is precisely the frozen required title."
+        },
+        {
+          "claim": "Suggested rule should keep # as title for # # and #  #",
+          "grounded": false,
+          "basis": "Those are closing-hash empty headings in the disclosed contract, not attached literal suffixes; the proposed interpretation conflicts with the task."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 597,
+      "input_tokens": 3933,
+      "cached_input_tokens_raw": 3929,
+      "seconds": 25.996747,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-original-2048-r2",
+      "variant": "original",
+      "ceiling": 2048,
+      "repetition": 2,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 0,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Observed ## fails the obligation",
+          "grounded": true,
+          "basis": "revealed-case"
+        },
+        {
+          "claim": "Closing alternative matches at position zero without preceding non-space",
+          "grounded": false,
+          "basis": "The asserted lookbehind match is incompatible with the actual preceding separator; the empty suffix alone cannot consume remaining hashes."
+        },
+        {
+          "claim": "# C# # is also misparsed because closing hashes become title text",
+          "grounded": false,
+          "basis": "Post-response regex countercheck captures C#, the correct attached literal title."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 724,
+      "input_tokens": 3933,
+      "cached_input_tokens_raw": 3929,
+      "seconds": 30.994352,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-concise-2048-r2",
+      "variant": "concise",
+      "ceiling": 2048,
+      "repetition": 2,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 0,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Observed ## fails the obligation",
+          "grounded": true,
+          "basis": "revealed-case"
+        },
+        {
+          "claim": "# Title # captures Title # instead of Title",
+          "grounded": false,
+          "basis": "Post-response regex countercheck captures Title."
+        },
+        {
+          "claim": "Closing fence with trailing text does not close a block",
+          "grounded": true,
+          "basis": "Source fence guard does have this behavior; presenting it as an unrelated unverified advisory does not establish a task defect."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 662,
+      "input_tokens": 4061,
+      "cached_input_tokens_raw": 4057,
+      "seconds": 28.967025,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-concise-384-r2",
+      "variant": "concise",
+      "ceiling": 384,
+      "repetition": 2,
+      "T": 1,
+      "S": 1,
+      "I": 1,
+      "F": 1,
+      "R": 1,
+      "O": 1,
+      "A": 1,
+      "pass": true,
+      "complete_schema_even_if_length": true,
+      "claims": [
+        {
+          "claim": "Candidate captures closing hashes as text: ## rather than required empty",
+          "grounded": true,
+          "basis": "Both the complete summary and finding match the supplied source/case; no fabricated execution or unsupported extra defect."
+        }
+      ],
+      "schema_errors": [],
+      "finish_reason": "tool_calls",
+      "output_tokens": 325,
+      "input_tokens": 4061,
+      "cached_input_tokens_raw": 4057,
+      "seconds": 13.790325,
+      "adapter_returned": true,
+      "adapter_error": null,
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    },
+    {
+      "id": "P3-original-384-r2",
+      "variant": "original",
+      "ceiling": 384,
+      "repetition": 2,
+      "T": 1,
+      "S": 0,
+      "I": "UNKNOWN",
+      "F": 0,
+      "R": "UNKNOWN",
+      "O": "UNKNOWN",
+      "A": 1,
+      "pass": false,
+      "complete_schema_even_if_length": false,
+      "claims": [
+        {
+          "claim": "Text group matches empty and line is classified empty, while observed title is ##",
+          "grounded": false,
+          "basis": "The visible prefix contradicts the actual captured ## and invents a second space in the single-space input. Full JSON is unavailable; this visible contradiction independently proves factual failure."
+        }
+      ],
+      "schema_errors": [
+        "ValueError: Model Tool call arguments must be valid JSON."
+      ],
+      "finish_reason": "length",
+      "output_tokens": 384,
+      "input_tokens": 3933,
+      "cached_input_tokens_raw": 3929,
+      "seconds": 17.096043,
+      "adapter_returned": false,
+      "adapter_error": {
+        "type": "LlamaCppResponseError",
+        "message": "Model Tool call arguments must be valid JSON."
+      },
+      "deterministic_normalization": "No single complete JSON fence. Never repair truncated JSON or treat a prefix/correct verdict as admission."
+    }
+  ],
+  "groups": [
+    {
+      "variant": "original",
+      "ceiling": 384,
+      "n": 2,
+      "T": 2,
+      "S": 0,
+      "F": 0,
+      "full_pass": 0,
+      "output_tokens": [
+        384,
+        384
+      ],
+      "seconds": [
+        23.986536,
+        17.096043
+      ]
+    },
+    {
+      "variant": "concise",
+      "ceiling": 384,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 1,
+      "full_pass": 1,
+      "output_tokens": [
+        352,
+        325
+      ],
+      "seconds": [
+        20.686893,
+        13.790325
+      ]
+    },
+    {
+      "variant": "original",
+      "ceiling": 2048,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 0,
+      "full_pass": 0,
+      "output_tokens": [
+        597,
+        724
+      ],
+      "seconds": [
+        25.996747,
+        30.994352
+      ]
+    },
+    {
+      "variant": "concise",
+      "ceiling": 2048,
+      "n": 2,
+      "T": 2,
+      "S": 2,
+      "F": 1,
+      "full_pass": 1,
+      "output_tokens": [
+        408,
+        662
+      ],
+      "seconds": [
+        17.719488,
+        28.967025
+      ]
+    }
+  ],
+  "totals": {
+    "calls": 8,
+    "http_200": 8,
+    "normalized": 7,
+    "T": 8,
+    "S": 6,
+    "complete_schema_even_if_length": 7,
+    "F": 2,
+    "full_pass": 2,
+    "input_tokens": 31976,
+    "output_tokens": 3836,
+    "cached_input_tokens_raw": 27887,
+    "seconds": 179.626868,
+    "adapter_seconds": 179.237409,
+    "capture_bytes": 316755,
+    "truncated": 2,
+    "retries": 0,
+    "scope_anomalies": 0
+  }
+}

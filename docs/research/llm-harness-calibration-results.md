@@ -1,5 +1,9 @@
 # Frozen Qwen harness calibration: actual results
 
+The subsequent [eight-call P3 follow-up](llm-harness-p3-followup.md) isolates
+instruction and output-ceiling factors. It resolves observed truncation while
+retaining factual failures; this original packet and its scoring remain unchanged.
+
 Executed 2026-11-05 UTC against `main` at
 `3d10ef4b2529d3f6be54b828f2a219fc68d3fc33`, following the
 [published audit](llm-harness-role-memory-audit.md). **All 15 approved requests

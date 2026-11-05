@@ -1,5 +1,11 @@
 # Documentation Map
 
+[P3 reviewer finalization follow-up](research/llm-harness-p3-followup.md)
+records eight approved calls comparing concise/original instructions and
+384/2,048-token ceilings. Delivery improves, but only two reviews are factual;
+no reliable contract or production budget change is qualified. Candidate playbook
+v3 retains the failures and the Context/Repository Intelligence memory priority.
+
 [Actual frozen Qwen calibration](research/llm-harness-calibration-results.md)
 records all 15 explicitly approved generations: matched role/sampling baselines
 already pass, both review profiles truncate, and the coverage-view pair changes

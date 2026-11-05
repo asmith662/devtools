@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-05T13:30:24.046260+00:00",
+  "source_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "pattern": "^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$",
+  "method": "Extract annotated string literal with ast.literal_eval from frozen supplied candidate and apply only re.fullmatch/group(text).strip(), as the source parser does; no source module imported or executed, no Tool effects or private acceptance.",
+  "qualification": "Post-response trusted-host counterchecks of model factual claims, under prospectively frozen per-claim grading. Not new frozen acceptance or independent holdouts.",
+  "checks": [
+    {
+      "input": "# ##",
+      "matched": true,
+      "captured_text": "##",
+      "stripped_title": "##"
+    },
+    {
+      "input": "# #",
+      "matched": true,
+      "captured_text": "#",
+      "stripped_title": "#"
+    },
+    {
+      "input": "#  #",
+      "matched": true,
+      "captured_text": "#",
+      "stripped_title": "#"
+    },
+    {
+      "input": "# C# #",
+      "matched": true,
+      "captured_text": "C#",
+      "stripped_title": "C#"
+    },
+    {
+      "input": "# Title #",
+      "matched": true,
+      "captured_text": "Title",
+      "stripped_title": "Title"
+    }
+  ],
+  "host_check_corrections": [
+    "Initial extraction expected Assign; stopped, corrected to actual AnnAssign.",
+    "Initial receipt write supplied a relative semantic path and was refused; corrected to canonical absolute path. No model calls or repository source changes in either correction."
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-05T13:42:00.144530+00:00",
+  "checks": {
+    "current_and_previous_artifact_hashes": true,
+    "fresh_exact_scope_authorization": true,
+    "raw_roundtrips": 8,
+    "unique_wire_requests": 4,
+    "controlled_request_factors": true,
+    "unique_native_ids": 8,
+    "score_consistency": true,
+    "captured_provider_unchanged": true,
+    "production_review_owners_unchanged": true,
+    "checkout_owner_absent": true,
+    "local_link_targets": 363
+  },
+  "commands": [
+    {
+      "name": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/research/llm-harness-calibration-results.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "git_integrity",
+      "argv": [
+        "git",
+        "fsck",
+        "--connectivity-only",
+        "--no-dangling"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_status",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "inspector_head",
+      "argv": [
+        "git",
+        "-C",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-inspector",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6\n",
+      "stderr": ""
+    },
+    {
+      "name": "production_diff",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "apps",
+        "scripts",
+        "tests",
+        "pyproject.toml",
+        "uv.lock",
+        "AGENTS.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "production_executable_changes": false,
+  "protected_suite_runs": 0,
+  "new_inference_after_packet": 0,
+  "scope": "Focused documentation/evidence integrity only; no framework change or comprehensive test suite."
+}

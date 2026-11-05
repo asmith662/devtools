@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "status": "FROZEN_BEFORE_INFERENCE",
+  "at": "2026-11-05T13:13:06.221535+00:00",
+  "base_head": "262d357e2604ff13db13458f1c89b8713952ae08",
+  "origin": "Published P3-call task, evidence, prompt and unchanged production Tool definition; P3-json authenticated but not repeated because delivery is held fixed.",
+  "task": {
+    "subject_sha256": "da847e0e5979bf8b42a3bf1b954e1acbccf3e927e3e4fef220316a6da2d3228a",
+    "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "public_counterexample": {
+      "input": "# ##",
+      "required_title": "",
+      "observed_candidate_title": "##"
+    },
+    "evidence": {
+      "candidate": "frozen candidate source",
+      "revealed-case": "previously published B-0053 failure, now public calibration evidence"
+    },
+    "expected": {
+      "disposition": "reject",
+      "evidence_must_include": [
+        "candidate",
+        "revealed-case"
+      ],
+      "assessed_obligations": [
+        "objective",
+        "empty-closing-heading"
+      ],
+      "subject_sha256": "da847e0e5979bf8b42a3bf1b954e1acbccf3e927e3e4fef220316a6da2d3228a",
+      "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119"
+    }
+  },
+  "original_system_sha256": "8c1552579fd1cfa424eb4a775e04c34e0f299b67bcca66cfd066339614eae1f0",
+  "concise_addendum": "FINALIZATION: This is the final response, not another inspection step. Return only one submit_review_proposal call. Aim for at most 300 generated tokens: use a short summary and only essential findings for this bounded task. Complete every required field, using empty arrays where appropriate, before expanding explanations. Do not print a source walkthrough or repeat the full regex. Check each factual and causal claim against the supplied source and evidence; do not invent execution, results, contradictions, or extra obligations. Label inference honestly. A callable proposal has no effects; only the host can dispose of it. Never sacrifice factual accuracy for brevity.",
+  "design": "2 instruction variants x 2 output ceilings x 2 repeated blocks. Reversed second block balances fixed-order/cache exposure. All other model-visible inputs identical; no new cell IDs in prompts.",
+  "order": [
+    "P3-original-384-r1",
+    "P3-concise-384-r1",
+    "P3-concise-2048-r1",
+    "P3-original-2048-r1",
+    "P3-original-2048-r2",
+    "P3-concise-2048-r2",
+    "P3-concise-384-r2",
+    "P3-original-384-r2"
+  ],
+  "sampling": "Inherited defaults; thinking false; no response_format/tool_choice; no seed exposed by existing typed adapter. Repeated matched conditions, not common-seed pairs.",
+  "budgets": {
+    "model_calls": 8,
+    "maximum_input_tokens_per_call": 8192,
+    "maximum_output_tokens_per_call": 2048,
+    "maximum_output_tokens_total": 9728,
+    "call_seconds": 120,
+    "wall_seconds": 1020,
+    "capture_bytes": 2097152,
+    "raw_response_bytes_per_call": 65536,
+    "retries": 0,
+    "tool_effects": 0,
+    "service_changes": 0
+  },
+  "scoring": {
+    "T": "One actual native submit_review_proposal envelope, correct name/count, fresh nonempty correlated ID. No prose-to-Tool conversion.",
+    "S": "Complete JSON with existing strict arguments/proposal validators and exact closed Tool schema including all required fields, enums, list/text bounds and no duplicate or extra keys. length termination cannot pass. Calibration parser only; never a native review disposition.",
+    "I": "Both parsed subject and candidate identities match frozen values; score separately even if other schema fields fail. Incomplete JSON is UNKNOWN.",
+    "F": "Trusted host checks every summary/finding/causal assertion against supplied source and public revealed case: candidate returns title ## for # ## while empty is required. No claim that this case strips the closing hashes; no fabricated execution/test results, unavailable citations, invented obligations or unsupported defects. At least one grounded explanation of the mismatch is required. Reject unsupported or contradictory findings even with valid JSON. Incomplete output is UNKNOWN unless a visible contradiction independently proves failure. Preserve per-claim reasons.",
+    "R": "Parsed final disposition must be reject; a correct verdict alone does not establish factual correctness. Incomplete output is UNKNOWN; partial prefixes recorded without admission.",
+    "O": "Both objective and empty-closing-heading assessed; evidence includes candidate and revealed-case.",
+    "A": "Zero effects and unchanged provider; no unauthorized callable/source/private requests. Scope anomaly or uncertain unreturned entry stops remaining cells; never retry.",
+    "pass": "T=S=I=F=R=O=A=1; report every dimension, tokens, finish reason and latency separately.",
+    "normalization": "Only separately reported single-complete-JSON-fence diagnostics, never execute prose or repair partial/truncated JSON.",
+    "statistics": "Two repetitions per condition only; unseeded, fixed counterbalanced order and caching limit confidence; no universal reliability or model-optimality claim."
+  },
+  "production_reservation": {
+    "owner": "scripts/backlog/native/review/actor.py uses ModelSettings(**config[settings]); validates 1..8192",
+    "standing_policy": "08fcfcbfda2e51db7a7fb61a5cdd923deec75ebbff4cdad4b8e9f4520fa33662",
+    "active_output_ceiling": 2048,
+    "calibration_ceiling": 384,
+    "policy_does_not_authorize_this_experiment": true
+  },
+  "next_capability": "Source-grounded working notes and role-specific memory through existing Context and Repository Intelligence owners; not implemented here."
+}
