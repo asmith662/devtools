@@ -1,0 +1,41 @@
+{
+  "donor_commit": "e069092e9b83c349ddb4efee09a3b1891ea0ad63",
+  "destination_baseline": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
+  "status": "PARTIAL",
+  "inputs": [
+    {
+      "donor": "src/learned_intelligence/representation/features.py",
+      "sha256": "2084a8868bc19ed5bc9ba0ff5d19e5053bda12d3cedf0932b381a99a79e9d928",
+      "destination": "src/devtools/learning/representation/features.py",
+      "disposition": "RELOCATE",
+      "destination_sha256": "59f00ef9ffdc13b6175a1a0ff68e36b655b1f1b57f1633e31225f83d845f2afd",
+      "adaptation": "Namespace/error-style/type-import/docstring/format adaptation; numerical semantics retained."
+    },
+    {
+      "donor": "src/learned_intelligence/representation/targets.py",
+      "sha256": "985243e5cb364b2e2c7e3a49fed66ac14141912b061a302b3942554c2fa5bab9",
+      "destination": "src/devtools/learning/representation/targets.py",
+      "disposition": "EXTRACT",
+      "destination_sha256": "0d461306a0d5a7d42569ad9c179901c00eceba2fa0a01acf5b32ae7c925392b7",
+      "adaptation": "Namespace/error-style/type-import/docstring/format adaptation; numerical semantics retained. Only CategoryValue, validate_category_values and category_identity; quantile fitting excluded."
+    },
+    {
+      "donor": "src/learned_intelligence/evaluation/classification.py",
+      "sha256": "7e316a0a9c3185f25e4081e2c0679b12b3469f7db6ceeb297d85fe428dc836c3",
+      "destination": "src/devtools/learning/evaluation/classification.py",
+      "disposition": "RELOCATE",
+      "destination_sha256": "59362e24a319c370b9b18090074e4c7e0a6591efc58cd84e0d95a5d82ca6a791",
+      "adaptation": "Namespace/error-style/type-import/docstring/format adaptation; numerical semantics retained."
+    },
+    {
+      "donor": "src/learned_intelligence/evaluation/classification_v2.py",
+      "sha256": "400b2b7f98726047a3b1a7d4e5f50a2d825d9755c6a8639764633cdbda582c9a",
+      "destination": "src/devtools/learning/evaluation/classification_v2.py",
+      "disposition": "EXTRACT",
+      "adaptation": "Namespace/error-style/type-import/docstring/format adaptation; numerical semantics retained. Only binary_f1_components and macro_f1_value; metric-binding publication deferred.",
+      "destination_sha256": "a7d1e4544780b21074cb6a6d7669aa5466306c66920d3a7b5e3f65376971b37d"
+    }
+  ],
+  "authenticated_source_inputs": 90,
+  "authenticated_source_mismatches": 0
+}

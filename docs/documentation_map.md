@@ -1244,3 +1244,8 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 - [Complete authorized inventory and post-edit continuation](development/authorized-inventory-and-continuation.md):
   mixed-provenance B-0035 implementation, authenticated stale-source reduction,
   actual failed-check repair and explicit collision-safe focused pytest checks.
+# Partial learning migration
+
+[Learning migration status](development/learning-integration.md) records the
+bounded feature/category and classification-inspection implementation, pinned
+donor provenance and the unfinished numerical/investigator qualification.
