@@ -186,3 +186,101 @@ existing authority. If testing a server with PR 31556 is selected, separately
 enroll and qualify its exact alternate-provider image pin; keep persistent Qwen
 unchanged. A successful plain-content parse still cannot count as Tool delivery
 or accurate review, and no production reviewer promotion is justified here.
+
+## Capacity follow-up: 6 November 2026
+
+The follow-up identifies substantial **non-model** commitments. It does not
+enter the six-call experiment or change its guards, serving profile or scoring.
+The [bounded capacity record](code-audit/gpt-oss-capacity-20261106.json) binds
+20 retained local diagnostic receipts; the original comparison and transport
+receipts are unchanged. No production executable inputs change.
+
+### Owners and measurements
+
+| Owner / counter | Private commitment or pool use | Working set / other observation |
+| --- | --- | --- |
+| NordVPN.exe, PID 21468 | 31.99–32.01 GiB private | About 2.12 GiB working set; started 14 October |
+| vmmemWSL, PID 46260 | About 16.93 GiB private | About 0.54 GiB working set |
+| svchost.exe, PID 3624 | About 7.97 GiB private | About 0.93 GiB working set; SCM identifies **Winmgmt** |
+| PyCharm, PID 28016 | About 3.62 GiB private | About 2.34–2.38 GiB working set; user-owned editor |
+| Windows paged pool | 19.74 GiB | Allocation owner/driver not identified |
+| Windows nonpaged pool | 3.29 GiB | Allocation owner/driver not identified |
+
+The aggregate process-private sample is 86.72 GiB across 412 processes. Adding
+the separately sampled paged/nonpaged pools gives approximately 109.75 GiB,
+compared with a 116.58 GiB system-commit sample. This accounts for most of the
+pressure without an exact, atomic reconciliation of shared/system commitments.
+Working sets are not unique RAM totals, and private commitment is not current
+page-file occupancy. These counters follow Microsoft's
+[memory-accounting distinctions](https://learn.microsoft.com/en-us/windows/win32/memory/memory-performance-information).
+Large allocations are observed; a leak, allocation stack or common cause has
+**not** been established. In particular, the kernel pool is not attributed to
+NordVPN or WMI merely because those processes are large.
+
+Only Qwen is running in Docker. Its displayed usage is 461.1 MiB after Docker's
+inactive-file adjustment; the cgroup reports about 0.97 GiB including about
+0.28 GiB anonymous and 0.69 GiB file memory. No per-container memory limit is
+configured. Docker's WSL VM exposes 15.48 GiB total, and the Linux guest reports
+14.07 GiB available; guest swap use is about 39 MiB out of 4 GiB. Host VM
+commitment, guest availability and GPU allocations are different measures.
+The large host VM charge therefore does not establish that Qwen's live CPU
+allocations consume all that commitment or that guest-free pages can safely
+be recovered as host commit. WSL is 2.5.10.0; no user `.wslconfig` exists. No
+Docker/WSL settings, cache or lifecycle was changed. The only stopped container
+is an unrelated old vLLM container reporting zero usage; deleting it would not
+recover measured live memory.
+
+The active Windows page file is `C:\pagefile.sys`, 96 GiB allocated, about
+20.96 GiB used at the final sample, with 33.50 GiB peak use. Registry
+`PagingFiles` is `?:\pagefile.sys`; its automatic-management flag could not be
+queried. WMI-dependent CIM queries and `tasklist /svc` failed with requested
+object errors (CIM HRESULT `0x80010114`). Direct SCM inspection succeeded and
+identified Winmgmt as running in PID 3624. This establishes the process owner,
+not a diagnosis of global WMI corruption. One page-table counter was unavailable;
+all six retained performance-counter samples have status zero. No usable
+pool-tag result was obtained and no debug privilege or driver instrumentation
+was enabled. Further driver attribution requires a supported administrative
+method such as [PoolMon](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/using-poolmon-to-find-a-kernel-mode-memory-leak).
+
+### Admission and remediation
+
+The final sample at **21:03:57 UTC** has **0.91 GiB available physical RAM**,
+**117.70/127.73 GiB committed**, and **10.03 GiB commit headroom**. Commit peak
+equals the limit. GPU memory remains 14,714 MiB used and 1,337 MiB free of
+16,376 MiB. Both entry guards fail; available RAM is also below the 1 GiB
+in-experiment stop floor. No inference or serving transition is safe here.
+
+No clearly owned completed temporary resource was found to release. The completed
+protected driver no longer exists; all current Python processes together account
+for only about 99 MiB private memory. Inspector and the learned-intelligence
+worktree remain untouched. **Zero resources were released, zero fresh grants
+issued, zero generations entered, and no new Tool/schema/parser results exist.**
+
+The active policy remains
+`4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9`.
+The existing enrolled profile and reusable sequential transition remain
+authorized. Eligible inference would receive a fresh exact-scope automatic grant
+through `WorkCycle.routine.local`, without a per-run operator prompt. Resource
+failure prevents entry before any grant, model load or service stop; no consumed
+operation is replayed. Qwen's original container, image, mount, command and 64K
+configuration match the previous receipt and remain healthy and idle. Its start
+time remains `2026-11-06T03:49:59.986796034Z`; restoration is unnecessary because
+it was never paused or restarted.
+
+The smallest concrete remediation is **operator/security-owner inspection and
+controlled graceful restart or repair of NordVPN**, after checking VPN/network
+and protection requirements. Its roughly 32 GiB private charge is the largest
+identified potential recovery; no amount of recovery is guaranteed. Windows
+administration should separately investigate the 8 GiB Winmgmt process, failed
+WMI queries and large kernel pools, with service dependencies preserved. None
+of these are completed Devtools resources or authorized automatic cleanup.
+Do not kill services, disable protection, change the page file, reboot WSL or
+clear model caches to make admission pass. WSL memory-policy review is a separate
+owner action if still needed; its settings and restart effects are documented
+by [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/wsl-config).
+
+After remediation, remeasure the unchanged 2 GiB physical / 16 GiB commit guards,
+then reauthenticate custody, provider and authority before the existing packet.
+GPT-OSS remains unqualified for a larger reviewer evaluation. This follow-up
+adds no new model-quality or native-delivery measurement, and reuses the
+published protected transport validation without another comprehensive run.

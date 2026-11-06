@@ -1,0 +1,409 @@
+{
+  "recorded_at": "2026-11-06T21:05:34.802113+00:00",
+  "baseline_commit": "9f404adccea4a19765bb886c94fe592c555a39ac",
+  "scope": "Read-only host capacity attribution; existing six-call packet unchanged and not entered",
+  "memory_at_entry": {
+    "at": "2026-11-06T20:57:27.099416+00:00",
+    "windows_bytes": {
+      "CommitTotal": 125431115776,
+      "CommitLimit": 137149407232,
+      "CommitPeak": 137149407232,
+      "PhysicalTotal": 34070192128,
+      "PhysicalAvailable": 1374056448,
+      "SystemCache": 1566605312,
+      "commit_headroom": 11718291456
+    },
+    "page_files_bytes": [
+      {
+        "path": "C:\\pagefile.sys",
+        "TotalSize": 103079215104,
+        "TotalInUse": 22598754304,
+        "PeakUsage": 35968303104
+      }
+    ],
+    "gpu_csv_mib_percent": "NVIDIA GeForce RTX 4090 Laptop GPU, 16376, 14714, 1337, 0",
+    "admission_minimum": {
+      "physical_available_bytes": 2147483648,
+      "commit_headroom_bytes": 17179869184
+    },
+    "safe_pre_swap": false
+  },
+  "memory_at_final": {
+    "at": "2026-11-06T21:03:57.330449+00:00",
+    "windows_bytes": {
+      "CommitTotal": 126378053632,
+      "CommitLimit": 137149407232,
+      "CommitPeak": 137149407232,
+      "PhysicalTotal": 34070192128,
+      "PhysicalAvailable": 974733312,
+      "SystemCache": 1011621888,
+      "commit_headroom": 10771353600
+    },
+    "page_files_bytes": [
+      {
+        "path": "C:\\pagefile.sys",
+        "TotalSize": 103079215104,
+        "TotalInUse": 22502617088,
+        "PeakUsage": 35968303104
+      }
+    ],
+    "gpu_csv_mib_percent": "NVIDIA GeForce RTX 4090 Laptop GPU, 16376, 14714, 1337, 0",
+    "admission_minimum": {
+      "physical_available_bytes": 2147483648,
+      "commit_headroom_bytes": 17179869184
+    },
+    "safe_pre_swap": false
+  },
+  "top_responsible_processes": [
+    {
+      "Id": 21468,
+      "ProcessName": "NordVPN",
+      "PrivateMemorySize64": 34370748416,
+      "WorkingSet64": 2272460800,
+      "StartTime": "/Date(1791980056837)/"
+    },
+    {
+      "Id": 28016,
+      "ProcessName": "pycharm64",
+      "PrivateMemorySize64": 3886473216,
+      "WorkingSet64": 2510045184,
+      "StartTime": "/Date(1791980578902)/"
+    },
+    {
+      "Id": 3624,
+      "ProcessName": "svchost",
+      "PrivateMemorySize64": 8559259648,
+      "WorkingSet64": 998825984,
+      "StartTime": null
+    },
+    {
+      "Id": 46260,
+      "ProcessName": "vmmemWSL",
+      "PrivateMemorySize64": 18172252160,
+      "WorkingSet64": 576696320,
+      "StartTime": null
+    }
+  ],
+  "process_groups": [
+    {
+      "Name": "NordVPN",
+      "Count": 1,
+      "PrivateBytes": 34348150784,
+      "WorkingSet": 2273984512
+    },
+    {
+      "Name": "vmmemWSL",
+      "Count": 1,
+      "PrivateBytes": 18175135744,
+      "WorkingSet": 575033344
+    },
+    {
+      "Name": "svchost",
+      "Count": 99,
+      "PrivateBytes": 10013294592,
+      "WorkingSet": 2427588608
+    },
+    {
+      "Name": "pycharm64",
+      "Count": 1,
+      "PrivateBytes": 3886481408,
+      "WorkingSet": 2552045568
+    },
+    {
+      "Name": "chrome",
+      "Count": 17,
+      "PrivateBytes": 3711418368,
+      "WorkingSet": 2753474560
+    },
+    {
+      "Name": "codex",
+      "Count": 6,
+      "PrivateBytes": 2033459200,
+      "WorkingSet": 1515175936
+    },
+    {
+      "Name": "platform_runtime_RGB_service",
+      "Count": 2,
+      "PrivateBytes": 1695285248,
+      "WorkingSet": 34545664
+    },
+    {
+      "Name": "sqlservr",
+      "Count": 2,
+      "PrivateBytes": 1462280192,
+      "WorkingSet": 225337344
+    },
+    {
+      "Name": "steamwebhelper",
+      "Count": 7,
+      "PrivateBytes": 1186918400,
+      "WorkingSet": 169103360
+    },
+    {
+      "Name": "nordsec-threatprotection-service",
+      "Count": 1,
+      "PrivateBytes": 1158111232,
+      "WorkingSet": 210448384
+    }
+  ],
+  "process_totals": {
+    "ProcessCount": 412,
+    "PrivateBytes": 93116882944,
+    "WorkingSetBytes": 20691197952,
+    "PythonProcessCount": 2,
+    "PythonPrivateBytes": 103993344
+  },
+  "kernel_counters_valid_samples": [
+    {
+      "Path": "\\\\asmith\\memory\\committed bytes",
+      "CookedValue": 125180542976,
+      "Status": 0
+    },
+    {
+      "Path": "\\\\asmith\\memory\\commit limit",
+      "CookedValue": 137149407232,
+      "Status": 0
+    },
+    {
+      "Path": "\\\\asmith\\memory\\pool paged bytes",
+      "CookedValue": 21195042816,
+      "Status": 0
+    },
+    {
+      "Path": "\\\\asmith\\memory\\pool nonpaged bytes",
+      "CookedValue": 3528323072,
+      "Status": 0
+    },
+    {
+      "Path": "\\\\asmith\\memory\\system driver total bytes",
+      "CookedValue": 107712512,
+      "Status": 0
+    },
+    {
+      "Path": "\\\\asmith\\memory\\system cache resident bytes",
+      "CookedValue": 230256640,
+      "Status": 0
+    }
+  ],
+  "service_owner": {
+    "process_id": 3624,
+    "service_name": "Winmgmt",
+    "display_name": "Windows Management Instrumentation",
+    "state": "RUNNING",
+    "source": "sc.exe queryex winmgmt; service-control-manager query bypasses failed WMI dependency"
+  },
+  "docker_wsl": {
+    "running_containers": 1,
+    "only_running_container": "devtools-qwen38-llama-cpp",
+    "container_id": "d8be956996751ce66b6f4615928d074bc7e6b12cc4e0b76e6aa6c3b624703ea1",
+    "container_started_at": "2026-11-06T03:49:59.986796034Z",
+    "docker_memory_total_bytes": 16620044288,
+    "qwen_display_usage": "461.1 MiB (Docker excludes inactive file cache)",
+    "qwen_cgroup_current_bytes": 1041473536,
+    "qwen_cgroup_anon_bytes": 296472576,
+    "qwen_cgroup_file_bytes": 736628736,
+    "qwen_cgroup_limit": "max; Docker HostConfig.Memory=0, MemorySwap=0",
+    "guest_memory_total_kib": 16230512,
+    "guest_memory_available_kib": 14754320,
+    "guest_swap_total_kib": 4194304,
+    "guest_swap_free_kib": 4154652,
+    "wsl_version": "2.5.10.0",
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "user_wslconfig_exists": false,
+    "host_vm_private_bytes_at_entry": 18175135744,
+    "caution": "VM host commitment, guest free memory, file cache, GPU allocations and per-container displayed use are different measures; no claim that guest-available pages are automatically reclaimable host commit",
+    "stopped_container": "One unrelated two-month-old vLLM container reports 0 B; not removed"
+  },
+  "page_file_configuration": {
+    "registry_PagingFiles": [
+      "?:\\pagefile.sys"
+    ],
+    "registry_ExistingPageFiles": [
+      "\\??\\C:\\pagefile.sys"
+    ],
+    "actual_allocated_bytes": 103079215104,
+    "automatic_management_flag": "Not established: WMI query failed; registry values preserved without inferring a fixed-size policy",
+    "configuration_changed": false
+  },
+  "interpretation": {
+    "dominant_single_private_owner": "NordVPN.exe (~32 GiB), not an inference process",
+    "other_large_owners": "vmmemWSL ~16.9 GiB private; Winmgmt-hosting svchost ~8 GiB; kernel paged pool ~19.7 GiB, nonpaged pool ~3.3 GiB",
+    "approximate_accounting": "86.72 GiB process private + 19.74 GiB paged pool + 3.29 GiB nonpaged pool ~=109.75 GiB versus a separate 116.58 GiB system-commit sample. Non-atomic samples and other system/shared commitments prevent exact closure. Working sets must not be summed as unique RAM.",
+    "leak_claim": "Large retained allocations observed; no heap trace, allocation-stack or driver-tag proof of a leak or common cause",
+    "kernel_pool_owner": "Not attributed to a specific driver or application; do not blame NordVPN or WMI for the pool solely by correlation"
+  },
+  "diagnostic_limits": [
+    "CIM Win32_ComputerSystem/Win32_PageFileUsage and tasklist /svc failed with requested-object-does-not-exist; CIM HRESULT 0x80010114. SCM owner lookup succeeded. This does not establish global WMI corruption.",
+    "Memory Page Table Bytes counter unavailable; the six retained counter samples have status0.",
+    "No PoolMon or RAMMap command found on PATH; attempted direct pool-tag observation produced no retained data, so no pool-tag result is claimed. No debug privilege or driver tracing enabled."
+  ],
+  "cleanup": {
+    "owned_completed_validation_driver": "PID295780 no longer exists",
+    "all_python_private_bytes": 103993344,
+    "safe_owned_significant_resource_found": false,
+    "resources_released": 0,
+    "processes_terminated": 0,
+    "docker_or_wsl_restarts": 0,
+    "cache_or_page_file_changes": 0,
+    "reason": "Largest owners are active/unrelated security, Windows service, VM or user applications; their completion, unused status or safe termination is not authorized"
+  },
+  "authority": {
+    "active_policy": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+    "enrollment_scope": "9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+    "profile": "local-gpt-oss-20b-review-v1",
+    "reusable_sequential_transition_still_authorized": true,
+    "fresh_automatic_grant_path": "WorkCycle.routine.local; no per-run operator approval",
+    "fresh_grants_issued": 0,
+    "reason_not_issued": "Resource admission fails before any serving/inference entry; no historical grant or operation is replayed"
+  },
+  "experiment": {
+    "packet_reference": "docs/research/code-audit/llama-transport-gpt-oss-20261106/admission.json",
+    "order": [
+      "minimal-read_source",
+      "submit_review_proposal",
+      "submit_review_proposal",
+      "minimal-read_source",
+      "minimal-read_source",
+      "submit_review_proposal"
+    ],
+    "budgets_unchanged": true,
+    "start_minimum_physical_bytes": 2147483648,
+    "start_minimum_commit_headroom_bytes": 17179869184,
+    "stop_physical_bytes": 1073741824,
+    "stop_commit_headroom_bytes": 8589934592,
+    "entered": false,
+    "generations": 0,
+    "new_native_tool_results": null,
+    "new_schema_results": null,
+    "new_http_or_peg_failures": null,
+    "serving_transitions": 0,
+    "provider_restoration": "Not needed: original Qwen untouched, healthy idle profile reauthenticated",
+    "production_reviewer_promotion": false
+  },
+  "required_actions": [
+    "Operator/security owner: inspect and, in a controlled network/security maintenance window, gracefully restart or remediate NordVPN. Its ~32 GiB private charge is the largest identified potential recovery; recovery is not measured or guaranteed. Do not disable VPN/protection automatically.",
+    "Windows administrator: investigate the ~8 GiB Winmgmt host and failed WMI queries, preserving service dependencies; authorize any repair/restart separately. Do not restart from this assignment.",
+    "Windows administrator: attribute the ~19.7 GiB paged pool and ~3.3 GiB nonpaged pool with supported pool-tag/driver diagnostics before blaming or changing a driver.",
+    "Docker/WSL owner: only if still necessary, separately review VM host commitment versus guest-free RAM; any configuration or restart must preserve Qwen and receive appropriate authority.",
+    "After any remediation, remeasure >=2 GiB physical and >=16 GiB commit headroom, reauthenticate provider/custody/authority and issue a fresh exact-scope automatic grant before the unchanged six-call packet."
+  ],
+  "evidence_refs": {
+    "memory-entry.json": {
+      "path": ".local/gpt-oss-capacity/memory-entry.json",
+      "sha256": "170e41c3b9ac89e69e2506a6620748d20e47445f01e8775a4f1da31828d61df0",
+      "bytes": 1468
+    },
+    "memory-final.json": {
+      "path": ".local/gpt-oss-capacity/memory-final.json",
+      "sha256": "3ca9f8473158a3b4d455bc26cf55a6fef2fe004c075d68e620cc82ef0f2eda31",
+      "bytes": 706
+    },
+    "top-processes.json": {
+      "path": ".local/gpt-oss-capacity/top-processes.json",
+      "sha256": "2a28366df55b409c837af5ee4d370c84f42dd1ef44abfcabb55778f335ac18ec",
+      "bytes": 5327
+    },
+    "process-groups.json": {
+      "path": ".local/gpt-oss-capacity/process-groups.json",
+      "sha256": "097d40cce049399ef87de72b9d5cb12abfbb26a07c625ecdd5e25bfa6be0f7fa",
+      "bytes": 2141
+    },
+    "responsible-processes.json": {
+      "path": ".local/gpt-oss-capacity/responsible-processes.json",
+      "sha256": "04dede3f1897486a3be06aef73942cc8bd67fcf9319a419511eb5fe2411c0b5d",
+      "bytes": 1373
+    },
+    "responsible-processes-final.json": {
+      "path": ".local/gpt-oss-capacity/responsible-processes-final.json",
+      "sha256": "22d3a0309f54993403eae86bf33e6b98b0a038c5ce1fc2b11c890b7831345834",
+      "bytes": 789
+    },
+    "process-totals.json": {
+      "path": ".local/gpt-oss-capacity/process-totals.json",
+      "sha256": "ce07e387584ba8c6e8bccb2a507cd3fa8c17d72f1f8e8de9dd9e2e34716b0811",
+      "bytes": 175
+    },
+    "kernel-counters.json": {
+      "path": ".local/gpt-oss-capacity/kernel-counters.json",
+      "sha256": "adb1bd4c40dbd3f2c4e48ca07a5de8d1e55421e7f14c7c1ce15fc8bb5078a0e7",
+      "bytes": 818
+    },
+    "winmgmt-status.txt": {
+      "path": ".local/gpt-oss-capacity/winmgmt-status.txt",
+      "sha256": "39069f4196ba83b63e4d320be35b25e0a8bd6181b17527cb323f51eab533595c",
+      "bytes": 792
+    },
+    "docker-stats.jsonl": {
+      "path": ".local/gpt-oss-capacity/docker-stats.jsonl",
+      "sha256": "e08ad557970ea5b821436f2303faed78aa106c8b089ee433ee5b71934f0d483f",
+      "bytes": 1050
+    },
+    "docker-info.txt": {
+      "path": ".local/gpt-oss-capacity/docker-info.txt",
+      "sha256": "38ac42a60727166eb6faf9afe5e807d38520dd48403d5a5ef606ac6e48e37ca3",
+      "bytes": 158
+    },
+    "docker-containers.txt": {
+      "path": ".local/gpt-oss-capacity/docker-containers.txt",
+      "sha256": "bc473448e944ef0db0e2f7336f67b6c00e0c6067d6dcba248f5def479702611b",
+      "bytes": 470
+    },
+    "qwen-container-state.txt": {
+      "path": ".local/gpt-oss-capacity/qwen-container-state.txt",
+      "sha256": "718bde0fa072d63d0868b523a6fa8dd70c3607047113cfb330337da2a3ba7869",
+      "bytes": 302
+    },
+    "qwen-cgroup-memory.txt": {
+      "path": ".local/gpt-oss-capacity/qwen-cgroup-memory.txt",
+      "sha256": "554b4a684a735fddcb08bc50f67ecd0b7e8e6b5923e69c62ae43bd4c2e431dbe",
+      "bytes": 1862
+    },
+    "wsl-meminfo.txt": {
+      "path": ".local/gpt-oss-capacity/wsl-meminfo.txt",
+      "sha256": "c31467a3e19c736e359fc84429b17d09fd052d2fe2dd698c551ad7aad7ef7986",
+      "bytes": 3058
+    },
+    "wsl-swaps.txt": {
+      "path": ".local/gpt-oss-capacity/wsl-swaps.txt",
+      "sha256": "6b3cc1db98bbef8de8b8ead60177efa2c046bf1488879d9b40fe621e00786cfe",
+      "bytes": 222
+    },
+    "wsl-version.txt": {
+      "path": ".local/gpt-oss-capacity/wsl-version.txt",
+      "sha256": "47070b768a91fc2a63dc0d09560bfc9e0e68ba345b9f3700c62b8c7256993f9f",
+      "bytes": 918
+    },
+    "wslconfig.txt": {
+      "path": ".local/gpt-oss-capacity/wslconfig.txt",
+      "sha256": "c058b5f08d73fabfd46cad4c284f9f72095dfc03c9d767a3b74bc9fffb6c9f6c",
+      "bytes": 28
+    },
+    "provider-entry.json": {
+      "path": ".local/gpt-oss-capacity/provider-entry.json",
+      "sha256": "a7820fbb5c6b98bb012ed75fec5e60e931313b822ea1c8251b3e1d0732e506b6",
+      "bytes": 1019
+    },
+    "authority.json": {
+      "path": ".local/gpt-oss-capacity/authority.json",
+      "sha256": "685a7a68777dc5cc19a23aefd2f57e14176d8e56c11f3fab8d4a3bfdcc435692",
+      "bytes": 1220
+    }
+  },
+  "validation": {
+    "receipt_hashes_checked": 20,
+    "local_document_links_checked": 448,
+    "layout": "passed",
+    "git_diff_check": "passed before staging; final staged/combined checks required",
+    "protected_executable_inputs_match": true,
+    "reused_protected_source_commit": "9034fd34ad8510be8e058c95203291d09b0e45d3",
+    "protected_suite_rerun": false,
+    "production_source_changed": false
+  },
+  "preservation": {
+    "inspector_head_observed": "b3fa51b22b7eeabc9c74d1eff4012e597b5dc5e6",
+    "learning_head_observed": "ef2460339cd1b6fd92643c790f45c5e307968f73",
+    "other_worktrees": "Untouched; independent concurrent work preserved",
+    "preexisting_untracked_forensic_paths": 5,
+    "historical_comparison_transport_and_policy_records": "Unchanged"
+  }
+}
