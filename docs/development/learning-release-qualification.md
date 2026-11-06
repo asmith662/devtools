@@ -239,3 +239,48 @@ exclusion, rule or coverage configuration is changed. The retained Ruff
 COM812/formatter advisory and ignored inherited VIRTUAL_ENV warning are not
 suppressed. Read-only Git inspection sees concurrent main at
 `9f404adccea4a19765bb886c94fe592c555a39ac`; no merge is performed.
+
+## First full release-candidate gate and bounded correction
+
+The exact committed `c6688cce` protected run completed all 5,236 tests: 5,234
+passed and the original two opt-in tests skipped. Pytest took 5,060.56 seconds;
+managed wall time was 5,080.405603 seconds. Inputs remained unchanged and neither
+output stream was truncated. The run failed honestly at 99.9877800407332%:
+19,305/19,308 statements and all 5,242 branches were covered. Only
+`resources/commands/execution.py:190-192`, the suspended-process admission
+exception cleanup, was missed. This is a statement/exception-handler gap, not
+uncollected numerical execution or a remaining scientific branch deficit.
+
+The new focused case creates a genuine suspended direct-interpreter child and
+explicitly injects refusal before Job admission/resume. It verifies the original
+OSError is preserved, the exact created PID is the refused PID, the actual child
+is terminated/reaped with a nonzero return code, and its entry marker never
+appears. It signals only this invocation's own child. All four real containment
+controls pass. This is an injected admission refusal against a real process,
+not a claim that Windows naturally failed admission.
+
+An authenticated diagnostic combination of the retained failed full data and
+this four-test group reaches exactly 100%: 19,308 statements and 5,242 branches,
+zero missed terms. Production hashes match the failed full run; its source and
+wheel are unchanged. The combination is not a replacement protected gate. A
+fresh full run on the committed correction remains mandatory. Original failed
+full receipts are retained under `learning-qualification/release-repair-c6688cce`.
+
+## Narrow external-boundary style exceptions
+
+In addition to the seven reviewed argument-count declarations, two BLE001
+exceptions retain the original scientific callback/error semantics: evidence
+`context.py:214` catches arbitrary optional observer errors, records a warning
+and preserves computation; `context.py:343` catches secondary recording errors
+while retaining the primary failure and incomplete-recording note. Genuine
+SQLite ACK faults and interruption controls qualify these paths. BaseException
+interruptions are not silently swallowed as ordinary observer errors.
+
+Commands `execution.py:188-189` has two scoped SLF001 exceptions, plus the
+existing stub-gap `attr-defined` annotation at line 188. CPython 3.12's asyncio
+Process has no public original Windows-handle accessor. This resource boundary
+reads the owned transport's Popen and its original handle, then independently
+checks that handle's PID before Job assignment and resume. The profile records
+the exact CPython executable/ABI; real suspended-start, descendant refusal,
+timeout, cancellation and now admission-refusal cleanup are qualified. This is
+not a portable private-API claim. No blanket rule exemption is introduced.

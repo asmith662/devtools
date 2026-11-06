@@ -8210,5 +8210,37 @@
       "Final test formatting follows this source-coverage run; final committed full gate remains required.",
       "Base/extra wheel must be rebuilt from this candidate."
     ]
+  },
+  "protected_c6688cce": {
+    "status": "FAIL_COVERAGE_ONLY",
+    "tests_passed": 5234,
+    "existing_skips": 2,
+    "pytest_seconds": 5060.56,
+    "wall_seconds": 5080.405603,
+    "statements": 19308,
+    "covered_statements": 19305,
+    "branches": 5242,
+    "covered_branches": 5242,
+    "percent": 99.9877800407332,
+    "missing": {
+      "src/devtools/resources/commands/execution.py": [
+        190,
+        191,
+        192
+      ]
+    },
+    "inputs_unchanged": true,
+    "data_sha256": "0758013943626a2ebb3f6ba06e35a935493c1834ed5b111bea59a25e55c72f74",
+    "receipt_directory": "learning-qualification/release-repair-c6688cce"
+  },
+  "bounded_admission_correction": {
+    "tests": 4,
+    "actual_suspended_child": true,
+    "fault": "explicit pre-admission refusal",
+    "production_changes": false,
+    "diagnostic_combined_percent": 100,
+    "missing_terms": 0,
+    "protected_requalification": "PENDING",
+    "data_sha256": "f59ccd98d114a9d93f17e6e2ab3dc8c3cc8b5c707737c5b24cf16c96735be2b9"
   }
 }

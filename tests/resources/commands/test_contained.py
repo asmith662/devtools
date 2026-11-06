@@ -5,12 +5,13 @@ from __future__ import annotations
 
 import asyncio
 import sys
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, cast
 
 import pytest
 
 from devtools.core.time import Duration
 from devtools.resources.commands import Command, CommandExecutor, CommandTimeoutError
+from devtools.resources.commands._windows_job import WindowsJob
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -72,3 +73,40 @@ def test_contained_cancellation_settles_custody(tmp_path: Path) -> None:
             await task
 
     asyncio.run(cancel())
+
+
+def test_failed_admission_reaps_the_actual_suspended_child_without_entry(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Reap the real suspended child after an explicitly simulated admission refusal."""
+    marker = tmp_path / "must-not-enter"
+    created: list[asyncio.subprocess.Process] = []
+    admissions: list[int] = []
+    original = asyncio.create_subprocess_exec
+    failure = OSError("authored admission refusal before resume")
+
+    async def observe(*args: object, **kwargs: object) -> asyncio.subprocess.Process:
+        process = await original(*cast("Any", args), **cast("Any", kwargs))
+        created.append(process)
+        return process
+
+    def refuse(_job: WindowsJob, _handle: int, process_id: int) -> None:
+        admissions.append(process_id)
+        raise failure
+
+    monkeypatch.setattr(asyncio, "create_subprocess_exec", observe)
+    monkeypatch.setattr(WindowsJob, "assign_and_resume", refuse)
+    command = (
+        Command(str(getattr(sys, "_base_executable", sys.executable)))
+        .args("-c", "import sys;open(sys.argv[1],'w').write('entered')", str(marker))
+        .with_timeout(Duration.seconds(10))
+    )
+    with pytest.raises(OSError, match="admission refusal") as caught:
+        asyncio.run(CommandExecutor(contained=True).execute(command))
+    assert caught.value is failure
+    assert len(created) == 1
+    assert admissions == [created[0].pid]
+    assert created[0].returncode is not None
+    assert created[0].returncode != 0
+    assert not marker.exists()
