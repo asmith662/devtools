@@ -24,7 +24,7 @@ def test_native_states_and_scientific_publication(tmp_path: Path) -> None:
     )
     result = asyncio.run(
         CommandExecutor(contained=True).execute(
-            Command(str(sys._base_executable))  # type: ignore[attr-defined]
+            Command(str(getattr(sys, "_base_executable", sys.executable)))
             .args("-c", code, str(site), str(worker), str(tmp_path / "science"))
             .with_environment(
                 {

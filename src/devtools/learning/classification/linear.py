@@ -14,10 +14,14 @@ import math
 from dataclasses import asdict, dataclass, field
 from uuid import UUID, uuid4
 
-from devtools.learning.measurement.contracts import EvidenceReference, digest, nonempty
+from devtools.learning.measurement.contracts import (
+    EvidenceReference,
+    digest,
+    nonempty,
+    validate_references,
+)
 from devtools.learning.representation.features import FeatureTable, FeatureValueKind
 from devtools.learning.representation.standardization import _fingerprint
-from devtools.learning.requirements.evidence import validate_references
 
 _OBSERVATION_PAIR_SIZE = 2
 
@@ -32,6 +36,27 @@ def _hash(value: object) -> str:
             default=str,
         ).encode(),
     ).hexdigest()
+
+
+def _validate_observations(
+    configuration: tuple[tuple[str, str], ...],
+    backend: tuple[tuple[str, str], ...],
+) -> None:
+    """Validate immutable, unique native configuration and version observations."""
+    for pairs in (configuration, backend):
+        if (
+            type(pairs) is not tuple
+            or not pairs
+            or any(
+                type(p) is not tuple or len(p) != _OBSERVATION_PAIR_SIZE for p in pairs
+            )
+            or (len({p[0] for p in pairs}) != len(pairs))
+        ):
+            msg = "immutable unique observed key/value pairs required"
+            raise ValueError(msg)
+        for pair in pairs:
+            for value in pair:
+                nonempty(value)
 
 
 @dataclass(frozen=True, slots=True)
@@ -152,21 +177,7 @@ class FittedBinaryLinearClassifier:
         ):
             msg = "distinct model and fitting occurrence identities required"
             raise ValueError(msg)
-        for pairs in (self.configuration, self.backend_observations):
-            if (
-                type(pairs) is not tuple
-                or not pairs
-                or any(
-                    type(p) is not tuple or len(p) != _OBSERVATION_PAIR_SIZE
-                    for p in pairs
-                )
-                or (len({p[0] for p in pairs}) != len(pairs))
-            ):
-                msg = "immutable unique observed key/value pairs required"
-                raise ValueError(msg)
-            for pair in pairs:
-                for value in pair:
-                    nonempty(value)
+        _validate_observations(self.configuration, self.backend_observations)
         validate_references(self.references)
         if not self.references:
             msg = "fitting dependencies required"

@@ -25,6 +25,18 @@ from devtools.learning.integrations.local.ledger import SQLiteExecutionRecorder
 from devtools.learning.integrations.local.linear_classification import model_document
 from devtools.learning.integrations.local.margin_classification import margin_document
 from devtools.learning.integrations.local.publication import publish_artifacts
+from devtools.learning.integrations.sklearn.k_nearest_neighbors import (
+    construct_k_nearest_neighbors_classification,
+)
+from devtools.learning.integrations.sklearn.linear_classification import (
+    LogisticClassificationConfiguration,
+    fit_binary_logistic,
+)
+from devtools.learning.integrations.sklearn.margin_classification import (
+    MarginClassificationConfiguration,
+    fit_binary_margin,
+)
+from devtools.learning.integrations.sklearn.regression import fit_regression
 from devtools.learning.integrations.sklearn.runtime import observe_runtime
 from devtools.learning.investigation.errors import LearningUnavailableError
 from devtools.learning.investigation.plans import (
@@ -244,8 +256,9 @@ def execute_plan(
         else held.inputs.source_identity
     )
     database = root / "science.sqlite"
-    with _Recorder(database) as recorder:
-        with ExecutionContext(
+    with (
+        _Recorder(database) as recorder,
+        ExecutionContext(
             recorder,
             Admitted(
                 "learning.fit",
@@ -257,219 +270,202 @@ def execute_plan(
                     Fact("runtime_identity", _hash(runtime)),
                 ),
             ),
-        ) as run:
-            preparation = (
-                None
-                if plan.method == "mean"
-                else fit_feature_standardization(
-                    FeatureStandardizationSpecification(source_features.feature_names),
-                    source_features,
-                    population_id=population_id,
-                    source_identity=source_identity,
-                    recorder=recorder,
-                    parent=run,
-                )
-            )
-            state_document: dict[str, object]
-            binary_training = None
-            native_regression = None
-            native_knn = None
-            state: (
-                FittedRegression
-                | FittedBinaryLinearClassifier
-                | FittedMarginClassifier
-                | None
-            ) = None
-            if isinstance(training, BinaryLinearTraining):
-                if not isinstance(held, BinaryProblem):
-                    msg = "binary held population required"
-                    raise TypeError(msg)
-                binary_training = replace(
-                    training,
-                    features=represented(training.features, preparation, plan.method),
-                )
-                with ExecutionContext(
-                    recorder,
-                    Admitted("learning.binary_fit", (Fact("method", plan.method),)),
-                    parent=run,
-                ) as fitting_run:
-                    if plan.method == "knn7":
-                        from devtools.learning.classification.k_nearest_neighbors import (
-                            KNearestNeighborsClassificationSpecification,
-                            KNearestNeighborsDistance,
-                            KNearestNeighborsWeighting,
-                        )
-                        from devtools.learning.integrations.sklearn.k_nearest_neighbors import (
-                            construct_k_nearest_neighbors_classification,
-                        )
-
-                        native_knn = construct_k_nearest_neighbors_classification(
-                            KNearestNeighborsClassificationSpecification(
-                                7,
-                                KNearestNeighborsDistance.EUCLIDEAN,
-                                KNearestNeighborsWeighting.UNIFORM,
-                            ),
-                            binary_training.features,
-                            binary_training.targets,
-                        )
-                        state_document = {
-                            "schema": "retained-knn7-v1",
-                            "training": document(asdict(binary_training)),
-                        }
-                    elif plan.method == "square-logistic":
-                        from devtools.learning.integrations.sklearn.linear_classification import (
-                            LogisticClassificationConfiguration,
-                            fit_binary_logistic,
-                        )
-
-                        state = fit_binary_logistic(
-                            binary_training,
-                            LogisticClassificationConfiguration(),
-                            execution=fitting_run,
-                        )
-                        state_document = model_document(state)
-                    else:
-                        from devtools.learning.integrations.sklearn.margin_classification import (
-                            MarginClassificationConfiguration,
-                            fit_binary_margin,
-                        )
-
-                        state = fit_binary_margin(
-                            binary_training,
-                            MarginClassificationConfiguration(),
-                            execution=fitting_run,
-                        )
-                        state_document = margin_document(state)
-                    fitting_run.completed(
-                        (Fact("state_identity", _hash(state_document)),),
-                    )
-                fitting_id = fitting_run.execution_id
-            else:
-                from devtools.learning.integrations.sklearn.regression import (
-                    fit_regression,
-                )
-
-                methods = {
-                    "mean": RegressionMethod.MEAN,
-                    "ridge": RegressionMethod.RIDGE,
-                    "knn-v2": RegressionMethod.KNN,
-                }
-                specification = RegressionSpecification(
-                    methods[plan.method],
-                    "regression-specification-v2"
-                    if plan.method == "knn-v2"
-                    else "regression-specification-v1",
-                )
-                native_regression = fit_regression(
-                    specification,
-                    training,
-                    preparation,
-                    recorder=recorder,
-                    parent=run,
-                )
-                state = native_regression.state
-                state_document = document(asdict(state))
-                fitting_id = state.execution_id
-            with ExecutionContext(
-                recorder,
-                Admitted(
-                    "learning.predict",
-                    (Fact("state_identity", _hash(state_document)),),
-                ),
-                parent=run,
-            ) as prediction_run:
-                if isinstance(held, BinaryProblem):
-                    query = represented(held.features, preparation, plan.method)
-                    if native_knn is not None and binary_training is not None:
-                        predictions: tuple[int, ...] | RegressionPredictions = (
-                            knn7_predict(binary_training, query)
-                        )
-                        if predictions != native_knn.classify(query):
-                            msg = (
-                                "native/independent binary kNN prediction disagreement"
-                            )
-                            raise ValueError(
-                                msg,
-                            )
-                    elif isinstance(
-                        state,
-                        (FittedBinaryLinearClassifier, FittedMarginClassifier),
-                    ):
-                        predictions = state.classify(query)
-                    else:
-                        msg = "retained binary state required"
-                        raise TypeError(msg)
-                elif native_regression is not None:
-                    predictions = native_regression.predict(held.inputs)
-                else:
-                    msg = "native regression fit required"
-                    raise TypeError(msg)
-                prediction_run.completed(
-                    (
-                        Fact(
-                            "prediction_identity",
-                            _hash(
-                                document(asdict(predictions))
-                                if isinstance(predictions, RegressionPredictions)
-                                else predictions,
-                            ),
-                        ),
-                    ),
-                )
-            with ExecutionContext(
-                recorder,
-                Admitted("learning.measure", (Fact("metric", plan.metric),)),
-                parent=run,
-            ) as measurement_run:
-                observation, measurements = quality(plan, predictions)
-                measurement_run.completed(
-                    (Fact("measurement_identity", _hash(measurements)),),
-                )
-            result = {
-                "schema": "learning-operation-v2",
-                "fitting_execution_id": str(fitting_id),
-                "plan": plan.document(),
-                "grant": document(asdict(grant)),
-                "runtime": runtime,
-                "native_correspondence": correspondence(plan, state, preparation),
-                "preparation": None
-                if preparation is None
-                else document(asdict(preparation)),
-                "state": state_document,
-                "predictions": document(asdict(predictions))
-                if isinstance(predictions, RegressionPredictions)
-                else list(predictions),
-                "quality": document(asdict(observation)),
-                "measurement": measurements,
-                "producing_execution_id": str(run.execution_id),
-            }
-            raw = canonical(result).encode()
-            if len(raw) > MAX_PUBLICATION_BYTES:
-                msg = "retained scientific state exceeds publication limit"
-                raise ValueError(msg)
-
-            def write_member(directory: Path) -> None:
-                write(
-                    BinaryFile(resolve_path(directory / "result.json"), raw),
-                    overwrite=False,
-                )
-
-            publication = publish_artifacts(
-                root / "publication",
-                run.execution_id,
-                ("result.json",),
-                write_member,
-                dependencies=(Fact("plan_identity", plan.identity),),
+        ) as run,
+    ):
+        preparation = (
+            None
+            if plan.method == "mean"
+            else fit_feature_standardization(
+                FeatureStandardizationSpecification(source_features.feature_names),
+                source_features,
+                population_id=population_id,
+                source_identity=source_identity,
                 recorder=recorder,
                 parent=run,
-                payload_bytes=len(raw),
             )
-            run.completed(
+        )
+        state_document: dict[str, object]
+        binary_training = None
+        native_regression = None
+        native_knn = None
+        state: (
+            FittedRegression
+            | FittedBinaryLinearClassifier
+            | FittedMarginClassifier
+            | None
+        ) = None
+        if isinstance(training, BinaryLinearTraining):
+            if not isinstance(held, BinaryProblem):
+                msg = "binary held population required"
+                raise TypeError(msg)
+            binary_training = replace(
+                training,
+                features=represented(training.features, preparation, plan.method),
+            )
+            with ExecutionContext(
+                recorder,
+                Admitted("learning.binary_fit", (Fact("method", plan.method),)),
+                parent=run,
+            ) as fitting_run:
+                if plan.method == "knn7":
+                    from devtools.learning.classification.k_nearest_neighbors import (
+                        KNearestNeighborsClassificationSpecification,
+                        KNearestNeighborsDistance,
+                        KNearestNeighborsWeighting,
+                    )
+
+                    native_knn = construct_k_nearest_neighbors_classification(
+                        KNearestNeighborsClassificationSpecification(
+                            7,
+                            KNearestNeighborsDistance.EUCLIDEAN,
+                            KNearestNeighborsWeighting.UNIFORM,
+                        ),
+                        binary_training.features,
+                        binary_training.targets,
+                    )
+                    state_document = {
+                        "schema": "retained-knn7-v1",
+                        "training": document(asdict(binary_training)),
+                    }
+                elif plan.method == "square-logistic":
+                    state = fit_binary_logistic(
+                        binary_training,
+                        LogisticClassificationConfiguration(),
+                        execution=fitting_run,
+                    )
+                    state_document = model_document(state)
+                else:
+                    state = fit_binary_margin(
+                        binary_training,
+                        MarginClassificationConfiguration(),
+                        execution=fitting_run,
+                    )
+                    state_document = margin_document(state)
+                fitting_run.completed(
+                    (Fact("state_identity", _hash(state_document)),),
+                )
+            fitting_id = fitting_run.execution_id
+        else:
+            methods = {
+                "mean": RegressionMethod.MEAN,
+                "ridge": RegressionMethod.RIDGE,
+                "knn-v2": RegressionMethod.KNN,
+            }
+            specification = RegressionSpecification(
+                methods[plan.method],
+                "regression-specification-v2"
+                if plan.method == "knn-v2"
+                else "regression-specification-v1",
+            )
+            native_regression = fit_regression(
+                specification,
+                training,
+                preparation,
+                recorder=recorder,
+                parent=run,
+            )
+            state = native_regression.state
+            state_document = document(asdict(state))
+            fitting_id = state.execution_id
+        with ExecutionContext(
+            recorder,
+            Admitted(
+                "learning.predict",
+                (Fact("state_identity", _hash(state_document)),),
+            ),
+            parent=run,
+        ) as prediction_run:
+            if isinstance(held, BinaryProblem):
+                query = represented(held.features, preparation, plan.method)
+                if native_knn is not None and binary_training is not None:
+                    predictions: tuple[int, ...] | RegressionPredictions = knn7_predict(
+                        binary_training,
+                        query,
+                    )
+                    if predictions != native_knn.classify(query):
+                        msg = "native/independent binary kNN prediction disagreement"
+                        raise ValueError(
+                            msg,
+                        )
+                elif isinstance(
+                    state,
+                    (FittedBinaryLinearClassifier, FittedMarginClassifier),
+                ):
+                    predictions = state.classify(query)
+                else:
+                    msg = "retained binary state required"
+                    raise TypeError(msg)
+            elif native_regression is not None:
+                predictions = native_regression.predict(held.inputs)
+            else:
+                msg = "native regression fit required"
+                raise TypeError(msg)
+            prediction_run.completed(
                 (
-                    Fact("state_identity", _hash(state_document)),
-                    Fact("plan_identity", plan.identity),
+                    Fact(
+                        "prediction_identity",
+                        _hash(
+                            document(asdict(predictions))
+                            if isinstance(predictions, RegressionPredictions)
+                            else predictions,
+                        ),
+                    ),
                 ),
             )
+        with ExecutionContext(
+            recorder,
+            Admitted("learning.measure", (Fact("metric", plan.metric),)),
+            parent=run,
+        ) as measurement_run:
+            observation, measurements = quality(plan, predictions)
+            measurement_run.completed(
+                (Fact("measurement_identity", _hash(measurements)),),
+            )
+        result = {
+            "schema": "learning-operation-v2",
+            "fitting_execution_id": str(fitting_id),
+            "plan": plan.document(),
+            "grant": document(asdict(grant)),
+            "runtime": runtime,
+            "native_correspondence": correspondence(plan, state, preparation),
+            "preparation": None
+            if preparation is None
+            else document(asdict(preparation)),
+            "state": state_document,
+            "predictions": document(asdict(predictions))
+            if isinstance(predictions, RegressionPredictions)
+            else list(predictions),
+            "quality": document(asdict(observation)),
+            "measurement": measurements,
+            "producing_execution_id": str(run.execution_id),
+        }
+        raw = canonical(result).encode()
+        if len(raw) > MAX_PUBLICATION_BYTES:
+            msg = "retained scientific state exceeds publication limit"
+            raise ValueError(msg)
+
+        def write_member(directory: Path) -> None:
+            write(
+                BinaryFile(resolve_path(directory / "result.json"), raw),
+                overwrite=False,
+            )
+
+        publication = publish_artifacts(
+            root / "publication",
+            run.execution_id,
+            ("result.json",),
+            write_member,
+            dependencies=(Fact("plan_identity", plan.identity),),
+            recorder=recorder,
+            parent=run,
+            payload_bytes=len(raw),
+        )
+        run.completed(
+            (
+                Fact("state_identity", _hash(state_document)),
+                Fact("plan_identity", plan.identity),
+            ),
+        )
     if publication.manifest is None or publication.manifest_sha256 is None:
         msg = "scientific publication did not retain a manifest"
         raise ValueError(msg)

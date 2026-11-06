@@ -26,8 +26,8 @@ main synchronization, service mutation, main publication or merge authority.
 
 ## Source provenance and ownership
 
-[The source mapping](learning-migration-provenance.json) authenticates 40 maintained imported
-inputs and preserves two removed historical mappings against donor commit `e069092e9b83c349ddb4efee09a3b1891ea0ad63`, plus the
+[The source mapping](learning-migration-provenance.json) authenticates 39 selected imported
+inputs and preserves the removed historical mappings against donor commit `e069092e9b83c349ddb4efee09a3b1891ea0ad63`, plus the
 separately recorded exact scalar-helper extraction. It includes destination
 hashes and destination-authored composition. The prepared 81-file set is an
 upper scope, not a copying target. Execution moves to `learning.evidence`, local
@@ -35,6 +35,10 @@ execution to `learning.integrations.local`, SQLite to its `ledger` module, and
 feature methods to `learning.methods.features`. Narrow hashing, table and
 float-only helpers avoid unrelated ANOVA/ranking dependency trees. Namespace,
 UTF-8, selected exports and canonical Timestamp adaptations are recorded.
+
+The [release repair assessment](learning-release-qualification.md) records the
+coverage diagnosis, authenticated worker instrumentation and narrowed dependency
+closure. This is a validated repair checkpoint, not a passing release gate.
 
 `devtools.learning` owns source/role/schema/target/unit contracts, training-only
 preparation, numerical states, F1/MAE observations, scientific grants, immutable

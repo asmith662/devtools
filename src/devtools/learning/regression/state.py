@@ -4,6 +4,7 @@
 import math
 from collections.abc import Callable
 from dataclasses import asdict, dataclass
+from statistics import mean, pstdev
 from uuid import UUID
 
 from devtools.learning.classification.linear import _hash
@@ -238,50 +239,24 @@ class FittedRegression:
         """Validate the immutable scientific contract and its correspondence."""
         limits = version_limits(self.version, "fitted-regression")
         if (
-            self.specification.version == "regression-specification-v2"
-            and self.version != "fitted-regression-v2"
-        ):
-            msg = "deterministic numerical specification requires capacity-v2 state"
-            raise ValueError(msg)
-        if (
             type(self.specification) is not RegressionSpecification
             or type(self.target) is not ContinuousTarget
         ):
             msg = "concrete regression specification and target required"
             raise TypeError(msg)
+        if (
+            self.specification.version == "regression-specification-v2"
+            and self.version != "fitted-regression-v2"
+        ):
+            msg = "deterministic numerical specification requires capacity-v2 state"
+            raise ValueError(msg)
         if not isinstance(self.execution_id, UUID) or not isinstance(
             self.state_id,
             UUID,
         ):
             msg = "original state and fitting occurrence identity required"
             raise ValueError(msg)
-        if any(
-            type(v) is not float or not math.isfinite(v)
-            for v in (*self.coefficients, self.intercept)
-        ):
-            msg = "finite retained regression parameters required"
-            raise ValueError(msg)
-        if any(
-            type(v) is not tuple
-            for v in (
-                self.feature_names,
-                self.feature_value_kinds,
-                self.feature_units,
-                self.training_row_ids,
-                self.coefficients,
-                self.backend,
-            )
-        ):
-            msg = "immutable source-bound regression state required"
-            raise ValueError(msg)
-        if self.state_id == self.execution_id or any(
-            type(pair) is not tuple
-            or len(pair) != _BACKEND_PAIR_SIZE
-            or any(type(v) is not str or not v for v in pair)
-            for pair in self.backend
-        ):
-            msg = "separate state/fit identities and immutable backend versions"
-            raise ValueError(msg)
+        self._validate_parameters()
         if (
             not 1 <= len(self.feature_names) <= limits.features
             or len(self.feature_names) != len(self.feature_units)
@@ -319,6 +294,40 @@ class FittedRegression:
                     *(x for pair in self.backend for x in pair),
                 ),
             )
+        self._validate_model_shape()
+
+    def _validate_parameters(self) -> None:
+        """Require immutable finite parameters and backend occurrence correspondence."""
+        if any(
+            type(v) is not float or not math.isfinite(v)
+            for v in (*self.coefficients, self.intercept)
+        ):
+            msg = "finite retained regression parameters required"
+            raise ValueError(msg)
+        if any(
+            type(v) is not tuple
+            for v in (
+                self.feature_names,
+                self.feature_value_kinds,
+                self.feature_units,
+                self.training_row_ids,
+                self.coefficients,
+                self.backend,
+            )
+        ):
+            msg = "immutable source-bound regression state required"
+            raise ValueError(msg)
+        if self.state_id == self.execution_id or any(
+            type(pair) is not tuple
+            or len(pair) != _BACKEND_PAIR_SIZE
+            or any(type(v) is not str or not v for v in pair)
+            for pair in self.backend
+        ):
+            msg = "separate state/fit identities and immutable backend versions"
+            raise ValueError(msg)
+
+    def _validate_model_shape(self) -> None:
+        """Require the selected method's exact original preparation and retained shape."""
         method = self.specification.method
         if method is RegressionMethod.MEAN:
             if (
@@ -523,8 +532,6 @@ def validate_training_preparation(
     training: RegressionPopulation,
 ) -> FeatureTable:
     """Replay original fitting-only statistics even when a later native fit failed."""
-    from statistics import mean, pstdev
-
     t = training.inputs
     if (
         t.role is not RegressionRole.TRAINING

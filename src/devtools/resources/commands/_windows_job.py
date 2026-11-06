@@ -88,16 +88,15 @@ class WindowsJob:
         self._native.NtResumeProcess.argtypes = [wintypes.HANDLE]
         self._native.NtResumeProcess.restype = ctypes.c_long
         self._handle = self._kernel.CreateJobObjectW(None, None)
-        self._check(bool(self._handle))
+        self._check(ok=bool(self._handle))
         try:
             handle_flags = wintypes.DWORD()
             self._check(
-                bool(
+                ok=bool(
                     self._kernel.GetHandleInformation(
-                        self._handle,
-                        ctypes.byref(handle_flags),
-                    ),
-                ),
+                        self._handle, ctypes.byref(handle_flags)
+                    )
+                )
             )
             if handle_flags.value & 1:
                 msg_0 = "The job custody handle must not be inherited."
@@ -106,26 +105,23 @@ class WindowsJob:
             limits.basic.flags = 0x2000 | 0x8
             limits.basic.active = 1
             self._check(
-                bool(
+                ok=bool(
                     self._kernel.SetInformationJobObject(
-                        self._handle,
-                        9,
-                        ctypes.byref(limits),
-                        ctypes.sizeof(limits),
-                    ),
-                ),
+                        self._handle, 9, ctypes.byref(limits), ctypes.sizeof(limits)
+                    )
+                )
             )
             actual = _Extended()
             self._check(
-                bool(
+                ok=bool(
                     self._kernel.QueryInformationJobObject(
                         self._handle,
                         9,
                         ctypes.byref(actual),
                         ctypes.sizeof(actual),
                         None,
-                    ),
-                ),
+                    )
+                )
             )
             if (
                 actual.basic.flags & limits.basic.flags != limits.basic.flags
@@ -140,7 +136,7 @@ class WindowsJob:
             raise
 
     @staticmethod
-    def _check(ok: bool) -> None:
+    def _check(*, ok: bool) -> None:
         if not ok:
             raise ctypes.WinError(ctypes.get_last_error())
 
@@ -152,17 +148,15 @@ class WindowsJob:
                 msg,
             )
         self._check(
-            bool(self._kernel.AssignProcessToJobObject(self._handle, process_handle)),
+            ok=bool(self._kernel.AssignProcessToJobObject(self._handle, process_handle))
         )
         assigned = wintypes.BOOL()
         self._check(
-            bool(
+            ok=bool(
                 self._kernel.IsProcessInJob(
-                    process_handle,
-                    self._handle,
-                    ctypes.byref(assigned),
-                ),
-            ),
+                    process_handle, self._handle, ctypes.byref(assigned)
+                )
+            )
         )
         if not assigned.value:
             msg = "Suspended process custody could not be verified."
@@ -176,20 +170,20 @@ class WindowsJob:
         if self._handle:
             handle, self._handle = self._handle, None
             try:
-                self._check(bool(self._kernel.TerminateJobObject(handle, 1)))
+                self._check(ok=bool(self._kernel.TerminateJobObject(handle, 1)))
                 # Query the job-owned active count, never the machine process table.
                 for _ in range(100):
                     accounting = (ctypes.c_int64 * 6)()
                     self._check(
-                        bool(
+                        ok=bool(
                             self._kernel.QueryInformationJobObject(
                                 handle,
                                 1,
                                 ctypes.byref(accounting),
                                 ctypes.sizeof(accounting),
                                 None,
-                            ),
-                        ),
+                            )
+                        )
                     )
                     if not (wintypes.DWORD * 12).from_buffer(accounting)[10]:
                         return
@@ -197,4 +191,4 @@ class WindowsJob:
                 msg = "Contained command cleanup did not confirm an empty Job."
                 raise OSError(msg)
             finally:
-                self._check(bool(self._kernel.CloseHandle(handle)))
+                self._check(ok=bool(self._kernel.CloseHandle(handle)))

@@ -5,12 +5,15 @@ from __future__ import annotations
 
 import asyncio
 import sys
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
 from devtools.core.time import Duration
 from devtools.resources.commands import Command, CommandExecutor, CommandTimeoutError
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def test_contained_child_cannot_create_descendant(tmp_path: Path) -> None:

@@ -9,14 +9,15 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from importlib import import_module
 from time import perf_counter
+from typing import Any, cast
 from uuid import uuid4
 
 from devtools.learning.evidence.context import ExecutionContext, ExecutionRecorder
 from devtools.learning.evidence.events import Admitted, ExecutionEvent, Fact
-from devtools.learning.regression.batching import (
-    BatchedRegressionPredictions,
-    RegressionBatching,
-    predict_regression_batches,
+from devtools.learning.integrations.sklearn.regression.parity import (
+    IDENTICAL,
+    STRICT,
+    inspect_native_query,
 )
 from devtools.learning.regression.contracts import (
     RegressionInput,
@@ -32,6 +33,7 @@ from devtools.learning.regression.state import (
     training_mean,
     validate_training_state,
 )
+from devtools.learning.regression.verification import inspect_knn_query
 from devtools.learning.representation.features import FeatureTable
 from devtools.learning.representation.standardization import (
     FittedFeatureStandardization,
@@ -57,27 +59,6 @@ class NativeRegressionFit:
         self._check_native(inputs.features, predicted)
         return predicted
 
-    def predict_batches(
-        self,
-        inputs: RegressionInput,
-        specification: RegressionBatching,
-        *,
-        progress: Callable[[int, int], None] | None = None,
-    ) -> BatchedRegressionPredictions:
-        """Qualify each numerical batch against ONE original native fitted model."""
-        self.parity_receipts.clear()
-        result = predict_regression_batches(self.state, inputs, specification)
-        for batch in result.evidence.batches:
-            features = FeatureTable(
-                inputs.features.feature_names,
-                inputs.features.rows[batch.start : batch.stop],
-                inputs.features.feature_value_kinds,
-            )
-            self._check_native(features, result.predictions, batch.start, batch.stop)
-            if progress is not None:
-                progress(batch.stop, len(inputs.row_ids))
-        return result
-
     def _check_native(
         self,
         features: FeatureTable,
@@ -87,18 +68,12 @@ class NativeRegressionFit:
     ) -> None:
         if self.estimator is None or not features.rows:
             return
-        from devtools.learning.integrations.sklearn.regression.parity import (
-            IDENTICAL,
-            STRICT,
-            inspect_native_query,
-        )
 
         if self.validation_version not in (STRICT, IDENTICAL):
             msg = "unsupported native validation version"
             raise ValueError(msg)
         if stop is None:
             stop = len(predicted.row_ids)
-        from typing import Any, cast
 
         threadpool_limits = import_module("threadpoolctl").threadpool_limits
         if not (self.state.preparation is not None):
@@ -107,8 +82,6 @@ class NativeRegressionFit:
         rows = self.state.preparation.transform(features).features.rows
         qualified = [True] * len(rows)
         if self.state.specification.version == "regression-specification-v2":
-            from devtools.learning.regression.verification import inspect_knn_query
-
             for j, row in enumerate(rows):
                 ids, ds, value, qualified[j] = inspect_knn_query(self.state, row)
                 if (
@@ -259,12 +232,12 @@ def fit_regression(
             ):
                 msg = "original training-only numerical preparation required"
                 raise ValueError(msg)
-            import numpy as np
+            np = import_module("numpy")
 
             scipy = import_module("scipy")
             sklearn = import_module("sklearn")
-            Ridge = import_module("sklearn.linear_model").Ridge
-            KNeighborsRegressor = import_module("sklearn.neighbors").KNeighborsRegressor
+            ridge_class = import_module("sklearn.linear_model").Ridge
+            neighbor_class = import_module("sklearn.neighbors").KNeighborsRegressor
             threadpool_limits = import_module("threadpoolctl").threadpool_limits
             rows = preparation.transform(t.features).features
             backend += (
@@ -275,7 +248,7 @@ def fit_regression(
             with warnings.catch_warnings(), threadpool_limits(limits=1):
                 warnings.simplefilter("error")
                 if specification.method is RegressionMethod.RIDGE:
-                    ridge = Ridge(alpha=1.0, fit_intercept=True, solver="svd")
+                    ridge = ridge_class(alpha=1.0, fit_intercept=True, solver="svd")
                     native_start = perf_counter()
                     ridge.fit(rows.rows, training.values)
                     native_seconds = perf_counter() - native_start
@@ -283,7 +256,7 @@ def fit_regression(
                     intercept = float(ridge.intercept_)
                     estimator = ridge
                 else:
-                    knn = KNeighborsRegressor(
+                    knn = neighbor_class(
                         n_neighbors=5,
                         weights="uniform",
                         metric="euclidean",

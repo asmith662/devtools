@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import importlib.metadata
 import json
 import sys
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
     )
 
 _OPERATION_SECONDS = 300
+_OPERATION_LIMIT = Duration.seconds(_OPERATION_SECONDS)
 
 _BOOTSTRAP = """
 import importlib.abc,json,pathlib,runpy,site,sys
@@ -51,6 +53,12 @@ site.addsitedir(sys.argv[1])
 sys.argv=sys.argv[3:]
 runpy.run_module('devtools.learning.integrations.local.worker',run_name='__main__')
 """
+
+
+def _prepare_root(root: Path) -> None:
+    """Exclusively create the caller-owned operation and temporary directory."""
+    root.mkdir()
+    (root / "temp").mkdir()
 
 
 class ManagedLearningWorker:
@@ -91,7 +99,7 @@ class ManagedLearningWorker:
         grant: ExecutionAuthorization,
         root: Path,
         *,
-        timeout: Duration = Duration.seconds(300),
+        operation_limit: Duration = _OPERATION_LIMIT,
     ) -> LearningPublication:
         """Inspect the declared scientific contract.
 
@@ -105,11 +113,10 @@ class ManagedLearningWorker:
         if len(packet) > MAX_PACKET_BYTES:
             msg = "learning packet exceeds its pre-entry limit"
             raise ValueError(msg)
-        if timeout.total_seconds > _OPERATION_SECONDS:
+        if operation_limit.total_seconds > _OPERATION_SECONDS:
             msg = "learning operation timeout exceeds the qualified profile"
             raise ValueError(msg)
-        root.mkdir()
-        (root / "temp").mkdir()
+        await asyncio.to_thread(_prepare_root, root)
         write(BinaryFile(resolve_path(root / "request.json"), packet), overwrite=False)
         command = (
             Command(str(self.executable.value))
@@ -121,7 +128,7 @@ class ManagedLearningWorker:
                 json.dumps([str(r.value) for r in self.denied_roots]),
             )
             .cwd(resolve_path(root))
-            .with_timeout(timeout)
+            .with_timeout(operation_limit)
             .with_environment(
                 {
                     "PYTHONPATH": "",

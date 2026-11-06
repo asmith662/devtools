@@ -4,156 +4,36 @@
 import math
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime
-from enum import Enum
-from uuid import UUID, uuid4
 
-from devtools.core.time import Timestamp
 from devtools.learning.identity import source_fingerprint as fingerprint
 from devtools.learning.measurement.contracts import (
-    FieldBinding,
     Measured,
-    MeasurementBasis,
-    MeasurementBinding,
-    MeasurementBundle,
-    MeasurementContext,
-    MetricDefinition,
-    MetricParameter,
     NonValueKind,
     NoValue,
-    OutputContract,
-    UnitMeaning,
-    ValueShape,
 )
 from devtools.learning.regression.contracts import (
     ContinuousTarget,
     RegressionPopulation,
 )
 from devtools.learning.regression.state import RegressionPredictions
-from devtools.learning.representation.features import FeatureValueKind
-from devtools.learning.representation.observations import ColumnRole, MissingValuePolicy
 
 type RegressionValue = Measured[float] | NoValue
-
-
-class RegressionMeasure(Enum):
-    """Retain the declared RegressionMeasure scientific values and invariants."""
-
-    MAE = "mae"
-    RMSE = "rmse"
-    R2 = "r2"
-    MAE_SKILL = "mae_skill"
-
-
-@dataclass(frozen=True, slots=True)
-class RegressionMetricDefinition(MetricDefinition[float]):
-    """Retain the RegressionMetricDefinition scientific contract."""
-
-    measure: RegressionMeasure
-
-    def __post_init__(self) -> None:
-        """Validate the immutable scientific contract and its correspondence."""
-        if not isinstance(self.measure, RegressionMeasure):
-            msg = "typed regression metric required"
-            raise TypeError(msg)
-        self.validate_definition()
-
-    @property
-    def semantic_key(self) -> str:
-        """Apply the explicit semantic key contract within this owner."""
-        return "regression." + self.measure.value
-
-    @property
-    def version(self) -> int:
-        """Apply the explicit version contract within this owner."""
-        return 1
-
-    @property
-    def parameters(self) -> tuple[MetricParameter, ...]:
-        """Apply the explicit parameters contract within this owner."""
-        formula = {
-            RegressionMeasure.MAE: "fsum(abs(truth-prediction))/N",
-            RegressionMeasure.RMSE: "sqrt(fsum((truth-prediction)^2)/N)",
-            RegressionMeasure.R2: "1-SSE/SST;SST=fsum((truth-fsum(truth)/N)^2)",
-            RegressionMeasure.MAE_SKILL: "1-candidate_MAE/same_task_reference_MAE",
-        }[self.measure]
-        return (
-            MetricParameter("formula", formula),
-            MetricParameter("weights", "equal_original_observation_mass"),
-            MetricParameter("missing", "complete_paired_population_required"),
-            MetricParameter(
-                "undefined",
-                "empty_or_zero_required_denominator_or_binary64_overflow",
-            ),
-            MetricParameter(
-                "direction",
-                "lower"
-                if self.measure in (RegressionMeasure.MAE, RegressionMeasure.RMSE)
-                else "higher",
-            ),
-            MetricParameter(
-                "units",
-                "same_declared_target_units"
-                if self.measure in (RegressionMeasure.MAE, RegressionMeasure.RMSE)
-                else "dimensionless",
-            ),
-        )
-
-    @property
-    def output(self) -> OutputContract:
-        """Apply the explicit output contract within this owner."""
-        return OutputContract(
-            ValueShape.REAL,
-            UnitMeaning.SOURCE_QUANTITY
-            if self.measure in (RegressionMeasure.MAE, RegressionMeasure.RMSE)
-            else UnitMeaning.DIMENSIONLESS,
-        )
-
-    def validate_value(self, value: float) -> None:
-        """Apply the explicit validate value contract within this owner."""
-        if (
-            type(value) is not float
-            or not math.isfinite(value)
-            or (
-                self.measure in (RegressionMeasure.MAE, RegressionMeasure.RMSE)
-                and value < 0
-            )
-            or (
-                self.measure in (RegressionMeasure.R2, RegressionMeasure.MAE_SKILL)
-                and value > 1
-            )
-        ):
-            msg = "finite regression metric in its legitimate range required"
-            raise ValueError(msg)
-
-    def validate_binding(
-        self,
-        binding: MeasurementBinding,
-        basis: MeasurementBasis | None,
-    ) -> None:
-        """Apply the explicit validate binding contract within this owner."""
-        if (
-            not isinstance(binding, FieldBinding)
-            or binding.declared_role is not ColumnRole.TARGET
-            or binding.declared_value_kind is not FeatureValueKind.CONTINUOUS
-            or (basis is None)
-            or (basis.population_count != basis.effective_count)
-        ):
-            msg = "complete continuous-target source field basis required"
-            raise ValueError(msg)
 
 
 def _undefined(reason: str, detail: str) -> NoValue:
     return NoValue(NonValueKind.UNDEFINED, reason, detail)
 
 
+def _finite_measurement(value: float) -> Measured[float]:
+    if not math.isfinite(value):
+        msg = "nonfinite result"
+        raise OverflowError(msg)
+    return Measured(float(value))
+
+
 def _arithmetic(compute: Callable[[], float]) -> RegressionValue:
     try:
-        value = compute()
-        if not math.isfinite(value):
-            msg = "nonfinite result"
-            raise OverflowError(msg)
-        return Measured(float(value))
+        return _finite_measurement(compute())
     except (OverflowError, ValueError, ZeroDivisionError):
         return _undefined(
             "unrepresentable_regression_arithmetic",
@@ -261,89 +141,4 @@ def _evaluate_values(
         r2,
         sse,
         sst,
-    )
-
-
-def mae_skill(
-    candidate: RegressionEvaluation,
-    reference: RegressionEvaluation,
-) -> RegressionValue:
-    """Paired unitless skill; positive means less MAE than the declared reference."""
-    if (
-        candidate.population_id,
-        candidate.input_identity,
-        candidate.target_values_identity,
-        candidate.target,
-        candidate.row_ids,
-    ) != (
-        reference.population_id,
-        reference.input_identity,
-        reference.target_values_identity,
-        reference.target,
-        reference.row_ids,
-    ):
-        msg = "same original task/population/target scale and units required"
-        raise ValueError(msg)
-    if not isinstance(candidate.mae, Measured) or not isinstance(
-        reference.mae,
-        Measured,
-    ):
-        return NoValue(
-            NonValueKind.UNAVAILABLE,
-            "incomplete_regression_skill",
-            "Required original paired MAE is not measured.",
-        )
-    if reference.mae.value <= 0:
-        return _undefined(
-            "zero_reference_mae",
-            "No positive original reference MAE for scale normalization.",
-        )
-    candidate_value, reference_value = (candidate.mae.value, reference.mae.value)
-    return _arithmetic(lambda: 1 - candidate_value / reference_value)
-
-
-def regression_measurements(
-    evaluation: RegressionEvaluation,
-    context: MeasurementContext,
-    *,
-    at: datetime | None = None,
-    bundle_id: UUID | None = None,
-    execution_id: UUID | None = None,
-) -> MeasurementBundle[float]:
-    """Use source-unit field bindings without extending common measurement types."""
-    at = at or Timestamp.now().value
-    target = evaluation.target
-    binding = FieldBinding(
-        target.identity,
-        ColumnRole.TARGET,
-        FeatureValueKind.CONTINUOUS,
-        MissingValuePolicy(nan_is_missing=False),
-        target.unit,
-    )
-    observations = tuple(
-        (
-            RegressionMetricDefinition(measure).observe(
-                value,
-                context_id=context.context_id,
-                key="regression/" + measure.value,
-                binding=binding,
-                basis=MeasurementBasis(
-                    len(evaluation.row_ids),
-                    len(evaluation.row_ids),
-                ),
-                collected_at=at,
-            )
-            for measure, value in (
-                (RegressionMeasure.MAE, evaluation.mae),
-                (RegressionMeasure.RMSE, evaluation.rmse),
-                (RegressionMeasure.R2, evaluation.r2),
-            )
-        ),
-    )
-    return MeasurementBundle(
-        bundle_id or uuid4(),
-        at,
-        (context,),
-        observations,
-        execution_id,
     )

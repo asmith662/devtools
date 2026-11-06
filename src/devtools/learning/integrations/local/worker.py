@@ -61,17 +61,19 @@ def main() -> None:
         if event == "open" and isinstance(arguments[0], (str, bytes)):
             name = os.fsdecode(arguments[0])
             flags = arguments[2]
-            if isinstance(flags, int) and flags & (
-                os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
-            ):
-                if not resolve_path(
+            if (
+                isinstance(flags, int)
+                and flags
+                & (os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND)
+                and not resolve_path(
                     Path(name),
                     base_directory=owned,
-                ).value.is_relative_to(owned):
-                    msg = "learning worker write is outside its owned operation root"
-                    raise PermissionError(
-                        msg,
-                    )
+                ).value.is_relative_to(owned)
+            ):
+                msg = "learning worker write is outside its owned operation root"
+                raise PermissionError(
+                    msg,
+                )
 
     sys.addaudithook(guard)
     result = execute_plan(plan, grant, owned / "science")

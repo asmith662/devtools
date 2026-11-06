@@ -1,7 +1,7 @@
 {
   "donor_commit": "e069092e9b83c349ddb4efee09a3b1891ea0ad63",
   "destination_baseline": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
-  "status": "FUNCTIONAL_CANDIDATE_NOT_RELEASE_ACCEPTED",
+  "status": "RELEASE_REPAIR_CHECKPOINT_NOT_RELEASE_ACCEPTED",
   "inputs": [
     {
       "donor": "src/learned_intelligence/representation/features.py",
@@ -39,10 +39,11 @@
       "donor": "src/learned_intelligence/representation/observations.py",
       "sha256": "c255e89e3052c60beb42080f60b7e55b5912d67ab5a51e58c42e55cf162f2c6d",
       "destination": "src/devtools/learning/representation/observations.py",
-      "disposition": "RELOCATE",
+      "disposition": "EXTRACT",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "ab51d2f666fd405c26ae91ca8c37f9f56e0c1894dfc3e16deae2d4e4eb7e51f9"
+      "destination_sha256": "bf6a33a060d99c6893c41981e3c1b4f396bafddbd64eccf545933de066886f4e",
+      "release_review": "See release_scope_review.removed_symbols for exact narrowed closure; original donor hash retained."
     },
     {
       "donor": "src/learned_intelligence/representation/standardization.py",
@@ -51,25 +52,28 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "5dd4b001d03e4521bc73038cc9c147712f8869ed3a291a45d509769fca3a39af"
+      "destination_sha256": "56acf6e496e3500411449b9f9e214d0cbde65a27a9b156ae19f838e3a74adc8d"
     },
     {
       "donor": "src/learned_intelligence/measurement/contracts.py",
       "sha256": "da2fc13e7885f63bfbeb3167b9f4ab36bc40acd17708761031a9c01edda28cae",
       "destination": "src/devtools/learning/measurement/contracts.py",
-      "disposition": "RELOCATE",
+      "disposition": "EXTRACT",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de"
+      "destination_sha256": "b264726d7a572326df67029f24c93b28d9c3e9cae70be37e31e8e6a97849b080",
+      "release_review": "See release_scope_review.removed_symbols for exact narrowed closure; original donor hash retained."
     },
     {
       "donor": "src/learned_intelligence/requirements/evidence.py",
       "sha256": "1ec1d02ff4a4c621908f34c889ac3bcdd6cd9f0cf564f051168b7674b4225fa8",
-      "destination": "src/devtools/learning/requirements/evidence.py",
-      "disposition": "RELOCATE",
+      "destination": "src/devtools/learning/measurement/contracts.py",
+      "disposition": "EXTRACT",
       "symbols": "selected module",
-      "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c"
+      "adaptation": "Exact validate_references only, colocated with its EvidenceReference owner. Unused generic requirement engine deferred.",
+      "destination_sha256": "b264726d7a572326df67029f24c93b28d9c3e9cae70be37e31e8e6a97849b080",
+      "prior_destination": "src/devtools/learning/requirements/evidence.py",
+      "release_review": "See release_scope_review.removed_symbols for exact narrowed closure; original donor hash retained."
     },
     {
       "donor": "src/learned_intelligence/execution/events.py",
@@ -78,7 +82,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "2d0a76e724700f04242ffbf98e1b6ab57bb07b747c5e7bc2f9cdbe55573f7fca"
+      "destination_sha256": "88381d80640f86825225cf4ec5bf12cca0c1efe25d049b45d96910851f4193a0"
     },
     {
       "donor": "src/learned_intelligence/execution/context.py",
@@ -87,7 +91,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "1647cee9e53b482a2d5da6fbe5001600fbd5ddc545f1b606bed8f69ccd3abf82"
+      "destination_sha256": "a0f3276ddfd1670d818d3155ed082592fb01be5bfcf63a177b0f0d1a791a438c"
     },
     {
       "donor": "src/learned_intelligence/execution/publication.py",
@@ -105,7 +109,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "d3e5c9091b338e5eb32098666573eff7a1b374bb609ec3e7e54f02cdb870bd4a"
+      "destination_sha256": "d3677f208b6aaada7b8737a576c53c1734da4436934a0f94542fcaf01cb8ddba"
     },
     {
       "donor": "src/learned_intelligence/integrations/local_execution/sqlite.py",
@@ -114,7 +118,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "b428657ac6921d43fab998e96bfb538c09a26716a3c043f015854993644bc7f2"
+      "destination_sha256": "d714d34d24fae293cfb4d1c94400c0ff81ea967178866dd71e877f13b1604bcf"
     },
     {
       "donor": "src/learned_intelligence/integrations/local_execution/publication.py",
@@ -123,7 +127,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "902d8065d8cfcde38c0dcad310df43871886682745bd38f2c165ee375dacad02"
+      "destination_sha256": "5fe5651fc6ef0d8f42b0ac5d48c3b928e5907fff8ea0421b69480a87fb9e26ec"
     },
     {
       "donor": "src/learned_intelligence/classification/linear.py",
@@ -132,7 +136,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "aeef1ea2601035c480c89dbc76e64cc69eac5b580d4bbcf4112c48a58a441467"
+      "destination_sha256": "ea1c32214786fce6401c5a0f9d3969b4450f2f91fce3b83f079dae30e6fed27c"
     },
     {
       "donor": "src/learned_intelligence/classification/margin.py",
@@ -141,7 +145,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "907d6af768d1d71d259b763ad163294f48488cde1cded888b333c264a94d3b82"
+      "destination_sha256": "c4d4585e3b660dd05a058695c6d74f17fdad8600394ebca1596b7ebc1b515bb6"
     },
     {
       "donor": "src/learned_intelligence/classification/behavior.py",
@@ -159,7 +163,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "50291dfa7cf4d8a582d14370f327491af716f2e277e6a64e3a6c4195e7164221"
+      "destination_sha256": "25feeb8ca59e7958654b74ce2b90fc7f019c09542e1a45ac96f062230f383b7a"
     },
     {
       "donor": "src/learned_intelligence/classification/k_nearest_neighbors.py",
@@ -213,7 +217,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "028a26cf9da18079aa108bf971c3a55bbe4d681db27df69b05fb62d2ee6295a4"
+      "destination_sha256": "28e5cf02c87c36636c4b9d79616ba67a3ad7cfe72cd4fc0e6bc3ca80087cc2d7"
     },
     {
       "donor": "src/learned_intelligence/regression/limits.py",
@@ -237,10 +241,11 @@
       "donor": "src/learned_intelligence/regression/batching.py",
       "sha256": "638b38e5b6ef87920ea3ef2f28dc7d379aeea7b1d6e078558660a8d33bdf1545",
       "destination": "src/devtools/learning/regression/batching.py",
-      "disposition": "RELOCATE",
+      "disposition": "DEFERRED_UNUSED",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "de278b428c38500fed6495c294a5ce9d60db3f81744cd1cb9a44782bb80643f5"
+      "last_destination_sha256": "de278b428c38500fed6495c294a5ce9d60db3f81744cd1cb9a44782bb80643f5",
+      "reason": "No selected consumer; generic regression batching is outside supported whole-population operations."
     },
     {
       "donor": "src/learned_intelligence/integrations/sklearn/regression/__init__.py",
@@ -249,7 +254,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "73082601e9cde62221c7ae560bb72e3e30e06cebefff4c5ad4fb45e0a97fd536"
+      "destination_sha256": "f6ffc324be3f25cf24e7f8a224a37d09fa0523123fd0ad30af5d583bc119c684"
     },
     {
       "donor": "src/learned_intelligence/integrations/sklearn/regression/parity.py",
@@ -264,19 +269,21 @@
       "donor": "src/learned_intelligence/evaluation/regression/metrics.py",
       "sha256": "b3a089830f9bf40584dfdf16ec5bb3ca6ef909c3588280b6d27053ed200dcfe7",
       "destination": "src/devtools/learning/evaluation/regression/metrics.py",
-      "disposition": "NARROW",
+      "disposition": "EXTRACT",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "ada872cf9e326df7d026ea51b806d63676a4dad77928a76795ecc4b8c1b90ba5"
+      "destination_sha256": "63fedffb79b78a2f1cc7fbd8f9d94bdf1ab24a1ae94803f3302a25dae5b6b2a1",
+      "release_review": "See release_scope_review.removed_symbols for exact narrowed closure; original donor hash retained."
     },
     {
       "donor": "src/learned_intelligence/method_design/features.py",
       "sha256": "35f659e89f71822e9047b6ec21cb8115f16a7f1f4922b3351d4bfed54e7e52a0",
       "destination": "src/devtools/learning/methods/features.py",
-      "disposition": "RELOCATE",
+      "disposition": "EXTRACT",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "c51efc9304dd5b0b0d52800a2968c963e51225deed62e254d0330450e95375ba"
+      "destination_sha256": "8736f7051562ac8ad58393d19ca2fadc933ef98fd38032b466ef08cf41be5dbf",
+      "release_review": "See release_scope_review.removed_symbols for exact narrowed closure; original donor hash retained."
     },
     {
       "donor": "src/learned_intelligence/integrations/local_execution/linear_classification.py",
@@ -385,7 +392,7 @@
   "authenticated_source_inputs": 90,
   "authenticated_source_mismatches": 0,
   "recovered_checkpoint": "f37603db",
-  "current_imported_input_count": 40,
+  "current_imported_input_count": 39,
   "current_imported_input_mismatches": 0,
   "additional_extractions": [
     {
@@ -430,22 +437,22 @@
     },
     {
       "path": "src/devtools/agents/learning/process.py",
-      "sha256": "34fd304ea4381de7d8aa44238cb5ed72961ca988a380fef3f246694c726f8ac9",
+      "sha256": "90c4ee661743e24794217ac362fe8bd55565d6d2660acd595a9a729212076b47",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
       "path": "src/devtools/learning/integrations/local/inspection.py",
-      "sha256": "a65babdb8a1995143149d5a4fcb0b82466c844a701b16f41b592aab146b9872c",
+      "sha256": "452644b97fa2ffc834e1dbca332d2b8fe1ffbd29b6bc30b998a46dde8db66b64",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
       "path": "src/devtools/learning/integrations/local/operations.py",
-      "sha256": "eec7d154b8f7ee3e318dc10378a87457ad6a48c8ec55ca330f4dc11e98f5f606",
+      "sha256": "1d08c4819ccd9cc5a8b06464873b236520779f160ee6e703a0d2357c89799aca",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
       "path": "src/devtools/learning/integrations/local/worker.py",
-      "sha256": "8d8d9775138f9e3af765c738103cba1720907863c55c2a860e114901cb82df46",
+      "sha256": "6ca93b12e2f2fa1b46e44cb6876fd2369574f84cb720dcf9ef390fa10ba71a16",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
@@ -475,7 +482,7 @@
     },
     {
       "path": "src/devtools/tools/learning/execution.py",
-      "sha256": "dfa3be8ec67a452ad8013a6caed919a02b4a0275d7e7963ba4f5f64183675c7a",
+      "sha256": "666414547152d15769583f6806a9836e34427956134f01197569e856ea573502",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
@@ -505,5 +512,201 @@
       "destination_sha256": "404cf7614df16b614329eda89845ff0d46fe08d8d5752c144341b04f551f9626",
       "omission_reason": "Unselected classifier wrapper with no maintained selected consumer or native constructor. Historical imported bytes remain in earlier checkpoints; omitted from the maintained wheel after dependency-closure review."
     }
-  ]
+  ],
+  "release_scope_review": {
+    "baseline": "623b6b38b8800767e14c57673b150b8634ea4149",
+    "removed_symbols": [
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "utc",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "_DataclassParameters",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "_DataclassClass",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "_immutable",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "ValueShape",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "UnitMeaning",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "OutputContract",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MetricParameter",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "DefinitionIdentity",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "PopulationBinding",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "CategoryBinding",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "FieldBinding",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "ScopedBinding",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MeasurementBasis",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MeasurementContext",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MetricDefinition",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MetricObservation",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "symbol": "MeasurementBundle",
+        "sha256_before": "dde9a5a89cb5f23099e8ab7b6da3635f82cd77bb40ab0b09c921fff7c9a0c2de",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/evaluation/regression/metrics.py",
+        "symbol": "RegressionMeasure",
+        "sha256_before": "39f5c754742e0ad1d498c50238ec9fe06425dc885171b4a6749d2f1ea9ecc202",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/evaluation/regression/metrics.py",
+        "symbol": "RegressionMetricDefinition",
+        "sha256_before": "39f5c754742e0ad1d498c50238ec9fe06425dc885171b4a6749d2f1ea9ecc202",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/evaluation/regression/metrics.py",
+        "symbol": "mae_skill",
+        "sha256_before": "39f5c754742e0ad1d498c50238ec9fe06425dc885171b4a6749d2f1ea9ecc202",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/evaluation/regression/metrics.py",
+        "symbol": "regression_measurements",
+        "sha256_before": "39f5c754742e0ad1d498c50238ec9fe06425dc885171b4a6749d2f1ea9ecc202",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "RequirementVerdict",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "FindingBasis",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "ConditionState",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "canonical_verdict",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "canonical_basis",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/requirements/evidence.py",
+        "symbol": "RequirementFinding",
+        "sha256_before": "c6824959d0f6a86f4a239f2db8434fd73f571e3b9c6b3153ae495a82d331052c",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/methods/features.py",
+        "symbol": "CandidateGeneration",
+        "sha256_before": "c51efc9304dd5b0b0d52800a2968c963e51225deed62e254d0330450e95375ba",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/methods/features.py",
+        "symbol": "generate_feature_recipes",
+        "sha256_before": "c51efc9304dd5b0b0d52800a2968c963e51225deed62e254d0330450e95375ba",
+        "reason": "No selected maintained consumer; deferred unused API, with exact scalar/state/source/evidence consumers retained."
+      },
+      {
+        "destination": "src/devtools/learning/representation/observations.py",
+        "retained": "PopulationScope with all original values",
+        "reason": "Raw heterogeneous/missing-data profile tables are not admitted by this numeric-only capability; FeatureTable, BinaryLinearTraining and RegressionInput preserve source/schema/target/row/unit/role guards."
+      },
+      {
+        "destination": "src/devtools/learning/measurement/contracts.py",
+        "retained": "Exact original validate_references helper, relocated from requirements/evidence.py",
+        "reason": "The sole two selected consumers need immutable EvidenceReference tuples; no generic requirement-finding engine is selected."
+      }
+    ],
+    "reason": "Audited first-capability dependency closure: no selected maintained consumer; exact source/role/grant/state/metric/publication guards retained. No coverage exclusion or scientific threshold change."
+  }
 }

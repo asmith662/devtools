@@ -132,10 +132,7 @@ class ExecutionContext:
             msg = "remote parent requires a UUID and no live parent context"
             raise ValueError(msg)
         if parent is not None:
-            parent._running()
-            if recorder is not parent._recorder:
-                msg = "parent and child must share the required recorder"
-                raise ValueError(msg)
+            parent.require_child_recorder(recorder)
         self.parent_execution_id = (
             parent.execution_id if parent else parent_execution_id
         )
@@ -197,13 +194,7 @@ class ExecutionContext:
         )
         try:
             acknowledged = self._recorder.record(event)
-            if (
-                not isinstance(acknowledged, ExecutionEvent)
-                or acknowledged.observed_at is None
-                or replace(acknowledged, observed_at=None) != event
-            ):
-                msg = "Recorder returned an invalid acknowledgment"
-                raise RecordingError(msg)
+            self._validate_acknowledgment(event, acknowledged)
         except Exception as error:
             failure = (
                 error
@@ -220,7 +211,7 @@ class ExecutionContext:
         if notify and self._observer is not None:
             try:
                 self._observer(acknowledged)
-            except Exception as error:
+            except Exception as error:  # noqa: BLE001 -- arbitrary optional callback; recorded without altering computation
                 self._observer = None
                 self._emit(
                     exception_diagnostic(
@@ -233,9 +224,29 @@ class ExecutionContext:
                 )
         return acknowledged
 
+    @staticmethod
+    def _validate_acknowledgment(
+        event: ExecutionEvent, acknowledged: ExecutionEvent
+    ) -> None:
+        """Require the exact immutable event with an observed commit time."""
+        if (
+            not isinstance(acknowledged, ExecutionEvent)
+            or acknowledged.observed_at is None
+            or replace(acknowledged, observed_at=None) != event
+        ):
+            msg = "Recorder returned an invalid acknowledgment"
+            raise RecordingError(msg)
+
     def _running(self) -> None:
         if not self._started or self._stopped:
             msg = "operation must be active and nonterminal"
+            raise ValueError(msg)
+
+    def require_child_recorder(self, recorder: ExecutionRecorder) -> None:
+        """Require live parent custody and the same acknowledged history owner."""
+        self._running()
+        if recorder is not self._recorder:
+            msg = "parent and child must share the required recorder"
             raise ValueError(msg)
 
     def stage(
@@ -328,7 +339,7 @@ class ExecutionContext:
             self._emit(exception_diagnostic(error, category, self._stage))
             self._emit(Terminal(outcome))
             self._stopped = True
-        except Exception as recording_error:
+        except Exception as recording_error:  # noqa: BLE001 -- retain the primary failure and explicitly report incomplete recording
             error.add_note(
                 f"Required recording incomplete for {self.execution_id}; "
                 f"last acknowledged sequence={self._sequence}; "

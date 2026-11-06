@@ -84,7 +84,10 @@ def test_rehashed_false_mean_even_with_rewritten_ledger(tmp_path: Path) -> None:
         hashlib.sha256(before).hexdigest(): hashlib.sha256(after).hexdigest(),
     }
     with sqlite3.connect(root / "science.sqlite") as conn:
-        for identity, text in conn.execute("SELECT id,document FROM events").fetchall():
+        for identity, original_text in conn.execute(
+            "SELECT id,document FROM events",
+        ).fetchall():
+            text = original_text
             for a, b in sorted(changes.items(), key=lambda p: -len(p[0])):
                 text = text.replace(a, b)
             conn.execute("UPDATE events SET document=? WHERE id=?", (text, identity))
@@ -100,8 +103,8 @@ def test_fit_ack_observed_after_prediction_refuses(tmp_path: Path) -> None:
     saved = json.loads(member.read_bytes())
     with sqlite3.connect(root / "science.sqlite") as conn:
         rows = [
-            (identity, json.loads(text))
-            for identity, text in conn.execute(
+            (identity, json.loads(original_text))
+            for identity, original_text in conn.execute(
                 "SELECT id,document FROM events",
             ).fetchall()
         ]

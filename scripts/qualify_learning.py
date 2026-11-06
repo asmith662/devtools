@@ -160,7 +160,7 @@ async def qualify(
     tasks = load_tasks(inputs)
     budget = LearningBudget()
     maximum = budget.admit_envelope(tuple(task.methods for task in tasks))
-    root.mkdir()
+    await asyncio.to_thread(root.mkdir)
     worker = ManagedLearningWorker(
         resolve_path(Path(sys.executable)),
         resolve_path(

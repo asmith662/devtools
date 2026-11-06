@@ -20,13 +20,13 @@ from devtools.learning.classification.margin import FittedMarginClassifier
 from devtools.learning.evidence.events import (
     Admitted,
     ExecutionEvent,
+    ExecutionHistory,
     Outcome,
     Terminal,
 )
+from devtools.learning.evidence.publication import PublicationManifest
 from devtools.learning.integrations.local._codec import retained_object as obj
-from devtools.learning.integrations.local.classification.codec import (
-    document,
-)
+from devtools.learning.integrations.local.classification.codec import document
 from devtools.learning.integrations.local.classification.codec import (
     preparation as decode_preparation,
 )
@@ -73,10 +73,11 @@ from devtools.learning.representation.standardization import (
 from devtools.resources.filesystem import BinaryFile, FileFormat, read
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from devtools.learning.investigation.classification.contracts import (
         ExecutionAuthorization,
     )
-
 _BINARY_COUNT_F1_VERSION = 2
 _BINARY_NEIGHBORS = 7
 
@@ -96,20 +97,24 @@ def _independent_features(
     if preparation is not None:
         rows = tuple(
             tuple(
-                (x - m) / s
-                for x, m, s in zip(
-                    row,
-                    preparation.training_means,
-                    preparation.effective_scales,
-                    strict=True,
-                )
+                (
+                    (x - m) / s
+                    for x, m, s in zip(
+                        row,
+                        preparation.training_means,
+                        preparation.effective_scales,
+                        strict=True,
+                    )
+                ),
             )
             for row in rows
         )
     if method.startswith("square-"):
         names += tuple(
-            f"append_squared_features_v1[{i},{i}]:{name}*{name}"
-            for i, name in enumerate(features.feature_names)
+            (
+                f"append_squared_features_v1[{i},{i}]:{name}*{name}"
+                for i, name in enumerate(features.feature_names)
+            ),
         )
         rows = tuple(row + tuple(x * x for x in row) for row in rows)
     kinds = features.feature_value_kinds * (2 if method.startswith("square-") else 1)
@@ -130,7 +135,7 @@ def _independent_f1(
     ):
         support = sum(y == label for y in truth)
         guessed = sum(y == label for y in predicted)
-        correct = sum(a == b == label for a, b in zip(truth, predicted, strict=True))
+        correct = sum((a == b == label for a, b in zip(truth, predicted, strict=True)))
         if version == _BINARY_COUNT_F1_VERSION:
             if not support + guessed:
                 return None
@@ -138,7 +143,7 @@ def _independent_f1(
         else:
             if not support or not guessed:
                 return None
-            precision, recall = correct / guessed, correct / support
+            precision, recall = (correct / guessed, correct / support)
             if not precision + recall:
                 return None
             values.append(2 * precision * recall / (precision + recall))
@@ -188,16 +193,12 @@ def _acknowledged_before(earlier: ExecutionEvent, later: ExecutionEvent) -> bool
     return earlier.observed_at is not None and earlier.observed_at <= later.occurred_at
 
 
-def inspect_learning(
+def _load(
     reference: LearningPublication,
     plan: LearningPlan,
     grant: ExecutionAuthorization,
-) -> InspectedLearning:
-    """Inspect the declared scientific contract.
-
-    Check pinned members, source, preparation, state, metrics and acknowledged
-    order.
-    """
+) -> tuple[PublicationManifest, dict[str, object]]:
+    """Verify one original scientific boundary without executing effects."""
     validate_authorization(plan, grant)
     if reference.plan_identity != plan.identity:
         msg = "foreign scientific reference"
@@ -209,9 +210,9 @@ def inspect_learning(
         publication is None
         or publication.manifest is None
         or publication.manifest.generation_id != reference.generation_id
-        or publication.manifest_sha256 != reference.manifest_sha256
-        or publication.recording_status.value != "acknowledged"
-        or publication.manifest.expected_artifact_names != ("result.json",)
+        or (publication.manifest_sha256 != reference.manifest_sha256)
+        or (publication.recording_status.value != "acknowledged")
+        or (publication.manifest.expected_artifact_names != ("result.json",))
     ):
         msg = "scientific publication is missing, changed or unacknowledged"
         raise ValueError(msg)
@@ -242,16 +243,27 @@ def inspect_learning(
         }
         or saved["schema"] != "learning-operation-v2"
         or saved["plan"] != plan.document()
-        or saved["grant"] != document(asdict(grant))
+        or (saved["grant"] != document(asdict(grant)))
     ):
         msg = "scientific schema/plan/grant correspondence differs"
         raise ValueError(msg)
+    return (publication.manifest, saved)
+
+
+def _producer(
+    saved: dict[str, object],
+    database: Path,
+    manifest: PublicationManifest,
+    plan: LearningPlan,
+    grant: ExecutionAuthorization,
+) -> ExecutionHistory:
+    """Verify one original scientific boundary without executing effects."""
     producing_id = UUID(str(saved["producing_execution_id"]))
     history = inspect_execution(database, producing_id)
     if (
         history is None
         or history.outcome is not Outcome.COMPLETED
-        or history.execution_id != publication.manifest.producing_execution_id
+        or history.execution_id != manifest.producing_execution_id
     ):
         msg = "completed original producer required"
         raise ValueError(msg)
@@ -272,10 +284,20 @@ def inspect_learning(
             allow_nan=False,
         )
         or facts.get("runtime_identity") != _hash(saved["runtime"])
-        or end_facts.get("state_identity") != _hash(saved["state"])
+        or (end_facts.get("state_identity") != _hash(saved["state"]))
     ):
         msg = "original acknowledged grant/state correspondence differs"
         raise ValueError(msg)
+    return history
+
+
+def _execution_order(
+    history: ExecutionHistory,
+    manifest: PublicationManifest,
+    database: Path,
+) -> tuple[ExecutionHistory, ExecutionHistory, UUID | None]:
+    """Verify one original scientific boundary without executing effects."""
+    producing_id = history.execution_id
     children = [
         inspect_execution(database, identity)
         for identity in inspect_child_execution_ids(database, producing_id)
@@ -292,15 +314,17 @@ def inspect_learning(
         predict_history is None
         or measure_history is None
         or predict_history.outcome is not Outcome.COMPLETED
-        or measure_history.outcome is not Outcome.COMPLETED
-        or not _acknowledged_before(
-            predict_history.events[-1],
-            measure_history.events[0],
+        or (measure_history.outcome is not Outcome.COMPLETED)
+        or (
+            not _acknowledged_before(
+                predict_history.events[-1],
+                measure_history.events[0],
+            )
         )
     ):
         msg = "prediction must be acknowledged before measurement"
         raise ValueError(msg)
-    publisher_id = publication.manifest.publication_execution_id
+    publisher_id = manifest.publication_execution_id
     publisher = (
         None if publisher_id is None else inspect_execution(database, publisher_id)
     )
@@ -308,26 +332,48 @@ def inspect_learning(
         publisher is None
         or publisher.parent_execution_id != producing_id
         or publisher.outcome is not Outcome.COMPLETED
-        or not _acknowledged_before(measure_history.events[-1], publisher.events[0])
-        or not _acknowledged_before(publisher.events[-1], history.events[-1])
+        or (not _acknowledged_before(measure_history.events[-1], publisher.events[0]))
+        or (not _acknowledged_before(publisher.events[-1], history.events[-1]))
     ):
         msg_0 = (
             "measurement/publication/producer acknowledgments are causally reordered"
         )
-        raise ValueError(
-            msg_0,
-        )
-    training, held = plan.populations()
+        raise ValueError(msg_0)
+    return (predict_history, measure_history, publisher_id)
+
+
+def _fitting(
+    saved: dict[str, object],
+    database: Path,
+    history: ExecutionHistory,
+    predict_history: ExecutionHistory,
+) -> ExecutionHistory:
+    """Verify one original scientific boundary without executing effects."""
+    producing_id = history.execution_id
     fitting_id = UUID(str(saved["fitting_execution_id"]))
     original_fit = inspect_execution(database, fitting_id)
     if (
         original_fit is None
         or original_fit.parent_execution_id != producing_id
         or original_fit.outcome is not Outcome.COMPLETED
-        or not _acknowledged_before(original_fit.events[-1], predict_history.events[0])
+        or (
+            not _acknowledged_before(original_fit.events[-1], predict_history.events[0])
+        )
     ):
         msg = "original fitting must be acknowledged before prediction begins"
         raise ValueError(msg)
+    return original_fit
+
+
+def _preparation(
+    saved: dict[str, object],
+    plan: LearningPlan,
+    database: Path,
+    original_fit: ExecutionHistory,
+) -> FittedFeatureStandardization | None:
+    """Verify one original scientific boundary without executing effects."""
+    training, held = plan.populations()
+    producing_id = original_fit.parent_execution_id
     preparation = (
         None
         if saved["preparation"] is None
@@ -353,7 +399,7 @@ def inspect_learning(
             preparation is None
             or preparation.fitting_input_sha256 != _fingerprint(features)
             or preparation.fitting_population_id != population_id
-            or preparation.source_identity != source_identity
+            or (preparation.source_identity != source_identity)
         ):
             msg = "original training-only preparation required"
             raise ValueError(msg)
@@ -363,13 +409,13 @@ def inspect_learning(
             preparing is None
             or preparing.outcome is not Outcome.COMPLETED
             or preparing.parent_execution_id != producing_id
-            or preparation.effective_scales
-            != tuple(s or 1.0 for s in preparation.training_standard_deviations)
+            or (
+                preparation.effective_scales
+                != tuple(s or 1.0 for s in preparation.training_standard_deviations)
+            )
         ):
             msg_0 = "original training preparation acknowledgment/scales differ"
-            raise ValueError(
-                msg_0,
-            )
+            raise ValueError(msg_0)
         if not _acknowledged_before(preparing.events[-1], original_fit.events[0]):
             msg = "training preparation must be acknowledged before fitting begins"
             raise ValueError(msg)
@@ -380,146 +426,146 @@ def inspect_learning(
             or preparation.fitting_observation_count != len(features.rows)
         ):
             msg = "independent original-population preparation arithmetic differs"
-            raise ValueError(
-                msg,
-            )
+            raise ValueError(msg)
     elif preparation is not None:
         msg = "mean must not silently prepare features"
         raise ValueError(msg)
-    state: (
-        FittedRegression | FittedBinaryLinearClassifier | FittedMarginClassifier | None
+    return preparation
+
+
+def _binary_state(
+    training: BinaryLinearTraining,
+    preparation: FittedFeatureStandardization | None,
+    plan: LearningPlan,
+    saved: dict[str, object],
+    fitting_id: UUID,
+) -> tuple[
+    FittedBinaryLinearClassifier | FittedMarginClassifier | None,
+    BinaryLinearTraining,
+]:
+    """Verify one original scientific boundary without executing effects."""
+    features = training.features
+    state: FittedBinaryLinearClassifier | FittedMarginClassifier | None
+    binary_training = replace(
+        training,
+        features=represented(features, preparation, plan.method),
     )
-    binary_training = None
-    if isinstance(training, BinaryLinearTraining):
-        binary_training = replace(
-            training,
-            features=represented(features, preparation, plan.method),
-        )
-        if plan.method == "knn7":
-            if saved["state"] != {
-                "schema": "retained-knn7-v1",
-                "training": document(asdict(binary_training)),
-            }:
-                msg = "retained binary neighbor corpus differs from source"
-                raise ValueError(msg)
-            state = None
-        else:
-            raw = json.dumps(saved["state"], allow_nan=False).encode()
-            state = (
-                decode_model(raw)
-                if plan.method == "square-logistic"
-                else decode_margin(raw)
-            )
-            if (
-                state.training_input_sha256 != binary_training.content_identity
-                or state.training_population_id != training.population_id
-                or state.target_identity != training.target_identity
-                or state.fitting_execution_id != fitting_id
-                or state.feature_names != binary_training.features.feature_names
-                or state.references != training.references
-            ):
-                msg = "binary state/source/fitting correspondence differs"
-                raise ValueError(msg)
-            expected_configuration = (
-                (
-                    ("solver", "lbfgs"),
-                    ("C", "1.0"),
-                    ("fit_intercept", "True"),
-                    ("max_iter", "800"),
-                    ("tol", "1e-07"),
-                    ("random_state", "42"),
-                    ("numerical_threads", "1"),
-                    ("l1_ratio", "0.0"),
-                )
-                if plan.method == "square-logistic"
-                else (
-                    ("penalty", "l2"),
-                    ("loss", "squared_hinge"),
-                    ("dual", "False"),
-                    ("C", "1.0"),
-                    ("fit_intercept", "True"),
-                    ("intercept_scaling", "1.0"),
-                    ("tol", "1e-06"),
-                    ("max_iter", "2000"),
-                    ("random_state", "42"),
-                    ("numerical_threads", "1"),
-                )
-            )
-            if state.configuration != expected_configuration:
-                msg = (
-                    "retained native configuration differs from the exact granted met"
-                    "hod"
-                )
-                raise ValueError(msg)
+    if plan.method == "knn7":
+        if saved["state"] != {
+            "schema": "retained-knn7-v1",
+            "training": document(asdict(binary_training)),
+        }:
+            msg = "retained binary neighbor corpus differs from source"
+            raise ValueError(msg)
+        state = None
     else:
-        state = decode_state(
-            saved["state"],
-            maximum_bytes=min(MAX_PUBLICATION_BYTES, REGRESSION_V2.state_bytes),
-        )
-        methods = {
-            "mean": RegressionMethod.MEAN,
-            "ridge": RegressionMethod.RIDGE,
-            "knn-v2": RegressionMethod.KNN,
-        }
-        expected_specification = RegressionSpecification(
-            methods[plan.method],
-            "regression-specification-v2"
-            if plan.method == "knn-v2"
-            else "regression-specification-v1",
+        raw = json.dumps(saved["state"], allow_nan=False).encode()
+        state = (
+            decode_model(raw)
+            if plan.method == "square-logistic"
+            else decode_margin(raw)
         )
         if (
-            state.specification != expected_specification
-            or state.execution_id != fitting_id
+            state.training_input_sha256 != binary_training.content_identity
+            or state.training_population_id != training.population_id
+            or state.target_identity != training.target_identity
+            or (state.fitting_execution_id != fitting_id)
+            or (state.feature_names != binary_training.features.feature_names)
+            or (state.references != training.references)
         ):
-            msg_0 = "retained method does not match the exact granted plan"
-            raise ValueError(msg_0)
-        validate_training_state(state, training)
-        fitting = inspect_execution(database, state.execution_id)
-        if (
-            fitting is None
-            or fitting.outcome is not Outcome.COMPLETED
-            or fitting.parent_execution_id != producing_id
-            or not isinstance(fitting.events[-1].payload, Terminal)
-            or {f.name: f.value for f in fitting.events[-1].payload.facts}.get(
+            msg = "binary state/source/fitting correspondence differs"
+            raise ValueError(msg)
+        expected_configuration = (
+            (
+                ("solver", "lbfgs"),
+                ("C", "1.0"),
+                ("fit_intercept", "True"),
+                ("max_iter", "800"),
+                ("tol", "1e-07"),
+                ("random_state", "42"),
+                ("numerical_threads", "1"),
+                ("l1_ratio", "0.0"),
+            )
+            if plan.method == "square-logistic"
+            else (
+                ("penalty", "l2"),
+                ("loss", "squared_hinge"),
+                ("dual", "False"),
+                ("C", "1.0"),
+                ("fit_intercept", "True"),
+                ("intercept_scaling", "1.0"),
+                ("tol", "1e-06"),
+                ("max_iter", "2000"),
+                ("random_state", "42"),
+                ("numerical_threads", "1"),
+            )
+        )
+        if state.configuration != expected_configuration:
+            msg = "retained native configuration differs from the exact granted method"
+            raise ValueError(msg)
+    return (state, binary_training)
+
+
+def _regression_state(
+    training: RegressionPopulation,
+    plan: LearningPlan,
+    saved: dict[str, object],
+    database: Path,
+    original_fit: ExecutionHistory,
+) -> FittedRegression:
+    """Verify one original scientific boundary without executing effects."""
+    fitting_id = original_fit.execution_id
+    producing_id = original_fit.parent_execution_id
+    state = decode_state(
+        saved["state"],
+        maximum_bytes=min(MAX_PUBLICATION_BYTES, REGRESSION_V2.state_bytes),
+    )
+    methods = {
+        "mean": RegressionMethod.MEAN,
+        "ridge": RegressionMethod.RIDGE,
+        "knn-v2": RegressionMethod.KNN,
+    }
+    expected_specification = RegressionSpecification(
+        methods[plan.method],
+        "regression-specification-v2"
+        if plan.method == "knn-v2"
+        else "regression-specification-v1",
+    )
+    if (
+        state.specification != expected_specification
+        or state.execution_id != fitting_id
+    ):
+        msg_0 = "retained method does not match the exact granted plan"
+        raise ValueError(msg_0)
+    validate_training_state(state, training)
+    fitting = inspect_execution(database, state.execution_id)
+    if (
+        fitting is None
+        or fitting.outcome is not Outcome.COMPLETED
+        or fitting.parent_execution_id != producing_id
+        or (not isinstance(fitting.events[-1].payload, Terminal))
+        or (
+            {f.name: f.value for f in fitting.events[-1].payload.facts}.get(
                 "state_identity",
             )
             != state.content_identity
-        ):
-            msg = "original regression fit acknowledgment differs"
-            raise ValueError(msg)
-    expected_children = {
-        fitting_id,
-        predict_history.execution_id,
-        measure_history.execution_id,
-        publisher_id,
-    }
-    if preparation is not None:
-        expected_children.add(preparation.construction_execution_id)
-    if set(inspect_child_execution_ids(database, producing_id)) != expected_children:
-        msg = "scientific child executions differ from the exact single-operation plan"
+        )
+    ):
+        msg = "original regression fit acknowledgment differs"
         raise ValueError(msg)
-    if isinstance(training, BinaryLinearTraining):
-        fit_terminal = original_fit.events[-1].payload
-        if (
-            original_fit.operation != "learning.binary_fit"
-            or not isinstance(fit_terminal, Terminal)
-            or {f.name: f.value for f in fit_terminal.facts}.get("state_identity")
-            != _hash(saved["state"])
-        ):
-            msg = "original binary fit acknowledgment does not bind the retained state"
-            raise ValueError(msg)
-    provisional = InspectedLearning(
-        reference,
-        plan,
-        preparation,
-        state,
-        binary_training,
-        NoValue(
-            NonValueKind.NOT_MEASURED,
-            "inspection_in_progress",
-            "Source/state inspection precedes metric replay.",
-        ),
-    )
+    return state
+
+
+def _verify_observation(
+    provisional: InspectedLearning,
+    saved: dict[str, object],
+) -> InspectedLearning:
+    """Verify one original scientific boundary without executing effects."""
+    plan = provisional.plan
+    preparation = provisional.preparation
+    state = provisional.state
+    binary_training = provisional.binary_training
+    training, held = plan.populations()
     predictions = provisional.predict(
         held.features if isinstance(held, BinaryProblem) else held.inputs,
     )
@@ -531,9 +577,7 @@ def inspect_learning(
     measured, measurements = quality(plan, predictions)
     if saved["native_correspondence"] != correspondence(plan, state, preparation):
         msg_0 = "native parity scope differs from independently inspected queries"
-        raise ValueError(
-            msg_0,
-        )
+        raise ValueError(msg_0)
     raw_query = (
         held.features if isinstance(held, BinaryProblem) else held.inputs.features
     )
@@ -550,9 +594,7 @@ def inspect_learning(
         )
         if binary_training is None or independent_training != binary_training.features:
             msg_0 = "independent feature construction differs from original source"
-            raise ValueError(
-                msg_0,
-            )
+            raise ValueError(msg_0)
         if state is None:
             labels = []
             for row in independent_query.rows:
@@ -627,7 +669,7 @@ def inspect_learning(
             ) * len(raw_query.rows)
         elif state.specification.method is RegressionMethod.RIDGE:
             independent_values = tuple(
-                math.fsum(w * x for w, x in zip(state.coefficients, row, strict=True))
+                math.fsum((w * x for w, x in zip(state.coefficients, row, strict=True)))
                 + state.intercept
                 for row in independent_query.rows
             )
@@ -639,7 +681,7 @@ def inspect_learning(
             msg_0 = "independent quantitative prediction arithmetic differs"
             raise ValueError(msg_0)
         if isinstance(measured, Measured) and measured.value != math.fsum(
-            abs(a - b) for a, b in zip(held.values, independent_values, strict=True)
+            (abs(a - b) for a, b in zip(held.values, independent_values, strict=True)),
         ) / len(held.values):
             msg_0 = "independent MAE arithmetic differs"
             raise ValueError(msg_0)
@@ -651,3 +693,72 @@ def inspect_learning(
         msg = "independent prediction/metric/source evidence differs"
         raise ValueError(msg)
     return replace(provisional, quality=measured)
+
+
+def inspect_learning(
+    reference: LearningPublication,
+    plan: LearningPlan,
+    grant: ExecutionAuthorization,
+) -> InspectedLearning:
+    """Check exact authority, publication, ACKs, source, state and numerical replay."""
+    manifest, saved = _load(reference, plan, grant)
+    database = reference.root.value / "science.sqlite"
+    history = _producer(saved, database, manifest, plan, grant)
+    producing_id = history.execution_id
+    predict_history, measure_history, publisher_id = _execution_order(
+        history,
+        manifest,
+        database,
+    )
+    training, held = plan.populations()
+    fitting_id = UUID(str(saved["fitting_execution_id"]))
+    original_fit = _fitting(saved, database, history, predict_history)
+    preparation = _preparation(saved, plan, database, original_fit)
+    state: (
+        FittedRegression | FittedBinaryLinearClassifier | FittedMarginClassifier | None
+    )
+    binary_training = None
+    if isinstance(training, BinaryLinearTraining):
+        state, binary_training = _binary_state(
+            training,
+            preparation,
+            plan,
+            saved,
+            fitting_id,
+        )
+    else:
+        state = _regression_state(training, plan, saved, database, original_fit)
+    expected_children = {
+        fitting_id,
+        predict_history.execution_id,
+        measure_history.execution_id,
+        publisher_id,
+    }
+    if preparation is not None:
+        expected_children.add(preparation.construction_execution_id)
+    if set(inspect_child_execution_ids(database, producing_id)) != expected_children:
+        msg = "scientific child executions differ from the exact single-operation plan"
+        raise ValueError(msg)
+    if isinstance(training, BinaryLinearTraining):
+        fit_terminal = original_fit.events[-1].payload
+        if (
+            original_fit.operation != "learning.binary_fit"
+            or not isinstance(fit_terminal, Terminal)
+            or {f.name: f.value for f in fit_terminal.facts}.get("state_identity")
+            != _hash(saved["state"])
+        ):
+            msg = "original binary fit acknowledgment does not bind the retained state"
+            raise ValueError(msg)
+    provisional = InspectedLearning(
+        reference,
+        plan,
+        preparation,
+        state,
+        binary_training,
+        NoValue(
+            NonValueKind.NOT_MEASURED,
+            "inspection_in_progress",
+            "Source/state inspection precedes metric replay.",
+        ),
+    )
+    return _verify_observation(provisional, saved)

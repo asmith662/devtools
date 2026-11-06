@@ -181,7 +181,7 @@ async def investigate(
         raise ValueError(
             msg,
         )
-    root.mkdir()
+    await asyncio.to_thread(root.mkdir)
     async with asyncio.timeout(min(3600, budget.remaining_seconds())):
         return await _investigate(model, task, worker, budget, root, profile)
 
@@ -345,7 +345,7 @@ async def _investigate(
             plan,
             grant,
             root / f"operation-{len(observations)}",
-            timeout=Duration.seconds(min(300, budget.remaining_seconds())),
+            operation_limit=Duration.seconds(min(300, budget.remaining_seconds())),
         )
         inspected = inspect_learning(reference, plan, grant)
         value = (
@@ -505,7 +505,7 @@ async def _investigate(
             final,
             grant,
             root / "protected-final",
-            timeout=Duration.seconds(min(300, budget.remaining_seconds())),
+            operation_limit=Duration.seconds(min(300, budget.remaining_seconds())),
         )
         artifact = inspect_learning(reference, final, grant)
     return InvestigationResult(

@@ -11,6 +11,7 @@ import stat
 import threading
 from dataclasses import replace
 from datetime import datetime
+from importlib import import_module
 from pathlib import Path
 from typing import TYPE_CHECKING, BinaryIO, Self
 from uuid import UUID
@@ -136,13 +137,13 @@ class SQLiteExecutionRecorder:
                 self._lock.flush()
             self._lock.seek(0)
             if os.name == "nt":
-                import msvcrt
+                msvcrt = import_module("msvcrt")
 
                 msvcrt.locking(self._lock.fileno(), msvcrt.LK_NBLCK, 1)
             else:
-                import fcntl
+                fcntl = import_module("fcntl")
 
-                fcntl.flock(self._lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)  # type: ignore[attr-defined]  # Windows has no fcntl stubs.
+                fcntl.flock(self._lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
             connection = sqlite3.connect(
                 self.database,
                 timeout=timeout_seconds,

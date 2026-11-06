@@ -205,6 +205,34 @@ class FittedFeatureStandardization:
             msg = "state requires FeatureStandardizationSpecification"
             raise TypeError(msg)
         n = len(self.specification.feature_names)
+        self._validate_statistics(n)
+        if (
+            type(self.fitting_observation_count) is not int
+            or not 1 <= self.fitting_observation_count <= MAX_OBSERVATIONS
+            or self.fitting_observation_count * n > MAX_CELLS
+        ):
+            msg = "invalid fitting population/coordinate counts"
+            raise ValueError(msg)
+        _identity(self.fitting_population_id, required=True)
+        for value in (self.source_identity, self.representation_identity):
+            _identity(value)
+        _digest(self.fitting_input_sha256)
+        if not isinstance(
+            self.fitting_scope,
+            PopulationScope,
+        ) or self.fitting_scope in (PopulationScope.VALIDATION, PopulationScope.TEST):
+            msg = "evaluation populations cannot fit standardization"
+            raise ValueError(msg)
+        if (
+            not isinstance(self.construction_execution_id, UUID)
+            or not isinstance(self.state_id, UUID)
+            or self.state_id == self.construction_execution_id
+        ):
+            msg = "fitted-state and construction occurrence identities differ"
+            raise ValueError(msg)
+
+    def _validate_statistics(self, n: int) -> None:
+        """Require finite aligned population statistics and exact constant policy."""
         for values in (
             self.feature_value_kinds,
             self.training_means,
@@ -241,30 +269,6 @@ class FittedFeatureStandardization:
             ):
                 msg = "actual deviation/constant/effective scale conflict"
                 raise ValueError(msg)
-        if (
-            type(self.fitting_observation_count) is not int
-            or not 1 <= self.fitting_observation_count <= MAX_OBSERVATIONS
-            or self.fitting_observation_count * n > MAX_CELLS
-        ):
-            msg = "invalid fitting population/coordinate counts"
-            raise ValueError(msg)
-        _identity(self.fitting_population_id, required=True)
-        for value in (self.source_identity, self.representation_identity):
-            _identity(value)
-        _digest(self.fitting_input_sha256)
-        if not isinstance(
-            self.fitting_scope,
-            PopulationScope,
-        ) or self.fitting_scope in (PopulationScope.VALIDATION, PopulationScope.TEST):
-            msg = "evaluation populations cannot fit standardization"
-            raise ValueError(msg)
-        if (
-            not isinstance(self.construction_execution_id, UUID)
-            or not isinstance(self.state_id, UUID)
-            or self.state_id == self.construction_execution_id
-        ):
-            msg = "fitted-state and construction occurrence identities differ"
-            raise ValueError(msg)
 
     @property
     def feature_names(self) -> tuple[str, ...]:

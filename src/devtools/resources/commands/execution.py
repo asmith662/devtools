@@ -10,6 +10,7 @@ from functools import partial
 from typing import TYPE_CHECKING
 
 from devtools.core.time import Stopwatch
+from devtools.resources.commands._windows_job import WindowsJob
 from devtools.resources.commands.errors import (
     CommandError,
     CommandNotFoundError,
@@ -98,8 +99,6 @@ class CommandExecutor:
 
         try:
             if self._contained:
-                from devtools.resources.commands._windows_job import WindowsJob
-
                 job = WindowsJob()
             process = await self._create_process(command)
             if job is not None:

@@ -283,22 +283,7 @@ class ExecutionEvent:
 
     def __post_init__(self) -> None:
         """Validate the immutable scientific contract and its correspondence."""
-        for v in (self.event_id, self.execution_id, self.activation_id):
-            if not isinstance(v, UUID):
-                msg = "event, execution and activation IDs must be UUIDs"
-                raise TypeError(msg)
-        if self.execution_id == self.activation_id:
-            msg = "execution and activation identities must differ"
-            raise ValueError(msg)
-        if self.parent_execution_id is not None and (
-            not isinstance(self.parent_execution_id, UUID)
-            or self.parent_execution_id == self.execution_id
-        ):
-            msg = "parent must be a different execution"
-            raise ValueError(msg)
-        if type(self.schema_version) is not int or self.schema_version != 1:
-            msg = "unsupported event schema version"
-            raise ValueError(msg)
+        self._validate_identities()
         _text(self.producer, "producer")
         _count(self.sequence, "sequence")
         if self.sequence < 1:
@@ -331,6 +316,25 @@ class ExecutionEvent:
         ):
             msg = "payload must be a supported typed observation"
             raise TypeError(msg)
+
+    def _validate_identities(self) -> None:
+        """Require distinct nominal occurrence identities and the supported schema."""
+        for v in (self.event_id, self.execution_id, self.activation_id):
+            if not isinstance(v, UUID):
+                msg = "event, execution and activation IDs must be UUIDs"
+                raise TypeError(msg)
+        if self.execution_id == self.activation_id:
+            msg = "execution and activation identities must differ"
+            raise ValueError(msg)
+        if self.parent_execution_id is not None and (
+            not isinstance(self.parent_execution_id, UUID)
+            or self.parent_execution_id == self.execution_id
+        ):
+            msg = "parent must be a different execution"
+            raise ValueError(msg)
+        if type(self.schema_version) is not int or self.schema_version != 1:
+            msg = "unsupported event schema version"
+            raise ValueError(msg)
 
     @property
     def kind(self) -> str:

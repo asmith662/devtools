@@ -44,17 +44,17 @@ def encode(event: ExecutionEvent) -> str:
 
 
 def _object(value: object) -> dict[str, object]:
-    if not isinstance(value, dict) or any(not isinstance(k, str) for k in value):
-        msg = "expected JSON object"
-        raise ValueError(msg)
-    return cast("dict[str, object]", value)
+    if isinstance(value, dict) and all(isinstance(k, str) for k in value):
+        return cast("dict[str, object]", value)
+    msg = "expected JSON object"
+    raise ValueError(msg)
 
 
 def _str(value: object) -> str:
-    if not isinstance(value, str):
-        msg = "expected text"
-        raise ValueError(msg)
-    return value
+    if isinstance(value, str):
+        return value
+    msg = "expected text"
+    raise ValueError(msg)
 
 
 def _int(value: object) -> int:
@@ -79,10 +79,10 @@ def _boolean(value: object) -> bool:
 
 
 def _list(value: object) -> list[object]:
-    if not isinstance(value, list):
-        msg = "expected list"
-        raise ValueError(msg)
-    return cast("list[object]", value)
+    if isinstance(value, list):
+        return cast("list[object]", value)
+    msg = "expected list"
+    raise ValueError(msg)
 
 
 def _facts(value: object) -> tuple[Fact, ...]:
@@ -105,13 +105,37 @@ def _optional_text(value: object) -> str | None:
     return None if value is None else _str(value)
 
 
-def decode(text: str) -> ExecutionEvent:
-    value = _object(json.loads(text))
-    if set(value) != {f.name for f in fields(ExecutionEvent)} | {"kind"}:
-        msg = "invalid event fields"
+def _diagnostic(p: dict[str, object]) -> Diagnostic:
+    """Decode the bounded exception chain without admitting causal assertions."""
+    chain = []
+    for item in _list(p["exception_chain"]):
+        member = _object(item)
+        if set(member) != {f.name for f in fields(ExceptionFact)}:
+            msg = "invalid exception fields"
+            raise ValueError(msg)
+        chain.append(
+            ExceptionFact(
+                _str(member["type_name"]),
+                _str(member["message"]),
+                _str(member["relation"]),
+            ),
+        )
+    if p["root_cause"] is not None:
+        msg = "unsupported causal assertion"
         raise ValueError(msg)
-    p = _object(value["payload"])
-    kind = _str(value["kind"])
+    return Diagnostic(
+        FailureCategory(_str(p["category"])),
+        Severity(_str(p["severity"])),
+        _str(p["symptom"]),
+        _optional_text(p["stage"]),
+        tuple(chain),
+        _optional_text(p["traceback_text"]),
+        _boolean(p["truncated"]),
+    )
+
+
+def _payload(kind: str, p: dict[str, object]) -> Payload:
+    """Decode one closed scientific payload, preserving its original field checks."""
     payload: Payload
     if kind == "Admitted":
         payload = Admitted(_str(p["operation"]), _facts(p["facts"]))
@@ -138,31 +162,7 @@ def decode(text: str) -> ExecutionEvent:
             None if p["total"] is None else _int(p["total"]),
         )
     elif kind == "Diagnostic":
-        chain = []
-        for item in _list(p["exception_chain"]):
-            member = _object(item)
-            if set(member) != {f.name for f in fields(ExceptionFact)}:
-                msg = "invalid exception fields"
-                raise ValueError(msg)
-            chain.append(
-                ExceptionFact(
-                    _str(member["type_name"]),
-                    _str(member["message"]),
-                    _str(member["relation"]),
-                ),
-            )
-        if p["root_cause"] is not None:
-            msg = "unsupported causal assertion"
-            raise ValueError(msg)
-        payload = Diagnostic(
-            FailureCategory(_str(p["category"])),
-            Severity(_str(p["severity"])),
-            _str(p["symptom"]),
-            _optional_text(p["stage"]),
-            tuple(chain),
-            _optional_text(p["traceback_text"]),
-            _boolean(p["truncated"]),
-        )
+        payload = _diagnostic(p)
     elif kind == "Terminal":
         payload = Terminal(Outcome(_str(p["outcome"])), _facts(p["facts"]))
     else:
@@ -171,6 +171,15 @@ def decode(text: str) -> ExecutionEvent:
     if set(p) != {f.name for f in fields(payload)}:
         msg = "invalid payload fields"
         raise ValueError(msg)
+    return payload
+
+
+def decode(text: str) -> ExecutionEvent:
+    value = _object(json.loads(text))
+    if set(value) != {f.name for f in fields(ExecutionEvent)} | {"kind"}:
+        msg = "invalid event fields"
+        raise ValueError(msg)
+    payload = _payload(_str(value["kind"]), _object(value["payload"]))
     return ExecutionEvent(
         event_id=UUID(_str(value["event_id"])),
         execution_id=UUID(_str(value["execution_id"])),
@@ -191,10 +200,10 @@ def decode(text: str) -> ExecutionEvent:
 
 
 def retained_object(value: object) -> dict[str, object]:
-    if type(value) is not dict or any(type(k) is not str for k in value):
-        msg = "retained evidence requires an object with string keys"
-        raise ValueError(msg)
-    return cast("dict[str, object]", value)
+    if type(value) is dict and all(type(k) is str for k in value):
+        return cast("dict[str, object]", value)
+    msg = "retained evidence requires an object with string keys"
+    raise ValueError(msg)
 
 
 def array(value: object) -> list[object]:

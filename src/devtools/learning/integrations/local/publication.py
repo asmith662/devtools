@@ -16,6 +16,7 @@ import stat
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime
+from importlib import import_module
 from pathlib import Path
 from typing import TYPE_CHECKING, Protocol, cast, runtime_checkable
 from uuid import UUID, uuid4, uuid5
@@ -80,7 +81,7 @@ class PublicationRecoveryInspection:
 
 
 def _safe_path(path: Path) -> Path:
-    absolute = Path(os.path.abspath(path))
+    absolute = Path(os.path.normpath(path.absolute()))
     for component in (*reversed(absolute.parents), absolute):
         try:
             info = component.lstat()
@@ -260,13 +261,13 @@ def _writer(root: Path) -> Iterator[None]:
         stream.seek(0)
         try:
             if os.name == "nt":
-                import msvcrt
+                msvcrt = import_module("msvcrt")
 
                 msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
             else:
-                import fcntl
+                fcntl = import_module("fcntl")
 
-                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)  # type: ignore[attr-defined]  # Windows has no fcntl stubs.
+                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError as error:
             msg = "publication root already has a writer or is inaccessible"
             raise PublicationError(msg) from error
@@ -734,7 +735,7 @@ def _publish(
         temporary = root / (".current-" + str(identity) + ".tmp")
         _write_json(temporary, pointer)
         _safe_path(root / "current.json")
-        os.replace(temporary, root / "current.json")
+        temporary.replace(root / "current.json")
         _sync_directory(root)
         stage(
             "inspection_reconciliation",
