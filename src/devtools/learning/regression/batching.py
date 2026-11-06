@@ -13,12 +13,15 @@ from devtools.learning.regression.state import FittedRegression, RegressionPredi
 
 @dataclass(frozen=True, slots=True)
 class RegressionBatching:
+    """Retain the declared RegressionBatching scientific values and invariants."""
+
     batch_size: int
     maximum_distance_operations: int
     maximum_output_bytes: int = REGRESSION_V2.prediction_bytes
     version: str = "regression-batching-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             self.version != "regression-batching-v1"
             or type(self.batch_size) is not int
@@ -38,12 +41,15 @@ class RegressionBatching:
 
 @dataclass(frozen=True, slots=True)
 class RegressionPredictionBatch:
+    """Retain the declared RegressionPredictionBatch scientific values and invariants."""
+
     start: int
     stop: int
     row_ids: tuple[str, ...]
     prediction_sha256: str
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.start) is not int
             or type(self.stop) is not int
@@ -60,6 +66,8 @@ class RegressionPredictionBatch:
 
 @dataclass(frozen=True, slots=True)
 class RegressionBatchEvidence:
+    """Retain the declared RegressionBatchEvidence scientific values and invariants."""
+
     specification: RegressionBatching
     state_identity: str
     input_identity: str
@@ -68,6 +76,7 @@ class RegressionBatchEvidence:
     version: str = "regression-batch-evidence-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             self.version != "regression-batch-evidence-v1"
             or type(self.specification) is not RegressionBatching
@@ -101,10 +110,13 @@ class RegressionBatchEvidence:
 
 @dataclass(frozen=True, slots=True)
 class BatchedRegressionPredictions:
+    """Retain the declared BatchedRegressionPredictions scientific values and invariants."""
+
     predictions: RegressionPredictions
     evidence: RegressionBatchEvidence
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.predictions) is not RegressionPredictions
             or type(self.evidence) is not RegressionBatchEvidence

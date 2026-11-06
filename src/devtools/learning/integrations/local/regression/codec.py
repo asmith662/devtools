@@ -1,4 +1,6 @@
 # Copyright (c) 2026
+"""Selected scientific wire helpers and explicit versioned invariants."""
+
 import json
 from dataclasses import Field, asdict
 from typing import ClassVar, Protocol, cast
@@ -26,16 +28,20 @@ from devtools.learning.representation.features import FeatureValueKind
 
 
 class DataclassValue(Protocol):
+    """Retain the declared DataclassValue scientific values and invariants."""
+
     __dataclass_fields__: ClassVar[dict[str, Field[object]]]
 
 
 def exact(result: object, value: object) -> None:
+    """Apply the explicit exact contract within this owner."""
     if document(asdict(cast("DataclassValue", result))) != value:
         msg = "noncanonical or unsupported regression schema fields"
         raise ValueError(msg)
 
 
 def real(value: object) -> float:
+    """Apply the explicit real contract within this owner."""
     if type(value) is not float:
         msg = "original continuous binary64 value required"
         raise TypeError(msg)
@@ -43,10 +49,12 @@ def real(value: object) -> float:
 
 
 def optional_unit(value: object) -> str | None:
+    """Apply the explicit optional unit contract within this owner."""
     return None if value is None else text(value)
 
 
 def target(value: object) -> ContinuousTarget:
+    """Apply the explicit target contract within this owner."""
     d = obj(value)
     result = ContinuousTarget(
         text(d["identity"]),
@@ -60,6 +68,7 @@ def target(value: object) -> ContinuousTarget:
 
 
 def inputs(value: object) -> RegressionInput:
+    """Apply the explicit inputs contract within this owner."""
     d = obj(value)
     result = RegressionInput(
         _table(d["features"]),
@@ -75,6 +84,7 @@ def inputs(value: object) -> RegressionInput:
 
 
 def population(value: object) -> RegressionPopulation:
+    """Apply the explicit population contract within this owner."""
     d = obj(value)
     result = RegressionPopulation(
         inputs(d["inputs"]),
@@ -88,6 +98,7 @@ def population(value: object) -> RegressionPopulation:
 
 
 def specification(value: object) -> RegressionSpecification:
+    """Apply the explicit specification contract within this owner."""
     d = obj(value)
     result = RegressionSpecification(RegressionMethod(d["method"]), text(d["version"]))
     exact(result, d)
@@ -95,6 +106,7 @@ def specification(value: object) -> RegressionSpecification:
 
 
 def state(value: object, *, maximum_bytes: int | None = None) -> FittedRegression:
+    """Apply the explicit state contract within this owner."""
     d = obj(value)
     if maximum_bytes is not None and (
         type(maximum_bytes) is not int
@@ -135,6 +147,7 @@ def state(value: object, *, maximum_bytes: int | None = None) -> FittedRegressio
 
 
 def predictions(value: object) -> RegressionPredictions:
+    """Apply the explicit predictions contract within this owner."""
     d = obj(value)
     result = RegressionPredictions(
         UUID(text(d["state_id"])),

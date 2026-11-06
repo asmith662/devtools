@@ -21,7 +21,11 @@ from devtools.learning.requirements.evidence import validate_references
 def _hash(value: object) -> str:
     return hashlib.sha256(
         json.dumps(
-            value, sort_keys=True, separators=(",", ":"), allow_nan=False, default=str,
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+            default=str,
         ).encode(),
     ).hexdigest()
 
@@ -49,10 +53,12 @@ class FittedMarginClassifier:
         init=False,
     )
     score_meaning: str = field(
-        default="signed_linear_margin;not_logit_or_probability", init=False,
+        default="signed_linear_margin;not_logit_or_probability",
+        init=False,
     )
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.feature_names) is not tuple
             or not self.feature_names
@@ -110,9 +116,11 @@ class FittedMarginClassifier:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return _hash(asdict(self))
 
     def margins(self, features: FeatureTable) -> tuple[float, ...]:
+        """Apply the explicit margins contract within this owner."""
         if features.feature_names != self.feature_names or any(
             k is not FeatureValueKind.CONTINUOUS for k in features.feature_value_kinds
         ):
@@ -133,4 +141,5 @@ class FittedMarginClassifier:
         return scores
 
     def classify(self, features: FeatureTable) -> tuple[int, ...]:
+        """Apply the explicit classify contract within this owner."""
         return tuple(int(value > 0.0) for value in self.margins(features))

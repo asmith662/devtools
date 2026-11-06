@@ -39,6 +39,7 @@ class RecordingError(RuntimeError):
     """Required history is not acknowledged; computation may still have occurred."""
 
     def __init__(self, message: str) -> None:
+        """Initialize the explicitly scoped scientific boundary."""
         super().__init__(message)
         self.execution_id: UUID | None = None
         self.last_acknowledged_sequence = 0
@@ -48,7 +49,9 @@ class RecordingError(RuntimeError):
 class ExecutionRecorder(Protocol):
     """Acknowledge a validated event only after its required persistence commits."""
 
-    def record(self, event: ExecutionEvent) -> ExecutionEvent: ...
+    def record(self, event: ExecutionEvent) -> ExecutionEvent:
+        """Apply the explicit record contract within this owner."""
+        ...
 
 
 def exception_diagnostic(
@@ -111,6 +114,7 @@ class ExecutionContext:
         parent: ExecutionContext | None = None,
         parent_execution_id: UUID | None = None,
     ) -> None:
+        """Initialize the explicitly scoped scientific boundary."""
         if not isinstance(request, Admitted):
             msg = "request must use Admitted"
             raise TypeError(msg)
@@ -146,9 +150,11 @@ class ExecutionContext:
 
     @property
     def active_stage(self) -> str | None:
+        """Apply the explicit active stage contract within this owner."""
         return self._stage
 
     def __enter__(self) -> Self:
+        """Apply the explicit   enter   contract within this owner."""
         if self._started or self._sequence:
             msg = "context cannot be entered twice"
             raise ValueError(msg)
@@ -210,7 +216,10 @@ class ExecutionContext:
                 self._observer = None
                 self._emit(
                     exception_diagnostic(
-                        error, FailureCategory.OBSERVER, self._stage, Severity.WARNING,
+                        error,
+                        FailureCategory.OBSERVER,
+                        self._stage,
+                        Severity.WARNING,
                     ),
                     notify=False,
                 )
@@ -248,8 +257,12 @@ class ExecutionContext:
             self._emit(StageFinished(name, duration))
 
     def progress(
-        self, unit: str, completed: int | None = None, total: int | None = None,
+        self,
+        unit: str,
+        completed: int | None = None,
+        total: int | None = None,
     ) -> None:
+        """Apply the explicit progress contract within this owner."""
         self._running()
         if self._stage is None:
             msg = "progress requires an active stage"
@@ -270,6 +283,7 @@ class ExecutionContext:
         self._progress = progress
 
     def diagnostic(self, diagnostic: Diagnostic) -> None:
+        """Apply the explicit diagnostic contract within this owner."""
         self._running()
         self._emit(diagnostic)
 
@@ -286,6 +300,7 @@ class ExecutionContext:
         error: BaseException | None,
         trace: TracebackType | None,
     ) -> Literal[False]:
+        """Apply the explicit   exit   contract within this owner."""
         if self._stopped:
             msg = "operation is already terminal"
             raise ValueError(msg)

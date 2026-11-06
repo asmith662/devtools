@@ -40,6 +40,8 @@ from devtools.learning.representation.standardization import (
 
 @dataclass(slots=True)
 class NativeRegressionFit:
+    """Retain the declared NativeRegressionFit scientific values and invariants."""
+
     state: FittedRegression
     estimator: object | None
     native_fit_seconds: float
@@ -97,7 +99,9 @@ class NativeRegressionFit:
         from typing import Any, cast
 
         threadpool_limits = import_module("threadpoolctl").threadpool_limits
-        assert self.state.preparation is not None
+        if not (self.state.preparation is not None):
+            msg_0 = "Required numerical state invariant is absent."
+            raise AssertionError(msg_0)
         rows = self.state.preparation.transform(features).features.rows
         qualified = [True] * len(rows)
         if self.state.specification.version == "regression-specification-v2":
@@ -120,10 +124,16 @@ class NativeRegressionFit:
             native = model.predict(rows)
             if self.state.specification.method is RegressionMethod.KNN:
                 distances, indices = model.kneighbors(
-                    rows, n_neighbors=5, return_distance=True,
+                    rows,
+                    n_neighbors=5,
+                    return_distance=True,
                 )
-                assert predicted.neighbor_row_ids is not None
-                assert predicted.neighbor_distances is not None
+                if not (predicted.neighbor_row_ids is not None):
+                    msg_0 = "Required numerical state invariant is absent."
+                    raise AssertionError(msg_0)
+                if not (predicted.neighbor_distances is not None):
+                    msg_0 = "Required numerical state invariant is absent."
+                    raise AssertionError(msg_0)
                 for j, (members, ds) in enumerate(
                     zip(
                         predicted.neighbor_row_ids[start:stop],

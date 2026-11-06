@@ -17,12 +17,15 @@ from devtools.learning.representation.observations import PopulationScope
 
 
 class RegressionRole(Enum):
+    """Retain the declared RegressionRole scientific values and invariants."""
+
     TRAINING = "training"
     DEVELOPMENT = "development"
     CONFIRMATION = "confirmation"
 
     @property
     def scope(self) -> PopulationScope:
+        """Apply the explicit scope contract within this owner."""
         return {
             RegressionRole.TRAINING: PopulationScope.TRAINING,
             RegressionRole.DEVELOPMENT: PopulationScope.VALIDATION,
@@ -45,6 +48,7 @@ class ContinuousTarget:
     version: str = "continuous-target-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.identity)
         nonempty(self.quantity)
         if self.unit is not None:
@@ -67,9 +71,11 @@ class RegressionInput:
     version: str = "regression-input-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         limits = version_limits(self.version, "regression-input")
         if not isinstance(self.features, FeatureTable) or not isinstance(
-            self.role, RegressionRole,
+            self.role,
+            RegressionRole,
         ):
             msg = "typed regression features and original role required"
             raise TypeError(msg)
@@ -102,6 +108,7 @@ class RegressionInput:
 
     @property
     def schema_identity(self) -> str:
+        """Apply the explicit schema identity contract within this owner."""
         return "regression-schema-v1:" + fingerprint(
             (
                 self.features.feature_names,
@@ -112,6 +119,7 @@ class RegressionInput:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return self.version + ":" + fingerprint(asdict(self))
 
 
@@ -126,6 +134,7 @@ class RegressionPopulation:
     version: str = "regression-population-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.inputs) is not RegressionInput
             or type(self.target) is not ContinuousTarget
@@ -146,10 +155,13 @@ class RegressionPopulation:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return self.version + ":" + fingerprint(asdict(self))
 
 
 class RegressionMethod(Enum):
+    """Retain the declared RegressionMethod scientific values and invariants."""
+
     MEAN = "training_mean"
     RIDGE = "ridge"
     KNN = "knn"
@@ -163,6 +175,7 @@ class RegressionSpecification:
     version: str = "regression-specification-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.method, RegressionMethod):
             msg = "supported concrete regression method required"
             raise TypeError(msg)
@@ -177,6 +190,7 @@ class RegressionSpecification:
 
     @property
     def configuration(self) -> tuple[tuple[str, str | int | float | bool], ...]:
+        """Apply the explicit configuration contract within this owner."""
         if self.method is RegressionMethod.MEAN:
             return (("training_mean", "fsum_divide_n"),)
         if self.method is RegressionMethod.RIDGE:
@@ -203,10 +217,12 @@ class RegressionSpecification:
 
     @property
     def complexity(self) -> int:
+        """Apply the explicit complexity contract within this owner."""
         return tuple(RegressionMethod).index(self.method)
 
     @property
     def identity(self) -> str:
+        """Apply the explicit identity contract within this owner."""
         revision = self.version.rsplit("-", 1)[1]
         return (
             "regression-method-"

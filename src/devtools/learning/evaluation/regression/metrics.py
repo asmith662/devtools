@@ -37,6 +37,8 @@ type RegressionValue = Measured[float] | NoValue
 
 
 class RegressionMeasure(Enum):
+    """Retain the declared RegressionMeasure scientific values and invariants."""
+
     MAE = "mae"
     RMSE = "rmse"
     R2 = "r2"
@@ -45,9 +47,12 @@ class RegressionMeasure(Enum):
 
 @dataclass(frozen=True, slots=True)
 class RegressionMetricDefinition(MetricDefinition[float]):
+    """Retain the declared RegressionMetricDefinition scientific values and invariants."""
+
     measure: RegressionMeasure
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.measure, RegressionMeasure):
             msg = "typed regression metric required"
             raise TypeError(msg)
@@ -55,14 +60,17 @@ class RegressionMetricDefinition(MetricDefinition[float]):
 
     @property
     def semantic_key(self) -> str:
+        """Apply the explicit semantic key contract within this owner."""
         return "regression." + self.measure.value
 
     @property
     def version(self) -> int:
+        """Apply the explicit version contract within this owner."""
         return 1
 
     @property
     def parameters(self) -> tuple[MetricParameter, ...]:
+        """Apply the explicit parameters contract within this owner."""
         formula = {
             RegressionMeasure.MAE: "fsum(abs(truth-prediction))/N",
             RegressionMeasure.RMSE: "sqrt(fsum((truth-prediction)^2)/N)",
@@ -74,7 +82,8 @@ class RegressionMetricDefinition(MetricDefinition[float]):
             MetricParameter("weights", "equal_original_observation_mass"),
             MetricParameter("missing", "complete_paired_population_required"),
             MetricParameter(
-                "undefined", "empty_or_zero_required_denominator_or_binary64_overflow",
+                "undefined",
+                "empty_or_zero_required_denominator_or_binary64_overflow",
             ),
             MetricParameter(
                 "direction",
@@ -92,6 +101,7 @@ class RegressionMetricDefinition(MetricDefinition[float]):
 
     @property
     def output(self) -> OutputContract:
+        """Apply the explicit output contract within this owner."""
         return OutputContract(
             ValueShape.REAL,
             UnitMeaning.SOURCE_QUANTITY
@@ -100,6 +110,7 @@ class RegressionMetricDefinition(MetricDefinition[float]):
         )
 
     def validate_value(self, value: float) -> None:
+        """Apply the explicit validate value contract within this owner."""
         if (
             type(value) is not float
             or not math.isfinite(value)
@@ -116,8 +127,11 @@ class RegressionMetricDefinition(MetricDefinition[float]):
             raise ValueError(msg)
 
     def validate_binding(
-        self, binding: MeasurementBinding, basis: MeasurementBasis | None,
+        self,
+        binding: MeasurementBinding,
+        basis: MeasurementBasis | None,
     ) -> None:
+        """Apply the explicit validate binding contract within this owner."""
         if (
             not isinstance(binding, FieldBinding)
             or binding.declared_role is not ColumnRole.TARGET
@@ -149,6 +163,8 @@ def _arithmetic(compute: Callable[[], float]) -> RegressionValue:
 
 @dataclass(frozen=True, slots=True)
 class RegressionEvaluation:
+    """Retain the declared RegressionEvaluation scientific values and invariants."""
+
     population_id: str
     input_identity: str
     target_values_identity: str
@@ -162,7 +178,8 @@ class RegressionEvaluation:
 
 
 def evaluate_regression(
-    population: RegressionPopulation, predictions: RegressionPredictions,
+    population: RegressionPopulation,
+    predictions: RegressionPredictions,
 ) -> RegressionEvaluation:
     """Measure exact original rows; a nonvalue never shrinks their denominator."""
     if (
@@ -184,7 +201,8 @@ def evaluate_regression(
 
 
 def _evaluate_values(
-    population: RegressionPopulation, values: tuple[float, ...],
+    population: RegressionPopulation,
+    values: tuple[float, ...],
 ) -> RegressionEvaluation:
     """Existing v1 formulas shared after each concrete prediction-type check."""
     x = population.inputs
@@ -240,7 +258,8 @@ def _evaluate_values(
 
 
 def mae_skill(
-    candidate: RegressionEvaluation, reference: RegressionEvaluation,
+    candidate: RegressionEvaluation,
+    reference: RegressionEvaluation,
 ) -> RegressionValue:
     """Paired unitless skill; positive means less MAE than the declared reference."""
     if (
@@ -259,7 +278,8 @@ def mae_skill(
         msg = "same original task/population/target scale and units required"
         raise ValueError(msg)
     if not isinstance(candidate.mae, Measured) or not isinstance(
-        reference.mae, Measured,
+        reference.mae,
+        Measured,
     ):
         return NoValue(
             NonValueKind.UNAVAILABLE,
@@ -301,7 +321,8 @@ def regression_measurements(
                 key="regression/" + measure.value,
                 binding=binding,
                 basis=MeasurementBasis(
-                    len(evaluation.row_ids), len(evaluation.row_ids),
+                    len(evaluation.row_ids),
+                    len(evaluation.row_ids),
                 ),
                 collected_at=at,
             )
@@ -313,5 +334,9 @@ def regression_measurements(
         ),
     )
     return MeasurementBundle(
-        bundle_id or uuid4(), at, (context,), observations, execution_id,
+        bundle_id or uuid4(),
+        at,
+        (context,),
+        observations,
+        execution_id,
     )

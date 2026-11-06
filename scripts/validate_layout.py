@@ -90,7 +90,8 @@ def violations(root: Path) -> list[str]:
     ]
     if (root / ".local/worktrees").exists():
         problems.append("Secondary Devtools checkout storage: .local/worktrees")
-    if (root / ".git").exists() and not _valid_git_entry(root):
+    git_entry = root / ".git"
+    if (git_entry.exists() or git_entry.is_symlink()) and not _valid_git_entry(root):
         problems.append("Invalid Git repository metadata: .git")
     return problems
 

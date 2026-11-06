@@ -23,7 +23,11 @@ from devtools.learning.requirements.evidence import validate_references
 def _hash(value: object) -> str:
     return hashlib.sha256(
         json.dumps(
-            value, sort_keys=True, separators=(",", ":"), allow_nan=False, default=str,
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+            default=str,
         ).encode(),
     ).hexdigest()
 
@@ -40,6 +44,7 @@ class BinaryLinearTraining:
     references: tuple[EvidenceReference, ...]
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.features, FeatureTable):
             msg = "FeatureTable required"
             raise TypeError(msg)
@@ -77,6 +82,7 @@ class BinaryLinearTraining:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return _hash(
             {
                 "input_sha256": _fingerprint(self.features),
@@ -109,6 +115,7 @@ class FittedBinaryLinearClassifier:
     threshold: str = field(default="logit>0;exact_zero_negative", init=False)
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.feature_names) is not tuple
             or not self.feature_names
@@ -162,9 +169,11 @@ class FittedBinaryLinearClassifier:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return _hash(asdict(self))
 
     def logits(self, features: FeatureTable) -> tuple[float, ...]:
+        """Apply the explicit logits contract within this owner."""
         if features.feature_names != self.feature_names or any(
             k is not FeatureValueKind.CONTINUOUS for k in features.feature_value_kinds
         ):
@@ -185,4 +194,5 @@ class FittedBinaryLinearClassifier:
         return scores
 
     def classify(self, features: FeatureTable) -> tuple[int, ...]:
+        """Apply the explicit classify contract within this owner."""
         return tuple(int(value > 0.0) for value in self.logits(features))

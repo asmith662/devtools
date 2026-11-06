@@ -51,7 +51,7 @@ class LogisticClassificationConfiguration:
     l1_ratio: float = 0.0
 
     def __post_init__(self) -> None:
-
+        """Validate the immutable scientific contract and its correspondence."""
         expected = ("lbfgs", 1.0, True, 800, 1e-07, 42, 1, 0.0)
 
         actual = tuple(asdict(self).values())
@@ -69,7 +69,7 @@ class LogisticClassificationConfiguration:
 
     @property
     def observations(self) -> tuple[tuple[str, str], ...]:
-
+        """Apply the explicit observations contract within this owner."""
         return tuple(((k, str(v)) for k, v in asdict(self).items()))
 
 
@@ -134,10 +134,7 @@ def fit_binary_logistic(
 
         threads = str(
             tuple(
-
-                    (p.get("internal_api"), p.get("num_threads"))
-                    for p in threadpool_info()
-
+                (p.get("internal_api"), p.get("num_threads")) for p in threadpool_info()
             ),
         )
 
@@ -160,12 +157,10 @@ def fit_binary_logistic(
         raise ValueError(msg)
 
     pure = tuple(
-
-            math.fsum(
-                (intercept, *(w * float(v) for w, v in zip(weights, row, strict=True))),
-            )
-            for row in x
-
+        math.fsum(
+            (intercept, *(w * float(v) for w, v in zip(weights, row, strict=True))),
+        )
+        for row in x
     )
 
     scores = native.decision_function(x)

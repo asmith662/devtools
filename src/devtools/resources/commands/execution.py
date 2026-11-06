@@ -106,7 +106,7 @@ class CommandExecutor:
                 try:
                     # CPython owns this transport and the original Windows handle.
                     native_process = process._transport.get_extra_info("subprocess")  # type: ignore[attr-defined]  # noqa: SLF001
-                    job.assign_and_resume(int(native_process._handle))  # noqa: SLF001
+                    job.assign_and_resume(int(native_process._handle), process.pid)  # noqa: SLF001
                 except BaseException:
                     await self._terminate_and_reap(process)
                     raise

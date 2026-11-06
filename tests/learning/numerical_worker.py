@@ -52,7 +52,6 @@ from devtools.learning.representation.standardization import (
 )
 
 
-
 def qualify(root: Path) -> dict[str, object]:
     """Fit on authored training rows; inspect retained arithmetic without refits."""
     root.mkdir()
@@ -62,15 +61,21 @@ def qualify(root: Path) -> dict[str, object]:
         (FeatureValueKind.CONTINUOUS,) * 2,
     )
     inputs = RegressionInput(
-        table, (None, None), tuple(f"r{i}" for i in range(8)),
-        "authored-training", "authored-source-v1", RegressionRole.TRAINING,
+        table,
+        (None, None),
+        tuple(f"r{i}" for i in range(8)),
+        "authored-training",
+        "authored-source-v1",
+        RegressionRole.TRAINING,
     )
     population = RegressionPopulation(
-        inputs, ContinuousTarget("quantity-v1", "authored scalar", "authored unit"),
+        inputs,
+        ContinuousTarget("quantity-v1", "authored scalar", "authored unit"),
         tuple(float(2 * i + 1) for i in range(8)),
     )
     authority = ExecutionAuthorization(
-        population.content_identity, ("authored-control",),
+        population.content_identity,
+        ("authored-control",),
         EvidenceReference("host_control_authority", "authored-control", None),
     )
     assert authority.plan_identity == population.content_identity
@@ -78,23 +83,46 @@ def qualify(root: Path) -> dict[str, object]:
     records: dict[str, object] = {"grant": document(asdict(authority))}
     with SQLiteExecutionRecorder(database) as recorder:
         with ExecutionContext(
-            recorder, Admitted("learning.authored.control", (Fact("plan_identity", authority.plan_identity),)),
+            recorder,
+            Admitted(
+                "learning.authored.control",
+                (Fact("plan_identity", authority.plan_identity),),
+            ),
         ) as run:
             preparation = fit_feature_standardization(
-                FeatureStandardizationSpecification(table.feature_names), table,
-                population_id=inputs.population_id, source_identity=inputs.source_identity,
-                recorder=recorder, parent=run,
+                FeatureStandardizationSpecification(table.feature_names),
+                table,
+                population_id=inputs.population_id,
+                source_identity=inputs.source_identity,
+                recorder=recorder,
+                parent=run,
             )
             assert preparation.training_means == (mean(range(8)), 2.0)
             assert preparation.training_standard_deviations == (pstdev(range(8)), 0.0)
             assert preparation.effective_scales[1] == 1.0
-            query = replace(inputs, features=FeatureTable(table.feature_names, ((0.2, 2.0), (6.7, 2.0)), table.feature_value_kinds), row_ids=("q0", "q1"), population_id="authored-online", role=RegressionRole.DEVELOPMENT)
+            query = replace(
+                inputs,
+                features=FeatureTable(
+                    table.feature_names,
+                    ((0.2, 2.0), (6.7, 2.0)),
+                    table.feature_value_kinds,
+                ),
+                row_ids=("q0", "q1"),
+                population_id="authored-online",
+                role=RegressionRole.DEVELOPMENT,
+            )
             observed = RegressionPopulation(query, population.target, (1.4, 14.4))
-            for method in (RegressionMethod.MEAN, RegressionMethod.RIDGE, RegressionMethod.KNN):
+            for method in (
+                RegressionMethod.MEAN,
+                RegressionMethod.RIDGE,
+                RegressionMethod.KNN,
+            ):
                 fitted = fit_regression(
-                    RegressionSpecification(method), population,
+                    RegressionSpecification(method),
+                    population,
                     None if method is RegressionMethod.MEAN else preparation,
-                    recorder=recorder, parent=run,
+                    recorder=recorder,
+                    parent=run,
                 )
                 predicted = fitted.predict(query)
                 retained = decode_state(document(asdict(fitted.state)))
@@ -102,29 +130,71 @@ def qualify(root: Path) -> dict[str, object]:
                 assert retained.predict(query) == predicted
                 transformed = preparation.transform(query.features).features.rows
                 if method is RegressionMethod.RIDGE:
-                    independent = tuple(math.fsum((retained.intercept, *(w*x for w,x in zip(retained.coefficients,row,strict=True)))) for row in transformed)
+                    independent = tuple(
+                        math.fsum(
+                            (
+                                retained.intercept,
+                                *(
+                                    w * x
+                                    for w, x in zip(
+                                        retained.coefficients,
+                                        row,
+                                        strict=True,
+                                    )
+                                ),
+                            ),
+                        )
+                        for row in transformed
+                    )
                     assert independent == predicted.values
                 if method is RegressionMethod.MEAN:
                     assert predicted.values == (8.0, 8.0)
                 evaluation = evaluate_regression(observed, predicted)
-                records[method.value] = {"state": document(asdict(retained)), "prediction": document(asdict(predicted)), "evaluation": document(asdict(evaluation))}
+                records[method.value] = {
+                    "state": document(asdict(retained)),
+                    "prediction": document(asdict(predicted)),
+                    "evaluation": document(asdict(evaluation)),
+                }
             prepared = preparation.transform(table).features
-            training = BinaryLinearTraining(prepared, (0, 0, 0, 0, 1, 1, 1, 1), inputs.row_ids, inputs.population_id, "binary-target-v1", (authority.authority,))
-            classifier = fit_binary_logistic(training, LogisticClassificationConfiguration(), execution=run)
+            training = BinaryLinearTraining(
+                prepared,
+                (0, 0, 0, 0, 1, 1, 1, 1),
+                inputs.row_ids,
+                inputs.population_id,
+                "binary-target-v1",
+                (authority.authority,),
+            )
+            classifier = fit_binary_logistic(
+                training,
+                LogisticClassificationConfiguration(),
+                execution=run,
+            )
             encoded = json.dumps(model_document(classifier)).encode()
             restored = decode_model(encoded)
             prediction = restored.classify(prepared)
             assert prediction == classifier.classify(prepared)
             counts = evaluate_classification(training.targets, prediction)
-            records["classification"] = {"state": model_document(restored), "predictions": prediction, "f1": macro_f1_value(counts, version=2)}
+            records["classification"] = {
+                "state": model_document(restored),
+                "predictions": prediction,
+                "f1": macro_f1_value(counts, version=2),
+            }
             records["preparation"] = document(asdict(preparation))
             run.completed((Fact("control_complete", True),))
         payload = json.dumps(records, sort_keys=True, allow_nan=False).encode()
+
         def write_artifacts(directory: Path) -> None:
             """Write the sole declared scientific member into private staging."""
             (directory / "result.json").write_bytes(payload)
 
-        publication = publish_artifacts(root / "publication", run.execution_id, ("result.json",), write_artifacts, recorder=recorder, dependencies=(Fact("plan_identity", authority.plan_identity),))
+        publication = publish_artifacts(
+            root / "publication",
+            run.execution_id,
+            ("result.json",),
+            write_artifacts,
+            recorder=recorder,
+            dependencies=(Fact("plan_identity", authority.plan_identity),),
+        )
     checked = reconcile_publication(root / "publication", database)
     assert checked is not None
     assert checked.manifest == publication.manifest
@@ -134,7 +204,13 @@ def qualify(root: Path) -> dict[str, object]:
     threads = threadpool_info()
     assert threads
     assert all(t["num_threads"] == 1 for t in threads)
-    return {"regression_methods": 3, "binary_f1": records["classification"], "publication_status": str(checked.status), "recording_status": str(checked.recording_status), "native_pools": threads}
+    return {
+        "regression_methods": 3,
+        "binary_f1": records["classification"],
+        "publication_status": str(checked.status),
+        "recording_status": str(checked.recording_status),
+        "native_pools": threads,
+    }
 
 
 if __name__ == "__main__":

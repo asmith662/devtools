@@ -48,7 +48,7 @@ class MarginClassificationConfiguration:
     numerical_threads: int = 1
 
     def __post_init__(self) -> None:
-
+        """Validate the immutable scientific contract and its correspondence."""
         expected = ("l2", "squared_hinge", False, 1.0, True, 1.0, 1e-06, 2000, 42, 1)
 
         if any(
@@ -64,7 +64,7 @@ class MarginClassificationConfiguration:
 
     @property
     def observations(self) -> tuple[tuple[str, str], ...]:
-
+        """Apply the explicit observations contract within this owner."""
         return tuple(((key, str(value)) for key, value in asdict(self).items()))
 
 
@@ -136,10 +136,7 @@ def fit_binary_margin(
 
         pools = str(
             tuple(
-
-                    (p.get("internal_api"), p.get("num_threads"))
-                    for p in threadpool_info()
-
+                (p.get("internal_api"), p.get("num_threads")) for p in threadpool_info()
             ),
         )
 
@@ -191,12 +188,10 @@ def fit_binary_margin(
     intercept = float(native.intercept_[0])
 
     pure = tuple(
-
-            math.fsum(
-                (intercept, *(w * float(v) for w, v in zip(weights, row, strict=True))),
-            )
-            for row in x
-
+        math.fsum(
+            (intercept, *(w * float(v) for w, v in zip(weights, row, strict=True))),
+        )
+        for row in x
     )
 
     scores = native.decision_function(x)

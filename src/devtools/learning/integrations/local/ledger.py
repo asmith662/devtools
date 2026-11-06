@@ -83,6 +83,7 @@ class SQLiteExecutionRecorder:
         timeout_seconds: float = 0.25,
         maximum_database_bytes: int | None = None,
     ) -> None:
+        """Initialize the explicitly scoped scientific boundary."""
         if not isinstance(database, Path):
             msg = "database must be an explicit Path"
             raise TypeError(msg)
@@ -121,7 +122,9 @@ class SQLiteExecutionRecorder:
 
                 fcntl.flock(self._lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)  # type: ignore[attr-defined]  # Windows has no fcntl stubs.
             connection = sqlite3.connect(
-                self.database, timeout=timeout_seconds, isolation_level=None,
+                self.database,
+                timeout=timeout_seconds,
+                isolation_level=None,
             )
             self._connection = connection
             if maximum_database_bytes is not None:
@@ -165,6 +168,7 @@ class SQLiteExecutionRecorder:
             raise RecordingError(msg) from error
 
     def __enter__(self) -> Self:
+        """Apply the explicit   enter   contract within this owner."""
         return self
 
     def __exit__(
@@ -173,6 +177,7 @@ class SQLiteExecutionRecorder:
         error: BaseException | None,
         trace: TracebackType | None,
     ) -> None:
+        """Apply the explicit   exit   contract within this owner."""
         self.close()
 
     def close(self) -> None:
@@ -206,10 +211,13 @@ class SQLiteExecutionRecorder:
             raise
 
     def _record(
-        self, connection: sqlite3.Connection, event: ExecutionEvent,
+        self,
+        connection: sqlite3.Connection,
+        event: ExecutionEvent,
     ) -> ExecutionEvent:
         previous = connection.execute(
-            "SELECT document FROM events WHERE id=?", (str(event.event_id),),
+            "SELECT document FROM events WHERE id=?",
+            (str(event.event_id),),
         ).fetchone()
         if previous:
             stored = decode(previous[0])
@@ -244,10 +252,12 @@ class SQLiteExecutionRecorder:
             )
         else:
             row = connection.execute(
-                "SELECT lifecycle,active_stage FROM executions WHERE id=?", (eid,),
+                "SELECT lifecycle,active_stage FROM executions WHERE id=?",
+                (eid,),
             ).fetchone()
             activation = connection.execute(
-                "SELECT execution_id,producer FROM activations WHERE id=?", (aid,),
+                "SELECT execution_id,producer FROM activations WHERE id=?",
+                (aid,),
             ).fetchone()
             last = connection.execute(
                 "SELECT document FROM events WHERE activation_id=? ORDER BY sequence DESC LIMIT 1",
@@ -278,7 +288,8 @@ class SQLiteExecutionRecorder:
                     msg = "activation cannot start twice"
                     raise ValueError(msg)
                 connection.execute(
-                    "UPDATE executions SET lifecycle='running' WHERE id=?", (eid,),
+                    "UPDATE executions SET lifecycle='running' WHERE id=?",
+                    (eid,),
                 )
                 connection.execute(
                     "UPDATE activations SET started_at=?,pid=? WHERE id=?",
@@ -319,7 +330,8 @@ class SQLiteExecutionRecorder:
                         msg = "stage finish must match active stage"
                         raise ValueError(msg)
                     connection.execute(
-                        "UPDATE executions SET active_stage=NULL WHERE id=?", (eid,),
+                        "UPDATE executions SET active_stage=NULL WHERE id=?",
+                        (eid,),
                     )
                 elif isinstance(payload, Progress):
                     if stage != payload.stage:
@@ -362,7 +374,8 @@ class SQLiteExecutionRecorder:
 
 
 def _read_history(
-    connection: sqlite3.Connection, execution_id: UUID,
+    connection: sqlite3.Connection,
+    execution_id: UUID,
 ) -> ExecutionHistory | None:
     row = connection.execute(
         "SELECT operation,lifecycle,outcome,active_stage FROM executions WHERE id=?",
@@ -435,7 +448,12 @@ def _read_history(
         raise RecordingError(msg)
     _validate_lifecycle(events, activations, row[3])
     return ExecutionHistory(
-        execution_id, row[0], Lifecycle(row[1]), outcome, activations, events,
+        execution_id,
+        row[0],
+        Lifecycle(row[1]),
+        outcome,
+        activations,
+        events,
     )
 
 
@@ -548,6 +566,7 @@ class SQLiteInspectionSession:
     """
 
     def __init__(self, database: Path) -> None:
+        """Initialize the explicitly scoped scientific boundary."""
         if not isinstance(database, Path):
             msg = "inspection requires Path"
             raise TypeError(msg)
@@ -573,6 +592,7 @@ class SQLiteInspectionSession:
         return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns)
 
     def __enter__(self) -> Self:
+        """Apply the explicit   enter   contract within this owner."""
         if self._entered or self._owner != (os.getpid(), threading.get_ident()):
             msg = "Inspection session is single-use and owner-bound"
             raise RecordingError(msg)
@@ -652,6 +672,7 @@ class SQLiteInspectionSession:
         error: BaseException | None,
         trace: TracebackType | None,
     ) -> None:
+        """Apply the explicit   exit   contract within this owner."""
         try:
             if error is None and self._connection is not None:
                 self._checked()
@@ -716,7 +737,8 @@ class SQLiteInspectionSession:
         evidence is an error, never an apparently valid reversed ordering.
         """
         if not isinstance(first_event_id, UUID) or not isinstance(
-            second_event_id, UUID,
+            second_event_id,
+            UUID,
         ):
             msg = "recorded event ordering requires UUIDs"
             raise TypeError(msg)

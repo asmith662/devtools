@@ -7,7 +7,8 @@ from devtools.learning.regression.state import FittedRegression, finite
 
 
 def inspect_knn_query(
-    state: FittedRegression, prepared_row: tuple[float, ...],
+    state: FittedRegression,
+    prepared_row: tuple[float, ...],
 ) -> tuple[tuple[str, ...], tuple[float, ...], float, bool]:
     """Independent hypot/difference arithmetic and target-blind ordered selection.
 
@@ -19,8 +20,12 @@ def inspect_knn_query(
         msg = "explicit deterministic numerical specification required"
         raise ValueError(msg)
     corpus, targets = (state.neighbor_features, state.neighbor_targets)
-    assert corpus is not None
-    assert targets is not None
+    if not (corpus is not None):
+        msg_0 = "Required numerical state invariant is absent."
+        raise AssertionError(msg_0)
+    if not (targets is not None):
+        msg_0 = "Required numerical state invariant is absent."
+        raise AssertionError(msg_0)
     ranking = []
     for index, original in enumerate(corpus.rows):
         differences = tuple(
@@ -34,6 +39,9 @@ def inspect_knn_query(
     distances = tuple((d for d, _, _ in selected))
     value = finite(math.fsum((targets[i] for _, _, i in selected)) / 5)
     separated = len(ranking) == 5 or not math.isclose(
-        ranking[4][0], ranking[5][0], rel_tol=1e-12, abs_tol=1e-12,
+        ranking[4][0],
+        ranking[5][0],
+        rel_tol=1e-12,
+        abs_tol=1e-12,
     )
     return (ids, distances, value, separated)

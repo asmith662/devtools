@@ -32,12 +32,14 @@ from devtools.learning.representation.targets import (
 
 
 def nonempty(value: str) -> None:
+    """Apply the explicit nonempty contract within this owner."""
     if type(value) is not str or not value.strip():
         msg = "measurement text identities/reasons must be nonempty"
         raise ValueError(msg)
 
 
 def digest(value: str | None) -> None:
+    """Apply the explicit digest contract within this owner."""
     if value is not None and (
         type(value) is not str or not re.fullmatch("[0-9a-f]{64}", value)
     ):
@@ -46,6 +48,7 @@ def digest(value: str | None) -> None:
 
 
 def utc(value: datetime) -> None:
+    """Apply the explicit utc contract within this owner."""
     if not isinstance(value, datetime) or value.utcoffset() != timedelta(0):
         msg = "measurement timestamps must be timezone-aware UTC"
         raise ValueError(msg)
@@ -79,12 +82,16 @@ def _immutable(value: object) -> None:
 
 
 class ValueShape(Enum):
+    """Retain the declared ValueShape scientific values and invariants."""
+
     COUNT = "exact_count"
     REAL = "finite_real"
     LABELED_COUNT_MATRIX = "labeled_count_matrix"
 
 
 class UnitMeaning(Enum):
+    """Retain the declared UnitMeaning scientific values and invariants."""
+
     DIMENSIONLESS = "dimensionless"
     OBSERVATIONS = "observations"
     SOURCE_QUANTITY = "source_quantity"
@@ -100,8 +107,10 @@ class OutputContract:
     unit: UnitMeaning
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.shape, ValueShape) or not isinstance(
-            self.unit, UnitMeaning,
+            self.unit,
+            UnitMeaning,
         ):
             msg = "output requires typed shape and unit meaning"
             raise TypeError(msg)
@@ -118,6 +127,7 @@ class MetricParameter:
     value: ParameterValue
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.name)
         if type(self.value) not in (str, int, float, bool, tuple):
             msg = "metric parameter requires a supported immutable scalar/tuple"
@@ -134,11 +144,14 @@ class MetricParameter:
 
 @dataclass(frozen=True, slots=True)
 class DefinitionIdentity:
+    """Retain the declared DefinitionIdentity scientific values and invariants."""
+
     semantic_key: str
     version: int
     parameters_sha256: str
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.semantic_key)
         if type(self.version) is not int or self.version < 1:
             msg = "definition version must be a positive integer"
@@ -147,6 +160,8 @@ class DefinitionIdentity:
 
 
 class NonValueKind(Enum):
+    """Retain the declared NonValueKind scientific values and invariants."""
+
     UNDEFINED = "undefined"
     NOT_APPLICABLE = "not_applicable"
     NOT_MEASURED = "not_measured"
@@ -163,12 +178,15 @@ class Measured[V]:
 
 @dataclass(frozen=True, slots=True)
 class NoValue:
+    """Retain the declared NoValue scientific values and invariants."""
+
     kind: NonValueKind
     reason_code: str
     detail: str
     diagnostic_event_id: UUID | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.kind, NonValueKind):
             msg = "nonvalue kind must be explicit"
             raise TypeError(msg)
@@ -188,9 +206,12 @@ class PopulationBinding:
 
 @dataclass(frozen=True, slots=True)
 class CategoryBinding:
+    """Retain the declared CategoryBinding scientific values and invariants."""
+
     category: CategoryValue
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         validate_category_values((self.category,))
 
 
@@ -205,6 +226,7 @@ class FieldBinding:
     source_unit: str | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.field)
         if not isinstance(self.declared_role, ColumnRole):
             msg = "field role must use the source declaration contract"
@@ -235,12 +257,14 @@ class ScopedBinding:
     activation_id: UUID
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.scope_identity)
         if not isinstance(self.source_event_id, UUID):
             msg = "scoped measurement requires a source event UUID"
             raise TypeError(msg)
         if not isinstance(self.execution_id, UUID) or not isinstance(
-            self.activation_id, UUID,
+            self.activation_id,
+            UUID,
         ):
             msg = "scoped binding requires execution and activation UUIDs"
             raise TypeError(msg)
@@ -261,6 +285,7 @@ class MeasurementBasis:
     denominator: int | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         for value in (
             self.population_count,
             self.effective_count,
@@ -293,6 +318,7 @@ class EvidenceReference:
     sha256: str | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.relation)
         nonempty(self.identity)
         digest(self.sha256)
@@ -318,6 +344,7 @@ class MeasurementContext:
     limitations: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.context_id, UUID):
             msg = "context identity must be UUID"
             raise TypeError(msg)
@@ -376,24 +403,34 @@ class MetricDefinition[V](ABC):
 
     @property
     @abstractmethod
-    def semantic_key(self) -> str: ...
+    def semantic_key(self) -> str:
+        """Apply the explicit semantic key contract within this owner."""
+        ...
 
     @property
     @abstractmethod
-    def version(self) -> int: ...
+    def version(self) -> int:
+        """Apply the explicit version contract within this owner."""
+        ...
 
     @property
     @abstractmethod
-    def parameters(self) -> tuple[MetricParameter, ...]: ...
+    def parameters(self) -> tuple[MetricParameter, ...]:
+        """Apply the explicit parameters contract within this owner."""
+        ...
 
     @property
     @abstractmethod
-    def output(self) -> OutputContract: ...
+    def output(self) -> OutputContract:
+        """Apply the explicit output contract within this owner."""
+        ...
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         self.validate_definition()
 
     def validate_definition(self) -> None:
+        """Apply the explicit validate definition contract within this owner."""
         nonempty(self.semantic_key)
         if type(self.version) is not int or self.version < 1:
             msg = "definition version must be positive"
@@ -412,6 +449,7 @@ class MetricDefinition[V](ABC):
 
     @property
     def identity(self) -> DefinitionIdentity:
+        """Apply the explicit identity contract within this owner."""
         data = [
             (p.name, type(p.value).__name__, p.value)
             for p in sorted(self.parameters, key=lambda p: p.name)
@@ -420,7 +458,10 @@ class MetricDefinition[V](ABC):
             ("output", "contract", (self.output.shape.value, self.output.unit.value)),
         )
         encoded = json.dumps(
-            data, ensure_ascii=True, allow_nan=False, separators=(",", ":"),
+            data,
+            ensure_ascii=True,
+            allow_nan=False,
+            separators=(",", ":"),
         )
         return DefinitionIdentity(
             self.semantic_key,
@@ -429,12 +470,18 @@ class MetricDefinition[V](ABC):
         )
 
     @abstractmethod
-    def validate_value(self, value: V) -> None: ...
+    def validate_value(self, value: V) -> None:
+        """Apply the explicit validate value contract within this owner."""
+        ...
 
     @abstractmethod
     def validate_binding(
-        self, binding: MeasurementBinding, basis: MeasurementBasis | None,
-    ) -> None: ...
+        self,
+        binding: MeasurementBinding,
+        basis: MeasurementBasis | None,
+    ) -> None:
+        """Apply the explicit validate binding contract within this owner."""
+        ...
 
     def validate_result(
         self,
@@ -442,6 +489,7 @@ class MetricDefinition[V](ABC):
         binding: MeasurementBinding,
         basis: MeasurementBasis | None,
     ) -> None:
+        """Apply the explicit validate result contract within this owner."""
         self.validate_definition()
         self.validate_binding(binding, basis)
         if isinstance(result, Measured):
@@ -479,12 +527,20 @@ class MetricDefinition[V](ABC):
     ) -> MetricObservation[V]:
         """Construct validated evidence, without performing a metric calculation."""
         return MetricObservation(
-            self, context_id, key, binding, basis, result, collected_at,
+            self,
+            context_id,
+            key,
+            binding,
+            basis,
+            result,
+            collected_at,
         )
 
 
 @dataclass(frozen=True, slots=True)
 class MetricObservation[V]:
+    """Retain the declared MetricObservation scientific values and invariants."""
+
     definition: MetricDefinition[V]
     context_id: UUID
     key: str
@@ -494,6 +550,7 @@ class MetricObservation[V]:
     collected_at: datetime
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.definition, MetricDefinition):
             msg = "observation requires a metric definition"
             raise TypeError(msg)
@@ -529,6 +586,7 @@ class MeasurementBundle[V]:
     adaptation_execution_id: UUID | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.bundle_id, UUID):
             msg = "bundle identity must be UUID"
             raise TypeError(msg)

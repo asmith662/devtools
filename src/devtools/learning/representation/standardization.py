@@ -42,6 +42,7 @@ class FeatureStandardizationSpecification:
     feature_names: tuple[str, ...]
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if isinstance(self.feature_names, (str, bytes)):
             msg = "feature_names must be a sequence of identities"
             raise TypeError(msg)
@@ -139,6 +140,7 @@ class StandardizationTransformationResult:
     representation_identity: str | None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.features, FeatureTable) or any(
             not isinstance(i, UUID)
             for i in (
@@ -191,10 +193,12 @@ class FittedFeatureStandardization:
     state_id: UUID = field(default_factory=uuid4)
     variance_convention: str = field(default="population_n", init=False)
     constant_policy: str = field(
-        default="actual_zero_std_effective_unit_scale", init=False,
+        default="actual_zero_std_effective_unit_scale",
+        init=False,
     )
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.specification, FeatureStandardizationSpecification):
             msg = "state requires FeatureStandardizationSpecification"
             raise TypeError(msg)
@@ -247,7 +251,8 @@ class FittedFeatureStandardization:
             _identity(value)
         _digest(self.fitting_input_sha256)
         if not isinstance(
-            self.fitting_scope, PopulationScope,
+            self.fitting_scope,
+            PopulationScope,
         ) or self.fitting_scope in (PopulationScope.VALIDATION, PopulationScope.TEST):
             msg = "evaluation populations cannot fit standardization"
             raise ValueError(msg)
@@ -261,6 +266,7 @@ class FittedFeatureStandardization:
 
     @property
     def feature_names(self) -> tuple[str, ...]:
+        """Apply the explicit feature names contract within this owner."""
         return self.specification.feature_names
 
     def transform(
@@ -340,7 +346,8 @@ class FittedFeatureStandardization:
                 (
                     Fact("fitted_state_id", str(self.state_id)),
                     Fact(
-                        "construction_execution_id", str(self.construction_execution_id),
+                        "construction_execution_id",
+                        str(self.construction_execution_id),
                     ),
                 ),
             ),
@@ -458,7 +465,8 @@ def fit_feature_standardization(
             (
                 Fact("population_id", population_id),
                 Fact(
-                    "scope", scope.value if isinstance(scope, PopulationScope) else None,
+                    "scope",
+                    scope.value if isinstance(scope, PopulationScope) else None,
                 ),
                 Fact("source_identity", source_identity),
                 Fact("representation_identity", representation_identity),

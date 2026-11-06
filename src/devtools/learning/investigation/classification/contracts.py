@@ -1,4 +1,6 @@
 # Copyright (c) 2026
+"""Selected scientific wire helpers and explicit versioned invariants."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -19,6 +21,7 @@ class ExecutionAuthorization:
     authority: EvidenceReference
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.authority, EvidenceReference):
             msg = "explicit caller authority reference required"
             raise TypeError(msg)

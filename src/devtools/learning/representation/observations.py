@@ -25,6 +25,8 @@ class ColumnRole(Enum):
 
 
 class PopulationScope(Enum):
+    """Retain the declared PopulationScope scientific values and invariants."""
+
     FULL_DESCRIPTIVE = "full_descriptive"
     DESCRIPTIVE_SUBSET = "descriptive_subset"
     TRAINING = "training"
@@ -49,6 +51,7 @@ class MissingValuePolicy:
     nan_is_missing: bool = True
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if isinstance(self.source_sentinels, (str, bytes)):
             msg = "source_sentinels must be a sequence of string tokens"
             raise TypeError(msg)
@@ -71,6 +74,7 @@ class MissingValuePolicy:
         object.__setattr__(self, "source_sentinels", sentinels)
 
     def is_missing(self, value: ObservationValue) -> bool:
+        """Apply the explicit is missing contract within this owner."""
         if value is None:
             return True
         if type(value) is float:
@@ -100,6 +104,7 @@ class ScalarColumn:
     missingness: MissingValuePolicy = MissingValuePolicy()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if type(self.name) is not str or not self.name.strip():
             msg = "column identity must be a nonempty string"
             raise ValueError(msg)
@@ -142,6 +147,7 @@ class TabularObservations:
     source_identity: str | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if type(self.population_id) is not str or not self.population_id.strip():
             msg = "population_id must be a nonempty caller identity"
             raise ValueError(msg)
@@ -174,6 +180,7 @@ class TabularObservations:
 
     @property
     def observation_count(self) -> int:
+        """Apply the explicit observation count contract within this owner."""
         return len(self.columns[0].values)
 
 

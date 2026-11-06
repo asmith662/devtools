@@ -1,4 +1,6 @@
 # Copyright (c) 2026
+"""Selected scientific wire helpers and explicit versioned invariants."""
+
 import json
 from datetime import datetime
 from enum import Enum

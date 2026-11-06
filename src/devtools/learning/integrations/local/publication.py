@@ -87,7 +87,9 @@ def _safe_path(path: Path) -> Path:
         except FileNotFoundError:
             continue
         if stat.S_ISLNK(info.st_mode) or getattr(
-            info, "st_file_attributes", 0,
+            info,
+            "st_file_attributes",
+            0,
         ) & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 1024):
             msg = f"symlink/reparse point is not allowed: {component}"
             raise PublicationError(msg)
@@ -156,7 +158,8 @@ def _read_json(path: Path) -> dict[str, object]:
         msg = "publication metadata exceeds the 1 MiB limit"
         raise ValueError(msg)
     value: object = json.loads(
-        path.read_text(encoding="utf-8"), object_pairs_hook=_unique_object,
+        path.read_text(encoding="utf-8"),
+        object_pairs_hook=_unique_object,
     )
     if not isinstance(value, dict):
         msg = "publication metadata must be a JSON object"
@@ -271,7 +274,9 @@ def _writer(root: Path) -> Iterator[None]:
 
 
 def _inspect_directory(
-    directory: Path, *, staged: bool = False,
+    directory: Path,
+    *,
+    staged: bool = False,
 ) -> PublicationInspection:
     manifest = None
     manifest_digest = None
@@ -321,7 +326,9 @@ def _inspect_directory(
 
 
 def inspect_publication(
-    root: Path, *, generation_id: str | None = None,
+    root: Path,
+    *,
+    generation_id: str | None = None,
 ) -> PublicationInspection | None:
     """Pin the pointer once; validate one generation, never fall back or mix files."""
     root = _safe_path(root)
@@ -444,7 +451,9 @@ def reconcile_publication(
 
 
 def inspect_publication_recovery(
-    root: Path, *, database: Path | None = None,
+    root: Path,
+    *,
+    database: Path | None = None,
 ) -> PublicationRecoveryInspection:
     """Inspect retained staging/older generations without deleting or restoring them."""
     root = _safe_path(root)
@@ -472,14 +481,19 @@ def inspect_publication_recovery(
                     and (item.manifest is not None)
                 ):
                     reconciled = reconcile_publication(
-                        root, database, generation_id=directory.name,
+                        root,
+                        database,
+                        generation_id=directory.name,
                     )
                     if reconciled is not None:
                         item = reconciled
                 values.append(item)
         observations.append(tuple(values))
     return PublicationRecoveryInspection(
-        current, issues, observations[0], observations[1],
+        current,
+        issues,
+        observations[0],
+        observations[1],
     )
 
 
@@ -487,7 +501,9 @@ def inspect_publication_recovery(
 class PublicationReservation(Protocol):
     """Optional source-local quota hook; no durable resource store or authority."""
 
-    def reserve_publication(self, payload_bytes: int | None) -> None: ...
+    def reserve_publication(self, payload_bytes: int | None) -> None:
+        """Apply the explicit reserve publication contract within this owner."""
+        ...
 
 
 def publish_artifacts(
@@ -651,7 +667,8 @@ def _publish(
         if execution:
             execution.progress("artifacts_written", len(names), len(names))
         stage(
-            "validation", "Validate exact membership, content and SHA-256 observations",
+            "validation",
+            "Validate exact membership, content and SHA-256 observations",
         )
         if {p.name for p in staging.iterdir()} != {*names, "intent.json"}:
             msg = "staging contains missing or unexpected artifacts"
@@ -660,14 +677,18 @@ def _publish(
             validator(staging)
         records = tuple(
             ArtifactRecord(
-                uuid5(identity, n), n, n, *_digest(staging / n, synchronize=True),
+                uuid5(identity, n),
+                n,
+                n,
+                *_digest(staging / n, synchronize=True),
             )
             for n in names
         )
         if execution:
             execution.progress("artifacts_verified", len(records), len(names))
         stage(
-            "manifest_construction", "Write and validate complete version-one manifest",
+            "manifest_construction",
+            "Write and validate complete version-one manifest",
         )
         manifest = PublicationManifest(
             identity,

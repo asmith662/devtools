@@ -92,7 +92,12 @@ def _facts(value: object) -> tuple[Fact, ...]:
         if set(obj) != {"name", "value"}:
             msg = "invalid fact fields"
             raise ValueError(msg)
-        result.append(Fact(_str(obj["name"]), cast("str | int | float | bool | None", obj["value"])))
+        result.append(
+            Fact(
+                _str(obj["name"]),
+                cast("str | int | float | bool | None", obj["value"]),
+            ),
+        )
     return tuple(result)
 
 
@@ -119,7 +124,9 @@ def decode(text: str) -> ExecutionEvent:
         )
     elif kind == "StageStarted":
         payload = StageStarted(
-            _str(p["stage"]), _str(p["description"]), _facts(p["facts"]),
+            _str(p["stage"]),
+            _str(p["description"]),
+            _facts(p["facts"]),
         )
     elif kind == "StageFinished":
         payload = StageFinished(_str(p["stage"]), _number(p["duration_seconds"]))

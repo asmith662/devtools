@@ -92,6 +92,7 @@ class RequirementFinding[R: Enum, V: Enum, B: Enum]:
     coordinates: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             not isinstance(self.requirement, Enum)
             or type(self.requirement.value) is not str
@@ -122,7 +123,10 @@ class RequirementFinding[R: Enum, V: Enum, B: Enum]:
             raise ValueError(msg)
 
     def _validate_family(
-        self, requirement: type[Enum], verdict: type[Enum], basis: type[Enum],
+        self,
+        requirement: type[Enum],
+        verdict: type[Enum],
+        basis: type[Enum],
     ) -> None:
         """Enforce a concrete family's public boundary before common validation."""
         if (

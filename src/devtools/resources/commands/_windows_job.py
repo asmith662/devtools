@@ -72,6 +72,17 @@ class WindowsJob:
             wintypes.HANDLE,
             wintypes.HANDLE,
         ]
+        self._kernel.GetProcessId.argtypes = [wintypes.HANDLE]
+        self._kernel.GetProcessId.restype = wintypes.DWORD
+        self._kernel.GetHandleInformation.argtypes = [
+            wintypes.HANDLE,
+            ctypes.POINTER(wintypes.DWORD),
+        ]
+        self._kernel.IsProcessInJob.argtypes = [
+            wintypes.HANDLE,
+            wintypes.HANDLE,
+            ctypes.POINTER(wintypes.BOOL),
+        ]
         self._kernel.CloseHandle.argtypes = [wintypes.HANDLE]
         self._kernel.TerminateJobObject.argtypes = [wintypes.HANDLE, wintypes.UINT]
         self._native.NtResumeProcess.argtypes = [wintypes.HANDLE]
@@ -79,13 +90,28 @@ class WindowsJob:
         self._handle = self._kernel.CreateJobObjectW(None, None)
         self._check(bool(self._handle))
         try:
+            handle_flags = wintypes.DWORD()
+            self._check(
+                bool(
+                    self._kernel.GetHandleInformation(
+                        self._handle,
+                        ctypes.byref(handle_flags),
+                    ),
+                ),
+            )
+            if handle_flags.value & 1:
+                msg_0 = "The job custody handle must not be inherited."
+                raise OSError(msg_0)
             limits = _Extended()
             limits.basic.flags = 0x2000 | 0x8
             limits.basic.active = 1
             self._check(
                 bool(
                     self._kernel.SetInformationJobObject(
-                        self._handle, 9, ctypes.byref(limits), ctypes.sizeof(limits),
+                        self._handle,
+                        9,
+                        ctypes.byref(limits),
+                        ctypes.sizeof(limits),
                     ),
                 ),
             )
@@ -118,11 +144,29 @@ class WindowsJob:
         if not ok:
             raise ctypes.WinError(ctypes.get_last_error())
 
-    def assign_and_resume(self, process_handle: int) -> None:
+    def assign_and_resume(self, process_handle: int, process_id: int) -> None:
         """Enter custody before resuming trusted code; assignment never retries."""
+        if self._kernel.GetProcessId(process_handle) != process_id:
+            msg = "The suspended process handle does not match the created PID."
+            raise OSError(
+                msg,
+            )
         self._check(
             bool(self._kernel.AssignProcessToJobObject(self._handle, process_handle)),
         )
+        assigned = wintypes.BOOL()
+        self._check(
+            bool(
+                self._kernel.IsProcessInJob(
+                    process_handle,
+                    self._handle,
+                    ctypes.byref(assigned),
+                ),
+            ),
+        )
+        if not assigned.value:
+            msg = "Suspended process custody could not be verified."
+            raise OSError(msg)
         if self._native.NtResumeProcess(process_handle) < 0:
             msg = "Cannot resume the contained command."
             raise OSError(msg)
@@ -136,7 +180,17 @@ class WindowsJob:
                 # Query the job-owned active count, never the machine process table.
                 for _ in range(100):
                     accounting = (ctypes.c_int64 * 6)()
-                    self._check(bool(self._kernel.QueryInformationJobObject(handle, 1, ctypes.byref(accounting), ctypes.sizeof(accounting), None)))
+                    self._check(
+                        bool(
+                            self._kernel.QueryInformationJobObject(
+                                handle,
+                                1,
+                                ctypes.byref(accounting),
+                                ctypes.sizeof(accounting),
+                                None,
+                            ),
+                        ),
+                    )
                     if not (wintypes.DWORD * 12).from_buffer(accounting)[10]:
                         return
                     time.sleep(0.01)

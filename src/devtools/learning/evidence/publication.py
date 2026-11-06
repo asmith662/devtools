@@ -55,8 +55,10 @@ def generation_name(created_at: datetime, publication_id: UUID) -> str:
 
 
 def validate_generation_name(value: str) -> str:
+    """Apply the explicit validate generation name contract within this owner."""
     if not isinstance(value, str) or not re.fullmatch(
-        "\\d{8}T\\d{12}Z-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", value,
+        "\\d{8}T\\d{12}Z-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}",
+        value,
     ):
         msg = "invalid generation identity"
         raise ValueError(msg)
@@ -74,6 +76,8 @@ class PublicationStatus(StrEnum):
 
 
 class PublicationRecordingStatus(StrEnum):
+    """Retain the declared PublicationRecordingStatus scientific values and invariants."""
+
     UNINSPECTED = "uninspected"
     UNMANAGED = "unmanaged"
     MISSING = "missing"
@@ -94,6 +98,7 @@ class ArtifactRecord:
     sha256: str
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.artifact_id, UUID):
             msg = "artifact identity must be a UUID"
             raise TypeError(msg)
@@ -165,6 +170,7 @@ class PublicationManifest:
     complete: bool = True
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.schema_version) is not int
             or self.schema_version != 1
@@ -193,5 +199,7 @@ class PublicationManifest:
             raise ValueError(msg)
         object.__setattr__(self, "expected_artifact_names", tuple(sorted(names)))
         object.__setattr__(
-            self, "artifacts", tuple(sorted(values, key=lambda v: v.name)),
+            self,
+            "artifacts",
+            tuple(sorted(values, key=lambda v: v.name)),
         )

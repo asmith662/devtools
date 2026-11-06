@@ -27,7 +27,7 @@ class GaussianNaiveBayesClassificationSpecification:
     variance_smoothing: float = 1e-09
 
     def __post_init__(self) -> None:
-
+        """Validate the immutable scientific contract and its correspondence."""
         if isinstance(self.variance_smoothing, bool) or not isinstance(
             self.variance_smoothing,
             (int, float),
@@ -60,7 +60,7 @@ class FittedGaussianNaiveBayesClassification(ClassificationBehavior):
     _implementation: _ClassificationImplementation = field(repr=False)
 
     def __post_init__(self) -> None:
-
+        """Validate the immutable scientific contract and its correspondence."""
         names = tuple(self.feature_names)
 
         kinds = tuple(self.feature_value_kinds)

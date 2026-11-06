@@ -6,6 +6,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True, slots=True)
 class RegressionLimits:
+    """Retain the declared RegressionLimits scientific values and invariants."""
+
     population_rows: int
     training_rows: int
     prediction_rows: int
@@ -19,12 +21,21 @@ class RegressionLimits:
 
 REGRESSION_V1 = RegressionLimits(512, 256, 128, 16, 4096, 2000000, 0, 0, 0)
 REGRESSION_V2 = RegressionLimits(
-    2048, 2048, 2048, 16, 32768, 8000000, 4 * 1024 * 1024, 256 * 1024, 8 * 1024 * 1024,
+    2048,
+    2048,
+    2048,
+    16,
+    32768,
+    8000000,
+    4 * 1024 * 1024,
+    256 * 1024,
+    8 * 1024 * 1024,
 )
 MAXIMUM_V2_SOURCE_ROWS = 4096
 
 
 def version_limits(version: str, family: str) -> RegressionLimits:
+    """Apply the explicit version limits contract within this owner."""
     if version == family + "-v1":
         return REGRESSION_V1
     if version == family + "-v2":
@@ -34,6 +45,7 @@ def version_limits(version: str, family: str) -> RegressionLimits:
 
 
 def check_text(values: tuple[str | None, ...]) -> None:
+    """Apply the explicit check text contract within this owner."""
     if (
         sum(len(v.encode("utf-8")) for v in values if v is not None)
         > REGRESSION_V2.text_bytes

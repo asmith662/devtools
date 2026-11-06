@@ -32,6 +32,7 @@ class Fact:
     value: Scalar
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.name, "fact name")
         if self.value is not None and type(self.value) not in (str, int, float, bool):
             msg = "fact values must be JSON scalars"
@@ -87,28 +88,36 @@ class FailureCategory(StrEnum):
 
 
 class Severity(StrEnum):
+    """Retain the declared Severity scientific values and invariants."""
+
     WARNING = "warning"
     ERROR = "error"
 
 
 @dataclass(frozen=True, slots=True)
 class Admitted:
+    """Retain the declared Admitted scientific values and invariants."""
+
     operation: str
     facts: tuple[Fact, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.operation, "operation")
         _facts(self.facts)
 
 
 @dataclass(frozen=True, slots=True)
 class Activated:
+    """Retain the declared Activated scientific values and invariants."""
+
     process_id: int
     hostname: str
     python_version: str
     platform: str
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _count(self.process_id, "process_id")
         if self.process_id == 0:
             msg = "process_id must be positive"
@@ -119,11 +128,14 @@ class Activated:
 
 @dataclass(frozen=True, slots=True)
 class StageStarted:
+    """Retain the declared StageStarted scientific values and invariants."""
+
     stage: str
     description: str
     facts: tuple[Fact, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.stage, "stage")
         _text(self.description, "description")
         _facts(self.facts)
@@ -131,10 +143,13 @@ class StageStarted:
 
 @dataclass(frozen=True, slots=True)
 class StageFinished:
+    """Retain the declared StageFinished scientific values and invariants."""
+
     stage: str
     duration_seconds: float
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.stage, "stage")
         if type(self.duration_seconds) not in (int, float) or (
             not math.isfinite(self.duration_seconds) or self.duration_seconds < 0
@@ -153,6 +168,7 @@ class Progress:
     total: int | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.stage, "stage")
         _text(self.unit, "unit")
         for v in (self.completed, self.total):
@@ -174,6 +190,7 @@ class ExceptionFact:
     relation: str
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         _text(self.type_name, "exception type")
         if not isinstance(self.message, str):
             msg = "exception message must be text"
@@ -197,6 +214,7 @@ class Diagnostic:
     root_cause: None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.category, FailureCategory):
             msg = "diagnostic category must use FailureCategory"
             raise TypeError(msg)
@@ -229,6 +247,7 @@ class Terminal:
     facts: tuple[Fact, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.outcome, Outcome):
             msg = "outcome must use Outcome"
             raise TypeError(msg)
@@ -263,6 +282,7 @@ class ExecutionEvent:
     schema_version: int = 1
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         for v in (self.event_id, self.execution_id, self.activation_id):
             if not isinstance(v, UUID):
                 msg = "event, execution and activation IDs must be UUIDs"
@@ -347,4 +367,5 @@ class ExecutionHistory:
 
     @property
     def incomplete(self) -> bool:
+        """Apply the explicit incomplete contract within this owner."""
         return self.outcome is None

@@ -56,11 +56,15 @@ def inspect_native_query(
         msg = "native and retained predictions disagree"
         raise ValueError(msg)
     actual = dict(zip(native_ids, native_distances, strict=True))
-    assert state.neighbor_features is not None
+    if not (state.neighbor_features is not None):
+        msg_0 = "Required numerical state invariant is absent."
+        raise AssertionError(msg_0)
     corpus = dict(
         zip(state.training_row_ids, state.neighbor_features.rows, strict=True),
     )
-    assert state.neighbor_targets is not None
+    if not (state.neighbor_targets is not None):
+        msg_0 = "Required numerical state invariant is absent."
+        raise AssertionError(msg_0)
     targets = dict(zip(state.training_row_ids, state.neighbor_targets, strict=True))
     if not math.isclose(
         native_value,

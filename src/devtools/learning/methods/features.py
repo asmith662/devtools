@@ -22,7 +22,10 @@ from devtools.learning.representation.features import FeatureTable, FeatureValue
 def _hash(value: object) -> str:
     return hashlib.sha256(
         json.dumps(
-            value, sort_keys=True, separators=(",", ":"), allow_nan=False,
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
         ).encode(),
     ).hexdigest()
 
@@ -39,6 +42,7 @@ class FeatureOperator:
     incompatible_with: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         for v in (self.name, self.input_semantics, self.output_semantics):
             nonempty(v)
         if type(self.version) is not int or self.version < 1:
@@ -57,6 +61,7 @@ class FeatureOperator:
 
     @property
     def identity(self) -> str:
+        """Apply the explicit identity contract within this owner."""
         return f"{self.name}_v{self.version}"
 
 
@@ -87,6 +92,7 @@ class FeatureRecipe:
     construction_rule: str = "nonempty-compatible-subsets-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         nonempty(self.catalog_identity)
         if self.construction_rule != "nonempty-compatible-subsets-v1":
             msg = "unsupported construction rule"
@@ -119,10 +125,12 @@ class FeatureRecipe:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return _hash(asdict(self))
 
     @property
     def identity(self) -> str:
+        """Apply the explicit identity contract within this owner."""
         return "feature-recipe-v1:" + self.content_identity
 
 
@@ -143,6 +151,7 @@ class CandidateGeneration:
     construction_rule: str = "nonempty-compatible-subsets-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if (
             type(self.approved_catalog) is not tuple
             or not self.approved_catalog
@@ -203,6 +212,7 @@ class CandidateGeneration:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         value = asdict(self)
         value["occurrence_id"] = str(self.occurrence_id)
         return _hash(value)
@@ -288,7 +298,10 @@ def generate_feature_recipes(
 
 
 def transform_features(
-    original: FeatureTable, recipe: FeatureRecipe, *, maximum_dimension: int,
+    original: FeatureTable,
+    recipe: FeatureRecipe,
+    *,
+    maximum_dimension: int,
 ) -> FeatureTable:
     """Append only reviewed maps of ORIGINAL coordinates; never recurse.
 

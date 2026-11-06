@@ -32,6 +32,7 @@ from devtools.learning.representation.standardization import (
 
 
 def finite(value: float) -> float:
+    """Apply the explicit finite contract within this owner."""
     if not math.isfinite(value):
         msg = "regression arithmetic is not finitely representable"
         raise ValueError(msg)
@@ -39,6 +40,7 @@ def finite(value: float) -> float:
 
 
 def training_mean(values: tuple[float, ...]) -> float:
+    """Apply the explicit training mean contract within this owner."""
     if not values or any(type(v) is not float or not math.isfinite(v) for v in values):
         msg = "finite nonempty original continuous targets required"
         raise ValueError(msg)
@@ -70,7 +72,10 @@ def neighbors(
         raise ValueError(msg) from error
     order = sorted(range(len(distances)), key=lambda i: (distances[i], i))
     if len(order) > 5 and math.isclose(
-        distances[order[4]], distances[order[5]], rel_tol=1e-12, abs_tol=1e-12,
+        distances[order[4]],
+        distances[order[5]],
+        rel_tol=1e-12,
+        abs_tol=1e-12,
     ):
         msg = "unsupported ambiguous kth-neighbor distance boundary"
         raise ValueError(msg)
@@ -123,6 +128,8 @@ def deterministic_neighbors(
 
 @dataclass(frozen=True, slots=True)
 class RegressionPredictions:
+    """Retain the declared RegressionPredictions scientific values and invariants."""
+
     state_id: UUID
     method_identity: str
     input_identity: str
@@ -135,6 +142,7 @@ class RegressionPredictions:
     version: str = "regression-predictions-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         limits = version_limits(self.version, "regression-predictions")
         if (
             not isinstance(self.state_id, UUID)
@@ -161,7 +169,9 @@ class RegressionPredictions:
             msg = "neighbor membership and distances remain paired"
             raise ValueError(msg)
         if self.neighbor_row_ids is not None:
-            assert self.neighbor_distances is not None
+            if not (self.neighbor_distances is not None):
+                msg_0 = "Required numerical state invariant is absent."
+                raise AssertionError(msg_0)
             if (
                 type(self.neighbor_row_ids) is not tuple
                 or type(self.neighbor_distances) is not tuple
@@ -174,7 +184,9 @@ class RegressionPredictions:
                 msg = "complete query-neighbor correspondence"
                 raise ValueError(msg)
             for ids, distances in zip(
-                self.neighbor_row_ids, self.neighbor_distances, strict=True,
+                self.neighbor_row_ids,
+                self.neighbor_distances,
+                strict=True,
             ):
                 if (
                     type(ids) is not tuple
@@ -193,6 +205,7 @@ class RegressionPredictions:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return self.version + ":" + _hash(asdict(self))
 
 
@@ -219,6 +232,7 @@ class FittedRegression:
     version: str = "fitted-regression-v1"
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         limits = version_limits(self.version, "fitted-regression")
         if (
             self.specification.version == "regression-specification-v2"
@@ -233,7 +247,8 @@ class FittedRegression:
             msg = "concrete regression specification and target required"
             raise TypeError(msg)
         if not isinstance(self.execution_id, UUID) or not isinstance(
-            self.state_id, UUID,
+            self.state_id,
+            UUID,
         ):
             msg = "original state and fitting occurrence identity required"
             raise ValueError(msg)
@@ -357,6 +372,7 @@ class FittedRegression:
 
     @property
     def content_identity(self) -> str:
+        """Apply the explicit content identity contract within this owner."""
         return self.version + ":" + _hash(asdict(self))
 
     def predict(self, inputs: RegressionInput) -> RegressionPredictions:
@@ -453,11 +469,17 @@ class FittedRegression:
                             + self.intercept,
                         )
                     else:
-                        assert self.neighbor_features is not None
-                        assert self.neighbor_targets is not None
+                        if not (self.neighbor_features is not None):
+                            msg_0 = "Required numerical state invariant is absent."
+                            raise AssertionError(msg_0)
+                        if not (self.neighbor_targets is not None):
+                            msg_0 = "Required numerical state invariant is absent."
+                            raise AssertionError(msg_0)
                         if self.specification.version == "regression-specification-v2":
                             indices, ds = deterministic_neighbors(
-                                self.neighbor_features.rows, row, self.training_row_ids,
+                                self.neighbor_features.rows,
+                                row,
+                                self.training_row_ids,
                             )
                         else:
                             indices, ds = neighbors(
@@ -494,7 +516,8 @@ class FittedRegression:
 
 
 def validate_training_preparation(
-    p: FittedFeatureStandardization, training: RegressionPopulation,
+    p: FittedFeatureStandardization,
+    training: RegressionPopulation,
 ) -> FeatureTable:
     """Replay original fitting-only statistics even when a later native fit failed."""
     from statistics import mean, pstdev
@@ -530,7 +553,8 @@ def validate_training_preparation(
 
 
 def validate_training_state(
-    state: FittedRegression, training: RegressionPopulation,
+    state: FittedRegression,
+    training: RegressionPopulation,
 ) -> None:
     """Check source, training-only preparation, means/corpus and Ridge residuals.
 
@@ -567,7 +591,9 @@ def validate_training_state(
             raise ValueError(msg)
         return
     p = state.preparation
-    assert p is not None
+    if not (p is not None):
+        msg_0 = "Required numerical state invariant is absent."
+        raise AssertionError(msg_0)
     x = validate_training_preparation(p, training)
     if state.specification.method is RegressionMethod.KNN:
         if state.neighbor_features != x or state.neighbor_targets != training.values:

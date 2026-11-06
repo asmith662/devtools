@@ -1,4 +1,6 @@
 # Copyright (c) 2026
+"""Selected scientific wire helpers and explicit versioned invariants."""
+
 from dataclasses import asdict
 from uuid import UUID
 
@@ -20,6 +22,7 @@ def document(value: object) -> dict[str, object]:
 
 
 def preparation(value: object) -> FittedFeatureStandardization:
+    """Apply the explicit preparation contract within this owner."""
     p = obj(value)
     result = FittedFeatureStandardization(
         FeatureStandardizationSpecification(

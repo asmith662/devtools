@@ -39,6 +39,7 @@ class DecisionTreeClassificationSpecification:
     maximum_depth: int | None = None
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         if not isinstance(self.criterion, DecisionTreeCriterion):
             msg = "criterion must use DecisionTreeCriterion"
             raise TypeError(msg)
@@ -66,6 +67,7 @@ class FittedDecisionTreeClassification(ClassificationBehavior):
     _implementation: _ClassificationImplementation = field(repr=False)
 
     def __post_init__(self) -> None:
+        """Validate the immutable scientific contract and its correspondence."""
         feature_names = tuple(self.feature_names)
         feature_value_kinds = tuple(self.feature_value_kinds)
         categories = validate_category_values(self.categories)
@@ -106,7 +108,9 @@ class FittedDecisionTreeClassification(ClassificationBehavior):
         rejected. Empty compatible populations produce no predictions.
         """
         aligned_rows = align_classification_features(
-            features, self.feature_names, self.feature_value_kinds,
+            features,
+            self.feature_names,
+            self.feature_value_kinds,
         )
         if not aligned_rows:
             return ()

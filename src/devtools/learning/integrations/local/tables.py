@@ -1,4 +1,6 @@
 # Copyright (c) 2026
+"""Selected scientific wire helpers and explicit versioned invariants."""
+
 from devtools.learning.integrations.local._codec import array as _array
 from devtools.learning.integrations.local._codec import nonempty_text as _text
 from devtools.learning.integrations.local._codec import retained_object as _object
