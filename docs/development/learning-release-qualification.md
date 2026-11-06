@@ -124,6 +124,39 @@ These exceptions preserve the demonstrated APIs. They do not except new helpers,
 accept unsupported source types or remove the 100% coverage requirement. The
 post-refactor source requires fresh focused regression and coverage receipts.
 
+## Additional scientific refusal controls
+
+The next test checkpoint passes 272 newly maintained controls in 8.42 seconds,
+with `inputs_unchanged: true` (`learning-release-plans-29.json`). Ruff remains
+clear and strict mypy checks 746 modules. These tests add actual authored logistic
+and margin fits, retained-state corruption, category/coordinate validation,
+source/role/unit mismatches, packet/state/work bounds, finite host reservations,
+reference-profile decisions and typed numerical overflow outcomes.
+
+Real SQLite commits followed by missing, foreign or stale returned ACKs establish
+that a completed effect does not imply caller acceptance. Interrupted contexts
+retain their original interruption and incomplete/failed observations. Closed
+wire contracts reject invented causes, malformed types and extra fields.
+Event and scalar-measurement modules reach 100% in the combined diagnostic data;
+this is not a protected-gate pass. The authenticated `coverage-04` combination
+checks unchanged production inputs and retains its seed and combined data hashes.
+Overall learning diagnostic coverage at that point is 81.5387%; later controls
+still require measured combination.
+
+Runtime refusal tests explicitly simulate Python 3.14 and incompatible package
+metadata, thread reports and wrong file kinds. A separate positive test observes
+actual installed native libraries under one thread without fitting. The larger
+future storage profile and elapsed clock are simulated negative controls, with
+no grant or numerical effects; the reviewed 9/10/8/3/8/8 study limits are unchanged.
+These controls do not claim actual Python 3.14 numerical qualification.
+
+Retained failed receipts include an assertion using a valid capacity version,
+an incorrect authored population-ID expectation and a recovery invocation which
+omitted the required exclusive temporary root. Corrections change the tests or
+the invocation environment, preserving the valid production refusals and all
+independent-host guards. A fresh owned external root resolves the permission
+failure; no shared temporary tree is removed or reconfigured.
+
 ## Runtime scope
 
 The initial numerical profile intentionally remains Windows CPython 3.12.13 and
