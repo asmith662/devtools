@@ -1,12 +1,12 @@
 {
   "status": "FUNCTIONAL_A_AND_B_ENGINEERING_CANDIDATE_NOT_RELEASE_ACCEPTED",
-  "candidate_source_commit": "b1b43dd5a5109ca4716fc27520335e36ea754abb",
+  "candidate_source_commit": "cfb4c575cbb189de783e61238fd21dd57dcbc0a4",
   "protocol_v1_original_report_sha256": "e73008101b83b973f8d249b53fc30807e35b0d10ddca3c19157a1ea0c3699f48",
   "protocol_v1_limitation": "Numerical observations and parent consumption completed, but binary fit lacked a separate completed fit child ACK before prediction. Original records unchanged; final inspector rejects v1.",
   "protocol_v2_original_report_sha256": "638029c9a62f6f5b34b99614fb3b3d1a243a97e1a2e21d986086f0a2f1511114",
   "protocol_v2_source_commit": "1ab2ca61a2c1ad3e1a1b87033c2d1283979c5971",
   "protocol_v2_correction": "Distinct completed binary fit child, exact grant/state/source correspondence and complete ACK chain. Later candidate additionally checks observed ACK times and freezes response-source identity before model.send.",
-  "final_wheel": "040b0ccb53ed199ab383414d20b1c531cab3b12e17168e51f711a0aba421b936",
+  "final_wheel": "bf49d50a8920ff824af7c5f7c648096e8f9b187b5dbe23821ed0a7e16a5be593",
   "final_wheel_reinspection": "Seven original protocol-v2 operations independently inspected and predictions consumed in installed base environment, read-only 80 members with hashes unchanged and zero fits. No ML distributions installed/imported in the inspector.",
   "numerical_controls": "Six installed-extra cases: classification, regression, margin, unavailable metric, changed-constant unsupported ABSTAIN, native neighbor boundary. All PASS.",
   "base_package": "Actual coding read/edit/check/archive/restore and accepted result; no numerical extra; independent source deny guard PASS.",
@@ -29,9 +29,9 @@
   "original_outer_seconds": 21.994368,
   "original_runner_seconds": 21.359508,
   "original_worker_seconds_total": 20.507286,
-  "final_control_seconds": 37.926462,
-  "final_base_seconds": 1.058887,
-  "final_readonly_inspection_seconds": 1.458594,
+  "final_control_seconds": 37.148419,
+  "final_base_seconds": 1.015521,
+  "final_readonly_inspection_seconds": 1.575881,
   "sources": [
     {
       "identity": "b0096:iris",
@@ -211,9 +211,9 @@
     "Generalization or investigation-strategy effectiveness"
   ],
   "release_gates": {
-    "mypy": "PASS:728 modules",
-    "format": "PASS:88 changed maintained Python paths",
-    "ruff": "FAIL:147 diagnostics in changed maintained Python paths",
+    "mypy": "PASS:726 modules",
+    "format": "PASS:86 changed maintained Python paths",
+    "ruff": "FAIL:147 maintained-code diagnostics",
     "protected": {
       "status": "FAIL",
       "source_commit": "b1b43dd5a5109ca4716fc27520335e36ea754abb",
@@ -230,6 +230,14 @@
     }
   },
   "retention": "Original bytes copied unchanged. Original absolute paths/identities are historical facts, never current grants. No product imports this evidence. Frozen .py harnesses are immutable evidence outside maintained-source static scope.",
-  "final_controls_isolation": "Stronger final control/base runs additionally deny previous v3/v4 roots; 11 active refusal probes, zero actual denied accesses. Wheel/source unchanged, earlier runs retained.",
-  "scientific_wall_scopes": "41 original acknowledged scopes in seven read-only ledgers. Exact stage/execution durations retained in protocol-v2-qualification/scientific-wall-costs.json. Nested scopes are not additive; attributable native CPU and peak RSS remain unknown."
+  "final_controls_isolation": "Twelve active source/history denial probes; zero subsequent denied accesses. Explicit read-only input exception for original protocol-v2 evidence during independent base inspection only. No real-source refitting; native adapters byte-identical to the prior qualified wheel.",
+  "scientific_wall_scopes": "41 original acknowledged scopes in seven read-only ledgers. Exact stage/execution durations retained in protocol-v2-qualification/scientific-wall-costs.json. Nested scopes are not additive; attributable native CPU and peak RSS remain unknown.",
+  "current_affected_tests": {
+    "passed": 72,
+    "seconds": 38.49,
+    "inputs_unchanged": true,
+    "receipt": "validation/current-scope/affected-tests.json"
+  },
+  "current_scope_changes": "Remove two unused unselected classifier wrappers (40 active imported inputs; two historical mappings retained). Development-only devtools[learning] self-reference keeps required numerical tests available under default uv sync; base wheel Requires-Dist unchanged.",
+  "current_protected_acceptance": "NOT_PASSED. The full 84.55% failing receipt is the frozen b1b43dd5 tree; subsequent scope/development corrections have affected tests and installed-wheel qualification, not a new full passing gate."
 }

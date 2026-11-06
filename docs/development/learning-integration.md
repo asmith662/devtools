@@ -9,7 +9,9 @@ on `integration/learning-investigator`, based on main
 `f37603db` (recovered numerical core and Windows custody), `61b44ea5`
 (native investigator and independently inspected fitted artifacts), `1ab2ca61`
 (explicit fitting acknowledgment and original engineering evidence), and
-`b1b43dd5` (observed acknowledgment order and model-response source admission).
+`b1b43dd5` (observed acknowledgment order and model-response source admission),
+`7b3ced58` (corrected real-source evidence and the terminal failed gate), and
+`cfb4c575` (minimum source closure and default development dependency correction).
 
 **A and B execute as a functional engineering candidate. Migration release
 acceptance is incomplete: maintained-source Ruff fails, and a passing protected
@@ -96,8 +98,8 @@ Earlier Python 3.14 shell traces are not the qualified worker environment.
 This profile does not claim numerical equivalence on other runtimes.
 
 Final wheel SHA256 is
-`040b0ccb53ed199ab383414d20b1c531cab3b12e17168e51f711a0aba421b936`,
-714,055 bytes, built from `b1b43dd5`. Wheel source members exactly match maintained
+`bf49d50a8920ff824af7c5f7c648096e8f9b187b5dbe23821ed0a7e16a5be593`,
+710,680 bytes, built from `cfb4c575`. Wheel source members exactly match maintained
 inputs. It is installed with full declared dependencies in separate extra/base
 environments; this is not a `--no-deps` numerical claim. Latest extra controls
 pass six authored cases, including actual fitting, independent inspection,
@@ -106,8 +108,8 @@ case. The deterministic retained boundary result is 7.0; arbitrary native tie
 selection is explicitly unqualified. The base wheel passes an actual coding
 read/edit/check/archive/restore path without numerical distributions.
 
-The latest controls/base runs actively probe eleven denied roots: development
-source/tests/scripts/apps/experiments, donor, canonical checkout, three earlier
+The latest controls/base runs actively probe twelve denied roots: development
+source/tests/scripts/apps/experiments, donor, canonical checkout, four earlier
 qualification output roots and durable research evidence. `.tmp` trees and donor
 imports are denied. The probes are rejected; subsequent actual denied accesses
 are zero. All devtools modules originate in installed site-packages. Runs start
@@ -181,8 +183,8 @@ Both known completed real attempts are reported: 12 fits / 14 states /
 separate protocol qualifications. They are not represented as one under-budget
 run. Original outer walls were 25.627216 and 21.994368 seconds; corrected runner
 wall was 21.359508 seconds with 1,583,370 retained bytes before its report.
-Final six-case controls took 37.926462 seconds, base coding 1.058887 seconds;
-final read-only inspection took 1.458594 seconds. Earlier controls, failed probes,
+Final six-case controls took 37.148419 seconds, base coding 1.015521 seconds;
+final read-only inspection took 1.575881 seconds. Earlier controls, failed probes,
 full-suite attempts and their costs remain in original receipts. Attributable
 learner/native CPU by operation, peak RSS and incremental cost forecasts are
 unavailable; no missing measurement is reported as zero.
@@ -201,7 +203,7 @@ Latest focused numerical/investigator/custody qualification passes 68 tests;
 controls also pass. The corruption controls rehash tampered Mean state and delay
 the observed fit ACK; independent scientific checks still reject them. Original
 assertions, protected selectors and the 100% production branch-coverage threshold
-are unchanged. Current configured strict mypy passes 728 modules (plus the
+are unchanged. Current configured strict mypy passes 726 modules (plus the
 operator script explicitly), formatting passes all 86 changed maintained Python
 paths, and layout/diff checks pass. Maintained changed-source Ruff remains at
 147 diagnostics, including imported scientific-protocol complexity and other
@@ -260,3 +262,12 @@ contract probes and test-only child-coverage instrumentation are not yet part of
 the protected test selection. Completing the scientific negative/lifecycle/state
 contracts, native-child coverage and maintained Ruff corrections remains required
 before release acceptance; another full protected run belongs after those fixes.
+
+The current installed package is qualified after `cfb4c575`: six authored cases,
+base coding and seven read-only original-publication inspections pass. Native
+adapter bytes and wheel Requires-Dist match the prior qualified package; only
+unselected wrappers and a validation docstring changed in maintained numerical
+source. The full original outcomes and raw fitted artifacts remain unchanged.
+Current wheel/control receipts are under `learning-qualification/package-v6/`
+and `controls-v6/`. The failed protected gate and 147 maintained Ruff violations
+remain explicit release blockers; this is a published WIP/PARTIAL integration.

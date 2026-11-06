@@ -1,0 +1,13 @@
+import asyncio,json,pathlib,sys
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor
+root=pathlib.Path.cwd();area=root/'.local/learning-migration/v6'
+selected=root/'.local/learning-migration/recovery-wheel-base/Lib/site-packages'
+bootstrap='import sys,runpy;sys.argv=sys.argv[1:];runpy.run_path(sys.argv[0],run_name="__main__")'
+command=Command(str(getattr(sys,'_base_executable',sys.executable))).args('-S','-c',bootstrap,str(area/'inspection_guard.py'),str(root),str(selected),str(area/'independent_inspect.py'),str(root/'.local/learning-migration/v3/real-two-source-01'),str(area/'independent-inspection.json')).cwd(resolve_path(area/'independent-cwd')).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1'}).with_timeout(Duration.seconds(60))
+clock=Stopwatch();result=asyncio.run(CommandExecutor().execute(command))
+report={'exit_code':result.exit_code,'seconds':clock.elapsed.total_seconds,'stdout':result.stdout.decode(errors='replace'),'stderr':result.stderr.decode(errors='replace')}
+with (area/'independent-inspection-launch.json').open('x',encoding='utf-8') as stream:json.dump(report,stream,indent=2)
+print(json.dumps(report,indent=2))
+if not result.succeeded:raise SystemExit(1)
