@@ -1,0 +1,210 @@
+{
+  "frozen_grader_sha256": "76a21c1bd6c751d450a947f500817b6e8c5cdbb2e47be39e2dd924703311ac04",
+  "frozen_packet_sha256": "8d2ff819898b9c4cad61856770a6e08534d914b6ffb0755080f51bba83bbdfef",
+  "operator_approvals_for_run": 0,
+  "generations": 7,
+  "unused_generation_slots": 1,
+  "wall_seconds": 235.517592,
+  "conditions": {
+    "existing": {
+      "calls": 4,
+      "source_reads": 3,
+      "valid_authored_notes": 3,
+      "valid_inspection_authored_notes": 2,
+      "input_tokens": 35089,
+      "output_tokens": 1582,
+      "cached_prompt_tokens": 2554,
+      "seconds": 118.34043700000001,
+      "proposal_phase": 4,
+      "raw_recommendation": "insufficient-evidence",
+      "subject_candidate_ids_correct": true,
+      "native_proposal_delivery": true,
+      "actual_strict_admission": false,
+      "raw_proposal_only_strict_diagnostic": "ValueError: Review obligation references are invalid",
+      "true_empty_heading_defect_identified": false,
+      "frozen_factual_success": false,
+      "unsupported_blocking_findings": 0,
+      "actual_protocol_failure": {
+        "type": "ValueError",
+        "message": "Review obligation references are invalid"
+      },
+      "raw_proposal": {
+        "subject_sha256": "a4fc7368c2fee1f94cf9bfbe78fda440b7fcaffd8f1afff8375669d6f4800aa7",
+        "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+        "conclusion": {
+          "assessed_obligations": [
+            "current-owner: Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling at src/devtools/resources/filesystem/models/markdown/file.py under current-whole-resource-v1."
+          ],
+          "disposition": "insufficient-evidence",
+          "evidence": [
+            "candidate",
+            "baseline",
+            "read:3",
+            "read:2"
+          ],
+          "findings": [
+            {
+              "evidence": [
+                "candidate",
+                "baseline"
+              ],
+              "kind": "inference",
+              "message": "The candidate's only change is the _ATX_HEADING_PATTERN tail: r'^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$'. The optional closing group requires a non-whitespace lookbehind then whitespace before the hashes, so a separated terminal closing run is excluded while an attached terminal hash (no whitespace before it) stays in the lazy text group. This matches the task's separation rule, but I did not execute the regex, so correctness on # C#, # C#, # Title #, # Title #, trailing whitespace and empty titles is model-claimed, not host-verified.",
+              "severity": "advisory"
+            }
+          ],
+          "outstanding": [
+            "Host execution of candidate pattern on the named inputs: '# C#', '# C# ', '# C# #', '# Title #', '# Title', '# #', empty/whitespace-only title, and a level-1 through level-6 set to confirm levels and line numbers.",
+            "Host verification that fence exclusion, section boundary logic, hierarchy and find_heading/find_section case-folded lookup are byte-identical to baseline behavior (only the heading text extraction is intended to change).",
+            "Confirmation that the change is confined to the single authorized file and preserves exact original source line content (only the pattern literal differs)."
+          ],
+          "requests": [
+            "Execute the candidate _ATX_HEADING_PATTERN against the enumerated heading fixtures and report exact captured text/level/line for each.",
+            "Diff baseline versus candidate parsed headings/sections/lookup results on a representative document to confirm only the intended attached-hash correction differs."
+          ],
+          "summary": "I could not host-execute the candidate regex (no interpreter authority; only the candidate text and baseline source are available), so I cannot demonstrate the required behavior on concrete inputs. On inspection, the candidate alters exactly one line versus the baseline \u2014 the _ATX_HEADING_PATTERN tail \u2014 and leaves the fence pattern, heading iteration, text.strip() trimming, line numbers, fence exclusion, section building and lookup methods unchanged. The new tail '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$' only strips a terminal run of hashes that is separated from the preceding title by whitespace (the lookbehind requires a non-whitespace char immediately before that whitespace), so an attached terminal hash such as in '# C#' is not treated as a closer and remains in the title text; a separated closing run such as in '# Title #' is stripped. This is consistent with the task contract, and I find no source evidence contradicting it. However, because I cannot run the pattern, the claim that attached hashes are preserved (and the historical-lead edge cases '# C# #' and '# Title #') are model claims, not host-verified. The candidate is well-scoped and appears correct, but I am withholding acceptance for lack of execution evidence rather than asserting a defect."
+        }
+      }
+    },
+    "explicit": {
+      "calls": 3,
+      "source_reads": 2,
+      "valid_authored_notes": 0,
+      "valid_inspection_authored_notes": 0,
+      "input_tokens": 26818,
+      "output_tokens": 1813,
+      "cached_prompt_tokens": 2574,
+      "seconds": 115.355644,
+      "proposal_phase": 3,
+      "raw_recommendation": "accept",
+      "subject_candidate_ids_correct": true,
+      "native_proposal_delivery": true,
+      "actual_strict_admission": false,
+      "raw_proposal_only_strict_diagnostic": "ValueError: Review obligation references are invalid",
+      "true_empty_heading_defect_identified": false,
+      "frozen_factual_success": false,
+      "unsupported_blocking_findings": 0,
+      "actual_protocol_failure": {
+        "type": "JSONDecodeError",
+        "message": "Extra data: line 3 column 1 (char 787)"
+      },
+      "raw_proposal": {
+        "subject_sha256": "b91a618003d36a247dd989b7b81ea13c05a87a47372320155ab956f620f2b4c6",
+        "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+        "conclusion": {
+          "assessed_obligations": [
+            "current-owner: acquire complete Markdown model owner in src/devtools/resources/filesystem/models/markdown/file.py and preserve title/fence/section/lookup contracts while repairing only attached hash suffix handling"
+          ],
+          "disposition": "accept",
+          "evidence": [
+            "task",
+            "baseline",
+            "candidate",
+            "read:1",
+            "read:2"
+          ],
+          "findings": [
+            {
+              "evidence": [
+                "read:1",
+                "candidate"
+              ],
+              "kind": "inference",
+              "message": "Candidate's new ATX pattern `^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$` repairs the attached-hash corruption: host-run producer observation shows observed_title 'C#' for '# C#' (baseline would yield 'C'), 'C#' for '# C# #' (attached hash kept, separated trailing run stripped), 'Title' for '# Title #' (separated closer still stripped), '##' for '# ##' (all attached, stays literal). Lookbehind (?<=\\S) correctly distinguishes a separated closing run from attached hashes.",
+              "severity": "advisory"
+            },
+            {
+              "evidence": [
+                "baseline",
+                "candidate"
+              ],
+              "kind": "inference",
+              "message": "Only the single _ATX_HEADING_PATTERN line differs between the supplied full baseline and candidate texts (5910 vs 5928 bytes); fence pattern, _parse_headings (including .strip()), find_heading, find_section, _build_section, docstrings and imports are verbatim identical, so fence exclusion, levels, source line numbers, hierarchy boundaries, lookup semantics, exact original content, and narrow raw-text scope are preserved. No new indentation/opening grammar or escape decoding added.",
+              "severity": "advisory"
+            },
+            {
+              "evidence": [
+                "historical-leads",
+                "read:1"
+              ],
+              "kind": "observed",
+              "message": "Historical leads P3-concise-2048-r2 ('# Title #' would capture 'Title #') and P3-original-2048-r2 ('# C# #' mis-parsed) are contradicted by the host-run candidate producer observation (observed titles 'Title' and 'C#') and are withdrawn as unsupported.",
+              "severity": "advisory"
+            }
+          ],
+          "outstanding": [
+            "Edge cases beyond the four producer inputs (tab-separated closers, double-space after marker, empty titles) are inferred from the unchanged .strip() and [ \\t] classes, not directly executed; baseline-parity for those is structural, not observed.",
+            "Full CommonMark conformance of closing-hash semantics (e.g., multi-space runs before closer) not exercised by the limited producer."
+          ],
+          "requests": [],
+          "summary": "The candidate changes exactly one line versus the baseline: the _ATX_HEADING_PATTERN regex. The new trailing group `(?:(?<=\\S)[ \\t]+#*|[ \\t]*)` treats a terminal run of hashes as a closing marker only when separated from the preceding title by space/tab (non-whitespace lookbehind); attached hashes stay in the text group. The host-run candidate producer observation (read:1) confirms the task contract: '# C#' -> 'C#' (the stated corruption is repaired), '# C#' with a separate trailing run '# C# #' -> 'C#', '# Title #' -> 'Title' (separated closer still stripped), '# ##' -> '##' (attached stays literal). The unchanged .strip(), '[ \\t]*$', fence pattern, and all section/lookup/hierarchy code preserve current trimming, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics, and exact original content. Only the authorized model file changed; scope stays a narrow raw-text helper. Both historical claims in the leads are contradicted by the observation and withdrawn. Residual uncertainty is limited to unexecuted edge inputs and does not contradict any stated obligation."
+        }
+      }
+    }
+  },
+  "existing": {
+    "authored_notes": {
+      "inspection": 2,
+      "final": 1,
+      "support_anchors": 0,
+      "verification": "all provisional; no inferred semantic truth promoted"
+    },
+    "demonstrated_later_use": "Turn2 explicitly reconsults note1 and records a provisional revision. Turn3 reconstructs own retained state. Final legacy view evicts active hypothesis3, retaining only literal reads4/5.",
+    "uncertainty": "Withholds acceptance and asks for host execution; safer than false acceptance, but does not find the frozen genuine defect.",
+    "finding_assessment": "No blocking defect. General claim that separation tail matches whole task remains unverified; final admits no execution evidence.",
+    "final_context_sequences": [
+      4,
+      5
+    ],
+    "active_hypothesis_omitted": 3,
+    "actual_strict_failure": "Verbose assessed_obligations instead of exact objective/current-owner names."
+  },
+  "explicit": {
+    "valid_authored_notes": 0,
+    "late_attempt": "Turn3 emits WORKING_NOTES JSON plus extra prose; actual Extra data JSON failure. Fragment also contains forbidden verification/status keys. Not repaired, admitted or promoted.",
+    "public_check_selection": "Turn1 deliberately chooses exact observation artifact0..676; complete native feedback delivered in turn2.",
+    "verified_output_use": "Turn3 correctly reproduces all4observed outputs and explicitly cites retained source note1/read1. Both historical false positives are withdrawn correctly.",
+    "own_note_reconsultation": "Not demonstrated: no valid authored note exists. Later use is of host-created literal source note1, not a model-authored hypothesis.",
+    "source_quote_retention": "Both actual source observations remain projected after reconstruction at turn3; no notes omitted. No active authored hypothesis exists to test its live retention.",
+    "reasoning_failure": "Labels # ## -> ## as all attached / stays literal and task-compliant, although public contract requires empty title. Infers preserved empty-title/lookup behavior from unchanged consumers despite changed regex producer.",
+    "raw_acceptance_with_outstanding_gaps": true,
+    "actual_strict_failure": "Companion note JSON Extra data stops before proposal admission. Independent raw-proposal diagnostic also rejects verbose obligation references; missing required acceptance/custody/public-checks and nonempty outstanding would also prevent acceptance.",
+    "observed_output_reproduction_correct": 4,
+    "observed_output_reproduction_total": 4,
+    "historical_false_leads_correctly_withdrawn": 2,
+    "genuine_blocking_defect_found": false,
+    "false_acceptance": true,
+    "final_reserved_call_unused": true
+  },
+  "projection_replay": {
+    "method": "Offline deterministic reconstruction of actual baseline pre-final checkpoint with its completed source ranges; same scope/source identities. Replay only current selection policy, no extra model call and no claim of model accuracy. Original requests/checkpoints untouched.",
+    "checkpoint_file": "016-turn-working-state.json",
+    "checkpoint_sha256": "4bbc2c25aa412bc8a7db4f88855658445812775fd82cb16135e0869603e98eb6",
+    "state_sha256": "a716f195c84a8358c5faecbd019212e35888f5365f55f61021a9a2d6aee527b7",
+    "original_final_sequences": [
+      4,
+      5
+    ],
+    "original_omitted_notes": 3,
+    "current_selection_sequences": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "current_omitted_active_sequences": [],
+    "current_message_bytes": 7210,
+    "active_hypothesis_sequence": 3,
+    "active_hypothesis_preserved": true,
+    "fresh_status": "provisional",
+    "source_evidence_unchanged": true
+  },
+  "scope_limits": [
+    "One paired diagnostic, no statistical claim; seven actual generations because enhanced stopped early. Costs not matched completed-review costs.",
+    "Combined public-observation availability plus active selection treatment, no single-component causal claim. Shared procedure/sampling/Tools/output limits/grader fixed.",
+    "New inspect_public_check/reopen_working_note names remain outside current local policy. Live uses permitted read_source over authenticated output; new named selectors are deterministically qualified only.",
+    "P3 fixture lacks public-checks/acceptance/custody structural references; no fabricated replacements. Factual grading is separate from schema admission.",
+    "Shared working Context transport/freshness/projection tests do not prove model semantic accuracy. No cross-task memory or playbook activation."
+  ],
+  "conclusion": "Practical verified-output delivery and source-note reuse demonstrated; both false leads corrected in enhanced reasoning, but its raw proposal falsely accepts the known-empty-heading defect. Baseline safely abstains but misses defect. No end-to-end factual reviewer improvement; prioritize separately qualified alternative reviewer comparison before durable role memory or broad coding-worker memory rollout."
+}

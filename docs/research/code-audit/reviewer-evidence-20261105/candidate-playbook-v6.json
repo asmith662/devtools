@@ -1,0 +1,93 @@
+{
+  "version": 6,
+  "status": "DIAGNOSTIC_CANDIDATE_NOT_QUALIFIED_NOT_ACTIVATED",
+  "predecessor": "../reviewer-notes-procedure-20261105/candidate-playbook-v5.json",
+  "tested_provider": {
+    "endpoint": "http://127.0.0.1:8080",
+    "model": "qwen38-local",
+    "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "context_tokens": 65536
+  },
+  "template_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "default_sampling": {
+    "temperature": 1.0,
+    "top_p": 0.949999988079071,
+    "top_k": 20,
+    "min_p": 0.05000000074505806,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "reasoning_format": "none",
+    "seed": 4294967295
+  },
+  "thinking_enabled": false,
+  "output_ceiling": 2048,
+  "frozen_packet_sha256": "8d2ff819898b9c4cad61856770a6e08534d914b6ffb0755080f51bba83bbdfef",
+  "authority": "Fresh automatic standing local grants under 26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978; zero per-run approvals; local callable allowlist unchanged.",
+  "conditions": {
+    "existing": {
+      "calls": 4,
+      "source_reads": 3,
+      "valid_authored_notes": 3,
+      "valid_inspection_authored_notes": 2,
+      "input_tokens": 35089,
+      "output_tokens": 1582,
+      "cached_prompt_tokens": 2554,
+      "seconds": 118.34043700000001,
+      "proposal_phase": 4,
+      "raw_recommendation": "insufficient-evidence",
+      "subject_candidate_ids_correct": true,
+      "native_proposal_delivery": true,
+      "actual_strict_admission": false,
+      "raw_proposal_only_strict_diagnostic": "ValueError: Review obligation references are invalid",
+      "true_empty_heading_defect_identified": false,
+      "frozen_factual_success": false,
+      "unsupported_blocking_findings": 0,
+      "actual_protocol_failure": {
+        "type": "ValueError",
+        "message": "Review obligation references are invalid"
+      }
+    },
+    "explicit": {
+      "calls": 3,
+      "source_reads": 2,
+      "valid_authored_notes": 0,
+      "valid_inspection_authored_notes": 0,
+      "input_tokens": 26818,
+      "output_tokens": 1813,
+      "cached_prompt_tokens": 2574,
+      "seconds": 115.355644,
+      "proposal_phase": 3,
+      "raw_recommendation": "accept",
+      "subject_candidate_ids_correct": true,
+      "native_proposal_delivery": true,
+      "actual_strict_admission": false,
+      "raw_proposal_only_strict_diagnostic": "ValueError: Review obligation references are invalid",
+      "true_empty_heading_defect_identified": false,
+      "frozen_factual_success": false,
+      "unsupported_blocking_findings": 0,
+      "actual_protocol_failure": {
+        "type": "JSONDecodeError",
+        "message": "Extra data: line 3 column 1 (char 787)"
+      }
+    }
+  },
+  "source_verification": "Host-owned FixedCheckTool source-bound public producer outputs, selected through permitted read_source. New native selector/recovery names not live-qualified.",
+  "active_context": "Current selection retains actual baseline active hypothesis3 in7210byte offline replay; legacy final evicts it. Enhanced model authored no valid hypotheses, so no live causal accuracy proof.",
+  "observed_benefit": "Correctly uses4observed outputs and withdraws2false leads.",
+  "negative_result": "Still calls # ## -> ## task-compliant and accepts. Malformed companion notes and obligation references fail strict admission; no relaxation. Baseline abstains.",
+  "confidence": "One diagnostic pair, enhanced stops after3calls, no statistical or general model capability claim.",
+  "next_priority": "Compare another separately qualified/authorized reviewer model on the same source-bound evidence/contract; no new dispatch now. Later coding-worker contract verification can reuse current fixed-check/notes owners. Defer durable role memory and automatic procedural promotion.",
+  "evidence": [
+    "plan.json",
+    "calls.json",
+    "scores.json",
+    "authority.json",
+    "episode-records.json",
+    "public-result.json",
+    "offline-projection-replay.json",
+    "host-factual-checks.json",
+    "validation.json"
+  ],
+  "production_implementation": "f1852d662050a65623933b90771826f62f9dc9fa"
+}

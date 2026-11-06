@@ -1,0 +1,221 @@
+{
+  "frozen_sha256": "8d2ff819898b9c4cad61856770a6e08534d914b6ffb0755080f51bba83bbdfef",
+  "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+  "operator_approvals_for_run": 0,
+  "consumed_generations": 7,
+  "returned": 7,
+  "seconds": 235.517592,
+  "capture_bytes_before_summary": 1445442,
+  "stop": null,
+  "conditions": {
+    "existing": {
+      "reads": 3,
+      "terminal": "Protocol failure; no retry",
+      "grant_reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:eb01890d02b0fcd7f2ea39dc04cacce7c0252e7136df6ecb737943eaa1671559"
+    },
+    "explicit": {
+      "reads": 2,
+      "terminal": "Protocol failure; no retry",
+      "grant_reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:f8e875034bc6b9c93d4c333dc80b4c1cf66cbd5729b18df5a2e9aa59dc6fd093"
+    }
+  },
+  "provider_unchanged": true,
+  "production_unchanged": true,
+  "rows": [
+    {
+      "ordinal": 1,
+      "condition": "existing",
+      "phase": 1,
+      "seconds": 21.74839,
+      "input_tokens": 7192,
+      "usage": {
+        "completion_tokens": 220,
+        "prompt_tokens": 7192,
+        "total_tokens": 7412,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": true,
+      "model_notes_accepted": 1,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 2,
+      "condition": "explicit",
+      "phase": 1,
+      "seconds": 14.451263,
+      "input_tokens": 7757,
+      "usage": {
+        "completion_tokens": 59,
+        "prompt_tokens": 7757,
+        "total_tokens": 7816,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 3,
+      "condition": "existing",
+      "phase": 2,
+      "seconds": 27.073134,
+      "input_tokens": 8784,
+      "usage": {
+        "completion_tokens": 277,
+        "prompt_tokens": 8784,
+        "total_tokens": 9061,
+        "prompt_tokens_details": {
+          "cached_tokens": 1277
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": true,
+      "model_notes_accepted": 1,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 4,
+      "condition": "explicit",
+      "phase": 2,
+      "seconds": 11.980689,
+      "input_tokens": 9215,
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 9215,
+        "total_tokens": 9276,
+        "prompt_tokens_details": {
+          "cached_tokens": 1287
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 5,
+      "condition": "existing",
+      "phase": 3,
+      "seconds": 11.921469,
+      "input_tokens": 9329,
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 9329,
+        "total_tokens": 9391,
+        "prompt_tokens_details": {
+          "cached_tokens": 1277
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": true,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": null
+    },
+    {
+      "ordinal": 6,
+      "condition": "explicit",
+      "phase": 3,
+      "seconds": 88.923692,
+      "input_tokens": 9846,
+      "usage": {
+        "completion_tokens": 1693,
+        "prompt_tokens": 9846,
+        "total_tokens": 11539,
+        "prompt_tokens_details": {
+          "cached_tokens": 1287
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "notes_only": false,
+      "note_protocol_used": false,
+      "model_notes_accepted": 0,
+      "proposal": null,
+      "protocol_failure": {
+        "type": "JSONDecodeError",
+        "message": "Extra data: line 3 column 1 (char 787)"
+      }
+    },
+    {
+      "ordinal": 7,
+      "condition": "existing",
+      "phase": 4,
+      "seconds": 57.597444,
+      "input_tokens": 9784,
+      "usage": {
+        "completion_tokens": 1023,
+        "prompt_tokens": 9784,
+        "total_tokens": 10807,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "consumed": true,
+      "returned": true,
+      "error": null,
+      "read_completed": false,
+      "notes_only": false,
+      "note_protocol_used": true,
+      "model_notes_accepted": 1,
+      "proposal": null,
+      "protocol_failure": {
+        "type": "ValueError",
+        "message": "Review obligation references are invalid"
+      }
+    }
+  ]
+}

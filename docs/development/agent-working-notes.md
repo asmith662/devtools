@@ -144,6 +144,11 @@ content identity. It retains the fixed argv, timeout, input identities, command
 status, actual stdout/stderr bytes and bounded textual diagnostics. Ordinary
 validation exit 1 is an observation; collection/infrastructure errors, stale
 inputs, unknown effects and incomplete output cannot enter this catalog.
+The receipt passed to `observe` is an existing bounded opaque correlation label
+(for example, the authenticated entry SHA256), as required by `CommandOrigin`.
+Retain a longer grant reference separately rather than concatenate it into that
+label. A malformed caller label does not turn the completed check into accepted
+review evidence.
 
 The **trusted host**, under separate exact authorization, executes the public
 definition with existing `FixedCheckTool`. Candidate installation is unnecessary:
@@ -175,6 +180,24 @@ policy change, local qualification may expose the same authenticated public
 observations as exact, scoped `read_source` resources. This transport difference
 must be reported; deterministic selector tests do not establish live use of the
 new names. No policy amendment is part of this increment.
+
+Implementation `f1852d662050a65623933b90771826f62f9dc9fa` passed the protected
+profile with **4,456 passed, two opt-in live tests skipped and 100% production
+branch coverage**, with complete unchanged inputs. The managed 7,200-second
+deadline accommodated the 4,350.96-second run; an earlier local wrapper's log
+replacement failure is preserved separately. Stable focused tests passed 57,
+including native observation delivery/readback; Context alone passed 48 at 100%
+branch coverage. Strict mypy checked 645 files; maintained Ruff/format checked
+797 files, with layout and diff checks passing.
+
+The [prospective live qualification](../research/reviewer-evidence-verification-results.md)
+then ran seven genuine generations under fresh automatic standing grants, with
+zero per-run operator approvals. The enhanced reviewer used the public outputs
+to withdraw two false leads but still falsely accepted the empty-heading defect.
+It authored no valid note; the baseline withheld acceptance and lost an active
+hypothesis from legacy projection. Offline replay keeps that actual hypothesis
+within 7,210 bytes under current selection. This establishes evidence delivery
+and the deterministic selection correction, **not improved model accuracy**.
 
 ## Deterministic evidence and next steps
 

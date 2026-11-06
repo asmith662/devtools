@@ -1,0 +1,119 @@
+{
+  "kind": "known-read-only-probe-completion-followed-by-caller-origin-label-error",
+  "original_grant": {
+    "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:d7193b7d1c21a88dd0f7bd0532b808d777a7ddab3a5bd54d627ce5a4819d9305",
+    "decision": {
+      "schema": "backlog-routine-decision-v1",
+      "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+      "subject": "calibration:P3-working-memory",
+      "subjects": [
+        "calibration:P3-working-memory"
+      ],
+      "kind": "local",
+      "request": {
+        "operation": "authorize-routine-local",
+        "scope": {
+          "subject": "calibration:P3-working-memory",
+          "plan_sha256": "96395c11d60aa57d9e60fbf987a6b0101f38ef1be6ec913f8ff99bc26c8eb70c",
+          "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+          "actor": "trusted-supervisor:public-producer-probe",
+          "role": "supervisor",
+          "roles": [],
+          "purpose": "working-memory",
+          "profile": "local-qwen-evaluation-v1",
+          "inputs": {
+            "tests/context/working/fixtures/p3-candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+            "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+          },
+          "tools": [],
+          "checks": {
+            "public-heading-producer": "1b0cef2065ba62dbd62939135129bd4faed0c90ce9d4945d1a7f6f3dca0cae97"
+          },
+          "private_oracle": false,
+          "budgets": {
+            "model_calls": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "total_output_tokens": 0,
+            "reads": 0,
+            "source_bytes": 32768,
+            "checks": 1,
+            "call_seconds": 120,
+            "wall_seconds": 60,
+            "capture_bytes": 65536,
+            "delegations": 0,
+            "prompt_bytes": 131072,
+            "response_bytes": 65536
+          }
+        },
+        "parent": null,
+        "source_snapshot": "c1bfb02efc8fca534a953dec6a1cbacb95421e041f5955657a87d849a5855eb0"
+      },
+      "assessment": {
+        "reference": "Host-fixed public AST literal producer probe; no candidate import/install, no worker code or hidden oracle; known bounded command.",
+        "architecture": false,
+        "security": false,
+        "destructive": false,
+        "secrets": false,
+        "paid": false,
+        "service_change": false,
+        "validation_relaxation": false
+      },
+      "provider": {
+        "configuration": {
+          "endpoint": "http://127.0.0.1:8080",
+          "model": "qwen38-local",
+          "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+          "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+          "context_tokens": 65536
+        },
+        "healthy": true,
+        "idle": true
+      },
+      "at": "2026-11-05T23:55:20.367755+00:00",
+      "expires_at": "2026-11-06T02:55:20.367732+00:00",
+      "sha256": "d7193b7d1c21a88dd0f7bd0532b808d777a7ddab3a5bd54d627ce5a4819d9305"
+    }
+  },
+  "entries": [
+    {
+      "schema": "backlog-routine-local-entry-v1",
+      "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:d7193b7d1c21a88dd0f7bd0532b808d777a7ddab3a5bd54d627ce5a4819d9305",
+      "at": "2026-11-05T23:55:20.388069+00:00",
+      "previous": null,
+      "operation": "check",
+      "payload": {
+        "name": "public-heading-producer",
+        "definition_sha256": "1b0cef2065ba62dbd62939135129bd4faed0c90ce9d4945d1a7f6f3dca0cae97"
+      },
+      "cost": {
+        "reads": 0,
+        "total_output_tokens": 0,
+        "model_calls": 0,
+        "delegations": 0,
+        "capture_bytes": 16632,
+        "checks": 1
+      },
+      "meaning": "Consumed permission only; no unknown replay.",
+      "sha256": "2ba0a8f02e70b42ce610d04967ab0ca5aa2f0823577c473edfefdea2c2f3ef6c"
+    }
+  ],
+  "results": {
+    "2ba0a8f02e70b42ce610d04967ab0ca5aa2f0823577c473edfefdea2c2f3ef6c-result.json": {
+      "schema": "backlog-routine-local-result-v1",
+      "entry": "2ba0a8f02e70b42ce610d04967ab0ca5aa2f0823577c473edfefdea2c2f3ef6c",
+      "outcome": "unknown-or-failed",
+      "result": {
+        "error": "ValueError: Command origin requires bounded opaque correlation labels."
+      },
+      "sha256": "33f6962a3fc5378bdc098c69d5416fada26428188601d1e8eb53c544faa41b6e"
+    }
+  },
+  "error": "ValueError: Command origin requires bounded opaque correlation labels.",
+  "raw_preflight_log_sha256": "f5b264f829aa03d5bcc9db895aef062e4518df5077bbc8b85e6f92abe0a16ed0",
+  "model_generations": 0,
+  "known_effects": "Awaited FixedCheckTool returned; observe passed its source-bound known-result checks and current-source guard before CommandOrigin rejected the too-long receipt. Fixed -B public_probe reads source, literal-evaluates one regex and prints; it imports/executes no candidate and mutates no source. Git tracked tree remains clean. Original failed completion stays consumed and unchanged; no original stdout is invented.",
+  "correction": "Use authenticated entry SHA256 as the bounded opaque receipt; retain full grant separately. Fresh exact-plan grant for one new read-only evidence measurement; not replay of unknown model/tool effects.",
+  "total_public_probe_executions_in_assignment": 2,
+  "maximum_model_generations_unchanged": 8
+}

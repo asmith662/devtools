@@ -1,0 +1,32 @@
+{
+  "method": "Host-only independent re-evaluation of the exact AST regex literal on the four already frozen public probe inputs; no candidate import, no new model call, no hidden holdout. Public task requires empty title for # ##. Frozen grader unchanged.",
+  "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+  "baseline_sha256": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+  "baseline_bytes": 5910,
+  "candidate_bytes": 5928,
+  "only_differing_line": 27,
+  "baseline_line": "        r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)[ \\t]*#*[ \\t]*$\",",
+  "candidate_line": "        r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$\",",
+  "observed_outputs": [
+    {
+      "input": "# C#",
+      "observed_title": "C#"
+    },
+    {
+      "input": "# C# #",
+      "observed_title": "C#"
+    },
+    {
+      "input": "# Title #",
+      "observed_title": "Title"
+    },
+    {
+      "input": "# ##",
+      "observed_title": "##"
+    }
+  ],
+  "expected_contract_output_for_empty_case": "",
+  "actual_empty_case_output": "##",
+  "observation_not_candidate_acceptance": true,
+  "both_false_historical_leads_contradicted_by_observation": true
+}

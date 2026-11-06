@@ -1,0 +1,117 @@
+{
+  "method": "Offline deterministic reconstruction of actual baseline pre-final checkpoint with its completed source ranges; same scope/source identities. Replay only current selection policy, no extra model call and no claim of model accuracy. Original requests/checkpoints untouched.",
+  "checkpoint_file": "016-turn-working-state.json",
+  "checkpoint_sha256": "4bbc2c25aa412bc8a7db4f88855658445812775fd82cb16135e0869603e98eb6",
+  "state_sha256": "a716f195c84a8358c5faecbd019212e35888f5365f55f61021a9a2d6aee527b7",
+  "original_final_sequences": [
+    4,
+    5
+  ],
+  "original_omitted_notes": 3,
+  "current_selection_sequences": [
+    1,
+    3,
+    4,
+    5
+  ],
+  "current_omitted_active_sequences": [],
+  "current_message_bytes": 7210,
+  "active_hypothesis_sequence": 3,
+  "active_hypothesis_preserved": true,
+  "fresh_status": "provisional",
+  "source_evidence_unchanged": true,
+  "current_projection": {
+    "kind": "task_role_working_context",
+    "scope": {
+      "task": "calibration:P3-working-memory",
+      "role": "independent-reviewer:calibration-reviewer",
+      "episode": "a4fc7368c2fee1f94cf9bfbe78fda440b7fcaffd8f1afff8375669d6f4800aa7"
+    },
+    "rule": "Model notes are fallible claims, not repository facts or authority. Host verification is scoped to its stated check. Historical ranges are not proof source is active after Context reduction; reopen exact evidence.",
+    "sources": [],
+    "notes": [
+      {
+        "sequence": 1,
+        "kind": "hypothesis",
+        "text": "Candidate only alters _ATX_HEADING_PATTERN to r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$\"; need to test whether backslash-less (?<=\\S) is a valid Python regex and how it changes title capture for '# C#' and '# C# #'.",
+        "expected_contract": "Attached terminal hash run stays literal title text; only a hash run separated by space/tab is a closing marker; trimming, fences, levels, lookups, content preserved.",
+        "support": [],
+        "contradicts": [],
+        "supersedes": [],
+        "verification": null,
+        "status": "superseded"
+      },
+      {
+        "sequence": 3,
+        "kind": "hypothesis",
+        "text": "Reconsult note 1: candidate regex literal is r\"^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$\" \u2014 with raw string the backreference is preserved, so (?<=\\S) is valid. Trace: '# C#' matches via alt2 (text='C#'); '# C# #' via alt1 (text='C#'); '# Title #' text='Title'; baseline mis-parses both attached cases. Still unverified: empty-title '#' (text='' vs baseline ' '), and execution-level confirmation (not observed, inferred from pattern only).",
+        "expected_contract": "Attached terminal hash run stays literal title text; only space/tab-separated hash run is closing marker; trimming, fences, levels, lookups, content preserved.",
+        "support": [],
+        "contradicts": [],
+        "supersedes": [
+          1
+        ],
+        "verification": null,
+        "status": "provisional"
+      },
+      {
+        "sequence": 4,
+        "kind": "source",
+        "text": "elf.headings:\r\n            candidate = heading.text if case_sensitive else heading.text.casefold()\r\n\r\n            if candidate == target:\r\n                return heading\r\n\r\n        return None\r\n\r\n    def find_section(\r\n        self,\r\n        title: str,\r\n        *,\r\n        case_sensitive: bool = False,\r\n    ) -> MarkdownSection | None:\r\n        \"\"\"Find the first section with matching heading text.\r\n\r\n        :param title: Section heading text to locate.\r\n        :param case_sensitive: Whether matching shou",
+        "expected_contract": "exact source quotation",
+        "support": [
+          {
+            "reference": "read:2",
+            "resource": {
+              "value": ".local/reviewer-memory-live-v2/baseline.txt"
+            },
+            "version": {
+              "value": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42"
+            },
+            "snapshot": {
+              "value": "1336271007eb271528c6be7ce8768450262a3840af89ddc110f6b4ff40c79db8"
+            },
+            "start": 2600,
+            "end": 3112,
+            "quote": "elf.headings:\r\n            candidate = heading.text if case_sensitive else heading.text.casefold()\r\n\r\n            if candidate == target:\r\n                return heading\r\n\r\n        return None\r\n\r\n    def find_section(\r\n        self,\r\n        title: str,\r\n        *,\r\n        case_sensitive: bool = False,\r\n    ) -> MarkdownSection | None:\r\n        \"\"\"Find the first section with matching heading text.\r\n\r\n        :param title: Section heading text to locate.\r\n        :param case_sensitive: Whether matching shou"
+          }
+        ],
+        "contradicts": [],
+        "supersedes": [],
+        "verification": "host:exact-source-quotation",
+        "status": "host-verified"
+      },
+      {
+        "sequence": 5,
+        "kind": "source",
+        "text": "0,3}(?P<fence>`{3,}|~{3,})[ \\t]*(?P<info>.*?)[ \\t]*$\",\r\n    )\r\n\r\n    @property\r\n    def format(self) -> FileFormat:\r\n        \"\"\"Return the Markdown file format.\r\n\r\n        :returns: Markdown file format.\r\n        \"\"\"\r\n        return FileFormat.MARKDOWN\r\n\r\n    @property\r\n    def headings(self) -> tuple[MarkdownHeading, ...]:\r\n        \"\"\"Return all recognized ATX headings.\r\n\r\n        Headings inside fenced code blocks are ignored.\r\n\r\n        :returns: Immutable sequence of headings in source order.\r\n        \"",
+        "expected_contract": "exact source quotation",
+        "support": [
+          {
+            "reference": "read:3",
+            "resource": {
+              "value": ".local/reviewer-memory-live-v2/baseline.txt"
+            },
+            "version": {
+              "value": "bf8e902178301bd59e4d281a2c05914b87ed84ef8c6f03e8dbbe8fe650b15f42"
+            },
+            "snapshot": {
+              "value": "1336271007eb271528c6be7ce8768450262a3840af89ddc110f6b4ff40c79db8"
+            },
+            "start": 1000,
+            "end": 1512,
+            "quote": "0,3}(?P<fence>`{3,}|~{3,})[ \\t]*(?P<info>.*?)[ \\t]*$\",\r\n    )\r\n\r\n    @property\r\n    def format(self) -> FileFormat:\r\n        \"\"\"Return the Markdown file format.\r\n\r\n        :returns: Markdown file format.\r\n        \"\"\"\r\n        return FileFormat.MARKDOWN\r\n\r\n    @property\r\n    def headings(self) -> tuple[MarkdownHeading, ...]:\r\n        \"\"\"Return all recognized ATX headings.\r\n\r\n        Headings inside fenced code blocks are ignored.\r\n\r\n        :returns: Immutable sequence of headings in source order.\r\n        \""
+          }
+        ],
+        "contradicts": [],
+        "supersedes": [],
+        "verification": "host:exact-source-quotation",
+        "status": "host-verified"
+      }
+    ],
+    "omitted_notes": 1,
+    "omitted_sources": 5,
+    "omitted_active_sequences": [],
+    "recovery": "Retained episode checkpoint; reopen a note by sequence."
+  }
+}

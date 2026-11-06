@@ -1,5 +1,12 @@
 # Documentation Map
 
+[Evidence-verified reviewer qualification](research/reviewer-evidence-verification-results.md)
+records seven genuine standing-authorized generations after protected publication.
+Verified public outputs withdraw two false leads, but the enhanced reviewer still
+falsely accepts the empty-heading defect; baseline withholds acceptance. Offline
+replay retains the actual evicted hypothesis within the same Context bound.
+Neither factual accuracy nor durable procedural memory is qualified.
+
 [Evidence-bound reviewer observations and active claims](development/agent-working-notes.md#active-claims-and-public-behavioral-observations)
 defines read-only access to host-authorized fixed public-check outputs, retained
 note recovery and priority for unresolved claims within the existing Context

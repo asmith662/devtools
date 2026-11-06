@@ -1,5 +1,13 @@
 # Research Evidence
 
+[Evidence-verified reviewer and active Context](reviewer-evidence-verification-results.md)
+records the protected-validated correction and seven genuine Qwen generations
+under fresh automatic standing grants. Enhanced review uses verified outputs and
+withdraws false leads, but still falsely accepts the genuine defect. Baseline
+withholds acceptance. Current selection retains an actually evicted hypothesis
+in offline replay; no live authored-memory or factual-accuracy benefit is proved.
+Candidate playbook v6 remains inactive.
+
 [First unattended reviewer-note procedure comparison](reviewer-notes-procedure-results.md)
 uses fresh standing grants for eight Qwen generations without per-run approval.
 One early note is valid but weakly anchored and omitted before synthesis; both

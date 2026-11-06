@@ -1,0 +1,130 @@
+"""Bounded qualification composition reusing the published eight-call owner."""
+import asyncio, hashlib, importlib.util, json, sys
+from dataclasses import asdict
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
+R=Path.cwd(); O=R/'.local/reviewer-evidence-qualified'
+def module(name,path):
+ s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);sys.modules[name]=m;s.loader.exec_module(m);return m
+previous=module('previous_procedure_packet',R/'.local/reviewer-notes-procedure/packet.py')
+base=previous.base;c=previous.c;c.O=O
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.context.repository.resource import ContentIdentity
+from devtools.context.repository.corpus import define_repository_text_corpus,realize_repository_text_corpus
+from devtools.context.repository.discovery import discover_repository_resource_addresses
+from devtools.context.retrieval import build_source_search_index
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Timestamp
+from devtools.models.interaction import PromptMessage,InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction
+from devtools.resources.commands import Command
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.tools import ToolRunner
+from devtools.tools.checks import FixedCheck,FixedCheckPlan,FixedCheckTool
+from devtools.tools.source import SourceScope
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import checks
+from scripts.backlog.native.review.notes import ReviewNotes,CONTRACT
+
+LABELS=('existing','explicit')
+OBS='.local/reviewer-evidence-qualified/public-observation.json'
+CANDIDATE='tests/context/working/fixtures/p3-candidate.txt'
+PROBE='tests/scripts/backlog/review/public_probe.py'
+ADDENDUM=previous.ADDENDUM
+PHASES=[
+ 'Inspection 1 of 3. Independently inspect the complete baseline and archived candidate against the task. Record one compact provisional claim or question in the existing WORKING_NOTES protocol, with an expected public contract and relevant evidence or explicit uncertainty. If offsets are unknown, leave support empty rather than guess. Choose one useful authorized read_source interval; no final proposal yet. At most one read.',
+ 'Inspection 2 of 3. Choose evidence relevant to testing your provisional claim against the public contract. If a public observation catalog is supplied, you may inspect a relevant fixed-check result using the permitted read_source path; recorded command success does not establish candidate correctness. Otherwise use the supplied source. Correct or withdraw unsupported interpretations; at most one read, no final proposal.',
+ 'Inspection 3 of 3, after planned Context reduction. Older inspection exchanges were removed; the latest pending Tool result is preserved so you actually receive it. Original task/full sources remain, plus your own reconstructed working Context. Reconsult the active claim by its actual sequence. Check whether the observed evidence contradicts its expected contract; record a justified revision or remaining uncertainty. You may request one useful authorized read_source interval. Next call is final.',
+ previous.PHASES[3],
+]
+EXPLICIT=['','','','']
+def packets():return c.load(O/'packets.json')
+def request(p,messages,phase):return base.request(p,messages,phase)
+def initial(p):
+ messages=base.initial(p);value=json.loads(messages[1].content);value['review_scope']['read_paths']=p['policy']['read_paths'];value['review_scope']['budgets']=p['policy']['budgets']
+ if p['policy']['source'].endswith(':explicit'):
+  value['public_observation_catalog']=[{'name':'public-heading-producer','source':'candidate','source_version':str(ContentIdentity.from_text(p['subject']['evidence']['candidate']['text'])),'resource':OBS,'read_source':{'path':OBS,'start':0,'end':len((R/OBS).read_bytes().decode())},'definition_sha256':c.load(O/'public-result.json')['definition_sha256'],'meaning':'Host-run, fixed public producer observation; read output before interpreting it. This catalog states no expected conclusion. Public command output is limited evidence, not acceptance. The selector/recovery callable names are outside current local policy; only exact read_source is available.'}]
+ messages[1]=PromptMessage('user',json.dumps(value));return messages
+def scope_index():
+ addresses=tuple(RepositoryResourceAddress(p) for p in (base.PATH,OBS))
+ scope=SourceScope.observe(root=resolve_path(R),repository=Repository(RepositoryId.parse(c.load(O/'source-identity.json')['repository'])),addresses=addresses,maximum_resource_bytes=32768)
+ corpus=realize_repository_text_corpus(snapshot=scope.snapshot,definition=define_repository_text_corpus(discovery=discover_repository_resource_addresses(repository=Repository(scope.snapshot.repository_id),root=scope.root,requested_addresses=addresses,maximum_resource_count=16,maximum_traversal_entry_count=256),selected_addresses=addresses))
+ return scope,build_source_search_index(scope.snapshot,corpus=corpus)
+def memory_for(label,p,snapshot,capture):
+ if label=='explicit':return ReviewNotes(p,snapshot,capture)
+ legacy=module('frozen_legacy_working_notes',O/'legacy-notes.py')
+ class LegacyReviewNotes(ReviewNotes):
+  def message(self):
+   original=self.book;old=legacy.WorkingNotes(self.scope,original.sources);old.restore(self.scope,original.notes);self.book=old
+   try:return super().message()
+   finally:self.book=original
+ return LegacyReviewNotes(p,snapshot,capture)
+
+async def prepare():
+ assert not (O/'frozen-qualified.json').exists(),'Reconcile existing freeze; never overwrite'
+ receipt=c.load(R/'.local/validation/reviewer-evidence-protected-recovered.json')
+ assert receipt['status']=='passed' and receipt['inputs_unchanged'] and receipt['complete']
+ head=await c.git(R,'rev-parse','HEAD');assert head=='f1852d662050a65623933b90771826f62f9dc9fa'
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ assert await c.git(R,'ls-remote','origin','refs/heads/main')==head+'\trefs/heads/main'
+ cycle=c.WorkCycle(R);active=cycle.routine.active();assert active['sha256']=='26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978'
+ common=c.load(R/'.local/reviewer-memory-live-v2/subject.json')['subject']
+ assert c.h(R/CANDIDATE)=='ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119'
+ assert common['evidence']['candidate']['text']==(R/CANDIDATE).read_bytes().decode()
+ assert c.h(R/base.PATH)=='a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645'
+ c.save(O/'subject-common.json',common)
+ write(BinaryFile(resolve_path(O/'grader-only.json'),(R/'.local/reviewer-memory-live-v2/grader-only.json').read_bytes()),overwrite=False)
+ write(BinaryFile(resolve_path(O/'source-identity.json'),(R/'.local/reviewer-notes-procedure/source-identity.json').read_bytes()),overwrite=False)
+ legacy=await c.git(R,'show','59046b6e66326a449cf741a7ea0921010d8b3a8c:src/devtools/context/working/notes.py')
+ write(BinaryFile(resolve_path(O/'legacy-notes.py'),(legacy+'\n').encode()),overwrite=False)
+ repo=RepositoryId.parse(c.load(O/'source-identity.json')['repository'])
+ scope=SourceScope.observe(root=resolve_path(R),repository=Repository(repo),addresses=tuple(RepositoryResourceAddress(p) for p in (CANDIDATE,PROBE)),maximum_resource_bytes=32768)
+ command=Command(sys.executable).args('-B','-m','tests.scripts.backlog.review.public_probe',CANDIDATE).cwd(scope.root).with_timeout(Duration.seconds(15))
+ fixed=FixedCheck('public-heading-producer',command);plan=FixedCheckPlan(scope.root,(fixed,),scope)
+ definition={'name':fixed.name,'argv':list(command.argv),'cwd':str(command.working_directory),'timeout_seconds':15.0,'stdin_hex':None,'environment':None,'success_exit_codes':[0],'inputs':{str(r.address):str(r.content_identity) for r in scope.snapshot.resources}}
+ prospective={'design':'One matched four-turn pair: published explicit note procedure and legacy bounded projection versus current active-claim projection plus a selectable source-bound fixed public observation. Combined treatment, not component attribution. Alternating conditions. Same P3 task/full source and independent grader, source Tool schema, model, settings, output reservations and total read/call bounds. Fresh isolated subject/source IDs.','phases':PHASES,'procedure_addendum_for_both':ADDENDUM,'existing':'Exact published legacy projection; no added behavioral observation resource.','explicit':'Current projection and a catalog permitting read_source selection of actual public fixed-probe output. The model must choose/read it; no expected answer or verified model note is preloaded.','public_check_definition':definition,'local_policy_transport':'New inspect_public_check/reopen_working_note names are not allowed by active local policy. Use existing read_source over exact public output artifact. Native selector/recovery is deterministically tested, not qualified by this live run.','reconstruction':'Before turn3, both drop older inspection exchanges, preserve the latest pending correlated assistant/Tool exchange until delivered, and reconstruct only their own exact captured state/bindings. Original sources remain. No automatic expected finding, semantic attestation or grader feedback.','limits':{'generations':8,'per_condition':4,'input_tokens_per_call':16384,'output_tokens_per_call':2048,'total_reserved_output_tokens':16384,'source_reads':6,'public_checks':1,'prior_known_read_only_probe_executions':1,'call_seconds':120,'wall_seconds':1020,'capture_bytes':4194304,'child_capture_bytes':1835008,'retries':0},'scoring':['actual native calls and exact arguments/correlation, full strict admission separately','candidate/source-bound behavioral observation chosen and exposed before final; literal quotation vs behavioral result vs interpretation separated','valid authored provisional notes, relevant source support, actual later use, contradiction checks and justified revisions/supersessions','active-claim retention after reconstruction and through final; explicit omission if any','unchanged grader: grounded true defect, correct recommendation, no fabricated or contradicted facts; no fabricated missing structural acceptance records','actual tokens, latency, termination, projection/capture overhead; negative results retained'],'stop':'Stop condition on malformed notes/proposal/read batch or early conclusion; no repair/retry/reallocation. Stop whole packet on authority/provider/source drift or unknown effects. At most eight actual generations.','confounds':['One pair; no independent repetition or statistical claim','Combined instruction/catalog/projection availability treatment; no attribution to single component','Model may not choose public evidence or valid notes; record failure rather than manufacture success','Current local policy requires permitted source-read transport, so not live qualification of new selector names','P3 fixture lacks public-checks/acceptance/custody structural references; never fabricate them. Rejection can still be strict/factual, while complete acceptance cannot be certified.']}
+ prospective['preflight_reconciliation_sha256']=c.h(O/'preflight-reconciliation.json');c.save(O/'plan.json',prospective)
+ provider,before=await c.provider(cycle);props=await asyncio.to_thread(c.established().get,'/props');c.save(O/'provider-before.json',before);c.save(O/'props-before.json',props)
+ check_limits={**active['policy']['local']['budgets'],'model_calls':0,'input_tokens':0,'output_tokens':0,'total_output_tokens':0,'reads':0,'checks':1,'source_bytes':32768,'wall_seconds':60,'capture_bytes':65536,'delegations':0,'prompt_bytes':131072,'response_bytes':65536}
+ check_scope={'subject':common['item'],'plan_sha256':_digest(prospective),'repository':str(repo),'actor':'trusted-supervisor:public-producer-probe','role':'supervisor','roles':[],'purpose':'working-memory','profile':'local-qwen-evaluation-v1','inputs':definition['inputs'],'tools':[],'checks':{fixed.name:_digest(definition)},'private_oracle':False,'budgets':check_limits}
+ grant=await cycle.routine.local.authorize(active['sha256'],check_scope,assessment=c.assess('Known read-only predecessor completion followed by caller origin-label construction error; original failed grant stays consumed. New exact evidence measurement. Host-fixed public AST literal producer probe; no candidate import/install, no worker code or hidden oracle; known bounded command.'),provider=provider);c.save(O/'public-check-grant.json',grant)
+ entry=cycle.routine.local.enter(grant['reference'],'check',{'name':fixed.name,'definition_sha256':_digest(definition)})
+ try:
+  result=await ToolRunner().execute(FixedCheckTool(plan),fixed.name)
+  row=checks.observe(plan,result,path=CANDIDATE,source='candidate',receipt=entry['sha256'])
+  cycle.routine.local.complete(grant['reference'],entry,{'public_observation_sha256':_digest(row),'result':row})
+ except Exception as ex:
+  cycle.routine.local.complete(grant['reference'],entry,{'error':type(ex).__name__+': '+str(ex)},outcome='unknown-or-failed');raise
+ assert row['definition']==definition
+ c.save(O/'public-result.json',row)
+ # Order exposes all observed outputs in a compact source quote; no expected
+ # outputs, pass/fail against task, or independent grader conclusion is added.
+ artifact={'observed_output':json.loads(row['observation']['stdout']),'source':'candidate','version':row['version'],'check':row['name'],'definition_sha256':row['definition_sha256'],'receipt':row['receipt'],'command_status':row['observation']['outcome'],'meaning':'Observed fixed producer outputs only; infer task correctness independently.'}
+ write(BinaryFile(resolve_path(R/OBS),(json.dumps(artifact,separators=(',',':'))+'\n').encode()),overwrite=False)
+ values={}
+ for label in LABELS:
+  p=json.loads(json.dumps(c.load(R/'.local/reviewer-memory-live-v2/subject.json')));p['sha256']=_digest({'study':'reviewer-evidence-and-active-context-v1','condition':label,'subject':common});p['policy']['source']='reviewer-evidence:'+label;p['working_notes']=CONTRACT
+  p['policy']['read_paths']=[base.PATH]+([OBS] if label=='explicit' else []);p['policy']['budgets']['capture_bytes']=1835008
+  if label=='explicit':p['subject']['inputs'][OBS]=str(ContentIdentity.from_text((R/OBS).read_bytes().decode()))
+  p['sha256']=_digest({'study':'reviewer-evidence-and-active-context-v1','condition':label,'subject':p['subject']});values[label]=p
+ c.save(O/'packets.json',values)
+ paths=[base.PATH,CANDIDATE,PROBE,OBS,str((O/'subject-common.json').relative_to(R)).replace('\\','/'),str((O/'plan.json').relative_to(R)).replace('\\','/')]
+ inputs=SourceScope.observe(root=resolve_path(R),repository=Repository(repo),addresses=tuple(RepositoryResourceAddress(p) for p in paths),maximum_resource_bytes=32768)
+ c.save(O/'grant-inputs.json',{'repository':str(repo),'inputs':{str(r.address):str(r.content_identity) for r in inputs.snapshot.resources}})
+ class EmptyCapture:
+  def add(self,*args):raise AssertionError('Preflight seeds no notes')
+ source,index=scope_index();initial_requests=[]
+ for label,p in values.items():
+  memory=memory_for(label,p,source.snapshot,EmptyCapture());messages=initial(p)+[PromptMessage('user',PHASES[0]),PromptMessage('user',ADDENDUM),memory.message()];req=request(p,messages,1)
+  client=LlamaCppInteraction(endpoint=active['policy']['provider']['endpoint'],model=active['policy']['provider']['model'],source=InteractionSource(p['policy']['source']))
+  body=json.dumps(client._request_payload(req),separators=(',',':')).encode();count=await client.count_input_tokens(req);assert count<=16384
+  initial_requests.append({'condition':label,'request':asdict(req),'wire_sha256':hashlib.sha256(body).hexdigest(),'input_tokens':count})
+ c.save(O/'initial-requests.json',initial_requests)
+ owners=list(c.load(R/'.local/reviewer-notes-procedure/production-inputs.json'))+['scripts/backlog/native/review/checks.py','tests/scripts/backlog/review/public_probe.py']
+ c.save(O/'production-inputs.json',{p:c.h(R/p) for p in owners})
+ names=('packet.py','execute.py','plan.json','subject-common.json','packets.json','grader-only.json','source-identity.json','grant-inputs.json','initial-requests.json','production-inputs.json','legacy-notes.py','public-result.json','public-observation.json','public-check-grant.json','preflight-reconciliation.json')
+ frozen={'head':head,'policy_version':active['sha256'],'files':{n:c.h(O/n) for n in names},'operator_approvals_for_run':0,'authority':'Fresh automatic WorkCycle.routine.local grants; one executed fixed public check, zero generations so far. No new callable names.'}
+ c.save(O/'frozen-qualified.json',{'packet':frozen,'sha256':_digest(frozen)})
+ print(json.dumps({'frozen_sha256':_digest(frozen),'input_tokens':[(v['condition'],v['input_tokens']) for v in initial_requests],'calls_so_far':0,'public_checks':1,'prior_known_read_only_probe_executions':1,'operator_approvals_for_run':0}))
+if __name__=='__main__':asyncio.run(prepare())

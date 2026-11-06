@@ -1,0 +1,64 @@
+"""Adapt the existing calibration publication composition; no execution authority."""
+import asyncio,hashlib,json
+from dataclasses import asdict
+from pathlib import Path
+from packet import R,O,c,packets
+from scripts.backlog.intake import _digest
+from scripts.backlog.work import _load
+
+E=O/'execution-qualified';D=R/'docs/research/code-audit/reviewer-evidence-20261105'
+ALIASES={'packet.py':'preparation-driver.txt','execute.py':'execution-driver.txt','legacy-notes.py':'legacy-projection.txt'}
+def save(name,value):c.save(D/name,value)
+def copy(name,source):
+ from devtools.resources.filesystem import BinaryFile,write
+ from devtools.core.paths import resolve_path
+ write(BinaryFile(resolve_path(D/name),source.read_bytes()),overwrite=False)
+def ledger(cycle,grant):
+ folder=cycle.routine.folder/'local'/grant['decision']['sha256']
+ entries=cycle.routine.local.records(grant['reference'])
+ results={p.name:_load(p,'backlog-routine-local-result-v1') for p in folder.glob('*-result.json')}
+ assert {e['sha256']+'-result.json' for e in entries}==set(results)
+ assert all(v['entry']+'.json'==n.removesuffix('-result.json')+'.json' for n,v in results.items())
+ return {'grant':grant,'entries':entries,'results':results}
+def raw(path):
+ data=path.read_bytes();text=data.decode('utf-8');assert text.encode()==data
+ return {'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'utf8':text}
+
+async def publish():
+ assert not D.exists(),'Reconcile existing publication; never overwrite evidence'
+ summary=c.load(E/'summary.json');assert summary['consumed_generations']<=8
+ frozen=c.load(O/'frozen-qualified.json');assert _digest(frozen['packet'])==frozen['sha256']
+ for name,h in frozen['packet']['files'].items():assert c.h(O/name)==h,name
+ assert c.h(O/'grader-only.json')==c.h(R/'.local/reviewer-memory-live-v2/grader-only.json')
+ for name,h in c.load(O/'production-inputs.json').items():assert c.h(R/name)==h,name
+ D.mkdir();copy('.gitattributes',R/'docs/research/code-audit/reviewer-notes-procedure-20261105/.gitattributes')
+ copy('frozen.json',O/'frozen-qualified.json')
+ for name in frozen['packet']['files']:copy(ALIASES.get(name,name),O/name)
+ copy('publication-driver.txt',Path(__file__))
+ calls=[]
+ for row in summary['rows']:
+  folder=E/f"{row['phase']}-{row['condition']}"
+  call={'result':row,'request':raw(folder/'request.json'),'model_request':c.load(folder/'model-request.json'),'entry':c.load(folder/'entry.json'),'working_projection_after_turn':c.load(folder/'working-projection.json')}
+  for name in ('response-body','normalized','provider-qualified','observation','proposal','http','intent'):
+   path=folder/(name+'.json')
+   if path.exists():call[name.replace('-','_')]=raw(path) if name=='response-body' else c.load(path)
+  calls.append(call)
+ save('calls.json',calls);save('execution.json',summary);copy('execution-method.json',E/'method.json')
+ episodes={label:[{'file':p.name,'raw':raw(p),'record':c.load(p)} for p in sorted((E/label).glob('[0-9][0-9][0-9]-*.json'))] for label in ('existing','explicit')}
+ save('episode-records.json',episodes)
+ cycle=c.WorkCycle(R);assert cycle.routine.active()['sha256']==frozen['packet']['policy_version']
+ save('authority.json',{'policy_version':frozen['packet']['policy_version'],'operator_approvals_for_run':0,'public_check':ledger(cycle,c.load(O/'public-check-grant.json')),'parent':ledger(cycle,c.load(E/'parent-grant.json')),'conditions':{label:ledger(cycle,c.load(E/label/'grant.json')) for label in ('existing','explicit')}})
+ save('environment.json',{'before':c.load(O/'provider-before.json'),'after':c.load(E/'provider-after.json'),'props_before':c.load(O/'props-before.json'),'props_after':c.load(E/'props-after.json'),'service_changed':False})
+ protected=c.load(R/'.local/validation/reviewer-evidence-protected-recovered.json')
+ child=Path(protected['child_receipt']);pytest=c.load(child)
+ failed=c.load(R/'.local/validation/reviewer-evidence-protected-final.json')
+ for name in ('status','inputs_unchanged','complete'):assert protected[name] in ('passed',True)
+ assert protected['head']==frozen['packet']['head']
+ save('validation.json',{'implementation_commit':protected['head'],'protected':{k:protected[k] for k in ('schema','mode','at','status','head','exit_code','seconds','timeout_seconds','argv','configured_gate','inputs_unchanged','complete')},'complete_local_receipt':{'path':'.local/validation/reviewer-evidence-protected-recovered.json','sha256':c.h(R/'.local/validation/reviewer-evidence-protected-recovered.json'),'child_sha256':c.h(child),'declared_input_count':len(protected['before']['sha256']),'phase_count':len(pytest['phases']),'collection_errors':pytest['collection_errors']},'prior_interrupted_entry':failed,'interrupted_receipt_sha256':c.h(R/'.local/validation/reviewer-evidence-protected-final.json'),'recovery':'Original wrapper failed while atomically replacing streamed stdout at532.396969s. Session exited; process inspection found only preexisting Nov3 Inspector Python processes, no protected child. Changed only local driver log persistence to once at completion; same committed inputs/profile/7200s/gate. Original failed intent/receipt/stdout/traceback retained.','focused':{'stable_tests':57,'stable_receipt_sha256':c.h(R/'.local/validation/reviewer-evidence-stable-focused.json'),'context_tests':48,'context_branch_coverage':100,'consumer_tests':147,'consumer_receipt_status':'input-drift; test cosmetic edits during run, not final qualification; stable focused run and protected final gate qualify final inputs'},'static':{'ruff_supported':'passed','format_supported_files':797,'strict_mypy_files':645,'layout':'passed','diff':'passed'},'scientific_validation':'Exact frozen files/raw UTF8 round trips, source/check identities, standing grant ledgers and bounded model/read entries checked; no protected rerun for evidence-only publication.'})
+ assert c.load(O/'scores.json')['frozen_grader_sha256']==c.h(O/'grader-only.json')
+ copy('scores.json',O/'scores.json');copy('candidate-playbook-v6.json',O/'candidate-playbook-v6.json')
+ for name in ('offline-projection-replay.json','host-factual-checks.json'):copy(name,O/name)
+ files={p.name:{'sha256':c.h(p),'bytes':p.stat().st_size} for p in D.iterdir() if p.is_file()}
+ save('manifest.json',{'frozen_sha256':frozen['sha256'],'files':files})
+ print(json.dumps({'published_files':len(files)+1,'bytes':sum(p.stat().st_size for p in D.iterdir() if p.is_file()),'generations':summary['consumed_generations'],'directory':str(D.relative_to(R))}))
+if __name__=='__main__':asyncio.run(publish())

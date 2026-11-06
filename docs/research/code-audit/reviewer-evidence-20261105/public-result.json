@@ -1,0 +1,52 @@
+{
+  "name": "public-heading-producer",
+  "source": "candidate",
+  "version": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+  "resource": "tests/context/working/fixtures/p3-candidate.txt",
+  "definition": {
+    "name": "public-heading-producer",
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "tests.scripts.backlog.review.public_probe",
+      "tests/context/working/fixtures/p3-candidate.txt"
+    ],
+    "cwd": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+    "timeout_seconds": 15.0,
+    "stdin_hex": null,
+    "environment": null,
+    "success_exit_codes": [
+      0
+    ],
+    "inputs": {
+      "tests/context/working/fixtures/p3-candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+      "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+    }
+  },
+  "definition_sha256": "1b0cef2065ba62dbd62939135129bd4faed0c90ce9d4945d1a7f6f3dca0cae97",
+  "receipt": "bef5ab41c2049a5c29568cb23296ee4b79b981f47be0679c7b5e612764166c81",
+  "observation": {
+    "name": "public-heading-producer",
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "tests.scripts.backlog.review.public_probe",
+      "tests/context/working/fixtures/p3-candidate.txt"
+    ],
+    "exit_code": 0,
+    "outcome": "succeeded",
+    "seconds": 0.067498,
+    "passed": true,
+    "inputs_current": true,
+    "stdout": "{\"producer\": \"_ATX_HEADING_PATTERN text group followed by strip\", \"outputs\": [{\"input\": \"# C#\", \"observed_title\": \"C#\"}, {\"input\": \"# C# #\", \"observed_title\": \"C#\"}, {\"input\": \"# Title #\", \"observed_title\": \"Title\"}, {\"input\": \"# ##\", \"observed_title\": \"##\"}]}\r\n",
+    "stderr": "",
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "events_dropped": 0,
+    "stdout_hex": "7b2270726f6475636572223a20225f4154585f48454144494e475f5041545445524e20746578742067726f757020666f6c6c6f776564206279207374726970222c20226f757470757473223a205b7b22696e707574223a202223204323222c20226f627365727665645f7469746c65223a20224323227d2c207b22696e707574223a2022232043232023222c20226f627365727665645f7469746c65223a20224323227d2c207b22696e707574223a202223205469746c652023222c20226f627365727665645f7469746c65223a20225469746c65227d2c207b22696e707574223a202223202323222c20226f627365727665645f7469746c65223a20222323227d5d7d0d0a",
+    "stderr_hex": ""
+  },
+  "meaning": "Fixed public output only; explanations remain model claims."
+}

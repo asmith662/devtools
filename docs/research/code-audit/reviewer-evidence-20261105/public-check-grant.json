@@ -1,0 +1,75 @@
+{
+  "reference": "routine-v1:26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978:a854f5696690b4b7fb244c51dbb60f06073764a7f84b721d5f3e6a4811f27662",
+  "decision": {
+    "schema": "backlog-routine-decision-v1",
+    "policy_version": "26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978",
+    "subject": "calibration:P3-working-memory",
+    "subjects": [
+      "calibration:P3-working-memory"
+    ],
+    "kind": "local",
+    "request": {
+      "operation": "authorize-routine-local",
+      "scope": {
+        "subject": "calibration:P3-working-memory",
+        "plan_sha256": "17504503a3248c9454ea94c53eb2fbb6a683d26ddbf1011280583a82110905f6",
+        "repository": "5d0bac37-b85a-49af-8c36-b2b87e9c6e2a",
+        "actor": "trusted-supervisor:public-producer-probe",
+        "role": "supervisor",
+        "roles": [],
+        "purpose": "working-memory",
+        "profile": "local-qwen-evaluation-v1",
+        "inputs": {
+          "tests/context/working/fixtures/p3-candidate.txt": "573bafe2fb7fa16fc824bdee7be5fe99539220d4f1c145f726c215093ca2227c",
+          "tests/scripts/backlog/review/public_probe.py": "420e351f9a78986d36582b27f78c977f2bf608667ec76c2bdaec0b2b136b48de"
+        },
+        "tools": [],
+        "checks": {
+          "public-heading-producer": "1b0cef2065ba62dbd62939135129bd4faed0c90ce9d4945d1a7f6f3dca0cae97"
+        },
+        "private_oracle": false,
+        "budgets": {
+          "model_calls": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_output_tokens": 0,
+          "reads": 0,
+          "source_bytes": 32768,
+          "checks": 1,
+          "call_seconds": 120,
+          "wall_seconds": 60,
+          "capture_bytes": 65536,
+          "delegations": 0,
+          "prompt_bytes": 131072,
+          "response_bytes": 65536
+        }
+      },
+      "parent": null,
+      "source_snapshot": "c1bfb02efc8fca534a953dec6a1cbacb95421e041f5955657a87d849a5855eb0"
+    },
+    "assessment": {
+      "reference": "Known read-only predecessor completion followed by caller origin-label construction error; original failed grant stays consumed. New exact evidence measurement. Host-fixed public AST literal producer probe; no candidate import/install, no worker code or hidden oracle; known bounded command.",
+      "architecture": false,
+      "security": false,
+      "destructive": false,
+      "secrets": false,
+      "paid": false,
+      "service_change": false,
+      "validation_relaxation": false
+    },
+    "provider": {
+      "configuration": {
+        "endpoint": "http://127.0.0.1:8080",
+        "model": "qwen38-local",
+        "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+        "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+        "context_tokens": 65536
+      },
+      "healthy": true,
+      "idle": true
+    },
+    "at": "2026-11-05T23:58:16.101693+00:00",
+    "expires_at": "2026-11-06T02:58:16.101670+00:00",
+    "sha256": "a854f5696690b4b7fb244c51dbb60f06073764a7f84b721d5f3e6a4811f27662"
+  }
+}

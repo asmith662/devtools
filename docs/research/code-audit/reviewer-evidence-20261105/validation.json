@@ -1,0 +1,59 @@
+{
+  "implementation_commit": "f1852d662050a65623933b90771826f62f9dc9fa",
+  "protected": {
+    "schema": "development-validation-explicit-deadline-v1",
+    "mode": "comprehensive",
+    "at": "2026-11-05T23:54:52.510407+00:00",
+    "status": "passed",
+    "head": "f1852d662050a65623933b90771826f62f9dc9fa",
+    "exit_code": 0,
+    "seconds": 4350.958144,
+    "timeout_seconds": 7200,
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-m",
+      "scripts.validation.protected",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\reviewer-evidence-protected-recovered.pytest.json",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+      "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments",
+      "--durations=30"
+    ],
+    "configured_gate": "100% production branch coverage, unchanged",
+    "inputs_unchanged": true,
+    "complete": true
+  },
+  "complete_local_receipt": {
+    "path": ".local/validation/reviewer-evidence-protected-recovered.json",
+    "sha256": "fb3623b758ed9b7e07e0dd9ded1a4fcfa1e6b5fb0a277a8d56e1ff0e717e3fc1",
+    "child_sha256": "ce06ef63b19081f060b698da14b05b88badc8238980aef6b2eec04c9cb63913a",
+    "declared_input_count": 1098,
+    "phase_count": 13387,
+    "collection_errors": []
+  },
+  "prior_interrupted_entry": {
+    "schema": "development-validation-explicit-deadline-v1",
+    "status": "interrupted-or-failed",
+    "error": "FilesystemPermissionError: Permission denied while writing file: C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\reviewer-evidence-protected-final.stdout.",
+    "seconds": 532.396969,
+    "timeout_seconds": 7200,
+    "head": "f1852d662050a65623933b90771826f62f9dc9fa"
+  },
+  "interrupted_receipt_sha256": "12c1e69b120dda6d98f3de0ba234e23c3f179ee029ad5a4b528d08a602044359",
+  "recovery": "Original wrapper failed while atomically replacing streamed stdout at532.396969s. Session exited; process inspection found only preexisting Nov3 Inspector Python processes, no protected child. Changed only local driver log persistence to once at completion; same committed inputs/profile/7200s/gate. Original failed intent/receipt/stdout/traceback retained.",
+  "focused": {
+    "stable_tests": 57,
+    "stable_receipt_sha256": "1f3eaebe7a9162bb57f761253da6e6f13c545e4a6c16c4114caa0feebb966749",
+    "context_tests": 48,
+    "context_branch_coverage": 100,
+    "consumer_tests": 147,
+    "consumer_receipt_status": "input-drift; test cosmetic edits during run, not final qualification; stable focused run and protected final gate qualify final inputs"
+  },
+  "static": {
+    "ruff_supported": "passed",
+    "format_supported_files": 797,
+    "strict_mypy_files": 645,
+    "layout": "passed",
+    "diff": "passed"
+  },
+  "scientific_validation": "Exact frozen files/raw UTF8 round trips, source/check identities, standing grant ledgers and bounded model/read entries checked; no protected rerun for evidence-only publication."
+}
