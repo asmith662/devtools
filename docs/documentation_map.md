@@ -1247,5 +1247,5 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 # Partial learning migration
 
 [Learning migration status](development/learning-integration.md) records the
-bounded feature/category and classification-inspection implementation, pinned
-donor provenance and the unfinished numerical/investigator qualification.
+numerical core, native ModelInteraction/Tool investigator, pinned donor provenance,
+installed-wheel observations, and outstanding acknowledgment/release qualification.

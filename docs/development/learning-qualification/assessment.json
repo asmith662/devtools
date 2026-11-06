@@ -1,0 +1,31 @@
+{
+  "status": "NUMERICAL_AND_AGENT_ENGINEERING_OBSERVATIONS_NOT_FINAL_PROTOCOL_ACCEPTANCE",
+  "source_commit": "61b44ea58870590d3fad5c411cc3bc2e2113f3c7",
+  "original_report_sha256": "e73008101b83b973f8d249b53fc30807e35b0d10ddca3c19157a1ea0c3699f48",
+  "original_status": "ENGINEERING_COMPLETE is the original runner observation, not release acceptance.",
+  "subsequent_failure": "Binary fitting lacks a distinct completed fit acknowledgment before prediction under protocol v1.",
+  "correction": "Protocol v2 uses a distinct completed binary fit child; checks all child identities and acknowledgment order. Current inspector refuses v1. Donor state codecs are unchanged.",
+  "real_protocol_v2_reexecution": "NOT_PERFORMED; preserve the original one-run budget and all original observations.",
+  "parent_prediction_counts": [
+    34,
+    59
+  ],
+  "counts": {
+    "actions": 7,
+    "invocations": 7,
+    "native_fits": 6,
+    "preparations": 6,
+    "squares": 1,
+    "states": 7
+  },
+  "outer_seconds": 25.627216,
+  "worker_seconds_total": 23.949952,
+  "unavailable": [
+    "Attributable native learner CPU cost",
+    "Peak RSS",
+    "Incremental cost forecasts",
+    "Generalization/strategy effectiveness",
+    "Paid/live-provider usage: no provider invoked"
+  ],
+  "retention": "Exact original source-owned scientific records copied without mutation; absolute paths are historical facts, not authority. No product code imports these records."
+}

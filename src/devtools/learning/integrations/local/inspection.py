@@ -210,8 +210,9 @@ def inspect_learning(
             "quality",
             "measurement",
             "producing_execution_id",
+            "fitting_execution_id",
         }
-        or saved["schema"] != "learning-operation-v1"
+        or saved["schema"] != "learning-operation-v2"
         or saved["plan"] != plan.document()
         or saved["grant"] != document(asdict(grant))
     ):
@@ -287,6 +288,16 @@ def inspect_learning(
             msg_0,
         )
     training, held = plan.populations()
+    fitting_id = UUID(str(saved["fitting_execution_id"]))
+    original_fit = inspect_execution(database, fitting_id)
+    if (
+        original_fit is None
+        or original_fit.parent_execution_id != producing_id
+        or original_fit.outcome is not Outcome.COMPLETED
+        or original_fit.events[-1].occurred_at > predict_history.events[0].occurred_at
+    ):
+        msg = "original fitting must be acknowledged before prediction begins"
+        raise ValueError(msg)
     preparation = (
         None
         if saved["preparation"] is None
@@ -329,6 +340,9 @@ def inspect_learning(
             raise ValueError(
                 msg_0,
             )
+        if preparing.events[-1].occurred_at > original_fit.events[0].occurred_at:
+            msg = "training preparation must be acknowledged before fitting begins"
+            raise ValueError(msg)
         if (
             preparation.training_means != tuple(mean(c) for c in columns)
             or preparation.training_standard_deviations
@@ -370,7 +384,7 @@ def inspect_learning(
                 state.training_input_sha256 != binary_training.content_identity
                 or state.training_population_id != training.population_id
                 or state.target_identity != training.target_identity
-                or state.fitting_execution_id != producing_id
+                or state.fitting_execution_id != fitting_id
                 or state.feature_names != binary_training.features.feature_names
                 or state.references != training.references
             ):
@@ -420,7 +434,10 @@ def inspect_learning(
             if plan.method == "knn-v2"
             else "regression-specification-v1",
         )
-        if state.specification != expected_specification:
+        if (
+            state.specification != expected_specification
+            or state.execution_id != fitting_id
+        ):
             msg_0 = "retained method does not match the exact granted plan"
             raise ValueError(msg_0)
         validate_training_state(state, training)
@@ -436,6 +453,27 @@ def inspect_learning(
             != state.content_identity
         ):
             msg = "original regression fit acknowledgment differs"
+            raise ValueError(msg)
+    expected_children = {
+        fitting_id,
+        predict_history.execution_id,
+        measure_history.execution_id,
+        publisher_id,
+    }
+    if preparation is not None:
+        expected_children.add(preparation.construction_execution_id)
+    if set(inspect_child_execution_ids(database, producing_id)) != expected_children:
+        msg = "scientific child executions differ from the exact single-operation plan"
+        raise ValueError(msg)
+    if isinstance(training, BinaryLinearTraining):
+        fit_terminal = original_fit.events[-1].payload
+        if (
+            original_fit.operation != "learning.binary_fit"
+            or not isinstance(fit_terminal, Terminal)
+            or {f.name: f.value for f in fit_terminal.facts}.get("state_identity")
+            != _hash(saved["state"])
+        ):
+            msg = "original binary fit acknowledgment does not bind the retained state"
             raise ValueError(msg)
     provisional = InspectedLearning(
         reference,

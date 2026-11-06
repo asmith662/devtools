@@ -88,6 +88,45 @@ ledger and root storage. Cost forecasts and generalization remain unavailable.
 
 ## Acceptance and integration remaining
 
+At `61b44ea5`, the guarded installed wheel completed the two-source engineering
+path: Iris online kNN7/SQUARE logistic macro F1 v1 were both 1.0, selecting the
+incumbent kNN7; protected final F1 was 1.0. MPG online Mean/Ridge/kNN-v2 MAE were
+5.7426945441 / 3.0486598369 / 2.7261016949 publisher mpg, selecting kNN-v2;
+protected final MAE was 2.8101694915. The parent exactly reproduced all 34/59
+final predictions without fitting. Actual counts were 6 native fits, 7 procedure
+states, 6 preparations, 1 SQUARE, 7 actions and 7 invocations, with nine scripted
+native ModelInteraction calls and no provider inference. Outer wall duration was
+25.6272 seconds; retained bytes before the report were 1,570,647. These are exposed
+development observations, not strategy-effectiveness or generalization evidence.
+
+Subsequent inspection found that protocol v1's binary fit used the enclosing
+operation rather than a completed fit child before prediction. Its numerical
+observations remain preserved, but **v1 does not qualify the final acknowledgment
+protocol**. Protocol v2 adds an exact fitted-state acknowledgment and independently
+checks preparation -> fit -> prediction -> measurement -> publication order, plus
+the exact child execution set. Existing donor state codecs are unchanged; the
+private operation publication is explicitly versioned and old scientific records
+are not rewritten. Current inspection refuses protocol v1. The v2 investigator
+receipt `learning-fit-ack-09.json` passes 15 tests; authority/correlation refusals
+pass 13 (`learning-exact-authority-10.json`), and an actual native kNN boundary
+case passes (`learning-native-tie-11.json`) without claiming native boundary truth.
+The original real run has not been automatically repeated. Full real-source
+qualification of the final protocol remains outstanding.
+
+The first broader recovery run exposed Windows `git show revision:path` path
+length failures under the long GUID-prefixed external temp root. A short,
+exclusively created `tempfile.mkdtemp(prefix="dl-")` root fixes the exact delegation
+failure (`learning-short-temp-13.json`); no source guard, assertion or global Git
+setting changes. Earlier long-root failures remain retained. The broad recovery
+run also spans source checkpoint changes and is not a release/freshness receipt.
+
+The actual changed maintained-source Ruff scan remains failing (269 diagnostics
+before final cleanup), separately from unsupported historical broad scans.
+Configured mypy passes across 727 modules; all 72 maintained learning/consumer
+Python modules decode UTF-8 and parse. No lint rule or coverage threshold has
+been relaxed. Protected validation and final installed-v2 qualification remain
+required. Durable engineering receipts are in `learning-qualification/`.
+
 Complete the guarded installed-wheel checks and one real two-source engineering
 execution; preserve original failures and actual parent predictions/costs.
 Run configured mypy, maintained-source Ruff/format/layout/diff checks and the

@@ -270,53 +270,62 @@ def execute_plan(
                     training,
                     features=represented(training.features, preparation, plan.method),
                 )
-                if plan.method == "knn7":
-                    from devtools.learning.classification.k_nearest_neighbors import (
-                        KNearestNeighborsClassificationSpecification,
-                        KNearestNeighborsDistance,
-                        KNearestNeighborsWeighting,
-                    )
-                    from devtools.learning.integrations.sklearn.k_nearest_neighbors import (
-                        construct_k_nearest_neighbors_classification,
-                    )
+                with ExecutionContext(
+                    recorder,
+                    Admitted("learning.binary_fit", (Fact("method", plan.method),)),
+                    parent=run,
+                ) as fitting_run:
+                    if plan.method == "knn7":
+                        from devtools.learning.classification.k_nearest_neighbors import (
+                            KNearestNeighborsClassificationSpecification,
+                            KNearestNeighborsDistance,
+                            KNearestNeighborsWeighting,
+                        )
+                        from devtools.learning.integrations.sklearn.k_nearest_neighbors import (
+                            construct_k_nearest_neighbors_classification,
+                        )
 
-                    native_knn = construct_k_nearest_neighbors_classification(
-                        KNearestNeighborsClassificationSpecification(
-                            7,
-                            KNearestNeighborsDistance.EUCLIDEAN,
-                            KNearestNeighborsWeighting.UNIFORM,
-                        ),
-                        binary_training.features,
-                        binary_training.targets,
-                    )
-                    state_document = {
-                        "schema": "retained-knn7-v1",
-                        "training": document(asdict(binary_training)),
-                    }
-                elif plan.method == "square-logistic":
-                    from devtools.learning.integrations.sklearn.linear_classification import (
-                        LogisticClassificationConfiguration,
-                        fit_binary_logistic,
-                    )
+                        native_knn = construct_k_nearest_neighbors_classification(
+                            KNearestNeighborsClassificationSpecification(
+                                7,
+                                KNearestNeighborsDistance.EUCLIDEAN,
+                                KNearestNeighborsWeighting.UNIFORM,
+                            ),
+                            binary_training.features,
+                            binary_training.targets,
+                        )
+                        state_document = {
+                            "schema": "retained-knn7-v1",
+                            "training": document(asdict(binary_training)),
+                        }
+                    elif plan.method == "square-logistic":
+                        from devtools.learning.integrations.sklearn.linear_classification import (
+                            LogisticClassificationConfiguration,
+                            fit_binary_logistic,
+                        )
 
-                    state = fit_binary_logistic(
-                        binary_training,
-                        LogisticClassificationConfiguration(),
-                        execution=run,
-                    )
-                    state_document = model_document(state)
-                else:
-                    from devtools.learning.integrations.sklearn.margin_classification import (
-                        MarginClassificationConfiguration,
-                        fit_binary_margin,
-                    )
+                        state = fit_binary_logistic(
+                            binary_training,
+                            LogisticClassificationConfiguration(),
+                            execution=fitting_run,
+                        )
+                        state_document = model_document(state)
+                    else:
+                        from devtools.learning.integrations.sklearn.margin_classification import (
+                            MarginClassificationConfiguration,
+                            fit_binary_margin,
+                        )
 
-                    state = fit_binary_margin(
-                        binary_training,
-                        MarginClassificationConfiguration(),
-                        execution=run,
+                        state = fit_binary_margin(
+                            binary_training,
+                            MarginClassificationConfiguration(),
+                            execution=fitting_run,
+                        )
+                        state_document = margin_document(state)
+                    fitting_run.completed(
+                        (Fact("state_identity", _hash(state_document)),)
                     )
-                    state_document = margin_document(state)
+                fitting_id = fitting_run.execution_id
             else:
                 from devtools.learning.integrations.sklearn.regression import (
                     fit_regression,
@@ -342,6 +351,7 @@ def execute_plan(
                 )
                 state = native_regression.state
                 state_document = document(asdict(state))
+                fitting_id = state.execution_id
             with ExecutionContext(
                 recorder,
                 Admitted(
@@ -398,7 +408,8 @@ def execute_plan(
                     (Fact("measurement_identity", _hash(measurements)),),
                 )
             result = {
-                "schema": "learning-operation-v1",
+                "schema": "learning-operation-v2",
+                "fitting_execution_id": str(fitting_id),
                 "plan": plan.document(),
                 "grant": document(asdict(grant)),
                 "runtime": runtime,

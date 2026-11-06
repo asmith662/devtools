@@ -30,6 +30,10 @@ execution/SQLite ledger/immutable publication contracts. `inspection.inspect_lea
 reads the pinned publication and read-only ledger, validates grants, source,
 state and acknowledgment ordering, independently recomputes preparation and
 prediction/metric arithmetic, and returns an `InspectedLearning` fitted artifact.
+Operation publication v2 requires preparation, fit, prediction, measurement and
+publication acknowledgments in order. The earlier candidate's v1 publications
+remain historical evidence and are refused by current acceptance inspection;
+retained donor state codecs have not changed.
 Native kNN boundary ambiguity is retained as a limited parity scope; it does not
 replace deterministic retained mathematics or establish generalization.
 
