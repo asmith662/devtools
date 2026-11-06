@@ -13,6 +13,8 @@ from devtools.learning.representation.targets import (
     validate_category_values,
 )
 
+_MINIMUM_CATEGORIES = 2
+
 
 class ClassificationRequirement(Enum):
     """Conditions of these three classifiers and their attributed training use."""
@@ -216,7 +218,9 @@ def inspect_training(
 
     check(
         ClassificationRequirement.OBSERVED_CLASSES,
-        len(categories) >= 2 if targets is not None and target_error is None else None,
+        len(categories) >= _MINIMUM_CATEGORIES
+        if targets is not None and target_error is None
+        else None,
         f"{label} requires at least two classes",
         f"{len(categories)} actually observed typed categories are present.",
     )

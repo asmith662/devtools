@@ -10,6 +10,10 @@ from devtools.learning.integrations.local._codec import array
 from devtools.learning.integrations.local._codec import nonempty_text as text
 from devtools.learning.integrations.local._codec import retained_object as obj
 
+_MAXIMUM_PROPOSAL_BYTES = 16384
+_MAXIMUM_RATIONALE_CHARACTERS = 1024
+_MAXIMUM_EVIDENCE_REFERENCES = 5
+
 
 @dataclass(frozen=True, slots=True)
 class LearningProposal:
@@ -31,7 +35,7 @@ class LearningProposal:
     @classmethod
     def materialize(cls, serialized: str) -> LearningProposal:
         """Reject extra meanings, malformed values and excessive disclosure sizes."""
-        if len(serialized.encode()) > 16384:
+        if len(serialized.encode()) > _MAXIMUM_PROPOSAL_BYTES:
             msg = "learning proposal is too large"
             raise ValueError(msg)
 
@@ -52,11 +56,16 @@ class LearningProposal:
             if k not in {"evidence", "method", "rationale"}
         }
         rationale = d["rationale"]
-        if not isinstance(rationale, str) or len(rationale) > 1024:
+        if (
+            not isinstance(rationale, str)
+            or len(rationale) > _MAXIMUM_RATIONALE_CHARACTERS
+        ):
             msg = "bounded textual rationale required"
             raise ValueError(msg)
         evidence = tuple(text(v) for v in array(d["evidence"]))
-        if len(evidence) > 5 or len(set(evidence)) != len(evidence):
+        if len(evidence) > _MAXIMUM_EVIDENCE_REFERENCES or len(set(evidence)) != len(
+            evidence,
+        ):
             msg = "bounded unique admitted evidence required"
             raise ValueError(msg)
         return cls(

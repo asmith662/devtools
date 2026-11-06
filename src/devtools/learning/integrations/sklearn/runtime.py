@@ -24,7 +24,11 @@ VERSIONS = {
 
 
 def observe_runtime() -> dict[str, object]:
-    """Record actual loaded libraries and thread limits; version names alone do not qualify."""
+    """Inspect the declared scientific contract.
+
+    Record actual loaded libraries and thread limits; version names alone do not
+    qualify.
+    """
     versions = {name: importlib.metadata.version(name) for name in VERSIONS}
     if (
         versions != VERSIONS
@@ -32,7 +36,10 @@ def observe_runtime() -> dict[str, object]:
         or sys.implementation.name != "cpython"
         or platform.python_version() != "3.12.13"
     ):
-        msg = "the first numerical profile requires its qualified Windows CPython 3.12.13 stack"
+        msg = (
+            "the first numerical profile requires its qualified Windows CPyth"
+            "on 3.12.13 stack"
+        )
         raise ValueError(
             msg,
         )

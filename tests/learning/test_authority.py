@@ -37,6 +37,9 @@ class FaultyInteraction(ScriptedInvestigator):
         """Keep the real materializer/admission/Tool boundary in the fault path."""
         response = await super().send(request)
         call = response.tool_calls[0]
+        if self.fault == "changed-source":
+            self.source = InteractionSource("changed-during-call")
+            return replace(response, source=self.source)
         if self.fault == "foreign-source":
             return replace(response, source=InteractionSource("other-model"))
         if self.fault == "multiple-calls":
@@ -50,13 +53,19 @@ class FaultyInteraction(ScriptedInvestigator):
 
 @pytest.mark.parametrize(
     "fault",
-    ["missing-id", "foreign-source", "multiple-calls", "duplicate-id"],
+    [
+        "missing-id",
+        "foreign-source",
+        "multiple-calls",
+        "duplicate-id",
+        "changed-source",
+    ],
 )
 def test_bad_native_correlation_never_fits(tmp_path: Path, fault: str) -> None:
     """A valid JSON proposal cannot repair a foreign or repeated native envelope."""
     worker = ManagedLearningWorker.current()
     account = LearningBudget()
-    with pytest.raises(ValueError, match="native|source|call"):
+    with pytest.raises(ValueError, match=r"native|source|call"):
         asyncio.run(
             investigate(
                 FaultyInteraction(fault=fault),
@@ -127,7 +136,7 @@ def test_exact_grant_refuses_without_creating_operation(
 )
 def test_closed_proposal_rejects_ambiguous_or_unbounded_json(bad: str) -> None:
     """Duplicate meanings, excess disclosure and executable extensions refuse."""
-    with pytest.raises(ValueError, match="duplicate|large|unsupported"):
+    with pytest.raises(ValueError, match=r"duplicate|large|unsupported"):
         LearningProposal.materialize(bad)
 
 
@@ -136,7 +145,7 @@ def test_untrusted_rationale_is_never_new_evidence(tmp_path: Path) -> None:
     worker = ManagedLearningWorker.current()
     account = LearningBudget()
     model = ScriptedInvestigator({"evidence": ["model rationale proves improvement"]})
-    with pytest.raises(ValueError, match="stale|foreign"):
+    with pytest.raises(ValueError, match=r"stale|foreign"):
         asyncio.run(
             investigate(
                 model,

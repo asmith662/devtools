@@ -17,6 +17,8 @@ from devtools.learning.measurement.contracts import EvidenceReference, digest, n
 from devtools.learning.representation.features import FeatureTable, FeatureValueKind
 from devtools.learning.requirements.evidence import validate_references
 
+_OBSERVATION_PAIR_SIZE = 2
+
 
 def _hash(value: object) -> str:
     return hashlib.sha256(
@@ -97,7 +99,10 @@ class FittedMarginClassifier:
             if (
                 type(pairs) is not tuple
                 or not pairs
-                or any(type(p) is not tuple or len(p) != 2 for p in pairs)
+                or any(
+                    type(p) is not tuple or len(p) != _OBSERVATION_PAIR_SIZE
+                    for p in pairs
+                )
                 or (len({p[0] for p in pairs}) != len(pairs))
             ):
                 msg = "immutable unique observed key/value pairs required"

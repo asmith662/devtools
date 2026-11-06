@@ -18,7 +18,7 @@ class ClassificationBehavior(Protocol):
         """Classify compatible observations without target values or refitting."""
 
 
-class _ClassificationImplementation(Protocol):
+class _ClassificationImplementation(Protocol):  # noqa: PYI046 -- shared by the selected internal backend adapters
     """Narrow runtime contract implemented by backend-owned fitted state."""
 
     def predict(self, rows: tuple[tuple[float, ...], ...]) -> tuple[int, ...]:

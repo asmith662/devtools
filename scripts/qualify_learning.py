@@ -1,4 +1,5 @@
 # Copyright (c) 2026
+# ruff: noqa: INP001 -- standalone supported operator entry point
 """One explicitly invoked two-source engineering qualification; no live model calls."""
 
 from __future__ import annotations
@@ -30,9 +31,15 @@ from devtools.models.interaction import (
 from devtools.resources.filesystem import BinaryFile, FileFormat, TextFile, read, write
 from devtools.tools.learning import ManagedLearningWorker
 
+_COMPARISON_MINIMUM = 2
+
 FIXTURES = {
-    "iris-b0047-outer0.json": "124eb023dadb46a2172cb48c0b75a2302f781e84f73f01438b305a648c1b71fc",
-    "mpg-b0092-roles.json": "10a864855c822fc68359e1bbc17fb8f1f33d6f9df5e672a08037587923d1e590",
+    ("iris-b0047-outer0.json"): (
+        "124eb023dadb46a2172cb48c0b75a2302f781e84f73f01438b305a648c1b71fc"
+    ),
+    ("mpg-b0092-roles.json"): (
+        "10a864855c822fc68359e1bbc17fb8f1f33d6f9df5e672a08037587923d1e590"
+    ),
 }
 
 
@@ -56,7 +63,7 @@ class ScriptedInvestigator:
         elif frame["support"] is None:
             action = "CHECK_SUPPORT"
         elif len(seen) == len(frame["methods"]) or (
-            len(seen) >= 2
+            len(seen) >= _COMPARISON_MINIMUM
             and (
                 (seen[-1]["value"] <= max(o["value"] for o in seen[:-1]))
                 if frame["family"] == "classification"
@@ -86,7 +93,10 @@ class ScriptedInvestigator:
         proposal.update(
             action=action,
             method=method,
-            rationale="Use only original acknowledged online measurements under the explicitly selected engineering profile.",
+            rationale=(
+                "Use only original acknowledged online measurements under the exp"
+                "licitly selected engineering profile."
+            ),
         )
         return ModelResponse(
             "One bounded learning request.",
@@ -102,7 +112,11 @@ class ScriptedInvestigator:
 
 
 def load_tasks(inputs: Path) -> list[AdmittedLearningTask]:
-    """Authenticate the two approved destination-owned inputs; no donor lookup exists."""
+    """Inspect the declared scientific contract.
+
+    Authenticate the two approved destination-owned inputs; no donor lookup
+    exists.
+    """
     tasks = []
     for name, digest in FIXTURES.items():
         member = read(
@@ -164,7 +178,10 @@ async def qualify(
         "operation_limit_seconds": 300,
         "forecast_incremental_cost": None,
         "source_denominator": len(tasks),
-        "claim": "Exposed two-source engineering qualification, not a strategy/generalization/savings study.",
+        ("claim"): (
+            "Exposed two-source engineering qualification, not a strategy/gen"
+            "eralization/savings study."
+        ),
     }
     write(
         TextFile(resolve_path(root / "intent.json"), canonical(intent)),
@@ -230,7 +247,11 @@ async def qualify(
                     else scientific["predictions"]
                 )
                 if values != expected:
-                    msg = "actual parent label-free prediction differs from independently inspected evidence"
+                    msg = (
+                        "actual parent label-free prediction differs from indep"
+                        "endently i"
+                        "nspected evidence"
+                    )
                     raise ValueError(
                         msg,
                     )

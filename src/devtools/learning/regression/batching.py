@@ -10,6 +10,9 @@ from devtools.learning.regression.contracts import RegressionInput, RegressionMe
 from devtools.learning.regression.limits import REGRESSION_V2, prediction_byte_bound
 from devtools.learning.regression.state import FittedRegression, RegressionPredictions
 
+_SHA256_HEX_LENGTH = 64
+_RANGE_PAIR_SIZE = 2
+
 
 @dataclass(frozen=True, slots=True)
 class RegressionBatching:
@@ -41,7 +44,7 @@ class RegressionBatching:
 
 @dataclass(frozen=True, slots=True)
 class RegressionPredictionBatch:
-    """Retain the declared RegressionPredictionBatch scientific values and invariants."""
+    """Retain the RegressionPredictionBatch scientific contract."""
 
     start: int
     stop: int
@@ -57,7 +60,7 @@ class RegressionPredictionBatch:
             or (type(self.row_ids) is not tuple)
             or (len(self.row_ids) != self.stop - self.start)
             or (len(set(self.row_ids)) != len(self.row_ids))
-            or (len(self.prediction_sha256) != 64)
+            or (len(self.prediction_sha256) != _SHA256_HEX_LENGTH)
             or any(c not in "0123456789abcdef" for c in self.prediction_sha256)
         ):
             msg = "exact bounded prediction batch rows/digest required"
@@ -110,7 +113,7 @@ class RegressionBatchEvidence:
 
 @dataclass(frozen=True, slots=True)
 class BatchedRegressionPredictions:
-    """Retain the declared BatchedRegressionPredictions scientific values and invariants."""
+    """Retain the BatchedRegressionPredictions scientific contract."""
 
     predictions: RegressionPredictions
     evidence: RegressionBatchEvidence
@@ -193,7 +196,7 @@ def regression_batch_ranges(
     for pair in ranges:
         if (
             type(pair) is not tuple
-            or len(pair) != 2
+            or len(pair) != _RANGE_PAIR_SIZE
             or any(type(v) is not int for v in pair)
             or (pair[0] != next_start)
             or (not pair[0] < pair[1] <= count)

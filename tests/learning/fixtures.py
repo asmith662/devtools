@@ -24,6 +24,8 @@ from devtools.models.interaction import (
     ModelToolCall,
 )
 
+_COMPARISON_MINIMUM = 2
+
 
 def authored_task(
     family: str,
@@ -162,7 +164,7 @@ class ScriptedInvestigator:
 
     mutation: dict[str, object] = field(default_factory=dict)
     source: InteractionSource = field(
-        default_factory=lambda: InteractionSource("scripted-learning")
+        default_factory=lambda: InteractionSource("scripted-learning"),
     )
     requests: list[ModelRequest] = field(default_factory=list)
 
@@ -181,7 +183,7 @@ class ScriptedInvestigator:
         elif frame["support"] is None:
             action = "CHECK_SUPPORT"
         elif len(seen) == len(frame["methods"]) or (
-            len(seen) >= 2
+            len(seen) >= _COMPARISON_MINIMUM
             and (
                 (seen[-1]["value"] <= max(o["value"] for o in seen[:-1]))
                 if frame["family"] == "classification"
@@ -210,7 +212,10 @@ class ScriptedInvestigator:
         payload.update(
             action=action,
             method=method,
-            rationale="Use the original acknowledged online observations under the selected finite profile.",
+            rationale=(
+                "Use the original acknowledged online observations under the sele"
+                "cted finite profile."
+            ),
         )
         payload.update(self.mutation)
         return ModelResponse(

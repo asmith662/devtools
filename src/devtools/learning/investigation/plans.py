@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from devtools.learning.classification.linear import BinaryLinearTraining, _hash
 from devtools.learning.integrations.local._codec import (
@@ -16,11 +17,19 @@ from devtools.learning.integrations.local._codec import nonempty_text as text
 from devtools.learning.integrations.local._codec import retained_object as obj
 from devtools.learning.integrations.local.regression.codec import population
 from devtools.learning.integrations.local.tables import _table
-from devtools.learning.investigation.classification.contracts import (
-    ExecutionAuthorization,
-)
 from devtools.learning.regression.contracts import RegressionPopulation, RegressionRole
-from devtools.learning.representation.features import FeatureTable
+
+if TYPE_CHECKING:
+    from devtools.learning.investigation.classification.contracts import (
+        ExecutionAuthorization,
+    )
+    from devtools.learning.representation.features import FeatureTable
+
+_MAXIMUM_POPULATION_ROWS = 10000
+_MAXIMUM_FEATURE_COUNT = 128
+_MAXIMUM_TRAINING_CELLS = 1_000_000
+_BINARY_NEIGHBORS = 7
+_MAXIMUM_NEIGHBOR_WORK = 5_000_000
 
 METHODS = {
     "classification": ("knn7", "square-logistic", "square-margin"),
@@ -199,14 +208,15 @@ class LearningPlan:
         )
         if (
             not features.rows
-            or len(features.rows) > 10000
-            or len(held_features.rows) > 10000
-            or len(features.feature_names) > 128
-            or len(features.rows) * len(features.feature_names) > 1_000_000
+            or len(features.rows) > _MAXIMUM_POPULATION_ROWS
+            or len(held_features.rows) > _MAXIMUM_POPULATION_ROWS
+            or len(features.feature_names) > _MAXIMUM_FEATURE_COUNT
+            or len(features.rows) * len(features.feature_names)
+            > _MAXIMUM_TRAINING_CELLS
         ):
             msg = "learning population/cell bounds exceeded"
             raise ValueError(msg)
-        if self.method == "knn7" and len(features.rows) < 7:
+        if self.method == "knn7" and len(features.rows) < _BINARY_NEIGHBORS:
             msg = "seven original training rows required"
             raise ValueError(msg)
         if (
@@ -214,7 +224,7 @@ class LearningPlan:
             and len(features.rows)
             * len(held_features.rows)
             * len(features.feature_names)
-            > 5_000_000
+            > _MAXIMUM_NEIGHBOR_WORK
         ):
             msg = "bounded independent neighbor inspection work required"
             raise ValueError(msg)

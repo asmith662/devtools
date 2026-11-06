@@ -7,13 +7,18 @@ import math
 from devtools.learning.regression.state import FittedRegression
 from devtools.learning.regression.verification import inspect_knn_query
 
+_KERNEL_DIMENSION_LIMIT = 16
+_NEIGHBOR_COUNT = 5
+
 STRICT = "native-regression-parity-v1"
 IDENTICAL = "native-knn-identical-vector-parity-v2"
 
 
 def zero_residual_bound(row: tuple[float, ...]) -> float:
     """Squared-norm/DOT/GEMM roundoff envelope, only for identical vectors."""
-    if not 1 <= len(row) <= 16 or any(not math.isfinite(v) for v in row):
+    if not 1 <= len(row) <= _KERNEL_DIMENSION_LIMIT or any(
+        not math.isfinite(v) for v in row
+    ):
         msg = "bounded finite binary64 coordinates required"
         raise ValueError(msg)
     u = 2.0 ** (-53)
@@ -38,9 +43,9 @@ def inspect_native_query(
         raise ValueError(msg)
     ids, distances, value, separated = inspect_knn_query(state, row)
     if (
-        len(native_ids) != 5
-        or len(set(native_ids)) != 5
-        or len(native_distances) != 5
+        len(native_ids) != _NEIGHBOR_COUNT
+        or len(set(native_ids)) != _NEIGHBOR_COUNT
+        or len(native_distances) != _NEIGHBOR_COUNT
         or any(not math.isfinite(d) or d < 0 for d in native_distances)
         or (not math.isfinite(native_value))
         or (not set(native_ids) <= set(state.training_row_ids))

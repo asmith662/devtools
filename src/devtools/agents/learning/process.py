@@ -7,9 +7,8 @@ import asyncio
 import json
 import re
 from dataclasses import asdict, dataclass, field
-from pathlib import Path
+from typing import TYPE_CHECKING
 
-from devtools.agents.learning.budgets import LearningBudget
 from devtools.agents.learning.policy import (
     PROFILE,
     best_index,
@@ -49,8 +48,13 @@ from devtools.models.interaction import (
 )
 from devtools.resources.filesystem import TextFile, write
 from devtools.tools import ToolRunner
-from devtools.tools.learning import ManagedLearningWorker
 from devtools.tools.learning.invocation import LearningInvocation, LearningTool
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from devtools.agents.learning.budgets import LearningBudget
+    from devtools.tools.learning import ManagedLearningWorker
 
 
 class LearningGrantIdentity(Identity):
@@ -113,7 +117,7 @@ class AdmittedLearningTask:
         )
 
     def plan(self, method: str, phase: str, invocation: str) -> LearningPlan:
-        """The trusted host selects the data role; a proposal supplies no data/code."""
+        """Select caller-admitted data roles without proposal data or code."""
         source = json.loads(self.source_json)
         source["parent_source_admission"] = document(asdict(self.source_authority))
         return LearningPlan(
@@ -149,7 +153,11 @@ class AdmittedLearningTask:
 
 @dataclass(frozen=True, slots=True)
 class InvestigationResult:
-    """Terminal choice, original inspected observations and an optional final artifact."""
+    """Inspect the declared scientific contract.
+
+    Terminal choice, original inspected observations and an optional final
+    artifact.
+    """
 
     terminal: str
     observations: tuple[LearningFeedback, ...]
@@ -194,7 +202,11 @@ async def _investigate(
     messages: list[PromptMessage] = [
         PromptMessage(
             "system",
-            "Propose one closed learning action using the disclosed finite engineering profile. Proposals do not authorize execution. Confirmation labels and grants are private.",
+            (
+                "Propose one closed learning action using the disclosed finite en"
+                "gineering profile. Proposals do not authorize execution. Confirm"
+                "ation labels and grants are private."
+            ),
         ),
     ]
     schema, units = task.semantics()
@@ -245,7 +257,10 @@ async def _investigate(
             state_identity,
             tuple(evidence),
         ) or (proposal.action, proposal.method) != expected:
-            msg = "learning proposal has stale/foreign/unsupported source, semantics, evidence or action"
+            msg = (
+                "learning proposal has stale/foreign/unsupported source, semantic"
+                "s, evidence or action"
+            )
             raise ValueError(
                 msg,
             )
@@ -387,13 +402,14 @@ async def _investigate(
             "turn": turn,
         }
         messages.append(PromptMessage("user", canonical(frame)))
+        selected_source = model.source
         response = await model.send(
             ModelRequest(
                 Prompt("", "messages", tuple(messages)),
                 tools=(normalize_tool_descriptor(invocation.descriptor),),
             ),
         )
-        if response.source != model.source or len(response.tool_calls) != 1:
+        if response.source != selected_source or len(response.tool_calls) != 1:
             msg = "one source-correlated native learning call required"
             raise ValueError(msg)
         call = response.tool_calls[0]

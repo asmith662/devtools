@@ -6,7 +6,7 @@ from __future__ import annotations
 import asyncio
 import json
 from dataclasses import replace
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -21,6 +21,11 @@ from tests.learning.fixtures import (
     authored_task,
     authored_tie_task,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+_PARENT_QUERY_ROWS = 2
 
 
 @pytest.mark.parametrize("family", ["classification", "regression"])
@@ -53,7 +58,7 @@ def test_native_investigator_and_actual_parent_prediction(
             if isinstance(predicted, RegressionPredictions)
             else predicted,
         )
-        == 2
+        == _PARENT_QUERY_ROWS
     )
     publication = result.artifact.reference
     saved = json.loads(
@@ -160,7 +165,11 @@ def test_explicit_margin_menu(tmp_path: Path) -> None:
 
 
 def test_native_knn_boundary_retains_deterministic_truth(tmp_path: Path) -> None:
-    """Keep the original row-order tie truth and refuse a stronger native-parity claim."""
+    """Inspect the declared scientific contract.
+
+    Keep the original row-order tie truth and refuse a stronger native-parity
+    claim.
+    """
     result = asyncio.run(
         investigate(
             ScriptedInvestigator(),
@@ -169,7 +178,7 @@ def test_native_knn_boundary_retains_deterministic_truth(tmp_path: Path) -> None
             LearningBudget(),
             tmp_path / "ties",
             profile=PROFILE,
-        )
+        ),
     )
     assert result.artifact is not None
     artifact = result.artifact
@@ -187,7 +196,7 @@ def test_native_knn_boundary_retains_deterministic_truth(tmp_path: Path) -> None
             / "publication/generations"
             / reference.generation_id
             / "result.json"
-        ).read_bytes()
+        ).read_bytes(),
     )
     assert saved["native_correspondence"]["unqualified_row_ids"] == ["final-tie"]
     assert saved["native_correspondence"]["qualified_row_ids"] == []

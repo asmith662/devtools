@@ -25,7 +25,7 @@ class LearningBudget:
     _clock: Stopwatch = field(default_factory=Stopwatch, init=False, repr=False)
 
     def __post_init__(self) -> None:
-        """A caller can narrow the reviewed envelope but cannot enlarge it."""
+        """Require a fresh account within the reviewed envelope."""
         if (
             set(self.limits) != set(LIMITS)
             or any(

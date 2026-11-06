@@ -3,8 +3,13 @@
 
 from __future__ import annotations
 
-from devtools.learning.investigation.proposals import LearningFeedback
-from devtools.learning.representation.features import FeatureTable
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from devtools.learning.investigation.proposals import LearningFeedback
+    from devtools.learning.representation.features import FeatureTable
+
+_COMPARISON_MINIMUM = 2
 
 PROFILE = "b0096-engineering-v1"
 
@@ -65,7 +70,10 @@ def decision(
         return "CHECK_SUPPORT", None
     if len(observations) == len(methods):
         return "STOP", None
-    if len(observations) >= 2 and best_index(family, observations) == best_index(
+    if len(observations) >= _COMPARISON_MINIMUM and best_index(
+        family,
+        observations,
+    ) == best_index(
         family,
         observations[:-1],
     ):

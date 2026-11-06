@@ -18,6 +18,8 @@ from devtools.learning.representation.targets import (
     validate_category_values,
 )
 
+_MINIMUM_CATEGORIES = 2
+
 
 class DecisionTreeCriterion(Enum):
     """Impurity measure used to choose Decision Tree splits."""
@@ -88,7 +90,7 @@ class FittedDecisionTreeClassification(ClassificationBehavior):
         if any(not isinstance(kind, FeatureValueKind) for kind in feature_value_kinds):
             msg = "fitted feature meanings must use FeatureValueKind"
             raise TypeError(msg)
-        if len(categories) < 2:
+        if len(categories) < _MINIMUM_CATEGORIES:
             msg = "fitted classification state requires at least two classes"
             raise ValueError(msg)
         if len({category_identity(category) for category in categories}) != len(

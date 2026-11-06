@@ -222,7 +222,10 @@ def fit_binary_margin(
             ("warnings", json.dumps(warning_records)),
             (
                 "convergence",
-                "no warning; native iterations below fixed limit; solver criterion not independently reproduced",
+                (
+                    "no warning; native iterations below fixed limit; solver criterio"
+                    "n not independently reproduced"
+                ),
             ),
             (
                 "intercept_regularization",

@@ -37,6 +37,8 @@ from devtools.learning.representation.standardization import (
     FittedFeatureStandardization,
 )
 
+_NEIGHBOR_COUNT = 5
+
 
 @dataclass(slots=True)
 class NativeRegressionFit:
@@ -221,7 +223,7 @@ def fit_regression(
         raise ValueError(msg)
     if (
         specification.version == "regression-specification-v2"
-        and len(training.values) < 5
+        and len(training.values) < _NEIGHBOR_COUNT
     ):
         msg = "five actual training rows required before deterministic native fitting"
         raise ValueError(msg)

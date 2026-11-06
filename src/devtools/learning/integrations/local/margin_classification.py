@@ -14,6 +14,8 @@ from devtools.learning.integrations.local._codec import nonempty_text as _text
 from devtools.learning.integrations.local._codec import retained_object as _object
 from devtools.learning.integrations.local.feasibility import json_document
 
+_OBSERVATION_PAIR_SIZE = 2
+
 
 def margin_document(model: FittedMarginClassifier) -> dict[str, object]:
     """Retain state/source UUIDs separately from numerical content identity."""
@@ -39,7 +41,7 @@ def _pairs(value: object) -> tuple[tuple[str, str], ...]:
     result = []
     for item in _array(value):
         pair = _array(item)
-        if len(pair) != 2:
+        if len(pair) != _OBSERVATION_PAIR_SIZE:
             msg = "observed key/value pair required"
             raise ValueError(msg)
         result.append((_text(pair[0]), _text(pair[1])))

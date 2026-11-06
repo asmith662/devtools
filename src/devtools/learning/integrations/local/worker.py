@@ -65,7 +65,8 @@ def main() -> None:
                 os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
             ):
                 if not resolve_path(
-                    Path(name), base_directory=owned
+                    Path(name),
+                    base_directory=owned,
                 ).value.is_relative_to(owned):
                     msg = "learning worker write is outside its owned operation root"
                     raise PermissionError(

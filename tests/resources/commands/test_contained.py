@@ -16,7 +16,11 @@ from devtools.resources.commands import Command, CommandExecutor, CommandTimeout
 def test_contained_child_cannot_create_descendant(tmp_path: Path) -> None:
     """A second process is denied by the Job before its code can write."""
     marker = tmp_path / "forbidden"
-    code = "import subprocess,sys\ntry:\n subprocess.run([sys.executable,'-c',sys.argv[1]],check=True)\nexcept OSError:\n print('denied')\nelse:\n raise RuntimeError('descendant admitted')"
+    code = (
+        "import subprocess,sys\ntry:\n subprocess.run([sys.executable,'-c',"
+        "sys.argv[1]],check=True)\nexcept OSError:\n print('denied')\nelse:\n"
+        " raise RuntimeError('descendant admitted')"
+    )
     result = asyncio.run(
         CommandExecutor(contained=True).execute(
             Command(str(getattr(sys, "_base_executable", sys.executable)))
@@ -36,7 +40,7 @@ def test_contained_timeout_reaps_worker() -> None:
         .args("-c", "import time;time.sleep(30)")
         .with_timeout(Duration.seconds(0.1))
     )
-    with pytest.raises(CommandTimeoutError, match="timeout|exceeded"):
+    with pytest.raises(CommandTimeoutError, match=r"timeout|exceeded"):
         asyncio.run(CommandExecutor(contained=True).execute(command))
 
 

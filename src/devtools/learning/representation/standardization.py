@@ -30,6 +30,8 @@ from devtools.learning.representation.observations import PopulationScope
 if TYPE_CHECKING:
     from collections.abc import Callable
 
+_SHA256_HEX_LENGTH = 64
+
 MAX_OBSERVATIONS = 100000
 MAX_FEATURES = 128
 MAX_CELLS = 1000000
@@ -166,7 +168,7 @@ class StandardizationTransformationResult:
 def _digest(value: str) -> None:
     if (
         type(value) is not str
-        or len(value) != 64
+        or len(value) != _SHA256_HEX_LENGTH
         or any(c not in "0123456789abcdef" for c in value)
     ):
         msg = "selected-input evidence requires SHA-256"

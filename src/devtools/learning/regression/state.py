@@ -30,6 +30,9 @@ from devtools.learning.representation.standardization import (
     _fingerprint,
 )
 
+_NEIGHBOR_COUNT = 5
+_BACKEND_PAIR_SIZE = 2
+
 
 def finite(value: float) -> float:
     """Apply the explicit finite contract within this owner."""
@@ -57,10 +60,10 @@ def neighbors(
     *,
     version: str = "fitted-regression-v1",
 ) -> tuple[tuple[int, ...], tuple[float, ...]]:
-    """An unambiguous selected SET, not a claim about native within-tie order."""
+    """Inspect the selected set under the declared deterministic tie contract."""
     limits = version_limits(version, "fitted-regression")
     if (
-        not 5 <= len(training) <= limits.training_rows
+        not _NEIGHBOR_COUNT <= len(training) <= limits.training_rows
         or len(training) * len(row) > limits.training_cells
     ):
         msg = "bounded retained five-neighbor corpus required"
@@ -71,7 +74,7 @@ def neighbors(
         msg = "unrepresentable Euclidean distance"
         raise ValueError(msg) from error
     order = sorted(range(len(distances)), key=lambda i: (distances[i], i))
-    if len(order) > 5 and math.isclose(
+    if len(order) > _NEIGHBOR_COUNT and math.isclose(
         distances[order[4]],
         distances[order[5]],
         rel_tol=1e-12,
@@ -98,7 +101,7 @@ def deterministic_neighbors(
         type(training) is not tuple
         or type(row) is not tuple
         or type(row_ids) is not tuple
-        or (not 5 <= len(training) <= limits.training_rows)
+        or (not _NEIGHBOR_COUNT <= len(training) <= limits.training_rows)
         or (len(row_ids) != len(training))
         or (len(set(row_ids)) != len(row_ids))
         or (not 1 <= len(row) <= limits.features)
@@ -192,9 +195,9 @@ class RegressionPredictions:
                     type(ids) is not tuple
                     or type(distances) is not tuple
                     or any(type(v) is not str or not v for v in ids)
-                    or (len(ids) != 5)
-                    or (len(set(ids)) != 5)
-                    or (len(distances) != 5)
+                    or (len(ids) != _NEIGHBOR_COUNT)
+                    or (len(set(ids)) != _NEIGHBOR_COUNT)
+                    or (len(distances) != _NEIGHBOR_COUNT)
                     or any(
                         type(v) is not float or not math.isfinite(v) or v < 0
                         for v in distances
@@ -273,7 +276,7 @@ class FittedRegression:
             raise ValueError(msg)
         if self.state_id == self.execution_id or any(
             type(pair) is not tuple
-            or len(pair) != 2
+            or len(pair) != _BACKEND_PAIR_SIZE
             or any(type(v) is not str or not v for v in pair)
             for pair in self.backend
         ):
@@ -361,7 +364,7 @@ class FittedRegression:
                     self.neighbor_features.feature_value_kinds
                     != self.feature_value_kinds
                 )
-                or (len(self.training_row_ids) < 5)
+                or (len(self.training_row_ids) < _NEIGHBOR_COUNT)
                 or any(
                     type(v) is not float or not math.isfinite(v)
                     for v in self.neighbor_targets

@@ -10,6 +10,10 @@ from math import isnan
 from devtools.learning.representation.features import FeatureValueKind
 from devtools.learning.representation.targets import CategoryValue
 
+_MAXIMUM_COLUMNS = 128
+_MAXIMUM_ROWS = 100000
+_MAXIMUM_CELLS = 1000000
+
 type ObservationValue = CategoryValue | None
 
 
@@ -160,7 +164,7 @@ class TabularObservations:
             msg = "source_identity must be a nonempty string when supplied"
             raise ValueError(msg)
         columns = tuple(self.columns)
-        if not 1 <= len(columns) <= 128:
+        if not 1 <= len(columns) <= _MAXIMUM_COLUMNS:
             msg = "tabular observations require 1..128 columns"
             raise ValueError(msg)
         if any(not isinstance(column, ScalarColumn) for column in columns):
@@ -173,7 +177,7 @@ class TabularObservations:
         if any(len(column.values) != count for column in columns):
             msg = "columns must preserve aligned observation counts"
             raise ValueError(msg)
-        if count > 100000 or count * len(columns) > 1000000:
+        if count > _MAXIMUM_ROWS or count * len(columns) > _MAXIMUM_CELLS:
             msg = "tabular observation bounds are 100000 observations / 1000000 cells"
             raise ValueError(msg)
         object.__setattr__(self, "columns", columns)

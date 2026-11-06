@@ -19,6 +19,8 @@ from devtools.learning.representation.targets import (
     validate_category_values,
 )
 
+_MINIMUM_CATEGORIES = 2
+
 
 @dataclass(frozen=True, slots=True)
 class GaussianNaiveBayesClassificationSpecification:
@@ -92,7 +94,7 @@ class FittedGaussianNaiveBayesClassification(ClassificationBehavior):
             msg = "Gaussian Naïve Bayes requires continuous features"
             raise ValueError(msg)
 
-        if len(categories) < 2:
+        if len(categories) < _MINIMUM_CATEGORIES:
             msg = "fitted classification state requires at least two classes"
             raise ValueError(
                 msg,

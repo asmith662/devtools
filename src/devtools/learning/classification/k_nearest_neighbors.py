@@ -18,6 +18,8 @@ from devtools.learning.representation.targets import (
     validate_category_values,
 )
 
+_MINIMUM_CATEGORIES = 2
+
 
 class KNearestNeighborsDistance(Enum):
     """Distance geometry used to rank training observations."""
@@ -94,7 +96,7 @@ class FittedKNearestNeighborsClassification(ClassificationBehavior):
         ):
             msg = "each fitted feature must have one valid value kind"
             raise ValueError(msg)
-        if len(categories) < 2:
+        if len(categories) < _MINIMUM_CATEGORIES:
             msg = "fitted classification state requires at least two classes"
             raise ValueError(msg)
         identities = tuple(category_identity(category) for category in categories)

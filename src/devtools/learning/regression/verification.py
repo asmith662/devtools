@@ -5,6 +5,8 @@ import math
 
 from devtools.learning.regression.state import FittedRegression, finite
 
+_NEIGHBOR_COUNT = 5
+
 
 def inspect_knn_query(
     state: FittedRegression,
@@ -38,7 +40,7 @@ def inspect_knn_query(
     ids = tuple((state.training_row_ids[i] for _, _, i in selected))
     distances = tuple((d for d, _, _ in selected))
     value = finite(math.fsum((targets[i] for _, _, i in selected)) / 5)
-    separated = len(ranking) == 5 or not math.isclose(
+    separated = len(ranking) == _NEIGHBOR_COUNT or not math.isclose(
         ranking[4][0],
         ranking[5][0],
         rel_tol=1e-12,

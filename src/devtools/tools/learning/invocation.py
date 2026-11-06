@@ -4,15 +4,21 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from devtools.learning.investigation.proposals import LearningFeedback, LearningProposal
 from devtools.tools import ToolDescriptor
 
+if TYPE_CHECKING:
+    from collections.abc import Awaitable, Callable
+
 DESCRIPTOR = ToolDescriptor(
     "learning_investigate",
-    "Request one bounded learning investigation action; proposals do not confer authority.",
+    (
+        "Request one bounded learning investigation action; proposals do "
+        "not confer authority."
+    ),
     json.dumps(
         {
             "type": "object",
@@ -56,5 +62,5 @@ class LearningTool:
         self.admit_semantics(arguments)
 
     async def execute(self, arguments: LearningProposal) -> LearningFeedback:
-        """The host consumes its pending grant before any awaited effect."""
+        """Consume the host's pending grant before awaiting an effect."""
         return await self.perform(arguments)

@@ -34,6 +34,10 @@ if TYPE_CHECKING:
     from collections.abc import Callable
     from types import TracebackType
 
+_EXCEPTION_CHAIN_LIMIT = 8
+_EXCEPTION_MESSAGE_LIMIT = 4000
+_TRACEBACK_CHARACTER_LIMIT = 16000
+
 
 class RecordingError(RuntimeError):
     """Required history is not acknowledged; computation may still have occurred."""
@@ -66,10 +70,14 @@ def exception_diagnostic(
     current: BaseException | None = error
     relation = "primary"
     truncated = False
-    while current is not None and id(current) not in seen and (len(chain) < 8):
+    while (
+        current is not None
+        and id(current) not in seen
+        and (len(chain) < _EXCEPTION_CHAIN_LIMIT)
+    ):
         seen.add(id(current))
         message = str(current)
-        truncated |= len(message) > 4000
+        truncated |= len(message) > _EXCEPTION_MESSAGE_LIMIT
         chain.append(
             ExceptionFact(
                 f"{type(current).__module__}.{type(current).__qualname__}",
@@ -84,7 +92,7 @@ def exception_diagnostic(
         else:
             current = None
     trace = "".join(traceback.format_exception(error))
-    truncated |= current is not None or len(trace) > 16000
+    truncated |= current is not None or len(trace) > _TRACEBACK_CHARACTER_LIMIT
     return Diagnostic(
         category,
         severity,
@@ -322,6 +330,8 @@ class ExecutionContext:
             self._stopped = True
         except Exception as recording_error:
             error.add_note(
-                f"Required recording incomplete for {self.execution_id}; last acknowledged sequence={self._sequence}; {type(recording_error).__name__}: {recording_error}",
+                f"Required recording incomplete for {self.execution_id}; "
+                f"last acknowledged sequence={self._sequence}; "
+                f"{type(recording_error).__name__}: {recording_error}",
             )
         return False

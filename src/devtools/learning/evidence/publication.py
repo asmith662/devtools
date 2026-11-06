@@ -11,6 +11,8 @@ from uuid import UUID, uuid5
 
 from devtools.learning.evidence.events import Fact, _facts
 
+_FIRST_PRINTABLE_CHARACTER = 32
+
 
 def artifact_name(value: str) -> str:
     """Accept portable flat filenames, deliberately excluding nested paths/aliases."""
@@ -24,7 +26,7 @@ def artifact_name(value: str) -> str:
     if (
         value in (".", "..")
         or value.endswith((".", " "))
-        or any(ord(c) < 32 or c in '/\\:<>"|?*' for c in value)
+        or any(ord(c) < _FIRST_PRINTABLE_CHARACTER or c in '/\\:<>"|?*' for c in value)
         or (value.casefold() in ("manifest.json", "intent.json", "current.json"))
         or (
             value.split(".", maxsplit=1)[0].upper()
@@ -76,7 +78,7 @@ class PublicationStatus(StrEnum):
 
 
 class PublicationRecordingStatus(StrEnum):
-    """Retain the declared PublicationRecordingStatus scientific values and invariants."""
+    """Retain the PublicationRecordingStatus scientific contract."""
 
     UNINSPECTED = "uninspected"
     UNMANAGED = "unmanaged"

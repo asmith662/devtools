@@ -6,7 +6,7 @@ from __future__ import annotations
 import importlib.util
 import math
 from dataclasses import asdict, dataclass, replace
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.learning.classification.linear import (
@@ -26,9 +26,6 @@ from devtools.learning.integrations.local.linear_classification import model_doc
 from devtools.learning.integrations.local.margin_classification import margin_document
 from devtools.learning.integrations.local.publication import publish_artifacts
 from devtools.learning.integrations.sklearn.runtime import observe_runtime
-from devtools.learning.investigation.classification.contracts import (
-    ExecutionAuthorization,
-)
 from devtools.learning.investigation.errors import LearningUnavailableError
 from devtools.learning.investigation.plans import (
     LEDGER_BYTES,
@@ -50,13 +47,22 @@ from devtools.learning.regression.contracts import (
 )
 from devtools.learning.regression.state import FittedRegression, RegressionPredictions
 from devtools.learning.regression.verification import inspect_knn_query
-from devtools.learning.representation.features import FeatureTable
 from devtools.learning.representation.standardization import (
     FeatureStandardizationSpecification,
     FittedFeatureStandardization,
     fit_feature_standardization,
 )
 from devtools.resources.filesystem import BinaryFile, write
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from devtools.learning.investigation.classification.contracts import (
+        ExecutionAuthorization,
+    )
+    from devtools.learning.representation.features import FeatureTable
+
+_BINARY_NEIGHBORS = 7
 
 
 @dataclass(frozen=True, slots=True)
@@ -102,7 +108,9 @@ def knn7_predict(
             range(len(training.targets)),
             key=lambda i: (math.dist(row, training.features.rows[i]), i),
         )[:7]
-        result.append(int(sum(training.targets[i] for i in selected) > 3))
+        result.append(
+            int(sum(training.targets[i] for i in selected) > _BINARY_NEIGHBORS // 2),
+        )
     return tuple(result)
 
 
@@ -125,7 +133,10 @@ def quality(
             NoValue(
                 NonValueKind.UNDEFINED,
                 "undefined_binary_f1",
-                "Required binary metric denominator is undefined under the selected version.",
+                (
+                    "Required binary metric denominator is undefined under the select"
+                    "ed version."
+                ),
             )
             if value is None
             else Measured(value)
@@ -162,7 +173,10 @@ def correspondence(
             "unqualified_row_ids": [
                 r for r, ok in zip(held.inputs.row_ids, flags, strict=True) if not ok
             ],
-            "unqualified_meaning": "Original native boundary choice is not v2 truth; full-corpus deterministic retained arithmetic is independently checked.",
+            ("unqualified_meaning"): (
+                "Original native boundary choice is not v2 truth; full-corpus det"
+                "erministic retained arithmetic is independently checked."
+            ),
         }
     return {
         "contract": "no-native-fit"
@@ -197,7 +211,11 @@ def execute_plan(
     grant: ExecutionAuthorization,
     root: Path,
 ) -> LearningPublication:
-    """Execute once after exact authority; unknown failures retain their original root."""
+    """Inspect the declared scientific contract.
+
+    Execute once after exact authority; unknown failures retain their original
+    root.
+    """
     validate_authorization(plan, grant)
     if any(
         importlib.util.find_spec(name) is None
@@ -323,7 +341,7 @@ def execute_plan(
                         )
                         state_document = margin_document(state)
                     fitting_run.completed(
-                        (Fact("state_identity", _hash(state_document)),)
+                        (Fact("state_identity", _hash(state_document)),),
                     )
                 fitting_id = fitting_run.execution_id
             else:

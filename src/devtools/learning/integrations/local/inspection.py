@@ -7,6 +7,7 @@ import json
 import math
 from dataclasses import asdict, dataclass, replace
 from statistics import mean, pstdev
+from typing import TYPE_CHECKING
 from uuid import UUID
 
 from devtools.core.paths import resolve_path
@@ -16,7 +17,12 @@ from devtools.learning.classification.linear import (
     _hash,
 )
 from devtools.learning.classification.margin import FittedMarginClassifier
-from devtools.learning.evidence.events import Admitted, Outcome, Terminal
+from devtools.learning.evidence.events import (
+    Admitted,
+    ExecutionEvent,
+    Outcome,
+    Terminal,
+)
 from devtools.learning.integrations.local._codec import retained_object as obj
 from devtools.learning.integrations.local.classification.codec import (
     document,
@@ -39,9 +45,6 @@ from devtools.learning.integrations.local.operations import (
 )
 from devtools.learning.integrations.local.publication import reconcile_publication
 from devtools.learning.integrations.local.regression.codec import state as decode_state
-from devtools.learning.investigation.classification.contracts import (
-    ExecutionAuthorization,
-)
 from devtools.learning.investigation.plans import (
     MAX_PUBLICATION_BYTES,
     BinaryProblem,
@@ -69,13 +72,25 @@ from devtools.learning.representation.standardization import (
 )
 from devtools.resources.filesystem import BinaryFile, FileFormat, read
 
+if TYPE_CHECKING:
+    from devtools.learning.investigation.classification.contracts import (
+        ExecutionAuthorization,
+    )
+
+_BINARY_COUNT_F1_VERSION = 2
+_BINARY_NEIGHBORS = 7
+
 
 def _independent_features(
     features: FeatureTable,
     preparation: FittedFeatureStandardization | None,
     method: str,
 ) -> FeatureTable:
-    """Recompute raw-source scaling/SQUARE arithmetic without the producing transforms."""
+    """Inspect the declared scientific contract.
+
+    Recompute raw-source scaling/SQUARE arithmetic without the producing
+    transforms.
+    """
     rows = features.rows
     names = features.feature_names
     if preparation is not None:
@@ -108,11 +123,15 @@ def _independent_f1(
 ) -> float | None:
     """Count original binary outcomes directly, retaining each version's nonvalues."""
     values = []
-    for label in (0, 1) if version == 2 else sorted(set(truth) | set(predicted)):
+    for label in (
+        (0, 1)
+        if version == _BINARY_COUNT_F1_VERSION
+        else sorted(set(truth) | set(predicted))
+    ):
         support = sum(y == label for y in truth)
         guessed = sum(y == label for y in predicted)
         correct = sum(a == b == label for a, b in zip(truth, predicted, strict=True))
-        if version == 2:
+        if version == _BINARY_COUNT_F1_VERSION:
             if not support + guessed:
                 return None
             values.append(2 * correct / (support + guessed))
@@ -164,12 +183,21 @@ class InspectedLearning:
         raise TypeError(msg)
 
 
+def _acknowledged_before(earlier: ExecutionEvent, later: ExecutionEvent) -> bool:
+    """Require the recorder's acknowledgment before the next effect admission."""
+    return earlier.observed_at is not None and earlier.observed_at <= later.occurred_at
+
+
 def inspect_learning(
     reference: LearningPublication,
     plan: LearningPlan,
     grant: ExecutionAuthorization,
 ) -> InspectedLearning:
-    """Check pinned members, source, preparation, state, metrics and acknowledged order."""
+    """Inspect the declared scientific contract.
+
+    Check pinned members, source, preparation, state, metrics and acknowledged
+    order.
+    """
     validate_authorization(plan, grant)
     if reference.plan_identity != plan.identity:
         msg = "foreign scientific reference"
@@ -265,8 +293,10 @@ def inspect_learning(
         or measure_history is None
         or predict_history.outcome is not Outcome.COMPLETED
         or measure_history.outcome is not Outcome.COMPLETED
-        or predict_history.events[-1].occurred_at
-        > measure_history.events[0].occurred_at
+        or not _acknowledged_before(
+            predict_history.events[-1],
+            measure_history.events[0],
+        )
     ):
         msg = "prediction must be acknowledged before measurement"
         raise ValueError(msg)
@@ -278,8 +308,8 @@ def inspect_learning(
         publisher is None
         or publisher.parent_execution_id != producing_id
         or publisher.outcome is not Outcome.COMPLETED
-        or measure_history.events[-1].occurred_at > publisher.events[0].occurred_at
-        or publisher.events[-1].occurred_at > history.events[-1].occurred_at
+        or not _acknowledged_before(measure_history.events[-1], publisher.events[0])
+        or not _acknowledged_before(publisher.events[-1], history.events[-1])
     ):
         msg_0 = (
             "measurement/publication/producer acknowledgments are causally reordered"
@@ -294,7 +324,7 @@ def inspect_learning(
         original_fit is None
         or original_fit.parent_execution_id != producing_id
         or original_fit.outcome is not Outcome.COMPLETED
-        or original_fit.events[-1].occurred_at > predict_history.events[0].occurred_at
+        or not _acknowledged_before(original_fit.events[-1], predict_history.events[0])
     ):
         msg = "original fitting must be acknowledged before prediction begins"
         raise ValueError(msg)
@@ -334,13 +364,13 @@ def inspect_learning(
             or preparing.outcome is not Outcome.COMPLETED
             or preparing.parent_execution_id != producing_id
             or preparation.effective_scales
-            != tuple(s if s else 1.0 for s in preparation.training_standard_deviations)
+            != tuple(s or 1.0 for s in preparation.training_standard_deviations)
         ):
             msg_0 = "original training preparation acknowledgment/scales differ"
             raise ValueError(
                 msg_0,
             )
-        if preparing.events[-1].occurred_at > original_fit.events[0].occurred_at:
+        if not _acknowledged_before(preparing.events[-1], original_fit.events[0]):
             msg = "training preparation must be acknowledged before fitting begins"
             raise ValueError(msg)
         if (
@@ -416,7 +446,10 @@ def inspect_learning(
                 )
             )
             if state.configuration != expected_configuration:
-                msg = "retained native configuration differs from the exact granted method"
+                msg = (
+                    "retained native configuration differs from the exact granted met"
+                    "hod"
+                )
                 raise ValueError(msg)
     else:
         state = decode_state(
@@ -447,7 +480,7 @@ def inspect_learning(
             or fitting.outcome is not Outcome.COMPLETED
             or fitting.parent_execution_id != producing_id
             or not isinstance(fitting.events[-1].payload, Terminal)
-            or dict((f.name, f.value) for f in fitting.events[-1].payload.facts).get(
+            or {f.name: f.value for f in fitting.events[-1].payload.facts}.get(
                 "state_identity",
             )
             != state.content_identity
@@ -539,7 +572,12 @@ def inspect_learning(
                         i,
                     ),
                 )[:7]
-                labels.append(int(sum(training.targets[i] for i in neighbors) > 3))
+                labels.append(
+                    int(
+                        sum(training.targets[i] for i in neighbors)
+                        > _BINARY_NEIGHBORS // 2,
+                    ),
+                )
             independent_predictions = tuple(labels)
         elif isinstance(state, (FittedBinaryLinearClassifier, FittedMarginClassifier)):
             independent_predictions = tuple(
@@ -568,10 +606,8 @@ def inspect_learning(
             predictions,
             1 if plan.metric.endswith(":v1") else 2,
         )
-        if (
-            (independent_value is None) != isinstance(measured, NoValue)
-            or isinstance(measured, Measured)
-            and measured.value != independent_value
+        if (independent_value is None) != isinstance(measured, NoValue) or (
+            isinstance(measured, Measured) and measured.value != independent_value
         ):
             msg_0 = "independent F1 counts differ"
             raise ValueError(msg_0)

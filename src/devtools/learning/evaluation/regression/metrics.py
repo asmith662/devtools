@@ -47,7 +47,7 @@ class RegressionMeasure(Enum):
 
 @dataclass(frozen=True, slots=True)
 class RegressionMetricDefinition(MetricDefinition[float]):
-    """Retain the declared RegressionMetricDefinition scientific values and invariants."""
+    """Retain the RegressionMetricDefinition scientific contract."""
 
     measure: RegressionMeasure
 
@@ -157,7 +157,10 @@ def _arithmetic(compute: Callable[[], float]) -> RegressionValue:
     except (OverflowError, ValueError, ZeroDivisionError):
         return _undefined(
             "unrepresentable_regression_arithmetic",
-            "The declared binary64 calculation is not finitely representable; no rows were dropped.",
+            (
+                "The declared binary64 calculation is not finitely representable;"
+                " no rows were dropped."
+            ),
         )
 
 
@@ -235,7 +238,11 @@ def _evaluate_values(
             if sst == 0:
                 r2 = _undefined(
                     "constant_regression_target",
-                    "SST is zero on the exact target population; no forced zero/one R2 convention.",
+                    (
+                        "SST is zero on the exact target population; no forced "
+                        "zero/one R"
+                        "2 convention."
+                    ),
                 )
             elif isinstance(sum_squared, Measured):
                 r2 = _arithmetic(lambda: 1 - sum_squared.value / variation.value)

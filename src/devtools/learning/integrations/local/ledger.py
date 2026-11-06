@@ -38,13 +38,32 @@ from devtools.learning.integrations.local._codec import decode, encode
 if TYPE_CHECKING:
     from types import TracebackType
 
+_LOCK_TIMEOUT_LIMIT = 30
+_MINIMUM_LEDGER_BYTES = 262144
+_MAXIMUM_LEDGER_BYTES = 2**31
+
 _SCHEMA_VERSION = 1
 _COLUMNS = {
     "executions": {"id", "operation", "lifecycle", "outcome", "active_stage"},
     "activations": {"id", "execution_id", "producer", "started_at", "ended_at", "pid"},
     "events": {"id", "execution_id", "activation_id", "sequence", "kind", "document"},
 }
-_SCHEMA = "\nCREATE TABLE executions (\n id TEXT PRIMARY KEY NOT NULL, operation TEXT NOT NULL,\n lifecycle TEXT NOT NULL CHECK(lifecycle IN ('pending','running','stopped')),\n outcome TEXT CHECK(outcome IN ('completed','failed','interrupted','cancelled')),\n active_stage TEXT,\n CHECK ((lifecycle='stopped') = (outcome IS NOT NULL))\n);\nCREATE TABLE activations (\n id TEXT PRIMARY KEY NOT NULL,\n execution_id TEXT UNIQUE NOT NULL REFERENCES executions(id),\n producer TEXT NOT NULL, started_at TEXT, ended_at TEXT, pid INTEGER\n);\nCREATE TABLE events (\n id TEXT PRIMARY KEY NOT NULL,\n execution_id TEXT NOT NULL REFERENCES executions(id),\n activation_id TEXT NOT NULL REFERENCES activations(id),\n sequence INTEGER NOT NULL CHECK(sequence>0),\n kind TEXT NOT NULL, document TEXT NOT NULL,\n UNIQUE(activation_id,sequence)\n);\nCREATE INDEX events_execution ON events(execution_id,sequence);\n"
+_SCHEMA = (
+    "\nCREATE TABLE executions (\n id TEXT PRIMARY KEY NOT NULL, operat"
+    "ion TEXT NOT NULL,\n lifecycle TEXT NOT NULL CHECK(lifecycle IN ("
+    "'pending','running','stopped')),\n outcome TEXT CHECK(outcome IN "
+    "('completed','failed','interrupted','cancelled')),\n active_stage"
+    " TEXT,\n CHECK ((lifecycle='stopped') = (outcome IS NOT NULL))\n);"
+    "\nCREATE TABLE activations (\n id TEXT PRIMARY KEY NOT NULL,\n exec"
+    "ution_id TEXT UNIQUE NOT NULL REFERENCES executions(id),\n produc"
+    "er TEXT NOT NULL, started_at TEXT, ended_at TEXT, pid INTEGER\n);"
+    "\nCREATE TABLE events (\n id TEXT PRIMARY KEY NOT NULL,\n execution"
+    "_id TEXT NOT NULL REFERENCES executions(id),\n activation_id TEXT"
+    " NOT NULL REFERENCES activations(id),\n sequence INTEGER NOT NULL"
+    " CHECK(sequence>0),\n kind TEXT NOT NULL, document TEXT NOT NULL,"
+    "\n UNIQUE(activation_id,sequence)\n);\nCREATE INDEX events_executio"
+    "n ON events(execution_id,sequence);\n"
+)
 
 
 def _validate_schema(connection: sqlite3.Connection) -> None:
@@ -91,14 +110,17 @@ class SQLiteExecutionRecorder:
             msg = "durable recording requires a filesystem path"
             raise ValueError(msg)
         if type(timeout_seconds) not in (int, float) or (
-            not math.isfinite(timeout_seconds) or not 0 <= timeout_seconds <= 30
+            not math.isfinite(timeout_seconds)
+            or not 0 <= timeout_seconds <= _LOCK_TIMEOUT_LIMIT
         ):
             msg = "timeout_seconds must be finite and between 0 and 30"
             raise ValueError(msg)
         self.database = database.resolve()
         if maximum_database_bytes is not None and (
             type(maximum_database_bytes) is not int
-            or not 262144 <= maximum_database_bytes <= 2**31
+            or not _MINIMUM_LEDGER_BYTES
+            <= maximum_database_bytes
+            <= _MAXIMUM_LEDGER_BYTES
         ):
             msg = "explicit SQLite file bound must be 256KiB..2GiB"
             raise ValueError(msg)
@@ -260,7 +282,10 @@ class SQLiteExecutionRecorder:
                 (aid,),
             ).fetchone()
             last = connection.execute(
-                "SELECT document FROM events WHERE activation_id=? ORDER BY sequence DESC LIMIT 1",
+                (
+                    "SELECT document FROM events WHERE activation_id=? ORDER BY seque"
+                    "nce DESC LIMIT 1"
+                ),
                 (aid,),
             ).fetchone()
             if row is None or activation != (eid, event.producer) or last is None:
@@ -338,7 +363,14 @@ class SQLiteExecutionRecorder:
                         msg = "progress must match active stage"
                         raise ValueError(msg)
                     rows = connection.execute(
-                        "SELECT document FROM events WHERE activation_id=? AND kind='Progress' AND sequence > (SELECT MAX(sequence) FROM events WHERE activation_id=? AND kind='StageStarted') ORDER BY sequence DESC",
+                        (
+                            "SELECT document FROM events WHERE activation_id=? "
+                            "AND kind='Prog"
+                            "ress' AND sequence > (SELECT MAX(sequence) FROM ev"
+                            "ents WHERE act"
+                            "ivation_id=? AND kind='StageStarted') ORDER BY seq"
+                            "uence DESC"
+                        ),
                         (aid, aid),
                     )
                     for row in rows:
@@ -386,7 +418,10 @@ def _read_history(
     events = tuple(
         _decode_record(item)
         for item in connection.execute(
-            "SELECT id,execution_id,activation_id,sequence,kind,document FROM events WHERE execution_id=? ORDER BY sequence",
+            (
+                "SELECT id,execution_id,activation_id,sequence,kind,document FROM"
+                " events WHERE execution_id=? ORDER BY sequence"
+            ),
             (str(execution_id),),
         )
     )
@@ -752,7 +787,11 @@ class SQLiteInspectionSession:
             )
             for identifier in missing:
                 row = connection.execute(
-                    "SELECT rowid,id,execution_id,activation_id,sequence,kind,document FROM events WHERE id=?",
+                    (
+                        "SELECT rowid,id,execution_id,activation_id,sequence,ki"
+                        "nd,documen"
+                        "t FROM events WHERE id=?"
+                    ),
                     (str(identifier),),
                 ).fetchone()
                 if row is None:
@@ -794,7 +833,13 @@ class SQLiteInspectionSession:
                 admitted: set[UUID] = set()
                 active: set[UUID] = set()
                 for row in connection.execute(
-                    "SELECT id,execution_id,activation_id,sequence,kind,document FROM events WHERE sequence=1 OR kind IN ('Admitted','Activated','Terminal') ORDER BY rowid",
+                    (
+                        "SELECT id,execution_id,activation_id,sequence,kind,doc"
+                        "ument FROM"
+                        " events WHERE sequence=1 OR kind IN ('Admitted','Activ"
+                        "ated','Ter"
+                        "minal') ORDER BY rowid"
+                    ),
                 ):
                     event = _decode_record(row)
                     identity, payload = (event.execution_id, event.payload)

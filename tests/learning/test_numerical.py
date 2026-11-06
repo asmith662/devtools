@@ -11,12 +11,17 @@ from pathlib import Path
 from devtools.core.time import Duration
 from devtools.resources.commands import Command, CommandExecutor
 
+_CONTROL_REGRESSION_METHODS = 3
+
 
 def test_native_states_and_scientific_publication(tmp_path: Path) -> None:
     """The OS worker executes real fits; the host consumes inspected results."""
     site = Path(sys.prefix) / "Lib/site-packages"
     worker = Path(__file__).with_name("numerical_worker.py").resolve()
-    code = "import site,sys,runpy;site.addsitedir(sys.argv[1]);sys.argv=sys.argv[2:];runpy.run_path(sys.argv[0],run_name='__main__')"
+    code = (
+        "import site,sys,runpy;site.addsitedir(sys.argv[1]);sys.argv=sys."
+        "argv[2:];runpy.run_path(sys.argv[0],run_name='__main__')"
+    )
     result = asyncio.run(
         CommandExecutor(contained=True).execute(
             Command(str(sys._base_executable))  # type: ignore[attr-defined]
@@ -34,7 +39,7 @@ def test_native_states_and_scientific_publication(tmp_path: Path) -> None:
     )
     assert result.succeeded, result.stderr.decode()
     report = json.loads(result.stdout)
-    assert report["regression_methods"] == 3
+    assert report["regression_methods"] == _CONTROL_REGRESSION_METHODS
     assert report["binary_f1"]["f1"] == 1.0
     assert report["publication_status"] == "current"
     assert report["recording_status"] == "acknowledged"

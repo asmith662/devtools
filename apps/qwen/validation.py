@@ -126,7 +126,12 @@ def _runner_sources(root: Path, folder: Path, task: CodingTask) -> dict[str, str
         + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
         + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
         + "file=sys.stderr, flush=True)\n"
-        + "        yield\n"
+        + "        outcome = yield\n"
+        + "        if outcome.excinfo is not None:\n"
+        + "            error = outcome.excinfo[1]\n"
+        + "            print('QWEN_TEST_REPORT_FAILURE ' + "
+        + "type(error).__name__ + ': ' + str(error)[:1000], "
+        + "file=sys.stderr, flush=True)\n"
         + f"arguments = {test_arguments!r}\n"
         + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n"
     )

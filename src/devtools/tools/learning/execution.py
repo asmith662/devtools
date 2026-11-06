@@ -8,15 +8,13 @@ import json
 import sys
 from dataclasses import asdict
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.core.time import Duration
 from devtools.learning.integrations.local.classification.codec import document
 from devtools.learning.integrations.local.operations import LearningPublication
 from devtools.learning.integrations.local.worker import MAX_PACKET_BYTES
-from devtools.learning.investigation.classification.contracts import (
-    ExecutionAuthorization,
-)
 from devtools.learning.investigation.errors import LearningUnavailableError
 from devtools.learning.investigation.plans import (
     LearningPlan,
@@ -26,13 +24,22 @@ from devtools.learning.investigation.plans import (
 from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
 from devtools.resources.filesystem import BinaryFile, TextFile, write
 
+if TYPE_CHECKING:
+    from devtools.learning.investigation.classification.contracts import (
+        ExecutionAuthorization,
+    )
+
+_OPERATION_SECONDS = 300
+
 _BOOTSTRAP = """
 import importlib.abc,json,pathlib,runpy,site,sys
 roots=tuple(pathlib.Path(p).resolve() for p in json.loads(sys.argv[2]))
 def guard(event,args):
     if event=='open' and isinstance(args[0],(str,bytes)):
-        p=pathlib.Path(args[0].decode() if isinstance(args[0],bytes) else args[0]).resolve()
-        if '.tmp' in tuple(s.lower() for s in p.parts) or any(p.is_relative_to(r) for r in roots):
+        raw=args[0].decode() if isinstance(args[0],bytes) else args[0]
+        p=pathlib.Path(raw).resolve()
+        parts=tuple(s.lower() for s in p.parts)
+        if '.tmp' in parts or any(p.is_relative_to(r) for r in roots):
             raise PermissionError('learning source/archive read denied')
 class NoDonor(importlib.abc.MetaPathFinder):
     def find_spec(self,fullname,path=None,target=None):
@@ -86,7 +93,11 @@ class ManagedLearningWorker:
         *,
         timeout: Duration = Duration.seconds(300),
     ) -> LearningPublication:
-        """Consume one exact packet once, preserving failed/uncertain operation roots."""
+        """Inspect the declared scientific contract.
+
+        Consume one exact packet once, preserving failed/uncertain operation
+        roots.
+        """
         validate_authorization(plan, grant)
         packet = canonical(
             {"plan": plan.document(), "grant": document(asdict(grant))},
@@ -94,7 +105,7 @@ class ManagedLearningWorker:
         if len(packet) > MAX_PACKET_BYTES:
             msg = "learning packet exceeds its pre-entry limit"
             raise ValueError(msg)
-        if timeout.total_seconds > 300:
+        if timeout.total_seconds > _OPERATION_SECONDS:
             msg = "learning operation timeout exceeds the qualified profile"
             raise ValueError(msg)
         root.mkdir()
@@ -152,13 +163,16 @@ class ManagedLearningWorker:
                         "stdout_truncated": result.stdout_truncated,
                         "stderr_truncated": result.stderr_truncated,
                         "retry": "NONE; this operation root is consumed",
-                    }
+                    },
                 ),
             ),
             overwrite=False,
         )
         if not result.succeeded or result.stdout_truncated or result.stderr_truncated:
-            msg = "Learning worker failed or returned incomplete evidence; no automatic retry."
+            msg = (
+                "Learning worker failed or returned incomplete evidence; no autom"
+                "atic retry."
+            )
             raise RuntimeError(
                 msg,
             )
