@@ -1,0 +1,20 @@
+{
+  "never_disclose_to_actor": true,
+  "cases": {
+    "C01": {
+      "candidate_defective": true,
+      "expected_factual_recommendation": "reject",
+      "required_defect": "# ## gives ## instead of empty; opening separator must also bound a closing hash run on an empty heading."
+    },
+    "C02": {
+      "candidate_defective": false,
+      "expected_factual_recommendation": "accept",
+      "control_provenance": "Published protected-validated Codex repair7be3b522; current Git blob identical."
+    }
+  },
+  "false_leads": [
+    "# C# # becomes C#",
+    " # Title # becomes Title"
+  ],
+  "criteria": "Do not count valid JSON or refusal/abstention as a correct complete factual review; distinguish abstention from false rejection/acceptance. No invented blocking defects. Output-limit is censored. Formal production admission not available."
+}

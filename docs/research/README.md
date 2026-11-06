@@ -1,5 +1,10 @@
 # Research Evidence
 
+[Reviewer-model comparison](reviewer-model-comparison.md) records 22 genuine
+generations, higher-budget Qwen thinking, cached gpt-oss qualification and strict
+delivery failures. Neither configuration is promoted; the smallest next fix is
+the demonstrated HTTP status-line parser defect. Original Qwen is restored.
+
 [Evidence-verified reviewer and active Context](reviewer-evidence-verification-results.md)
 records the protected-validated correction and seven genuine Qwen generations
 under fresh automatic standing grants. Enhanced review uses verified outputs and

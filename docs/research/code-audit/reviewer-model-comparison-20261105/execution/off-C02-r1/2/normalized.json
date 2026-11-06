@@ -1,0 +1,24 @@
+{
+  "content": "",
+  "source": {
+    "value": "reviewer-model:off"
+  },
+  "conversation": null,
+  "usage": {
+    "input_tokens": 10327,
+    "output_tokens": 918,
+    "total_tokens": 11245,
+    "cached_input_tokens": null,
+    "cache_write_tokens": null,
+    "reasoning_tokens": null
+  },
+  "termination": "tool_call",
+  "reasoning_content": null,
+  "tool_calls": [
+    {
+      "name": "submit_review_proposal",
+      "arguments_json": "{\"subject_sha256\":\"1c364b151b530ca371583e35121e079827cc03b283f115a91850b3f3bb9fb313\",\"candidate_sha256\":\"b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f\",\"conclusion\":{\"assessed_obligations\": [\"objective\", \"current-owner\"], \"disposition\": \"accept\", \"evidence\": [\"baseline\", \"candidate\", \"diff\", \"public-checks\"], \"findings\": [{\"evidence\": [\"diff\", \"public-checks\"], \"kind\": \"inference\", \"message\": \"The only code change is to _ATX_HEADING_PATTERN: the unanchored closing-run tail '[ \\\\t]*#*[ \\\\t]*$' was replaced by the optional, lookbehind-bounded group '(?:(?<=[ \\\\t])#+)?' before a trailing '[ \\\\t]*$'. This removes terminal hash runs only when preceded by a space or tab, leaving attached hashes ('# C#' -> 'C#') and hashes separated from the title literal ('# C# #', '# Title #' with trailing whitespace) intact, while preserving the baseline's stripped-empty-title behavior for '# ##' (the opening separator also satisfies the lookbehind). The comment added in the diff correctly documents this empty-heading case.\", \"severity\": \"advisory\"}, {\"evidence\": [\"diff\", \"public-checks\"], \"kind\": \"observed\", \"message\": \"Public check public-C02 ran the candidate with fixed inputs '# C#', '# C# #', '# Title #', '# ##' and all observed titles matched expected 'C#', 'C#', 'Title', '' (exit 0, passed true). This confirms the core attached-hash repair and empty-heading behavior for those four cases only.\", \"severity\": \"advisory\"}, {\"evidence\": [\"diff\"], \"kind\": \"inference\", \"message\": \"No other code was changed: _FENCE_PATTERN, headings/sections properties, find_heading/find_section, _parse_headings trimming and line numbering, and _build_section are byte-identical to the baseline. This supports the narrow scope of the repair (attached hash suffix only) without redesigning fences, levels, hierarchy, or lookup semantics, though those behaviors are preserved by construction rather than exercised here.\", \"severity\": \"advisory\"}], \"outstanding\": [\"Formal acceptance and custody records are unavailable in this calibration; no independent host-verified test suite beyond the four fixed public cases is available, so equivalence on inputs outside those four cases (e.g., tab-separated closers, multiple hash runs, longer titles, mixed content) is inferred from the diff and the stated model contract rather than independently observed.\", \"The full current resource (MarkdownFile owner) could not be re-read beyond the frozen baseline/candidate texts; obligation current-owner is assessed against the supplied frozen baseline and candidate rather than a live owner snapshot.\"], \"requests\": [], \"summary\": \"The candidate repairs the attached literal-hash-suffix corruption in MarkdownFile ATX headings by narrowing the closing-marker tail in _ATX_HEADING_PATTERN to an optional group guarded by a (?<=[ \\\\t]) lookbehind, so a terminal hash run is stripped only when separated from the preceding title text by a space or tab. Attached hashes remain literal title text ('# C#' -> 'C#'), and the lookbehind is also satisfied by the opening separator, preserving the baseline's empty-title behavior for '# ##'. The only changes are this pattern line and an explanatory comment; fence handling, trimming, line numbers, section/hierarchy logic, and lookup methods are unchanged, keeping the repair within the narrow raw-text scope (no escape decoding, no new grammar). The public check observed all four fixed inputs passing. This is a focused, behavior-preserving fix consistent with the task contract.\"}}",
+      "provider_call_id": "yHH8gNV03d6aPgE3REdvESJmV9pmshWE"
+    }
+  ]
+}

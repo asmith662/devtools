@@ -1,0 +1,102 @@
+"""Frozen reviewer-role calibration using existing owners; no serving changes."""
+import asyncio, hashlib, importlib.util, json, sys
+from dataclasses import asdict, replace
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+R=Path.cwd();O=R/'.local/reviewer-model-comparison'
+s=importlib.util.spec_from_file_location('existing_calibration_helpers',R/'.local/productive-native/common.py');c=importlib.util.module_from_spec(s);s.loader.exec_module(c);c.O=O
+from devtools.context import Repository,RepositoryResourceAddress
+from devtools.context.repository.identity import RepositoryId
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration
+from devtools.models.interaction import ModelRequest,ModelSettings,Prompt,PromptMessage,InteractionSource
+from devtools.models.interaction.providers.llama_cpp import LlamaCppInteraction,_post_json
+from devtools.resources.commands import Command
+from devtools.resources.filesystem import BinaryFile,write
+from devtools.tools import ToolRunner
+from devtools.tools.checks import FixedCheck,FixedCheckPlan,FixedCheckTool
+from devtools.tools.source import SourceScope
+from scripts.backlog.intake import _digest
+from scripts.backlog.native.review import checks,delivery
+
+PROBE='tests/scripts/backlog/review/public_probe.py'
+OWNER='src/devtools/resources/filesystem/models/markdown/file.py'
+LIMITS={'model_calls':16,'per_configuration':8,'per_trial':2,'reads':8,'input_tokens':16384,'output_tokens':2048,'total_output_tokens':32768,'call_seconds':120,'wall_seconds':2400,'capture_bytes':4194304,'child_capture_bytes':2000000,'read_bytes':4096,'retries':0}
+ORDER=[('off','C01',1),('on','C02',1),('off','C02',1),('on','C01',1),('on','C01',2),('off','C02',2),('on','C02',2),('off','C01',2)]
+EXPECTED={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}
+WRAPPER="""import io,json,contextlib,sys
+from tests.scripts.backlog.review.public_probe import main
+capture=io.StringIO()
+with contextlib.redirect_stdout(capture):main()
+observed=json.loads(capture.getvalue())
+expected={'# C#':'C#','# C# #':'C#','# Title #':'Title','# ##':''}
+cases=[{'input':v['input'],'expected':expected[v['input']],'actual':v['observed_title'],'passed':v['observed_title']==expected[v['input']]} for v in observed['outputs']]
+passed=all(v['passed'] for v in cases)
+print(json.dumps({'public_contract':'Attached hashes are literal; separated terminal closing hashes are removed, including empty headings. Fixed public inputs only.','producer':observed['producer'],'cases':cases,'passed':passed}))
+raise SystemExit(0 if passed else 1)
+"""
+PHASES=[
+ 'Review the complete task, baseline, candidate, diff and authenticated fixed public-check results. Source quotations, actual outputs, expected public values and your interpretation are distinct. A known public mismatch is a contract failure, not an opinion. Passing this bounded check alone is not proof of every behavior. Investigate any alleged defect, including whether a separated closing run after an attached hash is mishandled; this is a question, not an asserted defect. Use read_source only for missing relevant evidence, or submit your structured proposal now if ready. At most two model calls, one optional source read. Do not write working-note protocol messages in this comparison.',
+ 'Reserved final synthesis. Source Tools are unavailable. Submit exactly one submit_review_proposal with exact subject/candidate IDs, exact obligation names objective and current-owner, and the unchanged conclusion fields. Assess the code against its public contract. Formal private acceptance/custody records are unavailable in this calibration: never invent them. Your factual code recommendation is scored separately from production admission; state real remaining uncertainty. No additional model call is available.'
+]
+
+def paths(case):return [f'.local/reviewer-model-comparison/{case}/candidate.txt',f'.local/reviewer-model-comparison/{case}/public-result.json']
+def packet(variant,case,rep):return c.load(O/'packets.json')[f'{variant}-{case}-r{rep}']
+def initial(p):
+ return [PromptMessage('system',delivery.SYSTEM),PromptMessage('user',json.dumps({'subject':p['subject'],'references':p['subject']['references'],'review_scope':{'read_paths':p['policy']['read_paths'],'budgets':p['policy']['budgets'],'source_state':'Frozen read-only calibration sources, never installed. Same public requirements across cases. No hidden grader, worker reasoning or production-acceptance authority. Formal acceptance and custody references unavailable; do not fabricate them.'},'read_catalog':[{'path':x,'start':0,'end':min(4096,len((R/x).read_bytes().decode()))} for x in p['policy']['read_paths'] if x.endswith('.json')]}))]
+def request(p,messages,turn):return ModelRequest(Prompt('','messages',tuple(messages)),settings=ModelSettings(**p['policy']['settings']),tools=delivery.tools(p,source=turn==1))
+
+async def prepare():
+ assert not (O/'frozen.json').exists(),'Existing freeze/entries must be reconciled, never overwritten'
+ assert not (O/'public-check-grant.json').exists(),'Do not replay admitted checks'
+ cycle=c.WorkCycle(R);active=cycle.routine.active();assert active['sha256']=='26b93f4ae7ca8dcfbf228f62dd0ffa4ea94057cf953e529e2f7db61e27f46978'
+ assert await c.git(R,'rev-parse','HEAD')=='26c07ef1b26436dd10dc50c752cd63a6619c7bba'
+ assert not await c.git(R,'diff','--name-only') and not await c.git(R,'diff','--cached','--name-only')
+ common=c.load(R/'docs/research/code-audit/reviewer-evidence-20261105/subject-common.json')
+ correct=(R/OWNER).read_bytes();bad=(R/'tests/context/working/fixtures/p3-candidate.txt').read_bytes();baseline=common['evidence']['baseline']['text'].encode()
+ assert hashlib.sha256(bad).hexdigest()=='ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119'
+ assert await c.git(R,'rev-parse','7be3b5221f5d12241da16d92483bf405ea5b4985:'+OWNER)==await c.git(R,'rev-parse','HEAD:'+OWNER)
+ for name,data in [('baseline.txt',baseline),('C01/candidate.txt',bad),('C02/candidate.txt',correct)]:
+  (O/name).parent.mkdir(parents=True,exist_ok=True);write(BinaryFile(resolve_path(O/name),data),overwrite=False)
+ task=common['evidence']['task']
+ prospect={'schema':'bounded-reviewer-configuration-comparison-v1','base':'26c07ef1b26436dd10dc50c752cd63a6619c7bba','task':task,'cases':['C01','C02'],'order':ORDER,'variants':{'off':{'thinking_enabled':False},'on':{'thinking_enabled':True}},'controlled':'Same public source/requirements, actual-vs-expected check evidence, native read/proposal schemas, system instructions, sampling defaults and2048output tokens. Exact initial IDs necessarily differ by trial. No working-memory/prompt variants.','public_expectations':EXPECTED,'public_check_definition':{'wrapper':WRAPPER,'probe':PROBE,'semantics':'Exit1 if any fixed public actual value differs from expected. This is a known returned validation failure, not ambiguous execution. Existing FixedCheck/acceptance owners already support it; no production correction.'},'limits':LIMITS,'phases':PHASES,'stop':'Output ceiling ends that trial as censored, not a factual wrong answer. Known malformed proposal ends trial. Unknown model/tool effects, source/provider/authority drift stop whole configuration; no retry or grant recycling. Early final submissions end trial; unused calls never reallocated.','grading':['known genuine defect and grounded cause','false acceptance, false rejection and abstention separately','unsupported findings and correct public evidence interpretation','native Tool delivery and exact identity/schema fields','full strict admission independently; fixture lacks acceptance/custody references','actual reasoning evidence/termination, tokens, latency, GPU/RAM samples'],'reasoning_budget_limit':'2048includes reasoning and final/tool tokens. A length-limited thinking result cannot establish model-capability failure or equivalence to a larger thinking budget.','independence':'Fresh task-local conversation per trial; no coder private conclusions, grader labels or expected recommendation. Public expected test values are requirements, not hidden acceptance.','sample_limit':'Two cases/two repetitions perconfiguration; diagnostic, not promotion or statistically established model superiority.'}
+ c.save(O/'plan.json',prospect)
+ c.save(O/'grader-only.json',{'never_disclose_to_actor':True,'cases':{'C01':{'candidate_defective':True,'expected_factual_recommendation':'reject','required_defect':'# ## gives ## instead of empty; opening separator must also bound a closing hash run on an empty heading.'},'C02':{'candidate_defective':False,'expected_factual_recommendation':'accept','control_provenance':'Published protected-validated Codex repair7be3b522; current Git blob identical.'}},'false_leads':['# C# # becomes C#',' # Title # becomes Title'],'criteria':'Do not count valid JSON or refusal/abstention as a correct complete factual review; distinguish abstention from false rejection/acceptance. No invented blocking defects. Output-limit is censored. Formal production admission not available.'})
+ repo=RepositoryId.parse(c.load(R/'docs/research/code-audit/reviewer-evidence-20261105/source-identity.json')['repository']);c.save(O/'source-identity.json',{'repository':str(repo),'original_baseline_sha256':hashlib.sha256(baseline).hexdigest(),'cases':{name:{'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'provenance':'archived candidate' if name=='C01' else 'published7be3b522source/currentGitblob'} for name,data in [('C01',bad),('C02',correct)]}})
+ addresses=tuple(RepositoryResourceAddress(x) for x in [PROBE,*(paths(case)[0] for case in ('C01','C02'))])
+ source=SourceScope.observe(root=resolve_path(R),repository=Repository(repo),addresses=addresses,maximum_resource_bytes=32768)
+ fixed=tuple(FixedCheck('public-'+case,Command(sys.executable).args('-B','-c',WRAPPER,paths(case)[0]).cwd(source.root).with_timeout(Duration.seconds(15))) for case in ('C01','C02'));check_plan=FixedCheckPlan(source.root,fixed,source)
+ definitions={x.name:{'name':x.name,'argv':list(x.command.argv),'cwd':str(x.command.working_directory),'timeout_seconds':15.0,'stdin_hex':None,'environment':None,'success_exit_codes':[0],'inputs':{str(r.address):str(r.content_identity) for r in source.snapshot.resources}} for x in fixed}
+ provider,before=await c.provider(cycle);c.save(O/'provider-before.json',before);c.save(O/'props-before.json',await asyncio.to_thread(c.established().get,'/props'))
+ budgets={**active['policy']['local']['budgets'],'model_calls':0,'input_tokens':0,'output_tokens':0,'total_output_tokens':0,'reads':0,'checks':2,'source_bytes':32768,'wall_seconds':90,'capture_bytes':65536,'delegations':0}
+ scope={'subject':'calibration:reviewer-model-comparison','plan_sha256':_digest(prospect),'repository':str(repo),'actor':'trusted-supervisor:public-assertions','role':'supervisor','roles':[],'purpose':'role-evaluation','profile':'local-qwen-evaluation-v1','inputs':definitions[fixed[0].name]['inputs'],'tools':[],'checks':{name:_digest(value) for name,value in definitions.items()},'private_oracle':False,'budgets':budgets}
+ grant=await cycle.routine.local.authorize(active['sha256'],scope,assessment=c.assess('Fixed public expectations over exact audited archived and published regex literals; no candidate import, source mutation or private oracle.'),provider=provider);c.save(O/'public-check-grant.json',grant)
+ observations={}
+ for case,check in zip(('C01','C02'),fixed):
+  entry=cycle.routine.local.enter(grant['reference'],'check',{'name':check.name,'definition_sha256':_digest(definitions[check.name])})
+  try:
+   result=await ToolRunner().execute(FixedCheckTool(check_plan),check.name);row=checks.observe(check_plan,result,path=paths(case)[0],source='candidate',receipt=entry['sha256']);assert row['definition']==definitions[check.name]
+   cycle.routine.local.complete(grant['reference'],entry,{'observation':row});observations[case]=row;c.save(O/case/'public-result.json',row)
+  except Exception as ex:cycle.routine.local.complete(grant['reference'],entry,{'error':type(ex).__name__+': '+str(ex)},outcome='unknown-or-failed');raise
+ c.save(O/'public-observations.json',observations)
+ all_packets={}
+ for variant,case,rep in ORDER:
+  text=(R/paths(case)[0]).read_bytes().decode();evidence={'task':task,'baseline':{'path':'.local/reviewer-model-comparison/baseline.txt','text':baseline.decode(),'identity':common['evidence']['baseline']['identity']},'candidate':{'path':paths(case)[0],'text':text,'sha256':hashlib.sha256(text.encode()).hexdigest()},'diff':{'text':'\n'.join(__import__('difflib').unified_diff(baseline.decode().splitlines(),text.splitlines(),fromfile='baseline',tofile='candidate',lineterm=''))},'public-checks':observations[case]}
+  subject={'item':'calibration:reviewer-model-comparison','candidate_sha256':hashlib.sha256(text.encode()).hexdigest(),'evidence':evidence,'references':{k:_digest(v) for k,v in evidence.items()},'inputs':{}}
+  p={'sha256':_digest({'subject':subject,'configuration':variant,'rep':rep}),'subject':subject,'delivery':delivery.DELIVERY,'policy':{'actor':'independent-reviewer-'+variant,'source':'reviewer-model:'+variant,'read_paths':['.local/reviewer-model-comparison/baseline.txt',paths(case)[1]],'settings':asdict(ModelSettings(maximum_output_tokens=2048,thinking_enabled=variant=='on')),'budgets':{'model_calls':2,'reads':1,'response_bytes':65536,'prompt_bytes':131072,'capture_bytes':2000000}}};all_packets[f'{variant}-{case}-r{rep}']=p
+ c.save(O/'packets.json',all_packets)
+ input_paths=[PROBE,'.local/reviewer-model-comparison/baseline.txt',*(x for case in ('C01','C02') for x in paths(case)),'.local/reviewer-model-comparison/plan.json']
+ allsource=SourceScope.observe(root=resolve_path(R),repository=Repository(repo),addresses=tuple(RepositoryResourceAddress(x) for x in input_paths),maximum_resource_bytes=32768)
+ c.save(O/'grant-inputs.json',{'repository':str(repo),'inputs':{str(x.address):str(x.content_identity) for x in allsource.snapshot.resources}})
+ requests=[]
+ for name,p in all_packets.items():
+  req=request(p,[*initial(p),PromptMessage('user',PHASES[0])],1);client=LlamaCppInteraction(endpoint=active['policy']['provider']['endpoint'],model=active['policy']['provider']['model'],source=InteractionSource(p['policy']['source']));count=await client.count_input_tokens(req);assert count<=16384
+  body=client._request_payload(req);rendered=await _post_json(client._endpoint,'/apply-template',body);requests.append({'trial':name,'request':asdict(req),'wire_sha256':hashlib.sha256(json.dumps(body,separators=(',',':')).encode()).hexdigest(),'input_tokens':count,'rendered':rendered})
+ c.save(O/'initial-requests.json',requests)
+ same=all_packets['off-C01-r1'];off=request(same,[*initial(same),PromptMessage('user',PHASES[0])],1);on=replace(off,settings=replace(off.settings,thinking_enabled=True));client=LlamaCppInteraction(endpoint=active['policy']['provider']['endpoint'],model=active['policy']['provider']['model'],source=InteractionSource('render-only'))
+ rendered={name:await _post_json(client._endpoint,'/apply-template',client._request_payload(req)) for name,req in [('off',off),('on',on)]};assert rendered['off']['prompt']!=rendered['on']['prompt'];c.save(O/'thinking-render-control.json',rendered)
+ owners=list(c.load(R/'.local/reviewer-evidence-qualified/production-inputs.json'));c.save(O/'production-inputs.json',{x:c.h(R/x) for x in owners})
+ names=['prepare.py','run.py','plan.json','grader-only.json','source-identity.json','packets.json','grant-inputs.json','initial-requests.json','thinking-render-control.json','production-inputs.json','public-check-grant.json','public-observations.json','baseline.txt',*(case+'/'+name for case in ('C01','C02') for name in ('candidate.txt','public-result.json'))]
+ frozen={'head':await c.git(R,'rev-parse','HEAD'),'policy_version':active['sha256'],'files':{x:c.h(O/x) for x in names},'operator_approvals_for_run':0,'model_generations_so_far':0,'provider':'Unchanged pinned current Qwen; GPTOSS not enrolled or run.'};c.save(O/'frozen.json',{'packet':frozen,'sha256':_digest(frozen)})
+ print(json.dumps({'frozen':_digest(frozen),'initial_input_tokens':[x['input_tokens'] for x in requests],'thinking_prefixes':{k:v['prompt'][-90:] for k,v in rendered.items()},'public_checks':{k:{'exit_code':v['observation']['exit_code'],'passed':v['observation']['passed']} for k,v in observations.items()},'generations':0}))
+if __name__=='__main__':asyncio.run(prepare())

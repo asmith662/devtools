@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-06T03:47:53.305692+00:00",
+  "id": "86cbc188f8e7713843dee186997247d00787801983e7bd5cb65fb80d62e128ac",
+  "endpoint": "http://127.0.0.1:8081",
+  "config": {
+    "model": {
+      "path": {
+        "value": "C:\\Users\\recoveryadmin\\.cache\\huggingface\\hub\\models--ggml-org--gpt-oss-20b-GGUF\\snapshots\\15dcfc7e7c608c6161507211ed43c5b590801b4b\\gpt-oss-20b-MXFP4.gguf"
+      }
+    },
+    "image": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "host_port": 8081,
+    "served_model_name": "gpt-oss-20b-review-local",
+    "context_size": 32768,
+    "gpu_layers": "all",
+    "flash_attention": "on",
+    "cache_type_k": "f16",
+    "cache_type_v": "f16",
+    "parallel_sequences": 1,
+    "n_cpu_ffn": 0
+  }
+}

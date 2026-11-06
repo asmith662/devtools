@@ -1,0 +1,42 @@
+{
+  "source_sha256": "bfafb8104c91ef0fa785b72a5e161add55ca8acdd9c699875adde079389f8f54",
+  "native_prefix": "<|channel|>final <|constrain|>submit_review_proposal<|message|>",
+  "parsed_json_for_diagnostic_only": {
+    "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "conclusion": {
+      "disposition": "reject",
+      "evidence": [
+        "baseline.txt",
+        "C01/candidate.txt",
+        "C01/public-result.json"
+      ],
+      "findings": [
+        {
+          "kind": "observed failure",
+          "severity": "blocking",
+          "message": "Public test case '# ##' fails: candidate returns title '##' instead of expected empty string. This violates the specified contract that a terminal run of hashes separated from the preceding title by a space/tab is a closing marker, not part of the title.",
+          "evidence": [
+            "C01/public-result.json"
+          ]
+        },
+        {
+          "kind": "observed defect",
+          "severity": "blocking",
+          "message": "Candidate regex `^(?P<marker>#{1,6})[ \\t]+(?P<text>.*?)(?:(?<=\\S)[ \\t]+#*|[ \\t]*)[ \\t]*$` does not differentiate between an attached hash suffix and a closing hash run. It captures all-hash text as the title when no closing run is present, leading to the failure in '# ##' and also incorrectly emptying titles such as '# #' when a closing run follows.",
+          "evidence": [
+            "C01/candidate.txt"
+          ]
+        }
+      ],
+      "summary": "The candidate implementation fails to correctly handle ATX heading titles that end with an attached hash suffix that is not a closing marker. The current regex incorrectly treats such text as the title, causing public contract violations. A fix requires adjusting the regex to capture a separate closing hash run group and adding logic to set the title to an empty string when the captured title consists solely of hashes and no closing run is present.",
+      "outstanding": [],
+      "requests": [],
+      "assessed_obligations": [
+        "current-owner"
+      ]
+    }
+  },
+  "not_a_ModelResponse": true,
+  "not_admitted_or_executed": true,
+  "interpretation": "Native final/constrain channel was rejected by installed PEG-native parser; local JSON extraction is for factual diagnosis only. Unknown API outcome remains consumed."
+}

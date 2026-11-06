@@ -1,0 +1,65 @@
+{
+  "trial": "qwen-high-off-C02-r1",
+  "case": "C02",
+  "variant": "qwen-high-off",
+  "rep": 1,
+  "proposal": {
+    "candidate_sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+    "subject_sha256": "a5d260d75128cf461f9af81bfe57bac6a1808297953182d07a1ede4d8ca89a1a",
+    "conclusion": {
+      "assessed_obligations": [
+        "task-objective: Repair attached literal hash suffix corruption in MarkdownFile ATX heading titles only; only a terminal hash run separated from the title by space/tab is a closing marker; attached hashes stay literal (incl. with trailing whitespace or a separate closing run); preserve trimming, separated closer, empty titles, levels, line numbers, fence exclusion, hierarchy, lookup, and exact original content; narrow raw-text helper, no new grammar; only the authorized model file may change.",
+        "current-owner: Acquire complete current Markdown model owner and preserve its title, fence, section and lookup contracts while repairing only attached hash suffix handling."
+      ],
+      "disposition": "accept",
+      "evidence": [
+        "task",
+        "baseline",
+        "candidate",
+        "diff",
+        "public-checks"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            "public-checks"
+          ],
+          "kind": "observed",
+          "message": "Bounded public check public-C02 passed (exit 0) on all four fixed inputs: '# C#'->'C#', '# C# #'->'C#', '# Title #'->'Title', '# ##'->''. Confirms attached hashes are literal and separated terminal closing hashes (including empty heading) are removed.",
+          "severity": "advisory"
+        },
+        {
+          "evidence": [
+            "candidate",
+            "diff",
+            "task"
+          ],
+          "kind": "inference",
+          "message": "The posed defect (separated closing run after an attached hash) is NOT mishandled. Static trace of the candidate regex shows '# C# #' yields text 'C# ' (strip 'C#'), '# A# #' yields 'A#', and '# A # B #' yields 'A # B' - only the terminal, space/tab-separated hash run is stripped while attached hashes remain literal, matching the task contract.",
+          "severity": "advisory"
+        },
+        {
+          "evidence": [
+            "candidate",
+            "baseline",
+            "diff"
+          ],
+          "kind": "inference",
+          "message": "Diff is minimal and confined to the authorized model file: only _ATX_HEADING_PATTERN and an explanatory comment changed. Marker group (#{1,6}), fence pattern, headings/sections, find_heading/find_section, _build_section, line numbers, lookup semantics, and exact original content are all unchanged; no new indentation/opening grammar or full CommonMark behavior introduced.",
+          "severity": "advisory"
+        }
+      ],
+      "outstanding": [
+        "Bounded public check covers only its four fixed inputs; full CommonMark conformance is out of scope by design (narrow raw-text helper) and not required. Formal acceptance and custody references are unavailable; this disposition rests on the authenticated public observation plus static analysis of the candidate.",
+        "The lookbehind '(?<=[ \\t])' is fixed-width and Python-re safe; no catastrophic-backtracking concern was found, but performance on very long pathological heading lines was not benchmarked (not required by the task)."
+      ],
+      "requests": [
+        "None required for this bounded review; formal acceptance remains with the trusted host."
+      ],
+      "summary": "The candidate repairs the attached-hash-suffix corruption by replacing the baseline trailing '[ \\t]*#*' with an optional, space/tab-lookbehind-bounded closer group '(?:(?<=[ \\t])#+)?'. This makes only a terminal hash run separated from the title by a space or tab a closing marker, while attached hashes (e.g. '# C#') remain literal, including when followed by trailing whitespace or a separate closing run ('# C# #' -> 'C#'). I traced the lazy regex against the key cases and found correct behavior: '# C#'->'C#', '# C# #'->'C#', '# A# #'->'A#', '# A # B #'->'A # B', '# Title #'->'Title', '# ##'->'' (empty title preserved). The diff is confined to the single authorized model file; levels, line numbers, fence exclusion, section/hierarchy boundaries, lookup semantics, trimming, and exact original content are all preserved, and no new grammar is introduced. The authenticated bounded public check public-C02 passed on all four fixed inputs. The alleged defect (separated closing run after an attached hash) was investigated and found to be handled correctly, not a defect."
+    }
+  },
+  "terminal": "proposal returned",
+  "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-off-C02-r1\\1\\normalized.json",
+  "admission": "ValueError: Review obligation references are invalid"
+}

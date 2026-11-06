@@ -1,0 +1,7 @@
+* -text
+*.txt whitespace=cr-at-eol
+*.json whitespace=cr-at-eol
+
+# Preserve original CRLF/CRCRLF and EOF in immutable capture data.
+*.log whitespace=cr-at-eol
+drivers/*.txt -whitespace

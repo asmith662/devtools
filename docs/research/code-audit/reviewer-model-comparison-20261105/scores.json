@@ -1,0 +1,327 @@
+{
+  "schema": "reviewer-model-comparison-scoring-v1",
+  "frozen_grader_sha256": "5ecb3df79edeb91eb8f2c8a5d68483aee91ab3f20d414cab7f5e7baefa5190be",
+  "groups": {
+    "qwen-off-2048": {
+      "calls": 8,
+      "measured_input_tokens": 74837,
+      "api_reported_input_tokens": 74837,
+      "api_reported_output_tokens": 4178,
+      "api_usage_responses": 8,
+      "seconds": 281.521347,
+      "read_tools": 4
+    },
+    "qwen-on-2048": {
+      "calls": 4,
+      "measured_input_tokens": 33809,
+      "api_reported_input_tokens": 33809,
+      "api_reported_output_tokens": 8192,
+      "api_usage_responses": 4,
+      "seconds": 404.305228,
+      "read_tools": 0
+    },
+    "qwen-off-8192": {
+      "calls": 3,
+      "measured_input_tokens": 27076,
+      "api_reported_input_tokens": 27076,
+      "api_reported_output_tokens": 7356,
+      "api_usage_responses": 3,
+      "seconds": 343.05259,
+      "read_tools": 1
+    },
+    "qwen-on-8192": {
+      "calls": 2,
+      "measured_input_tokens": 16906,
+      "api_reported_input_tokens": 16906,
+      "api_reported_output_tokens": 16049,
+      "api_usage_responses": 2,
+      "seconds": 702.3089070000001,
+      "read_tools": 0
+    },
+    "gpt-oss-native-8192": {
+      "calls": 5,
+      "measured_input_tokens": 41355,
+      "api_reported_input_tokens": 34642,
+      "api_reported_output_tokens": 5186,
+      "api_usage_responses": 4,
+      "seconds": 115.69016,
+      "read_tools": 2
+    }
+  },
+  "trials": [
+    {
+      "packet": "initial",
+      "trial": "off-C01-r1",
+      "case": "C01",
+      "terminal": "proposal returned",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "reject",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "admitted",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "on-C02-r1",
+      "case": "C02",
+      "terminal": "output-limit-censored",
+      "recommendation": null,
+      "expected_factual_recommendation": "accept",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "off-C02-r1",
+      "case": "C02",
+      "terminal": "proposal returned",
+      "recommendation": "accept",
+      "expected_factual_recommendation": "accept",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "ValueError: Acceptance proposal has incomplete obligations or blocking risks",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "on-C01-r1",
+      "case": "C01",
+      "terminal": "output-limit-censored",
+      "recommendation": null,
+      "expected_factual_recommendation": "reject",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "on-C01-r2",
+      "case": "C01",
+      "terminal": "output-limit-censored",
+      "recommendation": null,
+      "expected_factual_recommendation": "reject",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "off-C02-r2",
+      "case": "C02",
+      "terminal": "proposal returned",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "accept",
+      "code_correct": false,
+      "unsupported_blocking_findings": 1,
+      "native_proposal": true,
+      "strict_admission": "admitted",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "on-C02-r2",
+      "case": "C02",
+      "terminal": "output-limit-censored",
+      "recommendation": null,
+      "expected_factual_recommendation": "accept",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": null
+    },
+    {
+      "packet": "initial",
+      "trial": "off-C01-r2",
+      "case": "C01",
+      "terminal": "proposal returned",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "reject",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "admitted",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "higher-qwen",
+      "trial": "qwen-high-off-C01-r1",
+      "case": "C01",
+      "terminal": "proposal returned",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "reject",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "ValueError: Review cites unavailable evidence",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "higher-qwen",
+      "trial": "qwen-high-on-C02-r1",
+      "case": "C02",
+      "terminal": "output-limit-censored",
+      "recommendation": null,
+      "expected_factual_recommendation": "accept",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": null
+    },
+    {
+      "packet": "higher-qwen",
+      "trial": "qwen-high-off-C02-r1",
+      "case": "C02",
+      "terminal": "proposal returned",
+      "recommendation": "accept",
+      "expected_factual_recommendation": "accept",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "ValueError: Review obligation references are invalid",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "higher-qwen",
+      "trial": "qwen-high-on-C01-r1",
+      "case": "C01",
+      "terminal": "proposal returned",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "reject",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "ValueError: Review obligation references are invalid",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "alternate",
+      "trial": "gpt-oss-native-C02-r1",
+      "case": "C02",
+      "terminal": "proposal returned",
+      "recommendation": "accept",
+      "expected_factual_recommendation": "accept",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": true,
+      "strict_admission": "ValueError: Review cites unavailable evidence",
+      "judgment_channel": "native-tool",
+      "error": null
+    },
+    {
+      "packet": "alternate",
+      "trial": "gpt-oss-native-C01-r1",
+      "case": "C01",
+      "terminal": "known protocol failure",
+      "recommendation": "reject",
+      "expected_factual_recommendation": "reject",
+      "code_correct": true,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": "unadmitted-prose-json-for-grading-only",
+      "error": {
+        "type": "ValueError",
+        "message": "No supported native Tool or proposal"
+      }
+    },
+    {
+      "packet": "alternate",
+      "trial": "gpt-oss-native-C01-r2",
+      "case": "C01",
+      "terminal": "unknown-or-failed",
+      "recommendation": null,
+      "expected_factual_recommendation": "reject",
+      "code_correct": null,
+      "unsupported_blocking_findings": 0,
+      "native_proposal": false,
+      "strict_admission": null,
+      "judgment_channel": null,
+      "error": {
+        "type": "LlamaCppResponseError",
+        "message": "llama.cpp response had an invalid HTTP status line."
+      }
+    },
+    {
+      "packet": "alternate",
+      "trial": "gpt-oss-native-C02-r2",
+      "case": "C02",
+      "terminal": "not-entered-after-unknown-or-failed-call",
+      "code_correct": null,
+      "native_proposal": false
+    }
+  ],
+  "memory": {
+    "qwen": {
+      "samples": 34,
+      "gpu_used_mib_min": 14742,
+      "gpu_used_mib_max": 14742,
+      "host_available_bytes_min": 323231744,
+      "qualification": "Before/after observations, not true peaks."
+    },
+    "gpt-oss": {
+      "samples": 10,
+      "gpu_used_mib_min": 12124,
+      "gpu_used_mib_max": 12144,
+      "host_available_bytes_min": 7733248,
+      "qualification": "Before/after observations, not true peaks."
+    }
+  },
+  "server_failed_generation": {
+    "trial": "gpt-oss-native-C01-r2",
+    "server_prompt_tokens": 6713,
+    "server_decoded_tokens": 4944,
+    "server_eval_seconds": 49.34763,
+    "server_total_seconds": 51.21472,
+    "api_usage": null,
+    "error": "PEG-native output-format error500; client invalid-status-line exception. Missing HTTP body/headers and full reasoning not reconstructed. Original consumed unknown outcome unchanged.",
+    "diagnostic_only": "Server-logged unadmitted JSON identifies the real # ## defect, but also includes a false claim about emptying # # and misdescribes attached-suffix behavior. Not scored as an admitted or completed review.",
+    "post_hoc_public_example_adjudication": [
+      {
+        "source": "baseline.txt",
+        "sha256": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+        "input": "# #",
+        "actual": "",
+        "expected_from_public_empty_heading_contract": ""
+      },
+      {
+        "source": "C01/candidate.txt",
+        "sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+        "input": "# #",
+        "actual": "#",
+        "expected_from_public_empty_heading_contract": ""
+      },
+      {
+        "source": "C02/candidate.txt",
+        "sha256": "b2d08c895747382345f9f276dda3062a74a6157aab99f7e919459aee2772f92f",
+        "input": "# #",
+        "actual": "",
+        "expected_from_public_empty_heading_contract": ""
+      }
+    ]
+  },
+  "limits": "Small diagnostic sample; no model promotion, causal budget claim or statistical superiority. Higher-Qwen known host NameError recovered with same grant and zero inference replay; phase interleaving changed. Alternate stopped after one unknown-format/API failure, remaining case not entered."
+}

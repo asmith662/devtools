@@ -1,0 +1,142 @@
+{
+  "frozen_sha256": "9aa7b08bd6d8028dab8cf82fc9d052d2d37993bfcb6f1e819557dc29bff6f444",
+  "policy_version": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+  "grant": "routine-v1:4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9:5195fea71c574a73c9c9258e256aff31afff98a7780c1a9cf1172f8d17e3c854",
+  "trials": [
+    {
+      "trial": "qwen-high-off-C01-r1",
+      "case": "C01",
+      "variant": "qwen-high-off",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "known protocol failure",
+      "error": {
+        "type": "NameError",
+        "message": "name 'seen' is not defined"
+      }
+    },
+    {
+      "trial": "qwen-high-on-C02-r1",
+      "case": "C02",
+      "variant": "qwen-high-on",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "known protocol failure",
+      "error": {
+        "type": "NameError",
+        "message": "name 'seen' is not defined"
+      }
+    },
+    {
+      "trial": "qwen-high-off-C02-r1",
+      "case": "C02",
+      "variant": "qwen-high-off",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "known protocol failure",
+      "error": {
+        "type": "NameError",
+        "message": "name 'seen' is not defined"
+      }
+    },
+    {
+      "trial": "qwen-high-on-C01-r1",
+      "case": "C01",
+      "variant": "qwen-high-on",
+      "rep": 1,
+      "proposal": null,
+      "terminal": "known protocol failure",
+      "error": {
+        "type": "NameError",
+        "message": "name 'seen' is not defined"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "trial": "qwen-high-off-C01-r1",
+      "turn": 1,
+      "seconds": 17.990019,
+      "input_tokens": 8383,
+      "usage": {
+        "completion_tokens": 61,
+        "prompt_tokens": 8383,
+        "total_tokens": 8444,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-on-C02-r1",
+      "turn": 1,
+      "seconds": 374.33629,
+      "input_tokens": 8484,
+      "usage": {
+        "completion_tokens": 8192,
+        "prompt_tokens": 8484,
+        "total_tokens": 16676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "length",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-off-C02-r1",
+      "turn": 1,
+      "seconds": 270.406609,
+      "input_tokens": 8450,
+      "usage": {
+        "completion_tokens": 6439,
+        "prompt_tokens": 8450,
+        "total_tokens": 14889,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    },
+    {
+      "trial": "qwen-high-on-C01-r1",
+      "turn": 1,
+      "seconds": 327.972617,
+      "input_tokens": 8422,
+      "usage": {
+        "completion_tokens": 7857,
+        "prompt_tokens": 8422,
+        "total_tokens": 16279,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish_reason": "tool_calls",
+      "consumed": true,
+      "error": null,
+      "read_completed": false
+    }
+  ],
+  "seconds": 991.719203,
+  "operator_approvals_for_run": 0,
+  "provider_after": {
+    "configuration": {
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "qwen38-local",
+      "image": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "artifact_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "context_tokens": 65536
+    },
+    "healthy": true,
+    "idle": true
+  }
+}

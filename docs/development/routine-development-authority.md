@@ -38,6 +38,11 @@ not signatures or protection from a hostile principal controlling the host.
 
 ## Policy scope and escalation
 
+The [v4 reviewer enrollment](reviewer-provider-enrollment.md) binds local
+`scope.profile` to an explicit provider, allowed roles and finite budgets. Native
+coding/review still use their unchanged global provider and separate gates;
+local qualification is not native reviewer installation authority.
+
 The [v3 local-work amendment](routine-local-work.md) adds bounded calibration,
 role/memory/playbook evaluation, source research, diagnostics and supervisor
 delegation through this same owner. Once explicitly activated, it derives fresh

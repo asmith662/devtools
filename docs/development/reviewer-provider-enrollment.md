@@ -1,5 +1,12 @@
 # Bounded local reviewer-provider enrollment
 
+Activated after the committed-input protected pass as
+`4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9`.
+The [measured comparison](../research/reviewer-model-comparison.md) and its
+[activation record](../research/code-audit/reviewer-model-comparison-20261105/activation.json)
+record actual authority separately from model qualification. The first alternate
+packet stopped on a native-format failure; no production reviewer was installed.
+
 The operator approved the exact prospective enrollment scope
 `9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f`
 in response to the reviewer-model comparison. Implementation does not itself

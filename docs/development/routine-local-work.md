@@ -1,6 +1,6 @@
 # Standing authority for bounded local work
 
-The prospective [reviewer-provider enrollment](reviewer-provider-enrollment.md)
+The activated [reviewer-provider enrollment](reviewer-provider-enrollment.md)
 adds explicit per-profile providers and reasoning budgets through a separately
 approved v4 amendment. Query current activation; this v3 history does not itself
 authorize an alternate service or expand a historical grant.

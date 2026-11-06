@@ -1,0 +1,20 @@
+{
+  "source": "src/devtools/models/interaction/providers/llama_cpp.py:_parse_http_headers",
+  "observations": [
+    {
+      "status_line": "HTTP/1.1 200 OK",
+      "parsed_status": 200
+    },
+    {
+      "status_line": "HTTP/1.1 500 Internal Server Error",
+      "exception": "LlamaCppResponseError",
+      "message": "llama.cpp response had an invalid HTTP status line."
+    },
+    {
+      "status_line": "HTTP/1.1 404 Not Found",
+      "exception": "LlamaCppResponseError",
+      "message": "llama.cpp response had an invalid HTTP status line."
+    }
+  ],
+  "scope": "Offline deterministic parser check; no HTTP request, source modification or inference. Actual failed raw headers were not captured; this proves a parser defect, not their exact bytes."
+}

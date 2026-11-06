@@ -1,0 +1,14 @@
+import json,ast,re,hashlib,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()))
+o=Path('.local/reviewer-model-comparison');s=json.loads((o/'execution/summary.json').read_text());rows=[]
+for t in s['trials']:
+ p=t.get('proposal');verdict=p['conclusion']['disposition'] if p else None
+ grade={'trial':t['trial'],'case':t['case'],'thinking':t['configuration']=='on','terminal':t['terminal'],'raw_recommendation':verdict,'strict_admission':t.get('admission'),'expected_factual_recommendation':'reject' if t['case']=='C01' else 'accept','factual_correct':None if p is None else verdict==('reject' if t['case']=='C01' else 'accept'),'unsupported_blocking_findings':1 if t['trial']=='off-C02-r2' else 0,'grounding':'Output-limit censored, no complete recommendation' if p is None else 'Contradicted regex hypothesis for # C#  ##' if t['trial']=='off-C02-r2' else 'Matches authenticated public observations and task requirement; complete behavior outside the fixed inputs is not established.'}
+ rows.append(grade)
+checks=[]
+for name in ('baseline.txt','C01/candidate.txt','C02/candidate.txt'):
+ raw=(o/name).read_bytes();node=next(n for n in ast.walk(ast.parse(raw.decode())) if isinstance(n,ast.AnnAssign) and isinstance(n.target,ast.Name) and n.target.id=='_ATX_HEADING_PATTERN');pattern=re.compile(ast.literal_eval(node.value.args[0]));m=pattern.fullmatch('# C#  ##');checks.append({'source':name,'sha256':hashlib.sha256(raw).hexdigest(),'input':'# C#  ##','actual':m.group('text').strip() if m else None,'expected_public_contract':'C#','method':'Host-only post-hoc literal-regex adjudication of the model-invented control finding; not frozen acceptance and not disclosed to later actors.'})
+assert all(x['actual']=='C#' for x in checks)
+value={'frozen_grader_sha256':hashlib.sha256((o/'grader-only.json').read_bytes()).hexdigest(),'trials':rows,'post_hoc_claim_check':checks,'totals':{variant:{'calls':sum(1 for r in s['rows'] if r['configuration']==variant),'input_tokens':sum(r['usage']['prompt_tokens'] for r in s['rows'] if r['configuration']==variant),'output_tokens':sum(r['usage']['completion_tokens'] for r in s['rows'] if r['configuration']==variant),'seconds':sum(r['seconds'] for r in s['rows'] if r['configuration']==variant)} for variant in ('off','on')}}
+(o/'initial-scores.json').write_text(json.dumps(value,indent=2)+'\n');print(json.dumps({'totals':value['totals'],'trials':[{k:r[k] for k in ('trial','raw_recommendation','factual_correct','strict_admission')} for r in rows]}))

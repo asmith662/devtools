@@ -1,0 +1,68 @@
+{
+  "schema": "reviewer-model-qualified-comparison-v1",
+  "prior_frozen": "17942161008a09b9f1084d96f11e3834bda36f01a04e6e215bec54d00921f284",
+  "enrollment": "9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+  "variants": {
+    "qwen-high-off": false,
+    "qwen-high-on": true,
+    "gpt-oss-native": null
+  },
+  "qwen_order": [
+    [
+      "qwen-high-off",
+      "C01",
+      1
+    ],
+    [
+      "qwen-high-on",
+      "C02",
+      1
+    ],
+    [
+      "qwen-high-off",
+      "C02",
+      1
+    ],
+    [
+      "qwen-high-on",
+      "C01",
+      1
+    ]
+  ],
+  "alternate_order": [
+    [
+      "gpt-oss-native",
+      "C02",
+      1
+    ],
+    [
+      "gpt-oss-native",
+      "C01",
+      1
+    ],
+    [
+      "gpt-oss-native",
+      "C01",
+      2
+    ],
+    [
+      "gpt-oss-native",
+      "C02",
+      2
+    ]
+  ],
+  "limits": {
+    "output_tokens": 8192,
+    "input_tokens": 16384,
+    "call_seconds": 600,
+    "calls_per_trial": 2,
+    "calls_per_model_packet": 8,
+    "reads_per_packet": 4,
+    "wall_seconds": 10800,
+    "capture_bytes": 4194304
+  },
+  "control": "Same frozen task, candidate/baseline/diff/public check evidence, system prompt, native Tools, phase instructions and grader. Qwen comparison changes only thinking flag at equal8192ceiling; one repetition/case/flag. gpt-oss gets native Harmony default reasoning (capture actual props/render), same8192ceiling with two repetitions/case. Model-native sampling/template differences are captured and cannot be separated from model configuration.",
+  "scoring": "Existing independent grader unchanged: grounded true defect vs false acceptance/rejection/abstention; unsupported findings; actual/expected interpretation; native Tool/schema/identity delivery; strict admission separate (missing real acceptance/custody references); reasoning/output truncation censored; tokens, latency and sampled memory. No promotion from one success.",
+  "stops": "No retries. Unknown inference/tool effects stop packet. Known malformed protocol stops trial. Output-length ends trial as censored. No reallocation of unused calls. Failed lifecycle requires reconciliation and restoration. No extra prompt or memory variants.",
+  "smoke": "At most two separate compatibility calls for gpt-oss if needed; existing real review calls themselves qualify native Tool/schema transport, so do not spend smoke calls absent a concrete compatibility question."
+}

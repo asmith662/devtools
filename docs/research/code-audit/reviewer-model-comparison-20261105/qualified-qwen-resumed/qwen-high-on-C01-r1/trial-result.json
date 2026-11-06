@@ -1,0 +1,64 @@
+{
+  "trial": "qwen-high-on-C01-r1",
+  "case": "C01",
+  "variant": "qwen-high-on",
+  "rep": 1,
+  "proposal": {
+    "subject_sha256": "1a56c3461a9445c372899d33db7d493d46f1cc69715aab6651dd8982b27d0614",
+    "candidate_sha256": "ea9619b09ebaca244b358179fecc7c952be37e07edac66ba5171f19b3af3b119",
+    "conclusion": {
+      "assessed_obligations": [
+        "objective: Repair attached literal hash suffix corruption in MarkdownFile heading titles only, preserving current trimming, separated closer behavior, empty titles, levels, source line numbers, fence exclusion, hierarchy boundaries, lookup semantics and exact original content. Assessed: attached-hash corruption is repaired for the observed fixed inputs ('# C#' -> 'C#', '# C# #' -> 'C#') and separated closers after a non-empty title are still removed ('# Title #' -> 'Title'); however the preservation requirement is violated for empty titles ('# ##' now yields '##' instead of the baseline ''), so the objective is not fully met.",
+        "current-owner (src/devtools/resources/filesystem/models/markdown/file.py, criterion current-whole-resource-v1): Assessed: the change is confined to the single authorized model file and to one line (_ATX_HEADING_PATTERN); fence pattern, parse loop, section building and lookup code are unchanged, preserving fence/section/lookup contracts. The title contract is not fully preserved (empty-title separated-closer behavior regressed, confirmed by public-C01 failure), so the obligation is not met."
+      ],
+      "disposition": "reject",
+      "evidence": [
+        "task",
+        "baseline",
+        "candidate",
+        "diff",
+        "public-checks"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            "public-checks"
+          ],
+          "kind": "observed",
+          "message": "Authenticated public check public-C01 failed with exit_code 1: for input '# ##' the expected title is '' but the observed title is '##' (actual vs expected mismatch in the fixed public case set). The other three fixed cases passed: '# C#' -> 'C#', '# C# #' -> 'C#', '# Title #' -> 'Title'. A known public mismatch is a contract failure.",
+          "severity": "blocking"
+        },
+        {
+          "evidence": [
+            "candidate",
+            "baseline"
+          ],
+          "kind": "inference",
+          "message": "Root cause of the observed failure: the candidate closer alternative '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)' only fires when a non-space character immediately precedes the separator. For a terminal hash run following an empty title (e.g. '# ##', '# #', '#  ##') the character before the separator is the space after the marker, the lookbehind fails, and the hashes are captured as literal title text instead of being removed as a separated closer. This regresses the baseline behavior, which yielded '' for '# ##'.",
+          "severity": "blocking"
+        },
+        {
+          "evidence": [
+            "diff",
+            "baseline",
+            "candidate"
+          ],
+          "kind": "observed",
+          "message": "Scope confirmation: the diff is a single-line change to _ATX_HEADING_PATTERN inside MarkdownFile; _FENCE_PATTERN, _parse_headings, _build_section, find_heading and find_section are byte-identical to the baseline, so fence exclusion, levels, line numbers, hierarchy boundaries and lookup semantics are untouched by the change.",
+          "severity": "advisory"
+        }
+      ],
+      "outstanding": [
+        "Only the four fixed public inputs were executed; same-class inputs ('# #', '#  ##', tab-separator variants) and multi-line documents with fences were not executed against the candidate.",
+        "Private acceptance implementation and formal acceptance/custody references are unavailable; correctness beyond the fixed public check could not be independently verified."
+      ],
+      "requests": [
+        "Provide a revised candidate in which a separated terminal run of hashes is still removed when the preceding title is empty (restoring baseline '' for '# ##' and same-class inputs), while keeping attached hashes literal including when followed by trailing whitespace or a separate closing run ('# C#' -> 'C#', '# C# #' -> 'C#'); then re-run public-C01 until it passes."
+      ],
+      "summary": "The candidate changes exactly one line in the authorized model file: MarkdownFile._ATX_HEADING_PATTERN (single-hunk diff; fence pattern, parse loop, section construction and both lookup methods are unchanged). The task's core repair is achieved for the observed fixed cases: attached hashes remain literal title text ('# C#' -> 'C#'), including when followed by a separate closing run ('# C# #' -> 'C#'), and a separated closing run after a non-empty title is still removed ('# Title #' -> 'Title'). However, the authenticated public check public-C01 failed (exit_code 1): for input '# ##' the expected title is '' (empty title, with the separated terminal hash run treated as a closer, matching the baseline) but the candidate observed '##'. Mechanism (inference): the closer alternative '(?:(?<=\\S)[ \\t]+#*|[ \\t]*)' requires a non-space character immediately before the separator, so a terminal hash run following an empty title cannot be recognized as a closer and is instead captured into the text group; the same class affects '# #' and '#  ##'. This regresses the baseline's trimming/separated-closer/empty-title behavior, violating the task's preservation requirement and the current-owner title-contract obligation. Disposition: reject."
+    }
+  },
+  "terminal": "proposal returned",
+  "received_response_from": ".local\\reviewer-model-comparison\\qualified-qwen\\qwen-high-on-C01-r1\\1\\normalized.json",
+  "admission": "ValueError: Review obligation references are invalid"
+}

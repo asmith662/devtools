@@ -1,5 +1,11 @@
 # Documentation Map
 
+[Reviewer-model comparison](research/reviewer-model-comparison.md) distinguishes
+factual judgments, native Tool delivery, strict admission, output truncation and
+server-native formatting failure across 22 genuine generations. It records the
+activated bounded enrollment, preserved negative evidence and restored Qwen
+service; neither tested reviewer is promoted.
+
 [Bounded reviewer-provider enrollment](development/reviewer-provider-enrollment.md)
 documents the approved v4 local-profile amendment, separate native authority and
 exceptional sequential serving scope. Activation and measured model accuracy
