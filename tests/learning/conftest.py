@@ -17,7 +17,7 @@ from devtools.tools.learning import ManagedLearningWorker
 from devtools.tools.learning import execution as worker_execution
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator, Mapping
+    from collections.abc import Callable, Iterator, Mapping
 
     from devtools.core.time import Duration
     from devtools.learning.integrations.local.operations import LearningPublication
@@ -46,7 +46,7 @@ def retain_test_coverage():
     measurement.save()
     sources={name:hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()
         for name in measurement.get_data().measured_files()}
-    receipt=dict(nonce=measurement_nonce,plan_identity=measurement_plan,
+    receipt=dict(nonce=measurement_nonce,operation_identity=measurement_plan,
         packet_sha256=hashlib.sha256(measurement_packet).hexdigest(),
         executable_sha256=hashlib.sha256(pathlib.Path(sys.executable).read_bytes()).hexdigest(),
         data_sha256=hashlib.sha256(measurement_file.read_bytes()).hexdigest(),
@@ -66,19 +66,23 @@ def _collect(
     root: Path,
     parent: coverage.Coverage,
     expected: Mapping[str, str],
+    *,
+    packet_name: str = "request.json",
+    completed: bool = False,
 ) -> None:
     """Combine only fresh nonce-, packet-, interpreter- and source-bound data."""
     name = ".coverage-" + expected["nonce"]
     receipt = root / (name + ".json")
     if not receipt.exists():
         # Refused/mocked operations and killed workers have no completed capture.
+        assert not completed, "completed numerical process did not retain coverage"
         return
     actual = json.loads(receipt.read_bytes())
     for key, value in expected.items():
         assert actual[key] == value, key
     assert (
         actual["packet_sha256"]
-        == hashlib.sha256((root / "request.json").read_bytes()).hexdigest()
+        == hashlib.sha256((root / packet_name).read_bytes()).hexdigest()
     )
     data_path = root / name
     assert actual["data_sha256"] == hashlib.sha256(data_path.read_bytes()).hexdigest()
@@ -123,16 +127,83 @@ def native_coverage(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
     ) -> LearningPublication:
         expected = {
             "nonce": nonce,
-            "plan_identity": plan.identity,
+            "operation_identity": plan.identity,
             "executable_sha256": await asyncio.to_thread(
                 _digest,
                 self.executable.value,
             ),
         }
+        completed = False
         try:
-            return await execute(self, plan, grant, root, **options)
+            result = await execute(self, plan, grant, root, **options)
+            completed = True
+            return result
         finally:
-            await asyncio.to_thread(_collect, root, parent, expected)
+            await asyncio.to_thread(
+                _collect,
+                root,
+                parent,
+                expected,
+                completed=completed,
+            )
 
     monkeypatch.setattr(ManagedLearningWorker, "execute", measured)
     yield
+
+
+@pytest.fixture
+def control_coverage(
+    tmp_path: Path,
+) -> Callable[[Path, Path], tuple[str, Callable[[], None]]]:
+    """Measure the existing authored control script under the same Job1 custody."""
+    parent = coverage.Coverage.current()
+
+    def prepare(program: Path, executable: Path) -> tuple[str, Callable[[], None]]:
+        if parent is None:
+            return "", lambda: None
+        nonce = uuid4().hex
+        identity = _digest(program)
+        packet = {
+            "schema": "test-process-coverage-v1",
+            "coverage_identity": identity,
+            "program_sha256": identity,
+            "argv": [str(program), str(tmp_path / "science")],
+        }
+        packet_name = ".coverage-request.json"
+        (tmp_path / packet_name).write_text(json.dumps(packet), encoding="utf-8")
+        expected = {
+            "nonce": nonce,
+            "operation_identity": identity,
+            "executable_sha256": _digest(executable),
+        }
+        control = (
+            _MEASUREMENT.replace("'request.json'", repr(packet_name))
+            .replace(
+                "measurement_plan=json.loads(measurement_packet)['grant']['plan_identity']",
+                "measurement_control=json.loads(measurement_packet)\n"
+                "measurement_plan=measurement_control['coverage_identity']\n"
+                "measurement_program=pathlib.Path(sys.argv[0])\n"
+                "assert hashlib.sha256(measurement_program.read_bytes()).hexdigest()=="
+                "measurement_control['program_sha256']\n"
+                "assert list(sys.argv)==measurement_control['argv']",
+            )
+            .replace(
+                "    measurement.stop()",
+                "    assert hashlib.sha256("
+                "measurement_program.read_bytes()).hexdigest()=="
+                "measurement_control['program_sha256']\n    measurement.stop()",
+            )
+        )
+
+        def finish() -> None:
+            _collect(
+                tmp_path,
+                parent,
+                expected,
+                packet_name=packet_name,
+                completed=True,
+            )
+
+        return control.replace("NONCE", repr(nonce)), finish
+
+    return prepare

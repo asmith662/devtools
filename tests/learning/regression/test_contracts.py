@@ -66,7 +66,9 @@ def _population() -> RegressionPopulation:
     ],
 )
 def test_unadmitted_regression_semantics_cannot_be_coerced(
-    owner: str, field: str, bad: object,
+    owner: str,
+    field: str,
+    bad: object,
 ) -> None:
     """A numeric container does not establish source role, quantity or valid rows."""
     population = _population()
@@ -105,7 +107,8 @@ def test_explicit_units_roles_and_specification_versions_remain_distinct() -> No
     assert (
         RegressionSpecification(RegressionMethod.KNN).configuration
         != RegressionSpecification(
-            RegressionMethod.KNN, "regression-specification-v2",
+            RegressionMethod.KNN,
+            "regression-specification-v2",
         ).configuration
     )
 
@@ -116,7 +119,9 @@ def test_capacity_text_bounds_apply_to_all_original_v2_identities() -> None:
     oversized = "x" * (REGRESSION_V2.text_bytes + 1)
     with pytest.raises(ValueError, match="bounded regression identity"):
         replace(
-            population.inputs, version="regression-input-v2", source_identity=oversized,
+            population.inputs,
+            version="regression-input-v2",
+            source_identity=oversized,
         )
     v2 = replace(population.inputs, version="regression-input-v2")
     with pytest.raises(ValueError, match="bounded regression identity"):
@@ -131,7 +136,8 @@ def test_capacity_text_bounds_apply_to_all_original_v2_identities() -> None:
 
 
 def _predictions(
-    population: RegressionPopulation, values: tuple[float, ...],
+    population: RegressionPopulation,
+    values: tuple[float, ...],
 ) -> RegressionPredictions:
     return RegressionPredictions(
         uuid4(),
@@ -153,14 +159,16 @@ def _predictions(
     ],
 )
 def test_unrepresentable_measurements_keep_the_original_denominator(
-    targets: tuple[float, ...], predicted: tuple[float, ...],
+    targets: tuple[float, ...],
+    predicted: tuple[float, ...],
 ) -> None:
     """Overflow is an explicit nonvalue; no row dropping or forced R2 convention."""
     original = _population()
     inputs = replace(
         original.inputs,
         features=replace(
-            original.inputs.features, rows=original.inputs.features.rows[:2],
+            original.inputs.features,
+            rows=original.inputs.features.rows[:2],
         ),
         row_ids=original.inputs.row_ids[:2],
     )
@@ -179,7 +187,8 @@ def test_measurement_rejects_foreign_or_reordered_predicted_population() -> None
     predicted = _predictions(population, population.values)
     with pytest.raises(ValueError, match="original row order"):
         evaluate_regression(
-            population, replace(predicted, row_ids=tuple(reversed(predicted.row_ids))),
+            population,
+            replace(predicted, row_ids=tuple(reversed(predicted.row_ids))),
         )
     with pytest.raises(TypeError, match="typed original regression"):
         evaluate_regression(cast("RegressionPopulation", None), predicted)

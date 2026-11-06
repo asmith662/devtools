@@ -43,7 +43,8 @@ def _plan(family: str) -> LearningPlan:
     ],
 )
 def test_unadmitted_plan_cannot_produce_execution_authority(
-    field: str, bad: str,
+    field: str,
+    bad: str,
 ) -> None:
     """Invalid family, metric and source shape refuse before any worker is created."""
     reconstruct = cast("Callable[..., LearningPlan]", replace)
@@ -102,7 +103,8 @@ def test_binary_source_membership_and_target_contracts(fault: str) -> None:
     else:
         data["evaluation_targets"][0] = 2
     with pytest.raises(
-        ValueError, match=r"unsupported binary|exact original binary|aligned disjoint",
+        ValueError,
+        match=r"unsupported binary|exact original binary|aligned disjoint",
     ):
         binary_problem(data)
 
@@ -170,7 +172,9 @@ def _binary_work_input(count: int, dimension: int) -> dict[str, Any]:
     ],
 )
 def test_population_and_distance_work_bounds_precede_effects(
-    count: int, dimension: int, reason: str,
+    count: int,
+    dimension: int,
+    reason: str,
 ) -> None:
     """Bound numerical work before native construction, without exercising that work."""
     with pytest.raises(ValueError, match=reason):

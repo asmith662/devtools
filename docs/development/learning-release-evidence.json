@@ -7668,5 +7668,525 @@
       "path": ".local/learning-release/mypy-cohesion.log",
       "sha256": "3be5aebe23bf373506337dec40d202032003ca3ef407f1e73f600372928eefb8"
     }
+  },
+  "measured_scientific_checkpoint": {
+    "producing_production_commit": "638a6a48ccee9cc3af8d85aa5168f1ee5921128e",
+    "tests_passed": 722,
+    "pytest_seconds": 194.48,
+    "overall_subset_percent": 31.08,
+    "coverage_exit": 1,
+    "learning_terms": 6278,
+    "learning_missed_terms": 172,
+    "learning_percent": 97.26027397260275,
+    "inputs_unchanged": true,
+    "data_sha256": "88f1d533ab7cb7c30c4583d1e90715072914bddb30592afd206b0d5aad67ce9d",
+    "missing_modules": [
+      {
+        "module": "src\\devtools\\agents\\learning\\process.py",
+        "missing_lines": [
+          87,
+          88,
+          94,
+          95,
+          107,
+          108,
+          182,
+          183,
+          254,
+          255,
+          379,
+          380,
+          404,
+          405,
+          426,
+          427,
+          543,
+          546,
+          583,
+          584
+        ],
+        "missing_branches": [
+          [
+            79,
+            87
+          ],
+          [
+            93,
+            94
+          ],
+          [
+            106,
+            107
+          ],
+          [
+            181,
+            182
+          ],
+          [
+            253,
+            254
+          ],
+          [
+            378,
+            379
+          ],
+          [
+            403,
+            404
+          ],
+          [
+            425,
+            426
+          ],
+          [
+            443,
+            543
+          ],
+          [
+            582,
+            583
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\classification\\_validation.py",
+        "missing_lines": [
+          116,
+          117,
+          119,
+          175,
+          176,
+          187,
+          196
+        ],
+        "missing_branches": [
+          [
+            104,
+            111
+          ],
+          [
+            118,
+            119
+          ],
+          [
+            174,
+            175
+          ],
+          [
+            183,
+            188
+          ],
+          [
+            186,
+            187
+          ],
+          [
+            195,
+            196
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\classification\\behavior.py",
+        "missing_lines": [
+          35,
+          36
+        ],
+        "missing_branches": [
+          [
+            34,
+            35
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\evaluation\\regression\\metrics.py",
+        "missing_lines": [],
+        "missing_branches": [
+          [
+            101,
+            133
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\integrations\\local\\inspection.py",
+        "missing_lines": [
+          225,
+          226,
+          248,
+          249,
+          273,
+          274,
+          420,
+          421,
+          574,
+          575,
+          625,
+          626,
+          653,
+          654,
+          663,
+          664,
+          766,
+          767,
+          776,
+          777
+        ],
+        "missing_branches": [
+          [
+            224,
+            225
+          ],
+          [
+            228,
+            248
+          ],
+          [
+            272,
+            273
+          ],
+          [
+            419,
+            420
+          ],
+          [
+            570,
+            574
+          ],
+          [
+            611,
+            625
+          ],
+          [
+            652,
+            653
+          ],
+          [
+            659,
+            663
+          ],
+          [
+            765,
+            766
+          ],
+          [
+            770,
+            776
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\integrations\\local\\ledger.py",
+        "missing_lines": [],
+        "missing_branches": [
+          [
+            358,
+            -329
+          ],
+          [
+            375,
+            373
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\integrations\\local\\operations.py",
+        "missing_lines": [
+          123,
+          124,
+          145,
+          146,
+          166,
+          167,
+          184,
+          185,
+          224,
+          225,
+          299,
+          300,
+          343,
+          344,
+          353,
+          354,
+          373,
+          374,
+          436,
+          437,
+          479,
+          480,
+          522,
+          523
+        ],
+        "missing_branches": [
+          [
+            119,
+            123
+          ],
+          [
+            144,
+            145
+          ],
+          [
+            165,
+            166
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            219,
+            224
+          ],
+          [
+            298,
+            299
+          ],
+          [
+            342,
+            343
+          ],
+          [
+            347,
+            353
+          ],
+          [
+            369,
+            373
+          ],
+          [
+            435,
+            436
+          ],
+          [
+            476,
+            479
+          ],
+          [
+            521,
+            522
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\integrations\\local\\publication.py",
+        "missing_lines": [
+          95,
+          96,
+          132,
+          133,
+          134,
+          136,
+          269,
+          270,
+          271,
+          283,
+          284,
+          310,
+          311,
+          324,
+          325,
+          376,
+          377,
+          770,
+          779,
+          780
+        ],
+        "missing_branches": [
+          [
+            90,
+            95
+          ],
+          [
+            131,
+            132
+          ],
+          [
+            282,
+            283
+          ],
+          [
+            309,
+            310
+          ],
+          [
+            323,
+            324
+          ],
+          [
+            371,
+            376
+          ],
+          [
+            551,
+            569
+          ],
+          [
+            566,
+            568
+          ],
+          [
+            769,
+            770
+          ],
+          [
+            778,
+            779
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\integrations\\sklearn\\k_nearest_neighbors.py",
+        "missing_lines": [
+          55,
+          56,
+          64,
+          65,
+          66,
+          68,
+          69,
+          83,
+          84
+        ],
+        "missing_branches": [
+          [
+            54,
+            55
+          ],
+          [
+            61,
+            64
+          ],
+          [
+            64,
+            65
+          ],
+          [
+            64,
+            68
+          ],
+          [
+            65,
+            66
+          ],
+          [
+            65,
+            70
+          ],
+          [
+            68,
+            69
+          ],
+          [
+            68,
+            70
+          ],
+          [
+            82,
+            83
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\investigation\\plans.py",
+        "missing_lines": [
+          180,
+          181,
+          261,
+          262
+        ],
+        "missing_branches": [
+          [
+            176,
+            180
+          ],
+          [
+            260,
+            261
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\learning\\methods\\features.py",
+        "missing_lines": [
+          134,
+          135
+        ],
+        "missing_branches": [
+          [
+            133,
+            134
+          ]
+        ]
+      },
+      {
+        "module": "src\\devtools\\resources\\commands\\_windows_job.py",
+        "missing_lines": [
+          52,
+          53,
+          94,
+          95,
+          96,
+          110,
+          111,
+          141,
+          142,
+          147,
+          152,
+          153,
+          172,
+          173,
+          175,
+          176,
+          200,
+          201,
+          202
+        ],
+        "missing_branches": [
+          [
+            51,
+            52
+          ],
+          [
+            109,
+            110
+          ],
+          [
+            137,
+            141
+          ],
+          [
+            146,
+            147
+          ],
+          [
+            151,
+            152
+          ],
+          [
+            171,
+            172
+          ],
+          [
+            174,
+            175
+          ],
+          [
+            180,
+            -178
+          ],
+          [
+            185,
+            201
+          ],
+          [
+            198,
+            200
+          ]
+        ]
+      }
+    ],
+    "qualification": "Diagnostic combined subset, not a protected gate. Seed and worker captures authenticated. Original failures and data preserved."
   }
 }

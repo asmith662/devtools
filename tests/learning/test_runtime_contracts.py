@@ -25,7 +25,8 @@ if TYPE_CHECKING:
 
 @pytest.mark.parametrize("profile", ["python-314", "dependency-version"])
 def test_unqualified_runtime_refuses_before_numerical_execution(
-    monkeypatch: pytest.MonkeyPatch, profile: str,
+    monkeypatch: pytest.MonkeyPatch,
+    profile: str,
 ) -> None:
     """Refuse untested Python or package portability before fitting."""
     if profile == "python-314":
@@ -43,7 +44,8 @@ def test_unqualified_runtime_refuses_before_numerical_execution(
 
 @pytest.mark.parametrize("pools", [[], [{"num_threads": 2}]])
 def test_reported_native_thread_violation_refuses(
-    monkeypatch: pytest.MonkeyPatch, pools: list[dict[str, int]],
+    monkeypatch: pytest.MonkeyPatch,
+    pools: list[dict[str, int]],
 ) -> None:
     """Inject invalid thread metadata without creating another native worker."""
     control = importlib.import_module("threadpoolctl")
@@ -54,13 +56,17 @@ def test_reported_native_thread_violation_refuses(
 
 @pytest.mark.parametrize("boundary", ["library", "interpreter"])
 def test_nonbinary_identity_read_cannot_qualify_native_bytes(
-    monkeypatch: pytest.MonkeyPatch, boundary: str,
+    monkeypatch: pytest.MonkeyPatch,
+    boundary: str,
 ) -> None:
     """Require actual binary bytes at each native identity boundary."""
     original = read_file
 
     def wrong_kind(
-        path: ResolvedPath, *, file_format: FileFormat, max_bytes: int,
+        path: ResolvedPath,
+        *,
+        file_format: FileFormat,
+        max_bytes: int,
     ) -> File:
         is_interpreter = str(path.value) == sys.executable
         if is_interpreter == (boundary == "interpreter"):

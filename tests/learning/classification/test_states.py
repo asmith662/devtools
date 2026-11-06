@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import asyncio
 from dataclasses import replace
 from typing import TYPE_CHECKING, cast
 
@@ -14,14 +13,7 @@ from devtools.learning.classification.linear import (
     FittedBinaryLinearClassifier,
 )
 from devtools.learning.classification.margin import FittedMarginClassifier
-from devtools.learning.integrations.local.inspection import inspect_learning
-from devtools.learning.investigation.classification.contracts import (
-    ExecutionAuthorization,
-)
-from devtools.learning.measurement.contracts import EvidenceReference
 from devtools.learning.representation.features import FeatureTable, FeatureValueKind
-from devtools.tools.learning import ManagedLearningWorker
-from tests.learning.fixtures import authored_task
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -30,41 +22,10 @@ type State = FittedBinaryLinearClassifier | FittedMarginClassifier
 type Witness = tuple[State, BinaryLinearTraining]
 
 
-@pytest.fixture(scope="module")
-def fitted(tmp_path_factory: pytest.TempPathFactory) -> Callable[[str], Witness]:
-    """Fit each selected linear family once when an active test requests it."""
-    root = tmp_path_factory.mktemp("binary-state")
-    cache: dict[str, Witness] = {}
-
-    def get(method: str) -> Witness:
-        if method not in cache:
-            plan = authored_task("classification").plan(
-                method, "online", "binary-state-control",
-            )
-            grant = ExecutionAuthorization(
-                plan.identity,
-                (method,),
-                EvidenceReference(
-                    "learning_execution_grant-v1", "state-control", plan.identity,
-                ),
-            )
-            publication = asyncio.run(
-                ManagedLearningWorker.current().execute(plan, grant, root / method),
-            )
-            inspected = inspect_learning(publication, plan, grant)
-            assert isinstance(
-                inspected.state, (FittedBinaryLinearClassifier, FittedMarginClassifier),
-            )
-            assert inspected.binary_training is not None
-            cache[method] = inspected.state, inspected.binary_training
-        return cache[method]
-
-    return get
-
-
 @pytest.mark.parametrize("method", ["square-logistic", "square-margin"])
 def test_fitted_binary_arithmetic_is_label_free(
-    fitted: Callable[[str], Witness], method: str,
+    fitted: Callable[[str], Witness],
+    method: str,
 ) -> None:
     """Consume actual retained parameters and check exact-zero class selection."""
     state, training = fitted(method)
@@ -96,7 +57,10 @@ def test_fitted_binary_arithmetic_is_label_free(
     ],
 )
 def test_corrupt_fitted_binary_metadata_refuses(
-    fitted: Callable[[str], Witness], method: str, field: str, bad: object,
+    fitted: Callable[[str], Witness],
+    method: str,
+    field: str,
+    bad: object,
 ) -> None:
     """Preserve immutable schema, native observations and distinct fitting identity."""
     state, _ = fitted(method)
@@ -109,7 +73,8 @@ def test_corrupt_fitted_binary_metadata_refuses(
 
 @pytest.mark.parametrize("method", ["square-logistic", "square-margin"])
 def test_incompatible_or_overflowing_query_has_no_prediction(
-    fitted: Callable[[str], Witness], method: str,
+    fitted: Callable[[str], Witness],
+    method: str,
 ) -> None:
     """Refuse foreign coordinates and unrepresentable retained score arithmetic."""
     state, training = fitted(method)
@@ -120,7 +85,9 @@ def test_incompatible_or_overflowing_query_has_no_prediction(
     with pytest.raises(ValueError, match="incompatible ordered"):
         state.classify(foreign)
     oversized = replace(
-        state, coefficients=(1e308,) * len(state.feature_names), intercept=0.0,
+        state,
+        coefficients=(1e308,) * len(state.feature_names),
+        intercept=0.0,
     )
     query = FeatureTable(
         state.feature_names,
@@ -144,7 +111,9 @@ def test_incompatible_or_overflowing_query_has_no_prediction(
     ],
 )
 def test_training_requires_original_aligned_binary_source(
-    fitted: Callable[[str], Witness], field: str, bad: object,
+    fitted: Callable[[str], Witness],
+    field: str,
+    bad: object,
 ) -> None:
     """Invalid source declarations cannot become native fitting inputs."""
     _, training = fitted("square-logistic")

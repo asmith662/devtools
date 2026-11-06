@@ -164,3 +164,40 @@ the four pinned learning-extra distributions. The package contract explicitly
 refuses other numerical runtimes until qualified. Ordinary Devtools's broader
 Python support does not establish learning portability; Python 3.14.3 is not
 silently added to numerical acceptance. Installed base checks remain separate.
+
+## Combined scientific and contained-command checkpoint
+
+The `coverage-09` measured group passes all 722 selected learning and contained
+Commands tests in 194.48 seconds, with authenticated unchanged inputs. Learning
+coverage is 97.2602739726%: 172 of 6,278 statements/branches remain missed. The
+whole repository subset correctly exits 1 at 31.08% under the unchanged 100%
+policy; no new full protected release pass is claimed. Strict mypy checks 762
+modules and maintained Ruff is clear. Production bytes remain those of
+`638a6a48ccee9cc3af8d85aa5168f1ee5921128e`.
+
+A second genuine control-worker path now collects authenticated coverage using
+the direct interpreter, `-S`, explicit site initialization, empty `PYTHONPATH`,
+one native thread and the existing one-process Job. Successful workers must
+retain their capture; refused or killed workers cannot invent one. CPython does
+not trace audit callbacks while dispatching audit events. A separate test captures
+the actual callback registration and invokes its exact guards directly, covering
+network/child-process/foreign-write refusals without installing a global pytest
+audit hook. Real contained execution and source guards remain separately tested.
+
+Additional controls cover retained-state arithmetic and codec corruption, source
+roles/units, scientific event and publication contracts, actual SQLite rollback,
+read-only snapshots, ACK and lifecycle errors, independent preparation and metric
+replay, and host packet/response bounds. Lazy fixture acquisition keeps genuine
+authored Mean/Ridge/kNN/logistic/margin witnesses inside active measurement.
+Explicitly authored backend reports test refusal and diagnostic custody; they are
+not native measurements. Alternate-platform lock reports are unit simulations,
+not POSIX runtime qualification. No original Iris/MPG study is rerun or rewritten.
+
+Retained failed receipts include a schema-driver injection which initially missed
+leading DDL whitespace, a missing simulated `os.path`, a non-existent role enum,
+a mismatched population version and an incorrect expected corruption exception.
+Their corrections change test controls, not scientific or isolation semantics.
+The complete selected group now passes. Native capture and focused combinations
+retain nonce/request/interpreter/source/data identities; each append verifies
+that its seed's production hashes still match. Raw receipts remain task-owned
+under `.local/learning-release/`.

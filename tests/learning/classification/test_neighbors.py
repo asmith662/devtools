@@ -33,7 +33,9 @@ class _Output:
 def _fitted() -> FittedKNearestNeighborsClassification:
     return FittedKNearestNeighborsClassification(
         KNearestNeighborsClassificationSpecification(
-            7, KNearestNeighborsDistance.EUCLIDEAN, KNearestNeighborsWeighting.UNIFORM,
+            7,
+            KNearestNeighborsDistance.EUCLIDEAN,
+            KNearestNeighborsWeighting.UNIFORM,
         ),
         ("x",),
         (FeatureValueKind.CONTINUOUS,),
@@ -71,7 +73,8 @@ def test_neighbor_specification_is_typed(field: str, bad: object) -> None:
     ],
 )
 def test_fitted_neighbor_contract_cannot_erase_its_schema(
-    field: str, bad: object,
+    field: str,
+    bad: object,
 ) -> None:
     """Reject invalid class identity, coordinate kinds and original categories."""
     reconstruct = cast("Callable[..., object]", replace)
@@ -94,7 +97,9 @@ def test_query_alignment_is_label_free_and_does_not_predict_empty_rows() -> None
     """Align admitted coordinates, reject missing or changed kinds, and keep empties."""
     model = _fitted()
     table = FeatureTable(
-        ("extra", "x"), ((9.0, 1.0),), (FeatureValueKind.CONTINUOUS,) * 2,
+        ("extra", "x"),
+        ((9.0, 1.0),),
+        (FeatureValueKind.CONTINUOUS,) * 2,
     )
     assert model.classify(table) == (0,)
     assert model.classify(replace(table, rows=())) == ()

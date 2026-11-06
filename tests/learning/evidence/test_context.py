@@ -174,7 +174,10 @@ def test_context_validates_request_and_current_stage_progress(tmp_path: Path) ->
                 context.progress("rows", 0, 2)
             context.diagnostic(
                 Diagnostic(
-                    FailureCategory.INPUT, Severity.WARNING, "authored warning", "rows",
+                    FailureCategory.INPUT,
+                    Severity.WARNING,
+                    "authored warning",
+                    "rows",
                 ),
             )
             context.progress("rows", 2, 2)
