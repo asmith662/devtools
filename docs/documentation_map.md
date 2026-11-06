@@ -1,5 +1,10 @@
 # Documentation Map
 
+[Bounded reviewer-provider enrollment](development/reviewer-provider-enrollment.md)
+documents the approved v4 local-profile amendment, separate native authority and
+exceptional sequential serving scope. Activation and measured model accuracy
+remain distinct claims.
+
 [Evidence-verified reviewer qualification](research/reviewer-evidence-verification-results.md)
 records seven genuine standing-authorized generations after protected publication.
 Verified public outputs withdraw two false leads, but the enhanced reviewer still
