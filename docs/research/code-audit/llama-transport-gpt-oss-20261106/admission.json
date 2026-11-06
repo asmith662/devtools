@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-06T19:02:58.004225+00:00",
+  "status": "not-entered-resource-guard",
+  "active_policy": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+  "enrollment_scope": "9722f98db396dc350bfed68c057a545e1eacfe0ebe44e62cb66e6ec88f189d1f",
+  "authority_interpretation": "Existing explicit enrollment is reusable for enrolled profiles, explicit tasks and fresh bounded grants; prior operations/grants cannot be replayed",
+  "provider_profile": "local-gpt-oss-20b-review-v1",
+  "artifact_sha256_enrolled": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+  "artifact_bytes_enrolled": 12109566624,
+  "context": 32768,
+  "kv": "f16",
+  "artifact_rehashed_this_task": false,
+  "reason": "Final commit headroom 12963545088 bytes is below predeclared conservative 17179869184-byte start guard; historical commit peak equals system limit. Fresh artifact qualification and serving entry were therefore not performed.",
+  "generation_calls": 0,
+  "grants_issued": 0,
+  "serving_transitions": 0,
+  "operator_approval_requests": 0,
+  "old_failed_calls_retried": 0,
+  "qwen_pause_or_restart": false,
+  "restoration": "Not required: original Qwen never changed; final provider reauthentication required before publication",
+  "proposed_max_calls": 6,
+  "proposed_order": [
+    "minimal-read_source",
+    "submit_review_proposal",
+    "submit_review_proposal",
+    "minimal-read_source",
+    "minimal-read_source",
+    "submit_review_proposal"
+  ],
+  "prospective_budgets": {
+    "output_tokens_per_call": 2048,
+    "input_tokens_per_call": 8192,
+    "call_seconds": 120,
+    "output_tokens_total": 12288,
+    "wall_seconds": 1800,
+    "source_reads": 0,
+    "public_checks": 0,
+    "delegations": 0
+  },
+  "prospective_score": [
+    "native Tool recipient/name and unique ID",
+    "unchanged schema admission",
+    "literal transport-fixture identity match",
+    "HTTP/model termination and usage",
+    "native versus prose JSON, never executed",
+    "sampled RAM/commit/page-file/GPU headroom"
+  ],
+  "qualification": "No new model performance, factual accuracy or native Tool-success measurement. Earlier results remain historical."
+}

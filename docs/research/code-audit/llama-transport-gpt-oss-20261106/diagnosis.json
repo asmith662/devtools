@@ -1,0 +1,86 @@
+{
+  "implementation_commit": "9034fd34ad8510be8e058c95203291d09b0e45d3",
+  "historical_evidence_commit": "27c8470e5335063eac50b1af60b94bcf33e476c0",
+  "pinned_llama_commit": "304665fe7",
+  "image_sha256": "7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+  "source_files": {
+    "common__chat.cpp": {
+      "bytes": 63645,
+      "sha256": "6f44a3773cd3b71b0908d4ad56011d8bbf6dae3ddd716d22fda00014f7133015"
+    },
+    "common__parsers__gpt-oss.cpp": {
+      "bytes": 8305,
+      "sha256": "c5531c96f2e1f723b985bb1fb359a031934f8d250c4f7ac3b72b9c3ee3f28e51"
+    },
+    "common__chat-peg-parser.cpp": {
+      "bytes": 48089,
+      "sha256": "b78fed28850795107494c6d3ecefed76c1e7824d94cb1a3dc7bb6e6b9e137dba"
+    },
+    "common__chat-peg-parser.h": {
+      "bytes": 11904,
+      "sha256": "9a9eeef7f7eb190f8191d2bd12cf6beebece29e307714e01c405eaa87c8da918"
+    },
+    "tests__test-chat.cpp": {
+      "bytes": 311243,
+      "sha256": "ecd083946f8d136079639a2bd6eec8494f89c1daf8d139d57273f45403d29592"
+    },
+    "31556.patch": {
+      "bytes": 3950,
+      "sha256": "db6cbd1a83e7b365c0f094d76ed58f1640f4bb89d287aa5726ce5b1c85611066"
+    }
+  },
+  "historical_failed_request": {
+    "path": "docs/research/code-audit/reviewer-model-comparison-20261105/qualified-gpt-oss/gpt-oss-native-C01-r2/1/request.json",
+    "sha256": "bc8c4566e6add442309778ed5c2dec905e55f8ca49460b9a7418df9db79f01d4",
+    "top_level_keys": [
+      "model",
+      "messages",
+      "stream",
+      "max_tokens",
+      "tools"
+    ],
+    "tool_names": [
+      "read_source",
+      "submit_review_proposal"
+    ],
+    "message_roles": [
+      "system",
+      "user",
+      "user"
+    ],
+    "output_ceiling": 8192,
+    "response_format": null,
+    "tool_choice": null
+  },
+  "rendered_failed_input": {
+    "archive": "docs/research/code-audit/reviewer-model-comparison-20261105/gpt-oss-rendered-initial.json",
+    "archive_sha256": "21a9c70969958828c82b8758b91266aa55d79973fcc5a9f8d83bdf03fa6225df",
+    "prompt_sha256": "f8fcf29b6f4665b5e741e5881a91729e038069423b6c85c2f9c3cdac551ff891",
+    "contains_function_namespace": true,
+    "proposal_declaration_count": 1,
+    "constraint_token_count": 0,
+    "role_mapping": "GPT native system plus API system instruction rendered as developer; commentary functions channel instruction present",
+    "native_reasoning": "medium"
+  },
+  "captured_failure": {
+    "prefix": "<|channel|>final <|constrain|>submit_review_proposal<|message|>",
+    "server_log_sha256": "bfafb8104c91ef0fa785b72a5e161add55ca8acdd9c699875adde079389f8f54",
+    "server_error_code": 500,
+    "historical_client_error": "LlamaCppResponseError: invalid HTTP status line",
+    "raw_http_headers_and_body_available": false,
+    "complete_generated_reasoning_available": false,
+    "diagnostic_json_not_a_model_response": true
+  },
+  "causal_classification": {
+    "devtools": "Confirmed independent HTTP reason-phrase defect masks server failure; no evidence of request serialization corruption",
+    "template": "Rendered functions declaration/channel instructions present; no constrain token in rendered prompt",
+    "generated_harmony": "Final constraint names a Tool but supplies no functions recipient",
+    "pinned_server": "Plain final branch lacks optional constraint; constrained final branch disabled without response_format; complete parse throws",
+    "upstream_fix": "PR31556 accepts final constraints as content; does not promote them to native Tools",
+    "json_admission": "Missing subject_sha256 and invalid finding kinds; no strict validator relaxation",
+    "factual_judgment": "One genuine public defect plus unsupported additional interpretation"
+  },
+  "offline_qualification": "Pinned source/patch and captured header analysis only; no compiled native PEG parser execution or patched server test",
+  "new_generations": 0,
+  "new_serving_transitions": 0
+}

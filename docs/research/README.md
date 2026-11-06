@@ -1,5 +1,9 @@
 # Research Evidence
 
+[llama.cpp transport repair and GPT-OSS qualification](llama-transport-gpt-oss-qualification.md)
+separates the HTTP diagnostic defect, pinned native-parser failure and strict
+review admission, with resource-gated alternate-provider qualification.
+
 [Reviewer-model comparison](reviewer-model-comparison.md) records 22 genuine
 generations, higher-budget Qwen thinking, cached gpt-oss qualification and strict
 delivery failures. Neither configuration is promoted; the smallest next fix is

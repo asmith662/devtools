@@ -1,0 +1,51 @@
+{
+  "schema": "development-validation-explicit-deadline-v1",
+  "mode": "comprehensive",
+  "at": "2026-11-06T19:01:28.392168+00:00",
+  "status": "passed",
+  "head": "9034fd34ad8510be8e058c95203291d09b0e45d3",
+  "exit_code": 0,
+  "seconds": 4687.064235,
+  "timeout_seconds": 7200,
+  "argv": [
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "-m",
+    "scripts.validation.protected",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\llama-transport-protected-final.pytest.json",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests",
+    "--ignore=C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\tests\\experiments",
+    "--durations=30"
+  ],
+  "configured_gate": "100% production branch coverage, unchanged",
+  "inputs_unchanged": true,
+  "complete": true,
+  "child_receipt": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\validation\\llama-transport-protected-final.pytest.json",
+  "complete_local_receipts": {
+    "protected": ".local/validation/llama-transport-protected-final.json",
+    "sha256": "36eb229ef7efbb4e62070c7f96bb1f09fa29f8ff38c657b1227107e98c65c41c",
+    "child_sha256": "b6a1b5ed48ca15f90d975882a6f60095100e4c319a93903010bde6dfb433686f",
+    "phase_count": 13507,
+    "collection_errors": []
+  },
+  "tests": {
+    "passed": 4496,
+    "skipped_opt_in": 2,
+    "production_branch_coverage_percent": 100
+  },
+  "focused": {
+    "failed_before": 12,
+    "passed_before": 1,
+    "adapter_after_passed": 164,
+    "interaction_package_passed": 273,
+    "adapter_branch_coverage_percent": 100,
+    "recovery_selection_failure": "182 collection errors from selecting subprocess-only audit-hook helper; preserved after.log, corrected explicit test selection only"
+  },
+  "static": {
+    "strict_mypy_source_files": 646,
+    "ruff": "passed, maintained src/tests/apps excluding tests/experiments",
+    "format": "742 files formatted",
+    "layout": "passed",
+    "git_fsck": "passed",
+    "git_diff_check": "passed"
+  }
+}

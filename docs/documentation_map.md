@@ -1,5 +1,9 @@
 # Documentation Map
 
+[llama.cpp transport repair and GPT-OSS qualification](research/llama-transport-gpt-oss-qualification.md)
+records bounded HTTP diagnostics, the exact native-format failure mechanism and
+resource conditions for further reviewer qualification.
+
 [Reviewer-model comparison](research/reviewer-model-comparison.md) distinguishes
 factual judgments, native Tool delivery, strict admission, output truncation and
 server-native formatting failure across 22 genuine generations. It records the
