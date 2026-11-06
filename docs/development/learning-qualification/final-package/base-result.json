@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "optional_numerical_distributions": "ABSENT",
+  "source_root": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-learning-base-wheel-4k8phggn",
+  "coding": {
+    "scenario": "success",
+    "accepted": true,
+    "disposition": "validated",
+    "candidate_validated": true,
+    "completed": true,
+    "error": null,
+    "original_effect_error": false,
+    "completion_error": null,
+    "failure_phase": null,
+    "restored": true,
+    "reconciliation": false,
+    "model_calls": 2,
+    "proposals": 1,
+    "actions": 1,
+    "effects": [
+      {
+        "kind": "tool",
+        "ids": [
+          "read-1"
+        ],
+        "ack": true,
+        "check": null
+      },
+      {
+        "kind": "edit",
+        "ids": [
+          "edit-2"
+        ],
+        "ack": true,
+        "check": null
+      },
+      {
+        "kind": "check",
+        "ids": [],
+        "ack": true,
+        "check": "behavior"
+      }
+    ],
+    "usage": [
+      null,
+      null
+    ],
+    "source": "# \u00cf\u20ac\ndef answer():\n    return 6\n",
+    "archive": {
+      "module.py": "# \u00cf\u20ac\ndef answer():\n    return 7\n"
+    },
+    "apply_entries": [
+      "apply"
+    ],
+    "admitted": [
+      "read-1",
+      "edit-2"
+    ],
+    "checks": [
+      [
+        {
+          "exit": 0,
+          "stdout": "checked:7\n",
+          "passed": true,
+          "argv": [
+            "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+            "-I",
+            "-B",
+            "-c",
+            "import runpy,sys; assert runpy.run_path(\"module.py\")[\"answer\"]() == 7; sys.stdout.buffer.write(b\"checked:7\\n\")"
+          ]
+        }
+      ]
+    ],
+    "feedback_ids": [
+      "read-1",
+      "edit-2"
+    ],
+    "request_count": 2,
+    "summary_requests": 0,
+    "summaries": [],
+    "framework": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\recovery-wheel-base\\Lib\\site-packages\\devtools\\agents\\coding\\process.py",
+    "projections": []
+  }
+}

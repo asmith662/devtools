@@ -1,143 +1,243 @@
 # Selective learning integration
 
-## Current candidate and custody
+## Candidate status and custody
 
-The authorized linked worktree is `devtools-learning`, branch
-`integration/learning-investigator`, starting main revision
-`26c07ef1b26436dd10dc50c752cd63a6619c7bba`. Original partial commit
-`dc54577f4c615dd712a1bfc3094c4dfdd8863c88` is retained. Recovery checkpoint
-`f37603db` preserves the interrupted numerical core and Windows Job work.
-The native ModelInteraction/Tool investigator and independent parent-consumed
-fitted artifact are now implemented. **This is a functional candidate, not a
-passing protected release or completed migration acceptance.** Final qualification
-results are recorded below as they become available.
+The maintained candidate is in `C:/Users/recoveryadmin/Workspace/tools/devtools-learning`
+on `integration/learning-investigator`, based on main
+`26c07ef1b26436dd10dc50c752cd63a6619c7bba`. Recovered partial commit
+`dc54577f4c615dd712a1bfc3094c4dfdd8863c88` is retained. Checkpoints are
+`f37603db` (recovered numerical core and Windows custody), `61b44ea5`
+(native investigator and independently inspected fitted artifacts), `1ab2ca61`
+(explicit fitting acknowledgment and original engineering evidence), and
+`b1b43dd5` (observed acknowledgment order and model-response source admission).
 
-All maintained changes, environments and persistent artifacts belong to this
-worktree. The concurrent canonical checkout and read-only LI donor are preserved.
-External uniquely owned authored pytest repositories remain permitted. There is
-no automatic main synchronization, no main publication and no merge authority.
+**A and B execute as a functional engineering candidate. Migration release
+acceptance is incomplete: maintained-source Ruff fails, and a passing protected
+100% branch-coverage gate has not been established.** This branch must not be
+merged as a release-qualified migration. The exact current assessment and
+original publications are in [qualification evidence](learning-qualification/assessment.json).
 
-## Source and owners
+The concurrent canonical checkout is never an edit, build, test or environment
+root for this assignment. LI remains read-only. External uniquely owned tiny
+Git fixtures are permitted; there is no second maintained checkout, automatic
+main synchronization, service mutation, main publication or merge authority.
 
-The [exact mapping](learning-migration-provenance.json) pins donor commit
-`e069092e9b83c349ddb4efee09a3b1891ea0ad63` and records relocated modules, narrow
-extractions and destination-authored composition. The 81-file prepared candidate
-set is an upper bound. No research runtime tree, historical fitted outcome,
-source cache or study archive is a production dependency. Necessary scalar and
-table helpers are extracted without ANOVA-selection, OOF, ranking or residual
-machinery. Unsupported methods refuse. B-0093 and B-0095 policies are absent.
+## Source provenance and ownership
 
-General numerical contracts, fitting states, metrics, exact scientific grants and
-independent publication inspection belong to `devtools.learning`.
-`tools.learning` uses existing Commands/Resources. `agents.learning` uses existing
-ModelInteraction, native Tool descriptors, `agents.model_tools`, ToolRunner and
-host admission. Runtime, Context, operational Evidence and coding ownership stay
-with their existing domains. The [package contract](../../src/devtools/learning/docs/overview.md)
-describes the actual supported surface and its narrow numerical qualification.
+[The source mapping](learning-migration-provenance.json) authenticates 42 imported
+inputs against donor commit `e069092e9b83c349ddb4efee09a3b1891ea0ad63`, plus the
+separately recorded exact scalar-helper extraction. It includes destination
+hashes and destination-authored composition. The prepared 81-file set is an
+upper scope, not a copying target. Execution moves to `learning.evidence`, local
+execution to `learning.integrations.local`, SQLite to its `ledger` module, and
+feature methods to `learning.methods.features`. Narrow hashing, table and
+float-only helpers avoid unrelated ANOVA/ranking dependency trees. Namespace,
+UTF-8, selected exports and canonical Timestamp adaptations are recorded.
 
-## Recovered compatibility problems
+`devtools.learning` owns source/role/schema/target/unit contracts, training-only
+preparation, numerical states, F1/MAE observations, scientific grants, immutable
+publication and independent scientific inspection. `tools.learning` adapts
+existing Commands/Resources. `agents.learning` composes existing ModelInteraction,
+native Tool descriptors, `agents.model_tools`, ToolRunner and trusted host
+admission. No new Agent base, general workflow engine, model registry, process
+supervisor or operational-evidence substitute is introduced. See the
+[package contract](../../src/devtools/learning/docs/overview.md).
 
-Fresh external `PYTEST_DEBUG_TEMPROOT` restores authored independent-host test
-separation without weakening source guards. The inaccessible legacy OS temp
-failure remains retained. `learning-recovery-host-layout-02.json` reports 67
-affected passes. Git layout authentication now uses managed read-only
-`git rev-parse`, accepts actual linked-worktree gitfiles and ordinary metadata,
-and refuses invalid structures/symlinks. Root/layout containment rules remain.
+Selected operations are binary kNN7, SQUARE logistic/margin classification and
+Mean/Ridge/kNN-v2 quantitative regression, with retained label-free prediction.
+F1 versions and quantitative units remain explicit; unsupported inputs and
+unavailable measurements remain typed negative outcomes. Histogram, ranking,
+clustering, association, residual/OOF composition, broad investigation catalogs
+and historical applications remain outside this migration. B-0093's failed
+selector and B-0095's residual correction are not installed. B-0096 is an
+explicitly selected finite engineering profile, not a generally beneficial policy.
 
-All migrated maintained Python sources decode UTF-8 and parse. Invalid legacy
-classification bytes and CRCRLF newlines were normalized without numerical AST
-changes. Configured maintained-source static checks are separate from unsupported
-historical/generated broad scans. Historical source is not reformatted.
+## Worktree, encoding and process compatibility
 
-Managed Commands opt-in custody starts suspended, verifies exact process ID and
-noninherited handle, assigns and verifies Job membership before resuming, limits
-active processes to one and kills/waits for an empty Job on close. Descendant
-creation, timeout and cancellation controls pass. The uv venv launcher correctly
-fails Job1 because it needs two processes; the worker instead uses qualified
-direct CPython with `-S`, empty PYTHONPATH and explicit selected site-packages.
-It does not enlarge the Job. Earlier C:/Python314 traces came from operational
-shell scripts, not the qualified CPython 3.12.13 producer.
+Fresh externally owned `PYTEST_DEBUG_TEMPROOT` restores independent-host Git
+fixtures without weakening source-isolation guards. Receipt
+`learning-recovery-host-layout-02.json` records 67 affected passes. A long GUID
+parent later caused Windows Git `revision:path` length failures. A short,
+exclusively created `tempfile.mkdtemp(prefix="dl-")` root qualifies the exact
+failed delegation case (`learning-short-temp-13.json`). Existing failures remain
+retained; global Git path settings and source guards are unchanged.
 
-## Functional qualification
+Layout uses managed read-only `git rev-parse` to authenticate both ordinary Git
+directories and legitimate linked-worktree gitfiles, retaining root, symlink and
+invalid-metadata refusals. Migrated Python sources decode UTF-8 and parse; legacy
+invalid classification bytes/newlines were repaired without changing numerical
+semantics. Retained generated history is outside maintained-source formatting.
 
-`learning-agent-correspondence-05.json` reports 18 focused passes: actual binary
-and regression fits via native scripted ModelInteraction and ToolRunner, original
-scientific publication/independent inspection, protected final selection, actual
-parent label-free predictions, prefit admission refusals, nonvalue and unsupported
-ABSTAIN, explicit margin and the three custody controls. Subsequent safety and
-configuration refinements require their own affected qualification.
+Commands' opt-in Windows Job custody creates the exact process suspended,
+verifies its identity and noninherited handle, assigns/verifies Job membership
+before resuming, limits active processes to one, and kills/waits for an empty Job
+on cancellation, timeout and close. Focused descendant-refusal, cancellation and
+timeout tests pass. This is process custody, not an OS filesystem/network sandbox.
+The trusted worker adds read/write/import/socket/process audit restrictions.
+A venv launcher correctly fails Job1 because it needs another process. The
+qualified worker uses the actual CPython interpreter with `-S`, empty PYTHONPATH,
+explicit installed site-packages and native thread limits of one. The CPython
+`_base_executable` selection and resolved executable hash are recorded, rather
+than treating that private attribute as portable interpreter discovery.
 
-The original isolated numerical wheel control exited 0 in 17.1806 seconds using
-Python 3.12.13, NumPy 2.5.3, SciPy 1.18.1 and sklearn 1.9.1, with one thread in
-each loaded OpenBLAS/OpenMP pool. That earlier wheel predates the agent composition
-and does not qualify it. New installed-extra and base-wheel checks are required.
+A legacy Qwen validation reporter also needed an explicit bounded secondary
+reporting-error diagnostic under pytest 9.1. Its original primary failure is
+captured before report formatting; the secondary exception still propagates.
+The existing assertion is unchanged and the focused original test passes.
 
-Exact destination-owned CC BY 4.0 fixtures are Iris binary 49/17/34 and Auto MPG
-274/59/59, with row/group/role/source identities and original feature/target
-semantics. Extraction authenticated the original retained source receipt and MPG
-ZIP, without downloads or historical state/outcome reuse. See
-`tests/learning/resources/ATTRIBUTION.md`. Final labels never enter proposer Context.
-The explicit B-0096 engineering profile is not a universally beneficial strategy.
+## Native and installed-package qualification
 
-The admitted worst-case two-task plan reserves at most 7 native fits, 8 states,
-7 preparations, 3 SQUARE materializations, 8 investigation actions and 8 numerical
-invocations, inside the original ceilings. Failed effects consume slots. There
-are no automatic retries. Each operation is at most five minutes, each task one
-hour and the root two hours, with one worker/native thread and bounded output,
-ledger and root storage. Cost forecasts and generalization remain unavailable.
+The selected Windows x64 producer is CPython 3.12.13, ABI `cpython-312`, with
+NumPy 2.5.3, SciPy 1.18.1, scikit-learn 1.9.1 and threadpoolctl 3.7.0. Every
+publication records interpreter, distribution/module origins, native DLL hashes
+and loaded-pool thread counts. NumPy OpenBLAS is 0.3.34.106.0, SciPy OpenBLAS
+0.3.31.dev; vcomp140's version is unavailable. All pools report one thread.
+Earlier Python 3.14 shell traces are not the qualified worker environment.
+This profile does not claim numerical equivalence on other runtimes.
 
-## Acceptance and integration remaining
+Final wheel SHA256 is
+`040b0ccb53ed199ab383414d20b1c531cab3b12e17168e51f711a0aba421b936`,
+714,055 bytes, built from `b1b43dd5`. Wheel source members exactly match maintained
+inputs. It is installed with full declared dependencies in separate extra/base
+environments; this is not a `--no-deps` numerical claim. Latest extra controls
+pass six authored cases, including actual fitting, independent inspection,
+margin, typed unavailable/unsupported ABSTAIN and a genuine neighbor-boundary
+case. The deterministic retained boundary result is 7.0; arbitrary native tie
+selection is explicitly unqualified. The base wheel passes an actual coding
+read/edit/check/archive/restore path without numerical distributions.
 
-At `61b44ea5`, the guarded installed wheel completed the two-source engineering
-path: Iris online kNN7/SQUARE logistic macro F1 v1 were both 1.0, selecting the
-incumbent kNN7; protected final F1 was 1.0. MPG online Mean/Ridge/kNN-v2 MAE were
-5.7426945441 / 3.0486598369 / 2.7261016949 publisher mpg, selecting kNN-v2;
-protected final MAE was 2.8101694915. The parent exactly reproduced all 34/59
-final predictions without fitting. Actual counts were 6 native fits, 7 procedure
-states, 6 preparations, 1 SQUARE, 7 actions and 7 invocations, with nine scripted
-native ModelInteraction calls and no provider inference. Outer wall duration was
-25.6272 seconds; retained bytes before the report were 1,570,647. These are exposed
-development observations, not strategy-effectiveness or generalization evidence.
+The latest controls/base runs actively probe eleven denied roots: development
+source/tests/scripts/apps/experiments, donor, canonical checkout, three earlier
+qualification output roots and durable research evidence. `.tmp` trees and donor
+imports are denied. The probes are rejected; subsequent actual denied accesses
+are zero. All devtools modules originate in installed site-packages. Runs start
+from an independent working directory. The only installed `.pth` customization
+is uv's `_virtualenv.pth`, whose identity is retained in environment evidence.
 
-Subsequent inspection found that protocol v1's binary fit used the enclosing
-operation rather than a completed fit child before prediction. Its numerical
-observations remain preserved, but **v1 does not qualify the final acknowledgment
-protocol**. Protocol v2 adds an exact fitted-state acknowledgment and independently
-checks preparation -> fit -> prediction -> measurement -> publication order, plus
-the exact child execution set. Existing donor state codecs are unchanged; the
-private operation publication is explicitly versioned and old scientific records
-are not rewritten. Current inspection refuses protocol v1. The v2 investigator
-receipt `learning-fit-ack-09.json` passes 15 tests; authority/correlation refusals
-pass 13 (`learning-exact-authority-10.json`), and an actual native kNN boundary
-case passes (`learning-native-tie-11.json`) without claiming native boundary truth.
-The original real run has not been automatically repeated. Full real-source
-qualification of the final protocol remains outstanding.
+The final installed base wheel independently inspects all seven original
+protocol-v2 publications, including fitted states, metrics, source/grant and ACK
+correspondence, and consumes their predictions. Eighty scientific files remain
+byte-identical. This read-only inspection makes zero fits and has no NumPy,
+SciPy, sklearn or threadpoolctl distributions/imports. Its explicit input is the
+scientific evidence being inspected; the producer's isolation checks deny prior
+historical fitted evidence. No product import depends on donor or research trees.
 
-The first broader recovery run exposed Windows `git show revision:path` path
-length failures under the long GUID-prefixed external temp root. A short,
-exclusively created `tempfile.mkdtemp(prefix="dl-")` root fixes the exact delegation
-failure (`learning-short-temp-13.json`); no source guard, assertion or global Git
-setting changes. Earlier long-root failures remain retained. The broad recovery
-run also spans source checkpoint changes and is not a release/freshness receipt.
+## Actual investigator and source outcomes
 
-The actual changed maintained-source Ruff scan remains failing (269 diagnostics
-before final cleanup), separately from unsupported historical broad scans.
-Configured mypy passes across 727 modules; all 72 maintained learning/consumer
-Python modules decode UTF-8 and parse. No lint rule or coverage threshold has
-been relaxed. Protected validation and final installed-v2 qualification remain
-required. Durable engineering receipts are in `learning-qualification/`.
+A parent admits finite eligible methods, source handles, roles, family/metric,
+schema/units and source authority. Scripted ModelInteraction emits one untrusted
+closed native Tool proposal. Deterministic host admission checks exact source,
+semantics, evidence freshness, eligibility, state and remaining budget before a
+separate trusted caller grants the exact plan. Requests cannot supply code,
+labels or grants. Call IDs/source correlation are checked, consumed effects are
+not retried, and failed effects retain their budget cost.
 
-Complete the guarded installed-wheel checks and one real two-source engineering
-execution; preserve original failures and actual parent predictions/costs.
-Run configured mypy, maintained-source Ruff/format/layout/diff checks and the
-unchanged 100% branch-coverage protected gate on a committed stable candidate.
-Earlier interrupted 4,490-test runs and focused passes are not release receipts.
-Do not label A/B accepted until these conditions pass. Publish the coherent
-feature branch as clearly partial if any acceptance condition remains failing.
+Each genuine fit produces independently inspected state/prediction/measurement
+and immutable scientific evidence before the next decision. The proposer sees
+sanitized online observations; protected final labels never enter its prompt.
+Continuation, STOP and ABSTAIN execute through the real ModelInteraction/Tool
+boundary. A terminal selection is sealed before separate protected final fitting
+and measurement. The parent then invokes the inspected fitted artifact with
+label-free inputs, without a new fit.
 
-Before any future main integration, deliberately compare current main's
-Commands, ModelInteraction, model_tools, ToolRunner, filesystem, paths, packaging
-and layout interfaces and rerun the merge-candidate gate. No main merge is
-performed here. The next scientific milestone after migration acceptance is live
-local-model hypothesis generation under the same admission and evidence barriers;
-it is not started by this qualification.
+The exact CC BY 4.0 destination fixtures are Iris binary 49 fitting / 17 online /
+34 final rows and Auto MPG 274 / 59 / 59. Original source receipts, row membership,
+groups, rights, feature/target identities and units were authenticated without
+source downloads or historical state reuse. MPG retains publisher mpg; its
+feature units and unasserted group independence are not invented. See
+[attribution](../../tests/learning/resources/ATTRIBUTION.md).
+
+| Source | Online original observations | Sealed choice | Protected final | Parent consumption |
+| --- | --- | --- | --- | --- |
+| Iris | kNN7 1.0; SQUARE logistic 1.0 macro F1 v1 | STOP; incumbent kNN7 on tie | F1 1.0 | 34 exact predictions, 17 of each class |
+| Auto MPG | Mean 5.7426945441049115; Ridge 3.0486598368671753; kNN-v2 2.726101694915254 MAE v1 | STOP; kNN-v2 | MAE 2.8101694915254236 publisher mpg | 59 exact numerical predictions |
+
+These exposed development outcomes qualify engineering behavior, not scientific
+generalization or investigation-policy effectiveness. All 59 final MPG queries
+have separated native-parity qualification; the authored tied-neighbor case
+retains an explicit native nonclaim.
+
+## Acknowledgments, costs and preserved failures
+
+The original protocol-v1 run completed numerical/agent work at `61b44ea5` but
+later inspection found no distinct completed binary-fit child before prediction.
+It remains immutable and is not final protocol acceptance. The deliberately
+admitted protocol-v2 run at `1ab2ca61` corrects this, preserves the original
+per-root envelope and retains both sources in the denominator. Current inspection
+refuses v1, checks exact child execution sets and verifies preparation -> fit ->
+prediction -> measurement -> publication ACK order, including observed ACK time.
+The final source additionally refuses response-source changes during model.send.
+Original scientific state codecs and historical LI evidence are unchanged.
+
+The executable worst-case plan is 7 native fits / 8 states / 7 preparations /
+3 SQUARE / 8 actions / 8 invocations, within the prepared 9 / 10 / 8 / 3 / 8 / 8
+ceilings. Each actual real-source run consumed 6 / 7 / 6 / 1 / 7 / 7, nine scripted
+native model calls and zero live/paid calls. One worker/native thread, 300-second
+operation / one-hour task / two-hour root bounds, per-ledger/publication/output
+caps and the combined root cap remain. Failed effects do not refund slots.
+
+Both known completed real attempts are reported: 12 fits / 14 states /
+12 preparations / 2 SQUARE / 14 actions / 14 invocations in total across two
+separate protocol qualifications. They are not represented as one under-budget
+run. Original outer walls were 25.627216 and 21.994368 seconds; corrected runner
+wall was 21.359508 seconds with 1,583,370 retained bytes before its report.
+Final six-case controls took 37.926462 seconds, base coding 1.058887 seconds;
+final read-only inspection took 1.458594 seconds. Earlier controls, failed probes,
+full-suite attempts and their costs remain in original receipts. Attributable
+learner/native CPU by operation, peak RSS and incremental cost forecasts are
+unavailable; no missing measurement is reported as zero.
+
+Original import/type/encoding/runtime-launch failures, long-temp-path failures,
+publication-reconciliation expectation correction and the protocol-v1 defect are
+retained. A 4,298.71-second recovery run had 43 failures, 2,768 passes, two skips
+and 29 errors, plus input drift; it is not release evidence. A subsequent
+4,525-test protected attempt had stable inputs but its adapter killed the root at
+3,600 seconds and 89% progress. It has no terminal test/coverage result.
+
+## Validation and integration readiness
+
+Latest focused numerical/investigator/custody qualification passes 68 tests;
+31 authority/investigator/original-reporter tests and two scientific-corruption
+controls also pass. The corruption controls rehash tampered Mean state and delay
+the observed fit ACK; independent scientific checks still reject them. Original
+assertions, protected selectors and the 100% production branch-coverage threshold
+are unchanged. Current configured strict mypy passes 728 modules (plus the
+operator script explicitly), formatting passes all 88 changed maintained Python
+paths, and layout/diff checks pass. Maintained changed-source Ruff remains at
+147 diagnostics, including imported scientific-protocol complexity and other
+unresolved source violations. This is separate from unsupported broad scans of
+immutable historical/generated programs. No lint exclusions are added to hide it.
+
+The exact protected profile completed on committed `b1b43dd5` with a fresh short
+external owned temp root and separately retained coverage data: **4,526 passed,
+two skipped, exit 1 because coverage was 84.55% against the unchanged 100% gate**.
+Pytest wall duration was 5,017.64 seconds; the wrapper including input
+authentication took 5,036.384043 seconds. Inputs remained unchanged and streams
+were not truncated. The terminal receipt and full output are retained under
+`learning-qualification/validation/protected-b1b43dd5/`. This is a failed release
+gate despite passing test assertions. Coverage in native workers is not inferred
+from isolated-wheel success or parent-only tests. A focused diagnostic established
+substantial untested scientific negative/publication branches; it does not
+substitute for the global gate.
+
+Current main was reviewed read-only at `27c8470e5335063eac50b1af60b94bcf33e476c0`.
+Since the baseline it adds `d2a3b302` and `27c8470e`: reviewer-provider enrollment,
+routine/local policy changes, native delivery evidence, docs-map updates and
+profile tests. No current Commands/ModelInteraction/ToolRunner interface change
+was found in those committed deltas. No merge or rebase was performed. Before a
+safe merge, reconcile those policy/docs-map changes deliberately, review any
+later main changes, resolve source/static/coverage failures, then run the actual
+merged-candidate protected gate. Windows custody and optional dependency pins
+are contracts requiring explicit review alongside ongoing framework development.
+
+After release acceptance, the next concrete milestone is live local-model
+hypothesis generation under the same admission, grant, budget, protected-final
+and independent-inspection boundaries. No live model-assisted study starts here.
+
+A resolver dry run also established that default synchronization would remove the
+learning extra required by the numerical tests. A small authored offline resolver
+probe confirms a development-only self-reference to the existing learning extra
+is supported. That correction and removal of two unused classifier wrappers are
+next; neither is silently included in this frozen profile receipt. Prepared
+additional contract probes and test-only child-coverage instrumentation are not
+yet part of the protected test selection.

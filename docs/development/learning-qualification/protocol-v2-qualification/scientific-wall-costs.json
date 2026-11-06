@@ -1,0 +1,653 @@
+{
+  "qualification": "Read-only observed scientific execution/stage wall durations. Nested scopes are not additive or attributable native learner CPU; peak RSS and incremental forecasts remain unavailable. Original ledgers unchanged.",
+  "ledger_hashes": {
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-0\\operation-0\\science\\science.sqlite": "9d295d1cc031738dd9dd3babe7252c883cea8c5b5018284bc422e09b4394915e",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-0\\operation-1\\science\\science.sqlite": "cc5ee646ed5f04f6ec80641af7be215190c19df046d7912daf9c00b454235d9a",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-0\\protected-final\\science\\science.sqlite": "e6e1211cd8fae4eb2081f1e1c7040ea20a928a4926f98d33c9b86d873e3e6888",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-1\\operation-0\\science\\science.sqlite": "8f958f1b0fde220fd7666e315a1b340e504f7312c97407e31dd892f28fdbd036",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-1\\operation-1\\science\\science.sqlite": "1dfe75486b58c6815fc1233321d960421651551a1413777b1e8f809f7e31b71d",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-1\\operation-2\\science\\science.sqlite": "3cd53e74bfc1a366c732120ab7f3370749561dccec31f489afad94514b22f081",
+    "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-migration\\v3\\real-two-source-01\\task-1\\protected-final\\science\\science.sqlite": "3799b09ee0af89400f7951386022a13d13b4cd3237d7979e4741fa3af65e8cf3"
+  },
+  "operations": [
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.49392829998396337,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "ba8b34ed-796b-44b3-82d4-a63a88f2a556",
+      "operation": "representation.standardization.fit",
+      "parent": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "outcome": "completed",
+      "elapsed_seconds": 0.020365000003948808,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.002177600050345063
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.002986700041219592
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "fbdc4781-3ade-48ac-94c3-7ed6980aa3e8",
+      "operation": "learning.binary_fit",
+      "parent": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "outcome": "completed",
+      "elapsed_seconds": 0.025399100035429,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "590d3343-e5f1-4353-a82c-6e3747f2553b",
+      "operation": "learning.predict",
+      "parent": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "outcome": "completed",
+      "elapsed_seconds": 0.007045199861750007,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "29764fba-a631-4791-8f8b-446490ba93c2",
+      "operation": "learning.measure",
+      "parent": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "outcome": "completed",
+      "elapsed_seconds": 0.004378400044515729,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-0\\science\\science.sqlite",
+      "execution_identity": "440654b6-808d-458b-a6a5-0c4426b6b73b",
+      "operation": "artifacts.publication",
+      "parent": "f56f21f7-41fd-4f24-8951-694eb10fd739",
+      "outcome": "completed",
+      "elapsed_seconds": 0.09329290012829006,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.00455470010638237
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.01002709986642003
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.02091900003142655
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.015535499900579453
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.0028819998260587454
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.00465680006891489
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.015335700009018183
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.5220271998550743,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "29d5148e-5d1d-40e0-94a4-b8cd378d7f6b",
+      "operation": "representation.standardization.fit",
+      "parent": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "outcome": "completed",
+      "elapsed_seconds": 0.012581000104546547,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.002151499968022108
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.0023767000529915094
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "98475b9a-fbdc-4bfc-bf56-a462941523fc",
+      "operation": "learning.binary_fit",
+      "parent": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "outcome": "completed",
+      "elapsed_seconds": 0.03553149988874793,
+      "stages": [
+        {
+          "stage": "numerical_input",
+          "seconds": 0.0019752997905015945
+        },
+        {
+          "stage": "logistic_numerical_fit",
+          "seconds": 0.01862829993478954
+        },
+        {
+          "stage": "retained_state_validation",
+          "seconds": 0.0027151000685989857
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "f50757e8-30f6-487e-8df6-79377c2b259f",
+      "operation": "learning.predict",
+      "parent": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "outcome": "completed",
+      "elapsed_seconds": 0.004404099890962243,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "46c631c3-a026-474f-b86b-df8494d40a40",
+      "operation": "learning.measure",
+      "parent": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "outcome": "completed",
+      "elapsed_seconds": 0.004287300165742636,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\operation-1\\science\\science.sqlite",
+      "execution_identity": "7e366934-ba93-4bb5-9148-6a8159414a56",
+      "operation": "artifacts.publication",
+      "parent": "1c3629c8-4323-4d86-a987-d4313f38d4ff",
+      "outcome": "completed",
+      "elapsed_seconds": 0.09945019986480474,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.004342499887570739
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.010608499869704247
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.02776369987986982
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.010950400028377771
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.0027636000886559486
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.004011400043964386
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.021279099863022566
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.5030762001406401,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "006ae13f-a9ae-49a7-a37f-918efc1de20c",
+      "operation": "representation.standardization.fit",
+      "parent": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "outcome": "completed",
+      "elapsed_seconds": 0.012245000107213855,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.002059399848803878
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.00239140004850924
+        }
+      ]
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "3af52031-e3d1-41b8-a02a-0a0842819843",
+      "operation": "learning.binary_fit",
+      "parent": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "outcome": "completed",
+      "elapsed_seconds": 0.025367199908941984,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "7fdabe72-7e76-4157-988c-63315edfaf78",
+      "operation": "learning.predict",
+      "parent": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "outcome": "completed",
+      "elapsed_seconds": 0.007645299891009927,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "2ed52c98-de7d-4f1e-be6b-11c810d9cba6",
+      "operation": "learning.measure",
+      "parent": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "outcome": "completed",
+      "elapsed_seconds": 0.004181100055575371,
+      "stages": []
+    },
+    {
+      "ledger": "task-0\\protected-final\\science\\science.sqlite",
+      "execution_identity": "b90593bb-7111-4a7c-8852-21cb3a0afef6",
+      "operation": "artifacts.publication",
+      "parent": "9d99f311-d680-4a81-96e5-014cda3f9c91",
+      "outcome": "completed",
+      "elapsed_seconds": 0.09575560013763607,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.004207700025290251
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.009717300068587065
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.023317999904975295
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.01793930004350841
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.0029514001216739416
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.004348000045865774
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.014336699852719903
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\operation-0\\science\\science.sqlite",
+      "execution_identity": "c4d0250e-2a8e-4332-91ba-f1600667187f",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.4785836001392454,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-0\\science\\science.sqlite",
+      "execution_identity": "98e8a409-1581-405e-9898-b9a00e2601f3",
+      "operation": "regression.fit",
+      "parent": "c4d0250e-2a8e-4332-91ba-f1600667187f",
+      "outcome": "completed",
+      "elapsed_seconds": 0.006269100122153759,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-0\\science\\science.sqlite",
+      "execution_identity": "4cd3d77a-393d-4097-a8f0-ca0f30dac3b4",
+      "operation": "learning.predict",
+      "parent": "c4d0250e-2a8e-4332-91ba-f1600667187f",
+      "outcome": "completed",
+      "elapsed_seconds": 0.004513999912887812,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-0\\science\\science.sqlite",
+      "execution_identity": "93337dd9-2981-438c-9299-b69b83e7a2f7",
+      "operation": "learning.measure",
+      "parent": "c4d0250e-2a8e-4332-91ba-f1600667187f",
+      "outcome": "completed",
+      "elapsed_seconds": 0.0066442000679671764,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-0\\science\\science.sqlite",
+      "execution_identity": "e11fd44d-e963-421c-b299-c1beb5c81721",
+      "operation": "artifacts.publication",
+      "parent": "c4d0250e-2a8e-4332-91ba-f1600667187f",
+      "outcome": "completed",
+      "elapsed_seconds": 0.10344350012019277,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.004633300006389618
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.01051799999549985
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.02125540003180504
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.02170839998871088
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.003460699925199151
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.004253000020980835
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.018901700153946877
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.5715958001092076,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "17a1d853-f2b5-49d9-88f7-30da563b045f",
+      "operation": "representation.standardization.fit",
+      "parent": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "outcome": "completed",
+      "elapsed_seconds": 0.02664950001053512,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.004265099996700883
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.005553499795496464
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "d359999f-87dc-4469-88ef-869a9524159a",
+      "operation": "regression.fit",
+      "parent": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "outcome": "completed",
+      "elapsed_seconds": 0.02640380011871457,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "f3d91129-ca33-42ca-9321-82b3dc757a73",
+      "operation": "learning.predict",
+      "parent": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "outcome": "completed",
+      "elapsed_seconds": 0.01763979997485876,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "2c30ffce-9ebf-4958-ba96-35a67b81bb21",
+      "operation": "learning.measure",
+      "parent": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "outcome": "completed",
+      "elapsed_seconds": 0.0072321000043302774,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-1\\science\\science.sqlite",
+      "execution_identity": "75cb0e99-34cb-4b8f-8a8f-738bd5ec812e",
+      "operation": "artifacts.publication",
+      "parent": "9e8a7825-67bc-4699-86e9-21e510ae1987",
+      "outcome": "completed",
+      "elapsed_seconds": 0.10722490004263818,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.011953999986872077
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.010689999908208847
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.017823999980464578
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.022819400066509843
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.00278069986961782
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.004357900004833937
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.017821900080889463
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.5485845999792218,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "cacf1fdd-87fc-4c43-a3ae-22f30ff36db1",
+      "operation": "representation.standardization.fit",
+      "parent": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "outcome": "completed",
+      "elapsed_seconds": 0.01873350003734231,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.002396299969404936
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.003270799992606044
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "c8e9aba2-836e-4a1a-89a6-1a3b810b1cae",
+      "operation": "regression.fit",
+      "parent": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "outcome": "completed",
+      "elapsed_seconds": 0.02295119990594685,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "58f40101-ae41-4d9a-acc5-08e981dd219a",
+      "operation": "learning.predict",
+      "parent": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "outcome": "completed",
+      "elapsed_seconds": 0.03433549986220896,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "6cd2d4b2-8555-4f4d-930a-897687f59953",
+      "operation": "learning.measure",
+      "parent": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "outcome": "completed",
+      "elapsed_seconds": 0.007031999994069338,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\operation-2\\science\\science.sqlite",
+      "execution_identity": "2f3a3dba-5e64-4cea-87fd-8a5f32dedc12",
+      "operation": "artifacts.publication",
+      "parent": "f9ab4b28-40a6-4e44-b22c-102a31169f2a",
+      "outcome": "completed",
+      "elapsed_seconds": 0.09796439995989203,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.0045946999453008175
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.010454499861225486
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.010144899832084775
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.02806589985266328
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.002981300000101328
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.004520900081843138
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.01876470004208386
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "operation": "learning.fit",
+      "parent": null,
+      "outcome": "completed",
+      "elapsed_seconds": 0.5601923000067472,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "3fdc5716-0263-45f7-8b6d-3b7da4c7ed11",
+      "operation": "representation.standardization.fit",
+      "parent": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "outcome": "completed",
+      "elapsed_seconds": 0.013424400007352233,
+      "stages": [
+        {
+          "stage": "input_validation",
+          "seconds": 0.0020719999447464943
+        },
+        {
+          "stage": "population_statistics",
+          "seconds": 0.003380000125616789
+        }
+      ]
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "4a622e34-a394-4578-8703-0a589933eb9e",
+      "operation": "regression.fit",
+      "parent": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "outcome": "completed",
+      "elapsed_seconds": 0.02422249992378056,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "3077aced-0e40-4f16-aa1a-04010a44dd68",
+      "operation": "learning.predict",
+      "parent": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "outcome": "completed",
+      "elapsed_seconds": 0.035040599992498755,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "b0e58f8a-625f-4c8c-99e1-0e6c3283a8b2",
+      "operation": "learning.measure",
+      "parent": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "outcome": "completed",
+      "elapsed_seconds": 0.006474499823525548,
+      "stages": []
+    },
+    {
+      "ledger": "task-1\\protected-final\\science\\science.sqlite",
+      "execution_identity": "339816ec-ecdd-4324-b69f-19f96477d66c",
+      "operation": "artifacts.publication",
+      "parent": "894aafdb-5300-4234-bcc7-55a0ba9b5dcf",
+      "outcome": "completed",
+      "elapsed_seconds": 0.09896320011466742,
+      "stages": [
+        {
+          "stage": "publication_configuration",
+          "seconds": 0.004123699851334095
+        },
+        {
+          "stage": "staging",
+          "seconds": 0.010247400030493736
+        },
+        {
+          "stage": "validation",
+          "seconds": 0.022408399963751435
+        },
+        {
+          "stage": "manifest_construction",
+          "seconds": 0.02266720007173717
+        },
+        {
+          "stage": "generation_publication",
+          "seconds": 0.0028169001452624798
+        },
+        {
+          "stage": "current_commit",
+          "seconds": 0.003941299859434366
+        },
+        {
+          "stage": "inspection_reconciliation",
+          "seconds": 0.013374400092288852
+        }
+      ]
+    }
+  ]
+}
