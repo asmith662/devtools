@@ -1,5 +1,47 @@
 # Selective learning migration: partial implementation
 
+## Recovered numerical checkpoint
+
+The interrupted numerical work has been recovered on
+`integration/learning-investigator`, retaining `dc54577f` and all original failure
+receipts. This is a **partial checkpoint, not acceptance of A or B**. Current
+work includes selected native classification/regression adapters, preparation,
+retained state and codecs, scientific event/ledger/publication machinery, and
+opt-in suspended-start Windows Job custody in existing managed Commands.
+
+Recovery inspected 63 changed/untracked maintained files; all migrated Python is
+valid UTF-8 and parses. Strict mypy passes for 76 selected modules. The numerical
+control receipt `learning-native-control-repaired.json` passes; its worker SHA-256
+matches the isolated-wheel receipt (`34b37ca02384e52658d0185312adee2b584907f0ad14709e0798d49ab2584e6f`).
+The installed learning-extra control exited 0 in 17.1806 wrapper seconds, using
+Python 3.12.13, NumPy 2.5.3, SciPy 1.18.1, sklearn 1.9.1, and one thread in each
+reported OpenBLAS/OpenMP pool. It performs genuine authored Mean/Ridge/kNN and
+logistic fits, retained prediction/state checks and acknowledged scientific
+publication reconciliation. Its binary F1 of 1.0 is an authored in-sample control,
+not an Iris result. Development source, donor imports/reads and historical `.tmp`
+reads were denied. The base environment has normal base dependencies and no NumPy.
+
+The earlier `C:/Python314` traces came from operational transplant scripts run by
+the shell's Python, not the numerical producer. The worker uses the qualified
+3.12.13 base executable, `-S`, empty PYTHONPATH and explicitly selected installed
+site-packages to avoid uv's two-process launcher. Job1 correctly refuses that
+launcher rather than raising its active-process limit. Three actual custody
+controls (descendant refusal, timeout, cancellation) pass. Storage limits,
+application-level grants/inspection and the parent/investigator path still require
+completion. The complete static/protected gates have not passed; no release or
+scientific task acceptance is claimed. The report below is historical context.
+
+Recovery checkpoint: the subsequent authorized assignment permits external,
+disposable authored test repositories. Using a fresh uniquely owned external
+`PYTEST_DEBUG_TEMPROOT` preserves the independent-host guards and all assertions.
+The default legacy pytest temp directory was inaccessible; that failed recovery
+receipt is retained. The corrected host/layout receipt
+`.local/validation/learning-recovery-host-layout-02.json` reports 67 passes.
+The layout validator now authenticates `.git` directories and linked-worktree
+gitfiles using read-only managed Git resolution, with authored normal/linked
+and invalid-metadata regression tests. The following original partial report
+retains its historical observations.
+
 The authorized destination is the dedicated `devtools-learning` worktree on
 `integration/learning-investigator`, starting at
 `26c07ef1b26436dd10dc50c752cd63a6619c7bba`. The parallel canonical checkout and
