@@ -26,6 +26,7 @@ packages = ["src/devtools"]
 
 [dependency-groups]
 dev = [
+    "devtools[learning]",
     "mypy",
     "pytest",
     "pytest-cov",

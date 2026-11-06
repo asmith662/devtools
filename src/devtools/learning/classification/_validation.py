@@ -17,7 +17,7 @@ _MINIMUM_CATEGORIES = 2
 
 
 class ClassificationRequirement(Enum):
-    """Conditions of these three classifiers and their attributed training use."""
+    """Conditions of the selected classifier's attributed training contract."""
 
     SPECIFICATION = "specification"
 

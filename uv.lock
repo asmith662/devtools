@@ -333,6 +333,7 @@ learning = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "devtools", extra = ["learning"] },
     { name = "mypy" },
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -360,6 +361,7 @@ provides-extras = ["learning"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "devtools", extras = ["learning"] },
     { name = "mypy" },
     { name = "pytest" },
     { name = "pytest-cov" },

@@ -159,25 +159,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "10c8c97897c071dd6b4fadcec31fa93737707404da488fbfd20716156d8916ff"
-    },
-    {
-      "donor": "src/learned_intelligence/classification/decision_tree.py",
-      "sha256": "688e1a4795e3f21a80001b74f5fb436472a564b10c94c43614b97a21f559979e",
-      "destination": "src/devtools/learning/classification/decision_tree.py",
-      "disposition": "RELOCATE",
-      "symbols": "selected module",
-      "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "b476dc83dcdb6f90b057e87830d31a6bd022e57ac0b0f012bc757a91197f4a3d"
-    },
-    {
-      "donor": "src/learned_intelligence/classification/gaussian_naive_bayes.py",
-      "sha256": "58cad205e92965cf6f35dae218c3a1d771bc1e17ac7c689f25cbc37066f6c0b2",
-      "destination": "src/devtools/learning/classification/gaussian_naive_bayes.py",
-      "disposition": "RELOCATE",
-      "symbols": "selected module",
-      "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "404cf7614df16b614329eda89845ff0d46fe08d8d5752c144341b04f551f9626"
+      "destination_sha256": "50291dfa7cf4d8a582d14370f327491af716f2e277e6a64e3a6c4195e7164221"
     },
     {
       "donor": "src/learned_intelligence/classification/k_nearest_neighbors.py",
@@ -403,7 +385,7 @@
   "authenticated_source_inputs": 90,
   "authenticated_source_mismatches": 0,
   "recovered_checkpoint": "f37603db",
-  "current_imported_input_count": 42,
+  "current_imported_input_count": 40,
   "current_imported_input_mismatches": 0,
   "additional_extractions": [
     {
@@ -500,6 +482,28 @@
       "path": "src/devtools/tools/learning/invocation.py",
       "sha256": "c9a384776a01978282cf255aa5b55148126669fdd974e0ac7e73a7586e5a41cf",
       "origin": "destination-authored owner adaptation/composition"
+    }
+  ],
+  "historical_removed_inputs": [
+    {
+      "donor": "src/learned_intelligence/classification/decision_tree.py",
+      "sha256": "688e1a4795e3f21a80001b74f5fb436472a564b10c94c43614b97a21f559979e",
+      "destination": "src/devtools/learning/classification/decision_tree.py",
+      "disposition": "RELOCATE",
+      "symbols": "selected module",
+      "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
+      "destination_sha256": "b476dc83dcdb6f90b057e87830d31a6bd022e57ac0b0f012bc757a91197f4a3d",
+      "omission_reason": "Unselected classifier wrapper with no maintained selected consumer or native constructor. Historical imported bytes remain in earlier checkpoints; omitted from the maintained wheel after dependency-closure review."
+    },
+    {
+      "donor": "src/learned_intelligence/classification/gaussian_naive_bayes.py",
+      "sha256": "58cad205e92965cf6f35dae218c3a1d771bc1e17ac7c689f25cbc37066f6c0b2",
+      "destination": "src/devtools/learning/classification/gaussian_naive_bayes.py",
+      "disposition": "RELOCATE",
+      "symbols": "selected module",
+      "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
+      "destination_sha256": "404cf7614df16b614329eda89845ff0d46fe08d8d5752c144341b04f551f9626",
+      "omission_reason": "Unselected classifier wrapper with no maintained selected consumer or native constructor. Historical imported bytes remain in earlier checkpoints; omitted from the maintained wheel after dependency-closure review."
     }
   ]
 }

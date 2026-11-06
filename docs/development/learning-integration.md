@@ -24,8 +24,8 @@ main synchronization, service mutation, main publication or merge authority.
 
 ## Source provenance and ownership
 
-[The source mapping](learning-migration-provenance.json) authenticates 42 imported
-inputs against donor commit `e069092e9b83c349ddb4efee09a3b1891ea0ad63`, plus the
+[The source mapping](learning-migration-provenance.json) authenticates 40 maintained imported
+inputs and preserves two removed historical mappings against donor commit `e069092e9b83c349ddb4efee09a3b1891ea0ad63`, plus the
 separately recorded exact scalar-helper extraction. It includes destination
 hashes and destination-authored composition. The prepared 81-file set is an
 upper scope, not a copying target. Execution moves to `learning.evidence`, local
@@ -202,7 +202,7 @@ controls also pass. The corruption controls rehash tampered Mean state and delay
 the observed fit ACK; independent scientific checks still reject them. Original
 assertions, protected selectors and the 100% production branch-coverage threshold
 are unchanged. Current configured strict mypy passes 728 modules (plus the
-operator script explicitly), formatting passes all 88 changed maintained Python
+operator script explicitly), formatting passes all 86 changed maintained Python
 paths, and layout/diff checks pass. Maintained changed-source Ruff remains at
 147 diagnostics, including imported scientific-protocol complexity and other
 unresolved source violations. This is separate from unsupported broad scans of
@@ -234,10 +234,29 @@ After release acceptance, the next concrete milestone is live local-model
 hypothesis generation under the same admission, grant, budget, protected-final
 and independent-inspection boundaries. No live model-assisted study starts here.
 
-A resolver dry run also established that default synchronization would remove the
-learning extra required by the numerical tests. A small authored offline resolver
-probe confirms a development-only self-reference to the existing learning extra
-is supported. That correction and removal of two unused classifier wrappers are
-next; neither is silently included in this frozen profile receipt. Prepared
-additional contract probes and test-only child-coverage instrumentation are not
-yet part of the protected test selection.
+A resolver dry run established that default synchronization would remove the
+optional numerical dependencies needed by production tests. The development group
+now references `devtools[learning]`; the pinned extra remains the single source of
+numerical requirements. Offline resolution/synchronization succeeds with the same
+75-package lock, and ordinary `uv run` retains the numerical packages. Base wheel
+dependencies remain optional. Two unselected classifier wrappers (Decision Tree
+and Gaussian Naive Bayes) had no selected consumer, root export or native
+constructor; they are removed, with original donor/destination identities retained
+under `historical_removed_inputs`. The remaining 40 imported inputs reauthenticate
+without mismatch. The current affected receipt
+`learning-scope-dev-extra-17.json` reports 72 passes in 38.49 seconds with stable
+inputs; strict mypy passes 726 modules and formatting passes 86 changed maintained
+Python paths. Maintained-source Ruff still reports 147 diagnostics.
+
+Publication `CURRENT` denotes inspection through the current reference;
+`AVAILABLE` denotes an explicit generation lookup. Required ledger acknowledgment
+is a separate recording status. The early assertion correction retained these
+original meanings rather than changing publication/reconciliation behavior.
+
+The full protected failure above is the frozen `b1b43dd5` tree, before these narrow
+scope/development-environment corrections. Their affected tests pass; they do not
+turn that 84.55% result into a passing current release gate. Prepared additional
+contract probes and test-only child-coverage instrumentation are not yet part of
+the protected test selection. Completing the scientific negative/lifecycle/state
+contracts, native-child coverage and maintained Ruff corrections remains required
+before release acceptance; another full protected run belongs after those fixes.
