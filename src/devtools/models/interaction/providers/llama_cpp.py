@@ -39,9 +39,13 @@ if TYPE_CHECKING:
 
 _CHAT_COMPLETIONS_PATH = "/v1/chat/completions"
 _MAX_ERROR_DETAIL_BYTES = 1_024
+_MAX_RESPONSE_BODY_BYTES = 8 << 20
 _SUCCESS_STATUS_START = 200
 _SUCCESS_STATUS_END = 300
 _HTTP_STATUS_PART_COUNT = 3
+_HTTP_STATUS_CODE_DIGITS = 3
+# RFC 9112 reason-phrase excludes C0 controls except HTAB, and excludes DEL.
+_HTTP_REASON_FORBIDDEN = frozenset(bytes(range(32)).replace(b"\t", b"") + b"\x7f")
 _HEADER_DELIMITER = b"\r\n\r\n"
 _LINE_DELIMITER = b"\r\n"
 _CHUNKED_TRANSFER_ENCODING = "chunked"
@@ -323,7 +327,12 @@ async def _read_http_response(reader: asyncio.StreamReader) -> tuple[int, bytes]
         return status, await _read_chunked_body(reader)
     if content_length is not None:
         return status, await _read_content_length_body(reader, content_length)
-    return status, await reader.read()
+    try:
+        await reader.readexactly(_MAX_RESPONSE_BODY_BYTES + 1)
+    except asyncio.IncompleteReadError as error:
+        return status, error.partial
+    msg = "llama.cpp response exceeded the supported body limit."
+    raise LlamaCppResponseError(msg)
 
 
 def _parse_http_headers(header_block: bytes) -> tuple[int, dict[str, str]]:
@@ -332,8 +341,14 @@ def _parse_http_headers(header_block: bytes) -> tuple[int, dict[str, str]]:
     if not lines or not lines[0]:
         msg = "llama.cpp response did not contain an HTTP status line."
         raise LlamaCppResponseError(msg)
-    parts = lines[0].split()
-    if len(parts) != _HTTP_STATUS_PART_COUNT or not parts[1].isdigit():
+    parts = lines[0].split(b" ", maxsplit=2)
+    if (
+        len(parts) != _HTTP_STATUS_PART_COUNT
+        or parts[0] not in {b"HTTP/1.0", b"HTTP/1.1"}
+        or len(parts[1]) != _HTTP_STATUS_CODE_DIGITS
+        or not parts[1].isdigit()
+        or any(c in _HTTP_REASON_FORBIDDEN for c in parts[2])
+    ):
         msg = "llama.cpp response had an invalid HTTP status line."
         raise LlamaCppResponseError(msg)
     headers: dict[str, str] = {}
@@ -363,8 +378,12 @@ async def _read_content_length_body(
     if not content_length.isascii() or not content_length.isdecimal():
         msg = "llama.cpp response had an invalid Content-Length."
         raise LlamaCppResponseError(msg)
+    size = int(content_length)
+    if size > _MAX_RESPONSE_BODY_BYTES:
+        msg = "llama.cpp response exceeded the supported body limit."
+        raise LlamaCppResponseError(msg)
     try:
-        return await reader.readexactly(int(content_length))
+        return await reader.readexactly(size)
     except asyncio.IncompleteReadError as error:
         msg = "llama.cpp response ended before its Content-Length body completed."
         raise LlamaCppResponseError(msg) from error
@@ -373,6 +392,7 @@ async def _read_content_length_body(
 async def _read_chunked_body(reader: asyncio.StreamReader) -> bytes:
     """Decode HTTP chunked framing without enabling streaming model semantics."""
     chunks: list[bytes] = []
+    total = 0
     while True:
         line = await _read_http_line(reader, "chunk size")
         size_text = line.split(b";", maxsplit=1)[0]
@@ -385,6 +405,10 @@ async def _read_chunked_body(reader: asyncio.StreamReader) -> bytes:
         if size == 0:
             await _consume_chunk_trailers(reader)
             return b"".join(chunks)
+        if size > _MAX_RESPONSE_BODY_BYTES - total:
+            msg = "llama.cpp response exceeded the supported body limit."
+            raise LlamaCppResponseError(msg)
+        total += size
         try:
             chunks.append(await reader.readexactly(size))
             delimiter = await reader.readexactly(len(_LINE_DELIMITER))
