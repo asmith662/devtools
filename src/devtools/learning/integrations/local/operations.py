@@ -9,6 +9,12 @@ from dataclasses import asdict, dataclass, replace
 from typing import TYPE_CHECKING
 
 from devtools.core.paths import ResolvedPath, resolve_path
+from devtools.learning.classification.k_nearest_neighbors import (
+    FittedKNearestNeighborsClassification,
+    KNearestNeighborsClassificationSpecification,
+    KNearestNeighborsDistance,
+    KNearestNeighborsWeighting,
+)
 from devtools.learning.classification.linear import (
     BinaryLinearTraining,
     FittedBinaryLinearClassifier,
@@ -68,7 +74,9 @@ from devtools.resources.filesystem import BinaryFile, write
 
 if TYPE_CHECKING:
     from pathlib import Path
+    from uuid import UUID
 
+    from devtools.learning.integrations.local.publication import PublicationInspection
     from devtools.learning.investigation.classification.contracts import (
         ExecutionAuthorization,
     )
@@ -218,6 +226,135 @@ class _Recorder(SQLiteExecutionRecorder):
         self._reserved = True
 
 
+def _fit_binary(
+    training: BinaryLinearTraining,
+    preparation: FittedFeatureStandardization | None,
+    method: str,
+    recorder: _Recorder,
+    run: ExecutionContext,
+) -> tuple[
+    FittedBinaryLinearClassifier | FittedMarginClassifier | None,
+    dict[str, object],
+    BinaryLinearTraining,
+    FittedKNearestNeighborsClassification | None,
+    UUID,
+]:
+    """Retain one genuine binary fit and ACK it before any query prediction."""
+    state: FittedBinaryLinearClassifier | FittedMarginClassifier | None = None
+    state_document: dict[str, object]
+    native_knn = None
+    binary_training = replace(
+        training,
+        features=represented(training.features, preparation, method),
+    )
+    with ExecutionContext(
+        recorder,
+        Admitted("learning.binary_fit", (Fact("method", method),)),
+        parent=run,
+    ) as fitting_run:
+        if method == "knn7":
+            native_knn = construct_k_nearest_neighbors_classification(
+                KNearestNeighborsClassificationSpecification(
+                    7,
+                    KNearestNeighborsDistance.EUCLIDEAN,
+                    KNearestNeighborsWeighting.UNIFORM,
+                ),
+                binary_training.features,
+                binary_training.targets,
+            )
+            state_document = {
+                "schema": "retained-knn7-v1",
+                "training": document(asdict(binary_training)),
+            }
+        elif method == "square-logistic":
+            state = fit_binary_logistic(
+                binary_training,
+                LogisticClassificationConfiguration(),
+                execution=fitting_run,
+            )
+            state_document = model_document(state)
+        else:
+            state = fit_binary_margin(
+                binary_training,
+                MarginClassificationConfiguration(),
+                execution=fitting_run,
+            )
+            state_document = margin_document(state)
+        fitting_run.completed(
+            (Fact("state_identity", _hash(state_document)),),
+        )
+    return state, state_document, binary_training, native_knn, fitting_run.execution_id
+
+
+def _publish_result(
+    root: Path,
+    result: dict[str, object],
+    plan: LearningPlan,
+    recorder: _Recorder,
+    run: ExecutionContext,
+) -> PublicationInspection:
+    """Publish bounded scientific bytes and record exact producer output facts."""
+    raw = canonical(result).encode()
+    if len(raw) > MAX_PUBLICATION_BYTES:
+        msg = "retained scientific state exceeds publication limit"
+        raise ValueError(msg)
+
+    def write_member(directory: Path) -> None:
+        write(
+            BinaryFile(resolve_path(directory / "result.json"), raw),
+            overwrite=False,
+        )
+
+    publication = publish_artifacts(
+        root / "publication",
+        run.execution_id,
+        ("result.json",),
+        write_member,
+        dependencies=(Fact("plan_identity", plan.identity),),
+        recorder=recorder,
+        parent=run,
+        payload_bytes=len(raw),
+    )
+    run.completed(
+        (
+            Fact("state_identity", _hash(result["state"])),
+            Fact("plan_identity", plan.identity),
+        ),
+    )
+    return publication
+
+
+def _binary_predictions(
+    state: FittedRegression
+    | FittedBinaryLinearClassifier
+    | FittedMarginClassifier
+    | None,
+    binary_training: BinaryLinearTraining | None,
+    native_knn: FittedKNearestNeighborsClassification | None,
+    query: FeatureTable,
+) -> tuple[int, ...]:
+    """Check native neighbor parity or apply an already fitted binary state."""
+    if native_knn is not None and binary_training is not None:
+        predictions = knn7_predict(
+            binary_training,
+            query,
+        )
+        if predictions != native_knn.classify(query):
+            msg = "native/independent binary kNN prediction disagreement"
+            raise ValueError(
+                msg,
+            )
+    elif isinstance(
+        state,
+        (FittedBinaryLinearClassifier, FittedMarginClassifier),
+    ):
+        predictions = state.classify(query)
+    else:
+        msg = "retained binary state required"
+        raise TypeError(msg)
+    return predictions
+
+
 def execute_plan(
     plan: LearningPlan,
     grant: ExecutionAuthorization,
@@ -298,53 +435,9 @@ def execute_plan(
             if not isinstance(held, BinaryProblem):
                 msg = "binary held population required"
                 raise TypeError(msg)
-            binary_training = replace(
-                training,
-                features=represented(training.features, preparation, plan.method),
+            state, state_document, binary_training, native_knn, fitting_id = (
+                _fit_binary(training, preparation, plan.method, recorder, run)
             )
-            with ExecutionContext(
-                recorder,
-                Admitted("learning.binary_fit", (Fact("method", plan.method),)),
-                parent=run,
-            ) as fitting_run:
-                if plan.method == "knn7":
-                    from devtools.learning.classification.k_nearest_neighbors import (
-                        KNearestNeighborsClassificationSpecification,
-                        KNearestNeighborsDistance,
-                        KNearestNeighborsWeighting,
-                    )
-
-                    native_knn = construct_k_nearest_neighbors_classification(
-                        KNearestNeighborsClassificationSpecification(
-                            7,
-                            KNearestNeighborsDistance.EUCLIDEAN,
-                            KNearestNeighborsWeighting.UNIFORM,
-                        ),
-                        binary_training.features,
-                        binary_training.targets,
-                    )
-                    state_document = {
-                        "schema": "retained-knn7-v1",
-                        "training": document(asdict(binary_training)),
-                    }
-                elif plan.method == "square-logistic":
-                    state = fit_binary_logistic(
-                        binary_training,
-                        LogisticClassificationConfiguration(),
-                        execution=fitting_run,
-                    )
-                    state_document = model_document(state)
-                else:
-                    state = fit_binary_margin(
-                        binary_training,
-                        MarginClassificationConfiguration(),
-                        execution=fitting_run,
-                    )
-                    state_document = margin_document(state)
-                fitting_run.completed(
-                    (Fact("state_identity", _hash(state_document)),),
-                )
-            fitting_id = fitting_run.execution_id
         else:
             methods = {
                 "mean": RegressionMethod.MEAN,
@@ -377,24 +470,9 @@ def execute_plan(
         ) as prediction_run:
             if isinstance(held, BinaryProblem):
                 query = represented(held.features, preparation, plan.method)
-                if native_knn is not None and binary_training is not None:
-                    predictions: tuple[int, ...] | RegressionPredictions = knn7_predict(
-                        binary_training,
-                        query,
-                    )
-                    if predictions != native_knn.classify(query):
-                        msg = "native/independent binary kNN prediction disagreement"
-                        raise ValueError(
-                            msg,
-                        )
-                elif isinstance(
-                    state,
-                    (FittedBinaryLinearClassifier, FittedMarginClassifier),
-                ):
-                    predictions = state.classify(query)
-                else:
-                    msg = "retained binary state required"
-                    raise TypeError(msg)
+                predictions: tuple[int, ...] | RegressionPredictions = (
+                    _binary_predictions(state, binary_training, native_knn, query)
+                )
             elif native_regression is not None:
                 predictions = native_regression.predict(held.inputs)
             else:
@@ -421,7 +499,7 @@ def execute_plan(
             measurement_run.completed(
                 (Fact("measurement_identity", _hash(measurements)),),
             )
-        result = {
+        result: dict[str, object] = {
             "schema": "learning-operation-v2",
             "fitting_execution_id": str(fitting_id),
             "plan": plan.document(),
@@ -439,33 +517,7 @@ def execute_plan(
             "measurement": measurements,
             "producing_execution_id": str(run.execution_id),
         }
-        raw = canonical(result).encode()
-        if len(raw) > MAX_PUBLICATION_BYTES:
-            msg = "retained scientific state exceeds publication limit"
-            raise ValueError(msg)
-
-        def write_member(directory: Path) -> None:
-            write(
-                BinaryFile(resolve_path(directory / "result.json"), raw),
-                overwrite=False,
-            )
-
-        publication = publish_artifacts(
-            root / "publication",
-            run.execution_id,
-            ("result.json",),
-            write_member,
-            dependencies=(Fact("plan_identity", plan.identity),),
-            recorder=recorder,
-            parent=run,
-            payload_bytes=len(raw),
-        )
-        run.completed(
-            (
-                Fact("state_identity", _hash(state_document)),
-                Fact("plan_identity", plan.identity),
-            ),
-        )
+        publication = _publish_result(root, result, plan, recorder, run)
     if publication.manifest is None or publication.manifest_sha256 is None:
         msg = "scientific publication did not retain a manifest"
         raise ValueError(msg)

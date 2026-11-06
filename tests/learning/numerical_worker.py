@@ -10,6 +10,8 @@ from dataclasses import asdict, replace
 from pathlib import Path
 from statistics import mean, pstdev
 
+from threadpoolctl import threadpool_info  # type: ignore[import-untyped]
+
 from devtools.learning.classification.linear import BinaryLinearTraining
 from devtools.learning.evaluation.classification import evaluate_classification
 from devtools.learning.evaluation.classification_v2 import macro_f1_value
@@ -48,8 +50,43 @@ from devtools.learning.regression.state import validate_training_state
 from devtools.learning.representation.features import FeatureTable, FeatureValueKind
 from devtools.learning.representation.standardization import (
     FeatureStandardizationSpecification,
+    FittedFeatureStandardization,
     fit_feature_standardization,
 )
+
+
+def _binary_control(
+    preparation: FittedFeatureStandardization,
+    table: FeatureTable,
+    inputs: RegressionInput,
+    authority: ExecutionAuthorization,
+    run: ExecutionContext,
+) -> dict[str, object]:
+    """Perform the actual classification control with independent retained replay."""
+    prepared = preparation.transform(table).features
+    training = BinaryLinearTraining(
+        prepared,
+        (0, 0, 0, 0, 1, 1, 1, 1),
+        inputs.row_ids,
+        inputs.population_id,
+        "binary-target-v1",
+        (authority.authority,),
+    )
+    classifier = fit_binary_logistic(
+        training,
+        LogisticClassificationConfiguration(),
+        execution=run,
+    )
+    encoded = json.dumps(model_document(classifier)).encode()
+    restored = decode_model(encoded)
+    prediction = restored.classify(prepared)
+    assert prediction == classifier.classify(prepared)
+    counts = evaluate_classification(training.targets, prediction)
+    return {
+        "state": model_document(restored),
+        "predictions": prediction,
+        "f1": macro_f1_value(counts, version=2),
+    }
 
 
 def qualify(root: Path) -> dict[str, object]:
@@ -155,32 +192,15 @@ def qualify(root: Path) -> dict[str, object]:
                     "prediction": document(asdict(predicted)),
                     "evaluation": document(asdict(evaluation)),
                 }
-            prepared = preparation.transform(table).features
-            training = BinaryLinearTraining(
-                prepared,
-                (0, 0, 0, 0, 1, 1, 1, 1),
-                inputs.row_ids,
-                inputs.population_id,
-                "binary-target-v1",
-                (authority.authority,),
+            records["classification"] = _binary_control(
+                preparation,
+                table,
+                inputs,
+                authority,
+                run,
             )
-            classifier = fit_binary_logistic(
-                training,
-                LogisticClassificationConfiguration(),
-                execution=run,
-            )
-            encoded = json.dumps(model_document(classifier)).encode()
-            restored = decode_model(encoded)
-            prediction = restored.classify(prepared)
-            assert prediction == classifier.classify(prepared)
-            counts = evaluate_classification(training.targets, prediction)
-            records["classification"] = {
-                "state": model_document(restored),
-                "predictions": prediction,
-                "f1": macro_f1_value(counts, version=2),
-            }
             records["preparation"] = document(asdict(preparation))
-            run.completed((Fact("control_complete", True),))
+            run.completed((Fact("control_complete", value=True),))
         payload = json.dumps(records, sort_keys=True, allow_nan=False).encode()
 
         def write_artifacts(directory: Path) -> None:
@@ -199,8 +219,6 @@ def qualify(root: Path) -> dict[str, object]:
     assert checked is not None
     assert checked.manifest == publication.manifest
     assert checked.artifact_paths[0].read_bytes() == payload
-    from threadpoolctl import threadpool_info  # type: ignore[import-untyped]
-
     threads = threadpool_info()
     assert threads
     assert all(t["num_threads"] == 1 for t in threads)

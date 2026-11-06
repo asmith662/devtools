@@ -37,7 +37,11 @@ class NonValueKind(Enum):
 
 @dataclass(frozen=True, slots=True)
 class Measured[V]:
-    """A scalar result; the family operation and independent inspection establish meaning."""
+    """Validate the declared scientific contract.
+
+    A scalar result; the family operation and independent inspection establish
+    meaning.
+    """
 
     value: V
 

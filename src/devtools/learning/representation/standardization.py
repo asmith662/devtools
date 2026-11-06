@@ -275,7 +275,7 @@ class FittedFeatureStandardization:
         """Apply the explicit feature names contract within this owner."""
         return self.specification.feature_names
 
-    def transform(
+    def transform(  # noqa: PLR0913 -- explicit scientific provenance/custody; see release qualification review
         self,
         features: FeatureTable,
         *,
@@ -373,7 +373,34 @@ class FittedFeatureStandardization:
             return result
 
 
-def fit_feature_standardization(
+def _population_statistics(
+    selected: FeatureTable,
+) -> tuple[list[float], list[float], list[bool]]:
+    """Compute original binary64 population statistics with constant validation."""
+    centers, deviations, constants = ([], [], [])
+    for index in range(len(selected.feature_names)):
+        values = tuple(r[index] for r in selected.rows)
+        constant = min(values) == max(values)
+        try:
+            center, deviation = (float(mean(values)), float(pstdev(values)))
+        except (OverflowError, ValueError) as error:
+            msg = "fitted statistics are not finitely representable"
+            raise ValueError(msg) from error
+        if (
+            not math.isfinite(center)
+            or not math.isfinite(deviation)
+            or (not constant and deviation == 0)
+        ):
+            msg = "fitted deviation overflows or underflows representation"
+            raise ValueError(msg)
+        centers.append(center)
+        deviations.append(deviation)
+        constants.append(constant)
+
+    return centers, deviations, constants
+
+
+def fit_feature_standardization(  # noqa: PLR0913 -- explicit scientific provenance/custody; see release qualification review
     specification: FeatureStandardizationSpecification,
     training_features: FeatureTable,
     *,
@@ -422,25 +449,7 @@ def fit_feature_standardization(
                 "Fit population n mean/deviation; qualify exact constants",
                 FailureCategory.NUMERICAL,
             )
-        centers, deviations, constants = ([], [], [])
-        for index in range(len(specification.feature_names)):
-            values = tuple(r[index] for r in selected.rows)
-            constant = min(values) == max(values)
-            try:
-                center, deviation = (float(mean(values)), float(pstdev(values)))
-            except (OverflowError, ValueError) as error:
-                msg = "fitted statistics are not finitely representable"
-                raise ValueError(msg) from error
-            if (
-                not math.isfinite(center)
-                or not math.isfinite(deviation)
-                or (not constant and deviation == 0)
-            ):
-                msg = "fitted deviation overflows or underflows representation"
-                raise ValueError(msg)
-            centers.append(center)
-            deviations.append(deviation)
-            constants.append(constant)
+        centers, deviations, constants = _population_statistics(selected)
         return FittedFeatureStandardization(
             specification,
             selected.feature_value_kinds,

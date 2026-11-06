@@ -25,6 +25,30 @@ replacement protected-gate receipt. Fresh unmeasured verification follows
 cohesion-only validator extractions. Strict mypy passes all 732 maintained
 modules. The maintained Ruff cleanup remains in progress.
 
+The completed style checkpoint resolves the original 147 diagnostics. Ruff
+passes over maintained framework source, learning tests and the qualification
+entry point; the seven explicit call-contract exceptions below are the only new
+argument-count exceptions. All changed maintained Python paths are formatted,
+strict mypy passes 734 modules, and the post-refactor learning/Commands run
+passes 450 tests in 61.33 seconds with `inputs_unchanged: true`
+(`learning-release-style-16.json`). The protected coverage gate is still pending.
+
+The private `_Investigation` class holds only this bounded agent's existing
+per-invocation state and Tool callbacks. Public admission and result APIs,
+ModelInteraction/ToolRunner use, grants, consumed slots, original wire fields,
+ACK order and protected final sequencing remain unchanged. It adds no reusable
+runtime, workflow engine, registry, Context bag or persistence schema.
+
+Recorder and reader checks, independent family arithmetic, native fitting,
+publication members and atomic visibility now have responsibility-focused
+helpers. The deferred batching API's private range/callback parameters are
+removed from the only remaining full-population prediction path; all original
+math, distance ordering, tolerance and operation/storage ceilings remain.
+Malformed UUID/state or publication JSON types now use explicit TypeError at
+three typed boundaries, retaining refusal and error evidence. Parent prediction
+checking is extracted from the qualifier's failure-retention handler; it still
+compares actual label-free results with independently inspected publication.
+
 Two 421-test targeted runs finish successfully (55.79/55.77 seconds), but their
 in-process receipt marks input drift. Read-only comparison finds identical
 source/index/HEAD inputs; a bounded reproduction identifies scikit-learn import
@@ -77,6 +101,28 @@ specific handlers is excepted; no global exemption is introduced.
 The required-recorder handler still raises on missing acknowledgment. These
 exceptions do not authorize swallowing computation failures, accepting incomplete
 evidence or retrying effects.
+
+The following argument-count exceptions are limited to existing concrete call
+contracts. Their independent provenance and recorder/observer/parent controls
+remain explicit. Combining them into a new general configuration or execution
+object solely for a five-argument style limit would obscure those distinctions
+and change the demonstrated call contracts. No complexity, branch, type or
+security check is excepted. Original line locations below identify the review
+input; later helper extraction and formatting can move them.
+
+| Source and symbol | Exact rule | Reason and existing qualification |
+| --- | --- | --- |
+| `agents/learning/process.py:171`, `investigate` | PLR0913 | Five independently admitted model/task/worker/budget/root inputs plus mandatory explicit profile. Real scripted native Tool and parent-consumption tests pass. |
+| `learning/evidence/publication.py:123`, `_validate_publication_request` | PLR0913 | Seven independent version-one manifest intent fields must be cross-checked before observed artifacts exist. Publication corruption and membership tests pass. Private callers will name the metadata arguments explicitly. |
+| `learning/integrations/local/publication.py:592`, `publish_artifacts` | PLR0913 | Retains the existing public writer/validator, exact identities, dependencies, optional observations and ownership controls. All 57 filesystem/publication controls pass. |
+| `learning/integrations/local/publication.py:680`, `_publish` | PLR0913 | Same explicit validated intent plus the active scientific occurrence; keeps unobserved intent distinct from the final immutable manifest. Private metadata arguments become keyword-only. |
+| `learning/integrations/sklearn/regression/__init__.py:244`, `fit_regression` | PLR0913 | Separate specification, training population, preparation and required recorder plus optional parent/observer. Actual Mean/Ridge/kNN fits and retained-state checks pass. |
+| `learning/representation/standardization.py:278`, `transform` | PLR0913 | Distinct source/population/role/representation identities and optional scientific observation controls. Exact arithmetic, held-role and observer controls pass. |
+| `learning/representation/standardization.py:403`, `fit_feature_standardization` | PLR0913 | Same explicit provenance, fitting-only role and recording controls at the preparation boundary. The 31 independent standardization controls pass. |
+
+These exceptions preserve the demonstrated APIs. They do not except new helpers,
+accept unsupported source types or remove the 100% coverage requirement. The
+post-refactor source requires fresh focused regression and coverage receipts.
 
 ## Runtime scope
 

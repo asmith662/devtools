@@ -120,9 +120,10 @@ def _validate_sha256(value: str) -> None:
         raise ValueError(msg)
 
 
-def _validate_publication_request(
+def _validate_publication_request(  # noqa: PLR0913 -- explicit intent/custody; see release qualification
     publication_id: UUID,
     producing_execution_id: UUID,
+    *,
     publication_execution_id: UUID | None,
     generation_id: str,
     created_at: datetime,
@@ -183,11 +184,11 @@ class PublicationManifest:
         names = _validate_publication_request(
             self.publication_id,
             self.producing_execution_id,
-            self.publication_execution_id,
-            self.generation_id,
-            self.created_at,
-            self.expected_artifact_names,
-            self.dependencies,
+            publication_execution_id=self.publication_execution_id,
+            generation_id=self.generation_id,
+            created_at=self.created_at,
+            expected_artifact_names=self.expected_artifact_names,
+            dependencies=self.dependencies,
         )
         values = tuple(self.artifacts)
         if any(not isinstance(value, ArtifactRecord) for value in values):

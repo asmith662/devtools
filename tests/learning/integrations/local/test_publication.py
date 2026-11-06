@@ -38,6 +38,7 @@ from devtools.learning.evidence.publication import (
 from devtools.learning.integrations.local import publication as filesystem
 from devtools.learning.integrations.local.ledger import (
     SQLiteExecutionRecorder,
+    inspect_child_execution_ids,
     inspect_execution,
 )
 from devtools.learning.integrations.local.publication import (
@@ -123,7 +124,7 @@ def test_publication_replacement_pinned_readers_and_immutable_identity(
     assert _manifest(first).schema_version == 1
     assert all(p.read_text() == "first" for p in first.artifact_paths)
     assert _manifest(first).publication_id != _manifest(first).producing_execution_id
-    assert len({a.artifact_id for a in _manifest(first).artifacts}) == 3
+    assert len({a.artifact_id for a in _manifest(first).artifacts}) == len(NAMES)
     with pytest.raises(FrozenInstanceError):
         _manifest(first).complete = False  # type: ignore[misc]  # deliberate frozen mutation
     with pytest.raises(ValueError, match="identity"):
@@ -152,6 +153,66 @@ def test_publication_replacement_pinned_readers_and_immutable_identity(
     assert _inspect(root).directory == second.directory
 
 
+def _metadata_failures(monkeypatch: pytest.MonkeyPatch, point: str) -> None:
+    """Inject actual metadata-write and synchronization failures."""
+    original_write = cast(
+        "Callable[[Path, object], None]",
+        vars(filesystem)["_write_json"],
+    )
+
+    def write_json(path: Path, value: object) -> None:
+        """Write json."""
+        if point == "manifest" and path.name == "manifest.json":
+            message = "manifest write failed"
+            raise OSError(message)
+        if point == "before_pointer" and path.name.startswith(".current-"):
+            message = "pointer construction failed"
+            raise OSError(message)
+        return original_write(path, value)
+
+    monkeypatch.setattr(filesystem, "_write_json", write_json)
+    original_sync = cast("Callable[[Path], None]", vars(filesystem)["_sync_directory"])
+
+    def synchronize(path: Path) -> None:
+        """Synchronize."""
+        if point == "before_generation" and path.parent.name == ".staging":
+            message = "before generation rename"
+            raise OSError(message)
+        return original_sync(path)
+
+    monkeypatch.setattr(filesystem, "_sync_directory", synchronize)
+
+
+def _failure_callbacks(
+    monkeypatch: pytest.MonkeyPatch,
+    point: str,
+) -> tuple[Callable[[Path], None], Callable[[Path], None]]:
+    """Inject each actual staging/publication failure at its original boundary."""
+
+    def write(directory: Path) -> None:
+        """Write."""
+        if point == "first":
+            message = "first artifact write failed"
+            raise OSError(message)
+        (directory / NAMES[0]).write_text("new")
+        if point == "partial":
+            message = "after partial writes"
+            raise OSError(message)
+        for name in NAMES[1:]:
+            (directory / name).write_text("new")
+
+    _metadata_failures(monkeypatch, point)
+
+    def validate(directory: Path) -> None:
+        """Validate."""
+        del directory
+        if point == "validator":
+            message = "application content invalid"
+            raise ValueError(message)
+
+    return write, validate
+
+
 @pytest.mark.parametrize(
     "point",
     [
@@ -173,49 +234,7 @@ def test_failed_replacement_preserves_previous_and_retains_evidence(
     previous = _publish(root)
     pointer = (root / "current.json").read_bytes()
 
-    def write(directory: Path) -> None:
-        """Write."""
-        if point == "first":
-            message = "first artifact write failed"
-            raise OSError(message)
-        (directory / NAMES[0]).write_text("new")
-        if point == "partial":
-            message = "after partial writes"
-            raise OSError(message)
-        for name in NAMES[1:]:
-            (directory / name).write_text("new")
-
-    original_write = filesystem._write_json
-
-    def write_json(path: Path, value: object) -> None:
-        """Write json."""
-        if point == "manifest" and path.name == "manifest.json":
-            message = "manifest write failed"
-            raise OSError(message)
-        if point == "before_pointer" and path.name.startswith(".current-"):
-            message = "pointer construction failed"
-            raise OSError(message)
-        return original_write(path, value)
-
-    monkeypatch.setattr(filesystem, "_write_json", write_json)
-    original_sync = filesystem._sync_directory
-
-    def synchronize(path: Path) -> None:
-        """Synchronize."""
-        if point == "before_generation" and path.parent.name == ".staging":
-            message = "before generation rename"
-            raise OSError(message)
-        return original_sync(path)
-
-    monkeypatch.setattr(filesystem, "_sync_directory", synchronize)
-
-    def validate(directory: Path) -> None:
-        """Validate."""
-        del directory
-        if point == "validator":
-            message = "application content invalid"
-            raise ValueError(message)
-
+    write, validate = _failure_callbacks(monkeypatch, point)
     with pytest.raises((OSError, ValueError)):
         publish_artifacts(root, uuid4(), NAMES, write, validate_artifacts=validate)
     assert (root / "current.json").read_bytes() == pointer
@@ -223,7 +242,8 @@ def test_failed_replacement_preserves_previous_and_retains_evidence(
     assert all(p.read_text() == "first" for p in previous.artifact_paths)
     recovery = inspect_publication_recovery(root)
     if point == "before_pointer":
-        assert len(recovery.generations) == 2
+        expected_generations = 2
+        assert len(recovery.generations) == expected_generations
         assert recovery.staging == ()
         assert any(
             g.status is PublicationStatus.AVAILABLE for g in recovery.generations
@@ -257,7 +277,7 @@ def test_failed_replacement_preserves_previous_and_retains_evidence(
 )
 def test_portable_flat_artifact_paths(name: str) -> None:
     """Portable flat artifact paths."""
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"artifact|filename"):
         artifact_name(name)
 
 
@@ -267,7 +287,7 @@ def test_duplicate_or_empty_membership_rejected_before_writing(
     names: tuple[str, ...],
 ) -> None:
     """Duplicate or empty membership rejected before writing."""
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="artifact names"):
         publish_artifacts(
             tmp_path / "root",
             uuid4(),
@@ -409,16 +429,18 @@ def test_managed_publication_admission_progress_and_consistent_reconciliation(
 ) -> None:
     """Managed publication admission progress and consistent reconciliation."""
     root, database = (tmp_path / "root", tmp_path / "ledger.sqlite")
-    with SQLiteExecutionRecorder(database) as recorder:
-        with ExecutionContext(recorder, Admitted("application")) as parent:
-            current = publish_artifacts(
-                root,
-                parent.execution_id,
-                NAMES,
-                _writer("value"),
-                recorder=recorder,
-                parent=parent,
-            )
+    with (
+        SQLiteExecutionRecorder(database) as recorder,
+        ExecutionContext(recorder, Admitted("application")) as parent,
+    ):
+        current = publish_artifacts(
+            root,
+            parent.execution_id,
+            NAMES,
+            _writer("value"),
+            recorder=recorder,
+            parent=parent,
+        )
     manifest = _manifest(current)
     assert current.recording_status is PublicationRecordingStatus.ACKNOWLEDGED
     assert manifest.producing_execution_id == parent.execution_id
@@ -473,8 +495,11 @@ def test_publication_failure_keeps_original_error_and_failed_parent(
     """Publication failure keeps original error and failed parent."""
     database = tmp_path / "ledger.sqlite"
     with SQLiteExecutionRecorder(database) as recorder:
-        with pytest.raises(OSError, match="write failed"):
-            with ExecutionContext(recorder, Admitted("application")) as parent:
+        parent = ExecutionContext(recorder, Admitted("application"))
+
+        def fail_parent_publication() -> None:
+            """Execute one publication whose writer raises the original error."""
+            with parent:
                 parent.stage(
                     "publication",
                     "Required publication",
@@ -495,8 +520,10 @@ def test_publication_failure_keeps_original_error_and_failed_parent(
                     recorder=recorder,
                     parent=parent,
                 )
+
+        with pytest.raises(OSError, match="write failed"):
+            fail_parent_publication()
     assert _history(database, parent.execution_id).outcome is Outcome.FAILED
-    from devtools.learning.integrations.local.ledger import inspect_child_execution_ids
 
     (child,) = inspect_child_execution_ids(database, parent.execution_id)
     h = _history(database, child)
@@ -537,9 +564,11 @@ def test_optional_observer_failure_and_missing_or_mismatched_ledger(
     assert (
         _reconcile(root, other).recording_status is PublicationRecordingStatus.MISSING
     )
-    with SQLiteExecutionRecorder(other) as recorder:
-        with ExecutionContext(recorder, Admitted("unrelated")) as unrelated:
-            pass
+    with (
+        SQLiteExecutionRecorder(other) as recorder,
+        ExecutionContext(recorder, Admitted("unrelated")) as unrelated,
+    ):
+        pass
     _mutate_manifest(
         root,
         current,
@@ -584,7 +613,7 @@ def test_visible_generation_with_failed_post_pointer_synchronization(
     """Visible generation with failed post pointer synchronization."""
     root, database = (tmp_path / "root", tmp_path / "ledger.sqlite")
     previous = _publish(root)
-    original = filesystem._sync_directory
+    original = cast("Callable[[Path], None]", vars(filesystem)["_sync_directory"])
 
     def fail(path: Path) -> None:
         """Fail."""
@@ -594,9 +623,11 @@ def test_visible_generation_with_failed_post_pointer_synchronization(
         original(path)
 
     monkeypatch.setattr(filesystem, "_sync_directory", fail)
-    with SQLiteExecutionRecorder(database) as recorder:
-        with pytest.raises(OSError, match="post-pointer"):
-            _publish(root, "new", recorder=recorder)
+    with (
+        SQLiteExecutionRecorder(database) as recorder,
+        pytest.raises(OSError, match="post-pointer"),
+    ):
+        _publish(root, "new", recorder=recorder)
     current = _reconcile(root, database)
     assert current.status is PublicationStatus.CURRENT
     assert current.recording_status is PublicationRecordingStatus.NOT_ACKNOWLEDGED

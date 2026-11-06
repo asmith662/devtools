@@ -12,6 +12,7 @@ import json
 import sys
 from dataclasses import asdict
 from pathlib import Path
+from typing import Any
 
 from devtools.agents.learning.budgets import LearningBudget
 from devtools.agents.learning.policy import PROFILE
@@ -151,6 +152,44 @@ def load_tasks(inputs: Path) -> list[AdmittedLearningTask]:
     return tasks
 
 
+def _parent_correspondence(
+    member: object,
+    predictions: tuple[int, ...] | RegressionPredictions,
+) -> tuple[list[int] | list[float], dict[str, Any]]:
+    """Match actual parent predictions to independently inspected evidence."""
+    if not isinstance(member, BinaryFile):
+        msg = "scientific member required for parent correspondence"
+        raise TypeError(
+            msg,
+        )
+    scientific = json.loads(member.content)
+    values = (
+        list(predictions.values)
+        if isinstance(predictions, RegressionPredictions)
+        else list(predictions)
+    )
+    expected = (
+        scientific["predictions"]["values"]
+        if isinstance(predictions, RegressionPredictions)
+        else scientific["predictions"]
+    )
+    if values != expected:
+        msg = (
+            "actual parent label-free prediction differs from indep"
+            "endently i"
+            "nspected evidence"
+        )
+        raise ValueError(
+            msg,
+        )
+    return values, scientific
+
+
+def _retained_bytes(root: Path) -> int:
+    """Measure this exclusively owned retained output tree off the async loop."""
+    return sum(p.stat().st_size for p in root.rglob("*") if p.is_file())
+
+
 async def qualify(
     inputs: Path,
     root: Path,
@@ -230,31 +269,7 @@ async def qualify(
                     file_format=FileFormat.BINARY,
                     max_bytes=32 << 20,
                 )
-                if not isinstance(member, BinaryFile):
-                    msg = "scientific member required for parent correspondence"
-                    raise TypeError(
-                        msg,
-                    )
-                scientific = json.loads(member.content)
-                values = (
-                    list(predictions.values)
-                    if isinstance(predictions, RegressionPredictions)
-                    else list(predictions)
-                )
-                expected = (
-                    scientific["predictions"]["values"]
-                    if isinstance(predictions, RegressionPredictions)
-                    else scientific["predictions"]
-                )
-                if values != expected:
-                    msg = (
-                        "actual parent label-free prediction differs from indep"
-                        "endently i"
-                        "nspected evidence"
-                    )
-                    raise ValueError(
-                        msg,
-                    )
+                values, scientific = _parent_correspondence(member, predictions)
                 report["final"] = {
                     "method": artifact.plan.method,
                     "quality": document(asdict(artifact.quality)),
@@ -286,7 +301,7 @@ async def qualify(
             overwrite=False,
         )
         raise
-    size = sum(p.stat().st_size for p in root.rglob("*") if p.is_file())
+    size = await asyncio.to_thread(_retained_bytes, root)
     if size > 512 << 20:
         msg = "actual retained scientific output exceeds the reviewed root cap"
         raise ValueError(

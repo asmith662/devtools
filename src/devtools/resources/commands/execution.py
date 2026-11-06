@@ -101,14 +101,7 @@ class CommandExecutor:
             if self._contained:
                 job = WindowsJob()
             process = await self._create_process(command)
-            if job is not None:
-                try:
-                    # CPython owns this transport and the original Windows handle.
-                    native_process = process._transport.get_extra_info("subprocess")  # type: ignore[attr-defined]  # noqa: SLF001
-                    job.assign_and_resume(int(native_process._handle), process.pid)  # noqa: SLF001
-                except BaseException:
-                    await self._terminate_and_reap(process)
-                    raise
+            await self._admit_process(process, job)
 
             execution._emit(CommandStarted(command=command))  # noqa: SLF001
 
@@ -140,14 +133,9 @@ class CommandExecutor:
                 )
                 raise CommandTimeoutError(msg) from error
 
-        except asyncio.CancelledError:
-            if process is not None:
-                await self._terminate_and_reap(process)
-
-            raise
         except (CommandNotFoundError, CommandTimeoutError):
             raise
-        except Exception:
+        except (asyncio.CancelledError, Exception):
             if process is not None:
                 await self._terminate_and_reap(process)
 
@@ -187,6 +175,21 @@ class CommandExecutor:
                 job.close()
             stopwatch.stop()
             execution._close_events()  # noqa: SLF001
+
+    async def _admit_process(
+        self,
+        process: asyncio.subprocess.Process,
+        job: WindowsJob | None,
+    ) -> None:
+        """Assign the exact suspended process before permitting child execution."""
+        if job is not None:
+            try:
+                # CPython owns this transport and the original Windows handle.
+                native_process = process._transport.get_extra_info("subprocess")  # type: ignore[attr-defined]  # noqa: SLF001
+                job.assign_and_resume(int(native_process._handle), process.pid)  # noqa: SLF001
+            except BaseException:
+                await self._terminate_and_reap(process)
+                raise
 
     async def _terminate_and_reap(
         self,

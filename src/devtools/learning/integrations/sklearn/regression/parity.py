@@ -100,25 +100,32 @@ def inspect_native_query(
             msg = "native boundary neighbor rank differs"
             raise ValueError(msg)
     classifications = [] if separated else ["NATIVE_BOUNDARY_DIAGNOSTIC"]
-    for identity in native_ids:
-        distance = math.hypot(
-            *(a - b for a, b in zip(row, corpus[identity], strict=True)),
-        )
-        observed = actual[identity]
-        if math.isclose(observed, distance, rel_tol=1e-10, abs_tol=1e-12):
-            classifications.append("ORDINARY_PARITY")
-            continue
-        identical = all(
-            (a.hex() == b.hex() for a, b in zip(row, corpus[identity], strict=True)),
-        )
-        if (
-            distance != 0.0
-            or not identical
-            or math.hypot(*(a - b for a, b in zip(row, corpus[identity], strict=True)))
-            != 0.0
-            or (observed > zero_residual_bound(row))
-        ):
-            msg = "unsupported native distance discrepancy"
-            raise ValueError(msg)
-        classifications.append("IDENTICAL_VECTOR_CANCELLATION")
+    classifications.extend(
+        _distance_classification(row, corpus[i], actual[i]) for i in native_ids
+    )
     return tuple(classifications)
+
+
+def _distance_classification(
+    row: tuple[float, ...],
+    original: tuple[float, ...],
+    observed: float,
+) -> str:
+    """Classify one original native distance under the exact zero-residual envelope."""
+    distance = math.hypot(
+        *(a - b for a, b in zip(row, original, strict=True)),
+    )
+    if math.isclose(observed, distance, rel_tol=1e-10, abs_tol=1e-12):
+        return "ORDINARY_PARITY"
+    identical = all(
+        (a.hex() == b.hex() for a, b in zip(row, original, strict=True)),
+    )
+    if (
+        distance != 0.0
+        or not identical
+        or math.hypot(*(a - b for a, b in zip(row, original, strict=True))) != 0.0
+        or (observed > zero_residual_bound(row))
+    ):
+        msg = "unsupported native distance discrepancy"
+        raise ValueError(msg)
+    return "IDENTICAL_VECTOR_CANCELLATION"

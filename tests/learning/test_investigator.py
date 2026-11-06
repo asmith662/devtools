@@ -14,6 +14,7 @@ from devtools.agents.learning.budgets import LearningBudget
 from devtools.agents.learning.policy import PROFILE
 from devtools.agents.learning.process import investigate
 from devtools.learning.investigation.plans import BinaryProblem
+from devtools.learning.regression.contracts import RegressionPopulation
 from devtools.learning.regression.state import RegressionPredictions
 from devtools.tools.learning import ManagedLearningWorker
 from tests.learning.fixtures import (
@@ -105,7 +106,7 @@ def test_untrusted_request_refuses_before_fitting(
     """Bad proposals neither reserve numerical work nor launch a process."""
     worker = ManagedLearningWorker.current()
     budget = LearningBudget()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"learning|proposal|native|Tool|tool|source"):
         asyncio.run(
             investigate(
                 ScriptedInvestigator(changed),
@@ -123,6 +124,7 @@ def test_untrusted_request_refuses_before_fitting(
 @pytest.mark.parametrize(("nonvalue", "unsupported"), [(True, False), (False, True)])
 def test_nonvalue_and_unsupported_abstain(
     tmp_path: Path,
+    *,
     nonvalue: bool,
     unsupported: bool,
 ) -> None:
@@ -183,7 +185,6 @@ def test_native_knn_boundary_retains_deterministic_truth(tmp_path: Path) -> None
     assert result.artifact is not None
     artifact = result.artifact
     _training, held = artifact.plan.populations()
-    from devtools.learning.regression.contracts import RegressionPopulation
 
     assert isinstance(held, RegressionPopulation)
     predicted = artifact.predict(held.inputs)

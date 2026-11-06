@@ -79,7 +79,7 @@ def inspect_training(
                 condition,
                 success if condition else failure,
                 coordinates=coordinates,
-            )
+            ),
         )
 
     count = features.observation_count if features is not None else None
@@ -119,10 +119,12 @@ def inspect_training(
         checks.append(
             TrainingCheck(
                 ClassificationRequirement.TARGET_VALUES,
-                False,
-                str(target_error),
-                TypeError if isinstance(target_error, TypeError) else ValueError,
-            )
+                satisfied=False,
+                explanation=str(target_error),
+                exception=TypeError
+                if isinstance(target_error, TypeError)
+                else ValueError,
+            ),
         )
     else:
         check(
@@ -173,7 +175,10 @@ def validate_training(
         msg = "training_features must use FeatureTable"
         raise TypeError(msg)
     preliminary = inspect_training(
-        features, None, label=label, neighbor_count=neighbor_count
+        features,
+        None,
+        label=label,
+        neighbor_count=neighbor_count,
     )
     for check in preliminary.checks:
         if check.requirement is ClassificationRequirement.TARGET_VALUES:
@@ -181,7 +186,10 @@ def validate_training(
         if check.satisfied is not True:
             raise check.exception(check.explanation)
     result = inspect_training(
-        features, tuple(targets), label=label, neighbor_count=neighbor_count
+        features,
+        tuple(targets),
+        label=label,
+        neighbor_count=neighbor_count,
     )
     for check in result.checks:
         if check.satisfied is not True:

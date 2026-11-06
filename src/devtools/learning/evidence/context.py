@@ -226,7 +226,8 @@ class ExecutionContext:
 
     @staticmethod
     def _validate_acknowledgment(
-        event: ExecutionEvent, acknowledged: ExecutionEvent
+        event: ExecutionEvent,
+        acknowledged: ExecutionEvent,
     ) -> None:
         """Require the exact immutable event with an observed commit time."""
         if (

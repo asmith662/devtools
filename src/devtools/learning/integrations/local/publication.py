@@ -164,7 +164,7 @@ def _read_json(path: Path) -> dict[str, object]:
     )
     if not isinstance(value, dict):
         msg = "publication metadata must be a JSON object"
-        raise ValueError(msg)
+        raise TypeError(msg)
     return cast("dict[str, object]", value)
 
 
@@ -262,16 +262,120 @@ def _writer(root: Path) -> Iterator[None]:
         try:
             if os.name == "nt":
                 msvcrt = import_module("msvcrt")
-
                 msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
             else:
                 fcntl = import_module("fcntl")
-
                 fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError as error:
             msg = "publication root already has a writer or is inaccessible"
             raise PublicationError(msg) from error
         yield
+
+
+def _validate_members(
+    directory: Path,
+    manifest: PublicationManifest,
+    *,
+    staged: bool,
+) -> None:
+    """Require exact generation identity, complete membership and original bytes."""
+    if manifest.generation_id != directory.name:
+        msg = "manifest generation differs from its directory"
+        raise ValueError(msg)
+    expected = {*manifest.expected_artifact_names, "manifest.json"}
+    if staged and (directory / "intent.json").exists():
+        expected.add("intent.json")
+    if {p.name for p in directory.iterdir()} != expected:
+        msg = "generation contains missing or unexpected members"
+        raise ValueError(msg)
+    for entry in manifest.artifacts:
+        if _digest(directory / entry.relative_path) != (entry.byte_size, entry.sha256):
+            msg = f"artifact size/digest mismatch: {entry.name}"
+            raise ValueError(msg)
+
+
+def _validate_pointer(pointer: dict[str, object]) -> None:
+    """Require the closed current-pointer fields and exact version before traversal."""
+    if set(pointer) != {
+        "schema_version",
+        "publication_id",
+        "producing_execution_id",
+        "generation_id",
+        "manifest_sha256",
+        "publication_execution_id",
+    }:
+        msg = "invalid current-publication fields"
+        raise ValueError(msg)
+    if type(pointer["schema_version"]) is not int or pointer["schema_version"] != 1:
+        msg = "unsupported current-publication schema"
+        raise ValueError(msg)
+
+
+def _reserve_generation(root: Path, identity: UUID) -> None:
+    """Reserve a unique generation without replacing corrupt or uncertain evidence."""
+    for name in ("generations", ".staging"):
+        container = _safe_path(root / name)
+        container.mkdir(exist_ok=True)
+        if any(p.name.endswith(str(identity)) for p in container.iterdir()):
+            msg = "publication identity is already reserved in this root"
+            raise PublicationError(msg)
+    previous = inspect_publication(root)
+    if previous is not None and previous.status is PublicationStatus.CORRUPT:
+        msg = "current publication is corrupt; explicit investigation required"
+        raise PublicationError(msg)
+
+
+def _write_members(
+    staging: Path,
+    names: tuple[str, ...],
+    writer: Callable[[Path], None],
+    execution: ExecutionContext | None,
+) -> None:
+    """Observe bounded writes and require each closed regular scientific member."""
+    if execution:
+        execution.progress("artifacts_written", 0, len(names))
+    writer(staging)
+    for name in (*names, "intent.json"):
+        _regular(staging / name)
+    if execution:
+        execution.progress("artifacts_written", len(names), len(names))
+
+
+def _commit_current(
+    root: Path,
+    manifest: PublicationManifest,
+    manifest_sha256: str | None,
+    execution: ExecutionContext | None,
+) -> PublicationInspection:
+    """Atomically select one validated generation and independently reinspect it."""
+    pointer = {
+        "schema_version": 1,
+        "publication_id": str(manifest.publication_id),
+        "producing_execution_id": str(manifest.producing_execution_id),
+        "generation_id": manifest.generation_id,
+        "manifest_sha256": manifest_sha256,
+        "publication_execution_id": str(execution.execution_id) if execution else None,
+    }
+    temporary = root / (".current-" + str(manifest.publication_id) + ".tmp")
+    _write_json(temporary, pointer)
+    _safe_path(root / "current.json")
+    temporary.replace(root / "current.json")
+    _sync_directory(root)
+    if execution:
+        execution.stage(
+            "inspection_reconciliation",
+            "Verify selected generation before ledger completion acknowledgment",
+            FailureCategory.PUBLICATION,
+        )
+    result = inspect_publication(root)
+    if (
+        result is None
+        or result.status is not PublicationStatus.CURRENT
+        or result.manifest != manifest
+    ):
+        msg = "committed current reference did not validate"
+        raise PublicationError(msg)
+    return result
 
 
 def _inspect_directory(
@@ -286,22 +390,7 @@ def _inspect_directory(
         validate_generation_name(directory.name)
         manifest = _read_manifest(directory / "manifest.json")
         manifest_digest = _digest(directory / "manifest.json")[1]
-        if manifest.generation_id != directory.name:
-            msg = "manifest generation differs from its directory"
-            raise ValueError(msg)
-        expected = {*manifest.expected_artifact_names, "manifest.json"}
-        if staged and (directory / "intent.json").exists():
-            expected.add("intent.json")
-        if {p.name for p in directory.iterdir()} != expected:
-            msg = "generation contains missing or unexpected members"
-            raise ValueError(msg)
-        for entry in manifest.artifacts:
-            if _digest(directory / entry.relative_path) != (
-                entry.byte_size,
-                entry.sha256,
-            ):
-                msg = f"artifact size/digest mismatch: {entry.name}"
-                raise ValueError(msg)
+        _validate_members(directory, manifest, staged=staged)
         return PublicationInspection(
             PublicationStatus.STAGED if staged else PublicationStatus.AVAILABLE,
             directory,
@@ -342,19 +431,7 @@ def inspect_publication(
         return None
     try:
         pointer = _read_json(pointer_path)
-        if set(pointer) != {
-            "schema_version",
-            "publication_id",
-            "producing_execution_id",
-            "generation_id",
-            "manifest_sha256",
-            "publication_execution_id",
-        }:
-            msg = "invalid current-publication fields"
-            raise ValueError(msg)
-        if type(pointer["schema_version"]) is not int or pointer["schema_version"] != 1:
-            msg = "unsupported current-publication schema"
-            raise ValueError(msg)
+        _validate_pointer(pointer)
         generation = validate_generation_name(_string(pointer["generation_id"]))
         pub_id, producer = (
             _uuid(pointer["publication_id"]),
@@ -507,7 +584,7 @@ class PublicationReservation(Protocol):
         ...
 
 
-def publish_artifacts(
+def publish_artifacts(  # noqa: PLR0913 -- explicit intent/custody; see release qualification
     root: Path,
     producing_execution_id: UUID,
     expected_artifact_names: tuple[str, ...],
@@ -546,11 +623,11 @@ def publish_artifacts(
             producing_execution_id,
             expected_artifact_names,
             write_artifacts,
-            validate_artifacts,
-            dependencies,
-            identity,
-            created,
-            generation,
+            validator=validate_artifacts,
+            dependencies=dependencies,
+            identity=identity,
+            created=created,
+            generation=generation,
         )
     with ExecutionContext(
         recorder,
@@ -576,12 +653,12 @@ def publish_artifacts(
             producing_execution_id,
             expected_artifact_names,
             write_artifacts,
-            validate_artifacts,
-            dependencies,
-            identity,
-            created,
-            generation,
-            execution,
+            validator=validate_artifacts,
+            dependencies=dependencies,
+            identity=identity,
+            created=created,
+            generation=generation,
+            execution=execution,
         )
         execution.completed(
             (
@@ -589,17 +666,18 @@ def publish_artifacts(
                 Fact("generation_id", generation),
                 Fact("producing_execution_id", str(producing_execution_id)),
                 Fact("manifest_sha256", result.manifest_sha256),
-                Fact("current_reference_committed", True),
+                Fact("current_reference_committed", value=True),
             ),
         )
     return replace(result, recording_status=PublicationRecordingStatus.ACKNOWLEDGED)
 
 
-def _publish(
+def _publish(  # noqa: PLR0913 -- explicit intent/custody; see release qualification
     root: Path,
     producer: UUID,
     names: tuple[str, ...],
     writer: Callable[[Path], None],
+    *,
     validator: Callable[[Path], None] | None,
     dependencies: tuple[Fact, ...],
     identity: UUID,
@@ -619,25 +697,16 @@ def _publish(
     names = _validate_publication_request(
         identity,
         producer,
-        execution.execution_id if execution else None,
-        generation,
-        created,
-        names,
-        dependencies,
+        publication_execution_id=execution.execution_id if execution else None,
+        generation_id=generation,
+        created_at=created,
+        expected_artifact_names=names,
+        dependencies=dependencies,
     )
     root = _safe_path(root)
     root.mkdir(parents=True, exist_ok=True)
     with _writer(root):
-        for name in ("generations", ".staging"):
-            container = _safe_path(root / name)
-            container.mkdir(exist_ok=True)
-            if any(p.name.endswith(str(identity)) for p in container.iterdir()):
-                msg = "publication identity is already reserved in this root"
-                raise PublicationError(msg)
-        previous = inspect_publication(root)
-        if previous is not None and previous.status is PublicationStatus.CORRUPT:
-            msg = "current publication is corrupt; explicit investigation required"
-            raise PublicationError(msg)
+        _reserve_generation(root, identity)
         stage(
             "staging",
             "Write expected artifacts into a unique retained staging directory",
@@ -660,13 +729,7 @@ def _publish(
                 "complete": False,
             },
         )
-        if execution:
-            execution.progress("artifacts_written", 0, len(names))
-        writer(staging)
-        for name in (*names, "intent.json"):
-            _regular(staging / name)
-        if execution:
-            execution.progress("artifacts_written", len(names), len(names))
+        _write_members(staging, names, writer, execution)
         stage(
             "validation",
             "Validate exact membership, content and SHA-256 observations",
@@ -722,31 +785,4 @@ def _publish(
             "current_commit",
             "Atomically select the complete generation on this filesystem",
         )
-        pointer = {
-            "schema_version": 1,
-            "publication_id": str(identity),
-            "producing_execution_id": str(producer),
-            "generation_id": generation,
-            "manifest_sha256": checked.manifest_sha256,
-            "publication_execution_id": str(execution.execution_id)
-            if execution
-            else None,
-        }
-        temporary = root / (".current-" + str(identity) + ".tmp")
-        _write_json(temporary, pointer)
-        _safe_path(root / "current.json")
-        temporary.replace(root / "current.json")
-        _sync_directory(root)
-        stage(
-            "inspection_reconciliation",
-            "Verify selected generation before ledger completion acknowledgment",
-        )
-        result = inspect_publication(root)
-        if (
-            result is None
-            or result.status is not PublicationStatus.CURRENT
-            or result.manifest != manifest
-        ):
-            msg = "committed current reference did not validate"
-            raise PublicationError(msg)
-        return result
+        return _commit_current(root, manifest, checked.manifest_sha256, execution)

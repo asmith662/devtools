@@ -90,50 +90,56 @@ class WindowsJob:
         self._handle = self._kernel.CreateJobObjectW(None, None)
         self._check(ok=bool(self._handle))
         try:
-            handle_flags = wintypes.DWORD()
-            self._check(
-                ok=bool(
-                    self._kernel.GetHandleInformation(
-                        self._handle, ctypes.byref(handle_flags)
-                    )
-                )
-            )
-            if handle_flags.value & 1:
-                msg_0 = "The job custody handle must not be inherited."
-                raise OSError(msg_0)
-            limits = _Extended()
-            limits.basic.flags = 0x2000 | 0x8
-            limits.basic.active = 1
-            self._check(
-                ok=bool(
-                    self._kernel.SetInformationJobObject(
-                        self._handle, 9, ctypes.byref(limits), ctypes.sizeof(limits)
-                    )
-                )
-            )
-            actual = _Extended()
-            self._check(
-                ok=bool(
-                    self._kernel.QueryInformationJobObject(
-                        self._handle,
-                        9,
-                        ctypes.byref(actual),
-                        ctypes.sizeof(actual),
-                        None,
-                    )
-                )
-            )
-            if (
-                actual.basic.flags & limits.basic.flags != limits.basic.flags
-                or actual.basic.active != 1
-            ):
-                msg = (
-                    "Windows Job limits differ from the requested one-process profile."
-                )
-                raise OSError(msg)
+            self._configure()
         except BaseException:
             self.close()
             raise
+
+    def _configure(self) -> None:
+        """Establish and independently verify a noninherited one-process Job."""
+        handle_flags = wintypes.DWORD()
+        self._check(
+            ok=bool(
+                self._kernel.GetHandleInformation(
+                    self._handle,
+                    ctypes.byref(handle_flags),
+                ),
+            ),
+        )
+        if handle_flags.value & 1:
+            msg_0 = "The job custody handle must not be inherited."
+            raise OSError(msg_0)
+        limits = _Extended()
+        limits.basic.flags = 0x2000 | 0x8
+        limits.basic.active = 1
+        self._check(
+            ok=bool(
+                self._kernel.SetInformationJobObject(
+                    self._handle,
+                    9,
+                    ctypes.byref(limits),
+                    ctypes.sizeof(limits),
+                ),
+            ),
+        )
+        actual = _Extended()
+        self._check(
+            ok=bool(
+                self._kernel.QueryInformationJobObject(
+                    self._handle,
+                    9,
+                    ctypes.byref(actual),
+                    ctypes.sizeof(actual),
+                    None,
+                ),
+            ),
+        )
+        if (
+            actual.basic.flags & limits.basic.flags != limits.basic.flags
+            or actual.basic.active != 1
+        ):
+            msg = "Windows Job limits differ from the requested one-process profile."
+            raise OSError(msg)
 
     @staticmethod
     def _check(*, ok: bool) -> None:
@@ -148,15 +154,19 @@ class WindowsJob:
                 msg,
             )
         self._check(
-            ok=bool(self._kernel.AssignProcessToJobObject(self._handle, process_handle))
+            ok=bool(
+                self._kernel.AssignProcessToJobObject(self._handle, process_handle),
+            ),
         )
         assigned = wintypes.BOOL()
         self._check(
             ok=bool(
                 self._kernel.IsProcessInJob(
-                    process_handle, self._handle, ctypes.byref(assigned)
-                )
-            )
+                    process_handle,
+                    self._handle,
+                    ctypes.byref(assigned),
+                ),
+            ),
         )
         if not assigned.value:
             msg = "Suspended process custody could not be verified."
@@ -182,8 +192,8 @@ class WindowsJob:
                                 ctypes.byref(accounting),
                                 ctypes.sizeof(accounting),
                                 None,
-                            )
-                        )
+                            ),
+                        ),
                     )
                     if not (wintypes.DWORD * 12).from_buffer(accounting)[10]:
                         return

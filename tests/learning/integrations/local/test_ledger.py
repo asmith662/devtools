@@ -143,7 +143,7 @@ def test_duplicate_and_ordered_recording(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
-    "payload,reason",
+    ("payload", "reason"),
     [
         (Activated(1, "host", "3", "windows"), "twice"),
         (StageStarted("second", "Second"), "finish the active"),
@@ -171,7 +171,8 @@ def test_invalid_transition_is_rolled_back(
         recorder.record(_event(context, 4, Terminal(Outcome.FAILED)))
         history = inspect_execution(recorder.database, context.execution_id)
         assert history is not None
-        assert len(history.events) == 4
+        expected_events = 4
+        assert len(history.events) == expected_events
 
 
 @pytest.mark.parametrize(
@@ -230,10 +231,12 @@ def test_corrupt_projection_cannot_be_accepted(tmp_path: Path, statement: str) -
 def test_snapshot_identity_membership_order_and_children(tmp_path: Path) -> None:
     """A read-only owner has exact source, event ordering and child membership."""
     database = tmp_path / "history.sqlite"
-    with SQLiteExecutionRecorder(database) as recorder:
-        with ExecutionContext(recorder, Admitted("parent")) as parent:
-            with ExecutionContext(recorder, Admitted("child"), parent=parent) as child:
-                pass
+    with (
+        SQLiteExecutionRecorder(database) as recorder,
+        ExecutionContext(recorder, Admitted("parent")) as parent,
+        ExecutionContext(recorder, Admitted("child"), parent=parent) as child,
+    ):
+        pass
     with SQLiteInspectionSession(database) as session:
         parent_history = inspect_execution(
             database,
@@ -274,7 +277,7 @@ def test_snapshot_identity_membership_order_and_children(tmp_path: Path) -> None
 
 
 @pytest.mark.parametrize(
-    "field,value",
+    ("field", "value"),
     [
         ("kind", "foreign"),
         ("kind", 1),

@@ -87,7 +87,7 @@ def test_original_state_and_source_are_independently_valid(
 
 
 @pytest.mark.parametrize(
-    "changes,reason",
+    ("changes", "reason"),
     [
         ({"state_id": "foreign"}, "identity"),
         ({"execution_id": "foreign"}, "identity"),
@@ -143,7 +143,7 @@ def test_foreign_training_source_is_not_a_fitted_witness(
     for foreign in changes:
         with pytest.raises(
             ValueError,
-            match="original|training|target|source|correspondence",
+            match=r"original|training|target|source|correspondence",
         ):
             validate_training_state(state, foreign)
 
@@ -153,7 +153,7 @@ def test_distinct_fit_and_state_identities(
 ) -> None:
     """A fitted value identity cannot be its execution identity."""
     state, _ = fitted_states("mean")
-    with pytest.raises(ValueError, match="separate state/fit"):
+    with pytest.raises(ValueError, match=r"separate state/fit"):
         replace(state, state_id=state.execution_id)
     assert replace(state, state_id=uuid4()).content_identity != state.content_identity
 

@@ -24,7 +24,6 @@ from devtools.learning.evidence.events import (
     Outcome,
     Terminal,
 )
-from devtools.learning.evidence.publication import PublicationManifest
 from devtools.learning.integrations.local._codec import retained_object as obj
 from devtools.learning.integrations.local.classification.codec import document
 from devtools.learning.integrations.local.classification.codec import (
@@ -75,6 +74,7 @@ from devtools.resources.filesystem import BinaryFile, FileFormat, read
 if TYPE_CHECKING:
     from pathlib import Path
 
+    from devtools.learning.evidence.publication import PublicationManifest
     from devtools.learning.investigation.classification.contracts import (
         ExecutionAuthorization,
     )
@@ -271,7 +271,7 @@ def _producer(
     terminal = history.events[-1].payload
     if not isinstance(admitted, Admitted) or not isinstance(terminal, Terminal):
         msg = "producer grant/terminal acknowledgments absent"
-        raise ValueError(msg)
+        raise TypeError(msg)
     facts = {fact.name: fact.value for fact in admitted.facts}
     end_facts = {fact.name: fact.value for fact in terminal.facts}
     if (
@@ -556,6 +556,136 @@ def _regression_state(
     return state
 
 
+def _verify_binary_observation(
+    provisional: InspectedLearning,
+    predictions: tuple[int, ...],
+    measured: Measured[float] | NoValue,
+) -> None:
+    """Recount binary votes, linear scores and F1 from original source."""
+    plan = provisional.plan
+    preparation = provisional.preparation
+    state = provisional.state
+    binary_training = provisional.binary_training
+    training, held = plan.populations()
+    if not isinstance(training, BinaryLinearTraining) or not isinstance(
+        held,
+        BinaryProblem,
+    ):
+        msg = "binary source populations required for inspection"
+        raise TypeError(msg)
+    independent_query = _independent_features(held.features, preparation, plan.method)
+    independent_training = _independent_features(
+        training.features,
+        preparation,
+        plan.method,
+    )
+    if binary_training is None or independent_training != binary_training.features:
+        msg_0 = "independent feature construction differs from original source"
+        raise ValueError(msg_0)
+    if state is None:
+        labels = []
+        for row in independent_query.rows:
+            neighbors = sorted(
+                range(len(training.targets)),
+                key=lambda i: (
+                    math.hypot(
+                        *(
+                            a - b
+                            for a, b in zip(
+                                row,
+                                independent_training.rows[i],
+                                strict=True,
+                            )
+                        ),
+                    ),
+                    i,
+                ),
+            )[:7]
+            labels.append(
+                int(
+                    sum(training.targets[i] for i in neighbors)
+                    > _BINARY_NEIGHBORS // 2,
+                ),
+            )
+        independent_predictions = tuple(labels)
+    elif isinstance(state, (FittedBinaryLinearClassifier, FittedMarginClassifier)):
+        independent_predictions = tuple(
+            int(
+                math.fsum(
+                    (
+                        state.intercept,
+                        *(w * x for w, x in zip(state.coefficients, row, strict=True)),
+                    ),
+                )
+                > 0,
+            )
+            for row in independent_query.rows
+        )
+    else:
+        msg_0 = "binary fitted state required"
+        raise TypeError(msg_0)
+    if independent_predictions != predictions:
+        msg_0 = "independent binary prediction arithmetic differs"
+        raise ValueError(msg_0)
+    independent_value = _independent_f1(
+        held.targets,
+        predictions,
+        1 if plan.metric.endswith(":v1") else 2,
+    )
+    if (independent_value is None) != isinstance(measured, NoValue) or (
+        isinstance(measured, Measured) and measured.value != independent_value
+    ):
+        msg_0 = "independent F1 counts differ"
+        raise ValueError(msg_0)
+
+
+def _verify_regression_observation(
+    provisional: InspectedLearning,
+    predictions: RegressionPredictions,
+    measured: Measured[float] | NoValue,
+) -> None:
+    """Recompute quantitative predictions and target-unit MAE independently."""
+    plan = provisional.plan
+    preparation = provisional.preparation
+    state = provisional.state
+    training, held = plan.populations()
+    if not isinstance(state, FittedRegression):
+        msg = "quantitative fitted state required for inspection"
+        raise TypeError(msg)
+    raw_query = (
+        held.features if isinstance(held, BinaryProblem) else held.inputs.features
+    )
+    independent_query = _independent_features(raw_query, preparation, plan.method)
+    if not isinstance(training, RegressionPopulation) or not isinstance(
+        held,
+        RegressionPopulation,
+    ):
+        msg_0 = "quantitative source populations required for inspection"
+        raise TypeError(msg_0)
+    if state.specification.method is RegressionMethod.MEAN:
+        independent_values = (math.fsum(training.values) / len(training.values),) * len(
+            raw_query.rows,
+        )
+    elif state.specification.method is RegressionMethod.RIDGE:
+        independent_values = tuple(
+            math.fsum((w * x for w, x in zip(state.coefficients, row, strict=True)))
+            + state.intercept
+            for row in independent_query.rows
+        )
+    else:
+        independent_values = tuple(
+            inspect_knn_query(state, row)[2] for row in independent_query.rows
+        )
+    if independent_values != predictions.values:
+        msg_0 = "independent quantitative prediction arithmetic differs"
+        raise ValueError(msg_0)
+    if isinstance(measured, Measured) and measured.value != math.fsum(
+        (abs(a - b) for a, b in zip(held.values, independent_values, strict=True)),
+    ) / len(held.values):
+        msg_0 = "independent MAE arithmetic differs"
+        raise ValueError(msg_0)
+
+
 def _verify_observation(
     provisional: InspectedLearning,
     saved: dict[str, object],
@@ -564,8 +694,7 @@ def _verify_observation(
     plan = provisional.plan
     preparation = provisional.preparation
     state = provisional.state
-    binary_training = provisional.binary_training
-    training, held = plan.populations()
+    _training, held = plan.populations()
     predictions = provisional.predict(
         held.features if isinstance(held, BinaryProblem) else held.inputs,
     )
@@ -578,113 +707,10 @@ def _verify_observation(
     if saved["native_correspondence"] != correspondence(plan, state, preparation):
         msg_0 = "native parity scope differs from independently inspected queries"
         raise ValueError(msg_0)
-    raw_query = (
-        held.features if isinstance(held, BinaryProblem) else held.inputs.features
-    )
-    independent_query = _independent_features(raw_query, preparation, plan.method)
-    if (
-        isinstance(training, BinaryLinearTraining)
-        and isinstance(held, BinaryProblem)
-        and isinstance(predictions, tuple)
-    ):
-        independent_training = _independent_features(
-            training.features,
-            preparation,
-            plan.method,
-        )
-        if binary_training is None or independent_training != binary_training.features:
-            msg_0 = "independent feature construction differs from original source"
-            raise ValueError(msg_0)
-        if state is None:
-            labels = []
-            for row in independent_query.rows:
-                neighbors = sorted(
-                    range(len(training.targets)),
-                    key=lambda i: (
-                        math.hypot(
-                            *(
-                                a - b
-                                for a, b in zip(
-                                    row,
-                                    independent_training.rows[i],
-                                    strict=True,
-                                )
-                            ),
-                        ),
-                        i,
-                    ),
-                )[:7]
-                labels.append(
-                    int(
-                        sum(training.targets[i] for i in neighbors)
-                        > _BINARY_NEIGHBORS // 2,
-                    ),
-                )
-            independent_predictions = tuple(labels)
-        elif isinstance(state, (FittedBinaryLinearClassifier, FittedMarginClassifier)):
-            independent_predictions = tuple(
-                int(
-                    math.fsum(
-                        (
-                            state.intercept,
-                            *(
-                                w * x
-                                for w, x in zip(state.coefficients, row, strict=True)
-                            ),
-                        ),
-                    )
-                    > 0,
-                )
-                for row in independent_query.rows
-            )
-        else:
-            msg_0 = "binary fitted state required"
-            raise TypeError(msg_0)
-        if independent_predictions != predictions:
-            msg_0 = "independent binary prediction arithmetic differs"
-            raise ValueError(msg_0)
-        independent_value = _independent_f1(
-            held.targets,
-            predictions,
-            1 if plan.metric.endswith(":v1") else 2,
-        )
-        if (independent_value is None) != isinstance(measured, NoValue) or (
-            isinstance(measured, Measured) and measured.value != independent_value
-        ):
-            msg_0 = "independent F1 counts differ"
-            raise ValueError(msg_0)
-    elif isinstance(state, FittedRegression) and isinstance(
-        predictions,
-        RegressionPredictions,
-    ):
-        if not isinstance(training, RegressionPopulation) or not isinstance(
-            held,
-            RegressionPopulation,
-        ):
-            msg_0 = "quantitative source populations required for inspection"
-            raise TypeError(msg_0)
-        if state.specification.method is RegressionMethod.MEAN:
-            independent_values = (
-                math.fsum(training.values) / len(training.values),
-            ) * len(raw_query.rows)
-        elif state.specification.method is RegressionMethod.RIDGE:
-            independent_values = tuple(
-                math.fsum((w * x for w, x in zip(state.coefficients, row, strict=True)))
-                + state.intercept
-                for row in independent_query.rows
-            )
-        else:
-            independent_values = tuple(
-                inspect_knn_query(state, row)[2] for row in independent_query.rows
-            )
-        if independent_values != predictions.values:
-            msg_0 = "independent quantitative prediction arithmetic differs"
-            raise ValueError(msg_0)
-        if isinstance(measured, Measured) and measured.value != math.fsum(
-            (abs(a - b) for a, b in zip(held.values, independent_values, strict=True)),
-        ) / len(held.values):
-            msg_0 = "independent MAE arithmetic differs"
-            raise ValueError(msg_0)
+    if isinstance(predictions, tuple):
+        _verify_binary_observation(provisional, predictions, measured)
+    else:
+        _verify_regression_observation(provisional, predictions, measured)
     if (
         saved["predictions"] != encoded_predictions
         or saved["quality"] != document(asdict(measured))
@@ -710,7 +736,7 @@ def inspect_learning(
         manifest,
         database,
     )
-    training, held = plan.populations()
+    training, _held = plan.populations()
     fitting_id = UUID(str(saved["fitting_execution_id"]))
     original_fit = _fitting(saved, database, history, predict_history)
     preparation = _preparation(saved, plan, database, original_fit)

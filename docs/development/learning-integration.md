@@ -14,8 +14,8 @@ on `integration/learning-investigator`, based on main
 `cfb4c575` (minimum source closure and default development dependency correction).
 
 **A and B execute as a functional engineering candidate. Migration release
-acceptance is incomplete: maintained-source Ruff fails, and a passing protected
-100% branch-coverage gate has not been established.** This branch must not be
+acceptance is incomplete: maintained Ruff now passes after release repair, but a
+passing protected 100% branch-coverage gate has not been established.** This branch must not be
 merged as a release-qualified migration. The exact current assessment and
 original publications are in [qualification evidence](learning-qualification/assessment.json).
 

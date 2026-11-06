@@ -2,7 +2,6 @@
 """Immutable retained regression arithmetic; no native object or fitting import."""
 
 import math
-from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from statistics import mean, pstdev
 from uuid import UUID
@@ -172,10 +171,7 @@ class RegressionPredictions:
         if (self.neighbor_row_ids is None) != (self.neighbor_distances is None):
             msg = "neighbor membership and distances remain paired"
             raise ValueError(msg)
-        if self.neighbor_row_ids is not None:
-            if not (self.neighbor_distances is not None):
-                msg_0 = "Required numerical state invariant is absent."
-                raise AssertionError(msg_0)
+        if self.neighbor_row_ids is not None and self.neighbor_distances is not None:
             if (
                 type(self.neighbor_row_ids) is not tuple
                 or type(self.neighbor_distances) is not tuple
@@ -255,7 +251,7 @@ class FittedRegression:
             UUID,
         ):
             msg = "original state and fitting occurrence identity required"
-            raise ValueError(msg)
+            raise TypeError(msg)
         self._validate_parameters()
         if (
             not 1 <= len(self.feature_names) <= limits.features
@@ -327,7 +323,7 @@ class FittedRegression:
             raise ValueError(msg)
 
     def _validate_model_shape(self) -> None:
-        """Require the selected method's exact original preparation and retained shape."""
+        """Require the selected model's exact fitted shape."""
         method = self.specification.method
         if method is RegressionMethod.MEAN:
             if (
@@ -397,24 +393,7 @@ class FittedRegression:
             or inputs.version == "regression-input-v2"
         )
         limits = REGRESSION_V2 if larger else REGRESSION_V1
-        return self._predict_ranges(
-            inputs,
-            ((0, len(inputs.row_ids)),),
-            larger=larger,
-            work_limit=limits.distance_operations,
-        )
-
-    def _predict_ranges(
-        self,
-        inputs: RegressionInput,
-        ranges: tuple[tuple[int, int], ...],
-        *,
-        larger: bool,
-        work_limit: int,
-        progress: Callable[[int, int], None] | None = None,
-    ) -> RegressionPredictions:
-        """One shared arithmetic kernel; ranges never create population identities."""
-        if type(inputs) is not RegressionInput or (
+        if (
             inputs.features.feature_names,
             inputs.features.feature_value_kinds,
             inputs.feature_units,
@@ -429,9 +408,7 @@ class FittedRegression:
         )
         if (
             len(inputs.row_ids) > limits.prediction_rows
-            or type(work_limit) is not int
-            or (not 1 <= work_limit <= limits.distance_operations)
-            or (work > work_limit)
+            or work > limits.distance_operations
         ):
             msg = "prediction work bound exceeded before materialization"
             raise ValueError(msg)
@@ -452,66 +429,7 @@ class FittedRegression:
         ):
             msg = "bounded complete prediction payload required"
             raise ValueError(msg)
-        values = []
-        members = []
-        distances = []
-        try:
-            for start, stop in ranges:
-                original = FeatureTable(
-                    inputs.features.feature_names,
-                    inputs.features.rows[start:stop],
-                    inputs.features.feature_value_kinds,
-                )
-                table = (
-                    original
-                    if self.preparation is None
-                    else self.preparation.transform(original).features
-                )
-                for row in table.rows:
-                    if self.specification.method is RegressionMethod.MEAN:
-                        value = self.intercept
-                    elif self.specification.method is RegressionMethod.RIDGE:
-                        value = finite(
-                            math.fsum(
-                                (
-                                    a * b
-                                    for a, b in zip(self.coefficients, row, strict=True)
-                                ),
-                            )
-                            + self.intercept,
-                        )
-                    else:
-                        if not (self.neighbor_features is not None):
-                            msg_0 = "Required numerical state invariant is absent."
-                            raise AssertionError(msg_0)
-                        if not (self.neighbor_targets is not None):
-                            msg_0 = "Required numerical state invariant is absent."
-                            raise AssertionError(msg_0)
-                        if self.specification.version == "regression-specification-v2":
-                            indices, ds = deterministic_neighbors(
-                                self.neighbor_features.rows,
-                                row,
-                                self.training_row_ids,
-                            )
-                        else:
-                            indices, ds = neighbors(
-                                self.neighbor_features.rows,
-                                row,
-                                version="fitted-regression-v2"
-                                if larger
-                                else self.version,
-                            )
-                        value = finite(
-                            math.fsum(self.neighbor_targets[i] for i in indices) / 5,
-                        )
-                        members.append(tuple(self.training_row_ids[i] for i in indices))
-                        distances.append(ds)
-                    values.append(value)
-                if progress is not None:
-                    progress(stop, len(inputs.row_ids))
-        except OverflowError as error:
-            msg = "unrepresentable regression prediction"
-            raise ValueError(msg) from error
+        values, members, distances = self._predict_values(inputs, larger=larger)
         knn = self.specification.method is RegressionMethod.KNN
         return RegressionPredictions(
             self.state_id,
@@ -525,6 +443,65 @@ class FittedRegression:
             tuple(distances) if knn else None,
             inputs.version.replace("input", "predictions"),
         )
+
+    def _predict_values(
+        self,
+        inputs: RegressionInput,
+        *,
+        larger: bool,
+    ) -> tuple[list[float], list[tuple[str, ...]], list[tuple[float, ...]]]:
+        """Apply retained arithmetic to one bounded complete population."""
+        values = []
+        members = []
+        distances = []
+        try:
+            table = (
+                inputs.features
+                if self.preparation is None
+                else self.preparation.transform(inputs.features).features
+            )
+            for row in table.rows:
+                if self.specification.method is RegressionMethod.MEAN:
+                    value = self.intercept
+                elif self.specification.method is RegressionMethod.RIDGE:
+                    value = finite(
+                        math.fsum(
+                            (
+                                a * b
+                                for a, b in zip(self.coefficients, row, strict=True)
+                            ),
+                        )
+                        + self.intercept,
+                    )
+                else:
+                    if not self.neighbor_features is not None:
+                        msg_0 = "Required numerical state invariant is absent."
+                        raise AssertionError(msg_0)
+                    if not self.neighbor_targets is not None:
+                        msg_0 = "Required numerical state invariant is absent."
+                        raise AssertionError(msg_0)
+                    if self.specification.version == "regression-specification-v2":
+                        indices, ds = deterministic_neighbors(
+                            self.neighbor_features.rows,
+                            row,
+                            self.training_row_ids,
+                        )
+                    else:
+                        indices, ds = neighbors(
+                            self.neighbor_features.rows,
+                            row,
+                            version="fitted-regression-v2" if larger else self.version,
+                        )
+                    value = finite(
+                        math.fsum(self.neighbor_targets[i] for i in indices) / 5,
+                    )
+                    members.append(tuple(self.training_row_ids[i] for i in indices))
+                    distances.append(ds)
+                values.append(value)
+        except OverflowError as error:
+            msg = "unrepresentable regression prediction"
+            raise ValueError(msg) from error
+        return values, members, distances
 
 
 def validate_training_preparation(

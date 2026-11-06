@@ -9,6 +9,7 @@ import os
 import sqlite3
 import stat
 import threading
+from contextlib import ExitStack, contextmanager
 from dataclasses import replace
 from datetime import datetime
 from importlib import import_module
@@ -28,6 +29,7 @@ from devtools.learning.evidence.events import (
     FailureCategory,
     Lifecycle,
     Outcome,
+    Payload,
     Progress,
     Severity,
     StageFinished,
@@ -37,6 +39,7 @@ from devtools.learning.evidence.events import (
 from devtools.learning.integrations.local._codec import decode, encode
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
     from types import TracebackType
 
 _LOCK_TIMEOUT_LIMIT = 30
@@ -88,6 +91,27 @@ def _validate_schema(connection: sqlite3.Connection) -> None:
         raise RecordingError(msg)
 
 
+@contextmanager
+def _writer_file(database: Path) -> Iterator[BinaryIO]:
+    """Keep the sidecar stream open until the owning recorder releases custody."""
+    with Path(str(database) + ".writer.lock").open("a+b") as stream:
+        yield stream
+
+
+def _validate_progress(old: Progress, payload: Progress) -> None:
+    """Preserve the exact current stage's unit, total and monotone count."""
+    if (
+        old.unit != payload.unit
+        or old.total != payload.total
+        or (
+            old.completed is not None
+            and (payload.completed is None or payload.completed < old.completed)
+        )
+    ):
+        msg = "progress must preserve unit, total and monotone count"
+        raise ValueError(msg)
+
+
 class SQLiteExecutionRecorder:
     """One writer owner with short FULL-synchronous transactions.
 
@@ -127,10 +151,17 @@ class SQLiteExecutionRecorder:
             raise ValueError(msg)
         self.maximum_database_bytes = maximum_database_bytes
         self._pid = os.getpid()
+        self._streams = ExitStack()
         self._lock: BinaryIO | None = None
         self._connection: sqlite3.Connection | None = None
+        self._open(timeout_seconds)
+
+    def _open(self, timeout_seconds: float) -> None:
+        """Open one writer or close all partially acquired resources."""
         try:
-            self._lock = Path(str(self.database) + ".writer.lock").open("a+b")
+            self._lock = self._streams.enter_context(
+                _writer_file(self.database),
+            )
             self._lock.seek(0, os.SEEK_END)
             if self._lock.tell() == 0:
                 self._lock.write(b"0")
@@ -150,45 +181,200 @@ class SQLiteExecutionRecorder:
                 isolation_level=None,
             )
             self._connection = connection
-            if maximum_database_bytes is not None:
-                page_size = int(connection.execute("PRAGMA page_size").fetchone()[0])
-                pages = maximum_database_bytes // page_size
-                actual = int(
-                    connection.execute(f"PRAGMA max_page_count={pages}").fetchone()[0],
-                )
-                if actual != pages:
-                    msg = "database cannot satisfy the explicit page ceiling"
-                    raise RecordingError(msg)
-            tables = connection.execute(
-                "SELECT name FROM sqlite_master WHERE type='table'",
-            ).fetchall()
-            version = connection.execute("PRAGMA user_version").fetchone()[0]
-            if tables or version:
-                _validate_schema(connection)
-            journal = connection.execute("PRAGMA journal_mode=DELETE").fetchone()[0]
-            if journal != "delete":
-                msg = "Rollback-journal DELETE could not be established"
-                raise RecordingError(msg)
-            connection.execute("PRAGMA synchronous=FULL")
-            connection.execute("PRAGMA foreign_keys=ON")
-            if not tables and version == 0:
-                connection.execute("BEGIN IMMEDIATE")
-                try:
-                    for statement in _SCHEMA.split(";"):
-                        if statement.strip():
-                            connection.execute(statement)
-                    connection.execute("PRAGMA user_version=1")
-                    connection.commit()
-                except BaseException:
-                    connection.rollback()
-                    raise
-            _validate_schema(connection)
+            self._configure(connection)
         except (OSError, sqlite3.Error, RecordingError) as error:
             self.close()
             if isinstance(error, RecordingError):
                 raise
             msg = f"Cannot open execution recorder at {self.database}: {error}"
             raise RecordingError(msg) from error
+
+    def _configure(self, connection: sqlite3.Connection) -> None:
+        """Establish bounded FULL-synchronous schema before any admission."""
+        maximum_database_bytes = self.maximum_database_bytes
+        if maximum_database_bytes is not None:
+            page_size = int(connection.execute("PRAGMA page_size").fetchone()[0])
+            pages = maximum_database_bytes // page_size
+            actual = int(
+                connection.execute(f"PRAGMA max_page_count={pages}").fetchone()[0],
+            )
+            if actual != pages:
+                msg = "database cannot satisfy the explicit page ceiling"
+                raise RecordingError(msg)
+        tables = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'",
+        ).fetchall()
+        version = connection.execute("PRAGMA user_version").fetchone()[0]
+        if tables or version:
+            _validate_schema(connection)
+        journal = connection.execute("PRAGMA journal_mode=DELETE").fetchone()[0]
+        if journal != "delete":
+            msg = "Rollback-journal DELETE could not be established"
+            raise RecordingError(msg)
+        connection.execute("PRAGMA synchronous=FULL")
+        connection.execute("PRAGMA foreign_keys=ON")
+        if not tables and version == 0:
+            connection.execute("BEGIN IMMEDIATE")
+            try:
+                for statement in _SCHEMA.split(";"):
+                    if statement.strip():
+                        connection.execute(statement)
+                connection.execute("PRAGMA user_version=1")
+                connection.commit()
+            except BaseException:
+                connection.rollback()
+                raise
+        _validate_schema(connection)
+
+    def _admit(
+        self,
+        connection: sqlite3.Connection,
+        event: ExecutionEvent,
+        payload: Admitted,
+    ) -> None:
+        """Require first admission and a live recorded parent before inserts."""
+        eid, aid = str(event.execution_id), str(event.activation_id)
+        if event.sequence != 1:
+            msg = "admission must be first"
+            raise ValueError(msg)
+        if event.parent_execution_id is not None:
+            parent = connection.execute(
+                "SELECT lifecycle FROM executions WHERE id=?",
+                (str(event.parent_execution_id),),
+            ).fetchone()
+            if parent != ("running",):
+                msg = "child admission requires an active recorded parent"
+                raise ValueError(msg)
+        connection.execute(
+            "INSERT INTO executions VALUES (?,?,'pending',NULL,NULL)",
+            (eid, payload.operation),
+        )
+        connection.execute(
+            "INSERT INTO activations VALUES (?,?,?,NULL,NULL,NULL)",
+            (aid, eid, event.producer),
+        )
+
+    def _advance(self, connection: sqlite3.Connection, event: ExecutionEvent) -> None:
+        """Advance one admitted activation in exact acknowledged order."""
+        eid, aid = str(event.execution_id), str(event.activation_id)
+        payload = event.payload
+        row = connection.execute(
+            "SELECT lifecycle,active_stage FROM executions WHERE id=?",
+            (eid,),
+        ).fetchone()
+        activation = connection.execute(
+            "SELECT execution_id,producer FROM activations WHERE id=?",
+            (aid,),
+        ).fetchone()
+        last = connection.execute(
+            (
+                "SELECT document FROM events WHERE activation_id=? ORDER BY seque"
+                "nce DESC LIMIT 1"
+            ),
+            (aid,),
+        ).fetchone()
+        if row is None or activation != (eid, event.producer) or last is None:
+            msg = "event requires its admitted activation"
+            raise ValueError(msg)
+        prior = decode(last[0])
+        if event.sequence != prior.sequence + 1 or (
+            event.elapsed_seconds < prior.elapsed_seconds
+            or event.parent_execution_id != prior.parent_execution_id
+        ):
+            msg = "event order, duration or parent identity is inconsistent"
+            raise ValueError(msg)
+        lifecycle, stage = row
+        if lifecycle == "stopped" and (
+            not (
+                isinstance(payload, Diagnostic)
+                and payload.category is FailureCategory.OBSERVER
+                and (payload.severity is Severity.WARNING)
+            )
+        ):
+            msg = "execution is already terminal"
+            raise ValueError(msg)
+        if isinstance(payload, Activated):
+            if lifecycle != "pending":
+                msg = "activation cannot start twice"
+                raise ValueError(msg)
+            connection.execute(
+                "UPDATE executions SET lifecycle='running' WHERE id=?",
+                (eid,),
+            )
+            connection.execute(
+                "UPDATE activations SET started_at=?,pid=? WHERE id=?",
+                (event.occurred_at.isoformat(), payload.process_id, aid),
+            )
+        elif isinstance(payload, Terminal):
+            if payload.outcome is Outcome.COMPLETED and (
+                lifecycle != "running" or stage is not None
+            ):
+                msg = "completion requires activation and finished stage"
+                raise ValueError(msg)
+            connection.execute(
+                "UPDATE executions SET lifecycle='stopped',outcome=? WHERE id=?",
+                (payload.outcome.value, eid),
+            )
+            connection.execute(
+                "UPDATE activations SET ended_at=? WHERE id=?",
+                (event.occurred_at.isoformat(), aid),
+            )
+        elif isinstance(payload, Diagnostic):
+            if payload.stage != stage:
+                msg = "diagnostic stage differs from active stage"
+                raise ValueError(msg)
+        else:
+            self._stage_transition(connection, event, lifecycle, stage)
+
+    def _stage_transition(
+        self,
+        connection: sqlite3.Connection,
+        event: ExecutionEvent,
+        lifecycle: str,
+        stage: str | None,
+    ) -> None:
+        """Preserve stage identity and monotone progress within one activation."""
+        eid, aid = str(event.execution_id), str(event.activation_id)
+        payload = event.payload
+        if lifecycle != "running":
+            msg = "stage/progress requires activation"
+            raise ValueError(msg)
+        if isinstance(payload, StageStarted):
+            if stage is not None:
+                msg = "finish the active stage before starting another"
+                raise ValueError(msg)
+            connection.execute(
+                "UPDATE executions SET active_stage=? WHERE id=?",
+                (payload.stage, eid),
+            )
+        elif isinstance(payload, StageFinished):
+            if stage != payload.stage:
+                msg = "stage finish must match active stage"
+                raise ValueError(msg)
+            connection.execute(
+                "UPDATE executions SET active_stage=NULL WHERE id=?",
+                (eid,),
+            )
+        elif isinstance(payload, Progress):
+            if stage != payload.stage:
+                msg = "progress must match active stage"
+                raise ValueError(msg)
+            rows = connection.execute(
+                (
+                    "SELECT document FROM events WHERE activation_id=? "
+                    "AND kind='Prog"
+                    "ress' AND sequence > (SELECT MAX(sequence) FROM ev"
+                    "ents WHERE act"
+                    "ivation_id=? AND kind='StageStarted') ORDER BY seq"
+                    "uence DESC"
+                ),
+                (aid, aid),
+            )
+            for row in rows:
+                old = decode(row[0]).payload
+                if isinstance(old, Progress) and old.stage == stage:
+                    _validate_progress(old, payload)
+                    break
 
     def __enter__(self) -> Self:
         """Apply the explicit   enter   contract within this owner."""
@@ -209,7 +395,7 @@ class SQLiteExecutionRecorder:
             self._connection.close()
             self._connection = None
         if self._lock is not None:
-            self._lock.close()
+            self._streams.close()
             self._lock = None
 
     def record(self, event: ExecutionEvent) -> ExecutionEvent:
@@ -225,13 +411,14 @@ class SQLiteExecutionRecorder:
             connection.execute("BEGIN IMMEDIATE")
             result = self._record(connection, event)
             connection.commit()
-            return result
         except BaseException as error:
             connection.rollback()
             if isinstance(error, sqlite3.Error):
                 msg = f"Execution record commit failed: {error}"
                 raise RecordingError(msg) from error
             raise
+        else:
+            return result
 
     def _record(
         self,
@@ -254,143 +441,9 @@ class SQLiteExecutionRecorder:
         payload = event.payload
         eid, aid = (str(event.execution_id), str(event.activation_id))
         if isinstance(payload, Admitted):
-            if event.sequence != 1:
-                msg = "admission must be first"
-                raise ValueError(msg)
-            if event.parent_execution_id is not None:
-                parent = connection.execute(
-                    "SELECT lifecycle FROM executions WHERE id=?",
-                    (str(event.parent_execution_id),),
-                ).fetchone()
-                if parent != ("running",):
-                    msg = "child admission requires an active recorded parent"
-                    raise ValueError(msg)
-            connection.execute(
-                "INSERT INTO executions VALUES (?,?,'pending',NULL,NULL)",
-                (eid, payload.operation),
-            )
-            connection.execute(
-                "INSERT INTO activations VALUES (?,?,?,NULL,NULL,NULL)",
-                (aid, eid, event.producer),
-            )
+            self._admit(connection, event, payload)
         else:
-            row = connection.execute(
-                "SELECT lifecycle,active_stage FROM executions WHERE id=?",
-                (eid,),
-            ).fetchone()
-            activation = connection.execute(
-                "SELECT execution_id,producer FROM activations WHERE id=?",
-                (aid,),
-            ).fetchone()
-            last = connection.execute(
-                (
-                    "SELECT document FROM events WHERE activation_id=? ORDER BY seque"
-                    "nce DESC LIMIT 1"
-                ),
-                (aid,),
-            ).fetchone()
-            if row is None or activation != (eid, event.producer) or last is None:
-                msg = "event requires its admitted activation"
-                raise ValueError(msg)
-            prior = decode(last[0])
-            if event.sequence != prior.sequence + 1 or (
-                event.elapsed_seconds < prior.elapsed_seconds
-                or event.parent_execution_id != prior.parent_execution_id
-            ):
-                msg = "event order, duration or parent identity is inconsistent"
-                raise ValueError(msg)
-            lifecycle, stage = row
-            if lifecycle == "stopped" and (
-                not (
-                    isinstance(payload, Diagnostic)
-                    and payload.category is FailureCategory.OBSERVER
-                    and (payload.severity is Severity.WARNING)
-                )
-            ):
-                msg = "execution is already terminal"
-                raise ValueError(msg)
-            if isinstance(payload, Activated):
-                if lifecycle != "pending":
-                    msg = "activation cannot start twice"
-                    raise ValueError(msg)
-                connection.execute(
-                    "UPDATE executions SET lifecycle='running' WHERE id=?",
-                    (eid,),
-                )
-                connection.execute(
-                    "UPDATE activations SET started_at=?,pid=? WHERE id=?",
-                    (event.occurred_at.isoformat(), payload.process_id, aid),
-                )
-            elif isinstance(payload, Terminal):
-                if payload.outcome is Outcome.COMPLETED and (
-                    lifecycle != "running" or stage is not None
-                ):
-                    msg = "completion requires activation and finished stage"
-                    raise ValueError(msg)
-                connection.execute(
-                    "UPDATE executions SET lifecycle='stopped',outcome=? WHERE id=?",
-                    (payload.outcome.value, eid),
-                )
-                connection.execute(
-                    "UPDATE activations SET ended_at=? WHERE id=?",
-                    (event.occurred_at.isoformat(), aid),
-                )
-            elif isinstance(payload, Diagnostic):
-                if payload.stage != stage:
-                    msg = "diagnostic stage differs from active stage"
-                    raise ValueError(msg)
-            else:
-                if lifecycle != "running":
-                    msg = "stage/progress requires activation"
-                    raise ValueError(msg)
-                if isinstance(payload, StageStarted):
-                    if stage is not None:
-                        msg = "finish the active stage before starting another"
-                        raise ValueError(msg)
-                    connection.execute(
-                        "UPDATE executions SET active_stage=? WHERE id=?",
-                        (payload.stage, eid),
-                    )
-                elif isinstance(payload, StageFinished):
-                    if stage != payload.stage:
-                        msg = "stage finish must match active stage"
-                        raise ValueError(msg)
-                    connection.execute(
-                        "UPDATE executions SET active_stage=NULL WHERE id=?",
-                        (eid,),
-                    )
-                elif isinstance(payload, Progress):
-                    if stage != payload.stage:
-                        msg = "progress must match active stage"
-                        raise ValueError(msg)
-                    rows = connection.execute(
-                        (
-                            "SELECT document FROM events WHERE activation_id=? "
-                            "AND kind='Prog"
-                            "ress' AND sequence > (SELECT MAX(sequence) FROM ev"
-                            "ents WHERE act"
-                            "ivation_id=? AND kind='StageStarted') ORDER BY seq"
-                            "uence DESC"
-                        ),
-                        (aid, aid),
-                    )
-                    for row in rows:
-                        old = decode(row[0]).payload
-                        if isinstance(old, Progress) and old.stage == stage:
-                            if (
-                                old.unit != payload.unit
-                                or old.total != payload.total
-                                or (
-                                    old.completed is not None
-                                    and (
-                                        payload.completed is None
-                                        or payload.completed < old.completed
-                                    )
-                                )
-                            ):
-                                msg = "progress must preserve unit, total and monotone count"
-                                raise ValueError(msg)
-                            break
+            self._advance(connection, event)
         observed = replace(event, observed_at=Timestamp.now().value)
         connection.execute(
             "INSERT INTO events VALUES (?,?,?,?,?,?)",
@@ -508,6 +561,41 @@ def _decode_record(row: tuple[str, str, str, int, str, str]) -> ExecutionEvent:
     return event
 
 
+def _validate_live_envelope(
+    event: ExecutionEvent,
+    producer: str,
+    lifecycle: Lifecycle,
+) -> None:
+    """Refuse foreign producers, repeated admissions and post-terminal effects."""
+    p = event.payload
+    if event.producer != producer or isinstance(p, Admitted):
+        msg = "Conflicting producer or repeated admission"
+        raise RecordingError(msg)
+    if lifecycle is Lifecycle.STOPPED and (
+        not (
+            isinstance(p, Diagnostic)
+            and p.category is FailureCategory.OBSERVER
+            and (p.severity is Severity.WARNING)
+        )
+    ):
+        msg = "Unexpected event after terminal acknowledgment"
+        raise RecordingError(msg)
+
+
+def _validate_activation(
+    activation: ActivationHistory,
+    event: ExecutionEvent,
+    payload: Activated,
+) -> None:
+    """Check independent activation projection against the original observation."""
+    if (activation.started_at, activation.process_id) != (
+        event.occurred_at,
+        payload.process_id,
+    ):
+        msg = "Activation projection differs from event"
+        raise RecordingError(msg)
+
+
 def _validate_lifecycle(
     events: tuple[ExecutionEvent, ...],
     activations: tuple[ActivationHistory, ...],
@@ -519,29 +607,13 @@ def _validate_lifecycle(
     producer = events[0].producer
     for event in events[1:]:
         p = event.payload
-        if event.producer != producer or isinstance(p, Admitted):
-            msg = "Conflicting producer or repeated admission"
-            raise RecordingError(msg)
-        if lifecycle is Lifecycle.STOPPED and (
-            not (
-                isinstance(p, Diagnostic)
-                and p.category is FailureCategory.OBSERVER
-                and (p.severity is Severity.WARNING)
-            )
-        ):
-            msg = "Unexpected event after terminal acknowledgment"
-            raise RecordingError(msg)
+        _validate_live_envelope(event, producer, lifecycle)
         if isinstance(p, Activated):
             if lifecycle is not Lifecycle.PENDING:
                 msg = "Repeated or unordered activation"
                 raise RecordingError(msg)
             lifecycle = Lifecycle.RUNNING
-            if (activations[0].started_at, activations[0].process_id) != (
-                event.occurred_at,
-                p.process_id,
-            ):
-                msg = "Activation projection differs from event"
-                raise RecordingError(msg)
+            _validate_activation(activations[0], event, p)
         elif isinstance(p, Terminal):
             if p.outcome is Outcome.COMPLETED and (
                 lifecycle is not Lifecycle.RUNNING or stage is not None
@@ -557,39 +629,130 @@ def _validate_lifecycle(
                 msg = "Diagnostic differs from active stage"
                 raise RecordingError(msg)
         else:
-            if lifecycle is not Lifecycle.RUNNING:
-                msg = "Stage/progress requires active occurrence"
-                raise RecordingError(msg)
-            if isinstance(p, StageStarted):
-                if stage is not None:
-                    msg = "Unfinished stage before new stage"
-                    raise RecordingError(msg)
-                stage, progress = (p.stage, None)
-            elif isinstance(p, StageFinished):
-                if stage != p.stage:
-                    msg = "Stage finish differs from active stage"
-                    raise RecordingError(msg)
-                stage = None
-            elif isinstance(p, Progress):
-                if stage != p.stage or (
-                    progress is not None
-                    and (
-                        progress.unit != p.unit
-                        or progress.total != p.total
-                        or (
-                            progress.completed is not None
-                            and (
-                                p.completed is None or p.completed < progress.completed
-                            )
-                        )
-                    )
-                ):
-                    msg = "Invalid stage/progress transition"
-                    raise RecordingError(msg)
-                progress = p
+            stage, progress = _validate_stage(p, lifecycle, stage, progress)
     if projected_stage != stage:
         msg = "Active-stage projection conflicts with events"
         raise RecordingError(msg)
+
+
+def _validate_stage(
+    p: Payload,
+    lifecycle: Lifecycle,
+    stage: str | None,
+    progress: Progress | None,
+) -> tuple[str | None, Progress | None]:
+    """Check read-side stage/progress order without trusting projected success."""
+    if lifecycle is not Lifecycle.RUNNING:
+        msg = "Stage/progress requires active occurrence"
+        raise RecordingError(msg)
+    if isinstance(p, StageStarted):
+        if stage is not None:
+            msg = "Unfinished stage before new stage"
+            raise RecordingError(msg)
+        stage, progress = (p.stage, None)
+    elif isinstance(p, StageFinished):
+        if stage != p.stage:
+            msg = "Stage finish differs from active stage"
+            raise RecordingError(msg)
+        stage = None
+    elif isinstance(p, Progress):
+        if stage != p.stage or (
+            progress is not None
+            and (
+                progress.unit != p.unit
+                or progress.total != p.total
+                or (
+                    progress.completed is not None
+                    and (p.completed is None or p.completed < progress.completed)
+                )
+            )
+        ):
+            msg = "Invalid stage/progress transition"
+            raise RecordingError(msg)
+        progress = p
+    return stage, progress
+
+
+def _relationships(
+    connection: sqlite3.Connection,
+    admitted: set[UUID],
+    active: set[UUID],
+    children: dict[UUID | None, list[UUID]],
+) -> None:
+    """Derive original child admissions in committed order within this snapshot."""
+    for row in connection.execute(
+        (
+            "SELECT id,execution_id,activation_id,sequence,kind,doc"
+            "ument FROM"
+            " events WHERE sequence=1 OR kind IN ('Admitted','Activ"
+            "ated','Ter"
+            "minal') ORDER BY rowid"
+        ),
+    ):
+        event = _decode_record(row)
+        identity, payload = (event.execution_id, event.payload)
+        if event.observed_at is None:
+            msg = "Unacknowledged relationship event"
+            raise RecordingError(msg)
+        if isinstance(payload, Admitted):
+            if (
+                event.sequence != 1
+                or identity in admitted
+                or (
+                    event.parent_execution_id is not None
+                    and event.parent_execution_id not in active
+                )
+            ):
+                msg = "Invalid child admission/parent relationship"
+                raise RecordingError(msg)
+            admitted.add(identity)
+            children.setdefault(event.parent_execution_id, []).append(
+                identity,
+            )
+        elif isinstance(payload, Activated):
+            if identity not in admitted or identity in active:
+                msg = "Invalid activation relationship"
+                raise RecordingError(msg)
+            active.add(identity)
+        elif isinstance(payload, Terminal):
+            active.discard(identity)
+        else:
+            msg = "First occurrence record is not an admission"
+            raise RecordingError(msg)
+
+
+def _validate_snapshot(connection: sqlite3.Connection) -> None:
+    """Require a supported journal and complete foreign-key integrity."""
+    mode = connection.execute("PRAGMA journal_mode").fetchone()[0]
+    if mode not in ("delete", "truncate", "persist", "wal"):
+        raise RecordingError("Unsupported inspection journal mode: " + mode)
+    _validate_schema(connection)
+    if connection.execute("PRAGMA foreign_key_check").fetchone() is not None:
+        msg = "Execution database foreign-key integrity failed"
+        raise RecordingError(msg)
+
+
+def _event_position(connection: sqlite3.Connection, identifier: UUID) -> int:
+    """Require the exact original acknowledged event before ordering comparison."""
+    row = connection.execute(
+        (
+            "SELECT rowid,id,execution_id,activation_id,sequence,ki"
+            "nd,documen"
+            "t FROM events WHERE id=?"
+        ),
+        (str(identifier),),
+    ).fetchone()
+    if row is None:
+        msg = "Original acknowledged ordering events missing"
+        raise RecordingError(msg)
+    event = _decode_record(row[1:])
+    if event.observed_at is None:
+        msg = "Unacknowledged event has no recording order"
+        raise RecordingError(msg)
+    if event.event_id != identifier:
+        msg = "Recorded ordering event identity differs"
+        raise RecordingError(msg)
+    return int(row[0])
 
 
 class SQLiteInspectionSession:
@@ -645,21 +808,16 @@ class SQLiteInspectionSession:
             connection.execute("PRAGMA query_only=ON")
             connection.execute("BEGIN")
             connection.execute("SELECT name FROM sqlite_master LIMIT 1").fetchone()
-            mode = connection.execute("PRAGMA journal_mode").fetchone()[0]
-            if mode not in ("delete", "truncate", "persist", "wal"):
-                raise RecordingError("Unsupported inspection journal mode: " + mode)
-            _validate_schema(connection)
-            if connection.execute("PRAGMA foreign_key_check").fetchone() is not None:
-                msg = "Execution database foreign-key integrity failed"
-                raise RecordingError(msg)
+            _validate_snapshot(connection)
             self._checked()
-            return self
         except (OSError, sqlite3.Error, ValueError, TypeError, RecordingError) as error:
             self.close()
             if isinstance(error, RecordingError):
                 raise
             msg = f"Cannot open inspection snapshot: {error}"
             raise RecordingError(msg) from error
+        else:
+            return self
 
     def _checked(self) -> sqlite3.Connection:
         try:
@@ -672,10 +830,11 @@ class SQLiteInspectionSession:
             ):
                 msg = "Closed, expired, replaced or foreign inspection session"
                 raise RecordingError(msg)
-            return connection
         except (OSError, sqlite3.Error) as error:
             msg = f"Inspection snapshot is unavailable: {error}"
             raise RecordingError(msg) from error
+        else:
+            return connection
 
     def require_database(self, database: Path) -> None:
         """Reject accidental cross-database use of shared inspection authority."""
@@ -787,25 +946,7 @@ class SQLiteInspectionSession:
                 i for i in (first_event_id, second_event_id) if i not in self._positions
             )
             for identifier in missing:
-                row = connection.execute(
-                    (
-                        "SELECT rowid,id,execution_id,activation_id,sequence,ki"
-                        "nd,documen"
-                        "t FROM events WHERE id=?"
-                    ),
-                    (str(identifier),),
-                ).fetchone()
-                if row is None:
-                    msg = "Original acknowledged ordering events missing"
-                    raise RecordingError(msg)
-                event = _decode_record(row[1:])
-                if event.observed_at is None:
-                    msg = "Unacknowledged event has no recording order"
-                    raise RecordingError(msg)
-                if event.event_id != identifier:
-                    msg = "Recorded ordering event identity differs"
-                    raise RecordingError(msg)
-                self._positions[identifier] = row[0]
+                self._positions[identifier] = _event_position(connection, identifier)
             return bool(
                 self._positions[first_event_id] < self._positions[second_event_id],
             )
@@ -822,6 +963,20 @@ class SQLiteInspectionSession:
             msg = f"Cannot inspect recorded event order: {error}"
             raise RecordingError(msg) from error
 
+    def _read_children(
+        self,
+        connection: sqlite3.Connection,
+    ) -> dict[UUID | None, tuple[UUID, ...]]:
+        """Require complete admitted membership before retaining the snapshot index."""
+        children: dict[UUID | None, list[UUID]] = {}
+        admitted: set[UUID] = set()
+        active: set[UUID] = set()
+        _relationships(connection, admitted, active, children)
+        if admitted != set(self.execution_ids()):
+            msg = "Occurrence/admission membership differs"
+            raise RecordingError(msg)
+        return {k: tuple(v) for k, v in children.items()}
+
     def child_execution_ids(self, parent_execution_id: UUID) -> tuple[UUID, ...]:
         """One validated snapshot-local admission index, no repeated global scans."""
         if not isinstance(parent_execution_id, UUID):
@@ -830,52 +985,7 @@ class SQLiteInspectionSession:
         try:
             connection = self._checked()
             if self._children is None:
-                children: dict[UUID | None, list[UUID]] = {}
-                admitted: set[UUID] = set()
-                active: set[UUID] = set()
-                for row in connection.execute(
-                    (
-                        "SELECT id,execution_id,activation_id,sequence,kind,doc"
-                        "ument FROM"
-                        " events WHERE sequence=1 OR kind IN ('Admitted','Activ"
-                        "ated','Ter"
-                        "minal') ORDER BY rowid"
-                    ),
-                ):
-                    event = _decode_record(row)
-                    identity, payload = (event.execution_id, event.payload)
-                    if event.observed_at is None:
-                        msg = "Unacknowledged relationship event"
-                        raise RecordingError(msg)
-                    if isinstance(payload, Admitted):
-                        if (
-                            event.sequence != 1
-                            or identity in admitted
-                            or (
-                                event.parent_execution_id is not None
-                                and event.parent_execution_id not in active
-                            )
-                        ):
-                            msg = "Invalid child admission/parent relationship"
-                            raise RecordingError(msg)
-                        admitted.add(identity)
-                        children.setdefault(event.parent_execution_id, []).append(
-                            identity,
-                        )
-                    elif isinstance(payload, Activated):
-                        if identity not in admitted or identity in active:
-                            msg = "Invalid activation relationship"
-                            raise RecordingError(msg)
-                        active.add(identity)
-                    elif isinstance(payload, Terminal):
-                        active.discard(identity)
-                    else:
-                        msg = "First occurrence record is not an admission"
-                        raise RecordingError(msg)
-                if admitted != set(self.execution_ids()):
-                    msg = "Occurrence/admission membership differs"
-                    raise RecordingError(msg)
-                self._children = {k: tuple(v) for k, v in children.items()}
+                self._children = self._read_children(connection)
             return self._children.get(parent_execution_id, ())
         except (
             sqlite3.Error,

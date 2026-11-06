@@ -198,6 +198,14 @@ class LearningPlan:
                 raise ValueError(
                     msg,
                 )
+        self._validate_work(training, held)
+
+    def _validate_work(
+        self,
+        training: BinaryLinearTraining | RegressionPopulation,
+        held: BinaryProblem | RegressionPopulation,
+    ) -> None:
+        """Refuse dimension, population and independent-neighbor work before effects."""
         features = (
             training.features
             if isinstance(training, BinaryLinearTraining)

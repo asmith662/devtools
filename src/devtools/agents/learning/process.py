@@ -79,10 +79,10 @@ class AdmittedLearningTask:
         if (
             self.family not in METHODS
             or type(self.methods) is not tuple
-            or not self.methods
-            or len(set(self.methods)) != len(self.methods)
+            or (not self.methods)
+            or (len(set(self.methods)) != len(self.methods))
             or any(m not in METHODS[self.family] for m in self.methods)
-            or not isinstance(self.source_authority, EvidenceReference)
+            or (not isinstance(self.source_authority, EvidenceReference))
         ):
             msg = "admitted finite learning task/source authority required"
             raise ValueError(msg)
@@ -92,9 +92,7 @@ class AdmittedLearningTask:
         b, final_held = final.populations()
         if document(asdict(a)) != document(asdict(b)):
             msg = "final evaluation cannot change the original fitting population"
-            raise ValueError(
-                msg,
-            )
+            raise ValueError(msg)
         online_rows = (
             online_held.row_ids
             if isinstance(online_held, BinaryProblem)
@@ -139,15 +137,19 @@ class AdmittedLearningTask:
             "semantics",
         ).populations()
         if isinstance(training, BinaryLinearTraining):
-            return _hash(
-                (
-                    training.features.feature_names,
-                    training.features.feature_value_kinds,
-                    training.target_identity,
+            return (
+                _hash(
+                    (
+                        training.features.feature_names,
+                        training.features.feature_value_kinds,
+                        training.target_identity,
+                    ),
                 ),
-            ), _hash(("integer-binary-0/1", training.target_identity))
-        return training.inputs.schema_identity, _hash(
-            (asdict(training.target), training.inputs.feature_units),
+                _hash(("integer-binary-0/1", training.target_identity)),
+            )
+        return (
+            training.inputs.schema_identity,
+            _hash((asdict(training.target), training.inputs.feature_units)),
         )
 
 
@@ -166,7 +168,7 @@ class InvestigationResult:
     seal_identity: str
 
 
-async def investigate(
+async def investigate(  # noqa: PLR0913 -- explicit scientific provenance/custody; see release qualification review
     model: ModelInteraction,
     task: AdmittedLearningTask,
     worker: ManagedLearningWorker,
@@ -178,340 +180,426 @@ async def investigate(
     """Compose real native model calls, independent host grants and inspected fits."""
     if profile != PROFILE:
         msg = "the caller must select the B-0096 engineering profile explicitly"
-        raise ValueError(
-            msg,
-        )
+        raise ValueError(msg)
     await asyncio.to_thread(root.mkdir)
     async with asyncio.timeout(min(3600, budget.remaining_seconds())):
-        return await _investigate(model, task, worker, budget, root, profile)
+        return await _Investigation(model, task, worker, budget, root).run()
 
 
-async def _investigate(
-    model: ModelInteraction,
+def _validate_call(call: ModelToolCall, used_calls: set[str], *, occupied: bool) -> str:
+    """Require one fresh, identified native call before proposal admission."""
+    if (
+        occupied
+        or call.provider_call_id is None
+        or (
+            not re.fullmatch("[A-Za-z0-9][A-Za-z0-9._:-]{0,127}", call.provider_call_id)
+        )
+        or (call.provider_call_id in used_calls)
+    ):
+        msg = "foreign, duplicate or malformed native learning call"
+        raise ValueError(msg)
+    return call.provider_call_id
+
+
+def _validate_proposal(
     task: AdmittedLearningTask,
+    proposal: LearningProposal,
+    state_identity: str,
+    evidence: tuple[str, ...],
+    expected: tuple[str, str | None],
+) -> None:
+    """Check exact source, semantics and acknowledged evidence."""
+    schema, units = task.semantics()
+    if (
+        proposal.task_identity,
+        proposal.source_handle,
+        proposal.family,
+        proposal.metric,
+        proposal.schema_identity,
+        proposal.unit_identity,
+        proposal.role,
+        proposal.state_identity,
+        proposal.evidence,
+    ) != (
+        task.identity,
+        task.source_handle,
+        task.family,
+        task.metric,
+        schema,
+        units,
+        "online",
+        state_identity,
+        tuple(evidence),
+    ) or (proposal.action, proposal.method) != expected:
+        msg = (
+            "learning proposal has stale/foreign/unsupported source, "
+            "semantics, evidence or action"
+        )
+        raise ValueError(msg)
+
+
+def _issue_grant(
+    task: AdmittedLearningTask,
+    proposal: LearningProposal,
+    budget: LearningBudget,
+    call_id: str,
+) -> tuple[LearningPlan | None, ExecutionAuthorization | None]:
+    """Reserve host budget and issue exact fitting authority."""
+    plan = None
+    grant = None
+    if proposal.action == "CHECK_SUPPORT":
+        budget.reserve(None)
+    elif proposal.action == "EVALUATE":
+        if proposal.method not in task.methods:
+            msg = "unadmitted learning method"
+            raise ValueError(msg)
+        plan = task.plan(str(proposal.method), "online", call_id)
+        budget.reserve(plan)
+        grant = ExecutionAuthorization(
+            plan.identity,
+            (plan.method,),
+            EvidenceReference(
+                "learning_execution_grant-v1",
+                str(LearningGrantIdentity.new()),
+                plan.identity,
+            ),
+        )
+    return (plan, grant)
+
+
+def _check_support(
+    task: AdmittedLearningTask,
+    root: Path,
+    state_identity: str,
+) -> tuple[dict[str, object], LearningFeedback]:
+    """Inspect admitted online support without fitting."""
+    training, held = task.plan(task.methods[0], "online", "support").populations()
+    a = (
+        training.features
+        if isinstance(training, BinaryLinearTraining)
+        else training.inputs.features
+    )
+    b = held.features if isinstance(held, BinaryProblem) else held.inputs.features
+    support = support_profile(a, b)
+    identity = "learning-support:" + _hash(
+        (task.source_handle, support, state_identity),
+    )
+    write(
+        TextFile(
+            resolve_path(root / "support.json"),
+            canonical(
+                {
+                    "task": task.identity,
+                    "source": task.source_handle,
+                    "support": support,
+                    "evidence_identity": identity,
+                },
+            ),
+        ),
+        overwrite=False,
+    )
+    return (
+        support,
+        LearningFeedback("CHECK_SUPPORT", None, task.metric, None, identity),
+    )
+
+
+async def _fit_feedback(
+    plan: LearningPlan,
+    grant: ExecutionAuthorization,
     worker: ManagedLearningWorker,
     budget: LearningBudget,
     root: Path,
-    profile: str,
-) -> InvestigationResult:
-    observations: list[LearningFeedback] = []
-    support: dict[str, object] | None = None
-    evidence: list[str] = []
-    trace: list[dict[str, object]] = []
-    used_calls: set[str] = set()
-    messages: list[PromptMessage] = [
-        PromptMessage(
-            "system",
-            (
-                "Propose one closed learning action using the disclosed finite en"
-                "gineering profile. Proposals do not authorize execution. Confirm"
-                "ation labels and grants are private."
-            ),
-        ),
-    ]
-    schema, units = task.semantics()
-    state_identity = ""
-    expected: tuple[str, str | None] = ("CHECK_SUPPORT", None)
-    pending: (
-        tuple[LearningProposal, LearningPlan | None, ExecutionAuthorization | None]
-        | None
-    ) = None
-    invocation = LearningInvocation()
+) -> LearningFeedback:
+    """Accept feedback only after independent scientific inspection."""
+    reference = await worker.execute(
+        plan,
+        grant,
+        root,
+        operation_limit=Duration.seconds(min(300, budget.remaining_seconds())),
+    )
+    inspected = inspect_learning(reference, plan, grant)
+    value = inspected.quality.value if isinstance(inspected.quality, Measured) else None
+    return LearningFeedback(
+        "EVALUATE",
+        plan.method,
+        plan.metric,
+        value,
+        reference.manifest_sha256,
+        None
+        if isinstance(inspected.quality, Measured)
+        else inspected.quality.reason_code,
+    )
 
-    def validate(proposal: LearningProposal) -> None:
-        if pending is None or pending[0] != proposal:
+
+class _Investigation:
+    """Private state of this learning agent; no new runtime or persistence contract."""
+
+    def __init__(
+        self,
+        model: ModelInteraction,
+        task: AdmittedLearningTask,
+        worker: ManagedLearningWorker,
+        budget: LearningBudget,
+        root: Path,
+    ) -> None:
+        """Own one bounded use of existing model, Tool and resource owners."""
+        self.model = model
+        self.task = task
+        self.worker = worker
+        self.budget = budget
+        self.root = root
+        self.observations: list[LearningFeedback] = []
+        self.support: dict[str, object] | None = None
+        self.evidence: list[str] = []
+        self.trace: list[dict[str, object]] = []
+        self.used_calls: set[str] = set()
+        self.messages: list[PromptMessage] = [
+            PromptMessage(
+                "system",
+                (
+                    "Propose one closed learning action using the disclosed "
+                    "finite engineering profile. Proposals do not authorize "
+                    "execution. Confirmation labels and grants are private."
+                ),
+            ),
+        ]
+        self.schema, self.units = self.task.semantics()
+        self.state_identity = ""
+        self.expected: tuple[str, str | None] = ("CHECK_SUPPORT", None)
+        self.pending: (
+            tuple[LearningProposal, LearningPlan | None, ExecutionAuthorization | None]
+            | None
+        ) = None
+        self.invocation = LearningInvocation()
+
+    def validate(self, proposal: LearningProposal) -> None:
+        """Require the exact trusted pending proposal before Tool execution."""
+        if self.pending is None or self.pending[0] != proposal:
             msg = "learning Tool has no matching trusted pending admission"
             raise ValueError(msg)
 
-    async def admit(call: ModelToolCall, proposal: LearningProposal) -> None:
-        nonlocal pending
-        if (
-            pending is not None
-            or call.provider_call_id is None
-            or not re.fullmatch(
-                r"[A-Za-z0-9][A-Za-z0-9._:-]{0,127}",
-                call.provider_call_id,
-            )
-            or call.provider_call_id in used_calls
-        ):
-            msg = "foreign, duplicate or malformed native learning call"
-            raise ValueError(msg)
-        if (
-            proposal.task_identity,
-            proposal.source_handle,
-            proposal.family,
-            proposal.metric,
-            proposal.schema_identity,
-            proposal.unit_identity,
-            proposal.role,
-            proposal.state_identity,
-            proposal.evidence,
-        ) != (
-            task.identity,
-            task.source_handle,
-            task.family,
-            task.metric,
-            schema,
-            units,
-            "online",
-            state_identity,
-            tuple(evidence),
-        ) or (proposal.action, proposal.method) != expected:
-            msg = (
-                "learning proposal has stale/foreign/unsupported source, semantic"
-                "s, evidence or action"
-            )
-            raise ValueError(
-                msg,
-            )
-        plan = None
-        grant = None
-        if proposal.action == "CHECK_SUPPORT":
-            budget.reserve(None)
-        elif proposal.action == "EVALUATE":
-            if proposal.method not in task.methods:
-                msg = "unadmitted learning method"
-                raise ValueError(msg)
-            plan = task.plan(str(proposal.method), "online", call.provider_call_id)
-            budget.reserve(plan)
-            grant = ExecutionAuthorization(
-                plan.identity,
-                (plan.method,),
-                EvidenceReference(
-                    "learning_execution_grant-v1",
-                    str(LearningGrantIdentity.new()),
-                    plan.identity,
-                ),
-            )
-        used_calls.add(call.provider_call_id)
-        pending = (proposal, plan, grant)
+    async def admit(self, call: ModelToolCall, proposal: LearningProposal) -> None:
+        """Validate without effects, reserve host budget and issue an exact grant."""
+        call_id = _validate_call(
+            call,
+            self.used_calls,
+            occupied=self.pending is not None,
+        )
+        _validate_proposal(
+            self.task,
+            proposal,
+            self.state_identity,
+            tuple(self.evidence),
+            self.expected,
+        )
+        plan, grant = _issue_grant(self.task, proposal, self.budget, call_id)
+        self.used_calls.add(call_id)
+        self.pending = (proposal, plan, grant)
 
-    async def perform(proposal: LearningProposal) -> LearningFeedback:
-        nonlocal pending, support
-        validate(proposal)
-        if pending is None:
+    async def perform(self, proposal: LearningProposal) -> LearningFeedback:
+        """Consume admission before an awaited effect, with no automatic retry."""
+        self.validate(proposal)
+        if self.pending is None:
             msg = "missing learning admission"
             raise ValueError(msg)
-        _selected, plan, grant = pending
-        pending = None  # Consume before an awaited effect; failures never refund/retry.
+        _selected, plan, grant = self.pending
+        self.pending = None  # Consume before awaiting; never retry uncertain effects.
         if proposal.action == "CHECK_SUPPORT":
-            training, held = task.plan(
-                task.methods[0],
-                "online",
-                "support",
-            ).populations()
-            a = (
-                training.features
-                if isinstance(training, BinaryLinearTraining)
-                else training.inputs.features
+            self.support, feedback = _check_support(
+                self.task,
+                self.root,
+                self.state_identity,
             )
-            b = (
-                held.features
-                if isinstance(held, BinaryProblem)
-                else held.inputs.features
+            identity = feedback.evidence_identity
+            self.evidence.append(identity)
+            return feedback
+        if proposal.action in {"STOP", "ABSTAIN"}:
+            return LearningFeedback(
+                proposal.action,
+                None,
+                self.task.metric,
+                None,
+                "learning-terminal:" + self.state_identity,
             )
-            support = support_profile(a, b)
-            identity = "learning-support:" + _hash(
-                (task.source_handle, support, state_identity),
+        if plan is None or grant is None:
+            msg = "learning fit has no exact grant"
+            raise ValueError(msg)
+        feedback = await _fit_feedback(
+            plan,
+            grant,
+            self.worker,
+            self.budget,
+            self.root / f"operation-{len(self.observations)}",
+        )
+        self.observations.append(feedback)
+        self.evidence.append(feedback.evidence_identity)
+        return feedback
+
+    async def run(self) -> InvestigationResult:
+        """Drive this finite native ModelInteraction and Tool composition."""
+        tool = LearningTool(self.validate, self.perform)
+        terminal = "ABSTAIN"
+        for turn in range(len(self.task.methods) + 2):
+            self.expected = decision(
+                self.task.family,
+                self.task.methods,
+                self.observations,
+                self.support,
+                profile=PROFILE,
             )
+            self.state_identity = _hash(
+                (
+                    self.task.identity,
+                    self.task.source_handle,
+                    self.support,
+                    [asdict(o) for o in self.observations],
+                    self.budget.consumed,
+                ),
+            )
+            frame = {
+                "task_identity": self.task.identity,
+                "source_handle": self.task.source_handle,
+                "family": self.task.family,
+                "metric": self.task.metric,
+                "schema_identity": self.schema,
+                "unit_identity": self.units,
+                "role": "online",
+                "state_identity": self.state_identity,
+                "evidence": list(self.evidence),
+                "methods": list(self.task.methods),
+                "profile": PROFILE,
+                "support": self.support,
+                "observations": [asdict(o) for o in self.observations],
+                "consumed": dict(self.budget.consumed),
+                "turn": turn,
+            }
+            self.messages.append(PromptMessage("user", canonical(frame)))
+            selected_source = self.model.source
+            response = await self.model.send(
+                ModelRequest(
+                    Prompt("", "messages", tuple(self.messages)),
+                    tools=(normalize_tool_descriptor(self.invocation.descriptor),),
+                ),
+            )
+            if response.source != selected_source or len(response.tool_calls) != 1:
+                msg = "one source-correlated native learning call required"
+                raise ValueError(msg)
+            call = response.tool_calls[0]
             write(
                 TextFile(
-                    resolve_path(root / "support.json"),
+                    resolve_path(self.root / f"proposal-{turn}.json"),
                     canonical(
                         {
-                            "task": task.identity,
-                            "source": task.source_handle,
-                            "support": support,
-                            "evidence_identity": identity,
+                            "model_source": str(response.source),
+                            "call_id": call.provider_call_id,
+                            "arguments_json": call.arguments_json,
+                            "state_identity": self.state_identity,
                         },
                     ),
                 ),
                 overwrite=False,
             )
-            evidence.append(identity)
-            return LearningFeedback("CHECK_SUPPORT", None, task.metric, None, identity)
-        if proposal.action in {"STOP", "ABSTAIN"}:
-            return LearningFeedback(
-                proposal.action,
-                None,
-                task.metric,
-                None,
-                "learning-terminal:" + state_identity,
+            feedback = await execute_model_tool_call(
+                call,
+                invocation=self.invocation,
+                tool=tool,
+                admit=self.admit,
+                runner=ToolRunner(),
             )
-        if plan is None or grant is None:
-            msg = "learning fit has no exact grant"
-            raise ValueError(msg)
-        reference = await worker.execute(
-            plan,
-            grant,
-            root / f"operation-{len(observations)}",
-            operation_limit=Duration.seconds(min(300, budget.remaining_seconds())),
-        )
-        inspected = inspect_learning(reference, plan, grant)
-        value = (
-            inspected.quality.value if isinstance(inspected.quality, Measured) else None
-        )
-        feedback = LearningFeedback(
-            "EVALUATE",
-            plan.method,
-            plan.metric,
-            value,
-            reference.manifest_sha256,
-            None
-            if isinstance(inspected.quality, Measured)
-            else inspected.quality.reason_code,
-        )
-        observations.append(feedback)
-        evidence.append(feedback.evidence_identity)
-        return feedback
-
-    tool = LearningTool(validate, perform)
-    terminal = "ABSTAIN"
-    for turn in range(len(task.methods) + 2):
-        expected = decision(
-            task.family,
-            task.methods,
-            observations,
-            support,
-            profile=profile,
-        )
-        state_identity = _hash(
-            (
-                task.identity,
-                task.source_handle,
-                support,
-                [asdict(o) for o in observations],
-                budget.consumed,
-            ),
-        )
-        frame = {
-            "task_identity": task.identity,
-            "source_handle": task.source_handle,
-            "family": task.family,
-            "metric": task.metric,
-            "schema_identity": schema,
-            "unit_identity": units,
-            "role": "online",
-            "state_identity": state_identity,
-            "evidence": list(evidence),
-            "methods": list(task.methods),
-            "profile": profile,
-            "support": support,
-            "observations": [asdict(o) for o in observations],
-            "consumed": dict(budget.consumed),
-            "turn": turn,
-        }
-        messages.append(PromptMessage("user", canonical(frame)))
-        selected_source = model.source
-        response = await model.send(
-            ModelRequest(
-                Prompt("", "messages", tuple(messages)),
-                tools=(normalize_tool_descriptor(invocation.descriptor),),
-            ),
-        )
-        if response.source != selected_source or len(response.tool_calls) != 1:
-            msg = "one source-correlated native learning call required"
-            raise ValueError(msg)
-        call = response.tool_calls[0]
-        write(
-            TextFile(
-                resolve_path(root / f"proposal-{turn}.json"),
-                canonical(
-                    {
-                        "model_source": str(response.source),
-                        "call_id": call.provider_call_id,
-                        "arguments_json": call.arguments_json,
-                        "state_identity": state_identity,
-                    },
-                ),
-            ),
-            overwrite=False,
-        )
-        feedback = await execute_model_tool_call(
-            call,
-            invocation=invocation,
-            tool=tool,
-            admit=admit,
-            runner=ToolRunner(),
-        )
-        write(
-            TextFile(
-                resolve_path(root / f"feedback-{turn}.json"),
-                canonical(document(asdict(feedback))),
-            ),
-            overwrite=False,
-        )
-        messages.extend(
-            (
-                PromptMessage("assistant", response.content, tool_calls=(call,)),
-                PromptMessage(
-                    "tool",
+            write(
+                TextFile(
+                    resolve_path(self.root / f"feedback-{turn}.json"),
                     canonical(document(asdict(feedback))),
-                    tool_call_id=call.provider_call_id,
                 ),
-            ),
-        )
-        trace.append(
-            {
-                "call_id": call.provider_call_id,
-                "model_source": str(response.source),
-                "arguments_json": call.arguments_json,
-                "state_identity": state_identity,
-                "action": feedback.action,
-                "method": feedback.method,
-                "evidence_identity": feedback.evidence_identity,
-                "value": feedback.value,
-            },
-        )
-        if feedback.action in {"STOP", "ABSTAIN"}:
-            terminal = feedback.action
-            break
-    else:
-        msg = "finite learning decision envelope exhausted without a terminal choice"
-        raise ValueError(
-            msg,
-        )
-    selected = best_index(task.family, observations) if terminal == "STOP" else None
-    seal = {
-        "task": task.identity,
-        "terminal": terminal,
-        "selected": selected,
-        "observations": [asdict(o) for o in observations],
-        "trace": trace,
-    }
-    seal_identity = _hash(seal)
-    write(
-        TextFile(resolve_path(root / "selection.json"), canonical(seal)),
-        overwrite=False,
-    )
-    artifact = None
-    if selected is not None:
-        method = observations[selected].method
-        if method is None:
-            msg = "sealed terminal choice has no fitted method"
+                overwrite=False,
+            )
+            self.messages.extend(
+                (
+                    PromptMessage("assistant", response.content, tool_calls=(call,)),
+                    PromptMessage(
+                        "tool",
+                        canonical(document(asdict(feedback))),
+                        tool_call_id=call.provider_call_id,
+                    ),
+                ),
+            )
+            self.trace.append(
+                {
+                    "call_id": call.provider_call_id,
+                    "model_source": str(response.source),
+                    "arguments_json": call.arguments_json,
+                    "state_identity": self.state_identity,
+                    "action": feedback.action,
+                    "method": feedback.method,
+                    "evidence_identity": feedback.evidence_identity,
+                    "value": feedback.value,
+                },
+            )
+            if feedback.action in {"STOP", "ABSTAIN"}:
+                terminal = feedback.action
+                break
+        else:
+            msg = (
+                "finite learning decision envelope exhausted without a terminal choice"
+            )
             raise ValueError(msg)
-        final = task.plan(method, "final", "protected-final:" + seal_identity)
-        budget.reserve(final)
-        grant = ExecutionAuthorization(
-            final.identity,
-            (method,),
-            EvidenceReference(
-                "learning_execution_grant-v1",
-                str(LearningGrantIdentity.new()),
+        selected = (
+            best_index(self.task.family, self.observations)
+            if terminal == "STOP"
+            else None
+        )
+        seal = {
+            "task": self.task.identity,
+            "terminal": terminal,
+            "selected": selected,
+            "observations": [asdict(o) for o in self.observations],
+            "trace": self.trace,
+        }
+        seal_identity = _hash(seal)
+        write(
+            TextFile(resolve_path(self.root / "selection.json"), canonical(seal)),
+            overwrite=False,
+        )
+        artifact = await self._final(selected, seal_identity)
+        return InvestigationResult(
+            terminal,
+            tuple(self.observations),
+            artifact,
+            tuple(self.trace),
+            seal_identity,
+        )
+
+    async def _final(
+        self,
+        selected: int | None,
+        seal_identity: str,
+    ) -> InspectedLearning | None:
+        """Evaluate protected rows only after terminal selection has been sealed."""
+        artifact = None
+        if selected is not None:
+            method = self.observations[selected].method
+            if method is None:
+                msg = "sealed terminal choice has no fitted method"
+                raise ValueError(msg)
+            final = self.task.plan(method, "final", "protected-final:" + seal_identity)
+            self.budget.reserve(final)
+            grant = ExecutionAuthorization(
                 final.identity,
-            ),
-        )
-        reference = await worker.execute(
-            final,
-            grant,
-            root / "protected-final",
-            operation_limit=Duration.seconds(min(300, budget.remaining_seconds())),
-        )
-        artifact = inspect_learning(reference, final, grant)
-    return InvestigationResult(
-        terminal,
-        tuple(observations),
-        artifact,
-        tuple(trace),
-        seal_identity,
-    )
+                (method,),
+                EvidenceReference(
+                    "learning_execution_grant-v1",
+                    str(LearningGrantIdentity.new()),
+                    final.identity,
+                ),
+            )
+            reference = await self.worker.execute(
+                final,
+                grant,
+                self.root / "protected-final",
+                operation_limit=Duration.seconds(
+                    min(300, self.budget.remaining_seconds()),
+                ),
+            )
+            artifact = inspect_learning(reference, final, grant)
+        return artifact
