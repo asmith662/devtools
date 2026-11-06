@@ -15,8 +15,8 @@ from typing import TYPE_CHECKING, ClassVar, cast
 
 import pytest
 
-from devtools.learning.evidence.context import RecordingError
-from devtools.learning.evidence.events import Activated
+from devtools.learning.evidence.context import ExecutionContext, RecordingError
+from devtools.learning.evidence.events import Activated, Admitted, FailureCategory
 from devtools.learning.integrations.local import ledger
 from devtools.learning.integrations.local.ledger import (
     SQLiteExecutionRecorder,
@@ -228,3 +228,30 @@ def test_read_validator_refuses_repeated_activation_in_an_authored_fault_copy(
     events[2] = replace(events[2], payload=Activated(1, "host", "3", "windows"))
     with pytest.raises(RecordingError, match="Repeated or unordered activation"):
         _validate_lifecycle(tuple(events), history.activations, None)
+
+
+def test_corrupt_old_progress_cannot_become_independently_accepted_history(
+    tmp_path: Path,
+) -> None:
+    """A writer's new ACK does not certify corrupted earlier stage correspondence."""
+    database = tmp_path / "science.sqlite"
+    with (
+        SQLiteExecutionRecorder(database) as recorder,
+        ExecutionContext(recorder, Admitted("progress-control")) as run,
+    ):
+        run.stage("work", "Owned progress control", FailureCategory.INPUT)
+        run.progress("rows", 0, 1)
+        with closing(sqlite3.connect(database)) as connection, connection:
+            sequence, raw = connection.execute(
+                "SELECT sequence,document FROM events WHERE kind='Progress'",
+            ).fetchone()
+            value = json.loads(raw)
+            value["payload"]["stage"] = "foreign"
+            connection.execute(
+                "UPDATE events SET document=? WHERE sequence=?",
+                (json.dumps(value), sequence),
+            )
+        run.progress("rows", 1, 1)
+        run.completed()
+    with pytest.raises(RecordingError, match="stage/progress"):
+        inspect_execution(database, run.execution_id)

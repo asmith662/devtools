@@ -10,12 +10,17 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from devtools.learning.evaluation.regression.metrics import evaluate_regression
 from devtools.learning.integrations.local.classification.codec import (
     document,
     preparation,
 )
 from devtools.learning.integrations.local.regression.codec import predictions, state
-from devtools.learning.regression.contracts import RegressionSpecification
+from devtools.learning.measurement.contracts import NoValue
+from devtools.learning.regression.contracts import (
+    RegressionRole,
+    RegressionSpecification,
+)
 from devtools.learning.regression.state import (
     FittedRegression,
     deterministic_neighbors,
@@ -137,3 +142,31 @@ def test_regression_and_preparation_codecs_preserve_original_meaning(
     prepared = document(asdict(original.preparation))
     with pytest.raises(ValueError, match="standardization meaning"):
         preparation(dict(prepared, invented=True))
+
+
+def test_empty_permitted_query_retains_unavailable_measurement_denominators(
+    fitted_states: Witnesses,
+) -> None:
+    """Predict no labels and keep all empty-population metrics as typed nonvalues."""
+    fitted, training = fitted_states("mean")
+    empty = replace(
+        training,
+        inputs=replace(
+            training.inputs,
+            features=replace(training.inputs.features, rows=()),
+            row_ids=(),
+            population_id="empty-held",
+            role=RegressionRole.DEVELOPMENT,
+        ),
+        values=(),
+    )
+    predicted = fitted.predict(empty.inputs)
+    evaluated = evaluate_regression(empty, predicted)
+    assert all(
+        isinstance(value, NoValue)
+        for value in (
+            evaluated.mae,
+            evaluated.rmse,
+            evaluated.r2,
+        )
+    )

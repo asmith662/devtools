@@ -182,3 +182,23 @@ def test_population_and_distance_work_bounds_precede_effects(
             _plan("classification"),
             problem_json=canonical(_binary_work_input(count, dimension)),
         )
+
+
+def test_quantitative_problem_decoder_refuses_extra_fields() -> None:
+    """Closed original populations cannot acquire invented side-channel fields."""
+    plan = _plan("regression")
+    value = json.loads(plan.problem_json)
+    value["unadmitted"] = True
+    with pytest.raises(ValueError, match="problem fields"):
+        replace(plan, problem_json=canonical(value))
+
+
+def test_quantitative_admission_rejects_wrong_decoder_component_family(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Simulate a decoder fault before any grant, observation or fitting effect."""
+    plan = _plan("regression")
+    wrong = _plan("classification").populations()
+    monkeypatch.setattr(LearningPlan, "populations", lambda _: wrong)
+    with pytest.raises(TypeError, match="typed quantitative"):
+        replace(plan)

@@ -14,7 +14,7 @@ from dataclasses import replace
 from datetime import datetime
 from importlib import import_module
 from pathlib import Path
-from typing import TYPE_CHECKING, BinaryIO, Self
+from typing import TYPE_CHECKING, BinaryIO, Self, cast
 from uuid import UUID
 
 from devtools.core.time import Timestamp
@@ -324,18 +324,24 @@ class SQLiteExecutionRecorder:
                 msg = "diagnostic stage differs from active stage"
                 raise ValueError(msg)
         else:
-            self._stage_transition(connection, event, lifecycle, stage)
+            self._stage_transition(
+                connection,
+                event,
+                cast("StageStarted | StageFinished | Progress", payload),
+                lifecycle,
+                stage,
+            )
 
     def _stage_transition(
         self,
         connection: sqlite3.Connection,
         event: ExecutionEvent,
+        payload: StageStarted | StageFinished | Progress,
         lifecycle: str,
         stage: str | None,
     ) -> None:
         """Preserve stage identity and monotone progress within one activation."""
         eid, aid = str(event.execution_id), str(event.activation_id)
-        payload = event.payload
         if lifecycle != "running":
             msg = "stage/progress requires activation"
             raise ValueError(msg)
@@ -355,7 +361,7 @@ class SQLiteExecutionRecorder:
                 "UPDATE executions SET active_stage=NULL WHERE id=?",
                 (eid,),
             )
-        elif isinstance(payload, Progress):
+        else:
             if stage != payload.stage:
                 msg = "progress must match active stage"
                 raise ValueError(msg)

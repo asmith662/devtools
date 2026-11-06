@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-"""Backend-independent learning values and numerical inspection.
+"""General-purpose binary classification and quantitative regression contracts.
 
-Classification/regression execution is not qualified by this partial migration.
+Optional numerical execution requires exact host grants and independent retained
+state, prediction, metric and scientific-publication inspection.
 """

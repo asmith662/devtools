@@ -6,12 +6,15 @@ from __future__ import annotations
 import asyncio
 import json
 from dataclasses import replace
+from datetime import timedelta
 from typing import TYPE_CHECKING, Any, cast
 from uuid import UUID, uuid4
 
 import pytest
 
 from devtools.learning.classification.linear import BinaryLinearTraining
+from devtools.learning.evidence.events import Admitted, Fact, Terminal
+from devtools.learning.integrations.local import inspection
 from devtools.learning.integrations.local.inspection import (
     InspectedLearning,
     _binary_state,
@@ -27,7 +30,10 @@ from devtools.learning.integrations.local.inspection import (
     _verify_regression_observation,
     inspect_learning,
 )
-from devtools.learning.integrations.local.ledger import inspect_execution
+from devtools.learning.integrations.local.ledger import (
+    inspect_child_execution_ids,
+    inspect_execution,
+)
 from devtools.learning.integrations.local.linear_classification import model_document
 from devtools.learning.integrations.local.operations import LearningPublication, quality
 from devtools.learning.investigation.classification.contracts import (
@@ -37,6 +43,7 @@ from devtools.learning.investigation.plans import BinaryProblem
 from devtools.learning.measurement.contracts import EvidenceReference, Measured
 from devtools.learning.regression.contracts import RegressionInput, RegressionPopulation
 from devtools.learning.regression.state import RegressionPredictions
+from devtools.resources.filesystem import BinaryFile, TextFile
 from devtools.tools.learning import ManagedLearningWorker
 from tests.learning.fixtures import authored_task
 
@@ -312,3 +319,118 @@ def test_binary_observation_recounts_votes_features_and_f1(
             predictions,
             measured,
         )
+
+
+@pytest.mark.parametrize("fault", ["format", "schema"])
+def test_scientific_reader_refuses_wrong_filesystem_component_return(
+    witness: Callable[[str], Witness],
+    monkeypatch: pytest.MonkeyPatch,
+    fault: str,
+) -> None:
+    """Original publication is intact; the explicit filesystem return is faulty."""
+    inspected, grant, _, saved = witness("mean")
+    path = inspected.reference.root
+    if fault == "format":
+        returned: BinaryFile | TextFile = TextFile(path, "authored format fault")
+    else:
+        returned = BinaryFile(
+            path,
+            json.dumps(dict(saved, schema="learning-operation-v1")).encode(),
+        )
+    monkeypatch.setattr(inspection, "read", lambda *_args, **_kwargs: returned)
+    with pytest.raises(
+        (TypeError, ValueError),
+        match=r"binary scientific|schema/plan/grant",
+    ):
+        inspect_learning(inspected.reference, inspected.plan, grant)
+
+
+def test_independent_observation_family_and_fitted_type_guards(
+    witness: Callable[[str], Witness],
+) -> None:
+    """Actual fitted witnesses cannot substitute across source and state families."""
+    binary = witness("knn7")[0]
+    regression = witness("mean")[0]
+    _, held = binary.plan.populations()
+    assert isinstance(held, BinaryProblem)
+    labels = binary.predict(held.features)
+    assert isinstance(labels, tuple)
+    with pytest.raises(TypeError, match="binary source populations"):
+        _verify_binary_observation(regression, labels, binary.quality)
+    with pytest.raises(TypeError, match="binary fitted state"):
+        _verify_binary_observation(
+            replace(binary, state=regression.state),
+            labels,
+            binary.quality,
+        )
+    with pytest.raises(TypeError, match="quantitative fitted state"):
+        _verify_regression_observation(binary, cast("Any", None), binary.quality)
+    with pytest.raises(TypeError, match="quantitative source populations"):
+        _verify_regression_observation(
+            replace(binary, state=regression.state),
+            cast("Any", None),
+            binary.quality,
+        )
+
+
+@pytest.mark.parametrize(
+    "fault",
+    ["producer-kind", "fit-ack", "children", "preparation-ack"],
+)
+def test_independent_reader_component_faults_cannot_certify_custody(
+    witness: Callable[[str], Witness],
+    monkeypatch: pytest.MonkeyPatch,
+    fault: str,
+) -> None:
+    """Inject named reader-report faults over unchanged genuine histories."""
+    inspected, grant, manifest, original_saved = witness(
+        "ridge" if fault == "preparation-ack" else "knn7",
+    )
+    saved = _saved((inspected, grant, manifest, original_saved))
+    database = inspected.reference.root.value / "science.sqlite"
+    fitting_id = UUID(saved["fitting_execution_id"])
+    producer_id = UUID(saved["producing_execution_id"])
+    preparation_id = UUID(saved["preparation"]["construction_execution_id"])
+    fit = inspect_execution(database, fitting_id)
+    assert fit is not None
+
+    def reported(path: Path, identity: UUID) -> object:
+        history = inspect_execution(path, identity)
+        if history is None:
+            return None
+        last = history.events[-1]
+        if fault == "producer-kind" and identity == producer_id:
+            last = replace(last, payload=Admitted("faulty-reader-return"))
+        elif fault == "fit-ack" and identity == fitting_id:
+            assert isinstance(last.payload, Terminal)
+            last = replace(
+                last,
+                payload=replace(
+                    last.payload,
+                    facts=(Fact("state_identity", "0" * 64),),
+                ),
+            )
+        elif fault == "preparation-ack" and identity == preparation_id:
+            last = replace(
+                last,
+                observed_at=fit.events[0].occurred_at + timedelta(seconds=1),
+            )
+        return replace(history, events=(*history.events[:-1], last))
+
+    if fault == "children":
+        original = inspect_child_execution_ids
+        monkeypatch.setattr(
+            inspection,
+            "inspect_child_execution_ids",
+            lambda *args: (*original(*args), uuid4()),
+        )
+    else:
+        monkeypatch.setattr(inspection, "inspect_execution", reported)
+    with pytest.raises(
+        (TypeError, ValueError),
+        match=(
+            r"acknowledgments absent|before fitting|child executions|"
+            r"binary fit acknowledgment"
+        ),
+    ):
+        inspect_learning(inspected.reference, inspected.plan, grant)

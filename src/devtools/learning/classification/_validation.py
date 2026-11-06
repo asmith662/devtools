@@ -181,8 +181,12 @@ def validate_training(
         neighbor_count=neighbor_count,
     )
     for check in preliminary.checks:
-        if check.requirement is ClassificationRequirement.TARGET_VALUES:
-            break
+        if check.requirement in (
+            ClassificationRequirement.TARGET_VALUES,
+            ClassificationRequirement.TARGET_LENGTH,
+            ClassificationRequirement.OBSERVED_CLASSES,
+        ):
+            continue
         if check.satisfied is not True:
             raise check.exception(check.explanation)
     result = inspect_training(

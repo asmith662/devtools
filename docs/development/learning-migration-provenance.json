@@ -118,7 +118,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "e32e83c352d90b89bf87dbef5223254e0089f97394f1af5dccb9c88019af3341"
+      "destination_sha256": "c7396246be626e5eac98fe13dab1b1bb4f279a398db9cf196cb81a965df49d2c"
     },
     {
       "donor": "src/learned_intelligence/integrations/local_execution/publication.py",
@@ -163,7 +163,7 @@
       "disposition": "RELOCATE",
       "symbols": "selected module",
       "adaptation": "Explicit facade imports; namespace; canonical Timestamp wall clock. Ordinary regression only; OOF excluded.",
-      "destination_sha256": "52a07d46cc7dad08333617ab616efe0e288d2ad0d414d8bcd6217f5734915b42"
+      "destination_sha256": "981df462778bb02a26a48177d120dc9aa4ed9064c2ad79747a8e21ad78f6511b"
     },
     {
       "donor": "src/learned_intelligence/classification/k_nearest_neighbors.py",
@@ -447,7 +447,7 @@
     },
     {
       "path": "src/devtools/learning/integrations/local/operations.py",
-      "sha256": "1e877353f5ff76661cb6021c3e3d86ad345569bc41782f0a1c141d3e2ee74ef7",
+      "sha256": "d5d1c52e9fb95823e9bcb444c091666053676a26e283718dea3e2220aa5b5fb5",
       "origin": "destination-authored owner adaptation/composition"
     },
     {
@@ -707,6 +707,12 @@
         "reason": "The sole two selected consumers need immutable EvidenceReference tuples; no generic requirement-finding engine is selected."
       }
     ],
-    "reason": "Audited first-capability dependency closure: no selected maintained consumer; exact source/role/grant/state/metric/publication guards retained. No coverage exclusion or scientific threshold change."
+    "reason": "Audited first-capability dependency closure: no selected maintained consumer; exact source/role/grant/state/metric/publication guards retained. No coverage exclusion or scientific threshold change.",
+    "candidate_refinements": {
+      "classification/_validation.py": "Validate every feature-only predicate while deferring target predicates to the complete target pass; no requirement removed.",
+      "integrations/local/ledger.py": "Private stage transition accepts StageStarted/StageFinished/Progress only, after _record separately dispatches Admitted and _advance dispatches other lifecycle payloads. Original SQL and scientific guards retained.",
+      "integrations/local/operations.py": "Restore lazy optional per-method native imports; add narrow quantitative fit-required prediction helper alongside existing binary helper. Same exact configurations, source/authority/state/metric semantics.",
+      "__init__.py": "Replace obsolete partial-migration docstring with current supported responsibility."
+    }
   }
 }

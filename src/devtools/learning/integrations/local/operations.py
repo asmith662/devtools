@@ -6,6 +6,7 @@ from __future__ import annotations
 import importlib.util
 import math
 from dataclasses import asdict, dataclass, replace
+from importlib import import_module
 from typing import TYPE_CHECKING
 
 from devtools.core.paths import ResolvedPath, resolve_path
@@ -31,17 +32,6 @@ from devtools.learning.integrations.local.ledger import SQLiteExecutionRecorder
 from devtools.learning.integrations.local.linear_classification import model_document
 from devtools.learning.integrations.local.margin_classification import margin_document
 from devtools.learning.integrations.local.publication import publish_artifacts
-from devtools.learning.integrations.sklearn.k_nearest_neighbors import (
-    construct_k_nearest_neighbors_classification,
-)
-from devtools.learning.integrations.sklearn.linear_classification import (
-    LogisticClassificationConfiguration,
-    fit_binary_logistic,
-)
-from devtools.learning.integrations.sklearn.margin_classification import (
-    MarginClassificationConfiguration,
-    fit_binary_margin,
-)
 from devtools.learning.integrations.sklearn.regression import fit_regression
 from devtools.learning.integrations.sklearn.runtime import observe_runtime
 from devtools.learning.investigation.errors import LearningUnavailableError
@@ -77,9 +67,11 @@ if TYPE_CHECKING:
     from uuid import UUID
 
     from devtools.learning.integrations.local.publication import PublicationInspection
+    from devtools.learning.integrations.sklearn.regression import NativeRegressionFit
     from devtools.learning.investigation.classification.contracts import (
         ExecutionAuthorization,
     )
+    from devtools.learning.regression.contracts import RegressionInput
     from devtools.learning.representation.features import FeatureTable
 
 _BINARY_NEIGHBORS = 7
@@ -242,7 +234,7 @@ def _fit_binary(
     """Retain one genuine binary fit and ACK it before any query prediction."""
     state: FittedBinaryLinearClassifier | FittedMarginClassifier | None = None
     state_document: dict[str, object]
-    native_knn = None
+    native_knn: FittedKNearestNeighborsClassification | None = None
     binary_training = replace(
         training,
         features=represented(training.features, preparation, method),
@@ -253,7 +245,10 @@ def _fit_binary(
         parent=run,
     ) as fitting_run:
         if method == "knn7":
-            native_knn = construct_k_nearest_neighbors_classification(
+            backend = import_module(
+                "devtools.learning.integrations.sklearn.k_nearest_neighbors",
+            )
+            native_knn = backend.construct_k_nearest_neighbors_classification(
                 KNearestNeighborsClassificationSpecification(
                     7,
                     KNearestNeighborsDistance.EUCLIDEAN,
@@ -267,19 +262,27 @@ def _fit_binary(
                 "training": document(asdict(binary_training)),
             }
         elif method == "square-logistic":
-            state = fit_binary_logistic(
+            backend = import_module(
+                "devtools.learning.integrations.sklearn.linear_classification",
+            )
+            linear_state: FittedBinaryLinearClassifier = backend.fit_binary_logistic(
                 binary_training,
-                LogisticClassificationConfiguration(),
+                backend.LogisticClassificationConfiguration(),
                 execution=fitting_run,
             )
-            state_document = model_document(state)
+            state = linear_state
+            state_document = model_document(linear_state)
         else:
-            state = fit_binary_margin(
+            backend = import_module(
+                "devtools.learning.integrations.sklearn.margin_classification",
+            )
+            margin_state: FittedMarginClassifier = backend.fit_binary_margin(
                 binary_training,
-                MarginClassificationConfiguration(),
+                backend.MarginClassificationConfiguration(),
                 execution=fitting_run,
             )
-            state_document = margin_document(state)
+            state = margin_state
+            state_document = margin_document(margin_state)
         fitting_run.completed(
             (Fact("state_identity", _hash(state_document)),),
         )
@@ -353,6 +356,17 @@ def _binary_predictions(
         msg = "retained binary state required"
         raise TypeError(msg)
     return predictions
+
+
+def _regression_predictions(
+    native_fit: NativeRegressionFit | None,
+    inputs: RegressionInput,
+) -> RegressionPredictions:
+    """Require the retained native fit before dispatching quantitative queries."""
+    if native_fit is None:
+        msg = "native regression fit required"
+        raise TypeError(msg)
+    return native_fit.predict(inputs)
 
 
 def execute_plan(
@@ -473,11 +487,8 @@ def execute_plan(
                 predictions: tuple[int, ...] | RegressionPredictions = (
                     _binary_predictions(state, binary_training, native_knn, query)
                 )
-            elif native_regression is not None:
-                predictions = native_regression.predict(held.inputs)
             else:
-                msg = "native regression fit required"
-                raise TypeError(msg)
+                predictions = _regression_predictions(native_regression, held.inputs)
             prediction_run.completed(
                 (
                     Fact(

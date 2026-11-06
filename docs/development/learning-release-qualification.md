@@ -201,3 +201,41 @@ The complete selected group now passes. Native capture and focused combinations
 retain nonce/request/interpreter/source/data identities; each append verifies
 that its seed's production hashes still match. Raw receipts remain task-owned
 under `.local/learning-release/`.
+
+## Scientific release-candidate coverage
+
+Fresh `coverage-11` data, without reused arcs, passes 776 learning/Commands
+tests in 215.93 seconds. All 6,279 learning statement/branch terms and the
+Windows Job implementation are covered at 100%. Every worker capture is bound
+to its exact operation, packet, interpreter and current source. The repository
+subset still correctly exits 1 at 31.27%: this is readiness for the full gate,
+not a protected-gate pass. The preceding fresh run passed 774 tests and left
+only the staged-manifest refusal; an actual validator adding an unexpected file
+after the initial membership check now establishes that refusal.
+
+Production refinements keep feature-only checks separate from deferred target
+checks; narrow the private ledger stage helper to the three stage payloads
+(`_record` handles admission separately before `_advance`); and group the
+quantitative fit-required dispatch alongside binary prediction dispatch. No
+SQL schema, source rule, ACK, grant, method parameter or tolerance changes.
+A narrow internal cast records the already-established payload partition rather
+than adding a silently ignored non-stage branch. Independent corruption tests
+still reject malformed past history even after a later writer ACK.
+
+A fresh base-import diagnostic caught eager optional-adapter imports introduced
+during style cleanup. Explicit per-method lazy loading restores the original
+optional-dependency contract. A real contained `-S` interpreter rejects all
+NumPy/SciPy/sklearn/threadpoolctl imports while importing coding, the learning
+agent and independent inspector successfully. The actual native investigator
+and parent-consumption cases still pass (34-case focused receipt
+`learning-release-optional-44.json`). Earlier installed-wheel results are not
+reused to qualify this changed source; the final wheel is rebuilt below.
+
+Maintained static scope is `src tests apps scripts`, with the established
+retained `tests/experiments` role omitted explicitly on the command line. Ruff
+reports zero diagnostics, all 922 maintained Python files are formatted, strict
+mypy passes 767 modules, and linked-worktree layout/diff checks pass. No global
+exclusion, rule or coverage configuration is changed. The retained Ruff
+COM812/formatter advisory and ignored inherited VIRTUAL_ENV warning are not
+suppressed. Read-only Git inspection sees concurrent main at
+`9f404adccea4a19765bb886c94fe592c555a39ac`; no merge is performed.

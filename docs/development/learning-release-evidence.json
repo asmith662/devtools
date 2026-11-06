@@ -8188,5 +8188,27 @@
       }
     ],
     "qualification": "Diagnostic combined subset, not a protected gate. Seed and worker captures authenticated. Original failures and data preserved."
+  },
+  "fresh_scientific_candidate": {
+    "tests_passed": 776,
+    "pytest_seconds": 215.93,
+    "learning_terms": 6279,
+    "learning_missed_terms": 0,
+    "learning_percent": 100,
+    "windows_job_percent": 100,
+    "subset_overall_percent": 31.27,
+    "coverage_exit": 1,
+    "protected_gate": "PENDING",
+    "inputs_unchanged": true,
+    "data_sha256": "83333d061d113f91268d87f67d47f8fc07a4d0787d5873e342013a52b535fe6f",
+    "combination": "Fresh data, no seed arcs reused after production helper changes.",
+    "ruff": "PASS, zero maintained diagnostics",
+    "format": "PASS, 922 files",
+    "mypy": "PASS, 767 modules",
+    "limitations": [
+      "Subset is not a protected gate.",
+      "Final test formatting follows this source-coverage run; final committed full gate remains required.",
+      "Base/extra wheel must be rebuilt from this candidate."
+    ]
   }
 }
