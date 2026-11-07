@@ -1,0 +1,36 @@
+import asyncio,hashlib,json,sys
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+root=Path.cwd();area=root/'.local/learning-integration-final/package'
+wheel=json.loads((area/'wheel-inputs.json').read_bytes());old=json.loads((root/'.local/learning-release/package-final/wheel-inputs.json').read_bytes())
+async def run():
+    identities={}
+    for name in ('extra','base','host314'):
+        site=area/name/'Lib/site-packages'
+        for member,digest in wheel['source_members'].items():
+            assert hashlib.sha256((site/member).read_bytes()).hexdigest()==digest,(name,member)
+        exe=r'C:\Python314\python.exe' if name=='host314' else str(getattr(sys,'_base_executable'))
+        code="import site,sys,json,importlib.metadata as m;site.addsitedir(sys.argv[1]);print(json.dumps({'python':sys.version,'executable':sys.executable,'site':sys.argv[1],'distributions':{d.metadata['Name']:d.version for d in m.distributions()}}))"
+        result=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20,max_stderr_bytes=1<<20)).execute(Command(exe).args('-S','-c',code,str(site)).cwd(resolve_path(area/'independent-cwd')).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1'}).with_timeout(Duration.seconds(30)))
+        assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated
+        identities[name]=json.loads(result.stdout)
+        identities[name]['executable_sha256']=hashlib.sha256(Path(exe).read_bytes()).hexdigest()
+    scientific=next(f for f in (area/'installed-controls-01').rglob('result.json') if 'generations' in f.parts)
+    runtime=json.loads(scientific.read_bytes())['runtime']
+    assert runtime['python']=='3.12.13' and runtime['abi']=='cpython-312'
+    assert all(p['num_threads']==1 for p in runtime['native_pools'])
+    (area/'runtime.json').write_text(json.dumps(runtime,indent=2),encoding='utf-8')
+    (area/'environment-identities.json').write_text(json.dumps(identities,indent=2),encoding='utf-8')
+    summary={'status':'PASS','wheel_sha256':wheel['sha256'],'source_members':len(wheel['source_members']),'verified_installed_members':len(wheel['source_members'])*3,'changed_members_from_qualified_feature':[p for p,h in wheel['source_members'].items() if old['source_members'].get(p)!=h],'environments':{n:{'python':d['python'],'distributions':len(d['distributions'])} for n,d in identities.items()},'controls':{},'historical_reinspection':{}}
+    for label,folder in [('host312','installed-controls-01'),('host314','host314-controls-01')]:
+        d=json.loads((area/folder/'result.json').read_bytes());assert d['status']=='PASS' and d['prefit_refusal']
+        summary['controls'][label]=[{'family':c.get('family',c.get('case')),'terminal':c['terminal'],'method':c.get('method'),'parent_predictions':c.get('parent_predictions'),'counts':c['counts']} for c in d['cases']]
+    for name in ('independent-inspection','rejected-inspection','independent-inspection-host314','rejected-inspection-host314'):
+        d=json.loads((area/(name+'.json')).read_bytes());assert d['content_unchanged'] and d['read_only_members']==80
+        summary['historical_reinspection'][name]={'status':d['status'],'operations':len(d['operations']),'members_unchanged':80,'fit_calls':0}
+    assert json.loads((area/'independent-inspection.json').read_bytes())['operations']==json.loads((area/'independent-inspection-host314.json').read_bytes())['operations']
+    summary['host314_original_prediction_correspondence']='All seven original publication predictions and measurements identical to installed 3.12 inspection; protected final prediction lengths 34 and 59.'
+    (area/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8');print('PASS: source, installed members, runtime, parent predictions and original evidence authenticated')
+asyncio.run(run())

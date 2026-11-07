@@ -1,0 +1,25 @@
+{
+  "source_commit": "1ab2ca61a2c1ad3e1a1b87033c2d1283979c5971",
+  "wheel_sha256": "bddc87920333ff3155390c6c126af8d9bf16b4f58bbbc1c5598d4f9b8b512942",
+  "operator_sha256": "1d7fd21c6289a4f6c01023383b8d476c4d96684bd4fe9a74545ea8942b017354",
+  "inputs": {
+    "iris-b0047-outer0.json": "124eb023dadb46a2172cb48c0b75a2302f781e84f73f01438b305a648c1b71fc",
+    "mpg-b0092-roles.json": "10a864855c822fc68359e1bbc17fb8f1f33d6f9df5e672a08037587923d1e590"
+  },
+  "purpose": "Deliberately requalify operation publication v2 with required completed fit child before prediction. Original v1 effects are known completed and preserved; this is a new engineering qualification after the correction, not uncertain-effect replay.",
+  "authority": "Current explicit migration and final numerical-qualification assignment; no live/paid provider or next model-assisted study.",
+  "previous_known_completed_counts": {
+    "actions": 7,
+    "invocations": 7,
+    "native_fits": 6,
+    "preparations": 6,
+    "squares": 1,
+    "states": 7
+  },
+  "previous_report_sha256": "e73008101b83b973f8d249b53fc30807e35b0d10ddca3c19157a1ea0c3699f48",
+  "limits": "Unchanged per qualification root: 9 fits/10 states/8 preparations/3 squares/8 actions/8 invocations, 300s operation/3600s task/7200s root; one worker/native thread. All prior costs will be reported, not erased.",
+  "blocked_prior_outputs": [
+    ".local/learning-migration/v2",
+    "docs/development/learning-qualification"
+  ]
+}

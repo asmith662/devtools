@@ -1,0 +1,50 @@
+{
+  "status": "COMBINED_PROTECTED_QUALIFIED_REVIEW_CANDIDATE",
+  "starting_feature": "cbe8804812abf60a530b5aceed93c64edd577605",
+  "integrated_main": "825bc23b98e366e97d56e3146a1d752285f383bd",
+  "merge_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
+  "merge_parents": [
+    "cbe8804812abf60a530b5aceed93c64edd577605",
+    "825bc23b98e366e97d56e3146a1d752285f383bd"
+  ],
+  "main_commits": [
+    "825bc23b98e366e97d56e3146a1d752285f383bd Attribute GPT-OSS admission block to host memory owners",
+    "9f404adccea4a19765bb886c94fe592c555a39ac Normalize new diagnostic records to LF and refresh hashes",
+    "052ff017cc151906b8f7fce79eec197f4979f210 Record GPT-OSS native parsing diagnosis and memory admission block",
+    "9034fd34ad8510be8e058c95203291d09b0e45d3 Fix llama.cpp HTTP status diagnostics and bound response bodies",
+    "27c8470e5335063eac50b1af60b94bcf33e476c0 Measure Qwen and gpt-oss reviewer factual judgment and native delivery",
+    "d2a3b3029ce996cabb9ec6a6bf7b66695c289676 Enroll bounded local reviewer provider profiles under explicit operator authority"
+  ],
+  "overlapping_path": "docs/documentation_map.md",
+  "resolution": "Automatic ort merge, no manual conflict. Both main and learning navigation entries retained.",
+  "production_changes_from_main": [
+    "src/devtools/models/interaction/providers/llama_cpp.py"
+  ],
+  "operational_changes_from_main": [
+    "scripts/backlog/routine/local.py",
+    "scripts/backlog/routine/policy.py"
+  ],
+  "contracts": "Native ModelInteraction/Tool/ToolRunner unchanged. Provider enrollment is separate from learning exact grants; source/call correlation, budget and uncertain-effect refusals retained.",
+  "learning_and_commands_sources_unchanged": true,
+  "protected": {
+    "producing_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
+    "passed": 5275,
+    "skipped": 2,
+    "statements": 19325,
+    "branches": 5246,
+    "coverage_percent": 100,
+    "seconds": 4971.75018,
+    "coverage_sha256": "fda30eea7cdcc303f6acea1ddd9ee1cec74595036f3e1d5b6a40ea57e361088d",
+    "inputs_unchanged": true
+  },
+  "wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
+  "python_interoperability": "Actual numerical-free CPython 3.14.3 host invokes explicit separately installed CPython 3.12.13 worker through existing ManagedLearningWorker(executable, site_packages, denied_roots=...). Both families, native Tool decisions, independent inspection, parent predictions, ABSTAIN and zero-effect refusal pass. No native scientific 3.14 qualification claimed.",
+  "canonical_checkout": "No mutation/build/test/environment/service operations performed there. Read-only HEAD observed at integrated main revision.",
+  "limitations": [
+    "Windows x64 CPython 3.12.13 scientific worker only",
+    "No live model inference or strategy/generalization claim",
+    "Peak tree memory and energy unmeasured",
+    "One offline 3.14 base dependency-resolution failure retained; subsequent ordinary online installation and dependency check pass",
+    "Human review and merge remain unperformed"
+  ]
+}

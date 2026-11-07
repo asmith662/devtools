@@ -1,0 +1,55 @@
+[
+  {
+    "path": ".local/validation/learning-functional-candidate-08.json",
+    "sha256": "481f21489e46f16d902b5d8a4b6df0b7b7bc5c4e04deaa5f6c3780e122f887e7",
+    "status": "input-drift",
+    "exit_code": 1,
+    "keys": [
+      "schema",
+      "mode",
+      "selection",
+      "argv",
+      "inputs",
+      "started_at",
+      "previous",
+      "correction",
+      "reuse_policy",
+      "status",
+      "phases",
+      "environment_overrides",
+      "exit_code",
+      "seconds",
+      "collection_errors",
+      "finished_at",
+      "inputs_unchanged"
+    ],
+    "qualification": "Original full local receipt preserved; not a passing release gate."
+  },
+  {
+    "path": ".local/validation/learning-protected-final-14.json",
+    "sha256": "d7808237e9b75eed870721167337f3537433bbbaea7e5a339e8d2cc6eb28d7fe",
+    "status": "timeout",
+    "exit_code": 3,
+    "keys": [
+      "schema",
+      "mode",
+      "selection",
+      "argv",
+      "inputs",
+      "started_at",
+      "previous",
+      "correction",
+      "reuse_policy",
+      "status",
+      "phases",
+      "environment_overrides",
+      "error",
+      "exit_code",
+      "seconds",
+      "collection_errors",
+      "finished_at",
+      "inputs_unchanged"
+    ],
+    "qualification": "Original full local receipt preserved; not a passing release gate."
+  }
+]

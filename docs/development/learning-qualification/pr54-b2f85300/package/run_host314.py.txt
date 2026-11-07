@@ -1,0 +1,17 @@
+import asyncio,hashlib,json,pathlib,sys
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+root=pathlib.Path.cwd();area=root/'.local/learning-integration-final/package'
+control=(area/'frozen-controls.py').read_text(encoding='utf-8').replace('resolve_path(Path(sys.executable))','resolve_path(Path(sys.argv[4]))')
+control=control.replace('async def control_main():',"async def control_main():\n    import importlib.util\n    assert sys.version_info[:2]==(3,14)\n    assert all(importlib.util.find_spec(name) is None for name in ('numpy','scipy','sklearn','threadpoolctl'))")
+(area/'controls-host314.py').write_text(control,encoding='utf-8')
+site=area/'host314/Lib/site-packages';worker_site=area/'extra/Lib/site-packages'
+denied=tuple(root/p for p in ('src','tests','scripts','apps','experiments'))+(root.parent/'learned-intelligence',root.parent/'devtools',root/'.local/learning-migration/v2',root/'.local/learning-migration/v3',root/'docs/development/learning-qualification')
+bootstrap='import sys,runpy;sys.argv=sys.argv[1:];runpy.run_path(sys.argv[0],run_name="__main__")'
+worker_executable=str(getattr(sys,'_base_executable'))
+command=Command(r'C:\Python314\python.exe').args('-S','-c',bootstrap,str(area/'package_guard.py'),str(root),str(site),str(area/'controls-host314.py'),str(area/'host314-controls-01'),str(worker_site),json.dumps(list(map(str,denied))),worker_executable).cwd(resolve_path(area/'independent-cwd')).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','MKL_NUM_THREADS':'1','BLIS_NUM_THREADS':'1'}).with_timeout(Duration.minutes(15))
+clock=Stopwatch();result=asyncio.run(CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=2<<20,max_stderr_bytes=2<<20)).execute(command))
+receipt={'exit_code':result.exit_code,'seconds':clock.elapsed.total_seconds,'host_executable':command.executable,'host_sha256':hashlib.sha256(pathlib.Path(command.executable).read_bytes()).hexdigest(),'host_site':str(site),'worker_executable':worker_executable,'worker_sha256':hashlib.sha256(pathlib.Path(worker_executable).read_bytes()).hexdigest(),'worker_site':str(worker_site),'stdout':result.stdout.decode(errors='replace'),'stderr':result.stderr.decode(errors='replace'),'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated}
+(area/'host314-launch.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8');print(json.dumps(receipt,indent=2))
+assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated

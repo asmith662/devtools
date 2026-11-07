@@ -1,0 +1,54 @@
+import asyncio,json,sys
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration
+from devtools.resources.commands import Command,CommandExecutor,CommandTimeoutError
+from devtools.resources.commands._windows_job import WindowsJob
+
+assert sys.version_info[:2]==(3,14)
+area=Path(sys.argv[1]);area.mkdir();worker=sys.argv[2]
+created=[];original=asyncio.create_subprocess_exec
+async def observe(*args,**kwargs):
+    process=await original(*args,**kwargs);created.append(process);return process
+asyncio.create_subprocess_exec=observe
+records=[]
+def command(code,*args,seconds=10):
+    return Command(worker).args('-S','-c',code,*args).cwd(resolve_path(area)).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1'}).with_timeout(Duration.seconds(seconds))
+async def main():
+    marker=area/'forbidden'
+    code="import subprocess,sys\ntry:\n subprocess.run([sys.executable,'-S','-c',sys.argv[1]],check=True)\nexcept OSError:\n print('denied')\nelse:\n raise RuntimeError('descendant admitted')"
+    result=await CommandExecutor(contained=True).execute(command(code,f"open({str(marker)!r},'w').write('entered')"))
+    assert result.succeeded and result.stdout.strip()==b'denied' and not marker.exists()
+    records.append({'case':'actual descendant refusal','pid':created[-1].pid,'returncode':created[-1].returncode,'forbidden_marker':False})
+    try:await CommandExecutor(contained=True).execute(command('import time;time.sleep(30)',seconds=0.1))
+    except CommandTimeoutError:pass
+    else:raise AssertionError('timeout missing')
+    assert created[-1].returncode is not None and created[-1].returncode!=0
+    records.append({'case':'actual timeout reaped','pid':created[-1].pid,'returncode':created[-1].returncode})
+    ready=area/'ready'
+    task=asyncio.create_task(CommandExecutor(contained=True).execute(command("import sys,time;open(sys.argv[1],'w').write('ready');time.sleep(30)",str(ready))))
+    for _ in range(200):
+        if ready.exists():break
+        await asyncio.sleep(0.01)
+    assert ready.exists();task.cancel()
+    try:await task
+    except asyncio.CancelledError:pass
+    else:raise AssertionError('cancellation missing')
+    assert created[-1].returncode is not None and created[-1].returncode!=0
+    records.append({'case':'actual cancellation reaped after entry','pid':created[-1].pid,'returncode':created[-1].returncode})
+    admission=WindowsJob.assign_and_resume;admitted=[];failure=OSError('authored admission refusal before resume')
+    def refuse(_job,_handle,pid):admitted.append(pid);raise failure
+    WindowsJob.assign_and_resume=refuse
+    marker=area/'must-not-enter'
+    try:
+        try:await CommandExecutor(contained=True).execute(command("import sys;open(sys.argv[1],'w').write('entered')",str(marker)))
+        except OSError as error:assert error is failure
+        else:raise AssertionError('refusal missing')
+    finally:WindowsJob.assign_and_resume=admission
+    assert admitted==[created[-1].pid] and created[-1].returncode is not None and created[-1].returncode!=0 and not marker.exists()
+    records.append({'case':'simulated admission refusal; actual suspended child reaped without entry','pid':created[-1].pid,'returncode':created[-1].returncode,'same_error':True,'entry_marker':False})
+    assert len(created)==4 and all(p.returncode is not None for p in created)
+    (area/'result.json').write_text(json.dumps({'status':'PASS','host':sys.version,'worker':worker,'cases':records},indent=2),encoding='utf-8')
+    print('PASS: four Python 3.14 host / direct Python 3.12 child custody controls')
+try:asyncio.run(main())
+finally:asyncio.create_subprocess_exec=original

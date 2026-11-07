@@ -1,0 +1,20 @@
+from pathlib import Path
+import hashlib,json
+root=Path.cwd();area=root/'.local/learning-reconciliation/package';old=root/'.local/learning-release/package-final'
+area.mkdir(exist_ok=True);(area/'independent-cwd').mkdir(exist_ok=True)
+for name in ('package_guard.py','frozen-controls.py','base_control.py','frozen-coding.py','frozen-compaction.py','inspection_guard.py','independent_inspect.py','rejected_guard.py','inspect_rejected.py'):
+    (area/name).write_bytes((old/name).read_bytes())
+for name in ('launch_package.py','launch_inspection.py','launch_rejected.py'):
+    code=(old/name).read_text(encoding='utf-8-sig').replace('.local/learning-release/package-final','.local/learning-reconciliation/package').replace("root/'.local/learning-migration'/('recovery-wheel-base' if base else 'recovery-wheel-extra')","area/('base' if base else 'extra')").replace("root/'.local/learning-migration/recovery-wheel-base/Lib/site-packages'","area/'base/Lib/site-packages'")
+    (area/name).write_text(code,encoding='utf-8')
+import zipfile
+wheel=next((area/'wheel').glob('*.whl'));members={}
+with zipfile.ZipFile(wheel) as archive:
+    for name in archive.namelist():
+        if name.startswith('devtools/'):
+            digest=hashlib.sha256(archive.read(name)).hexdigest()
+            assert digest==hashlib.sha256((root/'src'/name).read_bytes()).hexdigest(),name
+            members[name]=digest
+    metadata=archive.read('devtools-0.1.0.dist-info/METADATA').decode()
+(area/'wheel-inputs.json').write_text(json.dumps({'wheel':str(wheel),'sha256':hashlib.sha256(wheel.read_bytes()).hexdigest(),'source_members':members,'metadata':metadata},indent=2),encoding='utf-8')
+print('Verified wheel source members',len(members))

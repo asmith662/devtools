@@ -1,0 +1,247 @@
+{
+  "status": "PASS",
+  "wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
+  "source_members": 409,
+  "verified_installed_members": 1227,
+  "changed_members_from_qualified_feature": [
+    "devtools/models/interaction/docs/overview.md",
+    "devtools/models/interaction/providers/llama_cpp.py"
+  ],
+  "environments": {
+    "extra": {
+      "python": "3.12.13 (main, Aug  5 2026, 17:14:30) [MSC v.1944 64 bit (AMD64)]",
+      "distributions": 25
+    },
+    "base": {
+      "python": "3.12.13 (main, Aug  5 2026, 17:14:30) [MSC v.1944 64 bit (AMD64)]",
+      "distributions": 18
+    },
+    "host314": {
+      "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+      "distributions": 18
+    }
+  },
+  "controls": {
+    "host312": [
+      {
+        "family": "classification",
+        "terminal": "STOP",
+        "method": "knn7",
+        "parent_predictions": [
+          0,
+          1
+        ],
+        "counts": {
+          "native_fits": 3,
+          "states": 3,
+          "preparations": 3,
+          "squares": 1,
+          "actions": 3,
+          "invocations": 3
+        }
+      },
+      {
+        "family": "regression",
+        "terminal": "STOP",
+        "method": "ridge",
+        "parent_predictions": [
+          2.1333333333333346,
+          13.68888888888889
+        ],
+        "counts": {
+          "native_fits": 3,
+          "states": 4,
+          "preparations": 3,
+          "squares": 0,
+          "actions": 4,
+          "invocations": 4
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "STOP",
+        "method": "square-margin",
+        "parent_predictions": [
+          0,
+          1
+        ],
+        "counts": {
+          "native_fits": 2,
+          "states": 2,
+          "preparations": 2,
+          "squares": 2,
+          "actions": 2,
+          "invocations": 2
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "ABSTAIN",
+        "method": null,
+        "parent_predictions": null,
+        "counts": {
+          "native_fits": 1,
+          "states": 1,
+          "preparations": 1,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 1
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "ABSTAIN",
+        "method": null,
+        "parent_predictions": null,
+        "counts": {
+          "native_fits": 1,
+          "states": 1,
+          "preparations": 1,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 1
+        }
+      },
+      {
+        "family": "tied-boundary",
+        "terminal": "STOP",
+        "method": null,
+        "parent_predictions": [
+          7.0
+        ],
+        "counts": {
+          "native_fits": 2,
+          "states": 2,
+          "preparations": 2,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 2
+        }
+      }
+    ],
+    "host314": [
+      {
+        "family": "classification",
+        "terminal": "STOP",
+        "method": "knn7",
+        "parent_predictions": [
+          0,
+          1
+        ],
+        "counts": {
+          "native_fits": 3,
+          "states": 3,
+          "preparations": 3,
+          "squares": 1,
+          "actions": 3,
+          "invocations": 3
+        }
+      },
+      {
+        "family": "regression",
+        "terminal": "STOP",
+        "method": "ridge",
+        "parent_predictions": [
+          2.1333333333333346,
+          13.68888888888889
+        ],
+        "counts": {
+          "native_fits": 3,
+          "states": 4,
+          "preparations": 3,
+          "squares": 0,
+          "actions": 4,
+          "invocations": 4
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "STOP",
+        "method": "square-margin",
+        "parent_predictions": [
+          0,
+          1
+        ],
+        "counts": {
+          "native_fits": 2,
+          "states": 2,
+          "preparations": 2,
+          "squares": 2,
+          "actions": 2,
+          "invocations": 2
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "ABSTAIN",
+        "method": null,
+        "parent_predictions": null,
+        "counts": {
+          "native_fits": 1,
+          "states": 1,
+          "preparations": 1,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 1
+        }
+      },
+      {
+        "family": "classification",
+        "terminal": "ABSTAIN",
+        "method": null,
+        "parent_predictions": null,
+        "counts": {
+          "native_fits": 1,
+          "states": 1,
+          "preparations": 1,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 1
+        }
+      },
+      {
+        "family": "tied-boundary",
+        "terminal": "STOP",
+        "method": null,
+        "parent_predictions": [
+          7.0
+        ],
+        "counts": {
+          "native_fits": 2,
+          "states": 2,
+          "preparations": 2,
+          "squares": 0,
+          "actions": 2,
+          "invocations": 2
+        }
+      }
+    ]
+  },
+  "historical_reinspection": {
+    "independent-inspection": {
+      "status": "PASS",
+      "operations": 7,
+      "members_unchanged": 80,
+      "fit_calls": 0
+    },
+    "rejected-inspection": {
+      "status": "PASS_PROTOCOL_V1_STILL_REFUSED",
+      "operations": 7,
+      "members_unchanged": 80,
+      "fit_calls": 0
+    },
+    "independent-inspection-host314": {
+      "status": "PASS",
+      "operations": 7,
+      "members_unchanged": 80,
+      "fit_calls": 0
+    },
+    "rejected-inspection-host314": {
+      "status": "PASS_PROTOCOL_V1_STILL_REFUSED",
+      "operations": 7,
+      "members_unchanged": 80,
+      "fit_calls": 0
+    }
+  },
+  "host314_original_prediction_correspondence": "All seven original publication predictions and measurements identical to installed 3.12 inspection; protected final prediction lengths 34 and 59."
+}

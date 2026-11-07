@@ -1,0 +1,243 @@
+{
+  "status": "FUNCTIONAL_A_AND_B_ENGINEERING_CANDIDATE_NOT_RELEASE_ACCEPTED",
+  "candidate_source_commit": "cfb4c575cbb189de783e61238fd21dd57dcbc0a4",
+  "protocol_v1_original_report_sha256": "e73008101b83b973f8d249b53fc30807e35b0d10ddca3c19157a1ea0c3699f48",
+  "protocol_v1_limitation": "Numerical observations and parent consumption completed, but binary fit lacked a separate completed fit child ACK before prediction. Original records unchanged; final inspector rejects v1.",
+  "protocol_v2_original_report_sha256": "638029c9a62f6f5b34b99614fb3b3d1a243a97e1a2e21d986086f0a2f1511114",
+  "protocol_v2_source_commit": "1ab2ca61a2c1ad3e1a1b87033c2d1283979c5971",
+  "protocol_v2_correction": "Distinct completed binary fit child, exact grant/state/source correspondence and complete ACK chain. Later candidate additionally checks observed ACK times and freezes response-source identity before model.send.",
+  "final_wheel": "bf49d50a8920ff824af7c5f7c648096e8f9b187b5dbe23821ed0a7e16a5be593",
+  "final_wheel_reinspection": "Seven original protocol-v2 operations independently inspected and predictions consumed in installed base environment, read-only 80 members with hashes unchanged and zero fits. No ML distributions installed/imported in the inspector.",
+  "numerical_controls": "Six installed-extra cases: classification, regression, margin, unavailable metric, changed-constant unsupported ABSTAIN, native neighbor boundary. All PASS.",
+  "base_package": "Actual coding read/edit/check/archive/restore and accepted result; no numerical extra; independent source deny guard PASS.",
+  "actual_counts_per_real_run": {
+    "actions": 7,
+    "invocations": 7,
+    "native_fits": 6,
+    "preparations": 6,
+    "squares": 1,
+    "states": 7
+  },
+  "actual_counts_both_known_real_attempts": {
+    "actions": 14,
+    "invocations": 14,
+    "native_fits": 12,
+    "preparations": 12,
+    "squares": 2,
+    "states": 14
+  },
+  "original_outer_seconds": 21.994368,
+  "original_runner_seconds": 21.359508,
+  "original_worker_seconds_total": 20.507286,
+  "final_control_seconds": 37.148419,
+  "final_base_seconds": 1.015521,
+  "final_readonly_inspection_seconds": 1.575881,
+  "sources": [
+    {
+      "identity": "b0096:iris",
+      "family": "classification",
+      "online": [
+        {
+          "action": "EVALUATE",
+          "evidence_identity": "34e65cc8f1136e2c77ac371865c9880dc7c9b11a08e814638573beeceac5e22d",
+          "method": "knn7",
+          "metric": "classification.macro_f1:v1",
+          "nonvalue_reason": null,
+          "value": 1.0
+        },
+        {
+          "action": "EVALUATE",
+          "evidence_identity": "e8e011c94f659967600c83108e65cb84b9be4a8a70bb1d2cc463e43d09fe2a19",
+          "method": "square-logistic",
+          "metric": "classification.macro_f1:v1",
+          "nonvalue_reason": null,
+          "value": 1.0
+        }
+      ],
+      "final_method": "knn7",
+      "final_quality": {
+        "value": 1.0
+      },
+      "parent_predictions": {
+        "correspondence": "EXACT",
+        "fitting_calls": 0,
+        "predictions": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "rows": 34
+      },
+      "terminal": "STOP"
+    },
+    {
+      "identity": "b0096:original-lineage:mpg",
+      "family": "regression",
+      "online": [
+        {
+          "action": "EVALUATE",
+          "evidence_identity": "bd166ebe5939af66d1de582b78fb414483971b9ca1de169534aac53c29760d02",
+          "method": "mean",
+          "metric": "regression.mae:v1",
+          "nonvalue_reason": null,
+          "value": 5.7426945441049115
+        },
+        {
+          "action": "EVALUATE",
+          "evidence_identity": "48f06183bb3b27dfeb45db9d5afa4c503d5718d3b12a5f510ed7f968a5ac7592",
+          "method": "ridge",
+          "metric": "regression.mae:v1",
+          "nonvalue_reason": null,
+          "value": 3.0486598368671753
+        },
+        {
+          "action": "EVALUATE",
+          "evidence_identity": "ba1e59b5582907bebdf2616fe0271fab8c23c1389f113a480e7d44b7ea57b4a4",
+          "method": "knn-v2",
+          "metric": "regression.mae:v1",
+          "nonvalue_reason": null,
+          "value": 2.726101694915254
+        }
+      ],
+      "final_method": "knn-v2",
+      "final_quality": {
+        "value": 2.8101694915254236
+      },
+      "parent_predictions": {
+        "correspondence": "EXACT",
+        "fitting_calls": 0,
+        "predictions": [
+          17.06,
+          16.02,
+          14.2,
+          27.3,
+          32.839999999999996,
+          24.919999999999998,
+          12.3,
+          32.839999999999996,
+          26.9,
+          20.2,
+          19.7,
+          14.2,
+          13.6,
+          13.8,
+          14.84,
+          15.4,
+          32.14,
+          14.1,
+          15.3,
+          13.4,
+          19.02,
+          14.98,
+          16.9,
+          24.7,
+          23.98,
+          17.3,
+          28.32,
+          33.519999999999996,
+          15.64,
+          26.96,
+          24.5,
+          22.94,
+          31.0,
+          34.519999999999996,
+          15.74,
+          17.3,
+          18.82,
+          26.6,
+          19.259999999999998,
+          15.88,
+          14.5,
+          15.6,
+          14.1,
+          32.480000000000004,
+          30.2,
+          33.42,
+          27.5,
+          31.4,
+          35.04,
+          22.94,
+          35.239999999999995,
+          30.2,
+          32.72,
+          32.08,
+          32.08,
+          17.9,
+          21.06,
+          34.239999999999995,
+          20.64
+        ],
+        "rows": 59
+      },
+      "terminal": "STOP"
+    }
+  ],
+  "original_denominators": "Both original and corrected runs retain both admitted sources; protocol correction was prospectively admitted with unchanged per-root ceilings, known completed earlier effects, no strategy retuning or unknown-effect replay.",
+  "unknown_costs": [
+    "Attributable native learner CPU by operation",
+    "Peak RSS",
+    "Incremental cost forecasts",
+    "Generalization or investigation-strategy effectiveness"
+  ],
+  "release_gates": {
+    "mypy": "PASS:726 modules",
+    "format": "PASS:86 changed maintained Python paths",
+    "ruff": "FAIL:147 maintained-code diagnostics",
+    "protected": {
+      "status": "FAIL",
+      "source_commit": "b1b43dd5a5109ca4716fc27520335e36ea754abb",
+      "passed": 4526,
+      "skipped": 2,
+      "coverage_percent": 84.55,
+      "required_percent": 100,
+      "exit_code": 1,
+      "pytest_seconds": 5017.64,
+      "wrapper_seconds": 5036.384043,
+      "inputs_unchanged": true,
+      "outputs_truncated": false,
+      "receipt": "validation/protected-b1b43dd5/result.json"
+    }
+  },
+  "retention": "Original bytes copied unchanged. Original absolute paths/identities are historical facts, never current grants. No product imports this evidence. Frozen .py harnesses are immutable evidence outside maintained-source static scope.",
+  "final_controls_isolation": "Twelve active source/history denial probes; zero subsequent denied accesses. Explicit read-only input exception for original protocol-v2 evidence during independent base inspection only. No real-source refitting; native adapters byte-identical to the prior qualified wheel.",
+  "scientific_wall_scopes": "41 original acknowledged scopes in seven read-only ledgers. Exact stage/execution durations retained in protocol-v2-qualification/scientific-wall-costs.json. Nested scopes are not additive; attributable native CPU and peak RSS remain unknown.",
+  "current_affected_tests": {
+    "passed": 72,
+    "seconds": 38.49,
+    "inputs_unchanged": true,
+    "receipt": "validation/current-scope/affected-tests.json"
+  },
+  "current_scope_changes": "Remove two unused unselected classifier wrappers (40 active imported inputs; two historical mappings retained). Development-only devtools[learning] self-reference keeps required numerical tests available under default uv sync; base wheel Requires-Dist unchanged.",
+  "current_protected_acceptance": "NOT_PASSED. The full 84.55% failing receipt is the frozen b1b43dd5 tree; subsequent scope/development corrections have affected tests and installed-wheel qualification, not a new full passing gate."
+}

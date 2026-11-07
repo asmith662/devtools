@@ -1,5 +1,13 @@
 # Documentation Map
 
+[PR #54 controlled learning integration](development/learning-pr54-integration.md)
+records final source review, canonical-owner coordination, combined qualification
+and the GitHub integration record.
+
+[Learning main reconciliation](development/learning-main-reconciliation.md) records
+the earlier combined protected gate, installed product and explicit Python
+host/worker interoperability. The PR #54 checkpoint above records final qualification.
+
 [Resident coding-contract measurement](research/qwen-coding-contract-effectiveness.md)
 separates the protected implementation, real source acquisition, RAM-censored
 coding outcome and qualified raw evidence. No successful candidate is claimed.
@@ -1273,3 +1281,10 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 - [Complete authorized inventory and post-edit continuation](development/authorized-inventory-and-continuation.md):
   mixed-provenance B-0035 implementation, authenticated stale-source reduction,
   actual failed-check repair and explicit collision-safe focused pytest checks.
+
+# Learning integration
+
+[Learning migration status](development/learning-integration.md) records the
+numerical core, native ModelInteraction/Tool investigator, pinned donor provenance,
+installed-wheel qualification and preserved acknowledgment evidence. See the linked
+final reconciliation for the combined protected gate and human review prerequisites.

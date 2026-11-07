@@ -1,0 +1,11 @@
+import asyncio,json,sys
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+root=Path.cwd();area=root/'.local/learning-integration-final/package'
+bootstrap='import sys,runpy;sys.argv=sys.argv[1:];runpy.run_path(sys.argv[0],run_name="__main__")'
+cmd=Command(r'C:\Python314\python.exe').args('-S','-c',bootstrap,str(area/'package_guard.py'),str(root),str(area/'host314/Lib/site-packages'),str(area/'host314_custody.py'),str(area/'host314-custody-01'),str(getattr(sys,'_base_executable'))).cwd(resolve_path(area/'independent-cwd')).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1'}).with_timeout(Duration.seconds(60))
+clock=Stopwatch();result=asyncio.run(CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20,max_stderr_bytes=1<<20)).execute(cmd))
+row={'exit_code':result.exit_code,'seconds':clock.elapsed.total_seconds,'stdout':result.stdout.decode(errors='replace'),'stderr':result.stderr.decode(errors='replace'),'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated}
+(area/'host314-custody-launch.json').write_text(json.dumps(row,indent=2),encoding='utf-8');print(json.dumps(row,indent=2));assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated

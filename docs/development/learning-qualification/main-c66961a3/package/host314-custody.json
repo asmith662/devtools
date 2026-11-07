@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "host": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "worker": "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+  "cases": [
+    {
+      "case": "actual descendant refusal",
+      "pid": 171416,
+      "returncode": 0,
+      "forbidden_marker": false
+    },
+    {
+      "case": "actual timeout reaped",
+      "pid": 299836,
+      "returncode": 1
+    },
+    {
+      "case": "actual cancellation reaped after entry",
+      "pid": 208416,
+      "returncode": 1
+    },
+    {
+      "case": "simulated admission refusal; actual suspended child reaped without entry",
+      "pid": 202064,
+      "returncode": 1,
+      "same_error": true,
+      "entry_marker": false
+    }
+  ]
+}

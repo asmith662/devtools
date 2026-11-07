@@ -1,0 +1,32 @@
+import asyncio,hashlib,json,pathlib,sys,tempfile
+sys.path.insert(0,str(pathlib.Path.cwd()))
+from scripts.validation.evidence import inputs,save
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Timestamp,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy,CommandStdout,CommandStderr
+root=pathlib.Path.cwd();area=root/'.local/learning-integration-final/protected-b2f85300-01'
+area.mkdir(exist_ok=False)
+temporary=pathlib.Path(tempfile.mkdtemp(prefix='dl-')).resolve()
+coverage=area/'coverage.data'
+before=inputs(root)
+intent={'command':['uv','run','python','scripts/validate_development.py'],'started_at':str(Timestamp.now()),'temporary_root':str(temporary),'coverage_file':str(coverage),'inputs':before,'correction':'PR54 integration candidate b2f85300 normal merge of current main 594381d8 into d9ad0c58. New production coding/Context notes and Capture source changes invalidate previous whole-tree qualification. 1529 affected tests pass with stable inputs; Ruff, format 927, strict mypy 772 and layout pass. Rebuilt 410-member base/extra/314-host wheel controls pass. Canonical owner SAFE checkpoint acknowledged. This is a necessary new combined gate, not repetition of unchanged qualification.'}
+save(area/'intent.json',json.dumps(intent,indent=2))
+command=Command('uv').args('run','python','scripts/validate_development.py').cwd(resolve_path(root)).with_environment({'PYTEST_DEBUG_TEMPROOT':str(temporary),'COVERAGE_FILE':str(coverage),'UV_CACHE_DIR':str(root/'.local/uv-cache'),'VIRTUAL_ENV':str(root/'.venv')}).with_timeout(Duration.hours(2))
+async def run():
+    execution=CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=32<<20,max_stderr_bytes=4<<20)).start(command)
+    with (area/'events.log').open('xb') as stream:
+        async for event in execution.events():
+            if isinstance(event,(CommandStdout,CommandStderr)):
+                stream.write(event.data);stream.flush()
+    return await execution
+clock=Stopwatch()
+try:
+    result=asyncio.run(run())
+    save(area/'stdout.log',result.stdout.decode('utf-8',errors='replace'))
+    save(area/'stderr.log',result.stderr.decode('utf-8',errors='replace'))
+    after=inputs(root)
+    receipt={'finished_at':str(Timestamp.now()),'exit_code':result.exit_code,'wall_seconds':clock.elapsed.total_seconds,'inputs_unchanged':before==after,'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated,'after_inputs':after,'coverage_sha256':hashlib.sha256(coverage.read_bytes()).hexdigest() if coverage.exists() else None,'status':'PASS' if result.succeeded and before==after else 'FAIL'}
+except BaseException as error:
+    receipt={'finished_at':str(Timestamp.now()),'wall_seconds':clock.elapsed.total_seconds,'status':'INCOMPLETE','error':repr(error)}
+save(area/'result.json',json.dumps(receipt,indent=2))
+print(json.dumps({k:v for k,v in receipt.items() if k!='after_inputs'}),flush=True)
