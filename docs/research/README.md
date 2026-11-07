@@ -3,6 +3,8 @@
 [Resident Qwen coding contracts](qwen-coding-contract-effectiveness.md) records the
 protected coding consumer and five genuine resident generations. A physical-RAM
 boundary stops execution before any note or edit; live benefit remains unproved.
+The bounded follow-up identifies omitted source contracts and corrects capture
+composition without rewriting the historical records.
 
 [llama.cpp transport repair and GPT-OSS qualification](llama-transport-gpt-oss-qualification.md)
 separates the HTTP diagnostic defect, pinned native-parser failure and strict

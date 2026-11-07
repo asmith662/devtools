@@ -148,3 +148,88 @@ The [switching-cost contract](../development/coding-contract-context.md#future-s
 retains historical 3.15 / 223.31 / 300.18-second receipt intervals and identifies
 missing isolated load/Context restoration measurements. No new GPT-OSS swap,
 model scheduler or fabricated break-even estimate is involved.
+
+## Coding-contract follow-up (7 November)
+
+Implementation `cb15b9669c253029bb4ebea7d7da2bb5d66dda45` corrects capture
+composition and adds explicit source witnesses through the existing coding host.
+The original five-call episode remains terminal and resource-censored. All 64
+files covered by its published manifest remain byte-identical, including the ten
+noncanonical observations and their integrity qualification.
+
+### Why source disappeared
+
+The host's projection thresholds were 49,152 bytes (trigger), 32,768 (target) and
+65,536 (hard ceiling), independently of the 65,536-token serving window and
+32,768-token input allowance. The fifth preparation had **77,422 original bytes**
+and selected **54,197 bytes / 15,532 measured input tokens**. This was byte pressure,
+not exhaustion of the serving window. The preceding request peaked at 16,419
+measured tokens.
+
+Comparing the actual native requests shows that the fifth request dropped
+`context_tools.py[35716:38402]`, `navigation.py[0:7469]`,
+`bases.py[8192:16384]` and `context_tools.py[34500:35716]`. It therefore no longer
+contained the `_reference_analysis` definition, `_relationships` caller or map
+caller. The first mixed search/read exchange stayed: the configured projection
+had no explicitly classified metadata operations and protects unclassified
+exchanges. This is selection behavior, not a lost archive or semantic compaction.
+No authored working note existed to retain a compact relationship.
+
+Native source navigation identifies these relevant units in the unchanged source
+at this implementation commit (half-open Unicode offsets):
+
+| Unit | Resource | Exact range | Source lines |
+| --- | --- | --- | --- |
+| `ContextTools._reference_analysis` | `apps/qwen/context_tools.py` | 35716–36940 | 859–889 |
+| `ContextTools._relationships` | same resource | 36946–38401 | 891–924 |
+| `RepositoryMapNavigation.__init__` | `apps/qwen/navigation.py` | 1620–3473 | 49–96 |
+| `PythonDeclarationReferenceAnalysis` | `src/devtools/context/python/references/declarations/model.py` | 5949–6337 | 169–176 |
+
+The helper's annotation and returned analysis object, the model's fields, and
+the callers' `.references` access are observed source. Their intended compatibility
+is a host interpretation to check; these witnesses do not prove runtime behavior
+or an arbitrary causal explanation. Select bounded exact subranges through
+existing RI/Localization and `SourceRangeDisclosureOption`, retaining each native
+unit, snapshot and content identity. The
+[contract](../development/coding-contract-context.md#explicit-producercaller-witnesses)
+documents the new `contract_sources` argument, protected 8,192-byte slot,
+fail-closed bounds, existing edit witnesses and explicit post-edit staleness.
+There is no new Tool or source ledger.
+
+### Capture correction and deterministic evidence
+
+The caller was `.local/qwen-coding-effectiveness/evaluate.py`, in its raw HTTP
+observer and `/apply-template` observer. Its terminal bytes were first preserved
+as `evaluate-terminal-v2.py`, matching frozen driver SHA256
+`e1d7eee67239a4d125dc893bd4cfdf9ce50b9ff5ef941128a7fc84b477e5f76b`.
+The corrected caller uses existing `Capture` methods `http_response` and
+`rendered_template`, whose payload fields are **`body_sha256`** and
+**`prompt_sha256`**. The canonical writer and reader are unchanged. A focused
+regression round-trips authentic error bytes/status and Unicode template text
+through that writer and reader without reconstruction; errors remain errors.
+No terminal episode is rerun.
+
+All 432 affected tests pass. Both changed coding owners have 100% statement and
+branch coverage. A simulated worker sees producer source, actual caller source
+and their provisional relationship before editing; a wrong return shape triggers
+real mypy and consumer failures, which reach the next simulated turn. Stale
+witnesses, foreign selections, budget refusal and projection preservation are
+covered. This demonstrates evidence/diagnostic transport, not improved Qwen
+accuracy. Maintained Ruff/format (802 files), strict mypy (650 files plus the
+capture owner), layout and diff checks pass. A broad root-recursive style scan
+included immutable experiment archives; it was not used as maintained-source
+qualification and none of those historical files was normalized.
+
+The required protected profile passed once on committed executable inputs at
+`cb15b9669c253029bb4ebea7d7da2bb5d66dda45`: **4,520 passed, two opt-in skips,
+100% configured production branch coverage**. The complete managed receipt
+`.local/validation/qwen-coding-contract-followup-protected-final.json` reports
+4,865.70 seconds, a 7,200-second deadline and unchanged before/after inputs.
+
+A prospective **map-only** task targets `apps/qwen/navigation.py` under the same
+existing CEA proposal, independently of the terminal `source_relationships` task
+in `context_tools.py`. It will not replay that task or create a native continuation
+slot. Its public baseline reproduces missing native direct-base map facts;
+independent host expectations are grounded in the canonical RI owner before any
+inference. Execution remains conditional on fresh policy/provider/source and
+resource admission after publication. No live result is claimed by this checkpoint.

@@ -3,6 +3,8 @@
 [Resident coding-contract measurement](research/qwen-coding-contract-effectiveness.md)
 separates the protected implementation, real source acquisition, RAM-censored
 coding outcome and qualified raw evidence. No successful candidate is claimed.
+Its bounded follow-up diagnoses byte-driven source eviction and documents explicit
+producer/caller witnesses and canonical prompt/body capture hashes.
 
 [Coding contracts in active working Context](development/coding-contract-context.md)
 defines the optional coding consumer, separate role state, trusted check feedback
