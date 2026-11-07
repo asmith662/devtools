@@ -4,7 +4,9 @@
 protected coding consumer and five genuine resident generations. A physical-RAM
 boundary stops execution before any note or edit; live benefit remains unproved.
 The bounded follow-up identifies omitted source contracts and corrects capture
-composition without rewriting the historical records.
+composition without rewriting historical records. Its separate six-call map task
+retains all source witnesses but stops at the RAM guard before editing; both
+model-authored note batches are refused as invalid source intervals.
 
 [llama.cpp transport repair and GPT-OSS qualification](llama-transport-gpt-oss-qualification.md)
 separates the HTTP diagnostic defect, pinned native-parser failure and strict

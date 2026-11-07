@@ -233,3 +233,68 @@ slot. Its public baseline reproduces missing native direct-base map facts;
 independent host expectations are grounded in the canonical RI owner before any
 inference. Execution remains conditional on fresh policy/provider/source and
 resource admission after publication. No live result is claimed by this checkpoint.
+
+### Final prospective map measurement
+
+After publication at `0fed34e8893bcfaf2584fdf98e990762a46e5f7b`, task
+`0ddb88ac82c8f3cb46b6c05d1f1c1305de5eda93759f88dfe58642d4e6badfba` was frozen
+and executed once. Its [immutable public packet and observations](code-audit/qwen-map-contract-20261107/manifest.json)
+retain exact requests, source identities, raw responses, settings and outcomes.
+The existing AGENTS trusted-local `CodingTask` pathway supplied exact scope,
+finite budgets and Checkout custody; no manual native grant, continuation slot,
+new backlog item or operator approval was introduced. The active policy and
+enrolled resident provider were reauthenticated. Baseline: three intended
+failures and three passing controls, with native positive expectations qualified
+independently before freeze. One initially proposed import form was unsupported
+by canonical RI; its draft was retained and corrected before any inference.
+Private grader implementation remains outside model Context and publication.
+
+Admission samples showed **5.29–5.42 GiB** available physical RAM, over **54 GiB**
+commit headroom and **1,313 MiB** GPU free. Nevertheless, the genuine episode again
+stopped at the unchanged **1 GiB physical-RAM guard** before an edit. Episode
+entry had 5.08 GiB available; after call six this was **0.93885 GiB**, with **49.25
+GiB commit headroom**. The samples do not identify which subsystem caused the
+decline. Idle preflight headroom did not establish sufficient capacity under load.
+
+| Call | Input tokens | Output tokens | Client round-trip | Native requests |
+| --- | ---: | ---: | ---: | --- |
+| 1 | 8,205 | 468 | 31.18 s | Two reads, two searches |
+| 2 | 15,359 | 121 | 20.66 s | Two reads |
+| 3 | 19,647 | 828 | 56.15 s | Two searches, one read |
+| 4 | 15,054 | 306 | 28.24 s | Two exact-unit reads |
+| 5 | 16,259 | 115 | 20.60 s | One read, one search |
+| 6 | 17,683 | 82 | 23.87 s | Two searches proposed; withheld after RAM sample |
+
+All six HTTP responses were 200 with native Tool-call termination. Completed
+actions: **eight source reads and five searches**; 15 Tools were proposed, with
+the final two unexecuted. Three initial host disclosures are counted separately
+from worker reads. **Zero edits, candidates or live public/private checks**
+resulted. Neither call nor action budget was exhausted. Total: **92,207 input /
+1,920 output tokens**, **180.69 seconds** client generation round-trip and
+**201.63 seconds** episode wall time. Terminal `CodingResult.failed`, phase
+`model`, records the host resource guard; it is not a measured coding failure.
+
+The source-witness integration did work live: all three exact witnesses occupied
+the same **5,811-byte** protected slot in every request, including three Context
+reductions. Peak measured input was 19,647 tokens. Qwen proposed **seven notes in
+two atomic batches**, but both batches were refused: it paired entire unit/read
+spans with much shorter quotes, rather than exact quote subspans. **Zero notes
+were admitted.** No model interpretation became a verified fact, and successful
+memory use or improved coding accuracy remains unproved.
+
+All **67 new observations pass the unchanged canonical reader**, including exact
+prompt/body hash checks, without reconstruction. The historical ten noncanonical
+records remain unchanged. The archive is explicitly an unchanged baseline,
+not a Qwen candidate. Source SHA256
+`ba2a012fc9456f086aa70b6c1302e75dd4b6849e7fd9884e1cd343175ea25b27`
+is restored, temporary public input removed, Checkout released and main restored.
+The [compact result](code-audit/qwen-map-contract-20261107/summary.json) preserves
+resource samples, completed source ranges, costs and limitations.
+
+The concrete blocker to another coding-effectiveness measurement is **physical
+RAM capacity under actual generation load**. No further inference or retry is
+entered. Qwen, Inspector, concurrent learning work, policy and historical attempts
+remain preserved. Executable inputs still match the single protected pass; this
+evidence-only publication does not repeat it. Source-note anchoring remains an
+observed procedural limitation, not a reason to relax evidence verification or
+expand the memory framework in this assignment.

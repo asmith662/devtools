@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T16:28:47.755307+00:00",
+  "call": 5,
+  "response": {
+    "content": "",
+    "source": {
+      "value": "resident-qwen-map-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 16259,
+      "output_tokens": 115,
+      "total_tokens": 16374,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/context_tools.py\",\"start\":36940,\"end\":38402}",
+        "provider_call_id": "pYw13DLAL3Xv2EaSgylXfoovABkyhfn9"
+      },
+      {
+        "name": "find_source",
+        "arguments_json": "{\"path\":\"apps/qwen/context_tools.py\",\"query\":\"interpret_python_module_resources PythonModuleRoot define_python_module_interpretation_universe\"}",
+        "provider_call_id": "ceE8j2QVFKNKNCANhYAziRmVmmcoep2F"
+      }
+    ]
+  },
+  "sha256": "9ff40945fb2854cafd8b12abf796000f5d4008c1cdb0a89e3f9bd019544a0cd3"
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "coding-contract-source-witnesses",
+  "at": "2026-11-07T16:26:05.090961+00:00",
+  "sources": [
+    {
+      "purpose": "producer: retained reference-analysis return contract; preserve existing consumers",
+      "identity": "b634e2ac3077314e3964d7d752a7a2fc0d8e2cc2f2086b5cd0c7e5ed4a9bf3fb",
+      "unit": "de5ffbfcb693a9e201fbf6a61730a6b001a3b8fcbf1fd591c1ec3dfd06c64465",
+      "snapshot": "177b1c6a92e7d36d7ac63591224206e68f81a41cffe4cab2a3ad27826b997239",
+      "path": "apps/qwen/context_tools.py",
+      "version": "db3a349ca5ba79735ec46c711721033d822e9e25f69d95dd05f20891bc2ec36a",
+      "span": [
+        35716,
+        36940
+      ],
+      "text": "def _reference_analysis(\n        self, address: RepositoryResourceAddress\n    ) -> PythonDeclarationReferenceAnalysis | None:\n        \"\"\"Share canonical scoped static analysis with relationship/map views.\"\"\"\n        interpretations = tuple(\n            i\n            for root in (\"src\", \".\")\n            for i in interpret_python_module_resources(\n                self.snapshot,\n                module_root=PythonModuleRoot(root),\n                resource_addresses=tuple(\n                    a\n                    for a in self.addresses\n                    if a.value.startswith(\"src/\") == (root == \"src\")\n                ),\n            ).interpretations\n        )\n        try:\n            return derive_python_declaration_references(\n                self.snapshot,\n                resource_address=address,\n                module_universe=define_python_module_interpretation_universe(\n                    repository_id=self.repository.id,\n                    interpretations=interpretations,\n                ),\n                source_interpretations=tuple(\n                    i for i in interpretations if i.resource.address == address\n                ),\n            )\n        except SyntaxError:\n            return None"
+    },
+    {
+      "purpose": "caller: consumes analysis.references; inspect native graph inputs before editing",
+      "identity": "b047938375c72bb86cb3d1d4a51daee91e0cc7553984822d6cfeee5cc9896251",
+      "unit": "9e2960d396ae12aa0555a60d7c742a486b8707361b01f18d9f647978ed60aa74",
+      "snapshot": "177b1c6a92e7d36d7ac63591224206e68f81a41cffe4cab2a3ad27826b997239",
+      "path": "apps/qwen/navigation.py",
+      "version": "cc88e4c2e8e9026d6de50f731b20066b35a23c3286a676b2cbc125bb4ba42538",
+      "span": [
+        1620,
+        3473
+      ],
+      "text": "def __init__(self, tools: ContextTools) -> None:\r\n        \"\"\"Reuse existing admitted declarations and static reference derivation.\"\"\"\r\n        started = time.perf_counter()\r\n        self.tools = tools\r\n        declarations = {\r\n            unit.declaration.identity: unit.declaration\r\n            for view in tools.index.views\r\n            for unit in view.units\r\n            if unit.declaration is not None\r\n        }.values()\r\n        references = tuple(\r\n            reference\r\n            for address in tools.addresses\r\n            if (analysis := tools._reference_analysis(address)) is not None\r\n            for reference in analysis.references\r\n        )\r\n        self.view = build_repository_map_view(\r\n            tools.snapshot,\r\n            core=build_python_graph_view(\r\n                tools.snapshot,\r\n                projection=PythonGraphProjection.TYPED_CORE,\r\n                functions=tuple(\r\n                    d\r\n                    for d in declarations\r\n                    if isinstance(d, PythonFunctionDeclarationKnowledge)\r\n                ),\r\n                classes=tuple(\r\n                    d\r\n                    for d in declarations\r\n                    if isinstance(d, PythonClassDeclarationKnowledge)\r\n                ),\r\n                methods=tuple(\r\n                    d\r\n                    for d in declarations\r\n                    if isinstance(d, PythonMethodDeclarationKnowledge)\r\n                ),\r\n                references=references,\r\n            ),\r\n        )\r\n        self.importance = calculate_repository_map_importance(\r\n            tools.snapshot,\r\n            view=self.view,\r\n        )\r\n        self.preparation_seconds = time.perf_counter() - started\r\n        self.selections: dict[\r\n            str,\r\n            tuple[RepositoryMapDisclosureOption, RepositoryMapSymbol],\r\n        ] = {}"
+    },
+    {
+      "purpose": "producer return type: directly observed fields; interpretations remain provisional",
+      "identity": "1bdb766f2f5b92874bbcb4f726c54dce14cebd2a214d11cbe46e56bc474af8bd",
+      "unit": "7490de93318190097712114a07edf628d7acfeff9393fa64f37d085ba4c6e33b",
+      "snapshot": "177b1c6a92e7d36d7ac63591224206e68f81a41cffe4cab2a3ad27826b997239",
+      "path": "src/devtools/context/python/references/declarations/model.py",
+      "version": "abd12a881ad3be0e58f6ea65dbb0801ab2436ab547b243e436f8d5541f17470a",
+      "span": [
+        5949,
+        6337
+      ],
+      "text": "@dataclass(frozen=True, slots=True)\nclass PythonDeclarationReferenceAnalysis:\n    \"\"\"One source's ordered positive facts and per-expression assessments.\"\"\"\n\n    derivation: PythonDeclarationReferenceDerivation\n    references: tuple[PythonDeclarationReferenceKnowledge, ...]\n    assessments: tuple[PythonDeclarationReferenceAssessment, ...]\n    coverage: PythonDeclarationReferenceCoverage"
+    }
+  ],
+  "semantic_relationship": "provisional; no automatic verification",
+  "sha256": "d719345eef79bb8e215367927f644e60636f266df47a9d09d50dcdb72dc0c795"
+}

@@ -5,6 +5,8 @@ separates the protected implementation, real source acquisition, RAM-censored
 coding outcome and qualified raw evidence. No successful candidate is claimed.
 Its bounded follow-up diagnoses byte-driven source eviction and documents explicit
 producer/caller witnesses and canonical prompt/body capture hashes.
+The new map-only live result verifies retention and canonical capture, while
+recording rejected note anchors and another RAM stop before any edit.
 
 [Coding contracts in active working Context](development/coding-contract-context.md)
 defines the optional coding consumer, separate role state, trusted check feedback

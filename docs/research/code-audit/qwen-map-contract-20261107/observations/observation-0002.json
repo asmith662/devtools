@@ -1,0 +1,85 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "frozen-check-definitions",
+  "at": "2026-11-07T16:26:06.070377+00:00",
+  "checks": [
+    {
+      "name": "public-contract",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/live_map_contract_public.py",
+        "--no-cov",
+        "-q",
+        "--tb=short"
+      ],
+      "timeout_seconds": 90.0
+    },
+    {
+      "name": "return-types",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "--strict",
+        "apps/qwen/navigation.py"
+      ],
+      "timeout_seconds": 90.0
+    },
+    {
+      "name": "style",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "apps/qwen/navigation.py"
+      ],
+      "timeout_seconds": 90.0
+    },
+    {
+      "name": "format",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "apps/qwen/navigation.py"
+      ],
+      "timeout_seconds": 90.0
+    },
+    {
+      "name": "maintained",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/apps/qwen/test_context_tools.py",
+        "tests/apps/qwen/test_navigation.py",
+        "tests/context/python/classes/test_bases.py",
+        "--no-cov",
+        "-q",
+        "--tb=short"
+      ],
+      "timeout_seconds": 90.0
+    },
+    {
+      "name": "withheld",
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-map-contract-evaluation\\private.py",
+        "--no-cov",
+        "-q",
+        "--tb=short"
+      ],
+      "timeout_seconds": 120.0
+    }
+  ],
+  "maximum_public_checks": 15,
+  "reserved_private_checks": 1,
+  "sha256": "8afce40c1437126cf3c67d51810cca13c9c0cb3e463a807b326c2d136a605469"
+}
