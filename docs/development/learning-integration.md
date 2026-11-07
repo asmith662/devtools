@@ -13,11 +13,25 @@ on `integration/learning-investigator`, based on main
 `7b3ced58` (corrected real-source evidence and the terminal failed gate), and
 `cfb4c575` (minimum source closure and default development dependency correction).
 
-**A and B execute as a functional engineering candidate. Migration release
-acceptance is incomplete: maintained Ruff now passes after release repair, but a
-passing protected 100% branch-coverage gate has not been established.** This branch must not be
-merged as a release-qualified migration. The exact current assessment and
-original publications are in [qualification evidence](learning-qualification/assessment.json).
+**A and B are functional and this feature candidate is release-qualified.**
+The exact committed `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` protected run
+passes 5,235 tests with the original two opt-in skips and 100% of 19,308
+statements plus 5,242 branches. Maintained Ruff has zero diagnostics, all 922
+maintained Python files are formatted, strict mypy passes 767 modules, and
+layout/diff checks pass. The installed learning-extra and numerical-free base
+wheel checks pass; all 409 packaged members match production source `c6688cce`.
+The subsequent correction adds one real-process refusal test and documentation,
+with no production or wheel-input changes.
+
+See the [current release report](learning-release-qualification.md),
+[machine-readable disposition](learning-release-evidence.json) and
+[terminal/package receipts](learning-qualification/release-009cca84/).
+The original 84.55% and subsequent 99.99% failed gates remain historical failures,
+not reclassified passes. The earlier qualification snapshot and original
+scientific publications remain under
+[original qualification evidence](learning-qualification/assessment.json).
+This branch has not been merged; current-main reconciliation and combined-tree
+validation remain review prerequisites.
 
 The concurrent canonical checkout is never an edit, build, test or environment
 root for this assignment. LI remains read-only. External uniquely owned tiny
@@ -200,7 +214,7 @@ and 29 errors, plus input drift; it is not release evidence. A subsequent
 4,525-test protected attempt had stable inputs but its adapter killed the root at
 3,600 seconds and 89% progress. It has no terminal test/coverage result.
 
-## Validation and integration readiness
+## Historical validation and integration readiness through 623b6b38
 
 Latest focused numerical/investigator/custody qualification passes 68 tests;
 31 authority/investigator/original-reporter tests and two scientific-corruption
@@ -267,11 +281,63 @@ the protected test selection. Completing the scientific negative/lifecycle/state
 contracts, native-child coverage and maintained Ruff corrections remains required
 before release acceptance; another full protected run belongs after those fixes.
 
-The current installed package is qualified after `cfb4c575`: six authored cases,
+The historical installed package snapshot was qualified after `cfb4c575`: six authored cases,
 base coding and seven read-only original-publication inspections pass. Native
 adapter bytes and wheel Requires-Dist match the prior qualified package; only
 unselected wrappers and a validation docstring changed in maintained numerical
 source. The full original outcomes and raw fitted artifacts remain unchanged.
-Current wheel/control receipts are under `learning-qualification/package-v6/`
-and `controls-v6/`. The failed protected gate and 147 maintained Ruff violations
-remain explicit release blockers; this is a published WIP/PARTIAL integration.
+Those wheel/control receipts are under `learning-qualification/package-v6/`
+and `controls-v6/`. At that snapshot the failed gate and 147 maintained Ruff violations were
+explicit blockers and the branch was WIP/PARTIAL. The current release report
+above records their completed disposition and fresh passing terminal gate.
+
+
+## Current release and integration assessment
+
+Recovery starts from published `623b6b38`; subsequent preserved checkpoints are
+`f84e160b`, `638a6a48`, `3b3623f3`, `ef246033`, `c6688cce` and `009cca84`.
+The source mapping reauthenticates 40 pinned donor inputs, retaining 39 selected
+inputs and explicit deferred/extracted symbol records. No scientific threshold,
+source/role guard, required test or coverage exclusion is relaxed.
+
+The final wheel is 699,901 bytes, SHA-256
+`c0e437e0123c82aee256beab02bdfc32ae536bf063084560dc15e4d0e520874f`.
+Six isolated scripted native learning cases and base coding/read/edit/check/
+archive/restore pass. Thirteen active forbidden-root probes per environment
+verify donor/development/canonical/archive denial; no unexpected forbidden
+access occurs. Independent base-wheel inspection reproduces all seven accepted
+protocol-v2 publications and parent predictions with no fitting or numerical
+dependencies; all 80 retained files are unchanged. Seven protocol-v1 publications
+remain refused, with their 80 files unchanged.
+
+The original Iris task (49/17/34 rows) selects kNN7 after the online F1 tie; final
+F1 is 1.0 and the parent consumes 34 exact predictions (17 per class). Auto MPG
+(274/59/59) selects kNN-v2; online MAE is 2.726101694915254 and final MAE is
+2.8101694915254236, with 59 exact parent predictions. These are exposed
+engineering fixtures, not evidence of generalized strategy effectiveness. No
+original study is rerun. Mean/Ridge/kNN and kNN7/SQUARE logistic/margin, typed
+nonvalues, fitted preparation/state, exact grants and immutable scientific
+inspection remain the supported first surface. Unrelated families and failed
+historical selectors/residual policies remain outside the installed product.
+
+The qualified numerical runtime remains Windows x64 CPython 3.12.13/ABI
+`cpython-312`, NumPy 2.5.3, SciPy 1.18.1, sklearn 1.9.1 and threadpoolctl 3.7.0,
+with all reported native pools at one thread. Python 3.14 numerical behavior is
+not qualified. The direct interpreter avoids the venv launcher's second process;
+suspended-start Job1 custody, exact handle/PID checks, descendant refusal,
+timeout, cancellation and admission-refusal cleanup are tested.
+
+Current `origin/main` is `825bc23b98e366e97d56e3146a1d752285f383bd`.
+Only `docs/documentation_map.md` changed on both sides, and its read-only
+three-way text preview is clean. There is no overlapping production file. Main
+adds provider-profile policy and bounded llama.cpp HTTP transport fixes plus
+research/docs updates; ModelInteraction/Tool contracts used here are unchanged.
+No merge/rebase is performed. Before integration, deliberately reconcile current
+main and its policy/docs changes, review any later commits, and validate the
+combined provider/policy/Tool and protected tree. The canonical checkout, donor,
+services and their processes were not modified by this assignment.
+
+The next substantive milestone is a live locally hosted learning-investigator
+agent proposing permitted hypotheses from genuine task evidence and evaluated
+against strong deterministic references. It requires a separate assignment; no
+live inference or new scientific study is initiated here.

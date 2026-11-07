@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-11-07T00:31:58.067811+00:00",
+  "checks": [
+    {
+      "check": "ruff",
+      "argv": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments",
+        "--output-format",
+        "json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.155064,
+      "stdout": "[]",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "check": "format",
+      "argv": [
+        "uv",
+        "run",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "apps",
+        "scripts",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "exit_code": 0,
+      "seconds": 0.13776,
+      "stdout": "922 files already formatted\n",
+      "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "check": "mypy",
+      "argv": [
+        "uv",
+        "run",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.750191,
+      "stdout": "Success: no issues found in 767 source files\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "check": "layout",
+      "argv": [
+        "uv",
+        "run",
+        "python",
+        "scripts/validate_layout.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.305198,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    },
+    {
+      "check": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.072537,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false
+    }
+  ],
+  "utf8_python_sources": 69,
+  "historical_generated_scope": "Not scanned or reformatted; maintained scope explicit, tests/experiments omitted by its established repository role."
+}

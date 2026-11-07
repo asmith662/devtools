@@ -1,5 +1,5 @@
 {
-  "status": "REPAIR_CHECKPOINT_NOT_RELEASE_ACCEPTED",
+  "status": "PROTECTED_RELEASE_QUALIFIED_FEATURE_NOT_MERGED",
   "baseline": "623b6b38b8800767e14c57673b150b8634ea4149",
   "original_protected": {
     "producing_commit": "b1b43dd5a5109ca4716fc27520335e36ea754abb",
@@ -8240,7 +8240,191 @@
     "production_changes": false,
     "diagnostic_combined_percent": 100,
     "missing_terms": 0,
-    "protected_requalification": "PENDING",
+    "protected_requalification": "PASS exact committed 009cca84; see final_protected",
     "data_sha256": "f59ccd98d114a9d93f17e6e2ab3dc8c3cc8b5c707737c5b24cf16c96735be2b9"
+  },
+  "final_protected": {
+    "candidate": "009cca843ea5bef675e8f7fdf2e9b223e8fcc59e",
+    "production_source_commit": "c6688cce532164d11a2125ae7d8baee248a849c3",
+    "exit_code": 0,
+    "tests_passed": 5235,
+    "existing_skips": 2,
+    "pytest_seconds": 4946.82,
+    "wall_seconds": 4964.833935,
+    "coverage": {
+      "covered_lines": 19308,
+      "num_statements": 19308,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 742,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 5242,
+      "num_partial_branches": 0,
+      "covered_branches": 5242,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "data_sha256": "8cd13658e3726e33ec6ddbe6fe1a471c4120c9be22758ada8d20231c32003502",
+    "inputs_unchanged": true,
+    "stdout_truncated": false,
+    "stderr_truncated": false,
+    "receipt_directory": "learning-qualification/release-009cca84"
+  },
+  "final_package": {
+    "wheel_sha256": "c0e437e0123c82aee256beab02bdfc32ae536bf063084560dc15e4d0e520874f",
+    "bytes": 699901,
+    "source_members": 409,
+    "source_correspondence": true,
+    "extra_controls": 6,
+    "base_coding": "PASS",
+    "optional_numerical_distributions_in_base": "ABSENT",
+    "denial_probes_per_environment": 13,
+    "unexpected_forbidden_reads": 0,
+    "accepted_v2_reinspection": {
+      "publications": 7,
+      "unchanged_files": 80,
+      "fit_calls": 0
+    },
+    "rejected_v1_reinspection": {
+      "publications": 7,
+      "unchanged_files": 80,
+      "fit_calls": 0
+    },
+    "dependency_checks": "PASS both environments",
+    "source_inputs_unchanged_since_wheel": true
+  },
+  "main_review": {
+    "feature_candidate": "009cca843ea5bef675e8f7fdf2e9b223e8fcc59e",
+    "origin_main": "825bc23b98e366e97d56e3146a1d752285f383bd",
+    "merge_base": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
+    "both_changed": [
+      "docs/documentation_map.md"
+    ],
+    "overlap_previews": [
+      {
+        "path": "docs/documentation_map.md",
+        "merge_exit_code": 0,
+        "content_conflict": false,
+        "preview_sha256": "c769d1009e6578276b701958bee9332fe6638d296e11444d31f8d89fca6e08f5"
+      }
+    ],
+    "main_new_production": [
+      "scripts/backlog/routine/local.py",
+      "scripts/backlog/routine/policy.py",
+      "src/devtools/models/interaction/docs/overview.md",
+      "src/devtools/models/interaction/providers/llama_cpp.py",
+      "tests/models/interaction/providers/test_llama_cpp.py",
+      "tests/scripts/backlog/routine/test_profiles.py"
+    ],
+    "main_commit_log": "825bc23b Attribute GPT-OSS admission block to host memory owners\n9f404adc Normalize new diagnostic records to LF and refresh hashes\n052ff017 Record GPT-OSS native parsing diagnosis and memory admission block\n9034fd34 Fix llama.cpp HTTP status diagnostics and bound response bodies\n27c8470e Measure Qwen and gpt-oss reviewer factual judgment and native delivery\nd2a3b302 Enroll bounded local reviewer provider profiles under explicit operator authority\n",
+    "integration_performed": false,
+    "canonical_checkout_written": false,
+    "qualification": "Read-only committed-tree comparison and merge-file previews over individually owned frozen input files; no checkout, merge or shared Git configuration mutation."
+  },
+  "final_static": {
+    "status": "PASS",
+    "observed_at": "2026-11-07T00:31:58.067811+00:00",
+    "checks": [
+      {
+        "check": "ruff",
+        "argv": [
+          "uv",
+          "run",
+          "ruff",
+          "check",
+          "src",
+          "tests",
+          "apps",
+          "scripts",
+          "--exclude",
+          "tests/experiments",
+          "--output-format",
+          "json"
+        ],
+        "exit_code": 0,
+        "seconds": 0.155064,
+        "stdout": "[]",
+        "stderr": "",
+        "stdout_truncated": false,
+        "stderr_truncated": false
+      },
+      {
+        "check": "format",
+        "argv": [
+          "uv",
+          "run",
+          "ruff",
+          "format",
+          "--check",
+          "src",
+          "tests",
+          "apps",
+          "scripts",
+          "--exclude",
+          "tests/experiments"
+        ],
+        "exit_code": 0,
+        "seconds": 0.13776,
+        "stdout": "922 files already formatted\n",
+        "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n",
+        "stdout_truncated": false,
+        "stderr_truncated": false
+      },
+      {
+        "check": "mypy",
+        "argv": [
+          "uv",
+          "run",
+          "mypy"
+        ],
+        "exit_code": 0,
+        "seconds": 0.750191,
+        "stdout": "Success: no issues found in 767 source files\r\n",
+        "stderr": "",
+        "stdout_truncated": false,
+        "stderr_truncated": false
+      },
+      {
+        "check": "layout",
+        "argv": [
+          "uv",
+          "run",
+          "python",
+          "scripts/validate_layout.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.305198,
+        "stdout": "",
+        "stderr": "",
+        "stdout_truncated": false,
+        "stderr_truncated": false
+      },
+      {
+        "check": "diff",
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.072537,
+        "stdout": "",
+        "stderr": "",
+        "stdout_truncated": false,
+        "stderr_truncated": false
+      }
+    ],
+    "utf8_python_sources": 69,
+    "historical_generated_scope": "Not scanned or reformatted; maintained scope explicit, tests/experiments omitted by its established repository role."
+  },
+  "publication_contract": {
+    "branch": "integration/learning-investigator",
+    "executable_candidate": "009cca843ea5bef675e8f7fdf2e9b223e8fcc59e",
+    "product_source": "c6688cce532164d11a2125ae7d8baee248a849c3",
+    "final_update": "Report/receipt/provenance only; executable and package source unchanged. Final local/remote report commit recorded in ignored handoff after push.",
+    "main_merged": false
   }
 }

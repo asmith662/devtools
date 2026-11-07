@@ -1,5 +1,12 @@
 # Learning release qualification
 
+**Current status: release-qualified feature candidate, not merged.**
+Protected candidate `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` passes 5,235 tests,
+two existing opt-in skips and exactly 100% of 19,308 statements and 5,242 branches.
+Ruff, formatting, strict typing, layout, base/extra wheel and source-independence
+checks pass. Production and wheel bytes remain those of `c6688cce`.
+The chronology below preserves earlier failures and bounded corrections.
+
 Qualification resumes from `623b6b38b8800767e14c57673b150b8634ea4149`.
 The original protected denominator is 20,077 statements plus 5,604 branches;
 the full terminal result is 4,526 passes, two opt-in skips and 84.55% coverage.
@@ -284,3 +291,103 @@ checks that handle's PID before Job assignment and resume. The profile records
 the exact CPython executable/ABI; real suspended-start, descendant refusal,
 timeout, cancellation and now admission-refusal cleanup are qualified. This is
 not a portable private-API claim. No blanket rule exemption is introduced.
+
+## Passing final protected gate
+
+The exact committed `009cca84` command `uv run python
+scripts/validate_development.py` completes with exit 0: 5,235 passed and the two
+existing opt-in skips in 4,946.82 pytest seconds. Managed wall time is
+4,964.833935 seconds. Every one of 19,308 statements and 5,242 branches is
+covered; there are zero missed lines or branches. Inputs remain unchanged and
+output is not truncated. Coverage-data SHA-256 is
+`8cd13658e3726e33ec6ddbe6fe1a471c4120c9be22758ada8d20231c32003502`.
+Raw terminal/input receipts and per-module counts are retained under
+`learning-qualification/release-009cca84/`. This is a fresh protected pass,
+separate from the diagnostic data combination.
+
+No product source changes follow `c6688cce`; `009cca84` adds the missing
+suspended-admission cleanup test and retained failure documentation. Final
+report-only publication preserves the qualified executable tree and wheel
+member hashes. Original test selection, branch instrumentation, threshold and
+assertions remain unchanged.
+
+## Installed package and retained scientific correspondence
+
+Hatchling 1.33.0 builds the 699,901-byte wheel from committed product source,
+SHA-256 `c0e437e0123c82aee256beab02bdfc32ae536bf063084560dc15e4d0e520874f`.
+All 409 product members match physical source bytes, with only normal dist-info
+metadata outside `devtools/`. No tests, apps, scripts, archives, cache or donor
+source is packaged. Requires-Dist keeps all four numerical libraries behind the
+learning extra. The initial network-sandbox build fails; the owned warm-cache
+offline build and complete extra/base resolver installations succeed (25 and
+18 resolved packages). PowerShell reports redirected native stderr as errors in
+those retained logs; independent installed controls and both `uv pip check`
+invocations have genuine zero exits. The cache-inside-source advisory is
+addressed by exact wheel-membership inspection, not suppression.
+
+Six standalone scripted ModelInteraction/Tool control cases pass in 49.382999
+seconds, including genuine classification, regression, margin, null, unsupported
+and tied-boundary paths. They preserve STOP/CONTINUE/ABSTAIN, exact host grants,
+inspection before subsequent decisions, protected final selection and actual
+parent predictions. Invalid role requests cause zero native effects. Base coding
+read/edit/check/archive/restore passes in 1.653998 seconds with no numerical
+distributions. Every loaded Devtools module originates in the selected installed
+site; 13 active read/import denial probes per environment pass with no unexpected
+forbidden access. Selected interpreter, package/ABI and actual native DLL/thread
+identities are retained in package runtime/scientific records.
+
+Independent inspection from the installed base wheel takes 1.416947 seconds,
+reproduces all seven original accepted v2 publications and predictions without
+fitting, and leaves all 80 evidence files unchanged. A separate 1.032736-second
+inspection refuses all seven original v1 publications and leaves their 80 files
+unchanged. These inspections explicitly read only the admitted original result
+data; they import no archived producing program or numerical library. No new
+Iris/MPG study, fitted-state reuse for training or confirmation disclosure occurs.
+Final source outcomes and exact publication identities are retained in
+`package/retained-source-outcomes.json` and `package/independent-inspection.json`.
+
+## Costs, limits and main review
+
+The two complete release gates cost 5,080.405603 and 4,964.833935 managed seconds
+(10,045.239538 total). The fresh focused learning/Job group costs 215.93 seconds;
+subset/diagnostic costs are separate and never stand in for a full gate. Original
+accepted two-task execution remains 21.994368 outer seconds, six native fits,
+seven procedure states, six preparations, one SQUARE materialization and seven
+numerical invocations/actions, within the unchanged 9/10/8/3/8/8 envelope. Nine
+scripted model calls include the separate terminal choices. Original rejected
+and accepted executions are not combined into one supposedly under-budget run.
+No paid/live inference, shared model service or source download is used. Total
+CPU, peak RSS, energy and all-session aggregate cost remain unmeasured.
+
+Read-only committed-tree review sees `origin/main` at
+`825bc23b98e366e97d56e3146a1d752285f383bd`, six commits after the shared base
+`26c07ef1b26436dd10dc50c752cd63a6619c7bba` on main's side. Only the documentation
+map overlaps, and its frozen three-way text preview is clean. Main's provider
+policy v4 enrollment and bounded/validated llama.cpp HTTP responses introduce no
+change to the native ModelInteraction/Tool contracts used here. No merge, rebase,
+main push, canonical source write or shared service mutation occurs. The combined
+main/feature tree is not qualified by this feature-only pass: deliberate main
+reconciliation, policy/docs review, affected checks and a fresh combined protected
+gate remain prerequisites to human integration. The live local-model hypothesis
+milestone is identified, not implemented.
+
+Final separate static receipts record zero Ruff diagnostics over maintained
+`src tests apps scripts` (retained `tests/experiments` omitted by role), 922
+formatted files, strict mypy across 767 modules, layout and diff passes, and
+strict UTF-8 decoding of all 69 learning/consumer/changed-Commands Python sources.
+They are retained under the final receipt directory's `static/`. No source
+exclusion, threshold, warning filter or security-relevant assertion changes.
+
+Release-repair checkpoints after `623b6b38` are:
+
+- `f84e160b20ad29fbf3b09a39bd09ffa6f9580509`: authenticated process coverage, closure review and initial scientific refusals.
+- `638a6a48ccee9cc3af8d85aa5168f1ee5921128e`: maintained lint/cohesion and preserved scientific boundaries.
+- `3b3623f301146948112482ca71c55b5816bf2638`: source, state, authority and ACK controls.
+- `ef2460339cd1b6fd92643c790f45c5e307968f73`: retained arithmetic, independent-reader and second-worker coverage controls.
+- `c6688cce532164d11a2125ae7d8baee248a849c3`: complete scientific/Job coverage and restored optional base imports; final product/wheel source.
+- `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e`: genuine suspended-admission cleanup refusal test, preserved 99.99% failure, and final fresh passing protected candidate.
+
+All checkpoints are preserved and published on the feature branch. The final
+report/receipt commit adds no executable changes and is identified by the branch
+ref and ignored Codex completion handoff. Main remains unmodified and unmerged
+by this assignment. Original donor/history byte custody remains intact.
