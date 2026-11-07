@@ -1,0 +1,27 @@
+import asyncio,json,pathlib,sys
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+
+root=pathlib.Path.cwd();area=root/'.local/learning-release/package-final'
+mode=sys.argv[1]
+base=mode=='base'
+environment=root/'.local/learning-migration'/('recovery-wheel-base' if base else 'recovery-wheel-extra')
+site=environment/'Lib/site-packages'
+denied=tuple(root/p for p in ('src','tests','scripts','apps','experiments'))+(root.parent/'learned-intelligence',root.parent/'devtools',root/'.local/learning-migration/v2',root/'.local/learning-migration/v3',root/'.local/learning-migration/v4',root/'.local/learning-migration/v5',root/'.local/learning-migration/v6',root/'docs/development/learning-qualification')
+target=area/('base_control.py' if base else 'frozen-qualify.py' if mode=='real' else 'frozen-controls.py')
+if base:arguments=[str(area/'frozen-coding.py'),str(area/'base-result.json')]
+elif mode=='real':
+    arguments=['--execute','--inputs',str(area/'inputs'),'--output',str(area/'real-two-source-01')]
+    for p in denied:arguments+=['--deny-root',str(p)]
+else:arguments=[str(area/'installed-controls-01'),str(site),json.dumps(list(map(str,denied)))]
+bootstrap='import sys,runpy;sys.argv=sys.argv[1:];runpy.run_path(sys.argv[0],run_name="__main__")'
+command=Command(str(getattr(sys,'_base_executable',sys.executable))).args('-S','-c',bootstrap,str(area/'package_guard.py'),str(root),str(site),str(target),*arguments).cwd(resolve_path(area/'independent-cwd')).with_environment({'PYTHONPATH':'','PYTHONDONTWRITEBYTECODE':'1','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','MKL_NUM_THREADS':'1','BLIS_NUM_THREADS':'1'}).with_timeout(Duration.seconds(900))
+clock=Stopwatch()
+result=asyncio.run(CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=1<<20,max_stderr_bytes=1<<20)).execute(command))
+receipt={'mode':mode,'exit_code':result.exit_code,'wrapper_seconds':clock.elapsed.total_seconds,'duration_seconds':result.duration.total_seconds,'stdout':result.stdout.decode(errors='replace'),'stderr':result.stderr.decode(errors='replace'),'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated,'interpreter':command.executable,'selected_site':str(site)}
+path=area/(mode+'-launch-receipt.json')
+if path.exists():raise RuntimeError('do not overwrite an original launch receipt')
+path.write_text(json.dumps(receipt,indent=2),encoding='utf-8')
+print(json.dumps(receipt,indent=2))
+if not result.succeeded:raise SystemExit(1)

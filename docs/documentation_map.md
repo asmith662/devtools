@@ -1,5 +1,9 @@
 # Documentation Map
 
+[Learning main reconciliation](development/learning-main-reconciliation.md) records
+the combined protected gate, installed product and explicit Python host/worker
+interoperability; integration into main remains subject to human review.
+
 [llama.cpp transport repair and GPT-OSS qualification](research/llama-transport-gpt-oss-qualification.md)
 records bounded HTTP diagnostics, the exact native-format failure mechanism and
 resource conditions for further reviewer qualification.
@@ -1261,3 +1265,10 @@ Native navigation correction: [file-only search paths and correlated pre-executi
 - [Complete authorized inventory and post-edit continuation](development/authorized-inventory-and-continuation.md):
   mixed-provenance B-0035 implementation, authenticated stale-source reduction,
   actual failed-check repair and explicit collision-safe focused pytest checks.
+
+# Learning integration
+
+[Learning migration status](development/learning-integration.md) records the
+numerical core, native ModelInteraction/Tool investigator, pinned donor provenance,
+installed-wheel qualification and preserved acknowledgment evidence. See the linked
+final reconciliation for the combined protected gate and human review prerequisites.

@@ -10,6 +10,7 @@ from functools import partial
 from typing import TYPE_CHECKING
 
 from devtools.core.time import Stopwatch
+from devtools.resources.commands._windows_job import WindowsJob
 from devtools.resources.commands.errors import (
     CommandError,
     CommandNotFoundError,
@@ -44,12 +45,14 @@ class CommandExecutor:
         self,
         *,
         output_policy: CommandOutputPolicy = _DEFAULT_OUTPUT_POLICY,
+        contained: bool = False,
     ) -> None:
         """Create a command executor.
 
         :param output_policy: Per-execution output-retention limits.
         """
         self._output_policy = output_policy
+        self._contained = contained
 
     def start(self, command: Command) -> CommandExecution:
         """Start a command and return its live execution handle.
@@ -92,9 +95,13 @@ class CommandExecutor:
         """
         stopwatch = Stopwatch()
         process: asyncio.subprocess.Process | None = None
+        job = None
 
         try:
+            if self._contained:
+                job = WindowsJob()
             process = await self._create_process(command)
+            await self._admit_process(process, job)
 
             execution._emit(CommandStarted(command=command))  # noqa: SLF001
 
@@ -126,14 +133,9 @@ class CommandExecutor:
                 )
                 raise CommandTimeoutError(msg) from error
 
-        except asyncio.CancelledError:
-            if process is not None:
-                await self._terminate_and_reap(process)
-
-            raise
         except (CommandNotFoundError, CommandTimeoutError):
             raise
-        except Exception:
+        except (asyncio.CancelledError, Exception):
             if process is not None:
                 await self._terminate_and_reap(process)
 
@@ -169,8 +171,25 @@ class CommandExecutor:
 
             return replace(result, events_dropped=execution.events_dropped)
         finally:
+            if job is not None:
+                job.close()
             stopwatch.stop()
             execution._close_events()  # noqa: SLF001
+
+    async def _admit_process(
+        self,
+        process: asyncio.subprocess.Process,
+        job: WindowsJob | None,
+    ) -> None:
+        """Assign the exact suspended process before permitting child execution."""
+        if job is not None:
+            try:
+                # CPython owns this transport and the original Windows handle.
+                native_process = process._transport.get_extra_info("subprocess")  # type: ignore[attr-defined]  # noqa: SLF001
+                job.assign_and_resume(int(native_process._handle), process.pid)  # noqa: SLF001
+            except BaseException:
+                await self._terminate_and_reap(process)
+                raise
 
     async def _terminate_and_reap(
         self,
@@ -209,6 +228,7 @@ class CommandExecutor:
                 stdin=asyncio.subprocess.PIPE if command.stdin is not None else None,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
+                creationflags=(4 | 0x08000000) if self._contained else 0,
             )
         except FileNotFoundError as error:
             msg = f"Command executable not found: {command.executable!r}."

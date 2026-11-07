@@ -1,0 +1,28 @@
+{
+  "feature_candidate": "009cca843ea5bef675e8f7fdf2e9b223e8fcc59e",
+  "origin_main": "825bc23b98e366e97d56e3146a1d752285f383bd",
+  "merge_base": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
+  "both_changed": [
+    "docs/documentation_map.md"
+  ],
+  "overlap_previews": [
+    {
+      "path": "docs/documentation_map.md",
+      "merge_exit_code": 0,
+      "content_conflict": false,
+      "preview_sha256": "c769d1009e6578276b701958bee9332fe6638d296e11444d31f8d89fca6e08f5"
+    }
+  ],
+  "main_new_production": [
+    "scripts/backlog/routine/local.py",
+    "scripts/backlog/routine/policy.py",
+    "src/devtools/models/interaction/docs/overview.md",
+    "src/devtools/models/interaction/providers/llama_cpp.py",
+    "tests/models/interaction/providers/test_llama_cpp.py",
+    "tests/scripts/backlog/routine/test_profiles.py"
+  ],
+  "main_commit_log": "825bc23b Attribute GPT-OSS admission block to host memory owners\n9f404adc Normalize new diagnostic records to LF and refresh hashes\n052ff017 Record GPT-OSS native parsing diagnosis and memory admission block\n9034fd34 Fix llama.cpp HTTP status diagnostics and bound response bodies\n27c8470e Measure Qwen and gpt-oss reviewer factual judgment and native delivery\nd2a3b302 Enroll bounded local reviewer provider profiles under explicit operator authority\n",
+  "integration_performed": false,
+  "canonical_checkout_written": false,
+  "qualification": "Read-only committed-tree comparison and merge-file previews over individually owned frozen input files; no checkout, merge or shared Git configuration mutation."
+}

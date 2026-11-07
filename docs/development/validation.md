@@ -7,6 +7,19 @@
 
 ## Everyday development and failure recovery
 
+Independent-host tests deliberately use disposable authored repositories outside
+the source checkout. If the OS's existing pytest temp directory is inaccessible,
+create a fresh uniquely named directory under the OS temporary root and set
+`PYTEST_DEBUG_TEMPROOT` for that invocation. Pytest manages its own numbered child
+directories there. Record the chosen root beside the validation receipt; preserve
+failed evidence and never delete another invocation's root. On Windows, keep the
+parent short: `tempfile.mkdtemp(prefix="dl-")` exclusively creates a short owned
+directory under the OS temp root. Long GUID-prefixed parents can make Git's
+`revision:path` argument exceed legacy path limits even when the source itself
+exists. Do not change global Git configuration to accommodate that test path.
+Do not redirect these
+fixtures into the source checkout or weaken their isolation guards.
+
 Use `uv run python -m scripts.validation` with an explicit mode and a fresh
 `--output .local/validation/<name>.json`. Without `--execute`, it saves a plan.
 No missing selection ever defaults to comprehensive testing.

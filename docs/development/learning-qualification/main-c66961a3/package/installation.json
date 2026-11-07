@@ -1,0 +1,131 @@
+[
+  {
+    "environment": "extra",
+    "phase": "venv",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra"
+    ],
+    "exit_code": 0,
+    "seconds": 0.147031,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "extra",
+    "phase": "install",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--python",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Scripts\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\wheel\\devtools-0.1.0-py3-none-any.whl[learning]"
+    ],
+    "exit_code": 0,
+    "seconds": 1.67096,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "extra",
+    "phase": "check",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\extra\\Scripts\\python.exe"
+    ],
+    "exit_code": 0,
+    "seconds": 0.050124,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "base",
+    "phase": "venv",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "C:\\Users\\recoveryadmin\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\base"
+    ],
+    "exit_code": 0,
+    "seconds": 0.142748,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "base",
+    "phase": "install",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--python",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\base\\Scripts\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\wheel\\devtools-0.1.0-py3-none-any.whl"
+    ],
+    "exit_code": 0,
+    "seconds": 0.520237,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "base",
+    "phase": "check",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\base\\Scripts\\python.exe"
+    ],
+    "exit_code": 0,
+    "seconds": 0.035159,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "host314",
+    "phase": "venv",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "C:\\Python314\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\host314"
+    ],
+    "exit_code": 0,
+    "seconds": 0.161656,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "environment": "host314",
+    "phase": "install",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--python",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\host314\\Scripts\\python.exe",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-learning\\.local\\learning-reconciliation\\package\\wheel\\devtools-0.1.0-py3-none-any.whl"
+    ],
+    "exit_code": 1,
+    "seconds": 0.242507,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  }
+]
