@@ -1,0 +1,41 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T16:27:57.070337+00:00",
+  "call": 3,
+  "response": {
+    "content": "WORKING_NOTES\n{\"working_notes\":[{\"kind\":\"source\",\"text\":\"Graph TYPED_CORE already accepts direct_bases: Sequence[PythonDirectBaseAssessment], but only admits RESOLVED facts with non-None target; child and target must be present as supplied declarations (functions/classes/methods) else _require_declaration_node raises.\",\"expected_contract\":\"Map must pass only RESOLVED assessments whose child and target class declarations are both in-scope supplied classes.\",\"support\":[{\"reference\":\"source:src/devtools/context/retrieval/graph/view.py\",\"start\":4442,\"end\":12634,\"quote\":\"Graph direct-base inputs must be positive resolved facts.\"},{\"reference\":\"source:src/devtools/context/retrieval/graph/view.py\",\"start\":4442,\"end\":12634,\"quote\":\"child = _require_declaration_node(declaration_nodes, base_fact.child)\"}],\"contradicts\":[],\"supersedes\":[]},{\"kind\":\"source\",\"text\":\"derive_python_direct_bases(snapshot, *, aggregate: PythonClassMethodAnalysisAggregate, module_universe) -> PythonDirectBaseAnalysis; validates universe vs snapshot and containment; analysis.assessments holds one assessment per retained base expression; direct_bases_of(child) returns only RESOLVED.\",\"expected_contract\":\"Reuse canonical owner for positive facts; filter to RESOLVED for the graph; unresolved/unsupported outcomes stay non-positive.\",\"support\":[{\"reference\":\"source:src/devtools/context/python/classes/bases.py\",\"start\":0,\"end\":8192,\"quote\":\"def derive_python_direct_bases(\"},{\"reference\":\"source:src/devtools/context/python/classes/bases.py\",\"start\":0,\"end\":8192,\"quote\":\"item.outcome is PythonDirectBaseOutcome.RESOLVED\"}],\"contradicts\":[],\"supersedes\":[]},{\"kind\":\"question\",\"text\":\"What constructs PythonClassMethodAnalysisAggregate (needed to feed derive_python_direct_bases) and from what owner? Need to find its builder to reuse existing canonical class owners rather than inventing analysis.\",\"expected_contract\":\"Builder likely lives in classes/declarations.py or classes/__init__.py; must accept the same class declarations already admitted in navigation.\",\"support\":[],\"contradicts\":[],\"supersedes\":[]},{\"kind\":\"relationship\",\"text\":\"_reference_analysis builds interpretations via interpret_python_module_resources and universe via define_python_module_interpretation_universe; the same interpretations/universe pattern likely feeds the base aggregate builder.\",\"expected_contract\":\"Reuse the existing canonical owners already present in context_tools for the module universe; navigation can reuse tools._reference_analysis-adjacent state or an analogous public builder.\",\"support\":[{\"reference\":\"source:apps/qwen/context_tools.py\",\"start\":35716,\"end\":36940,\"quote\":\"interpretations = tuple(\"}],\"contradicts\":[],\"supersedes\":[]},{\"kind\":\"question\",\"text\":\"Is there a canonical helper already used by the navigation/relationship view (non-map) to build the direct-base analysis, e.g. in ContextTools? If so reuse; if not, build from tools' index declarations + module universe.\",\"expected_contract\":\"Prefer reusing a single canonical owner already wired in ContextTools.\",\"support\":[],\"contradicts\":[],\"supersedes\":[]}]}\n\n",
+    "source": {
+      "value": "resident-qwen-map-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 19647,
+      "output_tokens": 828,
+      "total_tokens": 20475,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "find_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/classes/declarations.py\",\"query\":\"PythonClassMethodAnalysisAggregate build analyze\"}",
+        "provider_call_id": "94i9qkgeVrqK6M2gD8w25yvz8trkP1TS"
+      },
+      {
+        "name": "find_source",
+        "arguments_json": "{\"path\":\"apps/qwen/context_tools.py\",\"query\":\"direct_bases derive_python_direct_bases\"}",
+        "provider_call_id": "ChG3oaXVlK0qfHuCjKGh44Iba4Aml1z4"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/classes/__init__.py\",\"start\":0,\"end\":1854}",
+        "provider_call_id": "6njO64BzgKcd7VG2Z4tnfayvwrQtKZNj"
+      }
+    ]
+  },
+  "sha256": "566b36e303a15f0fb1697b8d11a607f2bb7e4a12611b348d4d0ef7d1a05e9195"
+}

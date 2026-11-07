@@ -6,6 +6,11 @@ the taxonomy's future cross-task Memory, a repository fact database, or RI
 DerivedKnowledge. The first consumer is the existing independent `NativeReviewer`.
 Model identity is configuration; no model-specific branch is involved.
 
+The [coding-contract consumer](coding-contract-context.md) optionally reuses this
+same notebook and atomic admission in `RepositoryCodingHost`, with a dedicated
+coding-role instruction and protected bounded projection. Reviewer and coder
+scopes remain separate; neither gains automatic semantic verification.
+
 The [P3 follow-up](../research/llm-harness-p3-followup.md) supplied the pressure:
 six delivered conclusions but only two factually valid reviews. This increment
 demonstrates deterministic provenance and state boundaries, **not improved model

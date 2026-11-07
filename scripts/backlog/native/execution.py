@@ -5,6 +5,8 @@
 from __future__ import annotations
 
 import asyncio
+import base64
+import hashlib
 import json
 import sys
 from dataclasses import asdict
@@ -76,6 +78,28 @@ class Capture:
             sealed = self.owner.cycle._save(self.folder / name, payload)
         self.refs.append({"file": name, "sha256": sealed["sha256"]})
         self.used += size
+
+    def http_response(self, call: int, status: int, raw: bytes) -> None:
+        """Capture actual HTTP bytes without colliding with the canonical seal."""
+        self.add(
+            "model-http-response",
+            {
+                "call": call,
+                "status": status,
+                "body_base64": base64.b64encode(raw).decode("ascii"),
+                "body_sha256": hashlib.sha256(raw).hexdigest(),
+            },
+        )
+
+    def rendered_template(self, prompt: str) -> None:
+        """Retain the exact rendering and its distinct payload identity."""
+        self.add(
+            "model-rendered-template",
+            {
+                "prompt": prompt,
+                "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
+            },
+        )
 
 
 def check_data(result: FixedCheckResult, item: str, run: str) -> dict[str, Any]:

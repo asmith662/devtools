@@ -1,0 +1,47 @@
+{
+  "task_outcome": "resource-censored before proposal; coding correctness and working-memory effectiveness not measured",
+  "generations": 5,
+  "source_reads_completed": 8,
+  "source_searches_completed": 2,
+  "native_tool_calls_proposed": 11,
+  "native_tool_actions_completed": 10,
+  "last_read_not_executed": true,
+  "proposals": 0,
+  "authored_notes": 0,
+  "live_public_checks": 0,
+  "live_private_checks": 0,
+  "input_tokens": 60417,
+  "output_tokens": 618,
+  "model_roundtrip_seconds": 86.258885,
+  "episode_seconds": 105.928394,
+  "context_measurements": 5,
+  "request_bytes_min": 14074,
+  "request_bytes_max": 58486,
+  "input_tokens_max": 16419,
+  "context_reduced": 1,
+  "custody": {
+    "restored": true,
+    "reconciliation_required": false
+  },
+  "candidate_produced": false,
+  "archive_qualification": "local-candidate callback captured unchanged baseline, not Qwen-authored code",
+  "failure_phase": "model",
+  "error": "Resident boundary: available physical RAM below1GiB",
+  "source_restored_sha256": "a10417c1b0987eab70b2fffa3540428303717adb464b9d7b53334a9b667d5471",
+  "checkout_released": true,
+  "real_live_type_or_behavior_repair_demonstrated": false,
+  "http_statuses": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "finish_reasons": [
+    "tool_calls",
+    "tool_calls",
+    "tool_calls",
+    "tool_calls",
+    "tool_calls"
+  ]
+}

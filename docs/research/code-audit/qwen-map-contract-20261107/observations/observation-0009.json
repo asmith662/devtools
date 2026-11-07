@@ -1,0 +1,46 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T16:26:37.956393+00:00",
+  "call": 1,
+  "response": {
+    "content": "WORKING_NOTES\n{\"working_notes\":[{\"kind\":\"source\",\"text\":\"Producer _reference_analysis returns PythonDeclarationReferenceAnalysis|None; observed fields are derivation, references, assessments, coverage - no direct-base field.\",\"expected_contract\":\"Return object shape must stay identical; consumers keep using analysis.references.\",\"support\":[{\"reference\":\"source:apps/qwen/context_tools.py\",\"start\":35716,\"end\":36940,\"quote\":\"def _reference_analysis(\"},{\"reference\":\"source:src/devtools/context/python/references/declarations/model.py\",\"start\":5949,\"end\":6337,\"quote\":\"class PythonDeclarationReferenceAnalysis:\"}],\"contradicts\":[],\"supersedes\":[]},{\"kind\":\"relationship\",\"text\":\"Map caller passes declarations split into functions/classes/methods plus references into build_python_graph_view(TYPED_CORE); it omits any direct_bases argument.\",\"expected_contract\":\"Graph view likely has a direct_bases input and canonical owner; unresolved cases must not become positive facts.\",\"support\":[{\"reference\":\"source:apps/qwen/navigation.py\",\"start\":1620,\"end\":3473,\"quote\":\"core=build_python_graph_view(\"}],\"contradicts\":[],\"supersedes\":[]}]}\n\n",
+    "source": {
+      "value": "resident-qwen-map-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 8205,
+      "output_tokens": 468,
+      "total_tokens": 8673,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/navigation.py\",\"start\":0,\"end\":1620}",
+        "provider_call_id": "2h8e5CA7EJB7zCzA7ok8gVoZXjWJUV12"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/navigation.py\",\"start\":3473,\"end\":7469}",
+        "provider_call_id": "p1SukWxQbnvBSfWxqWoH29SlQNgFixMm"
+      },
+      {
+        "name": "find_source",
+        "arguments_json": "{\"query\":\"def build_python_graph_view direct_bases\",\"path\":\"src/devtools/context/retrieval/graph/view.py\"}",
+        "provider_call_id": "61dBc9jOtwn4qhHkGb2wo5G9In9XA0Yf"
+      },
+      {
+        "name": "find_source",
+        "arguments_json": "{\"query\":\"direct_bases canonical class declaration module owner\",\"path\":\"src/devtools/context/python/classes/bases.py\"}",
+        "provider_call_id": "CQ90Utap9wAgmcgob3NrZFQBfZzS3xRA"
+      }
+    ]
+  },
+  "sha256": "1aeee0686ac62758f085c8db811f3625e8b42366f903d5134bd79c93b19fa229"
+}

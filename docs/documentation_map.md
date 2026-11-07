@@ -4,6 +4,18 @@
 the combined protected gate, installed product and explicit Python host/worker
 interoperability; integration into main remains subject to human review.
 
+[Resident coding-contract measurement](research/qwen-coding-contract-effectiveness.md)
+separates the protected implementation, real source acquisition, RAM-censored
+coding outcome and qualified raw evidence. No successful candidate is claimed.
+Its bounded follow-up diagnoses byte-driven source eviction and documents explicit
+producer/caller witnesses and canonical prompt/body capture hashes.
+The new map-only live result verifies retention and canonical capture, while
+recording rejected note anchors and another RAM stop before any edit.
+
+[Coding contracts in active working Context](development/coding-contract-context.md)
+defines the optional coding consumer, separate role state, trusted check feedback
+and future switching-cost measurements under the resident-model strategy.
+
 [llama.cpp transport repair and GPT-OSS qualification](research/llama-transport-gpt-oss-qualification.md)
 records bounded HTTP diagnostics, the exact native-format failure mechanism and
 resource conditions for further reviewer qualification.

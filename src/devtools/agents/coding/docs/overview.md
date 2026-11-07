@@ -5,6 +5,14 @@ objective. It depends on ModelInteraction, native Prompt, existing Agents
 model/Tool composition, ToolRunner, RI/Context, scoped source/fixed checks and
 managed Resources. Runtime and Conversation retain their narrower contracts.
 
+The optional [coding working-Context contract](../../../../../docs/development/coding-contract-context.md)
+adds task/role/episode-scoped provisional producer/consumer notes through the
+existing Context owner. Native Tool/edit/check protocols and historical default
+requests remain unchanged; the opted-in host supplies a coding system instruction.
+The same host accepts bounded `contract_sources` selections using existing exact
+source-range disclosures. Producer/caller text and provisional purpose remain
+protected during projection; a changed snapshot explicitly invalidates them.
+
 - `process.run_coding_agent` owns the finite model/proposal phase sequence,
   response-source and native ID checks, continuation and terminal reconciliation.
 - `models` owns coding-specific limits and factual candidate/terminal outcomes.

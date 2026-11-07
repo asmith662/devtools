@@ -138,5 +138,5 @@ class SourceBinding:
             }
             if self.live
             else None,
-            "origin": "restored-baseline" if self.live else "retained-subject",
+            "origin": "current-source" if self.live else "retained-subject",
         }

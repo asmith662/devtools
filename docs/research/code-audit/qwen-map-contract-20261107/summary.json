@@ -1,0 +1,265 @@
+{
+  "implementation_commit": "cb15b9669c253029bb4ebea7d7da2bb5d66dda45",
+  "published_execution_baseline": "0fed34e8893bcfaf2584fdf98e990762a46e5f7b",
+  "task": "0ddb88ac82c8f3cb46b6c05d1f1c1305de5eda93759f88dfe58642d4e6badfba",
+  "canonical_proposal": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+  "scope": "independent map-only navigation.py; terminal source_relationships episode preserved",
+  "coding_result": "failed",
+  "failure_phase": "model",
+  "error": "Resident boundary: available physical RAM below1GiB",
+  "assessment": "resource-censored before editing; code correctness unmeasured",
+  "calls": [
+    {
+      "call": 1,
+      "input_tokens": 8205,
+      "output_tokens": 468,
+      "client_seconds": 31.176281,
+      "native_tools": [
+        "read_source",
+        "read_source",
+        "find_source",
+        "find_source"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": null
+    },
+    {
+      "call": 2,
+      "input_tokens": 15359,
+      "output_tokens": 121,
+      "client_seconds": 20.657721,
+      "native_tools": [
+        "read_source",
+        "read_source"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": null
+    },
+    {
+      "call": 3,
+      "input_tokens": 19647,
+      "output_tokens": 828,
+      "client_seconds": 56.145002,
+      "native_tools": [
+        "find_source",
+        "find_source",
+        "read_source"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": null
+    },
+    {
+      "call": 4,
+      "input_tokens": 15054,
+      "output_tokens": 306,
+      "client_seconds": 28.23681,
+      "native_tools": [
+        "read_source_unit",
+        "read_source_unit"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": null
+    },
+    {
+      "call": 5,
+      "input_tokens": 16259,
+      "output_tokens": 115,
+      "client_seconds": 20.602973,
+      "native_tools": [
+        "read_source",
+        "find_source"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": null
+    },
+    {
+      "call": 6,
+      "input_tokens": 17683,
+      "output_tokens": 82,
+      "client_seconds": 23.866275,
+      "native_tools": [
+        "find_source",
+        "find_source"
+      ],
+      "termination": "tool_call",
+      "post_generation_guard_error": "AssertionError: Resident boundary: available physical RAM below1GiB"
+    }
+  ],
+  "input_tokens": 92207,
+  "output_tokens": 1920,
+  "client_generation_seconds": 180.685062,
+  "episode_seconds": 201.631606,
+  "completed_read_count": 8,
+  "completed_searches": 5,
+  "completed_actions": 13,
+  "proposed_native_calls": 15,
+  "last_two_searches_withheld": true,
+  "host_contract_disclosures": 3,
+  "contract_slot_bytes": 5811,
+  "contract_in_all_six_requests": true,
+  "completed_reads": [
+    {
+      "tool": "read_source",
+      "path": "apps/qwen/navigation.py",
+      "span": [
+        0,
+        1620
+      ],
+      "version": "cc88e4c2e8e9026d6de50f731b20066b35a23c3286a676b2cbc125bb4ba42538"
+    },
+    {
+      "tool": "read_source",
+      "path": "apps/qwen/navigation.py",
+      "span": [
+        3473,
+        7469
+      ],
+      "version": "cc88e4c2e8e9026d6de50f731b20066b35a23c3286a676b2cbc125bb4ba42538"
+    },
+    {
+      "tool": "read_source",
+      "path": "src/devtools/context/retrieval/graph/view.py",
+      "span": [
+        4442,
+        12634
+      ],
+      "version": "d3afc6e28aa6ac0517369388c096e4162b66d53106b21ada6c538ba324a78d65"
+    },
+    {
+      "tool": "read_source",
+      "path": "src/devtools/context/python/classes/bases.py",
+      "span": [
+        0,
+        8192
+      ],
+      "version": "05a9c3031628c69551ef3d720c334c5679a8d080e94a167c1c99a66be6ea1264"
+    },
+    {
+      "tool": "read_source",
+      "path": "src/devtools/context/python/classes/__init__.py",
+      "span": [
+        0,
+        1854
+      ],
+      "version": "500b061306b30215b2f5f1e5c212205dd9848a21b15fa6f5c4d0123e486722e5"
+    },
+    {
+      "tool": "read_source_unit",
+      "path": "src/devtools/context/python/classes/declarations.py",
+      "span": [
+        14930,
+        15805
+      ],
+      "version": "f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73"
+    },
+    {
+      "tool": "read_source_unit",
+      "path": "src/devtools/context/python/classes/declarations.py",
+      "span": [
+        7891,
+        8569
+      ],
+      "version": "f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73"
+    },
+    {
+      "tool": "read_source",
+      "path": "apps/qwen/context_tools.py",
+      "span": [
+        36940,
+        38402
+      ],
+      "version": "db3a349ca5ba79735ec46c711721033d822e9e25f69d95dd05f20891bc2ec36a"
+    }
+  ],
+  "note_batch_sizes": [
+    2,
+    5
+  ],
+  "note_proposals": 7,
+  "admitted_notes": 0,
+  "note_rejection": "Whole disclosed-unit/read spans paired with much shorter quotes; two atomic batches refused as non-exact intervals",
+  "edits": 0,
+  "candidates": 0,
+  "live_public_checks": 0,
+  "independent_acceptance_entered": false,
+  "context": [
+    {
+      "original_bytes": 21878,
+      "request_bytes": 23541,
+      "action": "ready",
+      "measured_input_tokens": 8205
+    },
+    {
+      "original_bytes": 40542,
+      "request_bytes": 42423,
+      "action": "ready",
+      "measured_input_tokens": 15359
+    },
+    {
+      "original_bytes": 60323,
+      "request_bytes": 62225,
+      "action": "ready",
+      "measured_input_tokens": 19647
+    },
+    {
+      "original_bytes": 69241,
+      "request_bytes": 52575,
+      "action": "reduced",
+      "measured_input_tokens": 15054
+    },
+    {
+      "original_bytes": 72806,
+      "request_bytes": 56146,
+      "action": "reduced",
+      "measured_input_tokens": 16259
+    },
+    {
+      "original_bytes": 77167,
+      "request_bytes": 60471,
+      "action": "reduced",
+      "measured_input_tokens": 17683
+    }
+  ],
+  "entry_physical_available_gib": 5.08154296875,
+  "after_generation_resources": [
+    {
+      "call": 1,
+      "physical_available_gib": 3.6249656677246094,
+      "commit_headroom_gib": 52.944583892822266
+    },
+    {
+      "call": 2,
+      "physical_available_gib": 2.7549362182617188,
+      "commit_headroom_gib": 51.96290969848633
+    },
+    {
+      "call": 3,
+      "physical_available_gib": 1.9180831909179688,
+      "commit_headroom_gib": 50.968223571777344
+    },
+    {
+      "call": 4,
+      "physical_available_gib": 1.1584854125976562,
+      "commit_headroom_gib": 49.963096618652344
+    },
+    {
+      "call": 5,
+      "physical_available_gib": 1.7876014709472656,
+      "commit_headroom_gib": 49.3093376159668
+    },
+    {
+      "call": 6,
+      "physical_available_gib": 0.9388504028320312,
+      "commit_headroom_gib": 49.25087356567383
+    }
+  ],
+  "source_restored_sha256": "ba2a012fc9456f086aa70b6c1302e75dd4b6849e7fd9884e1cd343175ea25b27",
+  "checkout_released": true,
+  "native_assignment": null,
+  "standing_grant": null,
+  "authority": "Current operator task plus AGENTS trusted-local CodingTask; approved resident provider and active policy rechecked; no per-run operator approval",
+  "installed": false,
+  "canonical_readable_records": 67,
+  "capture_reconstruction_needed": false,
+  "original_historical_records_rewritten": false
+}

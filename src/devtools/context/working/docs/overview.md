@@ -21,5 +21,5 @@ does not execute checks or decide behavioral correctness.
 
 The package depends on canonical repository resource/snapshot values and standard
 library support only. It does not import Agents, Tools, native administration,
-Persistence or model providers. A later coding consumer can reuse it without a
-reviewer dependency or a new source ledger.
+Persistence or model providers. The optional coding consumer reuses its atomic
+provisional batch admission without a reviewer dependency or a new source ledger.

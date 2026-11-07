@@ -1,0 +1,33 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-memory-after",
+  "at": "2026-11-07T06:13:19.533083+00:00",
+  "call": 5,
+  "memory": {
+    "at": "2026-11-07T06:13:19.533063+00:00",
+    "windows_bytes": {
+      "CommitTotal": 78233931776,
+      "CommitLimit": 137141796864,
+      "CommitPeak": 137149407232,
+      "PhysicalTotal": 34070192128,
+      "PhysicalAvailable": 999120896,
+      "SystemCache": 614338560,
+      "commit_headroom": 58907865088
+    },
+    "page_files_bytes": [
+      {
+        "path": "C:\\pagefile.sys",
+        "TotalSize": 103071604736,
+        "TotalInUse": 7719247872,
+        "PeakUsage": 35968303104
+      }
+    ],
+    "gpu_csv_mib_percent": "NVIDIA GeForce RTX 4090 Laptop GPU, 16376, 14738, 1313, 97",
+    "admission_minimum": {
+      "physical_available_bytes": 2147483648,
+      "commit_headroom_bytes": 17179869184
+    },
+    "safe_pre_swap": false
+  },
+  "sha256": "a1d5709ca0e42ffe90ce01abaa393d7d1c5d55dfc4d1207fbba39a23859d4e0b"
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T06:12:04.535578+00:00",
+  "call": 1,
+  "response": {
+    "content": "I'll start by investigating the task. Let me search for the relevant functions and understand the structure.\n\n",
+    "source": {
+      "value": "resident-qwen-coding-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 4687,
+      "output_tokens": 210,
+      "total_tokens": 4897,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "find_source",
+        "arguments_json": "{\"query\":\"_reference_analysis derive_python_direct_bases direct_bases\",\"path\":\"apps/qwen/context_tools.py\"}",
+        "provider_call_id": "vGHejPgaBhfQVU92uyjRqrQRSm0kSp00"
+      },
+      {
+        "name": "find_source",
+        "arguments_json": "{\"query\":\"_reference_analysis\",\"path\":\"apps/qwen/navigation.py\"}",
+        "provider_call_id": "jk9gNPfylyL6Ab4sByP8GE8ipZtnxbFc"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"src/devtools/context/python/classes/bases.py\",\"start\":0,\"end\":8953}",
+        "provider_call_id": "5fBL9QkTDtSlgzH3HLzK9kc47GxuAbL9"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"tests/live_coding_contract_public.py\",\"start\":0}",
+        "provider_call_id": "z0vzy3cat2gHnEFht28zwXIWaQ97JLuq"
+      }
+    ]
+  },
+  "sha256": "402fb7808417be5011c436d16e0b6bc6d59c4686f1059e9979445f2dc959eda4"
+}

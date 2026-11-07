@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T16:28:26.317866+00:00",
+  "call": 4,
+  "response": {
+    "content": "",
+    "source": {
+      "value": "resident-qwen-map-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 15054,
+      "output_tokens": 306,
+      "total_tokens": 15360,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source_unit",
+        "arguments_json": "{\"unit_id\":\"1e42fd682c6a35e1dacc982b1c7d7cca8a7c25b65dab2ae52c22c4fa47872065\",\"snapshot_id\":\"177b1c6a92e7d36d7ac63591224206e68f81a41cffe4cab2a3ad27826b997239\"}",
+        "provider_call_id": "y4AikO1xtcRyuIwsGGvkrvMsprpCefD1"
+      },
+      {
+        "name": "read_source_unit",
+        "arguments_json": "{\"unit_id\":\"a9ce45bf3d72af56ad1f39c96a0d705fc33c99027499084a779970d5abaaa187\",\"snapshot_id\":\"177b1c6a92e7d36d7ac63591224206e68f81a41cffe4cab2a3ad27826b997239\"}",
+        "provider_call_id": "Wr2YAmnk7QKWSeaTd9IVWFI4aWuxBBNk"
+      }
+    ]
+  },
+  "sha256": "772e43a942249ae7bf66a5044ec3b8f84858f9a710686f5b428da998bfcc7b8a"
+}

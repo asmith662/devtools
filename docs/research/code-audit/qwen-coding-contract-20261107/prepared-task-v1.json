@@ -1,0 +1,184 @@
+{
+  "packet": {
+    "at": "2026-11-07T05:03:47.369948+00:00",
+    "engineering_obligation": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+    "proposal_payload_sha256": "6c3c0838a0df4e2e37e5dc65aaacb7f42ea59ba70fc51f384decfa9716f6a0b6",
+    "proposal_state": "PENDING_REVIEW",
+    "scope": "One prospective trusted-local coding evaluation of source_relationships direct-base exposure, not full map integration or backlog closure",
+    "authority": "Latest explicit user assignment plus AGENTS trusted local CodingTask pathway; no standing/native grant, no policy expansion or consumed-slot replay",
+    "profile": "resident pinned Qwen, thinking disabled; no serving transition",
+    "task": {
+      "name": "cea1b3e7-source-relationships-local",
+      "objective": "Implement the bounded source_relationships direct-base slice of existing proposal cea1b3e7-bfa6-492a-b850-343a0c543878. Edit only apps/qwen/context_tools.py. Preserve all existing reference results, scope/version checks and other Tools. Add direct_bases: first at most8 native direct-base assessments whose child belongs to the requested source, and direct_bases_truncated. Each row has exactly identity (native assessment identity), child (native declaration identity), outcome (native enum value), target (native class identity or null), route (native route value or null), base_span (native source-range fields), target_path and target_version (native target source identity or null). Include unresolved/unsupported assessments rather than inventing absence or runtime MRO. Unparseable Python retains its existing qualified status and empty reference results, with empty direct_bases and false direct_bases_truncated. Reuse the maintained canonical direct-base owner, not a new Python resolver. Investigate producer return contracts and caller expectations before editing, especially the existing _reference_analysis return object and derive_python_direct_bases inputs/return. Exact source facts and provisional relationships can be retained through working notes; inspect both producer and caller evidence and reconsult them. Fixed public checks cover the public contract, strict types, style/format and maintained consumer/base regressions. Only host-owned checks execute. Use native read_source/find_source/read_source_unit and replace_source/validate_candidate as disclosed. Notes are not semantic verification. A validated local candidate is archived/restored, not installed or a completed broader proposal.",
+      "source": "apps/qwen/context_tools.py",
+      "tests": [
+        "tests/live_coding_contract_public.py"
+      ],
+      "baseline_revision": "a34985b365520622101a73efeb843a3806af808b",
+      "baseline_hashes": [
+        [
+          "apps/qwen/context_tools.py",
+          "a10417c1b0987eab70b2fffa3540428303717adb464b9d7b53334a9b667d5471"
+        ],
+        [
+          "tests/live_coding_contract_public.py",
+          "15c201b910719cdc07072991b1ba82381967df8cb2372c1e3d02803fbc0d14ac"
+        ],
+        [
+          "src/devtools/context/python/classes/bases.py",
+          "ed979a2fd46ca420bd6a9c74e76615194a337f6e48c2af8a7a78ce11adf41216"
+        ],
+        [
+          "src/devtools/context/python/classes/declarations.py",
+          "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63"
+        ],
+        [
+          "src/devtools/context/python/modules/interpretation.py",
+          "a62b631a7a186fdd14fb59611d46fd6dc59fa60ff6e804e6cc7f917a2a982123"
+        ],
+        [
+          "src/devtools/context/python/references/declarations/model.py",
+          "d14997878a32dc4596649b1bf357e9ef28f713590e6537882988f7e9e01bd3fa"
+        ],
+        [
+          "tests/context/python/classes/test_bases.py",
+          "3f545bde6b0858dcf3ad8132c0a099eee7b3bfb0defccde09c62e6d50e231496"
+        ],
+        [
+          "tests/apps/qwen/test_context_tools.py",
+          "43b2e65192c39c3cbc74223247380c7a90e124da238b231a237090c536278b49"
+        ]
+      ],
+      "context": [
+        [
+          "apps/qwen/context_tools.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "tests/live_coding_contract_public.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/bases.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/declarations.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/modules/interpretation.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/references/declarations/model.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "tests/context/python/classes/test_bases.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ],
+        [
+          "tests/apps/qwen/test_context_tools.py",
+          "_relationships derive_python_direct_bases return contract",
+          "mixed",
+          "none"
+        ]
+      ],
+      "maximum_calls": 8,
+      "output_tokens": 2048,
+      "wall_seconds": 900,
+      "call_seconds": 120,
+      "context_mode": "on-demand",
+      "read_paths": [
+        "src/devtools/context/python/classes/bases.py",
+        "src/devtools/context/python/classes/declarations.py",
+        "src/devtools/context/python/modules/interpretation.py",
+        "src/devtools/context/python/references/declarations/model.py",
+        "tests/context/python/classes/test_bases.py",
+        "tests/apps/qwen/test_context_tools.py"
+      ],
+      "quality_checks": true,
+      "additional_edit_paths": [],
+      "api_targets": [],
+      "command_tools": false,
+      "mechanical_format": false,
+      "tool_actions": 16,
+      "new_paths": [],
+      "disclose_edit_paths": true,
+      "path_edits": false,
+      "maximum_proposals": 2,
+      "map_navigation": false
+    },
+    "task_definition_sha256": "b9d536fb19d25538bdab51f0354750ea4501903e8e973ebc857530b8ee7707d2",
+    "oracle_sha256": "4129fffebd0a343028c1a336df31315607773d5130bb38cc8d728663baa5c0d8",
+    "files": {
+      ".local/qwen-coding-effectiveness/public.py": "15c201b910719cdc07072991b1ba82381967df8cb2372c1e3d02803fbc0d14ac",
+      ".local/qwen-coding-effectiveness/private.py": "4129fffebd0a343028c1a336df31315607773d5130bb38cc8d728663baa5c0d8"
+    },
+    "scope_bytes": {
+      "apps/qwen/context_tools.py": 38402,
+      "tests/live_coding_contract_public.py": 2801,
+      "src/devtools/context/python/classes/bases.py": 17906,
+      "src/devtools/context/python/classes/declarations.py": 17164,
+      "src/devtools/context/python/modules/interpretation.py": 8876,
+      "src/devtools/context/python/references/declarations/model.py": 6585,
+      "tests/context/python/classes/test_bases.py": 18757,
+      "tests/apps/qwen/test_context_tools.py": 40005
+    },
+    "hard_prompt_bytes": 65536,
+    "source_disclosure_bytes": 8192,
+    "maximum_edit_region_bytes": 16384,
+    "maximum_source_bytes": 131072,
+    "maximum_edit_batch_bytes": 32768,
+    "maximum_edit_operations": 4,
+    "input_tokens": 32768,
+    "output_tokens": 2048,
+    "capture_bytes": 4194304,
+    "coding_execution": "existing run_coding_agent / AcceptanceHost / Checkout; caller owns exact task effects; no native WorkCycle assignment",
+    "projection": {
+      "trigger": 49152,
+      "target": 32768,
+      "working_envelope": 8192
+    },
+    "boundary_resource_guard": {
+      "available_physical_bytes": 1073741824,
+      "commit_headroom_bytes": 8589934592,
+      "gpu_free_mib": 1024,
+      "scope": "Already-loaded resident model, before/after sampled admission only. Does not replace or lower GPT-OSS startup guards. No new model load or peak-memory guarantee."
+    },
+    "scoring": [
+      "actual model/Tool delivery and source acquisitions",
+      "valid model-authored notes and later availability/use",
+      "public contract/type/style/maintained checks and diagnostic repair",
+      "independent frozen host acceptance only after public validation",
+      "candidate bytes/provenance and exact source restoration",
+      "task outcome separate from candidate validation and broader proposal status",
+      "actual generation elapsed, token usage, Context bytes/tokens, check times; no matched-baseline causal claim"
+    ],
+    "baseline": {
+      "public_failed": 2,
+      "private_failed": 7,
+      "private_stale_control_passed": 1,
+      "setup_errors": 0,
+      "log": "task-baseline-corrected-entry.log"
+    },
+    "replays": 0,
+    "production_installation": false
+  },
+  "sha256": "dda914877b9ed103116b9a65c74d772af4cb6564dcf96fb27bc24c6125cfb22d"
+}

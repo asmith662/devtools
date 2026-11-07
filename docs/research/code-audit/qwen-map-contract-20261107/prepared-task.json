@@ -1,0 +1,240 @@
+{
+  "packet": {
+    "engineering_obligation": "cea1b3e7-bfa6-492a-b850-343a0c543878",
+    "proposal_payload_sha256": "6c3c0838a0df4e2e37e5dc65aaacb7f42ea59ba70fc51f384decfa9716f6a0b6",
+    "task": {
+      "name": "cea-map-direct-base-contract",
+      "objective": "Implement only the unresolved native repository-map direct-base integration under existing Intake cea1b3e7-bfa6-492a-b850-343a0c543878. Edit only apps/qwen/navigation.py. RepositoryMapNavigation supplies declarations and references to its typed core but omits qualified direct-base supports. Reuse existing canonical class/declaration/module/direct-base owners and graph direct_bases input so the map retains native positive direct-base facts for supported in-scope class relationships, including supported imported/module-qualified bases. Preserve exact native source/snapshot/subject provenance, existing references, source navigation, bounded preparation and metadata/edit authority. Unresolved/unsupported cases must not become positive graph facts. Do not invent runtime MRO or another resolver. Keep ContextTools._reference_analysis return object and consumers compatible; that producer is read-only. Initial exact source witnesses identify its annotation/return model and map caller with provisional relationship labels. Inspect other needed APIs through existing source Tools. Retain compact provisional contract notes alongside source calls when useful and reconsult/reopen stale evidence before editing/finalizing. Host-fixed checks: frozen public-map contract, strict mypy, Ruff, formatting and maintained map/context/base regressions. Only these checks execute. Native Tools: read_source/find_source/read_source_unit/replace_source/validate_candidate; no arbitrary commands or tests. Local candidates are archived/restored, not installed or closure of the broader proposal. This disjoint map-only task is not a replay or continuation of the terminal source_relationships episode.",
+      "source": "apps/qwen/navigation.py",
+      "tests": [
+        "tests/live_map_contract_public.py"
+      ],
+      "baseline_revision": "0fed34e8893bcfaf2584fdf98e990762a46e5f7b",
+      "baseline_hashes": [
+        [
+          "apps/qwen/navigation.py",
+          "ba2a012fc9456f086aa70b6c1302e75dd4b6849e7fd9884e1cd343175ea25b27"
+        ],
+        [
+          "tests/live_map_contract_public.py",
+          "25d6c6560c917de11844c0d08716b83fe89bf4371d9485c98d79e901dc8852cc"
+        ],
+        [
+          "apps/qwen/context_tools.py",
+          "a10417c1b0987eab70b2fffa3540428303717adb464b9d7b53334a9b667d5471"
+        ],
+        [
+          "src/devtools/context/python/classes/bases.py",
+          "ed979a2fd46ca420bd6a9c74e76615194a337f6e48c2af8a7a78ce11adf41216"
+        ],
+        [
+          "src/devtools/context/python/classes/declarations.py",
+          "9df6c0e82b59cccb94b8f11465e7a525844cb00cdaa65d558b1011ce8aaf3e63"
+        ],
+        [
+          "src/devtools/context/python/classes/containment.py",
+          "d229041c979f7917b515bb901911b775e3b37d0c3b31be49d1b9cab63f0dc7f4"
+        ],
+        [
+          "src/devtools/context/python/classes/__init__.py",
+          "5c43bfe764c1f95b8aa612b740d9589cd3525730d430e3ad0157a85e92682926"
+        ],
+        [
+          "src/devtools/context/python/modules/interpretation.py",
+          "a62b631a7a186fdd14fb59611d46fd6dc59fa60ff6e804e6cc7f917a2a982123"
+        ],
+        [
+          "src/devtools/context/python/references/declarations/model.py",
+          "d14997878a32dc4596649b1bf357e9ef28f713590e6537882988f7e9e01bd3fa"
+        ],
+        [
+          "src/devtools/context/retrieval/graph/view.py",
+          "049659233d92f3d477e1b0c7b40948c090ded340249fcb9a250834ff0c9f2a34"
+        ],
+        [
+          "src/devtools/context/retrieval/repository_map/view.py",
+          "c3a6d7b9385431d808c3f45806c4a3a23622690e8d2b0e0df303f8b024ca71d3"
+        ],
+        [
+          "tests/apps/qwen/test_navigation.py",
+          "5c0fc1a7c04ca3ac044f3c559515ab357fe912b51f15138ddc4d13e620a1ecba"
+        ],
+        [
+          "tests/apps/qwen/test_context_tools.py",
+          "43b2e65192c39c3cbc74223247380c7a90e124da238b231a237090c536278b49"
+        ],
+        [
+          "tests/context/python/classes/test_bases.py",
+          "3f545bde6b0858dcf3ad8132c0a099eee7b3bfb0defccde09c62e6d50e231496"
+        ]
+      ],
+      "context": [
+        [
+          "apps/qwen/navigation.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "tests/live_map_contract_public.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "apps/qwen/context_tools.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/bases.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/declarations.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/containment.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/classes/__init__.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/modules/interpretation.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/python/references/declarations/model.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/retrieval/graph/view.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "src/devtools/context/retrieval/repository_map/view.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "tests/apps/qwen/test_navigation.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "tests/apps/qwen/test_context_tools.py",
+          "source contract",
+          "file",
+          "none"
+        ],
+        [
+          "tests/context/python/classes/test_bases.py",
+          "source contract",
+          "file",
+          "none"
+        ]
+      ],
+      "maximum_calls": 8,
+      "output_tokens": 2048,
+      "wall_seconds": 900,
+      "call_seconds": 120,
+      "context_mode": "on-demand",
+      "read_paths": [
+        "apps/qwen/context_tools.py",
+        "src/devtools/context/python/classes/bases.py",
+        "src/devtools/context/python/classes/declarations.py",
+        "src/devtools/context/python/classes/containment.py",
+        "src/devtools/context/python/classes/__init__.py",
+        "src/devtools/context/python/modules/interpretation.py",
+        "src/devtools/context/python/references/declarations/model.py",
+        "src/devtools/context/retrieval/graph/view.py",
+        "src/devtools/context/retrieval/repository_map/view.py",
+        "tests/apps/qwen/test_navigation.py",
+        "tests/apps/qwen/test_context_tools.py",
+        "tests/context/python/classes/test_bases.py"
+      ],
+      "quality_checks": true,
+      "additional_edit_paths": [],
+      "api_targets": [],
+      "command_tools": false,
+      "mechanical_format": false,
+      "tool_actions": 16,
+      "new_paths": [],
+      "disclose_edit_paths": true,
+      "path_edits": false,
+      "maximum_proposals": 2,
+      "map_navigation": false,
+      "oracle_sha256": "05a9135503af1e83d2fd10dbe8ba7e22773121175557e7ebec5459423128a571"
+    },
+    "task_definition_sha256": "0ddb88ac82c8f3cb46b6c05d1f1c1305de5eda93759f88dfe58642d4e6badfba",
+    "files": {
+      ".local/qwen-map-contract-evaluation/public.py": "25d6c6560c917de11844c0d08716b83fe89bf4371d9485c98d79e901dc8852cc",
+      ".local/qwen-map-contract-evaluation/private.py": "05a9135503af1e83d2fd10dbe8ba7e22773121175557e7ebec5459423128a571",
+      ".local/qwen-map-contract-evaluation/evaluate.py": "796d6f685ac03b11fedc981a2e94fd2b5d47493232f1dd47c4d3dc644b2885d6",
+      "src/devtools/agents/coding/repository.py": "76cc01979afb021717f67bccfe6dd091f7a6a2c529d418a83c6d80dfcc8cb679",
+      "src/devtools/agents/coding/notes.py": "b610c51c90beb687cb1292131955912d7ee3ac44700217e196deaacb0c0b4cfc",
+      "src/devtools/agents/coding/projection.py": "8b122e670977755c6365c845fa28632efe3b212f8d14ffe38a03e5c747748c58",
+      "scripts/backlog/native/execution.py": "28884f5c507bd4060ec2c9908e61cb9bf96e5a58417716b8f3519d62c68e06ba",
+      "scripts/backlog/checkout.py": "14988b720059bb650a46a13adae89783596e523a4c90affbf2d9466fff3be968",
+      ".local/productive-native/common.py": "4933760fb5009779e0b11e517d5612e44c366022e3cc3bf0fbb9bd16502ff994",
+      ".local/e2e-native/coder.py": "9eeb12e35cc4f0d2feba9c7e9bf39294b609471a81d4c90dd10ea89fd038e207",
+      "AGENTS.md": "07f29dcfc67a91822bc18feea875bd88399ffdc9a3395bca1dcec330d239c988"
+    },
+    "provider_profile": "local-qwen-evaluation-v1",
+    "actor": "resident-qwen-map-contract-local",
+    "policy": "4fe32fc6bd33762ce7b166fc8031e16a7bcd7584c1d9c65676a280983e0b78a9",
+    "authority": "Current operator assignment and AGENTS trusted-local CodingTask; approved provider rechecked; no native assignment or manual grant",
+    "independence": "New map-only navigation.py task. Original task89ecdea5d1c185f81bfad119437a475a29430780e0a06ec90d598d88b876d0ae addressed source_relationships in context_tools.py and remains terminal/consumed; no replay or child dispatch. Existing canonical CEA retained.",
+    "scoring": [
+      "native typed base facts versus canonical RI",
+      "no positive unsupported cases",
+      "producer/reference contract preserved",
+      "strict types/style/format/maintained regressions",
+      "independent host acceptance after public pass",
+      "model reads/notes separately from host disclosures",
+      "native delivery versus factual correctness",
+      "tokens/context/time/custody"
+    ],
+    "maximum_public_checks": 15,
+    "reserved_private_checks": 1,
+    "contract_units": [
+      "ContextTools._reference_analysis",
+      "PythonDeclarationReferenceAnalysis",
+      "RepositoryMapNavigation.__init__"
+    ],
+    "witness_bytes": 8192,
+    "input_tokens": 32768,
+    "output_tokens": 2048,
+    "prompt_bytes": 65536,
+    "capture_bytes": 4194304,
+    "baseline": {
+      "public_failed": 1,
+      "public_passed": 1,
+      "independent_failed": 2,
+      "independent_passed": 2,
+      "canonical_native_expectations_qualified": true
+    },
+    "at": "2026-11-07T16:25:37.103155+00:00"
+  },
+  "sha256": "d5b68a739fa4b2e7ce5996fcec630078a5af8cc6f65e9d5f42de7e12ce1f649d"
+}
