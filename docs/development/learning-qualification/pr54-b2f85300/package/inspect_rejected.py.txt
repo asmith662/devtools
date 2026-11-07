@@ -1,0 +1,38 @@
+import hashlib,importlib.util,json,os,pathlib,sys
+from dataclasses import asdict
+from devtools.core.paths import resolve_path
+from devtools.learning.integrations.local.operations import LearningPublication
+from devtools.learning.integrations.local.inspection import inspect_learning
+from devtools.learning.investigation.plans import LearningPlan,BinaryProblem
+from devtools.learning.investigation.classification.contracts import ExecutionAuthorization
+from devtools.learning.measurement.contracts import EvidenceReference
+from devtools.learning.regression.state import RegressionPredictions
+
+root=pathlib.Path(sys.argv[1]).resolve();output=pathlib.Path(sys.argv[2]).resolve()
+assert not output.exists()
+before={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+def readonly(event,args):
+    if event=='open' and isinstance(args[0],(str,bytes)) and isinstance(args[2],int) and args[2] & (os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND):
+        name=pathlib.Path(os.fsdecode(args[0])).resolve()
+        if name!=output:raise PermissionError('independent inspection is read-only')
+sys.addaudithook(readonly)
+reports=[]
+for operation in sorted([*root.glob('task-*/operation-*'),*root.glob('task-*/protected-final')]):
+    packet=json.loads((operation/'request.json').read_bytes())
+    plan=LearningPlan(**packet['plan']);g=packet['grant']
+    grant=ExecutionAuthorization(g['plan_identity'],tuple(g['candidate_ids']),EvidenceReference(**g['authority']))
+    host=json.loads((operation/'execution.json').read_bytes());ref=json.loads(host['stdout'])
+    original=LearningPublication(resolve_path(operation/'science'),ref['generation_id'],ref['manifest_sha256'],ref['plan_identity'])
+    try:inspect_learning(original,plan,grant)
+    except ValueError as error:
+        assert 'schema/plan/grant' in str(error),str(error)
+        reports.append({'operation':str(operation.relative_to(root)),'acceptance':'REFUSED','reason':str(error),'fit_calls':0})
+    else:raise AssertionError('original protocol-v1 falsely accepted')
+after={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+assert before==after
+assert len(reports)==7
+for name in ('numpy','scipy','sklearn','threadpoolctl'):
+    assert importlib.util.find_spec(name) is None,name
+    assert name not in sys.modules,name
+output.write_text(json.dumps({'status':'PASS_PROTOCOL_V1_STILL_REFUSED','read_only_members':len(before),'content_unchanged':True,'extra_distributions':'ABSENT','operations':reports},indent=2),encoding='utf-8')
+print(json.dumps({'independent_inspection':'PASS_PROTOCOL_V1_STILL_REFUSED','operations':len(reports),'read_only_members':len(before),'fit_calls':0}))

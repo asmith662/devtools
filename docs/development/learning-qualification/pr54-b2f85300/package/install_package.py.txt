@@ -1,0 +1,19 @@
+import asyncio,json,sys
+from pathlib import Path
+from devtools.core.paths import resolve_path
+from devtools.core.time import Duration,Stopwatch
+from devtools.resources.commands import Command,CommandExecutor,CommandOutputPolicy
+root=Path.cwd();area=root/'.local/learning-integration-final/package'
+wheel=next((area/'wheel').glob('*.whl'))
+async def run():
+    records=[]
+    for name,python,extra in [('extra',str(getattr(sys,'_base_executable')),True),('base',str(getattr(sys,'_base_executable')),False),('host314',r'C:\Python314\python.exe',False)]:
+        env=area/name
+        for phase,args in [('venv',['venv','--offline','--python',python,str(env)]),('install',['pip','install','--offline','--python',str(env/'Scripts/python.exe'),str(wheel)+('[learning]' if extra else '')]),('check',['pip','check','--python',str(env/'Scripts/python.exe')])]:
+            clock=Stopwatch()
+            result=await CommandExecutor(output_policy=CommandOutputPolicy(max_stdout_bytes=4<<20,max_stderr_bytes=4<<20)).execute(Command('uv').args(*args).cwd(resolve_path(root)).with_environment({'UV_CACHE_DIR':str(root/'.local/uv-cache')}).with_timeout(Duration.minutes(10)))
+            (area/f'{name}-{phase}-stdout.log').write_bytes(result.stdout);(area/f'{name}-{phase}-stderr.log').write_bytes(result.stderr)
+            row={'environment':name,'phase':phase,'argv':['uv',*args],'exit_code':result.exit_code,'seconds':clock.elapsed.total_seconds,'stdout_truncated':result.stdout_truncated,'stderr_truncated':result.stderr_truncated};records.append(row);print(row,flush=True)
+            (area/'installation.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
+            assert result.succeeded and not result.stdout_truncated and not result.stderr_truncated
+asyncio.run(run())

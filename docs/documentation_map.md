@@ -1,8 +1,12 @@
 # Documentation Map
 
+[PR #54 controlled learning integration](development/learning-pr54-integration.md)
+records final source review, canonical-owner coordination, combined qualification
+and the GitHub integration record.
+
 [Learning main reconciliation](development/learning-main-reconciliation.md) records
-the combined protected gate, installed product and explicit Python host/worker
-interoperability; integration into main remains subject to human review.
+the earlier combined protected gate, installed product and explicit Python
+host/worker interoperability. The PR #54 checkpoint above records final qualification.
 
 [Resident coding-contract measurement](research/qwen-coding-contract-effectiveness.md)
 separates the protected implementation, real source acquisition, RAM-censored

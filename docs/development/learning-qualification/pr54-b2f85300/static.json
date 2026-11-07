@@ -1,0 +1,68 @@
+[
+  {
+    "name": "ruff",
+    "argv": [
+      "uv",
+      "run",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "apps",
+      "scripts",
+      "--exclude",
+      "tests/experiments",
+      "--output-format",
+      "json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.178446,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "name": "format",
+    "argv": [
+      "uv",
+      "run",
+      "ruff",
+      "format",
+      "--check",
+      "src",
+      "tests",
+      "apps",
+      "scripts",
+      "--exclude",
+      "tests/experiments"
+    ],
+    "exit_code": 0,
+    "seconds": 0.149226,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "name": "mypy",
+    "argv": [
+      "uv",
+      "run",
+      "mypy"
+    ],
+    "exit_code": 0,
+    "seconds": 1.977309,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  },
+  {
+    "name": "layout",
+    "argv": [
+      "uv",
+      "run",
+      "python",
+      "scripts/validate_layout.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.449819,
+    "stdout_truncated": false,
+    "stderr_truncated": false
+  }
+]

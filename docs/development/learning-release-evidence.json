@@ -1,5 +1,5 @@
 {
-  "status": "COMBINED_MAIN_PROTECTED_QUALIFIED_REVIEW_CANDIDATE",
+  "status": "PR54_SOURCE_REVIEWED_PROTECTED_QUALIFIED",
   "baseline": "623b6b38b8800767e14c57673b150b8634ea4149",
   "original_protected": {
     "producing_commit": "b1b43dd5a5109ca4716fc27520335e36ea754abb",
@@ -8244,60 +8244,284 @@
     "data_sha256": "f59ccd98d114a9d93f17e6e2ab3dc8c3cc8b5c707737c5b24cf16c96735be2b9"
   },
   "final_protected": {
-    "candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
-    "production_source_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
+    "candidate": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
+    "production_source_commit": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
     "exit_code": 0,
-    "tests_passed": 5275,
+    "tests_passed": 5299,
     "existing_skips": 2,
-    "wall_seconds": 4971.75018,
+    "wall_seconds": 5834.165941,
     "coverage": {
-      "covered_lines": 19325,
-      "num_statements": 19325,
+      "covered_lines": 19429,
+      "num_statements": 19429,
       "percent_covered": 100.0,
       "percent_covered_display": "100",
       "missing_lines": 0,
-      "excluded_lines": 742,
+      "excluded_lines": 745,
       "percent_statements_covered": 100.0,
       "percent_statements_covered_display": "100",
-      "num_branches": 5246,
+      "num_branches": 5288,
       "num_partial_branches": 0,
-      "covered_branches": 5246,
+      "covered_branches": 5288,
       "missing_branches": 0,
       "percent_branches_covered": 100.0,
       "percent_branches_covered_display": "100"
     },
-    "data_sha256": "fda30eea7cdcc303f6acea1ddd9ee1cec74595036f3e1d5b6a40ea57e361088d",
+    "data_sha256": "6dd8b081b5c0347a2762ef11d5cb803229b42e975e5621cb8f4483a64715903e",
     "inputs_unchanged": true,
-    "stdout_truncated": false,
-    "stderr_truncated": false,
-    "receipt_directory": "learning-qualification/main-c66961a3"
+    "receipt_directory": "learning-qualification/pr54-b2f85300"
   },
   "final_package": {
-    "wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
-    "bytes": 702892,
-    "source_members": 409,
-    "source_correspondence": true,
-    "extra_controls": 6,
-    "base_coding": "PASS",
-    "optional_numerical_distributions_in_base": "ABSENT",
-    "denial_probes_per_environment": 13,
-    "unexpected_forbidden_reads": 0,
-    "accepted_v2_reinspection": {
-      "publications": 7,
-      "unchanged_files": 80,
-      "fit_calls": 0
+    "status": "PASS",
+    "wheel_sha256": "16a1c8bb41ebe4e9b2c40bd3597178e7f63d7ce9e3e656f7259f5349ffa459f4",
+    "source_members": 410,
+    "verified_installed_members": 1230,
+    "changed_members_from_qualified_feature": [
+      "devtools/agents/coding/notes.py",
+      "devtools/agents/coding/repository.py",
+      "devtools/agents/coding/docs/overview.md",
+      "devtools/context/working/evidence.py",
+      "devtools/context/working/notes.py",
+      "devtools/context/working/docs/overview.md",
+      "devtools/models/interaction/docs/overview.md",
+      "devtools/models/interaction/providers/llama_cpp.py"
+    ],
+    "environments": {
+      "extra": {
+        "python": "3.12.13 (main, Aug  5 2026, 17:14:30) [MSC v.1944 64 bit (AMD64)]",
+        "distributions": 25
+      },
+      "base": {
+        "python": "3.12.13 (main, Aug  5 2026, 17:14:30) [MSC v.1944 64 bit (AMD64)]",
+        "distributions": 18
+      },
+      "host314": {
+        "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "distributions": 18
+      }
     },
-    "rejected_v1_reinspection": {
-      "publications": 7,
-      "unchanged_files": 80,
-      "fit_calls": 0
+    "controls": {
+      "host312": [
+        {
+          "family": "classification",
+          "terminal": "STOP",
+          "method": "knn7",
+          "parent_predictions": [
+            0,
+            1
+          ],
+          "counts": {
+            "native_fits": 3,
+            "states": 3,
+            "preparations": 3,
+            "squares": 1,
+            "actions": 3,
+            "invocations": 3
+          }
+        },
+        {
+          "family": "regression",
+          "terminal": "STOP",
+          "method": "ridge",
+          "parent_predictions": [
+            2.1333333333333346,
+            13.68888888888889
+          ],
+          "counts": {
+            "native_fits": 3,
+            "states": 4,
+            "preparations": 3,
+            "squares": 0,
+            "actions": 4,
+            "invocations": 4
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "STOP",
+          "method": "square-margin",
+          "parent_predictions": [
+            0,
+            1
+          ],
+          "counts": {
+            "native_fits": 2,
+            "states": 2,
+            "preparations": 2,
+            "squares": 2,
+            "actions": 2,
+            "invocations": 2
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "ABSTAIN",
+          "method": null,
+          "parent_predictions": null,
+          "counts": {
+            "native_fits": 1,
+            "states": 1,
+            "preparations": 1,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 1
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "ABSTAIN",
+          "method": null,
+          "parent_predictions": null,
+          "counts": {
+            "native_fits": 1,
+            "states": 1,
+            "preparations": 1,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 1
+          }
+        },
+        {
+          "family": "tied-boundary",
+          "terminal": "STOP",
+          "method": null,
+          "parent_predictions": [
+            7.0
+          ],
+          "counts": {
+            "native_fits": 2,
+            "states": 2,
+            "preparations": 2,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 2
+          }
+        }
+      ],
+      "host314": [
+        {
+          "family": "classification",
+          "terminal": "STOP",
+          "method": "knn7",
+          "parent_predictions": [
+            0,
+            1
+          ],
+          "counts": {
+            "native_fits": 3,
+            "states": 3,
+            "preparations": 3,
+            "squares": 1,
+            "actions": 3,
+            "invocations": 3
+          }
+        },
+        {
+          "family": "regression",
+          "terminal": "STOP",
+          "method": "ridge",
+          "parent_predictions": [
+            2.1333333333333346,
+            13.68888888888889
+          ],
+          "counts": {
+            "native_fits": 3,
+            "states": 4,
+            "preparations": 3,
+            "squares": 0,
+            "actions": 4,
+            "invocations": 4
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "STOP",
+          "method": "square-margin",
+          "parent_predictions": [
+            0,
+            1
+          ],
+          "counts": {
+            "native_fits": 2,
+            "states": 2,
+            "preparations": 2,
+            "squares": 2,
+            "actions": 2,
+            "invocations": 2
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "ABSTAIN",
+          "method": null,
+          "parent_predictions": null,
+          "counts": {
+            "native_fits": 1,
+            "states": 1,
+            "preparations": 1,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 1
+          }
+        },
+        {
+          "family": "classification",
+          "terminal": "ABSTAIN",
+          "method": null,
+          "parent_predictions": null,
+          "counts": {
+            "native_fits": 1,
+            "states": 1,
+            "preparations": 1,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 1
+          }
+        },
+        {
+          "family": "tied-boundary",
+          "terminal": "STOP",
+          "method": null,
+          "parent_predictions": [
+            7.0
+          ],
+          "counts": {
+            "native_fits": 2,
+            "states": 2,
+            "preparations": 2,
+            "squares": 0,
+            "actions": 2,
+            "invocations": 2
+          }
+        }
+      ]
     },
-    "dependency_checks": "PASS extra/base/host314; original offline host314 cache miss retained",
-    "source_inputs_unchanged_since_wheel": true,
-    "source_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
-    "host314_controls": 6,
-    "host314_original_reinspection": "PASS; all seven original observations and predictions match",
-    "verified_installed_source_members": 1227
+    "historical_reinspection": {
+      "independent-inspection": {
+        "status": "PASS",
+        "operations": 7,
+        "members_unchanged": 80,
+        "fit_calls": 0
+      },
+      "rejected-inspection": {
+        "status": "PASS_PROTOCOL_V1_STILL_REFUSED",
+        "operations": 7,
+        "members_unchanged": 80,
+        "fit_calls": 0
+      },
+      "independent-inspection-host314": {
+        "status": "PASS",
+        "operations": 7,
+        "members_unchanged": 80,
+        "fit_calls": 0
+      },
+      "rejected-inspection-host314": {
+        "status": "PASS_PROTOCOL_V1_STILL_REFUSED",
+        "operations": 7,
+        "members_unchanged": 80,
+        "fit_calls": 0
+      }
+    },
+    "host314_original_prediction_correspondence": "All seven original publication predictions and measurements identical to installed 3.12 inspection; protected final prediction lengths 34 and 59."
   },
   "main_review": {
     "feature_candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
@@ -8329,94 +8553,18 @@
     "merge_commit": "c66961a32d138fcbff95f2841765a3e6491238ef"
   },
   "final_static": {
-    "status": "PASS",
-    "candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
-    "checks": [
-      {
-        "name": "ruff",
-        "argv": [
-          "uv",
-          "run",
-          "ruff",
-          "check",
-          "src",
-          "tests",
-          "apps",
-          "scripts",
-          "--exclude",
-          "tests/experiments",
-          "--output-format",
-          "json"
-        ],
-        "exit_code": 0,
-        "seconds": 0.13863,
-        "stdout_truncated": false,
-        "stderr_truncated": false,
-        "stdout": "[]",
-        "stderr": ""
-      },
-      {
-        "name": "format",
-        "argv": [
-          "uv",
-          "run",
-          "ruff",
-          "format",
-          "--check",
-          "src",
-          "tests",
-          "apps",
-          "scripts",
-          "--exclude",
-          "tests/experiments"
-        ],
-        "exit_code": 0,
-        "seconds": 0.112665,
-        "stdout_truncated": false,
-        "stderr_truncated": false,
-        "stdout": "923 files already formatted\n",
-        "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n"
-      },
-      {
-        "name": "mypy",
-        "argv": [
-          "uv",
-          "run",
-          "mypy"
-        ],
-        "exit_code": 0,
-        "seconds": 1.467822,
-        "stdout_truncated": false,
-        "stderr_truncated": false,
-        "stdout": "Success: no issues found in 768 source files\n",
-        "stderr": ""
-      },
-      {
-        "name": "layout",
-        "argv": [
-          "uv",
-          "run",
-          "python",
-          "scripts/validate_layout.py"
-        ],
-        "exit_code": 0,
-        "seconds": 0.307504,
-        "stdout_truncated": false,
-        "stderr_truncated": false,
-        "stdout": "",
-        "stderr": ""
-      }
-    ],
-    "historical_generated_scope": "Unchanged supported maintained scope; no archive scan or rule relaxation."
+    "ruff_diagnostics": 0,
+    "formatted_files": 927,
+    "strict_mypy_modules": 772,
+    "layout": "PASS"
   },
   "publication_contract": {
     "branch": "integration/learning-investigator",
-    "executable_candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
-    "product_source": "c66961a32d138fcbff95f2841765a3e6491238ef",
-    "final_update": "Report/receipt/provenance only; executable and package source unchanged. Final local/remote report commit recorded in ignored handoff after push.",
-    "main_merged": false,
-    "main_into_feature": true,
-    "feature_merged_into_main": false
+    "executable_candidate": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
+    "main_included": "594381d8204aa27d9e70c6c51f6fe04112bb6f70",
+    "PR": 54,
+    "condition": "Actual normal GitHub acknowledgment and tree verification required; this is a premerge source checkpoint",
+    "owner_checkpoint": "SAFE_ACKNOWLEDGED"
   },
   "main_reconciliation": {
     "status": "COMBINED_PROTECTED_QUALIFIED_REVIEW_CANDIDATE",
@@ -8663,5 +8811,153 @@
     "initial_published_feature_head": "0ecae2ce2b9c6eb8a934b5911b23221c01fc8496",
     "main_base": "825bc23b98e366e97d56e3146a1d752285f383bd",
     "final_branch_identity": "Verified after report-only publication follow-up; see ignored final handoff."
+  },
+  "prior_main_qualification": {
+    "final_protected": {
+      "candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "production_source_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "exit_code": 0,
+      "tests_passed": 5275,
+      "existing_skips": 2,
+      "wall_seconds": 4971.75018,
+      "coverage": {
+        "covered_lines": 19325,
+        "num_statements": 19325,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 742,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 5246,
+        "num_partial_branches": 0,
+        "covered_branches": 5246,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "data_sha256": "fda30eea7cdcc303f6acea1ddd9ee1cec74595036f3e1d5b6a40ea57e361088d",
+      "inputs_unchanged": true,
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "receipt_directory": "learning-qualification/main-c66961a3"
+    },
+    "final_package": {
+      "wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
+      "bytes": 702892,
+      "source_members": 409,
+      "source_correspondence": true,
+      "extra_controls": 6,
+      "base_coding": "PASS",
+      "optional_numerical_distributions_in_base": "ABSENT",
+      "denial_probes_per_environment": 13,
+      "unexpected_forbidden_reads": 0,
+      "accepted_v2_reinspection": {
+        "publications": 7,
+        "unchanged_files": 80,
+        "fit_calls": 0
+      },
+      "rejected_v1_reinspection": {
+        "publications": 7,
+        "unchanged_files": 80,
+        "fit_calls": 0
+      },
+      "dependency_checks": "PASS extra/base/host314; original offline host314 cache miss retained",
+      "source_inputs_unchanged_since_wheel": true,
+      "source_commit": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "host314_controls": 6,
+      "host314_original_reinspection": "PASS; all seven original observations and predictions match",
+      "verified_installed_source_members": 1227
+    },
+    "final_static": {
+      "status": "PASS",
+      "candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "checks": [
+        {
+          "name": "ruff",
+          "argv": [
+            "uv",
+            "run",
+            "ruff",
+            "check",
+            "src",
+            "tests",
+            "apps",
+            "scripts",
+            "--exclude",
+            "tests/experiments",
+            "--output-format",
+            "json"
+          ],
+          "exit_code": 0,
+          "seconds": 0.13863,
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "stdout": "[]",
+          "stderr": ""
+        },
+        {
+          "name": "format",
+          "argv": [
+            "uv",
+            "run",
+            "ruff",
+            "format",
+            "--check",
+            "src",
+            "tests",
+            "apps",
+            "scripts",
+            "--exclude",
+            "tests/experiments"
+          ],
+          "exit_code": 0,
+          "seconds": 0.112665,
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "stdout": "923 files already formatted\n",
+          "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n"
+        },
+        {
+          "name": "mypy",
+          "argv": [
+            "uv",
+            "run",
+            "mypy"
+          ],
+          "exit_code": 0,
+          "seconds": 1.467822,
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "stdout": "Success: no issues found in 768 source files\n",
+          "stderr": ""
+        },
+        {
+          "name": "layout",
+          "argv": [
+            "uv",
+            "run",
+            "python",
+            "scripts/validate_layout.py"
+          ],
+          "exit_code": 0,
+          "seconds": 0.307504,
+          "stdout_truncated": false,
+          "stderr_truncated": false,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "historical_generated_scope": "Unchanged supported maintained scope; no archive scan or rule relaxation."
+    },
+    "publication_contract": {
+      "branch": "integration/learning-investigator",
+      "executable_candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "product_source": "c66961a32d138fcbff95f2841765a3e6491238ef",
+      "final_update": "Report/receipt/provenance only; executable and package source unchanged. Final local/remote report commit recorded in ignored handoff after push.",
+      "main_merged": false,
+      "main_into_feature": true,
+      "feature_merged_into_main": false
+    }
   }
 }

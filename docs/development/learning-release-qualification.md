@@ -1,6 +1,10 @@
 # Learning release qualification
 
-**Current status: combined-main review candidate, protected-qualified; not merged into main.**
+This historical checkpoint is superseded by the
+[PR #54 final source/integration qualification](learning-pr54-integration.md).
+Its original receipts and producing revisions remain unchanged.
+
+**Status at this historical checkpoint: combined-main review candidate, protected-qualified; not merged into main.**
 See [final main reconciliation](learning-main-reconciliation.md) for the current
 combined gate, package and Python 3.14 host interoperability receipts.
 The following feature-only result and repair chronology remain historical evidence.

@@ -1,7 +1,7 @@
 {
   "donor_commit": "e069092e9b83c349ddb4efee09a3b1891ea0ad63",
   "destination_baseline": "26c07ef1b26436dd10dc50c752cd63a6619c7bba",
-  "status": "COMBINED_MAIN_REVIEW_CANDIDATE_NOT_MERGED_INTO_MAIN",
+  "status": "IMPLEMENTED_AND_QUALIFIED_FOR_PR54_INTEGRATION",
   "inputs": [
     {
       "donor": "src/learned_intelligence/representation/features.py",
@@ -715,9 +715,9 @@
       "__init__.py": "Replace obsolete partial-migration docstring with current supported responsibility."
     }
   },
-  "release_candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
-  "qualified_production_source": "c66961a32d138fcbff95f2841765a3e6491238ef",
-  "qualified_wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
+  "release_candidate": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
+  "qualified_production_source": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
+  "qualified_wheel_sha256": "16a1c8bb41ebe4e9b2c40bd3597178e7f63d7ce9e3e656f7259f5349ffa459f4",
   "feature_only_qualification": {
     "release_candidate": "009cca843ea5bef675e8f7fdf2e9b223e8fcc59e",
     "qualified_production_source": "c6688cce532164d11a2125ae7d8baee248a849c3",
@@ -730,5 +730,16 @@
     "wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7",
     "mapping_changes": "None; donor/destination scientific source identities unchanged",
     "assessment": "learning-qualification/main-c66961a3/assessment.json"
+  },
+  "prior_main_candidate": {
+    "release_candidate": "c66961a32d138fcbff95f2841765a3e6491238ef",
+    "qualified_production_source": "c66961a32d138fcbff95f2841765a3e6491238ef",
+    "qualified_wheel_sha256": "81a384dbb16f507710f617739fe9523ec7a47cea33cc43f9d50cb07cf585a8a7"
+  },
+  "pr54_checkpoint": {
+    "candidate": "b2f85300ccd34fa29db310bc40b7a419409e6ea7",
+    "main": "594381d8204aa27d9e70c6c51f6fe04112bb6f70",
+    "source_mapping_changes": "None",
+    "assessment": "learning-qualification/pr54-b2f85300/assessment.json"
   }
 }

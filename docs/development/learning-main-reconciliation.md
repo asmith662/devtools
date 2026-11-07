@@ -1,5 +1,9 @@
 # Learning main reconciliation and review candidate
 
+This historical checkpoint is superseded by the
+[PR #54 final source/integration qualification](learning-pr54-integration.md).
+Its original receipts and producing revisions remain unchanged.
+
 **Combined candidate passes the protected release policy and is ready for human integration review.**
 No feature merge into main or live model study has been performed.
 

@@ -1,0 +1,8 @@
+from pathlib import Path
+p=Path('.local/learning-integration-final/package')
+for filename,name in [('launch_inspection.py','independent-inspection'),('launch_rejected.py','rejected-inspection')]:
+    code=(p/filename).read_text(encoding='utf-8')
+    code=code.replace("selected=area/'base/Lib/site-packages'","selected=area/'host314/Lib/site-packages'")
+    code=code.replace("Command(str(getattr(sys,'_base_executable',sys.executable)))",r"Command(r'C:\Python314\python.exe')")
+    code=code.replace(name+'.json',name+'-host314.json').replace(name+'-launch.json',name+'-launch-host314.json')
+    (p/(filename[:-3]+'-host314.py')).write_text(code,encoding='utf-8')

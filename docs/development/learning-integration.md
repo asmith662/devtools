@@ -1,6 +1,6 @@
 # Selective learning integration
 
-## Candidate status and custody
+## Implemented capability and source custody
 
 The maintained candidate is in `C:/Users/recoveryadmin/Workspace/tools/devtools-learning`
 on `integration/learning-investigator`, based on main
@@ -13,7 +13,10 @@ on `integration/learning-investigator`, based on main
 `7b3ced58` (corrected real-source evidence and the terminal failed gate), and
 `cfb4c575` (minimum source closure and default development dependency correction).
 
-**A and B are functional and the combined-main review candidate is release-qualified.**
+**A and B are functional and qualified in the integrated source tree.**
+See the [PR #54 controlled integration checkpoint](learning-pr54-integration.md)
+for the latest source review, combined gate and publication conditions.
+The following chronology preserves earlier candidate qualification.
 The earlier feature-only protected run on commit
 `009cca843ea5bef675e8f7fdf2e9b223e8fcc59e` passes 5,235 tests with the original
 two opt-in skips and 100% of 19,308
@@ -31,13 +34,14 @@ The original 84.55% and subsequent 99.99% failed gates remain historical failure
 not reclassified passes. The earlier qualification snapshot and original
 scientific publications remain under
 [original qualification evidence](learning-qualification/assessment.json).
-Current main has now been merged **into this feature branch** and the combined
-protected gate passes. The feature has not been merged into main. See
-[final reconciliation](learning-main-reconciliation.md) for exact revisions, runtime
-interoperability and combined receipts; human integration review remains outstanding.
+At the earlier c66961a3 checkpoint, main had been merged **into this feature
+branch** and the combined gate passed; feature integration was still outstanding.
+The [earlier reconciliation](learning-main-reconciliation.md) preserves those
+revisions, runtime observations and receipts. The linked PR #54 checkpoint above
+records the final source review and newer combined qualification.
 
-[PR #54](https://github.com/asmith662/devtools/pull/54) publishes the combined
-candidate for human review against main. It remains unmerged.
+[PR #54](https://github.com/asmith662/devtools/pull/54) is the controlled integration
+record. Consult its actual GitHub status and the linked final checkpoint.
 
 The concurrent canonical checkout is never an edit, build, test or environment
 root for this assignment. LI remains read-only. External uniquely owned tiny
