@@ -18,6 +18,7 @@ from devtools.agents.coding.models import CodingProgress
 from devtools.agents.coding.projection import ProjectionPolicy
 from devtools.agents.coding.repository import RepositoryCodingHost
 from devtools.context import Repository
+from devtools.context.planning.source import SourceRangeDisclosureOption
 from devtools.context.working import NoteScope
 from devtools.core.paths import resolve_path
 from devtools.core.time import Duration
@@ -343,6 +344,19 @@ def test_fixed_type_and_consumer_checks_feed_a_real_repair(tmp_path: Path) -> No
         )
         base.objective = replace(base.objective, scope=scope, checks=plan)
         host = coder(base)
+        unit = host.index.views[0].units[0]
+        split = text.index("def consume")
+        witnesses = (
+            SourceRangeDisclosureOption("producer annotated int", unit, 0, split, 1024),
+            SourceRangeDisclosureOption(
+                "caller adds one; provisional producer relationship",
+                unit,
+                split,
+                len(text),
+                1024,
+            ),
+        )
+        host = coder(base, contract_sources=witnesses)
 
         class Worker:
             source = InteractionSource("actor")
@@ -351,6 +365,12 @@ def test_fixed_type_and_consumer_checks_feed_a_real_repair(tmp_path: Path) -> No
             async def send(self, request: object) -> ModelResponse:
                 self.number += 1
                 if self.number == 1:
+                    serialized = str(request)
+                    assert "producer annotated int" in serialized
+                    assert "def answer() -> int" in serialized
+                    assert "def consume() -> int" in serialized
+                    assert "answer() + 1" in serialized
+                    assert "provisional producer relationship" in serialized
                     return response(
                         "inspect",
                         call(
@@ -386,6 +406,7 @@ def test_fixed_type_and_consumer_checks_feed_a_real_repair(tmp_path: Path) -> No
                         ),
                     )
                 serialized = str(request)
+                assert "stale; reopen" in serialized
                 assert "Incompatible return value type" in serialized
                 assert "TypeError" in serialized
                 return response(
@@ -420,5 +441,71 @@ def test_fixed_type_and_consumer_checks_feed_a_real_repair(tmp_path: Path) -> No
         assert all(r.passed for r in host.check_results[1])
         assert host.working is not None
         assert host.working.notes[0].verification is None
+
+    asyncio.run(run())
+
+
+def test_contract_witness_bounds_freshness_and_projection(tmp_path: Path) -> None:
+    async def run() -> None:
+        base = host_at(tmp_path)
+        unit = base.index.views[0].units[0]
+        option = SourceRangeDisclosureOption(
+            "producer and caller uncertainty",
+            unit,
+            0,
+            unit.end,
+            1024,
+        )
+        host = coder(
+            base,
+            contract_sources=(option,),
+            projection=ProjectionPolicy(5000, 4000),
+        )
+        await read(host)
+        await read_again(host)
+        request = await host.prepare(CodingProgress(LIMITS))
+        assert host.projection_outcomes[-1].triggered
+        witnesses = [
+            json.loads(m.content)
+            for m in request.prompt.messages
+            if '"kind": "coding_contract_witnesses"' in m.content
+        ]
+        assert witnesses[0]["sources"][0]["text"] == SOURCE
+        assert option in host.active_disclosures
+        assert host.working is not None
+        assert host.working.sources["source:module.py"].spans
+        with pytest.raises(ValueError, match="distinct current"):
+            coder(base, contract_sources=(option, option))
+        with pytest.raises(ValueError, match="distinct current"):
+            coder(base, contract_sources=[option])
+        with pytest.raises(ValueError, match="bounded Context"):
+            coder(base, contract_sources=(replace(option, purpose="x" * 9000),))
+        (tmp_path / "other").mkdir()
+        other = host_at(tmp_path / "other")
+        with pytest.raises(ValueError, match="distinct current"):
+            coder(other, contract_sources=(option,))
+        # Same snapshot ID cannot launder a foreign repository/resource witness.
+        with pytest.raises(ValueError, match=r"source|Source|resource|Resource"):
+            coder(
+                other,
+                contract_sources=(
+                    replace(
+                        option,
+                        unit=replace(unit, snapshot_id=other.scope.snapshot.id),
+                    ),
+                ),
+            )
+        host.objective = replace(host.objective, prompt_bytes=1000)
+        host.projection = ProjectionPolicy(1000, 900)
+        with pytest.raises(ValueError, match=r"budget|protected input"):
+            await host.prepare(CodingProgress(LIMITS))
+
+    async def read_again(host: RepositoryCodingHost) -> None:
+        item = response(
+            "inspect again",
+            call("read_source", {"path": "module.py", "start": 0}, "second"),
+        )
+        host.classify(item)
+        await host.acquire(item)
 
     asyncio.run(run())

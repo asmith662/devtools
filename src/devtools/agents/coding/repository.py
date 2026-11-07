@@ -66,7 +66,10 @@ from devtools.agents.model_tools import (
     normalize_tool_descriptor,
 )
 from devtools.context import Repository, RepositoryResourceAddress
-from devtools.context.planning.source import SourceRangeDisclosureOption
+from devtools.context.planning.source import (
+    SourceRangeDisclosureOption,
+    materialize_source_range,
+)
 from devtools.context.repository.corpus import realize_repository_text_corpus
 from devtools.context.retrieval import build_source_search_index
 from devtools.context.working import NoteScope, WorkingNotes
@@ -190,7 +193,7 @@ class RepositoryCodingHost:
 
     native_feedback = True
 
-    def __init__(  # noqa: PLR0913 -- explicit scope, effects and custody collaborators
+    def __init__(  # noqa: PLR0913, PLR0915 -- explicit scope, effects and custody collaborators
         self,
         objective: CodingObjective,
         *,
@@ -215,6 +218,7 @@ class RepositoryCodingHost:
         observe_context: Callable[[ContextPressure], None] | None = None,
         working_scope: NoteScope | None = None,
         observe_working: Callable[[dict[str, object]], None] | None = None,
+        contract_sources: tuple[SourceRangeDisclosureOption, ...] = (),
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
@@ -302,6 +306,29 @@ class RepositoryCodingHost:
         self.check_results: list[tuple[FixedCheckResult, ...]] = []
         self.last_completion = CodingCompletion()
         self._index()
+        if (
+            not isinstance(contract_sources, tuple)
+            or len(contract_sources) > working.MAXIMUM_CONTRACT_SOURCES
+            or len({o.identity for o in contract_sources}) != len(contract_sources)
+            or any(o.snapshot_id != self.scope.snapshot.id for o in contract_sources)
+        ):
+            msg = (
+                "Coding contract witnesses require distinct current source selections."
+            )
+            raise ValueError(msg)
+        self.contract_sources = contract_sources
+        self._contract_index = len(self.messages) if contract_sources else None
+        if contract_sources:
+            message, current = working.contract_message(
+                contract_sources,
+                self.scope.snapshot,
+            )
+            self.messages.append(message)
+            self._source_messages[len(self.messages) - 1] = current
+            self.disclosures.extend(current)
+            self.source_results.extend(
+                materialize_source_range(self.scope.snapshot, o) for o in current
+            )
 
     def _index(self) -> None:
         self.index = build_source_search_index(
@@ -407,10 +434,17 @@ class RepositoryCodingHost:
                 if self.observe_context is not None:
                     self.observe_context(fact)
 
-    async def _prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901 -- atomic projection and currentness guards
+    async def _prepare(self, progress: CodingProgress) -> ModelRequest:  # noqa: C901, PLR0912, PLR0915 -- atomic projection and currentness guards
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
+        if self._contract_index is not None:
+            message, current = working.contract_message(
+                self.contract_sources,
+                self.scope.snapshot,
+            )
+            self.messages[self._contract_index] = message
+            self._source_messages[self._contract_index] = current
         if self.working is not None:
             working.refresh_sources(
                 self.working,
@@ -450,6 +484,8 @@ class RepositoryCodingHost:
                     if self.readiness is not None
                     else frozenset()
                 )
+                if self._contract_index is not None:
+                    protected |= frozenset({self._contract_index})
                 if self.compaction is not None:
                     protected |= self.compaction.protect(request.prompt.messages)
                 outcome = project_request(

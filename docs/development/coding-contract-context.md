@@ -21,6 +21,32 @@ record a compact provisional relationship with exact source quotes; reconsult
 it before editing; and repair using precise host-fixed type/behavior diagnostics.
 Metadata and retained notes never replace source/edit witnesses.
 
+### Explicit producer/caller witnesses
+
+A trusted caller may pass `contract_sources=(producer, caller, ...)`, using
+existing `SourceRangeDisclosureOption` selections from RI/source navigation or
+Localization. This is disclosure configuration, not a new relationship graph or
+Tool. At most eight distinct, current selections fit one 8,192-byte envelope;
+the complete request and token limits still apply. Oversized required evidence
+fails closed rather than silently dropping one side of the contract.
+
+The protected `coding_contract_witnesses` user slot contains exact text, native
+unit identity, snapshot/content identities, actual ranges, partial-read status
+and the selection's purpose. Use purpose to identify the producer, caller and
+provisional relationship or uncertainty. These host interpretations are not
+verified semantic facts. Public behavior/type checks remain separately declared
+in the objective's existing fixed-check plan. Models can reopen missing evidence
+through the unchanged source Tools.
+
+These are real host-selected disclosures, retained in the existing source result
+and disclosure collections; they do not count as model source-Tool actions.
+Projection protects the slot, and current ranges participate in existing edit
+witness admission. An admitted edit changes the snapshot: the derived slot then
+removes old text and explicitly marks its witnesses stale. Old offsets never
+silently rebind to new source. Select fresh units through the existing source
+owner, or inspect source again; the immutable initial selection is not refreshed
+by a model's assertion. The default empty selection preserves prior requests.
+
 The existing `WORKING_NOTES` assistant-content protocol can accompany an ordinary
 native source call. It adds no Tool, model call, editable range or permission.
 Note-only prose remains a stop; Tool-shaped prose is never executed.
