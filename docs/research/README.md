@@ -1,5 +1,9 @@
 # Research Evidence
 
+[Resident Qwen coding contracts](qwen-coding-contract-effectiveness.md) records the
+protected coding consumer and five genuine resident generations. A physical-RAM
+boundary stops execution before any note or edit; live benefit remains unproved.
+
 [llama.cpp transport repair and GPT-OSS qualification](llama-transport-gpt-oss-qualification.md)
 separates the HTTP diagnostic defect, pinned native-parser failure and strict
 review admission, with resource-gated alternate-provider qualification.

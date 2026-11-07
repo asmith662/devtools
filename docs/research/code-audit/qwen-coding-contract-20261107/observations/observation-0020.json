@@ -1,0 +1,36 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T06:12:19.928397+00:00",
+  "call": 2,
+  "response": {
+    "content": "",
+    "source": {
+      "value": "resident-qwen-coding-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 10289,
+      "output_tokens": 114,
+      "total_tokens": 10403,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/context_tools.py\",\"start\":35716,\"end\":38402}",
+        "provider_call_id": "hlZlmxS1FB6KoQps4dY2a8wAPTn6ww8l"
+      },
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/navigation.py\",\"start\":0,\"end\":7469}",
+        "provider_call_id": "qdXu8iFYgH4uBcPq04GRxJpTHI2gHkq8"
+      }
+    ]
+  },
+  "sha256": "d33fe0e1c168b22f62ed50472598b73f0ec5b43e8023afd37ee69800cd478034"
+}

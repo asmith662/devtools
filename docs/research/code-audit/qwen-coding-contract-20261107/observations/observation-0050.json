@@ -1,0 +1,31 @@
+{
+  "schema": "backlog-native-observation-v1",
+  "kind": "model-returned",
+  "at": "2026-11-07T06:13:19.474539+00:00",
+  "call": 5,
+  "response": {
+    "content": "",
+    "source": {
+      "value": "resident-qwen-coding-contract-local"
+    },
+    "conversation": null,
+    "usage": {
+      "input_tokens": 15532,
+      "output_tokens": 60,
+      "total_tokens": 15592,
+      "cached_input_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "termination": "tool_call",
+    "reasoning_content": null,
+    "tool_calls": [
+      {
+        "name": "read_source",
+        "arguments_json": "{\"path\":\"apps/qwen/context_tools.py\",\"start\":33500,\"end\":38402}",
+        "provider_call_id": "EPX3O4zSVAwXmP0zouCcw69ujc9iU7Im"
+      }
+    ]
+  },
+  "sha256": "baf11901aee3920f286102ed0d44cbbdccea72dfcbea2db94e24c2996b101cda"
+}

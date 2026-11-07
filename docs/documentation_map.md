@@ -1,5 +1,9 @@
 # Documentation Map
 
+[Resident coding-contract measurement](research/qwen-coding-contract-effectiveness.md)
+separates the protected implementation, real source acquisition, RAM-censored
+coding outcome and qualified raw evidence. No successful candidate is claimed.
+
 [Coding contracts in active working Context](development/coding-contract-context.md)
 defines the optional coding consumer, separate role state, trusted check feedback
 and future switching-cost measurements under the resident-model strategy.
