@@ -31,7 +31,6 @@ if TYPE_CHECKING:
 PROJECTION_BYTES = 8192
 CONTRACT = {"schema": "review-working-notes-v1", "projection_bytes": PROJECTION_BYTES}
 PREFIX = "WORKING_NOTES\n"
-MAXIMUM_BATCH = 8
 PROCEDURE = """Evidence-first independent review: claim -> expected contract -> exact
 observed evidence -> contradiction/uncertainty check -> supported finding.
 Matching quotation proves the quotation, not your interpretation. Passing checks
@@ -160,56 +159,7 @@ class ReviewNotes:
         if not content.startswith(PREFIX):
             return False
         value = arguments(content.removeprefix(PREFIX), {"working_notes"})
-        rows = value["working_notes"]
-        if not isinstance(rows, list) or not 1 <= len(rows) <= MAXIMUM_BATCH:
-            raise ValueError("Invalid finite review working-note batch")
-        following = WorkingNotes(self.scope, self.book.sources)
-        following.restore(self.scope, self.book.notes)
-        for row in rows:
-            # Existing strict decoder rejects duplicate/extra members recursively.
-            note: dict[str, Any] = arguments(
-                json.dumps(row),
-                {
-                    "kind",
-                    "text",
-                    "expected_contract",
-                    "support",
-                    "contradicts",
-                    "supersedes",
-                },
-            )
-            if not all(
-                isinstance(note[k], str) for k in ("kind", "text", "expected_contract")
-            ) or not all(
-                isinstance(note[k], list)
-                for k in ("support", "contradicts", "supersedes")
-            ):
-                raise ValueError("Invalid working-note field types")
-            anchors = []
-            for item in note["support"]:
-                anchor: dict[str, Any] = arguments(
-                    json.dumps(item),
-                    {"reference", "start", "end", "quote"},
-                )
-                ref = anchor["reference"]
-                if not isinstance(ref, str) or ref not in following.sources:
-                    raise ValueError("Unavailable independent source reference")
-                anchors.append(
-                    following.sources[ref].anchor(
-                        anchor["start"],
-                        anchor["end"],
-                        anchor["quote"],
-                    ),
-                )
-            following.record(
-                note["kind"],
-                note["text"],
-                note["expected_contract"],
-                tuple(anchors),
-                contradicts=tuple(note["contradicts"]),
-                supersedes=tuple(note["supersedes"]),
-            )
-        self.book = following
+        self.book.admit_batch(value["working_notes"])
         self.persist(origin)
         return True
 

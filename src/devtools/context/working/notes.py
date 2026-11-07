@@ -123,6 +123,76 @@ class WorkingNotes:
         self._notes.append(note)
         return note
 
+    def admit_batch(self, rows: object) -> None:
+        """Atomically admit bounded provisional records, never model attestations.
+
+        Consumers own JSON decoding and authenticate episode/response provenance.
+        This shared admission preserves the existing note representation; no
+        consumer may gain verification by supplying an extra serialized field.
+        """
+        if not isinstance(rows, list) or not 1 <= len(rows) <= 8:  # noqa: PLR2004
+            msg = "Invalid finite working-note batch."
+            raise ValueError(msg)
+        following = WorkingNotes(self.scope, self.sources)
+        following.restore(self.scope, self.notes)
+        for row in rows:
+            if (
+                not isinstance(row, dict)
+                or set(row)
+                != {
+                    "kind",
+                    "text",
+                    "expected_contract",
+                    "support",
+                    "contradicts",
+                    "supersedes",
+                }
+                or not all(
+                    isinstance(row[k], str)
+                    for k in (
+                        "kind",
+                        "text",
+                        "expected_contract",
+                    )
+                )
+                or not all(
+                    isinstance(row[k], list)
+                    for k in (
+                        "support",
+                        "contradicts",
+                        "supersedes",
+                    )
+                )
+            ):
+                msg = "Invalid working-note fields."
+                raise ValueError(msg)
+            anchors = []
+            for item in row["support"]:
+                if (
+                    not isinstance(item, dict)
+                    or set(item) != {"reference", "start", "end", "quote"}
+                    or not isinstance(item["reference"], str)
+                    or item["reference"] not in self.sources
+                ):
+                    msg = "Invalid or unavailable working source reference."
+                    raise ValueError(msg)
+                anchors.append(
+                    self.sources[item["reference"]].anchor(
+                        item["start"],
+                        item["end"],
+                        item["quote"],
+                    ),
+                )
+            following.record(
+                cast("NoteKind", row["kind"]),
+                row["text"],
+                row["expected_contract"],
+                tuple(anchors),
+                contradicts=tuple(row["contradicts"]),
+                supersedes=tuple(row["supersedes"]),
+            )
+        self._notes = list(following.notes)
+
     def observe(self, anchor: SourceAnchor) -> WorkingNote:
         """Verify literal source quotation only, never an arbitrary paraphrase."""
         note = self.record("source", anchor.quote, "exact source quotation", (anchor,))
@@ -218,9 +288,7 @@ class WorkingNotes:
                     "snapshot": str(binding.snapshot) if binding.snapshot else None,
                     "verified_disclosed_ranges": merged,
                     "unread_gaps": gaps,
-                    "origin": "restored-baseline"
-                    if binding.live
-                    else "retained-subject",
+                    "origin": "current-source" if binding.live else "retained-subject",
                 },
             )
         # Recent literal reads must not displace the unresolved claim they were

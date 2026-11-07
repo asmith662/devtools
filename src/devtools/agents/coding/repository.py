@@ -9,6 +9,7 @@ from dataclasses import dataclass, replace
 from functools import partial
 from typing import TYPE_CHECKING, Literal, cast
 
+from devtools.agents.coding import notes as working
 from devtools.agents.coding.capacity import ContextPressure, TokenCapacity
 from devtools.agents.coding.compaction.operation import SemanticCompactor
 from devtools.agents.coding.custody import SourceCustody
@@ -68,6 +69,7 @@ from devtools.context import Repository, RepositoryResourceAddress
 from devtools.context.planning.source import SourceRangeDisclosureOption
 from devtools.context.repository.corpus import realize_repository_text_corpus
 from devtools.context.retrieval import build_source_search_index
+from devtools.context.working import NoteScope, WorkingNotes
 from devtools.core.paths import resolve_path
 from devtools.models.interaction import (
     ModelRequest,
@@ -211,6 +213,8 @@ class RepositoryCodingHost:
         measure_input: Callable[[ModelRequest], Awaitable[int]] | None = None,
         warning_bytes: int | None = None,
         observe_context: Callable[[ContextPressure], None] | None = None,
+        working_scope: NoteScope | None = None,
+        observe_working: Callable[[dict[str, object]], None] | None = None,
     ) -> None:
         """Bind host authority and the existing Context/Tool/Resource substrates."""
         if corpus.discovery.repository_id != objective.scope.snapshot.repository_id:
@@ -267,6 +271,25 @@ class RepositoryCodingHost:
             maximum_bytes=self.scope.maximum_resource_bytes,
         )
         self.messages = initial_messages(objective.text)
+        if (
+            working_scope is not None
+            and (
+                not working_scope.role.startswith("coding-worker:")
+                or not working_scope.role.removeprefix("coding-worker:").strip()
+            )
+        ) or (observe_working is not None and working_scope is None):
+            msg = "Coding working Context requires its own coding-worker scope."
+            raise ValueError(msg)
+        self.working = WorkingNotes(working_scope, {}) if working_scope else None
+        self.observe_working = observe_working
+        self.working_refusal: str | None = None
+        if self.working is not None:
+            self.messages = [
+                PromptMessage("system", working.PROCEDURE),
+                self.messages[1],  # Preserve the existing inventory/navigation slot.
+                self.messages[0],
+                PromptMessage("user", ""),
+            ]
         self.disclosures: list[SourceRangeDisclosureOption] = []
         self.source_results: list[ContextDisclosure] = []
         self.active_disclosures: tuple[SourceRangeDisclosureOption, ...] = ()
@@ -388,6 +411,15 @@ class RepositoryCodingHost:
         """Authenticate source and atomically install a valid active projection."""
         self.progress = progress
         self.scope.check_current()
+        if self.working is not None:
+            working.refresh_sources(
+                self.working,
+                self.scope.snapshot,
+                tuple(self.disclosures),
+            )
+            self.messages[3] = working.message(self.working, self.working_refusal)
+            if self.observe_working is not None:
+                self.observe_working(self.working.checkpoint())
         prepare_inventory(
             self.messages,
             self.scope,
@@ -501,6 +533,21 @@ class RepositoryCodingHost:
     def classify(self, response: ModelResponse) -> Literal["acquire", "edit", "stop"]:
         """Refuse mixed/unavailable operations before any partial batch executes."""
         self.scope.check_current()
+        if self.working is not None:
+            working.refresh_sources(
+                self.working,
+                self.scope.snapshot,
+                tuple(self.disclosures),
+            )
+            try:
+                admitted = working.accept(self.working, response.content)
+            except ValueError as error:
+                self.working_refusal = str(error)[:256]
+            else:
+                if admitted:
+                    self.working_refusal = None
+                    if self.observe_working is not None:
+                        self.observe_working(self.working.checkpoint())
         self.messages.append(
             PromptMessage(
                 "assistant",

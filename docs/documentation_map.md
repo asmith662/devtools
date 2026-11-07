@@ -1,5 +1,9 @@
 # Documentation Map
 
+[Coding contracts in active working Context](development/coding-contract-context.md)
+defines the optional coding consumer, separate role state, trusted check feedback
+and future switching-cost measurements under the resident-model strategy.
+
 [llama.cpp transport repair and GPT-OSS qualification](research/llama-transport-gpt-oss-qualification.md)
 records bounded HTTP diagnostics, the exact native-format failure mechanism and
 resource conditions for further reviewer qualification.
