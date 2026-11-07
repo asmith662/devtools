@@ -115,3 +115,15 @@ deterministic references; it was not implemented or executed here.
 See [authenticated combined receipts](learning-qualification/main-c66961a3/assessment.json)
 and their file-level manifest. Final publication identities and PR are recorded in the
 completion handoff; report-only follow-up commits do not change executable/wheel bytes.
+
+## Review publication
+
+[PR #54](https://github.com/asmith662/devtools/pull/54) is open for ordinary human
+review against main, with draft and merged both false. The initial published
+review head is `0ecae2ce2b9c6eb8a934b5911b23221c01fc8496`, following source merge
+`c66961a32d138fcbff95f2841765a3e6491238ef`; its authenticated main base is
+`825bc23b98e366e97d56e3146a1d752285f383bd`. This publication-record follow-up
+changes documentation only. The PR tracks the feature branch; the final exact
+local/remote identity is recorded in the ignored completion handoff after push.
+The [initial GitHub publication receipt](learning-qualification/main-c66961a3-publication.json)
+preserves the actual API observation. No human approval or CI result is implied.

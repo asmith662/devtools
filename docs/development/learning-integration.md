@@ -36,6 +36,9 @@ protected gate passes. The feature has not been merged into main. See
 [final reconciliation](learning-main-reconciliation.md) for exact revisions, runtime
 interoperability and combined receipts; human integration review remains outstanding.
 
+[PR #54](https://github.com/asmith662/devtools/pull/54) publishes the combined
+candidate for human review against main. It remains unmerged.
+
 The concurrent canonical checkout is never an edit, build, test or environment
 root for this assignment. LI remains read-only. External uniquely owned tiny
 Git fixtures are permitted; there is no second maintained checkout, automatic
